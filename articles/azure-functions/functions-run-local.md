@@ -1,180 +1,181 @@
 <properties
-	pageTitle="開發並在本機執行 Azure functions | Microsoft Azure"
-	description="了解在 Azure App Service 中執行之前，如何編碼並測試 Visual Studio 中的 Azure Functions。"
-	services="functions"
-	documentationCenter="na"
-	authors="tdykstra"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Develop and run Azure functions locally | Microsoft Azure"
+    description="Learn how to code and test Azure functions in Visual Studio before running them in Azure App Service."
+    services="functions"
+    documentationCenter="na"
+    authors="tdykstra"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="functions"
-	ms.workload="na"
-	ms.tgt_pltfrm="multiple"
-	ms.devlang="multiple"
-	ms.topic="article"
-	ms.date="08/22/2016"
-	ms.author="glenga"/>
+    ms.service="functions"
+    ms.workload="na"
+    ms.tgt_pltfrm="multiple"
+    ms.devlang="multiple"
+    ms.topic="article"
+    ms.date="08/22/2016"
+    ms.author="glenga"/>
 
-# 如何在 Visual Studio 中編碼和測試 Azure Functions
 
-## Overview
+# <a name="how-to-code-and-test-azure-functions-in-visual-studio"></a>How to code and test Azure functions in Visual Studio
 
-這篇文章說明如何透過下載 [WebJobs.Script](https://github.com/Azure/azure-webjobs-sdk-script/) GitHub 儲存機制在本機執行 [Azure Functions](functions-overview.md)，並執行其所包含的 Visual Studio 解決方案。
+## <a name="overview"></a>Overview
 
-Azure Functions 的執行階段為 WebJobs.Script 開放原始碼專案的實作。此專案會依次組建於 [Azure WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md) 上，且這兩個架構都可以在本機執行。不過，由於 WebJobs SDK 會使用儲存體模擬器不支援的儲存體帳戶功能，因此您需要連線至 Azure 儲存體帳戶。
+This article explains how to run [Azure Functions](functions-overview.md) locally by downloading the [WebJobs.Script](https://github.com/Azure/azure-webjobs-sdk-script/) GitHub repository and running the Visual Studio solution that it contains.
 
-您可以輕鬆地在 Azure 入口網站中對函式進行編碼和測試，但有時候適合在 Azure 中執行之前先在本機處理這些函式。例如，Azure Functions 所支援的部份語言更容易在 Visual Studio 中撰寫程式碼，這是由於它提供 [IntelliSense](https://msdn.microsoft.com/library/hcw1s69b.aspx)。雖然您可以從遠端偵錯函式，但在本機偵錯可能更快速且更輕鬆。當您在本機執行時，可以進行偵錯，並在函式的程式碼及 WebJobs 指令碼主機程式碼中設定中斷點。
+The runtime for Azure Functions is an implementation of the WebJobs.Script open source project. This project is in turn built on the [Azure WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md), and both frameworks can run locally. You do need to connect to an Azure storage account, however, because the WebJobs SDK uses storage account features that the storage emulator doesn't support.
 
->[AZURE.NOTE] Azure Functions 目前僅供預覽，而包含工具的整體體驗仍在快速開發中。這篇文章中所描述的程序並未反映最後的本機開發經驗，我們希望您能夠[提供意見反應](https://feedback.azure.com/forums/355860-azure-functions)。
+Functions are easy to code and test in the Azure portal, but sometimes it's useful to work with them locally before running in Azure. For example, some of the languages that Azure Functions supports are easier to write code for in Visual Studio because it provides [IntelliSense](https://msdn.microsoft.com/library/hcw1s69b.aspx). And while you can debug a function remotely, it may be quicker and easier to debug locally. When you run locally, you can debug and set breakpoints in function code as well as in the WebJobs Script host code.  
 
-## 必要條件
+>[AZURE.NOTE] Azure Functions is currently in preview, and the overall experience including tooling is still under rapid development. The procedures outlined in this article do not reflect the final local development experience, and we’d love for you to [provide your feedback](https://feedback.azure.com/forums/355860-azure-functions).
 
-### 具有函式應用程式的 Azure 帳戶
+## <a name="prerequisites"></a>Prerequisites
 
-這篇文章假設您已在入口網站使用 [Azure Functions](functions-overview.md) 並已熟悉 Azure Functions 概念，例如[觸發程序、繫結和 JobHost](functions-reference.md)。
+### <a name="an-azure-account-with-a-function-app"></a>An Azure account with a function app
 
-當您在本機執行函式時，會在主控台視窗獲得部分輸出，但您也會想要使用由即時函式應用程式所裝載的儀表板來檢視函式引動過程和記錄檔。
+This article assumes that you have worked with [Azure Functions](functions-overview.md) in the portal and are familiar with Azure Functions concepts such as [triggers, bindings, and JobHost](functions-reference.md).
 
-### Visual Studio 2015 (含最新的 Azure SDK for .NET)
+When you run functions locally, you get some output in the console window, but you'll also want to use the dashboard that is hosted by a live function app to view function invocations and logs.
 
-若您沒有 Visual Studio 2015，或您沒有最新的 Azure SDK，[請下載 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)。如果您沒有 Visual Studio 2015，它會自動與 SDK 一起安裝。
+### <a name="visual-studio-2015-with-the-latest-azure-sdk-for-.net"></a>Visual Studio 2015 with the latest Azure SDK for .NET
 
-### 條件式的必要條件
+If you don't have Visual Studio 2015, or you don't have the current Azure SDK, [download the Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003). Visual Studio 2015 is automatically installed with the SDK if you don't already have it.
 
-只有當您計劃執行的函式會用到時，才會需要某些 Azure 資源和軟體安裝，例如︰
+### <a name="conditional-prerequisites"></a>Conditional prerequisites
 
-* Azure 資源
-	* 服務匯流排
-	* 簡單的資料表
-	* DocumentDB
-	* 事件中樞
-	* 通知中樞
+Some Azure resources and software installations are required only if you plan to run functions that use them, for example:  
 
-* 編譯器和指令碼引擎
-	* F#
-	* BASH
-	* Python
-	* PHP
+* Azure resources
+    * Service Bus
+    * Easy Tables
+    * DocumentDB
+    * Event Hubs
+    * Notification Hubs
 
-如需關於這些需求，包括您需要對這些環境變數進行設定的詳細資訊，請參閱 [WebJobs.Script 儲存機制的 Wiki 頁面](https://github.com/Azure/azure-webjobs-sdk-script/wiki/home)
+* Compilers and script engines
+    * F#
+    * BASH
+    * Python
+    * PHP
 
-如果您的目的是要參與 WebJobs.SDK 專案，則需要所有條件式的必要條件，才能執行完整的測試。
+For details about these requirements, including environment variables that you have to set for them, see the [wiki pages for the WebJobs.Script repository](https://github.com/Azure/azure-webjobs-sdk-script/wiki/home)
 
-## 若要在本機執行
+If your purpose is to contribute to the WebJobs.SDK project, you need all of the conditional prerequisites to run complete tests.
 
-1. [複製](https://github.com/Azure/azure-webjobs-sdk-script/)或[下載](https://github.com/Azure/azure-webjobs-sdk-script/archive/master.zip) Webjobs.Script 儲存機制。
+## <a name="to-run-locally"></a>To run locally
 
-2. 設定儲存體連接字串的環境變數。
+1. [Clone](https://github.com/Azure/azure-webjobs-sdk-script/) or [download](https://github.com/Azure/azure-webjobs-sdk-script/archive/master.zip) the Webjobs.Script repository.
 
-	* AzureWebJobsStorage
-	* AzureWebJobsDashboard
+2. Set environment variables for storage connection strings.
 
-	您可以針對函式應用程式，從 App Service 應用程式設定入口網站刀鋒視窗中取得這些值。
+    * AzureWebJobsStorage
+    * AzureWebJobsDashboard
 
-	a.在「函式應用程式」刀鋒視窗中，按一下 [函式應用程式設定]。
+    You can get these values from the App Service **Application Settings** portal blade for a function app.
 
-	![按一下 [函式應用程式設定]](./media/functions-run-local/clickfuncappsettings.png)
+    a. On the **Function app** blade, click **Function app settings**.
+
+    ![Click Function App Settings](./media/functions-run-local/clickfuncappsettings.png)
  
-	b.在「函式應用程式設定」刀鋒視窗中，按一下 [移至 App Service 設定]。
+    b. On the **Function App Settings** blade, click **Go to App Service Settings**.
 
-	![按一下 [App Service 設定]](./media/functions-run-local/clickappsvcsettings.png)
+    ![Click App Service Settings](./media/functions-run-local/clickappsvcsettings.png)
  
-	c.在「設定」刀鋒視窗中，按一下 [應用程式設定]。
+    c. On the **Settings** blade, click **Application settings**.
 
-	![按一下 [應用程式設定]](./media/functions-run-local/clickappsettings.png)
+    ![Click Application Settings](./media/functions-run-local/clickappsettings.png)
  
-	d.在「應用程式設定」刀鋒視窗中，向下捲動至 [應用程式設定] 區段，並尋找WebJobs SDK 設定。
+    d. On the **Application settings** blade, scroll down to the **App settings** section and find the WebJobs SDK settings.
 
-	![WebJobs 設定](./media/functions-run-local/wjsettings.png)
+    ![WebJobs settings](./media/functions-run-local/wjsettings.png)
 
-	e.將環境變數設定為和 `AzureWebJobsStorage` 應用程式設定相同的名稱和值。
+    e. Set an environment variable with the same name and value as the `AzureWebJobsStorage` app setting.
 
-	f.對 `AzureWebJobsDashboard` 應用程式設定進行相同步驟。
+    f. Do the same for the `AzureWebJobsDashboard` app setting.
 
-2. 建立名為 AzureWebJobsServiceBus 的環境變數，並將它設定為服務匯流排連接字串。
+2. Create an environment variable named AzureWebJobsServiceBus, and set it to your Service Bus connection string.
 
-	服務匯流排繫結需要這個環境變數，我們建議您即便不使用服務匯流排繫結，仍應進行設定。在某些情況下，無論是否使用繫結，如果未設定服務匯流排連接字串，您可能會看到例外狀況。
+    This environment variable is required for Service Bus bindings, and we recommend that you set it even if you don't use Service Bus bindings. In some scenarios, you might see exceptions if the Service Bus connection string is not set, regardless of the bindings in use.
 
-3. 請確定已設定您所需的其他任何環境變數。(請參閱先前的[條件式的必要條件](#conditional-prerequisites)一節)。
+3. Make sure any other environment variables that you need are set. (See preceding [Conditional prerequisites](#conditional-prerequisites) section).
 
-4. 啟動 Visual Studio，然後再開啟 WebJobs.Script 方案。
+4. Start Visual Studio, and then open the WebJobs.Script solution.
 
-6. 設定啟動專案。如果您想要執行使用 HTTP 或 WebHook 觸發程序的函式，請選擇 [WebJobs.Script.WebHost]；否則，請選擇 [WebJobs.Script.Host]。
+6. Set the startup project. If you want to run functions that use HTTP or WebHook triggers, choose **WebJobs.Script.WebHost**; otherwise, choose **WebJobs.Script.Host**.
 
-4. 如果您的啟動專案為 WebJobs.Script.Host：
+4. If your startup project is WebJobs.Script.Host:
 
-	a.在「方案總管」中，以滑鼠右鍵按一下 [WebJobs.Script.Host] 方案，然後按一下 [屬性]。
+    a. In **Solution Explorer**, right-click the WebJobs.Script.Host project, and then click **Properties**. 
 
-	b.在「專案屬性」視窗的 [偵錯] 索引標籤中，將 [命令列引數] 設定為 `..\..\..\..\sample`。
+    b. In the **Debug** tab of the **Project Properties** window, set **Command line arguments** to `..\..\..\..\sample`. 
 
-	![命令列引數](./media/functions-run-local/cmdlineargs.png)
+    ![Command line arguments](./media/functions-run-local/cmdlineargs.png)
 
-	這是儲存機制中「範例」資料夾的相對路徑。「範例」資料夾包含 host.json 檔案，其中包含通用設定，以及每個範例函式的資料夾。
+    This is a relative path to the *sample* folder in the repository.   The *sample* folder contains a *host.json* file that contains global settings, and a folder for each sample function. 
 
-	若要開始使用，使用所提供的「範例」資料夾是最容易的方式。稍後您可以將自己的函式加入「範例」 資料夾，或任何使用包含 host.json 和函式資料夾的資料夾。
+    To get started it's easiest to use the *sample* folder that's provided. Later you can add your own functions to the *sample* folder or use any folder that contains a *host.json* and function folders.
 
-5. 如果您的啟動專案為 WebJobs.Script.WebHost：
+5. If your startup project is WebJobs.Script.WebHost:
 
-	a.將 AzureWebJobsScriptRoot 環境變數設定至 `sample` 資料夾的完整路徑 。
+    a. Set an AzureWebJobsScriptRoot environment variable to the full path to the `sample` folder.
 
-	b.重新啟動 Visual Studio 來挑選新的環境變數值。
+    b. Restart Visual Studio to pick up the new environment variable value.
 
-	如需有關如何執行 HTTP 觸發程序函式的其他資訊，請參閱 [API 金鑰](#api-keys)一節。
+    See the [API keys](#api-keys) section for additional information about how to run HTTP trigger functions.
 
-5. 開啟 sample\\host.json 檔案，並新增 `functions` 屬性來指定您想要執行的函式。
+5. Open the *sample\host.json* file, and add a `functions` property to specify which functions you want to run.
 
-	例如：下列的 JSON 會讓 WebJobs SDK JobHost 只尋找兩個函式。
+    For example, the following JSON will make the WebJobs SDK JobHost look for only two functions. 
 
-		{
-		  "functions": [ "TimerTrigger-CSharp", "QueueTrigger-CSharp"],
-		  "id": "5a709861cab44e68bfed5d2c2fe7fc0c"
-		}
+        {
+          "functions": [ "TimerTrigger-CSharp", "QueueTrigger-CSharp"],
+          "id": "5a709861cab44e68bfed5d2c2fe7fc0c"
+        }
 
-	當您使用的是自己的資料夾，而不是「範例」資料夾，在其中只會包含您想要執行的函式。然後您可以省略 host.json 中的 `functions` 屬性。
+    When you use your own folder instead of the *sample* folder, include in it only the functions that you want to run. Then you can omit the `functions` property in *host.json*.
  
-6. 建置並執行解決方案。
+6. Build and run the solution.
 
-	主控台視窗顯示 JobHost 只會尋找在 `host.json` 檔案中指定的函式。
+    The console window shows that the JobHost only finds the functions specified in the `host.json` file. 
 
-		Found the following functions:
-		Host.Functions.QueueTrigger-CSharp
-		Host.Functions.TimerTrigger-CSharp
-		Job host started
+        Found the following functions:
+        Host.Functions.QueueTrigger-CSharp
+        Host.Functions.TimerTrigger-CSharp
+        Job host started
 
-	如果您正在開始 WebHost 專案，您會得到一個空白瀏覽器頁面，因為在專案的基底 URL 並無內容可提供。如需有關用於 HTTP 觸發程序函數之 URL 的資訊，請參閱 [API 金鑰](#apikeys)一節。
+    If you're starting the WebHost project, you get a blank browser page because there is no content to serve at the base URL of the project. See the [API keys](#apikeys) section for information about URLs to use for HTTP trigger functions.
 
-## 檢視函式輸出
+## <a name="viewing-function-output"></a>Viewing function output
 
-請移至函式應用程式的儀表板，查看函式引動過程，並為其記錄輸出。
+Go to the dashboard for your function app to see function invocations and log output for them.
 
-儀表板位於下列 URL：
+The dashboard is at the following URL:
 
-	https://{function app name}.scm.azurewebsites.net/azurejobs/#/functions
+    https://{function app name}.scm.azurewebsites.net/azurejobs/#/functions
 
-「函數」頁面會顯示已執行函數的清單，以及函數叫用清單。
+The **Functions** page displays a list of functions that have been executed, and a list of function invocations.
 
-![引動過程詳細資料](./media/functions-run-local/invocationdetail.png)
+![Invocation Detail](./media/functions-run-local/invocationdetail.png)
 
-按一下某個叫用可查看「叫用詳細資料」頁面，當中會指出函數觸發時間、大約執行時間，以及成功完成狀態。按一下 [切換輸出] 按鈕，即可查看函數程式碼所寫入的記錄檔。
+Click an invocation to see the **Invocation Details** page, which indicates when the function was triggered, the approximate run time, and successful completion. Click the **Toggle Output** button to see logs written by the function code.
 
-![引動過程詳細資料](./media/functions-run-local/invocationdetail.png)
+![Invocation Detail](./media/functions-run-local/invocationdetail.png)
 
-## <a id="apikeys"></a>HTTP 觸發程序的 API 金鑰
+## <a name="<a-id="apikeys"></a>-api-keys-for-http-triggers"></a><a id="apikeys"></a> API Keys for HTTP triggers
 
-若要執行 HTTP 或 WebHook 函數，您將需要 API 金鑰，除非您將 `"authLevel": "anonymous"` 納入 *function.json* 檔案中。
+To run an HTTP or WebHook function, you'll need an API key unless you include `"authLevel": "anonymous"` in the *function.json* file.
 
-例如，如果 API 金鑰為 `12345`，當 WebJobs.Script.WebHost 專案正在執行時，您可以使用下列 URL 來觸發 *HttpTrigger* 函數。
+For example, if the API key is `12345`, you can trigger the *HttpTrigger* function with the following URL when the WebJobs.Script.WebHost project is running.
 
-	http://localhost:28549/api/httptrigger?code=12345
+    http://localhost:28549/api/httptrigger?code=12345
 
-(或者，您也可以將 API 金鑰放在 `x-functions-key` HTTP 標頭中。)
+(As an alternative, you can put the API key in the `x-functions-key` HTTP header.)
 
-API 金鑰儲存在 WebJobs.Script.WebHost 專案之 [App\_Data/secrets](https://github.com/Azure/azure-webjobs-sdk-script/tree/master/src/WebJobs.Script.WebHost/App_Data/secrets) 資料夾的 `.json` 檔案中。
+API keys are stored in `.json` files in the [App_Data/secrets](https://github.com/Azure/azure-webjobs-sdk-script/tree/master/src/WebJobs.Script.WebHost/App_Data/secrets) folder in the WebJobs.Script.WebHost project.
 
-### 適用於所有 HTTP 和 WebHook 函式的 API 金鑰
+### <a name="api-keys-that-apply-to-all-http-and-webhook-functions"></a>API keys that apply to all HTTP and WebHook functions
 
-*App\_Data/secrets* 資料夾中的 *host.json* 檔案有兩組金鑰︰
+The *host.json* file in the *App_Data/secrets* folder has two keys:
 
 ```json
 {
@@ -183,17 +184,17 @@ API 金鑰儲存在 WebJobs.Script.WebHost 專案之 [App\_Data/secrets](https:/
 }
 ```
 
-`functionKey` 屬性儲存一組金鑰，若未針對該特定函數定義任何覆寫的情況下，該組金鑰可用於任何 HTTP 或 WebHook 函數。這項功能可讓您無需為您所建立的每個函式定義新 API 金鑰。
+The `functionKey` property stores a key that can be used for any HTTP or WebHook function if no override for that particular function is defined. This feature eliminates the need to always define new API keys for every function you create.
 
-`masterKey` 屬性儲存一組金鑰，該組金鑰在某些測試案例中相當有用︰
+The `masterKey` property stores a key that is useful in some testing scenarios:
 
-* 如果您以主要金鑰呼叫 WebHook 函數，WebJobs SDK 就會略過 WebHook 提供者的簽章驗證。
+* If you call a WebHook function with a master key, the WebJobs SDK bypasses the validation of the WebHook provider's signature.
 
-* 如果您以主要金鑰呼叫 HTTP 或 WebHook 函數，則即使函數在 *function.json* 檔案中已停用，仍然會觸發該函數。這是在 Azure 入口網站中用來讓 [執行] 按鈕即使在函數已停用的情況下，仍然可以運作。
+* If you call an HTTP or WebHook function with a master key, the function is triggered even if it's disabled in the *function.json* file. This is used in the Azure portal to make the **Run** button work even for disabled functions.
  
-### 套用於個別函式的 API 金鑰
+### <a name="api-keys-that-apply-to-individual-functions"></a>API keys that apply to individual functions
 
-名稱為 *{function name}.json* 的檔案包含特定函數的 API 金鑰。例如，下列在 *App\_Data/secrets/HttpTrigger.json* 中的範例 JSON 內容會設定 `HttpTrigger` 函數的 API 金鑰。
+Files that are named *{function name}.json* contain the API key for a particular function. For example, the following example JSON content in *App_Data/secrets/HttpTrigger.json* sets the API key for the `HttpTrigger` function.
 
 ```json
 {
@@ -201,26 +202,30 @@ API 金鑰儲存在 WebJobs.Script.WebHost 專案之 [App\_Data/secrets](https:/
 }
 ```
 
-## 在函數中使用 NuGet 套件參考  
+## <a name="using-nuget-package-references-in-functions"></a>Using NuGet package references in functions  
 
-基於目前處理 NuGet 參考的方式，請確定您在主機處於執行狀態時，會「存取」*project.json* 檔案。主機會監看是否發生檔案修改，並在偵測到變更時，起始還原作業。此外，*NuGet.exe* (建議使用 3.3.0) 必須位於您的路徑中，或是您必須設定一個名為 AzureWebJobs\_NuGetPath 且含有 *NuGet.exe* 路徑的環境變數。
+Due to the way NuGet references are currently processed, make sure that you "touch" the *project.json* file while the host is running. The host watches for file modifications and initiates a restore when it detects changes. Also, *NuGet.exe* (3.3.0 recommended) must either be in your path or you must have an environment variable named AzureWebJobs_NuGetPath set, with the path to *NuGet.exe*.
 
-## 疑難排解
+## <a name="troubleshooting"></a>Troubleshooting
 
-在執行 Visual Studio 時，不會自動挑選已完成變更的環境變數。如果您在啟動 Visual Studio 後新增或變更環境變數，請關閉 Visual Studio，然後重新啟動 Visual Studio，以確保其可挑出目前的值。
+Environment variable changes done while Visual Studio is running aren't picked up automatically. If you added or changed an environment variable after starting Visual Studio, shut down Visual Studio and restart it to make sure it is picking up the current values.
 
-偵錯時，您可以透過在 [例外狀況設定] 視窗中 (按 CTRL-ALT-E 來開啟視窗) 選取 [通用語言執行平台例外狀況]，取得例外狀況的更多相關資訊。
+When you're debugging, you might get more information about exceptions by selecting **Common Language Runtime Exceptions** in the **Exception Settings** window (CTRL-ALT-E to open the window).
 
-還有另一種您可以在偵錯時取得更多例外狀況資訊的方法，就是在指令碼裝載的主迴圈 `catch` 區塊中設定中斷點。您可以在 WebJobs.Script 專案中、*Host/ScriptHostManager.cs* 中以及 `RunAndBlock` 方法中找到此區塊。
+Another way you might get more exception information while debugging is to set a breakpoint in the `catch` block of the main loop for the script host. You'll find this in the WebJobs.Script project, in *Host/ScriptHostManager.cs*, in the `RunAndBlock` method.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需詳細資訊，請參閱下列資源：
+For more information, see the following resources:
 
-* [Azure Functions 開發人員參考](functions-reference.md)
-* [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
-* [Azure Functions F# 開發人員參考](functions-reference-fsharp.md)
-* [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
-* [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
+* [Azure Functions developer reference](functions-reference.md)
+* [Azure Functions C# developer reference](functions-reference-csharp.md)
+* [Azure Functions F# developer reference](functions-reference-fsharp.md)
+* [Azure Functions NodeJS developer reference](functions-reference-node.md)
+* [Azure Functions triggers and bindings](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

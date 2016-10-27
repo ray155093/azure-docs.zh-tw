@@ -1,41 +1,42 @@
 <properties
-	pageTitle="教學課程：使用 Entity Framework 和資料列層級安全性的 Web 應用程式搭配多租用戶資料庫"
-	description="了解如何使用 Entity Framework 和資料列層級安全性，搭配多租用戶 SQL Database 後端來開發 ASP.NET MVC 5 Web 應用程式。"
+    pageTitle="Tutorial: Web app with a multi-tenant database using Entity Framework and Row-Level Security"
+    description="Learn how to develop an ASP.NET MVC 5 web app with a multi-tenant SQL Database backent, using Entity Framework and Row-Level Security."
   metaKeywords="azure asp.net mvc entity framework multi tenant row level security rls sql database"
-	services="app-service\web"
-	documentationCenter=".net"
-	manager="jeffreyg"
+    services="app-service\web"
+    documentationCenter=".net"
+    manager="jeffreyg"
   authors="tmullaney"/>
 
 <tags
-	ms.service="app-service-web"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="04/25/2016"
-	ms.author="thmullan"/>
+    ms.service="app-service-web"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="dotnet"
+    ms.topic="article"
+    ms.date="04/25/2016"
+    ms.author="thmullan"/>
 
-# 教學課程：使用 Entity Framework 和資料列層級安全性的 Web 應用程式搭配多租用戶資料庫
 
-本教學課程示範如何使用 Entity Framework 和[資料列層級安全性](https://msdn.microsoft.com/library/dn765131.aspx)，搭配[共用的資料庫、共用的結構描述](https://msdn.microsoft.com/library/aa479086.aspx)租用模型，建置多租用戶 Web 應用程式。在此模型中，單一資料庫包含許多租用戶的資料，而且每個資料表中的每個資料列都有一個相關聯的「租用戶識別碼」。 資料列層級安全性 (RLS) 是 Azure SQL Database 的新功能，用來防止租用戶存取彼此的資料。這只需要對應用程式進行一次微幅的變更即可。RLS 將租用戶存取邏輯集中在資料庫本身之內，簡化應用程式碼並降低租用戶之間不慎洩露資料的風險。
+# <a name="tutorial:-web-app-with-a-multi-tenant-database-using-entity-framework-and-row-level-security"></a>Tutorial: Web app with a multi-tenant database using Entity Framework and Row-Level Security
 
-我們就從[使用驗證和 SQL DB 建立 ASP.NET MVC 應用程式並部署至 Azure App Service](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md) 中簡單的「連絡人管理員」應用程式開始。現在，此應用程式允許所有使用者 (租用戶) 看見所有連絡人：
+This tutorial shows how to build a multi-tenant web app with a "[shared database, shared schema](https://msdn.microsoft.com/library/aa479086.aspx)" tenancy model, using Entity Framework and [Row-Level Security](https://msdn.microsoft.com/library/dn765131.aspx). In this model, a single database contains data for many tenants, and each row in each table is associated with a "Tenant ID." Row-Level Security (RLS), a new feature for Azure SQL Database, is used to prevent tenants from accessing each other's data. This requires just a single, small change to the application. By centralizing the tenant access logic within the database itself, RLS simplifies the application code and reduces the risk of accidental data leakage between tenants.
 
-![啟用 RLS 之前的連絡人管理員應用程式](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-Before.png)
+Let's start with the simple Contact Manager application from [Create an ASP.NET MVP app with auth and SQL DB and deploy to Azure App Service](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md). Right now, the application allows all users (tenants) to see all contacts:
 
-只要經過少數的微幅變更，我們就能支援多租用戶，讓使用者能夠看見屬於他們的連絡人。
+![Contact Manager application before enabling RLS](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-Before.png)
 
-## 步驟 1：在應用程式中加入「攔截器」類別來設定 SESSION\_CONTEXT
+With just a few small changes, we will add support for multi-tenancy, so that users are able to see only the contacts that belong to them.
 
-我們需要進行一項應用程式變更。因為所有應用程式使用者使用相同的連接字串 (也就是相同的 SQL 登入) 連線到資料庫，RLS 原則目前無法知道應該篩選哪一個使用者。這種方法在 Web 應用程式中很常見，因為可讓連接共用更有效率，但這表示我們需要另一種方式來識別資料庫內目前的應用程式使用者。解決方法是在執行查詢之前，讓應用程式在開啟連接之後立即在 [SESSION\_CONTEXT](https://msdn.microsoft.com/library/mt590806) 中設定目前 UserId 的機碼值組。SESSION\_CONTEXT 是工作階段範圍的機碼值存放區，RLS 原則會使用其中儲存的 UserId 來識別目前的使用者。
+## <a name="step-1:-add-an-interceptor-class-in-the-application-to-set-the-session_context"></a>Step 1: Add an Interceptor class in the application to set the SESSION_CONTEXT
 
-我們會加入[攔截器](https://msdn.microsoft.com/data/dn469464.aspx) (特別是 [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor))，這是 Entity Framework (EF) 6 中的新功能，可在 EF 開啟連接時執行 T-SQL 陳述式，以自動在 SESSION\_CONTEXT 中設定目前的 UserId。
+There is one application change we need to make. Because all application users connect to the database using the same connection string (i.e. same SQL login), there is currently no way for an RLS policy to know which user it should filter for. This approach is very common in web applications because it enables efficient connection pooling, but it means we need another way to identify the current application user within the database. The solution is to have the application set a key-value pair for the current UserId in the [SESSION_CONTEXT](https://msdn.microsoft.com/library/mt590806) immediately after opening a connection, before it executes any queries. SESSION_CONTEXT is a session-scoped key-value store, and our RLS policy will use the UserId stored in it to identify the current user.
 
-1.	在 Visual Studio 中開啟 ContactManager 專案。
-2.	在 [方案總管] 中，以滑鼠右鍵按一下 [模型] 資料夾，然後選擇 [新增] -> [類別]。
-3.	將新類別命名為 "SessionContextInterceptor.cs"，按一下 [加入]。
-4.	使用下列程式碼取代 SessionContextInterceptor.cs 的內容。
+We will add an [interceptor](https://msdn.microsoft.com/data/dn469464.aspx) (in particular, a [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor)), a new feature in Entity Framework (EF) 6, to automatically set the current UserId in the SESSION_CONTEXT by executing a T-SQL statement whenever EF opens a connection.
+
+1.  Open the ContactManager project in Visual Studio.
+2.  Right-click on the Models folder in the Solution Explorer, and choose Add > Class.
+3.  Name the new class "SessionContextInterceptor.cs" and click Add.
+4.  Replace the contents of SessionContextInterceptor.cs with the following code.
 
 ```
 using System;
@@ -53,7 +54,7 @@ namespace ContactManager.Models
     {
         public void Opened(DbConnection connection, DbConnectionInterceptionContext interceptionContext)
         {
-        	// Set SESSION_CONTEXT to current UserId whenever EF opens a connection
+            // Set SESSION_CONTEXT to current UserId whenever EF opens a connection
             try
             {
                 var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
@@ -177,77 +178,81 @@ namespace ContactManager.Models
 }
 ```
 
-這是唯一需要的應用程式變更。接著開始建置並發佈應用程式。
+That's the only application change required. Go ahead and build and publish the application.
 
-## 步驟 2：將 UserId 資料行加入至資料庫結構描述
+## <a name="step-2:-add-a-userid-column-to-the-database-schema"></a>Step 2: Add a UserId column to the database schema
 
-接下來，我們需要將 UserId 資料行加入至 Contacts 資料表，使每個資料列與使用者 (租用戶) 相關聯。我們將直接在資料庫中變更結構描述，所以 EF 資料模型中不必包含此欄位。
+Next, we need to add a UserId column to the Contacts table to associate each row with a user (tenant). We will alter the schema directly in the database, so that we don't have to include this field in our EF data model.
 
-使用 SQL Server Management Studio 或 Visual Studio，直接連接到資料庫，然後執行下列 T-SQL：
+Connect to the database directly, using either SQL Server Management Studio or Visual Studio, and then execute the following T-SQL:
 
 ```
 ALTER TABLE Contacts ADD UserId nvarchar(128)
     DEFAULT CAST(SESSION_CONTEXT(N'UserId') AS nvarchar(128))
 ```
 
-這會將 UserId 資料行加入至 Contacts 資料表。我們使用 nvarchar (128) 資料類型來比對儲存在 AspNetUsers 資料表中的 UserId，我們也建立 DEFAULT 條件約束，自動將新插入的資料列的 UserId 設定為目前儲存在 SESSION\_CONTEXT 中的 UserId。
+This adds a UserId column to the Contacts table. We use the nvarchar(128) data type to match the UserIds stored in the AspNetUsers table, and we create a DEFAULT constraint that will automatically set the UserId for newly inserted rows to be the UserId currently stored in SESSION_CONTEXT.
 
-現在，資料表如下所示：
+Now the table looks like this:
 
-![SSMS Contacts 資料表](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-Contacts.png)
+![SSMS Contacts table](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-Contacts.png)
 
-建立新的連絡人時，將會自動指派正確的 UserId 給他們。但為了示範，我們還是指派幾個現有的連絡人給現有的使用者。
+When new contacts are created, they'll automatically be assigned the correct UserId. For demo purposes, however, let's assign a few of these existing contacts to an existing user.
 
-如果您已在應用程式建立一些使用者 (例如使用本機、Google 或 Facebook 帳戶)，就可以在 AspNetUsers 資料表中看見他們。在以下的螢幕擷取畫面中，目前為止只有一個使用者。
+If you've created a few users in the application already (e.g., using local, Google, or Facebook accounts), you'll see them in the AspNetUsers table. In the screenshot below, there is only one user so far.
 
-![SSMS AspNetUsers 資料表](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-AspNetUsers.png)
+![SSMS AspNetUsers table](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-AspNetUsers.png)
 
-複製 user1@contoso.com 的 Id，並貼到以下的 T-SQL 陳述式中。執行此陳述式，將三個連絡人與此 UserId 相關聯。
+Copy the Id for user1@contoso.com, and paste it into the T-SQL statement below. Execute this statement to associate three of the Contacts with this UserId.
 
 ```
 UPDATE Contacts SET UserId = '19bc9b0d-28dd-4510-bd5e-d6b6d445f511'
 WHERE ContactId IN (1, 2, 5)
 ```
 
-## 步驟 3：在資料庫中建立資料列層級安全性原則
+## <a name="step-3:-create-a-row-level-security-policy-in-the-database"></a>Step 3: Create a Row-Level Security policy in the database
 
-最後一個步驟是建立安全性原則，使用 SESSION\_CONTEXT 中的 UserId 自動篩選查詢所傳回的結果。
+The final step is to create a security policy that uses the UserId in SESSION_CONTEXT to automatically filter the results returned by queries.
 
-在仍然連接資料庫的情況下，執行下列 T-SQL：
+While still connected to the database, execute the following T-SQL:
 
 ```
 CREATE SCHEMA Security
 go
 
 CREATE FUNCTION Security.userAccessPredicate(@UserId nvarchar(128))
-	RETURNS TABLE
-	WITH SCHEMABINDING
+    RETURNS TABLE
+    WITH SCHEMABINDING
 AS
-	RETURN SELECT 1 AS accessResult
-	WHERE @UserId = CAST(SESSION_CONTEXT(N'UserId') AS nvarchar(128))
+    RETURN SELECT 1 AS accessResult
+    WHERE @UserId = CAST(SESSION_CONTEXT(N'UserId') AS nvarchar(128))
 go
 
 CREATE SECURITY POLICY Security.userSecurityPolicy
-	ADD FILTER PREDICATE Security.userAccessPredicate(UserId) ON dbo.Contacts,
-	ADD BLOCK PREDICATE Security.userAccessPredicate(UserId) ON dbo.Contacts
+    ADD FILTER PREDICATE Security.userAccessPredicate(UserId) ON dbo.Contacts,
+    ADD BLOCK PREDICATE Security.userAccessPredicate(UserId) ON dbo.Contacts
 go
 
 ```
 
-此程式碼會執行三個動作。首先，建立新的結構描述，當作集中管理和限制 RLS 物件存取權的最佳作法。接著，建立述詞函數，當資料列的 UserId 符合 SESSION\_CONTEXT 中的 UserId 時，將傳回 '1'。最後，建立安全性原則，在 Contacts 資料表上加入此函數作為篩選和封鎖述詞。篩選述詞可讓查詢只傳回屬於目前使用者的資料列，而封鎖述詞充當保護措施，防止應用程式不慎插入錯誤使用者的資料列。
+This code does three things. First, it creates a new schema as a best practice for centralizing and limiting access to the RLS objects. Next, it creates a predicate function that will return '1' when the UserId of a row matches the UserId in SESSION_CONTEXT. Finally, it creates a security policy that adds this function as both a filter and block predicate on the Contacts table. The filter predicate causes queries to return only rows that belong to the current user, and the block predicate acts as a safeguard to prevent the application from ever accidentally inserting a row for the wrong user.
 
-現在執行應用程式，並以 user1@contoso.com 登入。這位使用者現在只會看到我們稍早指派給此 UserId 的連絡人：
+Now run the application, and sign in as user1@contoso.com. This user now sees only the Contacts we assigned to this UserId earlier:
 
-![啟用 RLS 之前的連絡人管理員應用程式](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-After.png)
+![Contact Manager application before enabling RLS](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-After.png)
 
-若要進一步驗證，請嘗試註冊新的使用者。因為尚未指派連絡人給他們，他們看不到任何連絡人。如果他們建立新的連絡人，則會指派給他們，也只有他們才能看見這個連絡人。
+To validate this further, try registering a new user. They will see no contacts, because none have been assigned to them. If they create a new contact, it will be assigned to them, and only they will be able to see it.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-就這麼簡單！ 這個簡單的連絡人管理員 Web 應用程式已轉換成多租用戶應用程式，每個使用者都有自己的連絡人清單。由於使用資料列層級安全性，我們已避免在應用程式碼中強制執行租用戶存取邏輯的複雜性。這種透明度可讓應用程式專注於處理目前的實際商務問題，而隨著應用程式的程式碼基底不斷成長，也能降低意外洩漏資料的風險。
+That's it! The simple Contact Manager web app has been converted into a multi-tenant one where each user has its own contact list. By using Row-Level Security, we've avoided the complexity of enforcing tenant access logic in our application code. This transparency allows the application to focus on the real business problem at hand, and it also reduces the risk of accidentally leaking data as the application's codebase grows.
 
-本教學課程只是稍微示範一下 RLS 的功能。比方說，存取邏輯可以更複雜或更精細，而 SESSION\_CONTEXT 中也不僅止於只能儲存目前的 UserId 而已。也可以[整合 RLS 與彈性資料庫工具用戶端程式庫](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md)，在相應放大的資料層中支援多租用戶分區。
+This tutorial has only scratched the surface of what's possible with RLS. For instance, it's possible to have more sophisticated or granular access logic, and it's possible to store more than just the current UserId in the SESSION_CONTEXT. It's also possible to [integrate RLS with the elastic database tools client libraries](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md) to support multi-tenant shards in a scale-out data tier.
 
-除了這些可能性，我們也正在努力讓 RLS 更臻完美。如果您有任何疑問、構想或期望，請留下您的意見。歡迎提供意見反應！
+Beyond these possibilities, we're also working to make RLS even better. If you have any questions, ideas, or things you'd like to see, please let us know in the comments. We appreciate your feedback!
 
-<!---HONumber=AcomDC_0427_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,134 +1,143 @@
 <properties
-	pageTitle="何時使用彈性資料庫集區？"
-	description="彈性資料庫集區是一組彈性資料庫共用的可用資源集合。本文件提供指引，幫助您評估對一組資料庫使用彈性資料庫集區的合適性。"
-	services="sql-database"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="When should an elastic database pool be used?"
+    description="An elastic database pool is a collection of available resources that are shared by a group of elastic databases. This document provides guidance to help assess the suitability of using an elastic database pool for a group of databases."
+    services="sql-database"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="NA"
-	ms.date="08/08/2016"
-	ms.author="sstein"
-	ms.workload="data-management"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"/>
+    ms.service="sql-database"
+    ms.devlang="NA"
+    ms.date="08/08/2016"
+    ms.author="sstein"
+    ms.workload="data-management"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"/>
 
 
-# 何時使用彈性資料庫集區？
-根據資料庫使用模式和彈性資料庫集區與單一資料庫之間的定價差異，評估使用彈性資料庫集區是否具成本效益。也提供其他指引，以協助判斷一組現有的 SQL 資料庫所需的目前集區大小。
 
-- 如需集區的概觀，請參閱 [SQL Database 彈性資料庫集區](sql-database-elastic-pool.md)。
+# <a name="when-should-an-elastic-database-pool-be-used?"></a>When should an elastic database pool be used?
+Assess whether using an elastic database pool is cost efficient based on database usage patterns and pricing differences between an elastic database pool and single databases. Additional guidance is also provided to assist in determining the current pool size required for an existing set of SQL databases.  
 
-> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部和印度西部除外，在這些區域目前是提供預覽版。我們將儘速在這些區域提供彈性集區的 GA。
+- For an overview of pools, see [SQL Database elastic database pools](sql-database-elastic-pool.md).
 
-## 彈性資料庫集區
+> [AZURE.NOTE] Elastic pools are generally available (GA) in all Azure regions except West India where it is currently in preview.  GA of elastic pools in this region will be provided as soon as possible.
 
-SaaS 開發人員會在由多個資料庫組成的大規模資料層上建置應用程式。常見的應用程式模式是為每個客戶佈建單一資料庫。但是不同的客戶經常會有不同且無法預測的使用模式，而且很難預測每個個別資料庫使用者的資源需求。所以，開發人員可能以可觀的費用過度佈建資源，以確保所有資料庫能有最佳輸送量和回應時間。或者，開發人員可能用較少的費用，並且讓客戶承擔效能不佳體驗的風險。若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱[採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+## <a name="elastic-database-pools"></a>Elastic database pools
 
-Azure SQL Database 中的彈性集區可讓 SaaS 開發人員將一組資料庫的價格效能最佳化在規定的預算內，同時為每個資料庫提供效能彈性。此集區可讓開發人員為由多個資料庫共用的彈性集區購買彈性資料庫交易單位 (eDTU)，以容納個別資料庫無法預期的使用量期間。集區的 eDTU 需求取決於其資料庫的彙總使用量。集區可用的 eDTU 數量是由開發人員預算控制。集區可讓開發人員輕鬆為其集區推斷預算對效能的影響，反之亦然。開發人員只要將資料庫加入集區、設定資料庫的最少和最多 eDTU，然後根據其預算設定集區的 eDTU。開發人員可以使用集區順暢地擴大其服務，以漸增的規模從精簡的新創公司到成熟的企業。
-## 何時考慮使用集區
+SaaS developers build applications on top of large scale data-tiers consisting of multiple databases. A common application pattern is to provision a single database for each customer. But different customers often have varying and unpredictable usage patterns, and it is difficult to predict the resource requirements of each individual database user. So the developer may overprovision resources at considerable expense to ensure favorable throughput and response times for all databases. Or, the developer can spend less and risk a poor performance experience for their customers. To learn more about design patterns for SaaS applications using elastic pools, see [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md).
 
-集區很適合具備特定使用模式的大量資料庫。針對指定的資料庫，此模式的特徵是低平均使用量與相對不頻繁的使用量高峰。
+Elastic pools in Azure SQL Database enable SaaS developers to optimize the price performance for a group of databases within a prescribed budget while delivering performance elasticity for each database. Pools enable the developer to purchase elastic Database Transaction Units (eDTUs) for a pool shared by multiple databases to accommodate unpredictable periods of usage by individual databases. The eDTU requirement for a pool is determined by the aggregate utilization of its databases. The amount of eDTUs available to the pool is controlled by the developer budget. Pools make it easy for the developer to reason over the impact of budget on performance and vice versa for their pool. The developer simply adds databases to the pool, sets the minimum and maximum eDTUs  for the databases, and then sets the eDTU of the pool based on their budget. A developer can use pools  to seamlessly grow their service from a lean startup to a mature business at ever-increasing scale.  
+## <a name="when-to-consider-a-pool"></a>When to consider a pool
 
-您可以加入集區的資料庫愈多，可獲得的節約就愈高。根據您的應用程式使用量模式，可能會發現與使用兩個 S3 資料庫一樣少的節約。
+Pools are well suited for a large number of databases with specific utilization patterns. For a given database, this pattern is characterized by low average utilization with relatively infrequent utilization spikes.
 
-下列各節會協助您了解如何評估您特定的資料庫集合是否會因為位於集區而受益。範例會使用標準集區，但是相同的原則也適用於基本和進階的集區。
+The more databases you can add to a pool the greater your savings become. Depending on your application utilization pattern, it is possible to see savings with as few as two S3 databases.  
 
-### 評估資料庫使用量模式
+The following sections help you understand how to assess if your specific collection of databases will benefit from being in a pool. The examples use Standard pools but the same principles also apply to Basic and Premium pools.
 
-下圖顯示資料庫的範例，該資料庫花費太多時間閒置，但也定期因活動達到尖峰。這是非常適合集區的使用量模式：
+### <a name="assessing-database-utilization-patterns"></a>Assessing database utilization patterns
 
-   ![適合某個集區的單一資料庫](./media/sql-database-elastic-pool-guidance/one-database.png)
+The following figure shows an example of a database that spends much time idle, but also periodically spikes with activity. This is a utilization pattern that is well suited for a pool:
 
-針對如上所示的五分鐘期間，DB1 尖峰最高達 90 個 DTU，但其整體平均使用量小於 5 個 DTU。需要 S3 效能層級，才能在單一資料庫中執行此工作負載，但這會在活動較少的期間保留大多數的資源未使用。
+   ![a single database suitable for a pool](./media/sql-database-elastic-pool-guidance/one-database.png)
 
-集區可讓這些未使用的 DTU 跨多個資料庫共用，並因此減少需要的 DTU 總數量和整體成本。
+For the five-minute period illustrated above, DB1 peaks up to 90 DTUs, but its overall average usage is less than five DTUs. An S3 performance level is required to run this workload in a single database, but this leaves most of the resources unused during periods of low activity.
 
-以上一個範例為建置基礎，假設有其他資料庫具有與 DB1 類似的使用量模式。在接下來的兩個圖形中，4 個資料庫和 20 個資料庫的使用量分層放在相同的圖形，來說明經過一段時間其使用量非重疊的本質：
+A pool allows these unused DTUs to be shared across multiple databases, and so reduces the total amount of DTUs needed and overall cost.
 
-   ![使用量模式適合某個集區的 4 個資料庫](./media/sql-database-elastic-pool-guidance/four-databases.png)
+Building on the previous example, suppose there are additional databases with similar utilization patterns as DB1. In the next two figures below, the utilization of four databases and 20 databases are layered onto the same graph to illustrate the non-overlapping nature of their utilization over time:
 
-   ![使用量模式適合某個集區的 20 個資料庫](./media/sql-database-elastic-pool-guidance/twenty-databases.png)
+   ![four databases with a utilization pattern suitable for a pool](./media/sql-database-elastic-pool-guidance/four-databases.png)
 
-在上圖中，黑色線條說明跨所有 20 個資料庫的彙總 DTU 使用量。這顯示彙總的 DTU 使用量永遠不會超過 100 個 DTU，並指出 20 個資料庫可以在這段期間共用 100 個 eDTU。相較於將每個資料庫放在單一資料庫的 S3 效能層級，這會導致 DTU 減少 20 倍且價格降低 13 倍。
+   ![twenty databases with a utilization pattern suitable for a pool](./media/sql-database-elastic-pool-guidance/twenty-databases.png)
+
+The aggregate DTU utilization across all 20 databases is illustrated by the black line in the above figure. This shows that the aggregate DTU utilization never exceeds 100 DTUs, and indicates that the 20 databases can share 100 eDTUs over this time period. This results in a 20x reduction in DTUs and a 13x price reduction compared to placing each of the databases in S3 performance levels for single databases.
 
 
-由於以下原因，此範例很理想：
+This example is ideal for the following reasons:
 
-- 每一資料庫之間的尖峰使用量和平均使用量有相當大的差異。
-- 每個資料庫的尖峰使用量會在不同時間點發生。
-- eDTU 會在大量資料庫之間共用。
+- There are large differences between peak utilization and average utilization per database.  
+- The peak utilization for each database occurs at different points in time.
+- eDTUs are shared between a large number of databases.
 
-集區的價格是集區 eDTU 的函式。雖然集區的 eDTU 單價較單一資料庫的 DTU 單價高 1.5 倍，但是**集區 eDTU 可由多個資料庫共用，因而在許多情況下需要的 eDTU 總數會比較少**。價格方面和 eDTU 共用的這些差異是集區可以提供價格節約潛力的基礎。
+The price of a pool is a function of the pool eDTUs. While the eDTU unit price for a pool is 1.5x greater than the DTU unit price for a single database, **pool eDTUs can be shared by many databases and so in many cases fewer total eDTUs are needed**. These distinctions in pricing and eDTU sharing are the basis of the price savings potential that pools can provide.  
 
-下列資料庫計數和資料庫使用量相關規則的經驗法則，可協助確保集區可提供相較於使用單一資料庫的效能層級降低的成本。
+The following rules of thumb related to database count and database utilization help to ensure that a pool delivers reduced cost compared to using performance levels for single databases.
 
-### 資料庫的最小數目
+### <a name="minimum-number-of-databases"></a>Minimum number of databases
 
-如果單一資料庫之效能層級的 DTU 總和大於集區所需 eDTU 的 1.5 倍，則彈性集區會更符合成本效益。如需可用的大小，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
+If the sum of the DTUs of performance levels for single databases is more than 1.5x the eDTUs needed for the pool, then an elastic pool is more cost effective. For available sizes, see [eDTU and storage limits for elastic database pools and elastic databases](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases).
 
-**範例**<br>100 個 eDTU 集區需要至少 2 個 S3 資料庫或至少 15 個 S0 資料庫，才能較使用單一資料庫的效能層級更具成本效益。
+***Example***<br>
+At least two S3 databases or at least 15 S0 databases are needed for a 100 eDTU pool to be more cost-effective than using performance levels for single databases.
 
-### 並行尖峰資料庫的最大數目
+### <a name="maximum-number-of-concurrently-peaking-databases"></a>Maximum number of concurrently peaking databases
 
-藉由共用 eDTU，並非集區中的所有資料庫都能同時使用 eDTU 達到使用單一資料庫的效能層級時的最大限制。同時尖峰的資料庫愈少，可以設定的集區 eDTU 愈低，集區就能更符合成本效益。一般而言，集區中應該不能有超過 2/3 (或 67%) 的資料庫同時達到其 eDTU 限制的尖峰。
+By sharing eDTUs, not all databases in a pool can simultaneously use eDTUs up to the limit available when using performance levels for single databases. The fewer databases that concurrently peak, the  lower the pool eDTU can be set and the more cost-effective the pool becomes. In general, not more than 2/3 (or 67%) of the databases in the pool should simultaneously peak to their eDTU limit.
 
-**範例**<br>為了降低 200 個 eDTU 集區中 3 個 S3 資料庫的成本，最多可以有 2 個資料庫同時到達其使用量尖峰。否則，如果 4 個 S3 資料庫中超過 2 個同時尖峰，則必須將集區調整為超過 200 個 eDTU。而且，如果將集區調整大小為超過 200 個 eDTU，則需要加入更多的 S3 資料庫至集區，以使成本保持低於單一資料庫的效能層級。
+***Example***<br>
+To reduce costs for three S3 databases in a 200 eDTU pool, at most two of these databases can simultaneously peak in their utilization.  Otherwise, if more than two of these four S3 databases simultaneously peak, the pool would have to be sized to more than 200 eDTUs.  And if the pool is resized to more than 200 eDTUs, more S3 databases would need to be added to the pool to keep costs lower than performance levels for single databases.  
 
-請注意，此範例不考慮集區中其他資料庫的使用量。如果所有資料庫在任何指定的時間點都有一些使用量，則可同時到達尖峰的資料庫會少於 2/3 (或 67%)。
+Note this example does not consider utilization of other databases in the pool. If all databases have some utilization at any given point in time, then less than 2/3 (or 67%) of the databases can peak simultaneously.
 
-### 每個資料庫的 DTU 使用量
+### <a name="dtu-utilization-per-database"></a>DTU utilization per database
 
-資料庫的尖峰和平均使用量之間的差異為，長時間的低使用量和短時間的高使用量。這個使用量模式非常適合在資料庫之間共用資源。若資料庫的尖峰使用量為平均使用量的 1.5 倍大，就應該將該資料庫視為集區。
+A large difference between the peak and average utilization of a database indicates prolonged periods of low utilization and short periods of high utilization. This utilization pattern is ideal for sharing resources across databases. A database should be considered for a pool when its peak utilization is about 1.5 times greater than its average utilization.
 
-**範例**<br>尖峰為 100 個 DTU 且平均使用 67 個 DTU 或更少的 S3 資料庫是在集區中共用 eDTU 的良好候選項目。或者，尖峰為 20 個 DTU 且平均使用 13 個 DTU 或更少的 S1 資料庫是集區的良好候選項目。
+***Example***<br>
+An S3 database that peaks to 100 DTUs and on average uses 67 DTUs or less is a good candidate for sharing eDTUs in a pool.  Alternatively, an S1 database that peaks to 20 DTUs and on average uses 13 DTUs or less is a good candidate for a pool.
 
-## 調整彈性集區大小
+## <a name="sizing-an-elastic-pool"></a>Sizing an elastic pool
 
-集區的最佳大小取決於彙總的 eDTU 和集區中所有資料庫所需的儲存體資源。這牽涉到決定下列各項的較大值：
+The best size for a pool depends on the aggregate eDTUs and storage resources needed for all databases in the pool. This involves determining the larger of the following:
 
-* 集區中所有資料庫使用的最大 DTU。
-* 集區中所有資料庫使用的最大儲存體位元組。
+* Maximum DTUs utilized by all databases in the pool.
+* Maximum storage bytes utilized by all databases in the pool.
 
-如需可用的大小，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
+For available sizes, see [eDTU and storage limits for elastic database pools and elastic databases](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases).
 
-SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的資源使用量，並在 Azure 入口網站中建議適當的集區組態。除了這些建議之外，內建體驗也會預估伺服器上一組自訂資料庫的 eDTU 使用量。這可讓您以互動方式將資料庫新增至集區並加以移除，藉此進行「假設」分析，以在認可變更前取得資源使用量分析和大小建議。如需相關作法，請參閱[監視、管理和估算彈性集區大小](sql-database-elastic-pool-manage-portal.md)。
+SQL Database automatically evaluates the historical resource usage of databases in an existing SQL Database server and recommends the appropriate pool configuration in the Azure portal. In addition to the recommendations, a built-in experience estimates the eDTU usage for a custom group of databases on the server. This enables you to do a "what-if" analysis by interactively adding databases to the pool and removing them to get resource usage analysis and sizing advice before committing your changes. For a how-to, see [Monitor, manage, and size an elastic pool](sql-database-elastic-pool-manage-portal.md).
 
-如需更有彈性的資源使用量評估 (允許 V12 之前的伺服器有隨選大小估計值)，以及不同伺服器中資料庫的大小估計值，請參閱[用來識別彈性資料庫集區適用資料庫的 PowerShell 指令碼](sql-database-elastic-pool-database-assessment-powershell.md)。
+For more flexible resource usage assessments that allow ad hoc sizing estimates for servers earlier than V12, as well as sizing estimates for databases in different servers, see the [Powershell script for identifying databases suitable for an elastic database pool](sql-database-elastic-pool-database-assessment-powershell.md).
 
-| 功能 | 入口網站體驗|	PowerShell 指令碼|
+| Capability     | Portal experience|   PowerShell script|
 |:---------------|:----------|:----------|
-| 細微度 | 15 秒 | 15 秒
-| 考慮單一資料庫的集區和效能層級之間的價格差異| 是| 否
-| 允許自訂所分析的資料庫清單| 是| 是
-| 允許自訂分析中使用的時間期間| 否| 是
-| 允許自訂不同伺服器內所分析的資料庫清單| 否| 是
-| 允許自訂 v11 伺服器上所分析的資料庫清單| 否| 是
+| Granularity    | 15 seconds | 15 seconds
+| Considers pricing differences between a pool and performance levels for single databases| Yes| No
+| Allows customizing the list of the databases analyzed| Yes| Yes
+| Allows customizing the period of time used in the analysis| No| Yes
+| Allows customizing the list of databases analyzed across different servers| No| Yes
+| Allows customizing the list of databases analyzed on v11 servers| No| Yes
 
-在無法使用工具的情況下，下列步驟可協助您預估集區是否比單一資料庫更符合成本效益：
+In cases where you can't use tooling, the following step-by-step can help you estimate whether a pool is more cost-effective than single databases:
 
-1.	估計集區所需的 eDTU，如下所示：
+1.  Estimate the eDTUs needed for the pool as follows:
 
-    MAX(<*資料庫的總數目* X *每一資料庫的平均 DTU 使用量*>、<br><*同時尖峰資料庫的數目* X *每一資料庫的尖峰 DTU 使用量*>)
+    MAX(<*Total number of DBs* X *average DTU utilization per DB*>,<br>
+    <*Number of concurrently peaking DBs* X *Peak DTU utilization per DB*)
 
-2.	加總集區中所有資料庫所需的位元組數目，以估計集區所需的儲存空間。然後判斷可提供此儲存體數量的 eDTU 集區大小。如需以 eDTU 集區大小為基礎的集區儲存體限制，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
-3.	採用步驟 1 和步驟 2 中較大的 eDTU 估計值。
-4.	請參閱 [SQL Database 價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)並尋找大於步驟 3 估計值的最小 eDTU 集區大小。
-5.	將步驟 5 的集區價格與單一資料庫適當效能層級的價格相比較。
+2.  Estimate the storage space needed for the pool by adding the number of bytes needed for all the databases in the pool.  Then determine the eDTU pool size that provides this amount of storage.  For pool storage limits based on eDTU pool size, see [eDTU and storage limits for elastic database pools and elastic databases](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases).
+3.  Take the larger of the eDTU estimates from Step 1 and Step 2.
+4.  See the [SQL Database pricing page](https://azure.microsoft.com/pricing/details/sql-database/) and find the smallest eDTU pool size that is greater than the estimate from Step 3.
+5.  Compare the pool price from Step 5 to the price of using the appropriate performance levels for single databases.
 
 
-## 摘要
+## <a name="summary"></a>Summary
 
-並非所有單一資料庫都是集區的最佳候選項目。使用模式的特徵是低平均使用量與相對不頻繁的使用量高峰的資料庫是絕佳的候選項目。應用程式使用模式是動態的，因此，請使用這篇文章中所述的資訊及工具來進行初始評估，以查看集區是否是部分或所有資料庫的良好選擇。這篇文章只是協助您決定彈性集區是否合適的起點。請記住，您應該持續監視歷程記錄資源使用量，並不斷重新評估所有的資料庫的效能層級。請記得，您可以輕鬆地將資料庫移入和移出彈性集區，而且如果您有非常大量的資料庫，則可以將資料庫分割，以具備不同大小的多個集區。
+Not all single databases are optimum candidates for pools. Databases with usage patterns that are characterized by low average utilization and relatively infrequent utilization spikes are excellent candidates. Application usage patterns are dynamic, so use the information and tools described in this article to make an initial assessment to see if a pool is a good choice for some or all of your databases. This article is just a starting point to help with your decision as to whether or not an elastic pool is a good fit. Remember that you should continually monitor historical resource usage and constantly reassess the performance levels of all of your databases. Keep in mind that you can easily move databases in and out of elastic pools, and if you have a very large number of databases you can have multiple pools of varying sizes that you can divide your databases into.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)
-- [監視、管理和估算彈性資料庫集區大小](sql-database-elastic-pool-manage-portal.md)
-- [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)
-- [用來識別彈性資料庫集區適用資料庫的 PowerShell 指令碼](sql-database-elastic-pool-database-assessment-powershell.md)
+- [Create an elastic database pool](sql-database-elastic-pool-create-portal.md)
+- [Monitor, manage, and size an elastic database pool](sql-database-elastic-pool-manage-portal.md)
+- [SQL Database options and performance: understand what's available in each service tier](sql-database-service-tiers.md)
+- [PowerShell script for identifying databases suitable for an elastic database pool](sql-database-elastic-pool-database-assessment-powershell.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,25 +1,28 @@
 
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)，然後按一下畫面左上方的 [+新增]。
+1. Log on to the [Azure Portal](https://portal.azure.com), and then click **+NEW** at the top left of the screen.
 
-2. 依序按一下 [新建] 和 [Web + 行動]。必要時向下捲動並按一下 [通知中樞]。
+2. Click on **New**, then **Web + Mobile**. Scroll down if necessary and click **Notification Hub**.
 
-   	![Azure 入口網站 - 建立通知中樞](./media/notification-hubs-portal-create-new-hub/notification-hubs-azure-portal-create.png)
+    ![Azure Portal - Create Notification Hubs](./media/notification-hubs-portal-create-new-hub/notification-hubs-azure-portal-create.png)
 
-3. 請確定您在 [通知中樞] 欄位中指定唯一的名稱。選取您想要 [區域]、[訂用帳戶] 和 [資源群組] \(如果您已經有的話)。
+3. Make sure you specify a unique name in the **Notification Hub** field. Select your desired **Region**, **Subscription** and **Resource Group** (if you have one already). 
  
-	如果您已有想要在其中建立中樞的服務匯流排命名空間，請透過 [命名空間] 欄位的 [選取現有的] 選項來選取它。否則，您可以使用預設命名空間名稱，只要命名空間名稱可用，就會根據中樞名稱建立此預設名稱。
+    If you already have a service bus namespace that you want to create the hub in, select it through the **Select Existing** option in the **Namespace** field.  Otherwise, you can use the default name which will be created based on the hub name as long as the namespace name is available. 
 
-	準備好時，請按一下 [建立]。
+    Once ready, click **Create**.
 
-   	![Azure 入口網站 - 設定通知中樞屬性](./media/notification-hubs-portal-create-new-hub/notification-hubs-azure-portal-settings.png)
+    ![Azure Portal - Set notification hub properties](./media/notification-hubs-portal-create-new-hub/notification-hubs-azure-portal-settings.png)
 
-4. 一旦建立命名空間和通知中樞後，您將會進入個別的入口網站頁面。
+4. Once the namespace and notification hub are created, you will be taken to the respective portal page. 
 
-   	![Azure 入口網站 - 通知中樞入口網站頁面](./media/notification-hubs-portal-create-new-hub/notification-hubs-azure-portal-page.png)
+    ![Azure Portal - Notification hub portal page](./media/notification-hubs-portal-create-new-hub/notification-hubs-azure-portal-page.png)
        
-5. 按一下 [設定]，再按一下 [存取原則] - 記下提供給您的兩個連接字串，稍後您需要它們來處理推播通知。
+5. Click on **Settings** and then **Access Policies** - take note of the two connection strings that are made available to you, as you will need them to handle push notifications later.
 
-   	![Azure 入口網站 - 通知中樞連接字串](./media/notification-hubs-portal-create-new-hub/notification-hubs-connection-strings-portal.png)
+    ![Azure Portal - Notification hub connection strings](./media/notification-hubs-portal-create-new-hub/notification-hubs-connection-strings-portal.png)
 
-<!---HONumber=AcomDC_0413_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

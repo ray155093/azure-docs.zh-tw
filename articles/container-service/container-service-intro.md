@@ -1,13 +1,13 @@
 <properties
-   pageTitle="Azure 容器服務簡介 | Microsoft Azure"
-   description="Azure Container Service 提供簡化建立、設定及管理虛擬機器叢集的方法，這些虛擬機器預先設定為執行容器化應用程式。"
+   pageTitle="Azure Container Service Introduction | Microsoft Azure"
+   description="Azure Container Service provides a way to simplify the creation, configuration, and management of a cluster of virtual machines that are preconfigured to run containerized applications."
    services="container-service"
    documentationCenter=""
    authors="rgardler"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker、容器、微服務、Mesos、Azure"/>
+   keywords="Docker, Containers, Micro-services, Mesos, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -18,92 +18,97 @@
    ms.date="09/13/2016"
    ms.author="rogardle"/>
 
-# Azure 容器服務簡介
 
-Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的叢集，這些虛擬機器預先設定為執行容器化應用程式。它使用受歡迎開放原始碼排程和協調流程工具的最佳化組態。這樣可讓您使用現有技能，或運用大量且不斷成長的社群專業知識，在 Microsoft Azure 上部署及管理容器應用程式。
+# <a name="azure-container-service-introduction"></a>Azure Container Service introduction
 
-
-![Azure Container Service 提供一個方法來在 Azure 的多部主機上管理容器化應用程式。](./media/acs-intro/acs-cluster.png)
+Azure Container Service makes it simpler for you to create, configure, and manage a cluster of virtual machines that are preconfigured to run containerized applications. It uses an optimized configuration of popular open-source scheduling and orchestration tools. This enables you to use your existing skills, or draw upon a large and growing body of community expertise, to deploy and manage container-based applications on Microsoft Azure.
 
 
-Azure Container Service 會使用 Docker 容器格式，確保您的應用程式容器具有完全的可攜式特性。它也支援您對於 Marathon 和 DC/OS 或 Docker Swarm 的選擇，確保您可以將這些應用程式擴展為成千上萬個容器。
+![Azure Container Service provides a means to manage containerized applications on multiple hosts on Azure.](./media/acs-intro/acs-cluster.png)
 
-藉由使用 Azure Container Service，您可以充分利用 Azure 的企業級功能，同時仍可保有應用程式可攜性--包括協調流程層的可攜性在內。
 
-使用 Azure 容器服務
+Azure Container Service leverages the Docker container format to ensure that your application containers are fully portable. It also supports your choice of Marathon and DC/OS or Docker Swarm so that you can scale these applications to thousands of containers, or even tens of thousands.
+
+By using Azure Container Service, you can take advantage of the enterprise-grade features of Azure, while still maintaining application portability--including portability at the orchestration layers.
+
+<a name="using-azure-container-service"></a>Using Azure Container Service
 -----------------------------
 
-我們對於 Azure Container Service 的目標，是要使用現今頗受客戶歡迎的開放原始碼工具和技術，提供容器主控環境。為了這個目的，我們會為您所選擇的 Orchestrator (DC/OS 或 Docker Swarm) 公開標準 API 端點。您可以使用這些端點來運用能夠與這些端點通訊的任何軟體。比方說，在 Docker Swarm 端點的案例中，您可能會選擇使用 Docker 命令列介面 (CLI)。若是 DC/OS，您可能會選擇使用 DCOS CLI。
+Our goal with Azure Container Service is to provide a container hosting environment by using open-source tools and technologies that are popular among our customers today. To this end, we expose the standard API endpoints for your chosen orchestrator (DC/OS or Docker Swarm). By using these endpoints, you can leverage any software that is capable of talking to those endpoints. For example, in the case of the Docker Swarm endpoint, you might choose to use the Docker command-line interface (CLI). For DC/OS, you might choose to use the DCOS CLI.
 
-使用 Azure Container Service 建立 Docker 叢集
+<a name="creating-a-docker-cluster-by-using-azure-container-service"></a>Creating a Docker cluster by using Azure Container Service
 -------------------------------------------------------
 
-若要開始使用 Azure Container Service，您必須透過入口網站 (搜尋 'Azure Container Service') 部署 Azure Container Service 叢集、使用 Azure Resource Manager 範本 ([Docker Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm) 或 [DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos))，或使用 [CLI](/documentation/articles/xplat-cli-install/)。提供的快速入門範本可以修改為包含其他或進階 Azure 組態。如需有關部署 Azure Container Service 叢集的詳細資訊，請參閱[部署 Azure Container Service 叢集](container-service-deployment.md)。
+To begin using Azure Container Service, you deploy an Azure Container Service cluster via the portal (search for 'Azure Container Service'), by using an Azure Resource Manager template ([Docker Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm) or [DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos)) or with the [CLI](/documentation/articles/xplat-cli-install/). The provided quickstart templates can be modified to include additional or advanced Azure configuration. For more information on deploying an Azure Container Service cluster, see [Deploy an Azure Container Service cluster](container-service-deployment.md).
 
-部署應用程式
+<a name="deploying-an-application"></a>Deploying an application
 ------------------------
 
-Azure Container Service 提供協調流程的選擇：Docker Swarm 或 DC/OS。部署應用程式的方式取決於您所選擇的 Orchestrator。
+Azure Container Service provides a choice of either Docker Swarm or DC/OS for orchestration. How you deploy your application depends on your choice of orchestrator.
 
-### 使用 DC/OS
+### <a name="using-dc/os"></a>Using DC/OS
 
-DC/OS 是以 Apache Mesos 分散式系統核心為基礎的分散式作業系統。Apache Mesos 存放在 Apache Software Foundation，並將一些 [IT 業界鼎鼎有名的人物](http://mesos.apache.org/documentation/latest/powered-by-mesos/)列為使用者與參與者。
+DC/OS is a distributed operating system based on the Apache Mesos distributed systems kernel. Apache Mesos is housed at the Apache Software Foundation and lists some of the [biggest names in IT](http://mesos.apache.org/documentation/latest/powered-by-mesos/) as users and contributors.
 
-![針對顯示代理程式與主機的 Swarm 設定的 Azure Container Service。](media/acs-intro/dcos.png)
+![Azure Container Service configured for Swarm showing agents and masters.](media/acs-intro/dcos.png)
 
-DC/OS 和 Apache Mesos 包含令人印象深刻的功能集︰
+DC/OS and Apache Mesos include an impressive feature set:
 
--   經實證的延展性
+-   Proven scalability
 
--   使用 Apache ZooKeeper 進行主要和從屬容錯複寫
+-   Fault-tolerant replicated master and slaves using Apache ZooKeeper
 
--   支援 Docker 格式的容器
+-   Support for Docker-formatted containers
 
--   在工作與 Linux 容器之間的原生隔離
+-   Native isolation between tasks with Linux containers
 
--   多資源排程 (記憶體、CPU、磁碟和連接埠)
+-   Multiresource scheduling (memory, CPU, disk, and ports)
 
--   用於開發全新平行應用程式的 Java、Python 和 C++ API
+-   Java, Python, and C++ APIs for developing new parallel applications
 
--   用於檢視叢集狀態的 Web UI
+-   A web UI for viewing cluster state
 
-根據預設，在 Azure Container Service 上執行的 DC/OS 會包含用來排程工作負載的 Marathon 協調流程平台。不過，ACS 的 DC/OS 部署中包含的是可加入您的服務的 Mesosphere Universe 服務，其中包括 Spark、Hadoop、Cassandra 及更多的服務。
+By default, DC/OS running on Azure Container Service includes the Marathon  orchestration platform for scheduling workloads. However, included with the DC/OS deployment of ACS is the Mesosphere Universe of services that can be added to your service, these include Spark, Hadoop, Cassandra and much more.
 
-![Azure Container Service 中的 DC/OS Universe](media/dcos/universe.png)
+![DC/OS Universe in Azure Container Service](media/dcos/universe.png)
 
-#### 使用 Marathon
+#### <a name="using-marathon"></a>Using Marathon
 
-在 cgroups 中，Marathon 是服務的全叢集初始化和控制系統--或者，若是 Azure Container Service，則為 Docker 格式的容器。Marathon 提供 Web UI，您可以用它來部署您的應用程式。您可以在 `http://DNS_PREFIX.REGION.cloudapp.azure.com` 這樣的 URL 存取此程式：其中 DNS\_PREFIX 及 REGION 兩者都在部署時定義。當然，您也可以提供您自己的 DNS 名稱。如需有關使用 Marathon Web UI 來執行容器的詳細資訊，請參閱[透過 Web UI 來管理容器](container-service-mesos-marathon-ui.md)。
+Marathon is a cluster-wide init and control system for services in cgroups--or, in the case of Azure Container Service, Docker-formatted containers. Marathon provides a web UI from which you can deploy your applications. You can access this at a URL that looks something like `http://DNS_PREFIX.REGION.cloudapp.azure.com` where DNS\_PREFIX and REGION are both defined at deployment time. Of course, you can also provide your own DNS name. For more information on running a container using the Marathon web UI, see [Container management through the web UI](container-service-mesos-marathon-ui.md).
 
-![Marathon 應用程式清單](media/dcos/marathon-applications-list.png)
+![Marathon Applications List](media/dcos/marathon-applications-list.png)
 
-您也可以使用 REST API 來與 Marathon 通訊。有許多可用於每個工具的用戶端程式庫。這些程式庫涵蓋各種不同語言--當然，您可以使用任何語言的 HTTP 通訊協定。此外，許多受歡迎的 DevOps 工具都提供 Marathon 的支援。當您使用 Azure Container Service 叢集時，這為作業小組提供了最大的彈性。如需有關使用 Marathon REST API 來執行容器的詳細資訊，請參閱[透過 REST API 進行容器管理](container-service-mesos-marathon-rest.md)。
+You can also use the REST APIs for communicating with Marathon. There are a number of client libraries that are available for each tool. They cover a variety of languages--and, of course, you can use the HTTP protocol in any language. In addition, many popular DevOps tools provide support for Marathon. This provides maximum flexibility for your operations team when you are working with an Azure Container Service cluster. For more information on running a container by using the Marathon REST API, see [Container management with the REST API](container-service-mesos-marathon-rest.md).
 
-### 使用 Docker Swarm
+### <a name="using-docker-swarm"></a>Using Docker Swarm
 
-Docker Swarm 為 Docker 提供原生叢集。由於 Docker Swarm 可作為標準 Docker API 使用，已與 Docker 精靈通訊的任何工具都可以使用 Swarm 無障礙地延伸到 Azure 容器服務上的多部主機。
+Docker Swarm provides native clustering for Docker. Because Docker Swarm serves the standard Docker API, any tool that already communicates with a Docker daemon can use Swarm to transparently scale to multiple hosts on Azure Container Service.
 
-![設定來使用 DC/OS 以顯示 jumpbox、代理程式與主機的 Azure 容器服務。](media/acs-intro/acs-swarm2.png)
+![Azure Container Service configured to use DC/OS--showing jumpbox, agents, and masters.](media/acs-intro/acs-swarm2.png)
 
-在 Swarm 叢集上管理容器的支援工具包括但不限於下列程式：
+Supported tools for managing containers on a Swarm cluster include, but are not limited to, the following:
 
 -   Dokku
 
--   Docker CLI 與 Docker Compose
+-   Docker CLI and Docker Compose
 
 -   Krane
 
 -   Jenkins
 
-影片
+<a name="videos"></a>Videos
 ------
 
-開始使用 Azure Container Service (101)：
+Getting started with Azure Container Service (101):  
 
 > [AZURE.VIDEO azure-container-service-101]
 
-使用 Azure Container Service 建置應用程式 (組建 2016)
+Building Applications Using the Azure Container Service (Build 2016)
 
 > [AZURE.VIDEO build-2016-building-applications-using-the-azure-container-service]
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

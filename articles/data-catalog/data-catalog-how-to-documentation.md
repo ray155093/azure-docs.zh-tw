@@ -1,51 +1,56 @@
 <properties
-	pageTitle="如何記載資料來源 | Microsoft Azure"
-	description="專門說明如何在 Azure 資料目錄中記載資料資產的操作說明文章。"
-	services="data-catalog"
-	documentationCenter=""
-	authors="spelluru"
-	manager="NA"
-	editor=""
-	tags=""/>
+    pageTitle="How to document data sources | Microsoft Azure"
+    description="How-to article highlighting how to document data assets in Azure Data Catalog."
+    services="data-catalog"
+    documentationCenter=""
+    authors="spelluru"
+    manager="NA"
+    editor=""
+    tags=""/>
 <tags
-	ms.service="data-catalog"
-	ms.devlang="NA"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"
-	ms.workload="data-catalog"
-	ms.date="09/13/2016"
-	ms.author="spelluru"/>
+    ms.service="data-catalog"
+    ms.devlang="NA"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"
+    ms.workload="data-catalog"
+    ms.date="09/13/2016"
+    ms.author="spelluru"/>
 
-# 記載資料來源
 
-## 簡介
+# <a name="document-data-sources"></a>Document data sources
 
-**Microsoft Azure 資料目錄**是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。換句話說，**Azure 資料目錄**的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。
+## <a name="introduction"></a>Introduction
 
-當資料來源向 **Azure 資料目錄**註冊之後，該服務會複製其中繼資料並建立索引，但不僅止於此。**Azure 資料目錄**也可讓使用者提供自己的完整說明文件來描述資料來源的使用方式和常見案例。
+**Microsoft Azure Data Catalog** is a fully managed cloud service that serves as a system of registration and system of discovery for enterprise data sources. In other words, **Azure Data Catalog** is all about helping people discover, *understand*, and use data sources, and helping organizations to get more value from their existing data.
 
-在[如何註解資料來源](data-catalog-how-to-annotate.md)中，您已了解知道資料來源的專家可以使用標記和描述來為資料來源加上註解。**Azure 資料目錄**入口網站含有 RTF 編輯器，因此使用者可以完整記載資料資產和容器。該編輯器包括段落格式化，例如標題、文字格式化、項目符號清單、編號清單和資料表。
+When a data source is registered with **Azure Data Catalog**, its metadata is copied and indexed by the service, but the story doesn’t end there. **Azure Data Catalog** also allows users to provide their own complete documentation that can describe the usage and common scenarios for the data source.
 
-標記和描述非常適合用於簡單的註解。不過，為了協助資料取用者深入了解資料來源的使用方式和資料來源的商務案例，專家可以提供完整而詳細的說明文件。想要記載資料來源很容易。請選取資料資產或容器，然後選擇 [說明文件]。
+In [How to annotate data sources](data-catalog-how-to-annotate.md), you learn that experts who know the data source can annotate it with tags and a description. The **Azure Data Catalog** portal includes a rich text editor so that users can fully document data assets and containers. The editor includes paragraph formatting, such as headings, text formatting, bulleted lists, numbered lists, and tables.
+
+Tags and descriptions are great for simple annotations. However, to help data consumers better understand the use of a data source, and business scenarios for a data source, an expert can provide complete, detailed documentation. It's easy to document a data source. Select a data asset or container, and choose **Documentation**.
 
 ![](media\data-catalog-documentation\data-catalog-documentation.png)
 
-## 記載資料資產
+## <a name="documenting-data-assets"></a>Documenting data assets
 
-**Azure 資料目錄**說明文件的優點可讓您使用資料目錄做為內容儲存機制，以建立完整的資料資產敘述。您可以探索說明容器和資料表的詳細內容。如果您在其他內容儲存機制 (例如 SharePoint 或檔案共用) 已有內容，您可以新增資產說明文件連結來參考此現有內容。此功能可讓您更容易找到現有的說明文件。
+The benefit of **Azure Data Catalog** documentation allows you to use your Data Catalog as a content repository to create a complete narrative of your data assets. You can explore detailed content that describes containers and tables. If you already have content in another content repository, such as SharePoint or a file share, you can add to the asset documentation links to reference this existing content. This feature makes your existing documents more discoverable.
 
-> [AZURE.NOTE] 說明文件不會包含在搜尋索引中。
+> [AZURE.NOTE] Documentation is not included in search index.
 
 ![](media\data-catalog-documentation\data-catalog-documentation2.png)
 
-說明文件層級的範圍可從描述資料資產容器的特性和值，到詳細描述容器內的資料表結構描述。所提供的說明文件層級應以商務需求為準。但一般來說，記載資料資產的優缺點如下︰
+The level of documentation can range from describing the characteristics and value of a data asset container to a detailed description of table schema within a container. The level of documentation provided should be driven by your business needs. But in general, here are a few pros and cons of documenting data assets:
 
--	只記載容器︰所有內容集中放置，但可能缺少可供使用者做出明智決策的必要詳細資料。
--	只記載資料表︰內容專用於該物件，但使用者會將文件放在多個地方。
--	記載容器和資料表︰最全面的方法，但可能需要花更多時間維護文件。
+-   Document just a container: All the content is in one place, but might lack necessary details for users to make an informed decision.
+-   Document just the tables: Content is specific to that object, but your users have multiple places for documents.
+-   Document containers and tables: Most comprehensive approach, but might introduce more maintenance of the documents.
 
-## 摘要
+## <a name="summary"></a>Summary
 
-在 **Azure 資料目錄**中記載資料來源可依所需詳細程度建立資料資產的相關敘述。藉由使用連結，您可以連結至現有內容儲存機制中儲存的內容，以結合您現有的文件和資料資產。一旦使用者找到合適的資料資產，就能取得一組完整的說明文件。
+Documenting data sources with **Azure Data Catalog** can create a narrative about your data assets in as much detail as you need.  By using links, you can link to content stored in an existing content repository, which brings your existing docs and data assets together. Once your users discover appropriate data assets, they can have a complete set of documentation.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

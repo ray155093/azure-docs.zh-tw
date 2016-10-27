@@ -1,35 +1,40 @@
 <properties
-	pageTitle="支援的瀏覽器和裝置"
-	description="描述 Azure 入口網站運作所在的瀏覽器和裝置。" 
-	services=""
-	documentationCenter=""
-	authors="flanakin"
-	writer="flanakin"
-	manager="lwelicki"
-	editor=""/>
+    pageTitle="Supported browsers and devices"
+    description="Describes the browsers and devices on which the Azure portal will work." 
+    services=""
+    documentationCenter=""
+    authors="flanakin"
+    writer="flanakin"
+    manager="lwelicki"
+    editor=""/>
 
 <tags
-	ms.service="multiple"
-	ms.workload="multiple"
-	ms.tgt_pltfrm="ibiza"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/23/2015"
-	ms.author="micflan"/>
+    ms.service="multiple"
+    ms.workload="multiple"
+    ms.tgt_pltfrm="ibiza"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/23/2015"
+    ms.author="micflan"/>
 
-#支援的瀏覽器和裝置
-Microsoft Azure 入口網站可在所有最新的桌上型電腦和平板電腦裝置與瀏覽器上執行。
 
-### 支援的裝置
-入口網站可在最新的 PC、Mac 和平板電腦上順利執行。目前尚不支援行動電話。
+#<a name="supported-browsers-and-devices"></a>Supported browsers and devices
+The Microsoft Azure portal runs on all modern desktop and tablet devices and browsers.
 
-### 支援的瀏覽器
-可支援下列最新版的瀏覽器：
+### <a name="supported-devices"></a>Supported devices
+The portal will run great on modern PCs, Macs, and tablets. Mobile phones are not currently supported.
 
-- Edge (最新版本)
+### <a name="supported-browsers"></a>Supported browsers
+The latest versions of the following browsers are supported:
+
+- Edge (latest)
 - Internet Explorer 11
-- Safari (最新版本，僅限 Mac)
-- Chrome (最新版本)
-- Firefox (最新版本)
+- Safari (latest, Mac only)
+- Chrome (latest)
+- Firefox (latest)
 
-<!---HONumber=AcomDC_0420_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

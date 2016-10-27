@@ -1,34 +1,40 @@
-1. 在入口網站中，移至 [新增]。在搜尋中輸入「虛擬網路閘道」。在搜尋傳回的結果中找出**虛擬網路閘道**，然後按一下該項目。這會開啟 [建立虛擬網路閘道] 刀鋒視窗。
-2. 按一下 [虛擬網路閘道] 刀鋒視窗底部的 [建立]。[建立虛擬網路閘道] 刀鋒視窗會隨即開啟。填入虛擬網路閘道的值。
+1. In the portal, go to **New**. Type "Virtual Network Gateway" in search. Locate **Virtual network gateway** in the search return and click the entry. This opens the **Create virtual network gateway** blade.
+2. Click **Create** at the bottom of the **Virtual network gateway** blade. The **Create virtual network gateway** blade will open. Fill in the values for your virtual network gateway.
 
-	![建立虛擬網路閘道刀鋒視窗欄位](./media/vpn-gateway-add-gw-rm-portal-include/createvnetgw300.png "建立虛擬網路閘道刀鋒視窗欄位")
+    ![Create virtual network gateway blade fields](./media/vpn-gateway-add-gw-rm-portal-include/createvnetgw300.png "Create virtual network gateway blade fields")
 
-3. **名稱**：為您的閘道命名。這與為閘道子網路命名不同。這是您要建立之閘道物件的名稱。
+3. **Name**: Name your gateway. This is not the same as naming a gateway subnet. It's the name of the gateway object you are creating.
 
-4. **閘道類型**︰選取 [VPN]。VPN 閘道使用 **VPN** 虛擬網路閘道類型。
+4. **Gateway type**: Select **VPN**. VPN gateways use the virtual network gateway type **VPN**. 
 
-5. **VPN 類型**：選取針對您的組態指定的 VPN 類型。大部分組態需要路由式 VPN 類型。
+5. **VPN type**: Select the VPN type that is specified for your configuration. Most configurations require a Route-based VPN type.
 
-6. **SKU**︰從下拉式清單中選取閘道 SKU。下拉式清單中所列的 SKU 取決於您選取的 VPN 類型。
+6. **SKU**: Select the gateway SKU from the dropdown. The SKUs listed in the dropdown depend on the VPN type you select.
 
-7. **位置**：調整 [位置] 欄位以指向您的虛擬網路所在的位置。
+7. **Location**: Adjust the **Location** field to point to the location where your virtual network is located.
  
-8. 選擇您要新增此閘道的虛擬網路。按一下 [虛擬網路] 以開啟 [選擇擇虛擬網路] 刀鋒視窗。選取 VNet。如果您沒看到您的 VNet，請確定 [位置] 欄位是指向您的虛擬網路所在的區域。
+8. Choose the virtual network to which you want to add this gateway. Click **Virtual network** to open the **Choose a virtual network** blade. Select the VNet. If you don't see your VNet, make sure the **Location** field is pointing to the region in which your virtual network is located.
 
-9. 選擇公用 IP 位址。按一下 [公用 IP 位址] 以開啟 [選擇公用 IP 位址] 刀鋒視窗。按一下 [+新建] 以開啟 [建立公用 IP 位址] 刀鋒視窗。輸入公用 IP 位址的名稱。此刀鋒視窗會建立公用 IP 位址物件，以供將公用 IP 位址動態指派到此。<br>按一下 [確定] 以儲存此刀鋒視窗的變更。
+9. Choose a public IP address. Click **Public IP address** to open the **Choose public IP address** blade. Click **+Create New** to open the **Create public IP address blade**. Input a name for your public IP address. This blade creates a public IP address object to which a public IP address will be dynamically assigned.<br>Click **OK** to save your changes to this blade.
 
-10. **訂用帳戶**：請確認已選取正確的訂用帳戶。
+10. **Subscription**: Verify that the correct subscription is selected.
 
-11. **資源群組**：此設定取決於您選取的虛擬網路。
+11. **Resource group**: This setting is determined by the Virtual Network that you select. 
 
-12. 指定上述設定之後，請勿調整 [位置]。
+12. Don't adjust the **Location** after you've specified the previous settings.
 
-13. 確認設定。如果您希望閘道顯示在儀表板上，可以選取刀鋒視窗底部的 [釘選到儀表板]。
+13. Verify the settings. You can select **Pin to dashboard** at the bottom of the blade if you want your gateway to appear on the dashboard.
 
-14. 按一下 [建立] 即可開始建立閘道。設定會經過驗證，您將會在儀表板上看到 [部署虛擬網路閘道] 圖格。建立閘道可能需要長達 45 分鐘。您可能需要重新整理入口網站頁面，才能看到完成的狀態。
+14. Click **Create** to begin creating the gateway. The settings will be validated and you'll see the "Deploying Virtual network gateway" tile on the dashboard. Creating a gateway can take up to 45 minutes. You may need to refresh your portal page to see the completed status.
 
-	![部署虛擬網路閘道](./media/vpn-gateway-add-gw-rm-portal-include/deployvnetgw150.png "部署虛擬網路閘道")
+    ![Deploying Virtual network gateway](./media/vpn-gateway-add-gw-rm-portal-include/deployvnetgw150.png "Deploying Virtual network gateway")
 
-11. 建立閘道之後，您可以查看入口網站中的虛擬網路，來檢視已指派給閘道的 IP 位址。閘道將會顯示為已連線的裝置。您可以按一下連接的裝置 (虛擬網路閘道) 以檢視詳細資訊。
+11. After the gateway is created, you can view the IP address that has been assigned to it by looking at the virtual network in the portal. The gateway will appear as a connected device. You can click the connected device (your virtual network gateway) to view more information.
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

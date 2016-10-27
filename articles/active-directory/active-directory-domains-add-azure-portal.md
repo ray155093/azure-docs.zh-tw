@@ -1,95 +1,104 @@
 <properties
-	pageTitle="將自訂網域名稱新增到 Azure Active Directory 預覽版 | Microsoft Azure"
-	description="如何在 Azure Active Directory 中新增您公司的網域名稱，以及如何確認網域名稱。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeffsta"
-	manager="femila"
-	editor=""/>
+    pageTitle="Add your custom domain name to Azure Active Directory preview | Microsoft Azure"
+    description="How to add your company's domain names to Azure Active Directory, and how to verify the domain name."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeffsta"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/12/2016"
-	ms.author="curtand"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/30/2016"
+    ms.author="curtand"/>
 
-# 將自訂網域名稱新增到 Azure Active Directory 預覽版
 
-您已有一或多個您的組織用來經營業務的網域名稱，而且您的使用者使用您公司的網域名稱來登入公司網路。既然您要使用 Azure Active Directory (Azure AD) 預覽版，您也可以將您的公司網域名稱新增到 Azure AD。[預覽版有何功能？](active-directory-preview-explainer.md) 這可讓您在目錄中指派您的使用者熟悉的使用者名稱，例如 ‘alice@contoso.com’。 程序佷簡單：
+# <a name="add-a-custom-domain-name-to-azure-active-directory-preview"></a>Add a custom domain name to Azure Active Directory preview
 
-1. 在目錄中新增自訂網域名稱
-2. 在網域名稱註冊機構中新增網域名稱的 DNS 項目
-3. 驗證 Azure AD 中的自訂網域名稱
+> [AZURE.SELECTOR]
+- [Azure portal](active-directory-domains-add-qzure-portal.md)
+- [Azure classic portal](active-directory-add-domain.md)
 
-## 如何新增網域名稱？
+You've got one or more domain names that your organization uses to do business, and your users sign in to your corporate network using your corporate domain name. Using Azure Active Directory (Azure AD) preview, you can add your corporate domain name to Azure AD as well. [What's in the preview?](active-directory-preview-explainer.md) This allows you to assign user names in the directory that are familiar to your users, such as ‘alice@contoso.com.’ The process is simple:
 
-1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
+1. Add the custom domain name to your directory
+2. Add a DNS entry for the domain name at the domain name registrar
+3. Verify the custom domain name in Azure AD
 
-2.  選取 [更多服務]，在文字方塊中輸入 **Azure Active Directory**，然後選取 **Enter**。
+## <a name="how-do-i-add-a-domain-name?"></a>How do I add a domain name?
 
-    ![開啟使用者管理](./media/active-directory-domains-add-azure-portal/user-management.png)
+1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
 
-3. 在 [***directory-name***] 刀鋒視窗上，選取 [網域名稱]。
+2.  Select **More services**, enter **Azure Active Directory** in the text box, and then select **Enter**.
 
-4. 在 [*directory-name* - 網域名稱] 刀鋒視窗上，選取 [新增] 命令。
+    ![Opening user management](./media/active-directory-domains-add-azure-portal/user-management.png)
 
-  ![選取 [新增] 命令](./media/active-directory-domains-add-azure-portal/add-command.png)
+3. On the ***directory-name*** blade, select **Domain names**.
 
-5. 在 [網域名稱] 刀鋒視窗上，於方塊中輸入您的自訂網域名稱 (例如 'contoso.com')，然後選取 [新增網域]。請務必包含 .com、.net 或其他最上層的擴充。
+4. On the ***directory-name* - Domain names** blade, select the **Add** command.
 
-6. 在 [***domainname***] 刀鋒視窗 (亦即所開啟且標題中含有新網域名稱的刀鋒視窗) 上，取得 Azure AD 將用來驗證貴組織是否擁有自訂網域名稱的 DNS 項目資訊。
+  ![Selecting the Add command](./media/active-directory-domains-add-azure-portal/add-command.png)
 
-  ![取得 DNS 項目資訊](./media/active-directory-domains-add-azure-portal/get-dns-info.png)
+5. On the **Domain name** blade, enter the name of your custom domain in the box, such as 'contoso.com', and then select **Add Domain**. Be sure to include the .com, .net, or other top-level extension.
 
-既然您已新增網域名稱，Azure AD 必須確認您的組織擁有該網域名稱。您必須先在 DNS 區域檔案中新增該網域名稱的 DNS 項目，Azure AD 才可以進行此確認。這項工作是在該網域名稱的網域名稱註冊機構網站上進行。
+6. On the ***domainname*** blade (that is, the blade that opens that has your new domain name in the title), get the DNS entry information that Azure AD will use to verify that your organization owns the custom domain name.
 
-## 在網域名稱註冊機構中新增網域的 DNS 項目
+  ![get DNS entry information](./media/active-directory-domains-add-azure-portal/get-dns-info.png)
 
-利用 Azure AD 使用您自訂網域名稱的下一個步驟，就是更新網域的 DNS 區域檔案。這可讓 Azure AD 確認您的組織擁有該自訂網域名稱。
+Now that you've added the domain name, Azure AD must verify that your organization owns the domain name. Before Azure AD can perform this verification, you must add a DNS entry in the DNS zone file for the domain name. This task is performed at the website for domain name registrar for the domain name.
 
-1.  登入網域的網域名稱註冊機構。如果您無法存取以更新 DNS 項目，請要求具有此存取權的人員或小組完成步驟 2 並在完成時通知您。
+## <a name="add-the-dns-entry-at-the-domain-name-registrar-for-the-domain"></a>Add the DNS entry at the domain name registrar for the domain
 
-2.  透過新增 Azure AD 提供給您的 DNS 項目來更新網域的 DNS 區域檔案。此 DNS 項目可讓 Azure AD 確認您擁有網域。DNS 項目不會變更任何行為，例如郵件路由或 Web 裝載。
+The next step to use your custom domain name with Azure AD is to update the DNS zone file for the domain. This enables Azure AD to verify that your organization owns the custom domain name.
 
-如需新增此 DNS 項目的說明，請參閱[在常用 DNS 註冊機構新增 DNS 項目的指示](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
+1.  Sign in to the domain name registrar for the domain. If you don't have access to update the DNS entry, ask the person or team who has this access to complete step 2 and to let you know when it is completed.
 
-## 使用 Azure AD 確認網域名稱
+2.  Update the DNS zone file for the domain by adding the DNS entry provided to you by Azure AD. This DNS entry enables Azure AD to verify your ownership of the domain. The DNS entry doesn't change any behaviors such as mail routing or web hosting.
 
-一旦新增了 DNS 項目，您就可以使用 Azure AD 確認網域名稱。
+For help with this adding the DNS entry, read [Instructions for adding a DNS entry at popular DNS registrars](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
 
-只有在 DNS 記錄傳播完成之後，才能驗證網域名稱。通常此傳播只需要幾秒鐘，但有時可能需要一個小時以上。如果驗證第一次不成功，請稍後再試。
+## <a name="verify-the-domain-name-with-azure-ad"></a>Verify the domain name with Azure AD
 
-1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
+Once you have added the DNS entry, you are ready to verify the domain name with Azure AD.
 
-2.  選取 [瀏覽]，在文字方塊中輸入「使用者管理」，然後選取 **Enter**。
+A domain name can be verified only after the DNS records have propagated. This propagation often takes only seconds, but it can sometimes take an hour or more. If verification doesn’t work the first time, try again later.
 
-    ![開啟使用者管理](./media/active-directory-domains-add-azure-portal/user-management.png)
+1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
 
-3. 在 [使用者管理 - 網域名稱] 刀鋒視窗上，選取您想要驗證的未驗證網域名稱。
+2.  Select **Browse**, enter User Management in the text box, and then select **Enter**.
 
-4. 在 [***domainname***] 刀鋒視窗 (也就是所開啟且標題中含有新網域名稱的刀鋒視窗) 上，選取 [驗證] 來完成驗證。
+    ![Opening user management](./media/active-directory-domains-add-azure-portal/user-management.png)
 
-現在，您可以[指派包含自訂網域名稱的使用者名稱](active-directory-create-users-azure-portal.md)。
+3. On the **User management - Domain names** blade, select the unverified domain name that you want to verify.
 
-## 疑難排解
+4. On the ***domainname*** blade (that is, the blade that opens that has your new domain name in the title), select **Verify** to complete the verification.
 
-如果無法確認自訂網域名稱，請嘗試下列方法。我們會從最常見的原因來開始逐一介紹到最不常見的原因。
+Now you can [assign user names that include your custom domain name](active-directory-users-create-azure-portal.md).
 
-1.	**等候一小時**。DNS 記錄必須在 Azure AD 確認網域之後傳播。這可能需要一個小時以上。
+## <a name="troubleshooting"></a>Troubleshooting
 
-2.	**確定已輸入正確的 DNS 記錄**。請在該網域的網域名稱註冊機構網站上完成這個步驟。如果 DNS 項目不在 DNS 區域檔案中，或如果與 Azure AD 提供您的 DNS 項目不完全相符，則 Azure AD 無法確認網域名稱。如果您無法在網域名稱註冊機構上存取以更新網域的 DNS 記錄，請與組織內具有此存取權的個人或團隊共用 DNS 項目，並請他們新增 DNS 項目。
+If you can't verify a custom domain name, try the following. We'll start with the most common and work down to the least common.
 
-3.	**從 Azure AD 中的另一個目錄刪除網域名稱**。網域名稱只能在單一目錄中確認。如果網域名稱先前在另一個目錄中確認過，則必須先在那裡將其刪除後，才可在新的目錄中確認。若要了解如何刪除網域名稱，請參閱[管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)。
+1.  **Wait an hour**. DNS records need to propagate before Azure AD can verify the domain. This can take an hour or more.
 
-## 新增更多的自訂網域名稱
+2.  **Ensure the DNS record was entered, and that it is correct**. Complete this step at the website for the domain name registrar for the domain. Azure AD cannot verify the domain name if the DNS entry is not present in the DNS zone file, or if it is not an exact match with the DNS entry that Azure AD provided you. If you do not have access to update DNS records for the domain at the domain name registrar, share the DNS entry with the person or team at your organization who has this access, and ask them to add the DNS entry.
 
-如果您的組織使用多個自訂網域名稱，例如 ‘contoso.com’ 和 ‘contosobank.com’，您最多可以新增 900 個網域名稱。請使用本文中的相同步驟來新增每個網域名稱。
+3.  **Delete the domain name from another directory in Azure AD**. A domain name can be verified in only a single directory. If a domain name was previously verified in another directory, it must be deleted there before it can be verified in your new directory. To learn about deleting domain names, read [Manage custom domain names](active-directory-domains-manage-azure-portal.md).    
 
-## 後續步驟
+## <a name="add-more-custom-domain-names"></a>Add more custom domain names
 
-[管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)
+If your organization uses multiple custom domain names, such as ‘contoso.com’ and ‘contosobank.com’, you can add them up to a maximum of 900 domain names. Use the same steps in this article to add each of your domain names.
 
-<!---HONumber=AcomDC_0914_2016-->
+## <a name="next-steps"></a>Next steps
+
+[Manage custom domain names](active-directory-domains-manage-azure-portal.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

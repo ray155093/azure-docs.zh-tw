@@ -1,39 +1,40 @@
 <properties
-	pageTitle="管理虛擬機器擴展集中的 VM | Microsoft Azure"
-	description="使用 Azure PowerShell 管理虛擬機器擴展集中的虛擬機器。"
-	services="virtual-machine-scale-sets"
-	documentationCenter=""
-	authors="davidmu1"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+    pageTitle="Manage VMs in a Virtual Machine Scale Set | Microsoft Azure"
+    description="Manage virtual machines in a virtual machine scale set using Azure PowerShell."
+    services="virtual-machine-scale-sets"
+    documentationCenter=""
+    authors="davidmu1"
+    manager="timlt"
+    editor=""
+    tags="azure-resource-manager"/>
 
 <tags
-	ms.service="virtual-machine-scale-sets"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/14/2016"
-	ms.author="davidmu"/>
+    ms.service="virtual-machine-scale-sets"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/27/2016"
+    ms.author="davidmu"/>
 
-# 管理虛擬機器擴展集中的虛擬機器
 
-您可以使用本文中的工作來管理虛擬機器擴展集中的虛擬機器資源。
+# <a name="manage-virtual-machines-in-a-virtual-machine-scale-set"></a>Manage virtual machines in a virtual machine scale set
 
-所有涉及管理擴展集中虛擬機器的工作，都需要您知道要管理的電腦執行個體識別碼。您可以使用 [Azure 資源總管](https://resources.azure.com)尋找擴展集中虛擬機器的執行個體識別碼。您也可以使用資源總管來確認您所完成的工作狀態。
+Use the tasks in this article to manage virtual machines in your virtual machine scale set.
 
-如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
+Most of the tasks that involve managing a virtual machine in a scale set require that you know the instance ID of the machine that you want to manage. You can use [Azure Resource Explorer](https://resources.azure.com) to find the instance ID of a virtual machine in a scale set. You also use Resource Explorer to verify the status of the tasks that you finish.
 
-## 顯示虛擬機器擴展集的相關資訊
+See [How to install and configure Azure PowerShell](../powershell-install-configure.md) for information about installing the latest version of Azure PowerShell, selecting your subscription, and signing in to your account.
 
-您可以取得擴展集，也稱為執行個體檢視的一般資訊。或者，您可以取得更特定的資訊，如集合中的資源資訊。
+## <a name="display-information-about-a-scale-set"></a>Display information about a scale set
 
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*，並以虛擬機器擴展集的名稱取代*擴展集名稱*，然後執行命令：
+You can get general information about a scale set, which is also referred to as the instance view. Or, you can get more specific information, such as information about the resources in the scale set.
+
+Replace the quoted values with the name or your resource group and scale set and then run the command:
 
     Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
 
-它會傳回類似下列畫面：
+It returns something like this:
 
     Id                                          : /subscriptions/{sub-id}/resourceGroups/myrg1/providers/Microsoft.Compute/virtualMachineScaleSets/myvmss1
     Name                                        : myvmss1
@@ -89,11 +90,11 @@
         Settings                                : {"xmlCfg":"...","storageAccount":"astore"}
     ProvisioningState                           : Succeeded
     
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以虛擬機器擴展集的名稱取代*擴展集名稱*，並以您要取得相關資訊之虛擬機器的執行個體識別碼取代 *#*，然後執行命令：
+Replace the quoted values with the name of your resource group and scale set. Replace *#* with the instance identifier of the virtual machine that you want to get information about and then run it:
 
     Get-AzureRmVmssVM -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
         
-它會傳回類似下列畫面：
+It returns something like this example:
 
     Id                            : /subscriptions/{sub-id}/resourceGroups/myrg1/providers/Microsoft.Compute/
                                     virtualMachineScaleSets/myvmss1/virtualMachines/0
@@ -142,13 +143,13 @@
       Settings                    : {"xmlCfg":"...","storageAccount":"astore"}
       ProvisioningState           : Succeeded
         
-## 啟動擴展集中的虛擬機器
+## <a name="start-a-virtual-machine-in-a-scale-set"></a>Start a virtual machine in a scale set
 
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要啟動的虛擬機器識別碼取代 *#*，然後執行命令：
+Replace the quoted values with the name of your resource group and scale set. Replace *#* with the identifier of the virtual machine that you want to start and then run it:
 
     Start-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-在資源總管中，我們可以看到執行個體的狀態是**執行中**：
+In Resource Explorer, we can see that the status of the instance is **running**:
 
     "statuses": [
       {
@@ -164,17 +165,17 @@
       }
     ]
 
-您可以啟動集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
+You can start all the virtual machines in the scale set by not using the -InstanceId parameter.
     
-## 停止擴展集中的虛擬機器
+## <a name="stop-a-virtual-machine-in-a-scale-set"></a>Stop a virtual machine in a scale set
 
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要停止的虛擬機器識別碼取代 *#*，然後執行命令：
+Replace the quoted values with the name of your resource group and scale set. Replace *#* with the identifier of the virtual machine that you want to stop and then run it:
 
-	Stop-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
+    Stop-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-在資源總管中，我們可以看到執行個體的狀態是**解除配置**：
+In Resource Explorer, we can see that the status of the instance is **deallocated**:
 
-	"statuses": [
+    "statuses": [
       {
         "code": "ProvisioningState/succeeded",
         "level": "Info",
@@ -188,22 +189,34 @@
       }
     ]
     
-若要停止虛擬機器但不解除配置，請使用 -StayProvisioned 參數。您可以停止集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
+To stop a virtual machine and not deallocate it, use the -StayProvisioned parameter. You can stop all the virtual machines in the set by not using the -InstanceId parameter.
     
-## 重新啟動擴展集中的虛擬機器
+## <a name="restart-a-virtual-machine-in-a-scale-set"></a>Restart a virtual machine in a scale set
 
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要重新啟動的虛擬機器識別碼取代 *#*，然後執行命令：
+Replace the quoted values with the name of your resource group and the scale set. Replace *#* with the identifier of the virtual machine that you want to restart and then run it:
 
-	Restart-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
+    Restart-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
     
-您可以重新啟動集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
+You can restart all the virtual machines in the set by not using the -InstanceId parameter.
 
-## 移除擴展集中的虛擬機器
+## <a name="remove-a-virtual-machine-from-a-scale-set"></a>Remove a virtual machine from a scale set
 
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要從擴展集中移除的虛擬機器識別碼取代 *#*，然後執行命令：
+Replace the quoted values with the name of your resource group and the scale set. Replace *#* with the identifier of the virtual machine that you want to remove and then run it:  
 
-	Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name" -InstanceId #
+    Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name" -InstanceId #
 
-您可以一次移除虛擬機器擴展集，只要不使用 -InstanceId 參數即可。
+You can remove the virtual machine scale set all at once by not using the -InstanceId parameter.
 
-<!---HONumber=AcomDC_0720_2016-->
+## <a name="change-the-capacity-of-a-scale-set"></a>Change the capacity of a scale set
+
+You can add or remove virtual machines by changing the capacity of the set. Get the scale set that you want to change, set the capacity to what you want it to be, and then update the scale set with the new capacity. In these commands, replace the quoted values with the name of your resource group and the scale set.
+
+  $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" $vmss.sku.capacity = 5 Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
+
+If you are removing virtual machines from the scale set, the virtual machines with the highest ids are removed first.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

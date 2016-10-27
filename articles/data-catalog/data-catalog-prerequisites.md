@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure 資料目錄必要條件 | Microsoft Azure"
-   description="Azure 資料目錄必要條件 - 開始使用 Azure 資料目錄所需的項目。"
+   pageTitle="Azure Data Catalog prerequisites | Microsoft Azure"
+   description="Azure Data Catalog prerequisites - what you need to get started with Azure Data Catalog."
    services="data-catalog"
    documentationCenter=""
    authors="steelanddata"
@@ -16,34 +16,39 @@
    ms.date="09/21/2016"
    ms.author="maroche"/>
 
-# Azure 資料目錄必要條件
 
-## 我需要什麼才能開始使用 Azure 資料目錄？
+# <a name="azure-data-catalog-prerequisites"></a>Azure Data Catalog prerequisites
 
-您必須注意幾件事，才能設定 **Azure 資料目錄**。別擔心 – 不會很久！
+## <a name="what-do-i-need-to-get-started-with-azure-data-catalog?"></a>What do I need to get started with Azure Data Catalog?
 
-## Azure 訂用帳戶
-若要設定 Azure 資料目錄，您必須是 Azure 訂用帳戶的擁有者或共同擁有者。
+There are a few things you’ll need to take care of before you can set up **Azure Data Catalog**. Don’t worry – they won’t take long!
 
-Azure 訂用帳戶可協助您組織雲端服務資源的存取權，例如 Azure 資料目錄。它們也可協助您控制如何根據資源使用量產生報告、計費及付費。每一個訂用帳戶可以有不同的計費和付款設定，因此，依照部門、專案、區域辦事處等，您可以有不同的訂用帳戶和不同的計劃。每一個雲端服務都屬於某個訂用帳戶，在設定 Azure 資料目錄之前，您必須先有訂用帳戶。若要深入了解，請參閱[管理帳戶、訂用帳戶及管理角色](../active-directory/active-directory-assign-admin-roles.md)。
+## <a name="azure-subscription"></a>Azure Subscription
+To set up Azure Data Catalog, you must be the owner or co-owner of an Azure subscription.
 
-## Azure Active Directory
-若要設定 Azure 資料目錄，您必須使用 Azure Active Directory 使用者帳戶登入。
+Azure subscriptions help you organize access to cloud service resources like Azure Data Catalog. They also help you control how resource usage is reported, billed, and paid for. Each subscription can have a different billing and payment setup, so you can have different subscriptions and different plans by department, project, regional office, and so on. Every cloud service belongs to a subscription, and you need to have a subscription before setting up Azure Data Catalog. To learn more, see [Manage Accounts, Subscriptions, and Administrative Roles](../active-directory/active-directory-assign-admin-roles.md).
 
-Azure Active Directory (Azure AD) 為您的企業提供在雲端和內部部署中，輕鬆管理身分識別和存取的方式。使用者可以使用單一公司帳戶或學校帳戶，以單一登入方法登入任何雲端和內部部署 Web 應用程式。Azure 資料目錄採用 Azure AD 來驗證登入。若要深入了解，請參閱[什麼是 Azure Active Directory](../active-directory/active-directory-whatis.md)。
+## <a name="azure-active-directory"></a>Azure Active Directory
+To set up Azure Data Catalog, you must be logged in using an Azure Active Directory user account.
 
-> [AZURE.NOTE] [Azure 入口網站](http://portal.azure.com/)可讓使用者使用個人 Microsoft 帳戶或 Azure Active Directory 工作或學校帳戶進行登入。若要使用 Azure 入口網站或[資料目錄入口網站](http://www.azuredatacatalog.com)設定 Azure 資料目錄，您必須使用 Azure Active Directory 帳戶而非個人帳戶來登入。
+Azure Active Directory (Azure AD) provides an easy way for your business to manage identity and access, both in the cloud and on-premises. Users can use a single work or school account for single sign-on to any cloud and on-premises web application. Azure Data Catalog uses Azure AD to authenticate sign-on. To learn more, see [What is Azure Active Directory](../active-directory/active-directory-whatis.md).
 
-## Active Directory 原則組態
+> [AZURE.NOTE] The [Azure portal](http://portal.azure.com/) allows users to sign in using either a personal Microsoft Account or an Azure Active Directory work or school account. To set up Azure Data Catalog using the Azure portal or using the [Data Catalog portal](http://www.azuredatacatalog.com) you must be logged in using an Azure Active Directory account, not a personal account.
 
-使用者可能會遇到一種情況，他們可以登入「Azure 資料目錄」入口網站，但在嘗試登入資料來源註冊工具時卻遇到錯誤訊息，導致無法登入。僅在使用者處於公司網路或是從公司網路外部連接時，才會發生此問題行為。
+## <a name="active-directory-policy-configuration"></a>Active Directory policy configuration
 
-資料來源註冊工具使用「表單驗證」，以根據 Active Directory 驗證使用者登入。Active Directory 系統管理員必須在全域驗證原則中啟用表單驗證，登入才會成功。
+In some situations, users may encounter a situation where they can log on to the Azure Data Catalog portal, but when they attempt to log on to the data source registration tool they encounter an error message that prevents them from logging on. This problem behavior may occur only when the user is on the company network, or may occur only when the user is connecting from outside the company network.
 
-「全域驗證」原則允許分別為內部網路和外部網路連接啟用驗證方法，如下圖所示。如果使用者連線的網路未啟用表單驗證，可能會發生登入錯誤。
+The data source registration tool uses Forms Authentication to validate user logons against Active Directory. For successful logon, Forms Authentication must be enabled in the Global Authentication Policy by an Active Directory administrator.
 
- ![Active Directory 全域驗證原則](./media/data-catalog-prerequisites/global-auth-policy.png)
+The Global Authentication Policy allows authentication methods to be enabled separately for intranet and extranet connections, as illustrated below. Logon errors may occur if Forms Authentication is not enabled for the network from which the user is connecting.
 
-如需詳細資訊，請參閱[設定驗證原則](https://technet.microsoft.com/library/dn486781.aspx)。
+ ![Active Directory Global Authentication Policy](./media/data-catalog-prerequisites/global-auth-policy.png)
 
-<!---HONumber=AcomDC_0921_2016-->
+For more information, see [Configuring Authentication Policies](https://technet.microsoft.com/library/dn486781.aspx).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

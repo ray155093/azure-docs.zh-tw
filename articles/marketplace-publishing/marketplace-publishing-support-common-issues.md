@@ -1,6 +1,6 @@
 <properties
-   pageTitle="如何疑難排解常見的發行者支援問題 | Microsoft Azure"
-   description="了解如何疑難排解常見的發行者支援問題和取得支援"
+   pageTitle="How to troubleshoot common publisher support issues | Microsoft Azure"
+   description="Understand how to troubleshoot common publisher support issues and how to get support"
    services="marketplace-publishing"
    documentationCenter="na"
    authors="v-jeana"
@@ -16,99 +16,100 @@
       ms.date="09/21/2016"
       ms.author="v-jeana; hascipio; v-dabosl"/>
 
-# 如何疑難排解常見的 Azure Marketplace 發行者問題
-本文說明如何解決或獲得一些常見 Marketplace 案例的支援。
 
-## 點數和退款
+# <a name="how-to-troubleshoot-common-azure-marketplace-publisher-issues"></a>How to troubleshoot common Azure Marketplace publisher issues
+This article explains how to resolve or get support for some common Marketplace scenarios.
 
-在某些情況下，您可能需要代表客戶要求點數或退款。Microsoft 支援服務可協助確保您客戶的點數和退款要求都已經過處理，並且在適當的時候提供回應給您。
+## <a name="credits-and-refunds"></a>Credits and refunds
 
-以下說明您如何代表客戶要求點數或退款。
+In some circumstances, you may need to request a credit or a refund on behalf of a customer.  Microsoft Support can help ensure that your customer’s credit and refund requests are considered and that a response is provided to you in due course.
 
-> [AZURE.NOTE] 如果客戶或 Azure 轉銷商連絡 Microsoft 要求退款或點數，我們將會套用與我們提供 Azure 服務佈建所使用的相同原則。如果我們的原則指出退款或點數是應當的，我們會主動核發 (且您授權我們代表您核發) 適當的退款或點數給客戶或 Azure 轉銷商。如果我們的原則未指出退款或點數是應當的，我們會請客戶或 Azure 轉銷商直接與您連絡。
+The following shows you how to request a credit or refund on behalf of a customer.
 
-  ![1\_RequestRefund][1]
+> [AZURE.NOTE] If a customer or Azure reseller contacts Microsoft to request a refund or credit, we will apply the same policies that we use for our provision of Azure services. If our policies indicate that a refund or credit is due, we will proactively issue (and you authorize us to issue on your behalf) a refund or credit to the customer or Azure reseller, as applicable. If our policies do not indicate that a refund or credit is due, we may invite the customer or Azure reseller to contact you directly.
 
-  1. 請從這裡瀏覽至支援頁面：[https://support.microsoft.com/zh-TW/getsupport?tenant=ClassicCommercial&locale=zh-TW&supportregion=zh-TW&pesid=15635&sd=&oaspworkflow=start\_1.0.0.0&wf=0&ccsid=635562546535117884](https://support.microsoft.com/zh-TW/getsupport?tenant=ClassicCommercial&locale=zh-TW&supportregion=zh-TW&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884)。
-  2. 在 [問題類型] 方塊中，選取 [管理客戶]。
-  3. 在 [類別] 方塊中，選取 [核准或要求客戶退款]。
-  4. 按一下 [提出要求]。
+  ![1_RequestRefund][1]
 
-  ![2\_RequestRefund][2]
+  1. Navigate to the support pages here: [https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884](https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884).
+  2. In the **Problem type** box, select **Managing Customers**.
+  3. In the **Category** box, select **Approve or request a customer refund**.
+  4. Click **Start request**.
 
-5. 提供連絡資訊。
-6. 在 [發生什麼問題？] 方塊中，輸入以下資訊：
+  ![2_RequestRefund][2]
 
-    - 受影響客戶的訂用帳戶 ID
-    - 客戶名稱
-    - 點數應該是多少
-    - 點數期間
-    - 該期間的帳單日期
-    - 點數的原因
+5. Provide contact information.
+6. In the **What is the issue?** box, enter the following information:
 
-您接著會在 24 小時以內收到一封確認電子郵件，表示我們已收到您的資訊。在我們做出與要求相關的決定之後，您就會收到結果。
+    - The subscription ID of the impacted customer
+    - The customer name
+    - How much the credit should be for
+    - The period of the credit
+    - The bill date of that period
+    - The reason for the credit
 
-## 客戶訂用帳戶驗證
+You will then receive an acknowledgement email within 24 hours that we have received your information. After a decision has been made in relation to your request, you will be informed of the outcome.
 
-在某些情況下，您可能需要驗證您其中一位客戶的訂用帳戶詳細資料。您可以連絡 Microsoft 支援服務來協助進行。Microsoft 支援服務將協助您確認屬於某特定客戶的訂用帳戶 ID 和帳單地址。
+## <a name="customer-subscription-validation"></a>Customer subscription validation
+
+In some circumstances, you may need to validate the subscription details for one of your customers. You can contact Microsoft Support to help with this. Microsoft Support will help to confirm that a subscription ID and billing address belong to a known customer.
 
   ![subscriptionvalidation][3]
 
-- 客戶可能會連絡您要求支援。
-- 您可能不知道如何驗證客戶是否為該供應項目的正版客戶。
-- 您可以記錄支援要求，以要求客戶訂用帳戶驗證。
-- 您必須提供客戶的訂用帳戶 ID 和帳單地址。
-- Microsoft 會連絡您提供我們已知的帳單地址和訂用帳戶 ID 做為確認。
+- A customer may contact you requesting support.
+- You may not know how to validate that a customer is a genuine customer for an offer.
+- You can log a support request to request customer subscription validation.
+- You will need to provide a customer subscription ID and billing address.
+- Microsoft will contact you to provide confirmation that the billing address and subscription ID are known to us.
 
 
-## 如何更新我的發行者設定檔？
+## <a name="how-do-i-update-my-publisher-profile?"></a>How do I update my publisher profile?
 
-如果您想要更新發行者設定檔，可以透過 Microsoft 開發人員中心完成：
+If you want to update your publisher profile, this can be done via the Microsoft Dev Center:
 
-**1.登入 Windows 開發人員中心**。
+**1. Sign in to the Windows Dev Center**.
 
-- 開啟新的 Chrome Incognito 或 Internet Explorer InPrivate 瀏覽工作階段，確定您未登入個人帳戶。
-- 移至 [http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
+- Open a new Chrome Incognito or Internet Explorer InPrivate browsing session to ensure that you’re not signed in to a personal account.
+- Go to [http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
 
 ![inprivate][4]
 
-**2.使用您公司的工作帳戶或學校帳戶登入** (亦即 AzureStore@yourcompany.com)。
+**2. Sign in with your company's work or school account** (that is, AzureStore@yourcompany.com).
 
 ![signin][5]
 
-**3.完成「協助我們保護您的帳戶」驗證**。
+**3. Complete the “Help us protect your account” verification**.
 
-> [AZURE.NOTE] 您可以使用電話號碼或電子郵件地址進行驗證。
+> [AZURE.NOTE] You can use your phone number or email address to verify.
 
 ![protectacct][6]
 
-**4.瀏覽至帳戶詳細資料和連絡資訊**。
+**4. Navigate to Account Details and Contact info**.
 
 ![acctdetails][7]
 
-## 如何新增或刪除發佈帳戶中的系統管理員？
+## <a name="how-do-i-add-or-delete-an-administrator-from-my-publishing-account?"></a>How do I add or delete an administrator from my publishing account?
 
 ![manageadmins][8]
 
-1. 瀏覽至發佈入口網站。
-2. 選取 [發行者]。
-3. 選取 [系統管理員]。
-4. 新增您想要新增或移除之共同管理員的電子郵件地址。
-5. 選取 [**儲存**]。
+1. Navigate to the Publishing Portal.
+2. Select **Publishers**.
+3. Select **Administrators**.
+4. Add the email address of the co-admin that you want to add or remove.
+5. Select **Save**.
 
-## 後續步驟：其他支援查詢
+## <a name="next-steps:-other-support-queries"></a>Next steps:  Other support queries
 
-如有下列問題，請在 [https://portal.azure.com](https://portal.azure.com) 紀錄問題：
+For the following issues, please log an issue at [https://portal.azure.com](https://portal.azure.com):
 
-- 如何回報帳單錯誤？
-- 我發現我的帳單或使用量明細中有不相符之處。
-- 我需要協助以了解我的帳單明細。
+- How do I report a billing error?
+- I have noticed discrepancies in my billing or usage statements.
+- I need help understanding my billing statement.
 
 
-如有下列問題，請在 [http://go.microsoft.com/fwlink/?LinkId=272975](http://go.microsoft.com/fwlink/?LinkId=272975) 建立支援要求：
+For the following issues, please create a support request at [http://go.microsoft.com/fwlink/?LinkId=272975](http://go.microsoft.com/fwlink/?LinkId=272975):
 
-- 我有管理 Web 服務的問題。
-- 如何變更與賣方帳戶相關聯的 Microsoft 帳戶？
+- I have issues managing web services.
+- How do I change the Microsoft account associated with my seller account?
 
 
 [1]: ./media/marketplace-publishing-support-common-issues/requestrefund1.png
@@ -120,4 +121,8 @@
 [7]: ./media/marketplace-publishing-support-common-issues/acctdetails.png
 [8]: ./media/marketplace-publishing-support-common-issues/manageadmins.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

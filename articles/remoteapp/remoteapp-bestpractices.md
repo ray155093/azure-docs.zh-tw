@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Azure RemoteApp 最佳做法 | Microsoft Azure"
-    description="設定和使用 Azure RemoteApp 的最佳做法。"
+    pageTitle="Azure RemoteApp best practices | Microsoft Azure"
+    description="Best practices for configuring and using Azure RemoteApp."
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -15,35 +15,40 @@
     ms.date="08/15/2016"
     ms.author="elizapo" />
 
-# 設定和使用 Azure RemoteApp 的最佳做法
+
+# <a name="best-practices-for-configuring-and-using-azure-remoteapp"></a>Best practices for configuring and using Azure RemoteApp
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-下列資訊可協助您有效率地設定和使用 Azure RemoteApp。
+The following information can help you configure and use Azure RemoteApp productively.
 
-## 連線能力
-
-
-- 請始終使用最新的用戶端版本。使用舊版的用戶端可能會造成連線問題和其他降級的體驗。為您的裝置啟用自動應用程式更新將可確保安裝的永遠是最新的用戶端。
-- 請始終使用最穩定和最可靠的網際網路連線。
-- 請使用支援的 Proxy 連線以獲得最佳連線效能。不支援 SOCKS Proxy。
-
-## 應用程式
+## <a name="connectivity"></a>Connectivity
 
 
-- 當您結束應用程式後，請儲存並關閉 RemoteApp 應用程式。未關閉應用程式可能會導致資料遺失。
-- 在 Azure RemoteApp 中使用自訂應用程式之前，請先進行驗證。這包括確認它們可在多重工作階段的平台上運作，而且不會使用不必要的資源，例如可能使同一收藏中的其他使用者缺乏的記憶體和 CPU。如需詳細資訊，請下載並檢閱[遠端桌面服務的應用程式相容性最佳做法](http://www.dabcc.com/resources/Application%20Compatibility%20Best%20Practices%20for%20Remote%20Desktop%20Services.pdf)。
+- Always use the latest client version. Using older clients might result in connectivity issues and other degraded experiences. Enabling automatic application updates for your device will ensure that the latest client is always installed.
+- Always use the most stable and reliable internet connection available to you.  
+- Use only supported proxy connections for optimal connectivity performance.  The SOCKS proxy is not supported.
 
-## 設定和管理
+## <a name="applications"></a>Applications
 
 
-- 隨時更新您的範本映像，視需要安裝軟體更新和其他重要的修正程式。這可確保 Azure RemoteApp 會自動調整大小以符合您的容量，而且會修補每個執行個體。
-- 請確認您有安全和可靠的 Active Directory Federation Services (AD FS) 部署。否則，用戶端驗證可能會失敗，導致使用者無法存取 Azure RemoteApp。
-- 使用安裝的應用程式、角色或功能設定範本映像，使它們成為無狀態。它們不應依賴持續性狀態之 RemoteApp 服務中的任何虛擬機器執行個體。
-	- 將所有使用者資料儲存在使用者設定檔或服務的其他外部儲存體位置，例如內部部署的檔案共用或 OneDrive。
-	- 將共用資料儲存在服務的外部儲存體位置，例如內部部署的檔案共用或 OneDrive。
-	- 在範本映像中設定任何全系統的設定，而不是在服務的個別虛擬機器上設定。
-	- 停用發佈之應用程式的自動軟體更新 - 改為手動套用至範本映像，並從範本部署之前測試它們。
+- Save and close RemoteApp applications when you are done with the application. Not closing the application might result in data loss.
+- Validate custom applications before using them in Azure RemoteApp. This includes ensuring they work on a multi-session platform and don’t consume unnecessary resources such as memory and CPU that might starve another user in the same collection. For information, download and review the [Application Compatibility Best Practices for Remote Desktop Services](http://www.dabcc.com/resources/Application%20Compatibility%20Best%20Practices%20for%20Remote%20Desktop%20Services.pdf).
 
-<!---HONumber=AcomDC_0921_2016-->
+## <a name="configuration-and-management"></a>Configuration and management
+
+
+- Keep your template images up to date, installing software updates and other critical fixes as needed. This ensures that as Azure RemoteApp auto-scales to meet your capacity, each instance is patched.  
+- Make sure your Active Directory Federation Services (AD FS) deployment is secure and reliable. Otherwise client authentications might fail, preventing users from accessing Azure RemoteApp.
+- Configure template images with installed applications, roles, or features such that they are stateless. They should not rely on any instances of the virtual machines in a RemoteApp service being in a persistent state.
+    - Store all user data in user profiles or other storage locations external to the service, such as on-premises file shares or OneDrive.
+    - Store shared data in storage locations external to the service, such as on-premises file shares or OneDrive.
+    - Configure any system-wide settings in the template image rather than on individual virtual machines in a service.
+    - Disable automatic software updates for published applications - instead apply them manually to the template image and test them before you deploy  from the template.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

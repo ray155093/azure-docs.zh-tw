@@ -1,53 +1,57 @@
 <properties
-	pageTitle="為什麼需要研發/測試實驗室？| Microsoft Azure"
-	description="了解 DevTest Labs 如何讓您輕鬆地建立、管理和監視 Azure 虛擬機器"
-	services="devtest-lab,virtual-machines"
-	documentationCenter="na"
-	authors="tomarcher"
-	manager="douge"
-	editor=""/>
+    pageTitle="Why DevTest Labs? | Microsoft Azure"
+    description="Learn how DevTest Labs can make it easy to create, manage, and monitor Azure virtual machines"
+    services="devtest-lab,virtual-machines"
+    documentationCenter="na"
+    authors="tomarcher"
+    manager="douge"
+    editor=""/>
 
 <tags
-	ms.service="devtest-lab"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/22/2016"
-	ms.author="tarcher"/>
+    ms.service="devtest-lab"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/22/2016"
+    ms.author="tarcher"/>
 
-#為什麼需要研發/測試實驗室？
+
+#<a name="why-devtest-labs?"></a>Why DevTest Labs?
 
 > [AZURE.NOTE]
-本文是含有 3 篇文章的一系列文章中的第 2 篇︰
+> This article is part 2 of a 3 part series:
 > 
-> 1. [何謂研發/測試實驗室？](devtest-lab-overview.md)
-> 1. **[為什麼需要研發/測試實驗室？](devtest-lab-why.md)**
-> 1. [研發/測試實驗室概念](devtest-lab-concepts.md)
+> 1. [What is DevTest Labs?](devtest-lab-overview.md)
+> 1. **[Why DevTest Labs?](devtest-lab-why.md)**
+> 1. [DevTest Labs concepts](devtest-lab-concepts.md)
 
-##Overview
-研發/測試實驗室在建立、設定及管理雲端中的開發人員和測試環境方面可提供下列優點
+##<a name="overview"></a>Overview
+DevTest Labs provides the following benefits in creating, configuring, and managing developer and test environments in the cloud
 
-##零煩惱的自助方式
+##<a name="worry-free-self-service"></a>Worry-free self-service
 
-研發/測試實驗室藉由讓您能夠設定實驗室的原則，更輕鬆地控制成本 - 例如，每位使用者的虛擬機器 (VM) 數目，以及每個實驗室的 VM 數目。研發/測試實驗室也可讓您建立原則來自動關機並啟動 VM。
+DevTest Labs makes it easier to control costs by allowing you to set policies on your lab - such as number of virtual machines (VM) per user and number of VMs per lab. DevTest Labs also enables you to create policies to automatically shut down and start VMs.
 
-##快速做好測試的準備
+##<a name="quickly-get-to-ready-to-test"></a>Quickly get to ready-to-test
 
-研發/測試實驗室讓您能夠建立預先佈建的環境，完全滿足小組開發及測試應用程式時的一切需求。只要宣告已安裝您應用程式的最後一個良好組建且可立即運作的環境即可。或是使用容器，更快速且高效地建立環境。
+DevTest Labs enables you to create pre-provisioned environments with everything your team needs to start developing and testing applications. Simply claim the environments where the last good build of your application is installed and get working right away. Or, use containers for even faster and leaner environment creation.
 
-##一次建立，隨處可用
+##<a name="create-once,-use-everywhere"></a>Create once, use everywhere
 
-只需透過原始檔控制，便可在小組或組織內擷取並共用環境範本及構件，輕鬆建立開發人員和測試環境。
+Capture and share environment templates and artifacts within your team or organization - all in source control - to create developer and test environments easily.
 
-##與現有工具鏈整合
+##<a name="integrates-with-your-existing-toolchain"></a>Integrates with your existing toolchain
 
-善用預製的外掛程式或我們的 API，直接從您偏好的持續整合 (CI) 工具、整合式開發環境 (IDE) 或自動化的發行管線來佈建研發/測試環境。您也可以使用我們全方位的命令列工具。
+Leverage pre-made plug-ins or our API to provision Dev/Test environments directly from your preferred continuous integration (CI) tool, integrated development environment (IDE), or automated release pipeline. You can also use our comprehensive command-line tool.
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-[研發/測試實驗室概念](devtest-lab-concepts.md)
+[DevTest Labs concepts](devtest-lab-concepts.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

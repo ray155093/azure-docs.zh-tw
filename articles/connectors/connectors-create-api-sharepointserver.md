@@ -1,6 +1,6 @@
 <properties
-pageTitle="在您的 Logic Apps 中使用 SharePoint Online 連接器 | Microsoft Azure"
-description="開始在邏輯應用程式中使用 Azure App Service SharePoint Online 連接器。"
+pageTitle="Use the SharePoint Online Connector in your Logic Apps | Microsoft Azure"
+description="Get started using the Azure App Service SharePoint Online Connector  in your Logic apps."
 services=""    
 documentationCenter=""     
 authors="msftman"    
@@ -17,485 +17,490 @@ ms.workload="na"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 SharePoint Online 連接器 
 
-SharePoint 連接器提供一種方式，讓您能夠使用 SharePoint 上的清單。
+# <a name="get-started-with-the-sharepoint-online-connector"></a>Get started with the SharePoint Online Connector 
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+The SharePoint Connector provides an way to work with Lists on SharePoint.
+
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version.
 
 
-如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+To add an operation in logic apps, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-## 我們來談談觸發程序及動作。
+## <a name="let's-talk-about-triggers-and-actions"></a>Let's talk about triggers and actions
 
-SharePoint 連接器可當做動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+The SharePoint Connector  can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
 
-SharePoint 連接器提供下列動作及/或觸發程序：
+The SharePoint Connector  has the following action(s) and/or trigger(s) available:
 
-### SharePoint 的動作
-您可以採取下列動作：
+### <a name="sharepoint-actions"></a>SharePoint actions
+You can take these action(s):
 
-|動作|說明|
+|Action|Description|
 |--- | ---|
-|GetFileMetadata|用來取得文件庫中的檔案中繼資料|
-|UpdateFile|用來更新文件庫中的檔案|
-|DeleteFile|用來刪除文件庫中的檔案|
-|GetFileMetadataByPath|用來取得文件庫中的檔案中繼資料|
-|GetFileContentByPath|用來取得文件庫中的檔案|
-|GetFileContent|用來取得文件庫中的檔案|
-|CreateFile|用來上傳文件庫中的檔案|
-|CopyFile|用來複製文件庫中的檔案|
-|ExtractFolderV2|用來解壓縮文件庫中的資料夾|
-|PostItem|在 SharePoint 清單中建立新項目|
-|GetItem|擷取 SharePoint 清單中的單一項目|
-|DeleteItem|刪除 SharePoint 清單中的項目|
-|PatchItem|更新 SharePoint 清單中的項目|
-### SharePoint 的觸發程序
-您可以接聽下列事件：
+|GetFileMetadata|Used for getting a file metadata on Document Library|
+|UpdateFile|Used for updating a file on Document Library|
+|DeleteFile|Used for deleting a file on Document Library|
+|GetFileMetadataByPath|Used for getting a file metadata on Document Library|
+|GetFileContentByPath|Used for getting a file on Document Library|
+|GetFileContent|Used for getting a file on Document Library|
+|CreateFile|Used for uploading a file on Document Library|
+|CopyFile|Used for copying a file on Document Library|
+|ExtractFolderV2|Used for extracting a folder on Document Library|
+|PostItem|Creates a new item in a SharePoint list|
+|GetItem|Retrieves a single item from a SharePoint list|
+|DeleteItem|Deletes an item from a SharePoint list|
+|PatchItem|Updates an item in a SharePoint list|
+### <a name="sharepoint-triggers"></a>SharePoint triggers
+You can listen for these event(s):
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|OnNewFile|當某個 SharePoint 資料夾中有新檔案建立時，就會觸發某個流程。|
-|OnUpdatedFile|當某個 SharePoint 資料夾中有檔案遭到修改時，就會觸發某個流程。|
-|GetOnNewItems|當 SharePoint 清單中有新項目建立時|
-|GetOnUpdatedItems|當 SharePoint 清單中的現有項目遭到修改時|
+|OnNewFile|Triggers a flow when a new file is created in a SharePoint folder|
+|OnUpdatedFile|Triggers a flow when a file is modified in a SharePoint folder|
+|GetOnNewItems|When a new item is created in a SharePoint list|
+|GetOnUpdatedItems|When an existing item is modified in a SharePoint list|
 
 
-## 建立至 SharePoint 的連線
-如要使用 SharePoint 連接器，您必須先建立**連線**，然後提供下列屬性的詳細資料：
+## <a name="create-a-connection-to-sharepoint"></a>Create a connection to SharePoint
+To use the SharePoint Connector , you first create a **connection** then provide the details for these properties: 
 
-|屬性| 必要|說明|
+|Property| Required|Description|
 | ---|---|---|
-|權杖|是|提供 SharePoint 的認證|
+|Token|Yes|Provide SharePoint Credentials|
 
-若要連接到 **SharePoint Online**，您需要向 SharePoint online 提供您的身分識別 (使用者名稱和密碼、智慧卡認證等)。通過驗證之後，您就可以在邏輯應用程式中使用 SharePoint Online 連接器。
+In order to connect to **SharePoint Online**, you need to provide your identity (username and password, smart card credentials, etc.) to SharePoint Online. Once you've been authenticated, you can proceed to use the SharePoint Online Connector  in your logic app. 
 
-在邏輯應用程式的設計工具中，請遵循下列步驟來登入 SharePoint，以便建立在邏輯應用程式中使用的 **connection** 連線：
+While on the designer of your logic app, follow these steps to sign into SharePoint to create the connection **connection** for use in your logic app:
 
-1. 在搜尋方塊中輸入 SharePoint，並等候搜尋傳回所有名稱中有 SharePoint 的項目：![設定 SharePoint][1]
-2. 選取 [SharePoint Online - 當檔案建立時]
-3. 選取 [登入 SharePoint Online]：![設定 SharePoint][2]
-4. 提供您的 SharePoint 認證來登入，以向 SharePoint 進行驗證 ![設定 SharePoint][3]
-5. 驗證完成後，只要設定 SharePoint 的 **[當檔案建立時]** 對話方塊，系統會將您重新導向至邏輯應用程式並完成作業。![設定 SharePoint][4]
-6. 接著，您可以新增所需的其他觸發和動作來完成邏輯應用程式。
-7. 選取上方功能表列的 [儲存] 來儲存您的工作。
-
-
-## SharePoint REST API 參考
-#### 本文件適用的版本：1.0
-
-
-### 用來取得文件庫中的檔案中繼資料
-**```GET: /datasets/{dataset}/files/{id}```**
+1. Enter SharePoint in the search box and wait for the search to return all entries with SharePoint in the name:   
+![Configure SharePoint][1]  
+2. Select **SharePoint Online - When a file is created**   
+3. Select **Sign in to SharePoint Online**:   
+![Configure SharePoint][2]    
+4. Provide your SharePoint credentials to sign in to authenticate with SharePoint   
+![Configure SharePoint][3]     
+5. After the authentication completes you'll be redirected to your logic app to complete it by configuring SharePoint's **When a file is created** dialog.          
+![Configure SharePoint][4]  
+6. You can then add other triggers and actions that you need to complete your logic app.   
+7. Save your work by selecting **Save** on the menu bar above.  
 
 
+## <a name="sharepoint-rest-api-reference"></a>SharePoint REST API reference
+#### <a name="this-documentation-is-for-version:-1.0"></a>This documentation is for version: 1.0
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+
+### <a name="used-for-getting-a-file-metadata-on-document-library"></a>Used for getting a file metadata on Document Library
+**```GET: /datasets/{dataset}/files/{id}```** 
+
+
+
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|string|yes|路徑|無|檔案的唯一識別碼|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|id|string|yes|path|none|Unique identifier of the file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來更新文件庫中的檔案
-**```PUT: /datasets/{dataset}/files/{id}```**
+### <a name="used-for-updating-a-file-on-document-library"></a>Used for updating a file on Document Library
+**```PUT: /datasets/{dataset}/files/{id}```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|string|yes|路徑|無|檔案的唯一識別碼|
-|body| |yes|body|無|檔案的內容|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|id|string|yes|path|none|Unique identifier of the file|
+|body| |yes|body|none|The Content of the file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來刪除文件庫中的檔案
-**```DELETE: /datasets/{dataset}/files/{id}```**
+### <a name="used-for-deleting-a-file-on-document-library"></a>Used for deleting a file on Document Library
+**```DELETE: /datasets/{dataset}/files/{id}```** 
 
 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|string|yes|路徑|無|檔案的唯一識別碼|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|id|string|yes|path|none|Unique identifier of the file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來取得文件庫中的檔案中繼資料
-**```GET: /datasets/{dataset}/GetFileByPath```**
+### <a name="used-for-getting-a-file-metadata-on-document-library"></a>Used for getting a file metadata on Document Library
+**```GET: /datasets/{dataset}/GetFileByPath```** 
 
 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|路徑|string|yes|query|無|檔案的路徑|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|path|string|yes|query|none|Path of the file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來取得文件庫中的檔案
-**```GET: /datasets/{dataset}/GetFileContentByPath```**
+### <a name="used-for-getting-a-file-on-document-library"></a>Used for getting a file on Document Library
+**```GET: /datasets/{dataset}/GetFileContentByPath```** 
 
 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|路徑|string|yes|query|無|檔案的路徑|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|path|string|yes|query|none|Path of the file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來取得文件庫中的檔案
-**```GET: /datasets/{dataset}/files/{id}/content```**
+### <a name="used-for-getting-a-file-on-document-library"></a>Used for getting a file on Document Library
+**```GET: /datasets/{dataset}/files/{id}/content```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|string|yes|路徑|無|檔案的唯一識別碼|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|id|string|yes|path|none|Unique identifier of the file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來上傳文件庫中的檔案
-**```POST: /datasets/{dataset}/files```**
+### <a name="used-for-uploading-a-file-on-document-library"></a>Used for uploading a file on Document Library
+**```POST: /datasets/{dataset}/files```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|folderPath|string|yes|query|無|資料夾的路徑。|
-|名稱|string|yes|query|無|檔案名稱|
-|body| |yes|body|無|檔案的內容|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|folderPath|string|yes|query|none|The path to the folder|
+|name|string|yes|query|none|Name of the file|
+|body| |yes|body|none|The Content of the file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來複製文件庫中的檔案
-**```POST: /datasets/{dataset}/copyFile```**
+### <a name="used-for-copying-a-file-on-document-library"></a>Used for copying a file on Document Library
+**```POST: /datasets/{dataset}/copyFile```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|來源|string|yes|query|無|來源檔案的路徑|
-|目的地|string|yes|query|無|目的檔案的路徑|
-|overwrite|布林值|no|query|false|是否要覆寫現有的檔案。|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|source|string|yes|query|none|Path to the source file|
+|destination|string|yes|query|none|Path to the destination file|
+|overwrite|boolean|no|query|false|Whether or not to overwrite an existing file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 當某個 SharePoint 資料夾中有新檔案建立時，就會觸發某個流程。
-**```GET: /datasets/{dataset}/triggers/onnewfile```**
+### <a name="triggers-a-flow-when-a-new-file-is-created-in-a-sharepoint-folder"></a>Triggers a flow when a new file is created in a SharePoint folder
+**```GET: /datasets/{dataset}/triggers/onnewfile```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL|
-|folderId|string|yes|query|無|SharePoint 中資料夾的唯一識別碼|
+|dataset|string|yes|path|none|SharePoint site url|
+|folderId|string|yes|query|none|Unique identifier of the folder in SharePoint|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 當某個 SharePoint 資料夾中有檔案遭到修改時，就會觸發某個流程。
-**```GET: /datasets/{dataset}/triggers/onupdatedfile```**
+### <a name="triggers-a-flow-when-a-file-is-modified-in-a-sharepoint-folder"></a>Triggers a flow when a file is modified in a SharePoint folder
+**```GET: /datasets/{dataset}/triggers/onupdatedfile```** 
 
 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL|
-|folderId|string|yes|query|無|SharePoint 中資料夾的唯一識別碼|
+|dataset|string|yes|path|none|SharePoint site url|
+|folderId|string|yes|query|none|Unique identifier of the folder in SharePoint|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 用來解壓縮文件庫中的資料夾
-**```POST: /datasets/{dataset}/extractFolderV2```**
+### <a name="used-for-extracting-a-folder-on-document-library"></a>Used for extracting a folder on Document Library
+**```POST: /datasets/{dataset}/extractFolderV2```** 
 
 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|來源|string|yes|query|無|來源檔案的路徑|
-|目的地|string|yes|query|無|目的資料夾的路徑|
-|overwrite|布林值|no|query|false|是否要覆寫現有的檔案。|
+|dataset|string|yes|path|none|SharePoint Site URL. E.g. http://contoso.sharepoint.com/sites/mysite|
+|source|string|yes|query|none|Path to the source file|
+|destination|string|yes|query|none|Path to the destination folder|
+|overwrite|boolean|no|query|false|Whether or not to overwrite an existing file|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 當 SharePoint 清單中有新項目建立時
-**```GET: /datasets/{dataset}/tables/{table}/onnewitems```**
+### <a name="when-a-new-item-is-created-in-a-sharepoint-list"></a>When a new item is created in a SharePoint list
+**```GET: /datasets/{dataset}/tables/{table}/onnewitems```** 
 
 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|string|yes|路徑|無|SharePoint 清單名稱|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
-|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
+|dataset|string|yes|path|none|SharePoint Site url (example: http://contoso.sharepoint.com/sites/mysite)|
+|table|string|yes|path|none|SharePoint list name|
+|$skip|integer|no|query|none|Number of entries to skip (default = 0)|
+|$top|integer|no|query|none|Maximum number of entries to retrieve (default = 256)|
+|$filter|string|no|query|none|An ODATA filter query to restrict the number of entries|
+|$orderby|string|no|query|none|An ODATA orderBy query for specifying the order of entries|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 當 SharePoint 清單中的現有項目遭到修改時
-**```GET: /datasets/{dataset}/tables/{table}/onupdateditems```**
+### <a name="when-an-existing-item-is-modified-in-a-sharepoint-list"></a>When an existing item is modified in a SharePoint list
+**```GET: /datasets/{dataset}/tables/{table}/onupdateditems```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|string|yes|路徑|無|SharePoint 清單名稱|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
-|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
+|dataset|string|yes|path|none|SharePoint Site url (example: http://contoso.sharepoint.com/sites/mysite)|
+|table|string|yes|path|none|SharePoint list name|
+|$skip|integer|no|query|none|Number of entries to skip (default = 0)|
+|$top|integer|no|query|none|Maximum number of entries to retrieve (default = 256)|
+|$filter|string|no|query|none|An ODATA filter query to restrict the number of entries|
+|$orderby|string|no|query|none|An ODATA orderBy query for specifying the order of entries|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 在 SharePoint 清單中建立新項目
-**```POST: /datasets/{dataset}/tables/{table}/items```**
+### <a name="creates-a-new-item-in-a-sharepoint-list"></a>Creates a new item in a SharePoint list
+**```POST: /datasets/{dataset}/tables/{table}/items```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|string|yes|路徑|無|SharePoint 清單名稱|
-|item| |yes|body|無|要建立的項目|
+|dataset|string|yes|path|none|SharePoint Site url (example: http://contoso.sharepoint.com/sites/mysite)|
+|table|string|yes|path|none|SharePoint list name|
+|item| |yes|body|none|Item to create|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 擷取 SharePoint 清單中的單一項目
-**```GET: /datasets/{dataset}/tables/{table}/items/{id}```**
+### <a name="retrieves-a-single-item-from-a-sharepoint-list"></a>Retrieves a single item from a SharePoint list
+**```GET: /datasets/{dataset}/tables/{table}/items/{id}```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|string|yes|路徑|無|SharePoint 清單名稱|
-|id|integer|yes|路徑|無|要擷取之項目的唯一識別碼|
+|dataset|string|yes|path|none|SharePoint Site url (example: http://contoso.sharepoint.com/sites/mysite)|
+|table|string|yes|path|none|SharePoint list name|
+|id|integer|yes|path|none|Unique identifier of item to be retrieved|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 刪除 SharePoint 清單中的項目
-**```DELETE: /datasets/{dataset}/tables/{table}/items/{id}```**
+### <a name="deletes-an-item-from-a-sharepoint-list"></a>Deletes an item from a SharePoint list
+**```DELETE: /datasets/{dataset}/tables/{table}/items/{id}```** 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|string|yes|路徑|無|SharePoint 清單名稱|
-|id|integer|yes|路徑|無|要刪除之項目的唯一識別碼|
+|dataset|string|yes|path|none|SharePoint Site url (example: http://contoso.sharepoint.com/sites/mysite)|
+|table|string|yes|path|none|SharePoint list name|
+|id|integer|yes|path|none|Unique identifier of item to be deleted|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-### 更新 SharePoint 清單中的項目
-**```PATCH: /datasets/{dataset}/tables/{table}/items/{id}```**
+### <a name="updates-an-item-in-a-sharepoint-list"></a>Updates an item in a SharePoint list
+**```PATCH: /datasets/{dataset}/tables/{table}/items/{id}```** 
 
 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|string|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|string|yes|路徑|無|SharePoint 清單名稱|
-|id|integer|yes|路徑|無|要更新之項目的唯一識別碼|
-|item| |yes|body|無|屬性已更新的項目|
+|dataset|string|yes|path|none|SharePoint Site url (example: http://contoso.sharepoint.com/sites/mysite)|
+|table|string|yes|path|none|SharePoint list name|
+|id|integer|yes|path|none|Unique identifier of item to be updated|
+|item| |yes|body|none|Item with changed properties|
 
 
-### 下列為可能的回應：
+### <a name="here-are-the-possible-responses:"></a>Here are the possible responses:
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 ------
 
 
 
-## 物件定義： 
+## <a name="object-definition(s):"></a>Object definition(s): 
 
- **DataSetsMetadata**：
+ **DataSetsMetadata**:
 
-DataSetsMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for DataSetsMetadata:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
-|tabular|沒有定義|
-|blob|沒有定義|
+|tabular|not defined|
+|blob|not defined|
 
 
 
- **TabularDataSetsMetadata**：
+ **TabularDataSetsMetadata**:
 
-TabularDataSetsMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for TabularDataSetsMetadata:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| Name | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
-|來源|string|
+|source|string|
 |displayName|string|
 |urlEncoding|string|
 |tableDisplayName|string|
@@ -503,197 +508,201 @@ TabularDataSetsMetadata 的必要屬性：
 
 
 
- **BlobDataSetsMetadata**：
+ **BlobDataSetsMetadata**:
 
-BlobDataSetsMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for BlobDataSetsMetadata:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
-|來源|string|
+|source|string|
 |displayName|string|
 |urlEncoding|string|
 
 
 
- **BlobMetadata**：
+ **BlobMetadata**:
 
-BlobMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for BlobMetadata:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
-|識別碼|string|
-|名稱|string|
+|Id|string|
+|Name|string|
 |DisplayName|string|
 |Path|string|
 |LastModified|string|
-|大小|integer|
+|Size|integer|
 |MediaType|string|
-|IsFolder|布林值|
+|IsFolder|boolean|
 |ETag|string|
 |FileLocator|string|
 
 
 
- **Object**：
+ **Object**:
 
-Object 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for Object:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
 
 
 
- **TableMetadata**：
+ **TableMetadata**:
 
-TableMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for TableMetadata:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
-|名稱|string|
+|name|string|
 |title|string|
 |x-ms-permission|string|
-|結構描述|沒有定義|
+|schema|not defined|
 
 
 
- **DataSetsList**：
+ **DataSetsList**:
 
-DataSetsList 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for DataSetsList:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
 |value|array|
 
 
 
- **DataSet**：
+ **DataSet**:
 
-DataSet 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for DataSet:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| Name | 資料類型 |
-|---|---|
-|名稱|string|
-|DisplayName|string|
+**All properties**: 
 
 
-
- **資料表**：
-
-Table 的必要屬性：
-
-
-這些屬性都是不必要的。
-
-
-**所有屬性**：
-
-
-| 名稱 | 資料類型 |
+| Name | Data Type |
 |---|---|
 |Name|string|
 |DisplayName|string|
 
 
 
- **Item**：
+ **Table**:
 
-Item 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for Table:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
+|---|---|
+|Name|string|
+|DisplayName|string|
+
+
+
+ **Item**:
+
+Required properties for Item:
+
+
+None of the properties are required. 
+
+
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
 |ItemInternalId|string|
 
 
 
- **ItemsList**：
+ **ItemsList**:
 
-ItemsList 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for ItemsList:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
 |value|array|
 
 
 
- **TablesList**：
+ **TablesList**:
 
-TablesList 的必要屬性：
-
-
-這些屬性都是不必要的。
+Required properties for TablesList:
 
 
-**所有屬性**：
+None of the properties are required. 
 
 
-| 名稱 | 資料類型 |
+**All properties**: 
+
+
+| Name | Data Type |
 |---|---|
 |value|array|
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)  
 
-[1]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig1.png
-[2]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig2.png
+[1]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig1.png  
+[2]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig2.png 
 [3]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig3.png
 [4]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig4.png
 [5]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig5.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

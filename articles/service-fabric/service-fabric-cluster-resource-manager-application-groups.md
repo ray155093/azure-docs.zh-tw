@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Service Fabric 叢集 Resource Manager - 應用程式群組 | Microsoft Azure"
-   description="Service Fabric 叢集 Resource Manager 中應用程式群組功能的概觀"
+   pageTitle="Service Fabric Cluster Resource Manager - Application Groups | Microsoft Azure"
+   description="Overview of the Application Group functionality in the Service Fabric Cluster Resource Manager"
    services="service-fabric"
    documentationCenter=".net"
    authors="masnider"
@@ -16,30 +16,31 @@
    ms.date="08/19/2016"
    ms.author="masnider"/>
 
-# 應用程式群組簡介
-Service Fabric 的叢集 Resource Manager 通常會藉由將負載 (透過度量表示) 平均分配到整個叢集，來管理叢集資源。Service Fabric 也會管理叢集中節點的容量，以及透過容量的概念管理整個叢集。這很適合用於許多不同類型的工作負載，但大量使用不同 Service Fabric 應用程式執行個體的模式還有其他需求。其他需求通常是：
 
-- 將應用程式執行個體的服務的容量保留在部分數量節點上的能力
-- 限制應用程式內允許執行之指定服務集合的節點總數的能力
-- 定義應用程式執行個體本身的容量，以限制其中的服務的資源總耗用量
+# <a name="introduction-to-application-groups"></a>Introduction to Application Groups
+Service Fabric's Cluster Resource Manager typically manages cluster resources by spreading the load (represented via Metrics) evenly throughout the cluster. Service Fabric also manages the capacity of the nodes in the cluster and the cluster as a whole through the notion of capacity. This works great for a lot of different types of workloads, but patterns that make heavy use of different Service Fabric Application Instances sometimes bring in additional requirements. Some additional requirements are typically:
 
-為了符合這些需求，我們開發了對於我們稱為應用程式群組的支援。
+- Ability to reserve capacity for an Application Instance's services on some number of nodes
+- Ability to limit the total number of nodes that a given set of services within an application is allowed to run on
+- Defining capacities on the application instance itself in order to limit the number or total resource consumption of the services inside it
 
-## 管理應用程式容量
-應用程式容量可以用來限制應用程式跨越的節點數目，以及在個別節點上應用程式的執行個體的度量負載總計。它也可以用來保留應用程式的叢集中的資源。
+In order to meet these requirements, we developed support for what we call Application Groups.
 
-應用程式容量可以針對新的應用程式在建立時設定；它也可以針對已建立但未指定應用程式容量的現有應用程式更新。
+## <a name="managing-application-capacity"></a>Managing Application capacity
+Application capacity can be used to limit the number of nodes spanned by an application, as well as the total metric load of that the applications’ instances on individual nodes. It can also be used to reserve resources in the cluster for the application.
 
-### 限制節點數目上限
-應用程式容量的最簡單使用案例，是在需要將應用程式具現化限制為特定的節點數目上限時。如果未指定應用程式容量，Service Fabric 叢集 Resource Manager 會根據一般規則 (平衡或重組) 具現化複本，這通常表示其服務會跨越叢集中的可用節點分配，或者重組是否在任意但較少數目的節點上開啟。
+Application capacity can be set for new applications when they are created; it can also be updated for existing applications that were created without specifying Application capacity.
 
-下圖顯示應用程式執行個體的潛在位置，該執行個體沒有定義的節點數目上限，然後顯示已設定節點數目上限的相同應用程式。請注意，不保證哪些服務的哪些複本或執行個體將會放在一起。
+### <a name="limiting-the-maximum-number-of-nodes"></a>Limiting the maximum number of nodes
+The simplest use case for Application capacity is when an application instantiation needs to be limited to a certain maximum number of nodes. If no Application Capacity is specified, the Service Fabric Cluster Resource Manager will instantiate replicas according to normal rules (balancing or defragmentation), which usually means that its services will be spread across all of the available nodes in the cluster, or if defragmentation is turned on some arbitrary but smaller number of nodes.
 
-![應用程式執行個體定義節點數目上限][Image1]
+The following image shows the potential placement of an application instance without the maximum number of nodes defined and then same application with a maximum number of nodes set. Note that there is no guarantees made about which replicas or instances of which services will get placed together.
 
-在左邊的範例中，應用程式沒有應用程式容量設定，而且它有三項服務。CRM 做了邏輯決策，將所有複本分散到六個可用的節點以達到叢集中的最佳平衡。在右邊的範例中，我們會看到限制在三個節點上的相同應用程式，其中 Service Fabric CRM 已達成應用程式服務複本的最佳平衡。
+![Application Instance Defining Maximum Number of Nodes][Image1]
 
-控制此行為的參數稱為 MaximumNodes。這個參數可以在應用程式建立期間設定，或針對已在執行中的應用程式執行個體更新，若為後者，Service Fabric CRM 會將應用程式的服務的複本限制為定義的節點數目上限。
+In the left example, the application doesn’t have Application Capacity set, and it has three services. CRM has made a logical decision to spread out all replicas across six available nodes in order to achieve the best balance in the cluster. In the right example, we see the same application that is constrained on three nodes, and where Service Fabric CRM has achieved the best balance for the replicas of application’s services.
+
+The parameter that controls this behavior is called MaximumNodes. This parameter can be set during application creation, or updated for an application instance which was already running, in which case Service Fabric CRM will constrain the replicas of application’s services to the defined maximum number of nodes.
 
 Powershell
 
@@ -69,103 +70,109 @@ appMetric.TotalApplicationCapacity = 1000;
 adUpdate.Metrics.Add(appMetric);
 ```
 
-## 應用程式度量、負載和容量
-應用程式群組也可讓您定義與特定應用程式執行個體相關聯的度量，以及這些度量相關的應用程式的容量。因此舉例來說，您可以定義您想要建立的任意數量服務
+## <a name="application-metrics,-load,-and-capacity"></a>Application Metrics, Load, and Capacity
+Application Groups also allow you to define metrics associated with a given application instance, as well as the capacity of the application with regard to those metrics. So for example you could define that as many services as you want could be created in
 
-對於每個度量，有 2 個值可以設定來說明該應用程式執行個體的容量︰
+For each metric, there are 2 values that can be set to describe the capacity for that application instance:
 
--	應用程式容量總計 – 代表特定度量的應用程式容量總計。Service Fabric CRM 會嘗試將此應用程式的服務的度量負載加總限制為指定值，此外，如果應用程式的服務已耗用超過這個限制的負載，Service Fabric 叢集 Resource Manager 將不允許建立任何新的服務或資料分割，這會造成總負載超出此限制。
--	節點容量上限 – 指定單一節點上應用程式的服務複本的總負載上限。如果節點上的總負載超過這個容量，Service Fabric CRM 會嘗試將複本移至其他節點，以便遵守容量限制。
+-   Total Application Capacity – Represents the total capacity of the application for a particular metric. Service Fabric CRM will try to limit the sum of metric loads of this application’s services to the specified value; furthermore, if the application’s services are already consuming load up to this limit, Service Fabric Cluster Resource Manager will disallow the creation of any new services or partitions which would cause total load to go over this limit.
+-   Maximum Node Capacity – Specifies the maximum total load for replicas of the applications’ services on a single node. If total load on the node goes over this capacity, Service Fabric CRM will attempt to move replicas to other nodes so that the capacity constraint is respected.
 
-## 保留容量
-應用程式群組的另一個常見用途是確保針對指定的應用程式執行個體保留叢集內的資源，即使應用程式執行個體尚未在其內具有服務，或者它們尚未耗用資源。讓我們來看一下如何運作。
+## <a name="reserving-capacity"></a>Reserving Capacity
+Another common use for application groups is to ensure that resources within the cluster are reserved for a given application instance, even if the application instance doesn't have the services within it yet, or even if they aren't consuming the resources yet. Let's take a look at how that would work.  
 
-### 指定節點和資源保留的數目下限
-保留應用程式執行個體的資源需要指定額外參數：MinimumNodes 和 NodeReservationCapacity
+### <a name="specifying-a-minimum-number-of-nodes-and-resource-reservation"></a>Specifying a minimum number of nodes and resource reservation
+Reserving resources for an application instance requires specifying a couple additional parameters: *MinimumNodes* and *NodeReservationCapacity*
 
-- MinimumNodes - 就像指定應用程式內的服務可以在上面執行的目標節點數目上限，您也可以指定應用程式應該執行的節點數目下限。此設定有效地定義資源應該保留的節點數目下限，在建立應用程式執行個體時保證叢集中的容量。
-- NodeReservationCapacity - NodeReservationCapacity 可以針對應用程式中的每個度量定義。這會定義針對任何節點上的應用程式保留的度量負載，在該節點中放置服務的任何複本或執行個體。
+- MinimumNodes - Just like specifying a target maximum number of nodes that the services within an application can run on, you can also specify the minimum number of nodes that an application should run on. This setting effectively defines the number of nodes that the resources should be reserved on at a minimum, guaranteeing capacity within the cluster as a part of creating the application instance.
+- NodeReservationCapacity - The NodeReservationCapacity can be defined for each metric within the application. This defines the amount of metric load reserved for the application on any node where any of the replicas or instances of the services within it are placed.
 
-讓我們看看容量保留的範例︰
+Let's take a look at an example of capacity reservation:
 
-![應用程式執行個體定義保留容量][Image2]
+![Application Instances Defining Reserved Capacity][Image2]
 
-在左邊的範例中，應用程式並沒有定義任何應用程式容量。Service Fabric 叢集 Resource Manager 會平衡應用程式的子服務複本和執行個體，以及來自其他服務 (在應用程式外部) 的複本和執行個體，以確保叢集中的平衡。
+In the left example, applications do not have any Application Capacity defined. Service Fabric Cluster Resource Manager will balance the application’s child services replicas and instances along with those from other services (outside of the application) to ensure balance in the cluster.
 
-在右邊的範例中，讓我們假設已建立的應用程式的 MinimumNodes 設為 2、MaximumNodes 設為 3，且應用程式度量定義為保留 20、節點容量上限 50 和應用程式容量總計 100，Service Fabric 將會為藍色應用程式在兩個節點上保留容量，並且不允許叢集中的其他複本使用該容量。此保留的應用程式容量會被視為針對剩餘的叢集容量耗用和計數。
+In the example on the right, let's say that the application was created with a MinimumNodes set to 2, MaximumNodes set to 3 and an application Metric defined with a reservation of 20, max capacity on a node of 50, and a total application capacity of 100, Service Fabric will reserve capacity on two nodes for the blue application, and will not allow other replicas in the cluster to consume that capacity. This reserved application capacity will be considered consumed and counted against the remaining cluster capacity.
 
-當建立的應用程式具有保留時，叢集 Resource Manager 會在叢集中保留等於 MinimumNodes * NodeReservationCapacity 的容量，但是不會保留特定節點上的容量，直到建立和放置應用程式的服務的複本。這樣可以有彈性，因為只有在新複本建立時針對它們選擇節點。當至少一個複本放置在該特定節點上時會保留容量。
+When an application is created with reservation, the Cluster Resource Manager will reserve capacity equal to MinimumNodes * NodeReservationCapacity in the cluster, but it will not reserve capacity on specific nodes until the replicas of the application’s services are created and placed. This allows for flexibility, since nodes are chosen for new replicas only when they are created. Capacity is reserved on a specific node when at least one replica is placed on it.
 
-## 取得應用程式負載資訊
-對於具有定義的應用程式容量的每個應用程式，您可以取得其服務的複本報告的彙總負載的相關資訊。Service Fabric 會針對此目的提供 PowerShell 和 Managed API 查詢。
+## <a name="obtaining-the-application-load-information"></a>Obtaining the application load information
+For each application that has Application Capacity defined you can obtain the information about the aggregate load reported by replicas of its services. Service Fabric provides PowerShell and Managed API queries for this purpose.
 
-例如，可以使用下列 PowerShell Cmdlet 擷取負載：
+For example, load can be retrieved using the following PowerShell cmdlet:
 
 ``` posh
 Get-ServiceFabricApplicationLoad –ApplicationName fabric:/MyApplication1
 
 ```
 
-此查詢的輸出包含已針對應用程式指定的應用程式容量的基本資訊，例如節點下限和節點上限。另外也有應用程式目前使用的節點數目的相關資訊。因此，對於每個負載度量，會有以下相關資訊︰
-- 度量名稱：度量的名稱。
--	保留容量：針對此應用程式保留在叢集中的叢集容量。
--	應用程式負載︰此應用程式的子複本的總負載。
--	應用程式容量︰許可的應用程式負載值上限。
+The output of this query will contain the basic information about Application Capacity that was specified for the application, such as Minimum Nodes and Maximum Nodes. There will also be information about the number of nodes that the application is currently using. Thus, for each load metric there will be information about:
+- Metric Name: Name of the metric.
+-   Reservation Capacity: Cluster Capacity that is reserved in the cluster for this Application.
+-   Application Load: Total Load of this Application’s child replicas.
+-   Application Capacity: Maximum permitted value of Application Load.
 
-## 移除應用程式容量
-一旦針對應用程式設定應用程式容量參數，它們可以使用更新的應用程式 API 或 PowerShell Cmdlet 來移除。例如：
+## <a name="removing-application-capacity"></a>Removing Application Capacity
+Once the Application Capacity parameters are set for an application, they can be removed using Update Application APIs or PowerShell cmdlets. For example:
 
 ``` posh
 Update-ServiceFabricApplication –Name fabric:/MyApplication1 –RemoveApplicationCapacity
 
 ```
 
-這個命令會從應用程式移除所有應用程式容量參數，Service Fabric 叢集 Resource Manager 會開始將此應用程式視為叢集中未定義這些參數的任何其他應用程式。此命令的效果會立即生效，叢集 Resource Manager 將會刪除此應用程式的所有應用程式容量參數；再次指定它們需要使用適當的參數呼叫更新應用程式 API。
+This command will remove all Application Capacity parameters from the application, and Service Fabric Cluster Resource Manager will start treating this application as any other application in the cluster that does not have these parameters defined. The effect of the command is immediate, and Cluster Resource Manager will delete all Application Capacity parameters for this application; specifying them again would require Update Application APIs to be called with the appropriate parameters.
 
-## 應用程式容量的限制
-應用程式容量參數有數個限制必須遵守。發生驗證錯誤時，建立或更新應用程式將會遭到拒絕並產生錯誤。所有整數參數必須為非負數。此外，對於個別參數，限制如下︰
+## <a name="restrictions-on-application-capacity"></a>Restrictions on Application Capacity
+There are several restrictions on Application Capacity parameters that must be respected. In case of validation errors, the creation or update of the application will be rejected with an error.
+All integer parameters must be non-negative numbers.
+Moreover, for individual parameters restrictions are as follows:
 
--	MinimumNodes 不能大於 MaximumNodes。
--	如果已定義負載度量的容量，則它們必須遵守下列規則︰
-  - 節點保留容量不能大於節點容量上限。例如，您無法將節點上的度量 “CPU” 的容量限制為 2 個單位，卻嘗試在每個節點上保留 3 個單位。
-  - 如果已指定 MaximumNodes，則 MaximumNodes 和節點容量上限的乘積不能大於應用程式容量總計。例如，如果您將負載度量 “CPU” 的節點容量上限設為 8，並且將節點上限設為 10，則此負載度量的應用程式容量總計必須大於 80。
+-   MinimumNodes must never be greater than MaximumNodes.
+-   If capacities for a load metric are defined, then they must follow these rules:
+  - Node Reservation Capacity must not be greater than Maximum Node Capacity. For example, you cannot limit the capacity for metric “CPU” on the node to 2 units, and try to reserve 3 units on each node.
+  - If MaximumNodes is specified, then the product of MaximumNodes and Maximum Node Capacity must not be greater than Total Application Capacity. For example, if you set the Maximum Node Capacity for load metric “CPU” to 8 and you set the Maximum Nodes to 10, then Total Application Capacity must be greater than 80 for this load metric.
 
-在應用程式建立 (用戶端上) 和應用程式更新 (伺服器端上) 期間都會強制執行限制。在建立期間，這是違反需求的明顯範例，因為 MaximumNodes < MinimumNodes，甚至在要求傳送至 Service Fabric 叢集之前，用戶端中的命令就會失敗：
+The restrictions are enforced both during application creation (on the client side), and during application update (on the server side). During creation, this is an example of a clear violation of the requirements since MaximumNodes < MinimumNodes, and the command will fail in the client before the request is even sent to Service Fabric cluster:
 
 ``` posh
 New-ServiceFabricApplication –Name fabric:/MyApplication1 –MinimumNodes 6 –MaximumNodes 2
 ```
 
-無效的更新範例如下所示。如果我們採用現有的應用程式，並且將節點上限更新為某個值，則會傳遞更新︰
+An example of invalid update is as follows. If we take an existing application and update maximum nodes to some value, the update will pass:
 
 ``` posh
 Update-ServiceFabricApplication –Name fabric:/MyApplication1 6 –MaximumNodes 2
 ```
 
-接下來，我們可以嘗試更新節點下限︰
+After that, we can attempt to update minimum nodes:
 
 ``` posh
 Update-ServiceFabricApplication –Name fabric:/MyApplication1 6 –MinimumNodes 6
 ```
 
-用戶端並沒有足夠的應用程式內容，因此它會允許將更新傳遞至 Service Fabric 叢集。不過，在叢集中，Service Fabric 會驗證新的參數與現有的參數，而且會因為節點下限的值大於節點上限的值而使得更新作業失敗。在此情況下，應用程式容量參數將維持不變。
+The client does not have enough context about the application so it will allow the update to pass to the Service Fabric cluster. However, in the cluster, Service Fabric will validate the new parameter together with the existing parameters and will fail the update operation because the value foe minimum nodes is greater than the value for maximum nodes. In this case, Application Capacity parameters will remain unchanged.
 
-這些限制會按照順序放置，讓叢集 Resource Manager 能夠為應用程式的服務複本提供最佳放置。
+These restrictions are put in place in order for Cluster Resource Manager to be able to provide the best placement for replicas of applications’ services.
 
-## 如何不使用應用程式容量
+## <a name="how-not-to-use-application-capacity"></a>How not to use Application Capacity
 
--	請勿使用應用程式容量將應用程式限制為特定的節點子集：雖然 Service Fabric 會確保對於已指定應用程式容量的每個應用程式遵守節點上限，使用者無法決定它具現化所在的節點。這可以使用適用於服務的放置條件約束來達成。
--	請勿使用應用程式容量來確保相同應用程式的兩個服務一律放在彼此左右。這可透過使用服務之間的同質關聯性來達成，同質可以限制為僅限應該實際放在一起的服務。
+-   Do not use the Application Capacity to constrain the application to a specific subset of nodes: Although Service Fabric will ensure that Maximum Nodes is respected for each application that has Application Capacity specified, users cannot decide which nodes it will be instantiated on. This can be achieved using placement constraints for services.
+-   Do not use the Application Capacity to ensure that two services from the same application will always be placed alongside each other. This can be achieved by using affinity relationship between services, and affinity can be limited only to the services that should actually be placed together.
 
-## 後續步驟
-- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
-- 若要了解叢集 Resource Manager 如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
-- 從頭開始，並[取得 Service Fabric 叢集 Resource Manager 的簡介](service-fabric-cluster-resource-manager-introduction.md)
-- 如需度量通常如何運作的詳細資訊，請繼續閱讀 [Service Fabric 負載度量](service-fabric-cluster-resource-manager-metrics.md)
-- 叢集資源管理員有許多描述叢集的選項。若要深入了解這些選項，請查看關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)的這篇文章
+## <a name="next-steps"></a>Next steps
+- For more information about the other options available for configuring services check out the topic on the other Cluster Resource Manager configurations available [Learn about configuring Services](service-fabric-cluster-resource-manager-configure-services.md)
+- To find out about how the Cluster Resource Manager manages and balances load in the cluster, check out the article on [balancing load](service-fabric-cluster-resource-manager-balancing.md)
+- Start from the beginning and [get an Introduction to the Service Fabric Cluster Resource Manager](service-fabric-cluster-resource-manager-introduction.md)
+- For more information on how metrics work generally, read up on [Service Fabric Load Metrics](service-fabric-cluster-resource-manager-metrics.md)
+- The Cluster Resource Manager has a lot of options for describing the cluster. To find out more about them check out this article on [describing a Service Fabric cluster](service-fabric-cluster-resource-manager-cluster-description.md)
 
 
-[Image1]: ./media/service-fabric-cluster-resource-manager-application-groups/application-groups-max-nodes.png
-[Image2]: ./media/service-fabric-cluster-resource-manager-application-groups/application-groups-reserved-capacity.png
+[Image1]:./media/service-fabric-cluster-resource-manager-application-groups/application-groups-max-nodes.png
+[Image2]:./media/service-fabric-cluster-resource-manager-application-groups/application-groups-reserved-capacity.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

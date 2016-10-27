@@ -1,50 +1,50 @@
-## WebAPI 專案
+## <a name="webapi-project"></a>WebAPI Project
 
-1. 在 Visual Studio 中，開啟您在 [通知使用者] 教學課程中所建立的 **AppBackend** 專案。
-2. 在 Notifications.cs 中，使用下列程式碼來取代整個 **Notifications** 類別。請確定使用通知中樞的連接字串 (包含完整存取權) 和中樞名稱來取代預留位置。您可以從 [Azure 傳統入口網站](http://manage.windowsazure.com)取得這些值。此模組現會顯示即將傳送的不同安全通知。在完整的實作中，通知會儲存在資料庫中。為了本案例的方便起見，我們會將通知儲存在記憶體中。
+1. In Visual Studio, open the **AppBackend** project that you created in the **Notify Users** tutorial.
+2. In Notifications.cs, replace the whole **Notifications** class with the following code. Be sure to replace the placeholders with your connection string (with full access) for your notification hub, and the hub name. You can obtain these values from the [Azure Classic Portal](http://manage.windowsazure.com). This module now represents the different secure notifications that will be sent. In a complete implementation, the notifications will be stored in a database; for simplicity, in this case we store them in memory.
 
-		public class Notification
-	    {
-	        public int Id { get; set; }
-	        public string Payload { get; set; }
-	        public bool Read { get; set; }
-	    }
+        public class Notification
+        {
+            public int Id { get; set; }
+            public string Payload { get; set; }
+            public bool Read { get; set; }
+        }
     
     
-	    public class Notifications
-	    {
-	        public static Notifications Instance = new Notifications();
-	        
-	        private List<Notification> notifications = new List<Notification>();
-	
-	        public NotificationHubClient Hub { get; set; }
-	
-	        private Notifications() {
-	            Hub = NotificationHubClient.CreateClientFromConnectionString("{conn string with full access}", 	"{hub name}");
-	        }
+        public class Notifications
+        {
+            public static Notifications Instance = new Notifications();
+            
+            private List<Notification> notifications = new List<Notification>();
+    
+            public NotificationHubClient Hub { get; set; }
+    
+            private Notifications() {
+                Hub = NotificationHubClient.CreateClientFromConnectionString("{conn string with full access}",  "{hub name}");
+            }
 
-	        public Notification CreateNotification(string payload)
-	        {
-	            var notification = new Notification() {
+            public Notification CreateNotification(string payload)
+            {
+                var notification = new Notification() {
                 Id = notifications.Count,
                 Payload = payload,
                 Read = false
-            	};
+                };
 
-            	notifications.Add(notification);
+                notifications.Add(notification);
 
-            	return notification;
-	        }
+                return notification;
+            }
 
-	        public Notification ReadNotification(int id)
-	        {
-	            return notifications.ElementAt(id);
-	        }
-	    }
+            public Notification ReadNotification(int id)
+            {
+                return notifications.ElementAt(id);
+            }
+        }
 
-20. 在 NotificationsController.cs 中，使用下列程式碼來取代 **NotificationsController** 類別定義內的程式碼。此元件會實作一個可供裝置以安全的方式擷取通知的方法，它還提供一個可觸發安全推送至裝置的方法 (依照本教學課程的目的)。請注意，將通知傳送至通知中樞時，我們只會傳送包含通知 ID 的原始通知 (而非實際訊息)。
+20. In NotificationsController.cs, replace the code inside the **NotificationsController** class definition with the following code. This component implements a way for the device to retrieve the notification securely, and also provides a way (for the purposes of this tutorial) to trigger a secure push to your devices. Note that when sending the notification to the notification hub, we only send a raw notification with the ID of the notification (and no actual message):
 
-		public NotificationsController()
+        public NotificationsController()
         {
             Notifications.Instance.CreateNotification("This is a secure notification!");
         }
@@ -68,20 +68,22 @@
             await Notifications.Instance.Hub.SendNotificationAsync(rawNotificationToBeSent, usernameTag);
 
             // apns
-            await Notifications.Instance.Hub.SendAppleNativeNotificationAsync("{"aps": {"content-available": 1}, "secureId": "" + secureNotificationInTheBackend.Id.ToString() + ""}", usernameTag);
+            await Notifications.Instance.Hub.SendAppleNativeNotificationAsync("{\"aps\": {\"content-available\": 1}, \"secureId\": \"" + secureNotificationInTheBackend.Id.ToString() + "\"}", usernameTag);
 
             // gcm
-            await Notifications.Instance.Hub.SendGcmNativeNotificationAsync("{"data": {"secureId": "" + secureNotificationInTheBackend.Id.ToString() + ""}}", usernameTag);
+            await Notifications.Instance.Hub.SendGcmNativeNotificationAsync("{\"data\": {\"secureId\": \"" + secureNotificationInTheBackend.Id.ToString() + "\"}}", usernameTag);
 
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
 
-請注意 `Post` 方法目前不會傳送快顯通知。它會傳送只包含通知 ID 且非任何敏感內容的原始通知。另外，針對您未在通知中樞上設定其認證的平台，請務必為傳送作業加上註解，因為他們將會導致錯誤。
+Note that the `Post` method now does not send a toast notification. It sends a raw notification that contains only the notification ID, and not any sensitive content. Also, make sure to comment the send operation for the platforms for which you do not have credentials configured on your notification hub, as they will result in errors.
 
-21. 為了可以從所有裝置存取此應用程式，我們現在可以將它重新部署到 Azure 網站。以滑鼠右鍵按一下 **AppBackend** 專案，然後選取 [發行]。
+21. Now we will re-deploy this app to an Azure Website in order to make it accessible from all devices. Right-click on the **AppBackend** project and select **Publish**.
 
-24. 選取 Azure 網站作為您的發行目標。使用您的 Azure 帳戶登入，並選取現有或新的網站，記下 [連線] 索引標籤中的 [目的地 URL] 屬性。。我們後續將在本教學課程中參考此 URL 作為您的 *backend endpoint*。按一下 [發行]。
+24. Select Azure Website as your publish target. Log in with your Azure account and select an existing or new Website, and make a note of the **destination URL** property in the **Connection** tab. We will refer to this URL as your *backend endpoint* later in this tutorial. Click **Publish**.
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!--HONumber=Oct16_HO2-->
+
+

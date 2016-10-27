@@ -1,7 +1,7 @@
 
 <properties
-    pageTitle="Azure RemoteApp 中 VNET 的大小調整資訊 | Microsoft Azure"
-    description="深入了解使用 VNET 執行之 Azure RemoteApp 的 IP 位址需求"
+    pageTitle="Sizing information for a VNET in Azure RemoteApp | Microsoft Azure"
+    description="Learn about the IP address requirements for Azure RemoteApp running with a VNET"
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -18,18 +18,23 @@
 
 
 
-# Azure RemoteApp 中 VNET 的大小調整資訊
+
+# <a name="sizing-information-for-a-vnet-in-azure-remoteapp"></a>Sizing information for a VNET in Azure RemoteApp
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-使用 Azure RemoteApp 與虛擬網路 (VNET) 搭配時，RemoteApp 會使用子網路內的 IP 位址。根據 RemoteApp 服務的規模，您需要確保子網路具有足夠的 IP 位址可用於 RemoteApp 虛擬機器。雖然此大小調整指導方針未完美地指定 RemoteApp 如何動態旋轉集合內的虛擬機器，但是可協助您估計子網路範圍。這特別重要，因為在 VNET 中放置 RemoteApp 服務之後，需要移除 RemoteApp，才能增加子網路大小。
+When you use Azure RemoteApp with a virtual network (VNET), RemoteApp uses IP addresses within the subnet. Based on the scale of your RemoteApp service, you need to ensure that your subnet has enough IP addresses available for RemoteApp virtual machines. While this sizing guidance isn’t perfect given how RemoteApp dynamically spins up and spins down virtual machines within a collection, it will help you estimate your subnet range. This is especially important as, once a RemoteApp service is placed in a VNET, you cannot increase the subnet size without removing RemoteApp.
 
-針對每個您想要以最大容量執行的 RemoteApp 集合，您應該有 100 個 IP 位址可用。例如，如果您在標準計畫中有一個 RemoteApp 集合，而且您最多想要有 500 位使用者，則該集合應該有 100 個 IP 位址。同樣地，在具有 800 位使用者的基本計畫中，RemoteApp 集合需要有 100 個 IP 位址。如果您想要有較少的使用者 (小於最大值)，則可以減少每個集合所需的 IP 位址。最少子網路大小需求是 30 個 IP 位址 (/27)。
+For each RemoteApp collection that you want to run at maximum capacity, you should have 100 IP addresses available. For example, if you have one RemoteApp collection in the Standard plan and you want to have the maximum 500 users, you should have 100 IP addresses for that collection. Similarly, you need 100 IP addresses for a RemoteApp collection in the Basic plan that has 800 users. If you plan to have fewer users (less than the maximum), you can reduce the IP addresses needed per collection. The minimum subnet size requirement is 30 IP addresses (/27).
 
-請查看下列資訊，確認您的 VNET 已設定並正常運作：
+Check out the following information to make sure your VNET is configured and working propertly:
 
-- [從個人 VNET 移轉至 Azure VNET](remoteapp-migratevnet.md)
-- [驗證要搭配 Azure RemoteApp 使用的 Azure VNET](remoteapp-vnet.md)
+- [Migrate from a personal VNET to an Azure VNET](remoteapp-migratevnet.md)
+- [Validate the Azure VNET to use with Azure RemoteApp](remoteapp-vnet.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="建立具有執行 Windows 之 Azure VM 的獨立叢集 | Microsoft Azure"
-   description="了解如何在執行 Windows Server 的 Azure 虛擬機器上建立和管理 Azure Service Fabric 叢集。"
+   pageTitle="Create a standalone cluster with Azure VMs running Windows| Microsoft Azure"
+   description="Learn how to create and manage an Azure Service Fabric cluster on Azure virtual machines running Windows Server."
    services="service-fabric"
    documentationCenter=".net"
    authors="dsk-2015"
@@ -18,19 +18,20 @@
 
 
 
-# 建立三個具有執行 Windows Server 之 Azure 虛擬機器的節點獨立 Service Fabric 叢集
 
-本文說明如何使用適用於 Windows Server 的獨立 Service Fabric 安裝程式在 Windows 架構的 Azure 虛擬機器 (VM) 上建立叢集。這是[建立和管理在 Windows Server 上執行的叢集](service-fabric-cluster-creation-for-windows-server.md)的特殊案例，其 VM 是[執行 Windows Server 的 Azure VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md)，但您不是在建立 [Azure 雲端型 Service Fabric 叢集](service-fabric-cluster-creation-via-portal.md)。其差別是透過下列步驟所建立的獨立 Service Fabric 叢集是完全由您管理，而 Azure 雲端型 Service Fabric 叢集則是由 Service Fabric 資源提供者來管理和升級。
+# <a name="create-a-three-node-standalone-service-fabric-cluster-with-azure-virtual-machines-running-windows-server"></a>Create a three node standalone Service Fabric cluster with Azure virtual machines running Windows Server
+
+This article describe how to create a cluster on Windows-based Azure virtual machines (VMs), using the standalone Service Fabric installer for Windows Server. This is a special case of [Create and manage a cluster running on Windows Server](service-fabric-cluster-creation-for-windows-server.md) where the VMs are [Azure VMs running Windows Server](../virtual-machines/virtual-machines-windows-hero-tutorial.md), however you are not creating [an Azure cloud-based Service Fabric cluster](service-fabric-cluster-creation-via-portal.md). The difference is that the standalone Service Fabric cluster created by the following steps is entirely managed by you, while the Azure cloud-based Service Fabric clusters are managed and upgraded by the Service Fabric resource provider.
 
 
-## 獨立叢集的建立步驟
+## <a name="steps-to-create-the-standalone-cluster"></a>Steps to create the standalone cluster
 
-1. 登入 Azure 入口網站，並在資源群組中建立新的 Windows Server 2012 R2 Datacenter VM。如需詳細資訊，請閱讀[在 Azure 入口網站中建立 Windows VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md)一文。
-2. 再新增兩個 Windows Server 2012 R2 Datacenter VM 至相同的資源群組。確定每個 VM 在建立時具有相同的系統管理員使用者名稱和密碼。一旦建立好，您應該會在相同的虛擬網路中看到這三個 VM。
-3. 使用 [[伺服器管理員] > [本機伺服器]](https://technet.microsoft.com/library/jj134147.aspx) 儀表板連接到每個 VM 並關閉 Windows 防火牆。這可確保網路流量可在電腦之間進行通訊。在連接到每個電腦時，透過開啟命令提示字元並輸入 `ipconfig`來取得 IP 位址。或者，您可以在 Azure 入口網站中選取資源群組的虛擬網路資源，以查看每部電腦的 IP 位址。
-4. 連接到其中一個 VM，並測試您是否可以成功 ping 到其他兩個 VM。
-5. 連接到其中一個 VM，並[下載適用於 Windows Server 的獨立 Service Fabric 封裝](http://go.microsoft.com/fwlink/?LinkId=730690)到電腦上的新資料夾，然後解壓縮封裝。
-6. 在記事本開啟「ClusterConfig.Unsecure.MultiMachine.json」檔案，然後使用電腦的三個 IP 位址編輯每個節點。在頂端變更叢集名稱，然後儲存檔案。叢集資訊清單的部分範例如下所示。
+1. Sign in to the Azure portal and create a new Windows Server 2012 R2 Datacenter VM in a resource group. Read the article [Create a Windows VM in the Azure portal](../virtual-machines/virtual-machines-windows-hero-tutorial.md) for more details.
+2. Add a couple more Windows Server 2012 R2 Datacenter VMs to the same resource group. Ensure that each of the VMs has the same administrator user name and password when created. Once created you should see all three VMs in the same virtual network.
+3. Connect to each of the VMs and turn off the Windows Firewall using the [Server Manager, Local Server dashboard](https://technet.microsoft.com/library/jj134147.aspx). This ensures that the network traffic can communicate between the machines. While connected to each machine, get the IP address by opening a command prompt and typing `ipconfig`. Alternatively you can see the IP address of each machine by selecting the virtual network resource for the resource group in the Azure portal.
+4. Connect to one of the VMs and test that you can ping the other two VMs successfully.
+5. Connect to one of the VMs and [download the standalone Service Fabric package for Windows Server](http://go.microsoft.com/fwlink/?LinkId=730690) into a new folder on the machine and extract the package.
+6. Open the *ClusterConfig.Unsecure.MultiMachine.json* file in Notepad and edit each node with the three IP addresses of the machines. Change the cluster name at the top and save the file.  A partial example of the cluster manifest is shown below.
 
     ```
     {
@@ -40,7 +41,7 @@
         "nodes": [
         {
             "nodeName": "vm0",
-        	"metadata": "Replace the localhost with valid IP address or FQDN below",
+            "metadata": "Replace the localhost with valid IP address or FQDN below",
             "iPAddress": "10.7.0.5",
             "nodeTypeRef": "NodeType0",
             "faultDomain": "fd:/dc1/r0",
@@ -48,7 +49,7 @@
         },
         {
             "nodeName": "vm1",
-        	"metadata": "Replace the localhost with valid IP address or FQDN below",
+            "metadata": "Replace the localhost with valid IP address or FQDN below",
             "iPAddress": "10.7.0.4",
             "nodeTypeRef": "NodeType0",
             "faultDomain": "fd:/dc2/r0",
@@ -56,7 +57,7 @@
         },
         {
             "nodeName": "vm2",
-        	"metadata": "Replace the localhost with valid IP address or FQDN below",
+            "metadata": "Replace the localhost with valid IP address or FQDN below",
             "iPAddress": "10.7.0.6",
             "nodeTypeRef": "NodeType0",
             "faultDomain": "fd:/dc3/r0",
@@ -65,20 +66,24 @@
     ],
     ```
 
-7. 開啟 [PowerShell ISE 視窗](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/introducing-the-windows-powershell-ise)。瀏覽至所下載獨立安裝程式封裝的解壓縮資料夾，然後儲存叢集資訊清單檔案。執行下列 PowerShell 命令。
+7. Open a [PowerShell ISE window](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/introducing-the-windows-powershell-ise). Navigate to the folder where you extracted the downloaded standalone installer package and saved the cluster manifest file. Run the following PowerShell command.
 
     ```
     .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.MultiMachine.json -MicrosoftServiceFabricCabFilePath .\MicrosoftAzureServiceFabric.cab
     ```
 
-8. 您應該會看到 PowerShell 執行、連接到每部電腦並建立叢集。大約 1 分鐘過後，您就可以透過在其中一個電腦 IP 位址 (例如使用 `http://10.7.0.5:19080/Explorer/index.html`) 連接到 Service Fabric Explorer，檢查叢集是否已運作。由於這是使用 Azure VM 的獨立叢集，如果您想要保護其安全，就必須[將憑證部署至 Azure VM](service-fabric-windows-cluster-x509-security.md)，或將其中一部電腦設定為[用來進行 Windows 驗證的 Windows Server Active Directory (AD) 控制站](service-fabric-windows-cluster-windows-security.md)，就像您在內部部署所做的一樣。
+8. You should see the PowerShell run, connect to each machine and create a cluster. After about a minute, you can check if the cluster is operational by connecting to the Service Fabric Explorer on one of the machine's IP address e.g. by using `http://10.7.0.5:19080/Explorer/index.html`. Since this is a standalone cluster using Azure VMs, to make it secure you will have to [deploy certificates to the Azure VMs](service-fabric-windows-cluster-x509-security.md) or set up one of the machines as a [Windows Server Active Directory (AD) controller for Windows authentication](service-fabric-windows-cluster-windows-security.md), just like you would do on premises.
 
 
-## 後續步驟
-- [在 Windows Server 或 Linux 上建立獨立的 Service Fabric 叢集](service-fabric-deploy-anywhere.md)
-- [在獨立 Service Fabric 叢集中新增或移除節點](service-fabric-cluster-windows-server-add-remove-nodes.md)
-- [獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)
-- [使用 Windows 安全性保護 Windows 上的獨立叢集](service-fabric-windows-cluster-windows-security.md)
-- [使用 X509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)
+## <a name="next-steps"></a>Next steps
+- [Create standalone Service Fabric clusters on Windows Server or Linux](service-fabric-deploy-anywhere.md)
+- [Add or remove nodes to a standalone Service Fabric cluster](service-fabric-cluster-windows-server-add-remove-nodes.md)
+- [Configuration settings for standalone Windows cluster](service-fabric-cluster-manifest.md)
+- [Secure a standalone cluster on Windows using Windows security](service-fabric-windows-cluster-windows-security.md)
+- [Secure a standalone cluster on Windows using X509 certificates](service-fabric-windows-cluster-x509-security.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

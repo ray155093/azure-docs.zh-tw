@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Reliable Actors 計時器和提醒 | Microsoft Azure"
-   description="Service Fabric Reliable Actors 計時器和提醒簡介。"
+   pageTitle="Reliable Actors timers and reminders | Microsoft Azure"
+   description="Introduction to timers and reminders for Service Fabric Reliable Actors."
    services="service-fabric"
    documentationCenter=".net"
    authors="vturecek"
@@ -17,13 +17,14 @@
    ms.author="vturecek"/>
 
 
-# 動作項目計時器和提醒
-動作項目可藉由註冊計時器或提醒來排程本身的週期性工作。本文示範如何使用計時器和提醒，以及說明它們之間的差異。
 
-## 動作項目計時器
-動作項目計時器提供 .NET 計時器的簡單包裝函式，以確保回呼方法採用動作項目執行階段所提供的回合式並行保證。
+# <a name="actor-timers-and-reminders"></a>Actor timers and reminders
+Actors can schedule periodic work on themselves by registering either timers or reminders. This article shows how to use timers and reminders and explains the differences between them.
 
-動作項目可以在其基底類別使用 `RegisterTimer` 和 `UnregisterTimer` 方法註冊和取消其計時器。下列範例示範如何使用計時器 API。API 和 .NET 計時器非常類似。在此範例中，當計時器到期時，動作項目執行階段將會呼叫 `MoveObject` 方法。此方法保證會採用回合式並行存取。這表示沒有其他動作項目方法或計時器/提醒回呼將在進行中，直到此回呼完成執行為止。
+## <a name="actor-timers"></a>Actor timers
+Actor timers provide a simple wrapper around .NET timer to ensure that the callback methods respect the turn-based concurrency guarantees that the Actors runtime provides.
+
+Actors can use the `RegisterTimer` and `UnregisterTimer` methods on their base class to register and unregister their timers. The example below shows the use of timer APIs. The APIs are very similar to the .NET timer. In this example, when the timer is due, the Actors runtime will call the `MoveObject` method. The method is guaranteed to respect the turn-based concurrency. This means that no other actor methods or timer/reminder callbacks will be in progress until this callback completes execution.
 
 ```csharp
 class VisualObjectActor : Actor, IVisualObject
@@ -61,16 +62,16 @@ class VisualObjectActor : Actor, IVisualObject
 }
 ```
 
-當回呼完成執行後，就會啟動下一期間的計時器。這表示回呼執行時計時器將會停止，並在回呼完成時重新啟動。
+The next period of the timer starts after the callback completes execution. This implies that the timer is stopped while the callback is executing and is started when the callback finishes.
 
-動作項目執行階段會儲存在回呼完成時，對動作項目的狀態管理員所做的變更。如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。
+The Actors runtime saves changes made to the actor's State Manager when the callback finishes. If an error occurs in saving the state, that actor object will be deactivated and a new instance will be activated. 
 
-當動作項目在記憶體回收期間停用時，將會停止所有的計時器。而在此之後不會叫用任何計時器回呼。此外，動作項目執行階段並不保留任何停用前執行中的計時器資訊。由動作項目來決定任何未來重新啟動時所需計時器的註冊。如需詳細資訊，請參閱[動作項目記憶體回收](service-fabric-reliable-actors-lifecycle.md)一節。
+All timers are stopped when the actor is deactivated as part of garbage collection. No timer callbacks are invoked after that. Also, the Actors runtime does not retain any information about the timers that were running before deactivation. It is up to the actor to register any timers that it needs when it is reactivated in the future. For more information, see the section on [actor garbage collection](service-fabric-reliable-actors-lifecycle.md).
 
-## 動作項目提醒
-提醒是一個會在指定時間於動作項目上觸發持續性回呼的機制。其功能很類似計時器。但與計時器不同的是，在所有情況下都會觸發提醒，直到動作項目明確地取消註冊它們或動作項目明確刪除為止。具體而言，動作項目的停用和容錯移轉會觸發提醒，因為動作項目執行階段所保存的動作項目提醒相關資訊。
+## <a name="actor-reminders"></a>Actor reminders
+Reminders are a mechanism to trigger persistent callbacks on an actor at specified times. Their functionality is similar to timers. But unlike timers, reminders are triggered under all circumstances until the actor explicitly unregisters them or the actor is explicitly deleted. Specifically, reminders are triggered across actor deactivations and failovers because the Actors runtime persists information about the actor's reminders.
 
-若要註冊提醒，動作項目會呼叫基底類別提供的 `RegisterReminderAsync` 方法，如下列範例所示：
+To register a reminder, an actor calls the `RegisterReminderAsync` method provided on the base class, as shown in the following example:
 
 ```csharp
 protected override async Task OnActivateAsync()
@@ -86,9 +87,9 @@ protected override async Task OnActivateAsync()
 }
 ```
 
-在此範例中，`"Pay cell phone bill"` 為該提醒名稱。這是動作項目用來唯一識別提醒的一個字串。`BitConverter.GetBytes(amountInDollars)` 為與提醒相關聯的內容。其會作為提醒回呼的引數傳回給動作項目，也就是 `IRemindable.ReceiveReminderAsync`。
+In this example, `"Pay cell phone bill"` is the reminder name. This is a string that the actor uses to uniquely identify a reminder. `BitConverter.GetBytes(amountInDollars)` is the context that is associated with the reminder. It will be passed back to the actor as an argument to the reminder callback, i.e. `IRemindable.ReceiveReminderAsync`.
 
-使用提醒的動作項目必須實作 `IRemindable` 介面，如下列範例所示。
+Actors that use reminders must implement the `IRemindable` interface, as shown in the example below.
 
 ```csharp
 public class ToDoListActor : Actor, IToDoListActor, IRemindable
@@ -105,24 +106,28 @@ public class ToDoListActor : Actor, IToDoListActor, IRemindable
 }
 ```
 
-當觸發提醒時，Reliable Actors 執行階段將會叫用動作項目上的 `ReceiveReminderAsync` 方法。一個動作項目可以註冊多個提醒，而每當觸發這些提醒中的任一個時，便會叫用 `ReceiveReminderAsync` 方法。動作項目可以使用傳遞至 `ReceiveReminderAsync` 方法的提醒名稱，以找出已觸發的提醒。
+When a reminder is triggered, the Reliable Actors runtime will invoke the  `ReceiveReminderAsync` method on the Actor. An actor can register multiple reminders, and the `ReceiveReminderAsync` method is invoked when any of those reminders is triggered. The actor can use the reminder name that is passed in to the `ReceiveReminderAsync` method to figure out which reminder was triggered.
 
-當 `ReceiveReminderAsync` 呼叫完成時，動作項目執行階段會儲存動作項目狀態。如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。
+The Actors runtime saves the actor's state when the `ReceiveReminderAsync` call finishes. If an error occurs in saving the state, that actor object will be deactivated and a new instance will be activated. 
 
-若要取消註冊提醒，動作項目要呼叫 `UnregisterReminder` 方法，如下列範例所示。
+To unregister a reminder, an actor calls the `UnregisterReminder` method, as shown in the example below.
 
 ```csharp
 IActorReminder reminder = GetReminder("Pay cell phone bill");
 Task reminderUnregistration = UnregisterReminder(reminder);
 ```
 
-如上所示，`UnregisterReminder` 方法會接受 `IActorReminder` 介面。動作項目基底類別支援 `GetReminder` 方法，在傳遞進提醒名稱時可以用來擷取 `IActorReminder` 介面。這很方便，因為動作項目不需保存從 `RegisterReminder` 方法呼叫傳回的 `IActorReminder` 介面。
+As shown above, the `UnregisterReminder` method accepts an `IActorReminder` interface. The actor base class supports a `GetReminder` method that can be used to retrieve the `IActorReminder` interface by passing in the reminder name. This is convenient because the actor does not need to persist the `IActorReminder` interface that was returned from the `RegisterReminder` method call.
 
-## 後續步驟
- - [動作項目事件](service-fabric-reliable-actors-events.md)
- - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
- - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
- - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
- - [範例程式碼](https://github.com/Azure/servicefabric-samples)
+## <a name="next-steps"></a>Next Steps
+ - [Actor events](service-fabric-reliable-actors-events.md)
+ - [Actor reentrancy](service-fabric-reliable-actors-reentrancy.md)
+ - [Actor diagnostics and performance monitoring](service-fabric-reliable-actors-diagnostics.md)
+ - [Actor API reference documentation](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+ - [Sample code](https://github.com/Azure/servicefabric-samples)
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,117 +1,122 @@
 <properties
-	pageTitle="在 HDInsight 中使用 R 來自訂叢集| Microsoft Azure"
-	description="了解如何使用指令碼動作安裝 R，以及在 HDInsight 叢集上使用 R。"
-	services="hdinsight"
-	documentationCenter=""
-	tags="azure-portal"
-	authors="mumian"
-	manager="jhubbard"
-	editor="cgronlun"/>
+    pageTitle="Use R in HDInsight to customize clusters | Microsoft Azure"
+    description="Learn how to install R using Script Action, and use R on HDInsight clusters."
+    services="hdinsight"
+    documentationCenter=""
+    tags="azure-portal"
+    authors="mumian"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="hdinsight"
-	ms.workload="big-data"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
+    ms.service="hdinsight"
+    ms.workload="big-data"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
     ms.date="09/14/2016"
-	ms.author="jgao"/>
+    ms.author="jgao"/>
 
-# 在 HDInsight Hadoop 叢集上安裝和使用 R
 
-了解如何使用指令碼動作來以 R 自訂以 Windows 為基礎的 HDInsight 叢集，以及如何在 HDInsight 叢集上使用 R。HDInsight 的[進階層](https://azure.microsoft.com/pricing/details/hdinsight/)供應項目包括隨附於 HDInsight 叢集的 R Server。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。如需詳細資訊，請參閱[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。如需搭配以 Linux 為基礎的叢集使用 R 的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)。
+# <a name="install-and-use-r-on-hdinsight-hadoop-clusters"></a>Install and use R on HDInsight Hadoop clusters
+
+Learn how to customize Windows based HDInsight cluster with R using Script Action, and how to use R on HDInsight clusters. The [premium tier](https://azure.microsoft.com/pricing/details/hdinsight/) offering for HDInsight includes R Server as part of your HDInsight cluster. This allows R scripts to use MapReduce and Spark to run distributed computations. For more information, see [Get started using R Server on HDInsight](hdinsight-hadoop-r-server-get-started.md). For information on using R with a Linux-based cluster, see [Install and use R on HDinsight Hadoop clusters (Linux)](hdinsight-hadoop-r-scripts-linux.md).
  
-您也可以使用「指令碼動作」，在 Azure HDInsight 的任一類型的叢集 (Hadoop、Storm、HBase、Spark) 上安裝 R。您可以從一個唯讀的 Azure 儲存體 Blob 取得在 HDInsight 叢集上安裝 R 的範例指令碼，網址為 [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。
+You can install R on any type of cluster (Hadoop, Storm, HBase, Spark) on Azure HDInsight by using *Script Action*. A sample script to install R on an HDInsight cluster is available from a read-only Azure storage blob at [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1). 
 
-**相關文章**
+**Related articles**
 
-- [在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)
-- [在 HDInsight 建立 Hadoop 叢集](hdinsight-provision-clusters.md)：建立 HDInsight 叢集的一般資訊
-- [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集的一般資訊
-- [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)
+- [Install and use R on HDinsight Hadoop clusters (Linux)](hdinsight-hadoop-r-scripts-linux.md)
+- [Create Hadoop clusters in HDInsight](hdinsight-provision-clusters.md): general information on creating HDInsight clusters
+- [Customize HDInsight cluster using Script Action][hdinsight-cluster-customize]: general information on customizing HDInsight clusters using Script Action
+- [Develop Script Action scripts for HDInsight](hdinsight-hadoop-script-actions.md)
 
-## 什麼是 R？
+## <a name="what-is-r?"></a>What is R?
 
-<a href="http://www.r-project.org/" target="_blank">R Project for Statistical Computing</a> 是一個用於統計計算的開放原始碼語言和環境。R 提供數百個內建的統計函式及它自己的程式設計語言，此語言結合了函式型和物件導向程式設計的層面。它也提供廣泛的圖形功能。R 是廣泛各種不同領域中，大多數專業統計人員和科學家慣用的程式設計環境。
+The <a href="http://www.r-project.org/" target="_blank">R Project for Statistical Computing</a> is an open source language and environment for statistical computing. R provides hundreds of build-in statistical functions and its own programming language that combines aspects of functional and object-oriented programming. It also provides extensive graphical capabilities. R is the preferred programming environment for most professional statisticians and scientists in a wide variety of fields.
 
-R 與 Azure Blob 儲存體 (WASB) 相容，因此便可在 HDInsight 上使用 R 來處理儲存在該處的資料。
+R is compatible with Azure Blob Storage (WASB) so that data that is stored there can be processed using R on HDInsight.  
 
-## 安裝 R
+## <a name="install-r"></a>Install R
 
-您可以從 Azure 儲存體中的唯讀 Blob，取得用以在 HDInsight 叢集上安裝 R 的[範例指令碼](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。本節提供有關如何在使用 Azure 入口網站建立叢集時使用範例指令碼的指示。
+A [sample script](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1) to install R on an HDInsight cluster is available from a read-only blob in Azure Storage. This section provides instructions about how to use the sample script while creating the cluster using the Azure Portal.
 
-> [AZURE.NOTE] 範例指令碼是在 HDInsight 叢集版本 3.1 中所推出。如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
+> [AZURE.NOTE] The sample script was introduced with HDInsight cluster version 3.1. For more information about  HDInsight cluster versions, see [HDInsight cluster versions](hdinsight-component-versioning.md).
 
-1. 若您透過入口網站建立 HDInsight 叢集，請按一下 [選擇性組態]，然後按一下 [指令碼動作]。
-2. 在 [指令碼動作] 頁面上，輸入下列值：
+1. When you create an HDInsight cluster from the Portal, click **Optional Configuration**, and then click **Script Actions**.
+2. On the **Script Actions** page, enter the following values:
 
-	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-r-scripts/hdi-r-script-action.png "使用指令碼動作以自訂叢集")
+    ![Use Script Action to customize a cluster](./media/hdinsight-hadoop-r-scripts/hdi-r-script-action.png "Use Script Action to customize a cluster")
 
-	<table border='1'>
-		<tr><th>屬性</th><th>值</th></tr>
-		<tr><td>名稱</td>
-			<td>指定指令碼動作的名稱，例如 [<b>安裝 R</b>]。</td></tr>
-		<tr><td>指令碼 URI</td>
-			<td>指定為了自訂叢集所叫用之指令碼的 URI，例如 <i>https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1</i></td></tr>
-		<tr><td>節點類型</td>
-			<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
-		<tr><td>參數</td>
-			<td>如果指令碼要求，請指定參數。不過，用來安裝 R 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
-	</table>
+    <table border='1'>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Name</td>
+            <td>Specify a name for the script action, for example, <b>Install R</b>.</td></tr>
+        <tr><td>Script URI</td>
+            <td>Specify the URI to the script that is invoked to customize the cluster, for example, <i>https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1</i></td></tr>
+        <tr><td>Node Type</td>
+            <td>Specify the nodes on which the customization script is run. You can choose <b>All Nodes</b>, <b>Head nodes only</b>, or <b>Worker nodes</b> only.
+        <tr><td>Parameters</td>
+            <td>Specify the parameters, if required by the script. However, the script to install R does not require any parameters, so you can leave this blank.</td></tr>
+    </table>
 
-	您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
+    You can add more than one script action to install multiple components on the cluster. After you have added the scripts, click the check mark to start crating the cluster.
 
-您也可以使用 Azure PowerShell 或 HDInsight .NET SDK，在 HDInsight 上使用指令碼安裝 R。本文稍後會提供這些程序的指示。
+You can also use the script to install R on HDInsight by using Azure PowerShell or the HDInsight .NET SDK. Instructions for these procedures are provided later in this article.
 
-## 執行 R 指令碼
-本節說明如何使用 HDInsight 在 Hadoop 叢集上執行 R 指令碼。
+## <a name="run-r-scripts"></a>Run R scripts
+This section describes how to run an R script on the Hadoop cluster with HDInsight.
 
-1. **建立與叢集的遠端桌面連線**：從入口網站，針對您所建立且已安裝 R 的叢集啟用遠端桌面，然後連線到叢集。如需指示，請參閱[使用 RDP 連接至 HDInsight 叢集](hdinsight-administer-use-management-portal.md#rdp)。
+1. **Establish a Remote Desktop connection to the cluster**: From the Portal, enable Remote Desktop for the cluster you created with R installed, and then connect to the cluster. For instructions, see [Connect to HDInsight clusters using RDP](hdinsight-administer-use-management-portal.md#rdp).
 
-2. **開啟 R 主控台**：R 安裝會在前端節點的桌面上放置 R 主控台的連結。按一下該連結以開啟 R 主控台。
+2. **Open the R console**: The R installation puts a link to the R console on the desktop of the head node. Click on it to open the R console.
 
-3. **執行 R 指令碼**：您可以透過貼上、選取然後按 Enter 鍵的方式，直接從 R 主控台執行 R 指令碼。以下是一個簡單的範例指令碼，此指令碼會產生數字 1 到 100，然後將它們乘以 2。
+3. **Run the R script**: The R script can be run directly from the R console by pasting it, selecting it, and pressing ENTER. Here is a simple example script that generates the numbers 1 to 100 and then multiplies them by 2.
 
-		library(rmr2)
-		library(rhdfs)
-		ints = to.dfs(1:100)
-		calc = mapreduce(input = ints, map = function(k, v) cbind(v, 2*v))
-		from.dfs(calc)
+        library(rmr2)
+        library(rhdfs)
+        ints = to.dfs(1:100)
+        calc = mapreduce(input = ints, map = function(k, v) cbind(v, 2*v))
+        from.dfs(calc)
 
-前兩行會呼叫與 R 一起安裝的 RHadoop 程式庫。最後一行會將結果列印到主控台。輸出應該會看起來如下：
+The first two lines call the RHadoop libraries that are installed with R. The final line prints the results to the console. The output should look like this:
 
-	[1,]  1 2
-	[2,]  2 4
-	.
-	.
-	.
-	[98,]  98 196
-	[99,]  99 198
-	[100,] 100 200
-
-
-## 使用 Azure PowerShell 安裝 R
-
-請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call_scripts_using_powershell)。此範例示範如何使用 Azure PowerShell 安裝 Spark。您需要自訂指令碼以使用 [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。
-
-## 使用 .NET SDK 安裝 R
-
-請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call_scripts_using_azure_powershell)。此範例示範如何使用 .NET SDK 安裝 Spark。您需要自訂指令碼以使用 [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps11)。
+    [1,]  1 2
+    [2,]  2 4
+    .
+    .
+    .
+    [98,]  98 196
+    [99,]  99 198
+    [100,] 100 200
 
 
-## 另請參閱
+## <a name="install-r-using-aure-powershell"></a>Install R using Aure PowerShell
 
-- [在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)
-- [在 HDInsight 建立 Hadoop 叢集](hdinsight-provision-clusters.md)：建立 HDInsight 叢集的一般資訊
-- [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集的一般資訊
-- [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)
-- [在 HDInsight 叢集上安裝和使用 Spark][hdinsight-install-spark]：關於安裝 Spark 的指令碼動作範例
-- [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install.md)：關於安裝 Giraph 的指令碼動作範例
-- [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install-linux.md)：關於安裝 Solr 的指令碼動作範例。
+See [Customize HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster.md#call_scripts_using_powershell).  The sample demonstrates how to install Spark using Azure PowerShell. You need to customize the script to use [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1).
+
+## <a name="install-r-using-.net-sdk"></a>Install R using .NET SDK
+
+See [Customize HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster.md#call_scripts_using_azure_powershell). The sample demonstrates how to install Spark using the .NET SDK. You need to customize the script to use [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps11).
+
+
+## <a name="see-also"></a>See also
+
+- [Install and use R on HDinsight Hadoop clusters (Linux)](hdinsight-hadoop-r-scripts-linux.md)
+- [Create Hadoop clusters in HDInsight](hdinsight-provision-clusters.md): general information on creating HDInsight clusters
+- [Customize HDInsight cluster using Script Action][hdinsight-cluster-customize]: general information on customizing HDInsight clusters using Script Action
+- [Develop Script Action scripts for HDInsight](hdinsight-hadoop-script-actions.md)
+- [Install and use Spark on HDInsight clusters][hdinsight-install-spark]: Script Action sample about installing Spark
+- [Install Giraph on HDInsight clusters](hdinsight-hadoop-giraph-install.md): Script Action sample about installing Giraph
+- [Install Solr on HDInsight clusters](hdinsight-hadoop-solr-install-linux.md): Script Action sample about installing Solr.
 
 [powershell-install-configure]: powershell-install-configure.md
 [hdinsight-provision]: ../hdinsight-provision-clusters/
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 [hdinsight-install-spark]: hdinsight-apache-spark-jupyter-spark-sql.md
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

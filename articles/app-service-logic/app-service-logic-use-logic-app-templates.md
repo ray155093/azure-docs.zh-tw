@@ -1,6 +1,6 @@
 <properties
- pageTitle="邏輯應用程式範本 | Microsoft Azure"
- description="了解如何使用預先建立的邏輯應用程式範本來協助您開始著手"
+ pageTitle="Logic App templates | Microsoft Azure"
+ description="Learn how to use pre-created Logic app templates to help you get started"
  authors="kevinlam1"
  manager="dwrede"
  editor=""
@@ -8,59 +8,69 @@
  documentationCenter=""/>
 
 <tags
-	ms.service="app-service-logic"
-	ms.workload="integration"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/24/2016"
-	ms.author="klam"/>
+    ms.service="app-service-logic"
+    ms.workload="integration"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/24/2016"
+    ms.author="klam"/>
 
-# 邏輯應用程式範本
 
-## 何謂邏輯應用程式範本
+# <a name="logic-app-templates"></a>Logic App templates
 
-邏輯應用程式範本是預先建置的邏輯應用程式，可供您快速開始建立自己的工作流程。
+## <a name="what-are-logic-app-templates"></a>What are logic app templates
 
-這些範本非常適合用來探索各種可使用邏輯應用程式建置的模式。您可以直接使用這些範本，或者修改它們以符合您的案例。
+A logic app template is a pre-built logic app that you can use to quickly get started creating your own workflow. 
 
-## 可用範本概觀
+These templates are a good way to discover various patterns that can be built using logic apps. You can either use these templates as-is or modify them to fit your scenario.
 
-邏輯應用程式平台目前已發佈了許多可用的範本。以下列出一些範例類別以及其中所使用的連接器類型。
+## <a name="overview-of-available-templates"></a>Overview of available templates
 
-### 企業雲端範本
-此範本會整合 Dynamics CRM、Salesforce、Box、Azure Blob 及其他連接器，以滿足您的企業雲端需求。部分可使用這些範本來進行的範例包含組織您的潛在客戶和備份企業檔案資料。
+There are many available templates currently published in the logic app platform. Some example categories, as well as the type of connectors used in them, are listed below.
 
-### 企業整合套件範本
-VETER (驗證、擷取、轉換、擴充、路由) 管線的組態、透過 AS2 接收 X12 EDI 文件並將其轉換為 XML，以及 X12 和 AS2 訊息處理。
+### <a name="enterprise-cloud-templates"></a>Enterprise cloud templates
+Templates that integrate Dynamics CRM, Salesforce, Box, Azure Blob, and other connectors for your enterprise cloud needs. Some examples of what can be done with these templates include organizing your leads and backing up your corporate file data.
 
-### 通訊協定模式範本
-這些範本由包含通訊協定模式的邏輯應用程式所組成，例如透過 HTTP 的要求回應以及跨 FTP 和 SFTP 的整合。使用這些現存模式，或將它們做為基礎來建立更複雜的通訊協定模式。
+### <a name="enterprise-integration-pack-templates"></a>Enterprise integration pack templates
+Configurations of VETER (validate, extract, transform, enrich, route) pipelines, receiving an X12 EDI document over AS2 and transforming it to XML, as well as X12 and AS2 message handling.
 
-### 個人生產力範本
-用來協助提升個人生產力的模式所包含的範本會設定每日提醒、將重要的工作項目轉換成待辦事項清單，並將冗長的工作自動縮減為一個使用者核准步驟。
+### <a name="protocol-pattern-templates"></a>Protocol pattern templates
+These templates consist of logic apps that contain protocol patterns such as request-response over HTTP as well as integrations across FTP and SFTP. Use these as they exist, or as a basis for creating more complex protocol patterns.  
 
-### 取用者雲端範本
-與社交媒體服務 (如 Twitter、Slack 和電子郵件) 整合的簡單範本，最終能夠強化社交媒體行銷計劃。其中也包含多雲複製之類的範本，其可透過節省花在傳統重複性工作的時間來協助提高生產力。
+### <a name="personal-productivity-templates"></a>Personal productivity templates
+Patterns to help improve personal productivity include templates that set daily reminders, turn important work items into to-do lists, and automate lengthy tasks down to a single user approval step.
 
-## 使用範本建立邏輯應用程式的方式 
+### <a name="consumer-cloud-templates"></a>Consumer cloud templates
+Simple templates that integrate with social media services such as Twitter, Slack, and email, ultimately capable of strengthening social media marketing initiatives. These also include templates such as cloudy copying, which can help increase productivity by saving time spent on traditionally repetitive tasks. 
 
-若要開始使用邏輯應用程式範本，請進入邏輯應用程式設計工具。如果您透過開啟現有邏輯應用程式來進入設計工具，邏輯應用程式會自動載入設計工具檢視中。不過，如果您要建立新的邏輯應用程式，您會看到下列畫面。![](../../includes/media/app-service-logic-templates/template7.png)
+## <a name="how-to-create-a-logic-app-using-a-template"></a>How to create a logic app using a template 
 
-在此畫面中，您可以選擇以空白邏輯應用程式或預先建置的範本來開始著手。如果您選取其中一個範本，系統會提供其他資訊給您。在此範例中，我們使用「在 Dropbox 中建立新檔案時，將它複製到 OneDrive」範本。![](../../includes/media/app-service-logic-templates/template2.png)
+To get started using a logic app template, go into the logic app designer. If you're entering the designer by opening an existing logic app, the logic app automatically loads in your designer view. However, if you're creating a new logic app, you see the screen below.  
+ ![](../../includes/media/app-service-logic-templates/template7.png)  
 
-如果您選擇使用此範本，則只要選取 [使用此範本] 按鈕。系統會要求您根據範本所使用的連接器登入您的帳戶。或者，如果您先前已建立使用這些連接器的連線，您可以選取 [繼續]，如下所示。![](../../includes/media/app-service-logic-templates/template3.png)
+From this screen, you can either choose to start with a blank logic app or a pre-built template. If you select one of the templates, you are provided with additional information. In this example, we use the *When a new file is created in Dropbox, copy it to OneDrive* template.  
+ ![](../../includes/media/app-service-logic-templates/template2.png)  
 
-建立連線並選取 [繼續] 之後，邏輯應用程式便會在設計工具檢視中開啟。![](../../includes/media/app-service-logic-templates/template4.png)
+If you choose to use the template, just select the *use this template* button. You'll be asked to sign in to your accounts based on which connectors the template utilizes. Or, if you've previously established a connection with these connectors, you can select continue as seen below.  
+ ![](../../includes/media/app-service-logic-templates/template3.png)  
 
-在上述範例中，和許多範本所遇到的狀況相同，連接器內的某些必要屬性欄位可能已填入資料；不過，有些仍可能需要填入值，然後才能正確部署邏輯應用程式。如果您嘗試不輸入遺漏的欄位就進行部署，將會出現錯誤訊息來通知您。
+After establishing the connection and selecting *continue*, the logic app opens in designer view.  
+ ![](../../includes/media/app-service-logic-templates/template4.png)  
 
-如果您想要返回範本檢視器，請選取頂端導覽列中的 [範本] 按鈕。切換回範本檢視器將會讓您遺失任何未儲存的進度。在切換回範本檢視器之前，您會看到警告訊息來告知您這一點。![](../../includes/media/app-service-logic-templates/template5.png)
+In the example above, as is the case with many templates, some of the mandatory property fields may be filled out within the connectors; however, some might still require a value before being able to properly deploy the logic app. If you try to deploy without entering some of the missing fields, you'll be notified with an error message.
 
-## 如何部署從範本建立的邏輯應用程式
+If you wish to return to the template viewer, select the *Templates* button in the top navigation bar. By switching back to the template viewer, you lose any unsaved progress. Prior to switching back into template viewer, you'll see a warning message notifying you of this.  
+ ![](../../includes/media/app-service-logic-templates/template5.png)  
 
-載入範本並進行所需的任何變更之後，請選取左上角的 [儲存] 按鈕。這可儲存並發佈邏輯應用程式。![](../../includes/media/app-service-logic-templates/template6.png)
+## <a name="how-to-deploy-a-logic-app-created-from-a-template"></a>How to deploy a logic app created from a template
 
-如果您需要如何對現有邏輯應用程式範本新增更多步驟或進行一般編輯的詳細資訊，請參閱[建立邏輯應用程式](app-service-logic-create-a-logic-app.md)。
+Once you have loaded your template and made any desired changes, select the save button in the upper left corner. This saves and publishes your logic app.  
+ ![](../../includes/media/app-service-logic-templates/template6.png)  
 
-<!---HONumber=AcomDC_0831_2016-->
+If you would like more information on how to add more steps into an existing logic app template, or make edits in general, read more at [Create a logic app](app-service-logic-create-a-logic-app.md).
+
+
+<!--HONumber=Oct16_HO2-->
+
+

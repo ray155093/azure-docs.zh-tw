@@ -1,6 +1,6 @@
 <properties
-   pageTitle="監視 Resource Manager 部署的虛擬機器備份 | Microsoft Azure"
-   description="監視 Resource Manager 部署的虛擬機器備份中的事件和警示。根據警示傳送電子郵件。"
+   pageTitle="Monitor Resource Manager-deployed virtual machine backups | Microsoft Azure"
+   description="Monitor events and alerts from Resource Manager-deployed virtual machine backups. Send email based on alerts."
    services="backup"
    documentationCenter="dev-center-name"
    authors="markgalioto"
@@ -16,178 +16,179 @@ ms.topic="article"
 ms.date="08/25/2016"
 ms.author="trinadhk; giridham;"/>
 
-# 監視 Azure 虛擬機器備份的警示
 
-警示是來自已達到或超過事件閾值之服務的回應。了解何時出現問題，可能對於維持低商務成本很重要。警示通常不會依照排程發生，因此在警示發生之後盡早得知將會有所幫助。例如，當備份或還原作業失敗時，警示會在失敗後五分鐘內發生。在保存庫儀表板中，[備份警示] 圖格會顯示嚴重和警告層級的事件。在 [備份警示] 設定中，您可以檢視所有事件。但是，如果在您處理不同問題時發生警示，您該怎麼辦？ 如果您不知道何時發生警示，可能會有點不便，或可能危及資料。若要確定正確的人員會留意警示 (當它發生時)，請設定服務以透過電子郵件傳送警示通知。如需設定電子郵件通知的詳細資訊，請參閱[設定通知](backup-azure-monitor-vms.md#configure-notifications)。
+# <a name="monitor-alerts-for-azure-virtual-machine-backups"></a>Monitor alerts for Azure virtual machine backups
 
-## 如何找到警示的相關資訊？
+Alerts are responses from the service that an event threshold has been met or surpassed. Knowing when problems start can be critical to keeping business costs down. Alerts typically do not occur on a schedule, and so it is helpful to know as soon as possible after alerts occur. For example, when a backup or restore job fails, an alert occurs within five minutes of the failure. In the vault dashboard, the Backup Alerts tile displays Critical and Warning-level events. In the Backup Alerts settings, you can view all events. But what do you do if an alert occurs when you are working on a separate issue? If you don't know when the alert happens, it could be a minor inconvenience, or it could compromise data. To make sure the correct people are aware of an alert - when it occurs, configure the service to send alert notifications via email. For details on setting up email notifications, see [Configure notifications](backup-azure-monitor-vms.md#configure-notifications).
 
-若要檢視擲回警示的事件相關資訊，您必須開啟 [備份警示] 刀鋒視窗。開啟 [備份警示] 刀鋒視窗的方法有兩種︰從保存庫儀表板中的 [備份警示] 圖格，或從 [警示和事件] 刀鋒視窗。
+## <a name="how-do-i-find-information-about-the-alerts?"></a>How do I find information about the alerts?
 
-若要從 [備份警示] 圖格開啟 [備份警示] 刀鋒視窗︰
+To view information about the event that threw an alert, you must open the Backup Alerts blade. There are two ways to open the Backup Alerts blade: either from the Backup Alerts tile in the vault dashboard, or from the Alerts and Events blade.
 
-- 在保存庫儀表板的 [備份警示] 圖格上，按一下 [嚴重] 或 [警告] 以檢視該嚴重性層級的作業事件。
+To open the Backup Alerts blade from Backup Alerts tile:
 
-    ![備份警示圖格](./media/backup-azure-monitor-vms/backup-alerts-tile.png)
+- On the **Backup Alerts** tile on the vault dashboard, click **Critical** or **Warning** to view the operational events for that severity level.
+
+    ![Backup Alerts tile](./media/backup-azure-monitor-vms/backup-alerts-tile.png)
 
 
-若要從 [警示和事件] 刀鋒視窗開啟 [備份警示] 刀鋒視窗︰
+To open the Backup Alerts blade from the Alerts and Events blade:
 
-1. 在保存庫儀表板中，按一下 [所有設定]。![所有設定按鈕](./media/backup-azure-monitor-vms/all-settings-button.png)
+1. From the vault dashboard, click **All Settings**. ![All Settings button](./media/backup-azure-monitor-vms/all-settings-button.png)
 
-2. 在 [設定] 刀鋒視窗上，按一下 [警示和事件]。![警示和事件按鈕](./media/backup-azure-monitor-vms/alerts-and-events-button.png)
+2. On the **Settings** blade, click **Alerts and Events**. ![Alerts and Events button](./media/backup-azure-monitor-vms/alerts-and-events-button.png)
 
-3. 在 [警示與事件] 刀鋒視窗上，按一下 [備份警示]。![備份警示按鈕](./media/backup-azure-monitor-vms/backup-alerts.png)
+3. On the **Alerts and Events** blade, click **Backup Alerts**. ![Backup Alerts button](./media/backup-azure-monitor-vms/backup-alerts.png)
 
-    [備份警示] 刀鋒視窗會開啟並顯示篩選後的警示。
+    The **Backup Alerts** blade opens and displays the filtered alerts.
 
-    ![備份警示圖格](./media/backup-azure-monitor-vms/backup-alerts-critical.png)
+    ![Backup Alerts tile](./media/backup-azure-monitor-vms/backup-alerts-critical.png)
 
-4. 若要檢視特定警示的詳細資訊，請從事件清單中按一下警示，以開啟其 [詳細資料] 刀鋒視窗。
+4. To view detailed information about a particular alert, from the list of events, click the alert to open its **Details** blade.
 
-    ![事件詳細資料](./media/backup-azure-monitor-vms/audit-logs-event-detail.png)
+    ![Event Detail](./media/backup-azure-monitor-vms/audit-logs-event-detail.png)
 
-    若要自訂清單中顯示的屬性，請參閱[檢視其他事件屬性](backup-azure-monitor-vms.md#view-additional-event-attributes)
+    To customize the attributes displayed in the list, see [View additional event attributes](backup-azure-monitor-vms.md#view-additional-event-attributes)
 
-## 設定通知
+## <a name="configure-notifications"></a>Configure notifications
 
- 您可以設定服務以針對過去一小時發生的警示，或在特定類型的事件發生時，傳送電子郵件通知。
+ You can configure the service to send email notifications for the alerts that occurred over the past hour, or when particular types of events occur.
 
-設定警示的電子郵件通知
+To set up email notifications for alerts
 
-1. 在 [備份警示] 功能表上，按一下 [設定通知]
+1. On the Backup Alerts menu, click **Configure notifications**
 
-    ![備份警示功能表](./media/backup-azure-monitor-vms/backup-alerts-menu.png)
+    ![Backup Alerts menu](./media/backup-azure-monitor-vms/backup-alerts-menu.png)
 
-    [設定通知] 刀鋒視窗隨即開啟。
+    The Configure notifications blade opens.
 
-    ![設定通知刀鋒視窗](./media/backup-azure-monitor-vms/configure-notifications.png)
+    ![Configure notifications blade](./media/backup-azure-monitor-vms/configure-notifications.png)
 
-2. 在 [設定通知] 刀鋒視窗上，針對 [電子郵件通知]，按一下 [開啟]。
+2. On the Configure notifications blade, for Email notifications, click **On**.
 
-    [收件者] 和 [嚴重性] 對話方塊旁邊有星號，因為該資訊是必要的。提供至少一個電子郵件地址，然後選取至少一個嚴重性。
+    The Recipients and Severity dialogs have a star next to them because that information is required. Provide at least one email address, and select at least one Severity.
 
-3. 在 [收件者 (電子郵件)] 對話方塊中，輸入接收通知者的電子郵件地址。使用格式︰username@domainname.com。用分號分 (;) 分隔多個電子郵件位址。
+3. In the **Recipients (Email)** dialog, type the email addresses for who receive the notifications. Use the format: username@domainname.com. Separate multiple email addresses with a semicolon (;).
 
-4. 在 [通知] 區域中，選擇 [每個警示] 以在指定的警示發生時傳送通知，或選擇 [每小時摘要] 以傳送過去一小時的摘要。
+4. In the **Notify** area, choose **Per Alert** to send notification when the specified alert occurs, or **Hourly Digest** to send a summary for the past hour.
 
-5. 在 [嚴重性] 對話方塊中，選擇您要觸發電子郵件通知的一或多個層級。
+5. In the **Severity** dialog, choose one or more levels that you want to trigger email notification.
 
-6. 按一下 [儲存]。
-### 有哪些警示類型可供 Azure IaaS VM 備份使用？
-| 警示層級 | 傳送的警示 |
+6. Click **Save**.
+### <a name="what-alert-types-are-available-for-azure-iaas-vm-backup?"></a>What alert types are available for Azure IaaS VM backup?
+| Alert Level  | Alerts sent |
 | ------------- | ------------- |
-| 重要 | 備份失敗、復原失敗 |
-| 警告 | None |
-| 資訊 | None | 
+| Critical | Backup failure, recovery failure  |
+| Warning  | None |
+| Informational  | None  | 
 
-### 會有即使已設定通知卻不寄送電子郵件的情況嗎？
+### <a name="are-there-situations-where-email-isn't-sent-even-if-notifications-are-configured?"></a>Are there situations where email isn't sent even if notifications are configured?
 
-即使已正確設定通知，仍會有不寄送警示的情況。在下列情況下將不會寄送電子郵件通知，以避免警示雜訊︰
+There are situations where an alert is not sent, even though the notifications have been properly configured. In the following situations email notifications are not sent to avoid alert noise:
 
-- 如果通知設定為 [每小時摘要]，而且在一小時內引發警示並加以解決，
-- 作業便會取消。
-- 備份作業會觸發然後失敗，且另一個備份作業正在進行中。
-- 啟用 Resource Manager 功能之 VM 的排程備份作業會啟動，但 VM 將不再存在。
+- If notifications are configured to Hourly Digest, and an alert is raised and resolved within the hour.
+- The job is canceled.
+- A backup job is triggered and then fails, and another backup job is in progress.
+- A scheduled backup job for a Resource Manager-enabled VM starts, but the VM no longer exists.
 
-## 自訂事件的檢視
+## <a name="customize-your-view-of-events"></a>Customize your view of events
 
-[稽核記錄檔] 設定隨附一組預先定義的篩選器和資料行，以顯示作業事件資訊。您可以自訂檢視，因此當 [事件] 刀鋒視窗開啟時，它會顯示您所需的資訊。
+The **Audit logs** setting comes with a pre-defined set of filters and columns showing operational event information. You can customize the view so that when the **Events** blade opens, it shows you the information you want.
 
-1. 在[保存庫儀表板](./backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard)中，瀏覽並按一下 [稽核記錄檔]，以開啟 [事件] 刀鋒視窗。
+1. In the [vault dashboard](./backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard), browse to and click **Audit Logs** to open the **Events** blade.
 
-    ![稽核記錄檔](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
+    ![Audit Logs](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
 
-    開啟的 [事件] 刀鋒視窗會顯示針對目前保存庫而篩選的作業事件。
+    The **Events** blade opens to the operational events filtered just for the current vault.
 
-    ![稽核記錄檔篩選器](./media/backup-azure-monitor-vms/audit-logs-filter.png)
+    ![Audit Logs Filter](./media/backup-azure-monitor-vms/audit-logs-filter.png)
 
-    此刀鋒視窗會顯示過去一週發生的嚴重、錯誤、警告和資訊事件清單。時間範圍是在 [篩選] 中設定的預設值。[事件] 刀鋒視窗也會顯示橫條圖來追蹤事件發生的時間。如果您不想看到橫條圖，請在 [事件] 功能表中按一下 [隱藏圖表] 以關閉圖表。[事件] 的預設檢視會顯示 [作業]、[層級]、[狀態]、[資源] 和 [時間] 資訊。如需公開其他事件屬性的相關資訊，請參閱[展開事件資訊](backup-azure-monitor-vms.md#view-additional-event-attributes)一節。
+    The blade shows the list of Critical, Error, Warning, and Informational events that occurred in the past week. The time span is a default value set in the **Filter**. The **Events** blade also shows a bar chart tracking when the events occurred. If you don't want to see the bar chart, in the **Events** menu, click **Hide chart** to toggle off the chart. The default view of Events shows Operation, Level, Status, Resource, and Time information. For information about exposing additional Event attributes, see the section [expanding Event information](backup-azure-monitor-vms.md#view-additional-event-attributes).
 
-2. 如需作業事件的其他資訊，請在 [作業] 資料行中，按一下作業事件以開啟其刀鋒視窗。此刀鋒視窗包含事件的詳細資訊。事件會依其相互關聯識別碼以及在時間範圍內發生的事件清單分組。
+2. For additional information on an operational event, in the **Operation** column, click an operational event to open its blade. The blade contains detailed information about the events. Events are grouped by their correlation ID and a list of the events that occurred in the Time span.
 
     ![Operation Details](./media/backup-azure-monitor-vms/audit-logs-details-window.png)
 
-3. 若要檢視特定事件的詳細資訊，請從事件清單中按一下事件，以開啟其 [詳細資料] 刀鋒視窗。
+3. To view detailed information about a particular event, from the list of events, click the event to open its **Details** blade.
 
-    ![事件詳細資料](./media/backup-azure-monitor-vms/audit-logs-details-window-deep.png)
+    ![Event Detail](./media/backup-azure-monitor-vms/audit-logs-details-window-deep.png)
 
-    事件層級資訊隨著資訊越多而越詳細。如果您想查看有關每個事件的這麼多資訊，而且想要將這麼多詳細資料加入至 [事件] 刀鋒視窗，請參閱[展開事件資訊](backup-azure-monitor-vms.md#view-additional-event-attributes)一節。
+    The Event-level information is as detailed as the information gets. If you prefer seeing this much information about each event, and would like to add this much detail to the **Events** blade, see the section [expanding Event information](backup-azure-monitor-vms.md#view-additional-event-attributes).
 
 
-## 自訂事件篩選器
-使用 [篩選] 進行調整，或選擇特定刀鋒視窗中顯示的資訊。若要篩選事件資訊︰
+## <a name="customize-the-event-filter"></a>Customize the event filter
+Use the **Filter** to adjust or choose the information that appears in a particular blade. To filter the event information:
 
-1. 在[保存庫儀表板](./backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard)中，瀏覽並按一下 [稽核記錄檔]，以開啟 [事件] 刀鋒視窗。
+1. In the [vault dashboard](./backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard), browse to and click **Audit Logs** to open the **Events** blade.
 
-    ![稽核記錄檔](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
+    ![Audit Logs](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
 
-    開啟的 [事件] 刀鋒視窗會顯示針對目前保存庫而篩選的作業事件。
+    The **Events** blade opens to the operational events filtered just for the current vault.
 
-    ![稽核記錄檔篩選器](./media/backup-azure-monitor-vms/audit-logs-filter.png)
+    ![Audit Logs Filter](./media/backup-azure-monitor-vms/audit-logs-filter.png)
 
-2. 在 [事件] 功能表上，按一下 [篩選] 以開啟該刀鋒視窗。
+2. On the **Events** menu, click **Filter** to open that blade.
 
-    ![開放篩選刀鋒視窗](./media/backup-azure-monitor-vms/audit-logs-filter-button.png)
+    ![open filter blade](./media/backup-azure-monitor-vms/audit-logs-filter-button.png)
 
-3. 在 [篩選] 刀鋒視窗上，調整 [層級]、[時間範圍] 和 [呼叫者] 篩選器。其他篩選器已設定為提供復原服務保存庫的目前資訊，所以無法使用。
+3. On the **Filter** blade, adjust the **Level**, **Time span**, and **Caller** filters. The other filters are not available since they were set to provide the current information for the Recovery Services vault.
 
-    ![稽核記錄檔查詢詳細資料](./media/backup-azure-monitor-vms/filter-blade.png)
+    ![Audit Logs-query details](./media/backup-azure-monitor-vms/filter-blade.png)
 
-    您可以指定事件的**層級**︰嚴重、錯誤、警告或資訊。您可以選擇任何事件層級組合，但必須選取至少一個層級。開啟或關閉層級。[時間範圍] 篩選器可讓您指定時間長度來擷取事件。如果您使用自訂的時間範圍，您可以設定開始和結束時間。
+    You can specify the **Level** of event: Critical, Error, Warning, or Informational. You can choose any combination of event Levels, but you must have at least one Level selected. Toggle the Level on or off. The **Time span** filter allows you to specify the length of time for capturing events. If you use a custom Time span, you can set the start and end times.
 
-4. 當您準備好使用篩選器來查詢作業記錄時，請按一下 [更新]。結果會顯示在 [事件] 刀鋒視窗中。
+4. Once you are ready to query the operations logs using your filter, click **Update**. The results display in the **Events** blade.
 
     ![Operation Details](./media/backup-azure-monitor-vms/edited-list-of-events.png)
 
 
-### 檢視其他事件屬性
-使用 [資料行] 按鈕，您可以讓其他事件屬性出現在 [事件] 刀鋒視窗上的清單中。事件的預設清單會顯示 [作業]、[層級]、[狀態]、[資源] 和 [時間] 資訊。若要啟用其他屬性︰
+### <a name="view-additional-event-attributes"></a>View additional event attributes
+Using the **Columns** button, you can enable additional event attributes to appear in the list on the **Events** blade. The default list of events displays information for Operation, Level, Status, Resource, and Time. To enable additional attributes:
 
-1. 在 [事件] 刀鋒視窗上，按一下 [資料行]。
+1. On the **Events** blade, click **Columns**.
 
-    ![開啟資料行](./media/backup-azure-monitor-vms/audi-logs-column-button.png)
+    ![Open Columns](./media/backup-azure-monitor-vms/audi-logs-column-button.png)
 
-    [選擇資料行] 刀鋒視窗隨即開啟。
+    The **Choose columns** blade opens.
 
-    ![資料行刀鋒視窗](./media/backup-azure-monitor-vms/columns-blade.png)
+    ![Columns blade](./media/backup-azure-monitor-vms/columns-blade.png)
 
-2. 若要選取屬性，請按一下核取方塊。屬性核取方塊可進行開啟和關閉切換。
+2. To select the attribute, click the checkbox. The attribute checkbox toggles on and off.
 
-3. 按一下 [重設] 以在 [事件] 刀鋒視窗中重設屬性清單。從清單中新增或移除屬性之後，使用 [重設] 來檢視新的事件屬性清單。
+3. Click **Reset** to reset the list of attributes in the **Events** blade. After adding or removing attributes from the list, use **Reset** to view the new list of Event attributes.
 
-4. 按一下 [更新] 以更新事件屬性的資料。下表提供每個屬性的相關資訊。
+4. Click **Update** to update the data in the Event attributes. The following table provides information about each attribute.
 
-| 資料行名稱 |說明|
+| Column name      |Description|
 | -----------------|-----------|
-| 作業|作業的名稱|
-| 等級|作業的層級，其值可以是︰資訊、警告、錯誤或嚴重|
-|狀態|作業的描述性狀態|
-|資源|可識別資源的 URI；也稱為資源識別碼|
-|時間|事件發生時的時間 (從目前時間開始測量)|
-|呼叫者|何者或何物呼叫或觸發事件；可以是系統或使用者|
-|Timestamp|觸發事件時的時間|
-|資源群組|相關聯的資源群組|
-|資源類型|Resource Manager 所使用的內部資源類型|
-|訂用帳戶識別碼|相關聯的訂用帳戶識別碼|
-|類別|事件的類別|
-|相互關連識別碼|相關事件的通用識別碼|
+| Operation|The name of the operation|
+| Level|The level of the operation, values can be: Informational, Warning, Error, or Critical|
+|Status|Descriptive state of the operation|
+|Resource|URL that identifies the resource; also known as the resource ID|
+|Time|Time, measured from the current time, when the event occurred|
+|Caller|Who or what called or triggered the event; can be the system, or a user|
+|Timestamp|The time when the event was triggered|
+|Resource Group|The associated resource group|
+|Resource Type|The internal resource type used by Resource Manager|
+|Subscription ID|The associated subscription ID|
+|Category|Category of the event|
+|Correlation ID|Common ID for related events|
 
 
 
-## 使用 PowerShell 自訂警示
-您可以在入口網站取得作業的自訂警示通知。若要取得這些作業，請在作業記錄事件中定義以 PowerShell 為基礎的警示規則。使用 PowerShell 1.3.0 版或更新版本。
+## <a name="use-powershell-to-customize-alerts"></a>Use PowerShell to customize alerts
+You can get custom alert notifications for the jobs in the portal. To get these jobs, define PowerShell-based alert rules on the operational logs events. Use *PowerShell version 1.3.0 or later*.
 
-若要定義自訂通知以警示備份失敗，請使用如同下列指令碼的命令：
+To define a custom notification to alert for backup failures, use a command like the following script:
 
 ```
 PS C:\> $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail contoso@microsoft.com
 PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -ResourceGroup RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US -OperationName Microsoft.Backup/RecoveryServicesVault/Backup -Status Failed -TargetResourceId /subscriptions/86eeac34-eth9a-4de3-84db-7a27d121967e/resourceGroups/RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US/providers/microsoft.backupbvtd2/RecoveryServicesVault/trinadhVault -Actions $actionEmail
 ```
 
-**ResourceId**︰您可以從稽核記錄檔中取得 ResourceId。ResourceId 是作業記錄檔的 [資源] 資料行中提供的 URL。
+**ResourceId** : You can get ResourceId from the Audit logs. The ResourceId is a URL provided in the Resource column of the Operation logs.
 
-**OperationName**：OperationName 的格式為 "Microsoft.RecoveryServices/recoveryServicesVault/*EventName*"，其中 *EventName* 可以是：<br/>
+**OperationName** : OperationName is in the format "Microsoft.RecoveryServices/recoveryServicesVault/*EventName*" where *EventName* can be:<br/>
 - Register <br/>
 - Unregister <br/>
 - ConfigureProtection <br/>
@@ -199,42 +200,46 @@ PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -Res
 - DeleteProtectionPolicy <br/>
 - UpdateProtectionPolicy <br/>
 
-**Status**：支援的值為 [已開始]、[成功] 或 [失敗]。
+**Status** : Supported values are Started, Succeeded, or Failed.
 
-**ResourceGroup**︰這是資源所屬的資源群組。您可以將 [資源群組] 資料行加入至產生的記錄檔。資源群組是其中一個可用的事件資訊類型。
+**ResourceGroup** : This is the Resource Group to which the resource belongs. You can add the Resource Group column to the generated logs. Resource Group is one of the available types of event information.
 
-**Name**：警示規則的名稱。
+**Name** : Name of the Alert Rule.
 
-**CustomEmail**：指定您要傳送警示通知的自訂電子郵件地址
+**CustomEmail** : Specify the custom email address to which you want to send an alert notification
 
-**SendToServiceOwners**：此選項會將警示通知傳送給訂用帳戶的所有系統管理員和共同管理員。它可以用於 **New-AzureRmAlertRuleEmail** Cmdlet 中
+**SendToServiceOwners** : This option sends alert notifications to all administrators and co-administrators of the subscription. It can be used in **New-AzureRmAlertRuleEmail** cmdlet
 
-### 警示的限制
-以事件為基礎的警示受到下列限制：
+### <a name="limitations-on-alerts"></a>Limitations on Alerts
+Event-based alerts are subject to the following limitations:
 
-1. 在復原服務保存庫中的所有虛擬機器上觸發警示。您無法針對復原服務保存庫中的部份虛擬機器自訂警示。
-2. 這項功能處於預覽狀態。[深入了解](../azure-portal/insights-powershell-samples.md#create-alert-rules)
-3. 警示會從 "alerts-noreply@mail.windowsazure.com" 寄出。目前您無法修改電子郵件寄件者。
+1. Alerts are triggered on all virtual machines in the Recovery Services vault. You cannot customize the alert for a subset of virtual machines in a Recovery Services vault.
+2. This feature is in Preview. [Learn more](../azure-portal/insights-powershell-samples.md#create-alert-rules)
+3. Alerts are sent from "alerts-noreply@mail.windowsazure.com". Currently you can't modify the email sender.
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-事件記錄檔會啟用備份作業的絕佳事後剖析和稽核支援。系統會記錄下列作業：
+Event logs enable great post-mortem and audit support for the backup operations. The following operations are logged:
 
-- 註冊
-- 取消註冊
-- 設定保護
-- 備份 (排程和隨選備份兩者)
-- 還原
-- 停止保護
-- 刪除備份資料
+- Register
+- Unregister
+- Configure protection
+- Backup (Both scheduled as well as on-demand backup)
+- Restore
+- Stop protection
+- Delete backup data
 - Add policy
-- 刪除原則
-- 更新原則
-- 取消工作
+- Delete policy
+- Update policy
+- Cancel job
 
-如需各項 Azure 服務的事件、作業和稽核記錄檔的廣泛說明，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)一文。
+For a broad explanation of events, operations, and audit logs across the Azure services, see the article, [View events and audit logs](../azure-portal/insights-debugging-with-events.md).
 
-如需從復原點重新建立虛擬機器的詳細資訊，請參閱[還原 Azure VM](backup-azure-restore-vms.md)。如需保護虛擬機器的詳細資訊，請參閱[搶先目睹︰將 VM 備份至復原服務保存庫](backup-azure-vms-first-look-arm.md)。深入了解[管理 Azure 虛擬機器備份](backup-azure-manage-vms.md)一文中 VM 備份的管理工作。
+For information on re-creating a virtual machine from a recovery point, check out [Restore Azure VMs](backup-azure-restore-vms.md). If you need information on protecting your virtual machines, see [First look: Back up VMs to a Recovery Services vault](backup-azure-vms-first-look-arm.md). Learn about the management tasks for VM backups in the article, [Manage Azure virtual machine backups](backup-azure-manage-vms.md).
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

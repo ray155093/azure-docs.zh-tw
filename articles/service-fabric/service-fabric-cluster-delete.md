@@ -1,6 +1,6 @@
 <properties
-   pageTitle="刪除 Azure 叢集和其資源 | Microsoft Azure"
-   description="了解如何透過刪除內含叢集的資源群組，或選擇性地刪除資源，完全刪除 Service Fabric 叢集。"
+   pageTitle="Delete an Azure cluster and its resources | Microsoft Azure"
+   description="Learn how to completely delete a Service Fabric cluster either deleting the resource group containing the cluster or by selectively deleting resources."
    services="service-fabric"
    documentationCenter=".net"
    authors="ChackDan"
@@ -16,21 +16,23 @@
    ms.date="09/09/2016"
    ms.author="chackdan"/>
 
-# 刪除 Azure 上的 Service Fabric 叢集和其使用的資源
 
-Service Fabric 叢集是由叢集資源本身和許多其他 Azure 資源所構成。因此，若要完全刪除 Service Fabric 叢集，您也必須刪除組成叢集的所有資源。做法有兩種︰刪除叢集所在的資源群組 (這會刪除叢集資源和資源群組中的任何其他資源)，或明確刪除叢集資源和其相關聯資源 (而不是資源群組中的其他資源)。
+# <a name="delete-a-service-fabric-cluster-on-azure-and-the-resources-it-uses"></a>Delete a Service Fabric cluster on Azure and the resources it uses
 
->[AZURE.NOTE] 刪除叢集資源並「不」會刪除組成 Service Fabric 叢集的所有其他資源。
+A Service Fabric cluster is made up of many other Azure resources in addition to the cluster resource itself. So to completely delete a Service Fabric cluster you also need to delete all the resources it is made of.
+You have two options: Either delete the resource group that the cluster is in (which deletes the cluster resource and any other resources in the resource group) or specifically delete the cluster resource and it's associated resources (but not other resources in the resource group).
 
-## 刪除 Service Fabric 叢集所在的整個資源群組 (RG)
+>[AZURE.NOTE] Deleting the cluster resource **does not** delete all the other resources that your Service Fabric cluster is composed of.
 
-若要確保刪除所有與叢集相關聯的所有資源 (包括資源群組)，這是最簡單的方法。您可以使用 PowerShell 或透過 Azure 入口網站來刪除資源群組。如果您的資源群組具有與 Service Fabric 叢集無關的資源，則可以刪除特定資源。
+## <a name="delete-the-entire-resource-group-(rg)-that-the-service-fabric-cluster-is-in"></a>Delete the entire resource group (RG) that the Service Fabric cluster is in
 
-### 使用 Azure PowerShell 刪除資源群組
+This is the easiest way to ensure that you delete all the resources associated with your cluster, including the resource group. You can delete the resource group using PowerShell or through the Azure portal. If your resource group has resources that are not related to Service fabric cluster, then you can delete specific resources.
 
-您也可以執行下列 Azure PowerShell Cmdlet 來刪除資源群組。請確定您的電腦已安裝 Azure PowerShell 1.0 或更新版本。如果您從未安裝過，請遵循[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中所述的步驟來進行。
+### <a name="delete-the-resource-group-using-azure-powershell"></a>Delete the resource group using Azure PowerShell
 
-開啟 PowerShell 視窗，並執行下列 PS Cmdlet：
+You can also delete the resource group by running the following Azure PowerShell cmdlets. Make sure Azure PowerShell 1.0 or greater is installed on your computer. If you have not done this before, follow the steps outlined in [How to install and Configure Azure PowerShell.](../powershell-install-configure.md)
+
+Open a PowerShell window and run the following PS cmdlets:
 
 ```powershell
 Login-AzureRmAccount
@@ -38,70 +40,70 @@ Login-AzureRmAccount
 Remove-AzureRmResourceGroup -Name <name of ResouceGroup> -Force
 ```
 
-如果您未使用 *-Force* 選項，則系統會提示您確認刪除。一旦確認，就會刪除 RG 和其所包含的所有資源。
+You will get a prompt to confirm the deletion if you did not use the *-Force* option. On confirmation the RG and all the resources it contains are deleted.
 
-### 在 Azure 入口網站中刪除資源群組  
+### <a name="delete-a-resource-group-in-the-azure-portal"></a>Delete a resource group in the Azure portal  
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 瀏覽至您想要刪除的 Service Fabric 叢集。
-3. 按一下叢集基本功能頁面上的 [資源群組] 名稱。
-4. 這會顯示 [資源群組基本功能] 頁面。
-5. 按一下 [刪除]。
-6. 遵循該頁面上的指示，以完成資源群組的刪除。
+1. Login to the [Azure portal](https://portal.azure.com).
+2. Navigate to the Service Fabric cluster you want to delete.
+3. Click on the Resource Group name on the cluster essentials page.
+4. This brings up the **Resource Group Essentials** page.
+5. Click **Delete**.
+6. Follow the instructions on that page to complete the deletion of the resource group.
 
-![資源群組刪除][ResourceGroupDelete]
+![Resource Group Delete][ResourceGroupDelete]
 
 
-## 刪除叢集資源和其所使用的資源，而不是資源群組中的其他資源
+## <a name="delete-the-cluster-resource-and-the-resources-it-uses,-but-not-other-resources-in-the-resource-group"></a>Delete the cluster resource and the resources it uses, but not other resources in the resource group
 
-如果您的資源群組只有您想要刪除之 Service Fabric 叢集相關的資源，則很容易就可以刪除整個資源群組。如果您想要選擇性地逐一刪除資源群組中的資源，請遵循這些步驟。
+If your resource group has only resources that are related to the Service Fabric cluster you want to delete, then it is easier to delete the entire resource group. If you want to selectively delete the resources one-by-one in your resource group, then follow these steps.
 
-如果您已使用入口網站或使用範本庫中的其中一個 Service Fabric Resource Manager 範本來部署叢集，則叢集所使用的所有資源都會標上下列兩個標記。您可以使用它們來決定您想要刪除的資源。
+If you deployed your cluster using the portal or using one of the Service Fabric Resource Manager templates from the template gallery, then all the resources that the cluster uses are tagged with the following two tags. You can use them to decide which resources you want to delete.
 
-***Tag#1：***索引鍵 = clusterName，值 = '叢集的名稱'
+***Tag#1:*** Key = clusterName, Value = 'name of the cluster'
 
-***Tag#2：***索引鍵 = resourceName，值 = ServiceFabric
+***Tag#2:*** Key = resourceName, Value = ServiceFabric
 
-### 在 Azure 入口網站中刪除特定資源
+### <a name="delete-specific-resources-in-the-azure-portal"></a>Delete specific resources in the Azure portal
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 瀏覽至您想要刪除的 Service Fabric 叢集。
-3. 在基本功能刀鋒視窗上，移至 [所有設定]。
-4. 在設定刀鋒視窗中，按一下 [資源管理] 下方的 [標記]。
-5. 按一下標記刀鋒視窗中的其中一個 [標記]，以取得具有該標記的所有資源清單。
+1. Login to the [Azure portal](https://portal.azure.com).
+2. Navigate to the Service Fabric cluster you want to delete.
+3. Go to **All settings** on the essentials blade.
+4. Click on **Tags** under **Resource Management** in the settings blade.
+5. Click on one of the **Tags** in the tags blade to get a list of all the resources with that tag.
 
-    ![資源標記][ResourceTags]
+    ![Resource Tags][ResourceTags]
 
-6. 具有已加上標記之資源的清單之後，請按一下每個資源，然後予以刪除。
+6. Once you have the list of tagged resources, click on each of the resources and delete them.
 
-    ![已加上標記的資源][TaggedResources]
+    ![Tagged Resources][TaggedResources]
 
-### 使用 Azure PowerShell 刪除資源
+### <a name="delete-the-resources-using-azure-powershell"></a>Delete the resources using Azure PowerShell
 
-您可以執行下列 Azure PowerShell Cmdlet 來逐一刪除資源。請確定您的電腦已安裝 Azure PowerShell 1.0 或更新版本。如果您從未安裝過，請遵循[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中所述的步驟來進行。
+You can delete the resources one-by-one by running the following Azure PowerShell cmdlets. Make sure Azure PowerShell 1.0 or greater is installed on your computer. If you have not done this before, follow the steps outlined in [How to install and Configure Azure PowerShell.](../powershell-install-configure.md)
 
-開啟 PowerShell 視窗，並執行下列 PS Cmdlet：
+Open a PowerShell window and run the following PS cmdlets:
 
 ```powershell
 Login-AzureRmAccount
 ```
-對於您想要刪除的每個資源，執行下列動作︰
+For each of the resources you want to delete, run the following:
 
 ```powershell
 Remove-AzureRmResource -ResourceName "<name of the Resource>" -ResourceType "<Resource Type>" -ResourceGroupName "<name of the resource group>" -Force
 ```
 
-若要刪除叢集資源，請執行下列動作︰
+To delete the cluster resource, run the following:
 
 ```powershell
 Remove-AzureRmResource -ResourceName "<name of the Resource>" -ResourceType "Microsoft.ServiceFabric/clusters" -ResourceGroupName "<name of the resource group>" -Force
 ```
 
-## 後續步驟
-也請參閱下列文章，了解如何升級叢集以及分割服務︰
+## <a name="next-steps"></a>Next steps
+Read the following to also learn about upgrading a cluster and partitioning services:
 
-- [了解叢集升級](service-fabric-cluster-upgrade.md)
-- [了解如何分割具狀態服務來達到最大規模](service-fabric-concepts-partitioning.md)
+- [Learn about cluster upgrades](service-fabric-cluster-upgrade.md)
+- [Learn about partitioning stateful services for maximum scale](service-fabric-concepts-partitioning.md)
 
 
 <!--Image references-->
@@ -111,4 +113,8 @@ Remove-AzureRmResource -ResourceName "<name of the Resource>" -ResourceType "Mic
 
 [TaggedResources]: ./media/service-fabric-cluster-delete/TaggedResources.PNG
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,25 +1,29 @@
-1. 找出您的虛擬網路閘道，然後按一下 [所有設定] 以開啟 [設定] 刀鋒視窗。
+1. Locate your virtual network gateway and click **All settings** to open the **Settings** blade.
 
-2. 在 [設定] 刀鋒視窗上，按一下 [連線]，然後按一下刀鋒視窗頂端的 [新增] 以開啟 [新增連線] 刀鋒視窗。
+2. On the **Settings** blade, click **Connections**, and then click **Add** at the top of the blade to open the **Add connection** blade.
 
-	![建立站對站連線](./media/vpn-gateway-add-site-to-site-connection-rm-portal-include/addconnection250.png)
+    ![Create Site-to-Site connection](./media/vpn-gateway-add-site-to-site-connection-rm-portal-include/addconnection250.png)
 
-3. 在 [新增連線] 刀鋒視窗中，輸入您的連線 [名稱]。
+3. On the **Add connection** blade, **Name** your connection. 
 
-4. 對於 [連線類型]，選取 [站對站 (IPSec)]。
+4. For **Connection type**, select **Site-to-site(IPSec)**.
 
-5. 對於 [虛擬網路閘道]，因為您正從此閘道連線，所以值是固定的。
+5. For **Virtual network gateway**, the value is fixed because you are connecting from this gateway.
 
-6. 對於 [區域網路閘道]，按一下 [選擇區域網路閘道] 並選取要使用的區域網路閘道。
+6. For **Local network gateway**, click **Choose a local network gateway** and select the local network gateway that you want to use. 
 
-7. 對於 [共用金鑰]，這裡的值必須與您用於本機 VPN 裝置的值相符。如果您區域網路上的 VPN 裝置未提供共用金鑰，您可以製作並在這裡和本機裝置上輸入。重點是它們必須相符。
+7. For **Shared Key**, the value here must match the value that you are using for your local VPN device. If your VPN device on your local network doesn't provide a shared key, you can make one up and input it here and on your local device. The important thing is that they both match.
 
-8. [訂用帳戶]、[資源群組] 和 [位置] 其餘的值是固定的。
+8. The remaining values for **Subscription**, **Resource Group**, and **Location** are fixed.
 
-9. 按一下 [確定] 來建立連線。您會看到畫面上閃爍「正在建立連線」。
+9. Click **OK** to create your connection. You'll see *Creating Connection* flash on the screen.
 
-10. 連線完成時，您將會看到它出現在您閘道中的 [連線] 刀鋒視窗中。
+10. When the connection is complete, you'll see it appear in the **Connections** blade for your Gateway.
 
-	![建立站對站連線](./media/vpn-gateway-add-site-to-site-connection-rm-portal-include/connectionstatus450.png)
+    ![Create Site-to-Site connection](./media/vpn-gateway-add-site-to-site-connection-rm-portal-include/connectionstatus450.png)
 
-<!---HONumber=AcomDC_0406_2016---->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

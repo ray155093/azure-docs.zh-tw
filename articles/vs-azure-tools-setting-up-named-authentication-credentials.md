@@ -1,6 +1,6 @@
 <properties
-   pageTitle="設定具名的驗證認證 | Microsoft Azure"
-   description="了解如何提供 Visual Studio 可用來向 Azure 驗證要求的認證，以便將應用程式從 Visual Studio 發佈至 Azure，或用來監視現有的雲端服務。"
+   pageTitle="Setting Up Named Authentication Credentials | Microsoft Azure"
+   description="Learn how to to provide credentials that Visual Studio can use to authenticate requests to Azure to publish an application to Azure from Visual Studio or to monitor an existing cloud service.. "
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,60 +15,65 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 設定具名的驗證認證
 
-若要將應用程式從 Visual Studio 發佈至 Azure，或若要監視現有的雲端服務，您必須提供 Visual Studio 可用來向 Azure 驗證要求的認證。您可以從 Visual Studio 中的幾個位置登入並提供這些認證。例如，從 [伺服器總管] 中，您可以開啟 [Azure] 節點的捷徑功能表，並選擇 [連接到 Azure]。登入時，您可以在 Visual Studio 中取得與 Azure 帳戶相關聯的訂用帳戶資訊，而且接下來您無需執行任何動作。
+# <a name="setting-up-named-authentication-credentials"></a>Setting Up Named Authentication Credentials
 
-Azure Tools 也支援像以前一樣使用訂用帳戶檔案 (.publishsettings 檔案) 提供認證。本主題將說明此方法，Azure SDK 2.2 中仍支援此方法。
+To publish an application to Azure from Visual Studio or to monitor an existing cloud service, you must provide credentials that Visual Studio can use to authenticate requests to Azure. There are several places in Visual Studio where you can sign in to provide these credentials. For example, from the Server Explorer, you can open the shortcut menu for the **Azure** node and choose **Connect to Azure**. When you sign in, the subscription information associated with your Azure account is available in Visual Studio, and there is nothing more you need to do.
 
-向 Azure 驗證需要下列項目：
+Azure Tools also supports an older way of providing credentials, using the subscription file (.publishsettings file). This topic describes this method, which is still supported in Azure SDK 2.2.
 
-- 訂用帳戶識別碼
+The following items are required for authentication to Azure.
 
-- 有效的 X.509 v3 憑證
+- Your subscription ID
 
->[AZURE.NOTE] X.509 v3 憑證的金鑰長度必須至少為 2048 位元。Azure 將會拒絕任何不符合此需求或無效的憑證。
+- A valid X.509 v3 certificate
 
-Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證。包含憑證公開金鑰的訂用帳戶檔案 (.publishsettings 檔案) 會參考適當的認證。訂用帳戶檔案可以包含多個訂用帳戶的認證。
+>[AZURE.NOTE] The length of the X.509 v3 certificate's key must be at least 2048 bits. Azure will reject any certificate that doesn’t meet this requirement or that isn’t valid.
 
-您可以在 [新增/編輯訂用帳戶] 對話方塊中編輯訂用帳戶資訊，本主題稍後會有說明。
+Visual Studio uses your subscription ID together with the certificate data as credentials. The appropriate credentials are referenced in the subscription file (.publishsettings file), which contains a public key for the certificate. The subscription file can contain credentials for more than one subscription.
 
-如果您想要自行建立憑證，您可以參考[建立及上傳 Azure 的管理憑證](https://msdn.microsoft.com/library/windowsazure/gg551722.aspx)中的指示，然後手動將憑證上傳至 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
+You can edit the subscription information from the **New/Edit Subscription** dialog box, as explained later in this topic.
 
->[AZURE.NOTE] Visual Studio 為管理雲端服務所需的這些認證，與針對 Azure 儲存體服務驗證要求所需的認證是不同的。
+If you want to create a certificate yourself, you can refer to the instructions in [Create and Upload a Management Certificate for Azure](https://msdn.microsoft.com/library/windowsazure/gg551722.aspx) and then manually upload the certificate to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-## 在 Visual Studio 中修改或匯出驗證認證
+>[AZURE.NOTE] These credentials that Visual Studio requires to manage your cloud services aren’t the same credentials that are required to authenticate a request against the Azure storage services.
 
-您也可以在 [新增訂用帳戶] 對話方塊中設定、修改或匯出您的驗證認證，此對話方塊會在您執行下列動作時出現：
+## <a name="modify-or-export-authentication-credentials-in-visual-studio"></a>Modify or Export Authentication Credentials in Visual Studio
 
-- 在 [伺服器總管] 中，開啟 **Azure** 節點的捷徑功能表，選擇 [管理訂用帳戶]，再選擇 [憑證] 索引標籤，然後選擇 [新增] 或 [編輯] 按鈕。
+You can also set up, modify, or export your authentication credentials in the **New Subscription** dialog box, which appears if you perform either of the following actions:
 
-- 當您從 [發佈 Azure 應用程式精靈] 發佈 Azure 雲端服務時，選擇 [選擇訂用帳戶] 清單中的 [管理]，再選擇 [憑證] 索引標籤，然後選擇 [新增] 或 [編輯] 按鈕。
+- In **Server Explorer**, open the shortcut menu for the **Azure** node, choose **Manage Subscriptions**, choose the **Certificates** tab, and choose the **New** or **Edit** button.
 
-下列程序假設 [新增訂用帳戶] 對話方塊已開啟。
+- When you publish an Azure cloud service from the **Publish Azure Application** wizard, choose **Manage** in the **Choose your Subscription** list, then choose the Certificates tab, and then choose the **New** or **Edit** button.
 
-### 在 Visual Studio 中設定驗證認證
+The following procedure assumes that the **New Subscription** dialog box is open.
 
-1. 在驗證清單的 [選取現有憑證] 中選擇憑證。
+### <a name="to-set-up-authentication-credentials-in-visual-studio"></a>To set up authentication credentials in Visual Studio
 
-1. 選擇 [複製完整路徑] 按鈕。憑證 (.cer 檔案) 的路徑便會複製到剪貼簿。
+1. In the **Select an existing certificate** for authentication list, choose a certificate.
 
-    >[AZURE.IMPORTANT] 若要從 Visual Studio 發佈 Azure 應用程式，您必須將此憑證上傳至 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
+1. Choose the **Copy the full path** button.The path for the certificate (.cer file) is copied to the Clipboard.
 
-1. 將憑證上傳到 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)：
+    >[AZURE.IMPORTANT] To publish your Azure application from Visual Studio, you must upload this certificate to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-    1. 選擇 Azure 入口網站連結。
+1. To upload the certificate to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885):
 
-         [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885) 隨即開啟。
+    1. Choose the Azure Portal link.
 
-    1. 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，然後選擇 [雲端服務] 按鈕。
+         The [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885) opens.
 
-    1. 選擇您感興趣的雲端服務。
+    1. Sign in to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885), and then choose the **Cloud Services** button.
 
-        該服務的頁面便會隨即開啟。
+    1. Choose the cloud service that interests you.
 
-    1. 在 [憑證] 索引標籤上，選擇 [上傳] 按鈕。
+        The page for the service opens.
 
-    1. 貼上您剛才建立的 .cer 檔案的完整路徑，然後輸入您指定的密碼。
+    1. On the **Certificates** tab, choose the **Upload** button.
 
-<!---HONumber=AcomDC_0817_2016-->
+    1. Paste the full path of the .cer file that you just created, and then enter the password that you specified.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

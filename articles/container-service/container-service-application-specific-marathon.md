@@ -1,13 +1,13 @@
 <properties
-   pageTitle="應用程式或使用者特定的 Marathon 服務 | Microsoft Azure"
-   description="建立應用程式或使用者特定的 Marathon 服務"
+   pageTitle="Application or user-specific Marathon service | Microsoft Azure"
+   description="Create an application or user-specific Marathon service"
    services="container-service"
    documentationCenter=""
    authors="rgardler"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="容器, Marathon, 微服務, DC/OS, Azure"/>
+   keywords="Containers, Marathon, Micro-services, DC/OS, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -18,44 +18,49 @@
    ms.date="04/12/2016"
    ms.author="rogardle"/>
 
-# 建立應用程式或使用者特定的 Marathon 服務
 
-Azure Container Service 提供了一組主要伺服器，供我們在上面預先設定 Apache Mesos 和 Marathon。這些伺服器可用來協調叢集上的應用程式，但最好不要將主要伺服器用在此目的。例如，若要調整 Marathon 組態，就必須登入主要伺服器本身並進行變更 -- 這會導致產生與標準組態只有些許不同的獨特主要伺服器，因而需要獨立處理和管理。此外，某個團隊所需的組態可能不是另一個團隊最適合的組態。
+# <a name="create-an-application-or-user-specific-marathon-service"></a>Create an application or user-specific Marathon service
 
-在本文中，我們將說明如何新增應用程式或使用者特定的 Marathon 服務。
+Azure Container Service provides a set of master servers on which we preconfigure Apache Mesos and Marathon. These can be used to orchestrate your applications on the cluster, but it's best not to use the master servers for this purpose. For example, tweaking the configuration of Marathon requires logging into the master servers themselves and making changes--this encourages unique master servers that are a little different from the standard and need to be cared for and managed independently. Additionally, the configuration required by one team might not be the optimal configuration for another team.
 
-由於此服務將隸屬於單一使用者或團隊，因此可以用任何想要的方式加以設定。此外，Azure 容器服務會確保服務繼續執行。如果服務失敗，Azure 容器服務會為您重新啟動該服務。多數時候，您甚至不會發覺它有停機過。
+In this article, we'll explain how to add an application or user-specific Marathon service.
 
-## 必要條件
+Because this service will belong to a single user or team, they are free to configure it in any way that they desire. Also, Azure Container Service will ensure that the service continues to run. If the service fails, Azure Container Service will restart it for you. Most of the time you won't even notice it had downtime.
 
-[部署 Azure 容器服務的執行個體](container-service-deployment.md) (其 Orchestrator 類型為 DCOS)，並[確保您的用戶端可以連線至您的叢集](container-service-connect.md)。此外，請執行下列步驟。
+## <a name="prerequisites"></a>Prerequisites
 
-[AZURE.INCLUDE [安裝 DC/OS CLI](../../includes/container-service-install-dcos-cli-include.md)]
+[Deploy an instance of Azure Container Service](container-service-deployment.md) with orchestrator type DC/OS and  [ensure that your client can connect to your cluster](container-service-connect.md). Also, do the following steps.
 
-## 建立應用程式或使用者特定的 Marathon 服務
+[AZURE.INCLUDE [install the DC/OS CLI](../../includes/container-service-install-dcos-cli-include.md)]
 
-一開始先建立 JSON 組態檔，以定義您想要建立的應用程式服務的名稱。在此，我們使用 `marathon-alice` 做為架構名稱。將檔案儲存為類似 `marathon-alice.json` 的名稱：
+## <a name="create-an-application-or-user-specific-marathon-service"></a>Create an application or user-specific Marathon service
+
+Begin by creating a JSON configuration file that defines the name of the application service that you want to create. Here we use `marathon-alice` as the framework name. Save the file as something like `marathon-alice.json`:
 
 ```json
 {"marathon": {"framework-name": "marathon-alice" }}
 ```
 
-接下來，使用 DC/OS CLI，以組態檔中設定的選項安裝 Marathon 執行個體︰
+Next, use the DC/OS CLI to install the Marathon instance with the options that are set in your configuration file:
 
 ```bash
 dcos package install --options=marathon-alice.json marathon
 ```
 
-現在，您應該會在 DC/OS UI 的 [服務] 索引標籤中看到 `marathon-alice` 服務正在執行。如果您想要直接存取，此 UI 會是 `http://<hostname>/service/marathon-alice/`。
+You should now see your `marathon-alice` service running in the Services tab of your DC/OS UI. The UI will be `http://<hostname>/service/marathon-alice/` if you want to access it directly.
 
-## 設定 DC/OS CLI 來存取服務
+## <a name="set-the-dc/os-cli-to-access-the-service"></a>Set the DC/OS CLI to access the service
 
-您可以藉由將 `marathon.url` 屬性設定為指向 `marathon-alice` 執行個體 (如下所示)，選擇性地設定 DC/OS CLI 來存取這個新服務︰
+You can optionally configure your DC/OS CLI to access this new service by setting the `marathon.url` property to point to the `marathon-alice` instance as follows:
 
 ```bash
 dcos config set marathon.url http://<hostname>/service/marathon-alice/
 ```
 
-您可以使用 `dcos config show` 命令確認 CLI 正在針對哪一個 Marathon 執行個體運作。您可以使用 `dcos config unset marathon.url` 命令還原為使用主要的 Marathon 服務。
+You can verify which instance of Marathon that your CLI is working against with the `dcos config show` command. You can revert to using your master Marathon service with the command `dcos config unset marathon.url`.
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,16 +1,19 @@
-資源|預設限制|上限
+Resource|Default Limit|Maximum Limit
 ---|---|---
-每個訂用帳戶受信任的 IP 位址/範圍</a>數目上限<sup>1</sup>|0|12
-記住我的裝置 - 天數|14|60
-應用程式密碼的最大數目？|0|沒有限制
-MFA 呼叫期間允許 **X** 次嘗試|1|99
-雙向簡訊逾時秒數|60|600
-預設一次性略過秒數|300|1800
-**X** 次連續 MFA 被拒後鎖定使用者帳戶|未設定|99
-**X** 分鐘後重設帳戶鎖定計數器|未設定|9999
-**X** 分鐘後解除鎖定帳戶|未設定|9999
+Max number of Trusted IP addresses/ranges</a> per subscription<sup>1</sup>|0|12
+Remember my devices - number of days|14|60
+Max number of app passwords?|0|No Limit
+Allow **X** attempts during MFA call|1|99
+Two-way Text message Timeout Seconds|60|600
+Default one-time bypass seconds|300|1800
+Lock user account after **X** consecutive MFA denials|Not Set|99
+Reset account lockout counter after **X** minutes|Not Set|9999
+Unlock account after **X** minutes|Not Set|9999
 
 
-<sup>1</sup>預期未來會增加。
+<sup>1</sup>This is expected to increase in the future.
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Oct16_HO2-->
+
+

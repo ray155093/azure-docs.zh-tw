@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure Mobile Engagement 使用者介面 - 觸達準則" 
-   description="了解如何透過 Azure Mobile Engagement 使用目標準則傳送推播活動到選取的使用者子集。" 
+   pageTitle="Azure Mobile Engagement User Interface - Reach Criterion" 
+   description="Learn how to use targeting criteria to send push campaigns to a select subset of your users using Azure Mobile Engagement" 
    services="mobile-engagement" 
    documentationCenter="" 
    authors="piyushjo" 
@@ -17,70 +17,71 @@
    ms.author="piyushjo"/>
 
 
-# 如何使用目標準則傳送推播活動到選取的使用者子集。
 
-在 Azure Mobile Engagement 中使用 [新增準則] 按鈕透過特定準則來找出目標對象，是一個非常有力的概念，這樣可協助您傳送相關的推播通知給會回應的客戶，而不是濫發垃圾訊息給每個人。您可以根據標準的準則限制對象，並且模擬推送來判斷有多少人會收到通知。
+# <a name="how-to-use-targeting-criteria-to-send-push-campaigns-to-a-select-subset-of-your-users"></a>How to use targeting criteria to send push campaigns to a select subset of your users
 
-**另請參閱：**
+Targeting your audience by specific criteria with the "New Criteria" button is one of the most powerful concepts in Azure Mobile Engagement that helps you send relevant push notifications that the customers will respond to instead of Spamming everyone. You can limit your audience based on standard criteria and simulate pushes to determine how many people will receive the notification.
 
-- [UI 文件 - 觸達 - 新的推播活動][Link 27]
+**See also:**
 
-## 對象準則可以包括：
-- **技術：**您可以根據 [分析] 和 [監視] 區段中也可看見的相同技術資訊來選取目標。**另請參閱：** [UI 文件 - 分析][Link 15]、[UI 文件 - 監視器][Link 16]
-- **位置：**使用「即時位置報告」與地理柵欄的應用程式，可以使用地理位置當作準則來從 GPS 位置選取對象。「延遲區域位置報告」呼叫也用來根據手機位置選擇目標對象 (「即時位置報告」和「延遲區域位置報告」必須從 SDK 啟動)。**另請參閱：** [SDK 文件 - iOS - 整合][Link 5]、[SDK 文件 - Android - 整合][Link 5]
-- **觸達意見反應：** 您可以根據他們上一個透過觸達意見反應的通知、投票和資料推送的觸達意見反應來選擇目標對象。這讓您能在經過二或三次的觸達活動之後，更精確地選擇目標對象。藉由設定「不」傳送活動給之前已收到特定活動的使用者，它也可以篩選出已經接收類似內容通知的使用者。您甚至可以排除包含特定有效活動的使用者收到新的推播。**另請參閱：** [UI 文件 - 觸達 - 推播內容][Link 29]
-- **安裝追蹤：**您可以追蹤根據使用者安裝您應用程式之位置所建立的資訊。**另請參閱：** [UI 文件 - 設定][Link 20]
-- **使用者個人檔案：**您可以根據標準使用者，以及您建立的自訂應用程式資訊來選擇目標。 這包含目前登入的使用者，以及已回答您要求他們在應用程式中設定之特定問題的使用者，而不只是根據他們如何回應之前的活動。所有為您應用程式定義的應用程式資訊都顯示在這個清單。
-- 區隔：您也可以根據依特定使用者行為 (包含多個準則) 建立的區隔來選擇目標。所有為您應用程式定義的區隔都顯示在這個清單。**另請參閱：**[UI 文件 -區隔][Link 18]
-- **應用程式資訊**：您可以從 [設定] 建立自訂應用程式資訊標記，來追蹤使用者行為。**另請參閱：** [UI 文件 - 設定][Link 20]
+- [UI Documentation - Reach - New Push Campaign][Link 27]
 
-## 範例： 
-如果您只想要推送通知給已執行應用程式內購買動作的部份使用者使用者。
+## <a name="audience-criteria-can-include:"></a>Audience criteria can include:
+- **Technicals: ** You can target based on the same technical information you can see in the Analytics and Monitor sections. **See also:** [UI Documentation - Analytics][Link 15],  [UI Documentation - Monitor][Link 16]
+- **Location:** Applications that use "Real time location reporting" with Geo-Fencing can use Geo-Location as a criteria to target an audience from the GPS location. "Lazy Area Location Reporting" call also be used to target an audience from the cell phone location ("Real time location reporting" and "Lazy Area Location Reporting" must be activated from the SDK). **See also:** [SDK Documentation - iOS -  Integration][Link 5], [SDK Documentation - Android -  Integration][Link 5]
+- **Reach Feedback:** You can target your audience based on their feedback from previous reach notifications through reach feedback from Announcements, Polls, and Data Pushes. This enables you to better target your audience after two or three reach campaigns than you could the first time. It can also be used to filter out users who already received a notification with similar content, by setting a campaign to NOT be sent to users who already received a specific previous campaign. You can even exclude users who are included a specific campaign that is still active from receiving new Pushes. **See also:** [UI Documentation -  Reach - Push Content][Link 29]
+- **Install Tracking:** You can track information based on where your users installed your App. **See also:** [UI Documentation -  Settings][Link 20]
+- **User Profile:** You can target based on standard user information and you can target based on the custom app info that you have created. This includes users who are currently logged in and users that have answered specific questions you have asked them to set in the app itself instead of just how they have responded to previous campaigns. All of your App Info's defined for your app show up on this list.
+- Segments: You can also target based on segments that you have created based on specific user behavior containing multiple criteria. All of your segments defined for your app show up on this list. **See also:** [UI Documentation -  Segments][Link 18]
+- **App Info:** Custom App Info Tags can be created from “Settings” to track user behavior. **See also:** [UI Documentation -  Settings][Link 20]
 
-1. 移至您的應用程式設定頁面，選取 [應用程式資訊] 功能表，然後選取 [新增應用程式資訊]
-2. 註冊一個稱為 "inAppPurchase" 的新布林值應用程式資訊
-3. 讓您的應用程式將此應用程式資訊在使用者成功執行應用程式內購買 (使用 sendAppInfo("inAppPurchase", ...) 函式) 時設定為 "true"
-4. 如果您不想從您的應用程式執行這項操作，可以從您的後端使用裝置 API 執行
-5. 然後，您只需要建立通知，其準則是將對象限制在 "inAppPurchase" 設為 "true" 的使用者。
+## <a name="example:"></a>Example: 
+If you want to push an announcement only to the sub-set of your users that have performed an in-app purchase action.
+
+1. Go to your application settings page, select the "App info" menu and select "New app info"
+2. Register a new Boolean app info called "inAppPurchase"
+3. Make your application set this app info to "true" when the user successfully performs an in-app purchase (by using the sendAppInfo("inAppPurchase", ...) function)
+4. If you don't want to do this from your application, you can do it from your backend by using the device API)
+5. Then, you just need to create your announcement, with a criterion limiting your audience to users having "inAppPurchase" set to "true")
  
-> 注意：如果目標選取是根據準則而不是應用程式資訊標記，Azure Mobile Engagement 必須先從使用者的裝置收集資訊，才能傳送推播，如此一來可能會導致延遲。複雜的推送設定選項 (例如更新徽章) 可能也會延遲推送。在 Azure Mobile Engagement 中，從推播 API 使用「一次性」的活動，絕對是最快速的推送方法。對於觸達活動只使用應用程式資訊標記做為推送準則 (從觸達 API 或 UI) 是第二種最快的方法，因為應用程式資訊標記儲存在伺服器端。使用其他目標選取準則來推播活動是最具彈性、但也是最慢的推送方法，因為 Azure Mobile Engagement 必須先查詢裝置才能傳送活動。
+> Note: Targeting based on criteria other than app info tags requires Azure Mobile Engagement to gather information from your users' devices before the push is sent and so can cause a delay. Complex push configuration options (like updating badges) can also delay pushes. Using a "one shot" campaign from the Push API is the absolute fastest push method in Azure Mobile Engagement. Using only app info tags as push criteria for a Reach campaign (either from the Reach API or the UI) is the next fastest method since app info tags are stored on the server side. Using other targeting criteria for a push campaign is the most flexible but slowest push method since Azure Mobile Engagement has to query the devices in order to send the campaign.
  
-![Reach-Criterion1][29]
+![Reach-Criterion1][29] 
 
-## 準則選項適用範圍：
-- **技術**
-- 韌體名稱：韌體名稱
-- 韌體版本：韌體版本
-- 裝置型號：裝置型號
-- 裝置製造商：裝置製造商
-- 應用程式版本：應用程式版本
-- 電信業者名稱：電信業者名稱、未定義
-- 電信業者國家/地區：電信業者國家/地區、未定義
-- 網路類型：網路類型
-- 地區設定：地區設定
-- 螢幕大小：螢幕大小
-- **位置**
-- 上一個已知區域：國家/地區、區域、位置
-- 即時地理柵欄：POI 清單 (名稱、動作)、圓形 POI (名稱、緯度、經度、以公尺為單位的半徑)
-- **觸達意見反應**
-- 通知意見反應：通知、意見反應
-- 投票意見反應：投票、意見反應
-- 投票答案意見反應：投票答案意見反應、問題、選項
-- 資料推送意見反應：資料推送、意見反應
-- **安裝追蹤**
-- 市集：市集、未定義
-- 來源：來源
-- **使用者個人檔案**
-- 性別：男性或女性、未定義
-- 生日：運算子、日期、未定義
-- 選擇加入：true 或 false、未定義
-- **應用程式資訊**
-- 字串：字串、未定義
-- 日期：運算子、日期、未定義
-- 整數：運算子、數字、未定義
-- 布林值：true 或 false、未定義
-- **區隔**
-- 區隔的名稱 (從下拉式清單)、排除 (不屬於此區隔的目標使用者)。
+## <a name="criterion-options-apply-to:"></a>Criterion Options Apply to:
+- **Technicals**     
+- Firmware name:    Firmware name
+- Firmware version:    Firmware version
+- Device model:    Device model
+- Device manufacturer:    Device manufacturer
+- Application version:    Application version
+- Carrier name:    Carrier name, undefined
+- Carrier country:    Carrier country, undefined
+- Network type:    Network type
+- Locale:    Locale
+- Screen size:    Screen size
+- **Location**      
+- Last known area:    Country, Region, Locality
+- Real time geo-fencing:    List of POIs (Name, Actions), Circular POI (Name, Latitude, Longitude, Radius in meters)
+- **Reach feedback**     
+- Announcement feedback:    Announcement, feedback
+- Poll feedback:    Poll, feedback
+- Poll answer feedback:    Poll answer feedback, question, choice
+- Data Push feedback:    Data Push, feedback
+- **Install Tracking**     
+- Store:    Store, Undefined
+- Source:    Source, Undefined
+- **User profile**     
+- Gender:    male or female, undefined
+- Birth date:    operator, date, undefined
+- Opt-in:    true or false, undefined
+- **App Info**      
+- String:    String, undefined
+- Date:    operator, date, undefined
+- Integer:    operator, number, undefined
+- Boolean:    true or false, undefined
+- **Segment**    
+- Name of Segments (from dropdown list), Exclusion (target users that are not a part of this segment).
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-user-interface-navigation/navigation1.png
@@ -174,4 +175,8 @@
 [Link 29]: mobile-engagement-user-interface-reach-content.md
  
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,264 +1,293 @@
 <properties
-	pageTitle="Azure AD Connect 同步處理：設定篩選 | Microsoft Azure"
-	description="說明如何在 Azure AD Connect 同步處理中設定篩選。"
-	services="active-directory"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor=""/>
+    pageTitle="Azure AD Connect sync: Configure filtering | Microsoft Azure"
+    description="Explains how to configure filtering in Azure AD Connect sync."
+    services="active-directory"
+    documentationCenter=""
+    authors="andkjell"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/13/2016"
-	ms.author="andkjell;markvi"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/13/2016"
+    ms.author="andkjell;markvi"/>
 
 
-# Azure AD Connect 同步處理：設定篩選
-篩選功能可讓您控制內部部署目錄中的哪些物件應該出現在 Azure AD 中。預設組態會擷取所設定樹系中所有網域內的所有物件。一般會建議使用者使用這個組態。完整的全域通訊清單對於使用 Exchange Online 和商務用 Skype 等 Office 365 工作負載的使用者來說十分方便，因為如此一來，他們就可以傳送電子郵件和呼叫每個人。使用預設組態時，每個人所獲得的體驗會和在 Exchange 或 Lync 的內部部署實作中相同。
 
-使用者有時必須對預設組態進行一些變更。這裡有一些範例：
+# <a name="azure-ad-connect-sync:-configure-filtering"></a>Azure AD Connect sync: Configure Filtering
+With filtering, you can control which objects should appear in Azure AD from your on-premises directory. The default configuration takes all objects in all domains in the configured forests. In general, this is the recommended configuration. End users using Office 365 workloads, such as Exchange Online and Skype for Business, benefit from a complete Global Address List so they can send email and call everyone. With the default configuration, they would get the same experience they would with an on-premises implementation of Exchange or Lync.
 
-- 您打算使用[多重 Azure AD 目錄拓撲](active-directory-aadconnect-topologies.md#each-object-only-once-in-an-azure-ad-directory)。然後，您需要套用篩選器，以控制應該將哪些物件同步至特定 Azure AD 目錄。
-- 您要執行 Azure 或 Office 365 試驗，因此只想要使用 Azure AD 中的部分使用者。在進行小規模試驗時，並不需要用到完整的全域通訊清單來展示功能。
-- Azure AD 中有很多您不需要的服務帳戶和其他非個人帳戶。
-- 為了符合法規，您不能刪除任何內部部署的使用者帳戶。你只能停用它們。但您只想要顯示 Azure AD 內的使用中帳戶。
+In some cases, it is required to make some changes to the default configuration. Here are some examples:
 
-本文介紹如何設定不同的篩選方法。
+- You plan to use the [multi-Azure AD-directory topology](active-directory-aadconnect-topologies.md#each-object-only-once-in-an-azure-ad-directory). Then you need to apply a filter to control which object should be synchronized to a particular Azure AD directory.
+- You run a pilot for Azure or Office 365 and you only want a subset of users in Azure AD. In the small pilot, it is not important to have a complete Global Address List to demonstrate the functionality.
+- You have many service accounts and other non-personal accounts you do not want in Azure AD.
+- For compliance reasons you do not delete any user accounts on-premises. You only disable them. But in Azure AD you only want active accounts to be present.
 
-> [AZURE.IMPORTANT]Microsoft 不支援在正式記載的動作以外修改和操作 Azure AD Connect 同步處理。所有的這些動作都可能造成 Azure AD Connect 同步處理變成不一致或不支援的狀態，因此，Microsoft 無法針對這類部署提供技術支援。
+This article covers how to configure the different filtering methods.
 
-## 基本概念和重要事項
-在 Azure AD Connect 同步處理中，您隨時都能啟用篩選功能。如果您一開始是使用目錄同步作業的預設組態，接著設定了篩選，則篩選出的物件就不會再同步處理至 Azure AD。因為這項變更，系統會在 Azure AD 中，刪除 Azure AD 中先前已同步處理但接著篩選出的所有物件。
+> [AZURE.IMPORTANT]Microsoft does not support modification or operation of the Azure AD Connect sync outside of those actions formally documented. Any of these actions may result in an inconsistent or unsupported state of Azure AD Connect sync and as a result, Microsoft cannot provide technical support for such deployments.
 
-在開始變更篩選之前，請確定您已[停用排程的工作](#disable-scheduled-task)，如此才不會意外匯出尚未確認是否正確的變更。
+## <a name="basics-and-important-notes"></a>Basics and important notes
+In Azure AD Connect sync, you can enable filtering at any time. If you start with a default configuration of directory synchronization and then configure filtering, the objects that are filtered out are no longer synchronized to Azure AD. As a result of this change, any objects in Azure AD that were previously synchronized but were then filtered are deleted in Azure AD.
 
-由於篩選後會同時移除許多的物件，您必須先確定新的篩選器正確無誤，然後再開始將變更匯出至 Azure AD。在完成組態設定步驟後，建議您一定要先按照[驗證步驟](#apply-and-verify-changes)中的指示執行過一次，然後才對 Azure AD 進行匯出和變更作業。
+Before you start making changes to filtering, make sure you [disable the scheduled task](#disable-scheduled-task) so you do not accidentally export changes that you have not yet verified to be correct.
 
-為了避免您意外刪除許多物件，預設會開啟[防止意外刪除](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)功能。如果因為進行篩選而刪除了許多物件 (預設是 500 個)，您需要遵循本文中的步驟，允許將刪除結果傳播至 Azure AD。
+Since filtering can remove many objects at the same time, you want to make sure your new filters are correct before you start exporting any changes to Azure AD. After you have completed the configuration steps, it is strongly recommended that you follow the [verification steps](#apply-and-verify-changes) before you export and make changes to Azure AD.
 
-如果您使用 2015 年 11 月 ([1\.0.9125](active-directory-aadconnect-version-history.md#1091250)) 之前的組建、變更篩選組態並使用密碼同步處理，則在完成組態設定之後，您必須觸發所有密碼的完整同步處理。如需如何觸發密碼的完整同步處理的步驟，請參閱[觸發所有密碼的完整同步處理](active-directory-aadconnectsync-implement-password-synchronization.md#trigger-a-full-sync-of-all-passwords)。如果您使用 1.0.9125 或更新版本，則一般的**完整同步處理**動作也會計算是否應同步處理密碼，而且不再需要進行這個額外步驟。
+To protect you from deleting many objects by accident, the feature [prevent accidental deletes](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) is on by default. If you delete many objects due to filtering (500 by default), you need to follow the steps in this article to allow the deletes to go through to Azure AD.
 
-如果在 Azure AD 中，**使用者**物件因為篩選錯誤而遭到意外刪除，您可以在 Azure AD 中重新建立使用者物件，方法是移除您的篩選組態，然後再次同步處理您的目錄。這個動作會還原 Azure AD 資源回收筒中的使用者。不過，您無法取消刪除其他物件類型。例如，如果您意外刪除安全性群組，而該群組是用來對資源進行 ACL，則無法復原群組和其 ACL。
+If you use a build before November 2015 ([1.0.9125](active-directory-aadconnect-version-history.md#1091250)), make a change to filter configuration and you use password synchronization, then you need to trigger a full sync of all passwords after you have completed the configuration. For steps on how to trigger a password full sync see [Trigger a full sync of all passwords](active-directory-aadconnectsync-implement-password-synchronization.md#trigger-a-full-sync-of-all-passwords). If you are on 1.0.9125 or later, then the regular **full synchronization** action also calculates if passwords should be synchronized and this extra step is no longer required.
 
-Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Azure AD 中有物件是由另一個同步處理引擎所建立且不在範圍內，則新增篩選並不會移除這些物件。例如，如果您一開始是使用 DirSync 伺服器，而它建立了整個 Azure AD 目錄的完整複本，然後您在從一開始便啟用篩選的情況下平行安裝新的 Azure AD Connect 同步處理伺服器，這個新的伺服器將不會移除 DirSync 所建立的額外物件。
+If **user** objects were inadvertently deleted in Azure AD because of a filtering error, you can recreate the user objects in Azure AD by removing your filtering configurations and then synchronize your directories again. This action restores the users from the recycle bin in Azure AD. However, you cannot undelete other object types. For example, if you accidentally delete a security group and it was used to ACL a resource, the group and its ACLs cannot be recovered.
 
-當您安裝或升級至較新版本的 Azure AD Connect 時，篩選組態將會保留。在升級至較新版本之後且在首次執行同步處理循環之前，最好一律先確認設定並未遭到意外變更。
+Azure AD Connect only deletes objects it has once considered to be in scope. If there are objects in Azure AD that were created by another sync engine and these objects are not in scope, adding filtering do not remove them. For example, if you start with a DirSync server and it created a complete copy of your entire directory in Azure AD and you install a new Azure AD Connect sync server in parallel with filtering enabled from the beginning, it does not remove the extra objects created by DirSync.
 
-如果您有多個樹系，則必須將本主題中所說的篩選組態套用至每個樹系 (假設您想要讓所有樹系使用相同組態)。
+The filtering configuration is retained when you install or upgrade to a newer version of Azure AD Connect. It is always a best practice to verify that the configuration was not inadvertently changed after an upgrade to a newer version before running the first synchronization cycle.
 
-### 停用排程的工作
-若要停用每 30 分鐘觸發一次同步處理週期的內建排程器，請遵循下列步驟：
+If you have more than one forest, then the filtering configurations described in this topic must be applied to every forest (assuming you want the same configuration for all of them).
 
-1. 移至 PowerShell 提示字元。
-2. 執行 `Set-ADSyncScheduler -SyncCycleEnabled $False` 停用排程器。
-3. 依本主題所述進行變更。
-4. 執行 `Set-ADSyncScheduler -SyncCycleEnabled $True` 重新啟用排程器。
+### <a name="disable-scheduled-task"></a>Disable scheduled task
+To disable the built-in scheduler that triggers a synchronization cycle every 30 minutes, follow these steps:
 
-**如果您使用 1.1.105.0 之前的 Azure AD Connect 組建** 若要停用每 3 個小時觸發一次同步處理作業的排定工作，請遵循下列步驟：
+1. Go to a PowerShell prompt.
+2. Run `Set-ADSyncScheduler -SyncCycleEnabled $False` to disable the scheduler.
+3. Make the changes as documented in this topic.
+4. Run `Set-ADSyncScheduler -SyncCycleEnabled $True` to enable the scheduler again.
 
-1. 從 [開始] 功能表啟動 [工作排程器]。
-2. 在 [工作排程器程式庫] 正下方尋找名稱為 **Azure AD 同步排程器**的工作，按一下滑鼠右鍵選取 [停用]。![工作排程器](./media/active-directory-aadconnectsync-configure-filtering/taskscheduler.png)
-3. 您現在可以從 **Synchronization Service Manager** 主控台進行組態變更和手動執行同步處理引擎。
+**If you use an Azure AD Connect build before 1.1.105.0**  
+To disable the scheduled task that triggers a synchronization cycle every 3 hours, follow these steps:
 
-完成所有篩選變更之後，別忘了返回重新 [啟用] 工作。
+1. Start **Task Scheduler** from the start menu.
+2. Directly under **Task Scheduler Library**, find the task named **Azure AD Sync Scheduler**, right-click, and select **Disable**.  
+![Task Scheduler](./media/active-directory-aadconnectsync-configure-filtering/taskscheduler.png)  
+3. You can now make configuration changes and run the sync engine manually from the **synchronization service manager** console.
 
-## 篩選選項
-以下是可套用至目錄同步處理工具的篩選組態類型：
+After you have completed all your filtering changes, don't forget to come back and **Enable** the task again.
 
-- [**群組型**](active-directory-aadconnect-get-started-custom.md#sync-filtering-based-on-groups)：您只能在使用安裝精靈進行初始安裝時設定以單一群組為基礎的篩選。本主題中不會進一步討論此類型。
+## <a name="filtering-options"></a>Filtering Options
+The following filtering configuration types can be applied to the Directory Synchronization tool:
 
-- [**網域型**](#domain-based-filtering)：此選項可讓您選取要將哪些網域同步處理至 Azure AD。如果您在安裝 Azure AD Connect 同步處理之後對內部部署基礎結構進行變更，此選項也可讓您在同步處理引擎組態中新增和移除網域。
+- [**Group based**](active-directory-aadconnect-get-started-custom.md#sync-filtering-based-on-groups): Filtering based on a single group can only be configured on initial install using the installation wizard. It is not further covered in this topic.
 
-- [**組織單位型**](#organizational-unitbased-filtering)：此篩選選項可讓您選取要將哪些 OU 同步處理至 Azure AD。此選項會套用在所選組織單位中的所有物件類型上。
+- [**Domain-based**](#domain-based-filtering): This option enables you to select which domains that synchronize to Azure AD. It also allows you to add and remove domains from the sync engine configuration if you make changes to your on-premises infrastructure after you installed Azure AD Connect sync.
 
-- [**屬性型**](#attribute-based-filtering)：此選項可讓您根據物件屬性值篩選物件。您也可以讓不同物件類型透用不同篩選器。
+- [**Organizational-Unit–based**](#organizational-unitbased-filtering):  This filtering option enables you to select which OUs synchronize to Azure AD. This option is for all object types in selected OUs.
 
-您可以同時使用多個篩選選項。例如，您可以使用組織單位型篩選，以便只包含某個 OU 中的物件，並同時使用屬性型篩選來進一步篩選這些物件。當您使用多個篩選方法時，篩選器之間會使用邏輯 AND。
+- [**Attribute–based**](#attribute-based-filtering): This option allows you to filter objects based on attribute values on the objects. You can also have different filters for different object types.
 
-## 網域型篩選
-本節提供您設定網域篩選的步驟。如果您在安裝 Azure AD Connect 之後新增或移除樹系中的網域，也必須更新篩選組態。
+You can use multiple filtering options at the same time. For example, you can use OU-based filtering to only include objects in one OU and at the same time attribute-based filtering to filter the objects further. When you use multiple filtering methods, the filters use a logical AND between the filters.
 
-變更網域型篩選的慣用方法是執行安裝精靈，並變更[網域和 OU 篩選](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering)。安裝精靈將會自動執行本主題中記載的所有工作。
+## <a name="domain-based-filtering"></a>Domain-based filtering
+This section provides you with the steps to configure your domain filter. If you have added or removed domains in your forest after you have installed Azure AD Connect, you also have to update the filtering configuration.
 
-您應該只有在因某些原因而無法執行安裝精靈時，才依照下列步驟進行操作。
+The preferred way to change domain-based filtering is by running the installation wizard and change [domain and OUs filtering](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering). The installation wizard is automating all the tasks documented in this topic.
 
-網域型篩選組態包含下列步驟：
+You should only follow these steps if you for some reason are unable to run the installation wizard.
 
-- [選取網域](#select-domains-to-be-synchronized)，這些是應該納入同步處理作業的網域。
-- 針對所新增和移除的每個網域，調整[執行設定檔](#update-run-profiles)。
-- [套用並驗證變更](#apply-and-verify-changes)。
+Domain-based filtering configuration consists of these steps:
 
-### 選取要同步處理的網域
-**若要設定網域篩選，請執行下列步驟：**
+- [Select the domains](#select-domains-to-be-synchronized) that should be included in the synchronization.
+- For each added and removed domain, adjust the [run profiles](#update-run-profiles).
+- [Apply and verify changes](#apply-and-verify-changes).
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
-2. 從 [開始] 功能表啟動 [同步處理服務]。
-3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
-4. 按一下 [設定目錄分割]。
-5. 在 [選取目錄分割] 清單中，視需要選取和取消選取網域。確認只選取了您想要同步處理的分割。![分割數](./media/active-directory-aadconnectsync-configure-filtering/connectorpartitions.png) 如果您變更了內部部署 AD 基礎結構並在樹系中新增或移除網域，則請按一下 [重新整理] 按鈕以取得更新後的清單。當您重新整理時，系統會要求您提供認證。請提供具有內部部署 Active Directory 讀取權限的任何認證。您不一定要使用對話方塊中預先填入的使用者。![需要重新整理](./media/active-directory-aadconnectsync-configure-filtering/refreshneeded.png)
-6. 當您完成時，請按一下 [確定] 以關閉 [屬性] 對話方塊。如果您已移除樹系中的網域，畫面上將會出現快顯訊息，指出已移除網域且將會清除組態。
-7. 繼續調整[執行設定檔](#update-run-profiles)。
+### <a name="select-domains-to-be-synchronized"></a>Select domains to be synchronized
+**To set the domain filter, do the following steps:**
 
-### 更新執行設定檔
-如果您已更新網域篩選，則也需更新執行設定檔。
+1. Sign in to the server that is running Azure AD Connect sync by using an account that is a member of the **ADSyncAdmins** security group.
+2. Start **Synchronization Service** from the start menu.
+3. Select **Connectors** and in the **Connectors** list, select the Connector with the type **Active Directory Domain Services**. From **Actions**, select **Properties**.  
+![Connector properties](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
+4. Click **Configure Directory Partitions**.
+5. In the **Select directory partitions** list, select and unselect the domains as needed. Verify that only the partitions you want to synchronize are selected.  
+![Partitions](./media/active-directory-aadconnectsync-configure-filtering/connectorpartitions.png)  
+If you have changed your on-premises AD infrastructure and added or removed domains from the forest, then click the **Refresh** button to get an updated list. When you refresh, you are asked for credentials. Provide any credentials with read access to your on-premises Active Directory. It does not have to be the user that is pre-populated in the dialog box.  
+![Refresh needed](./media/active-directory-aadconnectsync-configure-filtering/refreshneeded.png)  
+6. When you are done, close the **Properties** dialog by clicking **OK**. If you have removed domains from the forest, a message pop-up saying a domain was removed and that configuration will be cleaned up.
+7. Continue to adjust the [run profiles](#update-run-profiles).
 
-1. 在 [連接器] 清單中，確定已選取在上一個步驟中所變更的連接器。從 [動作] 中選取 [設定執行設定檔]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/connectorrunprofiles1.png)  
+### <a name="update-run-profiles"></a>Update Run Profiles
+If you have updated your domain filter, you also need to update the run profiles.
 
-您需要調整下列設定檔：
+1. In the **Connectors** list, make sure the Connector you changed in the previous step is selected. From **Actions**, select **Configure Run Profiles**.  
+![Connector Run Profiles](./media/active-directory-aadconnectsync-configure-filtering/connectorrunprofiles1.png)  
 
-- 完整匯入
-- 完整同步處理
-- 差異匯入
-- 差異同步處理
-- 匯出
+You need to adjust the following profiles:
 
-針對上述五個設定檔，請為每個**新增的**網域執行下列步驟：
+- Full Import
+- Full Synchronization
+- Delta Import
+- Delta Synchronization
+- Export
 
-1. 選取執行設定檔，然後按一下 [新增步驟]。
-2. 在 [設定步驟] 頁面的 [類型] 下拉式清單中，選取與所要設定之設定檔同名的步驟類型。然後按 [下一步]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep1.png)  
-3. 在 [連接器組態] 頁面的 [分割] 下拉式清單中，選取您已新增至網域篩選的網域名稱。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep2.png)  
-4. 若要關閉 [設定執行設定檔] 對話方塊，可按一下 [完成]。
+For each of the five profiles, take the following steps for each **added** domain:
 
-針對上述五個設定檔，請為每個**移除的**網域執行下列步驟：
+1. Select the run profile and click **New Step**.
+2. On the **Configure Step** page, in the **Type** drop-down, select the step type with the same name as the profile you are configuring. Then click **Next**.  
+![Connector Run Profiles](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep1.png)  
+3. On the **Connector Configuration** page, in the **Partition** drop-down, select the name of the domain you have added to your domain filter.  
+![Connector Run Profiles](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep2.png)  
+4. To close the **Configure Run Profile** dialog, click **Finish**.
 
-1. 選取執行設定檔。
-2. 如果 [分割] 屬性的 [值] 是 GUID，請選取執行步驟，然後按一下 [刪除步驟]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesdeletestep.png)  
+For each of the five profiles, take the following steps for each **removed** domain:
 
-結果應該是，想要同步處理的每個網域應該皆已列為每個執行設定檔中的步驟。
+1. Select the run profile.
+2. If the **Value** of the **Partition** attribute is a GUID, select the run step and click **Delete Step**.  
+![Connector Run Profiles](./media/active-directory-aadconnectsync-configure-filtering/runprofilesdeletestep.png)  
 
-若要關閉 [設定執行設定檔] 對話方塊，請按一下 [確定]。
+The result should be that each domain you want to synchronize should be listed as a step in each run profile.
 
-- 若要完成組態設定，請[套用並驗證變更](#apply-and-verify-changes)。
+To close the **Configure Run Profiles** dialog, click **OK**.
 
-## 組織單位型篩選
-變更 OU 型篩選的慣用方法是執行安裝精靈，並變更[網域和 OU 篩選](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering)。安裝精靈將會自動執行本主題中記載的所有工作。
+- To complete the configuration, [Apply and verify changes](#apply-and-verify-changes).
 
-您應該只有在因某些原因而無法執行安裝精靈時，才依照下列步驟進行操作。
+## <a name="organizational-unit–based-filtering"></a>Organizational-unit–based filtering
+The preferred way to change OU-based filtering is by running the installation wizard and change [domain and OUs filtering](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering). The installation wizard is automating all the tasks documented in this topic.
 
-**若要設定組織單位型篩選，請執行下列步驟：**
+You should only follow these steps if you for some reason are unable to run the installation wizard.
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
-2. 從 [開始] 功能表啟動 [同步處理服務]。
-3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
-4. 按一下 [設定目錄分割]、選取要設定的網域，然後按一下 [容器]。
-5. 出現提示時，請提供具有內部部署 Active Directory 讀取權限的任何認證。您不一定要使用對話方塊中預先填入的使用者。
-6. 在 [選取容器] 對話方塊中，取消選取您不想與雲端目錄同步處理的 OU，然後按一下 [確定]。![OU](./media/active-directory-aadconnectsync-configure-filtering/ou.png)  
-  - 應該選取 [電腦] 容器，這樣您的 Windows 10 電腦才能順利同步處理至 Azure AD。如果加入網域的電腦位於其他組織單位，請確定已選取這些電腦。
-  - 如果您有多個信任的樹系，則應該選取 [ForeignSecurityPrincipals] 容器。這個容器允許解析跨樹系安全性群組成員資格。
-  - 如果您已啟用裝置回寫功能，則應該選取 [RegisteredDevices] OU。如果您使用另一個回寫功能，例如群組回寫，請確定已選取這些位置。
-  - 選取使用者、iNetOrgPersons、群組、連絡人和電腦所在位置的其他 OU。在圖中，這些項目全都位於 ManagedObjects OU。
-7. 當您完成時，請按一下 [確定] 以關閉 [屬性] 對話方塊。
-8. 若要完成組態設定，請[套用並驗證變更](#apply-and-verify-changes)。
+**To configure organizational-unit–based filtering, do the following steps:**
 
-## 屬性型篩選
-請確定您是使用 2015 年 11 月 ([1\.0.9125](active-directory-aadconnect-version-history.md#1091250)) 或更新版本的組建，這些步驟才會有用。
+1. Sign in to the server that is running Azure AD Connect sync by using an account that is a member of the **ADSyncAdmins** security group.
+2. Start **Synchronization Service** from the start menu.
+3. Select **Connectors** and in the **Connectors** list, select the Connector with the type **Active Directory Domain Services**. From **Actions**, select **Properties**.  
+![Connector properties](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
+4. Click **Configure Directory Partitions**, select the domain you want to configure, and then click **Containers**.
+5. When prompted, provide any credentials with read access to your on-premises Active Directory. It does not have to be the user that is pre-populated in the dialog box.
+6. In the **Select Containers** dialog box, clear the OUs that you don’t want to synchronize with the cloud directory, and then click **OK**.  
+![OU](./media/active-directory-aadconnectsync-configure-filtering/ou.png)  
+  - The **Computers** container should be selected for your Windows 10 computers to be successfully synchronized to Azure AD. If your domain joined computers are located in other OUs, make sure those are selected.
+  - The **ForeignSecurityPrincipals** container should be selected if you have multiple forests with trusts. This container allows cross-forest security group membership to be resolved.
+  - The **RegisteredDevices** OU should be selected if you have enabled the device writeback feature. If you use another writeback feature, such as group writeback, make sure these locations are selected.
+  - Select any other OU where Users, iNetOrgPersons, Groups, Contacts, and Computers are located. In the picture, all these are located in the ManagedObjects OU.
+7. When you are done, close the **Properties** dialog by clicking **OK**.
+8. To complete the configuration, [Apply and verify changes](#apply-and-verify-changes).
 
-屬性型篩選是最具彈性的物件篩選方式。您可以使用[宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)的強大功能來控制物件應該同步處理至 Azure AD 時的大多數層面。
+## <a name="attribute-based-filtering"></a>Attribute-based filtering
+Make sure you are on the November 2015 ([1.0.9125](active-directory-aadconnect-version-history.md#1091250)) or later build for these steps to work.
 
-篩選既可以套用在從 Active Directory 到 Metaverse 的[輸入](#inbound-filtering)上，也可以套用在從 Metaverse 到 Azure AD 的[輸出](#outbound-filtering)上。建議您對輸入套用篩選，因為這樣做最容易進行維護。只有在必須先加入多個樹系中的物件再進行評估時，才應該使用輸出篩選。
+Attribute based filtering is the most flexible way to filter objects. You can use the power of [declarative provisioning](active-directory-aadconnectsync-understanding-declarative-provisioning.md) to control almost every aspect of when an object should be synchronized to Azure AD.
 
-### 輸入篩選
-輸入型篩選會使用預設組態，亦即，即將輸入 Azure AD 的物件必須未將 Metaverse 屬性 cloudFiltered 設定為要同步處理的值。如果這個屬性的值設定為 **True**，則不會同步處理物件。就設計而言，此值不應設為 **False**。為了確保其他規則能夠提供值，這個屬性的值應該只能是 **True** 或 **NULL** (不存在)。
+Filtering can be applied both on the [inbound](#inbound-filtering) from Active Directory to the metaverse and [outbound](#outbound-filtering) from the metaverse to Azure AD. It is recommended to apply filtering on inbound since that is easiest to maintain. Outbound filtering should only be used if it is required to join objects from more than one forest before the evaluation can take place.
 
-在輸入篩選中，我們將利用「範圍」的強大功能來決定哪些物件應該或不應該同步處理。您要在這裡進行調整以符合貴組織的需求。範圍模組包含「群組」和「子句」，可用來決定是否應該在範圍內納入同步處理規則。「群組」會包含一個或多個「子句」。多個子句之間會有邏輯 AND，而多個群組之間會有邏輯 OR。
+### <a name="inbound-filtering"></a>Inbound filtering
+Inbound based filtering is using the default configuration where objects going to Azure AD must have the metaverse attribute cloudFiltered not set to a value to be synchronized. If this attribute's value is set to **True**, then the object is not synchronized. It should not be set to **False** by design. To make sure other rules have the ability to contribute a value, this attribute is only supposed to have the values **True** or **NULL** (absent).
 
-讓我們看看以下範例：![Scope](./media/active-directory-aadconnectsync-configure-filtering/scope.png) 這應該解讀為 **(department = IT) OR (department = Sales AND c = US)**。
+In the inbound filtering, you use the power of **scope** to determine which objects should or should not be synchronized. This is where you make adjustments to fit your own organization's requirements. The scope module has **group** and **clause** to determine if a sync rule should be in scope. A **group** contains one or many **clause**. There is a logical AND between multiple clauses and a logical OR between multiple groups.
 
-在下面的範例和步驟中，您將以使用者物件做為例子，但您可以將此例子套用到所有物件類型。
+Let us look at an example:  
+![Scope](./media/active-directory-aadconnectsync-configure-filtering/scope.png) This should be read as **(department = IT) OR (department = Sales AND c = US)**.
 
-在下面的範例中，優先順序值會從 500 開始算起。這個值可確保這些規則的評估會在預設規則 (較低的優先順序、較高的數值) 之後。
+In the samples and steps below, you use the user object as an example, but you can use this for all object types.
 
-#### 負面篩選：「不同步處理這些項目」
-在下列範例中，您會篩選掉 (不同步處理) **extensionAttribute15** 的值為 **NoSync** 的所有使用者。
+In the samples below, the precedence value start with 500. This value ensures these rules are evaluated after the out-of-box rules (lower precedence, higher numeric value).
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
-2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
-3. 確定已選取 [輸入]，然後按一下 [新增規則]。
-4. 為規則提供一個描述性名稱，例如 "*In from AD – User DoNotSyncFilter*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如 500)，然後按 [下一步]。![輸入 1 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound1.png)
-5. 在 [範圍設定篩選] 中，依序按一下 [新增群組] 和 [新增子句]，然後在屬性中選取 [ExtensionAttribute15]。確定已將 [運算子] 設為 [EQUAL]，然後在 [值] 方塊中輸入值 **NoSync**。按 [下一步]。![輸入 2 範圍](./media/active-directory-aadconnectsync-configure-filtering/inbound2.png)  
-6. 讓 [聯結] 規則保留空白，然後按 [下一步]。
-7. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **True**。按一下 [新增] 以儲存規則。![輸入 3 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)
-8. 若要完成組態設定，請[套用並驗證變更](#apply-and-verify-changes)。
+#### <a name="negative-filtering,-"do-not-sync-these""></a>Negative filtering, "do not sync these"
+In the following example, you filter out (not synchronize) all users where **extensionAttribute15** have the value **NoSync**.
 
-#### 正面篩選：「只同步處理這些項目」
-表述正面篩選的程序比較困難，因為您必須同時考慮不是明顯需要同步處理的物件，例如會議室。
+1. Sign in to the server that is running Azure AD Connect sync by using an account that is a member of the **ADSyncAdmins** security group.
+2. Start **Synchronization Rules Editor** from the start menu.
+3. Make sure **Inbound** is selected and click **Add New Rule**.
+4. Give the rule a descriptive name, such as "*In from AD – User DoNotSyncFilter*". Select the correct forest, **User** as the **CS object type**, and **Person** as the **MV object type**. As **Link Type**, select **Join** and in precedence type a value currently not used by another Synchronization Rule (for example 500), and then click **Next**.  
+![Inbound 1 description](./media/active-directory-aadconnectsync-configure-filtering/inbound1.png)  
+5. In **Scoping filter**, click **Add Group**, click **Add Clause**, and in attribute select **ExtensionAttribute15**. Make sure the Operator is set to **EQUAL** and type the value **NoSync** in the Value box. Click **Next**.  
+![Inbound 2 scope](./media/active-directory-aadconnectsync-configure-filtering/inbound2.png)  
+6. Leave the **Join** rules empty, and then click **Next**.
+7. Click **Add Transformation**, select the **FlowType** to **Constant**, select the Target Attribute **cloudFiltered** and in the Source text box, type **True**. Click **Add** to save the rule.  
+![Inbound 3 transformation](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)
+8. To complete the configuration, [Apply and verify changes](#apply-and-verify-changes).
 
-正面篩選選項需要兩個同步處理規則。一個 (或多個) 要具有要同步處理之物件的正確範圍，另一個則是全面涵蓋的同步處理規則，後者將用來篩選出尚未識別為屬於應同步處理之物件的所有物件。
+#### <a name="positive-filtering,-"only-sync-these""></a>Positive filtering, "only sync these"
+Expressing positive filtering can be more challenging since you have to also consider objects that are not obvious to be synchronized, such as conference rooms.
 
-在下列範例中，您只會同步處理部門屬性值為 **Sales** 的使用者物件。
+The positive filtering option requires two sync rules. One (or several) with the correct scope of objects to synchronize and a second catch-all sync rule that filter out all objects that have not yet been identified as an object which should be synchronized.
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
-2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
-3. 確定已選取 [輸入]，然後按一下 [新增規則]。
-4. 為規則提供一個描述性名稱，例如 "*In from AD – User Sales sync*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如 501)，然後按 [下一步]。![輸入 4 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound4.png)
-5. 在 [範圍設定篩選] 中，依序按一下 [新增群組] 和 [新增子句]，然後在屬性中選取 [department]。確定已將 [運算子] 設為 [EQUAL]，然後在 [值] 方塊中輸入值 **Sales**。按 [下一步]。![輸入 5 範圍](./media/active-directory-aadconnectsync-configure-filtering/inbound5.png)  
-6. 讓 [聯結] 規則保留空白，然後按 [下一步]。
-7. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **False**。按一下 [新增] 以儲存規則。![輸入 6 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound6.png) 這是一個特殊案例，在此您會將 cloudFiltered 明確設定為 False。
+In the following example, you only synchronize user objects where the department attribute has the value **Sales**.
 
-	我們現在必須建立全面涵蓋同步處理規則。
+1. Sign in to the server that is running Azure AD Connect sync by using an account that is a member of the **ADSyncAdmins** security group.
+2. Start **Synchronization Rules Editor** from the start menu.
+3. Make sure **Inbound** is selected and click **Add New Rule**.
+4. Give the rule a descriptive name, such as "*In from AD – User Sales sync*". Select the correct forest, **User** as the **CS object type**, and **Person** as the **MV object type**. As **Link Type**, select **Join** and in precedence type a value currently not used by another Synchronization Rule (for example 501), and then click **Next**.  
+![Inbound 4 description](./media/active-directory-aadconnectsync-configure-filtering/inbound4.png)  
+5. In **Scoping filter**, click **Add Group**, click **Add Clause**, and in attribute select **department**. Make sure the Operator is set to **EQUAL** and type the value **Sales** in the Value box. Click **Next**.  
+![Inbound 5 scope](./media/active-directory-aadconnectsync-configure-filtering/inbound5.png)  
+6. Leave the **Join** rules empty, and then click **Next**.
+7. Click **Add Transformation**, select the **FlowType** to **Constant**, select the Target Attribute **cloudFiltered** and in the Source text box, type **False**. Click **Add** to save the rule.  
+![Inbound 6 transformation](./media/active-directory-aadconnectsync-configure-filtering/inbound6.png)  
+This is a special case where you set cloudFiltered explicitly to False.
 
-8. 為規則提供一個描述性名稱，例如 "*In from AD – User Catch-all filter*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如：600)。您選取了高於先前同步處理規則的優先順序值 (較低優先順序)，但同時也預留了一些空間，以便可以在稍後想要開始同步處理其他部門時，新增其他篩選同步處理規則。按 [下一步]。![輸入 7 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound7.png)
-9. 將 [範圍篩選器] 保留空白，然後按 [下一步]。空白篩選器表示規則應套用至所有物件。
-10. 讓 [聯結] 規則保留空白，然後按 [下一步]。
-11. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **True**。按一下 [新增] 以儲存規則。![輸入 3 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)  
-12. 若要完成組態設定，請[套用並驗證變更](#apply-and-verify-changes)。
+    We now have to create the catch-all sync rule.
 
-如有需要，您可以建立更多第一種類型的規則，以在同步處理作業中納入更多物件。
+8. Give the rule a descriptive name, such as "*In from AD – User Catch-all filter*". Select the correct forest, **User** as the **CS object type**, and **Person** as the **MV object type**. As **Link Type**, select **Join** and in precedence type a value currently not used by another Synchronization Rule (for example 600). You have selected a precedence value higher (lower precedence) than the previous sync rule but also left some room so we can add more filtering sync rules later when you want to start synchronizing additional departments. Click **Next**.  
+![Inbound 7 description](./media/active-directory-aadconnectsync-configure-filtering/inbound7.png)  
+9. Leave **Scoping filter** empty, and click **Next**. An empty filter indicates the rule should be applied to all objects.
+10. Leave the **Join** rules empty, and then click **Next**.
+11. Click **Add Transformation**, select the **FlowType** to **Constant**, select the Target Attribute **cloudFiltered** and in the Source text box, type **True**. Click **Add** to save the rule.  
+![Inbound 3 transformation](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)  
+12. To complete the configuration, [Apply and verify changes](#apply-and-verify-changes).
 
-### 輸出篩選
-在某些情況下，只有在 Metaverse 中聯結物件之後，才需進行篩選。例如，您需要從資源樹系的 mail 屬性以及帳戶樹系的 userPrincipalName 屬性，來判斷是否應同步處理物件。在這些情況下，您將在輸出規則上建立篩選。
+If you need to, then you can create more rules of the first type where you include more objects in our synchronization.
 
-您將在此範例中變更篩選，如此一來，就只會同步處理 mail 和 userPrincipalName 都是以 @contoso.com 結束的使用者：
+### <a name="outbound-filtering"></a>Outbound filtering
+In some cases, it is necessary to do the filtering only after the objects have joined in the metaverse. It could, for example, be required to look at the mail attribute from the resource forest and the userPrincipalName attribute from the account forest to determine if an object should be synchronized. In these cases, you create the filtering on the outbound rule.
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
-2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
-3. 在 [規則類型] 下方按一下 [輸出]。
-4. 尋找名為 **Out to AAD – User Join SOAInAD** 的規則。按一下 [**編輯**]。
-5. 在快顯視窗中，回答 [是] 來建立規則的複本。
-6. 在 [描述] 頁面上，將優先順序變更為一個未使用的值，例如 50。
-7. 按一下左邊瀏覽列上的 [範圍設定篩選]。按一下 [新增子句]，在 [屬性] 中選取 [mail]，在 [運算子] 中選取 [ENDSWITH]，然後在 [值] 中輸入 **@contoso.com**。按一下 [新增子句]，在 [屬性] 中選取 [userPrincipalName]，在 [運算子] 中選取 [ENDSWITH]，然後在 [值] 中輸入 **@contoso.com**。
-8. 按一下 [儲存]。
-9. 若要完成組態設定，請[套用並驗證變更](#apply-and-verify-changes)。
+In this example, you change the filtering so only users where both mail and userPrincipalName end with @contoso.com are synchronized:
 
-## 套用並驗證變更
-在變更組態後，必須將這些變更套用至系統中已有的物件。情況也可能是目前不在同步處理引擎中的物件應受到處理，因此同步處理引擎需要再次讀取來源系統，以確認其內容。
+1. Sign in to the server that is running Azure AD Connect sync by using an account that is a member of the **ADSyncAdmins** security group.
+2. Start **Synchronization Rules Editor** from the start menu.
+3. Under **Rules Type**, click **Outbound**.
+4. Find the rule named **Out to AAD – User Join SOAInAD**. Click **Edit**.
+5. In the pop-up, answer **Yes** to create a copy of the rule.
+6. On the **Description** page, change precedence to an unused value, for example 50.
+7. Click **Scoping filter** on the left-hand navigation. Click **Add clause**, in Attribute select **mail**, in Operator select **ENDSWITH**, and in Value type **@contoso.com**. Click **Add clause**, in Attribute select **userPrincipalName**, in Operator select **ENDSWITH**, and in Value type **@contoso.com**.
+8. Click **Save**.
+9. To complete the configuration, [Apply and verify changes](#apply-and-verify-changes).
 
-如果您已使用「網域」或「組織單位」篩選來變更組態，就必須在進行「完整匯入」之後執行「差異同步處理」。
+## <a name="apply-and-verify-changes"></a>Apply and verify changes
+After you have made your configuration changes, these must be applied to the objects already present in the system. It could also be that objects not currently in the sync engine should be processed and the sync engine needs to read the source system again to verify its content.
 
-如果您已使用「屬性」篩選來變更組態，則必須進行「完整同步處理」。
+If you changed configuration using **domain** or **organizational-unit** filtering, then you need to do **Full import** followed by **Delta synchronization**.
 
-請執行下列步驟：
+If you changed configuration using **attribute** filtering, then you need to do **Full synchronization**.
 
-1. 從 [開始] 功能表啟動 [同步處理服務]。
-2. 選取 [連接器]，然後在 [連接器] 清單中選取稍早進行組態變更的連接器。從 [動作] 中選取 [執行]。![連接器執行](./media/active-directory-aadconnectsync-configure-filtering/connectorrun.png)  
-3. 在 [執行設定檔] 中，選取上一節中提到的作業。如果您需要執行兩個動作，請在執行完第一個動作之後 (所選連接器的 [狀態] 欄為 [閒置])，再執行第二個動作。
+Take the following steps:
 
-在進行過同步處理後，所有變更會進入匯出階段。實際在 Azure AD 中進行變更之前，您會想要先驗證所有變更是否正確。
+1. Start **Synchronization Service** from the start menu.
+2. Select **Connectors** and in the **Connectors** list, select the Connector where you made a configuration change earlier. From **Actions**, select **Run**.  
+![Connector run](./media/active-directory-aadconnectsync-configure-filtering/connectorrun.png)  
+3. In the **Run profiles**, select the operation mentioned in the previous section. If you need to run two actions, run the second after the first one has completed (the **State** column is **Idle** for the selected Connector).
 
-1. 啟動 CMD 命令提示字元並移至 `%Program Files%\Microsoft Azure AD Sync\bin`
-2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x` 連接器名稱可以在同步處理服務中找到。它的名稱類似 Azure AD 的 "contoso.com – AAD"。
-3. 執行：`CSExportAnalyzer %temp%\export.xml > %temp%\export.csv`
-4. 現在您在 %temp% 中已經有名稱為 export.csv 的檔案，可在 Microsoft Excel 中加以檢查。此檔案包含即將匯出的所有變更。
-5. 對資料或組態進行必要的變更並再次執行這些步驟 (匯入、同步處理、驗證)，直到要匯出的變更皆如預期進行。
+After the synchronization, all changes are staged to be exported. Before you actually make the changes in Azure AD, you want to verify that all these changes are correct.
 
-在感到滿意後，將變更匯出至 Azure AD。
+1. Start a cmd prompt and go to `%Program Files%\Microsoft Azure AD Sync\bin`
+2. Run: `csexport "Name of Connector" %temp%\export.xml /f:x`  
+The name of the Connector can be found in Synchronization Service. It has a name similar to "contoso.com – AAD" for Azure AD.
+3. Run: `CSExportAnalyzer %temp%\export.xml > %temp%\export.csv`
+4. You now have a file in %temp% named export.csv that can be examined in Microsoft Excel. This file contains all changes that are about to be exported.
+5. Make necessary changes to the data or configuration and run these steps again (Import, Synchronize, and Verify) until the changes that are about to be exported are expected.
 
-1. 選取 [連接器]，然後在 [連接器] 清單中選取 [Azure AD 連接器]。從 [動作] 中選取 [執行]。
-2. 在 [執行設定檔] 中，選取 [匯出]。
-3. 如果您的組態變更將會刪除許多物件，且數目超過設定的臨界值 (預設值為 500)，則會在匯出時看到錯誤。如果看到這個錯誤，您必須先暫時停用[防止意外刪除](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)功能。
+When you are satisfied, export the changes to Azure AD.
 
-現在該重新啟用排程器了。
+1. Select **Connectors** and in the **Connectors** list, select the Azure AD Connector. From **Actions**, select **Run**.
+2. In the **Run profiles**, select **Export**.
+3. If your configuration changes delete many objects, then you see an error on the export when the number is more than the configured threshold (by default 500). If you see this error, then you need to temporarily disable the feature [prevent accidental deletes](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md).
 
-1. 從 [開始] 功能表啟動 [工作排程器]。
-2. 在 [工作排程器程式庫] 正下方尋找名稱為「Azure AD 同步排程器」的工作，在該工作上按一下滑鼠右鍵，然後選取 [啟用]。
+Now it is time to enable the scheduler again.
 
-## 後續步驟
-深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md)組態。
+1. Start **Task Scheduler** from the start menu.
+2. Directly under **Task Scheduler Library**, find the task named **Azure AD Sync Scheduler**, right-click, and select **Enable**.
 
-深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
+## <a name="next-steps"></a>Next steps
+Learn more about the [Azure AD Connect sync](active-directory-aadconnectsync-whatis.md) configuration.
 
-<!---HONumber=AcomDC_0914_2016-->
+Learn more about [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

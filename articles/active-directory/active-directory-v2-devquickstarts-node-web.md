@@ -1,54 +1,55 @@
 <properties
-	pageTitle="Azure AD v2.0 NodeJS Web App | Microsoft Azure"
-	description="如何建置可使用個人 Microsoft 帳戶及工作或學校帳戶登入使用者的 Node JS Web 應用程式。"
-	services="active-directory"
-	documentationCenter="nodejs"
-	authors="brandwe"
-	manager="mbaldwin"
-	editor=""/>
+    pageTitle="Azure AD v2.0 NodeJS Web App | Microsoft Azure"
+    description="How to build a Node JS web app that signs users in with both personal Microsoft Account and work or school accounts."
+    services="active-directory"
+    documentationCenter="nodejs"
+    authors="brandwe"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
+    ms.service="active-directory"
+    ms.workload="identity"
   ms.tgt_pltfrm="na"
-	ms.devlang="javascript"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="brandwe"/>
+    ms.devlang="javascript"
+    ms.topic="article"
+    ms.date="09/16/2016"
+    ms.author="brandwe"/>
 
-# 將登入新增至 nodeJS Web 應用程式
+
+# <a name="add-sign-in-to-a-nodejs-web-app"></a>Add sign-in to a nodeJS Web App
 
 
 > [AZURE.NOTE]
-	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
+    Not all Azure Active Directory scenarios & features are supported by the v2.0 endpoint.  To determine if you should use the v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).
 
 
-我們將在此處使用 Passport 來執行下列動作：
+Here we'll use Passport to:
 
-- 使用 Azure AD 和 v2.0 端點將使用者登入應用程式。
-- 顯示使用者的一些相關資訊。
-- 讓使用者登出 App。
+- Sign the user into the app using Azure AD and the v2.0 endpoint.
+- Display some information about the user.
+- Sign the user out of the app.
 
-**Passport** 是 Node.js 的驗證中介軟體。您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 或 Resitify Web 應用程式。一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。我們已為 Microsoft Azure Active Directory 開發一項策略。我們將安裝此模組，然後加入 Microsoft Azure Active Directory `passport-azure-ad` 外掛程式。
+**Passport** is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based or Resitify web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more. We have developed a strategy for Microsoft Azure Active Directory. We will install this module and then add the Microsoft Azure Active Directory `passport-azure-ad` plug-in.
 
-## 下載
+## <a name="download"></a>Download
 
-本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs)。若要遵循執行，您可以[用 .zip 格式下載應用程式的基本架構](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/skeleton.zip)，或複製基本架構：
+The code for this tutorial is maintained [on GitHub](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs).  To follow along, you can [download the app's skeleton as a .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/skeleton.zip) or clone the skeleton:
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git```
 
-本教學課程最後也會提供完整的應用程式。
+The completed application is provided at the end of this tutorial as well.
 
-## 1\.註冊應用程式
-在 [apps.dev.microsoft.com](https://apps.dev.microsoft.com) 建立新的應用程式，或遵循下列[詳細步驟](active-directory-v2-app-registration.md)。請確定：
+## <a name="1.-register-an-app"></a>1. Register an App
+Create a new app at [apps.dev.microsoft.com](https://apps.dev.microsoft.com), or follow these [detailed steps](active-directory-v2-app-registration.md).  Make sure to:
 
-- 將指派給您應用程式的**應用程式識別碼**複製起來，您很快會需要用到這些識別碼。
-- 為您的應用程式新增 **Web** 平台。
-- 輸入正確的**重新導向 URI**。重新導向 URI 會向 Azure AD 指出驗證回應應導向的位置，本教學課程的預設為 `http://localhost:3000/auth/openid/return`。
+- Copy down the **Application Id** assigned to your app, you'll need it soon.
+- Add the **Web** platform for your app.
+- Enter the correct **Redirect URI**. The redirect URI indicates to Azure AD where authentication responses should be directed - the default for this tutorial is `http://localhost:3000/auth/openid/return`.
 
-## 2\.在目錄中新增必要條件
+## <a name="2.-add-pre-requisities-to-your-directory"></a>2. Add pre-requisities to your directory
 
-從命令列中，將目錄位置變更至根資料夾 (若目錄位置原本不在該處)，然後執行下列命令：
+From the command-line, change directories to your root folder if not already there and run the following commands:
 
 - `npm install express`
 - `npm install ejs`
@@ -63,22 +64,22 @@
 - `npm install express-session`
 - `npm install cookie-parser`
 
-- 此外，我們在快速入門的基本架構中使用 `passport-azure-ad`。
+- In addition, we've use `passport-azure-ad` in the skeleton of the quickstart.
 
 - `npm install passport-azure-ad`
 
 
-如此會安裝 passport-azure-ad 做為依據的程式庫。
+This will install the libraries that passport-azure-ad depend on.
 
-## 3\.設定您的 App 以使用 passport-node-js 策略。
-我們將在此設定 Express 中介軟體，以使用 OpenID Connect 驗證通訊協定。Express 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
+## <a name="3.-set-up-your-app-to-use-the-passport-node-js-strategy"></a>3. Set up your app to use the passport-node-js strategy
+Here, we'll configure the Express middleware to use the OpenID Connect authentication protocol.  Passport will be used to issue sign-in and sign-out requests, manage the user's session, and get information about the user, amongst other things.
 
--	若要開始，請開啟專案根目錄中的 `config.js` 檔案，並在 `exports.creds` 區段中輸入應用程式的組態值。
-    -	`clientID:` 是在註冊入口網站中指派給應用程式的**應用程式識別碼**。
-    -	`returnURL` 是您在入口網站中輸入的**重新導向 URI**。
-    - `clientSecret` 是您在入口網站中輸入的密碼。
+-   To begin, open the `config.js` file in the root of the project, and enter your app's configuration values in the `exports.creds` section.
+    -   The `clientID:` is the **Application Id** assigned to your app in the registration portal.
+    -   The `returnURL` is the **Redirect URI** you entered in the portal.
+    - The `clientSecret` is the secret you generated in the portal.
 
-- 接下來開啟專案根中的 `app.js` 檔案，並新增下列呼叫以叫用與 `passport-azure-ad` 一併使用的 `OIDCStrategy` 策略
+- Next open `app.js` file in the root of the proejct and add the follwing call to invoke the `OIDCStrategy` strategy that comes with `passport-azure-ad`
 
 
 ```JavaScript
@@ -90,7 +91,7 @@ var log = bunyan.createLogger({
 });
 ```
 
-- 之後，請使用我們僅供參考的策略來處理登入要求
+- After that, use the strategy we just referenced to handle our login requests
 
 ```JavaScript
 // Use the OIDCStrategy within Passport. (Section 2)
@@ -129,12 +130,12 @@ passport.use(new OIDCStrategy({
   }
 ));
 ```
-Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有策略寫入器都依循的類似模式。查看此策略，您會看見我們將它當成 function() 來傳遞，其中含有一個 token 和一個 done 做為參數。一旦策略完成所有工作之後，便會盡責地返回。當它完成之後，我們會想要儲存使用者並隱藏權杖，因此我們不需再次要求它。
+Passport uses a similar pattern for all it’s Strategies (Twitter, Facebook, etc.) that all Strategy writers adhere to. Looking at the strategy you see we pass it a function() that has a token and a done as the parameters. The strategy will dutifully come back to us once it does all it’s work. Once it does we’ll want to store the user and stash the token so we won’t need to ask for it again.
 
 > [AZURE.IMPORTANT]
-上述程式碼會讓所有使用者經歷伺服器的驗證。這就是所謂的自動註冊。在生產伺服器中，您想要讓所有人都必須先經歷您所決定的註冊過程。這通常是您在取用者 App 中看到的模式，可讓您向 Facebook 註冊，但接著會要求您填寫其他資訊。如果這不是範例應用程式，我們就只能從傳回的權杖物件中擷取電子郵件，然後要求他們填寫其他資訊。由於這是測試伺服器，因此，我們直接將它們加入至記憶體中的資料庫。
+The code above takes any user that happens to authenticate to our server. This is known as auto registration. In production servers you wouldn’t want to let anyone in without first having them go through a registration process you decide. This is usually the pattern you see in consumer apps who allow you to register with Facebook but then ask you to fill out additional information. If this wasn’t a sample application, we could have just extracted the email from the token object that is returned and then asked them to fill out additional information. Since this is a test server we simply add them to the in-memory database.
 
-- 接下來，我們會新增方法，依 Passport 所要求，允許我們持續追蹤已登入的使用者。這包括將使用者資訊序列化和還原序列化：
+- Next, let's add the methods that will allow us to keep track of the logged in users as required by Passport. This includes serializing and deserializing the user's information:
 
 ```JavaScript
 
@@ -170,7 +171,7 @@ var findByEmail = function(email, fn) {
 
 ```
 
-- 接下來，加入可載入 express 引擎的程式碼。您會在此處看到我們使用 Express 所提供的預設 /views 和 /routes 模式。
+- Next, let's add the code to load the express engine. Here you see we use the default /views and /routes pattern that Express provides.
 
 ```JavaScript
 
@@ -197,7 +198,7 @@ app.configure(function() {
 
 ```
 
-- 最後會加入 POST 路由，這會將實際的登入要求遞交至 `passport-azure-ad` 引擎：
+- Finally, let's add the POST routes that will hand off the actual login requests to the `passport-azure-ad` engine:
 
 ```JavaScript
 
@@ -243,11 +244,11 @@ app.post('/auth/openid/return',
   });
 ```
 
-## 4\.使用 Passport，向 Azure AD 發出登入和登出要求
+## <a name="4.-use-passport-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>4. Use Passport to issue sign-in and sign-out requests to Azure AD
 
-您的應用程式現已正確設定，將使用 OpenID Connect 驗證通訊協定來與 2.0 版端點進行通訊。`passport-azure-ad` 已處理包括製作驗證訊息、驗證 Azure AD 權杖和維護使用者工作階段的一切繁瑣細節。所有剩餘的部分就是為使用者提供一種方式來登入、登出，以及收集關於已登入使用者的其他資訊。
+Your app is now properly configured to communicate with the v2.0 endpoint using the OpenID Connect authentication protocol.  `passport-azure-ad` has taken care of all of the ugly details of crafting authentication messages, validating tokens from Azure AD, and maintaining user session.  All that remains is to give your users a way to sign in, sign out, and gather additional info on the logged in user.
 
-- 首先，將預設、登入、帳戶及登出方法加入 `app.js` 檔案：
+- First, lets add the default, login, account, and logout methods to our `app.js` file:
 
 ```JavaScript
 
@@ -275,14 +276,14 @@ app.get('/logout', function(req, res){
 
 ```
 
--	讓我們詳細檢閱這些方法：
-    -	`/` 路由將重新導向至 index.ejs 檢視，其會在要求中傳遞使用者 (若有的話)
-    - `/account` 路由會先***確保我們已通過驗證*** (我們將在下面實作)，然後在要求中傳遞使用者，以讓我們能夠取得關於該使用者的其他資訊。
-    - `/login` 路由將從 `passport-azuread` 呼叫 azuread-openidconnect 驗證器，如果失敗，則會再次將使用者重新導向至 /login
-    - `/logout` 會直接呼叫 logout.ejs (以及路由)，其會清除 Cookie，然後讓使用者返回至 index.ejs
+-   Let's review these in detail:
+    -   The `/` route will redirect to the index.ejs view passing the user in the request (if it exists)
+    - The `/account` route will first ***ensure we are authenticated*** (we implement that below) and then pass the user in the request so that we can get additional information about the user.
+    - The `/login` route will call our azuread-openidconnect authenticator from `passport-azuread` and if that doesn't succeed will redirect the user back to /login
+    - The `/logout` will simply call the logout.ejs (and route) which clears cookies and then return the user back to index.ejs
 
 
-- 針對 `app.js` 的最後一個部分，加入可在上述 `/account` 中使用的 EnsureAuthenticated 方法。
+- For the last part of `app.js`, let's add the EnsureAuthenticated method that is used in `/account` above.
 
 ```JavaScript
 
@@ -299,7 +300,7 @@ function ensureAuthenticated(req, res, next) {
 
 ```
 
-- 最後，在 `app.js` 中實際建立伺服器本身：
+- Finally, let's actually create the server itself in `app.js`:
 
 ```JavaScript
 
@@ -308,11 +309,11 @@ app.listen(3000);
 ```
 
 
-## 5\.在 Express 中建立檢視與路由以在網站中顯示使用者
+## <a name="5.-create-the-views-and-routes-in-express-to-display-our-user-in-the-website"></a>5. Create the views and routes in express to display our user in the website
 
-我們已完成 `app.js`。現在只需新增路由和檢視即可，這兩者將會向使用者顯示我們取得的資訊，以及控制我們建立的 `/logout` 和 `/login` 路由。
+We have our `app.js` complete. Now we simply need to add the routes and views that will show the information we get to the user as well as handle the `/logout` and `/login` routes we've created.
 
-- 在根目錄下方建立 `/routes/index.js` 路由。
+- Create the `/routes/index.js` route under the root directory.
 
 ```JavaScript
 
@@ -325,7 +326,7 @@ exports.index = function(req, res){
 };
 ```
 
-- 在根目錄下方建立 `/routes/user.js` 路由
+- Create the `/routes/user.js` route under the root directory
 
 ```JavaScript
 
@@ -338,27 +339,27 @@ exports.list = function(req, res){
 };
 ```
 
-這些簡單路由只會將要求傳遞到我們的檢視，包括使用者 (如果有的話)。
+These simple routes will just pass along the request to our views, including the user if present.
 
-- 在根目錄底下建立 `/views/index.ejs` 檢視。這是簡單網頁，將呼叫我們的登入和登出方法，且讓我們能夠抓取帳戶資訊。請注意，我們可以使用條件式 `if (!user)`，因為在要求中傳遞使用者就證實我們擁有已登入的使用者。
+- Create the `/views/index.ejs` view under the root directory. this is a simple page that will call our login and logout methods and allow us to grab account information. Notice that we can use the conditional `if (!user)` as the user being passed through in the request is evidence we have a logged in user.
 
 ```JavaScript
 <% if (!user) { %>
-	<h2>Welcome! Please log in.</h2>
-	<a href="/login">Log In</a>
+    <h2>Welcome! Please log in.</h2>
+    <a href="/login">Log In</a>
 <% } else { %>
-	<h2>Hello, <%= user.displayName %>.</h2>
-	<a href="/account">Account Info</a></br>
-	<a href="/logout">Log Out</a>
+    <h2>Hello, <%= user.displayName %>.</h2>
+    <a href="/account">Account Info</a></br>
+    <a href="/logout">Log Out</a>
 <% } %>
 ```
 
-- 在根目錄下方建立 `/views/account.ejs` 檢視，如此即可檢視 `passport-azuread` 放置於使用者要求的其他資訊。
+- Create the `/views/account.ejs` view under the root directory so that we can view additional information that `passport-azuread` has put in the user request.
 
 ```Javascript
 <% if (!user) { %>
-	<h2>Welcome! Please log in.</h2>
-	<a href="/login">Log In</a>
+    <h2>Welcome! Please log in.</h2>
+    <a href="/login">Log In</a>
 <% } else { %>
 <p>displayName: <%= user.displayName %></p>
 <p>givenName: <%= user.name.givenName %></p>
@@ -372,56 +373,60 @@ exports.list = function(req, res){
 <% } %>
 ```
 
-- 最後，可藉由新增版面配置，使它看起來很美觀。在根目錄底下建立 '/views/layout.ejs' 檢視
+- Finally, let's make this look pretty by adding a layout. Create the '/views/layout.ejs' view under the root directory
 
 ```HTML
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Passport-OpenID Example</title>
-	</head>
-	<body>
-		<% if (!user) { %>
-			<p>
-			<a href="/">Home</a> |
-			<a href="/login">Log In</a>
-			</p>
-		<% } else { %>
-			<p>
-			<a href="/">Home</a> |
-			<a href="/account">Account</a> |
-			<a href="/logout">Log Out</a>
-			</p>
-		<% } %>
-		<%- body %>
-	</body>
+    <head>
+        <title>Passport-OpenID Example</title>
+    </head>
+    <body>
+        <% if (!user) { %>
+            <p>
+            <a href="/">Home</a> |
+            <a href="/login">Log In</a>
+            </p>
+        <% } else { %>
+            <p>
+            <a href="/">Home</a> |
+            <a href="/account">Account</a> |
+            <a href="/logout">Log Out</a>
+            </p>
+        <% } %>
+        <%- body %>
+    </body>
 </html>
 ```
 
-最後，建置並執行您的應用程式！
+Finally, build and run your app!
 
-執行 `node app.js` 並瀏覽至 `http://localhost:3000`
+Run `node app.js` and navigate to `http://localhost:3000`
 
 
-使用個人的 Microsoft 帳戶或工作或學校帳戶登入，並注意 /account 清單中使用者身分識別的反映狀態。您的 Web 應用程式現在使用業界標準的通訊協定保護，可以使用個人與工作/學校帳戶來驗證使用者。
+Sign in with either a personal Microsoft Account or a work or school account, and notice how the user's identity is reflected in the /account list.  You now have a web app secured using industry standard protocols that can authenticate users with both their personal and work/school accounts.
 
-##後續步驟
+##<a name="next-steps"></a>Next Steps
 
-如需參考，[此處以 .zip 格式提供](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/complete.zip)完整範例 (不含您的組態值)，您也可以從 GitHub 予以複製：
+For reference, the completed sample (without your configuration values) [is provided as a .zip here](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs/archive/complete.zip), or you can clone it from GitHub:
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git```
 
-您現在可以進入更進階的主題。您可以嘗試：
+You can now move onto more advanced topics.  You may want to try:
 
-[使用 v2.0 端點保護 node.js Web API >>](active-directory-v2-devquickstarts-node-api.md)
+[Secure a node.js web api using the v2.0 endpoint >>](active-directory-v2-devquickstarts-node-api.md)
 
-如需其他資源，請參閱：
-- [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
-- [StackOverflow "azure-active-directory" 標記 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+For additional resources, check out:
+- [The v2.0 developer guide >>](active-directory-appmodel-v2-overview.md)
+- [StackOverflow "azure-active-directory" tag >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
-## 取得產品的安全性更新
+## <a name="get-security-updates-for-our-products"></a>Get security updates for our products
 
-我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

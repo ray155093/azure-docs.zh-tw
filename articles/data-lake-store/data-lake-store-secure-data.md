@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="保護儲存在 Azure Data Lake Store 中的資料 | Microsoft Azure" 
-   description="了解如何使用群組和存取控制清單來保護 Azure 資料湖儲存區中的資料" 
+   pageTitle="Securing data stored in Azure Data Lake Store | Microsoft Azure" 
+   description="Learn how to secure data in Azure Data Lake Store using groups and access control lists" 
    services="data-lake-store" 
    documentationCenter="" 
    authors="nitinme" 
@@ -13,176 +13,169 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="09/06/2016"
+   ms.date="09/29/2016"
    ms.author="nitinme"/>
 
-# 保護儲存在 Azure 資料湖儲存區中的資料
 
-保護儲存在 Azure 資料湖儲存區中的資料，其方法有三步驟。
+# <a name="securing-data-stored-in-azure-data-lake-store"></a>Securing data stored in Azure Data Lake Store
 
-1. 首先，在 Azure Active Directory (AAD) 中建立安全性群組。這些安全性群組是用在 Azure 入口網站中實作角色型存取控制 (RBAC)。如需詳細資訊，請參閱 [Microsoft Azure 中的角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+Securing data in Azure Data Lake Store is a three-step approach.
 
-2. 指派 AAD 安全性群組給 Azure 資料湖儲存區帳戶。這會控制從入口網站至資料湖儲存區帳戶，以及從入口網站或 API 至管理作業的存取。
+1. Start by creating security groups in Azure Active Directory (AAD). These security groups are used to implement role-based access control (RBAC) in Azure Portal. For more information see [Role-based Access Control in Microsoft Azure](../active-directory/role-based-access-control-configure.md).
 
-3. 指派 AAD 安全性群組做為資料湖儲存區檔案系統上的存取控制清單 (ACL)。
+2. Assign the AAD security groups to the Azure Data Lake Store account. This controls access to the Data Lake Store account from the portal and management operations from the portal or APIs.
 
-4. 此外，您也可以針對可以存取 Data Lake Store 中資料的用戶端設定 IP 位址範圍。
+3. Assign the AAD security groups as access control lists (ACLs) on the Data Lake Store file system.
 
-本文提供有關如何使用 Azure 入口網站執行上述工作的詳細指示。如需 Data Lake Store 如何在帳戶和資料層級實作安全性的深入資訊，請參閱 [Azure Data Lake Store 安全性](data-lake-store-security-overview.md)。
+4. Additionally, you can also set an IP address range for clients that can access the data in Data Lake Store.
 
-## 必要條件
+This article provides instructions on how to use the Azure portal to perform the above tasks. For in-depth information on how Data Lake Store implements security at the account and data level, see [Security in Azure Data Lake Store](data-lake-store-security-overview.md). For deep-dive information on how ACLs are implemented in Azure Data Lake Store, see [Overview of Access Control in Data Lake Store](data-lake-store-access-control.md).
 
-開始進行本教學課程之前，您必須具備下列條件：
+## <a name="prerequisites"></a>Prerequisites
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **Azure 資料湖儲存區帳戶**。如需有關如何建立帳戶的詳細指示，請參閱[開始使用 Azure 資料湖儲存區](data-lake-store-get-started-portal.md)
+Before you begin this tutorial, you must have the following:
 
-## 使用影片快速學習？
+- **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
+- **An Azure Data Lake Store account**. For instructions on how to create one, see [Get started with Azure Data Lake Store](data-lake-store-get-started-portal.md)
 
-[觀看這段影片](https://mix.office.com/watch/1q2mgzh9nn5lx)以了解如何保護 Data Lake Store 中儲存的資料。
+## <a name="create-security-groups-in-azure-active-directory"></a>Create security groups in Azure Active Directory
 
-## 在 Azure Active Directory 中建立安全性群組
+For instructions on how to create AAD security groups and how to add users to the group, see [Managing security groups in Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
 
-如需有關如何建立 AAD 安全性群組及如何新增使用者至群組的詳細指示，請參閱[管理 Azure Active Directory 中的安全性群組](../active-directory/active-directory-accessmanagement-manage-groups.md)。
+## <a name="assign-users-or-security-groups-to-azure-data-lake-store-accounts"></a>Assign users or security groups to Azure Data Lake Store accounts
 
-## 指派使用者或安全性群組給 Azure 資料湖儲存區帳戶
+When you assign users or security groups to Azure Data Lake Store accounts, you control access to the management operations on the account using the Azure portal and Azure Resource Manager APIs. 
 
-當您指派使用者或安全性群組給 Azure 資料湖儲存區帳戶時，您可使用 Azure 入口網站和 Azure 資源管理員 API 來控制該帳戶的管理作業存取。
+1. Open an Azure Data Lake Store account. From the left pane, click **Browse**, click **Data Lake Store**, and then from the Data Lake Store blade, click the account name to which you want to assign a user or security group.
 
-1. 開啟 Azure 資料湖儲存區帳戶。從左側窗格依序按一下 [瀏覽]、[資料湖儲存區]，然後從 [資料湖儲存區] 刀鋒視窗中，按一下您要指派使用者或安全性群組的目標帳戶名稱。
+2. In your Data Lake Store account blade, click **Settings**. From the **Settings** blade, click **Users**.
 
-2. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [使用者] 圖示。
+    ![Assign security group to Azure Data Lake Store account](./media/data-lake-store-secure-data/adl.select.user.icon.png "Assign security group to Azure Data Lake Store account")
 
-	![指派安全性群組給 Azure 資料湖儲存區帳戶](./media/data-lake-store-secure-data/adl.select.user.icon.png "指派安全性群組給 Azure 資料湖儲存區帳戶")
+3. The **User** blade by default lists **Subscription admins** group as an owner. 
 
-3. 依預設，[使用者] 刀鋒視窗會將 [訂用帳戶管理員] 群組列為擁有者。
-
-	![新增使用者和角色](./media/data-lake-store-secure-data/adl.add.group.roles.png "新增使用者和角色")
+    ![Add users and roles](./media/data-lake-store-secure-data/adl.add.group.roles.png "Add users and roles")
  
-	有兩種方式可新增群組並指派相關的角色。
+    There are two ways to add a group and assign relevant roles.
 
-	* 新增使用者/群組至帳戶，然後指派角色，或
-	* 新增角色，然後指派使用者/群組給角色。
+    * Add a user/group to the account and then assign a role, or
+    * Add a role and then assign users/groups to role.
 
-	在本節中，我們將探討第一個方法，也就是新增群組，然後指派角色。您可以執行類似的步驟先選取角色，然後指派群組給該角色。
-	
-4. 在 [使用者] 刀鋒視窗中，按一下 [新增] 以開啟 [新增存取] 刀鋒視窗。在 [新增存取] 刀鋒視窗中，按一下 [選取角色]，然後選取使用者/群組的角色。
+    In this section, we look at the first approach, adding a group and then assigning roles. You can perform similar steps to first select a role and then assign groups to that role.
+    
+4. In the **Users** blade, click **Add** to open the **Add access** blade. In the **Add access** blade, click **Select a role**, and then select a role for the user/group.
 
-	 ![新增使用者的角色](./media/data-lake-store-secure-data/adl.add.user.1.png "新增使用者的角色")
+     ![Add a role for the user](./media/data-lake-store-secure-data/adl.add.user.1.png "Add a role for the user")
 
-	[擁有者] 和 [參與者] 角色會提供資料湖帳戶上各種不同管理功能的存取。針對與資料湖資料互動的使用者，您可以將它們新增至 [讀取器] 角色。這些角色的範圍僅限於與 Azure 資料湖儲存區帳戶相關的管理作業。
+    The **Owner** and **Contributor** role provide access to a variety of administration functions on the data lake account. For users who will interact with data in the data lake, you can add them to the **Reader **role. The scope of these roles is limited to the management operations related to the Azure Data Lake Store account.
 
-	針對資料作業，個別的檔案系統權限會定義使用者的使用範圍。因此，擁有 [讀取器] 角色的使用者僅可檢視與帳戶相關的管理設定，但是可依指派給該使用者的檔案系統權限來讀取和寫入資料。有關資料湖儲存區檔案系統權限的相關資訊都在[將安全性群組以 ACL 型式指派給 Azure 資料湖儲存區檔案系統](#filepermissions)。
-
-
-
-5. 在 [新增存取] 刀鋒視窗中，按一下 [新增使用者] 以開啟 [新增使用者] 刀鋒視窗。在此刀鋒視窗中，搜尋您稍早在 Azure Active Directory 中建立的安全性群組。若您需要搜尋大量的群組，請使用頂端的文字方塊來篩選群組名稱。按一下 [選取]。
-
-	![新增安全性群組](./media/data-lake-store-secure-data/adl.add.user.2.png "新增安全性群組")
-
-	若要新增未列出的群組/使用者，您可使用 [邀請] 圖示並指定使用者/群組的電子郵件位址來邀請。
-
-6. 按一下 [確定]。您會看見新增的安全性群組，如下所示。
-
-	![已新增的安全性群組](./media/data-lake-store-secure-data/adl.add.user.3.png "已新增的安全性群組")
-
-7. 您的使用者/安全性群組現在可以存取 Azure 資料湖儲存區帳戶。若要將存取給予特定的使用者，您可以將其新增至安全性群組。同樣地，若要撤銷使用者的存取，您可以將其從安全性群組中移除。您也可以將多個安全性群組指派給一個帳戶。
-
-## <a name="filepermissions"></a>將使用者或安全性群組以 ACL 型式指派給 Azure 資料湖儲存區檔案系統
-
-藉由指派使用者/安全性群組給 Azure 資料湖檔案系統，您可以針對儲存在 Azure 資料湖儲存區中的資料設定存取控制。
-
->[AZURE.NOTE] 在目前版本中，僅可在 Data Lake Store 帳戶的根節點設定 ACL。此外，只有已獲指派擁有者角色的使用者可以新增/修改 ACL。
-
-1. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [資料總管]。
-
-	![在資料湖儲存區帳戶中建立目錄](./media/data-lake-store-secure-data/adl.start.data.explorer.png "在資料湖帳戶中建立目錄")
-
-2. 在 [資料總管] 刀鋒視窗中，按一下帳戶的根目錄，然後在 [帳戶] 刀鋒視窗中，按一下 [存取] 圖示。
-
-	![設定資料湖檔案系統上的 ACL](./media/data-lake-store-secure-data/adl.acl.1.png "設定資料湖檔案系統上的 ACL")
-
-3. [存取] 刀鋒視窗會列出已指派至根的標準存取和自訂存取。按一下 [新增] 圖示以新增自訂層級的 ACL。
-
-	![列出標準和自訂存取](./media/data-lake-store-secure-data/adl.acl.2.png "列出標準和自訂存取")
-
-	* **標準存取**為 UNIX 樣式存取，可讓您指定讀取、寫入、執行 (rwx) 三種不同的使用者類別：擁有者、群組和其他。
-	* **自訂存取**會對應至 POSIX ACL，讓您除了設定檔案擁有者或群組的權限外，還可以設定特定命名的使用者或群組的權限。
-	
-	如需詳細資訊，請參閱 [HDFS ACLs](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists)。
-
-4. 按一下 [新增] 圖示，以開啟 [新增自訂存取] 刀鋒視窗。在此刀鋒視窗中，按一下 [選取使用者或群組]，然後在 [選取使用者或群組] 刀鋒視窗中，搜尋您稍早在 Azure Active Directory 中建立的安全性群組。若您需要搜尋大量的群組，請使用頂端的文字方塊來篩選群組名稱。按一下您要新增的群組，然後按一下 [選取]。
-
-	![新增群組](./media/data-lake-store-secure-data/adl.acl.3.png "新增群組")
-
-5. 按一下 [選取權限]，選取您要指派給該群組的權限，然後按一下 [確定]。
-
-	![將權限指派至群組](./media/data-lake-store-secure-data/adl.acl.4.png "將權限指派至群組")
-
-	權限可以如以下方式了解︰
-
-	* **讀取** - 如果在目錄上設定此權限，它會提供可在目錄中讀取檔案名稱的功能。
-	* **撰寫** - 如果在目錄上設定此權限，它會提供可在目錄中修改項目的功能，例如建立檔案、刪除檔案或重新命名檔案。
-	* **執行** - 如果在目錄上設定此權限，它會提供可在目錄中存取檔案內容的功能。如果已知檔案名稱，此權限也提供存取檔案的元資料。不過，此權限無法讓您在目錄中列出檔案，除非也設定了**讀取**權限。
-
-	>[AZURE.NOTE] 您必須擁有**讀取 + 執行**權限才可列舉目錄，而且在提供資料唯讀存取給使用者或群組時也經常需要使用該權限。
+    For data operations individual file system permissions define what the users can do. Therefore, a user having a Reader role can only view administrative settings associated with the account but can potentially read and write data based on file system permissions assigned to them. Data Lake Store file system permissions are described at [Assign security group as ACLs to the Azure Data Lake Store file system](#filepermissions).
 
 
-6. 在 [新增自訂存取] 刀鋒視窗中，按一下 [確定]。具有相關權限的新增群組現在會列在 [存取] 刀鋒視窗中。
 
-	![將權限指派至群組](./media/data-lake-store-secure-data/adl.acl.5.png "將權限指派至群組")
+5. In the **Add access** blade, click **Add users** to open the **Add users** blade. In this blade, look for the security group you created earlier in Azure Active Directory. If you have a lot of groups to search from, use the text box at the top to filter on the group name. Click **Select**.
 
-	> [AZURE.IMPORTANT] 在目前的版本中，[自訂存取] 下方只能有 9 個項目。如要新增超過 9 位使用者，您必須建立安全性群組、新增使用者至安全性群組，並新增存取權限給該資料湖儲存區帳戶的安全性群組。
+    ![Add a security group](./media/data-lake-store-secure-data/adl.add.user.2.png "Add a security group")
 
-7. 如有需要，您也可以在新增群組之後修改存取權限。根據您是否要移除或指派該權限給安全性群組，選擇清除或選取每個權限類型的核取方塊 (讀取、寫入、執行)。按一下 [儲存] 儲存變更，或按一下 [捨棄] 復原變更。
+    If you want to add a group/user that is not listed, you can invite them by using the **Invite** icon and specifying the e-mail address for the user/group.
 
-## 設定資料存取的 IP 位址範圍
+6. Click **OK**. You should see the security group added as shown below.
 
-Azure Data Lake Store 可讓您進一步在網路層級鎖定資料存放區的存取。您可以啟用防火牆、指定 IP 位址或為受信任的用戶端定義 IP 位址範圍。一旦啟用，只有具有定義範圍內 IP 位址的用戶端可以連線到存放區。
+    ![Security group added](./media/data-lake-store-secure-data/adl.add.user.3.png "Security group added")
 
-![防火牆設定和 IP 存取](./media/data-lake-store-secure-data/firewall-ip-access.png "防火牆設定和 IP 位址")
+7. Your user/security group now has access to the Azure Data Lake Store account. If you want to provide access to specific users, you can add them to the security group. Similarly, if you want to revoke access for a user, you can remove them from the security group. You can also assign multiple security groups to an account. 
 
-## 移除 Azure 資料湖儲存區帳戶的安全性群組
+## <a name="<a-name="filepermissions"></a>assign-users-or-security-group-as-acls-to-the-azure-data-lake-store-file-system"></a><a name="filepermissions"></a>Assign users or security group as ACLs to the Azure Data Lake Store file system
 
-當您從 Azure 資料湖儲存區帳戶移除安全性群組時，僅會變更使用 Azure 入口網站和 Azure 資源管理員 API 的帳戶上，其管理作業的存取。
+By assigning user/security groups to the Azure Data Lake file system, you set access control on the data stored in Azure Data Lake Store.
 
-1. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [使用者] 圖示。
+1. In your Data Lake Store account blade, click **Data Explorer**.
 
-	![指派安全性群組給 Azure 資料湖帳戶](./media/data-lake-store-secure-data/adl.select.user.icon.png "指派安全性群組給 Azure 資料湖帳戶")
+    ![Create directories in Data Lake Store account](./media/data-lake-store-secure-data/adl.start.data.explorer.png "Create directories in Data Lake account")
 
-2. 在 [使用者] 刀鋒視窗中，按一下您要移除的安全性群組。
+2. In the **Data Explorer** blade, click the file or folder for which you want to configure the ACL, and then click **Access**. To assign ACL to a file, you must click **Access** from the **File Preview** blade.
 
-	![要移除的安全性群組](./media/data-lake-store-secure-data/adl.add.user.3.png "要移除的安全性群組")
+    ![Set ACLs on Data Lake file system](./media/data-lake-store-secure-data/adl.acl.1.png "Set ACLs on Data Lake file system")
 
-3. 在安全性群組的刀鋒視窗中，按一下 [移除]。
+3. The **Access** blade lists the standard access and custom access already assigned to the root. Click the **Add** icon to add custom-level ACLs.
 
-	![已移除的安全性群組](./media/data-lake-store-secure-data/adl.remove.group.png "已移除的安全性群組")
+    ![List standard and custom access](./media/data-lake-store-secure-data/adl.acl.2.png "List standard and custom access")
 
-## 從 Azure 資料湖儲存區檔案系統移除安全性群組 ACL
+    * **Standard access** is the UNIX-style access, where you specify read, write, execute (rwx) to three distinct user classes: owner, group, and others.
+    * **Custom access** corresponds to the POSIX ACLs that enables you to set permissions for specific named users or groups, and not only the file's owner or group. 
+    
+    For more information, see [HDFS ACLs](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists). For more information on how ACLs are implemented in Data Lake Store, see [Access Control in Data Lake Store](data-lake-store-access-control.md).
 
-當您從 Azure 資料湖儲存區檔案系統中移除安全性群組 ACL 時，會變更資料湖儲存區資料的存取。
+4. Click the **Add** icon to open the **Add Custom Access** blade. In this blade, click **Select User or Group**, and then in **Select User or Group** blade, look for the security group you created earlier in Azure Active Directory. If you have a lot of groups to search from, use the text box at the top to filter on the group name. Click the group you want to add and then click **Select**.
 
-1. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [資料總管]。
+    ![Add a group](./media/data-lake-store-secure-data/adl.acl.3.png "Add a group")
 
-	![在資料湖帳戶中建立目錄](./media/data-lake-store-secure-data/adl.start.data.explorer.png "在資料湖帳戶中建立目錄")
+5. Click **Select Permissions**, select the permissions and whether you want to assign the permissions as a default ACL, access ACL, or both. Click **OK**.
 
-2. 在 [資料總管] 刀鋒視窗中，按一下帳戶的根目錄，然後在 [帳戶] 刀鋒視窗中，按一下 [存取] 圖示。
+    ![Assign permissions to group](./media/data-lake-store-secure-data/adl.acl.4.png "Assign permissions to group")
 
-	![設定資料湖檔案系統上的 ACL](./media/data-lake-store-secure-data/adl.acl.1.png "設定資料湖檔案系統上的 ACL")
-
-3. 從 [存取] 刀鋒視窗中的 [自訂存取] 區段，按一下您要移除的安全性群組。在 [自訂存取] 刀鋒視窗中，按一下 [移除]，然後按一下 [確定]。
-
-	![指派權限給群組](./media/data-lake-store-secure-data/adl.remove.acl.png "指派權限給群組")
+    For more information about permissions in Data Lake Store, and Default/Access ACLs, see [Access Control in Data Lake Store](data-lake-store-access-control.md).
 
 
-## 另請參閱
+6. In the **Add Custom Access** blade, click **OK**. The newly added group, with the associated permissions, will now be listed in the **Access** blade.
 
-- [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
-- [將資料從 Azure 儲存體 Blob 複製到資料湖存放區](data-lake-store-copy-data-azure-storage-blob.md)
-- [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-- [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
-- [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)
-- [使用 .NET SDK 開始使用資料湖存放區](data-lake-store-get-started-net-sdk.md)
-- [存取 Data Lake Store 的診斷記錄](data-lake-store-diagnostic-logs.md)
+    ![Assign permissions to group](./media/data-lake-store-secure-data/adl.acl.5.png "Assign permissions to group")
 
-<!---HONumber=AcomDC_0914_2016-->
+    > [AZURE.IMPORTANT] In the current release, you can only have 9 entries under **Custom Access**. If you want to add more than 9 users, you should create security groups, add users to security groups, add provide access to those security groups for the Data Lake Store account.
+
+7. If required, you can also modify the access permissions after you have added the group. Clear or select the check box for each permission type (Read, Write, Execute) based on whether you want to remove or assign that permission to the security group. Click **Save** to save the changes, or **Discard** to undo the changes.
+
+## <a name="set-ip-address-range-for-data-access"></a>Set IP address range for data access
+
+Azure Data Lake Store enables you to further lock down access to your data store at network level. You can enable firewall, specify an IP address, or define an IP address range for your trusted clients. Once enabled, only clients that have the IP addresses within defined range can connect to the store.
+
+![Firewall settings and IP access](./media/data-lake-store-secure-data/firewall-ip-access.png "Firewall settings and IP address")
+
+## <a name="remove-security-groups-for-an-azure-data-lake-store-account"></a>Remove security groups for an Azure Data Lake Store account
+
+When you remove security groups from Azure Data Lake Store accounts, you are only changing access to the management operations on the account using the Azure Portal and Azure Resource Manager APIs.
+
+1. In your Data Lake Store account blade, click **Settings**. From the **Settings** blade, click **Users**.
+
+    ![Assign security group to Azure Data Lake account](./media/data-lake-store-secure-data/adl.select.user.icon.png "Assign security group to Azure Data Lake account")
+
+2. In the **Users** blade click the security group you want to remove.
+
+    ![Security group to remove](./media/data-lake-store-secure-data/adl.add.user.3.png "Security group to remove")
+
+3. In the blade for the security group, click **Remove**.
+
+    ![Security group removed](./media/data-lake-store-secure-data/adl.remove.group.png "Security group removed")
+
+## <a name="remove-security-group-acls-from-azure-data-lake-store-file-system"></a>Remove security group ACLs from Azure Data Lake Store file system
+
+When you remove security groups ACLs from Azure Data Lake Store file system, you change access to the data in the Data Lake Store.
+
+1. In your Data Lake Store account blade, click **Data Explorer**.
+
+    ![Create directories in Data Lake account](./media/data-lake-store-secure-data/adl.start.data.explorer.png "Create directories in Data Lake account")
+
+2. In the **Data Explorer** blade, click the file or folder for which you want to remove the ACL, and then in your account blade, click the **Access** icon. To remove ACL for a file, you must click **Access** from the **File Preview** blade.
+
+    ![Set ACLs on Data Lake file system](./media/data-lake-store-secure-data/adl.acl.1.png "Set ACLs on Data Lake file system")
+
+3. In the **Access** blade, from the **Custom Access** section, click the security group you want to remove. In the **Custom Access** blade, click **Remove** and then click **OK**.
+
+    ![Assign permissions to group](./media/data-lake-store-secure-data/adl.remove.acl.png "Assign permissions to group")
+
+
+## <a name="see-also"></a>See also
+
+- [Overview of Azure Data Lake Store](data-lake-store-overview.md)
+- [Copy data from Azure Storage Blobs to Data Lake Store](data-lake-store-copy-data-azure-storage-blob.md)
+- [Use Azure Data Lake Analytics with Data Lake Store](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [Use Azure HDInsight with Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
+- [Get Started with Data Lake Store using PowerShell](data-lake-store-get-started-powershell.md)
+- [Get Started with Data Lake Store using .NET SDK](data-lake-store-get-started-net-sdk.md)
+- [Access diagnostic logs for Data Lake Store](data-lake-store-diagnostic-logs.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

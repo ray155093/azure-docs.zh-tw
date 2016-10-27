@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 ARM 範本建立虛擬網路 | Microsoft Azure"
-   description="了解如何使用 ARM 範本建立虛擬網路 |資源管理員。"
+   pageTitle="Create a virtual network using an ARM template | Microsoft Azure"
+   description="Learn how to create a virtual network using an ARM template | Resource Manager."
    services="virtual-network"
    documentationCenter=""
    authors="jimdial"
@@ -17,17 +17,18 @@
    ms.date="03/15/2016"
    ms.author="jdial"/>
 
-# 使用 ARM 範本建立虛擬網路
+
+# <a name="create-a-virtual-network-by-using-an-arm-template"></a>Create a virtual network by using an ARM template
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-selectors-arm-include](../../includes/virtual-networks-create-vnet-selectors-arm-include.md)]
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文件說明如何使用資源管理員部署模型建立 VNet。您也可以[在傳統部署模型中建立虛擬網路](virtual-networks-create-vnet-classic-pportal.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] This document covers creating a VNet by using the Resource Manager deployment model. You can also [create a virtual network in the classic deployment model](virtual-networks-create-vnet-classic-pportal.md).
 
-您將了解如何從 GitHub 下載和修改現有 ARM 範本，並從 GitHub、PowerShell 和 Azure CLI 部署範本。
+You will learn how to download and modify and existing ARM template from GitHub, and deploy the template from GitHub, PowerShell, and the Azure CLI.
 
-如果您只需要直接從 GitHub 部署 ARM 範本而不做任何變更，請跳至[從 GitHub 部署範本](#deploy-the-arm-template-by-using-click-to-deploy)。
+If you are simply deploying the ARM template directly from GitHub, without any changes, skip to [deploy a template from github](#deploy-the-arm-template-by-using-click-to-deploy).
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 
@@ -35,8 +36,11 @@
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-arm-template-ps-include](../../includes/virtual-networks-create-vnet-arm-template-ps-include.md)]
 
-[AZURE.INCLUDE [vvirtual-networks-create-vnet-arm-template-cli-include](../../includes/virtual-networks-create-vnet-arm-template-cli-include.md)]
+[AZURE.INCLUDE [virtual-networks-create-vnet-arm-template-cli-include](../../includes/virtual-networks-create-vnet-arm-template-cli-include.md)]
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-arm-template-click-include](../../includes/virtual-networks-create-vnet-arm-template-click-include.md)]
 
-<!---HONumber=AcomDC_0810_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

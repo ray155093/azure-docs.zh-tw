@@ -1,6 +1,6 @@
 <properties
-   pageTitle="診斷邏輯應用程式錯誤 | Microsoft Azure"
-   description="用以了解邏輯應用程式失敗位置的常見方法"
+   pageTitle="Diagnosing logic apps failures | Microsoft Azure"
+   description="Common approaches to understanding where logic apps are failing"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
@@ -13,67 +13,68 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="05/18/2016"
+   ms.date="10/18/2016"
    ms.author="jehollan"/>
 
-# 診斷邏輯應用程式失敗
 
-如果您遇到關於 Azure App Service 的 Logic Apps 功能的問題或該功能失敗，則有數種方法可協助您深入了解失敗所在之處。
+# <a name="diagnosing-logic-app-failures"></a>Diagnosing logic app failures
 
-## Azure 入口網站工具
+If you experience issues or failures with the Logic Apps feature of Azure App Service, a few approaches can help you better understand where the failures are coming from.  
 
-Azure 入口網站提供許多工具，在每個步驟中診斷每個邏輯應用程式。
+## <a name="azure-portal-tools"></a>Azure portal tools
 
-### 觸發程序記錄
+The Azure portal provides many tools to diagnose each logic app at each step.
 
-每個邏輯應用程式至少會有一個觸發程序。如果您發現無法引發應用程式，首先要尋找的其他資訊是觸發程序記錄。您可以在邏輯應用程式主要刀鋒視窗上存取觸發程序記錄。
+### <a name="trigger-history"></a>Trigger history
 
-![找出觸發程序記錄][1]
+Each logic app has at least one trigger. If you notice that apps aren't firing, the first place to look for additional information is the trigger history. You can access the trigger history on the logic app main blade.
 
-這會列出所您的邏輯應用程式所做的所有觸發程序嘗試。您可以按一下每一個觸發程序嘗試，即可取得下一個層級的詳細資料 (特別是觸發程序嘗試所產生的任何輸入或輸出)。如果您看見任何失敗的觸發程序，按一下觸發程序嘗試並向內切入至 [輸出] 連結，以查看任何可能產生的錯誤訊息 (例如︰針對無效的 FTP 認證)。
+![Locating the trigger history][1]
 
-您可能會看到不同的狀態：
+This lists all of the trigger attempts that your logic app has made. You can click each trigger attempt to get the next level of detail (specifically, any inputs or outputs that the trigger attempt generated). If you see any failed triggers, click the trigger attempt and drill into the **Outputs** link to see any error messages that might have been generated (for example, for invalid FTP credentials).
 
-* **已略過**。它已輪詢要檢查資料的端點，且收到沒有可用資料的回應。
-* **已成功**。觸發程序收到資料可用的回應。這可能是來自手動觸發程序、循環觸發程序或輪詢觸發程序。這可能會伴隨著**已引發**的狀態，但如果程式碼檢視中有一個條件或 SplitOn 命令不符合，則可能不會出現。
-* **失敗**。已產生錯誤。
+The different statuses you might see are:
 
-#### 手動啟動觸發程序
+* **Skipped**. It polled the endpoint to check for data and received a response that no data was available.
+* **Succeeded**. The trigger received a response that data was available. This could be from a manual trigger, a recurrence trigger, or a polling trigger. This likely will be accompanied with a status of **Fired**, but it might not if you have a condition or SplitOn command in code view that wasn't satisfied.
+* **Failed**. An error was generated.
 
-如果您希望邏輯應用程式立即檢查可用的觸發程序 (而不需等待下一個循環)，可以按一下主要刀鋒視窗上的 [選取觸發程序] 來強制進行檢查。例如，按一下這個包含 Dropbox 觸發程序的連結，會導致工作流程立即輪詢 Dropbox 中是否有新檔案。
+#### <a name="starting-a-trigger-manually"></a>Starting a trigger manually
 
-### 執行記錄
+If you want the logic app to check for an available trigger immediately (without waiting for the next recurrence), you can click **Select Trigger** on the main blade to force a check. For example, clicking this link with a Dropbox trigger will cause the workflow to immediately poll Dropbox for new files.
 
-每個引發的觸發程序都會導致一次執行。您可以從主要刀鋒視窗中存取執行資訊，其中包含許多可協助您了解工作流程期間發生什麼事情的資訊。
+### <a name="run-history"></a>Run history
 
-![找出執行記錄][2]
+Every trigger that is fired results in a run. You can access run information from the main blade, which contains a lot of information that can be helpful in understanding what happened during the workflow.
 
-一次執行會顯示下列其中一個狀態：
+![Locating the run history][2]
 
-* **已成功**。所有動作都已成功，或者，如果發生失敗，已透過工作流程中後續發生的動作來處理。也就是已透過設定為要在失敗動作之後執行的動作來處理。
-* **失敗**。至少有一個動作發生了工作流程中後續的動作無法處理的失敗。
-* **已取消**。工作流程正執行中，但收到了取消要求。
-* **執行中**。工作流程目前正在執行中。這可能會出現於正在進行節流的流程，或者因為目前的 App Service 方案所導致。如需詳細資訊，請參閱[定價頁面](https://azure.microsoft.com/pricing/details/app-service/plans/)上的動作限制。設定診斷功能 (執行歷程記錄下方列出的圖表) 也可以提供所發生的任何節流事件的相關資訊。
+A run displays one of the following statuses:
 
-當您查看執行歷程記錄時，您可以向內切入來查看詳細資訊。
+* **Succeeded**. All actions succeeded, or, if there was a failure, it was handled by an action that occurred later in the workflow. That is, it was handled by an action that was set to run after a failed action.
+* **Failed**. At least one action had a failure that was not handled by an action later in the workflow.
+* **Cancelled**. The workflow was running but received a cancel request.
+* **Running**. The workflow is currently running. This may occur for workflows that are being throttled, or because of the current App Service plan. Please see action limits on the [pricing page](https://azure.microsoft.com/pricing/details/app-service/plans/) for details. Configuring diagnostics (the charts listed below the run history) also can provide information about any throttle events that are occurring.
 
-#### 觸發程序輸出
+When you are looking at a run history, you can drill in for more details.  
 
-觸發程序輸出會顯示接收自觸發程序的資料。這可協助您判斷所有屬性是否如預期般傳回。
+#### <a name="trigger-outputs"></a>Trigger outputs
 
->[AZURE.NOTE] 如果您看見任何不了解的內容，這可能有助於了解 Logic Apps 功能如何[處理不同的內容類型](app-service-logic-content-type.md)。
+Trigger outputs show the data that was received from the trigger. This can help you determine whether all properties returned as expected.
 
-![觸發程序輸出範例][3]
+>[AZURE.NOTE] It might be helpful to understand how the Logic Apps feature [handles different content types](app-service-logic-content-type.md) if you see any content that you don't understand.
 
-#### 動作輸入和輸出
+![Trigger output examples][3]
 
-您可以深入探索動作所接收的輸入和輸出。這有助於了解輸出的大小和圖形，以及查看任何可能產生的錯誤訊息。
+#### <a name="action-inputs-and-outputs"></a>Action inputs and outputs
 
-![動作輸入和輸出][4]
+You can drill into the inputs and outputs that an action received. This is useful for understanding the size and shape of the outputs, as well as to see any error messages that may have been generated.
 
-## 偵錯工作流程執行階段
+![Action inputs and outputs][4]
 
-除了監視執行的輸入、輸出和觸發程序以外，在工作流程內加入一些步驟，有助於偵錯。[RequestBin](http://requestb.in) 是一個強大的工具，您可以在工作流程中將其加入為一個步驟。使用 RequestBin，您就能設定 HTTP 要求檢查器，來判斷 HTTP 要求的確切大小、圖形和格式。您可以建立新的 RequestBin 並在邏輯應用程式 HTTP POST 動作中貼上 URL，以及您想要測試的任何內文內容 (例如，運算式或另一個步驟輸出)。執行邏輯應用程式之後，您可以重新整理 RequestBin，以查看要求從 Logic Apps 引擎產生時是如何形成的。
+## <a name="debugging-workflow-runtime"></a>Debugging workflow runtime
+
+In addition to monitoring the inputs, outputs, and triggers of a run, it could be useful to add some steps within a workflow to help with debugging. [RequestBin](http://requestb.in) is a powerful tool that you can add as a step in a workflow. By using RequestBin, you can set up an HTTP request inspector to determine the exact size, shape, and format of an HTTP request. You can create a new RequestBin and paste the URL in a logic app HTTP POST action along with body content you want to test (for example, an expression or another step output). After you run the logic app, you can refresh your RequestBin to see how the request was formed as it was generated from the Logic Apps engine.
 
 
 
@@ -84,4 +85,8 @@ Azure 入口網站提供許多工具，在每個步驟中診斷每個邏輯應�
 [3]: ./media/app-service-logic-diagnosing-failures/triggerOutputsLink.PNG
 [4]: ./media/app-service-logic-diagnosing-failures/ActionOutputs.PNG
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,114 +1,119 @@
 <properties
-	pageTitle="監視 Azure Web 應用程式效能 |Microsoft Azure"
-	description="Azure Web 應用程式的應用程式效能監視。圖表載入和回應時間、相依性資訊以及設定效能警示。"
-	services="application-insights"
+    pageTitle="Monitor Azure web app performance | Microsoft Azure"
+    description="Application performance monitoring for Azure web apps. Chart load and response time, dependency information and set alerts on performance."
+    services="application-insights"
     documentationCenter=".net"
-	authors="alancameronwills"
-	manager="douge"/>
+    authors="alancameronwills"
+    manager="douge"/>
 
 <tags
-	ms.service="azure-portal"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/01/2016"
-	ms.author="awills"/>
+    ms.service="azure-portal"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/01/2016"
+    ms.author="awills"/>
 
-# 監視 Azure Web 應用程式效能
 
-在 [Azure 入口網站](https://portal.azure.com)中，您可以為 [Azure Web 應用程式](../app-service-web/app-service-web-overview.md)設定應用程式效能監視。[Visual Studio Application Insights](app-insights-overview.md) 會檢測您的應用程式，將其活動的相關遙測傳送至 Application Insights 服務，以便在其中儲存和分析遙測。該處的度量圖表和搜尋工具可用於協助診斷問題、改善效能，以及評估使用方式。
+# <a name="monitor-azure-web-app-performance"></a>Monitor Azure web app performance
 
-## 執行階段或建置階段
+In the [Azure Portal](https://portal.azure.com) you can set up application performance monitoring for your [Azure web apps](../app-service-web/app-service-web-overview.md). [Visual Studio Application Insights](app-insights-overview.md) instruments your app to send telemetry about its activities to the Application Insights service, where it is stored and analyzed. There, metric charts and search tools can be used to help diagnose issues, improve performance, and assess usage.
 
-您可以用任一種方式檢測應用程式，進而設定監視︰
+## <a name="run-time-or-build-time"></a>Run time or build time
 
-* **執行階段** - 您可以在 Web 應用程式已經上線時，選取效能監視延伸模組。不需要重建或重新安裝您的應用程式。您會取得一組標準封裝，用以監視回應時間、成功率、例外狀況、相依性等。
+You can configure monitoring by instrumenting the app in either of two ways:
 
-    **Application Insights** 和 **New Relic** 是兩個可用的執行階段效能監視延伸模組。
+* **Run-time** - You can select a performance monitoring extension when your web app is already live. It isn't necessary to rebuild or re-install your app. You get a standard set of packages that monitor response times, success rates, exceptions, dependencies, and so on. 
+
+    **Application Insights** and **New Relic** are two of the runtime performance monitoring extensions that are available.
  
-* **建置階段** - 您可以在開發應用程式中安裝封裝。此選項比較靈活。除了相同的標準封裝以外，您可以撰寫程式碼以自訂遙測，或傳送自己的遙測。您可以根據您的應用程式網域，記錄特定活動或記錄事件。
+* **Build time** - You can install a package in your app in development. This option is more versatile. In addition to the same standard packages, you can write code to customize the telemetry or to send your own telemetry. You can log specific activities or record events according to the semantics of your app domain. 
 
-    **Application Insights** 會提供建置階段封裝。
-
-
-## 使用 Application Insights 封裝建置應用程式...
-
-Application Insights 可以提供更詳細的遙測，方法是將 SDK 安裝至您的 App。
-
-在 Visual Studio (2013 Update 2 或更新版本) 中，將 Application Insights SDK 加入專案。
-
-![以滑鼠右鍵按一下 Web 專案，然後選擇 [加入 Application Insights]。](./media/app-insights-azure-web-apps/03-add.png)
-
-系統要求您登入時，請使用 Azure 帳戶的認證。
-
-此作業有兩種效果︰
-
-1. 在 Azure 中建立 Application Insights 資源，這是存放、分析和顯示遙測資料的位置。
-2. 將 Application Insights NuGet 封裝加入至您的程式碼，並加以設定以將遙測傳送至 Azure 資源。
-
-您可以在開發電腦 (F5) 中執行應用程式來測試遙測，或是直接繼續執行並重新發佈應用程式。
-
-SDK 會提供 API 供您[撰寫自訂遙測](../application-insights/app-insights-api-custom-events-metrics.md)以追蹤使用情況。
-
-### ...或手動設定資源
-
-如果您未在 Visual Studio 中新增 SDK，則必須在 Azure 中設定 Application Insights 資源，以便在其中存放、分析和顯示遙測。
-
-![按一下 [加入]、[開發人員服務]、[Application Insights]。選擇 ASP.NET 應用程式類型。](./media/app-insights-azure-web-apps/01-new.png)
+    **Application Insights** provides build-time packages. 
 
 
-## 啟用擴充功能
+## <a name="build-the-app-with-the-application-insights-package..."></a>Build the app with the Application Insights package...
 
-1. 瀏覽至您要檢測的 Web 應用程式或虛擬機器的控制刀鋒視窗。
+Application Insights can provide more detailed telemetry by installing an SDK into your app.
 
-2. 加入 Application Insights 或 New Relic 延伸模組。
+In Visual Studio (2013 update 2 or later), add the Application Insights SDK to your project.
 
-    如果您要檢測 Web 應用程式：
+![Right-click the web project and choose Add Application Insights](./media/app-insights-azure-web-apps/03-add.png)
 
-![設定、延伸模組、加入、Application Insights](./media/app-insights-azure-web-apps/05-extend.png)
+If you're asked to sign in, use the credentials for your Azure account.
 
-如果您使用的是虛擬機器：
+The operation has two effects:
 
-![按一下 [分析] 圖格。](./media/app-insights-azure-web-apps/10-vm1.png)
+1. Creates an Application Insights resource in Azure, where telemetry is stored, analyzed and displayed.
+2. Adds the Application Insights NuGet package to your code, and configures it to send telemetry to the Azure resource.
 
+You can test the telemetry by running the app in your development machine (F5), or you can just go ahead and republish the app.
 
+The SDK provides an API so that you can [write custom telemetry](../application-insights/app-insights-api-custom-events-metrics.md) to track usage.
 
-## 探索資料
+### <a name="...or-set-up-a-resource-manually"></a>...or set up a resource manually
 
-1. 開啟 Application Insights 資源 (無論是直接從 [瀏覽]，或從 Web 應用程式的 [效能監視] 工具)。
+If you didn't add the SDK in Visual Studio, you must set up an Application Insights resource in Azure, where telemetry is stored, analyzed and displayed.
 
-2. 逐一點選任何圖表以取得更詳細的資料：
-
-    ![按一下 Application Insights 概觀刀鋒視窗上的圖表](./media/app-insights-azure-web-apps/07-dependency.png)
-
-    您可以[自訂計量刀鋒視窗](../application-insights/app-insights-metrics-explorer.md)。
-
-3. 進一步逐一點選以查看個別事件與其屬性︰
-
-    ![按一下事件類型以開啟依該類型篩選的搜尋](./media/app-insights-azure-web-apps/08-requests.png)
-
-    請注意 [...] 連結以開啟所有的屬性。
-
-    您可以[自訂搜尋](../application-insights/app-insights-diagnostic-search.md)。
-
-透過您的遙測功能更強大的搜尋，請使用 [Analytics 查詢語言](../application-insights/app-insights-analytics-tour.md)。
+![Click Add, Developer Services, Application Insights. Choose ASP.NET app type.](./media/app-insights-azure-web-apps/01-new.png)
 
 
-## 問答集
+## <a name="enable-an-extension"></a>Enable an extension
 
-如何變更為將資料傳送至不同的 Application Insights 資源？
+1. Browse to the control blade of the web app or virtual machine you would like to instrument.
 
-* 如果您已在 Visual Studio 中將 Application Insights 新增至程式碼：在專案上按一下滑鼠右鍵，選擇 [Application Insights] > [設定] 並選擇您想要的資源。您可取得建立新資源的選項。重建並重新部署。
-* 否則︰在 Azure 中，開啟 Web 應用程式控制刀鋒視窗，並開啟 [工具] > [延伸模組]。刪除 Application Insights 延伸模組。然後開啟 [工具] > [效能]、按這裡、選擇 Application Insights，然後選擇您想要的資源。(如果您想要建立新的 Application Insights 資源，請先行建立)。
+2. Add the Application Insights or the New Relic extension.
+
+    If you're instrumenting a web app:
+
+![Settings, Extensions, Add, Application Insights](./media/app-insights-azure-web-apps/05-extend.png)
+
+Or if you're using a virtual machine:
+
+![Click the Analytics tile](./media/app-insights-azure-web-apps/10-vm1.png)
 
 
-## 後續步驟
 
-* [能夠讓 Azure 診斷](app-insights-azure-diagnostics.md)傳送至 Application Insights。
-* [監視服務健康狀態計量](../azure-portal/insights-how-to-customize-monitoring.md)可確保您的服務可用且回應正常。
-* 每當發生操作事件或計量超過臨界值時，[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)。
-* 使用 [JavaScript 應用程式和網頁適用的 Application Insights](app-insights-web-track-usage.md)，以從造訪網頁的瀏覽器取得用戶端遙測。
-* [設定可用性 Web 測試](app-insights-monitor-web-app-availability.md)，以在您的網站關閉時發出警示。
+## <a name="explore-the-data"></a>Explore the data
 
-<!----HONumber=AcomDC_0907_2016-->
+1. Open the Application Insights resource (either directly from Browse, or from the Performance Monitoring tool of the web app).
+
+2. Click through any chart to get more detail:
+
+    ![On the Application Insights overview blade, click a chart](./media/app-insights-azure-web-apps/07-dependency.png)
+
+    You can [customize metrics blades](../application-insights/app-insights-metrics-explorer.md).
+
+3. Click through further to see individual events and their properties:
+
+    ![Click an event type to open a search filtered on that type](./media/app-insights-azure-web-apps/08-requests.png)
+
+    Notice the "..." link to open all properties.
+
+    You can [customize searches](../application-insights/app-insights-diagnostic-search.md).
+
+For more powerful searches over your telemetry, use the [Analytics query language](../application-insights/app-insights-analytics-tour.md).
+
+
+## <a name="q-&-a"></a>Q & A
+
+How do I change to send data to a different Application Insights resource?
+
+* *If you added Application Insights to your code in Visual Studio:* Right-click the project, choose **Application Insights > Configure** and choose the resource you want. You get the option to create a new resource. Rebuild and redeploy.
+* *Otherwise:* In Azure, open the web app control blade, and open **Tools > Extensions**. Delete the Application Insights extension. Then open **Tools > Performance**, 'click here', choose Application Insights, and then the resource that you want. (If you want to create a new Application Insights resource, do that first.)
+
+
+## <a name="next-steps"></a>Next steps
+
+* [Enable Azure diagnostics](app-insights-azure-diagnostics.md) to be sent to Application Insights.
+* [Monitor service health metrics](../azure-portal/insights-how-to-customize-monitoring.md) to make sure your service is available and responsive.
+* [Receive alert notifications](../azure-portal/insights-receive-alert-notifications.md) whenever operational events happen or metrics cross a threshold.
+* Use [Application Insights for JavaScript apps and web pages](app-insights-web-track-usage.md) to get client telemetry from the browsers that visit a web page.
+* [Set up Availability web tests](app-insights-monitor-web-app-availability.md) to be alerted if your site is down.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

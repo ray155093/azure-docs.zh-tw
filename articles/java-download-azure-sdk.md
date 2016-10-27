@@ -1,52 +1,53 @@
 <properties 
-	pageTitle="下載 Azure SDK for Java" 
-	description="了解如何下載 Azure SDK for Java，包括可供 Maven 專案使用的範例程式碼，以及 Azure Tookit for Eclipse 的基本安裝步驟。" 
-	services="" 
-	documentationCenter="java" 
-	authors="rmcmurray" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Download the Azure SDK for Java" 
+    description="Learn how to download the Azure SDK for Java, with sample code provided for Maven projects and basic installation steps for the Azure Tookit for Eclipse." 
+    services="" 
+    documentationCenter="java" 
+    authors="rmcmurray" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="multiple" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="multiple" 
-	ms.devlang="Java" 
-	ms.topic="article" 
-	ms.date="08/11/2016" 
-	ms.author="robmcm"/>
+    ms.service="multiple" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="multiple" 
+    ms.devlang="Java" 
+    ms.topic="article" 
+    ms.date="08/11/2016" 
+    ms.author="robmcm"/>
 
-# 下載 Azure SDK for Java
 
-本文包含下載及安裝 Azure Libraries for Java。
+# <a name="download-the-azure-sdk-for-java"></a>Download the Azure SDK for Java
 
-**注意：**Azure Libraries for Java 的散發係以 [Apache 授權 2.0 版][license]為依據。
+This article contains instructions for downloading and installing the Azure Libraries for Java.
 
-## Azure Libraries for Java - 手動下載
+**Note:** The Azure Libraries for Java are distributed under the [Apache License, Version 2.0][license].
 
-若要手動安裝 Azure Libraries for Java，請按一下 <http://go.microsoft.com/fwlink/?LinkId=690320>，以下載包含所有程式庫及所有相依性的 ZIP 檔案。
+## <a name="azure-libraries-for-java---manual-download"></a>Azure Libraries for Java - Manual Download
 
-當將 zip 檔案下載到您的電腦之後，請將內容解壓縮，再使用下列選項之一，將 JAR 檔案加入您的專案中：
+To manually install the Azure Libraries for Java, click <http://go.microsoft.com/fwlink/?LinkId=690320> to download a ZIP file which contains all of the libraries and all dependencies.
 
-* 將 JAR 檔案匯入您在 Eclipse 的 Java 專案中。
+Once you have downloaded the zip file to your computer, extract the contents and use one of the following options to add the JAR files to your project:
 
-* 為您在 Eclipe 中的專案設定**組建路徑**，以將路徑加入 JAR 檔案的路徑中。
+* Import the JAR files into your Java project in Eclipse.
 
-如需在 Eclipse 中設定組建路徑的詳細資訊，請參閱 Eclipse 網站上的 [Java 組建路徑]一文。
+* Configure the **Build Path** for your Java project in Eclipse to include the path to the JAR files.
 
-**注意：**如需授權與其他資訊， 請參閱 ZIP 中的 license.txt 與 ThirdPartyNotices.txt 檔案。
+For detailed information on setting up build paths in Eclipse, see the [Java Build Path] article at the Eclipse website.
 
-## Azure Libraries for Java - 使用 Maven 建置
+**Note:** See the license.txt and ThirdPartyNotices.txt file file inside the ZIP for license and other information.
 
-### 步驟 1 - 設定使用 Maven 建置專案
+## <a name="azure-libraries-for-java---building-with-maven"></a>Azure Libraries for Java - Building with Maven
 
-若要在 Eclipse 中建立使用 Azure Libraries for Java 的 Maven 專案，請遵循[開始使用Azure Management Libraries for Java][maven-getting-started] 一文。
+### <a name="step-1---set-up-your-project-to-use-maven-for-build"></a>Step 1 - Set up your project to use Maven for build
 
-### 步驟 2 - 設定您的 Maven 設定必的相依性
+To create Maven projects in Eclipse which use the Azure libraries for Java, following the instructions in the [Getting Started with Azure Management Libraries for Java][maven-getting-started] article. 
 
-當設定好使用 Maven 建置專案之後，您便可使用類似下列範例所示的語法，將必要的相依性加入 pom.xml 檔案中。請注意，您無須加入下列範例中所列的每項相依性，而只需加入您專案所需的特定相依性即可。
+### <a name="step-2---configure-your-maven-settings-with-the-requisite-dependencies"></a>Step 2 - Configure your Maven settings with the requisite dependencies
 
-> [AZURE.NOTE] 在下列範例的每一個 `<version>` 元素中，以有效的版本號碼 (可從 [Maven 上的 Azure 程式庫存放庫]取得) 取代此範例中的 "n.n.n" 預留位置。
+Once your project has been configured to use Maven for build, you can add the the requisite dependencies to your pom.xml file using syntax like the following example. Note that you do not need to add every dependency that is listed in the following example; you only need to add the specific dependencies which your project requires.
+
+> [AZURE.NOTE] Within each `<version>` element in the following sample, replace the "n.n.n" placeholders in this example with valid version numbers, which can be obtained from the [Azure Libraries Repository on Maven].
 
     <dependency>
         <groupId>com.microsoft.azure</groupId>
@@ -94,45 +95,49 @@
         <version>n.n.n</version>
     </dependency>
 
-## 安裝 Azure Toolkit for Eclipse
+## <a name="installing-the-azure-toolkit-for-eclipse"></a>Installing the Azure Toolkit for Eclipse
 
-本節包含安裝 Azure Toolkit for Eclipse 的基本指示。如需詳細指示，請參閱[安裝 Azure Toolkit for Eclipse]。
+This section contains basic instructions for installing the Azure Toolkit for Eclipse; for detailed instructions, see [Installing the Azure Toolkit for Eclipse].
 
-### 必要條件
+### <a name="prerequisites"></a>Prerequisites
 
-1. [Azure Toolkit for Eclipse 新功能]一文中所列的 Windows 作業系統。
-1. [Azure Toolkit for Eclipse 新功能]一文中所列的 Macintosh 或 Linux 作業系統。
-1. Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。
+1. Windows operting systems listed in the [What's New in the Azure Toolkit for Eclipse] article.
+1. Macintosh or Linux operting systems listed in the [What's New in the Azure Toolkit for Eclipse] article.
+1. Eclipse IDE for Java EE Developers, Indigo or later. This can be downloaded from <http://www.eclipse.org/downloads/>.
 
-### 基本安裝步驟
+### <a name="basic-installation-steps"></a>Basic Installation steps
 
-1. 在 Eclipse 中，從 [說明] 功能表選取 [安裝新軟體]。
-1. 輸入網站位置 <http://dl.microsoft.com/eclipse>，然後按 **Enter** 鍵。
-1. 選取要安裝的項目，然後按一下 [完成]。
+1. In Eclipse, from the **Help** menu, select **Install New Software**.
+1. Enter the site location <http://dl.microsoft.com/eclipse> and press **Enter**.
+1. Select the items to be installed and click **Finish**.
 
-Azure Toolkit for Eclipse 會使用最新版的 Azure sdk。您可以使用 Web Platform Installer (WebPI) 從 <http://go.microsoft.com/fwlink/?LinkID=252838> 下載此 SDK。不過，如果您沒有安裝此 SDK，則建立第一個 Azure 部署專案時，Azure Toolkit for Eclipse 會自動安裝適當版本的 Azure SDK。
+The Azure Toolkit for Eclipse uses the latest version of the Azure SDK. This can be downloaded using the Web Platform Installer (WebPI) at <http://go.microsoft.com/fwlink/?LinkID=252838>. However, if you don't have it installed, when you create your first Azure deployment project, the Azure Toolkit for Eclipse will automatically install the appropriate version of the Azure SDK.
 
-## 另請參閱
+## <a name="see-also"></a>See Also
 
-[適用於 Eclipse 的 Azure 工具組]
+[Azure Toolkit for Eclipse]
 
-[安裝 Azure Toolkit for Eclipse]
+[Installing the Azure Toolkit for Eclipse] 
 
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式]
+[Creating a Hello World Application for Azure in Eclipse]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+For more information about using Azure with Java, see the [Azure Java Developer Center].
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Maven 上的 Azure 程式庫存放庫]: http://go.microsoft.com/fwlink/?LinkID=286274
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
-[Java 組建路徑]: http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fref-properties-build-path.htm
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Libraries Repository on Maven]: http://go.microsoft.com/fwlink/?LinkID=286274
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Java Build Path]: http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fref-properties-build-path.htm
 [license]: http://www.apache.org/licenses/LICENSE-2.0.html
 [maven-getting-started]: http://go.microsoft.com/fwlink/?LinkID=622998
 [zip-download]: http://go.microsoft.com/fwlink/?LinkId=690320
-[Azure Toolkit for Eclipse 新功能]: http://go.microsoft.com/fwlink/?LinkId=690333
+[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=690333
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

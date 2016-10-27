@@ -1,138 +1,139 @@
 <properties 
-	pageTitle="如何在 Azure API 管理原則中使用屬性" 
-	description="了解如何在 Azure API 管理原則中使用屬性。" 
-	services="api-management" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+    pageTitle="How to use properties in Azure API Management policies" 
+    description="Learn how to use properties in Azure API Management policies." 
+    services="api-management" 
+    documentationCenter="" 
+    authors="steved0x" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+    ms.service="api-management" 
+    ms.workload="mobile" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/25/2016" 
+    ms.author="sdanie"/>
 
 
-# 如何在 Azure API 管理原則中使用屬性
 
-API 管理原則是系統的強大功能，可讓發行者透過設定來變更 API 的行為。原則是陳述式的集合，會因 API 的要求或回應循序執行。原則陳述可以使用引述的文字、值、原則運算式及屬性來建構。
+# <a name="how-to-use-properties-in-azure-api-management-policies"></a>How to use properties in Azure API Management policies
 
-每個 API 管理服務執行個體都有服務執行個體全域適用的之鍵/值組的屬性集合。這個屬性可用來管理所有 API 組態及原則的常數字串值。每個屬性都有下列屬性。
+API Management policies are a powerful capability of the system that allow the publisher to change the behavior of the API through configuration. Policies are a collection of statements that are executed sequentially on the request or response of an API. Policy statements can be constructed using literal text values, policy expressions, and properties. 
+
+Each API Management service instance has a properties collection of key/value pairs that are global to the service instance. These properties can be used to manage constant string values across all API configuration and policies. Each property has the following attributes.
 
 
-| 屬性 | 類型 | 說明 |
+| Attribute | Type            | Description                                                                                             |
 |-----------|-----------------|---------------------------------------------------------------------------------------------------------|
-| Name | string | 屬性的名稱。只能包含字母、數字、句點、破折號和底線字元。 |
-| 值 | string | 屬性的值。不能是空白或只由空白字元組成。 |
-| Secret | 布林值 | 決定該值是否為密碼且是否應該加密。 |
-| 標記 | 字串陣列 | 若有提供選用的標記，則可用來篩選屬性清單。 |
+| Name      | string          | The name of the property. It may contain only letters, digits, period, dash, and underscore characters. |
+| Value     | string          | The value of the property. It may not be empty or consist only of whitespace.                           |
+| Secret    | boolean         | Determines whether the value is a secret and should be encrypted or not.                                |
+| Tags      | array of string | Optional tags that when provided can be used to filter the property list.                               |
 
-屬性是在發行者入口網站上的 [屬性] 索引標籤中設定。在以下範例中，設定了三個屬性。
+Properties are configured in the publisher portal on the **Properties** tab. In the following example, three properties are configured.
 
-![屬性][api-management-properties]
+![Properties][api-management-properties]
 
-屬性值可以包含常值字串及[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)。下表顯示之前的三個範例屬性和其屬性。`ExpressionProperty` 的值是會傳回包含目前日期與時間之字串的運算式。`ContosoHeaderValue` 屬性已標記為密碼，所以未顯示其值。
+Property values can contain literal strings and [policy expressions](https://msdn.microsoft.com/library/azure/dn910913.aspx). The following table shows the previous three sample properties and their attributes. The value of `ExpressionProperty` is a policy expression that returns a string containing the current date and time. The property `ContosoHeaderValue` is marked as a secret, so its value is not displayed.
 
-| Name | 值 | Secret | 標記 |
+| Name               | Value                      | Secret | Tags    |
 |--------------------|----------------------------|--------|---------|
-| ContosoHeader | TrackingId | False | Contoso |
-| ContosoHeaderValue | •••••••••••••••••••••• | True | Contoso |
-| ExpressionProperty | @(DateTime.Now.ToString()) | False | |
+| ContosoHeader      | TrackingId                 | False  | Contoso |
+| ContosoHeaderValue | ••••••••••••••••••••••     | True   | Contoso |
+| ExpressionProperty | @(DateTime.Now.ToString()) | False  |         |
 
-## 使用屬性
+## <a name="to-use-a-property"></a>To use a property
 
-若要在原則中使用屬性，請將屬性名稱放在雙大括號 (如 `{{ContosoHeader}}`) 內，如以下範例所示。
+To use a property in a policy, place the property name inside a double pair of braces like `{{ContosoHeader}}`, as shown in the following example.
 
-	<set-header name="{{ContosoHeader}}" exists-action="override">
+    <set-header name="{{ContosoHeader}}" exists-action="override">
       <value>{{ContosoHeaderValue}}</value>
     </set-header>
 
-在此範例中，`ContosoHeader` 是做為 `set-header` 原則中標頭的名稱，且 `ContosoHeaderValue` 是用來做為該標頭的值。當此原則在對 API 管理閘道提出要求或回應管理閘道期間被評估時，`{{ContosoHeader}}` 和 `{{ContosoHeaderValue}}` 會被其各自的屬性值取代。
+In this example, `ContosoHeader` is used as the name of a header in a `set-header` policy, and `ContosoHeaderValue` is used as the value of that header. When this policy is evaluated during a request or response to the API Management gateway, `{{ContosoHeader}}` and `{{ContosoHeaderValue}}` are replaced with their respective property values.
 
-如前一個範例所示，屬性可以做為完整的屬性或元素值使用，但它們也可以插入部分的常值文字運算式或與之結合，如以下範例所示：`<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
+Properties can be used as complete attribute or element values as shown in the previous example, but they can also be inserted into or combined with part of a literal text expression as shown in the following example: `<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
 
-屬性也可以包含原則運算式。以下範例使用 `ExpressionProperty`。
+Properties can also contain policy expressions. In the following example, the `ExpressionProperty` is used.
 
-	<set-header name="CustomHeader" exists-action="override">
-		<value>{{ExpressionProperty}}</value>
-	</set-header>
+    <set-header name="CustomHeader" exists-action="override">
+        <value>{{ExpressionProperty}}</value>
+    </set-header>
 
-當評估此原則時，`{{ExpressionProperty}}` 會替代為其值 `@(DateTime.Now.ToString())`。因為該值是原則運算式，所以會評估運算式，且原則會繼續執行。
+When this policy is evaluated, `{{ExpressionProperty}}` is replaced with its value: `@(DateTime.Now.ToString())`. Since the value is a policy expression, the expression is evaluated and the policy proceeds with its execution.
 
-您可以在開發人員入口網站測試此項目，方法是呼叫在範圍內有包含屬性支援則的作業。在下列範例中，已使用前兩個含屬性的範例 `set-header` 原則呼叫作業。請注意，該回應中包含兩個已使用含屬性原則所設定的自訂標頭。
+You can test this out in the developer portal by calling an operation that has a policy with properties in scope. In the following example, an operation is called with the two previous example `set-header` policies with properties. Note that the response contains two custom headers that were configured using policies with properties.
 
-![開發人員入口網站][api-management-send-results]
+![Developer portal][api-management-send-results]
 
-如果您查看包含之前兩個含屬性之範例原則的呼叫的 [API 檢查器追蹤](api-management-howto-api-inspector.md)，會看到兩個已插入屬性值的 `set-header` 原則，以及含原則運算式之屬性的原則運算式評估。
+If you look at the [API Inspector trace](api-management-howto-api-inspector.md) for a call that includes the two previous sample policies with properties, you can see the two `set-header` policies with the property values inserted as well as the policy expression evaluation for the property that contained the policy expression.
 
-![API 檢查器追蹤][api-management-api-inspector-trace]
+![API Inspector trace][api-management-api-inspector-trace]
 
-請注意，雖然屬性值可以包含原則運算式，但屬性值不能包含其他屬性。如果文字包含做為屬性值的屬性參照 (例如 `Property value text {{MyProperty}}`)，該屬性參照不會被取代，且將會包含做為屬性值的一部分。
+Note that while property values can contain policy expressions, property values can't contain other properties. If text containing a property reference is used for a property value, such as `Property value text {{MyProperty}}`, that property reference won't be replaced and will be included as part of the property value.
 
-## 建立屬性
+## <a name="to-create-a-property"></a>To create a property
 
-若要建立屬性，請按一下 [屬性] 索引標籤 上的 [新增屬性]。
+To create a property, click **Add property** on the **Properties** tab.
 
-![新增屬性][api-management-properties-add-property-menu]
+![Add property][api-management-properties-add-property-menu]
 
-[名稱] 和 [值] 是必要值。如果此屬性值是密碼，請選取 [這是密碼] 核取方塊。輸入一或多個選擇性標籤來協助組織您的屬性，然後按一下 [儲存]。
+**Name** and **Value** are required values. If this property value is a secret, check the **This is a secret** checkbox. Enter one or more optional tags to help with organizing your properties, and click **Save**.
 
-![新增屬性][api-management-properties-add-property]
+![Add property][api-management-properties-add-property]
 
-儲存新屬性之後，[搜尋屬性] 文字方塊會填入新屬性的名稱並且顯示新屬性。若要顯示所有屬性，請清除 [搜尋屬性] 文字方塊並按 Enter。
+When a new property is saved, the **Search property** textbox is populated with the name of the new property and the new property is displayed. To display all properties, clear the **Search property** textbox and press enter.
 
-![屬性][api-management-properties-property-saved]
+![Properties][api-management-properties-property-saved]
 
-如需使用 REST API 建立屬性的詳細資訊，請參閱[使用 REST API 建立屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put)。
+For information on creating a property using the REST API, see [Create a property using the REST API](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put).
 
-## 編輯屬性
+## <a name="to-edit-a-property"></a>To edit a property
 
-若要編輯屬性，請按一下屬性旁邊的 [編輯] 來編輯。
+To edit a property, click **Edit** beside the property to edit.
 
-![編輯屬性][api-management-properties-edit]
+![Edit property][api-management-properties-edit]
 
-進行想要的變更，然後按一下 [儲存]。如果您變更屬性名稱，任何參照該屬性的原則會自動更新以使用新的名稱。
+Make any desired changes, and click **Save**. If you change the property name, any policies that reference that property are automatically updated to use the new name.
 
-![編輯屬性][api-management-properties-edit-property]
+![Edit property][api-management-properties-edit-property]
 
-如需使用 REST API 編輯屬性的詳細資訊，請參閱[使用 REST API 編輯屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch)。
+For information on editing a property using the REST API, see [Edit a property using the REST API](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch).
 
-## 刪除屬性
+## <a name="to-delete-a-property"></a>To delete a property
 
-若要刪除屬性，請按一下屬性旁邊的 [刪除] 來刪除。
+To delete a property, click **Delete** beside the property to delete.
 
-![刪除屬性][api-management-properties-delete]
+![Delete property][api-management-properties-delete]
 
-按一下 [Yes, delete it] 加以確認。
+Click **Yes, delete it** to confirm.
 
 ![Confirm delete][api-management-delete-confirm]
 
->[AZURE.IMPORTANT] 如有任何原則參照該屬性，則您必須將該屬性從所有使用它的原則中移除，才能成功刪除該屬性。
+>[AZURE.IMPORTANT] If the property is referenced by any policies, you will be unable to successfully delete it until you remove the property from all policies that use it.
 
-如需使用 REST API 刪除屬性的詳細資訊，請參閱[使用 REST API 刪除屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete)。
+For information on deleting a property using the REST API, see [Delete a property using the REST API](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete).
 
-## 搜尋與篩選屬性
+## <a name="to-search-and-filter-properties"></a>To search and filter properties
 
-[屬性] 索引標籤包括可協助您管理屬性的搜尋與篩選功能。若要按照屬性名稱篩選屬性清單，請在 [搜尋屬性] 文字方塊中輸入搜尋字詞。若要顯示所有屬性，請清除 [搜尋屬性] 文字方塊並按一下 Enter。
+The **Properties** tab includes searching and filtering capabilities to help you manage your properties. To filter the property list by property name, enter a search term in the **Search property** textbox. To display all properties, clear the **Search property** textbox and press enter.
 
-![搜尋][api-management-properties-search]
+![Search][api-management-properties-search]
 
-若要按照標籤值篩選屬性清單，請在 [依標籤篩選] 文字方塊中輸入一或多個標籤。若要顯示所有屬性，請清除 [依標籤篩選] 文字方塊並按 Enter。
+To filter the property list by tag values, enter one or more tags into the **Filter by tags** textbox. To display all properties, clear the **Filter by tags** textbox and press enter.
 
-![篩選器][api-management-properties-filter]
+![Filter][api-management-properties-filter]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
--	深入了解原則的使用方式
-	-	[API 管理中的原則](api-management-howto-policies.md)
-	-	[原則參考文件](https://msdn.microsoft.com/library/azure/dn894081.aspx)
-	-	[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)
+-   Learn more about working with policies
+    -   [Policies in API Management](api-management-howto-policies.md)
+    -   [Policy reference](https://msdn.microsoft.com/library/azure/dn894081.aspx)
+    -   [Policy expressions](https://msdn.microsoft.com/library/azure/dn910913.aspx)
 
-## 觀看影片概觀
+## <a name="watch-a-video-overview"></a>Watch a video overview
 
 > [AZURE.VIDEO use-properties-in-policies]
 
@@ -149,4 +150,9 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 [api-management-properties-filter]: ./media/api-management-howto-properties/api-management-properties-filter.png
 [api-management-api-inspector-trace]: ./media/api-management-howto-properties/api-management-api-inspector-trace.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,18 +1,22 @@
 
-1. 造訪 [Azure 入口網站]。按一下 [全部瀏覽] > [行動應用程式] > 您剛才建立的後端。在行動應用程式設定中，按一下 [快速入門] > [Cordova]。在 [設定用戶端應用程式] 下方，選取 [建立新的應用程式]，然後按一下 [下載]。這會為已預先設定成連接到您後端的應用程式，下載一個完整的 Cordova 專案。
+1. Visit the [Azure Portal]. Click **Browse All** > **Mobile Apps** > the backend that you just created. In the mobile app settings, click **Quickstart** > **Cordova**. Under **Configure your client application**, select **Create a New App**, then click **Download**. This downloads a complete Cordova project for an app pre-configured to connect to your backend.
 
-2. 將下載的 ZIP 檔案解壓縮至您硬碟上的目錄，瀏覽至方案檔 (.sln) 並使用 Visual Studio 加以開啟。
+2. Unpack the downloaded ZIP file to a directory on your hard drive, navigate to the solution file (.sln) and open it using Visual Studio.
 
-5. 在 Visual Studio 中，從開始箭號旁邊的下拉式清單選擇方案平台 (Android、iOS 或 Windows)，然後按一下綠色箭號上的下拉式清單以選取特定的部署裝置或模擬器。請注意，您可以使用預設 Android 平台和 Ripple 模擬器。更進階的教學課程會要求您選取支援的裝置或模擬器。
+5. In Visual Studio, choose the solution platform (Android, iOS or Windows) from the drop-down next to the start arrow, then select a specific deployment device or emulator by clicking the drop-down on the green arrow. Note that you can use the default Android platform and Ripple emulator. More advanced tutorials will require you to select a supported device or emulator. 
 
-6. 按 F5 或按一下綠色箭號來建置和執行 Cordova 應用程式。如果您在模擬器中看到要求網路存取權的安全性對話方塊，請接受它。
+6. Press F5 or click the green arrow to build and and run your Cordova app. If you see a security dialog in the emulator requesting access to the network, accept it.   
 
-7. 在裝置或模擬器上啟動應用程式後，請在 [輸入新文字] 中輸入有意義的文字 (例如 Complete the tutorial)，然後按一下 [新增] 按鈕。這會將 POST 要求傳送至先前部署的 Azure 後端。後端會將要求中的資料插入 SQL Database 中的 TodoItem 資料表，並將新儲存之項目的相關資訊傳回給行動應用程式。行動應用程式會以清單顯示此資料。
+7. After the the app is started on the device or emulator, type meaningful text in **Enter new text**, such as _Complete the tutorial_ and then click the **Add** button.  
+This sends a POST request to the Azure backend you deployed earlier. The backend inserts data from the request is into the TodoItem table in the SQL Database, and returns information about the newly stored items back to the mobile app. The mobile app displays this data in the list.
 
     ![](./media/app-service-mobile-cordova-quickstart/quickstart-startup.png)
     
-8. 針對您打算支援的每個裝置平台，重複前面三個步驟。
+8. Repeat the previous three steps for each device platform that you plan to support.
 
-[Azure 入口網站]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

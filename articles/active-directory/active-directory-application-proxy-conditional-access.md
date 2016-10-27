@@ -1,71 +1,77 @@
 <properties
-	pageTitle="使用 Azure AD 應用程式 Proxy 發佈之應用程式的條件式存取"
-	description="說明如何針對您使用 Azure AD 應用程式 Proxy 發佈可供遠端存取的應用程式設定條件式存取。"
-	services="active-directory"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor=""/>
+    pageTitle="Conditional Access for Applications Published with Azure AD Application Proxy"
+    description="Covers how to set up conditional access for applications you publish to be accessed remotely using Azure AD Application Proxy."
+    services="active-directory"
+    documentationCenter=""
+    authors="kgremban"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/22/2016"
-	ms.author="kgremban"/>
-
-# 使用條件式存取
-
-對於使用應用程式 Proxy 發佈的應用程式，您可以設定存取規則，以授與對這些應用程式的條件式存取。這可讓您：
-
-- 要求各應用程式的多重要素驗證
-- 只在使用者不在公司時要求多重要素驗證
-- 在使用者不在公司時封鎖使用者存取應用程式
-
-這些規則可以套用至所有使用者和群組，或只套用至特定使用者和群組。根據預設，規則會套用至所有可存取應用程式的使用者。不過，也可以將規則限制為指定之安全性群組的使用者成員。
-
-當使用者存取使用 OAuth 2.0、OpenID Connect、SAML 或 WS-同盟的同盟應用程式時，就會評估存取規則。此外，當使用重新整理權杖來取得存取權杖時，會以 OAuth 2.0 和 OpenID Connect 評估存取規則。
-
-## 條件式存取的先決條件
-
-- Azure Active Directory Premium 的訂用帳戶
-- 同盟或受管理的 Azure Active Directory 租用戶
-- 同盟租用戶需要 Multi-Factor Authentication (MFA) 已啟用 ![設定存取規則 - 要求 Multi-Factor Authentication](./media/active-directory-application-proxy-conditional-access/application-proxy-conditional-access.png)
-
-## 設定每個應用程式的 Multi-Factor Authentication
-1. 在 Azure 傳統入口網站中，以系統管理員身分登入。
-2. 移至 Active Directory，並選取您要啟用應用程式 Proxy 所在的目錄。
-3. 按一下 [應用程式] 並向下捲動至 [存取規則] 區段。只有使用應用程式 Proxy 發佈並使用同盟驗證的應用程式，才會顯示 [存取規則] 區段。
-4. 為 [啟用存取規則] 選取 [開啟]，以啟用規則。
-5. 指定將套用規則的使用者和群組。使用 [加入群組] 按鈕來選取將套用存取規則的一或多個群組。此對話方塊也可用來移除選取的群組。若將規則選取為套用至群組，則只會對屬於其中一個指定安全性群組的使用者強制執行存取規則。  
-
-  - 若要明確地將安全性群組從規則中排除，請選取 [例外] 並指定一或多個群組。[除外] 清單中群組的使用者成員不需要執行 Multi-Factor Authentication。  
-
-  - 如果使用者已設定為使用每個使用者的 Multi-Factor Authentication 功能，則此設定會優先於應用程式的多重要素驗證規則。這表示已設定每個使用者的 Multi-Factor Authentication 的使用者都必須執行 Multi-Factor Authentication，即使他們已從應用程式的 Multi-Factor Authentication 規則中免除。深入了解[多重要素驗證和每個使用者設定](../multi-factor-authentication/multi-factor-authentication.md)。
-
-6. 選取您要設定的存取規則：
-	- **需要多重要素驗證**︰套用存取規則的使用者必須先完成多重要素驗證，才能存取套用規則的應用程式。
-	- **不在工作時需要多重要素驗證**︰嘗試從受信任的 IP 位址存取應用程式的使用者不需要執行多重要素驗證。可以在 [Multi-Factor Authentication 設定] 頁面上設定受信任的 IP 位址範圍。
-	- **不在工作時封鎖存取**︰嘗試從公司網路外部存取應用程式的使用者將無法存取應用程式。
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="06/22/2016"
+    ms.author="kgremban"/>
 
 
-## 設定同盟服務的 MFA
-對於同盟的租用戶，Multi-Factor Authentication (MFA) 可能由 Azure Active Directory 或內部部署 AD FS 伺服器執行。根據預設，MFA 會發生在 Azure Active Directory 所裝載的任何頁面上。若要設定內部部署 MFA，請執行 Windows PowerShell 並使用 –SupportsMFA 屬性來設定 Azure AD 模組。
+# <a name="working-with-conditional-access"></a>Working with conditional access
 
-下列範例示範如何在 consoso.com 租用戶上使用 [Set-MsolDomainFederationSettings Cmdlet](https://msdn.microsoft.com/library/azure/dn194088.aspx) 來啟用內部部署 MFA︰`Set-MsolDomainFederationSettings -DomainName contoso.com -SupportsMFA $true `
+You can configure access rules to grant conditional access to applications published using Application Proxy. This enables you to:
 
-除了設定這個旗標，同盟租用戶 AD FS 執行個體必須設為執行多因素驗證。請遵循[內部部署 Microsoft Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-server.md) 的指示。
+- Require multi-factor authentication per application
+- Require multi-factor authentication only when users are not at work
+- Block users from accessing the application when they are not at work
+
+These rules can be applied to all users and groups or only to specific users and groups. By default the rule will apply to all users who have access to the application. However the rule can also be restricted to users that are members of specified security groups.  
+
+Access rules are evaluated when a user accesses a federated application that uses OAuth 2.0, OpenID Connect, SAML or WS-Federation. In addition, access rules are evaluated with OAuth 2.0 and OpenID Connect when a refresh token is used to acquire an access token.
+
+## <a name="conditional-access-prerequisites"></a>Conditional access prerequisites
+
+- Subscription to Azure Active Directory Premium
+- A federated or managed Azure Active Directory tenant
+- Federated tenants require that multi-factor authentication (MFA) be enabled  
+    ![Configure access rules - require multi-factor authentication](./media/active-directory-application-proxy-conditional-access/application-proxy-conditional-access.png)
+
+## <a name="configure-per-application-multi-factor-authentication"></a>Configure per-application multi-factor authentication
+1. Sign in as an administrator in the Azure classic portal.
+2. Go to Active Directory and select the directory in which you want to enable Application Proxy.
+3. Click **Applications** and scroll down to the **Access Rules** section. The access rules section only appears for applications published using Application Proxy that use federated authentication.
+4. Enable the rule by selecting **Enable Access Rules** to **On**.
+5. Specify the users and groups to whom the rules will apply. Use the **Add Group** button  to select one or more groups to which the access rule will apply. This dialog can also be used to remove selected groups.  When the rules are selected to apply to groups, the access rules will only be enforced for users that belong to one of the specified security groups.  
+
+  - To explicitly exclude security groups from the rule, check **Except**  and specify one or more groups. Users who are members of a group in the Except list will not be required to perform multi-factor authentication.  
+
+  - If a user was configured using the per-user multi-factor authentication feature, this setting will take precedence over the application multi-factor authentication rules. This means that a user who has been configured for per-user multi-factor authentication will be required to perform multi-factor authentication even if they have been exempted from the application's multi-factor authentication rules. Learn more about [multi-factor authentication and per-user settings](../multi-factor-authentication/multi-factor-authentication.md).
+
+6. Select the access rule you want to set:
+    - **Require Multi-factor authentication**: Users to whom access rules apply will be required to complete multi-factor authentication before accessing the application to which the rule applies.
+    - **Require Multi-factor authentication when not at work**: Users trying to access the application from a trusted IP address will not be required to perform multi-factor authentication. The trusted IP address ranges can be configured on the multi-factor authentication settings page.
+    - **Block access when not at work**: Users trying to access the application from outside your corporate network will not be able to access the application.
 
 
-## 另請參閱
+## <a name="configuring-mfa-for-federation-services"></a>Configuring MFA for federation services
+For federated tenants, multi-factor authentication (MFA) may be performed by Azure Active Directory or by the on-premises AD FS server. By default, MFA will occur on any page hosted by Azure Active Directory. In order to configure MFA on-premises, run Windows PowerShell and use the –SupportsMFA property to set the Azure AD module.
 
-- [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
-- [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
-- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
-- [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
+The following example shows how to enable on-premises MFA by using the [Set-MsolDomainFederationSettings cmdlet](https://msdn.microsoft.com/library/azure/dn194088.aspx) on the contoso.com tenant: `Set-MsolDomainFederationSettings -DomainName contoso.com -SupportsMFA $true `
 
-如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
+In addition to setting this flag, the federated tenant AD FS instance must be configured to perform multi-factor authentication. Follow the instructions for [deploying Microsoft Azure multi-factor authentication on-premises](../multi-factor-authentication/multi-factor-authentication-get-started-server.md).
 
-<!---HONumber=AcomDC_0622_2016-->
+
+## <a name="see-also"></a>See also
+
+- [Working with claims aware applications](active-directory-application-proxy-claims-aware-apps.md)
+- [Publish applications with Application Proxy](active-directory-application-proxy-publish.md)
+- [Enable single-sign on](active-directory-application-proxy-sso-using-kcd.md)
+- [Publish applications using your own domain name](active-directory-application-proxy-custom-domains.md)
+
+For the latest news and updates, check out the [Application Proxy blog](http://blogs.technet.com/b/applicationproxyblog/)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

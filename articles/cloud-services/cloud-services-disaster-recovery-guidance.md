@@ -1,65 +1,70 @@
 <properties
-	pageTitle="發生影響 Azure 雲端服務的 Azure 服務中斷事件時該怎麼辦 | Microsoft Azure"
-	description="了解發生影響 Azure 雲端服務的 Azure 服務中斷事件時該怎麼辦。"
-	services="cloud-services"
-	documentationCenter=""
-	authors="kmouss"
-	manager="drewm"
-	editor=""/>
+    pageTitle="What to do in the event of an Azure service disruption that impacts Azure Cloud Services | Microsoft Azure"
+    description="Learn what to do in the event of an Azure service disruption that impacts Azure Cloud Services."
+    services="cloud-services"
+    documentationCenter=""
+    authors="kmouss"
+    manager="drewm"
+    editor=""/>
 
 <tags
-	ms.service="cloud-services"
-	ms.workload="cloud-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="05/16/2016"
-	ms.author="kmouss;aglick"/>
+    ms.service="cloud-services"
+    ms.workload="cloud-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="05/16/2016"
+    ms.author="kmouss;aglick"/>
 
-#發生影響 Azure 雲端服務的 Azure 服務中斷事件時該怎麼辦
 
-Microsoft 的同仁一向努力確保提供您需要的服務。有時候因為不可抗力之影響，造成服務意外中斷。
+#<a name="what-to-do-in-the-event-of-an-azure-service-disruption-that-impacts-azure-cloud-services"></a>What to do in the event of an Azure service disruption that impacts Azure Cloud Services
 
-Microsoft 為其服務提供服務等級協定 (SLA)，作為執行時間和連接承諾。個別的 Azure 服務 SLA 位於 [Azure 服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
+At Microsoft, we work hard to make sure that our services are always available to you when you need them. Forces beyond our control sometimes impact us in ways that cause unplanned service disruptions.
 
-Azure 已經有許多支援高可用性應用程式的內建平台功能。如需這些服務的詳細資訊，請參閱 [Azure 應用程式的災害復原與高可用性](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)。
+Microsoft provides a Service Level Agreement (SLA) for its services as a commitment for uptime and connectivity. The SLA for individual Azure services can be found at [Azure Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).
 
-本文內含當整個地區因重大天災或大規模服務中斷而發生中斷的真實災害復原案例。這些都是極其罕見的情況，但您還是必須對整個區域發生中斷的可能性有所準備。如果整個區域的服務中斷，會暫時無法使用本機的備援資料複本。如果已啟用異地複寫，會在不同的區域儲存額外三份 Azure 儲存體 Blob 和資料表。如果發生全面性區域中斷或嚴重損壞，且主要區域無法復原時，Azure 會重新對應異地複寫區域的所有 DNS 項目。
+Azure already has many built-in platform features that support highly available applications. For more about these services, read [Disaster recovery and high availability for Azure applications](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
 
->[AZURE.NOTE]請注意，您完全無法控制這個程序，而且它只有在整個資料中心服務中斷時才會發生。因此，您也必須依賴其他的應用程式特定備份策略，以達到最高層級的可用性。如需詳細資訊，請參閱關於[災害復原的資料策略](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md#DSDR)的章節。如果您希望能夠影響您自己的容錯移轉，就可能想要考慮使用[讀取存取異地備援儲存體 (RA-GRS)](../storage/storage-redundancy.md#read-access-geo-redundant-storage)，在其他區域中建立資料的唯讀複本。
+This article covers a true disaster recovery scenario, when a whole region experiences an outage due to major natural disaster or widespread service interruption. These are rare occurrences, but you must prepare for the possibility that there is an outage of an entire region. If an entire region experiences a service disruption, the locally redundant copies of your data would temporarily be unavailable. If you have enabled geo-replication, three additional copies of your Azure Storage blobs and tables are stored in a different region. In the event of a complete regional outage or a disaster in which the primary region is not recoverable, Azure remaps all of the DNS entries to the geo-replicated region.
 
-為協助您處理這些罕見事件，我們提供以下 Azure 虛擬機器 (VM) 指引，以因應 Azure VM 應用程式部署所在的整個區域發生服務中斷的情況。
+>[AZURE.NOTE]Be aware that you do not have any control over this process, and it will only occur for datacenter-wide service disruptions. Because of this, you must also rely on other application-specific backup strategies to achieve the highest level of availability. For more information, see the section about [Data strategies for disaster recovery](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md#DSDR). If you would like to be able to affect your own failover, you might want to consider the use of [read-access geo-redundant storage (RA-GRS)](../storage/storage-redundancy.md#read-access-geo-redundant-storage), which creates a read-only copy of your data in another region.
 
-##選項 1︰等待復原
-在此情況下，您不需要採取任何動作。但您要知道，Azure 小組正在努力還原服務的可用性。您可以在 [Azure 服務健康狀態儀表板](https://azure.microsoft.com/status/)上看見目前的服務狀態。
+To help you handle these rare occurrences, we provide the following guidance for Azure virtual machines (VMs) in the case of a service disruption of the entire region where your Azure VM application is deployed.
 
->[AZURE.NOTE]如果客戶尚未安裝 Azure Site Recovery，或在不同地區有次要部署，這會是最佳的選項。
+##<a name="option-1:-wait-for-recovery"></a>Option 1: Wait for recovery
+In this case, no action on your part is required. Know that Azure teams are working diligently to restore service availability. You can see the current service status on our [Azure Service Health Dashboard](https://azure.microsoft.com/status/).
 
-如果客戶想要立即存取其已部署的雲端服務，目前提供下列選項。
+>[AZURE.NOTE]This is the best option if a customer hasn’t set up Azure Site Recovery or has a secondary deployment in a different region.
 
->[AZURE.NOTE]請注意，這兩個選項都可能會遺失部分資料。
+For customers who want immediate access to their deployed cloud services, the following options are available.
 
-##選項 2︰將您的雲端服務組態重新部署到新的區域
+>[AZURE.NOTE]Be aware that these options have the possibility of some data loss.     
 
-如果您具有原始程式碼，只需在新區域中將應用程式及相關聯的組態和資源重新部署至新的雲端服務。
+##<a name="option-2:-re-deploy-your-cloud-service-configuration-to-a-new-region"></a>Option 2: Re-Deploy your cloud service configuration to a new region
 
-如需如何建立和部署雲端服務應用程式的詳細資訊，請參閱[如何建立和部署雲端服務](./cloud-services-how-to-create-deploy-portal.md)。
+If you have your original code, you can simply just redeploy the application, associated configuration, and associated resources to a new cloud service in a new region.  
 
-根據您的應用程式資料來源，您可能需要檢查應用程式資料來源的復原程序。
-  * 如需 Azure 儲存體資料來源，請參閱 [Azure 儲存體複寫](../storage/storage-redundancy.md#read-access-geo-redundant-storage)，以根據您針對應用程式所選擇的複寫模型來查看可用的選項。
-  * 如需 SQL 資料庫來源，請閱讀[概觀：雲端商務持續性和 SQL Database 的資料庫災害復原](../sql-database/sql-database-business-continuity.md)，以根據您針對應用程式所選擇的複寫模型來查看可用的選項。
+For more detail about how to create and deploy a cloud service application, see [How to create and deploy a cloud service](./cloud-services-how-to-create-deploy-portal.md).
 
-##選項 3︰透過 Azure 流量管理員使用備份部署
-此選項假設您在設計應用程式方案時已將區域災害復原納入考慮。如果您已經在不同區域中執行次要的雲端服務應用程式部署，並透過流量管理員通道來連接，則您可以使用這個選項。在此情況下，請檢查次要部署的健全狀況。如果是狀況良好，您就可以透過 Azure 流量管理員將流量重新導向到該部署。採用這個策略時，您就能利用 Azure 流量管理員中的流量路由方法和容錯移轉順序組態。如需詳細資訊，請參閱[如何設定流量管理員設定](../traffic-manager/traffic-manager-overview.md#how-to-configure-traffic-manager-settings)。
+Depending on your application data sources, you may need to check the recovery procedures for your application data source.
+  * For Azure Storage data sources, see [Azure Storage replication](../storage/storage-redundancy.md#read-access-geo-redundant-storage) to check on the options that are available based on the chose replication model for your application.
+  * For SQL Database sources, read [Overview: Cloud business continuity and database disaster recovery with SQL Database](../sql-database/sql-database-business-continuity.md) to check on the options that are available based on the chosen replication model for your application.
 
-![使用 Azure 流量管理員平衡區域間的 Azure 雲端服務](./media/cloud-services-disaster-recovery-guidance/using-azure-traffic-manager.png)
+##<a name="option-3:-use-a-backup-deployment-through-azure-traffic-manager"></a>Option 3: Use a backup deployment through Azure Traffic Manager
+This option assumes that you have already designed your application solution with regional disaster recovery in mind. You can use this option if you already have a secondary cloud services application deployment that's running in a different region and connected through a traffic manager channel. In this case, check the health of the secondary deployment. If it's healthy, you can redirect traffic to it through Azure Traffic Manager. With this strategy, you can take advantage of the traffic routing method and failover order configurations in Azure Traffic Manager. For more information, see [How to configure Traffic Manager settings](../traffic-manager/traffic-manager-overview.md#how-to-configure-traffic-manager-settings).
 
-##後續步驟
+![Balancing Azure Cloud Services across regions with Azure Traffic Manager](./media/cloud-services-disaster-recovery-guidance/using-azure-traffic-manager.png)
 
-若要深入了解如何實作災害復原和高可用性策略，請參閱 [Azure 應用程式的災害復原和高可用性](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)。
+##<a name="next-steps"></a>Next steps
 
-若要開發雲端平台功能的詳細技術知識，請參閱 [Azure 復原技術指導](../resiliency/resiliency-technical-guidance.md)。
+To learn more about how to implement a disaster recovery and high availability strategy, see [Disaster recovery and high availability for Azure applications](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
 
-如果指示不清楚，或如果您希望 Microsoft 代您執行作業，請連絡[客戶支援](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+To develop a detailed technical understanding of a cloud platform’s capabilities, see [Azure resiliency technical guidance](../resiliency/resiliency-technical-guidance.md).
 
-<!---HONumber=AcomDC_0629_2016-->
+If the instructions are not clear, or if you would like Microsoft to do the operations on your behalf please contact [Customer Support](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

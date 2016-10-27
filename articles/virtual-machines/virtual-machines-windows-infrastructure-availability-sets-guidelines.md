@@ -1,54 +1,58 @@
 <properties
-	pageTitle="可用性設定組指導方針 | Microsoft Azure"
-	description="了解適合用來在 Azure 基礎結構服務中部署可用性設定組的關鍵設計和實作指導方針。"
-	documentationCenter=""
-	services="virtual-machines-windows"
-	authors="iainfoulds"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+    pageTitle="Availability Set Guidelines | Microsoft Azure"
+    description="Learn about the key design and implementation guidelines for deploying Availability Sets in Azure infrastructure services."
+    documentationCenter=""
+    services="virtual-machines-windows"
+    authors="iainfoulds"
+    manager="timlt"
+    editor=""
+    tags="azure-resource-manager"/>
 
 <tags
-	ms.service="virtual-machines-windows"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/08/2016"
-	ms.author="iainfou"/>
-
-# 可用性設定組指導方針
-
-[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
-
-本文著重於了解可用性設定組的必要計畫步驟，以確保應用程式在計畫或非計畫的事件發生期間可以維持存取性。
-
-## 可用性設定組的實作指導方針
-
-决策：
-
-- 在您的應用程式基礎結構中，需要針對各種角色和層級使用多少個可用性設定組？
-
-工作：
-
-- 定義每個所需應用程式層級中的 VM 數目。
-- 決定您是否需要調整應用程式所使用的錯誤數目或更新網域。
-- 使用您的命名慣例，來定義必要的可用性設定組以及要置於其中的 VM。一個可用性設定組中只能放置一個 VM。
-
-## 可用性集合
-
-在 Azure 中，虛擬機器 (VM) 可以被放置在稱為可用性設定組的邏輯群組之中。當您在可用性設定組中建立 VM 時，Azure 平台會將這些 VM 的位置散佈於基礎結構上。若 Azure 平台發生預計的維護事件，或是發生基礎硬體 / 基礎結構錯誤，使用可用性設定組將可確保至少有一個 VM 會保持執行。
-
-最佳作法是不將應用程式放置在單一 VM 上。包含單一 VM 的可用性設定組將無法在 Azure 平台內針對計畫或非計畫的事件獲得保護。[Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines) 需要可用性設定組內有兩個或以上的 VM，以允許將 VM 散佈於基礎結構上。
-
-Azure 中的基礎結構被分為「更新網域」和「容錯網域」。這些網域是會根據主機是共用一般更新週期，或共用類似的實體基礎結構 (例如電源和網路功能) 來定義。Azure 會自動將您位於可用性設定組內的 VM 散佈於網域上，以維護可用性和容錯。根據應用程式的大小，以及可用性設定組內的 VM 數目，您可以調整想要使用的網域數目。您可以深入了解[管理更新和容錯網域的可用性及使用](virtual-machines-windows-manage-availability.md)。
-
-設計應用程式基礎結構時，您應該同時計畫您要使用的應用程式層級。將用途相同的 VM 分組為可用性設定組，例如由執行 IIS 的前端 VM 所組成的可用性設定組。為執行 SQL Server 的後端 VM 建立個別的可用性設定組。我們的目標是要確保應用程式的每個元件都會受到某個可用性設定組所保護，且至少有一個執行個體總是保持執行。
-
-負載平衡器可以在每個應用程式層級之前運用，以和可用性設定組一起運作，並確保流量總是會被路由到正在執行中的執行個體。若沒有負載平衡器，您的 VM 可能可以在計畫或非計畫的維護事件期間持續執行，但在主要 VM 無法使用的情況下，您的終端使用者可能會無法解析它們。
+    ms.service="virtual-machines-windows"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/08/2016"
+    ms.author="iainfou"/>
 
 
-## 後續步驟
-[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)]
+# <a name="availability-sets-guidelines"></a>Availability sets guidelines
 
-<!---HONumber=AcomDC_0914_2016-->
+[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)] 
+
+This article focuses on understanding the required planning steps for availability sets to ensure your applications remains accessible during planned or unplanned events.
+
+## <a name="implementation-guidelines-for-availability-sets"></a>Implementation guidelines for availability sets
+
+Decisions:
+
+- How many availability sets do you need for the various roles and tiers in your application infrastructure?
+
+Tasks:
+
+- Define the number of VMs in each application tier you require.
+- Determine if you need to adjust the number of fault or update domains to be used for your application.
+- Define the required availability sets using your naming convention and what VMs reside in them. A VM can only reside in one availability set. 
+
+## <a name="availability-sets"></a>Availability sets
+
+In Azure, virtual machines (VMs) can be placed in to a logical grouping called an availability set. When you create VMs within an availability set, the Azure platform distributes the placement of those VMs across the underlying infrastructure. Should there be a planned maintenance event to the Azure platform or an underlying hardware / infrastructure fault, the use of availability sets ensures that at least one VM remains running.
+
+As a best practice, applications should not reside on a single VM. An availability set that contains a single VM doesn't gain any protection from planned or unplanned events within the Azure platform. The [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines) requires two or more VMs within an availability set to allow the distribution of VMs across the underlying infrastructure.
+
+The underlying infrastructure in Azure is divided in to update domains and fault domains. These domains are defined by what hosts share a common update cycle, or share similar physical infrastructure such as power and networking. Azure automatically distributes your VMs within an availability set across domains to maintain availability and fault tolerance. Depending on the size of your application and the number of VMs within an availability set, you can adjust the number of domains you wish to use. You can read more about [managing availability and use of update and fault domains](virtual-machines-windows-manage-availability.md).
+
+When designing your application infrastructure, you should also plan the application tiers that you use. Group VMs that serve the same purpose in to availability sets, such as an availability set for your front-end VMs running IIS. Create a separate availability set for your back-end VMs running SQL Server. The goal is to ensure that each component of your application is protected by an availability set and at least once instance always remains running.
+
+Load balancers can be utilized in front of each application tier to work alongside an availability set and ensure traffic can always be routed to a running instance. Without a load balancer, your VMs may continue running throughout planned and unplanned maintenance events, but your end users may not be able to resolve them if the primary VM is unavailable.
+
+
+## <a name="next-steps"></a>Next steps
+[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)] 
+
+
+<!--HONumber=Oct16_HO2-->
+
+

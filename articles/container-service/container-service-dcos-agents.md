@@ -1,13 +1,13 @@
 <properties
-   pageTitle="公用和私用 DC/OS 代理程式集區 ACS | Microsoft Azure"
-   description="公用和私用代理程式集區如何與 Azure Container Service 叢集搭配運作。"
+   pageTitle="Public and Private DC/OS Agent Pools ACS | Microsoft Azure"
+   description="How the public and private agent pools work with an Azure Container Service cluster."
    services="container-service"
    documentationCenter=""
    authors="Thraka"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker、容器、微服務、Mesos、Azure"/>
+   keywords="Docker, Containers, Micro-services, Mesos, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -16,28 +16,32 @@
    ms.tgt_pltfrm="na"
    ms.workload="na"
    ms.date="08/16/2016"
-   ms.author="adegeo"/>
+   ms.author="timlt"/>
 
-# Azure Container Service 的 DC/OS 代理程式集區
 
-DC/OS Azure Container Service 會將代理程式分割成公用或私用集區。您可以對任一集區進行部署，這會影響容器服務的電腦之間的存取性。電腦可以公開至網際網路 (公用) 或保留在內部 (私用)。本文簡短概述為什麼會有公用和私用集區。
+# <a name="dc/os-agent-pools-for-azure-container-service"></a>DC/OS Agent Pools for Azure Container Service
 
-### 私人 Agent
+DC/OS Azure Container Service divides agents into public or private pools. A deployment can be made to either pool, affecting accessibility between machines in your container service. The machines can be exposed to the internet (public) or kept internal (private). This article gives a brief overview of why there are a public and private pool.
 
-私用代理程式節點會透過非可路由網路來執行。只有從系統管理區域或透過公用區域邊緣路由器才可存取此網路。根據預設，DC/OS 會在私用代理程式節點上啟動應用程式。請參閱 [DC/OS 文件](https://dcos.io/docs/1.7/administration/securing-your-cluster/)以取得網路安全性的詳細資訊。
+### <a name="private-agents"></a>Private agents
 
-### 公用代理程式
+Private agent nodes run through a non-routable network. This network is only accessible from the admin zone or through the public zone edge router. By default, DC/OS launches apps on private agent nodes. Consult the [DC/OS documentation](https://dcos.io/docs/1.7/administration/securing-your-cluster/) for more information about network security.
 
-公用代理程式節點會透過可公開存取的網路執行 DC/OS 應用程式和服務。請參閱 [DC/OS 文件](https://dcos.io/docs/1.7/administration/securing-your-cluster/)以取得網路安全性的詳細資訊。
+### <a name="public-agents"></a>Public agents
 
-## 使用代理程式集區
+Public agent nodes run DC/OS apps and services through a publicly accessible network. Consult the [DC/OS documentation](https://dcos.io/docs/1.7/administration/securing-your-cluster/) for more information about network security.
 
-根據預設，**Marathon** 會將任何新的應用程式部署至「私用」代理程式節點。您必須在建立應用程式期間明確地將應用程式部署至「公用」節點。選取 [選用] 索引標籤，然後輸入 **slave\_public** 做為 [接受的資源角色] 值。此程序已詳載於[這裡](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container)和 [DC\\OS](https://dcos.io/docs/1.7/administration/installing/custom/create-public-agent/) 文件中。
+## <a name="using-agent-pools"></a>Using agent pools
 
-## 後續步驟
+By default, **Marathon** deploys any new application to the *private* agent nodes. You have to explicitly deploy the application to the *public* node during the creation of the application. Select the **Optional** tab and enter **slave_public** for the **Accepted Resource Roles** value. This process is documented [here](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container) and in the [DC\OS](https://dcos.io/docs/1.7/administration/installing/custom/create-public-agent/) documentation.
 
-深入了解[管理 DC/OS 容器](container-service-mesos-marathon-ui.md)。
+## <a name="next-steps"></a>Next steps
 
-了解如何[開啟 Azure 所提供的防火牆](container-service-enable-public-access.md)以允許對 DC/OS 容器進行公用存取。
+Read more information about [managing your DC/OS containers](container-service-mesos-marathon-ui.md).
 
-<!----HONumber=AcomDC_0907_2016-->
+Learn how to [open the firewall](container-service-enable-public-access.md) provided by Azure to allow public access to your DC/OS container.
+
+
+<!--HONumber=Oct16_HO2-->
+
+

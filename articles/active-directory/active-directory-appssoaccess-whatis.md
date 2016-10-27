@@ -1,222 +1,223 @@
 <properties
-	pageTitle="什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？| Microsoft Azure"
-	description="您可以使用 Azure Active Directory 來單一登入到您進行工作所需的所有 SaaS 和 Web 應用程式。"
-	services="active-directory"
-	documentationCenter=""
-	authors="asmalser-msft"
-	manager="femila"
-	editor=""/>
+    pageTitle="What is application access and single sign-on with Azure Active Directory? | Microsoft Azure"
+    description="Use Azure Active Directory to enable single sign-on to all of the SaaS and web applications that you need for business."
+    services="active-directory"
+    documentationCenter=""
+    authors="asmalser-msft"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/15/2016"
-	ms.author="asmalser-msft"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/15/2016"
+    ms.author="asmalser-msft"/>
 
-#什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？
 
-單一登入表示只要使用單一使用者帳戶登入，就能夠存取所有進行工作所需的應用程式和資源。登入之後，您可以存取所有需要的應用程式，而不需要再驗證一次 (例如輸入密碼)。
+#<a name="what-is-application-access-and-single-sign-on-with-azure-active-directory?"></a>What is application access and single sign-on with Azure Active Directory?
 
-許多組織依賴軟體即服務 (SaaS) 應用程式，例如 Office 365、Box 和 Salesforce 來提升使用者生產力。在過去，IT 人員必須在每個 SaaS 應用程式中個別建立並更新使用者帳戶，使用者則必須記住每個 SaaS 應用程式的密碼。
+Single sign-on means being able to access all of the applications and resources that you need to do business, by signing in only once using a single user account. Once signed in, you can access all of the applications you need without being required to authenticate (e.g. type a password) a second time.
 
-Azure Active Directory 將內部部署的 Active Directory 延伸到雲端，讓使用者不只能夠使用主要的組織帳戶登入加入網域的裝置和公司資源，也能登入工作所需的所有 Web 和 SaaS 應用程式。
+Many organizations rely upon software as a service (SaaS) applications such as Office 365, Box and Salesforce for end user productivity. Historically, IT staff needs to individually create and update user accounts in each SaaS application, and users have to remember a password for each SaaS application.
 
-所以不只使用者不需要管理多組使用者名稱和密碼，還可根據其組織的群組成員，以及其身為員工的狀態，自動佈建或解除佈建其應用程式的存取權。Azure Active Directory 引進了安全性和存取管理控制，可讓您集中管理所有 SaaS 應用程式的使用者存取權。
+Azure Active Directory extends on-premises Active Directory into the cloud, enabling users to use their primary organizational account to not only sign in to their domain-joined devices and company resources, but also all of the web and SaaS applications needed for their job.
 
-Azure AD 能輕鬆整合到許多現今熱門的 SaaS 應用程式。它提供身分識別與存取管理，並可讓使用者直接單一登入應用程式，或從入口網站 (例如 Office 365 或 Azure AD 存取面板) 探索並啟動應用程式。
+So not only do users not have to manage multiple sets of usernames and passwords, their applications access can be automatically provisioned or de-provisioned based on their organization group members, and also their status as an employees. Azure Active Directory introduces security and access governance controls that enable you to centrally manage users' access across SaaS applications.
 
-整合的架構包含下列四個主要建置區塊：
+Azure AD enables easy integration to many of today’s popular SaaS applications; it provides identity and access management, and enables users to single sign-on to applications directly, or discover and launch them from a portal such as Office 365 or the Azure AD access panel.
 
-* 單一登入可讓使用者根據其在 Azure AD 中的組織帳戶存取其 SaaS 應用程式。單一登入可讓使用者使用單一組織帳戶向應用程式進行驗證。
+The architecture of the integration consists of the following four main building blocks:
 
-* 使用者佈建可讓使用者根據在 Windows Server Active Directory 和/或 Azure AD 中所做的變更，佈建和解除佈建到目標 SaaS。佈建的帳戶透過單一登入驗證之後，可授權使用者使用應用程式。
+* Single sign-on enables users to access their SaaS applications based on their organizational account in Azure AD. Single sign-on is what enables users to authenticate to an application using their single organizational account.
 
-* 在 Azure 管理入口網站中的集中式應用程式存取管理，可以單點存取 SaaS 應用程式和進行管理，並且可以委派應用程式存取權的決策和核准給組織中的任何人。
+* User provisioning enables user provisioning and de-provisioning into target SaaS based on changes made in Windows Server Active Directory and/or Azure AD. A provisioned account is what enables a user to be authorized to use an application, after they have authenticated through single sign-on.
 
-* 統一報告和監視 Azure AD 中的使用者活動
+* Centralized application access management in the Azure Management Portal enables single point of SaaS application access and management, with the ability to delegate application access decision making and approvals to anyone in the organization
 
-##單一登入如何搭配 Azure Active Directory 運作？
+* Unified reporting and monitoring of user activity in Azure AD
 
-當使用者「登入」應用程式時，會經歷一個驗證程序，需要證明他們的身分。如果沒有單一登入，這通常是藉由輸入儲存在應用程式中的密碼進行，而使用者必須知道此密碼。
+##<a name="how-does-single-sign-on-with-azure-active-directory-work?"></a>How does single sign-on with Azure Active Directory work?
 
-Azure AD 支援三種不同的方式登入應用程式：
+When a user “signs in” to an application, they go through an authentication process where they are required to prove that they are who they say they are. Without single sign-on, this is typically done by entering a password that is stored at the application, and the user is required to know this password.
 
-*	**同盟單一登入**可讓應用程式重新導向至 Azure AD 進行使用者驗證，而不是提示使用者自己的密碼。支援如 SAML 2.0、WS-同盟或 OpenID Connect 等通訊協定的應用程式都支援此種方式，而且這是最豐富的單一登入模式。
+Azure AD supports three different ways to sign in to applications:
 
-*	**密碼單一登入**可以使用網頁瀏覽器延伸或行動應用程式，安全儲存應用程式的密碼以及重新執行。這會利用應用程式提供的現有登入程序，但是讓系統管理員可以管理密碼，而且使用者不需要知道密碼。
+*   **Federated Single Sign-On** enables applications to redirect to Azure AD for user authentication instead of prompting for its own password. This is supported for applications that support protocols such as SAML 2.0, WS-Federation, or OpenID Connect, and is the richest mode of single sign-on.
 
-*	**現有單一登入**可讓 Azure AD 運用應用程式已設定的任何現有單一登入，但可讓這些應用程式連結至 Office 365 或 Azure AD 存取面板入口網站，當其中有應用程式啟動時，Azure AD 中也會有額外的報告。
+*   **Password-based Single Sign-On** enables secure application password storage and replay using a web browser extension or mobile app. This leverages the existing sign-in process provided by the application, but enables an administrator to manage the passwords and does not require the user to know the password.
 
-一旦使用者通過應用程式的驗證，他們在應用程式中也必須具有佈建的帳戶記錄，以便告訴應用程式在應用程式內部具有權限和存取層級的位置。佈建此帳戶記錄可以自動執行，或是在提供使用者單一登入存取之前由系統管理員手動執行。
+*   **Existing Single Sign-On** enables Azure AD to leverage any existing single sign-on that has been set up for the application, but enables these applications to be linked to the Office 365 or Azure AD access panel portals, and also enables additional reporting in Azure AD when the applications are launched there.
 
- 以下是有關這些單一登入模式和佈建的詳細資訊。
+Once a user have authenticated with an application, they also need to have an account record provisioned at the application that tells the application where there permissions and level of access are inside the application. The provisioning of this account record can either occur automatically, or it can occur manually by an administrator before the user is provided single sign-on access.
 
-###同盟單一登入
+ More details on these single sign-on modes and provisioning below.
 
-同盟單一登入可讓您組織中的使用者，使用 Azure AD 的使用者帳戶資訊，由 Azure AD 自動登入協力廠商的 SaaS 應用程式。
+###<a name="federated-single-sign-on"></a>Federated Single Sign-On
 
-在此案例中，如果您已經登入 Azure AD，而且您想要存取由協力廠商 SaaS 應用程式控制的資源，同盟就可以讓使用者不需要重新驗證。
+Federated Single Sign-On enables sign-on enables the users in your organization to be automatically signed in to a third-party SaaS application by Azure AD using the user account information from Azure AD.
 
-Azure AD 可以對支援 SAML 2.0、WS-同盟或 OpenID Connect 通訊協定的應用程式支援同盟單一登入。
+In this scenario, when you have already been logged into Azure AD, and you want to access resources that are controlled by a third-party SaaS application, federation eliminates the need for a user to be re-authenticated.
 
-亦請參閱：[管理同盟單一登入的憑證](active-directory-sso-certs.md)
+Azure AD can support federated single sign-on with applications that support the SAML 2.0, WS-Federation, or OpenID connect protocols.
 
-###密碼單一登入
+See also: [Managing Certificates for Federated Single Sign-On](active-directory-sso-certs.md)
 
-設定密碼單一登入可讓您組織中的使用者，使用協力廠商 SaaS 應用程式的使用者帳戶資訊，由 Azure AD 自動登入協力廠商的 SaaS 應用程式。當您啟用此功能時，Azure AD 會收集並安全地儲存使用者帳戶資訊和相關的密碼。
+###<a name="password-based-single-sign-on"></a>Password-based Single Sign-On
 
-Azure AD 可以對具有 HTML 登入頁面的任何雲端應用程式支援密碼單一登入。AAD 會使用自訂的瀏覽器外掛程式，從目錄安全擷取應用程式認證 (例如使用者名稱和密碼)，自動化使用者的登入程序，並代表使用者將這些認證輸入應用程式的登入頁面。有兩個使用案例：
+Configuring password-based single sign-on enables the users in your organization to be automatically signed in to a third-party SaaS application by Azure AD using the user account information from the third-party SaaS application. When you enable this feature, Azure AD collects and securely stores the user account information and the related password.
 
-1.	**系統管理員管理認證** – 系統管理員可以建立和管理應用程式認證，並將這些認證指派給需要存取應用程式的使用者或群組。在這些情況下，使用者不需要知道認證，但只要在其存取面板中或透過提供的連結按一下認證，仍然可以單一登入存取應用程式。如此一來，系統管理員可以對認證進行週期管理，對使用者也很方便，因為使用者不需要記住或管理應用程式專用的密碼。使用者在自動登入程序期間的認證會被模糊化，不過使用者使用 Web 偵錯工具在技術上還是可以找到這些認證，因此使用者和系統管理員應該遵循與使用者直接提出認證時相同的安全性原則。當提供的帳戶存取權是由許多使用者共用時，例如社交媒體或文件共用應用程式，系統管理員提供的認證會很有用。
+Azure AD can support password-based single sign on for any cloud-based app that has an HTML-based sign-in page. By using a custom browser plugin, AAD automates the user’s sign in process via securely retrieving application credentials such as the username and the password from the directory, and enters these credentials into the application’s sign in page on behalf of the user. There are two use cases:
 
-2.	**使用者管理認證** – 系統管理員可以指派應用程式給使用者或群組，並允許使用者在存取面板中第一次存取應用程式時直接輸入自己的認證。這樣可以方便使用者，每次存取應用程式時，不需要一再輸入應用程式專用的密碼。這個使用案例也可以用來做為系統性管理認證的跳板，系統管理員可以在日後設定應用程式的新認證，而不需要變更使用者的應用程式存取體驗。
+1.  **Administrator manages credentials** – Administrators can create and manage application credentials, and assign those credentials to users or groups who need access to the application. In these cases, the end user does not need to know the credentials, but still gains single sign-on access to the application simply by clicking on it in their access panel or via a provided link. This enables both, lifecycle management of the credentials by the administrator, as well as convenience for end users whereby they do not need to remember or manage app-specific passwords. The credentials are obfuscated from the end user during the automated sign in process; however they are technically discoverable by the user using web-debugging tools, and users and administrators should follow the same security policies as if the credentials were presented directly by the user. Administrator-provided credentials are very useful when providing account access that is shared among many users, such as social media or document sharing applications.
 
-在上述兩種情況下，認證都會以加密的狀態儲存在目錄中，而且在自動登入程序期間只會透過 HTTPS 傳遞。使用密碼單一登入，Azure AD 就能對無法支援同盟通訊協定的應用程式提供方便的身分識別存取管理解決方案。
+2.  **User manages credentials** – Administrators can assign applications to end users or groups, and allow the end users to enter their own credentials directly upon accessing the application for the first time in their access panel. This creates a convenience for end users whereby they do not need to continually enter the app-specific passwords each time they access the application. This use case can also be used as a stepping stone to administrative management of the credentials, whereby the administrator can set new credentials for the application at a future date without changing the app access experience of the end user.
 
-密碼 SSO 依賴瀏覽器延伸從 Azure AD 安全擷取應用程式和使用者特定資訊，並將它套用至服務。Azure AD 支援的大多數協力廠商 SaaS 應用程式都支援這項功能。
+In both cases, credentials are stored in an encrypted state in the directory, and are only passed over HTTPS during the automated sign-in process. Using password-based single sign on, Azure AD offers a convenient identity access management solution for apps that are not capable of supporting federation protocols.
 
-若是密碼 SSO，則使用者的瀏覽器可以是：
+Password-based SSO relies on a browser extension to securely retrieve the application and user specific information from Azure AD and apply it to the service. Most third-party SaaS applications that are supported by Azure AD support this feature.
 
-- Internet Explorer 8、9、10、11 -- Windows 7 或更新版本 (另請參閱 [IE 擴充功能部署指南](active-directory-saas-ie-group-policy.md))
-- Chrome - 在 Windows 7 或更新版本，和在 MacOS X 或更新版本上
-- Firefox 26.0 或更新版本 - 在 Windows XP SP2 或更新版本，和在 Mac OS X 10.6 或更新版本上
+For password-based SSO, the end user’s browsers can be:
 
-**注意：**當瀏覽器擴充功能可以支援 Edge 時，密碼 SSO 擴充功能將可提供 Windows 10 中的 Edge 使用。
+- Internet Explorer 8, 9, 10, 11 -- on Windows 7 or later (See also [IE Extension Deployment Guide](active-directory-saas-ie-group-policy.md))
+- Chrome -- on Windows 7 or later, and on MacOS X or later
+- Firefox 26.0 or later -- on Windows XP SP2 or later, and on Mac OS X 10.6 or later
 
-###現有單一登入
+**Note:** The password-based SSO extension will become available for Edge in Windows 10 when browser extensions become supported for Edge.
 
-設定應用程式的單一登入時，Azure 管理入口網站提供「現有單一登入」的第三個選項。這個選項只允許系統管理員建立應用程式的連結，並將連結放在選定使用者的存取面板上。
+###<a name="existing-single-sign-on"></a>Existing Single Sign-On
 
-例如，如果有一個應用程式設定為使用 Active Directory Federation Services 2.0 來驗證使用者，系統管理員可以使用 [現有單一登入] 選項在存取面板上建立應用程式的連結。當使用者存取此連結時，會使用 Active Directory Federation Services 2.0，或由應用程式提供的任何現有單一登入解決方案來驗證使用者。
+When configuring single sign-on for an application, the Azure management portal provides a third option of “Existing Single Sign-On”. This option simply allows the administrator to create a link to an application, and place it on the access panel for selected users.
 
-###使用者佈建
+For example, if there is an application that is configured to authenticate users using Active Directory Federation Services 2.0, an administrator can use the “Existing Single Sign-On” option to create a link to it on the access panel. When users access the link, they are authenticated using Active Directory Federation Services 2.0, or whatever existing single sign-on solution is provided by the application.
 
-對於選取的應用程式，Azure AD 使用您的 Windows Server Active Directory 或 Azure AD 身分識別資訊，可從 Azure 管理入口網站內在協力廠商 SaaS 應用程式中進行自動化的使用者佈建和解除佈建帳戶。當使用者在 Azure AD 中獲得其中一個應用程式的權限時，就會在目標 SaaS 應用程式中自動建立 (佈建) 帳戶。
+###<a name="user-provisioning"></a>User Provisioning
 
-當使用者被刪除，或其資訊在 Azure AD 中有所變更時，這些變更也會反映在 SaaS 應用程式中。這表示，設定自動化的身分識別週期管理，可讓系統管理員控制和提供 SaaS 應用程式的自動化佈建和解除佈建。在 Azure AD 中，使用者佈建已啟用此自動化身分識別週期管理。
+For select applications, Azure AD enables automated user provisioning and de-provisioning of accounts in third-party SaaS applications from within the Azure Management Portal, using your Windows Server Active Directory or Azure AD identity information. When a user is given permissions in Azure AD for one of these applications, an account can be automatically created (provisioned) in the target SaaS application.
 
-若要深入了解，請參閱 [SaaS 應用程式的自動化使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)
+When a user is deleted or their information changes in Azure AD, these changes are also reflected in the SaaS application. This means, configuring automated identity lifecycle management enables administrators to control and provide automated provisioning and de-provisioning from SaaS applications. In Azure AD, this automation of identity lifecycle management is enabled by user provisioning.
 
-##開始使用 Azure AD 應用程式庫
+To learn more, see [Automated User Provisioning and Deprovisioning to SaaS Applications](active-directory-saas-app-provisioning.md)
 
-準備好開始了嗎？ 若要在 Azure AD 和您的組織所使用的 SaaS 應用程式之間部署單一登入，請遵循這些指導方針。
+##<a name="get-started-with-the-azure-ad-application-gallery"></a>Get started with the Azure AD application gallery
 
-###使用 Azure AD 應用程式庫
+Ready to get started? To deploy single sign-on between Azure AD and SaaS applications that your organization uses, follow these guidelines.
 
-[Azure Active Directory 應用程式資源庫](https://azure.microsoft.com/marketplace/active-directory/all/)提供一份已知能支援單一登入搭配 Azure Active Directory 的應用程式清單。
+###<a name="using-the-azure-ad-application-gallery"></a>Using the Azure AD application gallery
+
+The [Azure Active Directory Application Gallery](https://azure.microsoft.com/marketplace/active-directory/all/) provides a listing of applications that are known to support a form of single sign-on with Azure Active Directory.
 
 ![][1]
 
-以下是尋找應用程式支援哪些功能的一些提示：
+Here are some tips for finding apps by what capabilities they support:
 
-*	Azure AD 支援自動佈建和解除佈建 [Azure Active Directory 應用程式資源庫](https://azure.microsoft.com/marketplace/active-directory/all/)中所有「精選的」應用程式。
+*   Azure AD supports automatic provisioning and de-provisioning for all “Featured” apps in the [Azure Active Directory Application Gallery](https://azure.microsoft.com/marketplace/active-directory/all/).
 
-*	在[這裡](http://social.technet.microsoft.com/wiki/contents/articles/20235.azure-active-directory-application-gallery-federated-saas-apps.aspx)則可以找到特別支援使用如 SAML，WS-同盟或 OpenID Connect 通訊協定之同盟單一登入的同盟應用程式清單。
+*   A list of federated applications that specifically support federated single sign-on using a protocol such as SAML, WS-Federation, or OpenID Connect can be found [here](http://social.technet.microsoft.com/wiki/contents/articles/20235.azure-active-directory-application-gallery-federated-saas-apps.aspx).
 
-一旦您找到您的應用程式，您就可以遵循應用程式庫和 Azure 管理入口網站中顯示的逐步指示，啟用單一登入。
+Once you’ve found your application, you can get started by follow the step-by-step instructions presented in the app gallery and in the Azure management portal to enable single sign-on.
 
-###不在資源庫中的應用程式呢？
+###<a name="application-not-in-the-gallery?"></a>Application not in the gallery?
 
-如果 Azure AD 應用程式庫中找不到您的應用程式，您可以選擇：
+If your application is not found in the Azure AD application gallery, then you have these options:
 
-*	**新增您正在使用但未列出的應用程式** - 使用 Azure 管理入口網站內應用程式資源庫中的自訂類別目錄，連線您的組織正在使用但未列出的應用程式。您可以加入支援 SAML 2.0 的任何應用程式做為同盟應用程式，或者加入具有 HTML 登入頁面的任何應用程式做為密碼 SSO 應用程式。如需詳細資訊，請參閱[加入自己的應用程式](active-directory-saas-custom-apps.md)一文。
+*   **Add an unlisted app you are using** - Use the Custom category in the app gallery within the Azure management portal to connect an unlisted application that your organization is using. You can add any application that supports SAML 2.0 as a federated app, or any application that has an HTML-based sign-in page as a password SSO app. For more details, see this article on [adding your own application](active-directory-saas-custom-apps.md).
 
 
-*	**新增您正在開發的專屬應用程式** - 如果您自己開發了應用程式，請依照 Azure AD 開發人員文件中的指導方針來實作同盟單一登入或使用 Azure AD 圖形 API 的佈建。如需詳細資訊，請參閱這些資源：
-  * [Azure AD 的驗證案例](active-directory-authentication-scenarios.md)
+*   **Add your own app you are developing** - If you have developed the application yourself, follow the guidelines in the Azure AD developer documentation to implement federated single sign-on or provisioning using the Azure AD graph API. For more information, see these resources:
+  * [Authentication Scenarios for Azure AD](active-directory-authentication-scenarios.md)
   * [https://github.com/AzureADSamples/WebApp-MultiTenant-OpenIdConnect-DotNet](https://github.com/AzureADSamples/WebApp-MultiTenant-OpenIdConnect-DotNet)
   * [https://github.com/AzureADSamples/WebApp-WebAPI-MultiTenant-OpenIdConnect-DotNet](https://github.com/AzureADSamples/WebApp-WebAPI-MultiTenant-OpenIdConnect-DotNet)
   * [https://github.com/AzureADSamples/NativeClient-WebAPI-MultiTenant-WindowsStore](https://github.com/AzureADSamples/NativeClient-WebAPI-MultiTenant-WindowsStore)
 
-*	**要求應用程式整合** - 使用 [Azure AD 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/)要求所需應用程式的支援。
+*   **Request an app integration** - Request support for the application you need using the [Azure AD feedback forum](https://feedback.azure.com/forums/169401-azure-active-directory/).
 
-###使用 Azure 管理入口網站
+###<a name="using-the-azure-management-portal"></a>Using the Azure management portal
 
-您可以使用 Azure 管理入口網站中的 Active Directory 延伸模組來設定應用程式單一登入。首先，您必須從入口網站的 [Active Directory] 區段中選取目錄：
+You can use the Active Directory extension in the Azure Management Portal to configure the application single sign-on. As a first step, you need to select a directory from the Active Directory section in the portal:
 
 ![][2]
 
-若要管理您的協力廠商 SaaS 應用程式，您可以切換至所選目錄的 [應用程式] 索引標籤。這個檢視可讓系統管理員：
+To manage your third-party SaaS applications, you can switch into the Applications tab of the selected directory. This view enables administrators to:
 
-* 新增 Azure AD 資源庫的應用程式，以及您正在開發的應用程式
-* 刪除整合的應用程式
-* 管理已經整合的應用程式
+* Add new applications from the Azure AD gallery, as well as apps you are developing
+* Delete integrated applications
+* Manage the applications they have already integrated
 
-協力廠商 SaaS 應用程式的一般管理工作有：
+Typical administrative tasks for a third-party SaaS application are:
 
-* 向 Azure AD 啟用單一登入、使用密碼 SSO，或做為目標 SaaS、同盟 SSO (如果適用)
-* (選擇性) 啟用使用者佈建來佈建和解除佈建使用者 (身分識別週期管理)
-* 對於啟用使用者佈建的應用程式，選取哪些使用者可以存取該應用程式
+* Enabling single sign-on with Azure AD, using password SSO or, if available for the target SaaS, federated SSO
+* Optionally, enabling user provisioning for user provisioning and de-provisioning (identity lifecycle management)
+* For applications where user provisioning is enabled, selecting which users have access to that application
 
-對於支援同盟單一登入的資源庫應用程式，通常需要您提供其他組態設定，例如用來建立協力廠商應用程式與 Azure AD 之間同盟信任的憑證和中繼資料。組態精靈會引導您完成細節，並且提供特定資料和指示讓您輕鬆存取 SaaS 應用程式。
+For gallery apps that support federated single sign-on, configuration typically requires you to provide additional configuration settings such as certificates and metadata to create a federated trust between the third-party app and Azure AD. The configuration wizard walks you through the details and provides you with easy access to the SaaS application specific data and instructions.
 
-對於支援自動使用者佈建的資源庫應用程式，您需要賦予 Azure AD 權限來管理您在 SaaS 應用程式中的帳戶。至少，您需要提供 Azure AD 在向目標應用程式進行驗證時應該使用的認證。是否需要提供額外的組態設定，取決於應用程式的要求。
+For gallery apps that support automatic user provisioning, this requires you to give Azure AD permissions to manage your accounts in the SaaS application. At a minimum, you need to provide credentials Azure AD should use when authenticating over to the target application. Whether additional configuration settings need to be provided depends on the requirements of the application.
 
-##對使用者部署 Azure AD 整合應用程式
+##<a name="deploying-azure-ad-integrated-applications-to-users"></a>Deploying Azure AD integrated applications to users
 
-Azure AD 提供幾種可自訂的方式，來對您組織中的使用者部署應用程式：
+Azure AD provides several customizable ways to deploy applications to end-users in your organization:
 
-* Azure AD 存取面板
-* Office 365 應用程式啟動程式
-* 直接登入同盟應用程式
-* 同盟、密碼或現有應用程式的深層連結
+* Azure AD access panel
+* Office 365 application launcher
+* Direct sign-on to federated apps
+* Deep links to federated, password-based, or existing apps
 
-您選擇要在組織中部署哪一種方法由您自行決定。
+Which method(s) you choose to deploy in your organization is your discretion.
 
-###Azure AD 存取面板
+###<a name="azure-ad-access-panel"></a>Azure AD access panel
 
-位於 https://myapps.microsoft.com 的 [存取面板] 是一種 Web 入口網站，可讓 Azure Active Directory 中擁有組織帳戶的使用者檢視和啟動 Azure AD 系統管理員已授與他們存取權的雲端應用程式。如果您是 [Azure Active Directory Premium](https://azure.microsoft.com/pricing/details/active-directory/) 的使用者，您也可以透過 [存取面板] 使用自助式群組管理功能。
+The Access Panel at https://myapps.microsoft.com is a web-based portal that allows an end user with an organizational account in Azure Active Directory to view and launch cloud-based applications to which they have been granted access by the Azure AD administrator. If you are an end-user with [Azure Active Directory Premium](https://azure.microsoft.com/pricing/details/active-directory/), you can also utilize self-service group management capabilities through the Access Panel.
 
 ![][3]
 
-存取面板與 Azure 管理入口網站不同，使用者不需要具備 Azure 訂用帳戶或 Office 365 訂用帳戶。
+The Access Panel is separate from the Azure Management Portal and does not require users to have an Azure subscription or Office 365 subscription.
 
-如需有關 Azure AD 存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+For more information on the Azure AD access panel, see the [introduction to the access panel](active-directory-saas-access-panel-introduction.md).
 
-###Office 365 應用程式啟動程式
+###<a name="office-365-application-launcher"></a>Office 365 application launcher
 
-如果是已部署 Office 365 的組織，則透過 Azure AD 指派至使用者的應用程式也會出現在位於 https://portal.office.com/myapps 的 Office 365 入口網站中。這對於組織中的使用者來說，能夠啟動應用程式又不需要使用第二個入口網站，非常簡單而且方便，建議使用 Office 365 的組織採取這個應用程式啟動解決方案。
+For organizations that have deployed Office 365, applications assigned to users through Azure AD will also appear in the Office 365 portal at https://portal.office.com/myapps. This makes it easy and convenient for users in an organization to launch their apps without having to use a second portal, and is the recommended app launching solution for organizations using Office 365.
 
 ![][4]
 
-如需有關 Office 365 應用程式啟動程式的詳細資訊，請參閱[讓您的應用程式出現在 Office 365 應用程式啟動程式中](https://msdn.microsoft.com/office/office365/howto/connect-your-app-to-o365-app-launcher)。
+For more information about the Office 365 application launcher, see [Have your app appear in the Office 365 app launcher](https://msdn.microsoft.com/office/office365/howto/connect-your-app-to-o365-app-launcher).
 
-###直接登入同盟應用程式
+###<a name="direct-sign-on-to-federated-apps"></a>Direct sign-on to federated apps
 
-大部分支援 SAML 2.0、WS-同盟或 OpenID Connect 的同盟應用程式也支援使用者在應用程式啟動，然後再透過 Azure AD 的自動重新導向或按一下連結登入。這稱為服務提供者起始的登入，Azure AD 應用程式庫中大部分的同盟應用程式都支援這個方式 (請參閱 Azure 管理入口網站中應用程式的單一登入組態精靈的文件連結了解詳細資訊)。
+Most federated applications that support SAML 2.0, WS-Federation, or OpenID connect also support the ability for users to start at the application, and then get signed in through Azure AD either by automatic redirection or by clicking on a link to sign in. This is known as service provider -initiated sign-on, and most federated applications in the Azure AD application gallery support this (see the documentation linked from the app’s single sign-on configuration wizard in the Azure management portal for details).
 
 ![][5]
 
-###同盟、密碼或現有應用程式的直接登入連結
+###<a name="direct-sign-on-links-for-federated,-password-based,-or-existing-apps"></a>Direct sign-on links for federated, password-based, or existing apps
 
-Azure AD 也支援對支援密碼單一登入、現有單一登入，以及任何形式的同盟單一登入的個別應用程式使用直接單一登入連結。
+Azure AD also supports direct single sign-on links to individual applications that support password-based single sign-on, existing single sign-on, and any form of federated single sign-on.
 
-這些連結是特別撰寫的 URL，會透過 Azure AD 登入程序針對特定應用程式傳送給使用者，使用者不需要從 Azure AD 存取面板或 Office 365 啟動。您可以在 Azure 管理入口網站 [Active Directory] 區段中任何預先整合的應用程式的 [儀表板] 索引標籤下，找到這些單一登入 URL，如以下螢幕擷取畫面所示。
+These links are specifically-crafted URLs that send a user through the Azure AD sign in process for a specific application without requiring the user launch them from the Azure AD access panel or Office 365. These Single Sign-On URLs can be found under the Dashboard tab of any pre-integrated application in the Active Directory section of the Azure management portal, as shown in the screenshot below.
 
 ![][6]
 
-您可以複製這些連結，然後貼到任何您想要提供選取應用程式登入連結的位置。可以是在電子郵件中，或是任何您已設定使用者應用程式存取權的自訂網頁型入口網站中。以下是 Azure AD 直接單一登入 Twitter 的 URL 範例：
+These links can be copied and pasted anywhere you want to provide a sign-in link to the selected application. This could be in an email, or in any custom web-based portal that you have set up for user application access. Here's an example of an Azure AD direct single sign-on URL for Twitter:
 
 `https://myapps.microsoft.com/signin/Twitter/230848d52c8745d4b05a60d29a40fced`
 
-類似於存取面板的組織特定 URL，您可以在 myapps.microsoft.com 網域之後加入其中一個作用中或經過驗證的網域做為您的目錄，進一步自訂這個 URL。這樣可以確保使用者不需要先輸入其使用者識別碼，登入頁面就可以立即載入任何組織品牌：
+Similar to organization-specific URLs for the access panel, you can further customize this URL by adding one of the active or verified domains for your directory after the myapps.microsoft.com domain. This ensures any organizational branding is loaded immediately on the sign-in page without the user needing to enter their user ID first:
 
 `https://myapps.microsoft.com/contosobuild.com/signin/Twitter/230848d52c8745d4b05a60d29a40fced`
 
-當授權的使用者按一下其中一個應用程式特定連結時，他們會先看到其組織登入頁面 (假設他們尚未登入)，登入之後會重新導向至該應用程式而不會先停在存取面板。如果使用者遺漏存取應用程式所需的先決條件，例如密碼單一登入瀏覽器延伸，則連結將會提示使用者安裝遺漏的延伸。如果應用程式的單一登入組態有變更，連結 URL 也會維持不變。
+When an authorized user clicks on one of these application-specific links, they first see their organizational sign-in page (assuming they are not already signed in), and after sign-in are redirected to their app without stopping at the access panel first. If the user is missing pre-requisites to access the application, such as the password-based single sign browser extension, then the link will prompt the user to install the missing extension. The link URL also remains constant if the single sign-on configuration for the application changes.
 
-這些連結使用與存取面板和 Office 365 相同的存取控制機制，只有在 Azure 管理入口網站中已指派到應用程式的使用者或群組能夠順利通過驗證。不過，任何未經授權的使用者都會看到一個訊息，說明他們未獲得存取權，且會獲得一個載入存取面板的連結，以檢視可存取的應用程式。
+These links use the same access control mechanisms as the access panel and Office 365, and only those users or groups who have been assigned to the application in the Azure management portal will be able to successfully authenticate. However, any user who is unauthorized will see a message explaining that they have not been granted access, and are given a link to load the access panel to view available applications for which they do have access.
 
-##相關文章
+##<a name="related-articles"></a>Related Articles
 
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-- [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-- [使用 Cloud App Discovery 尋找未經約束的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
-- [管理應用程式存取簡介](active-directory-managing-access-to-apps.md)
-- [比較 Azure AD 中管理外部身分識別的功能](active-directory-b2b-compare-external-identities.md)
+- [Article Index for Application Management in Azure Active Directory](active-directory-apps-index.md)
+- [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+- [Finding unsanctioned cloud applications with Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md)
+- [Introduction to Managing Access to Apps](active-directory-managing-access-to-apps.md)
+- [Comparing Capabilities for Managing External Identities in Azure AD](active-directory-b2b-compare-external-identities.md)
 
 
 <!--Image references-->
@@ -227,4 +228,8 @@ Azure AD 也支援對支援密碼單一登入、現有單一登入，以及任�
 [5]: ./media/active-directory-appssoaccess-whatis/workdaymobile.png
 [6]: ./media/active-directory-appssoaccess-whatis/deeplink.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

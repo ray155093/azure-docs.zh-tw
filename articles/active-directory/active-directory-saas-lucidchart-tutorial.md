@@ -1,128 +1,139 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Lucidchart 整合 | Microsoft Azure" 
-    description="了解如何使用 Lucidchart 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Lucidchart | Microsoft Azure" 
+    description="Learn how to use Lucidchart with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-	manager="femila"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/08/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Lucidchart 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-lucidchart"></a>Tutorial: Azure Active Directory integration with Lucidchart
   
-本教學課程的目的是要示範 Azure 與 Lucidchart 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Lucidchart.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   啟用 Lucidchart 單一登入的訂用帳戶
+-   A valid Azure subscription
+-   A Lucidchart single sign-on enabled subscription
   
-完成本教學課程之後，您指派給 Lucidchart 的 Azure AD 使用者就能夠單一登入您 Lucidchart 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+After completing this tutorial, the Azure AD users you have assigned to Lucidchart will be able to single sign into the application at your Lucidchart company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Lucidchart 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Lucidchart
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-lucidchart-tutorial/IC791183.png "案例")
-##啟用 Lucidchart 的應用程式整合
+![Scenario](./media/active-directory-saas-lucidchart-tutorial/IC791183.png "Scenario")
+##<a name="enabling-the-application-integration-for-lucidchart"></a>Enabling the application integration for Lucidchart
   
-本節的目的是要說明如何啟用 Lucidchart 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Lucidchart.
 
-###若要啟用 Lucidchart 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-lucidchart,-perform-the-following-steps:"></a>To enable the application integration for Lucidchart, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-lucidchart-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-lucidchart-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-lucidchart-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-lucidchart-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-lucidchart-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-lucidchart-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-lucidchart-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在搜尋方塊中，輸入 **Lucidchart**。
+6.  In the **search box**, type **Lucidchart**.
 
-    ![應用程式庫](./media/active-directory-saas-lucidchart-tutorial/IC791184.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-lucidchart-tutorial/IC791184.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Lucidchart]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Lucidchart**, and then click **Complete** to add the application.
 
     ![Lucidchart](./media/active-directory-saas-lucidchart-tutorial/IC791185.png "Lucidchart")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Lucidchart 中進行驗證。
+The objective of this section is to outline how to enable users to authenticate to Lucidchart with their account in Azure AD using federation based on the SAML protocol.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Lucidchart] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Lucidchart** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-lucidchart-tutorial/IC791186.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-lucidchart-tutorial/IC791186.png "Configure Single Sign-On")
 
-2.  在 [您希望使用者如何登入 Lucidchart] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  On the **How would you like users to sign on to Lucidchart** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-lucidchart-tutorial/IC791187.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-lucidchart-tutorial/IC791187.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [Lucidchart 單一登入 URL] 文字方塊中，輸入使用者用來登入 Lucidchart 應用程式的 URL (如："*https://chart2.office.lucidchart.com/saml/sso/azure*")，然後按一下 *[下一步]*。
+3.  On the **Configure App URL** page, in the **Lucidchart Sign On URL** textbox, type the URL used by your users to sign on to your Lucidchart application (e.g.: "*https://chart2.office.lucidchart.com/saml/sso/azure*"), and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-lucidchart-tutorial/IC791188.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-lucidchart-tutorial/IC791188.png "Configure App URL")
 
-4.  在 [設定在 Lucidchart 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後將資料檔儲存在您的本機電腦中。
+4.  On the **Configure single sign-on at Lucidchart** page, to download your metadata, click **Download metadata**, and then save the data file locally on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-lucidchart-tutorial/IC791189.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-lucidchart-tutorial/IC791189.png "Configure Single Sign-On")
 
-5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Lucidchart 公司網站。
+5.  In a different web browser window, log into your Lucidchart company site as an administrator.
 
-6.  在頂端的功能表中，按一下 [小組]。
+6.  In the menu on the top, click **Team**.
 
-    ![小組](./media/active-directory-saas-lucidchart-tutorial/IC791190.png "小組")
+    ![Team](./media/active-directory-saas-lucidchart-tutorial/IC791190.png "Team")
 
-7.  按一下 [應用程式 > 管理 SAML]。
+7.  Click **Application \> Manage SAML**.
 
-    ![管理 SAML](./media/active-directory-saas-lucidchart-tutorial/IC791191.png "管理 SAML")
+    ![Manage SAML](./media/active-directory-saas-lucidchart-tutorial/IC791191.png "Manage SAML")
 
-8.  在 [SAML 驗證設定] 對話方塊頁面上執行下列步驟：
+8.  On the **SAML Authentication Settings** dialog page, perform the following steps:
 
-    1.  選取 [啟用 SAML 驗證]，然後按一下 [選用]。![基本驗證設定](./media/active-directory-saas-lucidchart-tutorial/IC791192.png "基本驗證設定")
-    2.  在 [網域] 文字方塊中，輸入您的網域，然後按一下 [變更憑證]。 ![變更憑證](./media/active-directory-saas-lucidchart-tutorial/IC791193.png "變更憑證")
-    3.  開啟您下載的中繼資料檔案，然後複製內容並貼到並 [上傳中繼資料] 文字方塊中。![上傳中繼資料](./media/active-directory-saas-lucidchart-tutorial/IC791194.png "上傳中繼資料")
-    4.  選取 [自動新增使用者至小組]，然後按一下 [儲存變更]。![儲存變更](./media/active-directory-saas-lucidchart-tutorial/IC791195.png "儲存變更")
+    1.  Select **Enable SAML Authentication**, and then click **Optional**.
+        ![SAML Authentication Settings](./media/active-directory-saas-lucidchart-tutorial/IC791192.png "SAML Authentication Settings")
+    2.  In the **Domain** textbox, type your domain, and then click **Change Certificate**.
+        ![Change Certificate](./media/active-directory-saas-lucidchart-tutorial/IC791193.png "Change Certificate")
+    3.  Open your downloaded metadata file, copy the content, and then paste it into the **Upload Metadata** textbox.
+        ![Upload Metadata](./media/active-directory-saas-lucidchart-tutorial/IC791194.png "Upload Metadata")
+    4.  Select **Automatically Add new user to the team**, and then click **Save changes**.
+        ![Save Changes](./media/active-directory-saas-lucidchart-tutorial/IC791195.png "Save Changes")
 
-9.  選取單一登入設定確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+9.  Select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-lucidchart-tutorial/IC791196.png "設定單一登入")
-##設定使用者佈建
+    ![Configure Single Sign-On](./media/active-directory-saas-lucidchart-tutorial/IC791196.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-沒有動作項目可讓您設定 Lucidchart 使用者佈建。當指派的使用者嘗試使用存取面板登入 Lucidchart 時，Lucidchart 會檢查使用者是否存在。如果尚無可用的使用者帳戶，Lucidchart 會自動予以建立。
-##指派使用者
+There is no action item for you to configure user provisioning to Lucidchart.  
+When an assigned user tries to log into Lucidchart using the access panel, Lucidchart checks whether the user exists.  
+If there is no user account available yet, it is automatically created by Lucidchart.
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Lucidchart，請執行下列步驟：
+###<a name="to-assign-users-to-lucidchart,-perform-the-following-steps:"></a>To assign users to Lucidchart, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Lucidchart] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Lucidchart **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-lucidchart-tutorial/IC791197.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-lucidchart-tutorial/IC791197.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-lucidchart-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-lucidchart-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

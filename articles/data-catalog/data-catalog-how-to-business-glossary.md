@@ -1,91 +1,96 @@
 <properties
-	pageTitle="如何設定控管標記的商務詞彙 | Microsoft Azure"
-	description="強調 Azure 資料目錄中商務詞彙的操作說明文章，可定義和使用一般商務詞彙來標記註冊的資料資產。"
-	services="data-catalog"
-	documentationCenter=""
-	authors="steelanddata"
-	manager="NA"
-	editor=""
-	tags=""/>
+    pageTitle="How to set up the Business Glossary for governed tagging | Microsoft Azure"
+    description="How-to article highlighting the business glossary in Azure Data Catalog for defining and using a common business vocabulary to tag registered data assets."
+    services="data-catalog"
+    documentationCenter=""
+    authors="steelanddata"
+    manager="NA"
+    editor=""
+    tags=""/>
 <tags
-	ms.service="data-catalog"
-	ms.devlang="NA"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"
-	ms.workload="data-catalog"
-	ms.date="09/21/2016"
-	ms.author="maroche"/>
-
-# 如何設定控管標記的商務詞彙
-
-## 簡介
-
-Azure 資料目錄提供資料來源探索功能，讓使用者能夠輕鬆地探索和了解要執行分析和做出決策所需的資料來源。當使用者能找到並了解最大範圍的可用資料來源時，這些探索功能將能發揮最大效果。
-
-正在標記一個資料目錄功能，可提升對資產資料的了解。標記可讓使用者建立關鍵字與資產或資料行的關聯，進而更輕鬆地透過搜尋或瀏覽資產進行探索，並可讓使用者更容易了解資產的內容和目的。
-
-不過，標記有時會造成自己的問題。標記可能會造成問題的部分範例如下︰
-
-1.	使用者在標記時對某些資產使用縮寫，以及對其他資產使用展開的文字。雖然目的是要使用相同的標籤標記資產，但是這項不一致會防礙資產的探索。
-2.	在不同內容中代表不同意思的標籤。例如，稱為「營收」的標籤在客戶資料集上可能表示客戶的營收，但是相同的標籤在每季銷售資料集上可能表示公司的每季營收。
-
-為了協助解決上述和其他類似的挑戰，資料目錄包含商務詞彙。
-
-資料目錄商務詞彙可讓組織記錄關鍵商務詞彙及其定義，以建立常用的商務詞彙。此控管可達成整個組織的資料使用一致性。一旦在商務詞彙中定義詞彙，它們就可以指派給目錄中的資料資產，在標記時使用相同的方法，藉此啟用「控管標記」。
-
-> [AZURE.NOTE] 本文所描述的功能只適用於標準版 Azure 資料目錄。免費版不提供控管標記或商務詞彙的功能。
-
-## 詞彙可用性和權限
-
-/商務詞彙可在標準版 Azure 資料目錄中使用。免費版的資料目錄不包含詞彙。/
-
-商務詞彙可透過資料目錄入口網站的瀏覽功能表中的「詞彙」選項存取。
-
-![存取商務詞彙](./media/data-catalog-how-to-business-glossary/01-portal-menu.png)
+    ms.service="data-catalog"
+    ms.devlang="NA"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"
+    ms.workload="data-catalog"
+    ms.date="09/21/2016"
+    ms.author="maroche"/>
 
 
-資料目錄管理員和詞彙管理員角色的成員可以建立、編輯和刪除商務詞彙中的詞彙。所有的資料目錄使用者都可以檢視詞彙定義，而且可以利用詞彙標記資產。
+# <a name="how-to-set-up-the-business-glossary-for-governed-tagging"></a>How to set up the Business Glossary for Governed Tagging
 
-![新增字彙](./media/data-catalog-how-to-business-glossary/02-new-term.png)
+## <a name="introduction"></a>Introduction
+
+Azure Data Catalog provides capabilities for data source discovery, enabling users to easily discover and understand the data sources they need to perform analysis and make decisions. These discovery capabilities make the biggest impact when users can find and understand the broadest range of available data sources.
+
+One Data Catalog feature that promotes greater understanding of assets data is tagging. Tagging allows users to associate keywords with an asset or a column, which in turn makes it easier to discover the asset via searching or browsing, and allows users to more easily understand the context and intent of the asset.
+
+However, tagging can sometimes cause problems of its own. Some examples of problems that can be introduced by tagging are:
+
+1.  Users using abbreviations on some assets and expanded text on others while tagging. This inconsistency hinders the discovery of assets even though the intent was to tag the assets with the same tag.
+2.  Tags which mean different things in different contexts. For example, a tag called "Revenue" on a customer data set might mean revenue by customer, but the same tag on a quarterly sales dataset could mean quarterly revenue for the company.  
+
+To help address these and other similar challenges, Data Catalog includes a Business Glossary.
+
+The Data Catalog Business Glossary allows organizations to document key business terms and their definitions to create a common business vocabulary. This governance enables consistency in data usage across the organization. Once terms are defined in the business glossary, they can be assigned to data assets in the catalog, using the same approach as tagging, thereby enabling _governed tagging_.
+
+> [AZURE.NOTE] The functionality described in this article are available only in the Standard Edition of Azure Data Catalog. The Free Edition does not provide capabilities for governed tagging or a business glossary.
+
+## <a name="glossary-availability-and-privileges"></a>Glossary availability and privileges
+
+/*The business glossary is available in the Standard Edition of Azure Data Catalog. The Free Edition of Data Catalog does not include a glossary.*/
+
+The business glossary can be accessed via the "Glossary" option in the Data Catalog portal's navigation menu.  
+
+![Accessing the business glossary](./media/data-catalog-how-to-business-glossary/01-portal-menu.png)
 
 
-## 建立詞彙
+Data Catalog administrators and members of the Glossary Administrators role can create, edit and delete glossary terms in the business glossary. All Data Catalog users can view the term definitions, and can tag assets with glossary terms.
 
-資料目錄管理員和詞彙管理員可以按一下 [新增詞彙] 按鈕來建立新詞彙，以建立包含下列欄位的詞彙︰
-
-* 詞彙的商務定義
-* 會擷取資產/資料行之指定用途或商務規則的描述
-* 最了解這個詞彙的專案關係人清單
-* 定義詞彙在其中組織之階層的父詞彙
+![Adding a new glossary term](./media/data-catalog-how-to-business-glossary/02-new-term.png)
 
 
-## 詞彙階層
+## <a name="creating-glossary-terms"></a>Creating glossary terms
 
-資料目錄商務詞彙提供描述商務詞彙做為詞彙階層的功能。這可讓組織建立詞彙分類，更能代表其商務分類法。
+Data Catalog administrators and Glossary administrators can create new glossary terms by clicking on the New Term’ button to create glossary terms with the following fields:
 
-詞彙名稱在指定層級的階層中必須是唯一的 - 不允許重複的名稱。在單一階層中，層級數目沒有限制，但是三個層級以下的階層通常更容易了解。
+* A business definition for the term
+* A description which captures the intended use or business rules for the asset/column
+* A list of stakeholders who know the most about the term
+* The parent term, which defines the hierarchy in which the term is organized
 
-商務詞彙中的階層使用是選擇性的。讓詞彙的父詞彙欄位保留空白會在詞彙中建立詞彙的一般 (非階層式) 清單。
 
-## 利用詞彙標記資產
+## <a name="glossary-term-hierarchies"></a>Glossary term hierarchies
 
-在目錄中定義詞彙之後，標記資產的經驗已最佳化，可在使用者輸入其標籤時搜尋詞彙。資料目錄入口網站會顯示使用者可以選擇的相符詞彙清單。如果使用者從清單中選取一個詞彙，它會新增至資產做為標籤 (也稱為詞彙標籤)。使用者也可以選擇藉由輸入不在詞彙中的詞彙來建立新標籤 (也稱為使用者標籤)。
+The Data Catalog business glossary provides the ability to describe your business vocabulary as a hierarchy of terms. This allows organizations to create a classification of terms which better represents their business taxonomy.
 
-![使用一個使用者標籤和兩個詞彙標籤標記的資料資產](./media/data-catalog-how-to-business-glossary/03-tagged-asset.png)
+The name of a term must be unique at a given level of hierarchy - duplicate names are not allowed. There is no limit to the number of levels in a hierarchy, but a hierarchy is often more easily understood when there are three levels or fewer.
 
-> [AZURE.NOTE] 使用者標籤是免費版資料目錄中唯一支援的標籤類型。
+The use of hierarchies in the business glossary is optional. Leaving the parent term field blank for glossary terms will create a flat (non-hierarchical) list of terms in the glossary.  
 
-### 將滑鼠游標停留在標記上的行為
-在資料目錄入口網站中，標籤的兩種類型在視覺上有所不同，其將滑鼠游標停留的行為也不相同。當使用者將滑鼠游標停留在使用者標籤上，他們可以看見標籤文字或新增該標籤的使用者。當使用者將滑鼠游標停留在詞彙標籤上，他們也會看見詞彙的定義，以及可開啟商務詞彙以檢視詞彙完整定義的連結。
+## <a name="tagging-assets-with-glossary-terms"></a>Tagging assets with glossary terms
 
-### 標籤的搜尋篩選
-詞彙標籤和使用者標籤都可供搜尋，並可套用於搜尋中做為篩選。
+Once glossary terms have been defined within the catalog, the experience of tagging assets is optimized to search the glossary as the user types their tag. The Data Catalog portal displays a list of matching glossary terms for the user to choose from. If the user selects a glossary term from the list it is added to the asset as a tag (a.k.a. glossary tag). The user can also choose to create a new tag by typing a term which is not in the glossary (a.k.a. user tag).
 
-## 摘要
-Azure 資料目錄中的商務詞彙和它啟用的控管標記，都可利用一致的方式識別、管理與探索資料資產。商務詞彙可以提升組織中使用者對商務詞彙的了解，並支援擷取有意義的中繼資料，輕鬆進行資產探索與了解。
+![Data asset tagged with one user tag and two glossary tags](./media/data-catalog-how-to-business-glossary/03-tagged-asset.png)
 
-## 另請參閱
+> [AZURE.NOTE] User Tags are the only type of tag supported in the Free Edition of Data Catalog.
 
-- [商務詞彙作業的 REST API 文件](https://msdn.microsoft.com/library/mt708855.aspx)
+### <a name="hover-behavior-on-tags"></a>Hover behavior on tags
+In the Data Catalog portal the two types of tags are visually distinct, with different hover behaviors. When the user hovers over a user tag they can see the tag text and the user or users who have added the tag. When the user hovers over a glossary tag, they also see the definition of the glossary term and a link to open the business glossary to view the full definition of the term.
 
-<!---HONumber=AcomDC_0921_2016-->
+### <a name="search-filters-for-tags"></a>Search filters for tags
+Both glossary tags and user tags are searchable, and can be applied as filters in a search.
+
+## <a name="summary"></a>Summary
+The business glossary in Azure Data Catalog, and the governed tagging it enables, allow data assets to be identified, managed, and discovered in a consistent manner. The business glossary can promote learning of the business vocabulary amongst users of an organization and supports meaningful meta-data to be captured, making asset discovery and understanding a breeze.
+
+## <a name="see-also"></a>See Also
+
+- [REST API documentation for business glossary operations](https://msdn.microsoft.com/library/mt708855.aspx)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

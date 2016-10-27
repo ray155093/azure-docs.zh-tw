@@ -1,989 +1,995 @@
 <properties 
-	pageTitle="進階媒體編碼器 Premium 工作流程教學課程" 
-	description="本文件包含的逐步解說可示範如何使用媒體編碼器 Premium 工作流程執行進階的工作，以及如何使用工作流程設計工具建立複雜的工作流程。" 
-	services="media-services" 
-	documentationCenter="" 
-	authors="xstof" 
-	manager="erikre" 
-	editor=""/>
+    pageTitle="Avanced Media Encoder Premium Workflow tutorials" 
+    description="This document contains walkthroughs that show how to perform advanced tasks with Media Encoder Premium Workflow and also how to create complex workflows with Workflow Designer." 
+    services="media-services" 
+    documentationCenter="" 
+    authors="xstof" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="media-services" 
-	ms.workload="media" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/11/2016"  
-	ms.author="xstof;xpouyat;juliako"/>
+    ms.service="media-services" 
+    ms.workload="media" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/03/2016"  
+    ms.author="xstof;xpouyat;juliako"/>
 
-#進階媒體編碼器 Premium 工作流程教學課程
 
-##概觀 
+#<a name="advanced-media-encoder-premium-workflow-tutorials"></a>Advanced Media Encoder Premium Workflow tutorials
 
-本文件包含的逐步解說可示範如何使用**工作流程設計工具**自訂工作流程。您可以在[這裡](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows/PremiumEncoderWorkflowSamples)尋找實際的工作流程檔案。
+##<a name="overview"></a>Overview 
 
-##目錄
+This document contains walkthroughs that show how to customize workflows with  **Workflow Designer**. You can find the actual workflow files [here](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows/PremiumEncoderWorkflowSamples).  
 
-本文涵蓋下列主題：
+##<a name="toc"></a>TOC
 
-- [將 MXF 編碼為單一位元速率 MP4](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4)
-	- [開始新的工作流程](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_start_new)
-	- [使用媒體檔案輸入](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_file_input)
-	- [檢查媒體串流](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_streams)
-	- [為產生的 MP4 檔案加入視訊編碼器](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_file_generation)
-	- [對音訊串流編碼](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_audio)
-	- [將音訊和視訊串流多工處理為 MP4 容器](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_audio_and_fideo)
-	- [寫入 MP4 檔案](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_writing_mp4)
-	- [從輸出檔案建立媒體服務資產](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_asset_from_output)
-	- [在本機測試完成的工作流程](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_test)
-- [將 MXF 編碼為多位元速率 MP4 - 動態封裝已啟用](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging)
-	- [加入一或多個其他的 MP4 輸出](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_more_outputs)
-	- [設定檔案輸出名稱](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_conf_output_names)
-	- [加入個別的曲目](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_audio_tracks)
-	- [加入 .ISM SMIL 檔案](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_ism_file)
-- [將 MXF 編碼為多位元速率 MP4 - 增強的藍圖](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4)
-	- [要增強的工作流程概觀](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4_overview)
-	- [檔案命名慣例](vMXF_to__multibitrate_MP4_file_naming)
-	- [發佈元件屬性至工作流程根目錄](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4_publishing)
-	- [讓產生的輸出檔案名稱依賴發佈的屬性值](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4_output_files)
-- [加入縮圖至多位元速率 MP4 輸出](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4)
-	- [要加入縮圖的目標工作流程概觀](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to_multibitrate_MP4_overview)
-	- [加入 JPG 編碼](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4__with_jpg)
-	- [處理色彩空間轉換](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_color_space)
-	- [寫入縮圖](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_writing_thumbnails)
-	- [偵測工作流程中的錯誤](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_errors)
-	- [工作流程完成](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_finish)
-- [多位元速率 MP4 輸出以時間為基礎的修剪](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim)
-	- [要開始加入修剪的目標工作流程概觀](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim_start)
-	- [使用串流修剪器](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim_use_stream_trimmer)
-	- [工作流程完成](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim_finish)
-- [推出指令碼元件](media-services-media-encoder-premium-workflow-tutorials.md#scripting)
-	- [工作流程內的指令碼：Hello World](media-services-media-encoder-premium-workflow-tutorials.md#scripting_hello_world)
-- [多位元速率 MP4 輸出以畫面格為基礎的修剪](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim)
-	- [要開始加入修剪的目標藍圖概觀](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_start)
-	- [使用剪輯清單 XML](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_clip_list)
-	- [透過指令碼元件修改剪輯清單](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_modify_clip_list)
-	- [加入 ClippingEnabled 便利屬性](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_clippingenabled_prop)
+The following topics are covered:
 
-##<a id="MXF_to_MP4"></a>將 MXF 編碼為單一位元速率 MP4
+- [Encoding MXF into a single bitrate MP4](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4)
+    - [Starting a new workflow](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_start_new) 
+    - [Using the Media File Input](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_file_input)
+    - [Inspecting media streams](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_streams)
+    - [Adding a video encoder for .MP4 file generation](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_file_generation)
+    - [Encoding the audio stream](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_audio)
+    - [Multiplexing Audio and Video streams into an MP4 container](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_audio_and_fideo)
+    - [Writing the MP4 file](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_writing_mp4)
+    - [Creating a Media Services Asset from the output file](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_asset_from_output)
+    - [Test the finished workflow locally](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_test)
+- [Encoding MXF into multibitrate MP4s - dynamic packaging enabled](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging)
+    - [Adding one or more additional MP4 outputs](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_more_outputs)
+    - [Configuring the file output names](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_conf_output_names)
+    - [Adding a separate Audio Track](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_audio_tracks)
+    - [Adding the .ISM SMIL File](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging_ism_file)
+- [Encoding MXF into multibitrate MP4 - enhanced blueprint](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4)
+    - [Workflow overview to enhance](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4_overview)
+    - [File Naming Conventions](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4_file_naming)
+    - [Publishing component properties onto the workflow root](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4_publishing)
+    - [Have generated output file names rely on published property values](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to__multibitrate_MP4_output_files)
+- [Adding thumbnails to multibitrate MP4 output](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4)
+    - [Workflow overview to add thumbnails to](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to_multibitrate_MP4_overview)
+    - [Adding JPG Encoding](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4__with_jpg)
+    - [Dealing with Color Space conversion](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_color_space)
+    - [Writing the thumbnails](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_writing_thumbnails)
+    - [Detecting errors in a workflow](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_errors)
+    - [Finished Workflow](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4_finish)
+- [Time-based trimming of multibitrate MP4 output](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim)
+    - [Workflow overview to start adding trimming to](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim_start)
+    - [Using the Stream Trimmer](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim_use_stream_trimmer)
+    - [Finished Workflow](media-services-media-encoder-premium-workflow-tutorials.md#time_based_trim_finish)
+- [Introducing the Scripted Component](media-services-media-encoder-premium-workflow-tutorials.md#scripting)
+    - [Scripting within a workflow: hello world](media-services-media-encoder-premium-workflow-tutorials.md#scripting_hello_world)
+- [Frame-based trimming of multibitrate MP4 output](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim)
+    - [Blueprint overview to start adding trimming to](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_start)
+    - [Using the Clip List XML](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_clip_list)
+    - [Modifying the clip list from a Scripted Component](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_modify_clip_list)
+    - [Adding a ClippingEnabled convenience property](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim_clippingenabled_prop)
+
+##<a name="<a-id="mxf_to_mp4"></a>encoding-mxf-into-a-single-bitrate-mp4"></a><a id="MXF_to_MP4"></a>Encoding MXF into a single bitrate MP4
  
-在本逐步解說中，我們將使用來自 .MXF 輸入檔案 AAC-HE 編碼的音訊來建立單一位元速率 .MP4 檔案。
+In this walkthrough we'll create a single bitrate .MP4 file with AAC-HE encoded audio from an .MXF input file. 
 
-###<a id="MXF_to_MP4_start_new"></a>開始新的工作流程 
+###<a name="<a-id="mxf_to_mp4_start_new"></a>starting-a-new-workflow"></a><a id="MXF_to_MP4_start_new"></a>Starting a new workflow 
 
-開啟「工作流程設計工具」，然後選取 [檔案] - [新增工作區] - [轉碼藍圖]
+Open Workflow Designer and select "File"-"New Workspace"-"Transcode Blueprint" 
 
-新的工作流程將顯示 3 個元素：
+The new workflow will show 3 elements: 
 
-- 主要來源檔案
-- 剪輯清單 XML
-- 輸出檔案/資產
+- Primary Source File
+- Clip List XML
+- Output File/Asset  
 
-![新編碼工作流程](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-transcode-blueprint.png)
+![New Encoding Workflow](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-transcode-blueprint.png)
 
-*新編碼工作流程*
+*New Encoding Workflow*
 
-###<a id="MXF_to_MP4_with_file_input"></a>使用媒體檔案輸入
+###<a name="<a-id="mxf_to_mp4_with_file_input"></a>using-the-media-file-input"></a><a id="MXF_to_MP4_with_file_input"></a>Using the Media File Input
 
-為了接受我們的輸入媒體檔案，您會從加入媒體檔案輸入元件開始。若要將元件加入至工作流程，請在 [儲存機制] 搜尋方塊中尋找它，然後將所需的項目拖曳至設計工具窗格。請對「媒體檔案輸入」執行這項操作，並將 [主要來源檔案] 元件從 [媒體檔案輸入] 連接至 [檔案名稱] 輸入接點。
+In order to accept our input media file, one starts with adding a Media File Input component. To add a component to the workflow, look for it in the Repository search box and drag the desired entry onto the designer pane. Do this for the Media File Input and connect the Primary Source File component to the Filename input pin from the Media File Input.
 
-![連接的媒體檔案輸入](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-file-input.png)
+![Connected Media File Input](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-file-input.png)
 
-*連接的媒體檔案輸入*
+*Connected Media File Input*
 
-在可以執行更多動作之前，我們必須先向工作流程設計工具指出我們要用來設計工作流程的範例檔案。若要這樣做，請按一下設計工具窗格背景，並在右手邊屬性窗格中尋找 [主要來源檔案] 屬性。按一下資料夾圖示，然後選取所需的檔案來測試工作流程。完成此動作之後，媒體檔案輸入元件會檢查檔案，並填入其輸出接點，以反映它檢查的檔案。
+Before we can do much else, we'll first need to indicate to the workflow designer what sample file we'd like to use to design our workflow with. To do so, click the designer pane background and look for the Primary Source File property on the right-hand property pane. Click the folder icon and select the desired file to test the workflow with. As soon as this is done, the Media File Input component will inspect the file and populate its output pins to reflect the file it inspected.
 
-![填入媒體檔案輸入](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-populated-media-file-input.png)
+![Populated Media File Input](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-populated-media-file-input.png)
 
-*填入媒體檔案輸入*
+*Populated Media File Input*
 
-雖然這會指定我們想要使用的輸入，它還未告知編碼的輸出應該通往的位置。類似於設定主要來源檔案的方式，現在設定輸出資料夾變數的屬性，就在其下方。
+While this specifies with what input we'd like to work with, it doesn't tell yet where the encoded output should go to. Similar to how the Primary Source File was configured, now configure the Output Folder Variable property, just below it.
 
-![設定輸入和輸出屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-configured-io-properties.png)
+![Configured Input and Output properties](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-configured-io-properties.png)
 
-*設定輸入和輸出屬性*
+*Configured Input and Output properties*
 
-###<a id="MXF_to_MP4_streams"></a>檢查媒體串流
+###<a name="<a-id="mxf_to_mp4_streams"></a>inspecting-media-streams"></a><a id="MXF_to_MP4_streams"></a>Inspecting media streams
 
-通常您會想要知道經過工作流程之後串流的外觀。若要在工作流程中的任何一點檢查串流，只要按一下任何元件上的輸出或輸入接點。在此情況下，請嘗試從我們的 [媒體檔案輸入] 按一下 [未壓縮的視訊] 輸出接點。對話方塊會開啟，讓您檢查輸出視訊。
+Often it's desired to know how the stream looks like that flows through the workflow. To inspect a stream at any point in the workflow, just click an output or input pin on any of the components. In this case, try clicking on the Uncompressed Video output pin from our Media File Input. A dialog will open up that allows to inspect the outbound video.
 
-![檢查未壓縮的視訊輸出接點](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-inspecting-uncompressed-video-output.png)
+![Inspecting the Uncompressed Video output pin](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-inspecting-uncompressed-video-output.png)
 
-*檢查未壓縮的視訊輸出接點*
+*Inspecting the Uncompressed Video output pin*
 
-在我們的案例中，它會告訴我們，比方說我們要對一段接近 2 分鐘的視訊，以 4:2:2 取樣每秒 24 個畫面格處理 1920x1080 輸入。
+In our case, it tells us for example that we're dealing with a 1920x1080 input at 24 frames per second in 4:2:2 sampling for a video of almost 2 minutes.
 
-###<a id="MXF_to_MP4_file_generation"></a>為產生的 MP4 檔案加入視訊編碼器
+###<a name="<a-id="mxf_to_mp4_file_generation"></a>adding-a-video-encoder-for-.mp4-file-generation"></a><a id="MXF_to_MP4_file_generation"></a>Adding a video encoder for .MP4 file generation
 
-請注意，現在，[未壓縮的視訊] 和多個 [未壓縮的音訊] 輸出接點可供用於我們的媒體檔案輸入。為了對輸入視訊編碼，我們需要編碼元件 - 在此情況下用於產生 .MP4 檔案。
+Note that now, an Uncompressed Video and multiple Uncompressed Audio output pins are available for use on our Media File Input. In order to encode the inbound video, we need an encoding component - in this case for generating .MP4 files.
 
-若要將視訊串流編碼成 H.264，請將 AVC 視訊編碼器元件加入至設計工具介面。此元件會將未壓縮的視訊串流做為輸入，並在其輸出接點上提供 AVC 壓縮視訊串流。
+To encode the video stream to H.264, add the AVC Video Encoder component to the designer surface. This component takes an uncompress video stream as input and delivers an AVC compressed video stream on its output pin.
 
-![未連接的 AVC 編碼器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-unconnected-avc-encoder.png)
+![Unconnected AVC Encoder](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-unconnected-avc-encoder.png)
 
-*未連接的 AVC 編碼器*
+*Unconnected AVC Encoder*
 
-其屬性會決定編碼確切發生的方式。讓我們看看一些更重要的設定：
+Its properties determine how the encoding exactly happens. Let's have a look at some of the more important settings:
 
-- 輸出寬度和輸出高度：這些屬性決定編碼視訊的解析度。在本例中，我們使用 640x360
-- 畫面格速率：設定為通過時，它只會採用來源畫面格速率，不過可加以覆寫。請注意，這類的畫面格速率轉換並非動作補償。
-- 設定檔和層級：這些屬性會決定 AVC 設定檔和層級。若要便利地取得不同層級和設定檔的詳細資訊，請按一下 [AVC 視訊編碼器] 元件的問號圖示，說明頁面便會顯示有關每個層級的詳細資料。在我們的範例中，讓我們對 [主要設定檔] 使用層級 3.2 (預設值)。
-- 速率控制模式和位元速率 (kbps)：我們的案例中，我們選擇使用 1200 kbps 常數位元速率 (CBR) 輸出
-- 視訊格式：這是關於會寫入至 H.264 串流的 VUI (視訊可用性資訊) (解碼器可能會用來加強顯示，但對正確解碼並非必要的輔助資訊)：
-- NTSC (一般用於美國或日本，使用 30 fps)
-- PAL (一般用於歐洲地區，使用 25 fps)
-- GOP 大小模式：針對我們的目的，我們將設定固定的 GOP 大小，主要間隔為 2 秒，並且關閉 GOP。這可確保與 Azure 媒體服務提供的動態封裝的相容性。
+- Output width and Output height: these determine the resolution of the encoded video. In our case let's go with 640x360
+- Frame Rate: when set to passthrough it will just adopt the source frame rate, it's possible to override this though. Note that such framerate conversion is not motion-compensated.
+- Profile and Level: these determine the AVC profile and level. To conveniently get more information about the different levels and profiles, click the question mark icon on the AVC Video Encoder component and the help page will show more detail about each of the levels. For our sample, let's go with Main Profile at level 3.2 (the default).
+- Rate Control Mode and Bitrate (kbps): in our scenario we opt for a constant bitrate (CBR) output at 1200 kbps
+- Video Format: this is about the VUI (Video Usability Information) that gets written into the H.264 stream (side information that might be used by a decoder to enhance the display but not essential to correctly decode):
+- NTSC (typical for US or Japan, using 30 fps)
+- PAL (typical for Europe, using 25 fps)
+- GOP Size Mode: we'll configure Fixed GOP Size for our purposes with a Key Interval of 2 seconds with Closed GOPs. This ensures compatibility with the dynamic packaging Azure Media Services provides.
 
-若要摘要我們 AVC 編碼器，請將 [未壓縮的視訊] 輸出接點從 [媒體檔案輸入] 元件連接到 [AVC 編碼器] 的 [未壓縮的視訊] 輸入接點。
+To feed our AVC encoder, connect the Uncompressed Video output pin from the Media File Input component to the Uncompressed Video input pin from the AVC encoder.
 
-![連接的 AVC 編碼器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-avc-encoder.png)
+![Connected AVC Encoder](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-avc-encoder.png)
 
-*連接的 AVC 主要編碼器*
+*Connected AVC Main encoder*
 
-###<a id="MXF_to_MP4_audio"></a>對音訊串流編碼
+###<a name="<a-id="mxf_to_mp4_audio"></a>encoding-the-audio-stream"></a><a id="MXF_to_MP4_audio"></a>Encoding the audio stream
 
-此時，我們已將視訊編碼，但仍需要壓縮原始未壓縮的音訊串流。對此，我們會使用 AAC 編碼器 (Dolby) 元件的 AAC 編碼。將它加入至工作流程。
+At this point, we have encoded video but the original uncompressed audio stream still needs to be compressed. For this we'll go with AAC encoding by the AAC Encoder (Dolby) component. Add it to the workflow.
 
-![未連接的 AVC 編碼器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-unconnected-aac-encoder.png)
+![Unconnected AVC Encoder](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-unconnected-aac-encoder.png)
 
-*未連接的 AAC 編碼器*
+*Unconnected AAC encoder*
 
-現在有不相容性：AAC 編碼器只有單一未壓縮音訊輸入接點，而媒體檔案輸入可能會有兩個不同的未壓縮音訊串流可用：一個用於左音訊聲道，一個用於右聲道。(如果您正在處理環繞音效，則是 6 聲道。) 因此，不可能直接將音訊從 [媒體檔案輸入] 來源連接至 AAC 音訊編碼器。AAC 元件預期稱為「交錯」的音訊串流：具有左右聲道並彼此交錯的單一串流。一旦我們從來源媒體檔案知道哪一個音訊資料軌在來源中的哪個位置，我們可以使用正確指派的左右喇叭位置來產生這類的交錯音訊串流。
+Now there's an incompatibility: there's only a single uncompressed audio input pin from the AAC Encoder while more than likely the Media File Input will have two different uncompressed audio stream available: one for the left audio channel and one for the right. (If you're dealing with surround sound, that's 6 channels.) So it's not possible to directly connect the audio from the Media File Input source into the AAC audio encoder. The AAC component expects a so-called "interleaved" audio stream: a single stream that has both the left and the right channels interleaved with each other. Once we know from our source media file which audio tracks are on what position in the source, we can generate such interleaved audio stream with the correctly assigned speaker positions for left and right.
 
-首先，使用者會想要從需要的來源音訊聲道產生交錯的串流。音訊串流交錯器元件會為我們處理。將它加入至工作流程，並從 [媒體檔案輸入] 將音訊輸出連接到它。
+First one will want to generated an interleaved stream from the required source audio channels. The Audio Stream Interleaver component will handle this for us. Add it to the workflow and connect the audio outputs from the Media File Input into it.
 
-![連接音訊串流交錯器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-audio-stream-interleaver.png)
+![Connected Audio Stream Interleaver](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-audio-stream-interleaver.png)
 
-*連接音訊串流交錯器*
+*Connected Audio Stream Interleaver*
 
-既然我們已經有交錯的音訊串流，我們仍未指派左或右喇叭的位置。為了指定位置，我們可以利用「喇叭位置指定器」。
+Now that we have an interleaved audio stream, we still didn't specify where to assign the left or right speaker positions to. In order to specify this, we can leverage the Speaker Position Assigner.
 
-![加入喇叭位置指定器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-adding-speaker-position-assigner.png)
+![Adding a Speaker Position Assigner](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-adding-speaker-position-assigner.png)
 
-*加入喇叭位置指定器*
+*Adding a Speaker Position Assigner*
 
-設定 [喇叭位置指定器] 以搭配使用透過 [自訂] 編碼器預設過濾器和稱為 "2.0 (L,R)" 的聲道預設的立體聲輸入串流。(這會將左喇叭位置指派為聲道 1，右喇叭位置指定為聲道 2。)
+Configure the Speaker Position Assigner for use with a stereo input stream through an Encoder Preset Filter of "Custom" and the Channel Preset called "2.0 (L,R)". (This will assign the left speaker position to channel 1 and the right speaker position to channel 2.)
 
-將 [喇叭位置指定器] 的輸出連接到 [AAC 編碼器] 的輸入。然後，告訴 AAC 編碼器使用 "2.0 (L,R)" 聲道預設，讓它知道要將立體聲音訊處理為輸入。
+Connect the output of the Speaker Position Assigner to the input of the AAC Encoder. Then, tell the AAC Encoder to work with a "2.0 (L,R)" Channel Preset, so it knows to deal with stereo audio as input.
 
-###<a id="MXF_to_MP4_audio_and_fideo"></a>將音訊和視訊串流多工處理為 MP4 容器
+###<a name="<a-id="mxf_to_mp4_audio_and_fideo"></a>multiplexing-audio-and-video-streams-into-an-mp4-container"></a><a id="MXF_to_MP4_audio_and_fideo"></a>Multiplexing Audio and Video streams into an MP4 container
 
-假設我們有 AVC 編碼的視訊串流和 AAC 編碼的音訊串流，我們可以將兩者擷取為 .MP4 容器。將不同的串流混合為單一串流的程序稱為「多工處理」(multiplexing，或 "muxing")。在此情況下，我們正在將音訊及視訊串流交錯到單一一致的 .MP4 封裝。為 .MP4 容器協調此動作的元件稱為 ISO MPEG-4 多工器。將其中一個加入至設計工具介面，並將 AVC 視訊編碼器和 AAC 編碼器連接到其輸入。
+Given our AVC encoded video stream and our AAC encoded audio stream, we can capture both into an .MP4 container. The process of mixing different streams into a single one is called "multiplexing" (or "muxing"). In this case we're interleaving the audio and the video streams in a single coherent .MP4 package. The component that coordinates this for an .MP4 container is called the ISO MPEG-4 Multiplexer. Add one to the designer surface and connect both the AVC Video Encoder and the AAC Encoder to its inputs.
 
-![連接的 MPEG4 多工器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-mpeg4-multiplexer.png)
+![Connected MPEG4 Multiplexer](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-mpeg4-multiplexer.png)
 
-*連接的 MPEG4 多工器*
+*Connected MPEG4 Multiplexer*
 
-###<a id="MXF_to_MP4_writing_mp4"></a>寫入 MP4 檔案
+###<a name="<a-id="mxf_to_mp4_writing_mp4"></a>writing-the-mp4-file"></a><a id="MXF_to_MP4_writing_mp4"></a>Writing the MP4 file
 
-寫入輸出檔時，會使用「檔案輸出」元件。我們可以將它連接到 ISO MPEG-4 多工器的輸出，讓其輸出寫入至磁碟。若要這樣做，請將容器 (MPEG-4) 輸出接點連接到 [檔案輸出] 的 [寫入] 輸入接點。
+When writing an output file, the File Output component is used. We can connect this to the output of the ISO MPEG-4 Multiplexer so that its output gets written to disk. To do this, connect the Container (MPEG-4) output pin to the Write input pin of the File Output.
 
-![連接的檔案輸出](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-file-output.png)
+![Connected File Output](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connected-file-output.png)
 
-*連接的檔案輸出*
+*Connected File Output*
 
-將使用的檔案名稱取決於檔案屬性。雖然可以將該屬性硬式編碼為特定值，使用者最可能想要改為透過運算式設定它。
+The filename that will be used is determined by the File property. While that property can be hardcoded to a given value, most likely one will want to set it through an expression instead.
 
-若要讓工作流程透過運算式自動判斷輸出 [檔案名稱] 屬性，請按一下 [檔案名稱] 旁邊的按鈕 (資料夾圖示旁)。從下拉式功能表選取 [運算式]。這會顯示運算式編輯器。先清除編輯器的內容。
+To have the workflow automatically determine the output File name property from an expression, click the buton next to the File name (next to the folder icon). From the drop down menu then select "Expression". This will bring up the expression editor. Clear the contents of the editor first.
 
-![空白的運算式編輯器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-empty-expression-editor.png)
+![Empty Expression Editor](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-empty-expression-editor.png)
 
-*空白的運算式編輯器*
+*Empty Expression Editor*
 
-運算式編輯器允許以一或多個變數的混合輸入任何常值。以貨幣符號開頭的變數。當您按下 $ 鍵，編輯器會顯示下拉式清單方塊，其中含有可用變數的選擇。在此案例中，我們將使用輸出目錄變數與基礎輸入檔案名稱變數的組合：
+The expression editor allows to enter any literal value, mixed with one or more variables. Variables start with a dollar sign. As you hit the $ key, the editor will show a dropdown box with a choice of available variables. In our case we'll use a combination of the output directory variable and the base input file name variable:
 
-	${ROOT_outputWriteDirectory}\\${ROOT_sourceFileBaseName}.MP4
+    ${ROOT_outputWriteDirectory}\\${ROOT_sourceFileBaseName}.MP4
 
-![填入運算式編輯器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-expression-editor.png)
+![Filled out Expression Editor](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-expression-editor.png)
 
-*填入運算式編輯器*
+*Filled out Expression Editor*
 
->[AZURE.NOTE]若要在 Azure 中查看編碼作業的輸出檔，您必須在運算式編輯器提供值。
+>[AZURE.NOTE]In order to see see an output file of your encoding job in Azure, you must provide a value in the expression editor. 
 
-當您按 [確定] 確認運算式時，[屬性] 視窗將會預覽在此時間點的檔案屬性所解析的值。
+When you confirm the expression by hitting ok, the property window will preview to what value the File property resolves at this point in time.
 
-![檔案運算式解析輸出目錄](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-file-expression-resolves-output-dir.png)
+![File Expression resolves output dir](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-file-expression-resolves-output-dir.png)
 
-*檔案運算式解析輸出目錄*
+*File Expression resolves output dir*
 
-###<a id="MXF_to_MP4_asset_from_output"></a>從輸出檔案建立媒體服務資產
+###<a name="<a-id="mxf_to_mp4_asset_from_output"></a>creating-a-media-services-asset-from-the-output-file"></a><a id="MXF_to_MP4_asset_from_output"></a>Creating a Media Services Asset from the output file
 
-雖然我們已編寫 MP4 輸出檔，我們仍需要指出此檔案屬於媒體服務會因為執行此工作流程產生的輸出資產。在此端，會使用工作流程畫布上的 [輸出檔案/資產] 節點。所有連入到此節點的檔案就會成為產生的 Azure 媒體服務資產的一部分。
+While we have written an MP4 output file, we still need to indicate that this file belongs to the output asset which media services will generate as a result of executing this workflow. To this end, the Output File/Asset node on the workflow canvas is used. All incoming files into this node will make part of the resulting Azure Media Services asset.
 
-將 [檔案輸出] 元件連接到 [輸出檔案/資產] 元件以完成工作流程。
+Connect the File Output component to the Output File/Asset component to finish the workflow.
 
-![工作流程完成](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-workflow.png)
+![Finished Workflow](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-workflow.png)
 
-*工作流程完成*
+*Finished Workflow*
 
-###<a id="MXF_to_MP4_test"></a>在本機測試完成的工作流程
+###<a name="<a-id="mxf_to_mp4_test"></a>test-the-finished-workflow-locally"></a><a id="MXF_to_MP4_test"></a>Test the finished workflow locally
 
-若要在本機測試工作流程，請按頂端工具列中的 [播放] 按鈕。當工作流程完成執行時，請檢查設定的輸出資料夾中產生的輸出。您會看到從 MXF 輸入來源檔案進行編碼完成的 MP4 輸出檔。
+To test the workflow locally, hit the play button in the toolbar at the top. When the workflow finished executing, inspect the output generated in the configured output folder. You'll see the finished MP4 output file that was encoded from the MXF input source file.
 
-##<a id="MXF_to_MP4_with_dyn_packaging"></a>將 MXF 編碼為 MP4 - 多位元速率動態封裝已啟用
+##<a name="<a-id="mxf_to_mp4_with_dyn_packaging"></a>encoding-mxf-into-mp4---multibitrate-dynamic-packaging-enabled"></a><a id="MXF_to_MP4_with_dyn_packaging"></a>Encoding MXF into MP4 - multibitrate dynamic packaging enabled
 
-在本逐步解說中，我們將使用來單一 .MXF 輸入檔案 AAC 編碼的音訊來建立一組多位元速率 MP4 檔案。
+In this walkthrough we'll create a set of multiple bitrate MP4 files with AAC encoded audio from a single .MXF input file.
 
-想要將多位元速率資產輸出用於結合 Azure 媒體服務提供的動態封裝功能時，將需要對每個不同的位元速率與解析度產生多個結合 GOP 的 MP4 檔案。若要這樣做，[將 MXF 編碼為單一位元速率 MP4](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4) 逐步解說提供不錯的起點。
+When a multi-bitrate asset output is desired for use in combination with the Dynamic Packaging features offered by Azure Media Services, multiple GOP-aligned MP4 files of each a different bitrate and resolution will need to be generated. To do so, the [Encoding MXF into a single bitrate MP4](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4) walkthrough provides us with a good starting point.
 
-![開始工作流程](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-starting-workflow.png)
+![Starting Workflow](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-starting-workflow.png)
 
-*開始工作流程*
+*Starting Workflow*
 
-###<a id="MXF_to_MP4_with_dyn_packaging_more_outputs"></a>加入一或多個其他的 MP4 輸出
+###<a name="<a-id="mxf_to_mp4_with_dyn_packaging_more_outputs"></a>adding-one-or-more-additional-mp4-outputs"></a><a id="MXF_to_MP4_with_dyn_packaging_more_outputs"></a>Adding one or more additional MP4 outputs
 
-我們產生的 Azure 媒體服務資產中的每個 MP4 檔案，將支援不同的位元速率與解析度。讓我們加入一或多個 MP4 輸出檔案至工作流程。
+Every MP4 file in our resulting Azure Media Services asset will support a different bitrate and resolution. Let's add one or more MP4 output files to the workflow.
 
-若要確定我們使用相同的設定來建立視訊編碼器，最方便的方式是複製現有的 AVC 視訊編碼器，並設定其他解析度及位元速率的組合 (讓我們加入 960x540，每秒 25 個畫面格，2.5 Mbps 的組合)。若要複製現有的編碼器，請在設計工具介面複製貼上。
+To make sure we have all our video encoders created with the same settings, it's most convenient to duplicate the already existing AVC Video Encoder and configure another combination of resolution and bitrate (let's add one of 960 x 540 at 25 frames per second at 2,5 Mbps). To duplicate the existing encoder, copy paste it on the designer surface.
 
-將 [媒體檔案輸入] 的 [未壓縮的視訊] 輸出接點連接到我們的新 AVC 元件。
+Connect the Uncompressed Video output pin of the Media File Input into our new AVC component.
 
-![連接第二個 AVC 編碼器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-second-avc-encoder-connected.png)
+![Second AVC encoder connected](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-second-avc-encoder-connected.png)
 
-*連接第二個 AVC 編碼器*
+*Second AVC encoder connected*
 
-現在對我們的新 AVC 編碼器採用組態，以 2.5 Mbps 輸出 960x540。(對此使用其屬性 [輸出寬度]、[輸出高度] 和 [位元速率 (kbps)]。)
+Now adapt the configuration for our new AVC encoder to output 960x540 at 2,5 Mbps. (Use its properties "Output width", "Output height", and "Bitrate (kbps)" for this.)
 
-假設我們想要使用產生的資產搭配 Azure 媒體服務的動態封裝，串流處理端點必須能夠從這些 MP4 檔案產生 HLS/分散的 MP4/DASH 片段，這些片段會以要在不同的位元速率之間切換來獲得單一順暢的連續視訊和音訊體驗的用戶端的方式彼此完全對應。為了達到這個目的，我們需要確保兩個 MP4 檔案的 AVC 編碼器與 GOP (「一組圖片」) 大小的屬性設定為 2 秒，您可以透過以下方式完成：
+Given we want to use the resulting asset together with Azure Media Services' dynamic packaging, the streaming endpoint needs to be capable of generating from these MP4 files HLS/Fragmented MP4/DASH fragments that are exactly aligned to each other in a way that clients that are switching between different bitrates get a single smooth continuous video and audio experience. To make that happen, we need to ensure that, in the properties of both AVC encoders the GOP ("group of pictures") size for both MP4 files is set to 2 seconds, which can be done by:
 
-- 將 GOP 大小模式設定為固定 GOP 大小，以及
-- 主要畫面格間隔設為兩秒。
-- 同時將 [GOP IDR 控制] 設為 [關閉 GOP] 以確保所有 GOP 獨立而沒有相依性
+- setting the GOP Size Mode to Fixed GOP size and
+- the Key Frame Interval to two seconds.
+- also set the GOP IDR Control to Closed GOP to ensure all GOP's are standing on their own without dependencies
 
-為了讓您方便了解我們的工作流程，請將第一個 AVC 編碼器重新命名為「AVC 視訊編碼器 640x360 1200 kbps」，將第二個 AVC 編碼器重新命名為「AVC 視訊編碼器 960x540 2500 kbps」。
+To make our workflow convenient to understand, rename the first AVC encoder to "AVC Video Encoder 640x360 1200kbps" and the second AVC encoder "AVC Video Encoder 960x540 2500 kbps".
 
-現在加入第二個「ISO MPEG-4 多工器」和第二個 [檔案輸出]。將多工器連接至新的 AVC 編碼器，並確定其輸出導向到 [檔案輸出]。然後將 AAC 音訊編碼器輸出連接至新的多工器輸入。接著就可以將 [檔案輸出] 連接至 [輸出檔案/資產] 節點，以將它加入將建立的 [媒體服務資產]。
+Now add a second ISO MPEG-4 Multiplexer and a second File Output. Connect the multiplexer to the new AVC encoder and make sure its output is directed into the File Output. Then also connect the AAC audio encoder output to the new multiplexer's input. The File Output in turn can then be connected to the Output File/Asset node to add it to the Media Services Asset that will be created.
 
-![連接第二個 Muxer 和檔案輸出](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-second-muxer-file-output-connected.png)
+![Second Muxer and File Output connected](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-second-muxer-file-output-connected.png)
 
-*連接第二個 Muxer 和檔案輸出*
+*Second Muxer and File Output connected*
 
-為了與 Azure 媒體服務動態封裝的相容性，請將多工器的 [區塊模式] 設定為 GOP 計數或持續時間，並將每個區塊的 GOP 設為 1。(這應該是預設值。)
+For compatibility with Azure Media Services dynamic packaging, configure the multiplexer's Chunk Mode to GOP count or duration and set the GOPs per chunk to 1. (This should be the default.)
 
-![Muxer 區塊模式](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-muxer-chunk-modes.png)
+![Muxer Chunk Modes](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-muxer-chunk-modes.png)
 
-*Muxer 區塊模式*
+*Muxer Chunk Modes*
 
-注意：您可以對要加入至資產輸出的任何其他位元速率和解析度組合重複此程序。
+Note: you may want to repeat this process for any other bitrate and resolution combinations you want to have added to the asset output.
 
-###<a id="MXF_to_MP4_with_dyn_packaging_conf_output_names"></a>設定檔案輸出名稱
+###<a name="<a-id="mxf_to_mp4_with_dyn_packaging_conf_output_names"></a>configuring-the-file-output-names"></a><a id="MXF_to_MP4_with_dyn_packaging_conf_output_names"></a>Configuring the file output names
 
-我們已將一個以上的單一檔案加入至輸出資產。這使得您需要確定每個輸出檔案的檔案名稱會彼此不同，並甚至可能套用檔案命名慣例，使得您能夠從檔案名稱清楚知道要處理的是什麼。
+We have more than one single file added to the output asset. This provides a need to make sure the filenames for each of the output files are different from each other and maybe even apply a file-naming convention so it becomes clear from the file name what you're dealing with.
 
-檔案輸出命名可以透過設計工具中的運算式來控制。開啟其中一個 [檔案輸出] 元件的屬性窗格，然後開啟 [檔案屬性] 的運算式編輯器。我們的第一個輸出檔是透過下列運算式設定 (請參閱從 [MXF 到單一位元速率 MP4 輸出](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4)的教學課程)：
+File output naming can be controlled through expressions in the designer. Open the property pane for one of the File Output components and open the expression editor for the File property. Our first output file was configured through the following expression (see the tutorial for going from [MXF to a single bitrate MP4 output](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4)):
 
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}.MP4
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}.MP4
 
-這表示我們的檔案名稱由兩個變數決定：要寫入的輸出目錄和來源檔案基礎名稱。前者會在工作流程根目錄上公開為屬性，後者則是由連入的檔案決定。請注意，輸出目錄是您用於本機測試的目錄；當 Azure 媒體服務中以雲端為基礎的媒體處理器執行工作流程時，這個屬性會由工作流程引擎覆寫。若要提供這兩個輸出檔案一致的輸出命名，請將第一個檔案命名運算式變更為：
+This means that our filename is determined by two variables: the output directory to write in and the source file base name. The former is exposed as a property on the workflow root and the latter is determined by the incoming file. Note that the output directory is what you use for local testing; this property will be overridden by the workflow engine when the workflow is executed by the cloud-based media processor in Azure Media Services.
+To give both our output files a consistent output naming, change the first file naming expression to:
 
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_640x360_1.MP4
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_640x360_1.MP4
 
-並將第二個變更為：
+and the second to:
 
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_960x540_2.MP4
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_960x540_2.MP4
 
-執行中繼的測試回合，以確定正確產生這兩個 MP4 輸出檔案。
+Execute an intermediate test run to make sure both MP4 output files are properly generated.
 
-###<a id="MXF_to_MP4_with_dyn_packaging_audio_tracks"></a>加入個別的曲目
+###<a name="<a-id="mxf_to_mp4_with_dyn_packaging_audio_tracks"></a>adding-a-separate-audio-track"></a><a id="MXF_to_MP4_with_dyn_packaging_audio_tracks"></a>Adding a separate Audio Track
 
-如我們稍後所見，產生要隨著我們的 MP4 輸出檔案傳送的 .ism 檔案時，我們也將需要僅限音訊的 MP4 檔案做為調適性串流的曲目。若要建立此檔案，請將額外的 Muxer 加入至工作流程 (ISO-MPEG-4 多工器)，並 AAC 編碼器的輸出接點與其曲目 1 輸入接點連接。
+As we'll see later when we generate an .ism file to go with our MP4 output files, we will also require a audio-only MP4 file as the audio track for our adaptive streaming. To create this file, add an additional muxer to the workflow (ISO-MPEG-4 Multiplexer) and connect the AAC encoder's output pin with its input pin for Track 1.
 
-![加入音訊 Muxer](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-audio-muxer-added.png)
+![Audio Muxer Added](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-audio-muxer-added.png)
 
-*加入音訊 Muxer*
+*Audio Muxer Added*
 
-建立第三個 [檔案輸出] 元件，以從 Muxer 輸出輸出串流，並將檔案命名運算式設定為：
-	
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_128kbps_audio.MP4
+Create a third File Output component to output the outbound stream from the muxer and configure the file naming expression as:
+    
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_128kbps_audio.MP4
 
-![音訊 Muxer 建立輸出檔案](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-audio-muxer-creating-file-output.png)
+![Audio Muxer creating File Output](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-audio-muxer-creating-file-output.png)
 
-*音訊 Muxer 建立輸出檔案*
+*Audio Muxer creating File Output*
 
-###<a id="MXF_to_MP4_with_dyn_packaging_ism_file"></a>加入 .ISM SMIL 檔案
+###<a name="<a-id="mxf_to_mp4_with_dyn_packaging_ism_file"></a>adding-the-.ism-smil-file"></a><a id="MXF_to_MP4_with_dyn_packaging_ism_file"></a>Adding the .ISM SMIL File
 
-為了讓動態封裝能在我們媒體服務資產中結合這兩個 MP4 檔案 (僅限音訊的 MP4) 運作，我們也需要資訊清單檔案 (也稱為 "SMIL" 檔案：同步多媒體整合語言)。這個檔案可向 Azure 媒體服務指出哪些 MP4 檔案可供動態封裝，以及要考量進行音訊串流的檔案。具有單一的音訊串流之一組 MP4 的一般資訊清單檔看起來像這樣：
-	
-	<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-	<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
-	  <head>
-	    <meta name="formats" content="mp4" />
-	  </head>
-	  <body>
-	    <switch>
-	      <video src="H264_1900kbps_AAC_und_ch2_96kbps.mp4" />
-	      <video src="H264_1300kbps_AAC_und_ch2_96kbps.mp4" />
-	      <video src="H264_900kbps_AAC_und_ch2_96kbps.mp4" />
-	      <audio src="AAC_ch2_96kbps.mp4" title="AAC_und_ch2_96kbps" />
-	    </switch>
-	  </body>
-	</smil>
+For the dynamic packaging to work in combination with both MP4 files (and the audio-only MP4) in our Media Services asset, we also need a manifest file (also called a "SMIL" file: Synchronized Multimedia Integration Language). This file indicates to Azure Media Services what MP4 files are available for dynamic packaging and which of those to consider for the audio streaming. A typical manifest file for a set of MP4's with a single audio stream looks like this:
+    
+    <?xml version="1.0" encoding="utf-8" standalone="yes"?>
+    <smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+      <head>
+        <meta name="formats" content="mp4" />
+      </head>
+      <body>
+        <switch>
+          <video src="H264_1900kbps_AAC_und_ch2_96kbps.mp4" />
+          <video src="H264_1300kbps_AAC_und_ch2_96kbps.mp4" />
+          <video src="H264_900kbps_AAC_und_ch2_96kbps.mp4" />
+          <audio src="AAC_ch2_96kbps.mp4" title="AAC_und_ch2_96kbps" />
+        </switch>
+      </body>
+    </smil>
 
-.ism 檔案中包含 switch 陳述式、每個個別 MP4 視訊檔案的參考，此外還有只包含音訊的 MP4 的一個 (或多個) 音訊檔案的參考。
+The .ism file contains within a switch statement, a reference to each of the individual MP4 video files and in addition to those also one (or more) audio file references to an MP4 that only contains the audio.
 
-為我們的一組 MP4 產生資訊清單檔案，可透過名為「AMS 資訊清單寫入器」的元件完成。若要使用它，請將它拖曳到介面上並將 [寫入完成] 輸出接點從三個 [檔案輸出] 元件連接到 [AMS 資訊清單寫入器] 輸入。然後務必將 [AMS 資訊清單寫入器] 的輸出連接到 [輸出檔案/資產]。
+Generating the manifest file for our set of MP4's can be done through a component called the "AMS Manifest Writer". To use it, drag it onto the surface and connect the "Write Complete" output pins from the three File Output components to the AMS Manifest Writer input. Then make sure to connect the output of the AMS Manifest Writer to the Output File/Asset.
 
-如同對我們的其他檔案輸出元件，使用運算式來設定 .ism 檔案輸出名稱：
+As with our other file output components, configure the .ism file output name with an expression:
 
-	${ROOT_outputWriteDirectory}\\${ROOT_sourceFileBaseName}_manifest.ism
+    ${ROOT_outputWriteDirectory}\\${ROOT_sourceFileBaseName}_manifest.ism
 
-我們完成的工作流程看起來如下：
+Our finished workflow looks like the below:
 
-![MXF 到多位元速率 MP4 的工作流程完成](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-mxf-to-multibitrate-mp4-workflow.png)
+![Finished MXF to multibitrate MP4 workflow](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-mxf-to-multibitrate-mp4-workflow.png)
 
-*MXF 到多位元速率 MP4 的工作流程完成*
+*Finished MXF to multibitrate MP4 workflow*
 
-##<a id="MXF_to__multibitrate_MP4"></a>將 MXF 編碼為多位元速率 MP4 - 增強的藍圖
+##<a name="<a-id="mxf_to__multibitrate_mp4"></a>encoding-mxf-into-multibitrate-mp4---enhanced-blueprint"></a><a id="MXF_to__multibitrate_MP4"></a>Encoding MXF into multibitrate MP4 - enhanced blueprint
 
-在[前一個工作流程逐步解說](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging)中，我們已了解單一 MXF 輸入資產如何可以轉換成輸出資產，其具有多位元速率 MP4 檔案、僅限音訊的 MP4 檔案和用於與 Azure 媒體服務動態封裝結合使用的資訊清單檔。
+In the [previous workflow walkthrough](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging) we've seen how a single MXF input asset can be converted into an output asset with multi-bitrate MP4 files, an audio-only MP4 file and a manifest file for use in conjunction with Azure Media Services dynamic packaging.
 
-此逐步解說將示範如何加強一些層面，並使它更便利。
+This walkthrough will show how some of the aspects can be enhanced and made more convenient.
 
-###<a id="MXF_to_multibitrate_MP4_overview"></a>要增強的工作流程概觀
+###<a name="<a-id="mxf_to_multibitrate_mp4_overview"></a>workflow-overview-to-enhance"></a><a id="MXF_to_multibitrate_MP4_overview"></a>Workflow overview to enhance
 
-![要增強的多位元速率 MP4 工作流程](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-multibitrate-mp4-workflow-to-enhance.png)
+![Multibitrate MP4 workflow to enhance](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-multibitrate-mp4-workflow-to-enhance.png)
 
-*要增強的多位元速率 MP4 工作流程*
+*Multibitrate MP4 workflow to enhance*
 
-###<a id="MXF_to__multibitrate_MP4_file_naming"></a>檔案命名慣例
+###<a name="<a-id="mxf_to__multibitrate_mp4_file_naming"></a>file-naming-conventions"></a><a id="MXF_to__multibitrate_MP4_file_naming"></a>File Naming Conventions
 
-在先前的工作流程中，我們已將簡單的運算式指定做為產生輸出檔案名稱的基礎。不過，我們有一些重複項目：所有的個別輸出檔案元件都指定了這類運算式。
+In the previous workflow we specified a simple expression as the basis for generating output file names. We have some duplication though: all of the the individual output file components specified such expression.
 
-例如，我們的第一個視訊檔案的檔案輸出元件是使用此運算式設定：
+For example, our file output component for the first video file is configured with this expression:
 
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_640x360_1.MP4
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_640x360_1.MP4
 
-等候第二個視訊輸出時，我們有如下的運算式：
+While for the second output video, we have an expression like:
 
-	${ROOT_outputWriteDirectory}\\${ROOT_sourceFileBaseName}_960x540_2.MP4
+    ${ROOT_outputWriteDirectory}\\${ROOT_sourceFileBaseName}_960x540_2.MP4
 
-如果我們可以移除某些重複項目，並改為使得項目更可以設定，是不是比較清楚、較不容易出錯、更方便？ 幸好我們可以：設計工具的運算式功能結合能夠在我們的工作流程根目錄上建立自訂屬性，會讓我們多一層的便利性。
+Wouldn't it be cleaner, less error prone and more convenient if we could remove some of this duplication and make things more configurable instead? Luckily we can: the designer's expression capabilities in combination with the ability to create custom properties on our workflow root will give us an added layer of convenience.
 
-假設我們將從個別 MP4 檔案的位元速率推動檔案名稱的組態。我們將力求在一個集中位置 (在我們圖形的根目錄) 設定的這些位元速率，將從該位置存取它們，以設定及推動檔案名稱產生。為了這樣做，我們會從將來自兩個 AVC 編碼器的位元速率屬性發佈到我們的工作流程根目錄開始，使其成為可從根目錄及從 AVC 編碼器存取。(即使顯示在兩個不同的位置，只有單一的基礎值。)
+Let's assume we'll drive filename configuration from the bitrates of the individual MP4 files. These bitrates we'll aim to configure in one central place (on the root of our graph), from where they'll be accessed to configure and drive file name generation. To do this, we start by publishing the bitrate property from both AVC encoders to the root of our workflow, so that it becomes accessible from both the root as well as from the AVC encoders. (Even if displayed in two different spots, there's only one underlying value.)
 
-###<a id="MXF_to__multibitrate_MP4_publishing"></a>發佈元件屬性至工作流程根目錄
+###<a name="<a-id="mxf_to__multibitrate_mp4_publishing"></a>publishing-component-properties-onto-the-workflow-root"></a><a id="MXF_to__multibitrate_MP4_publishing"></a>Publishing component properties onto the workflow root
 
-開啟第一個 AVC 編碼器，移至 [位元速率 (kbps)] 屬性，並從下拉式清單中選擇 [發佈]。
+Open the first AVC encoder, go to the Bitrate (kbps) property and from the dropdown choose Publish.
 
-![發佈位元速率屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publishing-bitrate-property.png)
+![Publishing the bitrate property](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publishing-bitrate-property.png)
 
-*發佈位元速率屬性*
+*Publishing the bitrate property*
 
-設定 [發佈] 對話方塊，以發佈至我們的工作流程圖形的根目錄，使用發佈的名稱 "video1bitrate" 以及可讀取的顯示名稱「視訊 1 位元速率」。設定名為「串流處理位元速率」的自訂群組名稱，並按 [發佈]。
+Configure the publish dialog to publish to the root of our workflow graph, with a published name of "video1bitrate" and a readable display name of "Video 1 Bitrate". Configure a custom group name called "Streaming Bitrates" and hit Publish.
 
-![發佈位元速率屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publishing-dialog-for-bitrate-property.png)
+![Publishing the bitrate property](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publishing-dialog-for-bitrate-property.png)
 
-*位元速率屬性的發佈對話方塊*
+*Publishing dialog for bitrate property*
 
-對第二個 AVC 編碼器的位元速率屬性重複相同的動作，並在相同的自訂群組「串流處理位元速率」中將它命名為 "video2bitrate"，以及顯示名稱「視訊 2 位元速率」。
+Repeat the same for the bitrate property of the second AVC encoder and name it "video2bitrate" with a display name of "Video 2 Bitrate", in the same custom group "Streaming Bitrates".
 
-如果我們現在檢查工作流程根目錄屬性，就會看到我們的自訂群組顯示這兩個發佈的屬性。兩個都會反映其各自的 AVC 編碼器位元速率的值。
+If we now inspect the workflow root properties, we'll see our custom group with the two published properties show up. Both are reflecting the value of their respective AVC encoder bitrate.
 
-![工作流程根目錄上發佈的位元速率屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-published-bitrate-props-on-workflow-root.png)
+![Published bitrate props on workflow root](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-published-bitrate-props-on-workflow-root.png)
 
-每當我們想要從程式碼或透過運算式存取這些屬性時，我們可以這麼做：
+Whenever we want to access these properties from code or from an expression, we can do so like this:
 
-- 從根目錄下之元件中的內嵌程式碼：node.getPropertyAsString('../video1bitrate',null)
-- 在運算式內：${ROOT\_video1bitrate}
+- from inline code from a component right below the root: node.getPropertyAsString('../video1bitrate',null)
+- within an expression: ${ROOT_video1bitrate}
  
-讓我們透過也在其上發佈我們的曲目位元速率來完成「串流處理位元速率」群組。在 AAC 編碼器的屬性內，搜尋「位元速率」設定，並從它旁邊的下拉式清單中選取 [發佈]。發佈到在我們的自訂群組「串流處理位元速率」內具有名稱 "audio1bitrate" 和顯示名稱「音訊 1 位元速率」的圖形根目錄中。
+Let's complete the "Streaming Bitrates" group by publishing our audio track bitrate on it as well. Within the properties of the AAC Encoder, search for the Bitrate setting and select Publish from the dropdown next to it. Publish to the root of the graph with name "audio1bitrate" and display name "Audio 1 Bitrate" within our custom group "Streaming Bitrates".
 
-![音訊位元速率的發佈對話方塊](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publishing-dialog-for-audio-bitrate.png)
+![Publishing dialog for audio bitrate](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publishing-dialog-for-audio-bitrate.png)
 
-*音訊位元速率的發佈對話方塊*
+*Publishing dialog for audio bitrate*
 
-![在根目錄產生視訊和音訊屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-resulting-video-and-audio-props-on-root.png)
+![Resulting video and audio props on root](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-resulting-video-and-audio-props-on-root.png)
 
-*在根目錄產生視訊和音訊屬性*
+*Resulting video and audio props on root*
 
-請注意，對這三個值的任何變更也會重新設定並變更所連結 (和發佈來源位置) 的個別元件的值。
+Note that changing any of those three values also re-configures and changes the values on the respective components they are linked with (and where published from).
 
-###<a id="MXF_to__multibitrate_MP4_output_files"></a>讓產生的輸出檔案名稱依賴發佈的屬性值
+###<a name="<a-id="mxf_to__multibitrate_mp4_output_files"></a>have-generated-output-file-names-rely-on-published-property-values"></a><a id="MXF_to__multibitrate_MP4_output_files"></a>Have generated output file names rely on published property values
 
-不要對我們產生的檔案名稱進行硬式編碼，我們現在可以在每個「檔案輸出」元件上變更檔案名稱，以仰賴我們剛在圖形根目錄上發佈的運算式屬性。從我們的第一個檔案輸出開始，尋找檔案屬性，然後編輯運算式，如下：
+Instead of hardcoding our generated file names, we can now change our filename expression on each of the File Output components to rely on the bitrate properties we just published on the graph root. Starting with our first file output, find the File property and edit the expression like this:
 
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_${ROOT_video1bitrate}kbps.MP4
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_${ROOT_video1bitrate}kbps.MP4
 
-可以透過在運算式視窗中時按鍵盤上的貨幣符號來存取及輸入此運算式中的不同參數。其中一個可用的參數是我們稍早發佈的 video1bitrate 屬性。
+The different parameters in this expression can be accessed and entered by hitting the dollar sign on the keyboard while in the expression window. One of the available parameters is our video1bitrate property which we published earlier.
 
-![存取運算式內的參數](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-accessing-parameters-within-an-expression.png)
+![Accessing parameters within an expression](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-accessing-parameters-within-an-expression.png)
 
-*存取運算式內的參數*
+*Accessing parameters within an expression*
 
-對第二個視訊的檔案輸出執行相同的動作：
+Do the same for the file output for our second video:
 
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_${ROOT_video2bitrate}kbps.MP4
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_${ROOT_video2bitrate}kbps.MP4
 
-以及對僅音訊檔案輸出：
+and for the audio-only file output:
 
-	${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_${ROOT_audio1bitrate}bps_audio.MP4
+    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_${ROOT_audio1bitrate}bps_audio.MP4
 
-如果我們現在變更任何視訊或音訊檔案的位元速率，將重新設定個別的編碼器，而將會對所有項目自動使用以位元速率為基礎的檔案名稱慣例。
+If we now change the bitrate for any of the video or audio files, the respective encoder will be reconfigured and the bitrate-based file name convention will be honored all automatic.
 
-##<a id="thumbnails_to__multibitrate_MP4"></a>加入縮圖至多位元速率 MP4 輸出
+##<a name="<a-id="thumbnails_to__multibitrate_mp4"></a>adding-thumbnails-to-multibitrate-mp4-output"></a><a id="thumbnails_to__multibitrate_MP4"></a>Adding thumbnails to multibitrate MP4 output
 
-從[透過 MXF 輸入產生多位元速率 MP4 輸出](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging)的工作流程開始，我們現在將尋求將縮圖加入到輸出。
+Starting from a workflow that generates [a multibitrate MP4 output from an MXF input](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging), we will now be looking into adding thumbnails to the output.
 
-###<a id="thumbnails_to__multibitrate_MP4_overview"></a>要加入縮圖的目標工作流程概觀
+###<a name="<a-id="thumbnails_to__multibitrate_mp4_overview"></a>workflow-overview-to-add-thumbnails-to"></a><a id="thumbnails_to__multibitrate_MP4_overview"></a>Workflow overview to add thumbnails to
 
-![要從中開始的多位元速率 MP4 工作流程](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-multibitrate-mp4-workflow-to-start-from.png)
+![Multibitrate MP4 workflow to start from](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-multibitrate-mp4-workflow-to-start-from.png)
 
-*要從中開始的多位元速率 MP4 工作流程*
+*Multibitrate MP4 workflow to start from*
 
-###<a id="thumbnails_to__multibitrate_MP4__with_jpg"></a>加入 JPG 編碼
+###<a name="<a-id="thumbnails_to__multibitrate_mp4__with_jpg"></a>adding-jpg-encoding"></a><a id="thumbnails_to__multibitrate_MP4__with_jpg"></a>Adding JPG Encoding
 
-我們的縮圖產生核心會是可以輸出 JPG 檔案的 JPG 編碼器元件。
+The heart of our thumbnail generation will be the JPG Encoder component, able to output JPG files.
 
-![JPG 編碼器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-jpg-encoder.png)
+![JPG Encoder](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-jpg-encoder.png)
 
-*JPG 編碼器*
+*JPG Encoder*
 
-不過我們無法直接將未壓縮的視訊串流從媒體檔案輸入連接到 JPG 編碼器。相反地，它預期會收到個別的畫面格。我們可以透過「視訊畫面格閘道」元件執行此動作。
+We cannot however directly connect our Uncompressed Video stream from the Media File Input into the JPG encoder. Instead, it expects to be handed individual frames. This, we can do through the Video Frame Gate component.
 
-![將畫面格閘道連接到 JPG 編碼器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connect-frame-gate-to-jpg-encoder.png)
+![Connecting a frame gate to the JPG encoder](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connect-frame-gate-to-jpg-encoder.png)
 
-*將畫面格閘道連接到 JPG 編碼器*
+*Connecting a frame gate to the JPG encoder*
 
-畫面格閘道會每隔許多秒或畫面格執行一次，可讓視訊畫面格傳遞。它發生的間隔和時間位移可在屬性中設定。
+The frame gate once every so many seconds or frames allows a video frame to pass. The interval and the time offset with which this happens is configurable in the properties.
 
-![視訊畫面格閘道屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-video-frame-gate-properties.png)
+![Video Frame Gate properties](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-video-frame-gate-properties.png)
 
-*視訊畫面格閘道屬性*
+*Video Frame Gate properties*
 
-讓我們透過將模式設為時間 (秒) 及間隔設為 60，每隔一分鐘建立縮圖。
+Let's create a thumbnail every minute by setting the mode to Time (seconds) and the Interval to 60.
 
-###<a id="thumbnails_to__multibitrate_MP4_color_space"></a>處理色彩空間轉換
+###<a name="<a-id="thumbnails_to__multibitrate_mp4_color_space"></a>dealing-with-color-space-conversion"></a><a id="thumbnails_to__multibitrate_MP4_color_space"></a>Dealing with Color Space conversion
 
-雖然邏輯上可看到畫面格閘道和媒體檔案輸入的未壓縮的視訊接點現在已可連接，如果我們想執行此動作，則會收到警告。
+While it would seem logical both Uncompressed Video pins of the frame gate and the Media File Input can now be connected, we would get a warning if we would do so.
 
-![輸入色彩空間錯誤](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-input-color-space-error.png)
+![Input color space error](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-input-color-space-error.png)
 
-*輸入色彩空間錯誤*
+*Input color space error*
 
-這是因為在我們原始原始未壓縮的視訊串流 (來自我們的 MXF) 中，色彩資訊的表示方式與 JPG 編碼器所預期的不同。更具體來說，預期會流入稱為 "RGB" 或「灰階」的「色彩空間」。這表示，視訊畫面格閘道的輸入視訊串流，將需要先套用有關其色彩空間的轉換。
+This is because the way in which colour information is represented in our original raw uncompressed video stream, coming from our MXF, is different from what the JPG Encoder is expecting. More specifically, a so-called "color space" of "RGB" or "Grayscale" is expected to flow in. This means that the Video Frame Gate's inbound video stream will need to have a conversion applied regarding its color space first.
 
-拖曳到工作流程上的 [色彩空間轉換器 - Intel]，並將它連接到我們的畫面格閘道。
+Drag onto the workflow the Color Space Converter - Intel and connect it to our frame gate.
 
-![連接色彩空間轉換器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connect-color-space-convertor.png)
+![Connecting a Color Space Convertor](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-connect-color-space-convertor.png)
 
-*連接色彩空間轉換器*
+*Connecting a Color Space Convertor*
 
-在屬性視窗中，從 [預設] 清單選擇 BGR 24 項目。
+In the properties window, pick the BGR 24 entry from the Preset list.
 
-###<a id="thumbnails_to__multibitrate_MP4_writing_thumbnails"></a>寫入縮圖
+###<a name="<a-id="thumbnails_to__multibitrate_mp4_writing_thumbnails"></a>writing-the-thumbnails"></a><a id="thumbnails_to__multibitrate_MP4_writing_thumbnails"></a>Writing the thumbnails
 
-不同於我們的 MP4 視訊，JPG 編碼器元件會將輸出多個檔案。為了解決這個問題，可以使用「場景搜尋 JPG 檔案寫入器」元件：它會採用傳入的 JPG 縮圖並寫出，每個檔案名稱結尾加上不同的數字。(數字通常指出縮圖取自串流中的秒數/單位數。)
+Different from our MP4 video's, the JPG Encoder component will output more than one file. In order to deal with this, a Scene Search JPG File Writer component can be used: it will take the incoming JPG thumbnails and write them out, each filename being suffixed by a different number. (The number typically indicating the number of seconds/units in the stream which the thumbnail was drawn from.)
 
 
-![推出場景搜尋 JPG 檔案寫入器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scene-search-jpg-file-writer.png)
+![Introducing the Scene Search JPG File Writer](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scene-search-jpg-file-writer.png)
 
-*推出場景搜尋 JPG 檔案寫入器*
+*Introducing the Scene Search JPG File Writer*
 
-使用以下運算式設定輸出資料夾路徑屬性：${ROOT\_outputWriteDirectory}
+Configure the Output Folder Path property with the expression: ${ROOT_outputWriteDirectory} 
 
-和使用下列設定檔案名稱前置詞屬性：
+and the Filename Prefix property with: 
 
-	${ROOT_sourceFileBaseName}_thumb_
+    ${ROOT_sourceFileBaseName}_thumb_
 
-前置詞會決定縮圖檔案命名的方式。它們的前端將會加上數字，指出串流中縮圖的位置。
+The prefix will determine how the thumbnail files are being named. They will be suffixed with a number indicating the thumb's position in the stream.
 
 
-![場景搜尋 JPG 檔案寫入器屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scene-search-jpg-file-writer-properties.png)
+![Scene Search JPG File Writer properties](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scene-search-jpg-file-writer-properties.png)
 
-*場景搜尋 JPG 檔案寫入器屬性*
+*Scene Search JPG File Writer properties*
 
-將 [場景搜尋 JPG 檔案寫入器] 連接至 [輸出檔案/資產] 節點。
+Connect the Scene Search JPG File Writer to the Output File/Asset node.
 
-###<a id="thumbnails_to__multibitrate_MP4_errors"></a>偵測工作流程中的錯誤
+###<a name="<a-id="thumbnails_to__multibitrate_mp4_errors"></a>detecting-errors-in-a-workflow"></a><a id="thumbnails_to__multibitrate_MP4_errors"></a>Detecting errors in a workflow
 
-將色彩空間轉換器的輸入連接到原始未壓縮的視訊輸出。現在，對工作流程執行本機測試回合。工作流程很可能會突然停止執行，並在發生錯誤之元件上以紅色外框指出：
+Connect the input of the color space converter to the raw uncompressed video output. Now perform a local test run for the workflow. There's a good chance the workflow will suddenly stop executing and indicate with a red outline on the component that encountered an error:
 
-![色彩空間轉換器錯誤](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-color-space-converter-error.png)
+![Color Space Converter error](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-color-space-converter-error.png)
 
-*色彩空間轉換器錯誤*
+*Color Space Converter error*
 
-按一下色彩空間轉換器元件右上角的小型紅色 "E" 圖示，以查看編碼嘗試失敗的原因。
+Click the little red "E" icon in the top right corner of the Color Space Converter component to see what's the reason the encoding attempt failed.
 
-![色彩空間轉換器錯誤對話方塊](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-color-space-converter-error-dialog.png)
+![Color Space Converter error dialog](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-color-space-converter-error-dialog.png)
 
-*色彩空間轉換器錯誤對話方塊*
+*Color Space Converter error dialog*
 
-結果，如您所見，對於我們要求 YUV 到 RGB 的轉換，色彩空間轉換器的傳入色彩空間標準必須為 rec601。顯然我們的串流並未指出它是 rec601。(Rec 601 是以數位視訊格式編碼交錯式類比視訊訊號的標準。它會指定涵蓋 720 亮度取樣和每一行 360 色度取樣的作用中區域。色彩編碼系統稱為 YCbCr 4:2:2。)
+It turns out, as you can see, that the incoming color space standard for the color space converter has to be rec601 for our requested conversion of YUV to RGB. Apparently our stream doesn't indicate it's rec601. (Rec 601 is a standard for encoding interlaced analog video signals in digital video form. It specifies an active region covering 720 luminance samples and 360 chrominance samples per line. The color encoding system is known as YCbCr 4:2:2.)
 
-為了修正此問題，我們會在串流的中繼資料上指出我們要處理 rec601 內容。若要這樣做，我們將使用「視訊資料類型更新器」元件，我們會將它放在原始來源和色彩空間轉換元件之間。此資料類型的更新器可讓您手動更新特定視訊資料類型屬性。將它設定，以指出 "Rec 601" 的色彩空間標準。在尚未定義色彩空間的情況下，這將導致視訊資料類型更新器以 "Rec 601" 色彩空間標記串流。(它不會覆寫任何現有的中繼資料，除非已勾選 [覆寫] 核取方塊。)
+To fix this, we'll indicate on the metadata of our stream that we're dealing with rec601 content. To do so we'll use a Video Data Type Updater component, which we'll put in between our raw source and the color space conversion component. This data type updater allows for the manual update of certain video data type properties. Configure it to indicate a Color Space Standard of "Rec 601". This will cause the Video Data Type Updater to tag the stream with the "Rec 601" color space if there was no color space defined yet. (It will not override any existing metadata, unless the Override checkbox was checked.)
 
-![更新資料類型更新程式上的色彩空間標準](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-update-color-space-standard-on-data-type.png)
+![Updating Color Space Standard on the Data Type Updater](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-update-color-space-standard-on-data-type.png)
 
-*更新資料類型更新程式上的色彩空間標準*
+*Updating Color Space Standard on the Data Type Updater*
 
-###<a id="thumbnails_to__multibitrate_MP4_finish"></a>工作流程完成
+###<a name="<a-id="thumbnails_to__multibitrate_mp4_finish"></a>finished-workflow"></a><a id="thumbnails_to__multibitrate_MP4_finish"></a>Finished Workflow
 
-現在，我們完成了工作流程，接著執行另一個測試回合來查看它傳遞。
+Now that our our workflow is finished, do another test run to see it pass.
 
-![具有縮圖的多個 mp4 輸出完成的工作流程](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-workflow-for-multi-mp4-thumbnails.png)
+![Finished workflow for multi-mp4 output with thumbnails](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-workflow-for-multi-mp4-thumbnails.png)
 
-*具有縮圖的多個 mp4 輸出完成的工作流程*
+*Finished workflow for multi-mp4 output with thumbnails*
 
-##<a id="time_based_trim"></a>多位元速率 MP4 輸出以時間為基礎的修剪
+##<a name="<a-id="time_based_trim"></a>time-based-trimming-of-multibitrate-mp4-output"></a><a id="time_based_trim"></a>Time-based trimming of multibitrate MP4 output
 
-從[透過 MXF 輸入產生多位元速率 MP4 輸出](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging)的工作流程開始，我們現在將尋求以時間戳記為基礎修剪來源視訊。
+Starting from a workflow that generates [a multibitrate MP4 output from an MXF input](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging), we will now be looking into trimming the source video based on time-stamps.
 
-###<a id="time_based_trim_start"></a>要開始加入修剪的目標工作流程概觀
+###<a name="<a-id="time_based_trim_start"></a>workflow-overview-to-start-adding-trimming-to"></a><a id="time_based_trim_start"></a>Workflow overview to start adding trimming to
 
-![要加入修剪的目標開始工作流程](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-starting-workflow-to-add-trimming.png)
+![Starting workflow to add trimming to](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-starting-workflow-to-add-trimming.png)
 
-*要加入修剪的目標開始工作流程*
+*Starting workflow to add trimming to*
 
-###<a id="time_based_trim_use_stream_trimmer"></a>使用串流修剪器
+###<a name="<a-id="time_based_trim_use_stream_trimmer"></a>using-the-stream-trimmer"></a><a id="time_based_trim_use_stream_trimmer"></a>Using the Stream Trimmer
 
-串流修剪器元件允許根據計時資訊 (秒、分等等) 修剪輸入串流的開頭和結尾。修剪器不支援以畫面格為基礎的修剪。
+The Stream Trimmer component allows to trim the beginning and ending of an input stream base on timing information (seconds, minutes, ...). The trimmer does not support frame-based trimming.
 
-![串流修剪器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-stream-trimmer.png)
+![Stream Trimmer](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-stream-trimmer.png)
 
-*串流修剪器*
+*Stream Trimmer*
 
-不要直接將 AVC 編碼器和喇叭位置指定器連結至媒體檔案輸入，我們會將它們放在串流修剪器之間。(一個用於視訊訊號，一個用於交錯的音訊訊號。)
+Instead of linking the AVC encoders and speaker position assigner to the Media File Input directly, we'll put in between those the stream trimmer. (One for the video signal and one for the interleaved audio signal.)
 
-![在內部放入串流修剪器](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-put-stream-trimmer-in-between.png)
+![Put Stream Trimmer in between](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-put-stream-trimmer-in-between.png)
 
-*在內部放入串流修剪器*
+*Put Stream Trimmer in between*
 
-讓我們設定修剪器，使得我們只會處理 15 秒的視訊和音訊及 60 秒視訊。
+Let's configure the trimmer so that we will only process video and audio between 15 seconds and 60 seconds in the video.
 
-移至視訊串流修剪器的屬性，並設定開始時間 (15 秒)] 和 [結束時間 (60 秒) 屬性。若要確定我們的音訊和視訊修剪器一律會同時設定為相同的開始與結束值，我們會將它們發佈至工作流程根目錄。
+Go to the properties of the Video Stream Trimmer and configure both Start Time (15s) and End Time (60s) properties. To make sure both our audio and video trimmer are always configured to the same start and end values, we will publish those to the root of the workflow.
 
-![串流修剪器的發佈開始時間屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publish-start-time-from-stream-trimmer.png)
+![Publish start time property from Stream Trimmer](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publish-start-time-from-stream-trimmer.png)
 
-*串流修剪器的發佈開始時間屬性*
+*Publish start time property from Stream Trimmer*
 
-![發佈屬性對話方塊的開始時間](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publish-dialog-for-start-time.png)
+![Publish property dialog for start time](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publish-dialog-for-start-time.png)
 
-*發佈屬性對話方塊的開始時間*
+*Publish property dialog for start time*
 
-![發佈屬性對話方塊的結束時間](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publish-dialog-for-end-time.png)
+![Publish property dialog for end time](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-publish-dialog-for-end-time.png)
 
-*發佈屬性對話方塊的結束時間*
+*Publish property dialog for end time*
 
 
-如果我們現在檢查我們的工作流程根目錄，這兩個屬性將會整齊地顯示，且可從該處設定。
+If we now inspect the root of our workflow, both properties will be neatly displayed and configurable from there.
 
-![在根目錄可取得發佈的屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-published-properties-available-on-root.png)
+![Published properties available on root](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-published-properties-available-on-root.png)
 
-*在根目錄可取得發佈的屬性*
+*Published properties available on root*
 
-現在從音訊修剪器開啟修剪屬性，並使用參考工作流程根目錄上所發佈屬性的運算式來設定開始和結束時間。
+Now open the trimming properties from the audio trimmer and configure both start and end times with an expression that refers to the published properties on the root of our workflow.
 
-針對音訊修剪開始時間：
+For the audio trimming start time:
 
-	${ROOT_TrimmingStartTime}
+    ${ROOT_TrimmingStartTime}
 
-和其結束時間：
+and for its end time:
 
-	${ROOT_TrimmingEndTime}
+    ${ROOT_TrimmingEndTime}
 
-###<a id="time_based_trim_finish"></a>工作流程完成
+###<a name="<a-id="time_based_trim_finish"></a>finished-workflow"></a><a id="time_based_trim_finish"></a>Finished Workflow
 
-![工作流程完成](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-workflow-time-base-trimming.png)
+![Finished Workflow](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-finished-workflow-time-base-trimming.png)
 
-*工作流程完成*
+*Finished Workflow*
 
 
-##<a id="scripting"></a>推出指令碼元件
+##<a name="<a-id="scripting"></a>introducing-the-scripted-component"></a><a id="scripting"></a>Introducing the Scripted Component
 
-指令碼元件可以在我們的工作流程執行階段期間執行任意指令碼。有四個可以執行的不同的指令碼，每個都具有特定特性，以及在工作流程生命週期中的位置：
+Scripted Components can execute arbitrary scripts during the execution phases of our workflow. There are four different scripts that can be executed, each with specific characteristics and their own place in the workflow life-cycle:
 
 - **commandScript**
 - **realizeScript**
 - **processInputScript**
 - **lifeCycleScript**
 
-指令碼元件的文件會更詳細說明上述各項。在[下一節](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim)，**realizeScript** 指令碼元件用來在工作流程啟動時快速建構剪輯清單 XML。在元件安裝期間會呼叫此指令碼，這種情況在其生命週期中只會發生一次。
+The documentation of the Scripted Component goes in more detail for each of the above. In [the following section](media-services-media-encoder-premium-workflow-tutorials.md#frame_based_trim), the **realizeScript** scripting component is used to construct a cliplist xml on the fly when the workflow starts. This script is called during the component setup, which happens only once in it's lifecycle.
 
 
-###<a id="scripting_hello_world"></a>工作流程內的指令碼：Hello World
+###<a name="<a-id="scripting_hello_world"></a>scripting-within-a-workflow:-hello-world"></a><a id="scripting_hello_world"></a>Scripting within a workflow: hello world
 
-將指令碼元件拖曳至設計工具介面上，並重新命名 (例如，"SetClipListXML")。
+Drag a Scripted Component onto the designer surface and rename it (for example, "SetClipListXML").
 
-![加入指令碼元件](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-add-scripted-comp.png)
+![Adding a Scripted Component](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-add-scripted-comp.png)
 
-*加入指令碼元件*
+*Adding a Scripted Component*
 
-檢查指令碼元件的屬性時，會顯示四種不同的指令碼類型，而每個可設定到不同的指令碼。
+When you inspect the properties of the Scripted Component, the four different script types will be shown, each configurable to a different script.
 
-![指令碼元件屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scripted-comp-properties.png)
+![Scripted Component properties](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scripted-comp-properties.png)
 
-*指令碼元件屬性*
+*Scripted Component properties*
 
-清除 processInputScript，並為 realizeScript 開啟編輯器。現在我們已設定好並準備要開始指令碼。
+Clear the processInputScript and open the editor for the realizeScript. Now we're set up and ready to start scripting.
 
-指令碼是以 Groovy 編寫，它是 Java 平台適用的動態編譯指令碼語言，其維持與 Java 的相容性。事實上，大部分的 Java 程式碼是有效的 Groovy 程式碼。
+Scripts are written in Groovy, a dynamically compiled scripting language for the Java platform that retains compatibility with Java. Actually, most Java code is valid Groovy code.
 
-讓我們在 realizeScript 的內容中編寫一個簡單的 Hello World Groovy 指令碼。在編輯器中輸入下列命令：
+Let's write a simple hello world groovy script in the context of our realizeScript. Enter the following in the editor:
 
-	node.log("hello world");
+    node.log("hello world");
 
-現在執行本機測試回合。在這項執行之後，(透過 [指令碼元件] 上的 [系統] 索引標籤) 檢查 [記錄] 屬性。
+Now execute a local test run. After this run, inspect (through the System tab on the Scripted Component) the Logs property.
 
-![Hello World 記錄輸出](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-log-output.png)
+![Hello world log output](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-log-output.png)
 
-*Hello World 記錄輸出*
+*Hello world log output*
 
-我們呼叫記錄方法所在的節點物件，是指我們目前的「節點」或是我們正在編寫指令碼的元件。每個元件因此具備可透過系統索引標籤輸出記錄資料的能力。在此情況下，我們會輸出字串常值 "Hello World"。在此處需要了解的是這可以證明是非常重要的偵錯工具，讓您深入了解指令碼實際上做些什麼。
+The node object we call the log method on, refers to our current "node" or the component we're scripting within. Every component as such has the ability to output logging data, available through the system tab. In this case, we output the string literal "hello world". Important to understand here is that this can prove to be an invaluable debugging tool, providing you with insight on what the script is actually doing.
 
-從我們的指令碼環境內，我們也可以存取其他元件的屬性。試試看：
+From within our scripting environment, we also have access to properties on other components. Try this:
 
 
-	//inspect current node: 
-	def nodepath = node.getNodePath(); 
-	node.log("this node path: " + nodepath);
-	
-	//walking up to other nodes: 
-	def parentnode = node.getParentNode(); 
-	def parentnodepath = parentnode.getNodePath(); 
-	node.log("parent node path: " + parentnodepath);
-	
-	//read properties from a node: 
-	def sourceFileExt = parentnode.getPropertyAsString( "sourceFileExtension", null ); 
-	def sourceFileName = parentnode.getPropertyAsString("sourceFileBaseName", null); 
-	node.log("source file name with extension " + sourceFileExt + " is: " + sourceFileName);
+    //inspect current node: 
+    def nodepath = node.getNodePath(); 
+    node.log("this node path: " + nodepath);
+    
+    //walking up to other nodes: 
+    def parentnode = node.getParentNode(); 
+    def parentnodepath = parentnode.getNodePath(); 
+    node.log("parent node path: " + parentnodepath);
+    
+    //read properties from a node: 
+    def sourceFileExt = parentnode.getPropertyAsString( "sourceFileExtension", null ); 
+    def sourceFileName = parentnode.getPropertyAsString("sourceFileBaseName", null); 
+    node.log("source file name with extension " + sourceFileExt + " is: " + sourceFileName);
 
-我們的記錄視窗的顯示如下：
+Our log window will show us the following:
 
-![用於存取節點路徑的記錄輸出](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-log-output2.png)
+![Log output for accessing node paths](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-log-output2.png)
 
-*用於存取節點路徑的記錄輸出*
+*Log output for accessing node paths*
 
 
-##<a id="frame_based_trim"></a>多位元速率 MP4 輸出以畫面格為基礎的修剪
+##<a name="<a-id="frame_based_trim"></a>frame-based-trimming-of-multibitrate-mp4-output"></a><a id="frame_based_trim"></a>Frame-based trimming of multibitrate MP4 output
 
-從[透過 MXF 輸入產生多位元速率 MP4 輸出](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging)的工作流程開始，我們現在將尋求以畫面格計數為基礎修剪來源視訊。
+Starting from a workflow that generates [a multibitrate MP4 output from an MXF input](media-services-media-encoder-premium-workflow-tutorials.md#MXF_to_MP4_with_dyn_packaging), we will now be looking into trimming the source video based on frame counts.
 
-###<a id="frame_based_trim_start"></a>要開始加入修剪的目標藍圖概觀
+###<a name="<a-id="frame_based_trim_start"></a>blueprint-overview-to-start-adding-trimming-to"></a><a id="frame_based_trim_start"></a>Blueprint overview to start adding trimming to
 
-![要開始加入修剪的目標工作流程](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-workflow-start-adding-trimming-to.png)
+![Workflow to start adding trimming to](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-workflow-start-adding-trimming-to.png)
 
-*要開始加入修剪的目標工作流程*
+*Workflow to start adding trimming to*
 
-###<a id="frame_based_trim_clip_list"></a>使用剪輯清單 XML
+###<a name="<a-id="frame_based_trim_clip_list"></a>using-the-clip-list-xml"></a><a id="frame_based_trim_clip_list"></a>Using the Clip List XML
 
-在所有先前的工作流程教學課程中，我們使用「媒體檔案輸入」元件做為我們的視訊輸入來源。不過，在此特定案例中，我們將改為使用剪輯清單來源元件。請注意，這應該不是最好的工作方式；只在有實際原因這麼做時才使用剪輯清單來源 (如同在以下情況下，我們會使用剪輯清單修剪功能)。
+In all previous workflow tutorials, we used the Media File Input component as our video input source. For this specific scenario though, we'll be using the Clip List Source component instead. Note that this should not be the preferred way of working; only use the Clip List Source when there's a real reason to do so (like in the below case, where we're making use of the clip list trimming capabilities).
 
-若要從我們的「媒體檔案輸入」切換到「剪輯清單來源」，請將 [剪輯清單來源] 元件拖曳至設計介面，並將 [剪輯清單 XML] 接點連接至工作流程設計工具的 [剪輯清單 XML] 節點。這應該會根據我們的輸入視訊，以輸出接點填入剪輯清單來源。現在，從剪輯清單來源將「未壓縮的視訊」和「未壓縮的音訊」接點連接至相應的「AVC 編碼器」和「音訊串流交錯器」。現在移除媒體檔案輸入。
+To switch from our Media File Input to the Clip List Source, drag the Clip List Source component onto the design surface and connect the Clip List XML pin to the Clip List XML node of the workflow designer. This should populate the Clip List Source with output pins, according to our input video. Now connect the Uncompressed Video and Uncompressed Audio pins from the the Clip List Source to the respective AVC Encoders and Audio Stream Interleaver. Now remove the Media File Input.
 
-![以剪輯清單來源取代媒體檔案輸入](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-replaced-media-file-with-clip-source.png)
+![Replaced the Media File Input with the Clip List Source](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-replaced-media-file-with-clip-source.png)
 
-*以剪輯清單來源取代媒體檔案輸入*
+*Replaced the Media File Input with the Clip List Source*
 
-剪輯清單來源元件會將它視為輸入「剪輯清單 XML」。選取要在本機測試的來源檔案，會為您自動填入此剪輯清單 XML。
+The Clip List Source component takes as its input a "Clip List XML". When selecting the source file to test with locally, this clip list xml is auto-populated for you.
 
-![自動填入剪輯清單 XML 屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-auto-populated-clip-list-xml-property.png)
+![Auto-populated Clip List XML property](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-auto-populated-clip-list-xml-property.png)
 
-*自動填入剪輯清單 XML 屬性*
+*Auto-populated Clip List XML property*
 
-更仔細一點觀察 XML，這是其外觀：
+Looking a bit closer to the xml, this is how it looks like:
 
-![編輯剪輯清單對話方塊](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-edit-clip-list-dialog.png)
+![Edit clip list dialog](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-edit-clip-list-dialog.png)
 
-*編輯剪輯清單對話方塊*
+*Edit clip list dialog*
 
-不過這不會反映剪輯清單 XML 的功能。我們擁有的其中一個選項是在視訊和音訊來源下加入「修剪」元素，像這樣：
+This however does not reflect the capabilities of the clip list xml. One option we have is to add a "Trim" element under both the video and audio source, like this:
 
-![加入修剪元素至剪輯清單](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-adding-trim-element-to-clip-list.png)
+![Adding a trim element to the clip list](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-adding-trim-element-to-clip-list.png)
 
-*加入修剪元素至剪輯清單*
+*Adding a trim element to the clip list*
 
-如果您修改類似以上的剪輯清單 XML，並執行本機測試回合，您會看到視訊已正確在視訊中修剪為 10 到 20 秒。
+If you modify the clip list xml like this above and perform a local test run, you'll see the video correctly been trimmed between 10 and 20 seconds in the video.
 
-不過，相對於當您執行本機執行時發生的情況，在 Azure 媒體服務中執行的工作流程中，這個完全相同的剪輯清單 XML 將不會有相同的效果。Azure Premium 編碼器啟動時，每次都會根據提供給編碼作業的輸入檔產生剪輯清單 XML。這表示，我們在 XML 上執行的任何變更不幸地會被覆寫。
+Contrary to what happens when you do a local run though, this very same cliplist xml would not have the same effect when applied in a workflow that runs in Azure Media Services. When Azure Premium Encoder starts, the cliplist xml is generated every time again, based on the input file the encoding job was given. This means that any changes we do on the xml would unfortunately be overridden.
 
-若要克服剪輯清單 XML 在編碼作業開始時被抹除，我們可以在工作流程開始之後快速重新產生它。透過稱為「指令碼元件」的項目即可以採取這種自訂動作。如需詳細資訊，請參閱[推出指令碼元件](media-services-media-encoder-premium-workflow-tutorials.md#scripting)。
+To counter the cliplist xml being wiped when an encoding job is started, we can re-generate it on the fly just after the start of our workflow. Such custom actions can be taken through what is called a "Scripted Component". For more information, see [Introducing the Scripted Component](media-services-media-encoder-premium-workflow-tutorials.md#scripting).
 
 
-將指令碼元件拖曳至設計工具介面上，並重新命名為 "SetClipListXML"。
+Drag a Scripted Component onto the designer surface and rename it to "SetClipListXML".
 
-![加入指令碼元件](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-add-scripted-comp.png)
+![Adding a Scripted Component](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-add-scripted-comp.png)
 
-*加入指令碼元件*
+*Adding a Scripted Component*
 
-檢查指令碼元件的屬性時，會顯示四種不同的指令碼類型，而每個可設定到不同的指令碼。
+When you inspect the properties of the Scripted Component, the four different script types will be shown, each configurable to a different script.
 
-![指令碼元件屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scripted-comp-properties.png)
+![Scripted Component properties](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-scripted-comp-properties.png)
 
-*指令碼元件屬性*
+*Scripted Component properties*
 
 
-###<a id="frame_based_trim_modify_clip_list"></a>透過指令碼元件修改剪輯清單
+###<a name="<a-id="frame_based_trim_modify_clip_list"></a>modifying-the-clip-list-from-a-scripted-component"></a><a id="frame_based_trim_modify_clip_list"></a>Modifying the clip list from a Scripted Component
 
-在我們可以重新寫入工作流程啟動時產生的剪輯清單 XML 之前，我們將需要存取剪輯清單 XML 屬性和內容。我們可以像這樣執行：
+Before we can re-write the cliplist xml that is generated during workflow startup, we'll need to have access to the cliplist xml property and contents. We can do so like this:
 
-	// get cliplist xml: 
-	def clipListXML = node.getProperty("../clipListXml");
-	node.log("clip list xml coming in: " + clipListXML);
+    // get cliplist xml: 
+    def clipListXML = node.getProperty("../clipListXml");
+    node.log("clip list xml coming in: " + clipListXML);
 
-![記錄傳入剪輯清單](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-incoming-clip-list-logged.png)
+![Incoming clip list being logged](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-incoming-clip-list-logged.png)
 
-*記錄傳入剪輯清單*
+*Incoming clip list being logged*
 
-首先，我們需要決定我們想要修剪視訊的哪一個點到哪一個點。為了讓它方便工作流程較不具技術性的使用者，請將兩個屬性發佈至圖形的根目錄。若要這樣做，請以滑鼠右鍵按一下設計工具介面並選取 [加入屬性]：
+First we need a way to determine from which point till which point we want to trim the video. To make this convenient to the less-technical user of the workflow, publish two properties to the root of the graph. To do this, right click the designer surface and select "Add Property":
 
-- 第一個屬性："ClippingTimeStart"，類型："TIMECODE"
-- 第二個屬性："ClippingTimeEnd"，類型："TIMECODE"
+- First property: "ClippingTimeStart" of type: "TIMECODE"
+- Second property: "ClippingTimeEnd" of type: "TIMECODE"
 
-![加入屬性對話方塊的剪輯開始時間](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-clip-start-time.png)
+![Add Property dialog for clipping start time](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-clip-start-time.png)
 
-*加入屬性對話方塊的剪輯開始時間*
+*Add Property dialog for clipping start time*
 
-![工作流程根目錄上發佈的剪輯時間屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-clip-time-props.png)
+![Published clipping time props on workflow root](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-clip-time-props.png)
 
-*工作流程根目錄上發佈的剪輯時間屬性*
+*Published clipping time props on workflow root*
 
-將這兩個屬性設定為適當的值：
+Configure both properties to a suitable value:
 
-![設定剪輯開始和結束屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-configure-clip-start-end-prop.png)
+![Configure the clipping start and end properties](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-configure-clip-start-end-prop.png)
 
-*設定剪輯開始和結束屬性*
+*Configure the clipping start and end properties*
 
-現在，從我們的指令碼內，我們就可以存取這兩個屬性，像這樣：
+Now, from within our script, we can access both properties, like this:
 
-	
-	// get start and end of clipping:
-	def clipstart = node.getProperty("../ClippingTimeStart").toString();
-	def clipend = node.getProperty("../ClippingTimeEnd").toString();
-	
-	node.log("clipping start: " + clipstart);
-	node.log("clipping end: " + clipend);
+    
+    // get start and end of clipping:
+    def clipstart = node.getProperty("../ClippingTimeStart").toString();
+    def clipend = node.getProperty("../ClippingTimeEnd").toString();
+    
+    node.log("clipping start: " + clipstart);
+    node.log("clipping end: " + clipend);
 
-![顯示剪輯的開始與結束的記錄視窗](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-show-start-end-clip.png)
+![Log window showing start and end of clipping](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-show-start-end-clip.png)
 
-*顯示剪輯的開始與結束的記錄視窗*
+*Log window showing start and end of clipping*
 
-讓我們使用簡單的規則運算式，將時間碼字串剖析為更方便使用的格式：
-	
-	//parse the start timing: 
-	def startregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipstart); 
-	startregresult.matches(); 
-	def starttimecode = startregresult.group(1); 
-	node.log("timecode start is: " + starttimecode); 
-	def startframerate = startregresult.group(2); 
-	node.log("framerate start is: " + startframerate);
-	
-	//parse the end timing: 
-	def endregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipend); 
-	endregresult.matches(); 
-	def endtimecode = endregresult.group(1); 
-	node.log("timecode end is: " + endtimecode); 
-	def endframerate = endregresult.group(2); 
-	node.log("framerate end is: " + endframerate);
+Let's parse the timecode strings into a more convenient to use form, using a simple regular expression:
+    
+    //parse the start timing: 
+    def startregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipstart); 
+    startregresult.matches(); 
+    def starttimecode = startregresult.group(1); 
+    node.log("timecode start is: " + starttimecode); 
+    def startframerate = startregresult.group(2); 
+    node.log("framerate start is: " + startframerate);
+    
+    //parse the end timing: 
+    def endregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipend); 
+    endregresult.matches(); 
+    def endtimecode = endregresult.group(1); 
+    node.log("timecode end is: " + endtimecode); 
+    def endframerate = endregresult.group(2); 
+    node.log("framerate end is: " + endframerate);
 
-![具有剖析的時間碼輸出的記錄檔視窗](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-output-parsed-timecode.png)
+![Log window with output of parsed timecode](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-output-parsed-timecode.png)
 
-*具有剖析的時間碼輸出的記錄檔視窗*
+*Log window with output of parsed timecode*
 
-在手邊備有這項資訊，我們現在可以修改剪輯清單 XML 以反映影片所需的畫面格精確剪輯的開始和結束時間。
+With this information at hand, we can now modify the cliplist xml to reflect the start and end times for the desired frame-accurate clipping of the movie.
 
-![要加入修剪元素的指令碼](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-add-trim-elements.png)
+![Script code to add trim elements](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-add-trim-elements.png)
 
-*要加入修剪元素的指令碼*
+*Script code to add trim elements*
 
-這是透過一般的字串處理作業完成。產生的經修改剪輯清單 XML 會透過 "setProperty" 方法寫回工作流程根目錄上的 clipListXML 屬性。在另一個測試回合之後記錄視窗會向我們顯示下列：
+This was done through normal string manipulation operations. The resulting modified clip list xml is written back to the clipListXML property on the workflow root through the "setProperty" method. The log window after another test run would show us the following:
 
-![記錄產生的剪輯清單](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-log-result-clip-list.png)
+![Logging the resulting clip list](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-log-result-clip-list.png)
 
-*記錄產生的剪輯清單*
+*Logging the resulting clip list*
 
-執行測試回合以查看視訊和音訊串流剪輯的情況。不過，由於您將對修剪點的使用不同值進行多個測試回合，您會發現，這些將不會被納入考量！ 這是因為設計工具不同於 Azure 執行階段，不會在每次執行時覆寫剪輯清單 XML。這就表示，只有在您第一次設定輸入和輸出點時，會導致 XML 轉換，所有其他時候，我們的成立條件子句 (if(clipListXML.indexOf("<trim>") == -1)) 會在一個元素已經存在時避免工作流程加入另一個修剪元素。
+Do a test-run to see how the video and audio streams have been clipped. As you'll do more than one test-run with different values for the trimming points, you'll notice that those will not be taken into account however! The reason for this is that the designer, unlike the Azure runtime, does NOT override the cliplist xml every run. This means that only the very first time you have set the in and out points, will cause the xml to transform, all the other times, our guard clause (if(clipListXML.indexOf("<trim>") == -1)) will prevent the workflow from adding another trim element when there's already one present.
 
-為了讓工作流程方便在本機測試，我們最好加入一些管理程式碼，其會檢查是否已經存在修剪元素。如果是的話，我們可以在繼續之前，將 XML 修改為新的值來將它移除。不要使用純文字字串操作，透過實際的 XML 物件模型剖析執行此動作可能更安全。
+To make our workflow convenient to test locally, we best add some house-keeping code that inspects if a trim element was already present. If so, we can remove it before continuing by modifying the xml with the new values. Rather than using plain string manipulations, it's probably safer to do this through real xml object model parsing.
 
-在我們可以加入這類程式碼之前，我們還需要先在指令碼的開頭加入我們一些匯入陳述式：
-	
-	import javax.xml.parsers.*; 
-	import org.xml.sax.*; 
-	import org.w3c.dom.*;
-	import javax.xml.*;
-	import javax.xml.xpath.*; 
-	import javax.xml.transform.*; 
-	import javax.xml.transform.stream.*; 
-	import javax.xml.transform.dom.*;
+Before we can add such code though, we'll need to add a number of import statements at the start of our script first:
+    
+    import javax.xml.parsers.*; 
+    import org.xml.sax.*; 
+    import org.w3c.dom.*;
+    import javax.xml.*;
+    import javax.xml.xpath.*; 
+    import javax.xml.transform.*; 
+    import javax.xml.transform.stream.*; 
+    import javax.xml.transform.dom.*;
 
-在此之後，我們可以加入必要的清除程式碼：
+After this, we can add the required cleaning code:
 
-	//for local testing: delete any pre-existing trim elements from the clip list xml by parsing the xml into a DOM:
-	DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
-	DocumentBuilder builder=factory.newDocumentBuilder();
-	InputSource is=new InputSource(new StringReader(clipListXML)); 
-	Document dom=builder.parse(is);
+    //for local testing: delete any pre-existing trim elements from the clip list xml by parsing the xml into a DOM:
+    DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder=factory.newDocumentBuilder();
+    InputSource is=new InputSource(new StringReader(clipListXML)); 
+    Document dom=builder.parse(is);
 
-	//find the trim element inside videoSource and audioSource and remove it if it exists already: 
-	XPath xpath = XPathFactory.newInstance().newXPath();
-	String findAllTrimElements = "//trim"; 
-	NodeList trimelems = xpath.evaluate(findAllTrimElements,dom,XPathConstants.NODESET);
+    //find the trim element inside videoSource and audioSource and remove it if it exists already: 
+    XPath xpath = XPathFactory.newInstance().newXPath();
+    String findAllTrimElements = "//trim"; 
+    NodeList trimelems = xpath.evaluate(findAllTrimElements,dom,XPathConstants.NODESET);
 
-	//copy trim nodes into a "to-be-deleted" collection 
-	Set<Element> elementsToDelete = new HashSet<Element>(); 
-	for (int i = 0; i < trimelems.getLength(); i++) { 
-		Element e = (Element)trimelems.item(i); 
-		elementsToDelete.add(e); 
-	}
+    //copy trim nodes into a "to-be-deleted" collection 
+    Set<Element> elementsToDelete = new HashSet<Element>(); 
+    for (int i = 0; i < trimelems.getLength(); i++) { 
+        Element e = (Element)trimelems.item(i); 
+        elementsToDelete.add(e); 
+    }
 
-	node.log("about to delete any existing trim nodes");
-	 //delete the trim nodes: 
-	elementsToDelete.each{ 
-		e -> e.getParentNode().removeChild(e);
-	}; 
-	node.log("deleted any existing trim nodes");
-	
-	//serialize the modified clip list xml dom into a string: 
-	def transformer = TransformerFactory.newInstance().newTransformer();
-	StreamResult result = new StreamResult(new StringWriter());
-	DOMSource source = new DOMSource(dom);
-	transformer.transform(source, result); 
-	clipListXML = result.getWriter().toString();
-	
-這個程式碼會放在我們加入修剪元素至剪輯清單 XML 的點的正上方。
-
-此時，只要我們需要，可以在讓變更隨著時間套用時執行及修改工作流程。
-
-###<a id="frame_based_trim_clippingenabled_prop"></a>加入 ClippingEnabled 便利屬性
-
-因為您可能不要一律進行修剪，讓我們透過加入方便的布林值旗標 (可指出是否要啟用修剪/剪輯) 來完成工作流程。
-
-就像之前，發佈新的屬性到我們稱為 "ClippingEnabled" (類型 "BOOLEAN") 的工作流程根目錄。
-
-![發佈啟用剪輯屬性](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-enable-clip.png)
-
-*發佈啟用剪輯屬性*
-
-使用以下簡單的成立條件子句，我們可以檢查是否需要修剪，並決定是否因此需要修改剪輯清單。
-
-	//check if clipping is required: 
-	def clippingrequired = node.getProperty("../ClippingEnabled"); 
-	node.log("clipping required: " + clippingrequired.toString()); 
-	if(clippingrequired == null || clippingrequired == false) 
-	{
-		node.setProperty("../clipListXml",clipListXML); 
-		node.log("no clipping required"); 
-		return; 
-	}
-
-
-###<a id="code"></a>完整程式碼
-
-	import javax.xml.parsers.*; 
-	import org.xml.sax.*; 
-	import org.w3c.dom.*;
-	import javax.xml.*;
-	import javax.xml.xpath.*; 
-	import javax.xml.transform.*; 
-	import javax.xml.transform.stream.*; 
-	import javax.xml.transform.dom.*;
-	
-	// get cliplist xml: 
-	def clipListXML = node.getProperty("../clipListXml");
-	node.log("clip list xml coming in: \n" + clipListXML);
-	// get start and end of clipping: 
-	def clipstart = node.getProperty("../ClippingTimeStart").toString();
-	def clipend = node.getProperty("../ClippingTimeEnd").toString();
-	
-	//parse the start timing:
-	def startregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipstart); 
-	startregresult.matches(); 
-	def starttimecode = startregresult.group(1);
-	node.log("timecode start is: " + starttimecode);
-	def startframerate = startregresult.group(2);
-	node.log("framerate start is: " + startframerate);
-	
-	//parse the end timing: 
-	def endregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipend);
-	endregresult.matches(); 
-	def endtimecode = endregresult.group(1); 
-	node.log("timecode end is: " + endtimecode); 
-	def endframerate = endregresult.group(2);
-
-	node.log("framerate end is: " + endframerate);
-	
-	//for local testing: delete any pre-existing trim elements 
-	//from the clip list xml by parsing the xml into a DOM:
-	
-	DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
-	DocumentBuilder builder=factory.newDocumentBuilder(); 
-	InputSource is=new InputSource(new StringReader(clipListXML)); 
-	Document dom=builder.parse(is);
-
-	//find the trim element inside videoSource and audioSource and remove it if it exists already:
-	XPath xpath = XPathFactory.newInstance().newXPath(); 
-	String findAllTrimElements = "//trim"; 
-	NodeList trimelems = xpath.evaluate(findAllTrimElements, dom, XPathConstants.NODESET);
-
-	//copy trim nodes into a "to-be-deleted" collection 
-	Set<Element> elementsToDelete = new HashSet<Element>(); 
-	for (int i = 0; i < trimelems.getLength(); i++) { 
-		Element e = (Element)trimelems.item(i); 
-		elementsToDelete.add(e); 
-	}
-	
-	node.log("about to delete any existing trim nodes");
-	//delete the trim nodes:
-	elementsToDelete.each{ e -> 
-		e.getParentNode().removeChild(e); 
-	};
-	node.log("deleted any existing trim nodes");
-
-	//serialize the modified clip list xml dom into a string:
-	def transformer = TransformerFactory.newInstance().newTransformer();
-	StreamResult result = new StreamResult(new StringWriter());
-	DOMSource source = new DOMSource(dom);
-	transformer.transform(source, result);
-	clipListXML = result.getWriter().toString();
-
-	//check if clipping is required:
-	def clippingrequired = node.getProperty("../ClippingEnabled");
-	node.log("clipping required: " + clippingrequired.toString()); 
-	if(clippingrequired == null || clippingrequired == false) 
-	{
-		node.setProperty("../clipListXml",clipListXML);
-		node.log("no clipping required");
-		return; 
-	}
-
-	//add trim elements to cliplist xml 
-	if ( clipListXML.indexOf("<trim>") == -1 ) 
-	{
-		//trim video 
-		clipListXML = clipListXML.replace("<videoSource>","<videoSource>\n <trim>\n <inPoint fps=""+ 
-			startframerate +"">" + starttimecode + 
-			"</inPoint>\n" + "<outPoint fps="" + endframerate +""> " + endtimecode + 
-			" </outPoint>\n </trim> \n"); 
-		//trim audio 
-		clipListXML = clipListXML.replace("<audioSource>","<audioSource>\n <trim>\n <inPoint fps=""+ 
-			startframerate +"">" + starttimecode + 
-			"</inPoint>\n" + "<outPoint fps=""+ endframerate +"">" + 
-			endtimecode + "</outPoint>\n </trim>\n");
-		node.log( "clip list going out: \n" +clipListXML ); 
-		node.setProperty("../clipListXml",clipListXML); 
-	}
-
-
-##另請參閱 
-
-[介紹 Azure 媒體服務中的 Premium 編碼](http://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services)
-
-[如何使用 Azure 媒體服務中的 Premium 編碼](http://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services)
-
-[透過 Azure 媒體服務編碼的隨選內容](media-services-encode-asset.md#media_encoder_premium_workflow)
-
-[Media Encoder Premium Workflow 格式和轉碼器](media-services-premium-workflow-encoder-formats.md)
-
-[範例工作流程檔案](http://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows)
-
-[Azure 媒體服務總管工具](http://aka.ms/amse)
-
-##媒體服務學習路徑
+    node.log("about to delete any existing trim nodes");
+     //delete the trim nodes: 
+    elementsToDelete.each{ 
+        e -> e.getParentNode().removeChild(e);
+    }; 
+    node.log("deleted any existing trim nodes");
+    
+    //serialize the modified clip list xml dom into a string: 
+    def transformer = TransformerFactory.newInstance().newTransformer();
+    StreamResult result = new StreamResult(new StringWriter());
+    DOMSource source = new DOMSource(dom);
+    transformer.transform(source, result); 
+    clipListXML = result.getWriter().toString();
+    
+This code goes just above the point at which we add the trim elements to the cliplist xml.
+
+At this point, we can run and modify our workflow as much as we want while having the changes applied ever time.    
+
+###<a name="<a-id="frame_based_trim_clippingenabled_prop"></a>adding-a-clippingenabled-convenience-property"></a><a id="frame_based_trim_clippingenabled_prop"></a>Adding a ClippingEnabled convenience property
+
+As you might not always want trimming to happen, let's finish off our workflow by adding a convenient boolean flag that indicates whether or not we want to enable trimming / clipping.
+
+Just as before, publish a new property to the root of our workflow called "ClippingEnabled" of type "BOOLEAN".
+
+![Published a property for enabling clipping](./media/media-services-media-encoder-premium-workflow-tutorials/media-services-enable-clip.png)
+
+*Published a property for enabling clipping*
+
+With the below simple guard clause, we can check if trimming is required and decide if our clip list as such needs to be modified or not.
+
+    //check if clipping is required: 
+    def clippingrequired = node.getProperty("../ClippingEnabled"); 
+    node.log("clipping required: " + clippingrequired.toString()); 
+    if(clippingrequired == null || clippingrequired == false) 
+    {
+        node.setProperty("../clipListXml",clipListXML); 
+        node.log("no clipping required"); 
+        return; 
+    }
+
+
+###<a name="<a-id="code"></a>complete-code"></a><a id="code"></a>Complete code
+
+    import javax.xml.parsers.*; 
+    import org.xml.sax.*; 
+    import org.w3c.dom.*;
+    import javax.xml.*;
+    import javax.xml.xpath.*; 
+    import javax.xml.transform.*; 
+    import javax.xml.transform.stream.*; 
+    import javax.xml.transform.dom.*;
+    
+    // get cliplist xml: 
+    def clipListXML = node.getProperty("../clipListXml");
+    node.log("clip list xml coming in: \n" + clipListXML);
+    // get start and end of clipping: 
+    def clipstart = node.getProperty("../ClippingTimeStart").toString();
+    def clipend = node.getProperty("../ClippingTimeEnd").toString();
+    
+    //parse the start timing:
+    def startregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipstart); 
+    startregresult.matches(); 
+    def starttimecode = startregresult.group(1);
+    node.log("timecode start is: " + starttimecode);
+    def startframerate = startregresult.group(2);
+    node.log("framerate start is: " + startframerate);
+    
+    //parse the end timing: 
+    def endregresult = (~/(\d\d:\d\d:\d\d:\d\d)\/(\d\d)/).matcher(clipend);
+    endregresult.matches(); 
+    def endtimecode = endregresult.group(1); 
+    node.log("timecode end is: " + endtimecode); 
+    def endframerate = endregresult.group(2);
+
+    node.log("framerate end is: " + endframerate);
+    
+    //for local testing: delete any pre-existing trim elements 
+    //from the clip list xml by parsing the xml into a DOM:
+    
+    DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder=factory.newDocumentBuilder(); 
+    InputSource is=new InputSource(new StringReader(clipListXML)); 
+    Document dom=builder.parse(is);
+
+    //find the trim element inside videoSource and audioSource and remove it if it exists already:
+    XPath xpath = XPathFactory.newInstance().newXPath(); 
+    String findAllTrimElements = "//trim"; 
+    NodeList trimelems = xpath.evaluate(findAllTrimElements, dom, XPathConstants.NODESET);
+
+    //copy trim nodes into a "to-be-deleted" collection 
+    Set<Element> elementsToDelete = new HashSet<Element>(); 
+    for (int i = 0; i < trimelems.getLength(); i++) { 
+        Element e = (Element)trimelems.item(i); 
+        elementsToDelete.add(e); 
+    }
+    
+    node.log("about to delete any existing trim nodes");
+    //delete the trim nodes:
+    elementsToDelete.each{ e -> 
+        e.getParentNode().removeChild(e); 
+    };
+    node.log("deleted any existing trim nodes");
+
+    //serialize the modified clip list xml dom into a string:
+    def transformer = TransformerFactory.newInstance().newTransformer();
+    StreamResult result = new StreamResult(new StringWriter());
+    DOMSource source = new DOMSource(dom);
+    transformer.transform(source, result);
+    clipListXML = result.getWriter().toString();
+
+    //check if clipping is required:
+    def clippingrequired = node.getProperty("../ClippingEnabled");
+    node.log("clipping required: " + clippingrequired.toString()); 
+    if(clippingrequired == null || clippingrequired == false) 
+    {
+        node.setProperty("../clipListXml",clipListXML);
+        node.log("no clipping required");
+        return; 
+    }
+
+    //add trim elements to cliplist xml 
+    if ( clipListXML.indexOf("<trim>") == -1 ) 
+    {
+        //trim video 
+        clipListXML = clipListXML.replace("<videoSource>","<videoSource>\n <trim>\n <inPoint fps=\""+ 
+            startframerate +"\">" + starttimecode + 
+            "</inPoint>\n" + "<outPoint fps=\"" + endframerate +"\"> " + endtimecode + 
+            " </outPoint>\n </trim> \n"); 
+        //trim audio 
+        clipListXML = clipListXML.replace("<audioSource>","<audioSource>\n <trim>\n <inPoint fps=\""+ 
+            startframerate +"\">" + starttimecode + 
+            "</inPoint>\n" + "<outPoint fps=\""+ endframerate +"\">" + 
+            endtimecode + "</outPoint>\n </trim>\n");
+        node.log( "clip list going out: \n" +clipListXML ); 
+        node.setProperty("../clipListXml",clipListXML); 
+    }
+
+
+##<a name="also-see"></a>Also see 
+
+[Introducing Premium Encoding in Azure Media Services](http://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services)
+
+[How to Use Premium Encoding in Azure Media Services](http://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services)
+
+[Encoding On-Demand Content with Azure Media Service](media-services-encode-asset.md#media_encoder_premium_workflow)
+
+[Media Encoder Premium Workflow Formats and Codecs](media-services-premium-workflow-encoder-formats.md)
+
+[Sample workflow files](http://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows)
+
+[Azure Media Services Explorer tool](http://aka.ms/amse)
+
+##<a name="media-services-learning-paths"></a>Media Services learning paths
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##提供意見反應
+##<a name="provide-feedback"></a>Provide feedback
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

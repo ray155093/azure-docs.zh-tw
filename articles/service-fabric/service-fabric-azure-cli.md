@@ -17,7 +17,8 @@
    ms.author="subramar"/>
 
 
-# 使用 Azure CLI 與 Service Fabric 叢集互動
+
+# <a name="using-the-azure-cli-to-interact-with-a-service-fabric-cluster"></a>使用 Azure CLI 與 Service Fabric 叢集互動
 
 您可以從 Linux 電腦使用 Azure CLI on Linux 來與 Service Fabric 叢集互動。
 
@@ -31,7 +32,7 @@
  azure servicefabric
 ```
 
-對於它支援的每個命令，您可以輸入命令的名稱以取得該命令的說明。支援自動完成命令。例如，下列命令可讓您取得所有應用程式命令的說明。
+對於它支援的每個命令，您可以輸入命令的名稱以取得該命令的說明。 支援自動完成命令。 例如，下列命令可讓您取得所有應用程式命令的說明。 
 
 ```sh
  azure servicefabric application 
@@ -58,61 +59,61 @@ source ~/azure.completion.sh
  azure servicefabric node show
 ```
 
-若要使用具名參數並了解其用途，您可以在命令後面輸入 --help。例如：
+若要使用具名參數並了解其用途，您可以在命令後面輸入 --help。 例如：
 
 ```sh
  azure servicefabric node show --help
  azure servicefabric application create --help
 ```
 
-從**不屬於叢集**的電腦連接到多電腦叢集時，請使用下列命令︰
+從 **不屬於叢集**的電腦連接到多電腦叢集時，請使用下列命令︰
 
 ```sh
  azure servicefabric cluster connect http://PublicIPorFQDN:19080
 ```
 
-適當地以實際 IP 或 FQDN 取代 PublicIPorFQDN 標記。從**屬於叢集**的電腦連接到多電腦叢集時，請使用下列命令︰
+適當地以實際 IP 或 FQDN 取代 PublicIPorFQDN 標記。 從 **屬於叢集**的電腦連接到多電腦叢集時，請使用下列命令︰
 
 ```sh
  azure servicefabric cluster connect --connection-endpoint http://localhost:19080 --client-connection-endpoint PublicIPorFQDN:19000
 ```
 
-您可以使用 PowerShell 或 CLI，與透過 Azure 入口網站建立的 Linux Service Fabric 叢集互動。
+您可以使用 PowerShell 或 CLI，與透過 Azure 入口網站建立的 Linux Service Fabric 叢集互動。 
 
-**警告︰**這些叢集不安全，因此，您可能因為在叢集資訊清單中新增公用 IP 位址，而造成單機系統門戶洞開。
+**警告︰** 這些叢集不安全，因此，您可能因為在叢集資訊清單中新增公用 IP 位址，而造成單機系統門戶洞開。
 
 
 
-## 使用 Azure CLI 連線至 Service Fabric 叢集
+## <a name="using-the-azure-cli-to-connect-to-a-service-fabric-cluster"></a>使用 Azure CLI 連線至 Service Fabric 叢集
 
-下列 Azure CLI 命令說明如何連線到安全的叢集。憑證詳細資料必須與叢集節點上的憑證相符。
+下列 Azure CLI 命令說明如何連線到安全的叢集。 憑證詳細資料必須與叢集節點上的憑證相符。
 
 ```
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert
 ```
  
-如果您的憑證有憑證授權單位 (CA)，則您需要新增 --ca-cert-path 參數，如下所示︰
+如果您的憑證有憑證授權單位 (CA)，則您需要新增 --ca-cert-path 參數，如下所示︰ 
 
 ```
  azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --ca-cert-path /tmp/ca1,/tmp/ca2 
 ```
 如果您有多個 CA，請使用逗號做為分隔符號。
  
-如果憑證中的一般名稱不符合連接端點，您可以使用 `--strict-ssl` 參數略過驗證，如下列命令所示︰
+如果憑證中的一般名稱不符合連接端點，您可以使用 `--strict-ssl` 參數略過驗證，如下列命令所示︰ 
 
 ```
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl false 
 ```
  
-如果您想要跳過 CA 驗證，您可以新增 --reject-unauthorized 參數，如下列命令所示︰
+如果您想要跳過 CA 驗證，您可以新增 --reject-unauthorized 參數，如下列命令所示︰ 
 
 ```
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized false 
 ```
  
-連線之後，您應該能夠執行其他 CLI 命令來與叢集互動。
+連線之後，您應該能夠執行其他 CLI 命令來與叢集互動。 
 
-## 部署 Service Fabric 應用程式
+## <a name="deploying-your-service-fabric-application"></a>部署 Service Fabric 應用程式
 
 執行下列命令來複製、註冊和啟動 Service Fabric 應用程式︰
 
@@ -123,11 +124,11 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 ```
 
 
-## 升級您的應用程式
+## <a name="upgrading-your-application"></a>升級您的應用程式
 
 處理程序類似於 [Windows 中的處理程序](service-fabric-application-upgrade-tutorial-powershell.md))。
 
-從專案根目錄中建置、複製、註冊和建立您的應用程式。如果您的應用程式執行個體名為 fabric:/MySFApp，且類型為 MySFApp，則命令如下所示︰
+從專案根目錄中建置、複製、註冊和建立您的應用程式。 如果您的應用程式執行個體名為 fabric:/MySFApp，且類型為 MySFApp，則命令如下所示︰
 
 ```
  azure servicefabric cluster connect http://localhost:19080
@@ -136,7 +137,7 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
  azure servicefabric application create fabric:/MySFApp MySFApp 1.0
 ```
 
-變更您的應用程式，並重建已修改的服務。以服務 (和程式碼或組態或資料，視情況而定) 已更新的版本，更新已修改之服務的資訊清單檔案 (ServiceManifest.xml)。同時，也以應用程式已更新的版本號碼及已修改的服務，修改應用程式的資訊清單 (ApplicationManifest.xml)。現在，使用下列命令來複製並註冊已更新的應用程式︰
+變更您的應用程式，並重建已修改的服務。  以服務 (和程式碼或組態或資料，視情況而定) 已更新的版本，更新已修改之服務的資訊清單檔案 (ServiceManifest.xml)。 同時，也以應用程式已更新的版本號碼及已修改的服務，修改應用程式的資訊清單 (ApplicationManifest.xml)。  現在，使用下列命令來複製並註冊已更新的應用程式︰
 
 ```
  azure servicefabric cluster connect http://localhost:19080>
@@ -147,22 +148,22 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 現在，您可以使用下列命令來啟動應用程式升級︰
 
 ```
- azure servicefabric application upgrade start -–application-name fabric:/MySFApp -–application-type-version 2.0  --upgrade-mode UnmonitoredAuto
+ azure servicefabric application upgrade start -–application-name fabric:/MySFApp -–target-application-type-version 2.0  --rolling-upgrade-mode UnmonitoredAuto
 ```
 
-您現在可以使用 SFX 來監視應用程式升級。應用程式在幾分鐘內會完成更新。您也可以用錯誤動作來測試已更新的應用程式，並檢查 Service Fabric 中的自動回復功能。
+您現在可以使用 SFX 來監視應用程式升級。 應用程式在幾分鐘內會完成更新。  您也可以用錯誤動作來測試已更新的應用程式，並檢查 Service Fabric 中的自動回復功能。
 
-## 疑難排解
+## <a name="troubleshooting"></a>疑難排解
 
-### 未成功複製應用程式封裝
+### <a name="copying-of-the-application-package-does-not-succeed"></a>未成功複製應用程式封裝
 
-檢查是否已安裝 `openssh`。根據預設，Ubuntu 桌面不會安裝此軟體。使用下列命令安裝它：
+檢查是否已安裝 `openssh` 。 根據預設，Ubuntu 桌面不會安裝此軟體。 使用下列命令安裝它：
 
 ```
  sudo apt-get install openssh-server openssh-client**
 ```
 
-如果問題持續發生，請使用下列命令變更 **sshd\_config** 檔案，以嘗試對 ssh 停用 PAM：
+如果問題持續發生，請使用下列命令變更 **sshd_config** 檔案，以嘗試對 ssh 停用 PAM：
 
 ```sh
  sudo vi /etc/ssh/sshd_config
@@ -182,8 +183,12 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 尚不支援使用金鑰 (而不是密碼) 進行 ssh 驗證 (因為平台會使用 ssh 來複製套件)，請改為使用密碼驗證。
 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 設定開發環境，並將 Service Fabric 應用程式部署到 Linux 叢集。
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

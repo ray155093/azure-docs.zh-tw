@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure 流量管理員中管理端點 | Microsoft Azure"
-   description="本文將協助您從 Azure 流量管理員加入、移除、啟用和停用端點。"
+   pageTitle="Manage endpoints in Azure Traffic Manager | Microsoft Azure"
+   description="This article will help you add, remove, enable and disable endpoints from Azure Traffic Manager."
    services="traffic-manager"
    documentationCenter=""
    authors="sdwheeler"
@@ -15,64 +15,64 @@
    ms.date="03/17/2016"
    ms.author="sewhee" />
 
-# 加入、停用、啟用或刪除端點
 
-不論網站模式為何，Azure App Service 中的 Web Apps 功能已為資料中心內的網站提供容錯移轉和循環配置資源流量路由功能。Azure 流量管理員可讓您在不同的資料中心的網站和雲端服務中指定容錯移轉和循環配置資源流量路由。提供該項功能的首要步驟是將雲端服務或網站端點新增至流量管理員。
+# <a name="add,-disable,-enable-or-delete-endpoints"></a>Add, disable, enable or delete endpoints
 
->[AZURE.NOTE] 您無法使用 Azure 傳統入口網站將外部位置或流量管理員設定檔加入為端點。您必須使用 REST API [建立定義](http://go.microsoft.com/fwlink/p/?LinkId=400772)或 Windows PowerShell [Add-AzureTrafficManagerEndpoint](http://go.microsoft.com/fwlink/p/?LinkId=400774)。
+The Web Apps feature in Azure App Service already provides failover and round-robin traffic routing functionality for websites within a datacenter, regardless of the website mode. Azure Traffic Manager allows you to specify failover and round-robin traffic routing for websites and cloud services in different datacenters. The first step necessary to provide that functionality is to add the cloud service or website endpoint to Traffic Manager.
 
-您也可以停用屬於流量管理員設定檔一部分的個別端點。端點包括雲端服務和網站。停用端點會將端點做為設定檔的一部分保留，但是設定檔會以好像未包含端點的方式運作。此動作對於暫時移除處於維護模式、或被重新部署的端點而言非常有用。在重新啟動並執行端點之後，您可以將它啟用。
+>[AZURE.NOTE] You cannot add external locations or Traffic Manager profiles as endpoints using the Azure classic portal. You must use the REST API [Create Definition](http://go.microsoft.com/fwlink/p/?LinkId=400772) or Windows PowerShell [Add-AzureTrafficManagerEndpoint](http://go.microsoft.com/fwlink/p/?LinkId=400774).
 
->[AZURE.NOTE] 停用端點會與其在 Azure 中的部署狀態無關。健全的端點將會持續運作，並且即使在流量管理員中停用該服務時仍然可以接收流量。此外，在一個設定檔中停用端點並不會影響它在另一個設定檔中的狀態。
+You can also disable individual endpoints that are part of a Traffic Manager profile. Endpoints include both cloud services and websites. Disabling an endpoint leaves it as part of the profile, but the profile acts as if the endpoint is not included in it. This action is very useful for temporarily removing an endpoint that is in maintenance mode or being redeployed. Once the endpoint is up and running again, it can be enabled.
 
-## 若要新增雲端服務或網站端點
+>[AZURE.NOTE] Disabling an endpoint has nothing to do with its deployment state in Azure. A healthy endpoint will remain up and able to receive traffic even when disabled in Traffic Manager. Additionally, disabling an endpoint in one profile does not affect its status in another profile.
 
-
-1. 在 Azure 傳統入口網站的 [流量管理員] 窗格中，找出包含您要修改端點設定的流量管理員設定檔，然後按一下設定檔名稱右側的箭號。這會開啟設定檔的設定頁面。
-2. 在頁面的頂端，按一下 [端點] 以檢視端點是否已是組態的一部分。
-3. 在頁面的底部，按一下 [新增] 以存取 [新增服務端點] 頁面。根據預設，這個頁面會列出 [服務端點] 下的雲端服務。
-4. 若是雲端服務，請在清單中選取雲端服務以將他們做為此設定檔的端點啟用。清除雲端服務名稱會將它從端點清單中移除。
-5. 若是網站，請按一下 [服務類型] 下拉式清單，然後選取 [Web 應用程式]。
-6. 請在清單中選取網站以將他們做為此設定檔的端點啟用。清除網站名稱會將它從端點清單中移除。請注意，您只可以在每個 Azure 資料中心 (也稱為「區域」) 內選取單一網站。如果您要在託管多個網站的資料中心內選取一個網站，當您選取第一個網站時，相同資料中心內的其他網站會變成無法選取。並請注意，只有標準網站才會被列出。
-7. 選取此設定檔的端點之後，請按一下右下角的核取記號以儲存變更。
-
->[AZURE.NOTE] 如果您打算使用 [*容錯移轉*] 流量路由方法，在新增或移除端點之後，請務必調整組態頁面上的容錯移轉優先權清單，以反映您要用於組態的容錯移轉順序。如需詳細資訊，請參閱[設定容錯移轉流量路由](traffic-manager-configure-failover-routing-method.md)。
-
-## 若要停用端點
-
-1. 在 Azure 傳統入口網站的 [流量管理員] 窗格中，找出包含您要修改端點設定的流量管理員設定檔，然後按一下設定檔名稱右側的箭號。這會開啟設定檔的設定頁面。
-2. 在頁面的頂端，按一下 [**端點**] 以檢視包含在組態中的端點。
-3. 按一下您要停用的端點，然後按一下頁面底部的 [**停用**]。
-4. 根據流量管理員網域名稱的 DNS 存留時間 (TTL) 設定，流量將會停止流向端點。您可以從流量管理員設定檔的 [組態] 頁面變更 TTL。
-
-## 若要啟用端點
-
-1. 在 Azure 傳統入口網站的 [流量管理員] 窗格中，找出包含您要修改端點設定的流量管理員設定檔，然後按一下設定檔名稱右側的箭號。這會開啟設定檔的設定頁面。
-2. 在頁面的頂端，按一下 [**端點**] 以檢視包含在組態中的端點。
-3. 按一下您要啟用的端點，然後按一下頁面底部的 [**啟用**]。
-4. 流量會如設定檔指定再次開始流向服務。
-
-## 若要新增雲端服務或網站端點
+## <a name="to-add-a-cloud-service-or-website-endpoint"></a>To add a cloud service or website endpoint
 
 
-1. 在 Azure 傳統入口網站的 [流量管理員] 窗格中，找出包含您要修改端點設定的流量管理員設定檔，然後按一下設定檔名稱右側的箭號。這會開啟設定檔的設定頁面。
-2. 在頁面的頂端，按一下 [端點] 以檢視端點是否已是組態的一部分。
-3. 在 [端點] 頁面上，按一下您要從設定檔刪除的端點名稱。
-4. 按一下頁面底部的 [刪除]。
+1. On the Traffic Manager pane in the Azure classic portal, locate the Traffic Manager profile that contains the endpoint settings that you want to modify, and then click the arrow to the right of the profile name. This will open the settings page for the profile.
+2. At the top of the page, click **Endpoints** to view the endpoints that are already part of your configuration.
+3. At the bottom of the page, click **Add** to access the **Add Service Endpoints** page. By default, the page lists the cloud services under **Service Endpoints**.
+4. For cloud services, select the cloud services in the list to enable them as endpoints for this profile. Clearing the cloud service name removes it from the list of endpoints.
+5. For websites, click the **Service Type** drop-down list, and then select **Web app**.
+6. Select the websites in the list to add them as endpoints for this profile. Clearing the website name removes it from the list of endpoints. Note that you can only select a single website per Azure datacenter (also known as a region). If you select a website in a datacenter that hosts multiple websites, when you select the first website, the others in the same datacenter become unavailable for selection. Also note that only Standard websites are listed.
+7. After you select the endpoints for this profile, click the checkmark on the lower right to save your changes.
 
->[AZURE.NOTE] 您無法使用 Azure 傳統入口網站刪除做為端點的外部位置或流量管理員設定檔。您必須使用 Windows PowerShell。如需詳細資訊，請參閱 [Remove-AzureTrafficManagerEndpoint](https://msdn.microsoft.com/library/dn690251.aspx)。
+>[AZURE.NOTE] If you are using the *Failover* traffic routing method, after you add or remove an endpoint, be sure to adjust the Failover Priority List on the Configuration page to reflect the failover order you want for your configuration. For more information, see [Configure Failover traffic routing](traffic-manager-configure-failover-routing-method.md).
 
-## 後續步驟
+## <a name="to-disable-an-endpoint"></a>To disable an endpoint
+
+1. On the Traffic Manager pane in the Azure classic portal, locate the Traffic Manager profile that contains the endpoint settings that you want to modify, and then click the arrow to the right of the profile name. This will open the settings page for the profile.
+2. At the top of the page, click **Endpoints** to view the endpoints that are included in your configuration.
+3. Click the endpoint that you want to disable, and then click **Disable** at the bottom of the page.
+4. Traffic will stop flowing to the endpoint based on the DNS Time-to-Live (TTL) configured for the Traffic Manager domain name. You can change the TTL from the Configuration page of the Traffic Manager profile.
+
+## <a name="to-enable-an-endpoint"></a>To enable an endpoint
+
+1. On the Traffic Manager pane in the Azure classic portal, locate the Traffic Manager profile that contains the endpoint settings that you want to modify, and then click the arrow to the right of the profile name. This will open the settings page for the profile.
+2. At the top of the page, click **Endpoints** to view the endpoints that are included in your configuration.
+3. Click the endpoint that you want to enable, and then click **Enable** at the bottom of the page.
+4. Traffic will start flowing to the service again as dictated by the profile.
+
+## <a name="to-delete-a-cloud-service-or-website-endpoint"></a>To delete a cloud service or website endpoint
 
 
-[設定容錯移轉路由方法](traffic-manager-configure-failover-routing-method.md)
+1. On the Traffic Manager pane in the Azure classic portal, locate the Traffic Manager profile that contains the endpoint settings that you want to modify, and then click the arrow to the right of the profile name. This will open the settings page for the profile.
+2. At the top of the page, click **Endpoints** to view the endpoints that are already part of your configuration.
+3. On the Endpoints page, click the name of the endpoint that you want to delete from the profile.
+4. At the bottom of the page, click **Delete**.
 
-[設定循環配置資源路由方法](traffic-manager-configure-round-robin-routing-method.md)
+>[AZURE.NOTE] You cannot delete external locations or Traffic Manager profiles as endpoints using the Azure classic portal. You must use Windows PowerShell. For more information, see [Remove-AzureTrafficManagerEndpoint](https://msdn.microsoft.com/library/dn690251.aspx).
 
-[設定效能路由方法](traffic-manager-configure-performance-routing-method.md)
+## <a name="next-steps"></a>Next steps
 
-[疑難排解流量管理員的已降級狀態](traffic-manager-troubleshooting-degraded.md)
+- [Configure failover routing method](traffic-manager-configure-failover-routing-method.md)
+- [Configure round robin routing method](traffic-manager-configure-round-robin-routing-method.md)
+- [Configure performance routing method](traffic-manager-configure-performance-routing-method.md)
+- [Troubleshooting Traffic Manager degraded state](traffic-manager-troubleshooting-degraded.md)
+- [Operations on Traffic Manager (REST API Reference)](http://go.microsoft.com/fwlink/p/?LinkID=313584)
 
-[流量管理員的相關作業 (REST API 參考)](http://go.microsoft.com/fwlink/p/?LinkID=313584)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

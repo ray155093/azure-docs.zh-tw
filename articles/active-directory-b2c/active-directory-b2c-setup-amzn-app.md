@@ -1,53 +1,58 @@
 <properties
-	pageTitle="Azure Active Directory B2C：Amazon 設定 | Microsoft Azure"
-	description="在受 Azure Active Directory B2C 保護的應用程式中，針對具有 Amazon 帳戶的取用者提供註冊和登入。"
-	services="active-directory-b2c"
-	documentationCenter=""
-	authors="swkrish"
-	manager="msmbaldwin"
-	editor="bryanla"/>
+    pageTitle="Azure Active Directory B2C: Amazon configuration | Microsoft Azure"
+    description="Provide sign-up and sign-in to consumers with Amazon accounts in your applications that are secured by Azure Active Directory B2C."
+    services="active-directory-b2c"
+    documentationCenter=""
+    authors="swkrish"
+    manager="mbaldwin"
+    editor="bryanla"/>
 
 <tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
+    ms.service="active-directory-b2c"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
     ms.topic="article"
     ms.date="07/24/2016"
-	ms.author="swkrish"/>
+    ms.author="swkrish"/>
 
-# Azure Active Directory B2C：針對具有 Amazon 帳戶的取用者提供註冊和登入
 
-## 建立 Amazon 應用程式
+# <a name="azure-active-directory-b2c:-provide-sign-up-and-sign-in-to-consumers-with-amazon-accounts"></a>Azure Active Directory B2C: Provide sign-up and sign-in to consumers with Amazon accounts
 
-若要在 Azure Active Directory (Azure AD) B2C 中使用 Amazon 做為身分識別提供者，您必須建立 Amazon 應用程式，並對其提供正確的參數。您需要 Amazon 帳戶來執行此動作。如果您沒有帳戶，您可以在 [http://www.amazon.com/](http://www.amazon.com/) 上取得。
+## <a name="create-an-amazon-application"></a>Create an Amazon application
 
-1. 移至 [Amazon Developer Center (Amazon 開發人員中心)](https://login.amazon.com/)，並以您的 Amazon 帳戶認證登入。
-2. 若您尚未執行此動作，請按一下 [註冊]、遵循開發人員註冊步驟，並接受原則。
-3. 按一下 [註冊新應用程式]。
+To use Amazon as an identity provider in Azure Active Directory (Azure AD) B2C, you need to create an Amazon application and supply it with the right parameters. You need an Amazon account to do this. If you don’t have one, you can get it at [http://www.amazon.com/](http://www.amazon.com/).
 
-    ![在 Amazon 網站上註冊新的應用程式](./media/active-directory-b2c-setup-amzn-app/amzn-new-app.png)
+1. Go to the [Amazon Developer Center](https://login.amazon.com/) and sign in with your Amazon account credentials.
+2. If you have not already done so, click **Sign Up**, follow the developer registration steps, and accept the policy.
+3. Click **Register new application**.
 
-4. 提供應用程式資訊 (**名稱**、**說明**和**隱私權注意事項 URL**)，然後按一下 [儲存]。
+    ![Registering a new application at the Amazon website](./media/active-directory-b2c-setup-amzn-app/amzn-new-app.png)
 
-    ![提供應用程式資訊以便在 Amazon 上註冊新的應用程式](./media/active-directory-b2c-setup-amzn-app/amzn-register-app.png)
+4. Provide application information (**Name**, **Description**, and **Privacy Notice URL**) and click **Save**.
 
-5. 在 [Web 設定] 區段中，複製 [用戶端識別碼] 和 [用戶端密碼] 的值。(您需要按一下 [顯示密碼] 按鈕，才能看到它)。 您必須使用這兩個值，將 Amazon 設為租用戶中的身分識別提供者。按一下位於區段底部的 [編輯]。**用戶端密碼**是重要的安全性認證。
+    ![Providing application information for registering a new application at Amazon](./media/active-directory-b2c-setup-amzn-app/amzn-register-app.png)
 
-	![針對您在 Amazon 上的新應用程式提供用戶端識別碼和用戶端密碼](./media/active-directory-b2c-setup-amzn-app/amzn-client-secret.png)
+5. In the **Web Settings** section, copy the values of **Client ID** and **Client Secret**. (You need to click the **Show Secret** button to see this.) You need both of them to configure Amazon as an identity provider in your tenant. Click **Edit** at the bottom of the section. **Client Secret** is an important security credential.
 
-6. 在 [允許的 JavaScript 原始來源] 欄位中輸入 `https://login.microsoftonline.com`，並在 [允許的傳回 URL] 欄位中輸入 `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`。使用您的租用戶名稱 (例如 contoso.onmicrosoft.com) 來取代 **{tenant}**。按一下 [儲存]。**{tenant}** 值會區分大小寫。
+    ![Providing Client ID and Client Secret for your new application at Amazon](./media/active-directory-b2c-setup-amzn-app/amzn-client-secret.png)
 
-    ![針對您在 Amazon 上的新應用程式提供 JavaScript 原始來源及傳回 URL](./media/active-directory-b2c-setup-amzn-app/amzn-urls.png)
+6. Enter `https://login.microsoftonline.com` in the **Allowed JavaScript Origins** field and `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` in the **Allowed Return URLs** field. Replace **{tenant}** with your tenant's name (for example, contoso.onmicrosoft.com). Click **Save**. The **{tenant}** value is case-sensitive.
 
-## 將 Amazon 設為您租用戶中的身分識別提供者
+    ![Providing JavaScript Origins and Return URLs for your new application at Amazon](./media/active-directory-b2c-setup-amzn-app/amzn-urls.png)
 
-1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
-2. 在 B2C 功能刀鋒視窗中，按一下 [**身分識別提供者**]。
-3. 按一下刀鋒視窗頂端的 [新增]。
-4. 針對身分識別提供者組態，提供容易辨識的**名稱**。例如，輸入 "Amzn"。
-5. 按一下 [身分識別提供者類型]、選取 [Amazon]，然後按一下 [確定]。
-6. 按一下 [設定此身分識別提供者]，然後輸入您先前建立之 Amazon 應用程式的用戶端識別碼與用戶端密碼。
-7. 依序按一下 [確定] 和 [建立]，以儲存您的 Amazon 設定。
+## <a name="configure-amazon-as-an-identity-provider-in-your-tenant"></a>Configure Amazon as an identity provider in your tenant
 
-<!---HONumber=AcomDC_0727_2016-->
+1. Follow these steps to [navigate to the B2C features blade](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) on the Azure portal.
+2. On the B2C features blade, click **Identity providers**.
+3. Click **+Add** at the top of the blade.
+4. Provide a friendly **Name** for the identity provider configuration. For example, enter "Amzn".
+5. Click **Identity provider type**, select **Amazon**, and click **OK**.
+6. Click **Set up this identity provider** and enter the client ID and client secret of the Amazon application that you created earlier.
+7. Click **OK** and then click **Create** to save your Amazon configuration.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="VM 重新啟動或調整大小的問題 | Microsoft Azure"
-   description="針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器大小的傳統部署問題進行疑難排解"
+   pageTitle="VM restarting or resizing issues | Microsoft Azure"
+   description="Troubleshoot classic deployment issues with restarting or resizing an existing Linux Virtual Machine in Azure"
    services="virtual-machines-linux"
    documentationCenter=""
    authors="Deland-Han"
@@ -17,72 +17,77 @@
    ms.devlang="na"
    ms.author="delhan"/>
 
-# 針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器大小的傳統部署問題進行疑難排解
+
+# <a name="troubleshoot-classic-deployment-issues-with-restarting-or-resizing-an-existing-linux-virtual-machine-in-azure"></a>Troubleshoot classic deployment issues with restarting or resizing an existing Linux Virtual Machine in Azure
 
 > [AZURE.SELECTOR]
-- [傳統](../articles/virtual-machines/virtual-machines-linux-classic-restart-resize-error-troubleshooting.md)
-- [資源管理員](../articles/virtual-machines/virtual-machines-linux-restart-resize-error-troubleshooting.md)
+- [Classic](../articles/virtual-machines/virtual-machines-linux-classic-restart-resize-error-troubleshooting.md)
+- [Resource Manager](../articles/virtual-machines/virtual-machines-linux-restart-resize-error-troubleshooting.md)
 
-當您嘗試啟動已停止的 Azure 虛擬機器 (VM)，或調整現有 Azure VM 的大小時，常會遇到的錯誤是配置失敗。當叢集或區域沒有可用的資源或無法支援所要求的 VM 大小，就會產生此錯誤。
+When you try to start a stopped Azure Virtual Machine (VM), or resize an existing Azure VM, the common error you encounter is an allocation failure. This error results when the cluster or region either does not have resources available or cannot support the requested VM size.
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
-[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
+[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
-## 收集稽核記錄檔
+## <a name="collect-audit-logs"></a>Collect audit logs
 
-若要開始進行排解疑難，請收集稽核記錄，識別與問題相關的錯誤。
+To start troubleshooting, collect the audit logs to identify the error associated with the issue.
 
-在 Azure 入口網站中，依序按一下 [瀏覽] > [虛擬機器] >「您的 Linux 虛擬機器」> [重新啟動] > [稽核記錄]。
+In the Azure portal, click **Browse** > **Virtual machines** > _your Linux virtual machine_ > **Settings** > **Audit logs**.
 
-## 問題：啟動已停止的 VM 時發生錯誤
+## <a name="issue:-error-when-starting-a-stopped-vm"></a>Issue: Error when starting a stopped VM
 
-您嘗試啟動已停止的 VM，但是發現配置失敗。
+You try to start a stopped VM but get an allocation failure.
 
-### 原因
+### <a name="cause"></a>Cause
 
-必須在架設雲端服務的原始叢集上嘗試提出啟動已停止的 VM 要求。不過，叢集沒有足夠空間可完成要求。
+The request to start the stopped VM has to be attempted at the original cluster that hosts the cloud service. However, the cluster does not have free space available to fulfill the request.
 
-### 解決方案
+### <a name="resolution"></a>Resolution
 
-* 建立新的雲端服務，並將它和區域或以區域為基礎的虛擬網路相關聯，但不是和同質群組。
+* Create a new cloud service and associate it with either a region or a region-based virtual network, but not an affinity group.
 
-* 刪除已停止的 VM。
+* Delete the stopped VM.
 
-* 使用磁碟在新的雲端服務中重新建立 VM。
+* Recreate the VM in the new cloud service by using the disks.
 
-* 啟動重新建立的 VM。
+* Start the re-created VM.
 
-如果您在嘗試建立新的雲端服務時收到錯誤，請稍後再試一次，或變更雲端服務的區域。
+If you get an error when trying to create a new cloud service, either retry at a later time or change the region for the cloud service.
 
-> [AZURE.IMPORTANT] 新的雲端服務將會有新的名稱和 VIP，因此您需要為所有將資訊用於現有雲端服務的相依性變更該資訊。
+> [AZURE.IMPORTANT] The new cloud service will have a new name and VIP, so you will need to change that information for all the dependencies that use that information for the existing cloud service.
 
-## 問題：調整現有 VM 的大小時發生錯誤
+## <a name="issue:-error-when-resizing-an-existing-vm"></a>Issue: Error when resizing an existing VM
 
-您嘗試調整現有 VM 的大小，但是發現配置失敗。
+You try to resize an existing VM but get an allocation failure.
 
-### 原因
+### <a name="cause"></a>Cause
 
-必須在架設雲端服務的原始叢集上嘗試提出調整 VM 大小的要求。不過，叢集不支援要求的 VM 大小。
+The request to resize the VM has to be attempted at the original cluster that hosts the cloud service. However, the cluster does not support the requested VM size.
 
-### 解決方案
+### <a name="resolution"></a>Resolution
 
-減少要求的 VM 大小，並再試一次調整大小要求。
+Reduce the requested VM size, and retry the resize request.
 
-* 按一下 [全部瀏覽] > [虛擬機器 (傳統)] > [您的虛擬機器]> [設定] > [大小]。如需詳細步驟，請參閱[調整虛擬機器的大小](https://msdn.microsoft.com/library/dn168976.aspx)。
+* Click **Browse all** > **Virtual machines (classic)** > _your virtual machine_ > **Settings** > **Size**. For detailed steps, see [Resize the virtual machine](https://msdn.microsoft.com/library/dn168976.aspx).
 
-如果您無法減少 VM 大小，請遵循下列步驟︰
+If it is not possible to reduce the VM size, follow these steps:
 
-  * 建立新的雲端服務，確保不會連結至同質群組，以及未與連結至同質群組的虛擬網路相關聯。
+  * Create a new cloud service, ensuring it is not linked to an affinity group and not associated with a virtual network that is linked to an affinity group.
 
-  * 在其中建立新的、較大的 VM。
+  * Create a new, larger-sized VM in it.
 
-您可以在相同的雲端服務中合併所有 VM。如果現有的雲端服務和以區域為基礎的虛擬網路相關聯，您可以將新的雲端服務連接到現有的虛擬網路。
+You can consolidate all your VMs in the same cloud service. If your existing cloud service is associated with a region-based virtual network, you can connect the new cloud service to the existing virtual network.
 
-如果現有的雲端服務未和以區域為基礎的虛擬網路相關聯，您必須刪除現有雲端服務中的 VM，並從其磁碟在新的雲端服務中將其重新建立。然而，請務必記得新的雲端服務將會有新的名稱和 VIP，因此您需要為所有目前將此資訊用於現有雲端服務的相依性更新該資訊。
+If the existing cloud service is not associated with a region-based virtual network, then you have to delete the VMs in the existing cloud service, and recreate them in the new cloud service from their disks. However, it is important to remember that the new cloud service will have a new name and VIP, so you will need to update these for all the dependencies that currently use this information for the existing cloud service.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如果您在 Azure 中建立新的 Linux VM 時遇到問題，請參閱[針對在 Azure 中建立新 Linux 虛擬機器的部署問題進行疑難排解](../virtual-machines/virtual-machines-linux-troubleshoot-deployment-new-vm.md)。
+If you encounter issues when you create a new Linux VM in Azure, see [Troubleshoot deployment issues with creating a new Linux virtual machine in Azure](../virtual-machines/virtual-machines-linux-troubleshoot-deployment-new-vm.md).
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

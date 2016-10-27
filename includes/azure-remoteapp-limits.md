@@ -1,28 +1,33 @@
 
-|資源 | 預設限制|
+|Resource | Default limit|
 |--------------|--------|
-|每一使用者的集合| 1|
-|每個集合的已發佈應用程式|	100|
-|試用集合持續時間| 30 天|
-|試用集合| 每一訂用帳戶 2 個|
-|每一試用集合的使用者| 10|
-|試用範本映像|	25|
-|付費的集合| 3 |
-|付費的範本映像| 25|
-|使用者 - 基本層*| 400 (預設值)/ 800 (最大值)|
-|使用者 - 標準層*| 250 (預設值)/ 500 (最大值)|
-|使用者 - 高階層| 100 (預設值)。|
-|使用者 - 高階 Plus 層 | 50 (預設值)。|
-|訂用帳戶中的所有集合的並行連線| 5000|
-|每一使用者的使用者資料儲存體 (UPD)| 50 GB|
-|閒置逾時| 4 小時|
-|中斷連線逾時| 4 小時|
+|Collections per user| 1|
+|Published apps per collection| 100|
+|Trial collection duration| 30 days|
+|Trial collections| 2 per subscription|
+|Users per trial collection| 10|
+|Trial template images| 25|
+|Paid collections| 3 |
+|Paid template images| 25|
+|Users - basic tier*| 400 (default)/ 800 (maximum)|
+|Users - standard tier*| 250 (default)/ 500 (maximum)|
+|Users- premium tier| 100 default.|
+|Users - premium plus tier | 50 default.|
+|Concurrent connections across all collections in a subscription| 5000|
+|User data storage (UPD) per user per collection| 50 GB|
+|Idle timeout| 4 hours|
+|Disconnected timeout| 4 hours|
 
-**基本和標準層的使用者限制無法增加到超過上面所列的最大限制。
+*User limits in basic and standard tiers cannot be increased beyond the maximum limit listed above. 
 
-使用者數目取決於用於集合的 VM 數目：
+The number of users is determined by the number of VMs used for your collection:
 
-- 基本 = 每一 VM 16 位使用者
-- 標準 = 每一 VM 10 位使用者
-- 高階 = 每一 VM 4 位使用者
-- 高階 Plus = 每一 VM 2 位使用者
+- Basic = 16 users per VM
+- Standard = 10 users per VM
+- Premium = 4 users per VM
+- Premium plus = 2 users per VM
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,61 +1,66 @@
 <properties
-	pageTitle="監視 XTP 記憶體內儲存體 | Microsoft Azure"
-	description="估計和監視 XTP 記憶體內儲存體使用量、容量；解決容量錯誤 41823"
-	services="sql-database"
-	documentationCenter=""
-	authors="jodebrui"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Monitor XTP in-memory storage | Microsoft Azure"
+    description="Estimate and monitor XTP in-memory storage use, capacity; resolve capacity error 41823"
+    services="sql-database"
+    documentationCenter=""
+    authors="jodebrui"
+    manager="jhubbard"
+    editor=""/>
 
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/18/2016"
-	ms.author="jodebrui"/>
+    ms.service="sql-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/03/2016"
+    ms.author="jodebrui"/>
 
 
-# 監視記憶體內部 OLTP 儲存體
 
-使用[記憶體內部 OLTP](sql-database-in-memory.md) 時，記憶體最佳化資料表中的資料和資料表變數位於記憶體內部 OLTP 儲存體中。每個進階服務層都有最大的記憶體內部 OLTP 儲存體大小，如 [SQL Database 服務層文章](sql-database-service-tiers.md#service-tiers-for-single-databases)所說明。一旦超過此限制，插入和更新作業可能會開始出錯 (錯誤碼 41823)。屆時您將需要刪除資料以回收記憶體，或升級您的資料庫的效能層。
+# <a name="monitor-in-memory-oltp-storage"></a>Monitor In-Memory OLTP Storage
 
-## 判斷資料是否在記憶體內部儲存容量上限內
+When using [In-Memory OLTP](sql-database-in-memory.md), data in memory-optimized tables and table variables resides in In-Memory OLTP storage. Each Premium service tier has a maximum In-Memory OLTP storage size, which is documented in the [SQL Database Service Tiers article](sql-database-service-tiers.md#service-tiers-for-single-databases). Once this limit is exceeded, insert and update operations may start failing (with error 41823). At that point you will need to either delete data to reclaim memory, or upgrade the performance tier of your database.
 
-判斷儲存上限：如需不同進階服務層的儲存上限相關資訊，請參閱 [SQL Database 服務層文章](sql-database-service-tiers.md#service-tiers-for-single-databases)。
+## <a name="determine-whether-data-will-fit-within-the-in-memory-storage-cap"></a>Determine whether data will fit within the in-memory storage cap
 
-估計記憶體最佳化資料表的記憶體需求，其方式如同在 Azure SQL Database 中估計 SQL Server 的記憶體需求。花幾分鐘的時間來檢閱 [MSDN](https://msdn.microsoft.com/library/dn282389.aspx) 上的該主題。
+Determine the storage cap: consult the [SQL Database Service Tiers article](sql-database-service-tiers.md#service-tiers-for-single-databases) for the storage caps of the different Premium service tiers.
 
-請注意，資料表和資料表變數資料列以及索引都會計入最大的使用者資料大小。此外，ALTER TABLE 需要足夠的空間來建立新版的完整資料表及其索引。
+Estimating memory requirements for a memory-optimized table works the same way for SQL Server as it does in Azure SQL Database. Take a few minutes to review that topic on [MSDN](https://msdn.microsoft.com/library/dn282389.aspx).
 
-## 監視和警示
+Note that the table and table variable rows, as well as indexes, count toward the max user data size. In addition, ALTER TABLE needs enough room to create a new version of the entire table and its indexes.
 
-您可以在 Azure [入口網站](https://portal.azure.com/)中，透過[效能層的儲存上限](sql-database-service-tiers.md#service-tiers-for-single-databases)的百分比來監視記憶體內部儲存體使用情形：
+## <a name="monitoring-and-alerting"></a>Monitoring and alerting
 
-- 在 [資料庫] 刀鋒視窗上，找出 [資源使用率方塊] 並按一下 [編輯]。
-- 然後選取計量 `In-Memory OLTP Storage percentage`。
-- 若要新增警示，請按一下 [資源使用率] 方塊以開啟 [計量] 刀鋒視窗，然後按一下 [新增警示]。
+You can monitor in-memory storage use as a percentage of the [storage cap for your performance tier](sql-database-service-tiers.md#service-tiers-for-single-databases) in the Azure [portal](https://portal.azure.com/): 
 
-或使用下列查詢來顯示記憶體內部儲存體使用率：
+- On the Database blade, locate the Resource utilization box and click on Edit.
+- Then select the metric `In-Memory OLTP Storage percentage`.
+- To add an alert, click on the Resource Utilization box to open the Metric blade, then click on Add alert.
+
+Or use the following query to show the in-memory storage utilization:
 
     SELECT xtp_storage_percent FROM sys.dm_db_resource_stats
 
 
-## 更正記憶體不足情況 - 錯誤 41823
+## <a name="correct-out-of-memory-situations---error-41823"></a>Correct out-of-memory situations - Error 41823
 
-記憶體不足導致插入、更新和建立作業失敗，並出現錯誤訊息 41823。
+Running out-of-memory results in INSERT, UPDATE, and CREATE operations failing with error message 41823.
 
-錯誤訊息 41823 指出記憶體最佳化資料表和資料表變數已超過大小上限。
+Error message 41823 indicates that the memory-optimized tables and table variables have exceeded the maximum size.
 
-若要解決此錯誤，您可以：
+To resolve this error, either:
 
 
-- 從記憶體最佳化資料表中刪除資料，可能會將資料卸載至傳統、以磁碟為基礎的資料表；或者，
-- 將服務層升級至具有足夠記憶體內部記憶體的服務層，以便儲存您需要保留在記憶體最佳化資料表中的資料。
+- Delete data from the memory-optimized tables, potentially offloading the data to traditional, disk-based tables; or,
+- Upgrade the service tier to one with enough in-memory storage for the data you need to keep in memory-optimized tables.
 
-## 後續步驟
-有關[使用動態管理檢視監視 Azure SQL Database](sql-database-monitoring-with-dmvs.md)的其他資源
+## <a name="next-steps"></a>Next steps
+Additional resources about about [Monitoring Azure SQL Database using dynamic management views](sql-database-monitoring-with-dmvs.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,74 +1,84 @@
 <properties
-	pageTitle="從 Azure SQL Database 備份還原單一資料表 | Microsoft Azure"
-	description="了解如何從 Azure SQL Database 備份還原單一資料表。"
-	services="sql-database"
-	documentationCenter=""
-	authors="dalechen"
-	manager="felixwu"
-	editor=""/>
+    pageTitle="Restore a single table from Azure SQL Database backup | Microsoft Azure"
+    description="Learn how to restore a single table from Azure SQL Database backup."
+    services="sql-database"
+    documentationCenter=""
+    authors="dalechen"
+    manager="felixwu"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/31/2016"
-	ms.author="daleche"/>
+    ms.service="sql-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/31/2016"
+    ms.author="daleche"/>
 
 
-# 如何從 Azure SQL Database 備份還原單一資料表
 
-您可能不小心修改了 SQL 資料庫中的某些資料，而想要還原受影響的單一資料表。本文說明如何從其中一個 SQL Database [自動備份](sql-database-automated-backups.md)還原資料庫中的單一資料表。
+# <a name="how-to-restore-a-single-table-from-an-azure-sql-database-backup"></a>How to restore a single table from an Azure SQL Database backup
 
-## 準備步驟︰重新命名資料表，並還原資料庫的複本
-1. 識別出 Azure SQL Database 中您想要以還原複本取代的資料表。使用 Microsoft SQL Management Studio 來重新命名資料表。例如，將資料表重新命名為 &lt;資料表名稱&gt;\_old。
+You may encounter a situation in which you accidentally modified some data in a SQL database and now you want to recover the single affected table. This article describes how to restore a single table in a database from one of the SQL Database [automatic backups](sql-database-automated-backups.md).
 
-	**注意** 為了避免被阻斷，請確定您要重新命名的資料表上沒有正在執行的活動。如果您遇到問題，則請確定在維護期間執行此程序。
+## <a name="preparation-steps:-rename-the-table-and-restore-a-copy-of-the-database"></a>Preparation steps: Rename the table and restore a copy of the database
+1. Identify the table in your Azure SQL database that you want to replace with the restored copy. Use Microsoft SQL Management Studio to rename the table. For example, rename the table as &lt;table name&gt;_old.
 
-2. 使用[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)步驟，將資料庫備份還原至您想要復原的時間點。
+    **Note** To avoid being blocked, make sure that there's no activity running on the table that you are renaming. If you encounter issues, make sure that perform this procedure during a maintenance window.
 
-	**注意**：
-	- 還原之資料庫的名稱會是「資料庫名稱+時間戳記」的格式；例如，**Adventureworks2012\_2016-01-01T22-12Z**。此步驟不會覆寫伺服器上現有的資料庫名稱。這是一項安全措施，其目的是要讓您在卸除目前的資料庫並重新命名還原的資料庫以供生產環境使用之前，先確認還原的資料庫。
-	- 從「基本」至「進階」的所有效能層都會由服務自動備份，且不同層會有不同的備份保留計量。
+2. Restore a backup of your database to a point in time that you want to recover to using the [Point-In_Time Restore](sql-database-recovery-using-backups.md#point-in-time-restore) steps.
 
-| 資料庫還原 | 基本層 | 標準層 | 進階層 |
+    **Notes**:
+    - The name of the restored database will be in the DBName+TimeStamp format; for example, **Adventureworks2012_2016-01-01T22-12Z**. This step won't overwrite the existing database name on the server. This is a safety measure, and it's intended to allow you to verify the restored database before they drop their current database and rename the restored database for production use.
+    - All performance tiers from Basic to Premium are automatically backed up by the service, with varying backup retention metrics, depending on the tier:
+
+| DB Restore | Basic tier | Standard tiers | Premium tiers |
 | :-- | :-- | :-- | :-- |
-| 還原時間點 | 7 天內的任何還原點|35 天內的任何還原點| 35 天內的任何還原點|
+|  Point In Time Restore |  Any restore point within 7 days|Any restore point within 35 days| Any restore point within 35 days|
 
-## 使用 SQL Database 移轉工具，從還原的資料庫複製資料表
-1. 下載並安裝 [SQL Database 移轉精靈](https://sqlazuremw.codeplex.com)。
+## <a name="copying-the-table-from-the-restored-database-by-using-the-sql-database-migration-tool"></a>Copying the table from the restored database by using the SQL Database Migration tool
+1. Download and install the [SQL Database Migration Wizard](https://sqlazuremw.codeplex.com).
 
-2. 開啟 SQL Database 移轉精靈，並在 [選取程序] 頁面，選取 [分析/移轉] 底下的 [資料庫]，然後按 [下一步]。![SQL Database 移轉精靈 - 選取程序](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/1.png)
-3. 在 [連接至伺服器] 對話方塊中，套用下列設定：
- - **伺服器名稱**︰您的 SQL Azure 執行個體
- - **驗證**：**SQL Server 驗證**。輸入您的登入認證。
- - **資料庫**：**Master DB (列出所有資料庫)**。
- - **注意** 根據預設，精靈會儲存您的登入資訊。如果您不希望它儲存，請選取 [忘記登入資訊]。![SQL Database 移轉精靈 - 選取來源 - 步驟 1](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/2.png)
-4. 在 [選取來源] 對話方塊中，從 [準備步驟] 區段選取還原之資料庫的名稱以做為來源，然後按一下 [下一步]。
+2. Open the SQL Database Migration Wizard, on the **Select Process** page, select **Database under Analyze/Migrate**, and then click **Next**.
+![SQL Database Migration wizard - Select Process](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/1.png)
+3. In the **Connect to Server** dialog box, apply the following settings:
+ - **Server name**: Your SQL Azure instance
+ - **Authentication**: **SQL Server Authentication**. Enter your login credentials.
+ - **Database**: **Master DB (List all databases)**.
+ - **Note** By default the wizard saves your login information. If you don't want it to, select **Forget Login Information**.
+![SQL Database Migration wizard - Select Source - step 1](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/2.png)
+4. In the **Select Source** dialog box, select the restored database name from the **Preparation steps** section as your source, and then click **Next**.
 
-	![SQL Database 移轉精靈 - 選取來源 - 步驟 2](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/3.png)
+    ![SQL Database Migration wizard - Select Source - step 2](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/3.png)
 
-5. 在 [選擇物件] 對話方塊中，選取 [選取特定的資料庫物件] 選項，然後選取您要移轉到目標伺服器的資料表 (可選取多個)。![SQL Database 移轉精靈 - 選取物件](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/4.png)
+5. In the **Choose Objects** dialog box, select the **Select specific database objects** option, and then select the table(or tables) that you want to migrate to the target server.
+![SQL Database Migration wizard - Choose Objects](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/4.png)
 
-6. 在 [指令碼精靈摘要] 頁面中，當系統提示您是否準備好要產生 SQL 指令碼時，請按一下 [是]。也有可儲存 TSQL 指令碼的選項以供您稍後使用。![SQL Database 移轉精靈 - 指令碼精靈摘要](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/5.png)
+6. On the **Script Wizard Summary** page, click **Yes** when you’re prompted about whether you’re ready to generate a SQL script. You also have the option to save the TSQL Script for later use.
+![SQL Database Migration wizard - Script Wizard Summary](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/5.png)
 
-7. 在 [結果摘要] 頁面中，按一下 [下一步]。![SQL Database 移轉精靈 - 結果摘要](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/6.png)
+7. On the **Results Summary** page, click **Next**.
+![SQL Database Migration wizard - Results Summary](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/6.png)
 
-8. 在 [設定目標伺服器的連線] 頁面中，按一下 [連接至伺服器]，然後輸入詳細資訊如下：
-	- **伺服器名稱**：目標伺服器執行個體
-	- **驗證**：**SQL Server 驗證**。輸入您的登入認證。
-	- **資料庫**：**Master DB (列出所有資料庫)**。此選項會列出目標伺服器上的所有資料庫。
+8. On the **Setup Target Server Connection** page, click **Connect to Server**, and then enter the details as follows:
+    - **Server Name**: Target server instance
+    - **Authentication**: **SQL Server authentication**. Enter your login credentials.
+    - **Database**: **Master DB (List all databases)**. This option lists all the databases on the target server.
 
-	![SQL Database 移轉精靈 - 設定目標伺服器的連線](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/7.png)
+    ![SQL Database Migration wizard - Setup Target Server Connection](./media/sql-database-cloud-migrate-restore-single-table-azure-backup/7.png)
 
-9. 按一下 [連接]，選取資料表要移動至的目標資料庫，然後按 [下一步]。先前產生的指令碼應該會完成執行，且您應該會看到剛才移動的資料表已複製到目標資料庫。
+9. Click **Connect**, select the target database that you want to move the table to, and then click **Next**. This should finish running the previously generated script, and you should see the newly moved table copied to the target database.
 
-## 驗證步驟
-1. 查詢並測試剛才複製的資料表，以確認資料完整。經過確認之後，您就可以從 [準備步驟] 區段卸除已重新命名的資料表。(例如，&lt;資料表名稱&gt;\_old)。
+## <a name="verification-step"></a>Verification step
+1. Query and test the newly copied table to make sure that the data is intact. Upon confirmation, you can drop the renamed table form **Preparation steps** section. (for example, &lt;table name&gt;_old).
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[SQL Database 自動備份](sql-database-automated-backups.md)
+[SQL Database automatic backups](sql-database-automated-backups.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

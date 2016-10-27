@@ -1,68 +1,69 @@
 <properties 
-	pageTitle="App Service 環境的異地分散調整" 
-	description="了解如何透過流量管理員和 App Service 環境，使用異地分散功能水平調整應用程式。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="stefsch" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Geo Distributed Scale with App Service Environments" 
+    description="Learn how to horizontally scale apps using geo-distribution with Traffic Manager and App Service Environments." 
+    services="app-service" 
+    documentationCenter="" 
+    authors="stefsch" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/07/2016" 
-	ms.author="stefsch"/>
-
-# App Service 環境的異地分散調整
-
-## Overview ##
-需要極高延展性的應用程式案例，可能會超過單一應用程式部署可用的運算資源容量。例如，投票應用程式、體育活動及電視娛樂活動，都屬於需要極高延展性的案例。只要對單一區域內和跨區域的多個應用程式部署進行應用程式的水平相應放大，即可達到高延展性需求，以處理極高的負載需求。
-
-App Service 環境是水平相應放大的理想平台。在選取可支援已知要求率的 App Service 環境組態後，開發人員即可透過「千篇一律」的方式部署其他 App Service 環境，以獲得所需的尖峰負載容量。
-
-例如，假設在 App Service 環境組態上執行的應用程式已經過測試，每秒可處理 20K 個要求 (RPS)。如果所需的尖峰負載容量是 100K RPS，則可以建立並設定五 (5) 個 App Service 環境，以確保應用程式能夠處理最大預測負載。
-
-由於客戶通常會使用自訂 (或虛名) 網域存取應用程式，因此開發人員必須要有將應用程式要求分散到所有 App Service 環境執行個體的方法。使用 [Azure 流量管理員設定檔][AzureTrafficManagerProfile]解析自訂網域，是不錯的方式。流量管理員設定檔可設定為指向所有個別的 App Service 環境。流量管理員會根據流量管理員設定檔中的負載平衡設定，自動將客戶分散到所有的 App Service 環境間。無論所有的 App Service 環境是部署在單一 Azure 區域，還是跨多個 Azure 區域部署於世界各地，此方法都可運作。
-
-此外，由於客戶是透過虛名網域存取應用程式的，因此無從得知執行應用程式的 App Service 環境數目。因此，開發人員可以根據觀察到的流量負載，快速且輕鬆地新增和移除 App Service 環境。
-
-下方的概念圖表說明在單一區域內以水平方式相應放大至三個 App Service 環境的應用程式。
-
-![概念性架構][ConceptualArchitecture]
-
-本主題的其餘部分將逐步解說使用多個 App Service 環境為範例應用程式設定分散式拓撲所需的步驟。
-
-## 規劃拓樸 ##
-在建置分散式應用程式的使用量之前，最好先備妥幾項資訊。
-
-- **應用程式的自訂網域：**客戶將用來存取應用程式的自訂網域名稱為何？ 範例應用程式的自訂網域名稱是 *www.scalableasedemo.com*
-- **流量管理員網域：**建立 [Azure 流量管理員設定檔][AzureTrafficManagerProfile]時必須選擇網域名稱。此名稱會與 *trafficmanager.net* 尾碼結合，以註冊流量管理員所管理的網域項目。就範例應用程式而言，選擇的名稱是 *scalable-ase-demo*。因此，流量管理員所管理的完整網域名稱是 *scalable-ase-demo.trafficmanager.net*。
-- **調整應用程式使用量的策略：**應用程式使用量是否會分散到單一區域中的多個 App Service 環境？ 多個區域嗎？ 兩種方法混合搭配使用嗎？ 決策依據應來自於客戶流量的來源位置，以及其餘應用程式的支援後端基礎結構的可調整性。例如，對於 100% 無狀態的應用程式，可以使用每一 Azure 區域多個 App Service 環境的組合，乘以跨多個 Azure 區域部署的 App Service 環境數，來大幅調整應用程式。由於有 15 個以上的公用 Azure 區域可供選擇，客戶將可真正建置全球性超高延展性的應用程式使用量。在本文所使用的範例應用程式中，有三個 App Service 環境建立在單一 Azure 區域 (美國中南部) 中。
-- **App Service 環境的命名慣例：**每個 App Service 環境都需要唯一名稱。有兩個或更多 App Service 環境時，命名慣例將有助於識別每個 App Service 環境。範例應用程式中使用簡單的命名慣例。三個 App Service 環境的名稱分別是 *fe1ase*、*fe2ase* 和 *fe3ase*。
-- **應用程式的命名慣例：**由於將會部署多個應用程式執行個體，每個部署的應用程式執行個體都要有名稱。有一項鮮為人知、但非常方便的 App Service 環境功能，是多個 App Service 環境可以使用相同的應用程式名稱。由於每個 App Service 環境都有唯一的網域尾碼，開發人員可以選擇在每個環境中重複使用相同的應用程式名稱。例如，開發人員可以將應用程式命名如下：*myapp.foo1.p.azurewebsites.net*、*myapp.foo2.p.azurewebsites.net*、*myapp.foo3.p.azurewebsites.net*，依此類推。但範例應用程式的每個應用程式執行個體也都有唯一名稱。所使用的應用程式執行個體名稱是 *webfrontend1*、*webfrontend2* 和 *webfrontend3*。
+    ms.service="app-service" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/07/2016" 
+    ms.author="stefsch"/>   
 
 
-## 設定流量管理員設定檔 ##
-將應用程式的多個執行個體部署在多個 App Service 環境上之後，可以使用流量管理員來註冊個別的應用程式執行個體。就範例應用程式而言，*scalable-ase-demo.trafficmanager.net* 必須要有流量管理員設定檔，以將客戶路由傳送至任何下列已部署的應用程式執行個體：
+# <a name="geo-distributed-scale-with-app-service-environments"></a>Geo Distributed Scale with App Service Environments
 
-- **webfrontend1.fe1ase.p.azurewebsites.net：**部署在第一個 App Service 環境上的範例應用程式執行個體。
-- **webfrontend2.fe2ase.p.azurewebsites.net：**部署在第二個 App Service 環境上的範例應用程式執行個體。
-- **webfrontend3.fe3ase.p.azurewebsites.net：**部署在第三個 App Service 環境上的範例應用程式執行個體。
+## <a name="overview"></a>Overview ##
+Application scenarios which require very high scale can exceed the compute resource capacity available to a single deployment of an app.  Voting applications, sporting events, and televised entertainment events are all examples of scenarios that require extremely high scale. High scale requirements can be met by horizontally scaling out apps, with multiple app deployments being made within a single region, as well as across regions, to handle extreme load requirements.
 
-要註冊多個 Azure App Service 端點 (全都執行於**相同的** Azure 區域中)，最簡單的方式是使用 Powershell [Azure Resource Manager 流量管理員支援][ARMTrafficManager]。
+App Service Environments are an ideal platform for horizontal scale out.  Once an App Service Environment configuration has been selected that can support a known request rate, developers can deploy additional App Service Environments in "cookie cutter" fashion to attain a desired peak load capacity.
 
-第一個步驟是建立 Azure 流量管理員設定檔。下列程式碼說明如何為範例應用程式建立設定檔：
+For example suppose an app running on an App Service Environment configuration has been tested to handle 20K requests per second (RPS).  If the desired peak load capacity is 100K RPS, then five (5) App Service Environments can be created and configured to ensure the application can handle the maximum projected load.
+
+Since customers typically access apps using a custom (or vanity) domain, developers need a way to distribute app requests across all of the App Service Environment instances.  A great way to accomplish this is to resolve the custom domain using an [Azure Traffic Manager profile][AzureTrafficManagerProfile].  The Traffic Manager profile can be configured to point at all of the individual App Service Environments.  Traffic Manager will automatically handle distributing customers across all of the App Service Environments based on the load balancing settings in the Traffic Manager profile.  This approach works regardless of whether all of the App Service Environments are deployed in a single Azure region, or deployed worldwide across multiple Azure regions.
+
+Furthermore, since customers access apps through the vanity domain, customers are unaware of the number of App Service Environments running an app.  As a result developers can quickly and easily add, and remove, App Service Environments based on observed traffic load.
+
+The conceptual diagram below depicts an app horizontally scaled out across three App Service Environments within a single region.
+
+![Conceptual Architecture][ConceptualArchitecture] 
+
+The remainder of this topic walks through the steps involved with setting up a distributed topology for the sample app using multiple App Service Environments.
+
+## <a name="planning-the-topology"></a>Planning the Topology ##
+Before building out a distributed app footprint, it helps to have a few pieces information ahead of time.
+
+- **Custom domain for the app:**  What is the custom domain name that customers will use to access the app?  For the sample app the custom domain name is *www.scalableasedemo.com*
+- **Traffic Manager domain:**  A domain name needs to be chosen when creating an [Azure Traffic Manager profile][AzureTrafficManagerProfile].  This name will be combined with the *trafficmanager.net* suffix to register a domain entry that is managed by Traffic Manager.  For the sample app, the name chosen is *scalable-ase-demo*.  As a result the full domain name that is managed by Traffic Manager is *scalable-ase-demo.trafficmanager.net*.
+- **Strategy for scaling the app footprint:**  Will the application footprint be distributed across multiple App Service Environments in a single region?  Multiple regions?  A mix-and-match of both approaches?  The decision should be based on expectations of where customer traffic will originate, as well as how well the rest of an app's supporting back-end infrastructure can scale.  For example, with a 100% stateless application, an app can be massively scaled using a combination of multiple App Service Environments per Azure region,  multiplied by App Service Environments deployed across multiple Azure regions.  With 15+ public Azure regions available to choose from, customers can truly build a world-wide hyper-scale application footprint.  For the sample app used for this article, three App Service Environments were created in a single Azure region (South Central US).
+- **Naming convention for the App Service Environments:**  Each App Service Environment requires a unique name.  Beyond one or two App Service Environments it is helpful to have a naming convention to help identify each App Service Environment.  For the sample app a simple naming convention was used.  The names of the three App Service Environments are *fe1ase*, *fe2ase*, and *fe3ase*.
+- **Naming convention for the apps:**  Since multiple instances of the app will be deployed, a name is needed for each instance of the deployed app.  One little-known but very convenient feature of App Service Environments is that the same app name can be used across multiple App Service Environments.  Since each App Service Environment has a unique domain suffix, developers can choose to re-use the exact same app name in each environment.  For example a developer could have apps named as follows:  *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net*, etc.  For the sample app though each app instance also has a unique name.  The app instance names used are *webfrontend1*, *webfrontend2*, and *webfrontend3*.
+
+
+## <a name="setting-up-the-traffic-manager-profile"></a>Setting up the Traffic Manager Profile ##
+Once multiple instances of an app are deployed on multiple App Service Environments, the  individual app instances can be registered with Traffic Manager.  For the sample app a Traffic Manager profile is needed for *scalable-ase-demo.trafficmanager.net* that can route customers to any of the following deployed app instances:
+
+- **webfrontend1.fe1ase.p.azurewebsites.net:**  An instance of the sample app deployed on the first App Service Environment.
+- **webfrontend2.fe2ase.p.azurewebsites.net:**  An instance of the sample app deployed on the second App Service Environment.
+- **webfrontend3.fe3ase.p.azurewebsites.net:**  An instance of the sample app deployed on the third App Service Environment.
+
+The easiest way to register multiple Azure App Service endpoints, all running in the **same** Azure region, is with the Powershell [Azure Resource Manager Traffic Manager support][ARMTrafficManager].  
+
+The first step is to create an Azure Traffic Manager profile.  The code below shows how the profile was created for the sample app:
 
     $profile = New-AzureTrafficManagerProfile –Name scalableasedemo -ResourceGroupName yourRGNameHere -TrafficRoutingMethod Weighted -RelativeDnsName scalable-ase-demo -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
 
-請留意 *RelativeDnsName* 參數如何設為 *scalable-ase-demo*。這會說明網域名稱 *scalable-ase-demo.trafficmanager.net* 是如何建立，並與流量管理員設定檔相關聯的。
+Notice how the *RelativeDnsName* parameter was set to *scalable-ase-demo*.  This is how the domain name *scalable-ase-demo.trafficmanager.net* is created and associated with a Traffic Manager profile.
 
-*TrafficRoutingMethod* 參數會定義負載平衡原則，供流量管理員用來判斷如何將客戶負載分散到所有可用的端點。此範例中選擇了 [加權] 方法。這會使客戶要求根據與每個端點相關聯的相對加權，分散到所有已註冊的應用程式端點間。
+The *TrafficRoutingMethod* parameter defines the load balancing policy Traffic Manager will use to determine how to spread customer load across all of the available endpoints.  In this example the *Weighted* method was chosen.  This will result in customer requests being spread across all of the registered application endpoints based on the relative weights associated with each endpoint. 
 
-在建立設定檔後，每個應用程式執行個體都會新增至設定檔做為原生 Azure 端點。下列程式碼會擷取每個前端 Web 應用程式的參考，然後透過「TargetResourceId」參數將每個應用程式新增為流量管理員端點。
+With the profile created, each app instance is added to the profile as a native Azure endpoint.  The code below fetches a reference to each front end web app, and then adds each app as a Traffic Manager endpoint by way of the *TargetResourceId* parameter.
 
 
     $webapp1 = Get-AzureRMWebApp -Name webfrontend1
@@ -76,60 +77,64 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
     
     Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
     
-請留意，對於每個應用程式執行個體分別會有一個 *Add-AzureTrafficManagerEndpointConfig* 呼叫。每個 Powershell 命令的「TargetResourceId」參數會參考三個已部署的應用程式執行個體的其中一個。流量管理員設定檔會將負載分散在設定檔中所註冊的所有三個端點上。
+Notice how there is one call to *Add-AzureTrafficManagerEndpointConfig* for each individual app instance.  The *TargetResourceId* parameter in each Powershell command references one of the three deployed app instances.  The Traffic Manager profile will spread load across all three endpoints registered in the profile.
 
-三個端點都會使用相同的值 (10) 做為 *Weight* 參數。這會使流量管理員將客戶要求較平均地分散在所有的三個應用程式執行個體間。
+All of the three endpoints use the same value (10) for the *Weight* parameter.  This results in Traffic Manager spreading customer requests across all three app instances relatively evenly. 
 
 
-## 將應用程式的自訂網域指向流量管理員網域 ##
-最後一個必要步驟是將應用程式的自訂網域指向流量管理員網域。就範例應用程式而言，這意味著將 *www.scalableasedemo.com* 指向 *scalable-ase-demo.trafficmanager.net*。此步驟必須以管理自訂網域的網域註冊機構來完成。
+## <a name="pointing-the-app's-custom-domain-at-the-traffic-manager-domain"></a>Pointing the App's Custom Domain at the Traffic Manager Domain ##
+The final step necessary is to point the custom domain of the app at the Traffic Manager domain.  For the sample app this means pointing *www.scalableasedemo.com* at *scalable-ase-demo.trafficmanager.net*.  This step needs to be completed with the domain registrar that manages the custom domain.  
 
-若使用註冊機構的網域管理工具，必須建立一個將自訂網域指向流量管理員網域的 CNAME 記錄。下圖顯示此 CNAME 組態的範例：
+Using your registrar's domain management tools, a CNAME records needs to be created which points the custom domain at the Traffic Manager domain.  The picture below shows an example of what this CNAME configuration looks like:
 
-![自訂網域的 CNAME][CNAMEforCustomDomain]
+![CNAME for Custom Domain][CNAMEforCustomDomain] 
 
-雖然本主題並未說明，但請記住，每個應用程式執行個體也都需要註冊其自訂網域。否則，在對應用程式執行個體發出要求時，如果應用程式並未註冊應用程式的自訂網域，要求將會失敗。
+Although not covered in this topic, remember that each individual app instance needs to have the custom domain registered with it as well.  Otherwise if a request makes it to an app instance, and the application does not have the custom domain registered with the app, the request will fail.  
 
-在此範例中，自訂網域是 *www.scalableasedemo.com*，且每個應用程式執行個體都有其相關聯的自訂網域。
+In this example the custom domain is *www.scalableasedemo.com*, and each application instance has the custom domain associated with it.
 
-![自訂網域][CustomDomain]
+![Custom Domain][CustomDomain] 
 
-如需註冊 Azure App Service 應用程式的自訂網域的歸納資訊，請參閱下列有關於[註冊自訂網域][RegisterCustomDomain]的文章。
+For a recap of of registering a custom domain with Azure App Service apps, see the following article on [registering custom domains][RegisterCustomDomain].
 
-## 嘗試使用分散式拓撲 ##
-使用流量管理員及 DNS 組態的最終結果，是 *www.scalableasedemo.com* 的要求會歷經下列順序的流程：
+## <a name="trying-out-the-distributed-topology"></a>Trying out the Distributed Topology ##
+The end result of the Traffic Manager and DNS configuration is that requests for *www.scalableasedemo.com* will flow through the following sequence:
 
-1. 瀏覽器或裝置執行 *www.scalableasedemo.com* 的 DNS 查閱
-2. 網域註冊機構上的 CNAME 項目使 DNS 查閱重新導向至 Azure 流量管理員。
-3. 對其中一個 Azure 流量管理員 DNS 伺服器執行 *scalable-ase-demo.trafficmanager.net* 的 DNS 查閱。
-4. 根據負載平衡原則 (稍早建立流量管理員設定檔時所使用的 *TrafficRoutingMethod* 參數)，流量管理員會選取其中一個已設定的端點，並將該端點的 FQDN 傳回至瀏覽器或裝置。
-5.  由於端點的 FQDN 是在 App Service 環境上執行的應用程式執行個體的 URL，因此瀏覽器或裝置會要求 Microsoft Azure DNS 伺服器將 FQDN 解析為 IP 位址。
-6. 瀏覽器或裝置會將 HTTP/S 要求傳送至此 IP 位址。
-7. 要求會送達在其中一個 App Service 環境上執行的應用程式執行個體之一。
+1. A browser or device will make a DNS lookup for *www.scalableasedemo.com*
+2. The CNAME entry at the domain registrar causes the DNS lookup to be redirected to Azure Traffic Manager.
+3. A DNS lookup is made for *scalable-ase-demo.trafficmanager.net* against one of the Azure Traffic Manager DNS servers.
+4. Based on the load balancing policy (the *TrafficRoutingMethod* parameter used earlier when creating the Traffic Manager profile), Traffic Manager will select one of the configured endpoints and return the FQDN of that endpoint to the browser or device.
+5.  Since the FQDN of the endpoint is the Url of an app instance running on an App Service Environment, the browser or device will ask a Microsoft Azure DNS server to resolve the FQDN to an IP address. 
+6. The browser or device will send the HTTP/S request to the IP address.  
+7. The request will arrive at one of the app instances running on one of the App Service Environments.
 
-下列主控台圖片顯示範例應用程式自訂網域的 DNS 查閱；該網域已成功解析為在三個範例 App Service 環境之一 (在此案例中圍三個 App Service 環境中的第二個) 上執行的應用程式執行個體：
+The console picture below shows a DNS lookup for the sample app's custom domain successfully resolving to an app instance running on one of the three sample App Service Environments (in this case the second of the three App Service Environments):
 
-![DNS 查閱][DNSLookup]
+![DNS Lookup][DNSLookup] 
 
-## 其他連結和資訊 ##
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+## <a name="additional-links-and-information"></a>Additional Links and Information ##
+All articles and How-To's for App Service Environments are available in the [README for Application Service Environments](../app-service/app-service-app-service-environments-readme.md).
 
-Powershell 的相關文件：[Azure Resource Manager 流量管理員支援][ARMTrafficManager]。
+Documentation on the Powershell [Azure Resource Manager Traffic Manager support][ARMTrafficManager].  
 
 [AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
 [AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- LINKS -->
-[AzureTrafficManagerProfile]: https://azure.microsoft.com/documentation/articles/traffic-manager-manage-profiles/
-[ARMTrafficManager]: https://azure.microsoft.com/documentation/articles/traffic-manager-powershell-arm/
-[RegisterCustomDomain]: https://azure.microsoft.com/documentation/articles/web-sites-custom-domain-name/
+[AzureTrafficManagerProfile]:  https://azure.microsoft.com/documentation/articles/traffic-manager-manage-profiles/
+[ARMTrafficManager]:  https://azure.microsoft.com/documentation/articles/traffic-manager-powershell-arm/
+[RegisterCustomDomain]:  https://azure.microsoft.com/en-us/documentation/articles/web-sites-custom-domain-name/
 
 
 <!-- IMAGES -->
 [ConceptualArchitecture]: ./media/app-service-app-service-environment-geo-distributed-scale/ConceptualArchitecture-1.png
-[CNAMEforCustomDomain]: ./media/app-service-app-service-environment-geo-distributed-scale/CNAMECustomDomain-1.png
-[DNSLookup]: ./media/app-service-app-service-environment-geo-distributed-scale/DNSLookup-1.png
-[CustomDomain]: ./media/app-service-app-service-environment-geo-distributed-scale/CustomDomain-1.png
+[CNAMEforCustomDomain]:  ./media/app-service-app-service-environment-geo-distributed-scale/CNAMECustomDomain-1.png
+[DNSLookup]:  ./media/app-service-app-service-environment-geo-distributed-scale/DNSLookup-1.png
+[CustomDomain]:  ./media/app-service-app-service-environment-geo-distributed-scale/CustomDomain-1.png 
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

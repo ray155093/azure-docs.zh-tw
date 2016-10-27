@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 PowerShell 來檢視部署作業 | Microsoft Azure"
-   description="描述如何使用 Azure PowerShell 來偵測源自「資源管理員」部署的問題。"
+   pageTitle="View deployment operations with PowerShell | Microsoft Azure"
+   description="Describes how to use the Azure PowerShell to detect issues from Resource Manager deployment."
    services="azure-resource-manager,virtual-machines"
    documentationCenter=""
    tags="top-support-issue"
@@ -17,27 +17,28 @@
    ms.date="06/14/2016"
    ms.author="tomfitz"/>
 
-# 使用 Azure PowerShell 來檢視部署作業
+
+# <a name="view-deployment-operations-with-azure-powershell"></a>View deployment operations with Azure PowerShell
 
 > [AZURE.SELECTOR]
-- [入口網站](resource-manager-troubleshoot-deployments-portal.md)
+- [Portal](resource-manager-troubleshoot-deployments-portal.md)
 - [PowerShell](resource-manager-troubleshoot-deployments-powershell.md)
 - [Azure CLI](resource-manager-troubleshoot-deployments-cli.md)
 - [REST API](resource-manager-troubleshoot-deployments-rest.md)
 
-您可以透過 Azure PowerShell 檢視部署的作業。當您在部署期間收到錯誤時，您可能對於檢視作業最感興趣，所以本文著重於檢視失敗的作業。PowerShell 提供 Cmdlet，可讓您輕鬆地找到錯誤並判斷可能的修正方法。
+You can view the operations for a deployment through the Azure PowerShell. You may be most interested in viewing the operations when you have received an error during deployment so this article focuses on viewing operations that have failed. PowerShell provides cmdlets that enable you to easily find the errors and determine potential fixes.
 
 [AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
 
-部署之前先驗證您的範本和基礎結構，即可避免發生一些錯誤。您也可以記錄部署期間的要求和回應資訊，這在後續進行疑難排解時可能會有幫助。如需了解驗證，以及記錄要求和回應資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+You can avoid some errors by validating your template and infrastructure prior to deployment. You can also log additional request and response information during deployment that may be helpful later for troubleshooting. To learn about validating, and logging request and response information, see [Deploy a resource group with Azure Resource Manager template](resource-group-template-deploy.md).
 
-## 使用部署作業進行疑難排解
+## <a name="use-deployment-operations-to-troubleshoot"></a>Use deployment operations to troubleshoot
 
-1. 若要取得部署的整體狀態，請使用 **Get-AzureRmResourceGroupDeployment** 命令。您可以篩選結果，只取得失敗的部署。
+1. To get the overall status of a deployment, use the **Get-AzureRmResourceGroupDeployment** command. You can filter the results for only those deployments that have failed.
 
         Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup | Where-Object ProvisioningState -eq Failed
         
-    以下列格式傳回失敗的部署︰
+    Which returns the failed deployments in the following format:
         
         DeploymentName          : Microsoft.Template
         ResourceGroupName       : ExampleGroup
@@ -65,11 +66,11 @@
         Outputs                 :
         DeploymentDebugLogLevel :
 
-2. 每個部署通常由多個作業所組成，而每個作業代表部署程序中的一個步驟。若要探索部署有何問題，您通常需要查看有關部署作業的詳細資訊。您可以利用 **Get-AzureRmResourceGroupDeploymentOperation** 查看作業的狀態。
+2. Each deployment is usually made up of multiple operations, with each operation representing a step in the deployment process. To discover what went wrong with a deployment, you usually need to see details about the deployment operations. You can see the status of the operations with **Get-AzureRmResourceGroupDeploymentOperation**.
 
         Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName Microsoft.Template
         
-    以下列格式傳回多項作業︰
+    Which returns multiple operations with each one in the following format:
         
         Id             : /subscriptions/{guid}/resourceGroups/ExampleGroup/providers/Microsoft.Resources/deployments/Microsoft.Template/operations/A3EB2DA598E0A780
         OperationId    : A3EB2DA598E0A780
@@ -79,11 +80,11 @@
         PropertiesText : {duration:PT23.0227078S, provisioningOperation:Create, provisioningState:Succeeded,
                          serviceRequestId:0196828d-8559-4bf6-b6b8-8b9057cb0e23...}
 
-3. 若要取得有關失敗作業的詳細資訊，請擷取具有 [失敗] 狀態的作業屬性。
+3. To get more details about failed operations, retrieve the properties for operations with **Failed** state.
 
         (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object ProvisioningState -eq Failed
         
-    以下列格式傳回所有失敗的作業︰
+    Which returns all of the failed operations with each one in the following format:
         
         provisioningOperation : Create
         provisioningState     : Failed
@@ -97,41 +98,42 @@
                                 Microsoft.Network/publicIPAddresses/myPublicIP;
                                 resourceType=Microsoft.Network/publicIPAddresses; resourceName=myPublicIP}
 
-    請注意此作業的追蹤識別碼。您將在下一個步驟中使用該識別碼，以將重點放在特定的作業。
+    Note the tracking ID for the operation. You will use that in the next step to focus on a particular operation.
 
-4. 若要取得特定失敗作業的狀態訊息，請使用下列命令︰
+4. To get the status message of a particular failed operation, use the following command:
 
         ((Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object trackingId -eq f4ed72f8-4203-43dc-958a-15d041e8c233).StatusMessage.error
         
-    它會傳回：
+    Which returns:
         
         code           message                                                                        details
         ----           -------                                                                        -------
         DnsRecordInUse DNS record dns.westus.cloudapp.azure.com is already used by another public IP. {}
 
-## 使用稽核記錄檔進行疑難排解
+## <a name="use-audit-logs-to-troubleshoot"></a>Use audit logs to troubleshoot
 
 [AZURE.INCLUDE [resource-manager-audit-limitations](../includes/resource-manager-audit-limitations.md)]
 
-若要查看部署相關錯誤，請使用下列步驟 ︰
+To see errors for a deployment, use the following steps:
 
-1. 若要擷取記錄檔項目，請執行 **Get-AzureRmLog** 命令。您可以使用 **ResourceGroup** 和 **Status** 參數，只傳回單一資源群組失敗的事件。如果未指定開始和結束時間，則會傳回最後一個小時的項目。例如，若要擷取過去一小時失敗的作業，請執行︰
+1. To retrieve log entries, run the **Get-AzureRmLog** command. You can use the **ResourceGroup** and **Status** parameters to return only events that failed for a single resource group. If you do not specify a start and end time, entries for the last hour are returned.
+For example, to retrieve the failed operations for the past hour run:
 
         Get-AzureRmLog -ResourceGroup ExampleGroup -Status Failed
 
-    您可以指定特定的時間範圍。在下一個範例中，我們將尋找最後 1 天失敗的動作。
+    You can specify a particular timespan. In the next example, we'll look for failed actions for the last day. 
 
         Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-1) -Status Failed
       
-    或者，您可以針對失敗的動作設定確切的開始和結束時間︰
+    Or, you can set an exact start and end time for failed actions:
 
         Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00 -Status Failed
 
-2. 如果這個命令傳回太多項目和屬性，您可以擷取 **Properties** 屬性以專注於進行稽核。我們也將加入 **DetailedOutput** 參數，以顯示錯誤訊息。
+2. If this command returns too many entries and properties, you can focus your auditing efforts by retrieving the **Properties** property. We'll also include the **DetailedOutput** parameter to see the error messages.
 
         (Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-1) -DetailedOutput).Properties
         
-    以下列格式傳回記錄檔項目的內容︰
+    Which returns properties of the log entries in the following format:
         
         Content
         -------
@@ -139,11 +141,11 @@
         {[statusCode, BadRequest], [statusMessage, {"error":{"code":"DnsRecordInUse","message":"DNS record dns.westus.clouda...
         {[statusCode, BadRequest], [serviceRequestId, a426f689-5d5a-448d-a2f0-9784d14c900a], [statusMessage, {"error":{"code...
 
-3. 根據這些結果，讓我們將焦點放在第二個元素。您可藉由查看該項目的狀態訊息，進一步精簡結果。
+3. Based on these results, let's focus on the second element. You can further refine the results by looking at the status message for that entry.
 
         ((Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput -StartTime (Get-Date).AddDays(-1)).Properties[1].Content["statusMessage"] | ConvertFrom-Json).error
         
-    它會傳回：
+    Which returns:
         
         code           message                                                                        details
         ----           -------                                                                        -------
@@ -151,10 +153,15 @@
 
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 如需解決特定部署錯誤的說明，請參閱[針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
-- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
-- 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+- For help with resolving particular deployment errors, see [Resolve common errors when deploying resources to Azure with Azure Resource Manager](resource-manager-common-deployment-errors.md).
+- To learn about using the audit logs to monitor other types of actions, see [Audit operations with Resource Manager](resource-group-audit.md).
+- To validate your deployment prior to executing it, see [Deploy a resource group with Azure Resource Manager template](resource-group-template-deploy.md).
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

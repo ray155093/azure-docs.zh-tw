@@ -1,38 +1,43 @@
 <properties
-	pageTitle="SQL Database 效能調整秘訣 | Microsoft Azure"
-	description="透過評估和改進來調整 Azure SQL Database 效能的秘訣。"
-	services="sql-database"
-	documentationCenter=""
-	authors="v-shysun"
-	manager="felixwu"
-	editor=""
-	keywords="sql 效能調整，資料庫效能調整，sql 效能調整秘訣，sql 資料庫效能調整"/>
+    pageTitle="SQL Database performance tuning tips | Microsoft Azure"
+    description="Tips for performance tuning in Azure SQL Database through evaluation and improvement."
+    services="sql-database"
+    documentationCenter=""
+    authors="v-shysun"
+    manager="felixwu"
+    editor=""
+    keywords="sql performance tuning, database performance tuning, sql performance tuning tips, sql database performance tuning"/>
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/13/2016"
-	ms.author="v-shysun"/>
-
-# SQL Database 效能調整秘訣
-您可以隨時變更單一資料庫的[服務層級](sql-database-service-tiers.md)或增加彈性資料庫集區的 eDTU 以提升效能，但您可能會想要先識別提升與最佳化查詢效能的機會。遺漏索引與查詢最佳化不足是資料庫效能不佳的常見原因。本文提供 SQL Database 的效能調整指引。
-
-[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
-
-## 評估和調整資料庫效能的步驟
-1.	在 [Azure 入口網站](https://portal.azure.com)中，按一下 [SQL Database]、選取資料庫，然後使用監視圖表尋找接近其上限的資源。預設會顯示 DTU 耗用量。按一下 [編輯] 來變更所顯示的時間範圍和值。
-2.	使用[查詢效能深入解析](sql-database-query-performance.md)來以 DTU 評估查詢，然後使用 [SQL Database 建議程式](sql-database-advisor.md)來檢視適用於建立和卸除索引、參數化查詢及修正結構描述問題的建議。
-3.	您可以使用動態管理檢視 (DMV)、擴充的事件 (Xevent) 和 SSMS 中的查詢存放區即時取得效能參數。如需詳細的監視和調整秘訣，請參閱[效能指引主題](sql-database-performance-guidance.md)。
+    ms.service="sql-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/13/2016"
+    ms.author="v-shysun"/>
 
 
-    > [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+# <a name="sql-database-performance-tuning-tips"></a>SQL Database performance tuning tips
+You can change the [service tier](sql-database-service-tiers.md) of a single database or increase the eDTUs of an elastic database pool at any time to improve performance, but you may want to identify opportunities to improve and optimize query performance first. Missing indexes and poorly optimized queries are common reasons for poor database performance. This article provides guidance for performance tuning in SQL Database.
+
+[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
+
+## <a name="steps-to-evaluate-and-tune-database-performance"></a>Steps to evaluate and tune database performance
+1.  In the [Azure Portal](https://portal.azure.com), click **SQL databases**, select the database, and then use the Monitoring chart to look for resources approaching their maximum. DTU consumption is shown by default. Click **Edit** to change the time range and values shown.
+2.  Use [Query Performance Insight](sql-database-query-performance.md) to evaluate the queries using DTUs, and then use [SQL Database Advisor](sql-database-advisor.md) to view recommendations for creating and dropping indexes, parameterizing queries, and fixing schema issues.
+3.  You can use dynamic management views (DMVs), Extended Events (Xevents), and the Query Store in SSMS to get performance parameters in real time. See the [performance guidance topic](sql-database-performance-guidance.md) for detailed monitoring and tuning tips.
 
 
-## 使用更多資源提升資料庫效能的步驟
-1.	若是單一資料庫，您可以視需要[變更服務層級](sql-database-scale-up.md)以提升資料庫效能。
-2.	若是多個資料庫，請考慮使用[彈性資料庫集區](sql-database-elastic-pool-guidance.md)自動調整資源。
+    > [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+## <a name="steps-to-improve-database-performance-with-more-resources"></a>Steps to improve database performance with more resources
+1.  For single databases, you can [change service tiers](sql-database-scale-up.md) on-demand to improve database performance.
+2.  For multiple databases, consider using [elastic database pools](sql-database-elastic-pool-guidance.md) to scale resources automatically.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,98 +1,99 @@
 <properties 
-	pageTitle="安全地從 App Service 環境連接到後端資源" 
-	description="了解如何安全地從 App Service 環境連接到後端資源。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="ccompy" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Securely Connecting to BackEnd Resources from an App Service Environment" 
+    description="Learn about how to securely connect to backend resources from an App Service Environment." 
+    services="app-service" 
+    documentationCenter="" 
+    authors="stefsch" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/11/2016" 
-	ms.author="stefsch"/>
-
-# 安全地從 App Service 環境連接到後端資源 #
-
-## 概觀 ##
-因為 App Service 環境一律會在 Azure Resource Manager 虛擬網路或者傳統式部署模型[虛擬網路][virtualnetwork]兩者之一中建立，從 App Service 環境傳出至其他後端資源的連線可以獨佔方式透過虛擬網路傳送。在 2016 年 6 月所進行的最新變更之後，ASE 也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。
-
-例如，SQL Server 可能會在已鎖定連接埠 1433 的虛擬機器叢集上執行。此端點可能已納入 ACL，只允許從相同虛擬網路上的其他資源進行存取。
-
-另一個例子則是，敏感性端點可能會在內部執行並透過[站台對站台][SiteToSite]或 [Azure ExpressRoute][ExpressRoute] 連線連接至 Azure。因此，只有虛擬網路中連接到站台對站台或 ExpressRoute 通道的資源能夠存取內部部署端點。
-
-在上述這些案例中，在 App Service 環境上執行的應用程式將能夠安全地連接到各種伺服器和資源。從 App Service 環境中執行之應用程式送至相同虛擬網路中私密端點 (或連接到相同的虛擬網路) 的輸出流量，只會透過虛擬網路傳送。送至私密端點的輸出流量不會透過公用網際網路傳送。
-
-從 App Service 環境輸出至虛擬網路內端點的流量有一點值得注意。App Service 環境無法連線到與 App Service 環境位於「相同」子網路的虛擬機器端點。只要 App Service 環境是部署到保留給 App Service 環境專用的子網路中，這通常應該不致於構成問題。
-
-[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
-
-## 輸出連線和 DNS 需求 ##
-為了讓 App Service 環境正確運作，它需要不同端點的輸出存取權。[ExpressRoute 的網路組態](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity)文章的＜需要的網路連線＞一節中有提供 ASE 所使用的外部端點完整清單。
-
-App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如果 DNS 設定在建立 App Service 環境之後因為任何原因而變更，開發人員可以強制 App Service 環境挑選新的 DNS 組態。使用位於入口網站中 [App Service 環境管理] 刀鋒視窗頂端的 [重新啟動] 圖示觸發輪流環境重新開機，會導致環境挑選新的 DNS 組態。
-
-也建議事先在虛擬網路上設定任何自訂 DNS 伺服器，再建立 App Service 環境。如果在建立 App Service 環境時變更虛擬網路的 DNS 組態，則會導致 App Service 環境建立程序失敗。同樣地，若自訂 DNS 伺服器存在於 VPN 閘道的另一端，且 DNS 伺服器無法連線或使用，則 App Service 環境建立程序也會失敗。
-
-## 連接至 SQL Server
-常見的 SQL Server 組態會有在連接埠 1433 上接聽的端點：
-
-![SQL Server 端點][SqlServerEndpoint]
-
-有兩種方法可限制送至此端點的流量：
+    ms.service="app-service" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/04/2016" 
+    ms.author="stefsch"/>   
 
 
-- [網路存取控制清單][NetworkAccessControlLists] \(網路 ACL)
+# <a name="securely-connecting-to-backend-resources-from-an-app-service-environment"></a>Securely Connecting to Backend Resources from an App Service Environment #
 
-- [網路安全性群組][NetworkSecurityGroups]
+## <a name="overview"></a>Overview ##
+Since an App Service Environment is always created in **either** an Azure Resource Manager virtual network, **or** a classic deployment model [virtual network][virtualnetwork], outbound connections from an App Service Environment to other backend resources can flow exclusively over the virtual network.  With a recent change made in June 2016, ASEs can also be deployed into virtual networks that use either public address ranges, or RFC1918 address spaces (i.e. private addresses).  
+
+For example, there may be a SQL Server running on a cluster of virtual machines with port 1433 locked down.  The endpoint may be ACLd to only allow access from other resources on the same virtual network.  
+
+As another example, sensitive endpoints may run on-premises and be connected to Azure via either [Site-to-Site][SiteToSite] or [Azure ExpressRoute][ExpressRoute] connections.  As a result, only resources in virtual networks connected to the Site-to-Site or ExpressRoute tunnels will be able to access on-premises endpoints.
+
+For all of these scenarios, apps running on an App Service Environment will be able to securely connect to the various servers and resources.  Outbound traffic from apps running in an App Service Environment to private endpoints in the same virtual network (or connected to the same virtual network), will only flow over the virtual network.  Outbound traffic to private endpoints will not flow over the public Internet.
+
+One caveat applies to outbound traffic from an App Service Environment to endpoints within a virtual network.  App Service Environments cannot reach endpoints of virtual machines located in the **same** subnet as the App Service Environment.  This normally should not be a problem as long as App Service Environments are deployed into a subnet reserved for exclusive use by only the App Service Environment.
+
+[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)] 
+
+## <a name="outbound-connectivity-and-dns-requirements"></a>Outbound Connectivity and DNS Requirements ##
+For an App Service Environment to function properly, it requires outbound access to various endpoints. A full list of the external endpoints used by an ASE is in the "Required Network Connectivity" section of the [Network Configuration for ExpressRoute](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) article.
+
+App Service Environments require a valid DNS infrastructure configured for the virtual network.  If for any reason the DNS configuration is changed after an App Service Environment has been created, developers can force an App Service Environment to pick up the new DNS configuration.  Triggering a rolling environment reboot using the "Restart" icon located at the top of the App Service Environment management blade in the portal will cause the environment to pick up the new DNS configuration.
+
+It is also recommended that any custom DNS servers on the vnet be setup ahead of time prior to creating an App Service Environment.  If a virtual network's DNS configuration is changed while an App Service Environment is being created, that will result in the App Service Environment creation process failing.  In a similar vein, if a custom DNS server exists on the other end of a VPN gateway, and the DNS server is unreachable or unavailable, the App Service Environment creation process will also fail.
+
+## <a name="connecting-to-a-sql-server"></a>Connecting to a SQL Server
+A common SQL Server configuration has an endpoint listening on port 1433:
+
+![SQL Server Endpoint][SqlServerEndpoint]
+
+There are two approaches for restricting traffic to this endpoint:
 
 
-## 利用網路 ACL 限制存取
+- [Network Access Control Lists][NetworkAccessControlLists] (Network ACLs)
 
-使用網路存取控制清單可以保護連接埠 1433。下列範例將源自虛擬網路內部的用戶端位址列入白名單，並封鎖對所有其他用戶端的存取。
+- [Network Security Groups][NetworkSecurityGroups]
 
-![網路存取控制清單範例][NetworkAccessControlListExample]
 
-在與 SQL Server 相同虛擬網路的 App Service 環境中執行的所有應用程式，都將能夠使用 SQL Server 虛擬機器的 **VNet 內部** IP 位址連接到 SQL Server 執行個體。
+## <a name="restricting-access-with-a-network-acl"></a>Restricting Access With a Network ACL
 
-下列連接字串範例會使用其私密 IP 位址參考 SQL Server。
+Port 1433 can be secured using a network access control list.  The example below whitelists client addresses originating from inside of a virtual network, and blocks access to all other clients.
+
+![Network Access Control List Example][NetworkAccessControlListExample]
+
+Any applications running in App Service Environment in the same virtual network as the SQL Server will be able to connect to the SQL Server instance using the **VNet internal** IP address for the SQL Server virtual machine.  
+
+The example connection string below references the SQL Server using its private IP address.
 
     Server=tcp:10.0.1.6;Database=MyDatabase;User ID=MyUser;Password=PasswordHere;provider=System.Data.SqlClient
 
-雖然虛擬機器也有公用端點，但使用公用 IP 位址的連接嘗試將會因為網路 ACL 而遭到拒絕。
+Although the virtual machine has a public endpoint as well, connection attempts using the public IP address will be rejected because of the network ACL. 
 
-## 利用網路安全性群組限制存取
-另一種保護存取安全的方法是利用網路安全性群組。網路安全性群組可以套用到個別的虛擬機器，或含有虛擬機器的子網路。
+## <a name="restricting-access-with-a-network-security-group"></a>Restricting Access With a Network Security Group
+An alternative approach for securing access is with a network security group.  Network security groups can be applied to individual virtual machines, or to a subnet containing virtual machines.
 
-首先需要建立網路安全性群組：
+First a network security group needs to be created:
 
     New-AzureNetworkSecurityGroup -Name "testNSGexample" -Location "South Central US" -Label "Example network security group for an app service environment"
 
-利用網路安全性群組來限制僅只存取 VNet 內部流量極為容易。網路安全性群組中的預設規則只允許從相同虛擬網路中的其他網路用戶端存取。
+Restricting access to only VNet internal traffic is very simple with a network security group.  The default rules in a network security group only allow access from other network clients in the same virtual network.
 
-因此鎖定 SQL Server 的存取權，就如同將網路安全性群組及其預設規則套用到執行 SQL Server 的虛擬機器或含有虛擬機器的子網路一樣簡單。
+As a result locking down access to SQL Server is as simple as applying a network security group with its default rules to either the virtual machines running SQL Server, or the subnet containing the virtual machines.
 
-下列範例將網路安全性群組套用至包含的子網路：
+The sample below applies a network security group to the containing subnet:
 
     Get-AzureNetworkSecurityGroup -Name "testNSGExample" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-1'
     
-最終結果是一組可封鎖外部存取，同時允許 VNet 內部存取的安全性規則：
+The end result is a set of security rules that block external access, while allowing VNet internal access:
 
-![預設網路安全性規則][DefaultNetworkSecurityRules]
+![Default Network Security Rules][DefaultNetworkSecurityRules]
 
 
-## 開始使用
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+## <a name="getting-started"></a>Getting started
+All articles and How-To's for App Service Environments are available in the [README for Application Service Environments](../app-service/app-service-app-service-environments-readme.md).
 
-若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][IntroToAppServiceEnvironment]
+To get started with App Service Environments, see [Introduction to App Service Environment][IntroToAppServiceEnvironment]
 
-如需控制 App Service 環境輸入流量的詳細資訊，請參閱 [控制 App Service 環境的輸入流量][ControlInboundASE]
+For details around controlling inbound traffic to your App Service Environment, see [Controlling inbound traffic to an App Service Environment][ControlInboundASE]
 
-如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][AzureAppService]。
+For more information about the Azure App Service platform, see [Azure App Service][AzureAppService].
 
 [AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
@@ -101,18 +102,22 @@ App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如
 
 <!-- LINKS -->
 [virtualnetwork]: https://azure.microsoft.com/documentation/articles/virtual-networks-faq/
-[ControlInboundTraffic]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-control-inbound-traffic/
+[ControlInboundTraffic]:  http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-control-inbound-traffic/
 [SiteToSite]: https://azure.microsoft.com/documentation/articles/vpn-gateway-site-to-site-create/
 [ExpressRoute]: http://azure.microsoft.com/services/expressroute/
 [NetworkAccessControlLists]: https://azure.microsoft.com/documentation/articles/virtual-networks-acl/
 [NetworkSecurityGroups]: https://azure.microsoft.com/documentation/articles/virtual-networks-nsg/
-[IntroToAppServiceEnvironment]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-intro/
-[AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/
-[ControlInboundASE]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-control-inbound-traffic/
+[IntroToAppServiceEnvironment]:  http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-intro/
+[AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/ 
+[ControlInboundASE]:  http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-control-inbound-traffic/ 
 
 <!-- IMAGES -->
 [SqlServerEndpoint]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/SqlServerEndpoint01.png
 [NetworkAccessControlListExample]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/NetworkAcl01.png
-[DefaultNetworkSecurityRules]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/DefaultNetworkSecurityRules01.png
+[DefaultNetworkSecurityRules]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/DefaultNetworkSecurityRules01.png 
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

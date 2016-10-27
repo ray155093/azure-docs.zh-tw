@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="使用 Visual Studio 的已連接服務加入 Azure Active Directory | Microsoft Azure"
-   description="使用 Visual Studio 的 [加入已連接服務] 對話方塊加入 Azure Active Directory"
+   pageTitle="Adding an Azure Active Directory by using Connected Services in Visual Studio | Microsoft Azure"
+   description="Add an Azure Active Directory by using the Visual Studio Add Connected Services dialog box"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,47 +15,48 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 在 Visual Studio 中使用已連接服務加入 Azure Active Directory 
 
-##Overview
-使用 Azure Active Directory (Azure AD)，您可以對 ASP.NET MVC Web 應用程式或 Web API 服務中的 AD 驗證支援單一登入 (SSO)。透過 Azure AD 驗證，您的使用者可以使用其帳戶從 Azure AD 連接到您的 Web 應用程式。透過 Web API 的 Azure AD 驗證優點包括從 Web 應用程式公開 API 時的資料安全性會增強。有了 Azure AD，您不必以各自的帳戶和使用者管理作業來管理個別的驗證系統。
+# <a name="adding-an-azure-active-directory-by-using-connected-services-in-visual-studio"></a>Adding an Azure Active Directory by using Connected Services in Visual Studio 
 
-## 支援的專案類型
+##<a name="overview"></a>Overview
+By using Azure Active Directory (Azure AD), you can support Single Sign-On (SSO) for ASP.NET MVC web applications, or AD Authentication in Web API services. With Azure AD Authentication, your users can use their accounts from Azure AD to connect to your web applications. The advantages of Azure AD Authentication with Web API include enhanced data security when exposing an API from a web application. With Azure AD, you do not have to manage a separate authentication system with its own account and user management.
 
-您可以使用 [已連接服務] 對話方塊來連接到 Azure AD 中的下列專案類型。
+## <a name="supported-project-types"></a>Supported Project Types
 
-- ASP.NET MVC 專案
+You can use the Connected Services dialog to connect to Azure AD in the following project types.
 
-- ASP.NET Web API 專案
+- ASP.NET MVC Projects
 
-
-### 使用已連接服務對話方塊連接到 Azure AD
-
-1. 確定您具有 Azure 帳戶。如果您沒有 Azure 帳戶，可以註冊來[免費試用](http://go.microsoft.com/fwlink/?LinkId=518146)。
-
-1. 在 Visual Studio 中，開啟您專案中 [參考] 節點的捷徑功能表，然後選擇 [加入已連接服務]。
-1. 選取 [Azure AD 驗證]，然後選擇 [設定]。
-
-    ![選擇加入 Azure AD 驗證](./media/vs-azure-tools-connected-services-add-active-directory/connected-services-add-active-directory.png)
-
-1. 在 [設定 Azure AD 驗證] 的第一頁上，核取 [使用 Azure AD 設定單一登入]。
-
-    如果您的專案是使用另一份驗證組態所設定，則精靈會警告您繼續執行將會停用先前的組態。
-
-    ![在精靈中設定 Azure AD](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-1.png)
-
-1.  在第二頁上，選取 [網域] 下拉式清單中的某個網域。網域清單包含 [帳戶設定] 對話方塊中所列的帳戶可存取的所有網域。或者，如果找不到您所尋找的網域 (例如 mydomain.onmicrosoft.com)，您可以輸入網域名稱。您可以選擇用以建立新 Azure AD 應用程式的選項，或使用現有 Azure AD 應用程式的設定。
-
-    ![在精靈中設定 Azure AD](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-2.png)
+- ASP.NET Web API Projects
 
 
-1. 在精靈的第三頁上，確認您已核取 [讀取目錄資料]。精靈將會填入 [用戶端密碼]。
+### <a name="connect-to-azure-ad-using-the-connected-services-dialog"></a>Connect to Azure AD using the Connected Services dialog
 
-    ![在精靈中設定 Azure AD](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-3.png)
+1. Make sure you have an Azure account. If you don't have an Azure account, you can sign up for a [free trial](http://go.microsoft.com/fwlink/?LinkId=518146).
 
-1. 選擇 [完成] 按鈕。對話方塊會加入必要的組態程式碼和參考，讓您的專案啟用 Azure AD 驗證。您可以在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)上看到 AD 網域。
+1. In Visual Studio, open the shortcut menu of the **References** node in your project and choose **Add Connected Services**.
+1. Select **Azure AD Authentication** and then choose **Configure**.
 
-1. 檢閱瀏覽器中顯示的 [開始使用] 頁面以取得後續步驟的概念，並檢閱 [發生什麼情形] 頁面來查看專案的修改內容。如果您想要檢查是否一切正常，請開啟其中一個已修改的組態檔，並確認其中包含 [發生什麼情形] 中所提及的設定。例如，ASP.NET MVC 專案中的主要 web.config 必須加入這些設定：
+    ![Choose Add Azure AD Authentication](./media/vs-azure-tools-connected-services-add-active-directory/connected-services-add-active-directory.png)
+
+1. On the first page of the **Configure Azure AD Authentication**, check **Configure Single Sign-on using Azure AD**.
+
+    If your project is configured with another authentication configuration, the wizard warns you that continuing will disable the previous configuration.
+
+    ![Configure Azure AD in the wizard](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-1.png)
+
+1.  On the second page, select a domain from the **Domain** drop-down list. The list of domains contains all domains accessible by the accounts listed in the Account Settings dialog. As an alternative, you can enter a domain name if you don’t find the one you’re looking for, such as mydomain.onmicrosoft.com. You can choose the option to create a new Azure AD app or use the settings from an existing Azure AD app. 
+
+    ![Configure Azure AD in the wizard](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-2.png)
+
+
+1. On the third page of the wizard, make sure that **Read directory data** is checked. The wizard will fill in the **Client secret**. 
+
+    ![Configure Azure AD in the wizard](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-3.png)
+
+1. Choose the **Finish** button. The dialog adds the necessary configuration code and references to enable your project for Azure AD authentication. You can see the AD domain on the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+
+1. Review the Getting Started page that appears in your browser for ideas on next steps, and the What Happened page to see how your project was modified. If you want to check that everything worked, open one of the modified configuration files and verify that the settings mentioned in What Happened are there. For example, the main web.config in an ASP.NET MVC project will have these settings added:
 
         <appSettings> 
             <add key="ida:ClientId" value="ClientId from the new Azure AD App" />
@@ -65,18 +66,23 @@
             <add key="ida:PostLogoutRedirectUri" value="The default redirect URI from the project" />
         </appSettings>
 
-## 您的專案修改方式
+## <a name="how-your-project-is-modified"></a>How your project is modified
 
-當您執行精靈時，Visual Studio 會將 Azure AD 和相關聯的參考加入至您的專案。您專案中的組態檔和程式碼也會進行修改，以加入 Azure AD 支援。Visual Studio 所做的特定修改視專案類型而定。如需深入了解 ASP.NET MVC 專案的修改方式，請參閱[發生什麼事：MVC 專案](http://go.microsoft.com/fwlink/p/?LinkID=513809)。而對於 Web API 專案，請參閱[發生什麼事：Web API 專案](http://go.microsoft.com/fwlink/p/?LinkId=513810)。
+When you run the wizard, Visual Studio adds Azure AD and associated references to your project. Configuration files and code files in your project are also modified to add support for Azure AD. The specific modifications that Visual Studio makes depend on the project type. For detailed information about how ASP.NET MVC projects are modified, see [What happened– MVC Projects](http://go.microsoft.com/fwlink/p/?LinkID=513809). For Web API projects, see [What happened – Web API Projects](http://go.microsoft.com/fwlink/p/?LinkId=513810).
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-提出問題並取得協助。
+Ask questions and get help.
 
- - [MSDN 論壇︰Azure AD](https://social.msdn.microsoft.com/forums/azure/home?forum=WindowsAzureAD)
+ - [MSDN Forum: Azure AD](https://social.msdn.microsoft.com/forums/azure/home?forum=WindowsAzureAD)
 
- - [Azure AD 文件](https://azure.microsoft.com/documentation/services/active-directory/)
+ - [Azure AD Documentation](https://azure.microsoft.com/documentation/services/active-directory/)
 
- - [部落格文章：Azure AD 簡介](http://blogs.msdn.com/b/brunoterkaly/archive/2014/03/03/introduction-to-windows-azure-active-directory.aspx)
+ - [Blog Post: Intro to Azure AD](http://blogs.msdn.com/b/brunoterkaly/archive/2014/03/03/introduction-to-windows-azure-active-directory.aspx)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

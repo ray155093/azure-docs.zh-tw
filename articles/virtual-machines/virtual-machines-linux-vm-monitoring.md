@@ -1,6 +1,6 @@
 <properties
-   pageTitle="啟用或停用 Azure VM 監視"
-   description="說明如何啟用或停用 Azure VM 監視"
+   pageTitle="Enable or Disabling Azure VM Monitoring"
+   description="Describes How to Enable or Disable Azure VM Monitoring"
    services="virtual-machines-linux"
    documentationCenter="virtual-machines"
    authors="kmouss"
@@ -16,46 +16,53 @@
    ms.date="02/08/2016"
    ms.author="kmouss"/>
    
-# 啟用或停用 Azure VM 監視
 
-本節說明如何在 Azure 上執行的虛擬機器上啟用或停用監視。如果從 [Azure 入口網站](https://portal.azure.com)部署，而且預設以 1 分鐘的期間提供監視圖形，則預設會在 Azure 虛擬機器上啟用監視。您可以使用入口網站或適用於 Mac、Linux 和 Windows (Azure CLI) 的 Azure 命令列介面啟用或停用監視。
+# <a name="enable-or-disable-azure-vm-monitoring"></a>Enable or Disable Azure VM Monitoring
 
-## 透過 Azure 入口網站啟用/停用監視
+This section describes how to enable or disable monitoring on Virtual machines running on Azure. By default monitoring is enabled on Azure Virtual machines if deployed from the [Azure portal](https://portal.azure.com) and monitoring graphs are provided by default with a 1-minute period. You can enable or disable monitoring using the portal or Azure Command-line Interface for Mac, Linux, and Windows (the Azure CLI). 
+
+## <a name="enable-/-disable-monitoring-through-the-azure-portal"></a>Enable / Disable Monitoring through the Azure Portal
  
-您可以啟用 Azure VM 的監視，在 1 分鐘的期間提供您的執行個體相關資料 (儲存體變更適用)。接著，詳細的診斷資料可用於入口網站圖形中的 VM，或透過 API 取得。根據預設，Azure 入口網站會啟用監視，但是您可以將它關閉，如下所述。您可以在 VM 正在執行或處於停止狀態時啟用監視。
+You can enable  monitoring of your Azure VM, which provides data about your instance in 1-minute periods. (storage changes apply). Detailed diagnostics data is then available for the VM in the portal graphs or through the API. By default, Azure portal enables monitoring, but you can turn it off as described below. You can enable monitoring while the VM is running or in stopped state.
 
-- 開啟 Azure 入口網站，位址是 **[https://portal.azure.com](https://portal.azure.com)**
+- Open the Azure portal at **[https://portal.azure.com](https://portal.azure.com)**
 
-- 在左側導覽中，按一下 [虛擬機器]。
+- In the left navigation, click Virtual machines.
 
-- 在 [虛擬機器] 清單中，選取執行中或已停止的執行個體。虛擬機器刀鋒視窗隨即開啟。
+- In the list Virtual machines, select a running or stopped instance. Virtual machine blad will open.
 
-- 按一下 [所有設定]。
+- Click "All settings".
 
-- 按一下 [診斷]。
+- Click "Diagnostics".
 
-- 將狀態變更為 [開啟] 或 [關閉]。您也可以在此刀鋒視窗中挑選您要為虛擬機器啟用的監視層級詳細資料。
+- Change status to On or Off. You can also pick in this blade the level of monitoring details you would like to enable for your virtual machine.
 
-[Azure.Note] 當您建立新的虛擬機器時，[診斷開啟] 開關是預設值
+[Azure.Note] The Diagnostics On switch is the default when you create a new virtual machine
 
-![透過 Azure 入口網站啟用/停用監視。][1]
+![Enable / Disable Monitoring through the Azure Portal.][1]
 
 
-## 使用 Azure CLI 啟用/停用監視
+## <a name="enable-/-disable-monitoring-with-azure-cli"></a>Enable / Disable Monitoring with Azure CLI
  
-啟用 Azure VM 的監視。
+To enable monitoring for an Azure VM.
 
-- 建立名為 PrivateConfig.json 且包含下列內容的檔案。{ "storageAccountName":"the storage account to receive data", "storageAccountKey":"the key of the account" }
-- 執行下列 Azure CLI 命令。
+- Create a file named such as PrivateConfig.json with the following content.
+        { "storageAccountName":"the storage account to receive data", "storageAccountKey":"the key of the account" }
+- Run the following Azure CLI command.
 
         azure vm extension set myvm LinuxDiagnostic Microsoft.OSTCExtensions 2.0 --private-config-path PrivateConfig.json
 
-[Azure.Note] 若有提供，您可以從 2.0 版變更為較新的版本。
+[Azure.Note] You can change from version 2.0 to a later version when available. 
 
-如需有關設定監視度量和範例的更多詳細資料，請瀏覽文件 - **[使用 Linux 診斷擴充功能監視 Linux VM 的效能和診斷資料](virtual-machines-linux-classic-diagnostic-extension.md)。
+For more details about configuring monitoring metrics and samples, visit the document - **[Using Linux Diagnostic Extension to Monitor Linux VM’s performance and diagnostic data](virtual-machines-linux-classic-diagnostic-extension.md).
 
 <!--Image references-->
 [1]: ./media/virtual-machines-linux-vm-monitoring/portal-enable-disable.png
  
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

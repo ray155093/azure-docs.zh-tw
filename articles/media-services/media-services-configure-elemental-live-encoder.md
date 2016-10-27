@@ -1,22 +1,23 @@
 <properties 
-	pageTitle="設定 Elemental Live 編碼器來傳送單一位元速率的即時串流 | Microsoft Azure" 
-	description="本主題會示範如何設定 Elemental Live 編碼器，藉此將單一位元速率的即時串流傳送到 AMS 通道，其已針對即時編碼而啟用。" 
-	services="media-services" 
-	documentationCenter="" 
-	authors="cenkdin" 
-	manager="dwrede" 
-	editor=""/>
+    pageTitle="Configure the Elemental Live encoder to send a single bitrate live stream | Microsoft Azure" 
+    description="This topic shows how to configure the Elemental Live encoder to send a single bitrate stream to AMS channels that are enabled for live encoding." 
+    services="media-services" 
+    documentationCenter="" 
+    authors="cenkdin" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="media-services" 
-	ms.workload="media" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="ne" 
-	ms.topic="article" 
-	ms.date="09/19/2016"
-	ms.author="cenkdin;anilmur;juliako"/>
+    ms.service="media-services" 
+    ms.workload="media" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="ne" 
+    ms.topic="article" 
+    ms.date="10/12/2016"
+    ms.author="cenkdin;anilmur;juliako"/>
 
-#使用 Elemental Live 編碼器來傳送單一位元速率的即時串流
+
+#<a name="use-the-elemental-live-encoder-to-send-a-single-bitrate-live-stream"></a>Use the Elemental Live encoder to send a single bitrate live stream
 
 > [AZURE.SELECTOR]
 - [Elemental Live](media-services-configure-elemental-live-encoder.md)
@@ -24,155 +25,158 @@
 - [Wirecast](media-services-configure-wirecast-live-encoder.md)
 - [FMLE](media-services-configure-fmle-live-encoder.md)
 
-本主題會示範如何設定 [Elemental Live](http://www.elementaltechnologies.com/products/elemental-live) 編碼器，藉此將單一位元速率的即時串流傳送到 AMS 通道，其已針對即時編碼而啟用。如需詳細資訊，請參閱[使用啟用的通道來以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
+This topic shows how to configure the [Elemental Live](http://www.elementaltechnologies.com/products/elemental-live) encoder to send a single bitrate stream to AMS channels that are enabled for live encoding.  For more information, see [Working with Channels that are Enabled to Perform Live Encoding with Azure Media Services](media-services-manage-live-encoder-enabled-channels.md).
 
-本教學課程示範如何使用 Azure 媒體服務總管 (AMSE) 工具管理 Azure 媒體服務 (AMS)。此工具只會在 Windows 電腦上執行。如果您是用 Mac 或 Linux，請使用 Azure 傳統入口網站建立[通道](media-services-portal-creating-live-encoder-enabled-channel.md#create-a-channel)和[程式](media-services-portal-creating-live-encoder-enabled-channel.md#create-and-manage-a-program)。
+This tutorial shows how to manage Azure Media Services (AMS) with Azure Media Services Explorer (AMSE) tool. This tool only runs on Windows PC. If you are on Mac or Linux, use the Azure portal to create [channels](media-services-portal-creating-live-encoder-enabled-channel.md#create-a-channel) and [programs](media-services-portal-creating-live-encoder-enabled-channel.md#create-and-manage-a-program).
 
-##必要條件
+##<a name="prerequisites"></a>Prerequisites
 
-- 必須具備使用 Elemental Live Web 介面來建立即時事件的工作知識。
-- [建立 Azure 媒體服務帳戶](media-services-create-account.md)
-- 請確定執行的串流端點至少有一個配置的串流單位。如需詳細資訊，請參閱[在媒體服務帳戶中管理串流端點](media-services-portal-manage-streaming-endpoints.md)。
-- 安裝最新版的 [AMSE](https://github.com/Azure/Azure-Media-Services-Explorer) 工具。
-- 啟動工具並連接到您的 AMS 帳戶。
+- Must have a working knowledge of using Elemental Live web interface to create live events.
+- [Create an Azure Media Services account](media-services-portal-create-account.md)
+- Ensure there is a Streaming Endpoint running with at least one streaming unit allocated. For more information, see [Manage Streaming Endpoints in a Media Services Account](media-services-portal-manage-streaming-endpoints.md).
+- Install the latest version of the [AMSE](https://github.com/Azure/Azure-Media-Services-Explorer) tool.
+- Launch the tool and connect to your AMS account.
 
-##秘訣
+##<a name="tips"></a>Tips
 
-- 請盡可能使用實體的有線網際網路連線。
-- 判斷頻寬需求的一項法則是將串流位元速率加倍。雖然這不是強制性需求，卻有助於減輕網路阻塞的影響。
-- 使用軟體式編碼器時，請關閉任何不必要的程式。
+- Whenever possible, use a hardwired internet connection.
+- A good rule of thumb when determining bandwidth requirements is to double the streaming bitrates. While this is not a mandatory requirement, it will help mitigate the impact of network congestion.
+- When using software based encoders, close out any unnecessary programs.
 
-## Elemental Live 與 RTP 嵌入
+## <a name="elemental-live-with-rtp-ingest"></a>Elemental Live with RTP ingest
 
-本節說明如何設定可透過 RTP 傳送單一位元速率的即時串流 Elemental Live 編碼器。如需詳細資訊，請參閱[透過 RTP 的 MPEG-TS 串流](media-services-manage-live-encoder-enabled-channels.md#channel)。
+This section shows how to configure the Elemental Live encoder that sends a single bitrate live stream over RTP.  For more information, see [MPEG-TS stream over RTP](media-services-manage-live-encoder-enabled-channels.md#channel).
 
-### 建立通道
+### <a name="create-a-channel"></a>Create a channel
 
-1.  在 AMSE 工具中，瀏覽至 [Live] 索引標籤，然後在通道區域內按一下滑鼠右鍵。從功能表選取 [建立通道...]。
+1.  In the AMSE tool, navigate to the **Live** tab, and right click within the channel area. Select **Create channel…** from the menu.
 
 ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental1.png)
 
-2. 指定通道名稱，描述欄位是選擇性的。在 [頻道設定] 下方，針對 [即時編碼] 選項選取 [**標準**]，並將 [輸入通訊協定] 設為 [**RTP (MPEG-TS)**]。您可以將所有其他設定保留現狀。
+2. Specify a channel name, the description field is optional. Under Channel Settings, select **Standard** for the Live Encoding option, with the Input Protocol set to **RTP (MPEG-TS)**. You can leave all other settings as is.
 
 
-請確認已選取 [**立即啟動新頻道**]。
+Make sure the **Start the new channel now** is selected.
 
-3. 按一下 [**建立頻道**]。
-
+3. Click **Create Channel**.
 ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental12.png)
 
->[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
+>[AZURE.NOTE] The channel can take as long as 20 minutes to start.
 
-當頻道啟動時，您可以[設定編碼器](media-services-configure-elemental-live-encoder.md#configure_elemental_rtp)。
+While the channel is starting you can [configure the encoder](media-services-configure-elemental-live-encoder.md#configure_elemental_rtp).
 
->[AZURE.IMPORTANT] 請注意，只要通道進入就緒狀態，就會開始計費。如需詳細資訊，請參閱[頻道的狀態](media-services-manage-live-encoder-enabled-channels.md#states)。
+>[AZURE.IMPORTANT] Note that billing starts as soon as Channel goes into a ready state. For more information, see [Channel's states](media-services-manage-live-encoder-enabled-channels.md#states).
 
-###<a id=configure_elemental_rtp></a>設定 Elemental Live 編碼器 
+###<a name="<a-id=configure_elemental_rtp></a>configure-the-elemental-live-encoder"></a><a id=configure_elemental_rtp></a>Configure the Elemental Live encoder 
 
-在本教學課程中會使用下列輸出設定。本章節的其餘部分將詳細說明組態步驟。
+In this tutorial the following output settings are used. The rest of this section describes configuration steps in more detail. 
 
-**視訊**：
+**Video**:
  
-- 轉碼器：H.264
-- 設定檔：高 (層級 4.0)
-- 位元速率：5000 kbps
-- 主要畫面格：2 秒 (60 秒)
-- 畫面播放速率：30
+- Codec: H.264 
+- Profile: High (Level 4.0) 
+- Bitrate: 5000 kbps 
+- Keyframe: 2 seconds (60 seconds) 
+- Frame Rate: 30
  
-**音訊**：
+**Audio**:
 
-- 轉碼器：AAC (LC)
-- 位元速率：192 kbps
-- 取樣速率：44.1 kHz
+- Codec: AAC (LC) 
+- Bitrate: 192 kbps 
+- Sample Rate: 44.1 kHz
 
 
-####組態步驟
+####<a name="configuration-steps"></a>Configuration steps
 
-1. 瀏覽至 **Elemental Live** Web 介面，並設定用於 **UDP/TS** 串流的編碼器。
+1. Navigate to the **Elemental Live** web interface, and set up the encoder for **UDP/TS** streaming. 
 
-2. 建立新事件後，請向下捲動至輸出群組並新增 **UDP/TS** 輸出群組。
+2. Once a new event is created, scroll down to the output groups and add the **UDP/TS** output group. 
 
-3. 選取 [**新增串流**] 然後按一下 [**加入輸出**] 建立新的輸出。
-	
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental13.png)
-	
-	>[AZURE.NOTE] 建議將 Elemental 事件的時間代碼設定為「系統時鐘」，以協助編碼器在串流失敗時重新連接。
+3. Create a new output by selecting **New Stream** and then clicking **Add Output**.  
+    
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental13.png)
+    
+    >[AZURE.NOTE] It is recommended that the Elemental event has the timecode set to "System Clock" to help the encoder reconnect in the case of a stream failure.
 
-4. 現在已建立好輸出，請按一下 [**新增串流**]。現在可以設定輸出設定。
-5. 向下捲動到剛剛建立的「串流 1」，按一下左側的 [**視訊**] 索引標籤並展開 [**進階**] 設定區段。
+4. Now that the Output has been created, click **Add Stream**. The output settings can now be configured. 
+5. Scroll down to the "Stream 1" that was just created, click the **Video** tab on the left and expand the **Advanced** settings section. 
 
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental4.png)
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental4.png)
 
-	雖然 Elemental Live 有各種不同的可用自訂，建議對串流至 AMS 入門使用下列設定。
-	
-	- 解析度：1280 x 720
-	- 畫面播放速率：30
-	- GOP 大小：60 個畫面格
-	- 交錯式模式：漸進式
-	- 位元速率：5000000 位元/秒 (這可以根據網路限制調整)
-	
+    While Elemental Live has a wide range of available customizing, the following settings are recommended for getting started with streaming to AMS. 
+    
+    - Resolution: 1280 x 720 
+    - Framerate: 30 
+    - GOP Size: 60 frames 
+    - Interlace Mode: Progressive 
+    - Bitrate: 5000000 bit/s (This can be adjusted based on network limitations) 
+    
 
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental5.png)
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental5.png)
 
-6. 取得通道的輸入 URL。
-	
-	瀏覽回到 AMSE 工具，並檢查通道的完成狀態。狀態從 [**啟動中**] 變更為 [**執行中**] 後，您便可取得輸入 URL。
-	  
-	頻道執行時，以滑鼠右鍵按一下頻道名稱，向下瀏覽讓滑鼠游標停留在 [**複製輸入 URL 到剪貼簿**]，然後選取 [**主要輸入 URL**]。
-	
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental6.png)
-	
-1. 在 Elemental 的 [**主要目的地**] 欄位中貼上這項資訊。所有其他設定可以保留預設值。
-	
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental14.png)
+6. Get the channel's input URL.
+    
+    Navigate back to the AMSE tool, and check on the channel completion status. Once the State has changed from **Starting** to **Running**, you can get the input URL.
+      
+    When the channel is running, right click the channel name, navigate down to hover over **Copy Input URL to clipboard** and then select **Primary Input  URL**.  
+    
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental6.png)
+    
+1. Paste this information in the **Primary Destination** field of the Elemental. All other settings can remain the default.
+    
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental14.png)
 
-	如需額外的備援，請對次要輸入 URL 重複這些步驟，方法是為 UDP/TS 串流建立個別的「輸出」索引標籤。
-	
-7. 按一下 [**建立**] \(如果已建立新事件) 或 [**更新**] \(如果是編輯原有的事件)，然後繼續啟動編碼器。
+    For extra redundancy, repeat these steps with the Secondary Input URL by creating a separate "Output" tab for UDP/TS Streaming.
+    
+7. Click **Create** (if a new event was created) or **Update** (if editing a pre-existing event) and then proceed to start the encoder. 
 
->[AZURE.IMPORTANT] 按一下 Elemental Live Web 介面上的 [**開始**] 之前，您**必須**確保頻道已就緒。
->此外，請確保不要讓通道處於就緒狀態而無任何事件超過 15 分鐘。
+>[AZURE.IMPORTANT] Before you click **Start** on the Elemental Live web interface, you **must** ensure that the Channel is ready. 
+>Also, make sure not to leave the Channel in a ready state without an event for longer than > 15 minutes.
 
-在串流已經執行了 30 秒後，導覽回 AMSE 工具和測試播放。
+After the stream has been running for 30 seconds, navigate back to the AMSE tool and test playback.  
 
-###測試播放
+###<a name="test-playback"></a>Test playback
   
-1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。
+1. Navigate to the AMSE tool, and right click the channel to be tested. From the menu, hover over **Playback the Preview** and select **with Azure Media Player**.  
 
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental8.png)
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental8.png)
 
-如果播放器中出現串流，則編碼器已妥善設定為連接到 AMS。
+If the stream appears in the player, then the encoder has been properly configured to connect to AMS. 
 
-如果收到錯誤，則必須重設通道，且編碼器設定需要調整。請參閱[疑難排解](media-services-troubleshooting-live-streaming.md)主題中的指引。
+If an error is received, the channel will need to be reset and encoder settings adjusted. Please see the [troubleshooting](media-services-troubleshooting-live-streaming.md) topic for guidance.   
 
-###建立程式
+###<a name="create-a-program"></a>Create a program
 
-1. 一旦確認通道播放沒問題後，請建立程式。在 AMSE 工具的 [Live] 索引標籤下，於程式區域內按一下滑鼠右鍵，並選取 [建立新的程式]。
+1. Once channel playback is confirmed, create a program. Under the **Live** tab in the AMSE tool, right click within the program area and select **Create New Program**.  
 
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental9.png)
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental9.png)
 
-2. 為程式命名，並視需要調整**封存時間長度** (預設為 4 小時)。您也可以指定儲存體位置，或保留為預設值。
-3. 勾選 [現在啟動程式] 方塊。
-4. 按一下 [建立程式]。
+2. Name the program and, if needed, adjust the **Archive Window Length** (which defaults to 4 hours). You can also specify a storage location or leave as the default.  
+3. Check the **Start the Program now** box.
+4. Click **Create Program**.  
   
-	注意：建立程式時所使用的時間會比建立通道時更少。
+    Note: Program creation takes less time than channel creation.    
  
-5. 一旦程式開始執行，請在程式上按一下滑鼠右鍵，並瀏覽至 [播放程式]，然後選取 [使用 Azure 媒體播放器] 確認播放。
-6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] \(或從 [程式資訊和設定] 功能表選項擷取這項資訊)。
+5. Once the program is running, confirm playback by right clicking the program and navigating to **Playback the program(s)** and then selecting **with Azure Media Player**.  
+6. Once confirmed, right click the program again and select **Copy the Output URL to Clipboard** (or retrieve this information from the **Program information and settings** option from the menu). 
 
-串流現在已經可以內嵌於播放程式中，或散發給某個對象，以供即時檢視。
+The stream is now ready to be embedded in a player, or distributed to an audience for live viewing.  
 
-## 疑難排解
+## <a name="troubleshooting"></a>Troubleshooting
 
-請參閱[疑難排解](media-services-troubleshooting-live-streaming.md)主題中的指引。
+Please see the [troubleshooting](media-services-troubleshooting-live-streaming.md) topic for guidance. 
 
 
-##媒體服務學習路徑
+##<a name="media-services-learning-paths"></a>Media Services learning paths
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##提供意見反應
+##<a name="provide-feedback"></a>Provide feedback
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

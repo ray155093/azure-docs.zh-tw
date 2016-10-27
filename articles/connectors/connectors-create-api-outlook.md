@@ -1,10 +1,10 @@
 <properties
 pageTitle="Outlook.com | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。Outlook.com 連接器可讓您管理您的郵件、行事曆和連絡人。您可以執行各種動作，例如傳送郵件、排程會議、新增連絡人等等。"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create Logic apps with Azure App service. Outlook.com connector allows you to manage your mail, calendars, and contacts. You can perform various actions such as send mail, schedule meetings, add contacts, etc."
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,895 +17,899 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Outlook.com 連接器
 
-Outlook.com 連接器可讓您管理您的郵件、行事曆和連絡人。您可以執行各種動作，例如傳送郵件、排程會議、新增連絡人等等。
+# <a name="get-started-with-the-outlook.com-connector"></a>Get started with the Outlook.com connector
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+Outlook.com connector allows you to manage your mail, calendars, and contacts. You can perform various actions such as send mail, schedule meetings, add contacts, etc.
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. 
 
-## 觸發程序及動作
+You can get started by creating a Logic app now, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+## <a name="triggers-and-actions"></a>Triggers and actions
 
- Outlook.com 連接器提供下列動作及/或觸發程序：
+The Outlook.com connector can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
 
-### Outlook.com 動作
-您可以採取下列動作：
+ The Outlook.com connector has the following action(s) and/or trigger(s) available:
 
-|動作|說明|
+### <a name="outlook.com-actions"></a>Outlook.com actions
+You can take these action(s):
+
+|Action|Description|
 |--- | ---|
-|[GetEmails](connectors-create-api-outlook.md#GetEmails)|從資料夾擷取電子郵件|
-|[SendEmail](connectors-create-api-outlook.md#SendEmail)|傳送電子郵件|
-|[DeleteEmail](connectors-create-api-outlook.md#DeleteEmail)|依識別碼刪除電子郵件|
-|[MarkAsRead](connectors-create-api-outlook.md#MarkAsRead)|將電子郵件標示為已讀取|
-|[ReplyTo](connectors-create-api-outlook.md#ReplyTo)|回覆電子郵件|
-|[GetAttachment](connectors-create-api-outlook.md#GetAttachment)|依識別碼擷取電子郵件附件|
-|[SendMailWithOptions](connectors-create-api-outlook.md#SendMailWithOptions)|傳送具有多個選項的電子郵件，並等候收件者選擇其中一個選項來回應。|
-|[SendApprovalMail](connectors-create-api-outlook.md#SendApprovalMail)|傳送核准電子郵件，並等候收件者的回應。|
-|[CalendarGetTables](connectors-create-api-outlook.md#CalendarGetTables)|擷取行事曆|
-|[CalendarGetItems](connectors-create-api-outlook.md#CalendarGetItems)|從行事曆擷取項目|
-|[CalendarPostItem](connectors-create-api-outlook.md#CalendarPostItem)|建立新的事件|
-|[CalendarGetItem](connectors-create-api-outlook.md#CalendarGetItem)|從行事曆擷取特定項目|
-|[CalendarDeleteItem](connectors-create-api-outlook.md#CalendarDeleteItem)|刪除行事曆項目|
-|[CalendarPatchItem](connectors-create-api-outlook.md#CalendarPatchItem)|部分更新行事曆項目|
-|[ContactGetTables](connectors-create-api-outlook.md#ContactGetTables)|擷取連絡人資料夾|
-|[ContactGetItems](connectors-create-api-outlook.md#ContactGetItems)|從連絡人資料夾中擷取連絡人|
-|[ContactPostItem](connectors-create-api-outlook.md#ContactPostItem)|建立新的連絡人|
-|[ContactGetItem](connectors-create-api-outlook.md#ContactGetItem)|從連絡人資料夾中擷取特定連絡人|
-|[ContactDeleteItem](connectors-create-api-outlook.md#ContactDeleteItem)|刪除連絡人|
-|[ContactPatchItem](connectors-create-api-outlook.md#ContactPatchItem)|部分更新連絡人|
-### Outlook.com 觸發程序
-您可以接聽下列事件：
+|[GetEmails](connectors-create-api-outlook.md#GetEmails)|Retrieves emails from a folder|
+|[SendEmail](connectors-create-api-outlook.md#SendEmail)|Sends an email|
+|[DeleteEmail](connectors-create-api-outlook.md#DeleteEmail)|Deletes an email by id|
+|[MarkAsRead](connectors-create-api-outlook.md#MarkAsRead)|Marks an email as having been read|
+|[ReplyTo](connectors-create-api-outlook.md#ReplyTo)|Replies to an email|
+|[GetAttachment](connectors-create-api-outlook.md#GetAttachment)|Retrieves email attachment by id|
+|[SendMailWithOptions](connectors-create-api-outlook.md#SendMailWithOptions)|Send an email with multiple options and wait for the recipient to respond back with one of the options|
+|[SendApprovalMail](connectors-create-api-outlook.md#SendApprovalMail)|Send an approval email and wait for a response from the recipient|
+|[CalendarGetTables](connectors-create-api-outlook.md#CalendarGetTables)|Retrieves calendars|
+|[CalendarGetItems](connectors-create-api-outlook.md#CalendarGetItems)|Retrieves items from a calendar|
+|[CalendarPostItem](connectors-create-api-outlook.md#CalendarPostItem)|Creates a new event|
+|[CalendarGetItem](connectors-create-api-outlook.md#CalendarGetItem)|Retrieves a specific item from a calendar|
+|[CalendarDeleteItem](connectors-create-api-outlook.md#CalendarDeleteItem)|Deletes a calendar item|
+|[CalendarPatchItem](connectors-create-api-outlook.md#CalendarPatchItem)|Partially updates a calendar item|
+|[ContactGetTables](connectors-create-api-outlook.md#ContactGetTables)|Retrieves contacts folders|
+|[ContactGetItems](connectors-create-api-outlook.md#ContactGetItems)|Retrieves contacts from a contacts folder|
+|[ContactPostItem](connectors-create-api-outlook.md#ContactPostItem)|Creates a new contact|
+|[ContactGetItem](connectors-create-api-outlook.md#ContactGetItem)|Retrieves a specific contact from a contacts folder|
+|[ContactDeleteItem](connectors-create-api-outlook.md#ContactDeleteItem)|Deletes a contact|
+|[ContactPatchItem](connectors-create-api-outlook.md#ContactPatchItem)|Partially updates a contact|
+### <a name="outlook.com-triggers"></a>Outlook.com triggers
+You can listen for these event(s):
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|事件快要開始時|即將來臨的行事曆事件啟動時觸發流程|
-|有新的電子郵件時|新的電子郵件送達時觸發流程|
-|有新的項目時|建立新的行事曆項目時觸發|
-|更新項目時|修改行事曆項目時觸發|
+|On event starting soon|Triggers a flow when an upcoming calendar event is starting|
+|On new email|Triggers a flow when a new email arrives|
+|On new items|Triggered when a new calendar item is created|
+|On updated items|Triggered when a calendar item is modified|
 
 
-## 建立 Outlook.com 的連線
-若要使用 Outlook.com 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
+## <a name="create-a-connection-to-outlook.com"></a>Create a connection to Outlook.com
+To create Logic apps with Outlook.com, you must first create a **connection** then provide the details for the following properties: 
 
-|屬性| 必要|說明|
+|Property| Required|Description|
 | ---|---|---|
-|權杖|是|提供 Outlook.com 認證|
-建立連線後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+|Token|Yes|Provide Outlook.com Credentials|
+After you create the connection, you can use it to execute the actions and listen for the triggers described in this article.
 
->[AZURE.INCLUDE [建立至 Outlook.com 連線的步驟](../../includes/connectors-create-api-outlook.md)]
+>[AZURE.INCLUDE [Steps to create a connection to Outlook.com](../../includes/connectors-create-api-outlook.md)] 
 
->[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
+>[AZURE.TIP] You can use this connection in other logic apps.  
 
-## Outlook.com 的參考
-適用的版本：1.0
+## <a name="reference-for-outlook.com"></a>Reference for Outlook.com
+Applies to version: 1.0
 
-## OnUpcomingEvents
-事件快要開始時：即將來臨的行事曆事件啟動時會觸發流程
+## <a name="onupcomingevents"></a>OnUpcomingEvents
+On event starting soon: Triggers a flow when an upcoming calendar event is starting 
 
-```GET: /Events/OnUpcomingEvents```
+```GET: /Events/OnUpcomingEvents``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|query|無|行事曆的唯一識別碼|
-|lookAheadTimeInMinutes|integer|no|query|15|即將來臨的事件的倒數時間 (以分鐘為單位)。|
+|table|string|yes|query|none|Unique identifier of the calendar|
+|lookAheadTimeInMinutes|integer|no|query|15|Time (in minutes) to look ahead for upcoming events|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|202|作業已順利完成|
+|200|Operation was successful|
+|202|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## GetEmails
-取得電子郵件：從資料夾擷取電子郵件
+## <a name="getemails"></a>GetEmails
+Get emails: Retrieves emails from a folder 
 
-```GET: /Mail```
+```GET: /Mail``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|folderPath|string|no|query|Inbox|要從中擷取電子郵件的資料夾路徑 (預設值：'Inbox')|
-|top|integer|no|query|10|要擷取的電子郵件數目 (預設值：10)|
-|fetchOnlyUnread|布林值|no|query|true|只擷取未讀取的電子郵件嗎？|
-|includeAttachments|布林值|no|query|false|如果設為 true，附件會和電子郵件一起擷取。|
-|searchQuery|string|no|query|無|搜尋 query 來篩選電子郵件|
-|skip|integer|no|query|0|要略過的電子郵件數目 (預設值：0)|
-|skipToken|string|no|query|無|跳過語彙基元來提取新頁面|
+|folderPath|string|no|query|Inbox|Path of the folder to retrieve emails (default: 'Inbox')|
+|top|integer|no|query|10|Number of emails to retrieve (default: 10)|
+|fetchOnlyUnread|boolean|no|query|true|Retrieve only unread emails?|
+|includeAttachments|boolean|no|query|false|If set to true, attachments will also be retrieved along with the email|
+|searchQuery|string|no|query|none|Search query to filter emails|
+|skip|integer|no|query|0|Number of emails to skip (default: 0)|
+|skipToken|string|no|query|none|Skip token to fetch new page|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## SendEmail
-傳送電子郵件︰傳送電子郵件
+## <a name="sendemail"></a>SendEmail
+Send email: Sends an email 
 
-```POST: /Mail```
+```POST: /Mail``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|emailMessage| |yes|body|無|電子郵件|
+|emailMessage| |yes|body|none|Email|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## DeleteEmail
-刪除電子郵件：依識別碼刪除電子郵件
+## <a name="deleteemail"></a>DeleteEmail
+Delete email: Deletes an email by id 
 
-```DELETE: /Mail/{messageId}```
+```DELETE: /Mail/{messageId}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|messageId|string|yes|路徑|無|要刪除的電子郵件識別碼|
+|messageId|string|yes|path|none|Id of the email to delete|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## MarkAsRead
-標示為已讀取：將電子郵件標示為已讀取
+## <a name="markasread"></a>MarkAsRead
+Mark as read: Marks an email as having been read 
 
-```POST: /Mail/MarkAsRead/{messageId}```
+```POST: /Mail/MarkAsRead/{messageId}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|messageId|string|yes|路徑|無|要標示為已讀取的電子郵件識別碼|
+|messageId|string|yes|path|none|Id of the email to be marked as read|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## ReplyTo
-回覆電子郵件︰回覆電子郵件
+## <a name="replyto"></a>ReplyTo
+Reply to email: Replies to an email 
 
-```POST: /Mail/ReplyTo/{messageId}```
+```POST: /Mail/ReplyTo/{messageId}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|messageId|string|yes|路徑|無|要回覆的電子郵件識別碼|
-|comment|string|yes|query|無|回覆意見|
-|replyAll|布林值|no|query|false|回覆所有收件者|
+|messageId|string|yes|path|none|Id of the email to reply to|
+|comment|string|yes|query|none|Reply comment|
+|replyAll|boolean|no|query|false|Reply to all recipients|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## GetAttachment
-取得附件：依識別碼擷取電子郵件附件
+## <a name="getattachment"></a>GetAttachment
+Get attachment: Retrieves email attachment by id 
 
-```GET: /Mail/{messageId}/Attachments/{attachmentId}```
+```GET: /Mail/{messageId}/Attachments/{attachmentId}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|messageId|string|yes|路徑|無|電子郵件識別碼|
-|attachmentId|string|yes|路徑|無|要下載的附件的識別碼|
+|messageId|string|yes|path|none|Id of the email|
+|attachmentId|string|yes|path|none|Id of the attachment to download|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## OnNewEmail
-有新的電子郵件時：新的電子郵件送達時就會觸發流程
+## <a name="onnewemail"></a>OnNewEmail
+On new email: Triggers a flow when a new email arrives 
 
-```GET: /Mail/OnNewEmail```
+```GET: /Mail/OnNewEmail``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|folderPath|string|no|query|Inbox|要擷取的電子郵件資料夾 (預設值：Inbox)|
-|to|string|no|query|無|收件者電子郵件地址|
-|from|string|no|query|無|寄件者地址|
-|importance|string|no|query|正常|電子郵件的重要性 (High、Normal、Low) (預設值：Normal)|
-|fetchOnlyWithAttachment|布林值|no|query|false|只擷取含有附件的電子郵件|
-|includeAttachments|布林值|no|query|false|包含附件|
-|subjectFilter|string|no|query|無|要在主旨中尋找的字串|
+|folderPath|string|no|query|Inbox|Email folder to retrieve (default: Inbox)|
+|to|string|no|query|none|Recipient email addresses|
+|from|string|no|query|none|From address|
+|importance|string|no|query|Normal|Importance of the email (High, Normal, Low) (default: Normal)|
+|fetchOnlyWithAttachment|boolean|no|query|false|Retrieve only emails with an attachment|
+|includeAttachments|boolean|no|query|false|Include attachments|
+|subjectFilter|string|no|query|none|String to look for in the subject|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|202|已接受|
+|200|Operation was successful|
+|202|Accepted|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## SendMailWithOptions
-傳送有選項的電子郵件：傳送具有多個選項的電子郵件，並等候收件者回應其中一個選項。
+## <a name="sendmailwithoptions"></a>SendMailWithOptions
+Send email with options: Send an email with multiple options and wait for the recipient to respond back with one of the options 
 
-```POST: /mailwithoptions/$subscriptions```
+```POST: /mailwithoptions/$subscriptions``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|optionsEmailSubscription| |yes|body|無|有選項電子郵件的訂用帳戶要求|
+|optionsEmailSubscription| |yes|body|none|Subscription request for options email|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|201|已建立訂用帳戶|
+|201|Subscription Created|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## SendApprovalMail
-傳送核准電子郵件：傳送核准電子郵件，並等候收件者的回應。
+## <a name="sendapprovalmail"></a>SendApprovalMail
+Send approval email: Send an approval email and wait for a response from the recipient 
 
-```POST: /approvalmail/$subscriptions```
+```POST: /approvalmail/$subscriptions``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|approvalEmailSubscription| |yes|body|無|核准電子郵件的訂用帳戶要求|
+|approvalEmailSubscription| |yes|body|none|Subscription request for approval email|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|201|已建立訂用帳戶|
+|201|Subscription Created|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-## CalendarGetTables
-取得行事曆︰擷取行事曆
+## <a name="calendargettables"></a>CalendarGetTables
+Get calendars: Retrieves calendars 
 
-```GET: /datasets/calendars/tables```
+```GET: /datasets/calendars/tables``` 
 
-這個呼叫沒有參數
-#### Response
+There are no parameters for this call
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## CalendarGetItems
-取得事件：從行事曆擷取項目
+## <a name="calendargetitems"></a>CalendarGetItems
+Get events: Retrieves items from a calendar 
 
-```GET: /datasets/calendars/tables/{table}/items```
+```GET: /datasets/calendars/tables/{table}/items``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|要擷取的行事曆的唯一識別碼|
-|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
+|table|string|yes|path|none|Unique identifier of the calendar to retrieve|
+|$filter|string|no|query|none|An ODATA filter query to restrict the number of entries|
+|$orderby|string|no|query|none|An ODATA orderBy query for specifying the order of entries|
+|$skip|integer|no|query|none|Number of entries to skip (default = 0)|
+|$top|integer|no|query|none|Maximum number of entries to retrieve (default = 256)|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## CalendarPostItem
-建立事件︰建立新的事件
+## <a name="calendarpostitem"></a>CalendarPostItem
+Create event: Creates a new event 
 
-```POST: /datasets/calendars/tables/{table}/items```
+```POST: /datasets/calendars/tables/{table}/items``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
-|item| |yes|body|無|要建立的行事曆項目|
+|table|string|yes|path|none|Unique identifier of a calendar|
+|item| |yes|body|none|Calendar item to create|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## CalendarGetItem
-取得事件：從行事曆擷取特定項目
+## <a name="calendargetitem"></a>CalendarGetItem
+Get event: Retrieves a specific item from a calendar 
 
-```GET: /datasets/calendars/tables/{table}/items/{id}```
+```GET: /datasets/calendars/tables/{table}/items/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
-|id|string|yes|路徑|無|要擷取的行事曆項目的唯一識別碼|
+|table|string|yes|path|none|Unique identifier of a calendar|
+|id|string|yes|path|none|Unique identifier of a calendar item to retrieve|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## CalendarDeleteItem
-刪除事件：刪除行事曆項目
+## <a name="calendardeleteitem"></a>CalendarDeleteItem
+Delete event: Deletes a calendar item 
 
-```DELETE: /datasets/calendars/tables/{table}/items/{id}```
+```DELETE: /datasets/calendars/tables/{table}/items/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
-|id|string|yes|路徑|無|要刪除的行事曆項目的唯一識別碼|
+|table|string|yes|path|none|Unique identifier of a calendar|
+|id|string|yes|path|none|Unique identifier of calendar item to delete|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## CalendarPatchItem
-更新事件：部分更新行事曆項目
+## <a name="calendarpatchitem"></a>CalendarPatchItem
+Update event: Partially updates a calendar item 
 
-```PATCH: /datasets/calendars/tables/{table}/items/{id}```
+```PATCH: /datasets/calendars/tables/{table}/items/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
-|id|string|yes|路徑|無|要更新的行事曆項目的唯一識別碼|
-|item| |yes|body|無|要更新的行事曆項目|
+|table|string|yes|path|none|Unique identifier of a calendar|
+|id|string|yes|path|none|Unique identifier of calendar item to update|
+|item| |yes|body|none|Calendar item to update|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## CalendarGetOnNewItems
-有新的項目時：建立新的行事曆項目時會觸發
+## <a name="calendargetonnewitems"></a>CalendarGetOnNewItems
+On new items: Triggered when a new calendar item is created 
 
-```GET: /datasets/calendars/tables/{table}/onnewitems```
+```GET: /datasets/calendars/tables/{table}/onnewitems``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
-|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
+|table|string|yes|path|none|Unique identifier of a calendar|
+|$filter|string|no|query|none|An ODATA filter query to restrict the number of entries|
+|$orderby|string|no|query|none|An ODATA orderBy query for specifying the order of entries|
+|$skip|integer|no|query|none|Number of entries to skip (default = 0)|
+|$top|integer|no|query|none|Maximum number of entries to retrieve (default = 256)|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## CalendarGetOnUpdatedItems
-有更新的項目時：修改行事曆項目時會觸發
+## <a name="calendargetonupdateditems"></a>CalendarGetOnUpdatedItems
+On updated items: Triggered when a calendar item is modified 
 
-```GET: /datasets/calendars/tables/{table}/onupdateditems```
+```GET: /datasets/calendars/tables/{table}/onupdateditems``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
-|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
+|table|string|yes|path|none|Unique identifier of a calendar|
+|$filter|string|no|query|none|An ODATA filter query to restrict the number of entries|
+|$orderby|string|no|query|none|An ODATA orderBy query for specifying the order of entries|
+|$skip|integer|no|query|none|Number of entries to skip (default = 0)|
+|$top|integer|no|query|none|Maximum number of entries to retrieve (default = 256)|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## ContactGetTables
-取得連絡人資料夾︰擷取連絡人資料夾
+## <a name="contactgettables"></a>ContactGetTables
+Get contact folders: Retrieves contacts folders 
 
-```GET: /datasets/contacts/tables```
+```GET: /datasets/contacts/tables``` 
 
-這個呼叫沒有參數
-#### Response
+There are no parameters for this call
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## ContactGetItems
-取得連絡人：從連絡人資料夾中擷取連絡人
+## <a name="contactgetitems"></a>ContactGetItems
+Get contacts: Retrieves contacts from a contacts folder 
 
-```GET: /datasets/contacts/tables/{table}/items```
+```GET: /datasets/contacts/tables/{table}/items``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|要擷取的連絡人資料夾的唯一識別碼|
-|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
+|table|string|yes|path|none|Unique identifier of the contacts folder to retrieve|
+|$filter|string|no|query|none|An ODATA filter query to restrict the number of entries|
+|$orderby|string|no|query|none|An ODATA orderBy query for specifying the order of entries|
+|$skip|integer|no|query|none|Number of entries to skip (default = 0)|
+|$top|integer|no|query|none|Maximum number of entries to retrieve (default = 256)|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## ContactPostItem
-建立連絡人︰建立新的連絡人
+## <a name="contactpostitem"></a>ContactPostItem
+Create contact: Creates a new contact 
 
-```POST: /datasets/contacts/tables/{table}/items```
+```POST: /datasets/contacts/tables/{table}/items``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
-|item| |yes|body|無|要建立的連絡人|
+|table|string|yes|path|none|Unique identifier of a contacts folder|
+|item| |yes|body|none|Contact to create|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## ContactGetItem
-取得連絡人：從連絡人資料夾中擷取特定連絡人
+## <a name="contactgetitem"></a>ContactGetItem
+Get contact: Retrieves a specific contact from a contacts folder 
 
-```GET: /datasets/contacts/tables/{table}/items/{id}```
+```GET: /datasets/contacts/tables/{table}/items/{id}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
-|id|string|yes|路徑|無|要擷取的連絡人的唯一識別碼|
+|table|string|yes|path|none|Unique identifier of a contacts folder|
+|id|string|yes|path|none|Unique identifier of a contact to retrieve|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## ContactDeleteItem
-刪除連絡人︰刪除連絡人
+## <a name="contactdeleteitem"></a>ContactDeleteItem
+Delete contact: Deletes a contact 
 
-```DELETE: /datasets/contacts/tables/{table}/items/{id}```
+```DELETE: /datasets/contacts/tables/{table}/items/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
-|id|string|yes|路徑|無|要刪除的連絡人的唯一識別碼|
+|table|string|yes|path|none|Unique identifier of a contacts folder|
+|id|string|yes|path|none|Unique identifier of contact to delete|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## ContactPatchItem
-更新連絡人：部分更新連絡人
+## <a name="contactpatchitem"></a>ContactPatchItem
+Update contact: Partially updates a contact 
 
-```PATCH: /datasets/contacts/tables/{table}/items/{id}```
+```PATCH: /datasets/contacts/tables/{table}/items/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
-|id|string|yes|路徑|無|要更新的連絡人的唯一識別碼|
-|item| |yes|body|無|要更新的連絡人項目|
+|table|string|yes|path|none|Unique identifier of a contacts folder|
+|id|string|yes|path|none|Unique identifier of contact to update|
+|item| |yes|body|none|Contact item to update|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-## 物件定義 
+## <a name="object-definitions"></a>Object definitions 
 
-### TriggerBatchResponse[IDictionary[String,Object]]
+### <a name="triggerbatchresponse[idictionary[string,object]]"></a>TriggerBatchResponse[IDictionary[String,Object]]
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### Object
+### <a name="object"></a>Object
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
 
 
 
-### SendMessage
+### <a name="sendmessage"></a>SendMessage
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|附件|array|否 |
-|從|string|否 |
-|副本|string|否 |
-|密件副本|string|否 |
-|主旨|string|是 |
-|內文|string|是 |
-|重要性|string|否 |
-|IsHtml|布林值|否 |
-|收件人|string|是 |
+|Attachments|array|No |
+|From|string|No |
+|Cc|string|No |
+|Bcc|string|No |
+|Subject|string|Yes |
+|Body|string|Yes |
+|Importance|string|No |
+|IsHtml|boolean|No |
+|To|string|Yes |
 
 
 
-### SendAttachment
+### <a name="sendattachment"></a>SendAttachment
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|@odata.type|string|否 |
-|名稱|string|是 |
-|ContentBytes|string|是 |
+|@odata.type|string|No |
+|Name|string|Yes |
+|ContentBytes|string|Yes |
 
 
 
-### ReceiveMessage
+### <a name="receivemessage"></a>ReceiveMessage
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|識別碼|string|否 |
-|IsRead|布林值|否 |
-|HasAttachment|布林值|否 |
-|DateTimeReceived|string|否 |
-|附件|array|否 |
-|從|string|否 |
-|副本|string|否 |
-|密件副本|string|否 |
-|主旨|string|是 |
-|內文|string|是 |
-|重要性|string|否 |
-|IsHtml|布林值|否 |
-|收件人|string|是 |
+|Id|string|No |
+|IsRead|boolean|No |
+|HasAttachment|boolean|No |
+|DateTimeReceived|string|No |
+|Attachments|array|No |
+|From|string|No |
+|Cc|string|No |
+|Bcc|string|No |
+|Subject|string|Yes |
+|Body|string|Yes |
+|Importance|string|No |
+|IsHtml|boolean|No |
+|To|string|Yes |
 
 
 
-### ReceiveAttachment
+### <a name="receiveattachment"></a>ReceiveAttachment
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|識別碼|string|是 |
-|ContentType|string|是 |
-|@odata.type|string|否 |
-|Name|string|是 |
-|ContentBytes|string|是 |
+|Id|string|Yes |
+|ContentType|string|Yes |
+|@odata.type|string|No |
+|Name|string|Yes |
+|ContentBytes|string|Yes |
 
 
 
-### DigestMessage
+### <a name="digestmessage"></a>DigestMessage
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|主旨|string|是 |
-|內文|string|否 |
-|重要性|string|否 |
-|Digest|array|是 |
-|附件|array|否 |
-|收件人|string|是 |
+|Subject|string|Yes |
+|Body|string|No |
+|Importance|string|No |
+|Digest|array|Yes |
+|Attachments|array|No |
+|To|string|Yes |
 
 
 
-### TriggerBatchResponse[ReceiveMessage]
+### <a name="triggerbatchresponse[receivemessage]"></a>TriggerBatchResponse[ReceiveMessage]
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### DataSetsMetadata
+### <a name="datasetsmetadata"></a>DataSetsMetadata
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|表格式|沒有定義|否 |
-|blob|沒有定義|否 |
+|tabular|not defined|No |
+|blob|not defined|No |
 
 
 
-### TabularDataSetsMetadata
+### <a name="tabulardatasetsmetadata"></a>TabularDataSetsMetadata
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|來源|string|否 |
-|displayName|string|否 |
-|urlEncoding|string|否 |
-|tableDisplayName|string|否 |
-|tablePluralName|string|否 |
+|source|string|No |
+|displayName|string|No |
+|urlEncoding|string|No |
+|tableDisplayName|string|No |
+|tablePluralName|string|No |
 
 
 
-### BlobDataSetsMetadata
+### <a name="blobdatasetsmetadata"></a>BlobDataSetsMetadata
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|來源|string|否 |
-|displayName|string|否 |
-|urlEncoding|string|否 |
+|source|string|No |
+|displayName|string|No |
+|urlEncoding|string|No |
 
 
 
-### TableMetadata
+### <a name="tablemetadata"></a>TableMetadata
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|名稱|string|否 |
-|title|string|否 |
-|x-ms-permission|string|否 |
-|x-ms-capabilities|沒有定義|否 |
-|結構描述|沒有定義|否 |
+|name|string|No |
+|title|string|No |
+|x-ms-permission|string|No |
+|x-ms-capabilities|not defined|No |
+|schema|not defined|No |
 
 
 
-### TableCapabilitiesMetadata
+### <a name="tablecapabilitiesmetadata"></a>TableCapabilitiesMetadata
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|sortRestrictions|沒有定義|否 |
-|filterRestrictions|沒有定義|否 |
-|filterFunctions|array|否 |
+|sortRestrictions|not defined|No |
+|filterRestrictions|not defined|No |
+|filterFunctions|array|No |
 
 
 
-### TableSortRestrictionsMetadata
+### <a name="tablesortrestrictionsmetadata"></a>TableSortRestrictionsMetadata
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|sortable|布林值|否 |
-|unsortableProperties|array|否 |
-|ascendingOnlyProperties|array|否 |
+|sortable|boolean|No |
+|unsortableProperties|array|No |
+|ascendingOnlyProperties|array|No |
 
 
 
-### TableFilterRestrictionsMetadata
+### <a name="tablefilterrestrictionsmetadata"></a>TableFilterRestrictionsMetadata
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|filterable|布林值|否 |
-|nonFilterableProperties|array|否 |
-|requiredProperties|array|否 |
+|filterable|boolean|No |
+|nonFilterableProperties|array|No |
+|requiredProperties|array|No |
 
 
 
-### OptionsEmailSubscription
+### <a name="optionsemailsubscription"></a>OptionsEmailSubscription
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|NotificationUrl|string|否 |
-|訊息|沒有定義|否 |
+|NotificationUrl|string|No |
+|Message|not defined|No |
 
 
 
-### MessageWithOptions
+### <a name="messagewithoptions"></a>MessageWithOptions
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|主旨|string|是 |
-|選項|string|是 |
-|內文|string|否 |
-|重要性|string|否 |
-|附件|array|否 |
-|收件人|string|是 |
+|Subject|string|Yes |
+|Options|string|Yes |
+|Body|string|No |
+|Importance|string|No |
+|Attachments|array|No |
+|To|string|Yes |
 
 
 
-### SubscriptionResponse
+### <a name="subscriptionresponse"></a>SubscriptionResponse
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|否 |
-|resource|string|否 |
-|notificationType|string|否 |
-|notificationUrl|string|否 |
+|id|string|No |
+|resource|string|No |
+|notificationType|string|No |
+|notificationUrl|string|No |
 
 
 
-### ApprovalEmailSubscription
+### <a name="approvalemailsubscription"></a>ApprovalEmailSubscription
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|NotificationUrl|string|否 |
-|訊息|沒有定義|否 |
+|NotificationUrl|string|No |
+|Message|not defined|No |
 
 
 
-### ApprovalMessage
+### <a name="approvalmessage"></a>ApprovalMessage
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|主旨|string|是 |
-|選項|string|是 |
-|內文|string|否 |
-|重要性|string|否 |
-|附件|array|否 |
-|收件人|string|是 |
+|Subject|string|Yes |
+|Options|string|Yes |
+|Body|string|No |
+|Importance|string|No |
+|Attachments|array|No |
+|To|string|Yes |
 
 
 
-### ApprovalEmailResponse
+### <a name="approvalemailresponse"></a>ApprovalEmailResponse
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|SelectedOption|string|否 |
+|SelectedOption|string|No |
 
 
 
-### TablesList
+### <a name="tableslist"></a>TablesList
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### 資料表
+### <a name="table"></a>Table
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|名稱|string|否 |
-|DisplayName|string|否 |
+|Name|string|No |
+|DisplayName|string|No |
 
 
 
-### 項目
+### <a name="item"></a>Item
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|ItemInternalId|string|否 |
+|ItemInternalId|string|No |
 
 
 
-### CalendarItemsList
+### <a name="calendaritemslist"></a>CalendarItemsList
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### CalendarItem
+### <a name="calendaritem"></a>CalendarItem
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|ItemInternalId|string|否 |
+|ItemInternalId|string|No |
 
 
 
-### ContactItemsList
+### <a name="contactitemslist"></a>ContactItemsList
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### ContactItem
+### <a name="contactitem"></a>ContactItem
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|ItemInternalId|string|否 |
+|ItemInternalId|string|No |
 
 
 
-### DataSetsList
+### <a name="datasetslist"></a>DataSetsList
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### DataSet
+### <a name="dataset"></a>DataSet
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|Name|string|否 |
-|DisplayName|string|否 |
+|Name|string|No |
+|DisplayName|string|No |
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

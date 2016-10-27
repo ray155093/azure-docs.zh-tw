@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Citrix ShareFile 整合 | Microsoft Azure" 
-    description="了解如何使用 Citrix ShareFile 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory Integration with Citrix ShareFile | Microsoft Azure" 
+    description="Learn how to use Citrix ShareFile with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,140 +11,148 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/11/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Citrix ShareFile 整合
 
-本教學課程的目的是要示範 Azure 與 Citrix ShareFile 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+#<a name="tutorial:-azure-active-directory-integration-with-citrix-sharefile"></a>Tutorial: Azure Active Directory Integration with Citrix ShareFile
 
--   有效的 Azure 訂閱
--   Citrix ShareFile 租用戶
+The objective of this tutorial is to show the integration of Azure and Citrix ShareFile.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
-完成本教學課程之後，您指派給 Citrix ShareFile 的 Azure AD 使用者就能夠單一登入您 Citrix ShareFile 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+-   A valid Azure subscription
+-   A Citrix ShareFile tenant
 
-本教學課程中說明的案例由下列建置組塊組成：
+After completing this tutorial, the Azure AD users you have assigned to Citrix ShareFile will be able to single sign into the application at your Citrix ShareFile company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-1.  啟用 Citrix ShareFile 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+The scenario outlined in this tutorial consists of the following building blocks:
 
-![案例](./media/active-directory-saas-citrix-sharefile-tutorial/IC773620.png "案例")
-##啟用 Citrix ShareFile 的應用程式整合
+1.  Enabling the application integration for Citrix ShareFile
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-本節的目的是要說明如何啟用 Citrix ShareFile 的應用程式整合。
+![Scenario](./media/active-directory-saas-citrix-sharefile-tutorial/IC773620.png "Scenario")
+##<a name="enabling-the-application-integration-for-citrix-sharefile"></a>Enabling the application integration for Citrix ShareFile
 
-###若要啟用 Citrix ShareFile 的應用程式整合，請執行下列步驟：
+The objective of this section is to outline how to enable the application integration for Citrix ShareFile.
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+###<a name="to-enable-the-application-integration-for-citrix-sharefile,-perform-the-following-steps:"></a>To enable the application integration for Citrix ShareFile, perform the following steps:
+
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-citrix-sharefile-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-citrix-sharefile-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-citrix-sharefile-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-citrix-sharefile-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-citrix-sharefile-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-citrix-sharefile-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-citrix-sharefile-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **Citrix ShareFile**。
+6.  In the **search box**, type **Citrix ShareFile**.
 
-    ![應用程式庫](./media/active-directory-saas-citrix-sharefile-tutorial/IC773621.png "應用程式庫")
+    ![Application gallery](./media/active-directory-saas-citrix-sharefile-tutorial/IC773621.png "Application gallery")
 
-7.  在結果窗格中，選取 [Citrix ShareFile]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Citrix ShareFile**, and then click **Complete** to add the application.
 
     ![Citrix ShareFile](./media/active-directory-saas-citrix-sharefile-tutorial/IC773622.png "Citrix ShareFile")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
 
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Citrix ShareFile。
+The objective of this section is to outline how to enable users to authenticate to Citrix ShareFile with their account in Azure AD using federation based on the SAML protocol.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Citrix ShareFile] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Citrix ShareFile** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![啟用單一登入](./media/active-directory-saas-citrix-sharefile-tutorial/IC773623.png "啟用單一登入")
+    ![Enable single sign-on](./media/active-directory-saas-citrix-sharefile-tutorial/IC773623.png "Enable single sign-on")
 
-2.  在 [要如何讓使用者登入 Citrix ShareFile] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Citrix ShareFile** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-citrix-sharefile-tutorial/IC773624.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-citrix-sharefile-tutorial/IC773624.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [Citrix ShareFile 登入 URL] 文字方塊中，使用下列模式輸入您的 URL：`https://<tenant-name>.shareFile.com`，然後按 [下一步]。
+3.  On the **Configure App URL** page, in the **Citrix ShareFile Sign On URL** textbox, type your URL using the following pattern `https://<tenant-name>.shareFile.com`, and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-citrix-sharefile-tutorial/IC773625.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-citrix-sharefile-tutorial/IC773625.png "Configure App URL")
 
-4.  於 [在 Citrix ShareFile 設定單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
+4.  On the **Configure single sign-on at Citrix ShareFile** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-citrix-sharefile-tutorial/IC773626.png "設定單一登入")
+    ![ConfigureSingle Sign-On](./media/active-directory-saas-citrix-sharefile-tutorial/IC773626.png "ConfigureSingle Sign-On")
 
-5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **Citrix ShareFile** 公司網站。
+5.  In a different web browser window, log into your **Citrix ShareFile** company site as an administrator.
 
-6.  在頂端工具列中，按一下 [管理]。
+6.  In the toolbar on the top, click **Admin**.
 
-7.  在左側瀏覽窗格中，選取 [設定單一登入]。
+7.  In the left navigation pane, select **Configure Single Sign-On**.
 
-    ![帳戶管理](./media/active-directory-saas-citrix-sharefile-tutorial/IC773627.png "帳戶管理")
+    ![Account Administration](./media/active-directory-saas-citrix-sharefile-tutorial/IC773627.png "Account Administration")
 
-8.  在 [單一登入/SAML 2.0 組態] 對話頁面的 [基本設定] 下方，執行下列步驟：
+8.  On the **Single Sign-On/ SAML 2.0 Configuration** dialog page under **Basic Settings**, perform the following steps:
 
-    ![單一登入](./media/active-directory-saas-citrix-sharefile-tutorial/IC773628.png "單一登入")
+    ![Single sign-on](./media/active-directory-saas-citrix-sharefile-tutorial/IC773628.png "Single sign-on")
 
-    1.  按一下 [啟用 SAML]。
-    2.  在 Azure 傳統入口網站的 [在 Citrix ShareFile 設定單一登入] 對話頁面上，複製 [實體識別碼] 值，然後將它貼至 [您的 IDP 簽發者/實體識別碼] 文字方塊中。
-    3.  在 Azure 傳統入口網站的 [在 Citrix ShareFile 設定單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登入 URL] 文字方塊中。
-    4.  在 Azure 傳統入口網站的 [在 Citrix ShareFile 設定單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [登出 URL] 文字方塊中。
-    5.  按一下 [X.509 憑證] 欄位旁的 [變更]，然後上傳您從 Azure AD 傳統入口網站下載的憑證。![基本設定](./media/active-directory-saas-citrix-sharefile-tutorial/IC773629.png "基本設定")
+    1.  Click **Enable SAML**.
+    2.  In the Azure classic portal, on the **Configure single sign-on at Citrix ShareFile** dialog page, copy the **Entity ID** value, and then paste it into the **Your IDP Issuer/ Entity ID** textbox.
+    3.  In the Azure classic portal, on the **Configure single sign-on at Citrix ShareFile** dialog page, copy the **Remote Login URL** value, and then paste it into the **Login URL** textbox.
+    4.  In the Azure classic portal, on **the Configure single sign-on at Citrix ShareFile** dialog page, copy the **Remote Logout URL** value, and then paste it into the **Logout URL** textbox.
+    5.  Click **Change** next to the **X.509 Certificate** field and then upload the certificate you downloaded from the Azure AD classic portal.
+        ![Basic Settings](./media/active-directory-saas-citrix-sharefile-tutorial/IC773629.png "Basic Settings")
 
-9.  在 Citrix ShareFile 管理入口網站上，按一下 [儲存]。
+9.  Click **Save** on the Citrix ShareFile management portal.
 
-10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-citrix-sharefile-tutorial/IC773630.png "設定單一登入")
-##設定使用者佈建
+    ![Configure single sign-on](./media/active-directory-saas-citrix-sharefile-tutorial/IC773630.png "Configure single sign-on")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
 
-若要讓 Azure AD 使用者可以登入 Citrix ShareFile，必須將他們佈建到 Citrix ShareFile。Citrix ShareFile 需以手動方式佈建。
+In order to enable Azure AD users to log into Citrix ShareFile, they must be provisioned into Citrix ShareFile.  
+In the case of Citrix ShareFile, provisioning is a manual task.
 
-###若要佈建使用者帳戶，請執行下列步驟：
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
 
-1.  登入您的 **Citrix ShareFile** 租用戶。
+1.  Log in to your **Citrix ShareFile** tenant.
 
-2.  按一下 [管理使用者] > [管理使用者首頁] > [+ 建立員工]。
+2.  Click **Manage Users \> Manage Users Home \> + Create Employee**.
 
-    ![建立員工](./media/active-directory-saas-citrix-sharefile-tutorial/IC781050.png "建立員工")
+    ![Create Employee](./media/active-directory-saas-citrix-sharefile-tutorial/IC781050.png "Create Employee")
 
-3.  輸入您想要佈建之有效 Azure AD 帳戶的**電子郵件**、**名字**和**姓氏**。
+3.  Enter the **Email**, **First name** and **Last name** of a valid Azure AD account you want to provision.
 
-    ![基本資訊](./media/active-directory-saas-citrix-sharefile-tutorial/IC799951.png "基本資訊")
+    ![Basic Information](./media/active-directory-saas-citrix-sharefile-tutorial/IC799951.png "Basic Information")
 
-4.  按一下 [加入使用者]。
+4.  Click **Add User**.
 
-    >[AZURE.NOTE] AAD 帳戶的持有者會收到一封電子郵件，並依照連結在啟用其帳戶前進行確認。
+    >[AZURE.NOTE] The AAD account holder will receive an email and follow a link to confirm their account before it becomes active.
 
->[AZURE.NOTE] 您可以使用任何其他的 Citrix ShareFile 使用者帳戶建立工具或 Citrix ShareFile 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Citrix ShareFile user account creation tools or APIs provided by Citrix ShareFile to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
 
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Citrix ShareFile，請執行下列步驟：
+###<a name="to-assign-users-to-citrix-sharefile,-perform-the-following-steps:"></a>To assign users to Citrix ShareFile, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Citrix ShareFile] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Citrix ShareFile **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-citrix-sharefile-tutorial/IC773631.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-citrix-sharefile-tutorial/IC773631.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-citrix-sharefile-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-citrix-sharefile-tutorial/IC767830.png "Yes")
 
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

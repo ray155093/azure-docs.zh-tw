@@ -1,6 +1,6 @@
 <properties
-   pageTitle="對無法啟動的角色進行疑難排解 |Microsoft Azure"
-   description="以下是雲端服務角色無法啟動的一些常見原因。此外也提供這些問題的解決方案。"
+   pageTitle="Troubleshoot roles that fail to start | Microsoft Azure"
+   description="Here are some common reasons why a Cloud Service role may fail to start. Solutions to these problems are also provided."
    services="cloud-services"
    documentationCenter=""
    authors="simonxjx"
@@ -16,151 +16,156 @@
    ms.date="09/02/2016"
    ms.author="v-six" />
 
-# 對無法啟動的雲端服務角色進行疑難排解
 
-以下是與無法啟動的 Azure 雲端服務角色相關的一些常見問題和解決方案。
+# <a name="troubleshoot-cloud-service-roles-that-fail-to-start"></a>Troubleshoot Cloud Service roles that fail to start
 
-[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
+Here are some common problems and solutions related to Azure Cloud Services roles that fail to start.
 
-## 遺失 Dll 或相依性
+[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
-角色沒有回應，以及角色在 [正在初始化]、[忙碌] 和 [正在停止] 狀態之間循環，有可能是因為遺失 DLL 或組件所致。
+## <a name="missing-dlls-or-dependencies"></a>Missing DLLs or dependencies
 
-遺失 DLL 或組件的徵狀可能是：
+Unresponsive roles and roles that are cycling between **Initializing**, **Busy**, and **Stopping** states can be caused by missing DLLs or assemblies.
 
-- 您的角色執行個體在 [正在初始化]、[忙碌] 及 [正在停止] 狀態之間循環。
-- 您的角色執行個體已進入 [就緒] 狀態，但當您瀏覽至 Web 應用程式時，發現頁面並未顯示。
+Symptoms of missing DLLs or assemblies can be:
 
-有數個建議的方法可調查這些問題。
+- Your role instance is cycling through **Initializing**, **Busy**, and **Stopping** states.
+- Your role instance has moved to **Ready** but if you navigate to your web application, the page does not appear.
 
-## 診斷 Web 角色中遺失 DLL 的問題
+There are several recommended methods for investigating these issues.
 
-當您瀏覽至在 Web 角色中部署的網站時，瀏覽器顯示如下的伺服器錯誤，表示可能遺失 DLL。
+## <a name="diagnose-missing-dll-issues-in-a-web-role"></a>Diagnose missing DLL issues in a web role
 
-!['/' 應用程式中有伺服器錯誤。](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503388.png)
+When you navigate to a website that is deployed in a web role, and the browser displays a server error similar to the following, it may indicate that a DLL is missing.
 
-## 關閉自訂錯誤以診斷問題
+![Server Error in '/' Application.](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503388.png)
 
-設定 Web 角色的 web.config 以將自訂錯誤模式設為關閉，並重新部署服務，可以檢視更完整的錯誤資訊。
+## <a name="diagnose-issues-by-turning-off-custom-errors"></a>Diagnose issues by turning off custom errors
 
-若要檢視更完整的錯誤而不使用遠端桌面：
+More complete error information can be viewed by configuring the web.config for the web role to set the custom error mode to Off and redeploying the service.
 
-1. 在 Microsoft Visual Studio 中開啟解決方案。
+To view more complete errors without using Remote Desktop:
 
-2. 在 [方案總管] 中找出 web.config 檔案，並加以開啟。
+1. Open the solution in Microsoft Visual Studio.
 
-3. 在 web.config 檔案中找出 system.web 區段，並加入下面這一行：
+2. In the **Solution Explorer**, locate the web.config file and open it.
+
+3. In the web.config file, locate the system.web section and add the following line:
 
     ```xml
     <customErrors mode="Off" />
     ```
 
-4. 儲存檔案。
+4. Save the file.
 
-5. 重新封裝並重新部署服務。
+5. Repackage and redeploy the service.
 
-重新部署服務之後，您會看到下列錯誤訊息，以及遺失組件或 DLL 的名稱。
+Once the service is redeployed, you will see an error message with the name of the missing assembly or DLL.
 
-## 從遠端檢視錯誤以診斷問題
+## <a name="diagnose-issues-by-viewing-the-error-remotely"></a>Diagnose issues by viewing the error remotely
 
-您可以使用遠端桌面存取角色，並從遠端檢視更完整的錯誤資訊。使用下列步驟，可使用遠端桌面檢視錯誤：
+You can use Remote Desktop to access the role and view more complete error information remotely. Use the following steps to view the errors by using Remote Desktop:
 
-1. 確定已安裝 Azure SDK 1.3 或更新版本。
+1. Ensure that Azure SDK 1.3 or later is installed.
 
-2. 在使用 Visual Studio 部署解決方案期間，選擇「設定遠端桌面連線...」。如需設定遠端桌面連線的詳細資訊，請參閱[搭配使用遠端桌面與 Azure 角色](../vs-azure-tools-remote-desktop-roles.md)。
+2. During the deployment of the solution by using Visual Studio, choose to “Configure Remote Desktop connections…”. For more information on configuring the Remote Desktop connection, see [Using Remote Desktop with Azure Roles](../vs-azure-tools-remote-desktop-roles.md).
 
-3. 在 Microsoft Azure 傳統入口網站中，當執行個體的顯示狀態為 [就緒] 時，按一下其中一個角色執行個體。
+3. In the Microsoft Azure classic portal, once the instance shows a status of **Ready**, click one of the role instances.
 
-4. 在功能區的 [遠端存取] 區域中，按一下 [連接] 圖示。
+4. Click the **Connect** icon in the **Remote Access** area of the ribbon.
 
-5. 使用在遠端桌面設定期間指定的認證登入虛擬機器。
+5. Sign in to the virtual machine by using the credentials that were specified during the Remote Desktop configuration.
 
-6. 開啟命令視窗。
+6. Open a command window.
 
-7. 輸入 `IPconfig`。
+7. Type `IPconfig`.
 
-8. 記下 IPV4 位址值。
+8. Note the IPV4 Address value.
 
-9. 開啟 Internet Explorer。
+9. Open Internet Explorer.
 
-10. 輸入 Web 應用程式的位址和名稱。例如，`http://<IPV4 Address>/default.aspx`。
+10. Type the address and the name of the web application. For example, `http://<IPV4 Address>/default.aspx`.
 
-瀏覽至網站現在會傳回更明確的錯誤訊息：
+Navigating to the website will now return more explicit error messages:
 
-* '/' 應用程式中有伺服器錯誤。
+* Server Error in '/' Application.
 
-* 說明：執行目前的 Web 要求期間發生未處理的例外狀況。請檢閱堆疊追蹤，以進一步了解錯誤以及它產生於程式碼中的何處。
+* Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
 
-* 例外狀況詳細資料：System.IO.FIleNotFoundException：無法載入檔案或組件 ‘Microsoft.WindowsAzure.StorageClient，Version=1.1.0.0，Culture=neutral，PublicKeyToken=31bf856ad364e35’ 或其相依性之一。系統找不到指定的檔案。
+* Exception Details: System.IO.FIleNotFoundException: Could not load file or assembly ‘Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf856ad364e35’ or one of its dependencies. The system cannot find the file specified.
 
-例如：
+For example:
 
-!['/' 應用程式中有明確的伺服器錯誤。](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503389.png)
+![Explicit Server Error in '/' Application](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503389.png)
 
-## 使用計算模擬器診斷問題
+## <a name="diagnose-issues-by-using-the-compute-emulator"></a>Diagnose issues by using the compute emulator
 
-您可以使用 Microsoft Azure 計算模擬器來診斷和排解遺失相依性與 web.config 錯誤的問題。
+You can use the Microsoft Azure compute emulator to diagnose and troubleshoot issues of missing dependencies and web.config errors.
 
-若要讓這種診斷方法獲得最佳結果，您應該使用具有 Windows 全新安裝的電腦或虛擬機器。若要達到模擬 Azure 環境的最佳效果，請使用 Windows Server 2008 R2 x64。
+For best results in using this method of diagnosis, you should use a computer or virtual machine that has a clean installation of Windows. To best simulate the Azure environment, use Windows Server 2008 R2 x64.
 
-1. 安裝獨立版的 [Azure SDK](https://azure.microsoft.com/downloads/)。
+1. Install the standalone version of the [Azure SDK](https://azure.microsoft.com/downloads/).
 
-2. 在開發電腦上建置雲端服務專案。
+2. On the development machine, build the cloud service project.
 
-3. 在 Windows 檔案總管中，瀏覽至雲端服務專案的 bin\\debug 資料夾。
+3. In Windows Explorer, navigate to the bin\debug folder of the cloud service project.
 
-4. 將 .csx 資料夾及 .cscfg 檔案複製到您用來偵錯問題的電腦。
+4. Copy the .csx folder and .cscfg file to the computer that you are using to debug the issues.
 
-5. 在初始狀態的電腦上開啟 Azure SDK 命令提示字元視窗，並輸入 `csrun.exe /devstore:start`。
+5. On the clean machine, open an Azure SDK Command Prompt window and type `csrun.exe /devstore:start`.
 
-6. 在命令提示字元中，輸入 `run csrun <path to .csx folder> <path to .cscfg file> /launchBrowser`。
+6. At the command prompt, type `run csrun <path to .csx folder> <path to .cscfg file> /launchBrowser`.
 
-7. 在角色啟動時，您會在 Internet Explorer 中看到詳細的錯誤資訊。您也可以使用標準 Windows 疑難排解工具進一步診斷問題。
+7. When the role starts, you will see detailed error information in Internet Explorer. You can also use standard Windows troubleshooting tools to further diagnose the problem.
 
-## 使用 IntelliTrace 診斷問題
+## <a name="diagnose-issues-by-using-intellitrace"></a>Diagnose issues by using IntelliTrace
 
-對於使用 .NET Framework 4 的背景工作角色和 Web 角色，您可以使用 [Microsoft Visual Studio Ultimate](https://www.visualstudio.com/products/visual-studio-ultimate-with-MSDN-vs) 所提供的 [IntelliTrace](https://msdn.microsoft.com/library/dd264915.aspx)。
+For worker and web roles that use .NET Framework 4, you can use [IntelliTrace](https://msdn.microsoft.com/library/dd264915.aspx), which is available in [Microsoft Visual Studio Ultimate](https://www.visualstudio.com/products/visual-studio-ultimate-with-MSDN-vs).
 
-請遵循下列步驟，部署已啟用 IntelliTrace 的服務：
+Follow these steps to deploy the service with IntelliTrace enabled:
 
-1. 確定已安裝 Azure SDK 1.3 或更新版本。
+1. Confirm that Azure SDK 1.3 or later is installed.
 
-2. 使用 Visual Studio 部署解決方案。在部署期間，勾選 [為 .NET 4 角色啟用 IntelliTrace] 核取方塊。
+2. Deploy the solution by using Visual Studio. During deployment, check the **Enable IntelliTrace for .NET 4 roles** check box.
 
-3. 執行個體啟動後，請開啟 [伺服器總管]。
+3. Once the instance starts, open the **Server Explorer**.
 
-4. 展開 **Azure\\Cloud Services** 節點，並找出部署。
+4. Expand the **Azure\\Cloud Services** node and locate the deployment.
 
-5. 展開部署，直到您看見角色執行個體。以滑鼠右鍵按一下其中一個執行個體。
+5. Expand the deployment until you see the role instances. Right-click on one of the instances.
 
-6. 選擇 [檢視 IntelliTrace 記錄檔]。[IntelliTrace 摘要] 隨即開啟。
+6. Choose **View IntelliTrace logs**. The **IntelliTrace Summary** will open.
 
-7. 找出摘要的例外狀況區段。如果有例外狀況，區段會標示 [例外狀況資料]。
+7. Locate the exceptions section of the summary. If there are exceptions, the section will be labeled **Exception Data**.
 
-8. 展開 [例外狀況資料]，並尋找如下的 **System.IO.FileNotFoundException** 錯誤：
+8. Expand the **Exception Data** and look for **System.IO.FileNotFoundException** errors similar to the following:
 
-![例外狀況資料、遺失檔案或組件](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503390.png)
+![Exception data, missing file, or assembly](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503390.png)
 
-## 解決遺失 Dll 和組件的問題
+## <a name="address-missing-dlls-and-assemblies"></a>Address missing DLLs and assemblies
 
-若要解決遺失 DLL 和組件錯誤，請遵循下列步驟：
+To address missing DLL and assembly errors, follow these steps:
 
-1. 在 Visual Studio 中開啟解決方案。
+1. Open the solution in Visual Studio.
 
-2. 在 [方案總管] 中，開啟 **References** 資料夾。
+2. In **Solution Explorer**, open the **References** folder.
 
-3. 按一下錯誤中識別的組件。
+3. Click the assembly identified in the error.
 
-4. 在 [屬性] 窗格中找出 [複製本機] 屬性，並將值設為 **True**。
+4. In the **Properties** pane, locate **Copy Local property** and set the value to **True**.
 
-5. 重新部署雲端服務。
+5. Redeploy the cloud service.
 
-在確認所有錯誤皆已修正後，即可在未勾選 [為 .NET 4 角色啟用 IntelliTrace] 核取方塊的情況下部署服務。
+Once you have verified that all errors have been corrected, you can deploy the service without checking the **Enable IntelliTrace for .NET 4 roles** check box.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-檢視更多雲端服務的[疑難排解文章](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services)。
+View more [troubleshooting articles](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services) for cloud services.
 
-若要了解如何利用 Azure PaaS 電腦診斷資料對雲端服務角色問題進行疑難排解，請參閱 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
+To learn how to troubleshoot cloud service role issues by using Azure PaaS computer diagnostics data, see [Kevin Williamson's blog series](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

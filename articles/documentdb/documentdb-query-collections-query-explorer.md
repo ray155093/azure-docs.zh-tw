@@ -1,80 +1,86 @@
 <properties
-	pageTitle="DocumentDB 查詢總管：SQL 查詢編輯器 | Microsoft Azure"
-	description="深入了解 DocumentDB 查詢總管，它是 Azure 入口網站中的 SQL 查詢編輯器，可針對 NoSQL DocumentDB 集合撰寫和執行 SQL 查詢。"
-	keywords="撰寫 sql 查詢, sql 查詢編輯器"
-	services="documentdb"
-	authors="AndrewHoh"
-	manager="jhubbard"
-	editor="monicar"
-	documentationCenter=""/>
+    pageTitle="DocumentDB Query Explorer: A SQL query editor | Microsoft Azure"
+    description="Learn about the DocumentDB Query Explorer, a SQL query editor in the Azure portal for writing SQL queries and running them against a NoSQL DocumentDB collection."
+    keywords="writing sql queries, sql query editor"
+    services="documentdb"
+    authors="kirillg"
+    manager="jhubbard"
+    editor="monicar"
+    documentationCenter=""/>
 
 <tags
-	ms.service="documentdb"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/30/2016"
-	ms.author="anhoh"/>
+    ms.service="documentdb"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/30/2016"
+    ms.author="kirillg"/>
 
-# 使用查詢總管針對 DocumentDB 撰寫、編輯和執行 SQL 查詢 
 
-本篇文章提供了 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 查詢總管的概述，它是一項 Azure 入口網站工具，可讓您針對 [DocumentDB 集合](documentdb-create-collection.md)撰寫、編輯和執行 SQL 查詢。
+# <a name="write,-edit,-and-run-sql-queries-for-documentdb-using-query-explorer"></a>Write, edit, and run SQL queries for DocumentDB using Query Explorer 
 
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)]。如果看不到 [DocumentDB (NoSQL)]，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
+This article provides an overview of the [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) Query Explorer, an Azure portal tool that enables you to write, edit, and run SQL queries against a [DocumentDB collection](documentdb-create-collection.md).
 
-2. 在資源功能表中，按一下 [查詢總管]。
+1. In the Azure portal, in the Jumpbar, click **DocumentDB (NoSQL)**. If **DocumentDB (NoSQL)** is not visible, click **More Services** and then click **DocumentDB (NoSQL)**.
 
-	![已反白顯示 [查詢總管] 的 Azure 入口網站的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorercommand.png)
+2. In the resource menu, click **Query Explorer**. 
 
-3. 在 [查詢總管] 刀鋒視窗中，從下拉式清單中選取要查詢的 [資料庫] 和 [集合]，然後輸入要執行的查詢。
+    ![Screenshot of the Azure portal with Query Explorer highlighted](./media/documentdb-query-collections-query-explorer/queryexplorercommand.png)
 
-    [資料庫] 和 [集合] 下拉式清單會根據您在其中啟動 [查詢總管] 的內容預先填入。
+3. In the **Query Explorer** blade, select the **Databases** and **Collections** to query from the drop down lists, and type the query to run. 
 
-    系統會提供 `SELECT TOP 100 * FROM c` 的預設查詢。您可以使用 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)或 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文中描述的 SQL 查詢語言，接受預設查詢或建構自己的查詢。
+    The **Databases** and **Collections** drop-down lists are pre-populated depending on the context in which you launch Query Explorer. 
 
-    按一下 [執行查詢] 以檢視結果。
+    A default query of `SELECT TOP 100 * FROM c` is provided.  You can accept the default query or construct your own query using the SQL query language described in the [SQL query cheat sheet](documentdb-sql-query-cheat-sheet.md) or the [SQL query and SQL syntax](documentdb-sql-query.md) article.
 
-	![在 [查詢總管] (SQL 查詢編輯器) 中撰寫 SQL 查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerinitial.png)
+    Click **Run query** to view the results.
 
-4. [結果] 刀鋒視窗會顯示查詢的輸出。
+    ![Screenshot of writing SQL queries in Query Explorer, a SQL query editor](./media/documentdb-query-collections-query-explorer/queryexplorerinitial.png)
 
-	![在 [查詢總管] 中撰寫 SQL 查詢之結果的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryresults1.png)
+4. The **Results** blade displays the output of the query. 
 
-## 處理結果
+    ![Screenshot of results of writing SQL queries in Query Explorer](./media/documentdb-query-collections-query-explorer/queryresults1.png)
 
-根據預設，[查詢總管] 會傳回結果，以 100 為一組。如果您的查詢產生的結果超過 100 個，您只需使用 [下一頁] 和 [上一頁] 命令即可瀏覽結果集。
+## <a name="work-with-results"></a>Work with results
 
-![[查詢總管] 分頁支援的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryresultspagination.png)
+By default, Query Explorer returns results in sets of 100.  If your query produces more than 100 results, simply use the **Next page** and **Previous page** commands to navigate through the result set.
 
-對於成功的查詢，[資訊] 窗格會包含如要求費用、查詢所進行的來回行程數目、目前顯示的結果集，以及是否有更多結果等資訊，您可以透過先前所述的 [下一頁] 命令進行存取。
+![Screenshot of Query Explorer pagination support](./media/documentdb-query-collections-query-explorer/queryresultspagination.png)
 
-![[查詢總管] 查詢資訊的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryinformation.png)
+For successful queries, the **Information** pane contains metrics such as the request charge,  the number of round trips the query made, the set of results currently being shown, and whether there are more results, which can then be accessed via the **Next page** command, as mentioned previously.
 
-## 使用多個佇列
+![Screenshot of Query Explorer query information](./media/documentdb-query-collections-query-explorer/queryinformation.png)
 
-如果您使用多個查詢，而且想要在其間快速切換，您可以在 [查詢總管] 刀鋒視窗的查詢文字方塊中輸入所有查詢，將您要執行的查詢反白，然後按一下 [執行查詢] 以檢視結果。
+## <a name="use-multiple-queries"></a>Use multiple queries
 
-![在 [查詢總管] (SQL 查詢編輯器) 中撰寫多個 SQL 查詢，然後反白顯示並執行個別查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerhighlightandrun.png)
+If you're using multiple queries and want to quickly switch between them, you can enter all the queries in the query text box of the **Query Explorer** blade, then highlight the one you want to run, and then click **Run query** to view the results.
 
-## 將查詢從檔案加入至 SQL 查詢編輯器
+![Screenshot of writing multiple SQL queries in Query Explorer (a SQL query editor) and highlighting and running individual queries](./media/documentdb-query-collections-query-explorer/queryexplorerhighlightandrun.png)
 
-您可以使用 [載入檔案] 命令載入現有檔案的內容。
+## <a name="add-queries-from-a-file-into-the-sql-query-editor"></a>Add queries from a file into the SQL query editor
 
-![顯示如何使用載入檔案將 SQL 查詢從檔案載入 [查詢總管] 的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/loadqueryfile.png)
+You can load the contents of an existing file using the **Load File** command.
 
-## 疑難排解
+![Screenshot showing how to load SQL queries from a file into Query Explorer using Load File](./media/documentdb-query-collections-query-explorer/loadqueryfile.png)
 
-如果查詢完成但發生錯誤，則 [查詢總管] 會顯示可協助進行疑難排解工作的錯誤清單。
+## <a name="troubleshoot"></a>Troubleshoot
 
-![[查詢總管] 查詢錯誤的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryerror.png)
+If a query completes with errors, Query Explorer displays a list of errors that can help with troubleshooting efforts.
 
-## 在入口網站外部執行 DocumentDB SQL 查詢
+![Screenshot of Query Explorer query errors](./media/documentdb-query-collections-query-explorer/queryerror.png)
 
-Azure 入口網站中的 Document Explorer 只是一種對 DocumentDB 執行 SQL 查詢的方法。您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 執行 SQL 查詢。如需使用上述其他方法的詳細資訊，請參閱[執行 SQL 查詢](documentdb-sql-query.md#executing-sql-queries)
+## <a name="run-documentdb-sql-queries-outside-the-portal"></a>Run DocumentDB SQL queries outside the portal
 
-## 後續步驟
+The Query Explorer in the Azure portal is just one way to run SQL queries against DocumentDB. You can also run SQL queries using the [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) or the [client SDKs](documentdb-sdk-dotnet.md). For more information about using these other methods, see [Executing SQL queries](documentdb-sql-query.md#executing-sql-queries)
 
-若要深入了解 [查詢總管] 中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。您也可以享受 [Query Playground](https://www.documentdb.com/sql/demo) 體驗，在其中使用範例資料集在線上測試查詢。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0831_2016-->
+To learn more about the DocumentDB SQL grammar supported in Query Explorer, see the [SQL query and SQL syntax](documentdb-sql-query.md) article or print out the [SQL query cheat sheet](documentdb-sql-query-cheat-sheet.md).
+You may also enjoy experimenting with the [Query Playground](https://www.documentdb.com/sql/demo) where you can test out queries online using a sample dataset.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

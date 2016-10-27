@@ -1,107 +1,112 @@
 <properties
-	pageTitle="Azure Mobile Apps 中的驗證與授權 | Microsoft Azure"
-	description="Azure Mobile Apps 驗證 / 授權功能的概念性參考與概觀"
-	services="app-service\mobile"
-	documentationCenter=""
-	authors="mattchenderson"
-	manager="erikref"
-	editor=""/>
+    pageTitle="Authentication and Authorization in Azure Mobile Apps | Microsoft Azure"
+    description="Conceptual reference and overview of the Authentication / Authorization feature for Azure Mobile Apps"
+    services="app-service\mobile"
+    documentationCenter=""
+    authors="mattchenderson"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="app-service-mobile"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="na"
-	ms.devlang="multiple"
-	ms.topic="article"
-	ms.date="08/22/2016"
-	ms.author="mahender"/>
+    ms.service="app-service-mobile"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="na"
+    ms.devlang="multiple"
+    ms.topic="article"
+    ms.date="10/01/2016"
+    ms.author="mahender"/>
 
-# Azure Mobile Apps 中的驗證與授權
 
-## 什麼是 App Service 驗證 / 授權？
+# <a name="authentication-and-authorization-in-azure-mobile-apps"></a>Authentication and Authorization in Azure Mobile Apps
 
-> [AZURE.NOTE] 本主題將移轉至合併的 [App Service 驗證/授權](../app-service/app-service-authentication-overview.md)主題，其中涵蓋 Web、Mobile 和 API Apps。
+## <a name="what-is-app-service-authentication-/-authorization?"></a>What is App Service Authentication / Authorization?
 
-App Service 驗證 / 授權是一項功能，可讓您的應用程式登入使用者，而不需在 app 後端進行任何程式碼變更。它提供簡單的方法來保護您的應用程式，以及使用每位使用者的資料。
+> [AZURE.NOTE] This topic will be migrated to a consolidated [App Service Authentication / Authorization](../app-service/app-service-authentication-overview.md) topic, which covers Web, Mobile, and API Apps.
 
-App Service 會使用同盟身分識別，第 3 方**身分識別提供者** ("IDP") 會在其中儲存帳戶和驗證使用者，而應用程式會使用這個身分識別，而不是它自己的身分識別。App Service 支援五個現成的身分識別提供者：_Azure Active Directory_、_Facebook_、_Google_、_Microsoft 帳戶_及 _Twitter_。您也可以藉由整合其他身分識別提供者或您自己自訂的身分識別解決方案，針對您的 app 延伸此支援。
+App Service Authentication / Authorization is a feature which allows your application to log in users with no code changes required on the app backend. It provides an easy way to protect your application and work with per-user data.
 
-您的 app 可以利用任意數目的這類身分識別提供者，因此可為您的使用者提供登入選項。
+App Service uses federated identity, in which a 3rd-party **identity provider** ("IDP") stores accounts and authenticates users, and the application uses this identity instead of its own. App Service supports five identity providers out of the box: _Azure Active Directory_, _Facebook_, _Google_, _Microsoft Account_, and _Twitter_. You can also expand this support for your apps by integrating another identity provider or your own custom identity solution.
 
-如果您希望立即開始，請參閱下列其中一個教學課程：
+Your app can leverage any number of these identity providers, so you can provide your end users with options for how they login.
 
-- [將驗證新增至您的 iOS 應用程式]
-- [將驗證新增至 Xamarin.iOS 應用程式]
-- [將驗證新增至 Xamarin.Android 應用程式]
-- [將驗證新增至您的 Windows App]
+If you wish to get started right away, please see one of the following tutorials:
 
-## 驗證的運作方式
+- [Add authentication to your iOS app]
+- [Add authentication to your Xamarin.iOS app]
+- [Add authentication to your Xamarin.Android app]
+- [Add Authentication to your Windows app]
 
-若要使用其中一個身分識別提供者進行驗證，您首先需要設定身分識別提供者來了解您的應用程式。身分識別提供者接著將為您提供識別碼和密碼，您需要將這兩者再次提供給應用程式。這會完成的信任關係，並讓 App Service 能夠驗證其所提供的身分識別。
+## <a name="how-authentication-works"></a>How authentication works
 
-這些步驟將於下列主題中詳細說明：
+In order to authenticate using one of the identity providers, you first need to configure the identity provider to know about your application. The identity provider will then provide you with IDs and secrets that you provide back to the application. This completes the trust relationship and allows App Service to validate identities provided to it.
 
-- [如何設定您的 App 以使用 Azure Active Directory 登入]
-- [如何設定 App 以使用 Facebook 登入]
-- [如何設定 App 以使用 Google 登入]
-- [如何設定 App 以使用 Microsoft 帳戶登入]
-- [如何設定 App 以使用 Twitter 登入]
+These steps are detailed in the following topics:
 
-在後端將一切設定就緒之後，您就可以修改用來登入的用戶端。有以下兩種方法：
+- [How to configure your app to use Azure Active Directory login]
+- [How to configure your app to use Facebook login]
+- [How to configure your app to use Google login]
+- [How to configure your app to use Microsoft Account login]
+- [How to configure your app to use Twitter login]
 
-- 使用單一行程式碼，讓 Mobile Apps 用戶端 SDK 登入使用者。
-- 利用指定的身分識別提供者發佈的 SDK 來建立身分識別，然後取得 App Service 的存取權。
+Once everything is configured on the backend, you can modify your client to log in. There are two approaches here:
 
->[AZURE.TIP] 大部分的應用程式都應該使用提供者 SDK 來獲得更自然的登入體驗，以及利用重新整理支援和其他提供者專屬的權益。
+- Using a single line of code, let the Mobile Apps client SDK sign in users.
+- Leverage an SDK published by a given identity provider to establish identity and then gain access to App Service.
 
-### 不使用提供者 SDK 進行驗證的運作方式
+>[AZURE.TIP] Most applications should use a provider SDK to get a more native-feeling login experience and to leverage refresh support and other provider-specific benefits.
 
-如果您不想設定提供者 SDK，則可允許 Mobile Apps 來為您執行登入。Mobile Apps 用戶端 SDK 將為您選擇的提供者開啟網頁檢視，然後完成登入。您有時會在部落格和論壇上看到這稱為「伺服器流程」或「伺服器導向流程」。因為伺服器正在管理登入，而用戶端 SDK 永遠都不會收到提供者權杖。
+### <a name="how-authentication-without-a-provider-sdk-works"></a>How authentication without a provider SDK works
 
-啟動此流程所需的程式碼會包含於適用於每個平台的驗證教學課程中。在流程結束時，用戶端 SDK 會擁有一個 App Service 權杖，而該權杖會自動附加至對後端的所有要求。
+If you do not wish to set up a provider SDK, you can allow Mobile Apps to perform the login for you. The Mobile Apps client SDK will open a web view to the provider of your choosing and complete the sign in. Occasionally on blogs and forums you will see this referred to as the "server flow" or "server-directed flow" since the server is managing the login, and the client SDK never receives the provider token.
 
-### 使用提供者 SDK 進行驗證的運作方式
+The code needed to start this flow is covered in the authentication tutorial for each platform. At the end of the flow, the client SDK has an App Service token, and the token is automatically attached to all requests to the backend.
 
-使用提供者 SDK 可讓登入體驗與 app 執行所在的平台作業系統更緊密地進行互動。這也會提供您一個提供者權杖以及用戶端上的一些使用者資訊，讓它更容易取用圖表 API 和自訂使用者體驗。您有時會在部落格和論壇上看到這稱為「用戶端流程」或「用戶端導向的流程」，因為用戶端上的程式碼正在處理登入，而且用戶端程式碼可以存取提供者權杖。
+### <a name="how-authentication-with-a-provider-sdk-works"></a>How authentication with a provider SDK works
 
-一旦取得提供者權杖之後，它需要傳送給 App Service 以進行驗證。在流程結束時，用戶端 SDK 會擁有一個 App Service 權杖，而該權杖會自動附加至對後端的所有要求。如果開發人員選擇這樣做，他們也可以保留對提供者權杖的參考。
+Working with a provider SDK allows the log-in experience to interact more tightly with the platform OS the app is running on. This also gives you a provider token and some user information on the client, which makes it much easier to consume graph APIs and customize the user experience. Occasionally on blogs and forums you will see this referred to as the "client flow" or "client-directed flow" since code on the client is handling the login, and the client code has access to a provider token.
 
-## 授權的運作方式
+Once a provider token is obtained, it needs to be sent to App Service for validation. At the end of the flow, the client SDK has an App Service token, and the token is automatically attached to all requests to the backend. The developer can also keep a reference to the provider token if they so choose.
 
-App Service 驗證 / 授權會公開**未驗證要求時要採取的動作**的數個選項。在您的程式碼收到指定的要求之前，您可以進行 App Service 檢查來查看是否會驗證要求，如果沒有，請加以拒絕，並先嘗試讓使用者登入，然後再試一次。
+## <a name="how-authorization-works"></a>How authorization works
 
-其中一個選項是讓未經驗證的要求重新導向至其中一個身分識別提供者。在 Web 瀏覽器中，這實際上會將使用者帶到新頁面。不過，如此一來，您的行動用戶端就無法重新導向，而且未經驗證的回應將會收到 HTTP「401 未經授權」回應。考慮到這一點，您的用戶端所提出的第一個要求應一律為登入端點，而您接著可對任何其他 API 進行呼叫。如果您嘗試在登入之前呼叫另一個 API，您的用戶端將會收到錯誤。
+App Service Authentication / Authorization exposes several choices for **Action to take when request is not authenticated**. Before your code receives a given request, you can have App Service check to see if the request is authenticated and if not, reject it and attempt to have the user log in before trying again.
 
-如果您想要更細微地控制哪些端點需要驗證，您也可以針對未經驗證的要求挑選「沒有動作 (允許要求)」。在此情況下，所有驗證決策都會延後至您的應用程式程式碼。這也可以讓您根據自訂的授權規則來允許存取特定的使用者。
+One option is to have unauthenticated requests redirect to one of the identity providers. In a web browser, this would actually take the user to a new page. However, your mobile client cannot be redirected in this way, and unauthenticated responses will receive an HTTP _401 Unauthorized_ response. Given this, the first request your client makes should always be to the login endpoint, and then you can make calls to any other APIs. If you attempt to call another API before logging in, your client will receive an error.
 
-## 文件
+If you wish to have more granular control over which endpoints require authentication, you can also pick "No action (allow request)" for unauthenticated requests. In this case, all authentication decisions are deferred to your application code. This also allows you to allow access to specific users based on custom authorization rules.
 
-下列教學課程示範如何使用 App Service，將驗證新增至您的行動用戶端：
+## <a name="documentation"></a>Documentation
 
-- [將驗證新增至您的 iOS 應用程式]
-- [將驗證新增至 Xamarin.iOS 應用程式]
-- [將驗證新增至 Xamarin.Android 應用程式]
-- [將驗證新增至您的 Windows App]
+The following tutorials show how to add authentication to your mobile clients using App Service:
 
-下列教學課程示範如何設定 App Service 來運用不同的驗證提供者：
+- [Add authentication to your iOS app]
+- [Add authentication to your Xamarin.iOS app]
+- [Add authentication to your Xamarin.Android app]
+- [Add Authentication to your Windows app]
 
-- [如何設定您的 App 以使用 Azure Active Directory 登入]
-- [如何設定 App 以使用 Facebook 登入]
-- [如何設定 App 以使用 Google 登入]
-- [如何設定 App 以使用 Microsoft 帳戶登入]
-- [如何設定 App 以使用 Twitter 登入]
+The following tutorials show how to configure App Service to leverage different authentication providers:
 
-如果您想要使用此處提供之身分識別系統以外的身分識別系統，也可以利用[預覽 .NET 伺服器 SDK 中的自訂驗證支援](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth)。
+- [How to configure your app to use Azure Active Directory login]
+- [How to configure your app to use Facebook login]
+- [How to configure your app to use Google login]
+- [How to configure your app to use Microsoft Account login]
+- [How to configure your app to use Twitter login]
 
-[將驗證新增至您的 iOS 應用程式]: app-service-mobile-ios-get-started-users.md
-[將驗證新增至 Xamarin.iOS 應用程式]: app-service-mobile-xamarin-ios-get-started-users.md
-[將驗證新增至 Xamarin.Android 應用程式]: app-service-mobile-xamarin-android-get-started-users.md
-[將驗證新增至您的 Windows App]: app-service-mobile-windows-store-dotnet-get-started-users.md
+If you wish to use an identity system other than the ones provided here, you can also leverage the [preview custom authentication support in the .NET server SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth).
 
-[如何設定您的 App 以使用 Azure Active Directory 登入]: app-service-mobile-how-to-configure-active-directory-authentication.md
-[如何設定 App 以使用 Facebook 登入]: app-service-mobile-how-to-configure-facebook-authentication.md
-[如何設定 App 以使用 Google 登入]: app-service-mobile-how-to-configure-google-authentication.md
-[如何設定 App 以使用 Microsoft 帳戶登入]: app-service-mobile-how-to-configure-microsoft-authentication.md
-[如何設定 App 以使用 Twitter 登入]: app-service-mobile-how-to-configure-twitter-authentication.md
+[Add authentication to your iOS app]: app-service-mobile-ios-get-started-users.md
+[Add authentication to your Xamarin.iOS app]: app-service-mobile-xamarin-ios-get-started-users.md
+[Add authentication to your Xamarin.Android app]: app-service-mobile-xamarin-android-get-started-users.md
+[Add Authentication to your Windows app]: app-service-mobile-windows-store-dotnet-get-started-users.md
 
-<!---HONumber=AcomDC_0824_2016-->
+[How to configure your app to use Azure Active Directory login]: app-service-mobile-how-to-configure-active-directory-authentication.md
+[How to configure your app to use Facebook login]: app-service-mobile-how-to-configure-facebook-authentication.md
+[How to configure your app to use Google login]: app-service-mobile-how-to-configure-google-authentication.md
+[How to configure your app to use Microsoft Account login]: app-service-mobile-how-to-configure-microsoft-authentication.md
+[How to configure your app to use Twitter login]: app-service-mobile-how-to-configure-twitter-authentication.md
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

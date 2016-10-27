@@ -1,240 +1,246 @@
 <properties
-	pageTitle="Azure Mobile Engagement Web SDK API | Microsoft Azure"
-	description="Azure Mobile Engagement Web SDK 的最新更新與程序"
-	services="mobile-engagement"
-	documentationCenter="mobile"
-	authors="piyushjo"
-	manager="erikre"
-	editor="" />
+    pageTitle="Azure Mobile Engagement Web SDK APIs | Microsoft Azure"
+    description="The latest updates and procedures for the Web SDK for Azure Mobile Engagement"
+    services="mobile-engagement"
+    documentationCenter="mobile"
+    authors="piyushjo"
+    manager="erikre"
+    editor="" />
 
 <tags
-	ms.service="mobile-engagement"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="web"
-	ms.devlang="js"
-	ms.topic="article"
-	ms.date="06/07/2016"
-	ms.author="piyushjo" />
+    ms.service="mobile-engagement"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="web"
+    ms.devlang="js"
+    ms.topic="article"
+    ms.date="06/07/2016"
+    ms.author="piyushjo" />
 
-# 在 Web 應用程式中使用 Azure Mobile Engagement API
 
-此文件是文件的補充，說明如何[在您的 Web 應用程式中整合 Mobile Engagement](mobile-engagement-web-integrate-engagement.md)。它會提供關於如何使用 Azure Mobile Engagement API 來回報您應用程式的統計資料之詳細資訊。
+# <a name="use-the-azure-mobile-engagement-api-in-a-web-application"></a>Use the Azure Mobile Engagement API in a web application
 
-Mobile Engagement API 是由 `engagement.agent` 物件提供。預設 Azure Mobile Engagement Web SDK 別名是 `engagement`。您可以從 SDK 組態來重新定義此別名。
+This document is an addition to the document that tells you how to [integrate Mobile Engagement in a web application](mobile-engagement-web-integrate-engagement.md). It provides in-depth details about how to use the Azure Mobile Engagement API to report your application statistics.
 
-## Mobile Engagement 概念
+The Mobile Engagement API is provided by the `engagement.agent` object. The default Azure Mobile Engagement Web SDK alias is `engagement`. You can redefine this alias from the SDK configuration.
 
-以下部分簡要說明適用於 Web 平台的 [Mobile Engagement 概念](mobile-engagement-concepts.md)。
+## <a name="mobile-engagement-concepts"></a>Mobile Engagement concepts
 
-### `Session`和`Activity`
+The following parts refine common [Mobile Engagement concepts](mobile-engagement-concepts.md) for the web platform.
 
-如果使用者在兩個活動之間維持閒置超過幾秒鐘，其活動序列會分割成兩個相異的工作階段。這幾秒被稱為工作階段逾時。
+### <a name="`session`-and-`activity`"></a>`Session` and `Activity`
 
-如果您的 Web 應用程式不自行宣告使用者活動的結束 (透過呼叫 `engagement.agent.endActivity` 函式)，Mobile Engagement 伺服器將會在應用程式頁面關閉後的 3 分鐘之內自動讓使用者工作階段到期。這被稱為伺服器工作階段逾時。
+If the user stays idle for more than a few seconds between two activities, the user's sequence of activities is split into two distinct sessions. These few seconds are called the session timeout.
+
+If your web application doesn't declare the end of user activities by itself (by calling the `engagement.agent.endActivity` function), the Mobile Engagement server automatically expires the user session within three minutes after the application page is closed. This is called the server session timeout.
 
 ### `Crash`
 
-根據預設，不會建立無法攔截的 JavaScript 例外狀況的自動報告。不過，您可以透過使用 `sendCrash` 函式來手動報告當機 (請參閱報告當機的章節)。
+Automated reports of uncaught JavaScript exceptions are not created by default. However, you can report crashes manually by using the `sendCrash` function (see the section on reporting crashes).
 
-## 報告活動
+## <a name="reporting-activities"></a>Reporting activities
 
-使用者啟動新的活動以及使用者結束目前活動時報告使用者活動。
+Reporting on user activity includes when a user starts a new activity, and when the user ends the current activity.
 
-### 使用者啟動新的活動
+### <a name="user-starts-a-new-activity"></a>User starts a new activity
 
-	engagement.agent.startActivity("MyUserActivity");
+    engagement.agent.startActivity("MyUserActivity");
 
-每當使用者活動變更，您就需要呼叫 `startActivity()`。第一次呼叫此函數會啟動新的使用者工作階段。
+You need to call `startActivity()` each time user activity changes. The first call to this function starts a new user session.
 
-### 使用者結束目前的活動
+### <a name="user-ends-the-current-activity"></a>User ends the current activity
 
-	engagement.agent.endActivity();
+    engagement.agent.endActivity();
 
-使用者完成最後一個活動時，您至少需要呼叫 `endActivity()` 一次。這會通知 Mobile Engagement Web SDK，說明使用者目前處於閒置狀態，且工作階段逾時到期之後就必須關閉使用者工作階段。如果您在工作階段逾時到期之前呼叫 `startActivity()`，工作階段只會繼續。
+You need to call `endActivity()` at least once when the user finishes their last activity. This informs the Mobile Engagement Web SDK that the user is currently idle, and that the user session needs to be closed after the session timeout expires. If you call `startActivity()` before the session timeout expires, the session is simply resumed.
 
-因為當導覽視窗關閉時沒有可靠呼叫，在 Web 環境內攔截使用者活動的結束通常很困難或無法達成。這就是為什麼 Mobile Engagement 伺服器會在應用程式頁面關閉後，於 3 分鐘之內自動讓使用者工作階段到期。
+Because there's no reliable call for when the navigator window is closed, it's often difficult or impossible to catch the end of user activities inside a web environment. That's why the Mobile Engagement server automatically expires the user session within three minutes after the application page is closed.
 
-## 報告事件
+## <a name="reporting-events"></a>Reporting events
 
-報告事件涵蓋了工作階段事件和獨立事件。
+Reporting on events covers session events and standalone events.
 
-### 工作階段事件
+### <a name="session-events"></a>Session events
 
-工作階段事件通常用來報告在使用者工作階段期間由使用者所執行的動作。
+Session events usually are used to report the actions performed by a user during the user's session.
 
-**不含額外資料的範例：**
+**Example without extra data:**
 
-	loginButton.onclick = function() {
-	  engagement.agent.sendSessionEvent('login');
-	  // [...]
-	}
+    loginButton.onclick = function() {
+      engagement.agent.sendSessionEvent('login');
+      // [...]
+    }
 
-**含額外資料的範例：**
+**Example with extra data:**
 
-	loginButton.onclick = function() {
-	  engagement.agent.sendSessionEvent('login', {user: 'alice'});
-	  // [...]
-	}
+    loginButton.onclick = function() {
+      engagement.agent.sendSessionEvent('login', {user: 'alice'});
+      // [...]
+    }
 
-### 獨立事件
+### <a name="standalone-events"></a>Standalone events
 
-與工作階段事件不同，獨立的事件可能發生在工作階段的內容之外。
+Unlike session events, standalone events can occur outside the context of a session.
 
-針對那種情況，請使用 ``engagement.agent.sendEvent``，而不是 ``engagement.agent.sendSessionEvent``。
+For that, use ``engagement.agent.sendEvent`` instead of ``engagement.agent.sendSessionEvent``.
 
-## 報告錯誤
+## <a name="reporting-errors"></a>Reporting errors
 
-報告錯誤涵蓋了工作階段錯誤和獨立錯誤。
+Reporting on errors covers session errors and standalone errors.
 
-### 工作階段錯誤
+### <a name="session-errors"></a>Session errors
 
-工作階段錯誤通常用來報告在使用者工作階段期間影響使用者的錯誤。
+Session errors usually are used to report the errors that have an impact on the user during the user's session.
 
-**不含額外資料的範例：**
+**Example without extra data:**
 
-	var validateForm = function() {
-	  // [...]
-	  if (password.length < 6) {
-	    engagement.agent.sendSessionError('password_too_short');
-	  }
-	  // [...]
-	}
+    var validateForm = function() {
+      // [...]
+      if (password.length < 6) {
+        engagement.agent.sendSessionError('password_too_short');
+      }
+      // [...]
+    }
 
-**含額外資料的範例：**
+**Example with extra data:**
 
-	var validateForm = function() {
-	  // [...]
-	  if (password.length < 6) {
-	    engagement.agent.sendSessionError('password_too_short', {length: 4});
-	  }
-	  // [...]
-	}
+    var validateForm = function() {
+      // [...]
+      if (password.length < 6) {
+        engagement.agent.sendSessionError('password_too_short', {length: 4});
+      }
+      // [...]
+    }
 
-### 獨立錯誤
+### <a name="standalone-errors"></a>Standalone errors
 
-不同於工作階段錯誤，獨立錯誤可以出現在工作階段的內容之外。
+Unlike session errors, standalone errors can occur outside the context of a session.
 
-針對那種情況，請使用 `engagement.agent.sendError`，而不是 `engagement.agent.sendSessionError`。
+For that, use `engagement.agent.sendError` instead of `engagement.agent.sendSessionError`.
 
-## 報告工作
+## <a name="reporting-jobs"></a>Reporting jobs
 
-報告作業涵蓋報告在作業期間發生的錯誤和事件，以及報告當機。
+Reporting on jobs covers reporting errors and events that occur during a job, and reporting crashes.
 
-**範例：**
+**Example:**
 
-如果您想要監視 AJAX 要求，可以使用下列項目：
+If you want to monitor an AJAX request, you'd use the following:
 
-	// [...]
-	xhr.onreadystatechange = function() {
-	  if (xhr.readyState == 4) {
-	  // [...]
-	    engagement.agent.endJob('publish');
-	  }
-	}
-	engagement.agent.startJob('publish');
-	xhr.send();
-	// [...]
+    // [...]
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+      // [...]
+        engagement.agent.endJob('publish');
+      }
+    }
+    engagement.agent.startJob('publish');
+    xhr.send();
+    // [...]
 
-### 報告於作業期間發生的錯誤
+### <a name="reporting-errors-during-a-job"></a>Reporting errors during a job
 
-錯誤可能與正在執行的作業關聯，而不是與目前的使用者作業階段關聯。
+Errors can be related to a running job instead of to the current user session.
 
-**範例：**
+**Example:**
 
-如果您想要在 AJAX 要求失敗時報告錯誤：
+If you want to report an error if an AJAX request fails:
 
-	// [...]
-	xhr.onreadystatechange = function() {
-	  if (xhr.readyState == 4) {
-	    // [...]
-	    if (xhr.status == 0 || xhr.status >= 400) {
-	      engagement.agent.sendJobError('publish_xhr', 'publish', {status: xhr.status, statusText: xhr.statusText});
-	    }
-	    engagement.agent.endJob('publish');
-	  }
-	}
-	engagement.agent.startJob('publish');
-	xhr.send();
-	// [...]
+    // [...]
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        // [...]
+        if (xhr.status == 0 || xhr.status >= 400) {
+          engagement.agent.sendJobError('publish_xhr', 'publish', {status: xhr.status, statusText: xhr.statusText});
+        }
+        engagement.agent.endJob('publish');
+      }
+    }
+    engagement.agent.startJob('publish');
+    xhr.send();
+    // [...]
 
-### 在作業期間報告事件
+### <a name="reporting-events-during-a-job"></a>Reporting events during a job
 
-透過 `engagement.agent.sendJobEvent` 函式，事件可以與執行中的作業相關，而不是與目前的使用者工作階段相關。
+Events can be related to a running job instead of to the current user session, thanks to the `engagement.agent.sendJobEvent` function.
 
-此函式的運作方式與 `engagement.agent.sendJobError` 完全相同。
+This function works exactly like `engagement.agent.sendJobError`.
 
-### 報告當機
+### <a name="reporting-crashes"></a>Reporting crashes
 
-使用 `sendCrash` 函式來手動報告當機。
+Use the `sendCrash` function to report crashes manually.
 
-`crashid` 引數是識別當機類型的字串。`crash` 引數通常是字串格式的當機的堆疊追蹤。
+The `crashid` argument is a string that identifies the type of crash.
+The `crash` argument usually is the stack trace of the crash as a string.
 
-	engagement.agent.sendCrash(crashid, crash);
+    engagement.agent.sendCrash(crashid, crash);
 
-## 額外的參數
+## <a name="extra-parameters"></a>Extra parameters
 
-您可以將任意資料附加到事件、錯誤、活動或作業。
+You can attach arbitrary data to an event, error, activity, or job.
 
-此資料可以是任何 JSON 物件 (但是不是陣列或基本類型)。
+The data can be any JSON object (but not an array or primitive type).
 
-**範例：**
+**Example:**
 
-	var extras = {"video_id": 123, "ref_click": "http://foobar.com/blog"};
-	engagement.agent.sendEvent("video_clicked", extras);
+    var extras = {"video_id": 123, "ref_click": "http://foobar.com/blog"};
+    engagement.agent.sendEvent("video_clicked", extras);
 
-### 限制
+### <a name="limits"></a>Limits
 
-套用至額外參數的限制是在索引鍵、值類型和大小的規則運算式的領域。
+Limits that apply to extra parameters are in the areas of regular expressions for keys, value types, and size.
 
-#### 之間的信任
+#### <a name="keys"></a>Keys
 
-物件中的每個索引鍵都必須符合下列規則運算式：
+Each key in the object must match the following regular expression:
 
-	^[a-zA-Z][a-zA-Z_0-9]*
+    ^[a-zA-Z][a-zA-Z_0-9]*
 
-這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
+This means that keys must start with at least one letter, followed by letters, digits, or underscores (\_).
 
-#### 值
+#### <a name="values"></a>Values
 
-值被限制為字串、數字及布林類型。
+Values are limited to string, number, and Boolean types.
 
-#### 大小
+#### <a name="size"></a>Size
 
-額外項目限制為一次呼叫 1024 個字元 (在 Mobile Engagement Web SDK 以 JSON 編碼之後)。
+Extras are limited to 1,024 characters per call (after the Mobile Engagement Web SDK encodes it in JSON).
 
-## 報告應用程式資訊
+## <a name="reporting-application-information"></a>Reporting application information
 
-您可以使用 `sendAppInfo()` 函式手動報告追蹤資訊 (或是任何其他應用程式特定資訊)。
+You can manually report tracking information (or any other application-specific information) by using the `sendAppInfo()` function.
 
-請注意，這項資訊可以累加方式傳送。只會針對特定裝置保留特定索引鍵的最新值。
+Note that this information can be sent incrementally. Only the latest value for a specific key will be kept for a specific device.
 
-和事件額外資料一樣，您可以使用任何 JSON 物件來摘錄應用程式資訊。請注意，陣列或子物件會視為一般字串 (使用 JSON 序列化)。
+Like event extras, you can use any JSON object to abstract application information. Note that arrays or sub-objects are treated as flat strings (using JSON serialization).
 
-**範例：**
+**Example:**
 
-以下是傳送使用者性別和出生日期的程式碼範例：
+Here is a code sample for sending the user's gender and birth date:
 
-	var appInfos = {"birthdate":"1983-12-07","gender":"female"};
-	engagement.agent.sendAppInfo(appInfos);
+    var appInfos = {"birthdate":"1983-12-07","gender":"female"};
+    engagement.agent.sendAppInfo(appInfos);
 
-### 限制
+### <a name="limits"></a>Limits
 
-套用至應用程式資訊的限制是在索引鍵和大小的規則運算式的領域。
+Limits that apply to application information are in the areas of regular expressions for keys, and size.
 
-#### 之間的信任
+#### <a name="keys"></a>Keys
 
-物件中的每個索引鍵都必須符合下列規則運算式：
+Each key in the object must match the following regular expression:
 
-	^[a-zA-Z][a-zA-Z_0-9]*
+    ^[a-zA-Z][a-zA-Z_0-9]*
 
-這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
+This means that keys must start with at least one letter, followed by letters, digits, or underscores (\_).
 
-#### 大小
+#### <a name="size"></a>Size
 
-應用程式資訊限制為一次呼叫 1024 個字元 (在 Mobile Engagement Web SDK 以 JSON 編碼之後)。
+Application information is limited to 1,024 characters per call (after the Mobile Engagement Web SDK encodes it in JSON).
 
-在上述範例中，傳送到伺服器的 JSON 會是 44 個字元：
+In the preceding example, the JSON sent to the server is 44 characters long:
 
-	{"birthdate":"1983-12-07","gender":"female"}
+    {"birthdate":"1983-12-07","gender":"female"}
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

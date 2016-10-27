@@ -1,118 +1,124 @@
 <properties
-	pageTitle="Azure CDN 即時警示 | Microsoft Azure"
-	description="Microsoft Azure CDN 中的即時警示。即時警示可針對 CDN 設定檔中端點的效能提供通知。"
-	services="cdn"
-	documentationCenter=""
-	authors="camsoper"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Azure CDN Real-Time Alerts | Microsoft Azure"
+    description="Real-time alerts in Microsoft Azure CDN. Real-time alerts provide notifications about the performance of the endpoints in your CDN profile."
+    services="cdn"
+    documentationCenter=""
+    authors="camsoper"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="cdn"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/12/2016"
-	ms.author="casoper"/>
+    ms.service="cdn"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/12/2016"
+    ms.author="casoper"/>
 
-# Microsoft Azure CDN 中的即時警示
+
+# <a name="real-time-alerts-in-microsoft-azure-cdn"></a>Real-time alerts in Microsoft Azure CDN
 
 [AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 
-## Overview
+## <a name="overview"></a>Overview
 
-本文件說明 Microsoft Azure CDN 中的即時警示。這項功能可針對 CDN 設定檔中端點的效能提供即時通知。您可以根據以下狀況設定電子郵件或 HTTP 警示︰
+This document explains real-time alerts in Microsoft Azure CDN. This functionality provides real-time notifications about the performance of the endpoints in your CDN profile.  You can set up email or HTTP alerts based on:
 
-* 頻寬
-* 狀態碼
-* 快取狀態
-* 連線
+* Bandwidth
+* Status Codes
+* Cache Statuses
+* Connections
 
-## 建立即時警示
+## <a name="creating-a-real-time-alert"></a>Creating a real-time alert
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽到您的 CDN 設定檔。
+1. In the [Azure Portal](https://portal.azure.com), browse to your CDN profile.
 
-	![CDN 設定檔刀鋒視窗](./media/cdn-real-time-alerts/cdn-profile-blade.png)
+    ![CDN profile blade](./media/cdn-real-time-alerts/cdn-profile-blade.png)
 
-2. 在 CDN 設定檔刀鋒視窗中，按一下 [管理] 按鈕。
+2. From the CDN profile blade, click the **Manage** button.
 
-	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-real-time-alerts/cdn-manage-btn.png)
+    ![CDN profile blade manage button](./media/cdn-real-time-alerts/cdn-manage-btn.png)
 
-	隨即開啟 CDN 管理入口網站。
+    The CDN management portal opens.
 
-3. 將滑鼠暫留在 [分析] 索引標籤上，然後暫留在 [即時統計資料] 飛出視窗上。按一下 [即時警示]。
+3. Hover over the **Analytics** tab, then hover over the **Real-Time Stats** flyout.  Click on **Real-Time Alerts**.
 
-	![CDN 管理入口網站](./media/cdn-real-time-alerts/cdn-premium-portal.png)
+    ![CDN management portal](./media/cdn-real-time-alerts/cdn-premium-portal.png)
 
-	隨即會顯示現有警示組態 (如果有的話) 的清單。
+    The list of existing alert configurations (if any) is displayed.
 
-4. 按一下 [新增警示] 按鈕。
+4. Click the **Add Alert** button.
 
-	![新增警示按鈕](./media/cdn-real-time-alerts/cdn-add-alert.png)
+    ![Add Alert button](./media/cdn-real-time-alerts/cdn-add-alert.png)
 
-	隨即會顯示可供建立新警示的表單。
+    A form for creating a new alert is displayed.
 
-	![新增警示表單](./media/cdn-real-time-alerts/cdn-new-alert.png)
+    ![New Alert form](./media/cdn-real-time-alerts/cdn-new-alert.png)
 
-5. 如果您想要在按一下 [儲存] 時讓此警示啟用，請核取 [已啟用警示] 核取方塊。
+5. If you want this alert to be active when you click **Save**, check the **Alert Enabled** checkbox.
 
-6. 在 [名稱] 欄位中輸入用來描述警示的名稱。
+6. Enter a descriptive name for your alert in the **Name** field.
 
-7. 在 [媒體類型] 下拉式清單中，選取 [HTTP 大型物件]。
+7. In the **Media Type** dropdown, select **HTTP Large Object**.
 
-	![選取了 HTTP 大型物件的媒體類型](./media/cdn-real-time-alerts/cdn-http-large.png)
+    ![Media Type with HTTP Large Object selected](./media/cdn-real-time-alerts/cdn-http-large.png)
 
-	> [AZURE.IMPORTANT] 您必須選取 [HTTP 大型物件] 來做為 [媒體類型]。**來自 Verizon 的 Azure CDN** 不會使用其他選項。若未能選取 [HTTP 大型物件]，將導致警示永不觸發。
+    > [AZURE.IMPORTANT] You must select **HTTP Large Object** as the **Media Type**.  The other choices are not used by **Azure CDN from Verizon**.  Failure to select **HTTP Large Object** will cause your alert to never be triggered.
 
-8. 選取 [度量]、[運算子] 和 [觸發值]，建立 [運算式] 來進行監視。
+8. Create an **Expression** to monitor by selecting a **Metric**, **Operator**, and **Trigger value**.
 
-	- 針對 [度量]，請選取您要監視的狀況類型。[頻寬 Mbps] 是頻寬使用量，單位是每秒 Mb 數。[連線總數] 是連往 Edge Server 的並行 HTTP 連線數目。如需各種快取狀態和狀態碼的定義，請參閱 [Azure CDN 快取狀態碼](https://msdn.microsoft.com/library/mt759237.aspx)和 [Azure CDN HTTP 狀態碼](https://msdn.microsoft.com/library/mt759238.aspx)
-	- [運算子] 是可在度量和觸發值之間建立關聯性的數學運算子。
-	- [觸發值] 是在傳送通知之前必須先符合的臨界值。
+    - For **Metric**, select the type of condition you want monitored.  **Bandwidth Mbps** is the amount of bandwidth usage in megabits per second.  **Total Connections** is the number of concurrent HTTP connections to our edge servers.  For definitions of the various cache statuses and status codes, see [Azure CDN Cache Status Codes](https://msdn.microsoft.com/library/mt759237.aspx) and [Azure CDN HTTP Status Codes](https://msdn.microsoft.com/library/mt759238.aspx)
+    - **Operator** is the mathematical operator that establishes the relationship between the metric and the trigger value.
+    - **Trigger Value** is the threshold value that must be met before a notification will be sent out.
 
-	在下面的範例中，我所建立的運算式表示我想要在 404 狀態碼數目大於 25 時收到通知。
+    In the below example, the expression I have created indicates that I would like to be notified when the number of 404 status codes is greater than 25.
 
-	![即時警示的範例運算式](./media/cdn-real-time-alerts/cdn-expression.png)
+    ![Real-time alert sample expression](./media/cdn-real-time-alerts/cdn-expression.png)
 
-9. 在 [間隔] 中，輸入您想要評估運算式的頻率。
+9. For **Interval**, enter how frequently you would like the expression evaluated.
 
-10. 在 [通知時機] 下拉式清單中，選取當運算式評估為 true 時，您想要在何時收到通知。
-	
-	- [狀況開始] 表示會在第一次偵測到指定狀況時傳送通知。
-	- [狀況結束] 表示會於未再偵測到指定狀況時傳送通知。只有在網路監視系統已偵測到發生指定狀況後，才會觸發此通知。
-	- [連續] 表示會在網路監視系統每一次偵測到指定狀況時傳送通知。請記住，在每一次的間隔中，網路監視系統只會檢查一次是否發生指定狀況。
-	- [狀況開始和結束] 表示會在第一次偵測到指定狀況時傳送通知，並於未再偵測到該狀況時再次傳送通知。
+10. In the **Notify on** dropdown, select when you would like to be notified when the expression is true.
+    
+    - **Condition Start** indicates that a notification will be sent when the specified condition is first detected.
+    - **Condition End** indicates that a notification will be sent when the specified condition is no longer detected. This notification can only be triggered after our network monitoring system detected that the specified condition occurred.
+    - **Continuous** indicates that a notification will be sent each time that the network monitoring system detects the specified condition. Keep in mind that the network monitoring system will only check once per interval for the specified condition.
+    - **Condition Start and End** indicates that a notification will be sent the first time that the specified condition is detected and once again when the condition is no longer detected.
 
-11. 如果您想要透過電子郵件接收通知，請核取 [透過電子郵件通知] 核取方塊。
+11. If you want to receive notifications by email, check the **Notify by Email** checkbox.  
 
-	![透過電子郵件通知表單](./media/cdn-real-time-alerts/cdn-notify-email.png)
-	
-	在 [收件者] 欄位中，輸入您想要讓通知傳送到的電子郵件地址。在 [主旨] 和 [內文] 中，您可以保留預設值，或者也可以使用 [可用關鍵字] 清單自訂訊息，以在傳送訊息時動態插入警示資料。
+    ![Notify by Email form](./media/cdn-real-time-alerts/cdn-notify-email.png)
+    
+    In the **To** field, enter the email address you where you want notifications sent. For **Subject** and **Body**, you may leave the default, or you may customize the message using the **Available keywords** list to dynamically insert alert data when the message is sent.
 
-	> [AZURE.NOTE] 您可以按一下 [測試通知] 按鈕來測試電子郵件通知，但僅限在儲存警示組態之後進行。
+    > [AZURE.NOTE] You can test the email notification by clicking the **Test Notification** button, but only after the alert configuration has been saved.
 
-12. 如果您想要讓通知張貼到 Web 伺服器，請核取 [透過 HTTP Post 通知] 核取方塊。
+12. If you want notifications to be posted to a web server, check the **Notify by HTTP Post** checkbox.
 
-	![透過 HTTP Post 通知表單](./media/cdn-real-time-alerts/cdn-notify-http.png)
+    ![Notify by HTTP Post form](./media/cdn-real-time-alerts/cdn-notify-http.png)
 
-	在 [Url] 欄位中，輸入您想要用來張貼 HTTP 訊息的 URL。在 [標頭] 文字方塊中，輸入要在要求中傳送的 HTTP 標頭。在 [內文] 中，您可以使用 [可用關鍵字] 清單自訂訊息，以在傳送訊息時動態插入警示資料。[標頭] 和 [內文] 會預設為 XML 承載，情形類似下面的範例。
+    In the **Url** field, enter the URL you where you want the HTTP message posted. In the **Headers** textbox, enter the HTTP headers to be sent in the request.  For **Body** you may customize the message using the **Available keywords** list to dynamically insert alert data when the message is sent.  **Headers** and **Body** default to an XML payload similar to the below example.
 
-	```
-	<string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-		<![CDATA[Expression=Status Code : 404 per second > 25&Metric=Status Code : 404 per second&CurrentValue=[CurrentValue]&NotificationCondition=Condition Start]]>
-	</string>
-	```
+    ```
+    <string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+        <![CDATA[Expression=Status Code : 404 per second > 25&Metric=Status Code : 404 per second&CurrentValue=[CurrentValue]&NotificationCondition=Condition Start]]>
+    </string>
+    ```
 
-	> [AZURE.NOTE] 您可以按一下 [測試通知] 按鈕來測試 HTTP Post 通知，但僅限在儲存警示組態之後進行。
+    > [AZURE.NOTE] You can test the HTTP Post notification by clicking the **Test Notification** button, but only after the alert configuration has been saved.
 
-13. 按一下 [儲存] 按鈕以儲存您的警示組態。如果您在步驟 5 中核取了 [已啟用警示]，您的警示現在便已啟用。
+13. Click the **Save** button to save your alert configuration.  If you checked **Alert Enabled** in step 5, your alert is now active.
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-- 分析 [Azure CDN 中的即時統計資料](cdn-real-time-stats.md)
-- 進一步了解[進階 HTTP 報告](cdn-advanced-http-reports.md)
-- 分析[使用模式](cdn-analyze-usage-patterns.md)
+- Analyze [Real-time stats in Azure CDN](cdn-real-time-stats.md)
+- Dig deeper with [advanced HTTP reports](cdn-advanced-http-reports.md)
+- Analyze [usage patterns](cdn-analyze-usage-patterns.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

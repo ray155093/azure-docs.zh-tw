@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Microsoft Azure IaaS 上軟體更新的最佳作法 | Microsoft Azure"
-   description="本文針對 Microsoft Azure IaaS 環境中的軟體更新提供最佳作法集合。它的適用對象為 IT 專業人員和安全性分析師，他們每天都在處理變更控制、軟體更新和資產管理，包括那些負責其組織安全性和法規工作的人員。"
+   pageTitle="Best Practices for Software Updates on Microsoft Azure IaaS | Microsoft Azure"
+   description="Article provides a collection of best practices for software updates in an Microsoft Azure IaaS environment.  It is intended for IT professionals and security analysts who deal with change control, software update and asset management on a daily basis, including those responsible for their organization's security and compliance efforts."
    services="security"
    documentationCenter="na"
    authors="YuriDio"
@@ -13,113 +13,118 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/02/2016"
+   ms.date="10/18/2016"
    ms.author="yurid"/>
 
-# Microsoft Azure IaaS 上軟體更新的最佳作法
 
-在探究 Azure [IaaS](https://azure.microsoft.com/overview/what-is-iaas/) 環境的任何最佳作法討論之前，請務必先了解可讓您管理軟體更新的案例和責任。下圖可協助您了解這些界限︰
+# <a name="best-practices-for-software-updates-on-microsoft-azure-iaas"></a>Best practices for software updates on Microsoft Azure IaaS
 
-![雲端模型和職責](./media/azure-security-best-practices-software-updates-iaas/sec-cloudstack-new.png)
+Before diving into any kind of discussion on best practices for an Azure [IaaS](https://azure.microsoft.com/overview/what-is-iaas/) environment, it is important to understand what the scenarios are that will have you managing software updates and the responsibilities. The diagram below should help you understand these boundaries:
 
-最左邊資料行中顯示組織應該考量的七個責任 (定義於下列各節)，全部都與運算環境的安全性和隱私權有關。
+![Cloud models and responsabilities](./media/azure-security-best-practices-software-updates-iaas/sec-cloudstack-new.png)
+
+The left-most column shows seven responsibilities (defined in the sections that follow) that organizations should consider, all of which contribute to the security and privacy of a computing environment.
  
-資料的分類與責任和用戶端與端點保護完全是客戶的責任，而實體、主機和網路的責任則在於 PaaS 和 SaaS 模型中的雲端服務提供者。
+Data classification & accountability and Client & end-point protection are the responsibilities that are solely in the domain of customers, and Physical, Host, and Network responsibilities are in the domain of cloud service providers in the PaaS and SaaS models. 
 
-其餘的責任則是由客戶和雲端服務提供者共同分擔。某些責任需要 CSP 和客戶一同管理責任，包括其網域的稽核。例如，使用 Azure Active Directory 服務時的身分識別與存取管理；如 Multi-Factor Authentication 等服務的組態是由客戶負責，但是確保功能有效是 Microsoft Azure 的責任。
+The remaining responsibilities are shared between customers and cloud service providers. Some responsibilities require the CSP and customer to manage and administer the responsibility together, including auditing of their domains. For example, consider Identity & access management when using Azure Active Directory Services; the configuration of services such as multi-factor authentication is up to the customer, but ensuring effective functionality is the responsibility of Microsoft Azure.
 
-> [AZURE.NOTE] 如需雲端中共同責任的詳細資訊，請閱讀 [Shared Responsibilities for Cloud Computing (雲端運算的共同責任)](https://gallery.technet.microsoft.com/Shared-Responsibilities-81d0ff91/file/153019/1/Shared%20responsibilities%20for%20cloud%20computing.pdf)
+> [AZURE.NOTE] For more information about shared responsibilities in the cloud, read [Shared Responsibilities for Cloud Computing](https://gallery.technet.microsoft.com/Shared-Responsibilities-81d0ff91/file/153019/1/Shared%20responsibilities%20for%20cloud%20computing.pdf) 
 
-這些相同的原則會套用在混合式案例中，其中貴公司使用 Azure IaaS VM 與內部部署資源通訊，如下圖所示。
+These same principles apply in a hybrid scenario where your company is using Azure IaaS VMs that communicate with on-premises resources as shown in the diagram below.
 
-![Microsoft Azure 的典型混合式案例](./media/azure-security-best-practices-software-updates-iaas/sec-azconnectonpre.png)
+![Typical hybrid scenario with Microsoft Azure](./media/azure-security-best-practices-software-updates-iaas/sec-azconnectonpre.png)
 
-## 初步評估
+## <a name="initial-assessment"></a>Initial assessment
 
-即使您的公司已採用更新管理系統，而且您已採用軟體更新原則，請務必經常檢閱先前的原則評估並根據目前的需求加以更新。這表示您需要熟悉您的公司中資源的目前狀態。若要達到此狀態，您必須了解：
+Even if your company is already using an update management system and you already have software update policies in place, it is important to frequently revisit previous policy assessments and update them based on your current requirements. This means that you need to be familiar with the current state of the resources in your company. To reach this state, you have to know:
 
--   您企業中的實體和虛擬電腦。
+-   The physical and virtual computers in your enterprise.
 
--   這些實體和虛擬電腦所執行的作業系統和版本。
+-   Operating systems and versions running on each of these physical and virtual computers.
 
--   每部電腦目前安裝的軟體更新 (Service pack 版本、軟體更新和其他修改)。
+-   Software updates currently installed on each computer (service pack versions, software updates, and other modifications).
 
--   每部電腦在您的企業中執行的功能。
+-   The function each computer performs in your enterprise.
 
--   在每部電腦上執行的應用程式和程式。
+-   The applications and programs running on each computer.
 
--   每部電腦的擁有權和連絡人資訊。
+-   Ownership and contact information for each computer.
 
--   您的環境中出現的資產，以及用來判斷哪些區域需要最多注意和保護的相對值。
+-   The assets present in your environment and their relative value to determine which areas need the most attention and protection.
 
--   已知的安全性問題以及您的企業在安全性層級用來識別新安全性問題或變更的程序。
+-   Known security problems and the processes your enterprise has in place for identifying new security issues or changes in security level.
 
--   為了保護您的環境所部署的安全措施。
+-   Countermeasures that have been deployed to secure your environment.
 
-您應該定期更新此資訊，而此資訊應該可隨時提供給那些參與軟體更新管理程序的人員使用。
+You should update this information regularly, and it should be readily available to those involved in your software update management process.
 
-## 建立基準
+## <a name="establish-a-baseline"></a>Establish a Baseline
 
-軟體更新管理程序中的重要部分就是為您企業中的電腦建立作業系統版本、應用程式和硬體的初始標準安裝；這些稱之為基準。基準是在特定時間點建立的產品或系統的組態。例如，應用程式或作業系統基準可供將電腦或服務重建至特定狀態。
+An important part of the software update management process is creating initial standard installations of operating system versions, applications, and hardware for computers in your enterprise; these are called baselines. A baseline is the configuration of a product or system established at a specific point in time. An application or operating system baseline, for example, provides the ability to rebuild a computer or service to a specific state.
 
-基準可提供尋找及修正潛在問題的基礎並簡化軟體更新管理程序，其作法是減少您必須在企業中部署的軟體更新數目，以及增強您監視相符性的能力。
+Baselines provide the basis for finding and fixing potential problems and simplify the software update management process, both by reducing the number of software updates you must deploy in your enterprise and by increasing your ability to monitor compliance.
 
-在執行您企業的初始稽核之後，您應該使用取自稽核的資訊來定義您的生產環境中 IT 元件的作業基準。視生產環境中部署的各類硬體和軟體而定，可能一些需要基準。
+After performing the initial audit of your enterprise, you should use the information that is obtained from the audit to define an operational baseline for the IT components within your production environment. A number of baselines might be required, depending on the different types of hardware and software deployed into production.
 
-例如，某些伺服器需要軟體更新，以免在執行 Windows Server 2012 的情況下進入關機程序時懸置。這些伺服器的基準應該包含此軟體更新。
+For example, some servers require a software update to prevent them from hanging when they enter the shutdown process when running Windows Server 2012. A baseline for these servers should include this software update.
 
-在大型組織中，這通常有助於將您企業中的電腦分成各種資產類別，並使用相同版本的軟體和軟體更新讓每個類別保持在標準基準。然後，您可以在設定軟體更新散發的優先順序時使用這些資產類別。
+In large organizations, it is often helpful to divide the computers in your enterprise into asset categories and keep each category at a standard baseline by using the same versions of software and software updates. You can then use these asset categories in prioritizing a software update distribution.
 
-## 訂閱適當的軟體更新通知服務
+## <a name="subscribe-to-the-appropriate-software-update-notification-services"></a>Subscribe to the appropriate software update notification services
 
-在您執行企業中所用軟體的初始稽核之後，您應該針對每個軟體產品和版本決定用於接收新軟體更新通知的最佳方法。視軟體產品而定，最佳的通知方法可能是電子郵件通知、網站或電腦發佈。
+After you perform an initial audit of the software in use in your enterprise, you should determine the best method for receiving notifications of new software updates for each software product and version. Depending on the software product, the best notification method might be e-mail notifications, Web sites, or computer publications.
 
-例如，Microsoft 安全性回應中心 (MSRC) 會回應 Microsoft 產品的所有安全性相關疑慮，並提供 Microsoft 安全性公告服務、新發現弱點的免費電子郵件通知，以及為了解決這些弱點所發行的軟體更新。您可以在 http://www.microsoft.com/technet/security/bulletin/notify.mspx 訂閱此服務。
+For example, the Microsoft Security Response Center (MSRC) responds to all security-related concerns about Microsoft products and provides the Microsoft Security Bulletin Service, a free e-mail notification of newly identified vulnerabilities and software updates that are released to address these vulnerabilities. You can subscribe to this service at http://www.microsoft.com/technet/security/bulletin/notify.mspx.
 
-## 軟體更新考量
+## <a name="software-update-considerations"></a>Software update considerations
 
-在您執行企業中所用軟體的初始稽核之後，您應該決定設定軟體更新管理系統的需求，這取決於您使用的軟體更新管理系統。對於 WSUS，請參閱 [Windows Server Update Services 的最佳做法](https://technet.microsoft.com/library/Cc708536)，對於系統中心，請參閱[在 Configuration Manager 中規劃軟體更新](https://technet.microsoft.com/library/gg712696)。
+After you perform an initial audit of the software in use in your enterprise, you should determine the requirements to setup you software update management system, which depends on the software update management system that you are using. For WSUS read [Best Practices with Windows Server Update Services](https://technet.microsoft.com/library/Cc708536), for System Center read [Planning for Software Updates in Configuration Manager](https://technet.microsoft.com/library/gg712696).
 
-不過，不論您正在使用的解決方案為何，您可以套用一些一般考量和最佳作法，如後續各節所示。
+However, there are some general considerations and best practices that you can apply regardless of the solution that you are using as shown in the sections that follows.
 
-### 設定環境
+### <a name="setting-up-the-environment"></a>Setting up the environment
 
-在打算設定軟體更新管理環境時，請考量下列作法：
+Consider the following practices when planning to setup the software update management environment:
 
--   **建立以穩定準則為基礎的生產軟體更新集合**：一般而言，使用穩定準則來建立可供清查和散發軟體更新的集合，有助於簡化軟體更新管理程序的各個階段。穩定準則可以包含已安裝的用戶端作業系統版本和 Service Pack 層級、系統角色或目標組織。
+-   **Create production software update collections based on stable criteria**: In general, using stable criteria to create collections for your software update inventory and distribution will help to simplify all stages of the software update management process. The stable criteria can include the installed client operating system version and service pack level, system role, or target organization.
 
--   **建立包含參考電腦的預先生產集合**︰預先生產集合應該包含作業系統版本、企業營運軟體以及您企業中執行的其他軟體的代表性組態。
+-   **Create pre-production collections that include reference computers**: The pre-production collection should include representative configurations of the operating system versions, line of business software, and other software running in your enterprise.
 
-您也應該考慮軟體更新伺服器將位於何處︰位於雲端的 Azure IaaS 基礎結構中或在內部部署中。這是一項重要決策，因為您需要評估內部部署資源與 Azure 基礎結構之間的流量。如需有關如何將內部部署基礎結構連接至 Azure 的詳細資訊，請參閱[將內部部署網路連接到 Microsoft Azure 虛擬網路](https://technet.microsoft.com/library/Dn786406.aspx)。
+You should also consider where the software update server will be located, if it will be in the Azure IaaS infrastructure in the cloud or if it will be on-premises. This is an important decision because you need to evaluate the amount of traffic between on-premises resources and Azure infrastructure. Read [Connect an on-premises network to a Microsoft Azure virtual network](https://technet.microsoft.com/library/Dn786406.aspx) for more information on how to connect your on-premises infrastructure to Azure.
 
-根據您目前的基礎結構以及您目前使用的軟體更新系統而定，用來決定更新伺服器將位於何處的設計選項也會有所不同。對於 WSUS，請參閱[在您的組織中部署 Windows Server Update Services](https://technet.microsoft.com/library/hh852340.aspx)，對於 System Center Configuration Manager，請參閱[在 Configuration Manager 中規劃網站和階層](https://technet.microsoft.com/library/Gg712681.aspx)。
+The design options that will determine where the update server will be located will also vary according to your current infrastructure and the software update system that you are currently using. For WSUS read [Deploy Windows Server Update Services in Your Organization](https://technet.microsoft.com/library/hh852340.aspx) and for System Center Configuration Manager read [Planning for Sites and Hierarchies in Configuration Manager](https://technet.microsoft.com/library/Gg712681.aspx).
 
-### 備份
+### <a name="backup"></a>Backup
 
-定期備份很重要，不只是對軟體更新管理平台本身而言，對即將更新的伺服器而言也很重要。採用[變更管理程序](https://technet.microsoft.com/library/cc543216.aspx)的組織會要求 IT 部門合理解釋需要更新伺服器的原因、預估的停機時間以及可能的影響。為了確保在更新失敗時能採用回復組態，請務必定期備份系統。
+Regular backups are important not only for the software update management platform itself but also for the servers that will be updated. Organizations that have a [change management process](https://technet.microsoft.com/library/cc543216.aspx) in place will require IT to justify the reasons for why the server needs to be updated, the estimated downtime and possible impact. To ensure that you have a rollback configuration in place in case an update fails, make sure to back up the system regularly.
 
-Azure IaaS 的某些備份選項包括：
+Some backup options for Azure IaaS include:
 
--   [使用 Data Protection Manager 的 Azure IaaS 工作負載保護](https://azure.microsoft.com/blog/2014/09/08/azure-iaas-workload-protection-using-data-protection-manager/)
+-   [Azure IaaS workload protection using Data Protection Manager](https://azure.microsoft.com/blog/2014/09/08/azure-iaas-workload-protection-using-data-protection-manager/)
 
--   [備份 Azure 虛擬機器](../backup/backup-azure-vms.md)
+-   [Back up Azure virtual machines](../backup/backup-azure-vms.md)
 
-### 監控
+### <a name="monitoring"></a>Monitoring
 
-您應該執行定期報告，以針對每個已獲授權的軟體更新，監視遺漏或已安裝的更新數目，或狀態不完整的更新。同樣地，報告未獲授權的軟體更新可讓部署決策變得更容易。
+You should run regular reports to monitor the number of missing or installed updates, or updates with incomplete status, for each software update that is authorized. Similarly, reporting for software updates that are not yet authorized can facilitate easier deployment decisions.
 
-您也應考量下列工作：
+You should also consider the following tasks:
 
--   進行公司內所有電腦的適用和已安裝安全性更新的稽核。
+-   Conduct an audit of applicable and installed security updates for all the computers in your company.
 
--   授權更新並部署到適當的電腦。
+-   Authorize and deploy the updates to the appropriate computers.
 
--   追蹤公司內所有電腦的清查和更新安裝狀態和進度。
+-   Track the inventory and update installation status and progress for all the computers in your company.
 
-除了本文中說明的一般考量以外，您也應該考慮每項產品的最佳作法，例如︰如果您在採用 SQL Server 的 Azure 中有 VM，請確保遵循該產品的軟體更新建議。
+In addition to general considerations that were explained in this article, you should also consider each product’s best practice, for example: if you have a VM in Azure with SQL Server, make sure that you are following the software updates recommendation for that product.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-使用本文所述的指導方針，可協助您判斷適用於 Azure IaaS 中虛擬機器軟體更新的最佳選項。傳統資料中心與 Azure IaaS 之間的軟體更新最佳作法有許多相似之處，因此建議您評估目前的軟體更新原則，以包含 Azure VM 並將本文中的相關最佳作法章納入整體軟體更新程序中。
+Use the guidelines described in this article to assist you in determining the best options for software updates for virtual machines within Azure IaaS. There are many similarities between software update best practices in a traditional datacenter versus Azure IaaS, therefore it is recommended that you evaluate your current software update policies to include Azure VMs and include the relevant best practices from this article in your overall software update process.
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

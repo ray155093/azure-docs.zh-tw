@@ -1,6 +1,6 @@
 <properties
-   pageTitle="最佳化 SQL 資料倉儲的交易 | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中撰寫有效率交易更新的最佳作法指引"
+   pageTitle="Optimizing transactions for SQL Data Warehouse | Microsoft Azure"
+   description="Best Practice guidance on writing efficient transaction updates in Azure SQL Data Warehouse"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -16,31 +16,32 @@
    ms.date="07/31/2016"
    ms.author="jrj;barbkess"/>
 
-# 最佳化 SQL 資料倉儲的交易
 
-本文說明如何將您的交易程式碼效能最佳化，同時將長時間回復的風險降至最低。
+# <a name="optimizing-transactions-for-sql-data-warehouse"></a>Optimizing transactions for SQL Data Warehouse
 
-## 交易和記錄
+This article explains how to optimize the performance of your transactional code while minimizing risk for long rollbacks.
 
-交易是關聯式資料庫引擎的重要元件。SQL 資料倉儲會在資料修改期間使用交易。這些交易可以是明確或隱含的。單一 `INSERT`、`UPDATE` 和 `DELETE` 陳述式都是隱含交易的範例。明確交易由使用 `BEGIN TRAN`、`COMMIT TRAN` 或 `ROLLBACK TRAN` 的開發人員明確撰寫，且通常用於多個修改陳述式必須一起連結為單一不可部分完成單位的時候。
+## <a name="transactions-and-logging"></a>Transactions and logging
 
-Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。每個散發套件都有自己的交易記錄檔。交易記錄檔寫入是自動的。不需要任何組態。不過，儘管這個程序可保證寫入，但是它會在系統中引進額外負荷。您可以藉由撰寫交易式的有效程式碼，將影響降到最低。交易式的有效程式碼大致分為兩個類別。
+Transactions are an important component of a relational database engine. SQL Data Warehouse uses transactions during data modification. These transactions can be explicit or implicit. Single `INSERT`, `UPDATE` and `DELETE` statements are all examples of implicit transactions. Explicit transactions are written explicitly by a developer using `BEGIN TRAN`, `COMMIT TRAN` or `ROLLBACK TRAN` and are typically used when multiple modification statements need to be tied together in a single atomic unit. 
 
-- 盡可能使用最低限度的記錄建構
-- 使用已設定範圍的批次處理資料，以避免單數的長時間執行交易
-- 採用分割切換模式進行指定分割的大規模修改
+Azure SQL Data Warehouse commits changes to the database using transaction logs. Each distribution has its own transaction log. Transaction log writes are automatic. There is no configuration required. However, whilst this process guarantees the write it does introduce an overhead in the system. You can minimize this impact by writing transactionally efficient code. Transactionally efficient code broadly falls into two categories.
 
-## 最低限度 vs. 完整記錄
+- Leverage minimal logging constructs where possible
+- Process data using scoped batches to avoid singular long running transactions
+- Adopt a partition switching pattern for large modifications to a given partition
 
-完整記錄作業使用交易記錄檔追蹤每個資料列的變更，最低限度記錄作業不一樣，它只會追蹤程度配置與中繼資料變更。因此，最低限度記錄只會記錄在失敗事件或明確要求 (`ROLLBACK TRAN`) 中回復交易所需的資訊。因為在交易記錄檔中追蹤較少的資訊，最低限度記錄作業的執行效果優於大小類似的完整記錄作業。此外，因為交易記錄檔中較少寫入，所以產生更少量的記錄檔資料，因此有更多有效的 I/O。
+## <a name="minimal-vs.-full-logging"></a>Minimal vs. full logging
 
-交易安全限制僅適用於完整記錄的作業。
+Unlike fully logged operations, which use the transaction log to keep track of every row change, minimally logged operations keep track of extent allocations and meta-data changes only. Therefore, minimal logging involves logging only the information that is required to rollback the transaction in the event of a failure or an explicit request (`ROLLBACK TRAN`). As much less information is tracked in the transaction log, a minimally logged operation performs better than a similarly sized fully logged operation. Furthermore, because fewer writes go the transaction log, a much smaller amount of log data is generated and so is more I/O efficient.
 
->[AZURE.NOTE] 最低限度記錄作業可以加入明確交易。配置結構中的所有變更都會受到追蹤，就可以回復最低限度記錄作業。請務必了解變更為「最低限度」記錄，而不是未記錄。
+The transaction safety limits only apply to fully logged operations.
 
-## 最低限度記錄作業
+>[AZURE.NOTE] Minimally logged operations can participate in explicit transactions. As all changes in allocation structures are tracked, it is possible to roll back minimally logged operations. It is important to understand that the change is "minimally" logged it is not un-logged.
 
-下列作業也能以最低限度記錄︰
+## <a name="minimally-logged-operations"></a>Minimally logged operations
+
+The following operations are capable of being minimally logged:
 
 - CREATE TABLE AS SELECT ([CTAS][])
 - INSERT..SELECT
@@ -57,30 +58,30 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。每個�
 - SELECT..INTO
 -->
 
->[AZURE.NOTE] 內部資料移動作業 (例如 `BROADCAST` 和 `SHUFFLE`) 不受交易安全限制影響。
+>[AZURE.NOTE] Internal data movement operations (such as `BROADCAST` and `SHUFFLE`) are not affected by the transaction safety limit.
 
-## 大量載入的最低限度記錄
+## <a name="minimal-logging-with-bulk-load"></a>Minimal logging with bulk load
 
-`CTAS` 和 `INSERT...SELECT` 都是大量載入作業。不過，兩者都會受到目標資料表定義的影響，取決於載入案例。以下是說明大量作業是否為完全或最低限度記錄的資料表︰
+`CTAS` and `INSERT...SELECT` are both bulk load operations. However, both are influenced by the target table definition and depend on the load scenario. Below is a table that explains if your bulk operation will be fully or minimally logged:  
 
-| 主要索引 | 載入案例 | 記錄模式 |
+| Primary Index               | Load Scenario                                            | Logging Mode |
 | --------------------------- | -------------------------------------------------------- | ------------ |
-| 堆積 | 任意 | **最低限度** |
-| 叢集索引 | 空的目標資料表 | **最低限度** |
-| 叢集索引 | 載入的資料列不會與目標中的現有頁面重疊 | **最低限度** |
-| 叢集索引 | 載入的資料列會與目標中的現有頁面重疊 | 完整 |
-| 叢集資料行存放區索引 | 每個與分割對齊的散發套件之批次大小 >= 102,400 | **最低限度** |
-| 叢集資料行存放區索引 | 批次大小 < 每個與分割對齊的散發套件 102,400 | 完整 |
+| Heap                        | Any                                                      | **Minimal**  |
+| Clustered Index             | Empty target table                                       | **Minimal**  |
+| Clustered Index             | Loaded rows do not overlap with existing pages in target | **Minimal**  |
+| Clustered Index             | Loaded rows overlap with existing pages in target        | Full         |
+| Clustered Columnstore Index | Batch size >= 102,400 per partition aligned distribution | **Minimal**  |
+| Clustered Columnstore Index | Batch size < 102,400 per partition aligned distribution  | Full         |
 
-值得注意的是任何更新次要或非叢集索引的寫入一定是完整記錄作業。
+It is worth noting that any writes to update secondary or non-clustered indexes will always be fully logged operations.
 
-> [AZURE.IMPORTANT] SQL 資料倉儲有 60 個散發套件。因此，假設所有資料列平均散發，並位於單一分割中，您的批次必須包含 6,144,000 個資料列或更大刑，才能在寫入叢集資料行存放區索引時進行最低限度記錄。如果資料表已分割，且插入的資料列跨越分割界限，每個假設平均資料散發的分割界限將需要 6,144,000 個資料列。每個散發套件中的每個分割必須獨立超過 102,400 的資料列臨界值，才能讓插入以最低限度記錄在散發套件中。
+> [AZURE.IMPORTANT] SQL Data Warehouse has 60 distributions. Therefore, assuming all rows are evenly distributed and landing in a single partition, your batch will need to contain 6,144,000 rows or larger to be minimally logged when writing to a Clustered Columnstore Index. If the table is partitioned and the rows being inserted span partition boundaries, then you will need 6,144,000 rows per partition boundary assuming even data distribution. Each partition in each distribution must independently exceed the 102,400 row threshold for the insert to be minimally logged into the distribution.
 
-利用叢集索引將資料載入非空白資料表中，通常會混合包含完整記錄和最低限度記錄資料列。叢集索引是頁面的平衡樹狀結構 (b 型樹狀目錄)。如果寫入的頁面中已包含另一個交易的資料列，則這些寫入將會完整記錄。不過，如果頁面是空的，則該頁面的寫入將會以最低限度記錄。
+Loading data into a non-empty table with a clustered index can often contain a mixture of fully logged and minimally logged rows. A clustered index is a balanced tree (b-tree) of pages. If the page being written to already contains rows from another transaction, then these writes will be fully logged. However, if the page is empty then the write to that page will be minimally logged.
 
-## 最佳化刪除
+## <a name="optimizing-deletes"></a>Optimizing deletes
 
-`DELETE` 是完整記錄的作業。如果您需要刪除資料表或分割中的大量資料，比較理想的做法通常是 `SELECT` 您想要保留的資料，這可以最低限度記錄作業來執行。若要達成此目的，可使用 [CTAS][] 來建立新的資料表。建立之後，使用 [RENAME][] 來交換您的舊資料表與新建立的資料表。
+`DELETE` is a fully logged operation.  If you need to delete a large amount of data in a table or a partition, it often makes more sense to `SELECT` the data you wish to keep, which can be run as a minimally logged operation.  To accomplish this, create a new table with [CTAS][].  Once created, use [RENAME][] to swap out your old table with the newly created table.
 
 ```sql
 -- Delete all sales transactions for Promotions except PromotionKey 2.
@@ -88,20 +89,20 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。每個�
 --Step 01. Create a new table select only the records we want to kep (PromotionKey 2)
 CREATE TABLE [dbo].[FactInternetSales_d]
 WITH
-(	CLUSTERED COLUMNSTORE INDEX
-,	DISTRIBUTION = HASH([ProductKey])
-, 	PARTITION 	(	[OrderDateKey] RANGE RIGHT 
-									FOR VALUES	(	20000101, 20010101, 20020101, 20030101, 20040101, 20050101
-												,	20060101, 20070101, 20080101, 20090101, 20100101, 20110101
-												,	20120101, 20130101, 20140101, 20150101, 20160101, 20170101
-												,	20180101, 20190101, 20200101, 20210101, 20220101, 20230101
-												,	20240101, 20250101, 20260101, 20270101, 20280101, 20290101
-												)
+(   CLUSTERED COLUMNSTORE INDEX
+,   DISTRIBUTION = HASH([ProductKey])
+,   PARTITION   (   [OrderDateKey] RANGE RIGHT 
+                                    FOR VALUES  (   20000101, 20010101, 20020101, 20030101, 20040101, 20050101
+                                                ,   20060101, 20070101, 20080101, 20090101, 20100101, 20110101
+                                                ,   20120101, 20130101, 20140101, 20150101, 20160101, 20170101
+                                                ,   20180101, 20190101, 20200101, 20210101, 20220101, 20230101
+                                                ,   20240101, 20250101, 20260101, 20270101, 20280101, 20290101
+                                                )
 )
 AS
-SELECT 	*
-FROM 	[dbo].[FactInternetSales]
-WHERE	[PromotionKey] = 2
+SELECT  *
+FROM    [dbo].[FactInternetSales]
+WHERE   [PromotionKey] = 2
 OPTION (LABEL = 'CTAS : Delete')
 ;
 
@@ -110,57 +111,57 @@ RENAME OBJECT [dbo].[FactInternetSales]   TO [FactInternetSales_old];
 RENAME OBJECT [dbo].[FactInternetSales_d] TO [FactInternetSales];
 ```
 
-## 最佳化更新
+## <a name="optimizing-updates"></a>Optimizing updates
 
-`UPDATE` 是完整記錄的作業。如果您需要更新資料表或分割中的大量資料列，更有效率的方法通常是使用最低限度記錄作業，例如利用 [CTAS][] 來達成此目的。
+`UPDATE` is a fully logged operation.  If you need to update a large number of rows in a table or a partition it can often be far more efficient to use a minimally logged operation such as [CTAS][] to do so.
 
-在下列範例中，完整的資料表更新已轉換成 `CTAS`，以便進行最低限度記錄。
+In the example below a full table update has been converted to a `CTAS` so that minimal logging is possible.
 
-在此情況下，我們反而要將折扣金額新增到資料表中的銷售額︰
+In this case we are retrospectively adding a discount amount to the sales in the table:
 
 ```sql
 --Step 01. Create a new table containing the "Update". 
 CREATE TABLE [dbo].[FactInternetSales_u]
 WITH
-(	CLUSTERED INDEX
-,	DISTRIBUTION = HASH([ProductKey])
-, 	PARTITION 	(	[OrderDateKey] RANGE RIGHT 
-									FOR VALUES	(	20000101, 20010101, 20020101, 20030101, 20040101, 20050101
-												,	20060101, 20070101, 20080101, 20090101, 20100101, 20110101
-												,	20120101, 20130101, 20140101, 20150101, 20160101, 20170101
-												,	20180101, 20190101, 20200101, 20210101, 20220101, 20230101
-												,	20240101, 20250101, 20260101, 20270101, 20280101, 20290101
-												)
-				)
+(   CLUSTERED INDEX
+,   DISTRIBUTION = HASH([ProductKey])
+,   PARTITION   (   [OrderDateKey] RANGE RIGHT 
+                                    FOR VALUES  (   20000101, 20010101, 20020101, 20030101, 20040101, 20050101
+                                                ,   20060101, 20070101, 20080101, 20090101, 20100101, 20110101
+                                                ,   20120101, 20130101, 20140101, 20150101, 20160101, 20170101
+                                                ,   20180101, 20190101, 20200101, 20210101, 20220101, 20230101
+                                                ,   20240101, 20250101, 20260101, 20270101, 20280101, 20290101
+                                                )
+                )
 )
 AS 
 SELECT
-	[ProductKey]  
-,	[OrderDateKey] 
-,	[DueDateKey]  
-,	[ShipDateKey] 
-,	[CustomerKey] 
-,	[PromotionKey] 
-,	[CurrencyKey] 
-,	[SalesTerritoryKey]
-,	[SalesOrderNumber]
-,	[SalesOrderLineNumber]
-,	[RevisionNumber]
-,	[OrderQuantity]
-,	[UnitPrice]
-,	[ExtendedAmount]
-,	[UnitPriceDiscountPct]
-,	ISNULL(CAST(5 as float),0) AS [DiscountAmount]
-,	[ProductStandardCost]
-,	[TotalProductCost]
-,	ISNULL(CAST(CASE WHEN [SalesAmount] <=5 THEN 0
-		 ELSE [SalesAmount] - 5
-		 END AS MONEY),0) AS [SalesAmount]
-,	[TaxAmt]
-,	[Freight]
-,	[CarrierTrackingNumber] 
-,	[CustomerPONumber]
-FROM	[dbo].[FactInternetSales]
+    [ProductKey]  
+,   [OrderDateKey] 
+,   [DueDateKey]  
+,   [ShipDateKey] 
+,   [CustomerKey] 
+,   [PromotionKey] 
+,   [CurrencyKey] 
+,   [SalesTerritoryKey]
+,   [SalesOrderNumber]
+,   [SalesOrderLineNumber]
+,   [RevisionNumber]
+,   [OrderQuantity]
+,   [UnitPrice]
+,   [ExtendedAmount]
+,   [UnitPriceDiscountPct]
+,   ISNULL(CAST(5 as float),0) AS [DiscountAmount]
+,   [ProductStandardCost]
+,   [TotalProductCost]
+,   ISNULL(CAST(CASE WHEN [SalesAmount] <=5 THEN 0
+         ELSE [SalesAmount] - 5
+         END AS MONEY),0) AS [SalesAmount]
+,   [TaxAmt]
+,   [Freight]
+,   [CarrierTrackingNumber] 
+,   [CustomerPONumber]
+FROM    [dbo].[FactInternetSales]
 OPTION (LABEL = 'CTAS : Update')
 ;
 
@@ -172,88 +173,88 @@ RENAME OBJECT [dbo].[FactInternetSales_u] TO [FactInternetSales];
 DROP TABLE [dbo].[FactInternetSales_old]
 ```
 
-> [AZURE.NOTE] 使用 SQL 資料倉儲工作負載管理功能有助於重新建立大型資料表。如需詳細資料，請參閱[並行][]一文中的工作負載管理一節。
+> [AZURE.NOTE] Re-creating large tables can benefit from using SQL Data Warehouse workload management features. For more details please refer to the workload management section in the [concurrency][] article.
 
-## 利用分割切換進行最佳化
+## <a name="optimizing-with-partition-switching"></a>Optimizing with partition switching
 
-面臨[資料表分割][]內部的大規模修改時，分割切換模式相當實用。如果大量修改資料而且跨越多個分割，則只逐一查看分割也可達到相同的結果。
+When faced with large scale modifications inside a [table partition][], then a partition switching pattern makes a lot of sense. If the data modification is significant and spans multiple partitions, then simply iterating over the partitions achieves the same result.
 
-執行分割切換的步驟如下︰
-1. 建立空白分割
-2. 執行「更新」做為 CTAS
-3. 將現有資料切換出至外資料表
-4. 切換入新資料
-5. 清除資料
+The steps to perform a partition switch are as follows:
+1. Create an empty out partition
+2. Perform the 'update' as a CTAS
+3. Switch out the existing data to the out table
+4. Switch in the new data
+5. Clean up the data
 
-不過，若要協助識別要切換的分割，我們必須先建置如下的協助程式程序。
+However, to help identify the partitions to switch we will first need to build a helper procedure such as the one below. 
 
 ```sql
 CREATE PROCEDURE dbo.partition_data_get
-	@schema_name		   NVARCHAR(128)
-,	@table_name			   NVARCHAR(128)
-,	@boundary_value		   INT
+    @schema_name           NVARCHAR(128)
+,   @table_name            NVARCHAR(128)
+,   @boundary_value        INT
 AS
 IF OBJECT_ID('tempdb..#ptn_data') IS NOT NULL
 BEGIN
-	DROP TABLE #ptn_data
+    DROP TABLE #ptn_data
 END
 CREATE TABLE #ptn_data
-WITH	(	DISTRIBUTION = ROUND_ROBIN
-		,	HEAP
-		)
+WITH    (   DISTRIBUTION = ROUND_ROBIN
+        ,   HEAP
+        )
 AS
 WITH CTE
 AS
 (
-SELECT 	s.name							AS [schema_name]
-,		t.name							AS [table_name]
-, 		p.partition_number				AS [ptn_nmbr]
-,		p.[rows]						AS [ptn_rows]
-,		CAST(r.[value] AS INT)			AS [boundary_value]
-FROM		sys.schemas					AS s
-JOIN		sys.tables					AS t	ON  s.[schema_id]		= t.[schema_id]
-JOIN		sys.indexes					AS i	ON 	t.[object_id]		= i.[object_id]
-JOIN		sys.partitions				AS p	ON 	i.[object_id]		= p.[object_id] 
-												AND i.[index_id]		= p.[index_id] 
-JOIN		sys.partition_schemes		AS h	ON 	i.[data_space_id]	= h.[data_space_id]
-JOIN		sys.partition_functions		AS f	ON 	h.[function_id]		= f.[function_id]
-LEFT JOIN	sys.partition_range_values	AS r 	ON 	f.[function_id]		= r.[function_id] 
-												AND r.[boundary_id]		= p.[partition_number]
+SELECT  s.name                          AS [schema_name]
+,       t.name                          AS [table_name]
+,       p.partition_number              AS [ptn_nmbr]
+,       p.[rows]                        AS [ptn_rows]
+,       CAST(r.[value] AS INT)          AS [boundary_value]
+FROM        sys.schemas                 AS s
+JOIN        sys.tables                  AS t    ON  s.[schema_id]       = t.[schema_id]
+JOIN        sys.indexes                 AS i    ON  t.[object_id]       = i.[object_id]
+JOIN        sys.partitions              AS p    ON  i.[object_id]       = p.[object_id] 
+                                                AND i.[index_id]        = p.[index_id] 
+JOIN        sys.partition_schemes       AS h    ON  i.[data_space_id]   = h.[data_space_id]
+JOIN        sys.partition_functions     AS f    ON  h.[function_id]     = f.[function_id]
+LEFT JOIN   sys.partition_range_values  AS r    ON  f.[function_id]     = r.[function_id] 
+                                                AND r.[boundary_id]     = p.[partition_number]
 WHERE i.[index_id] <= 1
 )
-SELECT	*
-FROM	CTE
-WHERE	[schema_name]		= @schema_name
-AND		[table_name]		= @table_name
-AND		[boundary_value]	= @boundary_value
+SELECT  *
+FROM    CTE
+WHERE   [schema_name]       = @schema_name
+AND     [table_name]        = @table_name
+AND     [boundary_value]    = @boundary_value
 OPTION (LABEL = 'dbo.partition_data_get : CTAS : #ptn_data')
 ;
 GO
 ```
 
-此程序會將程式碼的重複使用最大化，並讓分割切換範例更加精簡。
+This procedure maximizes code re-use and keeps the partition switching example more compact.
 
-下列程式碼示範上述達到完整分割切換例行工作的五個步驟。
+The code below demonstrates the five steps mentioned above to achieve a full partition switching routine.
 
 ```sql
 --Create a partitioned aligned empty table to switch out the data 
 IF OBJECT_ID('[dbo].[FactInternetSales_out]') IS NOT NULL
 BEGIN
-	DROP TABLE [dbo].[FactInternetSales_out]
+    DROP TABLE [dbo].[FactInternetSales_out]
 END
 
 CREATE TABLE [dbo].[FactInternetSales_out]
 WITH
-(	DISTRIBUTION = HASH([ProductKey])
-,	CLUSTERED COLUMNSTORE INDEX
-, 	PARTITION 	(	[OrderDateKey] RANGE RIGHT 
-									FOR VALUES	(	20020101, 20030101
-												)
-				)
+(   DISTRIBUTION = HASH([ProductKey])
+,   CLUSTERED COLUMNSTORE INDEX
+,   PARTITION   (   [OrderDateKey] RANGE RIGHT 
+                                    FOR VALUES  (   20020101, 20030101
+                                                )
+                )
 )
 AS
 SELECT *
-FROM	[dbo].[FactInternetSales]
+FROM    [dbo].[FactInternetSales]
 WHERE 1=2
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
@@ -261,47 +262,47 @@ OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 --Create a partitioned aligned table and update the data in the select portion of the CTAS
 IF OBJECT_ID('[dbo].[FactInternetSales_in]') IS NOT NULL
 BEGIN
-	DROP TABLE [dbo].[FactInternetSales_in]
+    DROP TABLE [dbo].[FactInternetSales_in]
 END
 
 CREATE TABLE [dbo].[FactInternetSales_in]
 WITH
-(	DISTRIBUTION = HASH([ProductKey])
-,	CLUSTERED COLUMNSTORE INDEX
-, 	PARTITION 	(	[OrderDateKey] RANGE RIGHT 
-									FOR VALUES	(	20020101, 20030101
-												)
-				)
+(   DISTRIBUTION = HASH([ProductKey])
+,   CLUSTERED COLUMNSTORE INDEX
+,   PARTITION   (   [OrderDateKey] RANGE RIGHT 
+                                    FOR VALUES  (   20020101, 20030101
+                                                )
+                )
 )
 AS 
 SELECT
-	[ProductKey]  
-,	[OrderDateKey] 
-,	[DueDateKey]  
-,	[ShipDateKey] 
-,	[CustomerKey] 
-,	[PromotionKey] 
-,	[CurrencyKey] 
-,	[SalesTerritoryKey]
-,	[SalesOrderNumber]
-,	[SalesOrderLineNumber]
-,	[RevisionNumber]
-,	[OrderQuantity]
-,	[UnitPrice]
-,	[ExtendedAmount]
-,	[UnitPriceDiscountPct]
-,	ISNULL(CAST(5 as float),0) AS [DiscountAmount]
-,	[ProductStandardCost]
-,	[TotalProductCost]
-,	ISNULL(CAST(CASE WHEN [SalesAmount] <=5 THEN 0
-		 ELSE [SalesAmount] - 5
-		 END AS MONEY),0) AS [SalesAmount]
-,	[TaxAmt]
-,	[Freight]
-,	[CarrierTrackingNumber] 
-,	[CustomerPONumber]
-FROM	[dbo].[FactInternetSales]
-WHERE	OrderDateKey BETWEEN 20020101 AND 20021231
+    [ProductKey]  
+,   [OrderDateKey] 
+,   [DueDateKey]  
+,   [ShipDateKey] 
+,   [CustomerKey] 
+,   [PromotionKey] 
+,   [CurrencyKey] 
+,   [SalesTerritoryKey]
+,   [SalesOrderNumber]
+,   [SalesOrderLineNumber]
+,   [RevisionNumber]
+,   [OrderQuantity]
+,   [UnitPrice]
+,   [ExtendedAmount]
+,   [UnitPriceDiscountPct]
+,   ISNULL(CAST(5 as float),0) AS [DiscountAmount]
+,   [ProductStandardCost]
+,   [TotalProductCost]
+,   ISNULL(CAST(CASE WHEN [SalesAmount] <=5 THEN 0
+         ELSE [SalesAmount] - 5
+         END AS MONEY),0) AS [SalesAmount]
+,   [TaxAmt]
+,   [Freight]
+,   [CarrierTrackingNumber] 
+,   [CustomerPONumber]
+FROM    [dbo].[FactInternetSales]
+WHERE   OrderDateKey BETWEEN 20020101 AND 20021231
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
 
@@ -323,8 +324,8 @@ SELECT @ptn_nmbr_out
 
 --Switch the partitions over
 DECLARE @SQL NVARCHAR(4000) = '
-ALTER TABLE [dbo].[FactInternetSales]	SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))	+' TO [dbo].[FactInternetSales_out] PARTITION '	+CAST(@ptn_nmbr_out AS VARCHAR(20))+';
-ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))	+' TO [dbo].[FactInternetSales] PARTITION '		+CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
+ALTER TABLE [dbo].[FactInternetSales]   SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))   +' TO [dbo].[FactInternetSales_out] PARTITION ' +CAST(@ptn_nmbr_out AS VARCHAR(20))+';
+ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))   +' TO [dbo].[FactInternetSales] PARTITION '     +CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
 EXEC sp_executesql @SQL
 
 --Perform the clean-up
@@ -336,96 +337,101 @@ DROP TABLE dbo.FactInternetSales_in
 DROP TABLE #ptn_data
 ```
 
-## 小型批次的最低限度記錄
+## <a name="minimize-logging-with-small-batches"></a>Minimize logging with small batches
 
-針對大型資料修改作業，適合將作業分成區塊或批次來指定工作單位的範圍。
+For large data modification operations, it may make sense to divide the operation into chunks or batches to scope the unit of work.
 
-以下提供實用的範例。批次大小設為簡單數字來醒目提示此技術。事實上，批次大小明顯大很多。
+A working example is provided below. The batch size has been set to a trivial number to highlight the technique. In reality the batch size would be significantly larger. 
 
 ```sql
 SET NO_COUNT ON;
 IF OBJECT_ID('tempdb..#t') IS NOT NULL
 BEGIN
-	DROP TABLE #t;
-	PRINT '#t dropped';
+    DROP TABLE #t;
+    PRINT '#t dropped';
 END
 
 CREATE TABLE #t
-WITH	(	DISTRIBUTION = ROUND_ROBIN
-		,	HEAP
-		)
+WITH    (   DISTRIBUTION = ROUND_ROBIN
+        ,   HEAP
+        )
 AS
-SELECT	ROW_NUMBER() OVER(ORDER BY (SELECT NULL)) AS seq_nmbr
-,		SalesOrderNumber
-,		SalesOrderLineNumber
-FROM	dbo.FactInternetSales
-WHERE	[OrderDateKey] BETWEEN 20010101 and 20011231
+SELECT  ROW_NUMBER() OVER(ORDER BY (SELECT NULL)) AS seq_nmbr
+,       SalesOrderNumber
+,       SalesOrderLineNumber
+FROM    dbo.FactInternetSales
+WHERE   [OrderDateKey] BETWEEN 20010101 and 20011231
 ;
 
-DECLARE	@seq_start		INT = 1
-,		@batch_iterator	INT = 1
-,		@batch_size		INT = 50
-,		@max_seq_nmbr	INT = (SELECT MAX(seq_nmbr) FROM dbo.#t)
+DECLARE @seq_start      INT = 1
+,       @batch_iterator INT = 1
+,       @batch_size     INT = 50
+,       @max_seq_nmbr   INT = (SELECT MAX(seq_nmbr) FROM dbo.#t)
 ;
 
-DECLARE	@batch_count	INT = (SELECT CEILING((@max_seq_nmbr*1.0)/@batch_size))
-,		@seq_end		INT = @batch_size
+DECLARE @batch_count    INT = (SELECT CEILING((@max_seq_nmbr*1.0)/@batch_size))
+,       @seq_end        INT = @batch_size
 ;
 
 SELECT COUNT(*)
-FROM	dbo.FactInternetSales f
+FROM    dbo.FactInternetSales f
 
 PRINT 'MAX_seq_nmbr '+CAST(@max_seq_nmbr AS VARCHAR(20))
 PRINT 'MAX_Batch_count '+CAST(@batch_count AS VARCHAR(20))
 
-WHILE	@batch_iterator <= @batch_count
+WHILE   @batch_iterator <= @batch_count
 BEGIN
-	DELETE
-	FROM	dbo.FactInternetSales
-	WHERE EXISTS
-	(
-			SELECT	1
-			FROM	#t t
-			WHERE	seq_nmbr BETWEEN  @seq_start AND @seq_end
-			AND		FactInternetSales.SalesOrderNumber		= t.SalesOrderNumber
-			AND		FactInternetSales.SalesOrderLineNumber	= t.SalesOrderLineNumber
-	)
-	;
+    DELETE
+    FROM    dbo.FactInternetSales
+    WHERE EXISTS
+    (
+            SELECT  1
+            FROM    #t t
+            WHERE   seq_nmbr BETWEEN  @seq_start AND @seq_end
+            AND     FactInternetSales.SalesOrderNumber      = t.SalesOrderNumber
+            AND     FactInternetSales.SalesOrderLineNumber  = t.SalesOrderLineNumber
+    )
+    ;
 
-	SET @seq_start = @seq_end
-	SET @seq_end = (@seq_start+@batch_size);
-	SET @batch_iterator +=1;
+    SET @seq_start = @seq_end
+    SET @seq_end = (@seq_start+@batch_size);
+    SET @batch_iterator +=1;
 END
 ```
 
-## 暫停和調整指引
+## <a name="pause-and-scaling-guidance"></a>Pause and scaling guidance
 
-Azure SQL 資料倉儲可讓您暫停、繼續及調整需要的資料倉儲。當您暫停或調整您的 SQL 資料倉儲，請務必了解任何進行中的交易都會立即終止；導致所有開放的交易都會回復。如果您的工作負載在暫停或調整作業之前發出長時間執行且不完整的資料修改，則這項工作必須復原。這可能會影響暫停或調整 Azure SQL 資料倉儲資料庫的時間。
+Azure SQL Data Warehouse lets you pause, resume and scale your data warehouse on demand. When you pause or scale your SQL Data Warehouse it is important to understand that any in-flight transactions are terminated immediately; causing any open transactions to be rolled back. If your workload had issued a long running and incomplete data modification prior to the pause or scale operation, then this work will need to be undone. This may impact the time it takes to pause or scale your Azure SQL Data Warehouse database. 
 
-> [AZURE.IMPORTANT] `UPDATE` 和 `DELETE` 都是完整記錄作業，因此這些復原/重做作業花費的時間可能會比對等的最低限度記錄作業長很多。
+> [AZURE.IMPORTANT] Both `UPDATE` and `DELETE` are fully logged operations and so these undo/redo operations can take significantly longer than equivalent minimally logged operations. 
 
-最佳案例是在暫停或調整 SQL 資料倉儲之前，讓進行中的資料修改交易完成。但是，這不一定都可行。若要降低長時間回復的風險，請考慮下列其中一個選項：
+The best scenario is to let in flight data modification transactions complete prior to pausing or scaling SQL Data Warehouse. However, this may not always be practical. To mitigate the risk of a long rollback, consider one of the following options:
 
-- 使用 [CTAS][] 重新撰寫長時間執行的作業
-- 將作業分成多個區塊；在資料列子集上運作
+- Re-write long running operations using [CTAS][]
+- Break the operation down into chunks; operating on a subset of the rows
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要進一步瞭解隔離等級和交易式的限制，請參閱 [SQL 資料倉儲中的交易][]。如需其他最佳做法的概觀，請參閱 [SQL Data 資料倉儲最佳做法][]。
+See [Transactions in SQL Data Warehouse][] to learn more about isolation levels and transactional limits.  For an overview of other Best Practices, see [SQL Data Warehouse Best Practices][].
 
 <!--Image references-->
 
 <!--Article references-->
-[SQL 資料倉儲中的交易]: ./sql-data-warehouse-develop-transactions.md
-[資料表分割]: ./sql-data-warehouse-tables-partition.md
-[並行]: ./sql-data-warehouse-develop-concurrency.md
+[Transactions in SQL Data Warehouse]: ./sql-data-warehouse-develop-transactions.md
+[table partition]: ./sql-data-warehouse-tables-partition.md
+[Concurrency]: ./sql-data-warehouse-develop-concurrency.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
-[alter index]: https://msdn.microsoft.com/library/ms188388.aspx
+[alter index]:https://msdn.microsoft.com/library/ms188388.aspx
 [RENAME]: https://msdn.microsoft.com/library/mt631611.aspx
 
 <!-- Other web references -->
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

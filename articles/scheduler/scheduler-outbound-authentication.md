@@ -1,10 +1,10 @@
 <properties
- pageTitle="排程器輸出驗證"
- description="排程器輸出驗證"
+ pageTitle="Scheduler Outbound Authentication"
+ description="Scheduler Outbound Authentication"
  services="scheduler"
  documentationCenter=".NET"
- authors="krisragh"
- manager="dwrede"
+ authors="derek1ee"
+ manager="kevinlam1"
  editor=""/>
 <tags
  ms.service="scheduler"
@@ -13,45 +13,46 @@
  ms.devlang="dotnet"
  ms.topic="article"
  ms.date="08/15/2016"
- ms.author="krisragh"/>
+ ms.author="deli"/>
 
-# 排程器輸出驗證
 
-排程器工作可能需要對外呼叫需要驗證的服務。如此一來，被呼叫的服務可以判定排程器工作是否可以存取它的資源。其中某些服務包括其他 Azure 服務、Salesforce.com、Facebook 和安全的自訂網站。
+# <a name="scheduler-outbound-authentication"></a>Scheduler Outbound Authentication
 
-## 新增和移除驗證
+Scheduler jobs may need to call out to services that require authentication. This way, a called service can determine if the Scheduler job can access its resources. Some of these services include other Azure services, Salesforce.com, Facebook, and secure custom websites.
 
-將驗證加入至排程器工作輕而易舉 – 建立或更新工作時，將 JSON 子元素 `authentication` 加入至 `request` 元素。回應中永不傳回 PUT、PATCH 或 POST 要求中傳送給排程器服務的密碼 (屬於 `authentication` 物件)。在回應中，密碼資訊會設定為 null，或可能具有一個代表已驗證之實體的公用權杖。
+## <a name="adding-and-removing-authentication"></a>Adding and Removing Authentication
 
-若要移除驗證，明確地 PUT 或 PATCH 工作，同時將 `authentication` 物件設定為 null。您將不會看到回應中傳回的任何驗證屬性。
+Adding authentication to a Scheduler job is simple – add a JSON child element `authentication` to the `request` element when creating or updating a job. Secrets passed to the Scheduler service in a PUT, PATCH, or POST request – as part of the `authentication` object – are never returned in responses. In responses, secret information is set to null or may have a public token that represents the authenticated entity.
 
-目前，唯一支援的驗證類型為 `ClientCertificate` 模型 (適用於使用 SSL/TLS 用戶端憑證)、`Basic` 模型 (適用於基本驗證)，和 `ActiveDirectoryOAuth` 模型 (適用於 Active Directory OAuth 驗證)。
+To remove authentication, PUT or PATCH the job explicitly, setting the `authentication` object to null. You will not see any authentication properties back in response.
 
-## ClientCertificate 驗證的要求本文
+Currently, the only supported authentication types are the `ClientCertificate` model (for using the SSL/TLS client certificates), the `Basic` model (for Basic authentication), and the `ActiveDirectoryOAuth` model (for Active Directory OAuth authentication.)
 
-加入驗證時，請使用 `ClientCertificate` 模型，在要求本文中指定下列其他元素。
+## <a name="request-body-for-clientcertificate-authentication"></a>Request Body for ClientCertificate Authentication
 
-|元素|說明|
+When adding authentication using the `ClientCertificate` model, specify the following additional elements in the request body.  
+
+|Element|Description|
 |:---|:---|
-|_authentication (父元素)_|使用 SSL 用戶端憑證的驗證物件。|
-|_type_|必要。驗證類型。若為 SSL 用戶端憑證，值必須是 `ClientCertificate`。|
-|_pfx_|必要。Base64 編碼的 PFX 檔案內容。|
-|_password_|必要。存取 PFX 檔案的密碼。|
+|_authentication (parent element)_|Authentication object for using an SSL client certificate.|
+|_type_|Required. Type of authentication.For SSL client certificates, the value must be `ClientCertificate`.|
+|_pfx_|Required. Base64-encoded contents of the PFX file.|
+|_password_|Required. Password to access the PFX file.|
 
 
-## ClientCertificate 驗證的回應本文
+## <a name="response-body-for-clientcertificate-authentication"></a>Response Body for ClientCertificate Authentication
 
-當傳送要求與驗證資訊時，回應包含下列驗證相關的元素。
+When a request is sent with authentication info, the response contains the following authentication-related elements.
 
-|元素 |說明 |
+|Element |Description |
 |:--|:--|
-|_authentication (父元素)_ |使用 SSL 用戶端憑證的驗證物件。|
-|_type_ |驗證類型。若為 SSL 用戶端憑證，值為 `ClientCertificate`。|
-|_certificateThumbprint_ |憑證的指紋。|
-|_certificateSubjectName_ |憑證的主旨辨別名稱。|
-|_certificateExpiration_ |憑證的到期日|
+|_authentication (parent element)_ |Authentication object for using an SSL client certificate.|
+|_type_ |Type of authentication. For SSL client certificates, the value is `ClientCertificate`.|
+|_certificateThumbprint_ |The thumbprint of the certificate.|
+|_certificateSubjectName_ |The subject distinguished name of the certificate.|
+|_certificateExpiration_ |The expiration date of the certificate.|
 
-## ClientCertificate 驗證的範例 REST 要求
+## <a name="sample-rest-request-for-clientcertificate-authentication"></a>Sample REST Request for ClientCertificate Authentication
 
 ```
 PUT https://management.azure.com/subscriptions/1fe0abdf-581e-4dfe-9ec7-e5cb8e7b205e/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
@@ -67,10 +68,10 @@ Content-Type: application/json; charset=utf-8
       "request": {
         "uri": "https://mywebserviceendpoint.com",
         "method": "GET",
-		"headers": {
+        "headers": {
           "x-ms-version": "2013-03-01"
         },
-		"authentication": {
+        "authentication": {
           "type": "clientcertificate",
           "password": "password",
           "pfx": "pfx key"
@@ -88,7 +89,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-## ClientCertificate 驗證的範例 REST 回應
+## <a name="sample-rest-response-for-clientcertificate-authentication"></a>Sample REST Response for ClientCertificate Authentication
 
 ```
 HTTP/1.1 200 OK
@@ -145,28 +146,28 @@ Date: Wed, 16 Mar 2016 19:04:23 GMT
 }
 ```
 
-## 基本驗證的要求本文
+## <a name="request-body-for-basic-authentication"></a>Request Body for Basic Authentication
 
-加入驗證時，請使用 `Basic` 模型，在要求本文中指定下列其他元素。
+When adding authentication using the `Basic` model, specify the following additional elements in the request body.
 
-|元素|說明|
+|Element|Description|
 |:--|:--|
-|_authentication (父元素)_ |使用基本驗證的驗證物件。|
-|_type_ |必要。驗證類型。若為基本驗證，值必須是 `Basic`。|
-|_username_ |必要。要驗證的使用者名稱。|
-|_password_ |必要。要驗證的密碼。|
+|_authentication (parent element)_ |Authentication object for using Basic authentication.|
+|_type_ |Required. Type of authentication. For Basic authentication, the value must be `Basic`.|
+|_username_ |Required. Username to authenticate.|
+|_password_ |Required. Password to authenticate.|
 
-## 基本驗證的回應本文
+## <a name="response-body-for-basic-authentication"></a>Response Body for Basic Authentication
 
-當傳送要求與驗證資訊時，回應包含下列驗證相關的元素。
+When a request is sent with authentication info, the response contains the following authentication-related elements.
 
-|元素|說明|
+|Element|Description|
 |:--|:--|
-|_authentication (父元素)_ |使用基本驗證的驗證物件。|
-|_type_ |驗證類型。若為基本驗證，值為 `Basic`。|
-|_username_ |已驗證的使用者名稱。|
+|_authentication (parent element)_ |Authentication object for using Basic authentication.|
+|_type_ |Type of authentication. For Basic authentication, the value is `Basic`.|
+|_username_ |The authenticated username.|
 
-## 基本驗證的範例 REST 要求
+## <a name="sample-rest-request-for-basic-authentication"></a>Sample REST Request for Basic Authentication
 
 ```
 PUT https://management.azure.com/subscriptions/1d908808-e491-4fe5-b97e-29886e18efd4/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
@@ -183,12 +184,12 @@ Content-Type: application/json; charset=utf-8
       "request": {
         "uri": "https://mywebserviceendpoint.com",
         "method": "GET",
-		"headers": {
+        "headers": {
           "x-ms-version": "2013-03-01"
         },
-		"authentication": {
+        "authentication": {
           "type": "basic",
-		  "username": "user",
+          "username": "user",
           "password": "password"
         }
       },
@@ -204,7 +205,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-## 基本驗證的範例 REST 回應
+## <a name="sample-rest-response-for-basic-authentication"></a>Sample REST Response for Basic Authentication
 
 ```
 HTTP/1.1 200 OK
@@ -259,36 +260,36 @@ Date: Wed, 16 Mar 2016 19:05:06 GMT
 }
 ```
 
-## ActiveDirectoryOAuth 驗證的要求本文
+## <a name="request-body-for-activedirectoryoauth-authentication"></a>Request Body for ActiveDirectoryOAuth Authentication
 
-加入驗證時，請使用 `ActiveDirectoryOAuth` 模型，在要求本文中指定下列其他元素。
+When adding authentication using the `ActiveDirectoryOAuth` model, specify the following additional elements in the request body.
 
-|元素 |說明 |
+|Element |Description |
 |:--|:--|
-|_authentication (父元素)_ |使用 ActiveDirectoryOAuth 驗證的驗證物件。|
-|_type_ |必要。驗證類型。若為 ActiveDirectoryOAuth 驗證，值必須是 `ActiveDirectoryOAuth`。|
-|_tenant_ |必要。Azure AD 租用戶的租用戶識別碼。|
-|_audience_ |必要。此值會設定為 https://management.core.windows.net/.|
-|_clientId_ |必要。提供 Azure AD 應用程式的用戶端識別碼。|
-|_secret_ |必要。要求權杖之用戶端的密碼。|
+|_authentication (parent element)_ |Authentication object for using ActiveDirectoryOAuth authentication.|
+|_type_ |Required. Type of authentication. For ActiveDirectoryOAuth authentication, the value must be `ActiveDirectoryOAuth`.|
+|_tenant_ |Required. The tenant identifier for the Azure AD tenant.|
+|_audience_ |Required. This is set to https://management.core.windows.net/.|
+|_clientId_ |Required. Provide the client identifier for the Azure AD application.|
+|_secret_ |Required. Secret of the client that is requesting the token.|
 
-### 判斷您的租用戶識別碼
+### <a name="determining-your-tenant-identifier"></a>Determining your Tenant Identifier
 
-您也可以透過在 Azure PowerShell 中執行 `Get-AzureAccount`，找到 Azure AD 租用戶的租用戶識別碼。
+You can find the tenant identifier for the Azure AD tenant by running `Get-AzureAccount` in Azure PowerShell.
 
-## ActiveDirectoryOAuth 驗證的回應本文
+## <a name="response-body-for-activedirectoryoauth-authentication"></a>Response Body for ActiveDirectoryOAuth Authentication
 
-當傳送要求與驗證資訊時，回應包含下列驗證相關的元素。
+When a request is sent with authentication info, the response contains the following authentication-related elements.
 
-|元素 |說明 |
+|Element |Description |
 |:--|:--|
-|_authentication (父元素)_ |使用 ActiveDirectoryOAuth 驗證的驗證物件。|
-|_type_ |驗證類型。若為 ActiveDirectoryOAuth 驗證，值為 `ActiveDirectoryOAuth`。|
-|_tenant_ |Azure AD 租用戶的租用戶識別碼。 |
-|_audience_ |此值設定為 https://management.core.windows.net/.|
-|_clientId_ |Azure AD 應用程式的用戶端識別碼。|
+|_authentication (parent element)_ |Authentication object for using ActiveDirectoryOAuth authentication.|
+|_type_ |Type of authentication. For ActiveDirectoryOAuth authentication, the value is `ActiveDirectoryOAuth`.|
+|_tenant_ |The tenant identifier for the Azure AD tenant. |
+|_audience_ |This is set to https://management.core.windows.net/.|
+|_clientId_ |The client identifier for the Azure AD application.|
 
-## ActiveDirectoryOAuth 驗證的範例 REST 要求
+## <a name="sample-rest-request-for-activedirectoryoauth-authentication"></a>Sample REST Request for ActiveDirectoryOAuth Authentication
 
 ```
 PUT https://management.azure.com/subscriptions/1d908808-e491-4fe5-b97e-29886e18efd4/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
@@ -305,10 +306,10 @@ Content-Type: application/json; charset=utf-8
       "request": {
         "uri": "https://mywebserviceendpoint.com",
         "method": "GET",
-		"headers": {
+        "headers": {
           "x-ms-version": "2013-03-01"
         },
-		"authentication": {
+        "authentication": {
           "tenant":"microsoft.onmicrosoft.com",
           "audience":"https://management.core.windows.net/",
           "clientId":"dc23e764-9be6-4a33-9b9a-c46e36f0c137",
@@ -328,7 +329,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-## ActiveDirectoryOAuth 驗證的範例 REST 回應
+## <a name="sample-rest-response-for-activedirectoryoauth-authentication"></a>Sample REST Response for ActiveDirectoryOAuth Authentication
 
 ```
 HTTP/1.1 200 OK
@@ -386,23 +387,27 @@ Date: Wed, 16 Mar 2016 19:10:02 GMT
 }
 ```
 
-## 另請參閱
+## <a name="see-also"></a>See Also
 
 
- [排程器是什麼？](scheduler-intro.md)
+ [What is Scheduler?](scheduler-intro.md)
 
- [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
+ [Azure Scheduler concepts, terminology, and entity hierarchy](scheduler-concepts-terms.md)
 
- [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
+ [Get started using Scheduler in the Azure portal](scheduler-get-started-portal.md)
 
- [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
+ [Plans and billing in Azure Scheduler](scheduler-plans-billing.md)
 
- [Azure 排程器 REST API 參考](https://msdn.microsoft.com/library/mt629143)
+ [Azure Scheduler REST API reference](https://msdn.microsoft.com/library/mt629143)
 
- [Azure 排程器 PowerShell Cmdlet 參考](scheduler-powershell-reference.md)
+ [Azure Scheduler PowerShell cmdlets reference](scheduler-powershell-reference.md)
 
- [Azure 排程器高可用性和可靠性](scheduler-high-availability-reliability.md)
+ [Azure Scheduler high-availability and reliability](scheduler-high-availability-reliability.md)
 
- [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
+ [Azure Scheduler limits, defaults, and error codes](scheduler-limits-defaults-errors.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

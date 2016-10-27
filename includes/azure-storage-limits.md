@@ -1,42 +1,46 @@
-資源|預設限制
+Resource|Default Limit
 ---|---
-每一訂用帳戶的儲存體帳戶數目|200<sup>1</sup>
-每一儲存體帳戶的 TB|500 TB
-每一儲存體帳戶的 Blob 容器、Blob、檔案共用、資料表、佇列、實體或訊息的數目上限|唯一的限制是 500 TB 儲存體帳戶容量
-單一 Blob 容器、資料表或佇列的大小上限|500 TB
-區塊 Blob 或附加 Blob 中的區塊數目上限|50,000
-區塊 Blob 或附加 Blob 中的區塊大小上限|4 MB
-區塊 Blob 或附加 Blob 的大小上限|50,000 x 4 MB (約為 195 GB) 
-分頁 blob 的大小上限 |1 TB
-資料表實體的大小上限|1 MB
-資料表實體中屬性的數目上限|252
-佇列中訊息的大小上限|64 KB
-檔案共用的大小上限|5 TB
-檔案共用中檔案的大小上限|1 TB
-檔案共用中的檔案數目上限|檔案共用的唯一限制是 5 TB 總容量
-每個共用的最大值為 8 KB IOPS|1000
-檔案共用中的檔案數目上限|檔案共用的唯一限制是 5 TB 總容量
-每一儲存體帳戶的 Blob 容器、Blob、檔案共用、資料表、佇列、實體或訊息的數目上限|唯一的限制是 500 TB 儲存體帳戶容量
-每個容器、檔案共用、資料表或佇列的預存存取原則的最大數目|5
-每一儲存體帳戶的總要求率 (假設 1KB 物件大小)|每秒實體或每秒訊息最多 20,000 個 IOPS
-單一 Blob 的目標輸送量|每秒最多 60 MB，或每秒最多 500 個要求
-單一佇列的目標輸送量 (1 KB 訊息)|每秒最多 2000 個訊息
-單一資料表分割的目標輸送量 (1 KB 實體)|每秒最多 2000 個實體
-單一檔案共用的目標輸送量|每秒最多 60 MB
-每一儲存體帳戶的輸入上限<sup>2</sup> (美國地區)|如果啟用 GRS/ZRS<sup>3</sup>，則為 10 Gbps，LRS 為 20 Gbps
-每一儲存體帳戶的輸出上限<sup>2</sup> (美國地區)|如果啟用 RA-GRS/GRS/ZRS<sup>3</sup>，則為 20 Gbps，LRS 為 30 Gbps
-每一儲存體帳戶的輸入上限<sup>2</sup> (歐洲和亞洲地區)|如果啟用 GRS/ZRS<sup>3</sup>，則為 5 Gbps，LRS 為 10 Gbps
-每一儲存體帳戶的輸出上限<sup>2</sup> (歐洲和亞洲地區)|如果啟用 RA-GRS/GRS/ZRS<sup>3</sup>，則為 10 Gbps，LRS 為 15 Gbps
+Number of storage accounts per subscription|200<sup>1</sup>
+TB per storage account|500 TB
+Max number of blob containers, blobs, file shares, tables, queues, entities, or messages per storage account|Only limit is the 500 TB storage account capacity
+Max size of a single blob container, table, or queue|500 TB
+Max number of blocks in a block blob or append blob|50,000
+Max size of a block in a block blob or append blob|4 MB
+Max size of a block blob or append blob|50,000 X 4 MB (approx. 195 GB) 
+Max size of a page blob |1 TB
+Max size of a table entity|1 MB
+Max number of properties in a table entity|252
+Max size of a message in a queue|64 KB
+Max size of a file share|5 TB
+Max size of a file in a file share|1 TB
+Max number of files in a file share|Only limit is the 5 TB total capacity of the file share
+Max 8 KB IOPS per share|1000
+Max number of files in a file share|Only limit is the 5 TB total capacity of the file share
+Max number of blob containers, blobs, file shares, tables, queues, entities, or messages per storage account|Only limit is the 500 TB storage account capacity
+Max number of stored access policies per container, file share, table, or queue|5
+Total Request Rate (assuming 1KB object size) per storage account|Up to 20,000 IOPS, entities per second, or messages per second
+Target throughput for single blob|Up to 60 MB per second, or up to 500 requests per second
+Target throughput for single queue (1 KB messages)|Up to 2000 messages per second
+Target throughput for single table partition (1 KB entities)|Up to 2000 entities per second
+Target throughput for single file share|Up to 60 MB per second
+Max ingress<sup>2</sup> per storage account (US Regions)|10 Gbps if GRS/ZRS<sup>3</sup> enabled, 20 Gbps for LRS
+Max egress<sup>2</sup> per storage account (US Regions)|20 Gbps if RA-GRS/GRS/ZRS<sup>3</sup> enabled, 30 Gbps for LRS
+Max ingress<sup>2</sup> per storage account (European and Asian Regions)|5 Gbps if GRS/ZRS<sup>3</sup> enabled, 10 Gbps for LRS
+Max egress<sup>2</sup> per storage account (European and Asian Regions)|10 Gbps if RA-GRS/GRS/ZRS<sup>3</sup> enabled, 15 Gbps for LRS
 
-<sup>1</sup>這包括標準和進階儲存體帳戶。如果您需要超過 200 個儲存體帳戶，請透過 [Azure 支援](https://azure.microsoft.com/support/faq/)提出要求。Azure 儲存體團隊將會檢閱您的商務案例，而且可以核准多達 250 個儲存體帳戶。
+<sup>1</sup>This includes both Standard and Premium storage accounts. If you require more than 200 storage accounts, make a request through [Azure Support](https://azure.microsoft.com/support/faq/). The Azure Storage team will review your business case and may approve up to 250 storage accounts. 
 
-<sup>2</sup>「輸入」是指傳送至某個儲存體帳戶的所有資料 (要求)。*輸出*是指從某個儲存體帳戶接收的所有資料 (回應)。
+<sup>2</sup>*Ingress* refers to all data (requests) being sent to a storage account. *Egress* refers to all data (responses) being received from a storage account.  
 
-<sup>3</sup>Azure 儲存體複寫選項包括：
+<sup>3</sup>Azure Storage replication options include:
 
-- **RA-GRS**：讀取權限異地備援儲存體。如果已啟用 RA-GRS，次要位置的輸出目標會與主要位置的輸出目標完全相同。
-- **GRS**：異地備援儲存體。
-- **ZRS**：區域備援儲存體。僅適用於區塊 Blob。
-- **LRS**：本地備援儲存體。
+- **RA-GRS**: Read-access geo-redundant storage. If RA-GRS is enabled, egress targets for the secondary location are identical to those for the primary location.
+- **GRS**:  Geo-redundant storage. 
+- **ZRS**: Zone-redundant storage. Available only for block blobs. 
+- **LRS**: Locally redundant storage. 
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO3-->
+
+

@@ -13,18 +13,19 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="07/18/2016"
+   ms.date="10/17/2016"
    ms.author="juliako"/>
 
-# Azure SDK for .NET 2.9 版本資訊
 
-##概觀
+# <a name="azure-sdk-for-.net-2.9-release-notes"></a>Azure SDK for .NET 2.9 版本資訊
 
-本文包含 Azure SDK for .NET 2.9 版的版本資訊。
+##<a name="overview"></a>概觀
+
+本文包含 Azure SDK for .NET 2.9 版的版本資訊。 
 
 如需此版本之更新內容的詳細資訊，請參閱 [Azure SDK 2.9 公告文章](https://azure.microsoft.com/blog/announcing-visual-studio-azure-tools-and-sdk-2-9/)。
 
-## Azure SDK 2.9 for Visual Studio 2015 Update 2 和 Visual Studio "15" 預覽
+## <a name="azure-sdk-2.9-for-visual-studio-2015-update-2-and-visual-studio-"15"-preview"></a>Azure SDK 2.9 for Visual Studio 2015 Update 2 和 Visual Studio "15" 預覽
  
 此更新包含下列錯誤修正：
 
@@ -33,30 +34,34 @@
 
 此更新包含下列新功能：
 
-- 在 App Service 佈建對話方塊的 [服務] 索引標籤中支援第二個 App Service。
+- 在 App Service 佈建對話方塊的 [服務] 索引標籤中支援第二個 App Service。 
 
-##Azure Data Lake Tools for Visual Studio 2015 Update 2
+##<a name="azure-data-lake-tools-for-visual-studio-2015-update-2"></a>Azure Data Lake Tools for Visual Studio 2015 Update 2
  
 此更新包含下列工具：
 
-- **Azure Data Lake Tools** for Visual Studio 現在已合併到 Azure SDK for .NET 版本。當您安裝 Azure SDK 時，便會自動安裝此工具。
+- **Azure Data Lake Tools** for Visual Studio 現在已合併到 Azure SDK for .NET 版本。 當您安裝 Azure SDK 時，便會自動安裝此工具。 
 
-	此工具會經常更新，請前往[這裡](http://aka.ms/datalaketool)取得更新。
+    此工具會經常更新，請前往 [這裡](http://aka.ms/datalaketool) 取得更新。
 
-- **伺服器總管**現在可讓您全部檢視，並建立一些 U-SQL 中繼資料實體。如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/documentation/services/data-lake-analytics/)。
+- **伺服器總管** 現在可讓您全部檢視，並建立一些 U-SQL 中繼資料實體。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/documentation/services/data-lake-analytics/) 。
 
 
-##HDInsight 工具 
+##<a name="hdinsight-tools"></a>HDInsight 工具 
 
 **HDInsight Tools** for Visual Studio 現在支援 HDInsight 3.3 版，包括顯示 Tez 圖形和其他語言修正。
 
 
-##Azure 資源管理員 
+##<a name="azure-resource-manager"></a>Azure 資源管理員 
 
-本版新增對於 ARM 範本的[金鑰保存庫](../resource-manager-keyvault-parameter.md)支援。
+本版新增對於 ARM 範本的 [金鑰保存庫](../resource-manager-keyvault-parameter.md) 支援。
 
-##另請參閱
+##<a name="see-also"></a>另請參閱
 
 [Azure SDK 2.9 公告文章](https://azure.microsoft.com/blog/announcing-visual-studio-azure-tools-and-sdk-2-9/)
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

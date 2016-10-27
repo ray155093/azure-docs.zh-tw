@@ -1,6 +1,6 @@
 <properties
-   pageTitle="為 Azure 雲端服務和虛擬機器設定診斷 | Microsoft Azure"
-   description="描述如何設定診斷資訊以在 Visual Studio 中偵錯 Azure 雲端服務和虛擬機器 (VM)。"
+   pageTitle="Configuring Diagnostics for Azure Cloud Services and Virtual Machines | Microsoft Azure"
+   description="Describes how to configure diagnostics information for debugging Azure cloude services and virtual machines (VMs) in Visual Studio."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,171 +15,172 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 為 Azure 雲端服務和虛擬機器設定診斷功能
 
-當您需要疑難排解 Azure 雲端服務或 Azure 虛擬機器時，您可以使用 Visual Studio 更輕鬆地設定 Azure 診斷。Azure 診斷會在執行雲端服務的虛擬機器和虛擬機器執行個體上擷取系統資料和記錄資料，並將該資料傳送到您所選擇的儲存體帳戶。如需有關 Azure 中診斷記錄的詳細資訊，請參閱[在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能](./app-service-web/web-sites-enable-diagnostic-log.md)。
+# <a name="configuring-diagnostics-for-azure-cloud-services-and-virtual-machines"></a>Configuring Diagnostics for Azure Cloud Services and Virtual Machines
 
-本主題說明如何在部署前後啟用及設定 Visual Studio 以及 Azure 虛擬機器中的 Azure 診斷。它也說明如何選取要收集的診斷資訊類型，以及如何在收集之後檢視資訊。
+When you need to troubleshoot an Azure cloud service or Azure virtual machine, you can configure Azure diagnostics more easily by using Visual Studio. Azure diagnostics captures system data and logging data on the virtual machines and virtual machine instances that run your cloud service and transfers that data into a storage account of your choice. See [Enable diagnostics logging for web apps in Azure App Service](./app-service-web/web-sites-enable-diagnostic-log.md) for more information about diagnostics logging in Azure.
 
-您可以利用下列方式設定 Azure 診斷：
+This topic shows you how to enable and configure Azure diagnostics in Visual Studio, both before and after deployment, as well as in Azure virtual machines. It also shows you how to select the types of diagnostics information to collect and how to view the information after it's collected.
 
-- 您可以透過 Visual Studio 中的 [診斷組態] 對話方塊變更診斷組態設定。此設定會儲存在稱為 diagnostics.wadcfgx (diagnostics.wadcfg 在 Azure SDK 2.4 或更早版本中) 的檔案。或者，您可以直接修改組態檔。如果您手動更新檔案，組態變更會在您下一次將雲端服務部署至 Azure 或在模擬器中執行服務時生效。
+You can configure Azure Diagnostics in the following ways:
 
-- 使用 Visual Studio 中的 [雲端總管] 或 [伺服器總管] 變更診斷設定以執行雲端服務或虛擬機器。
+- You can change diagnostics configuration settings through the **Diagnostics Configuration** dialog box in Visual Studio. The settings are saved in a file called diagnostics.wadcfgx (diagnostics.wadcfg in Azure SDK 2.4 or earlier). Alternatively, you can directly modify the configuration file. If you manually update the file, the configuration changes will take effect the next time you deploy the cloud service to Azure or run the service in the emulator.
 
-## Azure 2.6 診斷變更
+- Use **Cloud Explorer** or **Server Explorer** in Visual Studio to change the diagnostics settings for a running cloud service or virtual machine.
 
-對 Visual Studio 中的 Azure SDK 2.6 專案進行下列變更。(這些變更也套用至更新版的 Azure SDK)。
+## <a name="azure-2.6-diagnostics-changes"></a>Azure 2.6 diagnostics changes
 
-- 本機模擬器現在支援診斷。這表示您可以收集診斷資料並確保您在 Visual Studio 中進行開發及測試時，您的應用程式在建立正確的追蹤。當您在 Visual Studio 中使用 Azure 儲存體模擬器來執行您的雲端服務專案時，連接字串 `UseDevelopmentStorage=true` 會啟用診斷資料收集。所有的診斷資料都會收集到 (開發儲存體) 儲存體帳戶中。
+For Azure SDK 2.6 projects in Visual Studio, the following changes were made. (These changes also apply to later versions of Azure SDK.)
 
-- 診斷儲存體帳戶連接字串 (Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString) 會再一次儲存在服務組態 (.cscfg) 檔中。在 Azure SDK 2.5 中，診斷儲存體帳戶會在 diagnostics.wadcfgx 檔案中指定。
+- The local emulator now supports diagnostics. This means you can collect diagnostics data and ensure your application is creating the right traces while you're developing and testing in Visual Studio. The connection string `UseDevelopmentStorage=true` enables diagnostics data collection while you're running your cloud service project in Visual Studio by using the Azure storage emulator. All diagnostics data is collected in the (Development Storage) storage account.
 
-連接字串在 Azure SDK 2.4 及更舊版本和 Azure SDK 2.6 及更新版本中的運作方式有一些顯著的差異。
+- The diagnostics storage account connection string (Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString) is stored once again in the service configuration (.cscfg) file. In Azure SDK 2.5 the diagnostics storage account was specified in the diagnostics.wadcfgx file.
 
-- 在 Azure SDK 2.4 及更舊版本中，階段診斷外掛程式使用連接字串做為執行階段，以取得用於傳輸診斷記錄檔的儲存體帳戶資訊。
+There are some notable differences between how the connection string worked in Azure SDK 2.4 and earlier and how it works in Azure SDK 2.6 and later.
 
-- 在 Azure SDK 2.6 及更新版本中，Visual studio 會使用診斷連接字串，在發佈期間設定內含適當儲存體帳戶資訊的診斷延伸模組。連接字串可讓您為 Visual Studio 在發佈時將使用的不同服務組態定義不同的儲存體帳戶。不過，因為診斷外掛程式 (在 Azure SDK 2.5 之後) 不再提供使用，所以 .cscfg 檔案本身無法啟用診斷延伸模組。您必須個別透過 Visual Studio 或 PowerShell 等工具啟用延伸模組。
+- In Azure SDK 2.4 and earlier, the connection string was used as a runtime by the diagnostics plugin to get the storage account information for transferring diagnostics logs.
 
-- 為了使用 PowerShell 簡化診斷延伸模組的設定程序，從 Visual Studio 的封裝輸出也包含每個角色之診斷延伸模組的公用組態 XML。Visual Studio 使用診斷連接字串填入出現在公用組態的儲存體帳戶資訊。公用設定檔會在延伸模組資料夾中建立並遵循模式 PaaSDiagnostics.&lt;RoleName>.PubConfig.xml。任何以 PowerShell 為基礎的部署都可以使用此模式將每個組態對應至角色。
+- In Azure SDK 2.6 and later, the diagnostics connection string is used by Visual Studio to configure the diagnostics extension with the appropriate storage account information during publishing. The connection string lets you define different storage accounts for different service configurations that Visual Studio will use when publishing. However, because the diagnostics plugin is no longer available (after Azure SDK 2.5), the .cscfg file by itself can't enable the Diagnostics Extension. You have to enable the extension separately through tools such as Visual Studio or PowerShell.
 
-- [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)也會使用 .cscfg 檔案中的連接字串來存取診斷資料，所以它也可以出現在 [監視] 索引標籤中。若要在入口網站中顯示詳細監視資料，必須要有連接字串。
+- To simplify the process of configuring the diagnostics extension with PowerShell, the package output from Visual Studio also contains the public configuration XML for the diagnostics extension for each role. Visual Studio uses the diagnostics connection string to populate the storage account information present in the public configuration. The public config files are created in the Extensions folder and follow the pattern PaaSDiagnostics.&lt;RoleName>.PubConfig.xml. Any PowerShell based deployments can use this pattern to map each configuration to a Role.
 
-## 將專案移轉至 Azure SDK 2.6 及、更新版本
+- The connection string in the .cscfg file is also used by the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) to access the diagnostics data so it can appear in the **Monitoring** tab. The connection string is needed to configure the service to show verbose monitoring data in the portal.
 
-從 Azure SDK 2.5 移轉至 Azure SDK 2.6 或更新版本時，如果您在 .wadcfgx 檔案中指定診斷儲存體帳戶，它就會留在那裡。若要針對不同儲存體組態充分利用不同儲存體帳戶的靈活性，您必須手動將連接字串加入專案。如果您將專案從 Azure SDK 2.4 或更早版本移轉至 Azure SDK 2.6，系統會保留診斷連接字串。不過，請注意上一節中指定之 Azure SDK 2.6 中連接字串處理方式的變更。
+## <a name="migrating-projects-to-azure-sdk-2.6-and-later"></a>Migrating projects to Azure SDK 2.6 and later
 
-### Visual Studio 如何決定診斷儲存體帳戶
+When migrating from Azure SDK 2.5 to Azure SDK 2.6 or later, if you had a diagnostics storage account specified in the .wadcfgx file, then it will stay there. To take advantage of the flexibility of using different storage accounts for different storage configurations, you'll have to manually add the connection string to your project. If you're migrating a project from Azure SDK 2.4 or earlier to Azure SDK 2.6, then the diagnostics connection strings are preserved. However, please note the changes in how connection strings are treated in Azure SDK 2.6 as specified in the previous section.
 
-- 如果在 .cscfg 檔案中指定診斷連接字串，Visual Studio 會在發佈時，以及在封裝期間產生公用組態 xml 檔案時使用它來設定診斷延伸模組。
+### <a name="how-visual-studio-determines-the-diagnostics-storage-account"></a>How Visual Studio determines the diagnostics storage account
 
-- 如果未在 .cscfg 檔案中指定診斷連接字串，Visual Studio 會回復到在發佈時，以及在封裝期間產生公用組態 xml 檔案時使用在 .wadcfgx 檔案中指定的儲存體帳戶來設定診斷延伸模組。
+- If a diagnostics connection string is specified in the .cscfg file, Visual Studio uses it to configure the diagnostics extension when publishing, and when generating the public configuration xml files during packaging.
 
-- 在 .cscfg 檔案中的診斷連接字串的優先順序高於 .wadcfgx 檔案中的儲存體帳戶。如果在 .cscfg 檔案中指定診斷連接字串，Visual Studio 會使用它並忽略 .wadcfgx 中的儲存體帳戶。
+- If no diagnostics connection string is specified in the .cscfg file, then Visual Studio falls back to using the storage account specified in the .wadcfgx file to configure the diagnostics extension when publishing, and generating the public configuration xml files when packaging.
 
-### 「更新開發儲存體連接字串...」核取方塊的作用為何？
+- The diagnostics connection string in the .cscfg file takes precedence over the storage account in the .wadcfgx file. If a diagnostics connection string is specified in the .cscfg file, then Visual Studio uses that and ignores the storage account in .wadcfgx.
 
-[在發佈至 Microsoft Azure 時使用 Microsoft Azure 儲存體帳戶認證更新診斷和快取的開發儲存體連接字串] 核取方塊提供便利的方式，使用發佈期間指定的 Azure 儲存體帳戶更新任何開發儲存體帳戶連接字串。
+### <a name="what-does-the-"update-development-storage-connection-strings…"-checkbox-do?"></a>What does the "Update development storage connection strings…" checkbox do?
 
-例如，假設您選取此核取方塊，診斷連接字串就會指定 `UseDevelopmentStorage=true`。當您將專案發佈至 Azure 時，Visual Studio 會自動使用您在 [發佈] 精靈中指定的儲存體帳戶更新診斷連接字串。不過，如果將實際的儲存體帳戶指定為診斷連接字串，則會改用該帳戶。
+The checkbox for **Update development storage connection strings for Diagnostics and Caching with Microsoft Azure storage account credentials when publishing to Microsoft Azure** gives you a convenient way to update any development storage account connection strings with the Azure storage account specified during publishing.
 
-## Azure SDK 2.4 及更舊版本和 Azure SDK 2.5 及更新版本之間的診斷功能差異
+For example, suppose you select this checkbox and the diagnostics connection string specifies `UseDevelopmentStorage=true`. When you publish the project to Azure, Visual Studio will automatically update the diagnostics connection string with the storage account you specified in the Publish wizard. However, if a real storage account was specified as the diagnostics connection string, then that account is used instead.
 
-如果您要將專案從 Azure SDK 2.4 更新為 Azure SDK 2.5 或更新版本，您應該謹記下列診斷功能差異。
+## <a name="diagnostics-functionality-differences-between-azure-sdk-2.4-and-earlier-and-azure-sdk-2.5-and-later"></a>Diagnostics functionality differences between Azure SDK 2.4 and earlier and Azure SDK 2.5 and later
 
-- **組態 API 已被取代** – 診斷的程式設計組態可在 Azure SDK 2.4 或更舊版本中使用，但在 Azure SDK 2.5 及更新版本中已被取代。如果診斷組態目前以程式碼定義，您將需要在移轉專案中從頭開始進行這些設定才能讓診斷保持運作。Azure SDK 2.4 的診斷組態檔是 diagnostics.wadcfg，而 diagnostics.wadcfgx 是 Azure SDK 2.5 及更新版本的診斷組態檔。
+If you're upgrading your project from Azure SDK 2.4 to Azure SDK 2.5 or later, you should bear in mind the following diagnostics functionality differences.
 
-- **雲端服務應用程式的診斷只能在角色層級設定，而不是在執行個體層級。**
+- **Configuration APIs are deprecated** – Programmatic configuration of diagnostics is available in Azure SDK 2.4 or earlier versions, but is deprecated in Azure SDK 2.5 and later. If your diagnostics configuration is currently defined in code, you'll need to reconfigure those settings from scratch in the migrated project in order for diagnostics to keep working. The diagnostics configuration file for Azure SDK 2.4 is diagnostics.wadcfg, and diagnostics.wadcfgx for Azure SDK 2.5 and later.
 
-- **每次部署您的應用程式時，都會更新診斷組態** – 如果您從 [伺服器總管] 變更診斷組態並重新部署您的應用程式，會導致同位檢查的問題。
+- **Diagnostics for cloud service applications can only be configured at the role level, not at the instance level.**
 
-- **在 Azure SDK 2.5 及更新版本中，損毀傾印不會以診斷組態檔設定** – 如果您以程式碼設定損毀傾印，您必須手動將組態從程式碼傳輸至組態檔中，因為損毀傾印不會在移轉至 Azure SDK 2.6 期間傳輸。
+- **Every time you deploy your app, the diagnostics configuration is updated** – This can cause parity issues if you change your diagnostics configuration from Server Explorer and then redeploy your app.
 
-## 部署雲端服務專案中的診斷之前先將其啟用
+- **In Azure SDK 2.5 and later, crash dumps are configured in the diagnostics configuration file, not in code** – If you have crash dumps configured in code, you'll have to manually transfer the configuration from code to the configuration file, because the crash dumps aren't transferred during the migration to Azure SDK 2.6.
 
-在 Visual Studio 中，在您部署模擬器中的服務之前將其執行時，您可以選擇收集在 Azure 中執行之角色的診斷資料。在 Visual Studio 中對診斷設定進行的所有變更都會儲存在 diagnostics.wadcfgx 組態檔中。這些組態設定會在您部署雲端服務時指定儲存診斷資料的儲存體帳戶。
+## <a name="enable-diagnostics-in-cloud-service-projects-before-deploying-them"></a>Enable diagnostics in cloud service projects before deploying them
 
-### 在部署之前啟用 Visual Studio 中的診斷
+In Visual Studio, you can choose to collect diagnostics data for roles that run in Azure, when you run the service in the emulator before deploying it. All changes to diagnostics settings in Visual Studio are saved in the diagnostics.wadcfgx configuration file. These configuration settings specify the storage account where diagnostics data is saved when you deploy your cloud service.
 
-1. 在您感興趣之角色的捷徑功能表上，選擇 [屬性，然後選擇角色之 [屬性] 視窗中的 [組態] 索引標籤。
+### <a name="to-enable-diagnostics-in-visual-studio-before-deployment"></a>To enable diagnostics in Visual Studio before deployment
 
-1. 在 [診斷] 區段中，確定已選取 [啟用診斷] 核取方塊。
+1. On the shortcut menu for the role that interests you, choose **Properties**, and then choose the **Configuration** tab in the role’s **Properties** window.
 
-    ![存取啟用診斷選項](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796660.png)
+1. In the **Diagnostics** section, make sure that the **Enable Diagnostics** check box is selected.
 
-1. 選擇省略符號 (...) 按鈕來指定您想要儲存診斷資料的儲存體帳戶。您所選擇的儲存體帳戶會成為儲存診斷資料的位置。
+    ![Accessing the Enable Diagnostics option](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796660.png)
 
-    ![指定要使用的儲存體帳戶](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796661.png)
+1. Choose the ellipsis (…) button to specify the storage account where you want the diagnostics data to be stored. The storage account you choose will be the location where diagnostics data is stored.
 
-1. 在 [建立儲存體連接字串] 對話方塊中，指定要使用 Azure 儲存體模擬器、Azure 訂用帳戶或手動輸入的認證來連接。
+    ![Specify the storage account to use](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796661.png)
 
-    ![儲存體帳戶對話方塊](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796662.png)
+1. In the **Create Storage Connection String** dialog box, specify whether you want to connect using the Azure Storage Emulator, an Azure subscription, or manually entered credentials.
 
-  - 如果您選擇「Microsoft Azure 儲存體模擬器」選項，連接字串會設為 UseDevelopmentStorage = true。
+    ![Storage account dialog box](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796662.png)
 
-  - 如果選擇的是「您的訂用帳戶」選項，您可以選擇要使用的 Azure 訂用帳戶和帳戶名稱。您可以選擇 [管理帳戶] 按鈕以管理您的 Azure 訂用帳戶。
+  - If you choose the Microsoft Azure Storage Emulator option, the connection string is set to UseDevelopmentStorage=true.
 
-  - 如果您選擇「手動輸入的認證」選項，您會收到提示以輸入您想要使用之 Azure 帳戶的名稱和金鑰。
+  - If you choose the Your subscription option, you can choose the Azure subscription you want to use and the account name. You can choose the Manage Accounts button to manage your Azure subscriptions.
 
-1. 選擇 [設定] 按鈕以檢視 [診斷組態] 對話方塊。每個索引標籤 (除了 [一般] 和 [記錄檔目錄] 之外) 都代表您可以收集的診斷資料來源。預設索引標籤 [一般] 提供下列診斷資料收集選項：[只記錄錯誤]、[所有資訊] 和 [自訂計劃]。預設選項 [只記錄錯誤] 會佔用最少的儲存體，因為它不會傳輸警告或追蹤訊息。[所有資訊] 選項會傳輸大部分的資訊，因此它是對儲存體而言最昂貴的選項。
+  - If you choose the Manually entered credentials option, you're prompted to enter the name and key of the Azure account you want to use.
 
-    ![啟用 Azure 診斷和組態](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758144.png)
+1. Choose the **Configure** button to view the **Diagnostics configuration** dialog box. Each tab (except for **General** and **Log Directories**) represents a diagnostic data source that you can collect. The default tab, **General**, offers you the following diagnostics data collection options: **Errors only**, **All information**, and **Custom plan**. The default option, **Errors only**, takes the least amount of storage because it doesn’t transfer warnings or tracing messages. The All information option transfers the most information and is, therefore, the most expensive option in terms of storage.
 
-1. 在此範例中，請選取 [自訂計劃] 選項，您就可以自訂收集的資料。
+    ![Enable Azure diagnostics and configuration](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758144.png)
 
-1. [以 MB 為單位的磁碟配額] 方塊可指定您想要在儲存體帳戶中配置診斷資料的空間大小。您可以任意變更預設值。
+1. For this example, select the **Custom plan** option so you can customize the data collected.
 
-1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <記錄檔類型> 的傳輸] 核取方塊。例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的 **設定診斷資料來源**一節，以了解每個索引標籤上的組態資訊。
+1. The **Disk Quota in MB** box specifies how much space you want to allocate in your storage account for diagnostics data. You can change the default value if you want.
 
-1. 啟用所有您想要的診斷資料收集之後，請選擇 [確定] 按鈕。
+1. On each tab of diagnostics data you want to collect, select its **Enable Transfer of <log type>** check box. For example, if you want to collect application logs, select the **Enable transfer of Application Logs** check box on the **Application Logs** tab. Also, specify any other information required by each diagnostics data type. See the section **Configure diagnostics data sources** later in this topic for configuration information on each tab.
 
-1. 如往常一般在 Visual Studio 中建立 Azure 雲端服務專案。當您使用您的應用程式，您已啟用的記錄檔資訊會儲存到您指定的 Azure 儲存體帳戶。
+1. After you’ve enabled collection of all the diagnostics data you want, choose the **OK** button.
 
-## 在 Azure 虛擬機器中啟用診斷
+1. Run your Azure cloud service project in Visual Studio as usual. As you use your application, the log information that you enabled is saved to the Azure storage account you specified.
 
-在 Visual Studio 中，您可以選擇收集 Azure 虛擬機器的診斷資料。
+## <a name="enable-diagnostics-in-azure-virtual-machines"></a>Enable diagnostics in Azure virtual machines
 
-### 在 Azure 虛擬機器中啟用診斷
+In Visual Studio, you can choose to collect diagnostics data for Azure virtual machines.
 
-1. 在 [伺服器總管] 中，選擇 Azure 節點，然後連接至您的 Azure 訂用帳戶 (如果您尚未連接)。
+### <a name="to-enable-diagnostics-in-azure-virtual-machines"></a>To enable diagnostics in Azure virtual machines
 
-1. 展開**虛擬機器**節點。您可以建立新的虛擬機器，或選取一個已經存在的虛擬機器。
+1. In **Server Explorer**, choose the Azure node and then connect to your Azure subscription, if you're not already connected.
 
-1. 在您感興趣的虛擬機器捷徑功能表上，選擇 [設定]。隨即顯示 [虛擬機器組態] 對話方塊。
+1. Expand the **Virtual Machines** node. You can create a new virtual machine, or select one that's already there.
 
-    ![設定 Azure 虛擬機器](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796663.png)
+1. On the shortcut menu for the virtual machine that interests you, choose **Configure**. This shows the virtual machine configuration dialog box.
 
-1. 如果尚未安裝，請新增 Microsoft Monitoring Agent 診斷延伸模組。這個延伸模組可讓您收集 Azure 虛擬機器的診斷資料。在已安裝的延伸模組清單中，選擇 [選取可用的延伸模組] 下拉式功能表，然後選擇 Microsoft Monitoring Agent 診斷。
+    ![Configuring an Azure virtual machine](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796663.png)
 
-    ![安裝 Azure 虛擬機器延伸模組](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766024.png)
+1. If it's not already installed, add the Microsoft Monitoring Agent Diagnostics extension. This extension lets you gather diagnostics data for the Azure virtual machine. In the Installed Extensions list, choose the Select an available extension drop-down menu and then choose Microsoft Monitoring Agent Diagnostics.
 
-    >[AZURE.NOTE] 其他可供您的虛擬機器使用的診斷延伸模組。如需詳細資訊，請參閱 Azure VM 延伸模組和功能。
+    ![Installing an Azure virtual machine extension](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766024.png)
 
-1. 選擇 [新增] 按鈕來新增延伸模組及檢視其 [診斷組態] 對話方塊。
+    >[AZURE.NOTE] Other diagnostics extensions are available for your virtual machines. For more information, see Azure VM Extensions and Features.
 
-1. 選擇 [設定] 按鈕來指定儲存體帳戶，然後選擇 [確定] 按鈕。
+1. Choose the **Add** button to add the extension and view its **Diagnostics configuration** dialog box.
 
-    每個索引標籤 (除了 [一般] 和 [記錄檔目錄] 之外) 都代表您可以收集的診斷資料來源。
+1. Choose the **Configure** button to specify a storage account and then choose the **OK** button.
 
-    ![啟用 Azure 診斷和組態](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758144.png)
+    Each tab (except for **General** and **Log Directories**) represents a diagnostic data source that you can collect.
 
-    預設索引標籤 [一般] 提供下列診斷資料收集選項：[只記錄錯誤]、[所有資訊] 和 [自訂計劃]。預設選項 [只記錄錯誤] 會佔用最少的儲存體，因為它不會傳輸警告或追蹤訊息。[所有資訊] 選項會傳輸大部分的資訊，因此它是對儲存體而言最昂貴的選項。
+    ![Enable Azure diagnostics and configuration](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758144.png)
 
-1. 在此範例中，請選取 [自訂計劃] 選項，您就可以自訂收集的資料。
+    The default tab, **General**, offers you the following diagnostics data collection options: **Errors only**, **All information**, and **Custom plan**. The default option, **Errors only**, takes the least amount of storage because it doesn’t transfer warnings or tracing messages. The **All information** option transfers the most information and is, therefore, the most expensive option in terms of storage.
 
-1. [以 MB 為單位的磁碟配額] 方塊可指定您想要在儲存體帳戶中配置診斷資料的空間大小。您可以任意變更預設值。
+1. For this example, select the **Custom plan** option so you can customize the data collected.
 
-1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <記錄檔類型> 的傳輸] 核取方塊。
+1. The **Disk Quota in MB** box specifies how much space you want to allocate in your storage account for diagnostics data. You can change the default value if you want.
 
-    例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的**設定診斷資料來源**一節，以了解每個索引標籤上的組態資訊。
+1. On each tab of diagnostics data you want to collect, select its **Enable Transfer of <log type>** check box.
 
-1. 啟用所有您想要的診斷資料收集之後，請選擇 [確定] 按鈕。
+    For example, if you want to collect application logs, select the **Enable transfer of Application Logs** check box on the **Application Logs** tab. Also, specify any other information required by each diagnostics data type. See the section **Configure diagnostics data sources** later in this topic for configuration information on each tab.
 
-1. 儲存更新的專案。
+1. After you’ve enabled collection of all the diagnostics data you want, choose the **OK** button.
 
-    您會在 [Microsoft Azure 活動記錄檔] 視窗中看到虛擬機器已更新的訊息。
+1. Save the updated project.
 
-## 設定診斷資料來源
+    You'll see a message in the **Microsoft Azure Activity Log** window that the virtual machine has been updated.
 
-啟用診斷資料收集之後，您可以準確選擇您要收集的資料來源和所收集的資訊。以下為 [診斷組態] 對話方塊中的索引標籤清單以及每個組態選項的意義。
+## <a name="configure-diagnostics-data-sources"></a>Configure diagnostics data sources
 
-### 應用程式記錄檔
+After you enable diagnostics data collection, you can choose exactly what data sources you want to collect and what information is collected. The following is a list of tabs in the **Diagnostics configuration** dialog box and what each configuration option means.
 
-**應用程式記錄檔**包含 Web 應用程式所產生的診斷資訊。如果您想要擷取應用程式記錄檔，請選取 [啟用應用程式記錄檔傳輸] 核取方塊。您可以在應用程式記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。您也可以藉由設定記錄層級值變更記錄檔中擷取的資訊量。例如，您可以選擇 [Verbose] 以取得詳細資訊或選擇 [嚴重] 只擷取嚴重的錯誤。如果您有特定的診斷提供者會發出應用程式記錄檔，您可以藉由新增提供者的 GUID 至 [提供者 GUID] 方塊來擷取它們。
+### <a name="application-logs"></a>Application logs
 
-  ![應用程式記錄檔](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758145.png)
+**Application logs** contain diagnostics information produced by a web application. If you want to capture application logs, select the **Enable transfer of Application Logs** check box. You can increase or decrease the number of minutes when the application logs are transferred to your storage account by changing the **Transfer Period (min)** value. You can also change the amount of information captured in the log by setting the Log level value. For example, you can choose **Verbose** to get more information or choose **Critical** to capture only critical errors. If you have a specific diagnostics provider that emits application logs, you can capture them by adding the provider’s GUID to the **Provider GUID** box.
 
-  如需有關應用程式記錄檔的詳細資訊，請參閱[在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能](./app-service-web/web-sites-enable-diagnostic-log.md)。
+  ![Application Logs](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758145.png)
 
-### Windows 事件記錄檔
+  See [Enable diagnostics logging for web apps in Azure App Service](./app-service-web/web-sites-enable-diagnostic-log.md) for more information about application logs.
 
-如果您想要擷取 Windows 事件記錄檔，請選取 [啟用 Windows 事件記錄檔傳輸] 核取方塊。您可以在事件記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。選取您想要追蹤之事件類型的核取方塊。
+### <a name="windows-event-logs"></a>Windows event logs
 
-  ![事件記錄檔](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796664.png)
+If you want to capture Windows event logs, select the **Enable transfer of Windows Event Logs** check box. You can increase or decrease the number of minutes when the event logs are transferred to your storage account by changing the **Transfer Period (min)** value. Select the check boxes for the types of events that you want to track.
 
-如果您正在使用 Azure SDK 2.6 或更新版本並想要指定自訂資料來源，請在 [<資料來源名稱>] 文字方塊中將其輸入，然後選擇旁邊的 [新增] 按鈕。資料來源會新增至 diagnostics.cfcfg 檔案。
+  ![Event Logs](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796664.png)
 
-如果您正在使用 Azure SDK 2.5 且想要指定自訂資料來源，您可以將它新增至 diagnostics.wadcfgx 檔案的 `WindowsEventLog` 區段，如下列範例所示。
+If you're using Azure SDK 2.6 or later and want to specify a custom data source, enter it in the **<Data source name>** text box and then choose the **Add** button next to it. The data source is added to the diagnostics.cfcfg file.
+
+If you're using Azure SDK 2.5 and want to specify a custom data source, you can add it to the `WindowsEventLog` section of the diagnostics.wadcfgx file, such as in the following example.
 
 ```
 <WindowsEventLog scheduledTransferPeriod="PT1M">
@@ -187,157 +188,157 @@
    <DataSource name="CustomDataSource!*" />
 </WindowsEventLog>
 ```
-### 效能計數器
+### <a name="performance-counters"></a>Performance counters
 
-效能計數器資訊可協助您找出系統瓶頸並微調系統和應用程式效能。如需詳細資訊，請參閱[在 Azure 應用程式中建立及使用效能計數器](https://msdn.microsoft.com/library/azure/hh411542.aspx)。如果您想要擷取效能計數器，請選取 [啟用效能計數器的傳輸] 核取方塊。您可以在事件記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。選取您想要追蹤之效能計數器的核取方塊。
+Performance counter information can help you locate system bottlenecks and fine-tune system and application performance. See [Create and Use Performance Counters in an Azure Application](https://msdn.microsoft.com/library/azure/hh411542.aspx) for more information. If you want to capture performance counters, select the **Enable transfer of Performance Counters** check box. You can increase or decrease the number of minutes when the event logs are transferred to your storage account by changing the **Transfer Period (min)** value. Select the check boxes for the performance counters that you want to track.
 
-  ![效能計數器](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758147.png)
+  ![Performance Counters](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758147.png)
 
-若要追蹤未列出的效能計數器，請使用建議的語法將其輸入，然後選擇 [新增] 按鈕。虛擬機器上的作業系統會決定您可以追蹤的效能計數器。如需有關語法的詳細資訊，請參閱[指定計數器路徑](https://msdn.microsoft.com/library/windows/desktop/aa373193.aspx)。
+To track a performance counter that isn’t listed, enter it by using the suggested syntax and then choose the **Add** button. The operating system on the virtual machine determines which performance counters you can track. For more information about syntax, see [Specifying a Counter Path](https://msdn.microsoft.com/library/windows/desktop/aa373193.aspx).
 
-### 基礎結構記錄檔
+### <a name="infrastructure-logs"></a>Infrastructure logs
 
-如果您想要擷取基礎結構記錄檔 (其包含 Azure 診斷基礎結構、RemoteAccess 模組和 RemoteForwarder 模組等相關資訊)，請選取 [啟用基礎結構記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更傳輸期間 (分鐘) 值來增加或減少分鐘數。
+If you want to capture infrastructure logs, which contain information about the Azure diagnostic infrastructure, the RemoteAccess module, and the RemoteForwarder module, select the **Enable transfer of Infrastructure Logs** check box. You can increase or decrease the number of minutes when the logs are transferred to your storage account by changing the Transfer Period (min) value.
 
-  ![診斷基礎結構記錄檔](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758148.png)
+  ![Diagnostics Infrastructure Logs](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758148.png)
 
-  如需詳細資訊，請參閱[使用 Azure 診斷收集記錄資料](https://msdn.microsoft.com/library/azure/gg433048.aspx)。
+  See [Collect Logging Data by Using Azure Diagnostics](https://msdn.microsoft.com/library/azure/gg433048.aspx) for more information.
 
-### 記錄檔目錄
+### <a name="log-directories"></a>Log directories
 
-如果您想要擷取記錄檔目錄 (其包含收集自網際網路資訊服務 (IIS) 要求之記錄檔目錄的資料，失敗的要求或您選擇的資料夾)，請選取 [啟用記錄檔目錄的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
+If you want to capture log directories, which contain data collected from log directories for Internet Information Services (IIS) requests, failed requests, or folders that you choose, select the **Enable transfer of Log Directories** check box. You can increase or decrease the number of minutes when the logs are transferred to your storage account by changing the **Transfer Period (min)** value.
 
-您可以選取您想要收集的記錄檔方塊，例如 [IIS 記錄檔] 和 [失敗的要求] 記錄檔。提供預設儲存體容器名稱，但您可以任意變更名稱。
+You can select the boxes of the logs you want to collect, such as **IIS Logs** and **Failed Request** Logs. Default storage container names are provided, but you can change the names if you want.
 
-此外，您可以從任何資料夾擷取記錄檔。只需指定 [絕對目錄中的記錄檔] 區段中的路徑，然後選擇 [新增目錄] 按鈕。記錄檔將會擷取至指定的容器。
+Also, you can capture logs from any folder. Just specify the path in the **Log from Absolute Directory** section and then choose the **Add Directory** button. The logs will be captured to the specified containers.
 
-  ![記錄檔目錄](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796665.png)
+  ![Log Directories](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796665.png)
 
-### ETW 記錄檔
+### <a name="etw-logs"></a>ETW logs
 
-如果您使用 [Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
+If you use [Event Tracing for Windows](https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) and want to capture ETW logs, select the **Enable transfer of ETW Logs** check box. You can increase or decrease the number of minutes when the logs are transferred to your storage account by changing the **Transfer Period (min)** value.
 
-從事件來源和您指定的事件資訊清單擷取事件。若要指定事件來源，請在 [事件來源] 區段中輸入名稱，然後選擇 [新增事件來源] 按鈕。同樣地，您可以指定 [事件資訊清單] 區段中的事件資訊清單，然後選擇 [新增事件資訊清單] 按鈕。
+The events are captured from event sources and event manifests that you specify. To specify an event source, enter a name in the **Event Sources** section and then choose the **Add Event Source** button. Similarly, you can specify an event manifest in the **Event Manifests** section and then choose the **Add Event Manifest** button.
 
-  ![ETW 記錄檔](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766025.png)
+  ![ETW logs](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766025.png)
 
-  ASP.NET 中透過 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 命名空間中的類別支援 ETW 架構。Microsoft.WindowsAzure.Diagnostics 命名空間 (繼承自標準 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 類別並將其延伸) 會啟用 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 做為 Azure 環境中的記錄架構。如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)。
+  The ETW framework is supported in ASP.NET through classes in the [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) namespace. The Microsoft.WindowsAzure.Diagnostics namespace, which inherits from and extends standard [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) classes, enables the use of [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) as a logging framework in the Azure environment. For more information, see [Take Control of Logging and Tracing in Microsoft Azure](https://msdn.microsoft.com/magazine/ff714589.aspx) and [Enabling Diagnostics in Azure Cloud Services and Virtual Machines](./cloud-services/cloud-services-dotnet-diagnostics.md).
 
-### 損毀傾印
+### <a name="crash-dumps"></a>Crash dumps
 
-如果您想要擷取角色執行個體何時損毀的相關資訊，請選取 [啟用損毀傾印的傳輸] 核取方塊。(由於 ASP.NET 處理大多數例外狀況，這通常只對背景工作角色才有用。) 您可以藉由變更**目錄配額 (%)** 值增加或減少專用於損毀傾印的儲存空間百分比。您可以變更儲存損毀傾印的儲存體容器，而且您可以選取您想要擷取**完整**或**最小**傾印。
+If you want to capture information about when a role instance crashes, select the **Enable transfer of Crash Dumps** check box. (Because ASP.NET handles most exceptions, this is generally useful only for worker roles.) You can increase or decrease the percentage of storage space devoted to the crash dumps by changing the **Directory Quota (%)** value. You can change the storage container where the crash dumps are stored, and you can select whether you want to capture a **Full** or **Mini** dump.
 
-列出目前正在追蹤的處理序。選取您想要擷取之處理序的核取方塊。若要將另一個處理序新增至清單，請輸入處理序名稱，然後選擇 [新增] 按鈕。
+The processes currently being tracked are listed. Select the check boxes for the processes that you want to capture. To add another process to the list, enter the process name and then choose the **Add Process** button.
 
-  ![損毀傾印](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766026.png)
+  ![Crash dumps](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766026.png)
 
-  如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和 [Microsoft Azure 診斷第 4 部分：自訂記錄元件和 Azure 診斷 1.3 變更](http://justazure.com/microsoft-azure-diagnostics-part-4-custom-logging-components-azure-diagnostics-1-3-changes/)。
+  See [Take Control of Logging and Tracing in Microsoft Azure](https://msdn.microsoft.com/magazine/ff714589.aspx) and [Microsoft Azure Diagnostics Part 4: Custom Logging Components and Azure Diagnostics 1.3 Changes](http://justazure.com/microsoft-azure-diagnostics-part-4-custom-logging-components-azure-diagnostics-1-3-changes/) for more information.
 
-## 檢視診斷資料
+## <a name="view-the-diagnostics-data"></a>View the diagnostics data
 
-收集到雲端服務或虛擬機器的診斷資料之後，您可以檢視它。
+After you’ve collected the diagnostics data for a cloud service or a virtual machine, you can view it.
 
-### 檢視雲端服務診斷資料
+### <a name="to-view-cloud-service-diagnostics-data"></a>To view cloud service diagnostics data
 
-1. 如往常般部署雲端服務並加以執行。
+1. Deploy your cloud service as usual and then run it.
 
-1. 您可以在 Visual Studio 產生的報告或儲存體帳戶的資料表中檢視診斷資料。若要在報告中檢視資料，請開啟 [雲端總管] 或 [伺服器總管]，開啟您感興趣之角色節點的捷徑功能表，然後選擇 [檢視診斷資料]。
+1. You can view the diagnostics data in either a report that Visual Studio generates or tables in your storage account. To view the data in a report, open **Cloud Explorer** or **Server Explorer**, open the shortcut menu of the node for the role that interests you, and then choose **View Diagnostic Data**.
 
-    ![檢視診斷資料](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC748912.png)
+    ![View Diagnostics Data](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC748912.png)
 
-    顯示可用資料的報告隨即出現。
+    A report that shows the available data appears.
 
-    ![Visual Studio 中的 Microsoft Azure 診斷報告](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796666.png)
+    ![Microsoft Azure Diagnostics Report in Visual Studio](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796666.png)
 
-    如果未出現最新的資料，您可能必須等到傳輸週期過後。
+    If the most recent data doesn't appear, you might have to wait for the transfer period to elapse.
 
-    選擇**重新整理**連結以立即更新資料，或在 [自動重新整理] 下拉式清單方塊中選擇間隔以自動更新資料。若要匯出錯誤資料，請選擇 [匯出至 CSV] 按鈕以建立您可以在試算表中開啟的逗號分隔值檔案。
+    Choose the **Refresh** link to immediately update the data, or choose an interval in the **Auto-Refresh** dropdown list box to have the data updated automatically. To export the error data, choose the **Export to CSV** button to create a comma-separated value file you can open in a spreadsheet.
 
-    在 [雲端總管] 或 [伺服器總管] 中，開啟與部署相關聯的儲存體帳戶。
+    In **Cloud Explorer** or **Server Explorer**, open the storage account that's associated with the deployment.
 
-1. 在資料表檢視器中開啟診斷資料表，然後檢閱您所收集的資料。在 IIS 記錄檔和自訂記錄檔中，您可以開啟 blob 容器。您可以透過檢閱下表，尋找包含您感興趣之資料的資料表或 blob 容器。除了該記錄檔的資料之外，資料表項目包含 EventTickCount、DeploymentId、角色和 RoleInstance 以協助您識別哪些虛擬機器與角色產生了資料及其時機。
+1. Open the diagnostics tables in the table viewer, and then review the data that you collected. For IIS logs and custom logs, you can open a blob container. By reviewing the following table, you can find the table or blob container that contains the data that interests you. In addition to the data for that log file, the table entries contain EventTickCount, DeploymentId, Role, and RoleInstance to help you identify what virtual machine and role generated the data and when. 
 
-    |診斷資料|說明|位置|
-    |---|---|---|
-    |應用程式記錄檔|您的程式碼藉由呼叫 System.Diagnostics.Trace 類別的方法所產生的記錄檔。|WADLogsTable|
-    |事件記錄檔|這項資料來自虛擬機器上的 Windows 事件記錄檔。Windows 會將資訊儲存在這些記錄檔中，但應用程式和服務也會使用它們來報告錯誤或記錄檔資訊。|WADWindowsEventLogsTable|
-    |效能計數器|您可以在可供虛擬機器使用的任何效能計數器上收集資料。作業系統會提供效能計數器，其包括記憶體使用狀況和處理器時間等多種統計資料。|WADPerformanceCountersTable|
-    |基礎結構記錄檔|這些記錄檔會從診斷基礎結構本身產生。|WADDiagnosticInfrastructureLogsTable|
-    |IIS 記錄檔|這些記錄檔會記錄 web 要求。如果您的雲端服務取得大量的流量，這些記錄檔可能會相當冗長，因此您應該只在需要時收集並儲存此資料。|您可以在部署、角色及執行個體之路徑下的 wad-iis-failedreqlogs 下的 blob 容器中找到失敗要求記錄檔。您可以在 wad-iis-logfiles 下找到完整的記錄檔。每個檔案的項目都建立於 WADDirectories 資料表中。|
-    |損毀傾印|這項資訊提供雲端服務處理序的二進位映像 (通常是背景工作角色)。|wad-crush-dumps blob 容器|
-    |自訂記錄檔|您預先定義的資料記錄檔。|您可以在儲存體帳戶中以程式碼指定自訂記錄檔的位置。例如，您可以指定自訂 blob 容器。|
+  	|Diagnostic data|Description|Location|
+  	|---|---|---|
+  	|Application Logs|Logs that your code generates by calling methods of the System.Diagnostics.Trace class.|WADLogsTable|
+  	|Event Logs|This data is from the Windows event logs on the virtual machines. Windows stores information in these logs, but applications and services also use them to report errors or log information.|WADWindowsEventLogsTable|
+  	|Performance Counters|You can collect data on any performance counter that’s available on the virtual machine. The operating system provides performance counters, which include many statistics such as memory usage and processor time.|WADPerformanceCountersTable|
+  	|Infrastructure Logs|These logs are generated from the diagnostics infrastructure itself.|WADDiagnosticInfrastructureLogsTable|
+  	|IIS Logs|These logs record web requests. If your cloud service gets a significant amount of traffic, these logs can be quite lengthy, so you should collect and store this data only when you need it.|You can find failed-request logs in the blob container under wad-iis-failedreqlogs under a path for that deployment, role, and instance. You can find complete logs under wad-iis-logfiles. Entries for each file are made in the WADDirectories table.|
+  	|Crash dumps|This information provides binary images of your cloud service’s process (typically a worker role).|wad-crush-dumps blob container|
+  	|Custom log files|Logs of data that you predefined.|You can specify in code the location of custom log files in your storage account. For example, you can specify a custom blob container.|
 
-1. 如果任何類型的資料遭到截斷，您可以嘗試增加該資料類型的緩衝區，或是縮短資料從虛擬機器傳輸至儲存體帳戶之間的間隔。
+1. If data of any type is truncated, you can try increasing the buffer for that data type or shortening the interval between transfers of data from the virtual machine to your storage account.
 
-1. (選用) 偶爾會從儲存體帳戶清除資料以降低整體儲存成本。
+1. (optional) Purge data from the storage account occasionally to reduce overall storage costs.
 
-1. 當您執行完整部署時，Azure 中可支援 diagnostics.cscfg 檔案 (在 Azure SDK 2.5 中支援 .wadcfgx)，且您的雲端服務會取得對診斷組態進行的任何變更。如果您改為更新現有的部署，.cscfg 檔案就不會在 Azure 中更新。您仍然可以遵循下一節中的步驟變更診斷設定。如需有關執行完整部署和更新現有部署的詳細資訊，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
+1. When you do a full deployment, the diagnostics.cscfg file (.wadcfgx for Azure SDK 2.5) is updated in Azure, and your cloud service picks up any changes to your diagnostics configuration. If you, instead, update an existing deployment, the .cscfg file isn’t updated in Azure. You can still change diagnostics settings, though, by following the steps in the next section. For more information about performing a full deployment and updating an existing deployment, see [Publish Azure Application Wizard](vs-azure-tools-publish-azure-application-wizard.md).
 
-### 檢視虛擬機器診斷資料
+### <a name="to-view-virtual-machine-diagnostics-data"></a>To view virtual machine diagnostics data
 
-1. 在虛擬機器的捷徑功能表上，選擇 [檢視診斷資料]。
+1. On the shortcut menu for the virtual machine, choose **View Diagnostics Data**.
 
-    ![在 Azure 虛擬機器中檢視診斷資料](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766027.png)
+    ![View diagnostics data in Azure virtual machine](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766027.png)
 
-    這會開啟 [診斷摘要] 視窗。
+    This opens the **Diagnostics summary** window.
 
-    ![Azure 虛擬機器診斷摘要](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796667.png)
+    ![Azure virtual machine diagnostics summary](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796667.png)  
 
-    如果未出現最新的資料，您可能必須等到傳輸週期過後。
+    If the most recent data doesn't appear, you might have to wait for the transfer period to elapse.
 
-    選擇**重新整理**連結以立即更新資料，或在 [自動重新整理] 下拉式清單方塊中選擇間隔以自動更新資料。若要匯出錯誤資料，請選擇 [匯出至 CSV] 按鈕以建立您可以在試算表中開啟的逗號分隔值檔案。
+    Choose the **Refresh** link to immediately update the data, or choose an interval in the **Auto-Refresh** dropdown list box to have the data updated automatically. To export the error data, choose the **Export to CSV** button to create a comma-separated value file you can open in a spreadsheet.
 
-## 在部署後設定雲端服務診斷
+## <a name="configure-cloud-service-diagnostics-after-deployment"></a>Configure cloud service diagnostics after deployment
 
-如果您要調查已執行之雲端服務的相關問題，您可能會想要收集您原本在部署角色之前並未指定的資料。在此情況下，您可以藉由使用 [伺服器總管] 中的設定，開始收集這類資料。您可以在角色中設定單一執行個體或所有執行個體的診斷，取決於您是否從執行個體或角色的捷徑功能表開啟 [診斷組態] 對話方塊。如果您設定角色節點，任何變更都將套用至所有執行個體。如果您設定執行個體節點，任何變更都只會套用至該執行個體。
+If you're investigating a problem with a cloud service that already running, you might want to collect data that you didn't specify before you originally deployed the role. In this case, you can start to collect that data by using the settings in Server Explorer. You can configure diagnostics for either a single instance or all the instances in a role, depending on whether you open the Diagnostics Configuration dialog box from the shortcut menu for the instance or the role. If you configure the role node, any changes apply to all instances. If you configure the instance node, any changes apply to that instance only.
 
-### 設定執行中雲端服務的診斷
+### <a name="to-configure-diagnostics-for-a-running-cloud-service"></a>To configure diagnostics for a running cloud service
 
-1. 在 [伺服器總管] 中，展開**雲端服務**節點，然後展開節點以找出您想要調查的角色或執行個體，或兩者同時找出。
+1. In Server Explorer, expand the **Cloud Services** node, and then expand nodes to locate the role or instance that you want to investigate or both.
 
-    ![設定診斷](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC748913.png)
+    ![Configuring Diagnostics](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC748913.png)
 
-1. 在執行個體節點或角色節點的捷徑功能表上，選擇 [更新診斷設定]，然後選擇您想要收集的診斷設定。
+1. On the shortcut menu for an instance node or a role node, choose **Update Diagnostics Settings**, and then choose the diagnostic settings that you want to collect.
 
-    如需組態設定的相關資訊，請參閱本主題中的**設定診斷資料來源**。如需有關如何檢視診斷資料的資訊，請參閱本主題中的**檢視診斷資料**。
+    For information about the configuration settings, see **Configure diagnostics data sources** in this topic. For information about how to view the diagnostics data, see **View the diagnostics data** in this topic.
 
-    如果您變更 [伺服器總管] 中的資料收集，這些變更會持續生效，直到您完全重新部署您的雲端服務為止。如果您使用預設發佈設定，變更不會遭到覆寫，因為預設發佈設定會更新現有的部署，而不會執行完整的重新部署。若要在部署階段確定清除設定，請移至 [發佈] 精靈中的 [進階設定] 索引標籤並清除 [部署更新] 核取方塊。當您在清除該核取方塊時重新部署，設定將還原為.wadcfgx (或.wadcfg) 檔案中透過角色的屬性編輯器進行的設定。如果您更新您的部署，Azure 會保留舊的設定。
+    If you change data collection in **Server Explorer**, these changes remain in effect until you fully redeploy your cloud service. If you use the default publish settings, the changes are not overwritten, since the default publish setting is to update the existing deployment, rather than do a full redeployment. To make sure the settings clear at deployment time, go to the **Advanced Settings** tab in the Publish wizard and clear the **Deployment update** checkbox. When you redeploy with that checkbox cleared, the settings revert to those in the .wadcfgx (or .wadcfg) file as set through the Properties editor for the role. If you update your deployment, Azure keeps the old settings.
 
-## 疑難排解 Azure 雲端服務問題
+## <a name="troubleshoot-azure-cloud-service-issues"></a>Troubleshoot Azure cloud service issues
 
-如果您遇到雲端服務專案的相關問題，例如陷入「忙碌」狀態的角色、重複回收，或擲回內部伺服器錯誤，您都可以使用工具和技術診斷和修正這些問題。如需常見問題和解決方案的特定範例，以及用來診斷和修正這些錯誤的概念和工具概觀，請參閱 [Azure PaaS 運算診斷資料](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
+If you experience problems with your cloud service projects, such as a role that gets stuck in a "busy" status, repeatedly recycles, or throws an internal server error, there are tools and techniques you can use to diagnose and fix these problems. For specific examples of common problems and solutions, as well as an overview of the concepts and tools used to diagnose and fix such errors, see [Azure PaaS Compute Diagnostics Data](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).
 
-## 問答集
+## <a name="q-&-a"></a>Q & A
 
-**何謂緩衝區大小和適當大小？**
+**What is the buffer size, and how large should it be?**
 
-在每個虛擬機器執行個體上，配額會限制可以儲存在本機檔案系統上的診斷資料數量。此外，您可以為每種診斷資料類型指定可用的緩衝區大小。這個緩衝區大小就像是該資料類型的個別配額。藉由檢查對話方塊底部，您可以判斷整體配額和剩餘的記憶體數量。如果您指定較大的緩衝區或更多類型的資料，您會愈趨近整體配額。您可以藉由修改 diagnostics.wadcfg/.wadcfgx 組態檔變更整體配額。診斷資料會儲存在和應用程式資料相同的檔案系統，因此如果您的應用程式使用大量的磁碟空間，您不應該增加整體診斷配額。
+On each virtual machine instance, quotas limit how much diagnostic data can be stored on the local file system. In addition, you specify a buffer size for each type of diagnostic data that's available. This buffer size acts like an individual quota for that type of data. By checking the bottom of the dialog box, you can determine the overall quota and the amount of memory that remains. If you specify larger buffers or more types of data, you'll approach the overall quota. You can change the overall quota by modifying the diagnostics.wadcfg/.wadcfgx configuration file. The diagnostics data is stored on the same filesystem as your application’s data, so if your application uses a lot of disk space, you shouldn’t increase the overall diagnostics quota.
 
-**何謂傳輸週期和適當時間長度？**
+**What is the transfer period, and how long should it be?**
 
-傳輸週期是資料擷取之間經過的時間量。每個傳輸週期之後，資料會從虛擬機器上的本機檔案系統上移至儲存體帳戶中的資料表。如果收集的資料量在傳輸週期結束前超過配額，則會捨棄較舊的資料。如果您因為資料超過緩衝區大小或整體配額而遺失資料，您可能會想要縮短傳輸週期。
+The transfer period is the amount of time that elapses between data captures. After each transfer period, data is moved from the local filesystem on a virtual machine to tables in your storage account. If the amount of data that's collected exceeds the quota before the end of a transfer period, older data is discarded. You might want to decrease the transfer period if you're losing data because your data exceeds the buffer size or the overall quota.
 
-**時間戳記位於哪個時區？**
+**What time zone are the time stamps in?**
 
-時間戳記位於裝載雲端服務之資料中心的當地時區。使用下列記錄資料表中的三個時間戳記資料行。
+The time stamps are in the local time zone of the data center that hosts your cloud service. The following three timestamp columns in the log tables are used.
 
-  - **PreciseTimeStamp** 是事件的 ETW 時間戳記。也就是從用戶端記錄事件的時間。
+  - **PreciseTimeStamp** is the ETW timestamp of the event. That is, the time the event is logged from the client.
 
-  - **時間戳記** 為 PreciseTimeStamp 無條件捨去到上傳頻率界限。因此如果您的上傳頻率為 5 分鐘，而事件時間為 00:17:12，則 TIMESTAMP 是 00:15:00。
+  - **TIMESTAMP** is PreciseTimeStamp rounded down to the upload frequency boundary. So, if your upload frequency is 5 minutes and the event time 00:17:12, TIMESTAMP will be 00:15:00.
 
-  - **Timestamp** 是在 Azure 資料表中建立實體的時間戳記。
+  - **Timestamp** is the timestamp at which the entity was created in the Azure table.
 
-**收集診斷資訊時如何管理成本？**
+**How do I manage costs when collecting diagnostic information?**
 
-預設設定 (將 [記錄檔層級] 設為 [錯誤] 並將 [傳輸週期] 設為 [1 分鐘]) 的設計目的是將成本降至最低。如果您收集更多診斷資料或縮短傳輸週期，會增加運算成本。請勿收集超過需求量的資料，也別忘了在您不需要時停用資料收集。您可以隨時再次啟用，即使在執行階段亦然，如上一節中所示。
+The default settings (**Log level** set to **Error** and **Transfer period** set to **1 minute**) are designed to minimize cost. Your compute costs will increase if you collect more diagnostic data or decrease the transfer period. Don’t collect more data than you need, and don’t forget to disable data collection when you no longer need it. You can always enable it again, even at runtime, as shown in the previous section.
 
-**如何從 IIS 收集失敗要求記錄檔？**
+**How do I collect failed-request logs from IIS?**
 
-根據預設，IIS 不會收集失敗要求記錄檔。如果您編輯 web 角色的 web.config 檔案，您就可以設定 IIS 以收集這些記錄檔。
+By default, IIS doesn’t collect failed-request logs. You can configure IIS to collect them if you edit the web.config file for your web role.
 
-**我無法從 OnStart 之類的 RoleEntryPoint 方法取得追蹤資訊。問題在哪裡？**
+**I’m not getting trace information from RoleEntryPoint methods like OnStart. What’s wrong?**
 
-RoleEntryPoint 的方法是在 WAIISHost.exe 的內容中呼叫，而不是 IIS。因此，在通常會啟用追蹤的 web.config 中，組態資訊並不適用。若要解決這個問題，請將.config 檔案新增至 web 角色專案，並將檔案命名以符合包含 RoleEntryPoint 程式碼的輸出組件。在預設 web 角色專案中，.config 檔案的名稱將會是 WAIISHost.exe.config。然後將下列幾行新增至此檔案：
+The methods of RoleEntryPoint are called in the context of WAIISHost.exe, not IIS. Therefore, the configuration information in web.config that normally enables tracing doesn’t apply. To resolve this issue, add a .config file to your web role project, and name the file to match the output assembly that contains the RoleEntryPoint code. In the default web role project, the name of the .config file would be WAIISHost.exe.config. Then add the following lines to this file:
 
 ```
 <system.diagnostics>
@@ -351,10 +352,14 @@ RoleEntryPoint 的方法是在 WAIISHost.exe 的內容中呼叫，而不是 IIS�
 </system.diagnostics>
 ```
 
-此時在 [屬性] 視窗中，將 [複製到輸出目錄] 屬性設為 [永遠複製]。
+Now, in the **Properties** window, set the **Copy to Output Directory** property to **Copy always**.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要深入了解 Azure 中的診斷記錄，請參閱[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)和[在 Azure App Service 中啟用 web 應用程式的診斷記錄](./app-service-web/web-sites-enable-diagnostic-log.md)。
+To learn more about diagnostics logging in Azure, see [Enabling Diagnostics in Azure Cloud Services and Virtual Machines](./cloud-services/cloud-services-dotnet-diagnostics.md) and [Enable diagnostics logging for web apps in Azure App Service](./app-service-web/web-sites-enable-diagnostic-log.md).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

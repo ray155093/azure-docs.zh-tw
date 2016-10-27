@@ -1,50 +1,51 @@
 <properties 
-	pageTitle="如何從 Application Insights 開發團隊取得技術支援 | Microsoft Azure" 
-	description="當您需要有來自 Application Insights 開發團隊的特殊支援的案例，這便是您提交詳細資料以取得支援的方式。" 
-	services="application-insights" 
+    pageTitle="How to get technical support from Application Insights development team | Microsoft Azure" 
+    description="When you have a case that requires special support from Application Insights development team, this is how you can submit the details to get support." 
+    services="application-insights" 
     documentationCenter=""
-	authors="alexbulankou" 
-	manager="douge"/>
+    authors="alexbulankou" 
+    manager="douge"/>
  
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="06/01/2016" 
-	ms.author="albulank"/>
-	
-# 如何從 Application Insights 開發團隊取得技術支援
-	
-當您對於 [Visual Studio Application Insights](app-insights-overview.md) 有技術問題，以下是可取得協助的選項：
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="06/01/2016" 
+    ms.author="albulank"/>
+    
 
-## 1\.檢查文件
+# <a name="how-to-get-technical-support-from-application-insights-development-team"></a>How to get technical support from Application Insights development team
+    
+When you have a technical issue with [Visual Studio Application Insights](app-insights-overview.md), here are your options for getting help:
 
-* 遺漏資料？ 勾選：[取樣][](app-insights-sampling.md)、[配額和節流][](app-insights-pricing.md)。
-* 疑難排解：[ASP.NET](app-insights-troubleshoot-faq.md) | [Java](app-insights-java-troubleshoot.md)
+## <a name="1.-check-the-documents"></a>1. Check the documents
 
-## 2\.搜尋論壇
+* Missing data? Check: [sampling](app-insights-sampling.md), [quotas and throttling](app-insights-pricing.md).
+* Troubleshooting: [ASP.NET](app-insights-troubleshoot-faq.md) | [Java](app-insights-java-troubleshoot.md)
 
-* [MSDN 論壇](https://social.msdn.microsoft.com/Forums/vstudio/home?forum=ApplicationInsights)
+## <a name="2.-search-the-forums"></a>2. Search the forums
+
+* [MSDN forum](https://social.msdn.microsoft.com/Forums/vstudio/home?forum=ApplicationInsights)
 * [StackOverflow](http://stackoverflow.com/questions/tagged/ms-application-insights)
 
-## 3\.Azure 支援計劃？
+## <a name="3.-azure-support-plan?"></a>3. Azure Support Plan?
 
-有時候您會想要開發人員調查您的特定案例。
+There are situations where you would like developers to investigate your specific case. 
 
-如果您有 [Microsoft Azure 的支援計劃](https://azure.microsoft.com/support/plans/)，您可以[開啟支援票證](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+If you have a [support plan with Microsoft Azure](https://azure.microsoft.com/support/plans/) you can [open a support ticket](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
-## 4\.連絡 Application Insights 團隊
+## <a name="4.-contact-the-application-insights-team"></a>4. Contact the Application Insights team
 
-如果您沒有支援計劃，在準備通用版本上市里程碑的同時，我們的開發團隊會很樂於為 Application Insights 客戶提供盡最大努力的支援。我們即將推出**新的支援選項**：您可以透過在 Azure 入口網站上提交意見表單向我們描述您的問題，並由 Application Insights 團隊的開發人員與您連絡來協助解決您的問題。
+If you don't have a support plan, our development team is happy to offer best effort support to Application Insights customers as we prepare for the General Availability milestone. We are introducing **a new support option**: You can describe your case to us by submitting a feedback form on Azure portal and have a developer on the Application Insights team contact you back to help resolve your issue.
 
 
-1. 在 [Application Insights 入口網站](https://portal.azure.com)中，按一下位於右上角的笑臉：  
+1. In the [Application Insights portal](https://portal.azure.com), click the smiley face at the top right corner:  
 
-    ![[意見反應] 按鈕](./media/app-insights-get-dev-support/01.png)
+    ![Feedback button](./media/app-insights-get-dev-support/01.png)   
 
-2. 在註解方塊中，請務必在第一行指定 **AppInsights**，然後加入下列資訊：
+2. In the comment box please make sure to specify **AppInsights** as the first line and then include the following information:   
 
     ```
 
@@ -55,12 +56,18 @@
 
     ```   
 
-    ![[意見反應] 對話方塊](./media/app-insights-get-dev-support/02.png)
+    ![Feedback dialog](./media/app-insights-get-dev-support/02.png)   
 
-3. 勾選 [是，可以寄送電子郵件給您]。
+3. Check "Yes, it is ok to email you". 
 
-    ![[提交] 區段](./media/app-insights-get-dev-support/03.png)
+    ![Submit section](./media/app-insights-get-dev-support/03.png)  
 
-Application Insights 團隊工程師會立即與您連絡。由於我們盡最大努力提供這項服務，此時不會提供正式的 SLA。
+An engineer on the Application Insights team will get in touch with you soon. As we are providing this service on best effort basis, no formal SLA can be given at this point.
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

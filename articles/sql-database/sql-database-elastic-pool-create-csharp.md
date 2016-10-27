@@ -13,10 +13,11 @@
     ms.topic="get-started-article"
     ms.tgt_pltfrm="csharp"
     ms.workload="data-management"
-    ms.date="09/14/2016"
+    ms.date="10/04/2016"
     ms.author="sstein"/>
 
-# 使用 C&#x23; 來建立彈性資料庫集區
+
+# <a name="create-an-elastic-database-pool-with-c&#x23;"></a>使用 C&#x23; 來建立彈性資料庫集區
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-database-elastic-pool-create-portal.md)
@@ -24,42 +25,40 @@
 - [C#](sql-database-elastic-pool-create-csharp.md)
 
 
-本文說明如何使用 C# 透過 [Azure SQL Database Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql) 來建立 Azure SQL Database 彈性資料庫集區。若要建立獨立 SQL Database，請參閱[使用 C# 透過 SQL Database Library for .NET 建立 SQL Database](sql-database-get-started-csharp.md)。
+本文說明如何使用 C# 透過 [Azure SQL Database Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)來建立 Azure SQL Database 彈性資料庫集區。 若要建立獨立 SQL Database，請參閱 [使用 C# 透過 SQL Database Library for .NET 建立 SQL Database](sql-database-get-started-csharp.md)。
 
-Azure SQL Database Library for .NET 提供 [Azure 資源管理員](../resource-group-overview.md)式 API，它會包裝[資源管理員式 SQL Database REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx)。
+Azure SQL Database Library for .NET 提供 [Azure Resource Manager](../resource-group-overview.md) 式 API，它會包裝 [Resource Manager 式 SQL Database REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx)。
 
-
-> [AZURE.NOTE] SQL Database Library for .NET 目前為預覽狀態。
-
+>[AZURE.NOTE] SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
 
 若要完成這篇文章中的步驟，您需要下列項目︰
 
-- Azure 訂用帳戶。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]，然後再回來完成這篇文章。
-- 。如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs)頁面。
+- Azure 訂用帳戶。 如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]  ，然後再回來完成這篇文章。
+- 。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
 
 
-## 建立主控台應用程式並安裝必要的程式庫
+## <a name="create-a-console-app-and-install-the-required-libraries"></a>建立主控台應用程式並安裝必要的程式庫
 
 1. 啟動 Visual Studio。
 2. 按一下 [檔案] > [新增] > [專案]。
 3. 建立 C# **主控台應用程式**並將其命名為︰SqlElasticPoolConsoleApp
 
 
-若要使用 C# 建立 SQL Database，請載入必要的管理程式庫 (使用[封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console))：
+若要使用 C# 建立 SQL Database，請載入必要的管理程式庫 (使用 [封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console))：
 
-1. 按一下 [工具] > [NuGet 封裝管理員] > [封裝管理員主控台]。
+1. 按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。
 2. 輸入 `Install-Package Microsoft.Azure.Management.Sql –Pre` 以安裝 [Microsoft Azure SQL 管理程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)。
 3. 輸入 `Install-Package Microsoft.Azure.Management.ResourceManager –Pre` 以安裝 [Microsoft Azure Resource Manager 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)。
-4. 輸入 `Install-Package Microsoft.Azure.Common.Authentication –Pre` 以安裝 [Microsoft Azure 通用驗證程式庫](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication)。
+4. 輸入 `Install-Package Microsoft.Azure.Common.Authentication –Pre` 以安裝 [Microsoft Azure 通用驗證程式庫](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication)。 
 
 
 
-> [AZURE.NOTE] 這篇文章中的範例使用每個 API 要求的同步表單，並且封鎖直到基礎服務上的 REST 呼叫完成。有可用的非同步方法。
+> [AZURE.NOTE] 這篇文章中的範例使用每個 API 要求的同步表單，並且封鎖直到基礎服務上的 REST 呼叫完成。 有可用的非同步方法。
 
 
-## 建立 SQL 彈性資料庫集區 - C# 範例
+## <a name="create-a-sql-elastic-database-pool---c#-example"></a>建立 SQL 彈性資料庫集區 - C# 範例
 
-下列範例會建立資源群組、伺服器、防火牆規則、彈性集區，然後在集區中建立 SQL Database。請參閱[建立用來存取資源的服務主體](#create-a-service-principal-to-access-resources)以取得 `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 變數。
+下列範例會建立資源群組、伺服器、防火牆規則、彈性集區，然後在集區中建立 SQL Database。 請參閱[建立用來存取資源的服務主體](#create-a-service-principal-to-access-resources)以取得 `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 變數。
 
 以下列內容取代 **Program.cs** 的內容，並以您應用程式的值更新 `{variables}` (請勿包含 `{}`)。
 
@@ -258,9 +257,9 @@ namespace SqlElasticPoolConsoleApp
 
 
 
-## 建立用來存取資源的服務主體
+## <a name="create-a-service-principal-to-access-resources"></a>建立用來存取資源的服務主體
 
-下列 PowerShell 指令碼會建立 Active Directory (AD) 應用程式以及驗證 C# 應用程式所需的服務主體。指令碼會輸出先前 C# 範例所需的值。如需詳細資訊，請參閱[使用 Azure PowerShell 建立用來存取資源的服務主體](../resource-group-authenticate-service-principal.md)。
+下列 PowerShell 指令碼會建立 Active Directory (AD) 應用程式以及驗證 C# 應用程式所需的服務主體。 指令碼會輸出先前 C# 範例所需的值。 如需詳細資訊，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../resource-group-authenticate-service-principal.md)。
 
    
     # Sign in to Azure.
@@ -304,15 +303,19 @@ namespace SqlElasticPoolConsoleApp
 
   
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 - [管理集區](sql-database-elastic-pool-manage-csharp.md)
 - [建立彈性工作](sql-database-elastic-jobs-overview.md)：彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 - [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具來相應放大。
 
-## 其他資源
+## <a name="additional-resources"></a>其他資源
 
 - [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 - [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

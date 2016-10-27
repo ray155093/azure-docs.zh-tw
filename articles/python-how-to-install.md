@@ -1,174 +1,179 @@
 <properties
-	pageTitle="安裝 Python 和 SDK - Azure"
-	description="了解如何安裝 Python 和搭配 Azure 的 SDK。"
-	services=""
-	documentationCenter="python"
-	authors="lmazuel"
-	manager="wpickett"
-	editor=""/>
+    pageTitle="Install Python and the SDK - Azure"
+    description="Learn how to install Python and the SDK to use with Azure."
+    services=""
+    documentationCenter="python"
+    authors="lmazuel"
+    manager="wpickett"
+    editor=""/>
 
 <tags
-	ms.service="multiple"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="python"
-	ms.topic="article"
-	ms.date="09/06/2016"
-	ms.author="lmazuel"/>
+    ms.service="multiple"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="python"
+    ms.topic="article"
+    ms.date="09/06/2016"
+    ms.author="lmazuel"/>
 
-# 安裝 Python 和 SDK
 
-在 Windows 上設定 Python 相當簡單，而在 Mac、Linux 及[適用於 Windows 的 Bash](https://msdn.microsoft.com/commandline/wsl/about) 中則是已預先安裝 Python。本指南將逐步引導您完成安裝作業，並讓機器做好搭配 Azure 的準備。
+# <a name="installing-python-and-the-sdk"></a>Installing Python and the SDK
 
-## Python Azure SDK 含有哪些內容？
+Python is easy to setup on Windows and comes pre-installed on Mac, Linux, and [Bash for Windows](https://msdn.microsoft.com/commandline/wsl/about). This guide walks you through installation and getting your machine ready for use with Azure.
 
-Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 Azure 的 Python 應用程式。尤其是 Azure SDK for Python 包含下列各項：
+## <a name="what's-in-the-python-azure-sdk?"></a>What's in the Python Azure SDK?
 
-* **管理程式庫**。這些類別庫提供一個可管理 Azure 資源 (例如儲存體帳戶、虛擬機器) 的介面。
+The Azure SDK for Python includes components that allow you to develop, deploy, and manage Python applications for Azure. Specifically, the Azure SDK for Python includes the following:
 
-* **執行階段程式庫**。這些類別庫提供一個可存取 Azure 功能 (例如儲存體和服務匯流排) 的介面。
+* **Management libraries**. These class libraries provide an interface managing Azure resources, such as storage accounts, virtual machines.
 
-## 該使用哪個 Python 和哪個版本
+* **Runtime libraries**. These class libraries provide an interface for accessing Azure features, such as storage and service bus.
 
-可用的 Python 解譯器有數種，範例包括：
+## <a name="which-python-and-which-version-to-use"></a>Which Python and which version to use
 
-* CPython - 標準和最常見的 Python 解譯器
-* PyPy - CPython 的快速、相容替代實作
-* IronPython - 可在 .Net/CLR 上執行的 Python 解譯器
-* Jython - 可在「Java 虛擬機器」上執行的 Python 解譯器
+There are several flavors of Python interpreters available - examples include:
 
-**CPython** v2.7 或 v3.3+ 及 PyPy 5.4.0 已針對 Python Azure SDK 進行過測試並確定支援。
+* CPython - the standard and most commonly used Python interpreter
+* PyPy - fast, compliant alternative implementation to CPython
+* IronPython - Python interpreter that runs on .Net/CLR
+* Jython - Python interpreter that runs on the Java Virtual Machine
 
-## 可在哪裡取得 Python？
+**CPython** v2.7 or v3.3+ and PyPy 5.4.0 are tested and supported for the Python Azure SDK.
 
-取得 CPython 的方法有數種：
+## <a name="where-to-get-python?"></a>Where to get Python?
 
-* 直接從 [www.python.org][] 取得
-* 從聲譽良好的散發網站取得，如 [www.continuum.io][]、[www.enthought.com][] 或 [www.activestate.com][]
-* 從原始碼組建！
+There are several ways to get CPython:
 
-除非您有特定的需求，否則我們建議您採用前兩個選項。
+* Directly from [www.python.org][]
+* From a reputable distro such as [www.continuum.io][], [www.enthought.com][] or [www.activestate.com][]
+* Build from source!
 
-## Windows、Linux 及 MacOS 上的 SDK 安裝 (僅限用戶端程式庫)
+Unless you have a specific need, we recommend the first two options.
 
-如果您已經安裝 Python，您可以使用 PIP 在現有的 Python 2.7 或 Python 3.3+ 環境中，安裝所有用戶端程式的組合。此作業會從 [Python 套件索引][] \(PyPI) 下載封裝。
+## <a name="sdk-installation-on-windows,-linux,-and-macos-(client-libraries-only)"></a>SDK Installation on Windows, Linux, and MacOS (client libraries only)
 
-您可能需要系統管理員權限：
+If you already have Python installed, you can use pip to install a bundle of all the client libraries in your existing Python 2.7 or Python 3.3+ environment. This will download the packages from the [Python Package Index][] (PyPI).
 
-- Linux 和 MacOS：使用 `sudo` 命令︰`sudo pip install azure-mgmt-compute`。
-- Windows：以系統管理員身分開啟 PowerShell/命令提示字元。
+You may need administrator rights:
 
-您可以為每個 Azure 服務個別安裝程式庫：
+- Linux and MacOS, use the `sudo` command: `sudo pip install azure-mgmt-compute`.
+- Windows: open your PowerShell/Command prompt as an administrator
+
+You can install individually each library for each Azure service:
 
 ```console
    $ pip install azure-batch          # Install the latest Batch runtime library
    $ pip install azure-mgmt-scheduler # Install the latest Storage management library
 ```
 
-可以使用 `--pre` 旗標來安裝預覽版套件︰
+Preview packages can be installed using the `--pre` flag:
 
 ```console
    $ pip install --pre azure-mgmt-compute # will install only the latest Compute Management library
 ```
 
-您也可以在單行中使用 `azure` 中繼套件來安裝一組 Azure 程式庫。由於此中繼套件中並非所有套件都已發佈為穩定版，因此 `azure` 中繼套件仍處於預覽版狀態。不過，從程式碼品質/完整性的觀點來看，目前可以將核心套件視為「穩定版」。
-- 我們會儘快將它正式標示為穩定版以與其他語言一致。在那之前，我們不打算進行任何進一步的重大變更。
+You can also install a set of Azure libraries in a single line using the `azure` meta-package. Since not all packages in this meta-package are published as stable yet, the `azure` meta-package is still in preview. However, the core packages, from code quality/completeness perspectives can be considered "stable" at this time
+- it will be officially labeled as such in sync with other languages as soon as possible. We are not planning on any further major changes until then.
 
-由於它是預覽版，因此您必須使用 `--pre` 旗標︰
+Since it's a preview release, you need to use the `--pre` flag:
 
 ```console
    $ pip install --pre azure
 ```
    
-或直接使用
+or directly
 
 ```console
    $ pip install azure==2.0.0rc6
 ```
 
-## 取得更多封裝
+## <a name="getting-more-packages"></a>Getting More Packages
 
-[Python 套件索引][] \(PyPI) 具有選擇性豐富的 Python 程式庫。如果您選擇了安裝散發版本，則您將已擁有從 Web 開發到「工程運算」的各種案例中大多數令人關注的部分。
+The [Python Package Index][] (PyPI) has a rich selection of Python libraries.  If you chose to install a Distro, you'll already have most of the interesting bits for various scenarios from web development to Technical Computing.
 
 
-## Python Tools for Visual Studio
+## <a name="python-tools-for-visual-studio"></a>Python Tools for Visual Studio
 
-[Python Tools for Visual Studio][] \(PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
+[Python Tools for Visual Studio][] (PTVS) is a free/OSS plugin from Microsoft, which turns VS into a full-fledged Python IDE:
 
 ![how-to-install-python-ptvs](./media/python-how-to-install/how-to-install-python-ptvs.png)
 
-您可以選擇是否要使用 PTVS，不過我們建議您使用，因為它能提供 Python 和 Web 專案/方案支援、偵錯、程式碼剖析、互動式視窗、範本編輯和 IntelliSense。
+Using PTVS is optional, but is recommended as it gives you Python and Web Project/Solution support, debugging, profiling, interactive window, Template editing, and Intellisense.
 
-PTVS 也能讓您使用部署至[雲端服務][]和[網站][]的支援，輕鬆部署至 Microsoft Azure。
+PTVS also makes it easy to deploy to Microsoft Azure, with support for deployment to [Cloud Services][] and [Websites][].
 
-PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。如需文件、下載項目和相關討論，請參閱 [Python Tools for Visual Studio]。
+PTVS works with your existing Visual Studio 2013 or 2015 installation.  For documentation, downloads and discussions, see [Python Tools for Visual Studio].  
 
-## 適用於 Linux 和 MacOS 的 Python Azure 案例
+## <a name="python-azure-scenarios-for-linux-and-macos"></a>Python Azure Scenarios for Linux and MacOS
 
-就 Linux 或 MacOS 而言，支援的 Azure 案例包括：
+For Linux or MacOS, main Azure scenarios that are supported:
 
-1. 使用 Python 的用戶端程式庫取用 Azure 服務
+1. Consuming Azure Services by using the client libraries for Python
 
-2. 在 Linux VM 上執行應用程式
+2. Running your app in a Linux VM
 
-3. 使用 Git 開發和發佈至 Azure 網站
+3. Developing and publishing to Azure Websites using Git
 
-第一個案例可讓您撰寫能透過 Azure REST API 的 Python 風格包裝函式利用 Azure PaaS 功能 (例如 [Blob 儲存體][]、[佇列儲存體][]、[資料表儲存體][]等) 的豐富 Web 應用程式。這些 Web 應用程式在 Windows、Mac 和 Linux 上的運作方式相同。您也可以從您的本機開發電腦或 Azure 上執行的 Linux VM，使用這些用戶端程式庫。
+The first scenario enables you to author rich web apps that take advantage of the Azure PaaS capabilities such as [blob storage][], [queue storage][], [table storage][] etc. via Pythonic wrappers for the Azure REST APIs. These works identically on Windows, Mac, and Linux.  You can also use these client libraries from your local development machine or a Linux VM running on Azure.
 
-對於 VM 案例，您只需要啟動選擇的 Linux VM (Ubuntu、CentOS、Suse)，便能執行/管理所需的項目。例如，您可以在 Windows/Mac/Linux 機器上執行 [IPython][] REPL/notebook，然後將瀏覽器指向在 Azure 上執行 IPython Engine 的 Linux 或 Windows 多重處理器 VM。如需詳細資訊，請參閱 [Azure 上的 IPython Notebook][] 教學課程。
+For the VM scenario, you simply start a Linux VM of your choice (Ubuntu, CentOS, Suse) and run/manage what you like.  As an example, you can run [IPython][] REPL/notebook on your Windows/Mac/Linux machine and point your browser to a Linux or Windows multi-proc VM running the IPython Engine on Azure. See the [IPython Notebook on Azure][] tutorial for more information.
 
-如需如何設定 Linux VM 的資訊，請參閱[建立執行 Linux 的虛擬機器][]教學課程。
+For information on how to setup a Linux VM, please see the [Create a Virtual Machine Running Linux][] tutorial.
 
-您可以使用 Git 部署開發 Python Ｗeb 應用程式，並從任何作業系統將其發佈至 Azure 網站中。當您將您的儲存機制推送至 Azure 時，就會自動建立虛擬環境和 pip 安裝所需的封裝。
+Using Git deployment, you can develop a Python web application and publish it to an Azure Website from any operating system.  When you push your repository to Azure, it will automatically create a virtual environment and pip install your required packages.
 
-如需有關開發和發佈「Azure 網站」的詳細資訊，請參閱[使用 Django 建立網站][]、[使用 Bottle 建立網站][]及[使用 Flask 建立網站][]教學課程。如需更多有關使用任何 WSGI 相容架構的一般資訊，請參閱[在 Azure 網站上設定 Python][]。
+For more information on developing and publishing Azure Websites, see the tutorials for [Creating Websites with Django][], [Creating Websites with Bottle][], and [Creating Websites with Flask][]. For more general information on using any WSGI-compliant framework, see [Configuring Python with Azure Websites][].
 
 
-## 其他軟體和資源：
+## <a name="additional-software-and-resources:"></a>Additional Software and Resources:
 
 * [Azure SDK for Python ReadTheDocs](http://azure-sdk-for-python.readthedocs.io/en/latest/)
 * [Azure SDK for Python Github](https://github.com/Azure/azure-sdk-for-python)
-* [適用於 Python 的官方 Azure 範例](https://azure.microsoft.com/documentation/samples/?platform=python)
-* [Continuum Analytics Python 發佈][]
-* [Enthought Python 發佈][]
-* [ActiveState Python 發佈][]
-* [SciPy - Scientific Python 程式庫套件][]
-* [NumPy - Python 的數值程式庫][]
-* [Django 專案 - 成熟的 Web 架構/CMS][]
-* [IPython - 先進的 Python REPL/Notebook][]
-* [Azure 上的 IPython Notebook][]
-* [GitHub 上的 Python Tools for Visual Studio][]
-* [Python 開發人員中心](/develop/python/)
+* [Official Azure samples for Python](https://azure.microsoft.com/documentation/samples/?platform=python)
+* [Continuum Analytics Python Distribution][]
+* [Enthought Python Distribution][]
+* [ActiveState Python Distribution][]
+* [SciPy - A suite of Scientific Python libraries][]
+* [NumPy - A numerics library for Python][]
+* [Django Project - A mature web framework/CMS][]
+* [IPython - an advanced REPL/Notebook for Python][]
+* [IPython Notebook on Azure][]
+* [Python Tools for Visual Studio on GitHub][]
+* [Python Developer Center](/develop/python/)
 
-[Continuum Analytics Python 發佈]: http://continuum.io
-[Enthought Python 發佈]: http://www.enthought.com
-[ActiveState Python 發佈]: http://www.activestate.com
+[Continuum Analytics Python Distribution]: http://continuum.io
+[Enthought Python Distribution]: http://www.enthought.com
+[ActiveState Python Distribution]: http://www.activestate.com
 [www.python.org]: http://www.python.org
 [www.continuum.io]: http://continuum.io
 [www.enthought.com]: http://www.enthought.com
 [www.activestate.com]: http://www.activestate.com
-[SciPy - Scientific Python 程式庫套件]: http://www.scipy.org
-[NumPy - Python 的數值程式庫]: http://www.numpy.org
-[Django 專案 - 成熟的 Web 架構/CMS]: http://www.djangoproject.com
-[IPython - 先進的 Python REPL/Notebook]: http://ipython.org
+[SciPy - A suite of Scientific Python libraries]: http://www.scipy.org
+[NumPy - A numerics library for Python]: http://www.numpy.org
+[Django Project - A mature web framework/CMS]: http://www.djangoproject.com
+[IPython - an advanced REPL/Notebook for Python]: http://ipython.org
 [IPython]: http://ipython.org
-[Azure 上的 IPython Notebook]: virtual-machines-linux-jupyter-notebook.md
-[雲端服務]: cloud-services-python-ptvs.md
-[網站]: web-sites-python-ptvs-django-mysql.md
+[IPython Notebook on Azure]: virtual-machines-linux-jupyter-notebook.md
+[Cloud Services]: cloud-services-python-ptvs.md
+[Websites]: web-sites-python-ptvs-django-mysql.md
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
-[GitHub 上的 Python Tools for Visual Studio]: https://github.com/microsoft/ptvs
-[Python 套件索引]: http://pypi.python.org/pypi
+[Python Tools for Visual Studio on GitHub]: https://github.com/microsoft/ptvs
+[Python Package Index]: http://pypi.python.org/pypi
 [Microsoft Azure SDK for Python 2.7]: http://go.microsoft.com/fwlink/?LinkId=254281
 [Microsoft Azure SDK for Python 3.4]: http://go.microsoft.com/fwlink/?LinkID=516990
 [Setting up a Linux VM via the Azure portal]: create-and-configure-opensuse-vm-in-portal.md
 [How to use the Azure Command-Line Interface]: crossplat-cmd-tools.md
-[建立執行 Linux 的虛擬機器]: virtual-machines-linux-quick-create-cli.md
-[使用 Django 建立網站]: web-sites-python-create-deploy-django-app.md
-[使用 Bottle 建立網站]: web-sites-python-create-deploy-bottle-app.md
-[使用 Flask 建立網站]: web-sites-python-create-deploy-flask-app.md
-[在 Azure 網站上設定 Python]: web-sites-python-configure.md
-[資料表儲存體]: storage-python-how-to-use-table-storage.md
-[佇列儲存體]: storage-python-how-to-use-queue-storage.md
-[Blob 儲存體]: storage-python-how-to-use-blob-storage.md
+[Create a Virtual Machine Running Linux]: virtual-machines-linux-quick-create-cli.md
+[Creating Websites with Django]: web-sites-python-create-deploy-django-app.md
+[Creating Websites with Bottle]: web-sites-python-create-deploy-bottle-app.md
+[Creating Websites with Flask]: web-sites-python-create-deploy-flask-app.md
+[Configuring Python with Azure Websites]: web-sites-python-configure.md
+[table storage]: storage-python-how-to-use-table-storage.md
+[queue storage]: storage-python-how-to-use-queue-storage.md
+[blob storage]: storage-python-how-to-use-blob-storage.md
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

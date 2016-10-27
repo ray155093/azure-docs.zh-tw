@@ -1,17 +1,19 @@
-若要連接到 Azure Redis 快取執行個體，快取用戶端需要主機名稱、連接埠和快取金鑰。某些用戶端可能會以稍有不同的名稱來參考這些項目。若要擷取這些項目，請在 [Azure 入口網站](https://portal.azure.com)中[瀏覽](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings)至您的快取，然後按一下 [設定] 或 [所有設定]。
+To connect to an Azure Redis Cache instance, cache clients need the host name, ports, and keys of the cache. Some clients may refer to these items by slightly different names. To retrieve these items, [browse](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings) to your cache in the [Azure portal](https://portal.azure.com) and click **Settings** or **All settings**. 
 
-![Redis 快取設定](media/redis-cache-access-keys/redis-cache-settings.png)
+![Redis cache settings](media/redis-cache-access-keys/redis-cache-settings.png)
 
-### 主機名稱和連接埠
+### <a name="host-name-and-ports"></a>Host name and ports
 
-若要存取主機名稱和連接埠，請按一下 [屬性]。
+To access the host name and ports click **Properties**.
 
-![Redis 快取屬性](media/redis-cache-access-keys/redis-cache-properties.png)
+![Redis cache properties](media/redis-cache-access-keys/redis-cache-properties.png)
 
-### 存取金鑰
+### <a name="access-keys"></a>Access keys
 
-若要擷取存取金鑰，請按一下 [存取金鑰]。
+To retrieve the access keys, click **Access keys**.
 
-![Redis 快取存取金鑰](media/redis-cache-access-keys/redis-cache-access-keys.png)
+![Redis cache access keys](media/redis-cache-access-keys/redis-cache-access-keys.png)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

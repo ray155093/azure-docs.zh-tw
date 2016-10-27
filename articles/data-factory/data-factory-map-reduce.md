@@ -1,231 +1,246 @@
 <properties 
-	pageTitle="從 Azure Data Factory 叫用 MapReduce 程式" 
-	description="了解如何從 Azure Data Factory，在 Azure HDInsight 叢集上執行 MapReduce 程式以處理資料。" 
-	services="data-factory" 
-	documentationCenter="" 
-	authors="spelluru" 
-	manager="jhubbard" 
-	editor="monicar"/>
+    pageTitle="Invoke MapReduce Program from Azure Data Factory" 
+    description="Learn how to process data by running MapReduce programs on an Azure HDInsight cluster from an Azure data factory." 
+    services="data-factory" 
+    documentationCenter="" 
+    authors="sharonlo101" 
+    manager="jhubbard" 
+    editor="monicar"/>
 
 <tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/12/2016" 
-	ms.author="spelluru"/>
+    ms.service="data-factory" 
+    ms.workload="data-services" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/12/2016" 
+    ms.author="shlo"/>
 
-# 從 Data Factory 叫用 MapReduce 程式
-Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight MapReduce 活動會在[您自己的](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)或[隨選](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)的以 Windows/Linux 為基礎的 HDInsight 叢集上執行 MapReduce 程式。本文是根據[資料轉換活動](data-factory-data-transformation-activities.md)一文，它呈現資料轉換和支援的轉換活動的一般概觀。
 
-## 簡介 
-Azure Data Factory 中的「管線」會使用連結的計算服務，來處理連結的儲存體服務中的資料。它包含一系列活動，其中每個活動都會執行特定的處理作業。本文說明如何使用「HDInsight MapReduce 活動」。
+# <a name="invoke-mapreduce-programs-from-data-factory"></a>Invoke MapReduce Programs from Data Factory
+> [AZURE.SELECTOR]
+[Hive](data-factory-hive-activity.md)  
+[Pig](data-factory-pig-activity.md)  
+[MapReduce](data-factory-map-reduce.md)  
+[Hadoop Streaming](data-factory-hadoop-streaming-activity.md)
+[Machine Learning](data-factory-azure-ml-batch-execution-activity.md) 
+[Stored Procedure](data-factory-stored-proc-activity.md)
+[Data Lake Analytics U-SQL](data-factory-usql-activity.md)
+[.NET custom](data-factory-use-custom-activities.md)
+
+The HDInsight MapReduce activity in a Data Factory [pipeline](data-factory-create-pipelines.md) executes MapReduce programs on [your own](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) or [on-demand](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-based HDInsight cluster. This article builds on the [data transformation activities](data-factory-data-transformation-activities.md) article, which presents a general overview of data transformation and the supported transformation activities.
+
+## <a name="introduction"></a>Introduction 
+A pipeline in an Azure data factory processes data in linked storage services by using linked compute services. It contains a sequence of activities where each activity performs a specific processing operation. This article describes using the HDInsight MapReduce Activity.
  
-若要了解如何使用 HDInsight 的 Pig 和 Hive 活動，在 Windows/Linux 型 HDInsight 叢集上從管線執行 Pig/Hive 指令碼，請參閱 [Pig](data-factory-pig-activity.md) 和 [Hive](data-factory-hive-activity.md)。
+See [Pig](data-factory-pig-activity.md) and [Hive](data-factory-hive-activity.md) for details about running Pig/Hive scripts on a Windows/Linux-based HDInsight cluster from a pipeline by using HDInsight Pig and Hive activities. 
 
-## 「HDInsight MapReduce 活動」的 JSON 
+## <a name="json-for-hdinsight-mapreduce-activity"></a>JSON for HDInsight MapReduce Activity 
 
-在 HDInsight 活動的 JSON 定義中：
+In the JSON definition for the HDInsight Activity: 
  
-1. 將 **activity** 的 **type** 設為 **HDInsight**。
-3. 指定 **className** 屬性的類別名稱。
-4. 為 **jarFilePath** 屬性指定包含檔案名稱的 JAR 檔案路徑。
-5. 為 **jarLinkedService** 屬性指定連結服務，此連結服務參考包含 JAR 檔案的 Azure Blob 儲存體。
-6. 在 **arguments** 區段中，為 MapReduce 程式指定所有引數。在執行階段，您會看到幾個來自 MapReduce 架構的額外引數 (例如：mapreduce.job.tags)。若要區分您的引數與 MapReduce 引數，請考慮同時使用選項和值作為引數，如下列範例所示 (-s、--input、--output 等等是後面接著其值的選項)。
+1. Set the **type** of the **activity** to **HDInsight**.
+3. Specify the name of the class for **className** property.
+4. Specify the path to the JAR file including the file name for **jarFilePath** property.
+5. Specify the linked service that refers to the Azure Blob Storage that contains the JAR file for **jarLinkedService** property.   
+6. Specify any arguments for the MapReduce program in the **arguments** section. At runtime, you see a few extra arguments (for example: mapreduce.job.tags) from the MapReduce framework. To differentiate your arguments with the MapReduce arguments, consider using both option and value as arguments as shown in the following example (-s, --input, --output etc., are options immediately followed by their values).
 
-		{
-		    "name": "MahoutMapReduceSamplePipeline",
-		    "properties": {
-		        "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix to determine the similarity between 2 items",
-		        "activities": [
-		            {
-		                "type": "HDInsightMapReduce",
-		                "typeProperties": {
-		                    "className": "org.apache.mahout.cf.taste.hadoop.similarity.item.ItemSimilarityJob",
-		                    "jarFilePath": "adfsamples/Mahout/jars/mahout-examples-0.9.0.2.2.7.1-34.jar",
-		                    "jarLinkedService": "StorageLinkedService",
-		                    "arguments": [
-		                        "-s",
-		                        "SIMILARITY_LOGLIKELIHOOD",
-		                        "--input",
-		                        "wasb://adfsamples@spestore.blob.core.windows.net/Mahout/input",
-		                        "--output",
-		                        "wasb://adfsamples@spestore.blob.core.windows.net/Mahout/output/",
-		                        "--maxSimilaritiesPerItem",
-		                        "500",
-		                        "--tempDir",
-		                        "wasb://adfsamples@spestore.blob.core.windows.net/Mahout/temp/mahout"
-		                    ]
-		                },
-		                "inputs": [
-		                    {
-		                        "name": "MahoutInput"
-		                    }
-		                ],
-		                "outputs": [
-		                    {
-		                        "name": "MahoutOutput"
-		                    }
-		                ],
-		                "policy": {
-		                    "timeout": "01:00:00",
-		                    "concurrency": 1,
-		                    "retry": 3
-		                },
-		                "scheduler": {
-		                    "frequency": "Hour",
-		                    "interval": 1
-		                },
-		                "name": "MahoutActivity",
-		                "description": "Custom Map Reduce to generate Mahout result",
-		                "linkedServiceName": "HDInsightLinkedService"
-		            }
-		        ],
-		        "start": "2014-01-03T00:00:00Z",
-		        "end": "2014-01-04T00:00:00Z",
-		        "isPaused": false,
-		        "hubName": "mrfactory_hub",
-		        "pipelineMode": "Scheduled"
-		    }
-		}
-	
-	
+        {
+            "name": "MahoutMapReduceSamplePipeline",
+            "properties": {
+                "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix to determine the similarity between 2 items",
+                "activities": [
+                    {
+                        "type": "HDInsightMapReduce",
+                        "typeProperties": {
+                            "className": "org.apache.mahout.cf.taste.hadoop.similarity.item.ItemSimilarityJob",
+                            "jarFilePath": "adfsamples/Mahout/jars/mahout-examples-0.9.0.2.2.7.1-34.jar",
+                            "jarLinkedService": "StorageLinkedService",
+                            "arguments": [
+                                "-s",
+                                "SIMILARITY_LOGLIKELIHOOD",
+                                "--input",
+                                "wasb://adfsamples@spestore.blob.core.windows.net/Mahout/input",
+                                "--output",
+                                "wasb://adfsamples@spestore.blob.core.windows.net/Mahout/output/",
+                                "--maxSimilaritiesPerItem",
+                                "500",
+                                "--tempDir",
+                                "wasb://adfsamples@spestore.blob.core.windows.net/Mahout/temp/mahout"
+                            ]
+                        },
+                        "inputs": [
+                            {
+                                "name": "MahoutInput"
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "MahoutOutput"
+                            }
+                        ],
+                        "policy": {
+                            "timeout": "01:00:00",
+                            "concurrency": 1,
+                            "retry": 3
+                        },
+                        "scheduler": {
+                            "frequency": "Hour",
+                            "interval": 1
+                        },
+                        "name": "MahoutActivity",
+                        "description": "Custom Map Reduce to generate Mahout result",
+                        "linkedServiceName": "HDInsightLinkedService"
+                    }
+                ],
+                "start": "2014-01-03T00:00:00Z",
+                "end": "2014-01-04T00:00:00Z",
+                "isPaused": false,
+                "hubName": "mrfactory_hub",
+                "pipelineMode": "Scheduled"
+            }
+        }
+    
+    
 
-您可以使用「HDInsight MapReduce 活動」，在 HDInsight 叢集上執行任何 MapReduce Jar 檔案。在下列管線的範例 JSON 定義中，已設定讓「HDInsight 活動」執行 Mahout JAR 檔案。
+You can use the HDInsight MapReduce Activity to run any MapReduce jar file on an HDInsight cluster. In the following sample JSON definition of a pipeline, the HDInsight Activity is configured to run a Mahout JAR file.
 
-## GitHub 上的範例
-您可以從 [GitHub 上的 Data Factory 範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample)下載使用「HDInsight MapReduce 活動」的範例。
+## <a name="sample-on-github"></a>Sample on GitHub
+You can download a sample for using the HDInsight MapReduce Activity from: [Data Factory Samples on GitHub](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample).  
 
-## 執行字數統計程式
-本範例中的管線會在 Azure HDInsight 叢集上執行字數統計 Map/Reduce 程式。
+## <a name="running-the-word-count-program"></a>Running the Word Count program
+The pipeline in this example runs the Word Count Map/Reduce program on your Azure HDInsight cluster.   
 
-### 連結的服務
-首先，建立連結的服務，將 Azure HDInsight 叢集使用的 Azure 儲存體連結到 Azure Data Factory。如果您複製/貼上下列程式碼，請記得使用 Azure 儲存體的名稱和金鑰來取代**帳戶名稱**和**帳戶金鑰**。
+### <a name="linked-services"></a>Linked Services
+First, you create a linked service to link the Azure Storage that is used by the Azure HDInsight cluster to the Azure data factory. If you copy/paste the following code, do not forget to replace **account name** and **account key** with the name and key of your Azure Storage. 
 
-#### Azure 儲存體連結服務
+#### <a name="azure-storage-linked-service"></a>Azure Storage linked service
 
-	{
-	    "name": "StorageLinkedService",
-	    "properties": {
-	        "type": "AzureStorage",
-	        "typeProperties": {
-	            "connectionString": "DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<account key>"
-	        }
-	    }
-	}
+    {
+        "name": "StorageLinkedService",
+        "properties": {
+            "type": "AzureStorage",
+            "typeProperties": {
+                "connectionString": "DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<account key>"
+            }
+        }
+    }
 
-#### Azure HDInsight 連結服務
-接著，建立連結的服務，將 Azure HDInsight 叢集連結到 Azure Data Factory。如果您複製/貼上下列程式碼，請使用您的 HDInsight 叢集的名稱來取代 **HDInsight 叢集名稱**，並變更使用者名稱和密碼值。
+#### <a name="azure-hdinsight-linked-service"></a>Azure HDInsight linked service
+Next, you create a linked service to link your Azure HDInsight cluster to the Azure data factory. If you copy/paste the following code, replace **HDInsight cluster name** with the name of your HDInsight cluster, and change user name and password values.   
 
-	{
-	    "name": "HDInsightLinkedService",
-	    "properties": {
-	        "type": "HDInsight",
-	        "typeProperties": {
-	            "clusterUri": "https://<HDInsight cluster name>.azurehdinsight.net",
-	            "userName": "admin",
-	            "password": "**********",
-	            "linkedServiceName": "StorageLinkedService"
-	        }
-	    }
-	}
+    {
+        "name": "HDInsightLinkedService",
+        "properties": {
+            "type": "HDInsight",
+            "typeProperties": {
+                "clusterUri": "https://<HDInsight cluster name>.azurehdinsight.net",
+                "userName": "admin",
+                "password": "**********",
+                "linkedServiceName": "StorageLinkedService"
+            }
+        }
+    }
 
-### 資料集
+### <a name="datasets"></a>Datasets
 
-#### 輸出資料集
-此範例中的管線不需要取得任何輸入。您需指定「HDInsight MapReduce 活動」的輸出資料集。這個資料集只是一個驅動管線排程所需的虛設資料集。
+#### <a name="output-dataset"></a>Output dataset
+The pipeline in this example does not take any inputs. You specify an output dataset for the HDInsight MapReduce Activity. This dataset is just a dummy dataset that is required to drive the pipeline schedule.  
 
-	{
-	    "name": "MROutput",
-	    "properties": {
-	        "type": "AzureBlob",
-	        "linkedServiceName": "StorageLinkedService",
-	        "typeProperties": {
-	            "fileName": "WordCountOutput1.txt",
-	            "folderPath": "example/data/",
-	            "format": {
-	                "type": "TextFormat",
-	                "columnDelimiter": ","
-	            }
-	        },
-	        "availability": {
-	            "frequency": "Day",
-	            "interval": 1
-	        }
-	    }
-	}
+    {
+        "name": "MROutput",
+        "properties": {
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+                "fileName": "WordCountOutput1.txt",
+                "folderPath": "example/data/",
+                "format": {
+                    "type": "TextFormat",
+                    "columnDelimiter": ","
+                }
+            },
+            "availability": {
+                "frequency": "Day",
+                "interval": 1
+            }
+        }
+    }
 
-### 管線
-此範例中的管線只含有一個類型為 HDInsightMapReduce 的活動。JSON 中的幾個重要屬性如下：
+### <a name="pipeline"></a>Pipeline
+The pipeline in this example has only one activity that is of type: HDInsightMapReduce. Some of the important properties in the JSON are: 
 
-屬性 | 注意事項
+Property | Notes
 :-------- | :-----
-類型 | 類型必須設為 **HDInsightMapReduce**。 
-className | 類別的名稱是：**wordcount**
-jarFilePath | 包含類別的 Jar 檔案路徑。如果您複製/貼上下列程式碼，請記得變更叢集的名稱。 
-jarLinkedService | 包含 Jar 檔案的 Azure 儲存體連結服務。這個連結服務會參考與 HDInsight 叢集關聯的儲存體。 
-引數 | 字數統計程式會採用輸入和輸出兩個引數。輸入檔為 davinci.txt 檔案。
-frequency/interval | 這些屬性的值符合輸出資料集。 
-linkedServiceName | 表示您先前建立的 HDInsight 連結服務。   
+type | The type must be set to **HDInsightMapReduce**. 
+className | Name of the class is: **wordcount**
+jarFilePath | Path to the jar file containing the class. If you copy/paste the following code, don't forget to change the name of the cluster. 
+jarLinkedService | Azure Storage linked service that contains the jar file. This linked service refers to the storage that is associated with the HDInsight cluster. 
+arguments | The wordcount program takes two arguments, an input and an output. The input file is the davinci.txt file.
+frequency/interval | The values for these properties match the output dataset. 
+linkedServiceName | refers to the HDInsight linked service you had created earlier.   
 
-	{
-	    "name": "MRSamplePipeline",
-	    "properties": {
-	        "description": "Sample Pipeline to Run the Word Count Program",
-	        "activities": [
-	            {
-	                "type": "HDInsightMapReduce",
-	                "typeProperties": {
-	                    "className": "wordcount",
-	                    "jarFilePath": "<HDInsight cluster name>/example/jars/hadoop-examples.jar",
-	                    "jarLinkedService": "StorageLinkedService",
-	                    "arguments": [
-	                        "/example/data/gutenberg/davinci.txt",
-	                        "/example/data/WordCountOutput1"
-	                    ]
-	                },
-	                "outputs": [
-	                    {
-	                        "name": "MROutput"
-	                    }
-	                ],
-	                "policy": {
-	                    "timeout": "01:00:00",
-	                    "concurrency": 1,
-	                    "retry": 3
-	                },
-	                "scheduler": {
-	                    "frequency": "Day",
-	                    "interval": 1
-	                },
-	                "name": "MRActivity",
-	                "linkedServiceName": "HDInsightLinkedService"
-	            }
-	        ],
-	        "start": "2014-01-03T00:00:00Z",
-	        "end": "2014-01-04T00:00:00Z"
-	    }
-	}
+    {
+        "name": "MRSamplePipeline",
+        "properties": {
+            "description": "Sample Pipeline to Run the Word Count Program",
+            "activities": [
+                {
+                    "type": "HDInsightMapReduce",
+                    "typeProperties": {
+                        "className": "wordcount",
+                        "jarFilePath": "<HDInsight cluster name>/example/jars/hadoop-examples.jar",
+                        "jarLinkedService": "StorageLinkedService",
+                        "arguments": [
+                            "/example/data/gutenberg/davinci.txt",
+                            "/example/data/WordCountOutput1"
+                        ]
+                    },
+                    "outputs": [
+                        {
+                            "name": "MROutput"
+                        }
+                    ],
+                    "policy": {
+                        "timeout": "01:00:00",
+                        "concurrency": 1,
+                        "retry": 3
+                    },
+                    "scheduler": {
+                        "frequency": "Day",
+                        "interval": 1
+                    },
+                    "name": "MRActivity",
+                    "linkedServiceName": "HDInsightLinkedService"
+                }
+            ],
+            "start": "2014-01-03T00:00:00Z",
+            "end": "2014-01-04T00:00:00Z"
+        }
+    }
 
-## 執行 Spark 程式
-您可以使用 MapReduce 活動，在 HDInsight Spark 叢集上執行 Spark 程式。如需詳細資訊，請參閱[從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md)。
+## <a name="run-spark-programs"></a>Run Spark programs
+You can use MapReduce activity to run Spark programs on your HDInsight Spark cluster. See [Invoke Spark programs from Azure Data Factory](data-factory-spark.md) for details.  
 
 [developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [cmdlet-reference]: http://go.microsoft.com/fwlink/?LinkId=517456
 
 
 [adfgetstarted]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
-[adfgetstartedmonitoring]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md#monitor-pipelines
+[adfgetstartedmonitoring]:data-factory-copy-data-from-azure-blob-storage-to-sql-database.md#monitor-pipelines 
 
 [Developer Reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [Azure Portal]: http://portal.azure.com
  
-## 另請參閱
-- [Hive 活動](data-factory-hive-activity.md)
-- [Pig 活動](data-factory-pig-activity.md)
-- [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
-- [叫用 Spark 程式](data-factory-spark.md)
-- [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
+## <a name="see-also"></a>See Also
+- [Hive Activity](data-factory-hive-activity.md)
+- [Pig Activity](data-factory-pig-activity.md)
+- [Hadoop Streaming Activity](data-factory-hadoop-streaming-activity.md)
+- [Invoke Spark programs](data-factory-spark.md)
+- [Invoke R scripts](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

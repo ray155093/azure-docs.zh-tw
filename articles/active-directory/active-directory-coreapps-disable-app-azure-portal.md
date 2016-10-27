@@ -1,53 +1,58 @@
 <properties
-	pageTitle="在 Azure Active Directory 預覽版中停用企業應用程式的使用者登入 | Microsoft Azure"
-	description="如何在 Azure Active Directory 中停用企業應用程式，讓任何使用者都無法登入它"
-	services="active-directory"
-	documentationCenter=""
-	authors="curtand"
-	manager="femila"
-	editor=""/>
+    pageTitle="Disable user sign-ins for an enterprise app in Azure Active Directory preview | Microsoft Azure"
+    description="How to disable an enterprise application so that no users may sign in to it in Azure Active Directory"
+    services="active-directory"
+    documentationCenter=""
+    authors="curtand"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/12/2016"
-	ms.author="curtand"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/30/2016"
+    ms.author="curtand"/>
 
 
-# 在 Azure Active Directory 預覽版中停用企業應用程式的使用者登入
 
-在 Azure Active Directory (Azure AD) 預覽版中，您可以輕鬆停用企業應用程式，讓任何使用者都無法登入它。[預覽版有何功能？](active-directory-preview-explainer.md) 您必須具備適當的權限，才能管理企業應用程式。在目前的預覽版中，您必須是目錄的全域管理員。
+# <a name="disable-user-sign-ins-for-an-enterprise-app-in-azure-active-directory-preview"></a>Disable user sign-ins for an enterprise app in Azure Active Directory preview
 
-## 如何停用使用者登入？
+It's easy to disable an enterprise application so that no users may sign in to it in Azure Active Directory (Azure AD) preview. [What's in the preview?](active-directory-preview-explainer.md) You must have the appropriate permissions to manage the enterprise app. In the current preview, you must be global admin for the directory.
 
-1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
+## <a name="how-do-i-disable-user-sign-ins?"></a>How do I disable user sign-ins?
 
-2. 選取 [更多服務]，在文字方塊中輸入 **Azure Active Directory**，然後選取 **Enter**。
+1. Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
 
-3. 在 [Azure Active Directory- *directoryname*] 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]。
+2. Select **More services**, enter **Azure Active Directory** in the text box, and then select **Enter**.
 
-	![開啟企業應用程式](./media/active-directory-coreapps-disable-app-azure-portal/open-enterprise-apps.png)
+3. On the **Azure Active Directory - *directoryname*** blade (that is, the Azure AD blade for the directory you are managing), select **Enterprise applications**.
 
-4. 在 [企業應用程式] 刀鋒視窗上，選取 [所有應用程式]。您會看到一份您可以管理的應用程式清單。
+    ![Opening Enterprise apps](./media/active-directory-coreapps-disable-app-azure-portal/open-enterprise-apps.png)
 
-5. 在 [企業應用程式 - 所有應用程式] 刀鋒視窗上，選取一個應用程式。
+4. On the **Enterprise applications** blade, select **All applications**. You see a list of the apps you can manage.
 
-6. 在 [***appname***] 刀鋒視窗 (亦即標題中含有所選應用程式名稱的刀鋒視窗) 上，選取 [屬性]。
+5. On the **Enterprise applications - All applications** blade, select an app.
 
-	![選取所有應用程式命令](./media/active-directory-coreapps-disable-app-azure-portal/select-app.png)
+6. On the ***appname*** blade (that is, the blade with the name of the selected app in the title), select **Properties**.
 
-7. 在 [*appname* - 屬性] 刀鋒視窗上，針對 [啟用以讓使用者登入?] 選取 [否]。
+    ![Selecting the all applications command](./media/active-directory-coreapps-disable-app-azure-portal/select-app.png)
 
-8. 選取 [儲存] 命令。
+7. On the ***appname*** **- Properties** blade, select **No** for **Enabled for users to sign-in?**.
 
-## 後續步驟
+8. Select the **Save** command.
 
-- [查看我的所有群組](active-directory-groups-view-azure-portal.md)
-- [將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md)
-- [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-user-azure-portal.md)
-- [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-azure-portal.md)
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0914_2016-->
+- [See all my groups](active-directory-groups-view-azure-portal.md)
+- [Assign a user or group to an enterprise app](active-directory-coreapps-assign-user-azure-portal.md)
+- [Remove a user or group assignment from an enterprise app](active-directory-coreapps-remove-assignment-azure-portal.md)
+- [Change the name or logo of an enterprise app](active-directory-coreapps-change-app-logo-user- azure-portal.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

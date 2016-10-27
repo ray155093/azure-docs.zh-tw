@@ -1,104 +1,105 @@
 <properties
-	pageTitle="安裝 Azure Toolkit for Eclipse | Microsoft Azure"
-	description="了解如何安裝 Azure Toolkit for Eclipse。"
-	services=""
-	documentationCenter="java"
-	authors="rmcmurray"
-	manager="wpickett"
-	editor=""/>
+    pageTitle="Installing the Azure Toolkit for Eclipse | Microsoft Azure"
+    description="Learn how to install the Azure Toolkit for Eclipse."
+    services=""
+    documentationCenter="java"
+    authors="rmcmurray"
+    manager="wpickett"
+    editor=""/>
 
 <tags
-	ms.service="multiple"
-	ms.workload="na"
-	ms.tgt_pltfrm="multiple"
-	ms.devlang="Java"
-	ms.topic="article"
-	ms.date="08/11/2016" 
-	ms.author="robmcm"/>
+    ms.service="multiple"
+    ms.workload="na"
+    ms.tgt_pltfrm="multiple"
+    ms.devlang="Java"
+    ms.topic="article"
+    ms.date="08/11/2016" 
+    ms.author="robmcm"/>
+
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690946.aspx -->
 
-# 安裝 Azure Toolkit for Eclipse
+# <a name="installing-the-azure-toolkit-for-eclipse"></a>Installing the Azure Toolkit for Eclipse
 
-Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclipse 開發環境來建立、開發、測試及部署 Azure 應用程式。Azure Toolkit for Eclipse 是開放原始碼專案，其來源程式碼可從 GitHub 上該專案網站的 MIT License 下取得，URL 如下：
+The Azure Toolkit for Eclipse provides templates and functionality that allow you to easily create, develop, test, and deploy Azure applications using the Eclipse development environment. The Azure Toolkit for Eclipse is an Open Source project, whose source code is available under the MIT License from the project's site on GitHub at the following URL:
 
 <https://github.com/microsoft/azure-tools-for-java>
 
-下列步驟示範如何安裝 Azure Toolkit for Eclipse。
+The following steps show you how to install the Azure Toolkit for Eclipse.
 
 [AZURE.INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## 安裝 Azure Toolkit for Eclipse
+## <a name="to-install-the-azure-toolkit-for-eclipse"></a>To install the Azure Toolkit for Eclipse
 
-1. 啟動 Eclipse。
+1. Start Eclipse.
 
-1. 當 Eclipse 開啟之後，按一下 [說明] 功能表，然後按一下 [安裝新軟體]，如下圖所示。
+1. When Eclipse opens, click the **Help** menu, and then click **Install New Software**, as shown in the following illustration.
 
-    ![安裝 Azure Toolkit for Eclipse][01]
+    ![Installing the Azure Toolkit for Eclipse][01]
 
-1. 在 [可用軟體] 對話方塊的 [使用] 文字方塊中，輸入 **http://dl.microsoft.com/eclipse**，然後按 **Enter** 鍵。
+1. In the **Available Software** dialog, within the **Work with** text box, type **http://dl.microsoft.com/eclipse** followed by the **Enter** key.
 
-1. 在 [名稱] 窗格中，核取 [Azure Toolkit for Eclipse]，然後取消核取 [在安裝期間連絡所有更新網站來尋找必要軟體]。您的畫面看起來應該像下面這樣：
+1. In the **Name** pane, check **Azure Toolkit for Eclipse**, and uncheck **Contact all update sites during install to find required software**. Your screen should appear similar to the following:
 
-    ![安裝 Azure Toolkit for Eclipse][02]
+    ![Installing the Azure Toolkit for Eclipse][02]
 
-1. 如果您展開 [Azure Toolkit for Eclipse]，則會看到下列項目：
+1. If you expand the **Azure Toolkit for Eclipse**, you will see the following items:
 
-    * **Application Insights Plugin for Java**：這個元件可讓您將 Azure 的遙測記錄和分析服務用於應用程式和伺服器執行個體上。
-    * **Azure Access Control Services Filter**：此元件提供利用 Azure ACS 驗證應用程式使用者、啟用單一登入案例以及從應用程式外部化身分識別邏輯的支援。
-    * **Azure Common Plugin**：此元件提供其他工具組元件所需的一般功能。
-    * **Azure Explorer for Eclipse**：此元件提供其他工具組元件所需的一般功能。
-    * **Azure Plugin for Eclipse with Java**：此元件提供在 Eclipse 中與透過命令列開發可協助建置、測試和部署適用於 Microsoft Azure 雲端的 Java 應用程式之專案的支援。
-    * **Azure Web Apps Plugin with Java**：此元件提供將 Java Web 應用程式部署到 Microsoft Azure Web 應用程式容器的支援。
-    * **Microsoft JDBC Driver 4.2 for SQL Server**：這個元件提供適用於 SQL Server 的 JDBC API 以及適用於 Java Platform Enterprise Edition 8 的 Microsoft Azure SQL Database。
-    * **Package for Apache Qpid Client Libraries for JMS**：此元件提供 Apache Qpid 專案的 JMS 用戶端元件，讓您的應用程式能在 Microsoft Azure 中使用 AMQP 訊息。
-    * **Package for Microsoft Azure Libraries for Java**：此元件提供用來存取 Microsoft Azure 服務 (例如儲存體、服務匯流排、服務執行階段等) 的 API。
+    * **Application Insights Plugin for Java**: This component allows you to use Azure's telemetry logging and analysis services for your applications and server instances.
+    * **Azure Access Control Services Filter**: This component provides support for authenticating application users with Azure ACS, enabling single sign-on scenarios and externalizing identity logic from the application.
+    * **Azure Common Plugin**: This component provides the common functionality needed by other toolkit components.
+    * **Azure Explorer for Eclipse**: This component provides the common functionality needed by other toolkit components.
+    * **Azure Plugin for Eclipse with Java**: This component provides support for developing projects that help build, test and deploy Java applications for the Microsoft Azure cloud in Eclipse and via command line.
+    * **Azure Web Apps Plugin with Java**: This component provides support for deploying Java web applications to Microsoft Azure Web App containers.
+    * **Microsoft JDBC Driver 4.2 for SQL Server**: This component provides JDBC API for SQL Server and Microsoft Azure SQL Database for Java Platform Enterprise Edition 8.
+    * **Package for Apache Qpid Client Libraries for JMS**: This component provides the JMS client component from the Apache Qpid project to enable your application to use AMQP messaging in Microsoft Azure.
+    * **Package for Microsoft Azure Libraries for Java**: This component provides APIs for accessing Microsoft Azure services, such as storage, service bus, service runtime, etc.
 
-1. 按 [下一步]。(如果您在安裝此工具組時遇到不尋常的延遲，請確認已取消核取 [在安裝期間連絡所有更新網站來尋找必要軟體]。)
+1. Click **Next**. (If you experience unusual delays when installing the toolkit, ensure that **Contact all update sites during install to find required software** is unchecked.)
 
-1. 在 [安裝詳細資料] 對話方塊中，按一下 [下一步]。
+1. In the **Install Details** dialog, click **Next**.
 
-    ![檢閱安裝詳細資料][03]
+    ![Review Installation Details][03]
 
-1. 在 [檢閱授權] 對話方塊中，檢閱授權合約的條款。如果您接受授權合約的條款，請按一下 [我接受授權合約的條款]，然後按一下 [完成]。(其餘的步驟假設您接受授權合約的條款。如果您不接受授權合約的條款，請結束安裝程序。)
+1. In the **Review Licenses** dialog, review the terms of the license agreements. If you accept the terms of the license agreements, click **I accept the terms of the license agreements** and then click **Finish**. (The remaining steps assume you do accept the terms of the license agreements. If you do not accept the terms of the license agreements, exit the installation process.)
 
-    ![檢閱授權][04]
+    ![Review Licenses][04]
 
-    Eclipse 會下載並安裝必要的封裝。
+    Eclipse will download and install the requisite packages.
 
-    ![安裝進度][05]
+    ![Installation Progress][05]
 
-1. 如果系統提示您重新啟動 Eclipse 以完成安裝，請按一下 [是]。
+1. If prompted to restart Eclipse to complete installation, click **Yes**.
 
-    ![重新啟動提示][06]
+    ![Restart Prompt][06]
 
-## 另請參閱
+## <a name="see-also"></a>See Also
 
-如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
+For more information about the Azure Toolkits for Java IDEs, see the following links:
 
-- [適用於 Eclipse 的 Azure 工具組]
-  - 安裝適用於 Eclipse 的 Azure 工具組 (本文)
-  - [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]
-  - [適用於 Eclipse 的 Azure 工具組的新功能]
+- [Azure Toolkit for Eclipse]
+  - *Installing the Azure Toolkit for Eclipse (This Article)*
+  - [Create a Hello World Web App for Azure in Eclipse]
+  - [What's New in the Azure Toolkit for Eclipse]
 - [Azure Toolkit for IntelliJ]
-  - [安裝 Azure Toolkit for IntelliJ]
-  - [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
-  - [適用於 IntelliJ 的 Azure 工具組新增功能]
+  - [Installing the Azure Toolkit for IntelliJ]
+  - [Create a Hello World Web App for Azure in IntelliJ]
+  - [What's New in the Azure Toolkit for IntelliJ]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+For more information about using Azure with Java, see the [Azure Java Developer Center].
 
 <!-- URL List -->
 
-[適用於 Eclipse 的 Azure 工具組]: ./azure-toolkit-for-eclipse.md
+[Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
-[Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
-[在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
+[Create a Hello World Web App for Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
+[Create a Hello World Web App for Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
 [Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[安裝 Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[適用於 Eclipse 的 Azure 工具組的新功能]: ./azure-toolkit-for-eclipse-whats-new.md
-[適用於 IntelliJ 的 Azure 工具組新增功能]: ./azure-toolkit-for-intellij-whats-new.md
+[Installing the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[What's New in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
+[What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
+[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
 
 <!-- IMG List -->
 
@@ -109,4 +110,9 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 [05]: ./media/azure-toolkit-for-eclipse-installation/eclipse-installation-05.png
 [06]: ./media/azure-toolkit-for-eclipse-installation/eclipse-installation-06.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

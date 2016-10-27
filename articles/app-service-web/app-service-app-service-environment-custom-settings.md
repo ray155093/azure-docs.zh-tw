@@ -1,31 +1,32 @@
 <properties
-	pageTitle="App Service 環境的自訂設定"
-	description="App Service 環境的自訂組態設定"
-	services="app-service"
-	documentationCenter=""
-	authors="stefsch"
-	manager="nirma"
-	editor=""/>
+    pageTitle="Custom settings for App Service Environments"
+    description="Custom configuration settings for App Service Environments"
+    services="app-service"
+    documentationCenter=""
+    authors="stefsch"
+    manager="nirma"
+    editor=""/>
 
 <tags
-	ms.service="app-service"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/22/2016"
-	ms.author="stefsch"/>
+    ms.service="app-service"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/22/2016"
+    ms.author="stefsch"/>
 
-# App Service 環境的自訂組態設定
 
-## Overview ##
-因為 App Service 環境對單一客戶是隔離的，所以有某些專門套用到 App Service 環境的組態設定。本文記錄各種可供 App Service 環境使用的特定自訂。
+# <a name="custom-configuration-settings-for-app-service-environments"></a>Custom configuration settings for App Service Environments
 
-如果您沒有 App Service 環境，請參閱[如何建立 App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)。
+## <a name="overview"></a>Overview ##
+Because App Service Environments are isolated to a single customer, there are certain configuration settings that can be applied exclusively to App Service Environments. This article documents the various specific customizations that are available for App Service Environments.
 
-您可以使用新 **clusterSettings** 屬性的陣列儲存 App Service 環境自訂。這個屬性是在 *hostingEnvironments* Azure Resource Manager 實體的「屬性」字典中找到的。
+If you do not have an App Service Environment, see [How to Create an App Service Environment](app-service-web-how-to-create-an-app-service-environment.md).
 
-下列縮寫的 Resource Manager 範本程式碼片段顯示 **clusterSettings** 屬性︰
+You can store App Service Environment customizations by using an array in the new **clusterSettings** attribute. This attribute is found in the "Properties" dictionary of the *hostingEnvironments* Azure Resource Manager entity.
+
+The following abbreviated Resource Manager template snippet shows the **clusterSettings** attribute:
 
 
     "resources": [
@@ -46,29 +47,30 @@
        }
     }
 
-**clusterSettings** 屬性可以包含在 Resource Manager 範本中，以更新 App Service 環境。
+The **clusterSettings** attribute can be included in a Resource Manager template to update the App Service Environment.
 
-## 使用 Azure 資源總管更新 App Service 環境
-或者，您可以使用 [Azure 資源總管](https://resources.azure.com)更新 App Service 環境。
+## <a name="use-azure-resource-explorer-to-update-an-app-service-environment"></a>Use Azure Resource Explorer to update an App Service Environment
+Alternatively, you can update the App Service Environment by using [Azure Resource Explorer](https://resources.azure.com).  
 
-1. 在資源總管中，移至 App Service 環境的節點 ([訂用帳戶] > [resourceGroups] > [提供者] > [Micrososft.Web] > [hostingEnvironments])。接著，按一下您想要更新的特定 App Service 環境。
+1. In Resource Explorer, go to the node for the App Service Environment (**subscriptions** > **resourceGroups** > **providers** > **Micrososft.Web** > **hostingEnvironments**). Then click the specific App Service Environment that you want to update.
 
-2. 按一下右窗格上方工具列中的 [讀取/寫入]，允許在資源總管中進行互動式編輯。
+2. In the right pane, click **Read/Write** in the upper toolbar to allow interactive editing in Resource Explorer.  
 
-3. 按一下藍色的 [編輯] 按鈕，開放編輯 Resource Manager 範本。
+3. Click the blue **Edit** button to make the Resource Manager template editable.
 
-4. 向下捲動到右窗格底部。**clusterSettings** 屬性位在最底部，您可以在此輸入或更新其值。
+4. Scroll to the bottom of the right pane. The **clusterSettings** attribute is at the very bottom, where you can enter or update its value.
 
-5. 輸入 (或複製並貼上) 您希望 **clusterSettings** 屬性出現的組態值陣列。
+5. Type (or copy and paste) the array of configuration values you want in the **clusterSettings** attribute.  
 
-6. 按一下右窗格上方的綠色 [PUT] 按鈕，確認 App Service 環境的變更。
+6. Click the green **PUT** button that's located at the top of the right pane to commit the change to the App Service Environment.
 
-不過，送出變更後，約需 30 分鐘乘以 App Service 環境中前端數量的時間，變更才會生效。例如，如果 App Service 環境有四個前端，大約需要兩個小時才能完成組態更新。實行組態變更時，App Service 環境上就不會進行其他調整作業或組態變更作業。
+However you submit the change, it takes roughly 30 minutes multiplied by the number of front ends in the App Service Environment for the change to take effect.
+For example, if an App Service Environment has four front ends, it will take roughly two hours for the configuration update to finish. While the configuration change is being rolled out, no other scaling operations or configuration change operations can take place in the App Service Environment.
 
-## 停用 TLS 1.0 ##
-客戶的常見問題是，尤其是處理 PCI 規範稽核的客戶，如何明確停用其應用程式的 TLS 1.0。
+## <a name="disable-tls-1.0"></a>Disable TLS 1.0 ##
+A recurring question from customers, especially customers who are dealing with PCI compliance audits, is how to explicitly disable TLS 1.0 for their apps.
 
-透過下列 **clusterSettings** 項目可以停用 TLS 1.0︰
+TLS 1.0 can be disabled through the following **clusterSettings** entry:
 
         "clusterSettings": [
             {
@@ -77,8 +79,8 @@
             }
         ],
 
-## 變更 TLS 加密套件順序 ##
-來自客戶的另一個問題是，他們是否可以修改由其伺服器交涉的加密的清單，而這可透過修改 **clusterSettings** 來達成，如下所示。您可以從 [此 MSDN 文章](https://msdn.microsoft.com/library/windows/desktop/aa374757(v=vs.85).aspx)) 擷取可用加密套件的清單。
+## <a name="change-tls-cipher-suite-order"></a>Change TLS cipher suite order ##
+Another question from customers is if they can modify the list of ciphers negotiated by their server and this can be achieved by modifying the **clusterSettings** as shown below. The list of cipher suites available can be retrieved from [this MSDN article](https://msdn.microsoft.com/library/windows/desktop/aa374757(v=vs.85\).aspx).
 
         "clusterSettings": [
             {
@@ -87,14 +89,18 @@
             }
         ],
 
-> [AZURE.WARNING]  如果對安全通道無法了解的加密套件設定了不正確的值，對您的伺服器的所有 TLS 通訊可能會停止運作。在這種情況下，您必須從 **clusterSettings** 移除「FrontEndSSLCipherSuiteOrder」項目，並提交更新的 Resource Manager 範本以還原回預設的加密套件設定。請謹慎使用這項功能。
+> [AZURE.WARNING]  If incorrect values are set for the cipher suite that SChannel cannot understand, all TLS communication to your server might stop functioning. In such a case, you will need to remove the *FrontEndSSLCipherSuiteOrder* entry from **clusterSettings** and submit the updated Resource Manager template to revert back to the default cipher suite settings.  Please use this functionality with caution.
 
-## 開始使用
-Azure 快速入門 Resource Manager 範本網站包含具有[建立 App Service 環境](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/)基本定義的範本。
+## <a name="get-started"></a>Get started
+The Azure Quickstart Resource Manager template site includes a template with the base definition for [creating an App Service Environment](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/).
 
 
 <!-- LINKS -->
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

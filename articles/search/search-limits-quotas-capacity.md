@@ -1,100 +1,105 @@
 <properties
-	pageTitle="Azure 搜尋中的服務限制 | Microsoft Azure"
-	description="容量計劃中使用的服務限制，以及 Azure 搜尋服務要求和回應的最大限制。"
-	services="search"
-	documentationCenter=""
-	authors="HeidiSteen"
-	manager="jhubbard"
-	editor=""
+    pageTitle="Service limits in Azure Search | Microsoft Azure"
+    description="Service limits used for capacity planning and maximum limits on requests and reponses for Azure Search."
+    services="search"
+    documentationCenter=""
+    authors="HeidiSteen"
+    manager="jhubbard"
+    editor=""
     tags="azure-portal"/>
 
 <tags
-	ms.service="search"
-	ms.devlang="NA"
-	ms.workload="search"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.date="08/03/2016"
-	ms.author="heidist"/>
+    ms.service="search"
+    ms.devlang="NA"
+    ms.workload="search"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.date="10/17/2016"
+    ms.author="heidist"/>
 
-# Azure 搜尋中的服務限制
 
-儲存體與工作負載的最大限制，以及索引、文件和其他物件的數量上限，皆取決於您是否在**免費**、**基本**，還是**標準**定價層中新增 Azure 搜尋服務。
+# <a name="service-limits-in-azure-search"></a>Service limits in Azure Search
 
-- **免費**的是 Azure 訂用帳戶隨附的多租用戶共用服務。此為針對現有訂用帳戶提供的免費選項，無須額外費用，可讓您試驗服務後再註冊專用資源。
-- **基本**會針對生產環境工作負載提供較小規模的專用計算資源。
-- **標準**是在專用的機器上執行，在各層級具有更多的儲存和處理容量，包括最低限度的組態。標準共有四個等級︰S1、S2、S3 及 S3 高密度 (S3 HD)。S3 和 S3 HD 目前為預覽版，在預覽版期間享有五折的優惠費率。
+Maximum limits on storage, workloads, and quantities of indexes, documents, and other objects depend on whether you add Azure Search at a **Free**, **Basic**, or **Standard** pricing tier.
 
-所有階層都可以[在入口網站中佈建](search-create-service-portal.md)。一開始會為服務配置一個分割區和一個複本，但在服務建立之後，您可以變更資源配置。如需詳細資料，請參閱[調整適用於查詢和編製索引工作負載的資源等級](search-capacity-planning.md)
+- **Free** is a multi-tenant shared service that comes with your Azure subscription. It's a no-additional-cost option for existing subscribers that allows you to experiment with the service before signing up for dedicated resources. 
+- **Basic** provides dedicated computing resources for production workloads at a smaller scale. ).
+- **Standard** runs on dedicated machines, with more storage and processing capacity at every level, including the minimum configuration. Standard comes in four levels: S1, S2, S3, and S3 High Density (S3 HD). S3 and S3 HD are currently in Preview and offered at a 50% reduced rate during the Preview period.
 
-## 每一訂用帳戶限制
+All tiers can be [provisioned in the portal](search-create-service-portal.md). A service is initially allocated one partition and one replica, but you can change the resource allocation once the service is created. See [Scale resource levels for query and indexing workloads](search-capacity-planning.md) for details.
+
+## <a name="per-subscription-limits"></a>Per subscription limits
 
 [AZURE.INCLUDE [azure-search-limits-per-subscription](../../includes/azure-search-limits-per-subscription.md)]
 
-## 每一服務限制 ##
+## <a name="per-service-limits"></a>Per service limits ##
 
 [AZURE.INCLUDE [azure-search-limits-per-service](../../includes/azure-search-limits-per-service.md)]
 
-## 每一索引限制 ##
+## <a name="per-index-limits"></a>Per index limits ##
 
-索引限制與索引子限制之間有一對一的對應關係。在指定限制為每個 S2 服務 200 個索引的情況下，相同服務的索引子和索引子資料來源的數目上限也是 200。
+There is a one-to-one correspondence between limits on indexes and limits on indexers. Given a limit of 200 indexes per S2 service, the maximum indexers and indexer datasources is also 200 for the same service.
 
-資源|免費|基本 |S1|S2|S3 (預覽)|S3 HD (預覽) 
+Resource|Free|Basic |S1|S2|S3 (Preview)|S3 HD (Preview) 
 ---|---|---|---|---- |---|----
-索引︰每個索引的欄位上限|1000|100 <sup>1</sup>|1000|1000|1000|1000 
-索引：每個索引的評分設定檔上限|16|16|16|16|16|16 
-索引：每個設定檔的函式上限|8|8|8|8|8|8 
-索引子︰每次叫用的索引編製負載上限|10,000 份文件|僅限制文件上限|僅限制文件上限|僅限制文件上限|僅限制文件上限|N/A <sup>2</sup> 
-索引子︰執行時間上限|3 分鐘|24 小時|24 小時|24 小時|24 小時|N/A <sup>2</sup> 
-Blob 索引子︰Blob 大小上限，MB|16|16|128|256|256|N/A <sup>2</sup> 
-Blob 索引子︰從 Blob 擷取的內容字元數上限|32,000|64,000|4 百萬|4 百萬|4 百萬|N/A <sup>2</sup> 
+Index: maximum fields per index|1000|100 <sup>1</sup>|1000|1000|1000|1000 
+Index: maximum scoring profiles per index|16|16|16|16|16|16 
+Index: maximum functions per profile|8|8|8|8|8|8 
+Indexers: maximum indexing load per invocation|10,000 documents|Limited only by maximum documents|Limited only by maximum documents|Limited only by maximum documents|Limited only by maximum documents|N/A <sup>2</sup> 
+Indexers: maximum running time|3 minutes|24 hours|24 hours|24 hours|24 hours|N/A <sup>2</sup> 
+Blob indexer: maximum blob size, MB|16|16|128|256|256|N/A <sup>2</sup> 
+Blob indexer: maximum characters of content extracted from a blob|32,000|64,000|4 million|4 million|4 million|N/A <sup>2</sup> 
 
-<sup>1</sup> 基本層是唯一具有較低限制 (每個索引 100 個欄位) 的 SKU。
+<sup>1</sup> Basic tier is the only SKU with a lower limit of 100 fields per index.
 
-<sup>2</sup> S3 HD 目前不支援索引子或索引子資料來源。如果您對此功能有迫切的需求，請連絡 Azure 支援。
+<sup>2</sup> S3 HD doesn't currently support indexers or indexer datasources. Please contact Azure Support if you have an urgent need for this capability.
 
-## 文件大小限制 ##
+## <a name="document-size-limits"></a>Document size limits ##
 
-資源|免費|基本 |S1|S2|S3 (預覽)|S3 HD (預覽) 
+Resource|Free|Basic |S1|S2|S3 (Preview)|S3 HD (Preview) 
 ---|---|---|---|---- |---|----
-每個索引 API 的文件大小|<16 MB|<16 MB|<16 MB |<16 MB|<16 MB|<16 MB
+Individual document size per Index API|<16 MB|<16 MB|<16 MB |<16 MB|<16 MB|<16 MB
 
-指呼叫「索引 API」時的文件大小上限。文件大小是索引 API 要求主體大小的實際限制。由於您可以一次將多份文件整批傳遞給「索引 API」，因此大小限制實際上取決於批次中的文件數量。針對具有單一文件的批次，文件大小上限為 16 MB 的 JSON。
+Refers to the maximum document size when calling an Index API. Document size is actually a limit on the size of the Index API request body. Since you can pass a batch of multiple documents to the Index API at once, the size limit actually depends on how many documents are in the batch. For a batch with a single document, the maximum document size will be to 16 MB of JSON.
 
-為了降低文件大小，請記得從要求中排除不可查詢的資料。影像和其他二進位資料無法執行查詢，而且不應該儲存於索引中。若要將不可搜尋的資料整合到搜尋結果，請定義不可搜尋的欄位，將 URL 參考儲存於資源中。
+To keep document size down, remember to exclude non-queryable data from the request. Images and other binary data are not directly queryable and shouldn't be stored in the index. To integrate non-queryable data into search results, define a non-searchable field that stores a a URL reference to the resource.
 
-## 工作負載限制 (每秒查詢次數) ##
+## <a name="workload-limits-(queries-per-second)"></a>Workload limits (Queries per second) ##
 
-資源|免費|基本|S1|S2|S3 (預覽)|S3 HD (預覽)
+Resource|Free|Basic|S1|S2|S3 (Preview)|S3 HD (Preview)
 ---|---|---|---|----|---|----
-QPS|N/A|~3/每個複本|~15/每個複本|~60/每個複本|>60/每個複本|>60/每個複本
+QPS|N/A|~3 per replica|~15 per replica|~60 per replica|>60 per replica|>60 per replica
 
-每秒查詢次數 (QPS) 是根據啟發學習法所得的近似值，這是使用模擬及實際的客戶工作負載來導出的估計值。確實的 QPS 輸送量會視您的資料和查詢本質而有所差異。
+Queries per second (QPS) is an approximation based on heuristics, using simulated and actual customer workloads to derive estimated values. Exact QPS throughput will vary depending on your data and the nature of the query.
 
-雖然上面提供粗略的估計值，但是實際的查詢率難以判斷，尤其是在輸送量會依可用頻寬和系統資源競爭而有所不同的「免費」共用服務中。在「免費層」中，運算資源和儲存體資源是由多個訂用帳戶共用，因此您解決方案的 QPS 將一律依有多少其他工作負載在同時執行而有所不同。
+Although rough estimates are provided above, an actual rate is difficult to determine, especially in the Free shared service where throughput is based on available bandwidth and competition for system resources. In the Free tier, compute and storage resources are shared by multiple subscribers, so QPS for your solution will always vary depending on how many other workloads are running at the same time. 
 
-在標準層級中，由於可控制較多的參數，所以能更準確地估計 QPS。如需有關如何計算您工作負載之 QPS 的指引，請參閱[管理您的搜尋解決方案](search-manage.md)。
+At the standard level, you can estimate QPS more closely because you have control over more of the parameters. See the best practices section in [Manage your search solution](search-manage.md) for guidance on how to calculate QPS for your workloads. 
 
-## API 要求限制
+## <a name="api-request-limits"></a>API Request limits
 
-- 每個要求最多 16 MB <sup>1</sup>
-- 最長 8 KB 的 URL 長度
-- 每個索引上傳、合併、或刪除批次最多包含 1000 個文件
-- $orderby 子句中最多 32 個欄位
-- 最大搜尋詞彙的大小是 utf-8 編碼文字的 32766 個位元組 (32 KB 減 2 個位元組)
+- Maximum of 16 MB per request <sup>1</sup>
+- Maximum 8 KB URL length
+- Maximum 1000 documents per batch of index uploads, merges, or deletes
+- Maximum 32 fields in $orderby clause
+- Maximum search term size is 32766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text
 
-<sup>1</sup> 在「Azure 搜尋服務」中，要求主體的上限是 16 MB，這會針對不受理論上限制約束之個別欄位或集合的內容強加實際限制 (如需有關欄位組合和限制的詳細資訊，請參閱[支援的資料類型](https://msdn.microsoft.com/library/azure/dn798938.aspx))。
+<sup>1</sup> In Azure Search, the body of a request is subject to an upper limit of 16 MB, imposing a practical limit on the contents of individual fields or collections that are not otherwise constrained by theoretical limits (see [Supported data types](https://msdn.microsoft.com/library/azure/dn798938.aspx) for more information about field composition and restrictions).
 
-## API 回應限制
+## <a name="api-response-limits"></a>API Response limits
 
-- 每一頁搜尋結果最多傳回 1000 個文件
-- 每個建議 API 要求最多傳回 100 個建議
+- Maximum 1000 documents returned per page of search results
+- Maximum 100 suggestions returned per Suggest API request
 
-## API 金鑰限制
+## <a name="api-key-limits"></a>API Key limits
 
-API 金鑰可用於服務驗證。有兩種類型。系統管理金鑰是在要求標頭中指定，並會授與完整的服務讀寫存取。查詢金鑰為唯讀並在 URL 上指定，且通常會發佈到用戶端應用程式。
+Api-keys are used for service authentication. There are two types. Admin keys are specified in the request header and grant full read-write access to the service. Query keys are read-only, specified on the URL, and typically distributed to client applications.
 
-- 每個服務最多 2 個系統管理金鑰
-- 每個服務最多 50 個查詢金鑰
+- Maximum of 2 admin keys per service
+- Maximum of 50 query keys per service
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

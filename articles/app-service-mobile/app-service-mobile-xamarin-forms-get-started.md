@@ -1,169 +1,174 @@
 <properties
-	pageTitle="使用 Xamarin.Forms 搭配行動應用程式入門"
-	description="遵循此教學課程，開始使用 Azure 行動應用程式進行 Xamarin.Forms 開發。"
-	services="app-service\mobile"
-	documentationCenter="xamarin"
-	authors="adrianhall"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Get Started with Mobile Apps by using Xamarin.Forms"
+    description="Follow this tutorial to get started using Azure Mobile Apps for Xamarin.Forms development"
+    services="app-service\mobile"
+    documentationCenter="xamarin"
+    authors="adrianhall"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="app-service-mobile"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-xamarin"
-	ms.devlang="dotnet"
-	ms.topic="hero-article"
-	ms.date="10/01/2016"
-	ms.author="adrianha"/>
+    ms.service="app-service-mobile"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-xamarin"
+    ms.devlang="dotnet"
+    ms.topic="hero-article"
+    ms.date="10/01/2016"
+    ms.author="adrianha"/>
 
-#建立 Xamarin.Forms 應用程式
+
+#<a name="create-a-xamarin.forms-app"></a>Create a Xamarin.Forms app
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
-##概觀
+##<a name="overview"></a>Overview
 
-本教學課程說明如何使用 Azure 行動應用程式後端，將雲端型後端服務新增到 Xamarin.Forms 行動應用程式。您將同時建立新的行動應用程式後端，以及在 Azure 中儲存應用程式資料的簡單「Todo list」Xamarin.Forms 應用程式。
+This tutorial shows you how to add a cloud-based backend service to a Xamarin.Forms mobile app using an Azure Mobile App backend. You will create both a new Mobile App backend and a simple _Todo list_ Xamarin.Forms app that stores app data in Azure.
 
-完成本教學課程是所有其他 Xamarin.Forms 應用程式的行動應用程式教學課程的必要條件。
+Completing this tutorial is a prerequisite for all other Mobile Apps tutorials for Xamarin.Forms.
 
-##必要條件
+##<a name="prerequisites"></a>Prerequisites
 
-若要完成此教學課程，您需要下列項目：
+To complete this tutorial, you need the following:
 
-* 使用中的 Azure 帳戶。如果您沒有帳戶，可以註冊 Azure 試用版並取得最多 10 個免費的行動應用程式，即使在試用期結束之後仍可繼續使用這些應用程式。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* An active Azure account. If you don't have an account, you can sign up for an Azure trial and get up to 10 free Mobile Apps that you can keep using even after your trial ends. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).
 
-* Visual Studio 和 Xamarin。如需相關指示，請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
+* Visual Studio with Xamarin. See [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) for instructions. 
 
-* 已安裝 Xcode v7.0 或更新版本以及 Xamarin Studio Community 的 Mac。請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 以及[針對 Mac 使用者的設定、安裝和驗證](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN)。
+* A Mac with Xcode v7.0 or later and Xamarin Studio Community installed. See [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) and [Setup, install, and verifications for Mac users](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN).
  
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往[試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)，讓您能立刻在 App Service 中建立短期的入門行動應用程式。不需要信用卡；無需承諾。
+>[AZURE.NOTE] If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](https://tryappservice.azure.com/?appServiceName=mobile), where you can immediately create a short-lived starter Mobile App in App Service. No credit cards required; no commitments.
 
-## 建立新的 Azure 行動應用程式後端
+## <a name="create-a-new-azure-mobile-app-backend"></a>Create a new Azure Mobile App backend
 
-依照下列步驟建立新的行動應用程式後端。
+Follow these steps to create a new Mobile App backend.
 
 [AZURE.INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
 
-您現在已佈建 Azure 行動應用程式後端，可供您的行動用戶端應用程式使用。接下來，您將下載簡易「待辦事項清單」後端的伺服器專案，然後將專案發佈至 Azure。
+You have now provisioned an Azure Mobile App backend that can be used by your mobile client applications. Next, you will download a server project for a simple "todo list" backend and publish it to Azure.
 
-## 設定伺服器專案
+## <a name="configure-the-server-project"></a>Configure the server project
 
-請遵循下列步驟來設定伺服器專案使用 Node.js 或 .NET 後端。
+Follow the steps below to configure the server project to use either the Node.js or .NET backend.
 
 [AZURE.INCLUDE [app-service-mobile-configure-new-backend](../../includes/app-service-mobile-configure-new-backend.md)]
 
-##下載並執行 Xamarin.Forms 方案
+##<a name="download-and-run-the-xamarin.forms-solution"></a>Download and run the Xamarin.Forms solution
 
-您在這裡有幾個選擇。您可以將方案下載到 Mac 並在 Xamarin Studio 中開啟，或者您也可以下載方案到 Windows 電腦並使用已加入網路的 Mac 在 Visual Studio 開啟，以便建置 iOS 應用程式。如果您需要更詳細的 Xamarin 設定案例指示，請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
+Here you have a couple of choices. You can download the solution to a Mac and open it in Xamarin Studio, or you can download the solution to a Windows computer and open it in Visual Studio using a networked Mac for building the iOS app. See [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) if you need more detailed instructions on the Xamarin setup scenarios.
 
-讓我們繼續進行︰
+Let's proceed:
 
- 1. 在您的 Mac 或 Windows 電腦上，於瀏覽器視窗中開啟 [Azure 入口網站]。
- 2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] \(在 [行動] 之下) > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] \(如果尚未選取的話)。接著按一下 [下載] 按鈕。
+ 1. On your Mac or on your Windows computer, open the [Azure Portal] in a browser window.
+ 2. On the settings blade for your Mobile App, click **Get Started** (under Mobile) > **Xamarin.Forms**. Under step 3, click  **Create a new app** if it's not already selected.  Next click the **Download** button.
 
-    這會下載包含連線到您行動應用程式之用戶端應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
+    This downloads a project that contains a client application that is connected to your mobile app. Save the compressed project file to your local computer, and make a note of where you save it.
 
- 3. 將您下載的專案解壓縮，並在 Xamarin Studio 或 Visual Studio 中開啟。
+ 3. Extract the project that you downloaded, and then open it in Xamarin Studio or Visual Studio.
 
-	![][9]
+    ![][9]
 
-	![][8]
+    ![][8]
 
 
-##(選擇性) 執行 iOS 專案
+##<a name="(optional)-run-the-ios-project"></a>(Optional) Run the iOS project
 
-這一節適用於對 iOS 裝置執行 Xamarin iOS 專案。如果未使用 iOS 裝置，可以略過這一節。
+This section is for running the Xamarin iOS project for iOS devices. You can skip this section if you are not working with iOS devices.
 
-####在 Xamarin Studio 中
+####<a name="in-xamarin-studio"></a>In Xamarin Studio
 
-1. 以滑鼠右鍵按一下 iOS 專案，然後按一下 [設為起始專案]。
-2. 在 [執行] 功能表上，按一下 [開始偵錯] 以建置專案並在 iPhone 模擬器中啟動應用程式。
+1. Right-click the iOS project, and then click **Set As Startup Project**.
+2. On the **Run** menu, click **Start Debugging** to build the project and start the app in the iPhone emulator.
 
-####在 Visual Studio 中
-1. 以滑鼠右鍵按一下 iOS 專案，然後按一下 [設為起始專案]。
-2. 從 [建置] 功能表中，按一下 [組態管理員]。
-3. 在 [組態管理員] 對話方塊中，選取 iOS 專案的 [建置] 和 [部署] 核取方塊。
-4. 按 **F5** 鍵，以建置專案並在 iPhone 模擬器中啟動 app。
+####<a name="in-visual-studio"></a>In Visual Studio
+1. Right-click the iOS project, and then click **Set as StartUp Project**.
+2. On the **Build** menu, click **Configuration Manager**.
+3. In the **Configuration Manager** dialog box, select the **Build** and **Deploy** checkboxes of the iOS project.
+4. Press the **F5** key to build the project and start the app in the iPhone emulator.
 
-	>[AZURE.NOTE] 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。有時候快速入門專案可能未能及時更新為最新版本。
+    >[AZURE.NOTE] If you have problems building, run NuGet package manager and update to the latest version of the Xamarin support packages. Sometimes the Quickstart projects may lag behind in being updated to the latest.    
 
-在應用程式中，輸入有意義的文字 (例如「了解 Xamarin (Learn Xamarin)」)，然後按一下 **+** 按鈕。
+In the app, type meaningful text, such as _Learn Xamarin_ and then click the **+** button.
 
 ![][10]
 
-如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。要求中的資料會插入 TodoItem 資料表中。行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
+This sends a POST request to the new mobile app backend hosted in Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile app backend, and the data is displayed in the list.
 
 >[AZURE.NOTE]
-您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
+> You'll find the code that accesses your mobile app backend in the TodoItemManager.cs C# file of the portable class library project of your solution.
 
-##(選擇性) 執行 Android 專案
+##<a name="(optional)-run-the-android-project"></a>(Optional) Run the Android project
 
-這一節適用於對 Android 裝置執行 Xamarin Adroid 專案。如果未使用 Android 裝置，可以略過這一節。
+This section is for running the Xamarin droid project for Android. You can skip this section if you are not working with Android devices.
 
-####在 Xamarin Studio 中
+####<a name="in-xamarin-studio"></a>In Xamarin Studio
 
-1. 以滑鼠右鍵按一下 Android 專案，然後按一下 [設為起始專案]。
-2. 在 [執行] 功能表上按一下 [開始偵錯] 以建置專案，並在 Android 模擬器中啟動應用程式。
+1. Right-click the Android project, and then click **Set As Startup Project**.
+2. On the **Run** menu, click **Start Debugging** to build the project and start the app in an Android emulator.
 
-####在 Visual Studio 中
-1. 以滑鼠右鍵按一下 Android (Droid) 專案，然後按一下 [設為起始專案]。
-4. 從 [建置] 功能表中，按一下 [組態管理員]。
-5. 在 [組態管理員] 對話方塊中，選取 Android 專案的 [建置] 和 [部署] 核取方塊。
-6. 按 **F5** 鍵，以建置專案並在 Android 模擬器中啟動應用程式。
+####<a name="in-visual-studio"></a>In Visual Studio
+1. Right-click the Android (Droid) project, and then click **Set as StartUp Project**.
+4. On the **Build** menu, click **Configuration Manager**.
+5. In the **Configuration Manager** dialog box, select the **Build** and **Deploy** checkboxes of the Android project.
+6. Press the **F5** key to build the project and start the app in an Android emulator.
 
-	>[AZURE.NOTE] 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。有時候快速入門專案可能未能及時更新為最新版本。
+    >[AZURE.NOTE] If you have problems building, run NuGet package manager and update to the latest version of the Xamarin support packages. Sometimes the Quickstart projects may lag behind in being updated to the latest.    
 
 
-在應用程式中，輸入有意義的文字 (例如「了解 Xamarin (Learn Xamarin)」)，然後按一下 **+** 按鈕。
+In the app, type meaningful text, such as _Learn Xamarin_ and then click the **+** button.
 
 ![][11]
 
-如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。要求中的資料會插入 TodoItem 資料表中。行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
+This sends a POST request to the new mobile app backend hosted in Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile app backend, and the data is displayed in the list.
 
 > [AZURE.NOTE]
-您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
+> You'll find the code that accesses your mobile app backend in the TodoItemManager.cs C# file of the portable class library project of your solution.
 
 
-##(選擇性) 執行 Windows 專案
+##<a name="(optional)-run-the-windows-project"></a>(Optional) Run the Windows project
 
 
-這一節適用於對 Windows 裝置執行 WinApp 專案。如果未使用 Windows 裝置，可以略過這一節。
+This section is for running the Xamarin WinApp project for Windows devices. You can skip this section if you are not working with Windows devices.
 
 
-####在 Visual Studio 中
-1. 以滑鼠右鍵按一下任何一個 Windows 專案，然後按一下 [設為起始專案]。
-4. 從 [建置] 功能表中，按一下 [組態管理員]。
-5. 在 [組態管理員] 對話方塊中，選取所選之 Windows 專案的 [建置] 和 [部署] 核取方塊。
-6. 按 **F5** 鍵，以建置專案並在 Windows 模擬器中啟動應用程式。
+####<a name="in-visual-studio"></a>In Visual Studio
+1. Right-click any of the Windows projects, and then click **Set as StartUp Project**.
+4. On the **Build** menu, click **Configuration Manager**.
+5. In the **Configuration Manager** dialog box, select the **Build** and **Deploy** checkboxes of the Windows project that you chose.
+6. Press the **F5** key to build the project and start the app in a Windows emulator.
 
-	>[AZURE.NOTE] 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。有時候快速入門專案可能未能及時更新為最新版本。
+    >[AZURE.NOTE] If you have problems building, run NuGet package manager and update to the latest version of the Xamarin support packages. Sometimes the Quickstart projects may lag behind in being updated to the latest.    
 
 
-在應用程式中，輸入有意義的文字 (例如「了解 Xamarin (Learn Xamarin)」)，然後按一下 **+** 按鈕。
+In the app, type meaningful text, such as _Learn Xamarin_ and then click the **+** button.
 
-如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。要求中的資料會插入 TodoItem 資料表中。行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
+This sends a POST request to the new mobile app backend hosted in Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile app backend, and the data is displayed in the list.
 
 ![][12]
 
 > [AZURE.NOTE]
-您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
+> You'll find the code that accesses your mobile app backend in the TodoItemManager.cs C# file of the portable class library project of your solution.
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-* [將驗證新增至應用程式中](app-service-mobile-xamarin-forms-get-started-users.md)了解如何利用識別提供者來驗證應用程式的使用者。
+* [Add authentication to your app](app-service-mobile-xamarin-forms-get-started-users.md)  
+Learn how to authenticate users of your app with an identity provider.
 
-* [將推播通知新增至應用程式中](app-service-mobile-xamarin-forms-get-started-push.md)了解如何將推播通知支援新增至應用程式，並設定行動應用程式後端以使用 Azure 通知中樞傳送推播通知。
+* [Add push notifications to your app](app-service-mobile-xamarin-forms-get-started-push.md)  
+Learn how to add push notifications support to your app and configure your Mobile App backend to use Azure Notification Hubs to send push notifications.
 
-* [啟用應用程式的離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)了解如何使用行動應用程式後端，將離線支援新增至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
+* [Enable offline sync for your app](app-service-mobile-xamarin-forms-get-started-offline-data.md)  
+  Learn how to add offline support your app using an Mobile App backend. Offline sync allows end-users to interact with a mobile app&mdash;viewing, adding, or modifying data&mdash;even when there is no network connection.
 
-* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md)了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。
+* [How to use the managed client for Azure Mobile Apps](app-service-mobile-dotnet-how-to-use-client-library.md)  
+Learn how to work with the managed client SDK in your Xamarin app. 
 
 
 <!-- Anchors. -->
-[Getting started with mobile app backends]: #getting-started
-[Create a new mobile app backend]: #create-new-service
-[Next Steps]: #next-steps
+[Getting started with mobile app backends]:#getting-started
+[Create a new mobile app backend]:#create-new-service
+[Next Steps]:#next-steps
 
 
 <!-- Images. -->
@@ -178,6 +183,11 @@
 <!-- URLs. -->
 [Visual Studio Professional 2013]: https://go.microsoft.com/fwLink/p/?LinkID=257546
 [Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
-[Azure 入口網站]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

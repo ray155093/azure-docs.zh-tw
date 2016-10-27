@@ -1,119 +1,120 @@
 <properties 
-	pageTitle="我如何在 Application Insights 中..." 
-	description="Application Insights 中的常見問題集。" 
-	services="application-insights" 
+    pageTitle="How do I ... in Application Insights" 
+    description="FAQ in Application Insights." 
+    services="application-insights" 
     documentationCenter=""
-	authors="alancameronwills" 
-	manager="douge"/>
+    authors="alancameronwills" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/05/2016" 
-	ms.author="awills"/>
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="02/05/2016" 
+    ms.author="awills"/>
 
-# 我如何在 Application Insights 中...？
 
-## ... 時收到電子郵件
+# <a name="how-do-i-...-in-application-insights?"></a>How do I ... in Application Insights?
 
-### 我的網站當機時寄送電子郵件
+## <a name="get-an-email-when-..."></a>Get an email when ...
 
-設定[可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
+### <a name="email-if-my-site-goes-down"></a>Email if my site goes down
 
-### 我的網站多載時寄送電子郵件
+Set an [availability web test](app-insights-monitor-web-app-availability.md).
 
-針對 [伺服器回應時間] 設定[警示](app-insights-alerts.md)。介於 1 到 2 秒之間的閾值應該會運作。
+### <a name="email-if-my-site-is-overloaded"></a>Email if my site is overloaded
+
+Set an [alert](app-insights-alerts.md) on **Server response time**. A threshold between 1 and 2 seconds should work.
 
 ![](./media/app-insights-how-do-i/030-server.png)
 
-您的 app 也可能會藉由傳回失敗碼顯示資源耗盡的徵兆。針對 [失敗的要求] 設定警示。
+Your app might also show signs of strain by returning failure codes. Set an alert on **Failed requests**.
 
-如果您想要針對 [伺服器例外狀況] 設定警示，可能必須進行[一些其他設定](app-insights-asp-net-exceptions.md)才能看到資料。
+If you want to set an alert on **Server exceptions**, you might have to do [some additional setup](app-insights-asp-net-exceptions.md) in order to see data.
 
-### 傳送電子郵件的例外狀況
+### <a name="email-on-exceptions"></a>Email on exceptions
 
-1. [設定例外狀況監視](app-insights-asp-net-exceptions.md)
-2. 針對例外狀況計數計量[設定警示](app-insights-alerts.md)
+1. [Set up exception monitoring](app-insights-asp-net-exceptions.md)
+2. [Set an alert](app-insights-alerts.md) on the Exception count metric
 
 
-### 我的 app 發生事件時寄送電子郵件
+### <a name="email-on-an-event-in-my-app"></a>Email on an event in my app
 
-我們假設您想要在特定事件發生時收到電子郵件。Application Insights 並未直接提供此功能，但它可[在計量超過某個閾值時傳送警示](app-insights-alerts.md)。
+Let's suppose you'd like to get an email when a specific event occurs. Application Insights doesn't provide this facility directly, but it can [send an alert when a metric crosses a threshold](app-insights-alerts.md). 
 
-您可以針對[自訂計量](app-insights-api-custom-events-metrics.md#track-metric)設定警示，而不是自訂事件。撰寫一些程式碼以在事件發生時增加計量：
+Alerts can be set on [custom metrics](app-insights-api-custom-events-metrics.md#track-metric), though not custom events. Write some code to increase a metric when the event occurs:
 
     telemetry.TrackMetric("Alarm", 10);
 
-或：
+or:
 
     var measurements = new Dictionary<string,double>();
     measurements ["Alarm"] = 10;
     telemetry.TrackEvent("status", null, measurements);
 
-因為警示有兩個狀態，所以當您考慮讓警示結束時必須傳送較低的值：
+Because alerts have two states, you have to send a low value when you consider the alert to have ended:
 
     telemetry.TrackMetric("Alarm", 0.5);
 
-在[計量總管](app-insights-metrics-explorer.md)中建立圖表來查看您的警示：
+Create a chart in [metric explorer](app-insights-metrics-explorer.md) to see your alarm:
 
 ![](./media/app-insights-how-do-i/010-alarm.png)
 
-現在設定警示在計量一段短時間高於中間值時引發：
+Now set an alert to fire when the metric goes above a mid value for a short period:
 
 
 ![](./media/app-insights-how-do-i/020-threshold.png)
 
-將平均期間設定為最小值。
+Set the averaging period to the minimum. 
 
-您就會在計量高於和低於閾值時收到電子郵件。
+You'll get emails both when the metric goes above and below the threshold.
 
-考慮事項：
+Some points to consider:
 
-* 警示有兩種狀態 (「警示」和「良好」)。只有在收到計量時才會評估狀態。
-* 只有在狀態變更時才會傳送電子郵件。這是為什麼您必須同時傳送高值和低值的計量。 
-* 若要評估警示，會採用收到的值除以先前的期間來獲得平均值。因為每次收到計量時都會進行計算，所以傳送電子郵件的頻率會比您設定的期間還要高。
-* 由於「警示」和「良好」都會傳送電子郵件，所以您可能要以兩個狀態的條件來重新思考單次發生的事件。例如，不要採用「作業完成」事件，而採用「作業進行中」的條件，您就可以在工作開始和結束時收到電子郵件。
+* An alert has two states ("alert" and "healthy"). The state is evaluated only when a metric is received.
+* An email is sent only when the state changes. This is why you have to send both high and low-value metrics. 
+* To evaluate the alert, the average is taken of the received values over the preceding period. This occurs every time a metric is received, so emails can be sent more frequently than the period you set.
+* Since emails are sent both on "alert" and "healthy", you might want to consider re-thinking your one-shot event as a two-state condition. For example, instead of a "job completed" event, have a "job in progress" condition, where you get emails at the start and end of a job.
 
-### 自動設定警示
+### <a name="set-up-alerts-automatically"></a>Set up alerts automatically
 
-[使用 PowerShell 建立新的警示](app-insights-alerts.md#set-alerts-by-using-powershell)
+[Use PowerShell to create new alerts](app-insights-alerts.md#set-alerts-by-using-powershell)
 
-## 使用 PowerShell 管理 Application Insights
+## <a name="use-powershell-to-manage-application-insights"></a>Use PowerShell to Manage Application Insights
 
-* [建立新的資源](app-insights-powershell-script-create-resource.md)
-* [建立新的警示](app-insights-alerts.md#set-alerts-by-using-powershell)
+* [Create new resources](app-insights-powershell-script-create-resource.md)
+* [Create new alerts](app-insights-alerts.md#set-alerts-by-using-powershell)
 
-## 應用程式版本和戳記
+## <a name="application-versions-and-stamps"></a>Application versions and stamps
 
-### 將開發、測試和生產的結果分開
+### <a name="separate-the-results-from-dev,-test-and-prod"></a>Separate the results from dev, test and prod
 
-* 針對不同的環境，設定不同的重點
-* 針對不同的戳記 (開發、測試、生產)，使用不同的屬性值來標記遙測
+* For different environmnents, set up different ikeys
+* For different stamps (dev, test, prod) tag the telemetry with different property values
 
-[深入了解](app-insights-separate-resources.md)
+[Learn more](app-insights-separate-resources.md)
  
 
-### 篩選組建編號
+### <a name="filter-on-build-number"></a>Filter on build number
 
-當您發佈新的 App 版本時，希望能夠將不同組建的遙測分開。
+When you publish a new version of your app, you'll want to be able to separate the telemetry from different builds.
 
-您可以設定 [應用程式版本] 屬性，如此便能篩選[搜尋](app-insights-diagnostic-search.md)和[計量總管](app-insights-metrics-explorer.md)的結果。
+You can set the Application Version property so that you can filter [search](app-insights-diagnostic-search.md) and [metric explorer](app-insights-metrics-explorer.md) results. 
 
 
 ![](./media/app-insights-how-do-i/050-filter.png)
 
-設定 [應用程式版本] 屬性有幾種不同的方法。
+There are several different methods of setting the Application Version property.
 
-* 直接設定：
+* Set directly:
 
     `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;`
 
-* 在[遙測初始設定式](app-insights-api-custom-events-metrics.md#telemetry-initializers)中將該行換行，以確保會以一致性方式設定所有 TelemetryClient 執行個體。
+* Wrap that line in a [telemetry initializer](app-insights-api-custom-events-metrics.md#telemetry-initializers) to ensure that all TelemetryClient instances are set consistently.
 
-* [ASP.NET] 在 `BuildInfo.config` 中設定版本。Web 模組將會從 BuildLabel 節點取得版本。在您的專案中包含此檔案， 而且記得要在 [方案總管] 中設定 [永遠複製] 屬性。
+* [ASP.NET] Set the version in `BuildInfo.config`. The web module will pick up the version from the BuildLabel node. Include this file in your project and remember to set the Copy Always property in Solution Explorer.
 
     ```XML
 
@@ -128,7 +129,7 @@
     </DeploymentEvent>
 
     ```
-* [ASP.NET] 在 MSBuild 中自動產生 BuildInfo.config。若要這樣做，請先在 .csproj 檔案中加入幾行：
+* [ASP.NET] Generate BuildInfo.config automatically in MSBuild. To do this, add a few lines to your .csproj file:
 
     ```XML
 
@@ -137,79 +138,79 @@
     </PropertyGroup> 
     ```
 
-    這會產生一個稱為 *yourProjectName*.BuildInfo.config 的檔案。發佈程序會將這個檔案重新命名為 BuildInfo.config。
+    This generates a file called *yourProjectName*.BuildInfo.config. The Publish process renames it to BuildInfo.config.
 
-    當您使用 Visual Studio 建置時，組建標籤會包含預留位置 (AutoGen\_...)。但是當使用 MSBuild 建立時，則會填入正確的版本號碼。
+    The build label contains a placeholder (AutoGen_...) when you build with Visual Studio. But when built with MSBuild, it is populated with the correct version number.
 
-    若要允許 MSBuild 產生版本號碼，請在 AssemblyReference.cs 中設定類似 `1.0.*` 的版本
+    To allow MSBuild to generate version numbers, set the version like `1.0.*` in AssemblyReference.cs
 
-## 監視後端伺服器與桌面應用程式
+## <a name="monitor-backend-servers-and-desktop-apps"></a>Monitor backend servers and desktop apps
 
-[使用 Windows Server SDK 模組](app-insights-windows-desktop.md)。
+[Use the Windows Server SDK module](app-insights-windows-desktop.md).
 
 
-## 顯現資料
+## <a name="visualize-data"></a>Visualize data
 
-#### 具有來自多個 App 之計量的儀表板
+#### <a name="dashboard-with-metrics-from-multiple-apps"></a>Dashboard with metrics from multiple apps
 
-* 在[計量總管](app-insights-metrics-explorer.md)中，自訂圖表並將它儲存為我的最愛。將它釘選到 Azure 儀表板。
+* In [Metric Explorer](app-insights-metrics-explorer.md), customize your chart and save it as a favorite. Pin it to the Azure dashboard.
 * 
 
-#### 資料來自其他來源和 Application Insights 的儀表板
+#### <a name="dashboard-with-data-from-other-sources-and-application-insights"></a>Dashboard with data from other sources and Application Insights
 
-* [將遙測匯出至 Power Bi](app-insights-export-power-bi.md)。 
+* [Export telemetry to Power BI](app-insights-export-power-bi.md). 
 
-或
+Or
 
-* 使用 SharePoint 做為您的儀表板，在 SharePoint web 組件中顯示資料。[使用連續的匯出和資料流分析來匯出至 SQL](app-insights-code-sample-export-sql-stream-analytics.md)。使用 PowerView 來檢查資料庫，並建立適用於 PowerView 的 SharePoint web 組件。
+* Use SharePoint as your dashboard, displaying data in SharePoint web parts. [Use continuous export and Stream Analytics to export to SQL](app-insights-code-sample-export-sql-stream-analytics.md).  Use PowerView to examine the database, and create a SharePoint web part for PowerView.
 
 
-### 複雜的篩選、分割和聯結
+### <a name="complex-filtering,-segmentation-and-joins"></a>Complex filtering, segmentation and joins
 
-* [使用連續的匯出和資料流分析來匯出至 SQL](app-insights-code-sample-export-sql-stream-analytics.md)。使用 PowerView來檢查資料庫。
+* [Use continuous export and Stream Analytics to export to SQL](app-insights-code-sample-export-sql-stream-analytics.md).  Use PowerView to examine the database.
 
 <a name="search-specific-users"></a>
-### 篩選出匿名或已驗證的使用者
+### <a name="filter-out-anonymous-or-authenticated-users"></a>Filter out anonymous or authenticated users
 
-如果您的使用者登入，您可以設定[驗證使用者識別碼](app-insights-api-custom-events-metrics.md#authenticated-users)(它不會自動重新整理)。
+If your users sign in, you can set the [authenticated user id](app-insights-api-custom-events-metrics.md#authenticated-users). (It doesn't happen automatically.) 
 
-接著，您可以：
+You can then:
 
-* 搜尋特定的使用者識別碼
+* Search on specific user ids
 
 ![](./media/app-insights-how-do-i/110-search.png)
 
-* 篩選匿名或已驗證使用者的計量
+* Filter metrics to either anonymous or authenticated users
 
 ![](./media/app-insights-how-do-i/115-metrics.png)
 
-## 修改屬性名稱或值
+## <a name="modify-property-names-or-values"></a>Modify property names or values
 
-建立[篩選器](app-insights-api-filtering-sampling.md#filtering)。這可讓您先修改或篩選遙測，然後再將它從您的應用程式傳送至 Application Insights。
+Create a [filter](app-insights-api-filtering-sampling.md#filtering). This lets you modify or filter telemetry before it is sent from your app to Application Insights.
 
-## 列出特定使用者和其使用方式
+## <a name="list-specific-users-and-their-usage"></a>List specific users and their usage
 
-如果您只想要[搜尋特定使用者](#search-specific-users)，就可以設定[驗證使用者識別碼](app-insights-api-custom-events-metrics.md#authenticated-users)。
+If you just want to [search for specific users](#search-specific-users), you can set the [authenticated user id](app-insights-api-custom-events-metrics.md#authenticated-users).
 
-如果您想要使用者清單以及像是他們查看過哪些頁面或登入頻率等資料，則有兩個選項：
+If you want a list of users with data such as what pages they look at or how often they log in, you have two options:
 
-* [設定驗證使用者識別碼](app-insights-api-custom-events-metrics.md#authenticated-users)、[匯出到資料庫](app-insights-code-sample-export-sql-stream-analytics.md)，然後使用適當的工具來分析使用者資料。
-* 如果您只有少數的使用者，則可傳送自訂事件或計量、使用感興趣的資料做為計量值或事件名稱，然後設定使用者識別碼做為屬性。若要分析頁面檢視，可取代標準的 JavaScript trackPageView 呼叫。若要分析伺服器端遙測，可使用遙測初始設定式，將使用者識別碼新增至所有伺服器遙測。然後您可以篩選與分割關於使用者識別碼的計量資訊和搜尋。
-
-
-## 降低從我的 App 到 Application Insights 的流量
-
-* 在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中，停用任何您不需要的模組，例如效能計數器收集器。
-* 使用 SDK 中的[取樣和篩選](app-insights-api-filtering-sampling.md)。
-* 您在網頁中，限制針對每個頁面檢視回報的 Ajax 呼叫次數。在 `instrumentationKey:...` 之後的指令碼片段中，插入：`,maxAjaxCallsPerView:3` (或適當的數字)。
-* 如果您使用的是 [TrackMetric](app-insights-api-custom-events-metrics.md#track-metric)，請在傳送結果之前，先計算計量值批次的彙總。有一個 TrackMetric() 的多載是針對該動作所提供。
+* [Set authenticated user id](app-insights-api-custom-events-metrics.md#authenticated-users), [export to a database](app-insights-code-sample-export-sql-stream-analytics.md) and use suitable tools to analyze your user data there.
+* If you have only a small number of users, send custom events or metrics, using the data of interest as the metric value or event name, and setting the user id as a property. To analyze page views, replace the standard JavaScript trackPageView call. To analyze server-side telemetry, use a telemetry initializer to add the user id to all server telemetry. You can then filter and segment metrics and searches on the user id.
 
 
-深入了解[價格和配額](app-insights-pricing.md)。
+## <a name="reduce-traffic-from-my-app-to-application-insights"></a>Reduce traffic from my app to Application Insights
 
-## 停用遙測
+* In [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md), disable any modules you don't need, such the performance counter collector.
+* Use [Sampling and filtering](app-insights-api-filtering-sampling.md) at the SDK.
+* In your web pages, Limit the number of Ajax calls reported for every page view. In the script snippet after `instrumentationKey:...` , insert: `,maxAjaxCallsPerView:3` (or a suitable number).
+* If you're using [TrackMetric](app-insights-api-custom-events-metrics.md#track-metric), compute the aggregate of batches of metric values before sending the result. There's an overload of TrackMetric() that provides for that.
 
-若要從伺服器**動態停止和開始**收集及傳輸遙測資料：
+
+Learn more about [pricing and quotas](app-insights-pricing.md).
+
+## <a name="disable-telemetry"></a>Disable telemetry
+
+To **dynamically stop and start** the collection and transmission of telemetry from the server:
 
 ```
 
@@ -220,25 +221,31 @@
 
 
 
-若要**停用選取的標準收集器** (例如效能計數器、HTTP 要求或相依性)，請刪除或註解化 [ApplicationInsights.config](app-insights-api-custom-events-metrics.md) 中的相關行。例如，如果您想要傳送自己的 TrackRequest 資料，可以這麼做。
+To **disable selected standard collectors** - for example, performance counters, HTTP requests, or dependencies - delete or comment out the relevant lines in [ApplicationInsights.config](app-insights-api-custom-events-metrics.md). You could do this, for example, if you want to send your own TrackRequest data.
 
 
 
-## 檢視系統效能計數器
+## <a name="view-system-performance-counters"></a>View system performance counters
 
-您可以在計量總管中顯示的計量資訊是一組系統效能計數器。有一個預先定義且標題為**伺服器**的刀鋒視窗會顯示它們其中幾個。
+Among the metrics you can show in metrics explorer are a set of system performance counters. There's a predefined blade titled **Servers** that displays several of them.
 
-![開啟 Application Insights 資源並按一下伺服器](./media/app-insights-how-do-i/121-servers.png)
+![Open your Application Insights resource and click Servers](./media/app-insights-how-do-i/121-servers.png)
 
-### 如果您看不到效能計數器資料
+### <a name="if-you-see-no-performance-counter-data"></a>If you see no performance counter data
 
-* 您自己的電腦或 VM 上的 **IIS 伺服器**。[安裝狀態監視器](app-insights-monitor-performance-live-website-now.md)。 
-* **Azure 網站** - 我們尚未支援效能計數器。您可以取得數個計量來做為 Azure 網站控制台的標準部分。
-* **Unix 伺服器** - [安裝 collectd](app-insights-java-collectd.md)
+* **IIS server** on your own machine or on a VM. [Install Status Monitor](app-insights-monitor-performance-live-website-now.md). 
+* **Azure web site** - we don't support performance counters yet. There are several metrics you can get as a standard part of the Azure web site control panel.
+* **Unix server** - [Install collectd](app-insights-java-collectd.md)
 
-### 顯示更多效能計數器
+### <a name="to-display-more-performance-counters"></a>To display more performance counters
 
-* 首先，[新增圖表](app-insights-metrics-explorer.md)，並查看計數器是否位於我們提供的基本組合中。
-* 如果沒有，請[將計數器加入效能計數器模組所收集的組合中](app-insights-web-monitor-performance.md#system-performance-counters)。
+* First, [add a new chart](app-insights-metrics-explorer.md) and see if the counter is in the basic set that we offer.
+* If not, [add the counter to the set collected by the performance counter module](app-insights-web-monitor-performance.md#system-performance-counters).
 
-<!---HONumber=AcomDC_0504_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

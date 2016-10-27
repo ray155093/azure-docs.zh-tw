@@ -1,9 +1,9 @@
 <properties
-   pageTitle="使用 PowerShell 建立 DNS 區域的記錄集和記錄 | Microsoft Azure"
-   description="如何建立 Azure DNS 的主機記錄。使用 PowerShell 設定記錄集和記錄"
+   pageTitle="Create a record set and records for a DNS zone using PowerShell | Microsoft Azure"
+   description="How to create host records for Azure DNS.Setting up record sets and records using PowerShell"
    services="dns"
    documentationCenter="na"
-   authors="cherylmc"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""/>
 
@@ -14,135 +14,140 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+   ms.author="sewhee"/>
 
 
 
-# 使用 PowerShell 建立 DNS 記錄集和記錄
+
+# <a name="create-dns-record-sets-and-records-by-using-powershell"></a>Create DNS record sets and records by using PowerShell
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](dns-getstarted-create-recordset-portal.md)
+- [Azure Portal](dns-getstarted-create-recordset-portal.md)
 - [PowerShell](dns-getstarted-create-recordset.md)
 - [Azure CLI](dns-getstarted-create-recordset-cli.md)
 
-本文將逐步引導您完成使用 Windows PowerShell 建立記錄和記錄集的程序。建立 DNS 區域之後，您將會新增網域的 DNS 記錄。若要這樣做，您必須先了解 DNS 記錄和記錄集。
+This article walks you through the process of creating records and records sets by using Windows PowerShell. After creating your DNS zone, you add the DNS records for your domain. To do this, you first need to understand DNS records and record sets.
 
 [AZURE.INCLUDE [dns-about-records-include](../../includes/dns-about-records-include.md)]
 
-## 確認您擁有最新版本的 PowerShell
+## <a name="verify-that-you-have-the-latest-version-of-powershell"></a>Verify that you have the latest version of PowerShell
 
-請確認您已安裝最新版的 Azure Resource Manager PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+Verify that you have installed the latest version of the Azure Resource Manager PowerShell cmdlets. See [How to install and configure Azure PowerShell](../powershell-install-configure.md) for more information about installing the PowerShell cmdlets.
 
-## 建立記錄集和記錄
+## <a name="create-a-record-set-and-record"></a>Create a record set and record
 
-本節將說明如何建立記錄集與記錄。
-
-
-### 1\.連線至您的訂用帳戶
-
-開啟 PowerShell 主控台並連接到您的帳戶。使用下列範例來協助您連接：
-
-	Login-AzureRmAccount
-
-檢查帳戶的訂用帳戶。
-
-	Get-AzureRmSubscription
-
-指定您要使用的訂用帳戶。
-
-	Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
-
-如需使用 PowerShell 的詳細資訊，請參閱[搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
+This section describes how to create a record set and record.
 
 
-### 2\.建立記錄集
+### <a name="1.-connect-to-your-subscription"></a>1. Connect to your subscription
 
-您可以使用 `New-AzureRmDnsRecordSet` Cmdlet 來建立記錄集。建立記錄集時，您必須指定記錄集名稱、區域、存留時間 (TTL) 和記錄類型。
+Open your PowerShell console and connect to your account. Use the following sample to help you connect:
 
-若要在區域頂點 (在此案例中為 'contoso.com') 建立記錄集，請使用記錄名稱 "@" (包括引號)。這是常見的 DNS 慣例。
+    Login-AzureRmAccount
 
-下列範例會在 DNS 區域 "contoso.com" 中建立具有相對名稱 "www" 的記錄集。記錄集的完整名稱是 "www.contoso.com"。記錄類型為 "A"，且 TTL 為 60 秒。完成此步驟之後，您就具有指派給變數 *$rs* 的空 "www" 記錄集。
+Check the subscriptions for the account.
 
-	$rs = New-AzureRmDnsRecordSet -Name "www" -RecordType "A" -ZoneName "contoso.com" -ResourceGroupName "MyAzureResourceGroup" -Ttl 60
+    Get-AzureRmSubscription
 
-#### 如果記錄集已經存在
+Specify the subscription that you want to use.
 
-如果記錄集已經存在，除非使用 *-Overwrite* 參數，否則命令會失敗。*-Overwrite* 選項會觸發確認提示，但可使用 *-Force* 參數來隱藏提示。
+    Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
 
-
-	$rs = New-AzureRmDnsRecordSet -Name www -RecordType A -Ttl 300 -ZoneName contoso.com -ResouceGroupName MyAzureResouceGroup [-Tag $tags] [-Overwrite] [-Force]
-
-
-在此範例中，您可以使用區域名稱和資源群組名稱來指定區域。或者，您可以指定區域物件，如同 `Get-AzureRmDnsZone` 或 `New-AzureRmDnsZone` 所傳回。
-
-	$zone = Get-AzureRmDnsZone -Name contoso.com –ResourceGroupName MyAzureResourceGroup
-	$rs = New-AzureRmDnsRecordSet -Name www -RecordType A -Ttl 300 –Zone $zone [-Tag $tags] [-Overwrite] [-Force]
-
-`New-AzureRmDnsRecordSet` 會傳回本機物件，代表在 Azure DNS 中建立的記錄集。
-
-### 3\.新增記錄
-
-若要使用新建立的 "www" 記錄集，您必須對其新增記錄。您可以使用下列範例，將 IPv4 *A* 記錄新增至 "www" 記錄集。這個範例會依賴您在上一個步驟中設定的變數 *$rs*。
-
-使用 `Add-AzureRmDnsRecordConfig` 將記錄新增至記錄集是離線作業。只有本機變數 *$rs* 會更新。
+For more information about working with PowerShell, see [Using Windows PowerShell with Resource Manager](../powershell-azure-resource-manager.md).
 
 
-	Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.185.46
-	Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.188.221
+### <a name="2.-create-a-record-set"></a>2. Create a record set
 
-### 4\.認可變更
+You create record sets by using the `New-AzureRmDnsRecordSet` cmdlet. When creating a record set, you need to specify the record set name, the zone, the time to live (TTL), and the record type.
 
-認可對記錄集所做的變更。使用 `Set-AzureRmDnsRecordSet` 將記錄集的變更上傳到 Azure DNS。
+To create a record set in the apex of the zone (in this case, "contoso.com"), use the record name "@", including the quotation marks. This is a common DNS convention.
 
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+The following example creates a record set with the relative name "www" in the DNS Zone "contoso.com". The fully-qualified name of the record set is "www.contoso.com". The record type is "A", and the TTL is 60 seconds. After completing this step, you will have an empty "www" record set that is assigned to the variable *$rs*.
 
-### 5\.擷取記錄集
+    $rs = New-AzureRmDnsRecordSet -Name "www" -RecordType "A" -ZoneName "contoso.com" -ResourceGroupName "MyAzureResourceGroup" -Ttl 60
 
-您可以使用 `Get-AzureRmDnsRecordSet` 從 Azure DNS 擷取記錄集，如下列範例所示。
+#### <a name="if-a-record-set-already-exists"></a>If a record set already exists
 
-
-	Get-AzureRmDnsRecordSet –Name www –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+If a record set already exists, the command fails unless the *-Overwrite* switch is used. The *-Overwrite* option triggers a confirmation prompt, which can be suppressed by using the *-Force* switch.
 
 
-	Name              : www
-	ZoneName          : contoso.com
-	ResourceGroupName : MyAzureResourceGroup
-	Ttl               : 3600
-	Etag              : 68e78da2-4d74-413e-8c3d-331ca48246d9
-	RecordType        : A
-	Records           : {134.170.185.46, 134.170.188.221}
-	Tags              : {}
+    $rs = New-AzureRmDnsRecordSet -Name www -RecordType A -Ttl 300 -ZoneName contoso.com -ResouceGroupName MyAzureResouceGroup [-Tag $tags] [-Overwrite] [-Force]
 
 
-您也可以使用 nslookup 工具或其他 DNS 工具來查詢新的記錄集。
+In this example, you specify the zone by using the zone name and resource group name. Alternatively, you can specify a zone object, as returned by `Get-AzureRmDnsZone` or `New-AzureRmDnsZone`.
 
-如果您還沒有將網域委派給 Azure DNS 名稱伺服器，就必須明確指定區域的名稱、伺服器及位址。
+    $zone = Get-AzureRmDnsZone -Name contoso.com –ResourceGroupName MyAzureResourceGroup
+    $rs = New-AzureRmDnsRecordSet -Name www -RecordType A -Ttl 300 –Zone $zone [-Tag $tags] [-Overwrite] [-Force]
 
+`New-AzureRmDnsRecordSet` returns a local object that represents the record set that was created in Azure DNS.
 
-	nslookup www.contoso.com ns1-01.azure-dns.com
+### <a name="3.-add-a-record"></a>3. Add a record
 
-	Server: ns1-01.azure-dns.com
-	Address:  208.76.47.1
+To use the newly created "www" record set, you need to add records to it. You can add IPv4 *A* records to the "www" record set by using the following example. This example relies on the variable *$rs* that you set in the previous step.
 
-	Name:    www.contoso.com
-	Addresses:  134.170.185.46
-    	        134.170.188.221
-
-## 針對每一種類型建立含有單一記錄的記錄集
+Adding records to a record set by using `Add-AzureRmDnsRecordConfig` is an offline operation. Only the local variable *$rs* is updated.
 
 
-下列範例示範如何建立每一種記錄類型的記錄集。每個記錄集都會包含一筆記錄。
+    Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.185.46
+    Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.188.221
+
+### <a name="4.-commit-the-changes"></a>4. Commit the changes
+
+Commit the changes to the record set. Use `Set-AzureRmDnsRecordSet` to upload the changes to the record set to Azure DNS.
+
+    Set-AzureRmDnsRecordSet -RecordSet $rs
+
+### <a name="5.-retrieve-the-record-set"></a>5. Retrieve the record set
+
+You can retrieve the record set from Azure DNS by using `Get-AzureRmDnsRecordSet` as shown in the following example.
+
+
+    Get-AzureRmDnsRecordSet –Name www –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+
+
+    Name              : www
+    ZoneName          : contoso.com
+    ResourceGroupName : MyAzureResourceGroup
+    Ttl               : 3600
+    Etag              : 68e78da2-4d74-413e-8c3d-331ca48246d9
+    RecordType        : A
+    Records           : {134.170.185.46, 134.170.188.221}
+    Tags              : {}
+
+
+You can also use the nslookup tool or other DNS tools to query the new record set.
+
+If you have not yet delegated the domain to the Azure DNS name servers, you need to explicitly specify the name, server, and address for your zone.
+
+
+    nslookup www.contoso.com ns1-01.azure-dns.com
+
+    Server: ns1-01.azure-dns.com
+    Address:  208.76.47.1
+
+    Name:    www.contoso.com
+    Addresses:  134.170.185.46
+                134.170.188.221
+
+## <a name="create-a-record-set-of-each-type-with-a-single-record"></a>Create a record set of each type with a single record
+
+
+The following examples show how to create a record set of each record type. Each record set contains a single record.
 
 [AZURE.INCLUDE [dns-add-record-ps-include](../../includes/dns-add-record-ps-include.md)]
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[如何管理使用 PowerShell 的 DNS 區域](dns-operations-dnszones.md)
+[How to manage DNS zones using PowerShell](dns-operations-dnszones.md)
 
-[使用 PowerShell 管理 DNS 記錄集和記錄集](dns-operations-recordsets.md)
+[Manage DNS records and record sets by using PowerShell](dns-operations-recordsets.md)
 
-[使用 .NET SDK 自動化 Azure 作業](dns-sdk.md)
+[Automate Azure operations with .NET SDK](dns-sdk.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

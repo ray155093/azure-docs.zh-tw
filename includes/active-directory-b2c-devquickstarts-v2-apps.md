@@ -1,4 +1,6 @@
 > [AZURE.IMPORTANT]
-您無法為此使用已在傳統 [Azure 管理入口網站](https://manage.windowsazure.com/)上的 [應用程式] 索引標籤中註冊的應用程式。
+You cannot use applications registered in the **Applications** tab on the classic [Azure Management Portal](https://manage.windowsazure.com/) for this.
 
-<!----HONumber=Oct15_HO3-->
+<!--HONumber=Oct16_HO2-->
+
+

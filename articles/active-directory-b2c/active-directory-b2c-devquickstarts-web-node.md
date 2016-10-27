@@ -1,24 +1,28 @@
 <properties
-	pageTitle="將登入功能加入至 Azure B2C 的 Node.js Web 應用程式 | Microsoft Azure"
-	description="如何建置使用 B2C 租用戶登入使用者的 Node.js Web 應用程式。"
-	services="active-directory-b2c"
-	documentationCenter=""
-	authors="brandwe"
-	manager="msmbaldwin"
-	editor=""/>
+    pageTitle="Add sign-in to a Node.js web app for Azure B2C | Microsoft Azure"
+    description="How to build a Node.js web app that signs in users by using a B2C tenant."
+    services="active-directory-b2c"
+    documentationCenter=""
+    authors="brandwe"
+    manager="msmbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
+    ms.service="active-directory-b2c"
+    ms.workload="identity"
   ms.tgt_pltfrm="na"
-	ms.devlang="javascript"
-	ms.topic="hero-article"
-	ms.date="07/22/2016"
-	ms.author="brandwe"/>
+    ms.devlang="javascript"
+    ms.topic="hero-article"
+    ms.date="07/22/2016"
+    ms.author="brandwe"/>
 
 
-# Azure AD B2C：將登入功能加入至 Node.js Web 應用程式
 
-> [AZURE.WARNING] 我們深感抱歉，但本教學課程需要進行一些重要維護，所以我們決定休息一小段時間。我們的[開發人員指南](active-directory-b2c-overview.md)中會提供同等的 .NET 教學課程。
+# <a name="azure-ad-b2c:-add-sign-in-to-a-node.js-web-app"></a>Azure AD B2C: Add sign-in to a Node.js web app
 
-<!---HONumber=AcomDC_0727_2016-->
+> [AZURE.WARNING] Our deepest apologies, but his tutorial requires some important maintenance and we've decicided to take it down for a little while.  We have an equivalent .NET tutorial available in our [developer guide](active-directory-b2c-overview.md).
+
+
+<!--HONumber=Oct16_HO4-->
+
+

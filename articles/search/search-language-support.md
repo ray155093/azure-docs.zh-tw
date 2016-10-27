@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure 搜尋服務中建立多種語言的文件索引 | Microsoft Azure | 雲端託管搜尋服務"
-   description=" Azure 搜尋服務支援 56 種語言，運用來自 Lucene 的語言分析器和來自 Microsoft 的自然語言處理技術。"
+   pageTitle="Create an index for documents in multiple languages in Azure Search | Microsoft Azure | Hosted cloud search service"
+   description=" Azure Search supports 56 languages, leveraging language analyzers from Lucene and Natural Language Processing technology from Microsoft."
    services="search"
    documentationCenter=""
    authors="yahnoosh"
@@ -16,53 +16,57 @@
    ms.date="07/14/2016"
    ms.author="jlembicz"/>
 
-# 在 Azure 搜尋服務中建立多種語言的文件索引
+
+# <a name="create-an-index-for-documents-in-multiple-languages-in-azure-search"></a>Create an index for documents in multiple languages in Azure Search
 > [AZURE.SELECTOR]
-- [入口網站](search-language-support.md)
+- [Portal](search-language-support.md)
 - [REST](https://msdn.microsoft.com/library/azure/dn879793.aspx)
 - [.NET](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.analyzername.aspx)
 
-揭開語言分析器的強大功能，就如同在索引定義中的可搜尋欄位上設定一個屬性一樣簡單。您現在可以在入口網站中執行這個步驟。
+Unleashing the power of language analyzers is as easy as setting one property on a searchable field in the index definition. Now you can do this step in the portal.
 
-以下是 Azure 搜尋服務的 Azure 入口網站刀鋒視窗螢幕擷取畫面，可供使用者定義索引結構描述。在這個刀鋒視窗中，使用者可以建立所有欄位並設定各欄位的分析器屬性。
+Below are screenshots of the Azure Portal blades for Azure Search that allow users to define an index schema. From this blade, users can create all of the fields and set the analyzer property for each of them.
 
-> [AZURE.IMPORTANT] 如同在從頭建立新索引時，或將新欄位加入至現有索引時，您只能在欄位定義期間設定語言分析器。確保您建立欄位時完全指定所有的屬性 (包括分析器)。儲存變更後，您將無法編輯屬性或變更分析器類型。
+> [AZURE.IMPORTANT] You can only set a language analyzer during field definition, as in when creating a new index from the ground up, or when adding a new field to an existing index. Make sure you fully specify all attributes, including the analyzer, while creating the field. You won't be able to edit the attributes or change the analyzer type once you save your changes.
 
-## 定義新的欄位定義
+## <a name="define-a-new-field-definition"></a>Define a new field definition
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)並開啟您的搜尋服務的服務刀鋒視窗。
-2. 在服務儀表板頂端的命令列中按一下 [新增索引] 即可開始新的索引，或開啟現有索引以在您加入至現有索引的新欄位上設定分析器。
-3. [欄位] 刀鋒視窗隨即出現，顯示可供您定義索引結構描述的選項，包括用於選擇語言分析器的 [分析器] 索引標籤。
-4. 在 [欄位] 中，藉由提供名稱、選擇資料類型，以及設定屬性來開始欄位定義，進而將欄位標示為可全文檢索搜尋、可在搜尋結果中擷取，可用於 facet 導覽結構中、可排序等等。
-5. 在移到下一個欄位之前，開啟 [分析器] 索引標籤。
+1. Sign in to the [Azure Portal](https://portal.azure.com) and open the service blade of your search service.
+2. Click **Add index** in the command bar at the top of the service dashboard to start a new index, or open an existing index to set an analyzer on new fields you're adding to an existing index.
+3. The Fields blade appears, giving you options for defining the schema of the index, including the Analyzer tab used for choosing a language analyzer.
+4. In Fields, start a field definition by providing a name, choosing the data type, and setting  attributes to mark the field as full text searchable, retrievable in search results, usable in facet navigation structures, sortable, and so forth. 
+5. Before moving on to the next field, open the **Analyzer** tab. 
 
    
-![][1] *若要選取分析器，請按一下 [欄位] 刀鋒視窗上的 [分析器] 索引標籤*
+![][1]
+*To select an analyzer, click the Analyzer tab on the Fields blade*
 
-## 選擇分析器
+## <a name="choose-an-analyzer"></a>Choose an analyzer
 
-6. 捲動以尋找您要定義的欄位。
-7. 如果您沒有將此欄位標示為搜尋，請立即按一下此核取方塊將其標示為 **Searchable**。
-8. 按一下 [分析器] 區域以顯示可用的分析器清單。
-9. 選擇您要使用的分析器。
+6. Scroll to find the field you are defining. 
+7. If you haven't marked the field as searchable, click the checkbox now to mark it as **Searchable**.
+8. Click the Analyzer area to display the list of available analyzers.
+9. Choose the analyzer you want to use.
 
-![][2] *為每個欄位選取其中一個支援的分析器*
+![][2]
+*Select one of the supported analyzers for each field*
 
-根據預設，所有可搜尋的欄位都可使用[標準 Lucene 分析器](http://lucene.apache.org/core/4_10_0/analyzers-common/org/apache/lucene/analysis/standard/StandardAnalyzer.html) (語言中立)。若要檢視支援分析器的完整清單，請參閱 [Azure 搜尋服務的語言支援](https://msdn.microsoft.com/library/azure/dn879793.aspx)。
+By default, all searchable fields use the [Standard Lucene analyzer](http://lucene.apache.org/core/4_10_0/analyzers-common/org/apache/lucene/analysis/standard/StandardAnalyzer.html) which is language agnostic. To view the full list of supported analyzers, see [Language Support in Azure Search](https://msdn.microsoft.com/library/azure/dn879793.aspx).
 
-一旦針對某個欄位選取語言分析器，它將用於該欄位的每個索引和搜尋要求。使用不同的分析器針對多個欄位發出查詢時，查詢將由每個欄位的右分析器獨立處理。
+Once the language analyzer is selected for a field, it will be used with each indexing and search request for that field. When a query is issued against multiple fields using different analyzers, the query will be processed independently by the right analyzers for each field.
 
-許多 Web 和行動應用程式使用不同的語言來服務世界各地的使用者。有可能藉由為每種支援語言建立一個欄位，以定義這類案例的索引。
+Many web and mobile applications serve users around the globe using different languages. It’s possible to define an index for a scenario like this by creating a field for each language supported.
 
-![][3] *每種支援語言都有一個描述欄位的索引定義*
+![][3]
+*Index definition with a description field for each language supported*
 
-如果已知發出查詢之代理程式的語言，則可使用 **searchFields** 查詢參數將搜尋要求的範圍限制為特定欄位。下列查詢只會針對波蘭文描述發出：
+If the language of the agent issuing a query is known, a search request can be scoped to a specific field using the **searchFields** query parameter. The following query will be issued only against the description in Polish:
 
 `https://[service name].search.windows.net/indexes/[index name]/docs?search=darmowy&searchFields=description_pl&api-version=2015-02-28`
 
-您可以使用 [搜尋總管] 貼上類似上述的查詢，便可從入口網站查詢您的索引。從服務刀鋒視窗的命令列可以存取搜尋總管。如需詳細資料，請參閱[在入口網站查詢 Azure 搜尋服務索引](search-explorer.md)。
+You can query your index from the portal, using **Search explorer** to paste in a query similar to the one shown above. Search explorer is available from the command bar in the service blade. See [Query your Azure Search index in the portal](search-explorer.md) for details.
 
-有時候不知道發出查詢之代理程式的語言，在此情況下，可以針對所有欄位同時發出查詢。如有需要，可以使用[評分設定檔](https://msdn.microsoft.com/library/azure/dn798928.aspx)來定義特定語言之結果的喜好設定。在下面範例中，相對於波蘭文和法文的相符項目，在英文描述中找到的相符項目會有較高的評分：
+Sometimes the language of the agent issuing a query is not known, in which case the query can be issued against all fields simultaneously. If needed, preference for results in a certain language can be defined using [scoring profiles](https://msdn.microsoft.com/library/azure/dn798928.aspx). In the example below, matches found in the description in English will be scored higher relative to matches in Polish and French:
 
     "scoringProfiles": [
       {
@@ -75,11 +79,15 @@
 
 `https://[service name].search.windows.net/indexes/[index name]/docs?search=Microsoft&scoringProfile=englishFirst&api-version=2015-02-28`
 
-如果您是 .NET 開發人員，請注意您可以使用 [Azure 搜尋服務 .NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Search) 來設定語言分析器。最新版本包含對 Microsoft 語言分析器的支援。
+If you're a .NET developer, note that you can configure language analyzers using the [Azure Search .NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Search). The latest release includes support for the Microsoft language analyzers as well.
 
 <!-- Image References -->
 [1]: ./media/search-language-support/AnalyzerTab.png
 [2]: ./media/search-language-support/SelectAnalyzer.png
 [3]: ./media/search-language-support/IndexDefinition.png
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

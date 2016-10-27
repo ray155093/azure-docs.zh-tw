@@ -1,11 +1,14 @@
-## 其他資源
+## <a name="additional-resources"></a>Additional Resources
 
-- [Azure AD 開發人員指南](../articles/active-directory/active-directory-developers-guide.md)
-- [GitHub 上的 Azure AD 範例](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=active-directory)
+- [The Azure AD Developer's Guide](../articles/active-directory/active-directory-developers-guide.md)
+- [Azure AD Samples on GitHub](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=active-directory)
 - [CloudIdentity.com](http://cloudidentity.com)
 
-## 取得產品的安全性更新
+## <a name="get-security-updates-for-our-products"></a>Get security updates for our products
 
-我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.
 
-<!---HONumber=AcomDC_0608_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

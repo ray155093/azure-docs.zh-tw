@@ -1,33 +1,38 @@
 <properties
-	pageTitle="具有異常登入活動的使用者"
-	description="指出已識別出異常登入活動的所有使用者帳戶的報告。"
-	services="active-directory"
-	documentationCenter=""
-	authors="SSalahAhmed"
-	manager="gchander"
-	editor=""/>
+    pageTitle="Users with anomalous sign in activity"
+    description="A report that indicates all user accounts for which anomalous sign in activity has been identified."
+    services="active-directory"
+    documentationCenter=""
+    authors="SSalahAhmed"
+    manager="gchander"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="03/04/2016"
-	ms.author="saah;kenhoff"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="03/04/2016"
+    ms.author="saah;kenhoff"/>
 
-# 具有異常登入活動的使用者
-這份彙總報告會將來自下列報告的可疑登入合併為一份報告：
 
-<ul><li>從不明來源登入</li>
-<li>在多次失敗後登入</li>
-<li>從多個地理區域登入</li>
-<li>從具有可疑活動的 IP 位址登入</li>
-<li>從可能受感染的裝置登入</li>
-<li>異常的登入活動</li>
+# <a name="users-with-anomalous-sign-in-activity"></a>Users with anomalous sign in activity
+This is an aggregate report that combines suspicious sign-ins from the following reports:
+
+<ul><li>Sign ins from unknown sources</li>
+<li>Sign-ins after multiple failures</li>
+<li>Sign-ins from multiple geographies</li>
+<li>Sign-ins from IP addresses with suspicious activity</li>
+<li>Sign-ins from possibly infected devices</li>
+<li>Irregular sign-in activity</li>
 </ul>
 
 
-![具有異常登入活動的使用者](./media/active-directory-reporting-users-with-anomalous-sign-in-activity/usersWithAnomalousSignInActivity.PNG)
+![Users with anomalous sign in activity](./media/active-directory-reporting-users-with-anomalous-sign-in-activity/usersWithAnomalousSignInActivity.PNG)
 
-<!---HONumber=AcomDC_0309_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

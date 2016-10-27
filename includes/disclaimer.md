@@ -1,3 +1,7 @@
-若要使用此功能和其他新的 Azure 功能，請註冊[免費預覽](https://account.windowsazure.com/PreviewFeatures)。
+To use this feature and other new Azure capabilities, sign up for the [free preview](https://account.windowsazure.com/PreviewFeatures).
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,33 +1,37 @@
 
 <!--author=SharS last changed: 9/15/15-->
 
-#### 若要加入或修改 StorSimple 備份排程
+#### <a name="to-add-or-modify-a-storsimple-backup-schedule"></a>To add or modify a StorSimple backup schedule
 
-1. 在裝置的 [**快速入門**] 頁面上，按一下 [**備份原則**] 索引標籤。這會將您帶到 [**備份原則**] 頁面。
+1. On the device **Quick Start** page, click the **Backup Policies** tab. This will take you to the **Backup Policies** page.
 
-2. 在表格式的原則清單中，選取並按一下您想要編輯的原則。
+2. In the tabular listing of the policies, select and click the policy that you want to edit.
 
-3. 在 [**一般**] 之下，您可以修改備份原則名稱。
+3. Under **general**, you can modify the backup policy name.
 
-4. 在 [**排程**] 之下，按一下 [**管理排程**] 來新增或移除排程。在 [**管理排程**] 對話方塊中，執行下列動作：
+4. Under **schedules**, click **manage schedules** to add or remove schedules. In the **Manage Schedule** dialog box, do the following:
 
-    1. 選擇現有的排程或建立新的排程。
+    1. Choose an existing schedule or create a new schedule.
 
-    2. 選取備份類型為本機或雲端快照集。
+    2. Select the type of backup as local or cloud snapshot.
 
-    3. 指定備份頻率、保留期，以及排程的開始時間。
+    3. Specify the backup frequency, retention, and starting time of the schedule.
 
-    4. 啟用或停用排程。
+    4. Enable or disable the schedule.
 
-    5. 按一下核取圖示 ![核取圖示](./media/storsimple-add-modify-backup-schedule/HCS_CheckIcon-include.png) 以儲存排程的變更。
+    5. Click the check icon ![check icon](./media/storsimple-add-modify-backup-schedule/HCS_CheckIcon-include.png) to save the changes to the schedule.
 
-5. 在 [**磁碟區**] 區段，新增或移除磁碟機到此原則。
+5. In the **Volumes** section, add or remove the volumes to this policy.
 
-6. 將變更儲存到此原則。
+6. Save the changes to this policy.
 
-7. 系統將提示您進行確認。按一下 [**確定**] 儲存原則。
+7. You will prompted for confirmation. Click **OK** to save the policy.
 
-[**備份原則**] 頁面將會更新以儲存原則的變更。
+The **Backup Policies** page will be updated to save the changes to the policy.
  
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

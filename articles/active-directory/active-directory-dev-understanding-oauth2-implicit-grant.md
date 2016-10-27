@@ -1,6 +1,6 @@
 <properties
-   pageTitle="了解 Azure Active Directory 中的 OAuth2 隱含授與流程 | Microsoft Azure"
-   description="深入了解 Azure Active Directory 的 OAuth2 隱含授與流程實作，以及它是否適合您的應用程式。"
+   pageTitle="Understanding the OAuth2 implicit grant flow in Azure Active Directory | Microsoft Azure"
+   description="Learn more about Azure Active Directory's implementation of the OAuth2 implicit grant flow, and whether it's right for your application."
    services="active-directory"
    documentationCenter="dev-center-name"
    authors="vibronet"
@@ -16,51 +16,52 @@
    ms.date="08/17/2016"
    ms.author="vittorib;bryanla"/>
 
-# 了解 Azure Active Directory (AD) 中的 OAuth2 隱含授與流程
 
-OAuth2 隱含授與是 OAuth2 規格中安全性疑慮最多的授與方式，因此聲名狼藉。然而，這卻是 ADAL JS 所實作的方法，也是我們建議用來撰寫 SPA 應用程式的方法。為何會這樣呢？ 這全是權衡利弊之後的結果︰而且事實也證明，對於透過 JavaScript 從瀏覽器使用 Web API 的應用程式來說，隱含授與是您所能找到的最好方法。
+# <a name="understanding-the-oauth2-implicit-grant-flow-in-azure-active-directory-(ad)"></a>Understanding the OAuth2 implicit grant flow in Azure Active Directory (AD)
 
-## 什麼是 OAuth2 隱含授與？
+The OAuth2 implicit grant is notorious for being the grant with the longest list of security concerns in the OAuth2 specification. And yet, that is the approach implemented by ADAL JS and the one we recommend when writing SPA applications. What gives? It’s all a matter of tradeoffs: and as it turns out, the implicit grant is the best approach you can pursue for applications that consume a Web API via JavaScript from a browser.
 
-典型的 [OAuth2 授權碼授與](https://tools.ietf.org/html/rfc6749#section-1.3.1)是使用兩個不同端點的授權授與。授權端點會用於使用者互動階段，進而產生授權碼。接著，用戶端會使用權杖端點來交換存取權杖的代碼，而且經常也會交換重新整理權杖。Web 應用程式必須向權杖端點提交自己的應用程式認證，授權伺服器才能驗證用戶端。
+## <a name="what-is-the-oauth2-implicit-grant?"></a>What is the OAuth2 implicit grant?
 
-[OAuth2 隱含授與](https://tools.ietf.org/html/rfc6749#section-1.3.2)是可讓用戶端直接從授權端點取得存取權杖 (若為 [OpenId Connect](http://openid.net/specs/openid-connect-core-1_0.html)，還會取得 id\_token)，而不必連絡權杖端點並驗證用戶端應用程式的一個變體。這個變體是特別針對在 Web 瀏覽器中執行的 JavaScript 型應用程式所設計︰在原始的 OAuth2 規格中，權杖會在 URI 片段中傳回。這可讓權杖位元可供用戶端中的 JavaScript 程式碼使用，卻又保證權杖位元不會包含在朝向伺服器的重新導向中。透過瀏覽器傳回權杖會直接從授權端點重新導向。它也有不需要跨原始來源呼叫的優點，如果需要 JavaScript 應用程式才能連絡權杖端點，就需要這些呼叫。
+The quintessential [OAuth2 authorization code grant](https://tools.ietf.org/html/rfc6749#section-1.3.1) is the authorization grant which uses two separate endpoints. The authorization endpoint is used for the user interaction phase, which results in an authorization code. The token endpoint is then used by the client for exchanging the code for an access token, and often a refresh token as well. Web applications are required to present their own application credentials to the token endpoint, so that the authorization server can authenticate the client.
 
-OAuth2 隱含授與的重要特性就是，這類流程絕對不會將重新整理權杖傳回到用戶端的事實。正如下一節將會說明的內容，這實際上是不必要的，而且事實上會成為安全性問題。
+The [OAuth2 implicit grant](https://tools.ietf.org/html/rfc6749#section-1.3.2) is a variant allowing a client to obtain an access token (and id_token, in the case of [OpenId Connect](http://openid.net/specs/openid-connect-core-1_0.html)) directly from the authorization endpoint, without contacting the token endpoint nor authenticating the client application. This variant was specifically designed for JavaScript based applications running in a Web browser: in the original OAuth2 specification, tokens are returned in a URI fragment. That makes the token bits available to the JavaScript code in the client, but it guarantees they won’t be included in redirects toward the server. Returning tokens via browser redirects directly from the authorization endpoint. It also has the advantage of eliminating any requirements for cross origin calls, which are necessary if the JavaScript application is required to contact the token endpoint.
 
-## OAuth2 隱含授與的適用案例
+An important characteristic of the OAuth2 implicit grant is the fact that such flows never return refresh tokens to the client. As we will see in the next section, that isn’t really necessary and would in fact be a security issue.
 
-正如 OAuth2 規格本身所宣告的，設計出隱含授與是為了實現使用者代理程式應用程式，也就是說，在瀏覽器內執行的 JavaScript 應用程式。這類應用程式的鮮明這特徵是，JavaScript 程式碼可用於存取伺服器資源 (通常是 Web API) 以及相應地更新應用程式 UX。請想想 Gmail 或 Outlook Web Access 之類的應用程式︰當您選取收件匣中的訊息時，只有訊息視覺化面板會變更以顯示新的選取內容，該頁面的其餘部分則維持不變。這明顯不同於傳統的重新導向型 Web 應用程式，在後者中，每個使用者互動都會造成整頁回傳，並讓伺服器針對整頁轉譯做出新的回應。
+## <a name="suitable-scenarios-for-the-oauth2-implicit-grant"></a>Suitable scenarios for the OAuth2 implicit grant
 
-採用極端 JavaScript 型方法的應用程式稱為單一頁面應用程式 (SPA)︰其概念是，這些應用程式只會提供初始的 HTML 網頁和相關聯的 JavaScript，至於所有後續的互動，則由透過 JavaScript 所執行的 Web API 呼叫來推動。不過，應用程式大多是由回傳所驅動，但偶爾會執行 JS 呼叫的混合式方法也並非罕見；關於隱含流程使用的討論也與這些方法有關。
+As the OAuth2 specification itself declares, the implicit grant has been devised to enable user-agent applications – that is to say, JavaScript applications executing within a browser. The defining characteristic of such applications is that JavaScript code is used for accessing server resources (typically a Web API) and for updating the application UX accordingly. Think of applications like Gmail or Outlook Web Access: when you select a message from your inbox, only the message visualization panel changes to display the new selection, while the rest of the page remains unmodified. This is in contrast with traditional redirect-based Web apps, where every user interaction results in a full page postback and a full page rendering of the new server response.
 
-重新導向型應用程式通常會透過 Cookie 來保護其要求，不過，這種方法並非也適用於 JavaScript 應用程式。Cookie 只會針對其產生網域發生作用，但 JavaScript 呼叫卻可能導向到其他網域。事實上，情況往往是如此︰請想想叫用 Microsoft Graph API、Office API、Azure API 的應用程式，這些應用程式全都位於提供應用程式的網域之外。JavaScript 應用程式的發展趨勢是完全沒有後端，全部依靠第三方 Web API 來實作其商務功能。
+Applications that take the JavaScript based approach to its extreme are called Single Page Applications, or SPAs: the idea is that those applications only serve an initial HTML page and associated JavaScript, with all subsequent interactions being driven by Web API calls performed via JavaScript. However, hybrid approaches, where the application is mostly postback-driven but performs occasional JS calls, are not uncommon – the discussion about implicit flow usage is relevant for those as well.
 
-目前，保護 Web API 呼叫的慣用方法是使用 OAuth2 持有人權杖方法，在此方法中，每個呼叫都會伴隨一個 OAuth2 存取權杖。Web API 會檢查傳入的存取權杖，而且如果它在權杖中找到所需的範圍，便會授與所要求作業的存取權。隱含流程提供了方便的機制供 JavaScript 應用程式取得 Web API 的存取權杖，並提供很多關於 Cookie 的優點︰
+Redirect-based applications typically secure their requests via cookies, however, that approach does not work as well for JavaScript applications. Cookies only work against the domain they have been generated for, while JavaScript calls might be directed toward other domains. In fact, that will frequently be the case: think of applications invoking Microsoft Graph API, Office API, Azure API – all residing outside the domain from where the application is served. A growing trend for JavaScript applications is to have no backend at all, relying 100% on 3rd party Web APIs to implement their business function.
 
-- 可以可靠地取得權杖而不需要跨原始來源呼叫 – 強制註冊權杖要傳回到的重新導向 URI 可保證權杖不會移到其他位置
-- JavaScript 應用程式可以針對任意數量的鎖定 Web API 取得所需數量的存取權杖 – 不限網域
-- 工作階段或本機儲存體等 HTML5 功能可授與權杖快取和存留期管理的完全控制權，但是應用程式則無法處理 Cookie 管理
-- 存取權杖不容易遭受跨網站偽造要求 (CSRF) 攻擊
+Currently, the preferred method of protecting calls to a Web API is to use the OAuth2 bearer token approach, where every call is accompanied by an OAuth2 access token. The Web API examines the incoming access token and, if it finds in it the necessary scopes, it grants access to the requested operation. The implicit flow provides a convenient mechanism for JavaScript applications to obtain access tokens for a Web API, offering numerous advantages in respect to cookies:
 
-隱含授與流程不會簽發重新整理權杖，其原因大多是安全性考量。重新整理權杖的範圍不像存取權杖那麼窄，前者會授與更多權力，因此萬一洩露出去，將會造成更大的損害。在隱含流程中，權杖會在 URL 中傳遞，因此遭到攔截的風險高於授權碼授與。
+- Tokens can be reliably obtained without any need for cross origin calls – mandatory registration of the redirect URI to which tokens are return guarantees that tokens are not displaced
+- JavaScript applications can obtain as many access tokens as they need, for as many Web APIs they target – with no restriction on domains
+- HTML5 features like session or local storage grant full control over token caching and lifetime management, whereas cookies management is opaque to the app
+- Access tokens aren’t susceptible to Cross-site request forgery (CSRF) attacks
 
-不過請注意，JavaScript 應用程式有另一種可任其處置的機制，可用來更新存取權杖，而不會重複提示使用者提供認證。應用程式可以使用隱藏的 iframe 來針對 Azure AD 的授權端點執行新的權杖要求︰只要瀏覽器仍有針對 Azure AD 網域作用的工作階段 (read: 有工作階段 Cookie)，驗證要求就可以順利執行而不需要使用者互動。
+The implicit grant flow does not issue refresh tokens, mostly for security reasons. A refresh token isn’t as narrowly scoped as access tokens, granting far more power hence inflicting far more damage in case it is leaked out. In the implicit flow, tokens are delivered in the URL, hence the risk of interception is higher than in the authorization code grant.
 
-此模型會對 JavaScript 應用程式授與能力，使其能夠獨立更新存取權杖，甚至是取得新 API 的新存取權杖 (前提是使用者已同意)。這可避免取得、維護和保護高價值構件 (例如重新整理權杖) 的額外負擔。讓無訊息更新得以實現的構件 (Azure AD 工作階段 Cookie) 是在應用程式之外進行管理。這種方法的另一個優點是使用者可以使用任何已登入 Azure AD，並在任何瀏覽器索引標籤中執行的應用程式，從 Azure AD 登出。這會導致 Azure AD 工作階段 Cookie 遭到刪除，而且 JavaScript 應用程式會自動失去為已登出使用者更新權杖的能力。
+However, note that a JavaScript application has another mechanism at its disposal for renewing access tokens without repeatedly prompting the user for credentials. The application can use a hidden iframe to perform new token requests against the authorization endpoint of Azure AD: as long as the browser still has an active session (read: has a session cookie) against the Azure AD domain, the authentication request can successfully occur without any need for user interaction. 
 
-## 我的應用程式適用隱含授與嗎？
+This model grants the JavaScript application the ability to independently renew access tokens and even acquire new ones for a new API (provided that the user previously consented for them. This avoids the added burden of acquiring, maintaining and protecting a high value artifact such as a refresh token. The artifact which makes the silent renewal possible, the Azure AD session cookie, is managed outside of the application. Another advantage of this approach is a user can sign out from Azure AD, using any of the applications signed into Azure AD, running in any of the browser tabs. This results in the deletion of the Azure AD session cookie, and the JavaScript application will automatically lose the ability to renew tokens for the signed out user.
 
-隱含授與所帶來的風險多過其他授與。您需要注意的地方均有詳細記錄 (例如，請參閱[在隱含流程中誤用存取權杖來模擬資源擁有者][OAuth2-Spec-Implicit-Misuse]和 [OAuth 2.0 威脅模型和安全性考量][OAuth2-Threat-Model-And-Security-Implications])。不過，風險概況之所以較高，主要是因為它要啟用執行作用中程式碼的應用程式，並由遠端資源提供給瀏覽器。如果您正在規劃 SPA 架構，沒有後端元件或想要透過 JavaScript 叫用 Web API，則建議使用隱含流程來取得權杖。
+## <a name="is-the-implicit-grant-suitable-for-my-app?"></a>Is the implicit grant suitable for my app?
 
-如果應用程式是原生用戶端，則不適用隱含流程。原生用戶端環境中沒有Azure AD 工作階段 Cookie，將會讓應用程式沒有辦法維持長時間執行的工作階段。這表示應用程式在取得新資源的存取權杖時會重複提示使用者。
+The implicit grant presents more risks than other grants. The areas you need to pay attention to are well documented (see for example [Misuse of Access Token to Impersonate Resource Owner in Implicit Flow][OAuth2-Spec-Implicit-Misuse] and [OAuth 2.0 Threat Model and Security Considerations][OAuth2-Threat-Model-And-Security-Implications]). However, the higher risk profile is largely due to the fact that it is meant to enable applications that execute active code, served by a remote resource to a browser. If you are planning an SPA architecture, have no backend components or intend to invoke a Web API via JavaScript, use of the implicit flow for token acquisition is recommended.
 
-如果您要開發含有後端的 Web 應用程式，並從它的後端程式碼使用 API，則也不適用隱含流程。其他授與可提供您更多權力。例如，OAuth2 用戶端認證授與可讓您取得權杖以反映指派給應用程式本身 (而不是使用者委派) 的權限。這表示用戶端可在使用者不積極參與工作階段的情況下也能維護資源的程式設計存取等等。不只如此，這類授與也能提供較高的安全性保證。例如，存取權杖永遠不會透過使用者瀏覽器來傳輸，它們不會因為儲存在瀏覽器歷程記錄中而發生危險等等。用戶端應用程式也可以在要求權杖時執行增強式驗證。
+If your application is a native client, the implicit flow isn’t a great fit. The absence of the Azure AD session cookie in the context of a native client deprives your application from the means of maintaining a long lived session. Which means your application will repeatedly prompt the user when obtaining access tokens for new resources.
 
-## 後續步驟
+If you are developing a Web application which includes a backend, and consuming an API from its backend code, the implicit flow is also not a good fit. Other grants give you far more power. For example, the OAuth2 client credentials grant provides the ability to obtain tokens that reflect the permissions assigned to the application itself, as opposed to user delegations. This means the client has the ability to maintain programmatic access to resources even when a user is not actively engaged in a session, and so on. Not only that, but such grants give higher security guarantees. For instance, access tokens never transit through the user browser, they don’t risk being saved in the browser history, and so on. The client application can also perform strong authentication when requesting a token.
 
-- 如需開發人員資源的完整清單，包括 Azure AD 所支援的通訊協定和 OAuth2 授權授與流程的參考資訊，請參閱 [Azure AD 開發人員指南][AAD-Developers-Guide]
-- 如需更加深入地了解應用程式整合程序，請參閱[如何整合應用程式與 Azure AD][ACOM-How-To-Integrate]。
+## <a name="next-steps"></a>Next steps
+
+- For a complete list of developer resources, including reference information for the protocols and OAuth2 authorization grant flows support by Azure AD, refer to the [Azure AD Developer's Guide][AAD-Developers-Guide]
+- See [How to integrate an application with Azure AD] [ACOM-How-To-Integrate] for additional depth on the application integration process.
 
 <!--Image references-->
 
@@ -68,7 +69,12 @@ OAuth2 隱含授與的重要特性就是，這類流程絕對不會將重新整�
 [AAD-Developers-Guide]: active-directory-developers-guide.md
 [ACOM-How-And-Why-Apps-Added-To-AAD]: active-directory-how-applications-are-added.md
 [ACOM-How-To-Integrate]: active-directory-how-to-integrate.md
-[OAuth2-Spec-Implicit-Misuse]: https://tools.ietf.org/html/rfc6749#section-10.16
+[OAuth2-Spec-Implicit-Misuse]: https://tools.ietf.org/html/rfc6749#section-10.16 
 [OAuth2-Threat-Model-And-Security-Implications]: https://tools.ietf.org/html/rfc6819
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

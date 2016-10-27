@@ -1,244 +1,249 @@
 <properties
-	pageTitle="Azure Functions DocumentDB 繫結 | Microsoft Azure"
-	description="了解如何在 Azure Functions 中使用 Azure DocumentDB 繫結。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"/>
+    pageTitle="Azure Functions DocumentDB bindings | Microsoft Azure"
+    description="Understand how to use Azure DocumentDB bindings in Azure Functions."
+    services="functions"
+    documentationCenter="na"
+    authors="christopheranderson"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="08/22/2016"
-	ms.author="chrande; glenga"/>
+    ms.service="functions"
+    ms.devlang="multiple"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="08/22/2016"
+    ms.author="chrande; glenga"/>
 
-# Azure Functions DocumentDB 繫結
+
+# <a name="azure-functions-documentdb-bindings"></a>Azure Functions DocumentDB bindings
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure DocumentDB 繫結進行設定及撰寫程式碼。
+This article explains how to configure and code Azure DocumentDB bindings in Azure Functions. 
 
-[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
 
-## <a id="docdbinput"></a>Azure DocumentDB 輸入繫結
+## <a name="<a-id="docdbinput"></a>-azure-documentdb-input-binding"></a><a id="docdbinput"></a> Azure DocumentDB input binding
 
-輸入繫結可從 DocumentDB 集合載入文件，並將它直接傳遞至您的繫結。您可以根據叫用該函式的觸發程序來判斷文件識別碼。在 C# 函式中，當函式成功結束時，會將記錄所做的任何變更自動傳回集合。
+Input bindings can load a document from a DocumentDB collection and pass it directly to your binding. The document id can be determined based on the trigger that invoked the function. In a C# function, any changes made to the record will be automatically sent back to the collection when the function exits successfully.
 
-#### DocumentDB 輸入繫結的 function.json
+#### <a name="function.json-for-documentdb-input-binding"></a>function.json for DocumentDB input binding
 
-「function.json」檔案提供下列屬性：
+The *function.json* file provides the following properties:
 
-- `name`︰函式程式碼中用於文件的變數名稱。
-- `type`︰必須設定為 "documentdb"。
-- `databaseName`︰包含文件的資料庫。
-- `collectionName`︰包含文件的集合。
-- `id`︰要擷取之文件的識別碼。此屬性支援類似於 "{queueTrigger}" 的繫結，會將佇列訊息的字串值做為文件識別碼。
-- `connection`︰此字串必須是針對您的 DocumentDB 帳戶設定為端點的「應用程式設定」。如果您是從 [整合] 索引標籤選擇您的帳戶，系統將會為您建立新的應用程式設定，其名稱會採用下列格式：yourAccount\_DOCUMENTDB。如果您需要手動建立應用程式設定，則實際的連接字串必須採用下列格式：AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;。
-- `direction︰必須設為「"in"」。
+- `name` : Variable name used in function code for the document.
+- `type` : must be set to "documentdb".
+- `databaseName` : The database containing the document.
+- `collectionName` : The collection containing the document.
+- `id` : The Id of the document to retrieve. This property supports bindings similar to "{queueTrigger}", which will use the string value of the queue message as the document Id.
+- `connection` : This string must be an Application Setting set to the endpoint for your DocumentDB account. If you choose your account from the Integrate tab, a new App setting will be created for you with a name that takes the following form, yourAccount_DOCUMENTDB. If you need to manually create the App setting, the actual connection string must take the following form, AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;.
+- `direction  : must be set to *"in"*.
 
-範例「function.json」：
+Example *function.json*:
  
-	{
-	  "bindings": [
-	    {
-	      "name": "document",
-	      "type": "documentdb",
-	      "databaseName": "MyDatabase",
-	      "collectionName": "MyCollection",
-	      "id" : "{queueTrigger}",
-	      "connection": "MyAccount_DOCUMENTDB",     
-	      "direction": "in"
-	    }
-	  ],
-	  "disabled": false
-	}
+    {
+      "bindings": [
+        {
+          "name": "document",
+          "type": "documentdb",
+          "databaseName": "MyDatabase",
+          "collectionName": "MyCollection",
+          "id" : "{queueTrigger}",
+          "connection": "MyAccount_DOCUMENTDB",     
+          "direction": "in"
+        }
+      ],
+      "disabled": false
+    }
 
-#### C# 佇列觸發程序的 Azure DocumentDB 輸入程式碼範例
+#### <a name="azure-documentdb-input-code-example-for-a-c#-queue-trigger"></a>Azure DocumentDB input code example for a C# queue trigger
  
-使用上述的 function.json 範例，DocumentDB 輸入繫結會擷取文件 (包含符合佇列訊息字串的識別碼)，並將它傳遞至 'document' 參數。如果找不到該文件，則 'document' 參數是 null。當函式結束時，文件隨後會以新的文字值更新。
+Using the example function.json above, the DocumentDB input binding will retrieve the document with the id that matches the queue message string and pass it to the 'document' parameter. If that document is not found, the 'document' parameter will be null. The document is then updated with the new text value when the function exits.
  
-	public static void Run(string myQueueItem, dynamic document)
-	{   
-	    document.text = "This has changed.";
-	}
+    public static void Run(string myQueueItem, dynamic document)
+    {   
+        document.text = "This has changed.";
+    }
 
-#### F# 佇列觸發程序的 Azure DocumentDB 輸入程式碼範例
+#### <a name="azure-documentdb-input-code-example-for-an-f#-queue-trigger"></a>Azure DocumentDB input code example for an F# queue trigger
 
-使用上述的 function.json 範例，DocumentDB 輸入繫結會擷取文件 (包含符合佇列訊息字串的識別碼)，並將它傳遞至 'document' 參數。如果找不到該文件，則 'document' 參數是 null。當函式結束時，文件隨後會以新的文字值更新。
+Using the example function.json above, the DocumentDB input binding will retrieve the document with the id that matches the queue message string and pass it to the 'document' parameter. If that document is not found, the 'document' parameter will be null. The document is then updated with the new text value when the function exits.
 
-	open FSharp.Interop.Dynamic
-	let Run(myQueueItem: string, document: obj) =
-	    document?text <- "This has changed."
+    open FSharp.Interop.Dynamic
+    let Run(myQueueItem: string, document: obj) =
+        document?text <- "This has changed."
 
-您會需要 `project.json` 檔案，以使用 NuGet 指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` 封裝做為封裝相依性，例如︰
+You will need a `project.json` file that uses NuGet to specify the `FSharp.Interop.Dynamic` and `Dynamitey` packages as package dependencies, like this:
 
-	{
-	  "frameworks": {
-	    "net46": {
-	      "dependencies": {
-	        "Dynamitey": "1.0.2",
-	        "FSharp.Interop.Dynamic": "3.0.0"
-	      }
-	    }
-	  }
-	}
+    {
+      "frameworks": {
+        "net46": {
+          "dependencies": {
+            "Dynamitey": "1.0.2",
+            "FSharp.Interop.Dynamic": "3.0.0"
+          }
+        }
+      }
+    }
 
-這會使用 NuGet 來擷取相依性，並會在指令碼中加以參考。
+This will use NuGet to fetch your dependencies and will reference them in your script.
 
-#### Node.js 佇列觸發程序的 Azure DocumentDB 輸入程式碼範例
+#### <a name="azure-documentdb-input-code-example-for-a-node.js-queue-trigger"></a>Azure DocumentDB input code example for a Node.js queue trigger
  
-使用上述範例 function.json 時，DocumentDB 輸入繫結會擷取識別碼與佇列訊息字串相符的文件，然後將它傳遞給 `documentIn` 繫結屬性。在 Node.js 函式中，更新的文件不會傳回至集合。不過，您可以將輸入繫結直接傳遞給名為 `documentOut` 的 DocumentDB 輸出繫結以支援更新。這個程式碼範例會更新輸入文件的 text 屬性，並將它設定為輸出文件。
+Using the example function.json above, the DocumentDB input binding will retrieve the document with the id that matches the queue message string and pass it to the `documentIn` binding property. In Node.js functions, updated documents are not sent back to the collection. However, you can pass the input binding directly to a DocumentDB output binding named `documentOut` to support updates. This code example updates the text property of the input document and sets it as the output document.
  
-	module.exports = function (context, input) {   
-	    context.bindings.documentOut = context.bindings.documentIn;
-	    context.bindings.documentOut.text = "This was updated!";
-	    context.done();
-	};
+    module.exports = function (context, input) {   
+        context.bindings.documentOut = context.bindings.documentIn;
+        context.bindings.documentOut.text = "This was updated!";
+        context.done();
+    };
 
-## <a id="docdboutput"></a>Azure DocumentDB 輸出繫結
+## <a name="<a-id="docdboutput"></a>-azure-documentdb-output-bindings"></a><a id="docdboutput"></a> Azure DocumentDB output bindings
 
-您的函式可以使用 **Azure DocumentDB 文件**輸出繫結，將 JSON 文件寫入 Azure DocumentDB 資料庫中。如需有關 Azure DocumentDB 的詳細資訊，請檢閱 [DocumentDB 簡介](../documentdb/documentdb-introduction.md)和[開始使用教學課程](../documentdb/documentdb-get-started.md)。
+Your functions can write JSON documents to an Azure DocumentDB database using the **Azure DocumentDB Document** output binding. For more information on Azure DocumentDB review the [Introduction to DocumentDB](../documentdb/documentdb-introduction.md) and the [Getting Started tutorial](../documentdb/documentdb-get-started.md).
 
-#### DocumentDB 輸出繫結的 function.json
+#### <a name="function.json-for-documentdb-output-binding"></a>function.json for DocumentDB output binding
 
-function.json 檔案提供下列屬性：
+The function.json file provides the following properties:
 
-- `name`︰函式程式碼中用於新文件的變數名稱。
-- `type`︰必須設為「"documentdb"」。
-- `databaseName`︰包含其中將建立新文件之集合的資料庫。
-- `collectionName`︰其中將建立新文件的集合。
-- `createIfNotExists`︰這是一個布林值，用以指出當集合不存在時是否要建立集合。預設值為 *false*。因為新集合會使用保留的輸送量建立，其具有價格含意。如需詳細資訊，請瀏覽[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
-- `connection`︰此字串必須是針對您的 DocumentDB 帳戶設定為端點的**應用程式設定**。如果您是從 [整合] 索引標籤選擇您的帳戶，系統將會為您建立新的應用程式設定，其名稱會採用下列格式：`yourAccount_DOCUMENTDB`。如果您需要手動建立應用程式設定，實際的連接字串必須採用下列格式：`AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;`。
-- `direction`：必須設為「"out"」。
+- `name` : Variable name used in function code for the new document.
+- `type` : must be set to *"documentdb"*.
+- `databaseName` : The database containing the collection where the new document will be created.
+- `collectionName` : The collection where the new document will be created.
+- `createIfNotExists` : This is a boolean value to indicate whether the collection will be created if it does not exist. The default is *false*. The reason for this is new collections are created with reserved throughput, which has pricing implications. For more details, please visit the [pricing page](https://azure.microsoft.com/pricing/details/documentdb/).
+- `connection` : This string must be an **Application Setting** set to the endpoint for your DocumentDB account. If you choose your account from the **Integrate** tab, a new App setting will be created for you with a name that takes the following form, `yourAccount_DOCUMENTDB`. If you need to manually create the App setting, the actual connection string must take the following form, `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;`. 
+- `direction` : must be set to *"out"*. 
  
-function.json 範例：
+Example function.json:
 
-	{
-	  "bindings": [
-	    {
-	      "name": "document",
-	      "type": "documentdb",
-	      "databaseName": "MyDatabase",
-	      "collectionName": "MyCollection",
-	      "createIfNotExists": false,
-	      "connection": "MyAccount_DOCUMENTDB",
-	      "direction": "out"
-	    }
-	  ],
-	  "disabled": false
-	}
+    {
+      "bindings": [
+        {
+          "name": "document",
+          "type": "documentdb",
+          "databaseName": "MyDatabase",
+          "collectionName": "MyCollection",
+          "createIfNotExists": false,
+          "connection": "MyAccount_DOCUMENTDB",
+          "direction": "out"
+        }
+      ],
+      "disabled": false
+    }
 
 
-#### Node.js 佇列觸發程序的 Azure DocumentDB 輸出程式碼範例
+#### <a name="azure-documentdb-output-code-example-for-a-node.js-queue-trigger"></a>Azure DocumentDB output code example for a Node.js queue trigger
 
-	module.exports = function (context, input) {
-	   
-	    context.bindings.document = {
-	        text : "I'm running in a Node function! Data: '" + input + "'"
-	    }   
-	 
-	    context.done();
-	};
+    module.exports = function (context, input) {
+       
+        context.bindings.document = {
+            text : "I'm running in a Node function! Data: '" + input + "'"
+        }   
+     
+        context.done();
+    };
 
-輸出文件︰
+The output document:
 
-	{
-	  "text": "I'm running in a Node function! Data: 'example queue data'",
-	  "id": "01a817fe-f582-4839-b30c-fb32574ff13f"
-	}
+    {
+      "text": "I'm running in a Node function! Data: 'example queue data'",
+      "id": "01a817fe-f582-4839-b30c-fb32574ff13f"
+    }
  
 
-#### F# 佇列觸發程序的 Azure DocumentDB 輸出程式碼範例
+#### <a name="azure-documentdb-output-code-example-for-an-f#-queue-trigger"></a>Azure DocumentDB output code example for an F# queue trigger
 
-	open FSharp.Interop.Dynamic
-	let Run(myQueueItem: string, document: obj) =
-	    document?text <- (sprintf "I'm running in an F# function! %s" myQueueItem)
+    open FSharp.Interop.Dynamic
+    let Run(myQueueItem: string, document: obj) =
+        document?text <- (sprintf "I'm running in an F# function! %s" myQueueItem)
 
-#### C# 佇列觸發程序的 Azure DocumentDB 輸出程式碼範例
-
-
-	using System;
-
-	public static void Run(string myQueueItem, out object document, TraceWriter log)
-	{
-	    log.Info($"C# Queue trigger function processed: {myQueueItem}");
-	   
-	    document = new {
-	        text = $"I'm running in a C# function! {myQueueItem}"
-	    };
-	}
+#### <a name="azure-documentdb-output-code-example-for-a-c#-queue-trigger"></a>Azure DocumentDB output code example for a C# queue trigger
 
 
-#### Azure DocumentDB 輸出程式碼範例設定檔名稱
+    using System;
 
-如果您想要在函式中設定文件名稱，只要設定 `id` 值即可。例如，如果正在將員工的 JSON 內容排入佇列中，如下所示︰
+    public static void Run(string myQueueItem, out object document, TraceWriter log)
+    {
+        log.Info($"C# Queue trigger function processed: {myQueueItem}");
+       
+        document = new {
+            text = $"I'm running in a C# function! {myQueueItem}"
+        };
+    }
 
-	{
-	  "name" : "John Henry",
+
+#### <a name="azure-documentdb-output-code-example-setting-file-name"></a>Azure DocumentDB output code example setting file name
+
+If you want to set the name of the document in the function, just set the `id` value.  For example, if JSON content for an employee was being dropped into the queue similar to the following:
+
+    {
+      "name" : "John Henry",
       "employeeId" : "123456",
-	  "address" : "A town nearby"
-	}
+      "address" : "A town nearby"
+    }
 
-您可以在佇列觸發程序函式中使用下列 C# 程式碼︰
-	
-	#r "Newtonsoft.Json"
-	
-	using System;
-	using Newtonsoft.Json;
-	using Newtonsoft.Json.Linq;
-	
-	public static void Run(string myQueueItem, out object employeeDocument, TraceWriter log)
-	{
-	    log.Info($"C# Queue trigger function processed: {myQueueItem}");
-	    
-	    dynamic employee = JObject.Parse(myQueueItem);
-	    
-	    employeeDocument = new {
-	        id = employee.name + "-" + employee.employeeId,
-	        name = employee.name,
-	        employeeId = employee.employeeId,
-	        address = employee.address
-	    };
-	}
+You could use the following C# code in a queue trigger function: 
+    
+    #r "Newtonsoft.Json"
+    
+    using System;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    
+    public static void Run(string myQueueItem, out object employeeDocument, TraceWriter log)
+    {
+        log.Info($"C# Queue trigger function processed: {myQueueItem}");
+        
+        dynamic employee = JObject.Parse(myQueueItem);
+        
+        employeeDocument = new {
+            id = employee.name + "-" + employee.employeeId,
+            name = employee.name,
+            employeeId = employee.employeeId,
+            address = employee.address
+        };
+    }
 
-或對等的 F# 程式碼︰
+Or the equivalent F# code:
 
-	open FSharp.Interop.Dynamic
-	open Newtonsoft.Json
+    open FSharp.Interop.Dynamic
+    open Newtonsoft.Json
 
-	type Employee = {
-	    id: string
-	    name: string
-	    employeeId: string
-	    address: string
-	}
+    type Employee = {
+        id: string
+        name: string
+        employeeId: string
+        address: string
+    }
 
-	let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
-	    log.Info(sprintf "F# Queue trigger function processed: %s" myQueueItem)
-	    let employee = JObject.Parse(myQueueItem)
-	    employeeDocument <-
-	        { id = sprintf "%s-%s" employee?name employee?employeeId
-	          name = employee?name
-	          employeeId = employee?id
-	          address = employee?address }
+    let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
+        log.Info(sprintf "F# Queue trigger function processed: %s" myQueueItem)
+        let employee = JObject.Parse(myQueueItem)
+        employeeDocument <-
+            { id = sprintf "%s-%s" employee?name employee?employeeId
+              name = employee?name
+              employeeId = employee?id
+              address = employee?address }
 
-範例輸出︰
+Example output:
 
-	{
-	  "id": "John Henry-123456",
-	  "name": "John Henry",
-	  "employeeId": "123456",
-	  "address": "A town nearby"
-	}
+    {
+      "id": "John Henry-123456",
+      "name": "John Henry",
+      "employeeId": "123456",
+      "address": "A town nearby"
+    }
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
+[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

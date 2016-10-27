@@ -1,15 +1,17 @@
-請遵循下列步驟來建立推播通知專用的新通知中樞。如果您已擁有通知中樞，也可以將它連接到行動應用程式後端。
+Follow these steps to create a new notification hub to use for push notifications. If you already have a notification hub, you can also connect it to your Mobile App backend. 
 
-1. 在 [Azure 入口網站]中，按一下 [瀏覽] > [應用程式服務]，接著按一下 行動應用程式後端 > [所有設定]，然後在 [行動] 下方按一下 [推送] > [通知中樞。
+1. In the [Azure Portal], click **Browse** > **App Services**, then click your Mobile App backend > **All settings**, then under **Mobile** click **Push** > **Notification Hub**.
 
-2. 按一下 [+ 通知中樞]，輸入新**通知中樞**名稱 (可以與行動應用程式後端相同)，輸入新命名空間名稱或使用現有名稱，然後再依序按一下 [確定] 和 [建立]。
+2. Click **+Notification Hub**, type a new **Notification Hub** name, which can be the same as your Mobile App backend, type a new namespace name or use an existing one, then click **OK** and finally **Create**.
 
-	![](./media/app-service-mobile-create-notification-hub/create-new-hub-flow.png)
+    ![](./media/app-service-mobile-create-notification-hub/create-new-hub-flow.png)
 
-	這會建立新通知中樞並連接到行動應用程式。如果您擁有現有的通知中樞，可以選擇將它連接到行動應用程式後端，而不需要建立新的通知中樞。
+    This creates a new notification hub and connects it to your mobile app. If you have an existing notification hub, you can choose to connect it to your Mobile App backend instead of creating a new one.
 
-現在您已將通知中樞連接到行動應用程式後端。稍後您可以設定此通知中樞，使其連接到傳送推播通知給原生裝置的平台通知服務 (PNS)。
+Now you have connected a notification hub to your Mobile App backend. Later you will configure this notification hub to connect to a platform notification service (PNS) that sends push notifications to the native device.
 
-[Azure 入口網站]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_1203_2015-->
+<!--HONumber=Oct16_HO2-->
+
+

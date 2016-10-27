@@ -1,32 +1,34 @@
 <!--author=alkohli last changed: 9/17/15-->
 
-### 建立備份
+### <a name="to-take-a-backup"></a>To take a backup
 
-1. 在裝置的 [快速入門] 頁面上，按一下 [新增備份原則]。這將會啟動 [新增備份原則] 精靈。 
+1. On the device **Quick Start** page, click **Add a backup policy**. This will start the Add Backup Policy wizard. 
 
-2. 在 [定義備份原則] 頁面上：
-  1. 為備份原則提供包含 3 到 150 個字元的名稱。
-  2. 選取要備份的磁碟區。如果您選取一個以上的磁碟區，這些磁碟區將會群組在一起，以建立可在當機時保持一致的備份。
-  3. 按一下箭頭圖示 ![arrow-icon](./media/storsimple-take-backup/HCS_ArrowIcon-include.png)。 
+2. On the **Define your backup policy** page:
+  1. Supply a name that contains between 3 and 150 characters for your backup policy.
+  2. Select the volumes to be backed up. If you select more than one volume, these volumes will be grouped together to create a crash-consistent backup.
+  3. Click the arrow icon ![arrow-icon](./media/storsimple-take-backup/HCS_ArrowIcon-include.png). 
   
     ![Add-backup-policy](./media/storsimple-take-backup/HCS_AddBackupPolicyWizard1M-include.png)
 
-3. 在 [定義排程] 頁面上：
-  1. 從下拉式清單中選取備份的類型。針對更快速的還原，選取 [本機快照]。針對資料恢復功能，選取 [雲端快照]。
-  2. 指定備份頻率 (以分鐘、小時、天或週為單位)。
-  3. 選取保留時間。保留選項會根據備份頻率而定。例如，針對每日原則，可以指定保留幾週，而針對每月原則，則可指定保留幾個月。
-  4. 選取備份原則的開始時間和日期。
-  5. 選取 [啟用] 核取方塊以啟用備份原則。 
-  6. 按一下核取圖示 ![核取圖示](./media/storsimple-take-backup/HCS_CheckIcon-include.png) 以儲存原則。
+3. On the **Define a schedule** page:
+  1. Select the type of backup from the drop-down list. For faster restores, select **Local Snapshot**. For data resiliency, select **Cloud Snapshot**.
+  2. Specify the backup frequency in minutes, hours, days, or weeks.
+  3. Select a retention time. The retention choices depend on the backup frequency. For example, for a daily policy, the retention can be specified in weeks, whereas retention for a monthly policy is in months.
+  4. Select the starting time and date for the backup policy.
+  5. Select the **Enable** check box to enable the backup policy. 
+  6. Click the check icon ![check-icon](./media/storsimple-take-backup/HCS_CheckIcon-include.png) to save the policy.
 
     ![Add-backup-policy](./media/storsimple-take-backup/HCS_AddBackupPolicyWizard2M-include.png)
  
-     您現在擁有的備份原則將會建立磁碟區資料的排程備份。
+     You now have a backup policy that will create scheduled backups of your volume data.
 
-您已經完成裝置設定。
+You have completed the device configuration. 
 
-![提供的影片](./media/storsimple-take-backup/Video_icon.png)**提供的影片**
+![Video available](./media/storsimple-take-backup/Video_icon.png) **Video available**
 
-若要觀看影片示範如何建立 StorSimple 備份，請按一下[這裡](https://azure.microsoft.com/documentation/videos/take-a-storsimple-backup/)。
+To watch a video that demonstrates how to take a StorSimple backup, click [here](https://azure.microsoft.com/documentation/videos/take-a-storsimple-backup/).
 
-<!---HONumber=AcomDC_0128_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

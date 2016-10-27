@@ -1,11 +1,14 @@
-資源|預設限制|上限
+Resource|Default Limit|Maximum Limit
 ---|---|---
-每個[資源群組](../articles/resource-group-overview.md#resource-groups)的資源 (每個資源類型)|800|800
-每個資源群組的部署|800|800
-每個部署的資源|800|800
-管理鎖定 (每個唯一的範圍)|20|20
-標記數目 (每個資源或資源群組)|15|15
-標記金鑰長度|512|512
-標記值長度|256|256
+Resources per [resource group](../articles/resource-group-overview.md#resource-groups) (per resource type)|800|800
+Deployments per resource group|800|800
+Resources per deployment|800|800
+Management Locks (per unique scope)|20|20
+Number of Tags (per resource or resource group)|15|15
+Tag key length|512|512
+Tag value length|256|256
 
-<!---HONumber=AcomDC_0211_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,113 +1,118 @@
 <properties 
-	pageTitle="在 Visual Studio 中使用 Application Insights" 
-	description="偵錯期間和生產環境中的效能分析與診斷。" 
-	services="application-insights" 
+    pageTitle="Working with Application Insights on Visual Studio" 
+    description="Performance analysis and diagnostics during debugging and in production." 
+    services="application-insights" 
     documentationCenter=".net"
-	authors="alancameronwills" 
-	manager="douge"/>
+    authors="alancameronwills" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="get-started-article" 
-	ms.date="06/21/2016" 
-	ms.author="awills"/>
-
-
-# 在 Visual Studio 中使用 Application Insights
-
-在 Visual Studio (2015 和更新版本) 中，您可以使用來自 [Visual Studio Application Insights](app-insights-overview.md) 的遙測，在偵錯時和在生產環境中分析效能並診斷問題。
-
-如果您尚未[在應用程式中安裝 Application Insights](app-insights-asp-net.md)，請立即安裝。
-
-## <a name="run"></a> 偵錯您的專案
-
-利用 F5 執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
-
-在 Visual Studio 中，您可以看見已記錄的事件計數。
-
-![在 Visual Studio 中，[Application Insights] 按鈕會在偵錯期間顯示。](./media/app-insights-visual-studio/appinsights-09eventcount.png)
-
-按一下此按鈕以開啟診斷搜尋。
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="get-started-article" 
+    ms.date="06/21/2016" 
+    ms.author="awills"/>
 
 
 
-## 診斷搜尋
+# <a name="working-with-application-insights-in-visual-studio"></a>Working with Application Insights in Visual Studio
 
-[搜尋] 視窗會顯示已記錄的事件。(如果您在設定 Application Insights 時登入至 Azure，就能夠在入口網站搜尋相同的事件。)
+In Visual Studio (2015 and later), you can analyze performance and diagnose issues both in debugging and in production, using telemetry from [Visual Studio Application Insights](app-insights-overview.md).
 
-![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[搜尋]](./media/app-insights-visual-studio/34.png)
+If you haven't yet [installed Application Insights in your app](app-insights-asp-net.md), do that now.
 
-任意文字搜尋適用於事件中的任何欄位。例如，搜尋頁面的 URL 的一部分；或者如用戶端城市的屬性值；或者追蹤記錄檔中的特定單字。
+## <a name="<a-name="run"></a>-debug-your-project"></a><a name="run"></a> Debug your project
 
-按一下任何事件以查看其詳細屬性。
+Run your application with F5 and try it out: open different pages to generate some telemetry.
 
-您也可以開啟 [相關項目] 索引標籤，以協助診斷失敗的要求或例外狀況。
+In Visual Studio, you'll see a count of the events that have been logged.
+
+![In Visual Studio, the Application Insights button shows during debugging.](./media/app-insights-visual-studio/appinsights-09eventcount.png)
+
+Click this button to open diagnostic search. 
+
+
+
+## <a name="diagnostic-search"></a>Diagnostic search
+
+The Search window shows events that have been logged. (If you signed in to Azure when you set up Application Insights, you'll be able to search the same events in the portal.)
+
+![Right-click the project and choose Application Insights, Search](./media/app-insights-visual-studio/34.png)
+
+The free text search works on any fields in the events. For example, search for part of the URL of a page; or the value of a property such as client city; or specific words in a trace log.
+
+Click any event to see its detailed properties.
+
+You can also open the Related Items tab to help diagnose failed requests or exceptions.
 
 
 ![](./media/app-insights-visual-studio/41.png)
 
 
 
-## 診斷中樞
+## <a name="diagnostics-hub"></a>Diagnostics hub
 
-診斷中樞 (在 Visual Studio 2015 或更新版本) 會顯示其產生的 Application Insights 伺服器遙測。即使您選擇只安裝 SDK，而不連接至 Azure 入口網站中的資源，也會運作。
+The Diagnostics Hub (in Visual Studio 2015 or later) shows the Application Insights server telemetry as it's generated. This works even if you opted only to install the SDK, without connecting it to a resource in the Azure portal.
 
-![開啟 [診斷工具] 視窗，並檢查 Application Insights 事件。](./media/app-insights-visual-studio/31.png)
-
-
-## 例外狀況
-
-如果您已[設定例外狀況監視](app-insights-asp-net-exceptions.md)，例外狀況報告會顯示在 [搜尋] 視窗中。
-
-按一下例外狀況以取得堆疊追蹤。如果應用程式的程式碼在 Visual Studio 中開啟，您可以從堆疊追蹤點選至程式碼的相關程式碼行。
+![Open the Diagnostic Tools window and inspect the Application Insights events.](./media/app-insights-visual-studio/31.png)
 
 
-![例外狀況堆疊追蹤](./media/app-insights-visual-studio/17.png)
+## <a name="exceptions"></a>Exceptions
 
-此外，在每個方法上的程式碼功能濾鏡一行中，您會看到在過去 24 小時由 Application Insights 記錄的例外狀況計數。
+If you have [set up exception monitoring](app-insights-asp-net-exceptions.md), exception reports will show in the Search window. 
 
-![例外狀況堆疊追蹤](./media/app-insights-visual-studio/21.png)
-
-
-## 本機監視
+Click an exception to get a stack trace. If the code of the app is open in Visual Studio, you can click through from the stack trace to the relevant line of the code.
 
 
+![Exception stack trace](./media/app-insights-visual-studio/17.png)
 
-(從 Visual Studio 2015 Update 2 開始) 如果您尚未設定 SDK 以將遙測傳送至 Application Insights 入口網站 (以便讓 ApplicationInsights.config 中沒有任何檢測金鑰)，則 [診斷] 視窗會顯示來自最新偵錯工作階段的遙測。
+In addition, in the Code Lens line above each method, you'll see a count of the exceptions logged by Application Insights in the past 24h.
 
-如果您已發佈過應用程式先前的版本，這是比較好的做法。您不會想讓來自偵錯工作階段的遙測與 Application Insights 入口網站中來自已發佈之應用程式的遙測混在一起。
-
-如果您在將遙測傳送至入口網站之前有一些[自訂遙測](app-insights-api-custom-events-metrics.md)想要偵錯，它也很有用。
+![Exception stack trace](./media/app-insights-visual-studio/21.png)
 
 
-* 首先，我完全設定 Application Insights 將遙測傳送至入口網站。但是現在我只想要查看在 Visual Studio 中的遙測。
+## <a name="local-monitoring"></a>Local monitoring
 
- * 在 [搜尋] 視窗的 [設定] 中，即使您的應用程式將遙測傳送至入口網站，也有選項可搜尋本機診斷。
- * 若要停止將遙測傳送至入口網站，請將 ApplicationInsights.config 中的 `<instrumentationkey>...` 程式行註解化。當您準備再次將遙測傳送至入口網站時，請取消註解。
 
-## 趨勢
 
-趨勢是用來將應用程式一段時間內行為方式進行視覺化的工具。
+(From Visual Studio 2015 Update 2) If you haven't configured the SDK to send telemetry to the Application Insights portal (so that there is no instrumentation key in ApplicationInsights.config) then the diagnostics window will display telemetry from your latest debugging session. 
 
-從 Application Insights 工具列按鈕或 [Application Insights 搜尋] 視窗選擇 [探索遙測趨勢]。選擇五種常見查詢的其中一個，以便開始使用。您可以根據遙測類型、時間範圍和其他屬性，分析不同的資料集。
+This is desirable if you have already published a previous version of your app. You don't want the telemetry from your debugging sessions to be mixed up with the telemetry on the Application Insights portal from the published app.
 
-若要尋找資料中的異常狀況，請選擇 [檢視類型] 下拉式清單底下的其中一個異常選項。視窗底部的篩選選項可讓您輕鬆地全神貫注於特定的遙測子集。
+It's also useful if you have some [custom telemetry](app-insights-api-custom-events-metrics.md) that you want to debug before sending telemetry to the portal.
 
-![趨勢](./media/app-insights-visual-studio/51.png)
 
-[深入了解趨勢](app-insights-visual-studio-trends.md)。
+* *At first, I fully configured Application Insights to send telemetry to the portal. But now I'd like to see the telemetry only in Visual Studio.*
 
-## 後續步驟
+ * In the Search window's Settings, there's an option to search local diagnostics even if your app sends telemetry to the portal.
+ * To stop telemetry being sent to the portal, comment out the line `<instrumentationkey>...` from ApplicationInsights.config. When you're ready to send telemetry to the portal again, uncomment it.
+
+## <a name="trends"></a>Trends
+
+Trends is a tool for visualizing how your app behaves over time. 
+
+Choose **Explore Telemetry Trends** from the Application Insights toolbar button or Application Insights Search window. Choose one of five common queries to get started. You can analyze different datasets based on telemetry types, time ranges, and other properties. 
+
+To find anomalies in your data, choose one of the anomaly options under the "View Type" dropdown. The filtering options at the bottom of the window make it easy to hone in on specific subsets of your telemetry.
+
+![Trends](./media/app-insights-visual-studio/51.png)
+
+[More about Trends](app-insights-visual-studio-trends.md).
+
+## <a name="what's-next?"></a>What's next?
 
 ||
 |---|---
-|**[新增更多資料](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。整合來自記錄架構的追蹤。撰寫自訂遙測。 | ![Visual Studio](./media/app-insights-asp-net/64.png)
-|**[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual studio](./media/app-insights-asp-net/62.png)
+|**[Add more data](app-insights-asp-net-more.md)**<br/>Monitor usage, availability, dependencies, exceptions. Integrate traces from logging frameworks. Write custom telemetry. | ![Visual studio](./media/app-insights-visual-studio/64.png)
+|**[Working with the Application Insights portal](app-insights-dashboards.md)**<br/>Dashboards, powerful diagnostic and analytic tools, alerts, a live dependency map of your application, and telemetry export. |![Visual studio](./media/app-insights-visual-studio/62.png)
 
 
  
 
-<!---HONumber=AcomDC_0810_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

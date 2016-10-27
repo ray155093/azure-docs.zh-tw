@@ -1,5 +1,8 @@
-您可以在虛擬網路中，使用 NSG 控制傳輸至一個或多個虛擬機器 (VM)、角色執行個體、網路介面卡 (NIC) 或子網路的流量。NSG 包含存取控制規則，可根據流量方向、通訊協定、來源位址和連接埠與目的地位址和連接埠，允許或拒絕流量。NSG 的規則可以隨時變更，而變更時會套用至所有相關聯的執行個體。
+You can use an NSG to control traffic to one or more virtual machines (VMs), role instances, network adapters (NICs), or subnets in your virtual network. An NSG contains access control rules that allow or deny traffic based on traffic direction, protocol, source address and port, and destination address and port. The rules of an NSG can be changed at any time, and changes are applied to all associated instances.
 
-如需 NSG 的詳細資訊，請瀏覽[何謂 NSG](../articles/virtual-network/virtual-networks-nsg.md)。
+For more information about NSGs, visit [what is an NSG](../articles/virtual-network/virtual-networks-nsg.md).
 
-<!---HONumber=AcomDC_0323_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

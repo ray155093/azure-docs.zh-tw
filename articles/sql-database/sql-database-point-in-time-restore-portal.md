@@ -1,54 +1,59 @@
 <properties
-	pageTitle="將 Azure SQL Database 還原到先前的時間點 (Azure 入口網站) | Microsoft Azure"
-	description="將 Azure SQL Database 還原至先前的時間點。"
-	services="sql-database"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Restore an Azure SQL Database to a previous point in time (Azure Portal) | Microsoft Azure"
+    description="Restore an Azure SQL Database to a previous point in time."
+    services="sql-database"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="NA"
-	ms.date="07/17/2016"
-	ms.author="sstein"
-	ms.workload="NA"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"/>
+    ms.service="sql-database"
+    ms.devlang="NA"
+    ms.date="07/17/2016"
+    ms.author="sstein"
+    ms.workload="NA"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"/>
 
 
-# 使用 Azure 入口網站將 Azure SQL Database 還原至先前的時間點
+
+# <a name="restore-an-azure-sql-database-to-a-previous-point-in-time-with-the-azure-portal"></a>Restore an Azure SQL Database to a previous point in time with the Azure Portal
 
 
 > [AZURE.SELECTOR]
-- [概觀](sql-database-recovery-using-backups.md)
-- [還原時間點：PowerShell](sql-database-point-in-time-restore-powershell.md)
+- [Overview](sql-database-recovery-using-backups.md)
+- [Point-In-Time Restore: PowerShell](sql-database-point-in-time-restore-powershell.md)
 
-本文將說明如何使用 Azure 入口網站，從 [SQL Database 自動備份](sql-database-automated-backups.md)將資料庫還原至先前的時間點。
+This article shows you how to restore your database to an earlier point in time from [SQL Database automated backups](sql-database-automated-backups.md) using the Azure Portal.
 
-## 選取要還原至先前時間點的資料庫
+## <a name="select-a-database-to-restore-to-a-previous-point-in-time"></a>Select a database to restore to a previous point in time
 
-若要在 Azure 入口網站中還原資料庫，請執行下列動作：
+To restore a database in the Azure Portal do the following:
 
-1.	開啟 [Azure 入口網站](https://portal.azure.com)。
-2.  在畫面左側選取 [瀏覽] > [SQL Database]。
-3.  瀏覽至您想要還原的資料庫並加以選取。
-4.  在資料庫刀鋒視窗的頂端，選取 [還原]：
+1.  Open the [Azure Portal](https://portal.azure.com).
+2.  On the left side of the screen select **BROWSE** > **SQL databases**.
+3.  Navigate to the database you want to restore and select it.
+4.  At the top of your database's blade, select **Restore**:
 
-    ![還原 Azure SQL Database](./media/sql-database-point-in-time-restore-portal/restore.png)
+    ![Restore an Azure SQL database](./media/sql-database-point-in-time-restore-portal/restore.png)
 
-5.  指定資料庫名稱、時間點，然後按一下 [確定]：
+5.  Specify a database name, point in time and then click Ok:
 
-    ![還原 Azure SQL Database](./media/sql-database-point-in-time-restore-portal/restore-details.png)
+    ![Restore an Azure SQL database](./media/sql-database-point-in-time-restore-portal/restore-details.png)
 
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
-- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
-- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
-- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
+- For a business continuity overview and scenarios, see [Business continuity overview](sql-database-business-continuity.md)
+- To learn about Azure SQL Database automated backups, see [SQL Database automated backups](sql-database-automated-backups.md)
+- To learn about using automated backups for recovery, see [restore a database from the service-initiated backups](sql-database-recovery-using-backups.md)
+- To learn about faster recovery options, see [Active-Geo-Replication](sql-database-geo-replication-overview.md)  
+- To learn about using automated backups for archiving, see [database copy](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

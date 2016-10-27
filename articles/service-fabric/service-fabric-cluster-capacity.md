@@ -1,6 +1,6 @@
 <properties
-   pageTitle="規劃 Service Fabric 叢集容量 | Microsoft Azure"
-   description="Service Fabric 叢集容量規劃考量。Nodetypes、持久性和可靠性層級"
+   pageTitle="Planning the Service Fabric cluster capacity | Microsoft Azure"
+   description="Service Fabric cluster capacity planning considerations. Nodetypes, Durability and Reliability tiers"
    services="service-fabric"
    documentationCenter=".net"
    authors="ChackDan"
@@ -17,94 +17,99 @@
    ms.author="chackdan"/>
 
 
-# Service Fabric 叢集容量規劃考量
 
-對於任何生產部署而言，容量規劃都是一個很重要的步驟。以下是一些您在該程序中必須考量的項目。
+# <a name="service-fabric-cluster-capacity-planning-considerations"></a>Service Fabric cluster capacity planning considerations
 
-- 您的叢集一開始所需的節點類型的數目
-- 每個節點類型 (大小、主要、網際網路對向、VM 數目等) 的屬性
-- 叢集的可靠性和持久性的特性
+For any production deployment, capacity planning is an important step. Here are some of the items that you have to consider as a part of that process.
 
-讓我們簡短地檢閱各個項目。
+- The number of node types your cluster needs to start out with
+- The properties of each of node type (size, primary, internet facing, number of VMs, etc.)
+- The reliability and durability characteristics of the cluster
 
-## 您的叢集一開始所需的節點類型的數目
+Let us briefly review each of these items.
 
-首先，您必須了解您要建立的叢集將用於什麼用途，以及您要規劃哪些要部署到此叢集中的應用程式種類。如果您不清楚叢集的用途，您很可能還未準備好進入容量規劃程序。
+## <a name="the-number-of-node-types-your-cluster-needs-to-start-out-with"></a>The number of node types your cluster needs to start out with
 
-建立您的叢集一開始所需的節點類型的數目。每個節點類型都會對應到虛擬機器調整集。然後每個節點類型可以獨立相應增加或相應減少，可以開啟不同組的連接埠，並可以有不同的容量度量。因此，節點類型數目的決定基本上可歸結為下列考量︰
+First, you need to figure out what the cluster you are creating is going to be used for and what kinds of applications you are planning to deploy into this cluster. If you are not clear on the purpose of the cluster, you are most likely not yet ready to enter the capacity planning process.
 
-- 您的應用程式是否有多個服務，而且其中是否有任何服務必須是公開或網際網路對向的服務？ 一般應用程式包含可接收用戶端輸入的前端閘道服務，以及一或多個與前端服務溝通的後端服務。因此，在此情況下，您最終會有至少兩個節點類型。
+Establish the number of node types your cluster needs to start out with.  Each node type is mapped to a Virtual Machine Scale Set. Each node type can then be scaled up or down independently, have different sets of ports open, and can have different capacity metrics. So the decision of the number of node types essentially comes down to the following considerations:
 
-- 您 (構成應用程式) 的服務是否有不同的基礎結構需求，例如，更多的 RAM 或更高的 CPU 週期？ 例如，讓我們假設您想要部署的應用程式包含前端服務和後端服務。前端服務可以在容量較小 (D2 之類的 VM 大小)，且擁有可連線至網際網路之連接埠的 VM 上執行。不過，需要大量計算的後端服務必須在容量較大 (D4、D6、D15 的 VM 大小)，且不連線至網際網路的 VM 上執行。
+- Does your application have multiple services, and do any of them need to be public or internet facing? Typical applications contain a front-end gateway service that receives input from a client, and one or more back-end services that communicate with the front-end services. So in this case, you end up having at least two node types.
 
- 在此範例中，您可以決定將所有服務都放在一個節點類型上，但我們建議您將它們放在包含兩個節點類型的叢集上。這可讓每個節點類型都有不同的屬性，例如，網際網路連線或 VM 大小。VM 的數目也可以單獨調整。
+- Do your services (that make up your application) have different infrastructure needs such as greater RAM or higher CPU cycles? For example, let us assume that the application that you want to deploy contains a front-end service and a back-end service. The front-end service can run on smaller VMs (VM sizes like D2) that have ports open to the internet.  The back-end service, however, is computation intensive and needs to run on larger VMs (with VM sizes like D4, D6, D15) that are not internet facing.
 
-- 您無法預測未來，因此請利用您所知道的事實，決定您的應用程式一開始所需的節點類型的數目。您之後都可以新增或移除節點類型。Service Fabric 叢集必須至少有一個節點類型。
+ In this example, although you can decide to put all the services on one node type, we recommended that you place them in a cluster with two node types.  This allows for each node type to have distinct properties such as internet connectivity or VM size. The number of VMs can be scaled independently, as well.  
 
-## 每個節點類型的屬性
+- Since you cannot predict the future, go with facts you know of and decide on the number of node types that your applications need to start with. You can always add or remove node types later. A Service Fabric cluster must have at least one node type.
 
-**節點類型**就像是雲端服務中的角色，可用來定義定義 VM 的大小、VM 的數目，以及 VM 的屬性。在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的虛擬機器擴展集。VM 調整集是一種 Azure 計算資源，可以用來將一組虛擬機器當做一個集合加以部署和管理。如果定義為不同的 VM 調整集，則每個節點類型都可以獨立相應增加或相應減少、可以開放不同組的連接埠，而且可以有不同的容量度量。
+## <a name="the-properties-of-each-node-type"></a>The properties of each node type
 
-您的叢集可以多個節點類型，但主要節點類型 (您在入口網站定義的第一個節點類型) 必須至少有 5 個 VM 供叢集用於生產工作負載 (或至少有 3 個 VM 供測試叢集使用)。如果您要使用 Resource Manager 範本建立叢集，則會在節點類型定義下找到 **is Primary** 屬性。主要節點類型就是放置 Service Fabric 系統服務所在的節點類型。
+The **node type** can be seen as equivalent to roles in Cloud Services. Node types define the VM sizes, the number of VMs, and their properties. Every node type that is defined in a Service Fabric cluster is set up as a separate Virtual Machine Scale Set. VM Scale Sets are an Azure compute resource you can use to deploy and manage a collection of virtual machines as a set. Being defined as distinct VM Scale Sets, each node type can then be scaled up or down independently, have different sets of ports open, and can have different capacity metrics.
 
-### 主要節點類型
-若是包含多個節點類型的叢集，您必須選擇其中一個做為主要節點類型。以下是主要節點類型的特性︰
+Your cluster can have more than one node type, but the primary node type (the first one that you define on the portal) must have at least five VMs for clusters used for production workloads (or at least three VMs for test clusters). If you are creating the cluster using an Resource Manager template, then you will find a **is Primary** attribute under the node type definition. The primary node type is the node type where Service Fabric system services are placed.  
 
-- 主要節點類型的 VM 大小下限取決於您選擇的持久性層級。持久性層級的預設值為 Bronze。如需有關持久性層級的定義以及可採用的值，請向下捲動。
+### <a name="primary-node-type"></a>Primary node type
+For a cluster with multiple node types, you will need to choose one of them to be primary. Here are the characteristics of a primary node type:
 
-- 主要節點類型的 VM 數目下限取決於您選擇的可靠性層級。可靠性層級的預設值為 Silver。如需有關可靠性層級的定義以及可採用的值，請向下捲動。
+- The minimum size of VMs for the primary node type is determined by the durability tier you choose. The default for the durability tier is Bronze. Scroll down for details on what the durability tier is and the values it can take.  
 
-- Service Fabric 系統服務 (例如，叢集管理員服務或映像存放區服務) 會放在主要節點類型上，因此，叢集的可靠性和持久性取決於您為主要節點類型所選取的可靠性層級值與持久性層級值。
+- The minimum number of VMs for the primary node type is determined by the reliability tier you choose. The default for the reliability tier is Silver. Scroll down for details on what the reliability tier is and the values it can take.
 
-![有兩個節點類型的叢集螢幕擷取畫面][SystemServices]
+- The Service Fabric system services (for example, the Cluster Manager service or Image Store service) are placed on the primary node type and so the reliability and durability of the cluster is determined by the reliability tier value and durability tier value you select for the primary node type.
 
-
-### 非主要節點類型
-如果是包含多個節點類型的叢集，則會有一個主要節點類型，其餘則是非主要節點類型。以下是非主要節點類型的特性︰
-
-- 此節點類型的 VM 大小下限取決於您選擇的持久性層級。持久性層級的預設值為 Bronze。如需有關持久性層級的定義以及可採用的值，請向下捲動。
-
-- 此節點類型的 VM 數目下限可以是 1。不過，您應該根據您想要在這個節點類型中執行的應用程式/服務的複本數目，選擇這個數目。部署叢集之後，節點類型中的 VM 數目可能會增加。
+![Screen shot of a cluster that has two Node Types ][SystemServices]
 
 
-## 叢集的持久性特性
+### <a name="non-primary-node-type"></a>Non-primary node type
+For a cluster with multiple node types, there is one primary node type and the rest of them are non-primary. Here are the characteristics of a non-primary node type:
 
-持久性層級用來向系統指示您的 VM 對於基本 Azure 基礎結構所擁有的權限。在主要節點類型中，此權限可讓 Service Fabric 暫停會影響系統服務及具狀態服務的仲裁需求的任何 VM 層級基礎結構要求 (例如，VM 重新開機、VM 重新安裝映像，或 VM 移轉)。在非主要節點類型中，此權限可讓 Service Fabric 暫停會影響其中所執行之具狀態服務的仲裁需求的任何 VM 層級基礎結構要求，例如，VM 重新開機、VM 重新安裝映像、VM 移轉等等。
+- The minimum size of VMs for this node type is determined by the durability tier you choose. The default for the durability tier is Bronze. Scroll down for details on what the durability tier is and the values it can take.  
 
-此權限會以下列值表示︰
+- The minimum number of VMs for this node type can be one. However you should choose this number based on the number of replicas of the application/services that you would like to run in this node type. The number of VMs in a node type can be increased after you have deployed the cluster.
 
-- Gold - 每個 UD 可持續暫停基礎結構工作 2 小時
 
-- Silver - 每個 UD 可持續暫停基礎結構工作 30 分鐘 (此值目前未啟用。啟用之後，就可在單一核心以上的所有標準 VM 上使用)。
+## <a name="the-durability-characteristics-of-the-cluster"></a>The durability characteristics of the cluster
 
-- Bronze - 無權限。這是預設值。
+The durability tier is used to indicate to the system the privileges that your VMs have with the underlying Azure infrastructure. In the primary node type, this privilege allows Service Fabric to pause any VM level infrastructure request (such as a VM reboot, VM reimage, or VM migration) that impact the quorum requirements for the system services and your stateful services. In the non-primary node types, this privilege allows Service Fabric to pause any VM level infrastructure request like VM reboot, VM reimage, VM migration etc., that impact the quorum requirements for your stateful services running in it.
 
-## 叢集的可靠性特性
+This privilege is expressed in the following values:
 
-可靠性層級用來設定您想要在此叢集中的主要節點類型上執行的系統服務複本數目。複本數目越多，叢集中的系統服務越可靠。
+- Gold - The infrastructure Jobs can be paused for a duration of 2 hours per UD
 
-可靠性層級可以採用以下的值。
+- Silver - The infrastructure Jobs can be paused for a duration of 30 minutes per UD (This is currently not enabled for use. Once enabled this will be available on all standard VMs of single core and above).
 
-- Platinum - 執行包含 9 個目標複本集的系統服務
+- Bronze - No privileges. This is the default.
 
-- Gold - 執行包含 7 個目標複本集的系統服務
+## <a name="the-reliability-characteristics-of-the-cluster"></a>The reliability characteristics of the cluster
 
-- Silver - 執行包含 5 個目標複本集的系統服務
+The reliability tier is used to set the number of replicas of the system services that you want to run in this cluster on the primary node type. The more the number of replicas, the more reliable the system services are in your cluster.  
 
-- Bronze - 執行包含 3 個目標複本集的系統服務
+The reliability tier can take the following values.
 
->[AZURE.NOTE] 您選擇的可靠性層級會決定您的主要節點類型必須具備的節點數目下限。可靠性層級與叢集大小上限沒有關係。因此，您可以有 20 個節點叢集在 Bronze 可靠性層級執行。
+- Platinum - Run the System services with a target replica set count of 9
 
- 您可以選擇將叢集的可靠性從一個層級更新為另一個層級。如此一來就會觸發變更系統服務複本集計數所需的叢集升級。請先等候升級完成，再對叢集進行任何其他變更，例如新增節點等等。您可以在 Service Fabric Explorer 上或執行 [Get ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt126012.aspx) 監視升級的進度
+- Gold - Run the System services with a target replica set count of 7
+
+- Silver - Run the System services with a target replica set count of 5
+
+- Bronze - Run the System services with a target replica set count of 3
+
+>[AZURE.NOTE] The reliability tier you choose determines the minimum number of nodes your primary node type must have. The reliability tier has no bearing on the max size of the cluster. So you can have a 20 node cluster, that is running at Bronze reliability.
+
+ You can choose to update the reliability of your cluster from one tier to another. Doing this will trigger the cluster upgrades needed to change the system services replica set count. Wait for the upgrade in progress to complete before making any other changes to the cluster, like adding nodes etc.  You can monitor the progress of the upgrade on Service Fabric Explorer or by running [Get-ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt126012.aspx)
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-一旦您完成容量規劃並設定叢集之後，請閱讀︰
-- [Service Fabric 叢集安全性](service-fabric-cluster-security.md)
-- [Service Fabric 健康情況模型簡介](service-fabric-health-introduction.md)
+Once you finish your capacity planning and set up a cluster, please read the following:
+- [Service Fabric cluster security](service-fabric-cluster-security.md)
+- [Service Fabric health model introduction](service-fabric-health-introduction.md)
 
 <!--Image references-->
 [SystemServices]: ./media/service-fabric-cluster-capacity/SystemServices.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

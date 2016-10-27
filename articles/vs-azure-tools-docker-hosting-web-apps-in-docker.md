@@ -1,6 +1,6 @@
 <properties
-   pageTitle="將 ASP.NET Core Linux Docker 容器部署到遠端 Docker 主機 | Microsoft Azure"
-   description="了解如何使用 Visual Studio Tools for Docker，將 ASP.NET Core Web 應用程式部署到在 Azure Docker Host Linux VM 上執行的 Docker 容器"   
+   pageTitle="Deploy an ASP.NET Core Linux Docker container to a remote Docker host | Microsoft Azure"
+   description="Learn how to use Visual Studio Tools for Docker to deploy an ASP.NET Core web app to a Docker container running on an Azure Docker Host Linux VM"   
    services="azure-container-service"
    documentationCenter=".net"
    authors="mlearned"
@@ -16,37 +16,39 @@
    ms.date="06/08/2016"
    ms.author="mlearned"/>
 
-# 將 ASP.NET 容器部署到遠端 Docker 主機
 
-## Overview
-Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可以用它來裝載應用程式和服務。本教學課程將逐步引導您使用 [Visual Studio 2015 Tools for Docker](http://aka.ms/DockerToolsForVS) 擴充，透過 PowerShell 將 ASP.NET Core 應用程式部署至 Azure 上的 Docker 主機。
+# <a name="deploy-an-asp.net-container-to-a-remote-docker-host"></a>Deploy an ASP.NET container to a remote Docker host
 
-## 必要條件
-需要下列項目，才能完成本教學課程：
+## <a name="overview"></a>Overview
+Docker is a lightweight container engine, similar in some ways to a virtual machine, which you can use to host applications and services.
+This tutorial walks you through using the [Visual Studio 2015 Tools for Docker](http://aka.ms/DockerToolsForVS) extension to deploy an ASP.NET Core app to a Docker host on Azure using PowerShell.
 
-- 按照[如何使用 Docker 電腦搭配 Azure](./virtual-machines/virtual-machines-linux-docker-machine.md) 中所述，建立 Azure Docker 主機 VM
-- 安裝 [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
-- [Microsoft ASP.NET 核心 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
-- [Visual Studio 2015 RC Tools for Docker - 預覽](http://aka.ms/DockerToolsForVS)
+## <a name="prerequisites"></a>Prerequisites
+The following is needed to complete this tutorial:
 
-## 1\.建立 ASP.NET 核心 Web 應用程式
-下列步驟將逐步引導您建立將在本教學課程中使用的基本 ASP.NET 核心應用程式。
+- Create an Azure Docker Host VM as described in [How to use docker-machine with Azure](./virtual-machines/virtual-machines-linux-docker-machine.md)
+- Install [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
+- [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
+- Install [Visual Studio 2015 Tools for Docker - Preview](http://aka.ms/DockerToolsForVS)
+
+## <a name="1.-create-an-asp.net-core-web-app"></a>1. Create an ASP.NET Core web app
+The following steps will guide you through creating a basic ASP.NET Core app that will be used in this tutorial.
 
 [AZURE.INCLUDE [create-aspnet5-app](../includes/create-aspnet5-app.md)]
 
-## 2\.新增 Docker 支援
+## <a name="2.-add-docker-support"></a>2. Add Docker support
 
 [AZURE.INCLUDE [create-aspnet5-app](../includes/vs-azure-tools-docker-add-docker-support.md)]
 
-## 3\.使用 DockerTask.ps1 PowerShell 指令碼 
+## <a name="3.-use-the-dockertask.ps1-powershell-script"></a>3. Use the DockerTask.ps1 PowerShell Script 
 
-1.  將 PowerShell 提示開啟至您的專案的根目錄。
+1.  Open a PowerShell prompt to the root directory of your project. 
 
     ```
     PS C:\Src\WebApplication1>
     ```
 
-1.  驗證遠端主機是否正在執行。您應該會看到狀態 = 執行中
+1.  Validate the remote host is running. You should see state = Running 
 
     ```
     docker-machine ls
@@ -54,40 +56,44 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
     MyDockerHost -        azure    Running   tcp://xxx.xxx.xxx.xxx:2376         v1.10.3
     ```
 
-    > [AZURE.NOTE] 如果您使用 Docker Beta 版，您的主機將不會列在此處。
+    > [AZURE.NOTE] If you're using the Docker Beta, your host won't be listed here.
 
-1.  使用 -Build 參數建置應用程式
+1.  Build the app using the -Build parameter
 
     ```
     PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Build -Environment Release -Machine mydockerhost
     ```  
 
-    > [AZURE.NOTE] 如果您使用 Docker Beta 版，請省略 -Machine 引數
+    > [AZURE.NOTE] If you're using the Docker Beta, omit the -Machine argument
     > 
     > ```
     > PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Build -Environment Release 
     > ```  
 
 
-1.  使用 -Run 參數執行應用程式
+1.  Run the app, using the -Run parameter
 
     ```
     PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Run -Environment Release -Machine mydockerhost
     ```
 
-    > [AZURE.NOTE] 如果您使用 Docker Beta 版，請省略 -Machine 引數
+    > [AZURE.NOTE] If you're using the Docker Beta, omit the -Machine argument
     > 
     > ```
     > PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Run -Environment Release 
     > ```
 
-	Docker 完成後，您應該會看到類似下面的結果：
+    Once docker completes, you should see results similar to the following:
 
-    ![檢視您的應用程式][3]
+    ![View your app][3]
 
-[0]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/docker-props-in-solution-explorer.png
-[1]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/change-docker-machine-name.png
-[2]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/launch-application.png
-[3]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/view-application.png
+[0]:./media/vs-azure-tools-docker-hosting-web-apps-in-docker/docker-props-in-solution-explorer.png
+[1]:./media/vs-azure-tools-docker-hosting-web-apps-in-docker/change-docker-machine-name.png
+[2]:./media/vs-azure-tools-docker-hosting-web-apps-in-docker/launch-application.png
+[3]:./media/vs-azure-tools-docker-hosting-web-apps-in-docker/view-application.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

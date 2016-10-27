@@ -1,9 +1,9 @@
 <properties
-   pageTitle="使用 Azure 入口網站管理 DNS 記錄集和記錄 | Microsoft Azure"
-   description="在將網域裝載於 Azure DNS 時管理 DNS 記錄集和記錄。"
+   pageTitle="Manage DNS record sets and records using the Azure portal | Microsoft Azure"
+   description="Managing DNS record sets and records when hosting your domain on Azure DNS."
    services="dns"
    documentationCenter="na"
-   authors="cherylmc"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"/>
@@ -15,123 +15,128 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+   ms.author="sewhee"/>
 
-# 使用 Azure 入口網站管理 DNS 記錄和記錄集
+
+# <a name="manage-dns-records-and-record-sets-by-using-the-azure-portal"></a>Manage DNS records and record sets by using the Azure portal
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](dns-operations-recordsets-portal.md)
+- [Azure Portal](dns-operations-recordsets-portal.md)
 - [Azure CLI](dns-operations-recordsets-cli.md)
 - [PowerShell](dns-operations-recordsets.md)
 
 
-本文說明如何使用 Azure 入口網站管理 DNS 區域的記錄集和記錄。
+This article shows you how to manage record sets and records for your DNS zone by using the Azure portal.
 
-請務必了解 DNS 記錄集和個別 DNS 記錄之間的差別。記錄集是指一個區域中有相同名稱和相同類型的記錄集合。如需詳細資訊，請參閱[使用 Azure 入口網站建立 DNS 記錄集和記錄](dns-getstarted-create-recordset-portal.md)。
+It's important to understand the difference between DNS record sets and individual DNS records. A record set is a collection of records in a zone that have the same name and are the same type. For more information, see [Create DNS record sets and records by using the Azure portal](dns-getstarted-create-recordset-portal.md).
 
-## 建立新的記錄集和記錄
+## <a name="create-a-new-record-set-and-record"></a>Create a new record set and record
 
-若要在 Azure 入口網站中建立記錄集，請參閱[使用 Azure 入口網站建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)。
-
-
-## 檢視記錄集
-
-1. 在 Azure 入口網站中，移至 [DNS 區域] 刀鋒視窗。
-
-2. 搜尋記錄集並加以選取。這會開啟記錄集屬性。
-
-	![搜尋資料錄集](./media/dns-operations-recordsets-portal/searchset500.png)
+To create a record set in the Azure portal, see [Create DNS records by using the Azure portal](dns-getstarted-create-recordset-portal.md).
 
 
-## 將新記錄加入記錄集
+## <a name="view-a-record-set"></a>View a record set
 
-任何記錄集最多只能加入 20 筆記錄。記錄集不能包含兩筆相同的記錄。您可以建立空的記錄集 (沒有記錄)，但該記錄集不會出現在 Azure DNS 名稱伺服器上。類型為 CNAME 的記錄集最多只能包含一筆記錄。
+1. In the Azure portal, go to the **DNS zone** blade.
 
+2. Search for the record set and select it. This opens the record set properties.
 
-1. 在 DNS 區域的 [記錄集屬性] 刀鋒視窗中，按一下您想要在其中新增記錄的記錄集。
-
-	![選取記錄集](./media/dns-operations-recordsets-portal/selectset500.png)
-
-2. 在欄位中填入資料，藉以指定記錄集屬性。
-
-	![新增記錄](./media/dns-operations-recordsets-portal/addrecord500.png)
-
-2. 按一下刀鋒視窗頂端的 [儲存] 來儲存您的設定。然後關閉刀鋒視窗。
-
-3. 您會在角落中看到正在儲存記錄。
-
-	![儲存記錄集](./media/dns-operations-recordsets-portal/saving150.png)
-
-儲存記錄之後，[DNS 區域] 刀鋒視窗上的值將會反映新的記錄。
+    ![Search for a record set](./media/dns-operations-recordsets-portal/searchset500.png)
 
 
-## 更新記錄
+## <a name="add-a-new-record-to-a-record-set"></a>Add a new record to a record set
 
-在更新現有記錄集中的記錄時，您可更新的欄位取決於您正在使用的記錄類型。
-
-1. 在記錄集的 [記錄集屬性] 刀鋒視窗中搜尋記錄。
-
-2. 修改記錄。當您修改記錄時，您可以變更記錄的可用設定。在下列範例中，已選取 [IP 位址] 欄位，而該 IP 位址正在進行修改。
-
-	![修改記錄](./media/dns-operations-recordsets-portal/modifyrecord500.png)
-
-3. 按一下刀鋒視窗頂端的 [儲存] 來儲存您的設定。您將會在右上角看到記錄已儲存的通知。
-
-	![已儲存記錄集](./media/dns-operations-recordsets-portal/saved150.png)
+You can add up to 20 records to any record set. A record set cannot contain two identical records. Empty record sets (with zero records) can be created, but do not appear on the Azure DNS name servers. Record sets of type CNAME can contain one record at most.
 
 
-儲存記錄之後，[DNS 區域] 刀鋒視窗上記錄集的值將會反映更新的記錄。
+1. On the **Record set properties** blade for your DNS zone, click the record set that you want to add a record to.
+
+    ![Select a record set](./media/dns-operations-recordsets-portal/selectset500.png)
+
+2. Specify the record set properties by filling in the fields.
+
+    ![Add a record](./media/dns-operations-recordsets-portal/addrecord500.png)
+
+2. Click **Save** at the top of the blade to save your settings. Then close the blade.
+
+3. In the corner, you will see that the record is saving.
+
+    ![Saving record set](./media/dns-operations-recordsets-portal/saving150.png)
+
+After the record has been saved, the values on the **DNS zone** blade will reflect the new record.
 
 
-## 從記錄集移除記錄
+## <a name="update-a-record"></a>Update a record
 
-您可以使用 Azure 入口網站來從記錄集移除記錄。請注意，移除記錄集的最後一筆記錄不會刪除記錄集。
+When you update a record in an existing record set, the fields you can update depend on the type of record you're working with.
 
-1. 在記錄集的 [記錄集屬性] 刀鋒視窗中搜尋記錄。
+1. On the **Record set properties** blade for your record set, search for the record.
 
-2. 按一下您想要移除的記錄。然後選取 [移除]。
+2. Modify the record. When you modify a record, you can change the available settings for the record. In the following example, the **IP address** field is selected, and the IP address is in the process of being modified.
 
-	![移除記錄](./media/dns-operations-recordsets-portal/removerecord500.png)
+    ![Modify a record](./media/dns-operations-recordsets-portal/modifyrecord500.png)
 
-3. 按一下刀鋒視窗頂端的 [儲存] 來儲存您的設定。
+3. Click **Save** at the top of the blade to save your settings. In the upper right corner, you'll see the notification that the record has been saved.
 
-3. 移除記錄之後，[DNS 區域] 刀鋒視窗上記錄的值將會反映移除。
-
-
-## <a name="delete"></a>刪除記錄集
-
-1. 在記錄集的 [記錄集屬性] 刀鋒視窗中，按一下 [刪除]。
-
-	![刪除記錄集](./media/dns-operations-recordsets-portal/deleterecordset500.png)
-
-2. 隨即會出現訊息，詢問您是否要刪除記錄集。
-
-3. 確認該名稱符合您想要刪除的記錄集，然後按一下 [是]。
-
-4. 在 [DNS 區域] 刀鋒視窗中，確認不再看到該記錄集。
+    ![Saved record set](./media/dns-operations-recordsets-portal/saved150.png)
 
 
-## 使用 NS 和 SOA 記錄
+After the record has been saved, the values for the record set on the **DNS zone** blade will reflect the updated record.
 
-自動建立之 NS 和 SOA 記錄的管理方式不同於其他記錄類型。
 
-### 修改 SOA 記錄
+## <a name="remove-a-record-from-a-record-set"></a>Remove a record from a record set
 
-您無法在區域頂點 (名稱 = "@") 自動建立的 SOA 記錄集中新增或移除記錄。不過，您可以修改 SOA 記錄 (「主機」除外) 和記錄集 TTL 內的任何參數。
+You can use the Azure portal to remove records from a record set. Note that removing the last record from a record set does not delete the record set.
 
-### 在區域頂點修改 NS 記錄
+1. On the **Record set properties** blade for your record set, search for the record.
 
-您無法在區域頂點 (名稱 = "@") 自動建立的 NS 記錄集中新增、移除或修改記錄。修改記錄集 TTL 是唯一允許的變更。
+2. Click the record that you want to remove. Then select **Remove**.
 
-### 刪除 SOA 或 NS 記錄集
+    ![Remove a record](./media/dns-operations-recordsets-portal/removerecord500.png)
 
-您無法在建立區域時所自動建立的區域頂點 (名稱 = "@") 刪除 SOA 和 NS 記錄集。當您刪除該區域時，就會自動刪除它們。
+3. Click **Save** at the top of the blade to save your settings.
 
-## 後續步驟
+3. After the record has been removed, the values for the record on the **DNS zone** blade will reflect the removal.
 
--   如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
--   如需自動化 DNS 的相關資訊，請參閱[使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
--   如需反向 DNS 記錄的詳細資訊，請參閱[如何使用 PowerShell 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+## <a name="<a-name="delete"></a>delete-a-record-set"></a><a name="delete"></a>Delete a record set
+
+1. On the **Record set properties** blade for your record set, click **Delete**.
+
+    ![Delete a record set](./media/dns-operations-recordsets-portal/deleterecordset500.png)
+
+2. A message appears asking if you want to delete the record set.
+
+3. Verify that the name matches the record set that you want to delete, and then click **Yes**.
+
+4. On the **DNS zone** blade, verify that the record set is no longer visible.
+
+
+## <a name="work-with-ns-and-soa-records"></a>Work with NS and SOA records
+
+NS and SOA records that are automatically created are managed differently from other record types.
+
+### <a name="modify-soa-records"></a>Modify SOA records
+
+You cannot add or remove records from the automatically created SOA record set at the zone apex (name = "@"). However, you can modify any of the parameters within the SOA record (except "Host") and the record set TTL.
+
+### <a name="modify-ns-records-at-the-zone-apex"></a>Modify NS records at the zone apex
+
+You cannot add to, remove, or modify the records in the automatically created NS record set at the zone apex (name = "@"). The only change that's permitted is to modify the record set TTL.
+
+### <a name="delete-soa-or-ns-record-sets"></a>Delete SOA or NS record sets
+
+You cannot delete the SOA and NS record sets at the zone apex (name = "@") that are created automatically when the zone is created. They are deleted automatically when you delete the zone.
+
+## <a name="next-steps"></a>Next steps
+
+-   For more information about Azure DNS, see the [Azure DNS overview](dns-overview.md).
+-   For more information about automating DNS, see [Creating DNS zones and record sets using the .NET SDK](dns-sdk.md).
+-   For more information about reverse DNS records, see [How to manage reverse DNS records for your services using PowerShell](dns-reverse-dns-record-operations-ps.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

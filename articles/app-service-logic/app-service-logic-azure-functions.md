@@ -1,6 +1,6 @@
 <properties
-   pageTitle="搭配使用 Azure Functions 與 Logic Apps | Microsoft Azure"
-   description="查看搭配使用 Azure Functions 與 Logic Apps 的方法"
+   pageTitle="Using Azure Functions with Logic Apps | Microsoft Azure"
+   description="See how to use Azure Functions with Logic Apps"
    services="logic-apps,functions"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
@@ -16,19 +16,20 @@
    ms.date="09/01/2016"
    ms.author="jehollan"/>
 
-# 搭配使用 Azure Functions 與 Logic Apps
 
-您可以從邏輯應用程式內使用 Azure Functions，來執行 C# 或 node.js 的自訂程式碼片段。[Azure Functions](../azure-functions/functions-overview.md) 提供 Microsoft Azure 中無伺服器運算的功能。這對於執行下列工作很有幫助：
+# <a name="using-azure-functions-with-logic-apps"></a>Using Azure Functions with Logic Apps
 
-* 格式化動作的值 (例如，從日期時間轉換為日期字串)
-* 執行工作流程內的計算
-* 利用 C# 或 node.js 中支援的函數來擴充 Logic Apps 的功能
+You can run custom snippets of C# or node.js by using Azure Functions from within a logic app.  [Azure Functions](../azure-functions/functions-overview.md) offers server-free computing in Microsoft Azure. This is useful for performing the following tasks:
 
-## 建立 Logic Apps 的函數
+* Formatting the value of an action (for example, converting from DateTime to a date string)
+* Performing calculations within a workflow
+* Extending the functionality of Logic Apps with functions that are supported in C# or node.js
 
-建議您在 Azure Functions 入口網站使用**一般 Webhook - 節點**或**一般 Webhook - C#** 範本來建立新的 Azure Functions。這將會自動填入可接受來自邏輯應用程式之 `application/json` 的範本。將會自動探索使用這些範本的函數，並列於 [我的區域中的 Azure Functions] 下方的 Logic Apps 設計工具中。
+## <a name="create-a-function-for-logic-apps"></a>Create a function for Logic Apps
 
-Webhook 函數會接受要求，並透過 `data` 變數將它傳入方法。您可以使用點標記法 (例如 `data.foo`) 來存取承載的屬性。例如，將日期時間值轉換為日期字串的簡單 JavaScript 函數看起來如以下範例︰
+We recommend that you create a new function in the Azure Functions portal by using the **Generic Webhook - Node** or **Generic Webhook - C#** templates. This auto-populates a template that accepts `application/json` from a logic app. Functions that use these templates are automatically discovered and listed in the Logic Apps designer under **Azure Functions in my region.**
+
+Webhook functions accept a request and pass it into the method via a `data` variable. You can access the properties of your payload by using dot notation like `data.foo`.  For example, a simple JavaScript function that converts a DateTime value into a date string looks like the following example:
 
 ```
 function start(req, res){
@@ -39,29 +40,29 @@ function start(req, res){
 }
 ```
 
-## 從邏輯應用程式呼叫 Azure Functions
+## <a name="call-azure-functions-from-a-logic-app"></a>Call Azure Functions from a logic app
 
-在設計工具中，如果您按一下 [動作] 功能表，就能選取 [我的區域中的 Azure Functions]。這會列出您訂用帳戶中的容器，並可讓您選擇想要呼叫的函數。
+In the designer, if you click the **Actions** menu, you can select **Azure Functions in my Region**.  This lists the containers in your subscription and enables you to choose the function that you want to call.  
 
-選取函數之後，系統會提示您指定輸入承載物件。這是邏輯應用程式將傳送到函數的訊息，且必須是 JSON 物件。例如，如果我想要傳入 Salesforce 觸發程式的**上次修改**日期，函數承載可能看起來如下︰
+After you select the function, you are prompted to specify an input payload object. This is the message that the logic app sends to the function, and it must be a JSON object. For example, if you want to pass in the **Last Modified** date from a Salesforce trigger, the function payload might look like this:
 
-![上次修改日期][1]
+![Last modfied date][1]
 
-## 從函數觸發 Logic Apps
+## <a name="trigger-logic-apps-from-a-function"></a>Trigger logic apps from a function
 
-此外，也可以從函數內觸發邏輯應用程式。若要這樣做，只需使用手動觸發程序來建立邏輯應用程式即可。如需詳細資訊，請參閱[作為可呼叫端點的 Logic Apps](app-service-logic-http-endpoint.md)。接著在您的函數內，產生 HTTP POST 到手動觸發程序 URL，其中包含您想要傳送到邏輯應用程式的承載。
+It's also possible to trigger a logic app from within a function.  To do this, simply create a logic app with a manual trigger. For more information, see [Logic apps as callable endpoints](app-service-logic-http-endpoint.md).  Then, within your function, generate an HTTP POST to the manual trigger URL with the payload that you want to send to the logic app.
 
-### 從設計工具建立函數
+### <a name="create-a-function-from-the-designer"></a>Create a function from the designer
 
-您也可以從設計工具內建立 node.js webhook 函數。首先，選取 [我的區域中的 Azure Functions]，然後選擇適用於您的函數的容器。如果您還沒有容器，就必須從 [Azure Functions 入口網站](https://functions.azure.com/signin)建立一個。然後選取 [建立新的)。
+You can also create a node.js webhook function from within the designer. First, select **Azure Functions in my Region,** and then choose a container for your function.  If you don't yet have a container, you need to create one from the [Azure Functions portal](https://functions.azure.com/signin). Then select **Create New**.  
 
-若要根據您想要計算的資料來產生範本，請指定您打算傳入函數的內容物件。這必須是 JSON 物件。例如，如果您從 FTP 動作傳入檔案內容，內容承載看起來會像這樣︰
+To generate a template based on the data that you want to compute, specify the context object that you plan to pass into a function. This must be a JSON object. For example, if you pass in the file content from an FTP action, the context payload will look like this:
 
-![內容承載][2]
+![Context payload][2]
 
->[AZURE.NOTE] 因為此物件無法轉換為字串，所以內容會直接新增至 JSON 承載中。不過，如果它不是 JSON 權杖 (也就是字串或 JSON 物件/陣列)，將會發生錯誤。若要將其轉換為字串，只要加上引號，如在本文章的第一個圖例所示。
+>[AZURE.NOTE] Because this object wasn't cast as a string, the content will be added directly to the JSON payload. However, it will error out if it is not a JSON token (that is, a string or a JSON object/array). To cast it as a string, simply add quotes as shown in the first illustration in this article.
 
-設計工具接著會產生您可以內嵌建立的函數範本。變數會根據您想要傳入函數的內容預先建立。
+The designer then generates a function template that you can create inline. Variables are pre-created based on the context that you plan to pass into the function.
 
 
 
@@ -70,4 +71,8 @@ function start(req, res){
 [1]: ./media/app-service-logic-azure-functions/callFunction.png
 [2]: ./media/app-service-logic-azure-functions/createFunction.png
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

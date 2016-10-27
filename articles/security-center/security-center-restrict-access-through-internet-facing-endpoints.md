@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure 資訊安全中心限制透過網際網路面向端點的存取 | Microsoft Azure"
-   description="本文件說明了如何實作 Azure 資訊安全中心建議的「限制透過網際網路面向端點的存取」。"
+   pageTitle="Restrict access through Internet-facing endpoints in Azure Security Center  | Microsoft Azure"
+   description="This document shows you how to implement the Azure Security Center recommendation **Restrict access through Internet facing endpoint**."
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,46 +16,52 @@
    ms.date="07/26/2016"
    ms.author="terrylan"/>
 
-# 在 Azure 資訊安全中心限制透過網際網路面向端點的存取
 
-如果您的任一網路安全性群組 (NSG) 有一或多個輸入規則允許來自任何來源 IP 位址的存取，Azure 資訊安全中心會建議您限制透過網際網路面向端點的存取。開放任一來源 IP 位址的存取可能會讓攻擊者存取您的資源。資訊安全中心會建議您編輯這些輸入規則，以限制只有實際上需要存取權的來源 IP 位址才能存取。
+# <a name="restrict-access-through-internet-facing-endpoints-in-azure-security-center"></a>Restrict access through Internet-facing endpoints in Azure Security Center
 
-有「任何」來源的任何非 Web 連接埠，就會產生這項建議。
+Azure Security Center will recommend that you restrict access through Internet-facing endpoints if any of your Network Security Groups (NSGs) has one or more inbound rules that allow access from “any” source IP address. Opening access to “any” may enable attackers to access your resources. Security Center will recommend that you edit these inbound rules to restrict access to source IP addresses that actually need access.
 
-> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
+This recommendation is generated for any non-web port that has "any" as source.
 
-## 實作建議
+> [AZURE.NOTE] This document introduces the service by using an example deployment. This is not a step-by-step guide.
 
-1. 在 [建議] 刀鋒視窗中，選取 [限制透過網際網路面向端點的存取]。![限制透過網際網路面向端點的存取][1]
+## <a name="implement-the-recommendation"></a>Implement the recommendation
 
-2. 這樣會開啟 [限制透過網際網路面向端點的存取] 刀鋒視窗。此刀鋒視窗會列出虛擬機器 (VM) 與導致潛在安全性問題的輸入規則。選取 VM。![選取 VM][2]
+1. In the **Recommendations blade**, select **Restrict access through Internet facing endpoint**.
+![Restrict access through Internet facing endpoint][1]
 
-3. [NSG] 刀鋒視窗會顯示網路安全性群組資訊、相關的輸入規則和關聯的 VM。選取 [編輯輸入規則] 繼續編輯輸入規則。![[網路安全性群組] 刀鋒視窗][3]
+2. This opens the blade **Restrict access through Internet facing endpoint**. This blade lists the virtual machines (VMs) with inbound rules that create a potential security issue. Select a VM.
+![Select a VM][2]
 
-4. 在 [輸入安全性規則] 刀鋒視窗中選取要編輯的輸入規則。在此範例中，我們選取 [允許 Web]。![輸入安全性規則][4]
+3. The **NSG** blade displays Network Security Group information, related inbound rules, and the associated VM. Select **Edit inbound rules** to proceed with editing an inbound rule.
+![Network Security Group blade][3]
 
-  注意，您也可以選取 [預設規則] 以查看所有 NSG 包含的預設規則集。預設規則無法刪除，但因為其會指派為較低優先權，因此可以由您所建立的規則覆寫預設規則。深入了解 [預設規則](../virtual-network/ virtual-networks-nsg.md#default-rules)。![預設規則][5]
+4. On the **Inbound security rules** blade select the inbound rule to edit. In this example, let’s select **AllowWeb**.
+![Inbound security rules][4]
 
-5. 在 [允許 Web] 刀鋒視窗中編輯輸入規則的內容，讓**來源**是 IP 位址或 IP 位址區塊。若要深入了解輸入規則的內容，請參閱 [NSG 規則](../virtual-network/virtual-networks-nsg.md#nsg-rules)。
+  Note, you can also select **Default rules** to see the set of default rules contained by all NSGs. The default rules cannot be deleted but, because they are assigned a lower priority, they can be overridden by the rules that you create. Learn more about [default rules](../virtual-network/ virtual-networks-nsg.md#default-rules).
+![Default rules][5]
 
-  ![編輯輸入規則][6]
+5. On the **AllowWeb** blade, edit the properties of the inbound rule so that the **Source** is an IP address or block of IP addresses. To learn more about the properties of the inbound rule, see [NSG rules](../virtual-network/virtual-networks-nsg.md#nsg-rules).
 
-## 另請參閱
+  ![Edit inbound rule][6]
 
-本文說明了如何實作資訊安全中心建議的「限制透過網際網路面向端點的存取」。 若要深入了解啟用 NSG 與規則，請參閱下列項目：
+## <a name="see-also"></a>See also
 
-- [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
-- [如何使用 Azure 入口網站管理 NSG](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+This article showed you how to implement the Security Center recommendation "Restrict access through Internet facing endpoint.” To learn more about enabling NSGs and rules, see the following:
 
-如要深入了解資訊安全中心，請參閱下列主題：
+- [What is a Network Security Group (NSG)?](../virtual-network/virtual-networks-nsg.md)
+- [How to manage NSGs using the Azure portal](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)
 
-- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) -- 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
-- [Azure 資訊安全中心的安全性健康情況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康情況。
-- [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理及回應安全性警示。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康情況。
-- [Azure 資訊安全中心常見問題集 (FAQ)](security-center-faq.md) -- 尋找有關使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
+To learn more about Security Center, see the following:
+
+- [Setting security policies in Azure Security Center](security-center-policies.md)--Learn how to configure security policies for your Azure subscriptions and resource groups.
+- [Managing security recommendations in Azure Security Center](security-center-recommendations.md)--Learn how recommendations help you protect your Azure resources.
+- [Security health monitoring in Azure Security Center](security-center-monitoring.md)--Learn how to monitor the health of your Azure resources.
+- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md)--Learn how to manage and respond to security alerts.
+- [Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how to monitor the health status of your partner solutions.
+- [Azure Security Center FAQ](security-center-faq.md)--Find frequently asked questions about using the service.
+- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/)--Get the latest Azure security news and information.
 
 <!--Image references-->
 [1]: ./media/security-center-restrict-access-thru-internet-facing-endpoint/restrict-access-thru-internet-facing-endpoint.png
@@ -65,4 +71,8 @@
 [5]: ./media/security-center-restrict-access-thru-internet-facing-endpoint/default-rules.png
 [6]: ./media/security-center-restrict-access-thru-internet-facing-endpoint/edit-inbound-rule.png
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,49 +1,50 @@
 <properties 
-	pageTitle="佈建 Web 應用程式和 Redis 快取" 
-	description="使用 Azure 資源管理員範本來部署 Web 應用程式和 Redis 快取。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erickson-doug" 
-	editor=""/>
+    pageTitle="Provision Web App with Redis Cache" 
+    description="Use Azure Resource Manager template to deploy web app with Redis Cache." 
+    services="app-service" 
+    documentationCenter="" 
+    authors="steved0x" 
+    manager="erickson-doug" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service" 
-	ms.workload="web" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+    ms.service="app-service" 
+    ms.workload="web" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/25/2016" 
+    ms.author="sdanie"/>
 
-# 使用範本建立 Web 應用程式和 Redis 快取
 
-在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Azure Web 應用程式和 Redis 快取。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+# <a name="create-a-web-app-plus-redis-cache-using-a-template"></a>Create a Web App plus Redis Cache using a template
 
-如需關於建立範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
+In this topic, you will learn how to create an Azure Resource Manager template that deploys an Azure Web App with Redis cache. You will learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed. You can use this template for your own deployments, or customize it to meet your requirements.
 
-如需完整的範本，請參閱 [Web 應用程式與 Redis 快取 範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json)。
+For more information about creating templates, see [Authoring Azure Resource Manager Templates](../resource-group-authoring-templates.md).
 
-## 部署內容
+For the complete template, see [Web App with Redis Cache template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).
 
-在此範本中，您將部署：
+## <a name="what-you-will-deploy"></a>What you will deploy
 
-- Azure Web 應用程式
-- Azure Redis 快取.
+In this template, you will deploy:
 
-若要自動執行部署，請按一下下列按鈕：
+- Azure Web App
+- Azure Redis Cache.
 
-[![部署至 Azure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)
+To run the deployment automatically, click the following button:
 
-## 要指定的參數
+[![Deploy to Azure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)
+
+## <a name="parameters-to-specify"></a>Parameters to specify
 
 [AZURE.INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 [AZURE.INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
-## 名稱的變數
+## <a name="variables-for-names"></a>Variables for names
 
-這個範本會使用變數來建構資源的名稱。它會使用 [uniqueString](../resource-group-template-functions.md#uniquestring) 函式，根據資源群組識別碼來建構值。
+This template uses variables to construct names for the resources. It uses the [uniqueString](../resource-group-template-functions.md#uniquestring) function to construct a value based on the resource group id.
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -52,15 +53,15 @@
     },
 
 
-## 要部署的資源
+## <a name="resources-to-deploy"></a>Resources to deploy
 
 [AZURE.INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
-### Redis 快取
+### <a name="redis-cache"></a>Redis Cache
 
-建立與 Web 應用程式搭配使用的 Azure Redis 快取。快取的名稱指定於 **cacheName** 變數中。
+Creates the Azure Redis Cache that is used with the web app. The name of the cache is specified in the **cacheName** variable.
 
-範本會在資源群組的相同位置建立快取。
+The template creates the cache in the same location as the resource group. 
 
     {
       "name": "[variables('cacheName')]",
@@ -81,11 +82,11 @@
     }
 
 
-### Web 應用程式
+### <a name="web-app"></a>Web app
 
-使用 **webSiteName** 變數中所指定的名稱來建立 Web 應用程式。
+Creates the web app with name specified in the **webSiteName** variable.
 
-請注意，Web 應用程式是使用應用程式設定屬性所設定，可讓它使用 Redis 快取。此應用程式設定是根據部署期間所提供的值動態建立。
+Notice that the web app is configured with app setting properties that enable it to work with the Redis Cache. This app settings are dynamically created based on values provided during deployment.
         
     {
       "apiVersion": "2015-08-01",
@@ -120,16 +121,22 @@
       ]
     }
 
-## 執行部署的命令
+## <a name="commands-to-run-deployment"></a>Commands to run deployment
 
 [AZURE.INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### PowerShell
+### <a name="powershell"></a>PowerShell
 
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -ResourceGroupName ExampleDeployGroup
 
-### Azure CLI
+### <a name="azure-cli"></a>Azure CLI
 
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -g ExampleDeployGroup
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

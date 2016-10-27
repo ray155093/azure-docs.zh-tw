@@ -1,6 +1,6 @@
 <properties
-   pageTitle="適用於 Azure AD MFA 與 SQL Database 和 SQL 資料倉儲的 SSMS 支援 | Microsoft Azure"
-   description="針對 SQL Database 和 SQL 資料倉儲，搭配使用 Multi-Factor Authentication 與 SSMS。"
+   pageTitle="SSMS support for Azure AD MFA with SQL Database and SQL Data Warehouse | Microsoft Azure"
+   description="Use Multi-Factored Authentication with SSMS for SQL Database and SQL Data Warehouse."
    services="sql-database"
    documentationCenter=""
    authors="BYHAM"
@@ -14,64 +14,71 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="08/15/2016"
+   ms.date="10/04/2016"
    ms.author="rick.byham@microsoft.com"/>
 
-# 適用於 Azure AD MFA 與 SQL Database 和 SQL 資料倉儲的 SSMS 支援
 
-Azure SQL Database 和 Azure SQL 資料倉儲現在支援使用「Active Directory 通用驗證」，從 SQL Server Management Studio (SSMS) 連線。Active Directory 通用驗證是支援 Azure Multi-Factor Authentication (MFA) 的互動式工作流程。Azure MFA 有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。它利用各種簡單的驗證選項來提供強大的驗證 (包括電話、簡訊、含有 Pin 的智慧卡或行動應用程式通知)，讓使用者能夠選擇自己喜歡的方式。如需 Multi-Factor Authentication 的說明，請參閱 [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)。
+# <a name="ssms-support-for-azure-ad-mfa-with-sql-database-and-sql-data-warehouse"></a>SSMS support for Azure AD MFA with SQL Database and SQL Data Warehouse
 
-SSMS 現在支援：
+Azure SQL Database and Azure SQL Data Warehouse now support connections from SQL Server Management Studio (SSMS) using *Active Directory Universal Authentication*. Active Directory Universal Authentication is an interactive work flow that supports *Azure Multi-Factor Authentication* (MFA). Azure MFA helps safeguard access to data and applications while meeting user demand for a simple sign-in process. It delivers strong authentication with a range of easy verification options—phone call, text message, smart cards with pin, or mobile app notification—allowing users to choose the method they prefer. For a description of Multi-Factor Authentication, see [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md).
 
-- 搭配 Azure AD 使用互動式 MFA，可能會進行快顯對話方塊驗證。
-- 非互動式 Active Directory 密碼和 Active Directory 整合式驗證方法，可以在許多不同的應用程式 (ADO.NET、JDBC、ODBC 等) 中使用。這兩種方法絕對不會產生快顯對話方塊。
+SSMS now supports:
 
-設定使用者帳戶來使用 MFA 時，互動式驗證工作流程會透過快顯對話方塊、使用智慧卡等方式來要求額外的使用者互動。設定使用者帳戶來使用 MFA 時，使用者必須選取要連線的 Azure 通用驗證。如果使用者帳戶不需要 MFA，使用者仍然可以使用另外兩個 Azure Active Directory 驗證選項。
+- Interactive MFA with Azure AD with the potential for pop-up dialog box validation.
+- Non-interactive Active Directory Password and Active Directory Integrated Authentication methods that can be used in many different applications (ADO.NET, JDBC, ODBC, etc.). These two methods never result in pop-up dialog boxes.
 
-## 適用於 SQL Database 和 SQL 資料倉儲的通用驗證限制
+When the user account is configured for MFA the interactive authentication work flow requires additional user interaction through pop-up dialog boxes, smart card use, etc. When the user account is configured for MFA, the user must select Azure Universal Authentication to connect. If the user account does not require MFA, the user can still use the other two Azure Active Directory Authentication options.
 
-- SSMS 是目前唯一透過 Active Directory 通用驗證，針對 MFA 啟用的工具。
-- 只有單一 Azure Active Directory 帳戶可以使用通用驗證登入使用 SSMS 的執行個體。若要以另一個 Azure AD 帳戶登入，您必須使用另一個 SSMS 執行個體(這項限制僅限於 Active Directory 通用驗證；您可以使用 Active Directory 密碼驗證、Active Directory 整合式驗證或 SQL Server 驗證來登入不同的伺服器)。
-- SSMS 支援 Active Directory 通用驗證，可使用物件總管、查詢編輯器及查詢存放區視覺效果。
-- DacFx 和 Schema Designer 均不支援通用驗證。
-- Active Directory 通用驗證不支援 MSA 帳戶。
-- 針對從其他 Active Directory 匯入至目前 Active Directory 的使用者，SSMS 中不支援 Active Directory 通用驗證。
-- 除了您必須使用支援的 SSMS 版本之外，Active Directory 通用驗證並沒有其他軟體需求。
+## <a name="universal-authentication-limitations-for-sql-database-and-sql-data-warehouse"></a>Universal Authentication limitations for SQL Database and SQL Data Warehouse
 
-## 組態步驟
+- SSMS is the only tool currently enabled for MFA through Active Directory Universal Authentication.
+- Only a single Azure Active Directory account can log in for an instance of SSMS using Universal Authentication. To log in as another Azure AD account, you must use another instance of SSMS. (This restriction is limited to Active Directory Universal Authentication; you can log in to different servers using Active Directory Password Authentication, Active Directory Integrated Authentication, or SQL Server Authentication).
+- SSMS supports Active Directory Universal Authentication for Object Explorer, Query Editor, and Query Store visualization.
+- Neither DacFx nor the Schema Designer support Universal Authentication.
+- MSA accounts are not supported for Active Directory Universal Authentication.
+- Active Directory Universal Authentication is not supported in SSMS for users that are imported into the current Active Directory from other Azure Active Directories. These users are not supported, because it would require a tenant ID to validate the accounts, and there is no mechanism to provide that.
+- There are no additional software requirements for Active Directory Universal Authentication except that you must use a supported version of SSMS.
 
-實作 Multi-Factor Authentication 需要四個基本步驟。
+## <a name="configuration-steps"></a>Configuration steps
 
-1. **設定 Azure Active Directory** – 如需詳細資訊，請參閱[整合內部部署身分識別與 Azure Active Directory](../active-directory/active-directory-aadconnect.md)、[將您自己的網域名稱新增至 Azure AD](https://azure.microsoft.com/blog/2012/11/28/windows-azure-now-supports-federation-with-windows-server-active-directory/)、[Microsoft Azure 現在支援與 Windows Server Active Directory 同盟](https://azure.microsoft.com/blog/2012/11/28/windows-azure-now-supports-federation-with-windows-server-active-directory/)、[管理您的 Azure AD 目錄](https://msdn.microsoft.com/library/azure/hh967611.aspx)及[使用 Windows PowerShell 管理 Azure AD](https://msdn.microsoft.com/library/azure/jj151815.aspx)。
+Implementing Multi-Factor Authentication requires four basic steps.
 
-2. **設定 MFA** – 如需逐步指示，請參閱[設定 Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-whats-next.md)。
+1. **Configure an Azure Active Directory** – For more information, see [Integrating your on-premises identities with Azure Active Directory](../active-directory/active-directory-aadconnect.md), [Add your own domain name to Azure AD](https://azure.microsoft.com/blog/2012/11/28/windows-azure-now-supports-federation-with-windows-server-active-directory/), [Microsoft Azure now supports federation with Windows Server Active Directory](https://azure.microsoft.com/blog/2012/11/28/windows-azure-now-supports-federation-with-windows-server-active-directory/), [Administering your Azure AD directory](https://msdn.microsoft.com/library/azure/hh967611.aspx), and [Manage Azure AD using Windows PowerShell](https://msdn.microsoft.com/library/azure/jj151815.aspx).
 
-3. **設定 SQL Database 或 SQL 資料倉儲進行 Azure AD 驗證** – 如需逐步指示，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲](sql-database-aad-authentication.md)。
+2. **Configure MFA** – For step-by-step instructions, see [Configuring Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-whats-next.md). 
 
-4. **下載 SSMS** – 在用戶端電腦上，從 [下載 SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx) 下載最新的 SSMS (至少是 2016 年 8 月)。
+3. **Configure SQL Database or SQL Data Warehouse for Azure AD Authentication** – For step-by-step instructions, see [Connecting to SQL Database or SQL Data Warehouse By Using Azure Active Directory Authentication](sql-database-aad-authentication.md).
 
-## 使用通用驗證搭配 SSMS 進行連線
+4. **Download SSMS** – On the client computer, download the latest SSMS (at least August 2016), from [Download SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx).
 
-下列步驟示範如何使用最新的 SSMS 連線至 SQL Database 或 SQL 資料倉儲。
+## <a name="connecting-by-using-universal-authentication-with-ssms"></a>Connecting by using Universal Authentication with SSMS
 
-1. 若要使用通用驗證進行連線，請在 [連線到伺服器] 對話方塊中，選取 [Active Directory 通用驗證]。![1mfa-universal-connect][1]
+The following steps show how to connect to SQL Database or SQL Data Warehouse by using the latest SSMS.
 
-2. 如同平常針對 SQL Database 和 SQL 資料倉儲所做的一樣，您必須按一下 [選項]，然後在 [選項] 對話方塊上指定資料庫。然後按一下 [**連接**]。
-3. 當 [登入您的帳戶] 對話方塊顯示時，請提供您 Azure Active Directory 身分識別的帳戶和密碼。![2mfa-sign-in][2]
+1. To connect using Universal Authentication, on the **Connect to Server** dialog box, select **Active Directory Universal Authentication**.
+![1mfa-universal-connect][1]
 
-    > [AZURE.NOTE] 如果是使用不需要 MFA 的帳戶進行通用驗證，則您可以在此時連線。對於需要 MFA 的使用者，請繼續執行下列步驟。
+2. As usual for SQL Database and SQL Data Warehouse you must click **Options** and specify the database on the **Options** dialog box. Then click **Connect**.
+3. When the **Sign in to your account** dialog box appears, provide the account and password of your Azure Active Directory identity.
+![2mfa-sign-in][2]
+
+    > [AZURE.NOTE] For Universal Authentication with an account which does not require MFA, you connect at this point. For users requiring MFA, continue with the following steps.
  
-4. 可能會顯示兩個 MFA 設定對話方塊。這個一次性作業是根據 MFA 系統管理員設定而定，因此可能是選擇性的。對於已啟用 MFA 的網域，有時會預先定義這個步驟 (例如，網域會要求使用者使用智慧卡和 pin)。![3mfa-setup][3]
+4. Two MFA setup dialog boxes might appear. This one time operation depends on the MFA administrator setting, and therefore may be optional. For an MFA enabled domain this step is sometimes pre-defined (for example, the domain requires users to use a smartcard and pin).  
+![3mfa-setup][3]
 
-5. 第二個可能的一次性對話方塊可讓您選取驗證方法的詳細資料。可能的選項是由您的系統管理員所設定。![4mfa-verify-1][4]
+5. The second possible one time dialog box allows you to select the details of your authentication method. The possible options are configured by your administrator.
+![4mfa-verify-1][4]
  
-6. Azure Active Directory 會傳送確認資訊給您。當您收到驗證碼時，請將其輸入至 [輸入驗證碼] 方塊，然後按一下 [登入]。![5mfa-verify-2][5]
+6. The Azure Active Directory sends the confirming information to you. When you receive the verification code, enter it into the **Enter verification code** box, and click **Sign in**.
+![5mfa-verify-2][5]
 
-驗證完成時，SSMS 即會正常連線 (假設認證和防火牆存取有效)。
+When verification is complete, SSMS connects normally presuming valid credentials and firewall access.
 
-##後續步驟  
+##<a name="next-steps"></a>Next steps  
 
-授與對資料庫的其他存取權︰[SQL Database 驗證和授權：授與存取](sql-database-manage-logins.md) 確定其他人可以透過防火牆連線︰[使用 Azure 入口網站設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings.md)
+Grant others access to your database: [SQL Database Authentication and Authorization: Granting Access](sql-database-manage-logins.md)  
+Make sure others can connect through the firewall: [Configure an Azure SQL Database server-level firewall rule using the Azure portal](sql-database-configure-firewall-settings.md)
 
 
 [1]: ./media/sql-database-ssms-mfa-auth/1mfa-universal-connect.png
@@ -80,4 +87,9 @@ SSMS 現在支援：
 [4]: ./media/sql-database-ssms-mfa-auth/4mfa-verify-1.png
 [5]: ./media/sql-database-ssms-mfa-auth/5mfa-verify-2.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

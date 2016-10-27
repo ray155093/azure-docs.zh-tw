@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Mindflash 整合 | Microsoft Azure" 
-    description="了解如何使用 Mindflash 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Mindflash | Microsoft Azure" 
+    description="Learn how to use Mindflash with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,125 +11,131 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/08/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Mindflash 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-mindflash"></a>Tutorial: Azure Active Directory integration with Mindflash
   
-本教學課程的目的是要示範 Azure 與 Mindflash 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Mindflash.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   啟用 Mindflash 單一登入的訂用帳戶
+-   A valid Azure subscription
+-   A Mindflash single sign-on enabled subscription
   
-完成本教學課程之後，您指派給 Mindflash 的 Azure AD 使用者就能夠單一登入您 Mindflash 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+After completing this tutorial, the Azure AD users you have assigned to Mindflash will be able to single sign into the application at your Mindflash company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用Mindflash 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Mindflash
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-mindflash-tutorial/IC787132.png "案例")
-##啟用Mindflash 的應用程式整合
+![Scenario](./media/active-directory-saas-mindflash-tutorial/IC787132.png "Scenario")
+##<a name="enabling-the-application-integration-for-mindflash"></a>Enabling the application integration for Mindflash
   
-本節的目的是要說明如何啟用 Mindflash 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Mindflash.
 
-###若要啟用 Mindflash 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-mindflash,-perform-the-following-steps:"></a>To enable the application integration for Mindflash, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-mindflash-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-mindflash-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-mindflash-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-mindflash-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-mindflash-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-mindflash-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-mindflash-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在搜尋方塊中，輸入 **Mindflash**。
+6.  In the **search box**, type **Mindflash**.
 
-    ![應用程式庫](./media/active-directory-saas-mindflash-tutorial/IC787133.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-mindflash-tutorial/IC787133.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Mindflash]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Mindflash**, and then click **Complete** to add the application.
 
     ![Mindflash](./media/active-directory-saas-mindflash-tutorial/IC787134.png "Mindflash")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Mindflash 中進行驗證。
+The objective of this section is to outline how to enable users to authenticate to Mindflash with their account in Azure AD using federation based on the SAML protocol.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Mindflash] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Mindflash** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-mindflash-tutorial/IC787135.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-mindflash-tutorial/IC787135.png "Configure Single Sign-On")
 
-2.  在 [要如何讓使用者登入 Mindflash] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Mindflash** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-mindflash-tutorial/IC787136.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-mindflash-tutorial/IC787136.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*http://company.mindflash.com*"，然後按一下 *[下一步]*。
+3.  On the **Configure App URL** page, in the **Sign On URL** textbox, type your URL using the following pattern "*http://company.mindflash.com*", and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-mindflash-tutorial/IC787137.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-mindflash-tutorial/IC787137.png "Configure App URL")
 
-4.  在 [設定在 Mindflash 單一登入] 頁面上，按一下 [下載中繼資料]，然後將中繼資料檔儲存在您的電腦中。
+4.  On the **Configure single sign-on at Mindflash** page, click **Download metadata**, and then save the metadata file on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-mindflash-tutorial/IC787138.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-mindflash-tutorial/IC787138.png "Configure Single Sign-On")
 
-5.  將中繼資料檔傳送給 Mindflash 支援小組。
+5.  Send the metadatafile to the Mindflash support team.
 
-    >[AZURE.NOTE] 單一登入設定必須由 Mindflash 支援小組執行。設定完成後，您將會收到通知。
+    >[AZURE.NOTE] The single sign-on configuration has to be performed by the Mindflash support team. You will get a notification as soon as the configuration has been completed.
 
-6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+6.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-mindflash-tutorial/IC787139.png "設定單一登入")
-##設定使用者佈建
+    ![Configure Single Sign-On](./media/active-directory-saas-mindflash-tutorial/IC787139.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 Azure AD 使用者能夠登入 Mindflash，必須將他們佈建到 Mindflash。Mindflash 需以手動的方式佈建。
+In order to enable Azure AD users to log into Mindflash, they must be provisioned into Mindflash.  
+In the case of Mindflash, provisioning is a manual task.
 
-###若要佈建使用者帳戶，請執行下列步驟：
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
 
-1.  以系統管理員身分登入您的 **Mindflash** 公司網站。
+1.  Log in to your **Mindflash** company site as an administrator.
 
-2.  移至 [管理使用者]。
+2.  Go to **Manage Users**.
 
-    ![管理使用者](./media/active-directory-saas-mindflash-tutorial/IC787140.png "管理使用者")
+    ![Manage Users](./media/active-directory-saas-mindflash-tutorial/IC787140.png "Manage Users")
 
-3.  按一下 [新增使用者]，然後按一下 [新增]。
+3.  Click the **Add Users**, and then click **New**.
 
-4.  在 [新增使用者] 區段中，執行下列步驟：
+4.  In the **Add New Users** section, perform the following steps:
 
-    ![新增使用者](./media/active-directory-saas-mindflash-tutorial/IC787141.png "新增使用者")
+    ![Add New Users](./media/active-directory-saas-mindflash-tutorial/IC787141.png "Add New Users")
 
-    1.  在相關的文字方塊中，輸入您想要佈建之有效 ADD 帳戶的 [名字]、[姓氏] 和 [電子郵件]。
-    2.  按一下 [新增]。
+    1.  Type the **First name**, **Last name** and **Email** of a valid AAD account you want to provision into the related textboxes.
+    2.  Click **Add**.
 
->[AZURE.NOTE]您可以使用任何其他的 Mindflash 使用者帳戶建立工具或 Mindflash 提供的 API，佈建 AAD 使用者帳戶。
+>[AZURE.NOTE]You can use any other Mindflash user account creation tools or APIs provided by Mindflash to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Mindflash，請執行下列步驟：
+###<a name="to-assign-users-to-mindflash,-perform-the-following-steps:"></a>To assign users to Mindflash, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Mindflash] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Mindflash **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-mindflash-tutorial/IC787142.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-mindflash-tutorial/IC787142.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-mindflash-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-mindflash-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

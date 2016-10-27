@@ -1,118 +1,119 @@
 <properties 
-	pageTitle="Linux 資料科學虛擬機器上的資料科學 | Microsoft Azure" 
-	description="如何使用 Linux 資料科學 VM 執行數個常見的資料科學工作。" 
-	services="machine-learning"
-	documentationCenter="" 
-	authors="bradsev" 
-	manager="jhubbard" 
-	editor="cgronlun"/>
+    pageTitle="Data science on the Linux Data Science Virtual Machine | Microsoft Azure" 
+    description="How to perform several common data science tasks with the Linux Data Science VM." 
+    services="machine-learning"
+    documentationCenter="" 
+    authors="bradsev" 
+    manager="jhubbard" 
+    editor="cgronlun"/>
 
 <tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/12/2016" 
-	ms.author="bradsev;paulsh" />
+    ms.service="machine-learning" 
+    ms.workload="data-services" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/12/2016" 
+    ms.author="bradsev;paulsh" />
 
 
-# Linux 資料科學虛擬機器上的資料科學
 
-本逐步解說示範如何使用 Linux 資料科學 VM 執行數個常見的資料科學工作。Linux 資料科學虛擬機器 (DSVM) 是 Azure 提供的虛擬機器映像，其中預先安裝了一組常用於執行資料分析和機器學習服務的工具。重要的軟體元件可在[佈建 Linux 資料科學虛擬機器](machine-learning-data-science-linux-dsvm-intro.md)主題中找到明細。VM 映像可讓使用者輕鬆地在幾分鐘內開始執行資料科學，而不需要個別安裝和設定每個工具。您可以在需要時輕鬆地相應增加 VM，並在不使用時加以停止。因此，這項資源既有彈性，又符合成本效益。
+# <a name="data-science-on-the-linux-data-science-virtual-machine"></a>Data science on the Linux Data Science Virtual Machine
 
-本逐步解說所示範的資料科學工作遵循 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/data-science-process/) 所述的步驟。此程序可讓使用者以系統化方法執行資料科學，讓資料科學家團隊可以在智慧型應用程式的建置生命週期內有效地共同作業。資料科學程序也為資料科學提供了可反覆進行的架構供個人遵循。
+This walkthrough shows you how to perform several common data science tasks with the Linux Data Science VM. The Linux Data Science Virtual Machine (DSVM) is a virtual machine image available on Azure that is pre-installed with a collection of tools commonly used for data analytics and machine learning. The key software components are itemized in the [Provision the Linux Data Science Virtual Machine](machine-learning-data-science-linux-dsvm-intro.md) topic. The VM image makes it easy to get started doing data science in minutes, without having to install and configure each of the tools individually. You can easily scale up the VM, if needed, and stop it when not in use. So this resource is both elastic and cost-efficient. 
 
-在本逐步解說中，我們會分析 [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) 資料集。這是一組標示為垃圾郵件或非垃圾郵件 (亦即這些郵件不是垃圾郵件) 的電子郵件，並同時包含關於電子郵件內容的一些統計資料。其中所含的統計資料會在下下一節中討論。
+The data science tasks demonstrated in this walkthrough follow the steps outlined in the [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/data-science-process/). This process provides a systematic approach to data science that enables teams of data scientists to effectively collaborate over the lifecycle of building intelligent applications. The data science process also provides an iterative framework for data science that can be followed by an individual.
 
-
-## 必要條件
-
-您必須先具有下列項目，才可以使用 Linux 資料科學虛擬機器：
-
-- **Azure 訂用帳戶**。如果您還沒有訂用帳戶，請參閱[立即建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。
-- [**Linux 資料科學 VM**](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm)。如需佈建此 VM 的相關資訊，請參閱[佈建 Linux 資料科學虛擬機器](machine-learning-data-science-linux-dsvm-intro.md)。
-- [X2Go](http://wiki.x2go.org/doku.php) 已安裝在電腦上並已開啟 XFCE 工作階段。如需安裝和設定 **X2Go 用戶端**的相關資訊，請參閱[安裝和設定 X2Go 用戶端](machine-learning-data-science-linux-dsvm-intro.md#Installing-and-configuring-X2Go-client)。
-- **AzureML 帳戶**。如果您還沒有帳戶，請在 [AzureML 首頁](https://studio.azureml.net/)註冊新帳戶。裡面有免費的使用量層級可幫助您開始使用。
+We analyze the [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) dataset in this walkthrough. This is a set of emails that are marked as either spam or ham (meaning they are not spam), and also contains some statistics on the content of the emails. The statistics included are discussed in the next but one section. 
 
 
-## 下載 spambase 資料集
+## <a name="prerequisites"></a>Prerequisites
 
-[spambase](https://archive.ics.uci.edu/ml/datasets/spambase) 資料集是一組較小的資料，裡面只有 4601 個範例。在示範資料科學 VM 的某些重要功能時，這樣的大小比較方便使用，因為它會讓所需的資源需求保持適中。
+Before you can use a Linux Data Science Virtual Machine, you must have the following:
 
->[AZURE.NOTE] 本逐步解說建立在 D2 v2 大小的 Linux 資料科學虛擬機器上。這個大小的 DSVM 能夠處理此逐步解說中的程序。
+- An **Azure subscription**. If you do not already have one, see [Create your free Azure account today](https://azure.microsoft.com/free/).
+- A [**Linux data science VM**](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm). For information on provisioning this VM, see [Provision the Linux Data Science Virtual Machine](machine-learning-data-science-linux-dsvm-intro.md). 
+- [X2Go](http://wiki.x2go.org/doku.php) installed on your computer and opened an XFCE session. For information on installing and configuring an **X2Go client**, see [Installing and configuring X2Go client](machine-learning-data-science-linux-dsvm-intro.md#Installing-and-configuring-X2Go-client). 
+- An **AzureML account**. If you don't already have one, sign up for new one at the [AzureML homepage](https://studio.azureml.net/). There is a free usage tier to help you get started.
 
-如果您需要更多儲存空間，您可以建立額外的磁碟，並將它們連接到 VM。這些磁碟會使用永續性的 Azure 儲存體，因此，即使伺服器因為調整大小或關閉等緣故而重新佈建，磁碟中的資料仍會保留下來。若要新增磁碟並將它連接到 VM，請遵循[在 Linux VM 中新增磁碟](../virtual-machines/virtual-machines-linux-add-disk.md)的指示。這些步驟使用 Azure 命令列介面 (Azure CLI)，此介面已安裝在 DSVM 上。因此，您完全可以從 VM 本身來執行這些程序。另一種可增加儲存體的選項是使用 [Azure 檔案](../storage/storage-how-to-use-files-linux.md)。
 
-若要下載資料，請開啟終端機視窗並執行此命令︰
+## <a name="download-the-spambase-dataset"></a>Download the spambase dataset
+
+The [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) dataset is a relatively small set of data that contains only 4601 examples. This is a convenient size to use when demonstrating that some of the key features of the Data Science VM as it keeps the resource requirements modest.
+
+>[AZURE.NOTE] This walkthrough was created on a D2 v2-sized Linux Data Science Virtual Machine. This size DSVM is capable of handling the procedures in this walkthrough.
+
+If you need more storage space, you can create additional disks and attach them to your VM. These disks use persistent Azure storage, so their data is preserved even when the server is reprovisioned due to resizing or is shut down. To add a disk and attach it to your VM, follow the instructions in [Add a disk to a Linux VM](../virtual-machines/virtual-machines-linux-add-disk.md). These steps use the Azure Command-Line Interface (Azure CLI), which is already installed on the DSVM. So these procedures can be done entirely from the VM itself. Another option to increase storage is to use [Azure files](../storage/storage-how-to-use-files-linux.md).
+
+To download the data, open a terminal window and run this command:
 
     wget http://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data
 
-下載的檔案沒有標題列，因此，讓我們建立另一個有標題的檔案。執行此命令來建立具有適當標題的檔案︰
+The downloaded file does not have a header row, so let's create another file that does have a header. Run this command to create a file with the appropriate headers:
 
     echo 'word_freq_make, word_freq_address, word_freq_all, word_freq_3d,word_freq_our, word_freq_over, word_freq_remove, word_freq_internet,word_freq_order, word_freq_mail, word_freq_receive, word_freq_will,word_freq_people, word_freq_report, word_freq_addresses, word_freq_free,word_freq_business, word_freq_email, word_freq_you, word_freq_credit,word_freq_your, word_freq_font, word_freq_000, word_freq_money,word_freq_hp, word_freq_hpl, word_freq_george, word_freq_650, word_freq_lab,word_freq_labs, word_freq_telnet, word_freq_857, word_freq_data,word_freq_415, word_freq_85, word_freq_technology, word_freq_1999,word_freq_parts, word_freq_pm, word_freq_direct, word_freq_cs, word_freq_meeting,word_freq_original, word_freq_project, word_freq_re, word_freq_edu,word_freq_table, word_freq_conference, char_freq_semicolon, char_freq_leftParen,char_freq_leftBracket, char_freq_exclamation, char_freq_dollar, char_freq_pound, capital_run_length_average,capital_run_length_longest, capital_run_length_total, spam' > headers
 
-然後，使用下列命令串連兩個檔案︰
+Then concatenate the two files together with the command:
 
     cat spambase.data >> headers
     mv headers spambaseHeaders.data
 
-資料集內有多種關於每封電子郵件的統計資料︰
+The dataset has several types of statistics on each email: 
 
-- **word\_freq\_WORD** 之類的資料行會指出電子郵件中符合「WORD」之字詞的百分比。例如，如果「word\_freq\_make」是 1，則表示電子郵件的所有文字中有 1% 是「make」。
-- **char\_freq\_CHAR** 之類的資料行會指出電子郵件的所有字元中「CHAR」所佔的百分比。
-- **capital\_run\_length\_longest** 是一連串大寫字母的最長長度。
-- **capital\_run\_length\_average** 是所有連串大寫字母的平均長度。
-- **capital\_run\_length\_total** 是所有連串大寫字母的總長度。
-- **spam** 指出該電子郵件是否被視為垃圾郵件 (1 = 垃圾郵件，0 = 不是垃圾郵件)。
+- Columns like ***word\_freq\_WORD*** indicate the percentage of words in the email that match *WORD*. For example, if *word\_freq\_make* is 1, then 1% of all words in the email were *make*. 
+- Columns like ***char\_freq\_CHAR*** indicate the percentage of all characters in the email that were *CHAR*. 
+- ***capital\_run\_length\_longest*** is the longest length of a sequence of capital letters. 
+- ***capital\_run\_length\_average*** is the average length of all sequences of capital letters. 
+- ***capital\_run\_length\_total*** is the total length of all sequences of capital letters. 
+- ***spam*** indicates whether the email was considered spam or not (1 = spam, 0 = not spam).
 
 
-## 使用 Microsoft R Open 探索資料集
+## <a name="explore-the-dataset-with-microsoft-r-open"></a>Explore the dataset with Microsoft R Open
 
-讓我們使用 R 來檢查資料並執行某些基本的機器學習服務。資料科學 VM 已預先安裝了 [Microsoft R Open](https://mran.revolutionanalytics.com/open/)。此版本的 R 中有多執行緒的數學程式庫，可提供比單一執行緒版本還要好的效能。Microsoft R Open 也可藉由使用 CRAN 封裝儲存機制的快照來提供重現性。
+Let's examine the data and do some basic machine learning with R. The Data Science VM comes with [Microsoft R Open](https://mran.revolutionanalytics.com/open/) pre-installed. The multithreaded math libraries in this version of R offer better performance than various single-threaded versions. Microsoft R Open also provides reproducibility by using a snapshot of the CRAN package repository.
 
-若要取得此逐步解說所使用的程式碼範例複本，請使用 VM 上預先安裝的 git 複製 **Azure-Machine-Learning-Data-Science** 儲存機制。從 git 命令列執行︰
+To get copies of the code samples used in this walkthrough, clone the **Azure-Machine-Learning-Data-Science** repository using git, which is pre-installed on the VM. From the git command line, run:
 
     git clone https://github.com/Azure/Azure-MachineLearning-DataScience.git
 
-開啟終端機視窗，並使用 R 互動式主控台啟動新的 R 工作階段。
+Open a terminal window and start a new R session with the R interactive console.
 
->[AZURE.NOTE] 您也可以使用 RStudio 來進行下列程序。若要安裝 RStudio，請在終端機執行下列命令︰`./Desktop/DSVM\ tools/installRStudio.sh`
+>[AZURE.NOTE] You can also use RStudio for the following procedures. To install RStudio, execute this command at a terminal: `./Desktop/DSVM\ tools/installRStudio.sh`
 
-若要匯入資料並設定環境，請執行︰
+To import the data and set up the environment, run:
 
     data <- read.csv("spambaseHeaders.data")
     set.seed(123)
 
-若要查看關於每個資料行的摘要統計資料︰
+To see summary statistics about each column:
 
     summary(data)
 
-針對資料的另一個不同檢視︰
+For a different view of the data:
 
     str(data)
 
-這會顯示每個變數的類型和資料集內的前幾個值。
+This shows you the type of each variable and the first few values in the dataset. 
 
-「spam」資料行已讀取為整數，但它實際上是類別變數 (或係數)。若要設定其類型︰
+The *spam* column was read as an integer, but it's actually a categorical variable (or factor). To set its type:
 
     data$spam <- as.factor(data$spam)
 
-若要進行一些探勘分析，請使用 [ggplot2](http://ggplot2.org/) 封裝，這是已安裝在 VM 上的適用於 R 的熱門圖形庫。請注意，在稍早顯示的摘要資料中，我們擁有關於驚嘆號字元出現頻率的摘要統計資料。在此，讓我們使用下列命令繪製這些頻率︰
+To do some exploratory analysis, use the [ggplot2](http://ggplot2.org/) package, a popular graphing library for R that is already installed on the VM. Note, from the summary data displayed earlier, that we have summary statistics on the frequency of the exclamation mark character. Let's plot those frequencies here with the following commands:
 
     library(ggplot2)
     ggplot(data) + geom_histogram(aes(x=char_freq_exclamation), binwidth=0.25)
 
-由於零軸會影響繪圖的準確性，讓我們將它去除︰
+Since the zero bar is skewing the plot, let's get rid of it:
 
     email_with_exclamation = data[data$char_freq_exclamation > 0, ]
     ggplot(email_with_exclamation) + geom_histogram(aes(x=char_freq_exclamation), binwidth=0.25)
 
-在 1 上面有看起來很有意思的不尋常密度。讓我們只看該資料︰
+There is a non-trivial density above 1 that looks interesting. Let's look at just that data:
 
     ggplot(data[data$char_freq_exclamation > 1, ]) + geom_histogram(aes(x=char_freq_exclamation), binwidth=0.25)
 
-然後按照垃圾郵件和非垃圾郵件進行分割：
+Then split it by spam vs ham:
 
     ggplot(data[data$char_freq_exclamation > 1, ], aes(x=char_freq_exclamation)) +
     geom_density(lty=3) +
@@ -121,48 +122,48 @@
     ggtitle("Distribution of spam \nby frequency of !") +
     labs(fill="spam", y="Density")
 
-這些範例應該能讓您為其他資料行製作類似繪圖，以探索它們內含的資料。
+These examples should enable you to make similar plots of the other columns to explore the data contained in them.
 
 
-## 訓練和測試 ML 模型
+## <a name="train-and-test-an-ml-model"></a>Train and test an ML model
 
-現在讓我們訓練幾個機器學習服務模型，將資料集內的電子郵件分類為包含垃圾郵件或非垃圾郵件。在本節中，我們會訓練決策樹模型和隨機樹系模型，然後測試其預測的精確度。
+Now let's train a couple of machine learning models to classify the emails in the dataset as containing either span or ham. We train a decision tree model and a random forest model in this section and then test their accuracy of their predictions. 
 
->[AZURE.NOTE] 下列程式碼所使用的 RPART (Recursive Partitioning and Regression Trees，遞迴分割和迴歸樹狀結構) 封裝已安裝在資料科學 VM 上。
+>[AZURE.NOTE] The rpart (Recursive Partitioning and Regression Trees) package used in the following code is already installed on the Data Science VM.
 
 
-首先，讓我們將資料集分割為訓練集和測試集︰
+First, let's split the dataset into training and test sets:
 
     rnd <- runif(dim(data)[1])
     trainSet = subset(data, rnd <= 0.7)
     testSet = subset(data, rnd > 0.7)
 
-然後建立決策樹來分類電子郵件。
+And then create a decision tree to classify the emails.
 
     require(rpart)
     model.rpart <- rpart(spam ~ ., method = "class", data = trainSet)
     plot(model.rpart)
     text(model.rpart)
 
-結果如下︰
+Here is the result:
 
 ![1](./media/machine-learning-data-science-linux-dsvm-walkthrough/decision-tree.png)
 
-若要判斷訓練集的表現有多良好，請使用下列程式碼︰
+To determine how well it performs on the training set, use the following code:
 
     trainSetPred <- predict(model.rpart, newdata = trainSet, type = "class")
     t <- table(`Actual Class` = trainSet$spam, `Predicted Class` = trainSetPred)
     accuracy <- sum(diag(t))/sum(t)
     accuracy
 
-若要判斷測試集的表現有多良好︰
+To determine how well it performs on the test set:
 
     testSetPred <- predict(model.rpart, newdata = testSet, type = "class")
     t <- table(`Actual Class` = testSet$spam, `Predicted Class` = testSetPred)
     accuracy <- sum(diag(t))/sum(t)
     accuracy
 
-讓我們同時嘗試隨機樹系模型。隨機樹系會訓練大量決策樹，並輸出屬於所有個別決策樹之分類眾數的類別。它們能提供更強大的機器學習服務方法，因為它們會校正決策樹模型傾向以過度擬合訓練資料集。
+Let's also try a random forest model. Random forests train a multitude of decision trees and output a class that is the mode of the classifications from all of the individual decision trees. They provide a more powerful machine learning approach as they correct for the tendency of a decision tree model to overfit a training dataset. 
 
     require(randomForest)
     trainVars <- setdiff(colnames(data), 'spam')
@@ -177,17 +178,17 @@
     accuracy
 
 
-## 模型部署到 Azure ML
+## <a name="deploy-a-model-to-azure-ml"></a>Deploy a model to Azure ML
 
-[Azure Machine Learning Studio](https://studio.azureml.net/) (AzureML) 是一項雲端服務，可讓您輕鬆地建置和部署預測性分析模型。AzureML 的其中一項優秀功能是能夠將任何 R 函數發佈為 Web 服務。AzureML R 封裝可直接從 DSVM 上的 R 工作階段讓部署作業的執行變得簡單無比。
+[Azure Machine Learning Studio](https://studio.azureml.net/) (AzureML) is a cloud service that makes it easy to build and deploy predictive analytics models. One of the nice features of AzureML is its ability to publish any R function as a web service. The AzureML R package makes deployment easy to do right from our R session on the DSVM. 
 
-若要部署上一節的決策樹程式碼，您需要登入 Azure Machine Learning Studio。您需要工作區識別碼和驗證權杖才能登入。若要找到這些值並以值初始化 AzureML 變數︰
+To deploy the decision tree code from the previous section, you need to sign in to Azure Machine Learning Studio. You need your workspace ID and an authorization token to sigh in. To find these values and initialize the AzureML variables with them:
 
-選取左側功能表上的 [設定]。記下您的**工作區識別碼**。![2](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-id.png)
+Select **Settings** on the left-hand menu. Note your **WORKSPACE ID**. ![2](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-id.png)
 
-從上方的功能表選取 [授權權杖] 並記下您的**主要授權權杖**。![3](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-token.png)
+Select **Authorization Tokens** from the overhead menu and note your **Primary Authorization Token**.![3](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-token.png)
 
-載入 **AzureML** 封裝，然後在 DSVM 的 R 工作階段中以您的權杖和工作區識別碼設定變數值：
+Load the **AzureML** package and then set values of the variables with your token and workspace ID in your R session on the DSVM:
 
 
     require(AzureML)
@@ -195,14 +196,14 @@
     wsID = "<workspace-id>"
 
 
-讓我們簡化模型，以使這項示範更容易實作。挑選決策樹中最接近根部的三個變數，並只用這三個變數建置新的決策樹︰
+Let's simplify the model to make this demonstration easier to implement. Pick the three variables in the decision tree closest to the root and build a new tree using just those three variables:
 
     colNames <- c("char_freq_dollar", "word_freq_remove", "word_freq_hp", "spam")
     smallTrainSet <- trainSet[, colNames]
     smallTestSet <- testSet[, colNames]
     model.rpart <- rpart(spam ~ ., method = "class", data = smallTrainSet)
 
-我們需要會以功能做為輸入並傳回預測值的預測函數︰
+We need a prediction function that takes the features as an input and returns the predicted values:
 
     predictSpam <- function(char_freq_dollar, word_freq_remove, word_freq_hp) {
         predictDF <- predict(model.rpart, data.frame("char_freq_dollar" = char_freq_dollar,
@@ -210,7 +211,7 @@
         return(colnames(predictDF)[apply(predictDF, 1, which.max)])
     }
 
-使用 **publishWebService** 函數將 predictSpam 函數發佈至 AzureML︰
+Publish the predictSpam function to AzureML using the **publishWebService** function: 
 
     spamWebService <- publishWebService("predictSpam",
         "spamWebService",
@@ -218,32 +219,32 @@
         list("spam"="int"),
         wsID, wsAuth)
 
-此函數會採用 **predictSpam** 函數、建立名為 **spamWebService** 的 Web 服務以及定義的輸入和輸出，並傳回新端點的相關資訊。
+This function takes the **predictSpam** function, creates a web service named **spamWebService** with defined inputs and outputs, and returns information about the new endpoint.
 
-使用下列命令檢視已發佈之 Web 服務的詳細資料，包括其 API 端點和存取金鑰︰
+View details of the published web service, including its API endpoint and access keys with the command:
 
     spamWebService[[2]]
 
-若要對前 10 列測試集試用此服務︰
+To try it out on the first 10 rows of the test set:
 
     consumeDataframe(spamWebService$endpoints[[1]]$PrimaryKey, spamWebService$endpoints[[1]]$ApiLocation, smallTestSet[1:10, 1:3])
 
 
-## 使用其他可用工具
+## <a name="use-other-tools-available"></a>Use other tools available
 
-其餘各節示範如何使用一些已安裝在 Linux 資料科學 VM 上的工具。以下是所討論的工具清單︰
+The remaining sections show how to use some of the tools installed on the Linux Data Science VM.Here is the list of tools discussed:
 
 - XGBoost
 - Python
 - Jupyterhub
 - Rattle
-- PostgreSQL 和 Squirrel SQL
-- SQL Server 資料倉儲
+- PostgreSQL & Squirrel SQL
+- SQL Server Data Warehouse
 
 
-## XGBoost
+## <a name="xgboost"></a>XGBoost
 
-[XGBoost](https://xgboost.readthedocs.org/en/latest/) 工具可提供快速且正確的推進式決策樹實作。
+[XGBoost](https://xgboost.readthedocs.org/en/latest/) is a tool that provides a fast and accurate boosted tree implementation.
 
     require(xgboost)
     data <- read.csv("spambaseHeaders.data")
@@ -259,15 +260,15 @@
     accuracy <- 1.0 - mean(as.numeric(pred > 0.5) != testSet$spam)
     print(paste("test accuracy = ", accuracy))
 
-XGBoost 也可以從 Python 或命令列進行呼叫。
+XGBoost can also call from python or a command line.
 
-## Python
+## <a name="python"></a>Python
 
-為了能夠使用 Python 進行開發，Anaconda Python 散發套件 2.7 與 3.5 已安裝在 DSVM 中。
+For development using Python, the Anaconda Python distributions 2.7 and 3.5 have been installed in the DSVM. 
 
->[AZURE.NOTE] Anaconda 散發套件包含 [Condas](http://conda.pydata.org/docs/index.html)，可用來為 Python 建立已安裝不同版本和 (或) 封裝的自訂環境。
+>[AZURE.NOTE] The Anaconda distribution includes [Condas](http://conda.pydata.org/docs/index.html), which can be used to create custom environments for Python that have different versions and/or packages installed in them.
 
-讓我們讀入某些 spambase 資料集，並以 scikit-learn 中的支援向量機器分類電子郵件︰
+Let's read in some of the spambase dataset and classify the emails with support vector machines in scikit-learn:
 
     import pandas
     from sklearn import svm    
@@ -277,20 +278,20 @@ XGBoost 也可以從 Python 或命令列進行呼叫。
     clf = svm.SVC()
     clf.fit(X, y)
 
-若要進行預測︰
+To make predictions:
 
     clf.predict(X.ix[0:20, :])
 
-若要顯示如何發佈 AzureML 端點，讓我們和先前發佈 R 模型時一樣，建立只有三個變數的簡化模型。
+To show how to publish an AzureML endpoint, let's make a simpler model the three variables as we did when we published the R model previously. 
 
     X = data.ix[["char_freq_dollar", "word_freq_remove", "word_freq_hp"]]
     y = data.ix[:, 57]
     clf = svm.SVC()
     clf.fit(X, y)
 
-若要將模型發佈至 AzureML：
+To publish the model to AzureML:
 
-	# Publish the model.
+    # Publish the model.
     workspace_id = "<workspace-id>"
     workspace_token = "<workspace-token>"
     from azureml import services
@@ -308,114 +309,114 @@ XGBoost 也可以從 Python 或命令列進行呼叫。
     # Call the model
     predictSpam.service(1, 1, 1)
 
->[AZURE.NOTE] 此操作只適用於 Python 2.7，3.5 版則尚未支援。請使用 **/anaconda/bin/python2.7** 來執行。
+>[AZURE.NOTE] This is only available for python 2.7 and is not yet supported on 3.5. Run with **/anaconda/bin/python2.7**.
 
 
-## Jupyterhub
+## <a name="jupyterhub"></a>Jupyterhub
 
-DSVM 中的 Anaconda 散發套件隨附 Jupyter Notebook，此跨平台環境可用來共用 Python、R 或 Julia 程式碼和分析。Jupyter 筆記本是透過 JupyterHub 來存取。您可以在 **https://\<VM DNS 名稱或 IP 位址>:8000/** 使用本機 Linux 使用者名稱和密碼來登入。JupyterHub 的所有組態檔可在 **eg /etc/ jupyterhub** 目錄中找到。
+The Anaconda distribution in the DSVM comes with a Jupyter notebook, a cross-platform environment to share Python, R, or Julia code and analysis. The Jupyter notebook is accessed through JupyterHub. You sign in using your local Linux user name and password at ***https://\<VM DNS name or IP Address\>:8000/***. All configuration files for JupyterHub are found in directory **/etc/jupyterhub**.
 
-VM 上已安裝數個 Notebook 範例︰
+Several sample notebooks are already installed on the VM:
 
-- 如需 Python 的 Notebook 範例，請參閱 [IntroToJupyterPython.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroToJupyterPython.ipynb)。
-- 如需 **R** 的 Notebook 範例，請參閱 [IntroTutorialinR](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroTutorialinR.ipynb)。
-- 如需 **Python** 的其他 Notebook 範例，請參閱 [IrisClassifierPyMLWebService](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IrisClassifierPyMLWebService.ipynb)。
+- See the [IntroToJupyterPython.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroToJupyterPython.ipynb) for a sample Python notebook.
+- See [IntroTutorialinR](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroTutorialinR.ipynb) for a sample **R** notebook.
+- See the [IrisClassifierPyMLWebService](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IrisClassifierPyMLWebService.ipynb) for another sample **Python** notebook.
 
->[AZURE.NOTE] Julia 語言也可從 Linux 資料科學 VM 上的命令列來使用。
+>[AZURE.NOTE] The Julia language is also available from the command line on the Linux Data Science VM.
 
 
-## Rattle
+## <a name="rattle"></a>Rattle
 
-[Rattle](https://cran.r-project.org/web/packages/rattle/index.html) (R Analytical Tool To Learn Easily) 是用於資料採礦的 R 圖形化工具。其直覺式介面可讓您輕鬆地載入、瀏覽和轉換資料以及建置和評估模型。[Rattle︰R 的資料採礦 GUI](https://journal.r-project.org/archive/2009-2/RJournal_2009-2_Williams.pdf) 一文提供了逐步解說來示範其功能。
+[Rattle](https://cran.r-project.org/web/packages/rattle/index.html) (the R Analytical Tool To Learn Easily) is a graphical R tool for data mining. It has an intuitive interface that makes it easy to load, explore, and transform data and build and evaluate models.  The article [Rattle: A Data Mining GUI for R](https://journal.r-project.org/archive/2009-2/RJournal_2009-2_Williams.pdf) provides a walkthrough that demonstrates its features.
 
-使用下列命令安裝並啟動 Rattle︰
+Install and start Rattle with the following commands:
 
     if(!require("rattle")) install.packages("rattle")
     require(rattle)
     rattle()
 
->[AZURE.NOTE] 不需要安裝在 DSVM 上。但 Rattle 可能會在載入時提示您安裝其他封裝。
+>[AZURE.NOTE] Installation is not required on the DSVM. But Rattle may prompt you to install additional packages when it loads.
 
-Rattle 使用索引標籤式介面。大部分索引標籤會對應至[資料科學程序](https://azure.microsoft.com/documentation/learning-paths/data-science-process/)中的步驟，例如載入資料或瀏覽資料。資料科學程序會由左到右經歷所有索引標籤。但最後一個索引標籤包含 Rattle 所執行的 R 命令的記錄檔。
-
-
-若要載入和設定資料集︰
-
-- 若要載入檔案，請選取 [資料] 索引標籤，然後
-- 選擇 **Filename** 旁的選取器，然後選擇 **spambaseHeaders.data**。
-- 若要載入檔案，請選取最上方按鈕列中的 [執行]。您應該會看到每個資料行的摘要，包括其識別的資料類型、其為輸入、目標還是其他類型的變數，以及唯一值數目。
-- Rattle 已將 [垃圾郵件] 資料行正確地識別為目標。選取 [垃圾郵件] 資料行，然後將 [目標資料類型] 設定為 [類別]。
-
-若要瀏覽資料︰
-
-- 選取 [瀏覽] 索引標籤。
-- 依序按一下 [摘要] 和 [執行]，以查看一些關於變數類型的資訊和某些摘要統計資料。
-- 若要檢視關於每個變數的其他類型的統計資料，請選取其他選項，例如 [描述] 或 [基本資訊]。
-
-[瀏覽] 索引標籤也可讓您產生許多具洞察力的繪圖。若要繪製資料的長條圖︰
+Rattle uses a tab-based interface. Most of the tabs correspond to steps in the [Data Science Process](https://azure.microsoft.com/documentation/learning-paths/data-science-process/), like loading data or exploring it. The data science process flows from left to right through the tabs. But the last tab contains a log of the R commands run by Rattle. 
 
 
-- 選取 [分佈]。
-- 為 **word\_freq\_remove** 和 **word\_freq\_you** 勾選 [長條圖]。
-- 選取 [執行]。您應該會在單一圖形視窗中看到這兩個密度圖，其中清楚顯示「you」這個字在電子郵件中的出現頻率遠高於「remove」。
+To load and configure the dataset:
 
-相互關聯圖也很有趣。若要建立此圖：
+- To load the file, select the **Data** tab, then 
+- Choose the selector next to **Filename** and choose **spambaseHeaders.data**. 
+- To load the file. select **Execute** in the top row of buttons. You should see a summary of each column, including its identified data type, whether it's an input, a target, or other type of variable, and the number of unique values.
+- Rattle has correctly identified the **spam** column as the target. Select the spam column, then set the **Target Data Type** to **Categoric**.
+
+To explore the data: 
+
+- Select the **Explore** tab. 
+- Click **Summary**, then **Execute**, to see some information about the variable types and some summary statistics. 
+- To view other types of statistics about each variable, select other options like **Describe** or **Basics**.
+
+The **Explore** tab also allows you to generate many insightful plots. To plot a histogram of the data:
 
 
-- 選擇 [相互關聯] 做為 [類型]，然後
-- 選取 [執行]。
-- Rattle 會警告您，它建議的上限為 40 個變數。選取 [是] 以檢視此圖。
+- Select **Distributions**.
+- Check **Histogram** for **word_freq_remove** and **word_freq_you**.
+- Select **Execute**. You should see both density plots in a single graph window, where it is clear that the word "you" appears much more frequently in emails than "remove".
 
-圖中會浮現一些有趣的相互關聯：例如，「technology」與「HP」和「labs」有高度相互關聯性。它也與「650」有高度相互關聯性，因為資料集捐贈者的區碼是 650。
+The Correlation plots are also interesting. To create one:
 
-文字間相互關聯性的數值可在 [瀏覽] 視窗中取得。舉例來說，值得注意的是「technology」與「your」和「money」負面相關。
 
-Rattle 可以轉換資料集來處理一些常見的問題。例如，它可讓您調整功能大小、插補遺漏值、處理離群值，以及移除具有遺失資料的變數或觀察值。Rattle 也可以識別觀察值和 (或) 變數之間的關聯規則。這些索引標籤不在此入門逐步解說的討論範圍內。
+- Choose **Correlation** as the **Type**, then 
+- Select **Execute**. 
+- Rattle warns you that it recommends a maximum of 40 variables. Select **Yes** to view the plot. 
 
-Rattle 也可以執行叢集分析。讓我們排除部分功能以讓輸出更方便閱讀。在 [資料] 索引標籤上，選擇每個變數旁的 [忽略]，但下面這十個項目除外︰
+There are some interesting correlations that come up: "technology" is strongly correlated to "HP" and "labs", for example. It is also strongly correlated to "650", because the area code of the dataset donors is 650.
 
-- word\_freq\_hp
-- word\_freq\_technology
-- word\_freq\_george
-- word\_freq\_remove
-- word\_freq\_your
-- word\_freq\_dollar
-- word\_freq\_money
-- capital\_run\_length\_longest
-- word\_freq\_business
+The numeric values for the correlations between words are available in the Explore window. It is interesting to note, for example, that "technology" is negatively correlated with "your" and "money".
+
+Rattle can transform the dataset to handle some common issues. For example, it allows you to rescale features, impute missing values, handle outliers, and remove variables or observations with missing data. Rattle can also identify association rules between observations and/or variables. These tabs are out of scope for this introductory walkthrough.
+
+Rattle can also perform cluster analysis. Let's exclude some features to make the output easier to read. On the **Data** tab, choose **Ignore** next to each of the variables except these ten items:
+
+- word_freq_hp
+- word_freq_technology
+- word_freq_george
+- word_freq_remove
+- word_freq_your
+- word_freq_dollar
+- word_freq_money
+- capital_run_length_longest
+- word_freq_business
 - spam
 
-然後返回 [叢集] 索引標籤，選擇 [KMeans]，並將 [叢集數目] 設定為 4。然後**執行**。結果會顯示在輸出視窗中。有一個叢集具有高頻率的「george」和「hp」，因此可能是合法的商業電子郵件。
+Then go back to the **Cluster** tab, choose **KMeans**, and set the *Number of clusters* to 4. Then **Execute**. The results are displayed in the output window. One cluster has high frequency of "george" and "hp" and is probably a legitimate business email.
 
-若要建置簡單的決策樹機器學習服務模型︰
+To build a simple decision tree machine learning model: 
 
-- 選取 [模型] 索引標籤。
-- 選擇 [樹狀結構] 做為 [類型]。
-- 選取 [執行]，在輸出視窗中以文字形式顯示樹狀結構。
-- 選取 [繪製] 按鈕以檢視圖形化版本。此版本看起來非常類似我們稍早使用「rpart」取得的樹狀結構。
+- Select the **Model** tab, 
+- Choose **Tree** as the **Type**. 
+- Select **Execute** to display the tree in text form in the output window. 
+- Select the **Draw** button to view a graphical version. This looks quite similar to the tree we obtained earlier using *rpart*.
 
-Rattle 的其中一項優秀功能是能夠執行數個機器學習服務方法和快速評估這些方法。程序如下：
+One of the nice features of Rattle is its ability to run several machine learning methods and quickly evaluate them. Here is the procedure:
 
-- 選擇 [全部] 做為 [類型]。
-- 選取 [執行]。
-- 執行完畢後，您可以按一下任何單一 [類型] \(例如 **SVM**) 並檢視結果。
-- 您也可以使用 [評估] 索引標籤比較驗證集上模型的效能。例如，[錯誤矩陣] 選取項目會顯示驗證集上每個模型的混淆矩陣、整體錯誤和平均類別錯誤。
-- 您也可以繪製 ROC 曲線、執行敏感度分析和進行其他類型的模型評估。
+- Choose **All** for the **Type**. 
+- Select **Execute**. 
+- After it finishes you can click any single **Type**, like **SVM**, and view the results. 
+- You can also compare the performance of the models on the validation set using the **Evaluate** tab. For example, the **Error Matrix** selection shows you the confusion matrix, overall error, and averaged class error for each model on the validation set. 
+- You can also plot ROC curves, perform sensitivity analysis, and do other types of model evaluations.
 
-建置完模型之後，選取 [記錄] 索引標籤來檢視 Rattle 在工作階段期間執行的 R 程式碼。您可以選取 [匯出] 按鈕來加以儲存。
+Once you're finished building models, select the **Log** tab to view the R code run by Rattle during your session. You can select the **Export** button to save it. 
 
->[AZURE.NOTE] 最新版 Rattle 中有一個錯誤。若要修改指令碼或使用它在稍後重複執行步驟，您必須在記錄文字的「Export this log ...」前面插入 # 字元。
+>[AZURE.NOTE] There is a bug in current release of Rattle. To modify the script or use it to repeat your steps later, you must insert a # character in front of *Export this log ... * in the text of the log. 
 
 
-## PostgreSQL 和 Squirrel SQL
+## <a name="postgresql-&-squirrel-sql"></a>PostgreSQL & Squirrel SQL
 
-DSVM 隨附安裝 PostgreSQL。PostgreSQL 是複雜的開放原始碼關聯式資料庫。本節說明如何將垃圾郵件資料集載入至 PostgreSQL，然後進行查詢。
+The DSVM comes with PostgreSQL installed. PostgreSQL is a sophisticated, open-source relational database. This section shows how to load our spam dataset into PostgreSQL and then query it.
 
-在載入資料之前，您必須先允許從 localhost 進行密碼驗證。在命令提示字元中︰
+Before you can load the data, you need to allow password authentication from the localhost. At a command prompt:
 
     sudo gedit /var/lib/pgsql/data/pg_hba.conf
 
-組態檔末尾附近有幾行詳細說明允許之連線的文字︰
+Near the bottom of the config file are several lines that detail the allowed connections:
 
     # "local" is for Unix domain socket connections only
     local   all             all                                     trust
@@ -424,31 +425,31 @@ DSVM 隨附安裝 PostgreSQL。PostgreSQL 是複雜的開放原始碼關聯式�
     # IPv6 local connections:
     host    all             all             ::1/128                 ident
 
-將「IPv4 local connections」文字行變更為使用 md5 而非 ident，以便可以使用使用者名稱和密碼來登入︰
+Change the "IPv4 local connections" line to use md5 instead of ident, so we can log in using a username and password:
 
     # IPv4 local connections:
     host    all             all             127.0.0.1/32            md5
 
-然後重新啟動 postgres 服務︰
+And restart the postgres service:
 
     sudo systemctl restart postgresql
 
-若要啟動 psql (PostgreSQL 的互動終端機)，請以內建 postgres 使用者身分從命令提示字元執行下列命令︰
+To launch psql, an interactive terminal for PostgreSQL, as the built-in postgres user, run the following command from a prompt:
 
     sudo -u postgres psql
 
-使用和您目前用來登入之 Linux 帳戶相同的使用者名稱建立新的使用者帳戶，並為它指定密碼︰
+Create a new user account, using the same username as the Linux account you're currently logged in as, and give it a password:
 
     CREATE USER <username> WITH CREATEDB;
     CREATE DATABASE <username>;
     ALTER USER <username> password '<password>';
     \quit
 
-然後，以使用者身分登入 psql︰
+Then log in to psql as your user:
 
     psql
 
-並將資料匯入新的資料庫︰
+And import the data into a new database:
 
     CREATE DATABASE spam;
     \c spam
@@ -456,76 +457,81 @@ DSVM 隨附安裝 PostgreSQL。PostgreSQL 是複雜的開放原始碼關聯式�
     \copy data FROM /home/<username>/spambase.data DELIMITER ',' CSV;
     \quit
 
-現在，讓我們使用 **Squirrel SQL** 來瀏覽資料並執行一些查詢，此圖形化工具可讓您透過 JDBC 驅動程式與資料庫互動。
+Now, let's explore the data and run some queries using **Squirrel SQL**, a graphical tool that lets you interact with databases via a JDBC driver.
 
-若要開始使用，請從 [應用程式] 功能表啟動 Squirrel SQL。若要設定驅動程式︰
+To get started, launch Squirrel SQL from the Applications menu. To set up the driver:
 
-- 依序選取 [Windows] 和 [檢視驅動程式]。
-- 以滑鼠右鍵按一下 [PostgreSQL]，然後選取 [修改驅動程式]。
-- 依序選取 [額外類別路徑] 和 [新增]。
-- 輸入**/usr/share/java/jdbcdrivers/postgresql-9.4.1208.jre6.jar** 做為 [檔案名稱]。
-- 選取 [開啟]。
-- 選擇 [列出驅動程式]，接著在 [類別名稱] 中選取 [org.postgresql.Driver]，然後選取 [確定]。
+- Select **Windows**, then **View Drivers**. 
+- Right-click on **PostgreSQL** and select **Modify Driver**. 
+- Select **Extra Class Path**, then **Add**. 
+- Enter ***/usr/share/java/jdbcdrivers/postgresql-9.4.1208.jre6.jar*** for the **File Name** and 
+- Select **Open**.
+- Choose List Drivers, then select **org.postgresql.Driver** in **Class Name**, and select **OK**.
 
-若要設定與本機伺服器的連線︰
+To set up the connection to the local server:
  
-- 依序選取 [Windows] 和 [檢視別名]。
-- 選擇 [+] 按鈕建立新的別名。
-- 將其命名為「垃圾郵件資料庫」，然後選擇 [驅動程式] 下拉式清單中的 [PostgreSQL]。
-- 將 URL 設定為 *jdbc:postgresql://localhost/spam*。
-- 輸入您的「使用者名稱」和「密碼」。
-- 按一下 [確定]。
-- 若要開啟 [連線] 視窗，請按兩下「垃圾郵件資料庫」別名。
-- 選取 [**連接**]。
+- Select **Windows**, then **View Aliases.** 
+- Choose the **+** button to make a new alias. 
+- Name it *Spam database*, choose **PostgreSQL** in the **Driver** drop-down.
+- Set the URL to *jdbc:postgresql://localhost/spam*. 
+- Enter your *username* and *password*. 
+- Click **OK**. 
+- To open the **Connection** window, double-click the ***Spam database*** alias. 
+- Select **Connect**.
 
-若要執行一些查詢︰
+To run some queries:
 
-- 選取 [SQL] 索引標籤。
-- 在 [SQL] 索引標籤頂端的查詢文字方塊中輸入簡單的查詢，例如 `SELECT * from data;`。
-- 按 **Ctrl-Enter** 來加以執行。依預設，Squirrel SQL 會傳回查詢的前 100 個資料列。
+- Select the **SQL** tab.
+- Enter a simple query such as `SELECT * from data;` in the query textbox at the top of the SQL tab. 
+- Press **Ctrl-Enter** to run it. By default Squirrel SQL returns the first 100 rows from your query. 
 
-還有許多可供您執行以瀏覽此資料的查詢。例如，「make」一字在垃圾郵件和非垃圾郵件之間的出現頻率有何差異？
+There are many more queries you could run to explore this data. For example, how does the frequency of the word *make* differ between spam and ham?
 
     SELECT avg(word_freq_make), spam from data group by spam;
 
-或者，經常包含「3d」的電子郵件有何特性？
+Or what are the characteristics of email that frequently contain *3d*?
 
     SELECT * from data order by word_freq_3d desc;
 
-大部分頻繁出現「3d」的電子郵件顯然是垃圾郵件，因此是很適合用來建置預測性模型以分類電子郵件的特徵。
+Most emails that have a high occurrence of *3d* are apparently spam, so it could be a useful feature for building a predictive model to classify the emails.
 
-如果您想要對 PostgreSQL 資料庫中儲存的資料執行機器學習服務，請考慮使用 [MADlib](http://madlib.incubator.apache.org/)。
+If you wanted to perform machine learning with data stored in a PostgreSQL database, consider using [MADlib](http://madlib.incubator.apache.org/).
 
-## SQL Server 資料倉儲
+## <a name="sql-server-data-warehouse"></a>SQL Server Data Warehouse
 
-Azure SQL 資料倉儲是一種雲端架構、相應放大的資料庫，可處理大量的關聯式與非關聯式資料。如需詳細資訊，請參閱[什麼是 Azure SQL 資料倉儲？](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
+Azure SQL Data Warehouse is a cloud-based, scale-out database capable of processing massive volumes of data, both relational and non-relational. For more information, see [What is Azure SQL Data Warehouse?](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
 
-若要連線到資料倉儲並建立資料表，請從命令提示字元執行下列命令︰
+To connect to the data warehouse and create the table, run the following command from a command prompt:
 
     sqlcmd -S <server-name>.database.windows.net -d <database-name> -U <username> -P <password> -I
 
-然後，在 sqlcmd 提示字元中︰
+Then at the sqlcmd prompt:
 
     CREATE TABLE spam (word_freq_make real, word_freq_address real, word_freq_all real, word_freq_3d real,word_freq_our real, word_freq_over real, word_freq_remove real, word_freq_internet real,word_freq_order real, word_freq_mail real, word_freq_receive real, word_freq_will real,word_freq_people real, word_freq_report real, word_freq_addresses real, word_freq_free real,word_freq_business real, word_freq_email real, word_freq_you real, word_freq_credit real,word_freq_your real, word_freq_font real, word_freq_000 real, word_freq_money real,word_freq_hp real, word_freq_hpl real, word_freq_george real, word_freq_650 real, word_freq_lab real,word_freq_labs real, word_freq_telnet real, word_freq_857 real, word_freq_data real,word_freq_415 real, word_freq_85 real, word_freq_technology real, word_freq_1999 real,word_freq_parts real, word_freq_pm real, word_freq_direct real, word_freq_cs real, word_freq_meeting real,word_freq_original real, word_freq_project real, word_freq_re real, word_freq_edu real,word_freq_table real, word_freq_conference real, char_freq_semicolon real, char_freq_leftParen real,char_freq_leftBracket real, char_freq_exclamation real, char_freq_dollar real, char_freq_pound real, capital_run_length_average real, capital_run_length_longest real, capital_run_length_total real, spam integer) WITH (CLUSTERED COLUMNSTORE INDEX, DISTRIBUTION = ROUND_ROBIN);
     GO
 
-使用 bcp 複製資料︰
+Copy data with bcp:
 
     bcp spam in spambaseHeaders.data -q -c -t  ',' -S <server-name>.database.windows.net -d <database-name> -U <username> -P <password> -F 1 -r "\r\n"
 
->[AZURE.NOTE] 所下載檔案中的行尾結束符號為 Windows 樣式，但 bcp 需要 UNIX 樣式，因此我們必須使用 -r 旗標將這一點告訴 bcp。
+>[AZURE.NOTE] The line endings in the downloaded file are Windows-style, but bcp expects UNIX-style, so we need to tell bcp that with the -r flag.
 
-並使用 sqlcmd 進行查詢︰
+And query with sqlcmd:
 
     select top 10 spam, char_freq_dollar from spam;
     GO
 
-您也可以使用 Squirrel SQL 進行查詢。使用 Microsoft MSSQL Server JDBC 驅動程式 (可在 **/usr/share/java/jdbcdrivers/sqljdbc42.jar** 中找到) 按照適用於 PostgreSQL 的類似步驟來進行。
+You could also query with Squirrel SQL. Follow similar steps for PostgreSQL, using the Microsoft MSSQL Server JDBC Driver, which can be found in ***/usr/share/java/jdbcdrivers/sqljdbc42.jar***.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需能引導您完成在 Azure 中構成資料科學程序之工作的主題概觀，請參閱 [Team Data Science Process](http://aka.ms/datascienceprocess)。
+For an overview of topics that walk you through the tasks that comprise the Data Science process in Azure, see [Team Data Science Process](http://aka.ms/datascienceprocess).
 
-如需會示範 Team Data Science Process 中適用於特定案例之步驟的其他端對端逐步解說的說明，請參閱 [Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)。這些逐步解說也示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。
+For a description of other end-to-end walkthroughs that demonstrate the steps in the Team Data Science Process for specific scenarios, see [Team Data Science Process walkthroughs](data-science-process-walkthroughs.md). The walkthroughs also illustrate how to combine cloud and on-premises tools and services into a workflow or pipeline to create an intelligent application.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="監視負載平衡器的作業、事件和計數器 | Microsoft Azure"
-   description="了解如何啟用 Azure 負載平衡器的警示事件和探查健全狀況狀態記錄"
+   pageTitle="Monitor operations, events, and counters for Load Balancer | Microsoft Azure"
+   description="Learn how to enable alert events, and probe health status logging for Azure Load Balancer"
    services="load-balancer"
    documentationCenter="na"
    authors="sdwheeler"
@@ -17,47 +17,50 @@
    ms.date="04/05/2016"
    ms.author="sewhee" />
 
-# Azure 負載平衡器的記錄檔分析 (預覽)
-您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解負載平衡器。透過入口網站可以存取其中一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔並且在不同的工具中進行檢視，例如 Excel 和 PowerBI。您可以從下列清單進一步了解不同類型的記錄檔。
+
+# <a name="log-analytics-for-azure-load-balancer-(preview)"></a>Log analytics for Azure Load Balancer (Preview)
+You can use different types of logs in Azure to manage and troubleshoot load balancers. Some of these logs can be accessed through the portal, and all logs can be extracted from an Azure blob storage, and viewed in different tools, such as Excel and PowerBI. You can learn more about the different types of logs from the list below.
 
 
-- **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../../articles/azure-portal/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您的 Azure 訂用帳戶的所有作業及其狀態。預設會啟用稽核記錄檔，並可在 Azure 入口網站中進行檢視。
-- **警示事件記錄檔：**您可以使用此記錄檔來檢視已引發哪些負載平衡器警示。系統每五分鐘會收集一次負載平衡器的狀態。只有在引發負載平衡器警示事件時，才會寫入此記錄檔。
-- **健全狀況探查記錄檔：**您可以使用此記錄檔檢查探查的健全狀況檢查狀態、負載平衡器後端中有多少個執行個體在線上，以及從負載平衡器接收網路流量之虛擬機器的百分比。探查狀態事件發生變更時，便會寫入此記錄檔。
+- **Audit logs:** You can use [Azure Audit Logs](../../articles/azure-portal/insights-debugging-with-events.md) (formerly known as Operational Logs) to view all operations being submitted to your Azure subscription(s), and their status. Audit logs are enabled by default, and can be viewed in the Azure portal.
+- **Alert event logs:** You can use this log to view what alerts for load balancer are raised. The status for the load balancer is collected every five minutes. This log is only written if a load balancer alert event is raised.  
+- **Health probe logs:** You can use this log to check for probe health check status, how many instances are online in the load balancer back-end and percentage of virtual machines receiving network traffic from the load balancer. This log is written on probe status event change.
 
->[AZURE.WARNING] 記錄檔僅適用於在資源管理員部署模型中部署的資源。您無法將記錄檔使用於傳統部署模型中的資源。若要深入了解這兩個模型，請參閱[了解資源管理員部署和傳統部署](../../articles/resource-manager-deployment-model.md)一文。<BR> 記錄檔分析目前僅適用於網際網路面向的負載平衡器。此限制是暫時的，隨時可能變更。請務必再次瀏覽此頁面，以確認未來變更。
+>[AZURE.WARNING] Logs are only available for resources deployed in the Resource Manager deployment model. You cannot use logs for resources in the classic deployment model. For a better understanding of the two models, reference the [Understanding Resource Manager deployment and classic deployment](../../articles/resource-manager-deployment-model.md) article. <BR>
+>Log analytics currently works only for Internet facing load balancers. This limitation is temporary, and may change at any time. Make sure to revisit this page to verify future changes.
 
-## 啟用記錄
-每個資源管理員資源都會隨時自動啟用稽核記錄。您需要啟用事件和健全狀況探查記錄，才能開始收集可透過這些記錄檔取得的資料。若要啟用記錄，請遵循下列步驟。
+## <a name="enable-logging"></a>Enable logging
+Audit logging is automatically enabled at all times for every Resource Manager resource. You need to enable event and health probe logging to start collecting the data available through those logs. To enable logging, follow the steps below. 
 
-登入 [Azure 入口網站](http://portal.azure.com)。如果您還沒有負載平衡器，請先[建立負載平衡器](load-balancer-get-started-internet-arm-ps.md)再繼續。
+Sign-in to the [Azure portal](http://portal.azure.com). If you don't already have a load balancer, [create a load balancer](load-balancer-get-started-internet-arm-ps.md) before you continue. 
 
-在入口網站中，按一下 [瀏覽] >> [負載平衡器]。
+In the portal, click **Browse** >> **Load Balancers**.
 
-![入口網站 - 負載平衡器](./media/load-balancer-monitor-log/load-balancer-browse.png)
+![portal - load-balancer](./media/load-balancer-monitor-log/load-balancer-browse.png)
 
-選取現有的負載平衡器 >> [所有設定]。
+Select an existing load balancer >> **All Settings**.
 
-![入口網站 - 負載平衡器 - 設定](./media/load-balancer-monitor-log/load-balancer-settings.png) <BR>
+![portal - load-balancer-settings](./media/load-balancer-monitor-log/load-balancer-settings.png)
+<BR>
 
-在 [設定] 刀鋒視窗中，按一下 [診斷]，然後在 [診斷] 窗格中的 [狀態] 旁，按一下 [開啟]。在 [設定] 刀鋒視窗中，按一下 [儲存體帳戶]，然後選取現有儲存體帳戶或建立新帳戶。
+In the **Settings** blade, click **Diagnostics**, and then in the **Diagnostics** pane, next to **Status**, click **On** In the **Settings** blade, click **Storage Account**, and either select an existing storage account, or create a new one.
 
-在下拉式清單的 [儲存體帳戶] 之下，選取您要記錄警示事件、探查健全狀況狀態還是同時執行這兩項，然後按一下 [儲存]。
+In the drop-down list just under **Storage Account**, select whether you want to log alert events, probe health status or both and then click **Save**.
 
-![Preview 入口網站 - 診斷記錄檔](./media/load-balancer-monitor-log/load-balancer-diagnostics.png)
+![Preview portal - Diagnostics logs](./media/load-balancer-monitor-log/load-balancer-diagnostics.png)
 
->[AZURE.INFORMATION] 稽核記錄檔不需要個別的儲存體帳戶。將儲存體用於事件和健全狀況探查記錄將會產生服務費用。
+>[AZURE.INFORMATION] Audit logs do not require a separate storage account. The use of storage for event and health probe logging will incur service charges.
 
-## 稽核記錄檔
-此記錄檔 (之前稱為「作業記錄檔」) 預設是由 Azure 產生。記錄檔會在 Azure 的 [事件記錄檔] 存放區中保留 90 天。閱讀[檢視事件和稽核記錄檔](../../articles/azure-portal/insights-debugging-with-events.md)一文，進一步了解這些記錄檔。
+## <a name="audit-log"></a>Audit log
+This log (formerly known as the "operational log") is generated by Azure by default.  The logs are preserved for 90 days in Azure’s Event Logs store. Learn more about these logs by reading the [View events and audit logs](../../articles/azure-portal/insights-debugging-with-events.md) article.
 
-## 警示事件記錄檔
-如果您已如上所述對每一個負載平衡器進行啟用，才會產生此記錄檔。資料會儲存在您啟用記錄時所指定的儲存體帳戶中。資訊會以 JSON 格式記錄下來，如下所示。
+## <a name="alert-event-log"></a>Alert event log
+This log is only generated if you've enabled it on a per load balancer basis as detailed above. The data is stored in the storage account you specified when you enabled the logging. The information is logged in JSON format, as seen below.
 
-	
-	{
+    
+    {
     "time": "2016-01-26T10:37:46.6024215Z",
-	"systemId": "32077926-b9c4-42fb-94c1-762e528b5b27",
+    "systemId": "32077926-b9c4-42fb-94c1-762e528b5b27",
     "category": "LoadBalancerAlertEvent",
     "resourceId": "/SUBSCRIPTIONS/XXXXXXXXXXXXXXXXX-XXXX-XXXX-XXXXXXXXX/RESOURCEGROUPS/RG7/PROVIDERS/MICROSOFT.NETWORK/LOADBALANCERS/WWEBLB",
     "operationName": "LoadBalancerProbeHealthStatus",
@@ -68,64 +71,68 @@
             "public ip address": "40.117.227.32"
         }
     }
-	
+    
 
-JSON 輸出中會顯示 *eventname* 屬性，此屬性會描述負載平衡器建立警示的原因。在此案例中，來源 IP NAT (SNAT) 限制導致了 TCP 連接埠耗盡，因此產生此警示。
+The JSON output shows the *eventname* property which will describe the reason for the load balancer created an alert. In this case, the alert generated was due to TCP port exhaustion caused by source IP NAT limits (SNAT).
 
-## 健全狀況探查記錄檔
-如果您已如上所述對每一個負載平衡器進行啟用，才會產生此記錄檔。資料會儲存在您啟用記錄時所指定的儲存體帳戶中。系統會建立名為 'insights-logs-loadbalancerprobehealthstatus' 的容器，並記錄下列資料：
+## <a name="health-probe-log"></a>Health probe log
+This log is only generated if you've enabled it on a per load balancer basis as detailed above. The data is stored in the storage account you specified when you enabled the logging.  A container named 'insights-logs-loadbalancerprobehealthstatus' is created and the following data is logged:
 
-		{
-	    "records":
+        {
+        "records":
 
-	    {
-	   		"time": "2016-01-26T10:37:46.6024215Z",
-	        "systemId": "32077926-b9c4-42fb-94c1-762e528b5b27",
-	        "category": "LoadBalancerProbeHealthStatus",
-	        "resourceId": "/SUBSCRIPTIONS/XXXXXXXXXXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXX/RESOURCEGROUPS/RG7/PROVIDERS/MICROSOFT.NETWORK/LOADBALANCERS/WWEBLB",
-	        "operationName": "LoadBalancerProbeHealthStatus",
-	        "properties": {
-	            "publicIpAddress": "40.83.190.158",
-	            "port": "81",
-	            "totalDipCount": 2,
-	            "dipDownCount": 1,
-	            "healthPercentage": 50.000000
-	        }
-	    },
-	    {
-	        "time": "2016-01-26T10:37:46.6024215Z",
-			"systemId": "32077926-b9c4-42fb-94c1-762e528b5b27",
-	        "category": "LoadBalancerProbeHealthStatus",
-	        "resourceId": "/SUBSCRIPTIONS/XXXXXXXXXXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXX/RESOURCEGROUPS/RG7/PROVIDERS/MICROSOFT.NETWORK/LOADBALANCERS/WWEBLB",
-	        "operationName": "LoadBalancerProbeHealthStatus",
-	        "properties": {
-	            "publicIpAddress": "40.83.190.158",
-	            "port": "81",
-	            "totalDipCount": 2,
-	            "dipDownCount": 0,
-	            "healthPercentage": 100.000000
-	        }
-	    }
+        {
+            "time": "2016-01-26T10:37:46.6024215Z",
+            "systemId": "32077926-b9c4-42fb-94c1-762e528b5b27",
+            "category": "LoadBalancerProbeHealthStatus",
+            "resourceId": "/SUBSCRIPTIONS/XXXXXXXXXXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXX/RESOURCEGROUPS/RG7/PROVIDERS/MICROSOFT.NETWORK/LOADBALANCERS/WWEBLB",
+            "operationName": "LoadBalancerProbeHealthStatus",
+            "properties": {
+                "publicIpAddress": "40.83.190.158",
+                "port": "81",
+                "totalDipCount": 2,
+                "dipDownCount": 1,
+                "healthPercentage": 50.000000
+            }
+        },
+        {
+            "time": "2016-01-26T10:37:46.6024215Z",
+            "systemId": "32077926-b9c4-42fb-94c1-762e528b5b27",
+            "category": "LoadBalancerProbeHealthStatus",
+            "resourceId": "/SUBSCRIPTIONS/XXXXXXXXXXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXX/RESOURCEGROUPS/RG7/PROVIDERS/MICROSOFT.NETWORK/LOADBALANCERS/WWEBLB",
+            "operationName": "LoadBalancerProbeHealthStatus",
+            "properties": {
+                "publicIpAddress": "40.83.190.158",
+                "port": "81",
+                "totalDipCount": 2,
+                "dipDownCount": 0,
+                "healthPercentage": 100.000000
+            }
+        }
 
-	]
-	}
+    ]
+    }
 
-JSON 輸出在屬性欄位中顯示了探查健全狀況狀態的基本資訊。*dipDownCount* 屬性會顯示後端上因為探查回應失敗而不會接收網路流量的執行個體總數。
+The JSON output shows in the properties field the basic information for the probe health status. The *dipDownCount* property shows the total number of instances on the back-end which are not receiving network traffic due to failed probe responses. 
 
-## 檢視和分析稽核記錄檔
-您可以使用下列任何方法，檢視和分析稽核記錄檔資料：
+## <a name="view-and-analyze-the-audit-log"></a>View and analyze the audit log
+You can view and analyze audit log data using any of the following methods:
 
-- **Azure 工具︰**透過 Azure PowerShell、Azure 命令列介面 (CLI)、Azure REST API 或 Azure Preview 入口網站，從稽核記錄擷取資訊。[稽核作業與資源管理員](../../articles/resource-group-audit.md)一文會詳述每個方法的逐步指示。
-- **Power BI︰**如果還沒有 [Power BI](https://powerbi.microsoft.com/pricing) 帳戶，您可以免費試用。使用 [Power BI 的 Azure 稽核記錄檔內容套件](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs)，您可以使用預先設定的儀表板 (可按原樣使用或加以自訂) 來分析資料。
+- **Azure tools:** Retrieve information from the audit logs through Azure PowerShell, the Azure Command Line Interface (CLI), the Azure REST API, or the Azure preview portal.  Step-by-step instructions for each method are detailed in the [Audit operations with Resource Manager](../../articles/resource-group-audit.md) article.
+- **Power BI:** If you don't already have a [Power BI](https://powerbi.microsoft.com/pricing) account, you can try it for free. Using the [Azure Audit Logs content pack for Power BI](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs) you can analyze your data with pre-configured dashboards that you can use as-is, or customize.
 
-## 檢視和分析健全狀況探查與事件記錄檔 
-您需要連接到儲存體帳戶並擷取事件和健全狀況探查記錄檔的 JSON 記錄項目。下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
+## <a name="view-and-analyze-the-health-probe-and-event-log"></a>View and analyze the health probe and event log 
+You need to connect to your storage account and retrieve the JSON log entries for event and health probe logs. Once you download the JSON files, you can convert them to CSV and view in Excel, PowerBI, or any other data visualization tool.
 
->[AZURE.TIP] 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 Github 所提供的[記錄檔轉換器工具](https://github.com/Azure-Samples/networking-dotnet-log-converter)。
+>[AZURE.TIP] If you are familiar with Visual Studio and basic concepts of changing values for constants and variables in C#, you can use the [log converter tools](https://github.com/Azure-Samples/networking-dotnet-log-converter) available from Github.
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-- [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx)部落格文章。
-- [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)部落格文章。
+- [Visualize your Azure Audit Logs with Power BI](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx) blog post.
+- [View and analyze Azure Audit Logs in Power BI and more](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/) blog post.
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

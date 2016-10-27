@@ -1,6 +1,6 @@
 <properties
-   pageTitle="定義及管理狀態 |Microsoft Azure"
-   description="如何定義和管理 Service Fabric 中的服務狀態"
+   pageTitle="Defining and managing state | Microsoft Azure"
+   description="How to define and manage service state in Service Fabric"
    services="service-fabric"
    documentationCenter=".net"
    authors="appi101"
@@ -16,28 +16,33 @@
    ms.date="08/10/2016"
    ms.author="aprameyr"/>
 
-# 服務狀態
-**服務狀態**是指服務正常運作所需的資料。其包括可以讓服務讀取及寫入，以執行工作的資料結構及變數。
 
-以簡單的計算機服務為例。此服務會採用兩個數字並傳回其總和。這是一種沒有與其相關聯資料的純粹無狀態服務。
+# <a name="service-state"></a>Service state
+**Service state** refers to the data that the service requires in order to function. It includes the data structures and variables that the service reads and writes to do work.
 
-現在，假設另有一個計算機服務，除了計算加總之外，也有方法可以傳回上一個計算總和。此服務現在已可設定狀態，其中有一些狀態是要寫入 (當計算新的加總時) 及讀取 (當傳回上一個計算加總時) 的狀態。
+Consider a simple calculator service, for example. This service takes two numbers and returns their sum. This is a purely stateless service that has no data associated with it.
 
-在 Azure Service Fabric 中，第一個服務稱為無狀態服務。第二個服務稱為可設定狀態的服務。
+Now consider the same calculator, but in addition to computing sum, it also has a method for returning the last sum it has computed. This service is now stateful--it contains some state that it writes to (when it computes a new sum) and reads from (when it returns the last computed sum).
 
-## 儲存服務狀態
-狀態可進行外部化，也可並存在運作該狀態的程式碼中。狀態的外部化通常是使用外部資料庫或存放區來完成。在計算機範例中，這可能是 SQL 資料庫，亦即目前儲存在資料表中的結果。每個計算總和的要求會在此資料列上執行更新。
+In Azure Service Fabric, the first service is called a stateless service. The second service is called a stateful service.
 
-狀態也可以使用處理此程式碼的程式碼進行共置。Service Fabric 中的可設定狀態服務是使用此模型來建置。Service Fabric 提供的基礎結構可確保在發生失敗時，此狀態仍具高可用性並會容錯。
+## <a name="storing-service-state"></a>Storing service state
+State can be either externalized or co-located with the code that is manipulating the state. Externalization of state is typically done by using an external database or store. In our calculator example, this could be a SQL database in which the current result is stored in a table. Every request to compute the sum performs an update on this row.
 
-## 後續步驟
+State can also be co-located with the code that manipulates this code. Stateful services in Service Fabric are built using this model. Service Fabric provides the infrastructure to ensure that this state is highly available and fault tolerant in the event of a failure.
 
-如需 Service Fabric 概念的詳細資訊，請參閱：
+## <a name="next-steps"></a>Next steps
 
-- [Service Fabric 服務的可用性](service-fabric-availability-services.md)
+For more information on Service Fabric concepts, see the following:
 
-- [Service Fabric 服務的延展性](service-fabric-concepts-scalability.md)
+- [Availability of Service Fabric services](service-fabric-availability-services.md)
 
-- [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
+- [Scalability of Service Fabric services](service-fabric-concepts-scalability.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+- [Partitioning Service Fabric services](service-fabric-concepts-partitioning.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

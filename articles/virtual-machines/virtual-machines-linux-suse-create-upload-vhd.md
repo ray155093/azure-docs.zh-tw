@@ -1,211 +1,216 @@
 <properties
-	pageTitle="在 Azure 中建立及上傳 SUSE Linux VHD"
-	description="了解如何建立及上傳包含 SUSE Linux 作業系統的 Azure 虛擬硬碟 (VHD)。"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="szarkos"
-	manager="timlt"
-	editor="tysonn"
-	tags="azure-resource-manager,azure-service-management"/>
+    pageTitle="Create and upload a SUSE Linux VHD in Azure"
+    description="Learn to create and upload an Azure virtual hard disk (VHD) that contains a SUSE Linux operating system."
+    services="virtual-machines-linux"
+    documentationCenter=""
+    authors="szarkos"
+    manager="timlt"
+    editor="tysonn"
+    tags="azure-resource-manager,azure-service-management"/>
 
 <tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/24/2016"
-	ms.author="szark"/>
+    ms.service="virtual-machines-linux"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-linux"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/24/2016"
+    ms.author="szark"/>
 
-# 準備適用於 Azure 的 SLES 或 openSUSE 虛擬機器
+
+# <a name="prepare-a-sles-or-opensuse-virtual-machine-for-azure"></a>Prepare a SLES or openSUSE virtual machine for Azure
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-## 必要條件 ##
+## <a name="prerequisites"></a>Prerequisites ##
 
-本文假設您已將 SUSE 或 openSUSE Linux 作業系統安裝到虛擬硬碟。有多個工具可用來建立 .vhd 檔案，例如，像是 Hyper-V 的虛擬化解決方案。如需指示，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
+This article assumes that you have already installed a SUSE or openSUSE Linux operating system to a virtual hard disk. Multiple tools exist to create .vhd files, for example a virtualization solution such as Hyper-V. For instructions, see [Install the Hyper-V Role and Configure a Virtual Machine](http://technet.microsoft.com/library/hh846766.aspx).
 
-### SLES / openSUSE 安裝注意事項
+### <a name="sles-/-opensuse-installation-notes"></a>SLES / openSUSE installation notes
 
-- 如需有關準備 Azure 之 Linux 的更多秘訣，另請參閱[一般 Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)。
+- Please see also [General Linux Installation Notes](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes) for more tips on preparing Linux for Azure.
 
-- Azure 不支援 VHDX 格式，只支援**固定 VHD**。您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。
+- The VHDX format is not supported in Azure, only **fixed VHD**.  You can convert the disk to VHD format using Hyper-V Manager or the convert-vhd cmdlet.
 
-- 安裝 Linux 系統時，建議您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。如果想要的話，您可以在資料磁碟上使用 [LVM](virtual-machines-linux-configure-lvm.md) 或 [RAID](virtual-machines-linux-configure-raid.md)。
+- When installing the Linux system it is recommended that you use standard partitions rather than LVM (often the default for many installations). This will avoid LVM name conflicts with cloned VMs, particularly if an OS disk ever needs to be attached to another VM for troubleshooting. [LVM](virtual-machines-linux-configure-lvm.md) or [RAID](virtual-machines-linux-configure-raid.md) may be used on data disks if preferred.
 
-- 請勿在作業系統磁碟上設定交換磁碟分割。您可以設定 Linux 代理程式在暫存資源磁碟上建立交換檔。您可以在以下步驟中找到與此有關的詳細資訊。
+- Do not configure a swap partition on the OS disk. The Linux agent can be configured to create a swap file on the temporary resource disk.  More information about this can be found in the steps below.
 
-- 所有 VHD 的大小都必須是 1 MB 的倍數。
-
-
-## 使用 SUSE Studio
-[SUSE Studio](http://www.susestudio.com) 可讓您輕鬆建立及管理 Azure 和 Hyper-V 的 SLES 與 openSUSE 映像。這是建議用來自訂您自己的 SLES 和 openSUSE 映像的方法。
-
-SUSE 是建置您自己的 VHD 的替代選項，其也可在 [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007) 發佈 SLES 的 BYOS (自備訂用帳戶，Bring Your Own Subscription) 映像。
+- All of the VHDs must have sizes that are multiples of 1 MB.
 
 
-## 準備 SUSE Linux Enterprise Server 11 SP4 ##
+## <a name="use-suse-studio"></a>Use SUSE Studio
+[SUSE Studio](http://www.susestudio.com) can easily create and manage your SLES and openSUSE images for Azure and Hyper-V. This is the recommended approach for customizing your own SLES and openSUSE images.
 
-1. 在 Hyper-V 管理員的中間窗格中，選取虛擬機器。
+As an alternative to building your own VHD, SUSE also publishes BYOS (Bring Your Own Subscription) images for SLES at [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007).
 
-2. 按一下 **[連接]**，以開啟虛擬機器的視窗。
 
-3. 註冊您的 SUSE Linux Enterprise 系統，以允許下載更新並安裝封裝。
+## <a name="prepare-suse-linux-enterprise-server-11-sp4"></a>Prepare SUSE Linux Enterprise Server 11 SP4 ##
 
-4. 為系統更新最新的修補程式：
+1. In the center pane of Hyper-V Manager, select the virtual machine.
 
-		# sudo zypper update
+2. Click **Connect** to open the window for the virtual machine.
 
-5. 從 SLES 儲存機制安裝 Azure Linux 代理程式：
+3. Register your SUSE Linux Enterprise system to allow it to download updates and install packages.
 
-		# sudo zypper install WALinuxAgent
+4. Update the system with the latest patches:
 
-6. 檢查 chkconfig 中的 waagent 是否設為「啟用」，若否，請啟用以便自動啟動：
+        # sudo zypper update
+
+5. Install the Azure Linux Agent from the SLES repository:
+
+        # sudo zypper install WALinuxAgent
+
+6. Check if waagent is set to "on" in chkconfig, and if not, enable it for autostart:
                
-		# sudo chkconfig waagent on
+        # sudo chkconfig waagent on
 
-7. 檢查 waagent 服務是否正在執行，若否，請加以啟動：
+7. Check if waagent service is running, and if not, start it: 
 
-		# sudo service waagent start
+        # sudo service waagent start
                 
-8. 修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。作法是，在文字編輯器中開啟 "/boot/grub/menu.lst"，並確定預設核心包含以下參數：
+8. Modify the kernel boot line in your grub configuration to include additional kernel parameters for Azure. To do this open "/boot/grub/menu.lst" in a text editor and ensure that the default kernel includes the following parameters:
 
-		console=ttyS0 earlyprintk=ttyS0 rootdelay=300
+        console=ttyS0 earlyprintk=ttyS0 rootdelay=300
 
-	這將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。
+    This will ensure all console messages are sent to the first serial port, which can assist Azure support with debugging issues.
 
-9. 確認 /boot/grub/menu.lst 和 /etc/fstab 兩者參考的磁碟是使用其 UUID (by-uuid) 而非磁碟識別碼 (by-id) 。
+9. Confirm that /boot/grub/menu.lst and /etc/fstab both reference the disk using its UUID (by-uuid) instead of the disk ID (by-id). 
 
-	取得磁碟 UUID
-	
-		# ls /dev/disk/by-uuid/
+    Get disk UUID
+    
+        # ls /dev/disk/by-uuid/
 
-	如果您是使用 /dev/disk/by-id/，請以適當的 by-uuid 值，更新 /boot/grub/menu.lst 和 /etc/fstab
+    If /dev/disk/by-id/ is used, update both /boot/grub/menu.lst and /etc/fstab with the proper by-uuid value
 
-	變更之前
-	
-		root=/dev/disk/by-id/SCSI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx-part1
+    Before change
+    
+        root=/dev/disk/by-id/SCSI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx-part1
 
-	變更之後
-	
-		root=/dev/disk/by-uuid/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    After change
+    
+        root=/dev/disk/by-uuid/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-10. 修改 udev 角色可防止產生乙太網路介面的靜態規則。在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
+10. Modify udev rules to avoid generating static rules for the Ethernet interface(s). These rules can cause problems when cloning a virtual machine in Microsoft Azure or Hyper-V:
 
-		# sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
-		# sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
+        # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
+        # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
 
-11.	建議您編輯檔案 "/etc/sysconfig/network/dhcp"，並將 `DHCLIENT_SET_HOSTNAME` 參數變更如下：
+11. It is recommended to edit the file "/etc/sysconfig/network/dhcp" and change the `DHCLIENT_SET_HOSTNAME` parameter to the following:
 
-		DHCLIENT_SET_HOSTNAME="no"
+        DHCLIENT_SET_HOSTNAME="no"
 
-12.	在 "/etc/sudoers" 中，註解化或移除下列程式碼行 (如果存在的話)：
+12. In "/etc/sudoers", comment out or remove the following lines if they exist:
 
-		Defaults targetpw   # ask for the password of the target user i.e. root
-		ALL    ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'!
+        Defaults targetpw   # ask for the password of the target user i.e. root
+        ALL    ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'!
 
-13.	確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。這通常是預設值。
+13. Ensure that the SSH server is installed and configured to start at boot time.  This is usually the default.
 
-14.	請勿在作業系統磁碟上建立交換空間。
+14. Do not create swap space on the OS disk.
 
-	Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。請注意，資源磁碟是*暫存*磁碟，可能會在 VM 取消佈建時清空。安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 /etc/waagent.conf 中適當修改下列參數：
+    The Azure Linux Agent can automatically configure swap space using the local resource disk that is attached to the VM after provisioning on Azure. Note that the local resource disk is a *temporary* disk, and might be emptied when the VM is deprovisioned. After installing the Azure Linux Agent (see previous step), modify the following parameters in /etc/waagent.conf appropriately:
 
-		ResourceDisk.Format=y
-		ResourceDisk.Filesystem=ext4
-		ResourceDisk.MountPoint=/mnt/resource
-		ResourceDisk.EnableSwap=y
-		ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
+        ResourceDisk.Format=y
+        ResourceDisk.Filesystem=ext4
+        ResourceDisk.MountPoint=/mnt/resource
+        ResourceDisk.EnableSwap=y
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-15.	執行下列命令，以取消佈建虛擬機器，並準備將其佈建於 Azure 上：
+15. Run the following commands to deprovision the virtual machine and prepare it for provisioning on Azure:
 
-		# sudo waagent -force -deprovision
-		# export HISTSIZE=0
-		# logout
+        # sudo waagent -force -deprovision
+        # export HISTSIZE=0
+        # logout
 
-16. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。您現在可以將 Linux VHD 上傳至 Azure。
+16. Click **Action -> Shut Down** in Hyper-V Manager. Your Linux VHD is now ready to be uploaded to Azure.
 
 
 ----------
 
-## 準備執行 openSUSE 13.1+ ##
+## <a name="prepare-opensuse-13.1+"></a>Prepare openSUSE 13.1+ ##
 
-1. 在 Hyper-V 管理員的中間窗格中，選取虛擬機器。
+1. In the center pane of Hyper-V Manager, select the virtual machine.
 
-2. 按一下 **[連接]**，以開啟虛擬機器的視窗。
+2. Click **Connect** to open the window for the virtual machine.
 
-3. 在 Shell 上執行命令 '`zypper lr`'。如果此命令傳回的輸出與下列類似，則該儲存機制已如預期設定，不需進行調整 (請注意，版本號碼可能會不同)：
+3. On the shell, run the command '`zypper lr`'. If this command returns output similar to the following, then the repositories are configured as expected--no adjustments are necessary (note that version numbers may vary):
 
-		# | Alias                 | Name                  | Enabled | Refresh
-		--+-----------------------+-----------------------+---------+--------
-		1 | Cloud:Tools_13.1      | Cloud:Tools_13.1      | Yes     | Yes
-		2 | openSUSE_13.1_OSS     | openSUSE_13.1_OSS     | Yes     | Yes
-		3 | openSUSE_13.1_Updates | openSUSE_13.1_Updates | Yes     | Yes
+        # | Alias                 | Name                  | Enabled | Refresh
+        --+-----------------------+-----------------------+---------+--------
+        1 | Cloud:Tools_13.1      | Cloud:Tools_13.1      | Yes     | Yes
+        2 | openSUSE_13.1_OSS     | openSUSE_13.1_OSS     | Yes     | Yes
+        3 | openSUSE_13.1_Updates | openSUSE_13.1_Updates | Yes     | Yes
 
-	如果命令傳回 "No repositories defined..."，則使用下列命令來新增這些儲存機制：
+    If the command returns "No repositories defined..." then use the following commands to add these repos:
 
-		# sudo zypper ar -f http://download.opensuse.org/repositories/Cloud:Tools/openSUSE_13.1 Cloud:Tools_13.1
-		# sudo zypper ar -f http://download.opensuse.org/distribution/13.1/repo/oss openSUSE_13.1_OSS
-		# sudo zypper ar -f http://download.opensuse.org/update/13.1 openSUSE_13.1_Updates
+        # sudo zypper ar -f http://download.opensuse.org/repositories/Cloud:Tools/openSUSE_13.1 Cloud:Tools_13.1
+        # sudo zypper ar -f http://download.opensuse.org/distribution/13.1/repo/oss openSUSE_13.1_OSS
+        # sudo zypper ar -f http://download.opensuse.org/update/13.1 openSUSE_13.1_Updates
 
-	您接著可以重新執行命令 '`zypper lr`' 來驗證已新增的儲存機制。如果有其中一個相關的更新儲存機制未啟用，請使用下列命令加以啟用：
+    You can then verify the repositories have been added by running the command '`zypper lr`' again. In case one of the relevant update repositories is not enabled, enable it with following command:
 
-		# sudo zypper mr -e [NUMBER OF REPOSITORY]
+        # sudo zypper mr -e [NUMBER OF REPOSITORY]
 
 
-4. 將核心更新為最新的可用版本：
+4. Update the kernel to the latest available version:
 
-		# sudo zypper up kernel-default
+        # sudo zypper up kernel-default
 
-	或使用所有最新的修補程式來更新系統：
+    Or to update the system with all the latest patches:
 
-		# sudo zypper update
+        # sudo zypper update
 
-5.	安裝 Azure Linux 代理程式。
+5.  Install the Azure Linux Agent.
 
-		# sudo zypper install WALinuxAgent
+        # sudo zypper install WALinuxAgent
 
-6.	修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。作法是，在文字編輯器中開啟 "/boot/grub/menu.lst"，並確定預設核心包含下列參數：
+6.  Modify the kernel boot line in your grub configuration to include additional kernel parameters for Azure. To do this, open "/boot/grub/menu.lst" in a text editor and ensure that the default kernel includes the following parameters:
 
-		console=ttyS0 earlyprintk=ttyS0 rootdelay=300
+        console=ttyS0 earlyprintk=ttyS0 rootdelay=300
 
-	這將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。此外，請從核心開機程式行中移除以下參數 (如果有)：
+    This will ensure all console messages are sent to the first serial port, which can assist Azure support with debugging issues. In addition, remove the following parameters from the kernel boot line if they exist:
 
-		libata.atapi_enabled=0 reserve=0x1f0,0x8
+        libata.atapi_enabled=0 reserve=0x1f0,0x8
 
-7.	建議您編輯檔案 "/etc/sysconfig/network/dhcp"，並將 `DHCLIENT_SET_HOSTNAME` 參數變更如下：
+7.  It is recommended to edit the file "/etc/sysconfig/network/dhcp" and change the `DHCLIENT_SET_HOSTNAME` parameter to the following:
 
-		DHCLIENT_SET_HOSTNAME="no"
+        DHCLIENT_SET_HOSTNAME="no"
 
-8.	**重要事項：**在 "/etc/sudoers" 中，註解化或移除下列程式碼行 (如果存在的話)：
+8.  **Important:** In "/etc/sudoers", comment out or remove the following lines if they exist:
 
-		Defaults targetpw   # ask for the password of the target user i.e. root
-		ALL    ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'!
+        Defaults targetpw   # ask for the password of the target user i.e. root
+        ALL    ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'!
 
-9.	確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。這通常是預設值。
+9.  Ensure that the SSH server is installed and configured to start at boot time.  This is usually the default.
 
-10.	請勿在作業系統磁碟上建立交換空間。
+10. Do not create swap space on the OS disk.
 
-	Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。請注意，資源磁碟是*暫存*磁碟，可能會在 VM 取消佈建時清空。安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 /etc/waagent.conf 中適當修改下列參數：
+    The Azure Linux Agent can automatically configure swap space using the local resource disk that is attached to the VM after provisioning on Azure. Note that the local resource disk is a *temporary* disk, and might be emptied when the VM is deprovisioned. After installing the Azure Linux Agent (see previous step), modify the following parameters in /etc/waagent.conf appropriately:
 
-		ResourceDisk.Format=y
-		ResourceDisk.Filesystem=ext4
-		ResourceDisk.MountPoint=/mnt/resource
-		ResourceDisk.EnableSwap=y
-		ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
+        ResourceDisk.Format=y
+        ResourceDisk.Filesystem=ext4
+        ResourceDisk.MountPoint=/mnt/resource
+        ResourceDisk.EnableSwap=y
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-11.	執行下列命令，以取消佈建虛擬機器，並準備將其佈建於 Azure 上：
+11. Run the following commands to deprovision the virtual machine and prepare it for provisioning on Azure:
 
-		# sudo waagent -force -deprovision
-		# export HISTSIZE=0
-		# logout
+        # sudo waagent -force -deprovision
+        # export HISTSIZE=0
+        # logout
 
-12. 確定 Azure Linux 代理程式會在啟動時執行：
+12. Ensure the Azure Linux Agent runs at startup:
 
-		# sudo systemctl enable waagent.service
+        # sudo systemctl enable waagent.service
 
-13. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。您現在可以將 Linux VHD 上傳至 Azure。
+13. Click **Action -> Shut Down** in Hyper-V Manager. Your Linux VHD is now ready to be uploaded to Azure.
 
-## 後續步驟
-您現在可以開始使用您的 SUSE Linux 虛擬硬碟在 Azure 建立新的虛擬機器。若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和步驟 3。
+## <a name="next-steps"></a>Next steps
+You're now ready to use your SUSE Linux virtual hard disk to create new virtual machines in Azure. If this is the first time that you're uploading the .vhd file to Azure, see steps 2 and 3 in [Creating and uploading a virtual hard disk that contains the Linux operating system](virtual-machines-linux-classic-create-upload-vhd.md).
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

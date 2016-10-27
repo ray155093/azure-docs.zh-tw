@@ -1,67 +1,71 @@
 <properties 
-	pageTitle="Data Factory 使用案例 - 產品建議" 
-	description="了解使用 Azure Data Factory 以及其他服務所實作的使用案例。" 
-	services="data-factory" 
-	documentationCenter="" 
-	authors="spelluru" 
-	manager="jhubbard" 
-	editor="monicar"/>
+    pageTitle="Data Factory Use Case - Product Recommendations" 
+    description="Learn about an use case implemented by using Azure Data Factory along with other services." 
+    services="data-factory" 
+    documentationCenter="" 
+    authors="sharonlo101" 
+    manager="jhubbard" 
+    editor="monicar"/>
 
 <tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/01/2016" 
-	ms.author="spelluru"/>
+    ms.service="data-factory" 
+    ms.workload="data-services" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/01/2016" 
+    ms.author="shlo"/>
 
-# 使用案例 - 產品建議 
 
-Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana Intelligence 套件。請參閱 [Cortana Intelligence 套件](http://www.microsoft.com/cortanaanalytics) 頁面以了解這個套件的詳細資料。在本文中，我們描述 Azure 使用者已經使用 Azure Data Factory 和其他 Cortana Intelligence 元件服務解決與實作的常見使用案例。
+# <a name="use-case---product-recommendations"></a>Use Case - Product Recommendations 
 
-## 案例
+Azure Data Factory is one of many services used to implement the Cortana Intelligence Suite of solution accelerators.  See [Cortana Intelligence Suite](http://www.microsoft.com/cortanaanalytics) page for details about this suite. In this document, we describe a common use case that Azure users have already solved and implemented using Azure Data Factory and other Cortana Intelligence component services.
 
-線上零售商通常會想要向客戶呈現他們最有興趣、也因此最可能購買的產品，藉以誘使客戶購買產品。若要達成此目的，線上零售商需要使用該特定使用者的個人化產品建議來自訂使用者的線上體驗。這些個人化建議將會依據其目前和過去的購物行為資料、產品資訊、新引進的品牌以及產品和客戶區隔資料來提出。此外，它們可以根據所有使用者的結合整體使用行為分析，提供使用者產品建議。
+## <a name="scenario"></a>Scenario
 
-這些零售商的目標是要最佳化使用者的點選-銷售轉換並獲得更高的銷售收益。他們透過根據客戶興趣和動作提供關聯式、以行為為基礎的產品建議來達成此轉換。對於此使用案例，我們使用線上零售商做為想要最佳化客戶的企業範例。但是這些原則適用於所有想要建立客戶及產品和服務之關聯，並利用個人化產品建議強化其客戶購買體驗的所有企業。
+Online retailers commonly want to entice their customers to purchase products by presenting them with products they are most likely to be interested in, and therefore most likely to buy. To accomplish this, online retailers need to customize their user’s online experience by using personalized product recommendations for that specific user. These personalized recommendations are to be made based on their current and historical shopping behavior data, product information, newly introduced brands, and product and customer segmentation data.  Additionally, they can provide the user product recommendations based on analysis of overall usage behavior from all their users combined.
 
-## 挑戰
+The goal of these retailers is to optimize for user click-to-sale conversions and earn higher sales revenue.  They achieve this conversion by delivering contextual, behavior-based product recommendations based on customer interests and actions. For this use case, we use online retailers as an example of businesses that want to optimize for their customers. However, these principles apply to any business that wants to engage its customers around its goods and services and enhance their customers’ buying experience with personalized product recommendations.
 
-在嘗試實作這種類型的使用案例時，線上零售商面臨許多挑戰。
+## <a name="challenges"></a>Challenges
 
-首先，必須從多個資料來源 (包括內部部署和雲端) 擷取不同大小和形狀的資料。此資料包括使用者瀏覽線上零售網站時的產品資料、過去的客戶行為資料和使用者資料。
+There are many challenges that online retailers face when trying to implement this type of use case. 
 
-第二，必須合理及準確計算和預測個人化的產品建議。除了產品、品牌和客戶行為及瀏覽器資料外，線上零售商也需要包含客戶關於過往購買的意見反應，藉以考量決定使用者的最佳產品建議。
+First, data of different sizes and shapes must be ingested from multiple data sources, both on-premises and in the cloud. This data includes product data, historical customer behavior data, and user data as the user browses the online retail site. 
 
-第三，這些建議必須可立即提供給使用者，以提供順暢的瀏覽和購買體驗，並提供最新且最有關聯的建議。
+Second, personalized product recommendations must be reasonably and accurately calculated and predicted. In addition to product, brand, and customer behavior and browser data, online retailers also need to include customer feedback on past purchases to factor in the determination of the best product recommendations for the user. 
 
-最後，零售商需要追蹤整體的向上銷售及交叉銷售點擊轉換銷售成功等情況，以測量其方法的效率並調整未來的建議。
+Third, the recommendations must be immediately deliverable to the user to provide a seamless browsing and purchasing experience, and provide the most recent and relevant recommendations. 
 
-## 解決方案概觀
+Finally, retailers need to measure the effectiveness of their approach by tracking overall up-sell and cross-sell click-to-conversion sales successes, and adjust to their future recommendations.
 
-此範例使用已由實際 Azure 使用者利用 Azure Data Factory 和其他 Cortana Intelligence 元件服務 (包括 [HDInsight](https://azure.microsoft.com/services/hdinsight/) 和 [Power BI](https://powerbi.microsoft.com/)) 解決及實作的案例。
+## <a name="solution-overview"></a>Solution Overview
 
-線上零售商使用 Azure Blob 存放區、內部部署 SQL Server、Azure SQL DB 和關聯式資料市集做為整個工作流程的資料儲存體選項。Blob 存放區包含客戶資訊、客戶行為資料和產品資訊資料。產品資訊資料包含 SQL 資料倉儲中的產品品牌資訊和產品目錄預存內部部署。
+This example use case has been solved and implemented by real Azure users by using Azure Data Factory and other Cortana Intelligence component services, including [HDInsight](https://azure.microsoft.com/services/hdinsight/) and [Power BI](https://powerbi.microsoft.com/).
 
-所有資料都會組合並提供給產品建議系統，使用者在網站上瀏覽目錄中的產品時，可根據客戶興趣和動作提供個人化建議。根據和所有使用者無關的整體網站使用模式，客戶也會看到與其正在查看之產品相關的產品。
+The online retailer uses an Azure Blob store, an on-premises SQL server, Azure SQL DB, and a relational data mart as their data storage options throughout the workflow.  The blob store contains customer information, customer behavior data, and product information data. The product information data includes product brand information and a product catalog stored on-premises in a SQL data warehouse. 
 
-![使用案例圖](./media/data-factory-product-reco-usecase/diagram-1.png)
+All the data is combined and fed into a product recommendation system to deliver personalized recommendations based on customer interests and actions, while the user browses products in the catalog on the website. The customers also see products that are related to the product they are looking at based on overall website usage patterns that are not related to any one user.
 
-線上零售商網站每天都會產生數 GB 的未經處理 web 記錄檔，做為半結構化的檔案。未經處理的 web 記錄檔和客戶及產品目錄資訊會定期擷取到 Azure Blob 儲存體，使用 Data Factory 的全域部署資料移動做為服務。一天的未經處理記錄檔會在 Blob 儲存體中分割 (根據年和月) 以進行長期儲存。[Azure HDInsight](https://azure.microsoft.com/services/hdinsight/) 可用來分割 Blob 存放區中的未經處理記錄檔，並使用 Hive 和 Pig 指令碼大規模處理擷取的記錄檔。接著會處理分割的 Web 記錄檔資料，以擷取需要的輸入，讓機器學習服務建議系統產生個人化的產品建議。
+![use case diagram](./media/data-factory-product-reco-usecase/diagram-1.png)
 
-在此範例中，用於機器學習的建議系統是來自 [Apache Mahout](http://mahout.apache.org/) 的開放原始碼機器學習建議平台。任何 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 或自訂模型皆可套用至案例。Mahout 模型可用來根據整體使用模式預測網站上項目之間的相似性，並根據個別使用者產生個人化的建議。
+Gigabytes of raw web log files are generated daily from the online retailer’s website as semi-structured files. The raw web log files and the customer and product catalog information is ingested regularly into an Azure Blob storage using Data Factory’s globally deployed data movement as a service. The raw log files for the day are partitioned (by year and month) in blob storage for long-term storage.  [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/) is used to partition the raw log files in the blob store and process the ingested logs at scale using both Hive and Pig scripts. The partitioned web logs data is then processed to extract the needed inputs for a machine learning recommendation system to generate the personalized product recommendations.
 
-最後，個人化產品建議的結果集會移到關聯式資料市集供零售商網站使用。結果集也可由另一個應用程式直接從 Blob 儲存體存取，或移至其他存放區供其他客戶及使用案例使用。
+The recommendation system used for the machine learning in this example is an open source machine learning recommendation platform from [Apache Mahout](http://mahout.apache.org/).  Any [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) or custom model can be applied to the scenario.  The Mahout model is used to predict the similarity between items on the website based on overall usage patterns, and to generate the personalized recommendations based on the individual user.
 
-## 優點
+Finally, the result set of personalized product recommendations is moved to a relational data mart for consumption by the retailer website.  The result set could also be accessed directly from blob storage by another application, or moved to additional stores for other consumers and use cases.
 
-藉由最佳化其產品建議策略並與業務目標對齊，解決方案可符合線上零售商的商務和行銷目標。此外，他們能夠以有效率、可靠且符合成本效益的方式作業化和管理產品建議工作流程。此方法讓他們能夠輕鬆地根據銷售點擊轉換成功的測量結果更新其模型並微調其有效性。藉由使用 Azure Data Factory，他們可以放棄其耗時且昂貴的手動雲端資源管理，移至隨選雲端資源管理。因此，他們能夠節省時間和金錢並減少解決方案部署的時間。資料歷程檢視和作業服務健全狀況變得容易視覺化，且 Azure 入口網站也提供利用直覺式 Data Factory 監視和管理 UI 進行的疑難排解。其解決方案可以立即排程與管理，如此可以可靠地產生完成的資料並將其傳送給使用者，並可自動管理資料和處理相依性而不需人力介入。
+## <a name="benefits"></a>Benefits
 
-藉由提供此個人化的購物體驗，線上零售商可建立更具競爭力、更吸引人的客戶體驗，並因此增加銷售量和整體的客戶滿意度。
+By optimizing their product recommendation strategy and aligning it with business goals, the solution met the online retailer’s merchandising and marketing objectives. Additionally, they were able to operationalize and manage the product recommendation workflow in an efficient, reliable, and cost effective manner. The approach made it easy for them to update their model and fine-tune its effectiveness based on the measures of sales click-to-conversion successes. By using Azure Data Factory, they were able to abandon their time consuming and expensive manual cloud resource management and move to on-demand cloud resource management. Therefore, they were able to save time, money, and reduce their time to solution deployment. Data lineage views and operational service health became easy to visualize and troubleshoot with the intuitive Data Factory monitoring and management UI available from the Azure portal. Their solution can now be scheduled and managed so that finished data is reliably produced and delivered to users, and data and processing dependencies are automatically managed without human intervention.
+
+By providing this personalized shopping experience, the online retailer created a more competitive, engaging customer experience and therefore increase sales and overall customer satisfaction.
 
 
 
   
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

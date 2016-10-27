@@ -1,50 +1,56 @@
 <properties
-	pageTitle="Machine Learning Studio 功能的概觀圖 | Microsoft Azure"
-	description="Azure Machine Learning Studio 功能的可列印圖表，會示範如何使用 Studio 開發預測性分析實驗，並使其在 Azure 雲端中運作。"
-	keywords="machine learning studio,概觀圖表,下載"
-	services="machine-learning"
-	documentationCenter=""
-	authors="hning86"
-	manager="jhubbard"
-	editor="cgronlun"/>
+    pageTitle="Overview diagram of Machine Learning Studio capabilities | Microsoft Azure"
+    description="A printable diagram of the capabilities of Azure Machine Learning Studio, demonstrating how to use Studio to develop a predictive analytics experiment and operationalize it in the Azure cloud."
+    keywords="machine learning studio,overview diagram,download"
+    services="machine-learning"
+    documentationCenter=""
+    authors="hning86"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="09/21/2016"
-	ms.author="haining;garye" />
+    ms.service="machine-learning"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="09/21/2016"
+    ms.author="haining;garye" />
 
 
-# Azure Machine Learning Studio 功能的概觀圖
 
-**Microsoft Azure Machine Learning Studio 功能概觀**圖表提供一些概觀，讓您了解如何使用 Machine Learning Studio 開發預測性分析模型，並使其在 Azure 雲端中運作。
+# <a name="overview-diagram-of-azure-machine-learning-studio-capabilities"></a>Overview diagram of Azure Machine Learning Studio capabilities
 
-[Azure Machine Learning Studio](https://studio.azureml.net/) 有可用的大量機器學習演算法，以及有助於資料輸入、輸出、準備和視覺效果的模組。您可以使用這些元件開發預測性分析實驗，並在其上逐一查看，以及使用它來定型模型。然後按一下即可讓您的模型在 Azure 雲端中運作，使其可用來為新資料評分。
+The **Microsoft Azure Machine Learning Studio Capabilities Overview** diagram gives you a high-level overview of how you can use Machine Learning Studio to develop a predictive analytics model and operationalize it in the Azure cloud.
 
-此圖說明了這些項目如何彼此配合。
+[Azure Machine Learning Studio](https://studio.azureml.net/) has available a large number of machine learning algorithms, along with modules that help with data input, output, preparation, and visualization. Using these components you can develop a predictive analytics experiment, iterate on it, and use it to train your model.
+Then with one click you can operationalize your model in the Azure cloud so that it can be used to score new data.
 
-> [AZURE.NOTE] 如需關於瀏覽及選擇 Machine Learning Studio 中提供的機器學習演算法的其他說明，請參閱[適用於 Microsoft Azure Machine Learning Studio 的機器學習演算法小祕技](machine-learning-algorithm-cheat-sheet.md)。
+This diagram shows how all those pieces fit together.
 
-## 下載 Machine Learning Studio 概觀圖表
+> [AZURE.NOTE] See [Machine learning algorithm cheat sheet for Microsoft Azure Machine Learning Studio](machine-learning-algorithm-cheat-sheet.md) for additional help in navigating through and choosing the machine learning algorithms available in Machine Learning Studio.
 
-下載 **Microsoft Azure Machine Learning Studio 功能概觀**圖表，並取得 Machine Learning Studio 功能的概略檢視。若要就近保留它，您可以將圖表列印於 Tabloid 大小 (11 x 17 英吋) 的紙張上。
+## <a name="download-the-machine-learning-studio-overview-diagram"></a>Download the Machine Learning Studio overview diagram
 
-**在這裡下載圖表：[Microsoft Azure Machine Learning Studio 功能概觀](http://download.microsoft.com/download/C/4/6/C4606116-522F-428A-BE04-B6D3213E9E52/ml_studio_overview_v1.1.pdf)**
+Download the **Microsoft Azure Machine Learning Studio Capabilities Overview** diagram and get a high-level view of the capabilities of Machine Learning Studio. To keep it nearby, you can print the diagram in tabloid size (11 x 17 in.).
 
-![Microsoft Azure Machine Learning Studio 功能概觀][studio-overview]
+**Download the diagram here: [Microsoft Azure Machine Learning Studio Capabilities Overview](http://download.microsoft.com/download/C/4/6/C4606116-522F-428A-BE04-B6D3213E9E52/ml_studio_overview_v1.1.pdf)**
+
+![Microsoft Azure Machine Learning Studio Capabilities Overview][studio-overview]
 
 [studio-overview]: ./media/machine-learning-studio-overview-diagram/ml_studio_overview_v1.1.png
 
 
-## Machine Learning Studio 的更多說明
+## <a name="more-help-with-machine-learning-studio"></a>More help with Machine Learning Studio
 
-* 如需 Microsoft Azure Machine Learning 的概觀，請參閱 [Microsoft Azure 上的機器學習簡介](machine-learning-what-is-machine-learning.md)
-* 如需 Machine Learning Studio 的概觀，請參閱[什麼是 Azure Machine Learning Studio？](machine-learning-what-is-ml-studio.md)
-* 如需 Machine Learning Studio 中提供的機器學習演算法詳細討論，請參閱[如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
+* For an overview of Microsoft Azure Machine Learning, see [Introduction to machine learning on Microsoft Azure](machine-learning-what-is-machine-learning.md)
+* For an overview of Machine Learning Studio, see [What is Azure Machine Learning Studio?](machine-learning-what-is-ml-studio.md).
+* For a detailed discussion of the machine learning algorithms available in Machine Learning Studio, see [How to choose algorithms for Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

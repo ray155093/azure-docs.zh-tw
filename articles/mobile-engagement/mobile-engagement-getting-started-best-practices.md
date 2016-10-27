@@ -1,401 +1,402 @@
 <properties 
-	pageTitle="Azure Mobile Engagement 入門指南與最佳作法"
-	description="Azure Mobile Engagement 入門指南與登入最佳作法" 
-	services="mobile-engagement" 
-	documentationCenter="mobile" 
-	authors="wesmc7777"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Azure Mobile Engagement Getting Started Guide with Best Practices"
+    description="Getting Started guide for Azure Mobile Engagement and Best practices for onboarding" 
+    services="mobile-engagement" 
+    documentationCenter="mobile" 
+    authors="wesmc7777"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="mobile-engagement"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.tgt_pltfrm="mobile-multiple"
-	ms.workload="mobile" 
-	ms.date="10/04/2016"
-	ms.author="wesmc;ricksal"/>
+    ms.service="mobile-engagement"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="mobile-multiple"
+    ms.workload="mobile" 
+    ms.date="10/04/2016"
+    ms.author="wesmc;ricksal"/>
 
-# Azure Mobile Engagement - 入門指南與最佳作法
 
-## Overview
+# <a name="azure-mobile-engagement---getting-started-guide-with-best-practices"></a>Azure Mobile Engagement - Getting Started Guide with Best practices
 
-**行動裝置的螢幕是非常擁擠的空間：**2013 年的一項研究中發現，每個行動裝置約安裝了 27 個應用程式。使用者每個月通常會花 30 小時在他們的應用程式上。這些時間大部分是花在社交網路和遊戲上 (大約 20 小時)。截至 2014 年為止，Android 市場約提供了一百五十萬個應用程式供使用者選擇。Apple Store 包含約一百二十萬個應用程式。隨著開發人員競相投入這個成長中的市場，行動應用程式的使用還在逐漸增長中。
+## <a name="overview"></a>Overview
 
-一般而言，行動使用者會根據其不斷變化的興趣和應用程式內使用經驗，頻繁地安裝和解除安裝應用程式。為了判斷應用程式能否成功，就必須在安裝應用程式的使用者人數之外，得知更多相關資訊。了解您的應用程式有多少實用性，及其使用趨勢是否有所變更，是很重要的。下列問題變得很重要：
+**The mobile screen is a very crowded space:** In 2013, a study found the average mobile device had 27 applications installed. Users typically spent 30 hours per month on their apps. Most of this time was spent on social networking and gaming (around 20 hours). By 2014, the Android market had around 1.5 million applications for users to choose from. The Apple store contained around 1.2 million apps. Mobile app use is still increasing as developers compete in this growing market. 
 
-- 使用者是否開始覺得您的應用程式無趣或過時？
-- 有多少使用者完全不再使用您的應用程式？
-- 應用程式內購買趨勢是向上還是向下？
-- 使用者是否因為應用程式有問題或不感興趣而未完成工作流程？
-- 您是否能為使用者客群提供新鮮的內容，而維持應用程式的實用性和適切性？
-- 這些新鮮的內容是適用於所有使用者的，還是根據應用程式中的行為著重於某些使用者的？
+The average mobile user will install and uninstall apps with high frequency depending on changing interests and in-app experiences. In order to determine the success of an app it becomes vital to know more than just how many users install your app. It's important to know how useful your app is and if that usage trend is changing. The following questions become important:
+
+- Are your users beginning to find your app uninteresting or obsolete? 
+- How many users have stopped using your app at all? 
+- Are in-app purchases trending upward or downward?
+- Are users failing to complete work flows because of issues with the app or lack of interest? 
+- Could you keep your app useful and relevant by pushing fresh content to your user base? 
+- Would this fresh content be the same for all users or focused on user segments based on behavior in your app? 
  
-回答諸如此類的問題，可能有助於延長應用程式的壽命並提高其收益。此外也有助於您定義和維繫使用者客群。
+Answers to questions similar to these could help extend the life and revenue from your app. They can also help you define and retain your user base. 
 
-就趨勢而言，使用者對於媒體相關應用程式的黏著度似乎是最高的。其原因之一，是這些應用程式不斷地為使用者提供新鮮的內容。及早採用導向至使用者區段的有用推播通知，使用者就較有可能保留應用程式。
+Media related apps tend to have some of the highest retention among users. One reason for this is they are constantly providing fresh content to users. Early adoption of useful push notifications directed to a user segment tends to have a high impact on app retention. 
 
-依據設計，Azure Mobile Engagement 計劃會提供相關方法來收集和分析您的應用程式使用情形的詳細資訊，以協助您延長應用程式的壽命和存續性。它可協助您根據行為將使用者客群分類，並建立聚焦的活動，將推播通知和應用程式內的訊息分送給已識別的使用者區段。關鍵效能指標 (KPI) 可測量使用者對於您的應用程式不同層面的使用程度。Azure Mobile Engagement 提供讓您判讀這些 KPI 所需的方法。它可提供您拓展行動應用程式業務所需的基礎結構，進而提高您的投資報酬率 (ROI)。
+The Azure Mobile Engagement program is designed to help you extend the life and retention of your app by providing a method to gather and analyze detailed information on the use of your app. It will help you classify your user base according to behavior, and create focused campaigns for delivering push notifications and in-app messages to identified user segments. Key performance indicators (KPI) measure how active your users are with different aspects of your app. Azure Mobile Engagement provides the methods you need to determine these KPIs. It helps increase the return on your investment (ROI) by providing the infrastructure you need to increase engagement with your mobile app. 
 
-若要充分利用 Azure Mobile Engagement，首先您必須擬定妥善的業務開發計劃。您的計劃將協助您識別用來區隔使用者客群所需的詳細資料。這可能隨著行為和應用程式內的使用經驗而不同。為了使計劃成功，您最好能明確定義 KPI，以衡量您應用程式的目標。定義明確的效能指標後，您即可輕鬆地將必要的邏輯運用在您的應用程式中，以收集用來分析和評估 KPI 的精細資料。本主題是定義您的業務開發計劃所將使用之 KPI 的最佳作法指南。
-
-
-## 步驟 1：定義符合 BET 模型的 KPI
+In order to get the most out of Azure Mobile Engagement, you need to start with a well designed engagement plan. Your plan will help you identify the granular data you will need to be able to segment your user base. This can be based on behavior and in-app experiences. In order for your plan to be successful, it is a best practice to clearly define the KPI that will measure the objectives of your app. With clear performance indicators defined, you can easily embed the necessary logic in your app to collect fine grained data which you will use to analyze and evaluate your KPIs. This topic is a best practice guide for defining the KPIs that you will use with your engagement plan. 
 
 
-正確定義 KPI 並非簡單任務。針對不同產業而設計的應用程式，各有其本身的特性和目標。因此，您可能會不知從何著手。為避免此狀況，目標和 KPI 應分成三個主要類別：**商務**、**業務開發**和**技術**。這就是所謂的 **BET 模型**。
-
-良好的計劃通常會有目標和 KPI，用以衡量 BET 模型的以下各個類別是否成功。
+## <a name="step-1:-define-your-kpis-to-fit-the-bet-model"></a>Step 1: Define your KPIs to fit the BET model
 
 
-#### 商務 KPI
+Correctly defining KPIs can be a difficult task to complete. Apps designed for different industries have their own specifics and objectives. This may tend to confuse your approach. To help avoid this, objectives and KPIs should be classified into three main categories: **Business**, **Engagement**, and **Technical**. This is what we call the **BET model**.
 
-商務 KPI 應該是最容易建置的部分。您在規劃行動應用程式時，即可能已用某種形式加以定義。這些 KPI 通常有助於衡量應用程式的營收和 ROI。下列清單提供幾個可引導您定義效能指標的範例商務 KPI：
-
-- 媒體商務 KPI
-	- 點按的廣告數目
-	- 每一使用者造訪的頁面數目
-	- 目前的訂用帳戶數目
-- 遊戲商務 KPI
-	- 應用程式內購買數目
-	- 每一使用者的平均收益 (ARPU)
-	- 每一工作階段花費的時間
-	- 已玩天數和目前的遊戲等級
-- 電子商務 KPI
-	- 應用程式使用天數
-	- 每一使用者的平均收益 (ARPU)
-	- 結帳時購物車中的平均金額
-	- 最多人檢視和購買的產品類別
-- 銀行和保險商務 KPI
-	- 帳戶數目
-	- 啟動的功能
-	- 造訪的提供項目頁面
-	- 點按或啟動的警示
+A good plan will generally have objectives with the KPIs that measure the successes in each of the following categories of the BET model.
 
 
+#### <a name="business-kpis"></a>Business KPIs
 
-#### 參與 KPI
+Business KPIs should be the easiest part to build. You probably already defined these in some form when you planned your mobile app. These KPIs generally help measure revenue and ROI for you app. The following list provides some example Business KPIs that may help guide you while defining your performance indicators:
 
-參與 KPI 是用來測量使用者參與程度的效能指標。此區域中的趨勢有助於判斷您的應用程式的存留性。以下針對此類型的 KPI 提供數個範例效能指標：
-
-- 過去 7 天內作用中的使用者
-- 過去 7 天非作用中的使用者人數
-- 30 天未使用應用程式達的使用者人數
-
-有些明顯的外部因素可能會影響此區域中的指標。例如，您可能認為使用者隨時隨地都帶著行動裝置。事實不一定是如此。遊戲應用程式很可能在假日會有較高的使用量，因為這時玩家不必上班或上課，可玩得較久。
-
-在此類別中妥善定義的 KPI 應可協助您衡量您的應用程式與客戶之間的關係。
+- Media Business KPIs
+    - Number of Ads clicked
+    - Number of page visits per user
+    - Number of current subscriptions
+- Gaming Business KPIs
+    - Number of in-app purchases
+    - Average revenue per user (ARPU)
+    - Time spent per session
+    - Days played and current in game level
+- E-Commerce Business KPIs
+    - Days app used
+    - Average revenue per user (ARPU)
+    - Average amount in cart during checkout
+    - Product category for most views and purchases
+- Bank and insurance Business KPIs
+    - Number of accounts
+    - Features activated
+    - Offer pages visited
+    - Alerts clicked or activated      
 
 
 
-#### 技術 KPI
+#### <a name="engagement-kpis"></a>Engagement KPIs
 
-此類別中的效能指標可協助您判斷是否正常運作，還是懸置或當機。這些指標可以測量應用程式的健康情況，並找出可能會妨礙使用者使用應用程式的可用性問題。針對此類別所收集的資訊，也可能包含與行銷團隊相關的效能資訊。在 IT 人員和支援團隊進行疑難排解以識別未回報的 bug 時，可能會用到這項資料。
+An Engagement KPI is a performance indicator to measure the engagement of your users. Trends in this area help determine the retention of your app. Here are a few example performance indicators for this type of KPI:
+
+- Active users in the last 7 days
+- Inactive user count for the last 7 days
+- Count of users who have not used the app in 30 days  
+
+Some obvious external factors may influence indicators in this area. For example, you may consider a mobile device to be with a user at all times. This may or may not be true. A gaming app might tend to have higher usage around holidays when a gamer may play more while off work or out of school.   
+
+Well defined KPIs in this category should help you measure the relationship between your app and your customers.
+
+
+
+#### <a name="technical-kpis"></a>Technical KPIs
+
+Performance indicators in this category help you determine if your app is behaving correctly, hanging, or crashing. These indicators can measure the health of your app and determine usability issues that may prevent users from using the app. Information collected for this category could also contain performance information that would be relevant to marketing teams. The data could also be useful for troubleshooting by IT and support teams to help identify unreported bugs. 
  
-以下是技術 KPI 的一些範例：
+Here are some examples of Technical KPIs:
 
-- 未處理或已處理的例外狀況資訊和計數
-- 前次當機的時間戳記
-- 前次點按的按鈕或前次造訪的頁面
-- 應用程式的記憶體使用量
-- 應用程式的畫面播放速率
-- 執行應用程式的作業系統版本
-- 應用程式版本
+- Unhandled or handled exception information and count 
+- Timestamp for last crash
+- Last button clicked or last page visited
+- Memory usage of the app
+- App frame rate
+- OS version that the app is running on
+- App version
 
-定義這些 KPI，有助於測量應用程式效能並找出潛在的 bug。這類指標應有助於縮短您為客戶提供修正程式所需的時間。此外也可協助您定義遇到過特定問題的使用者區段。您可以使用該使用者區段來建立活動，以提供有關於可用修正程式和可行促銷方案的通知，以利挽回客戶滿意度。
-
-
-#### 腳本練習 1：建立 KPI 儀表板
-
-定義行銷策略時，您的 KPI 應針對每個主要目標呈現個別的檢視。它們應該是明確定義的資料點，可讓您收集相關重要資訊以監視您的應用程式和使用者的行為。
-
-建置包含以下資訊的 KPI 儀表板
-
-1.	是什麼應用程式的 KPI？
-2.	我應使用哪些資料點來代表每個 KPI？
-3.	這項資料在我的應用程式中會位於何處 (即螢幕、設定、系統...)？
-4.	此 KPI 是否可以顯示參與系列？
-
-您可以使用我們的[媒體腳本範本][Media Playbook link]中的 **KPI 產生器**工作表，取得相關範例和指引。
+Define these KPIs to help measure app performance and pinpoint potential bugs. This indicators should help reduce the time you need to deliver a fix for your customers. They could also help you define a user segment who have encountered a particular issues. You can use that user segmentation to create campaigns to deliver notifications regarding available fixes and potential promotions to help recover customer satisfaction. 
 
 
+#### <a name="playbook-exercise-1:-create-your-kpi-dashboard"></a>Playbook Exercise 1: Create your KPI dashboard
 
-## 步驟 2：您的業務開發計劃
+When defining your marketing strategy, your KPIs should present a view for each of your main objectives. They should be clearly defined data points that will allow you to collect vital information to monitor your app and the behavior of the end-user.
+
+Build a KPI dashboard which contains the below information
+
+1.  What are the KPIs for the app?
+2.  What data points will I use to represent each KPI?
+3.  Where is this data located for my application (i.e. screen, settings, system…)?
+4.  Can I play an Engagement sequence for this KPI?
+
+You can use the **KPI Builder** worksheet in our [Media Playbook Template][Media Playbook link] for examples and guidance.
 
 
-絕佳行動業務開發計劃應被視為應用程式的關鍵要素。其中必須包含完善的歡迎使用計劃，在使用者剛開始使用應用程式的頭幾天執行。這對於應用程式的使用程度和存續性，通常會有非常正面的影響。研究顯示，大多數的使用者在安裝後的頭幾天就會停止使用應用程式。要想符合或超過客戶的期望，就要趁使用者仍熱衷於您的應用程式時激發他們的興趣。請務必讓客戶體驗到您的應用程式最重要的價值和優點。
+
+## <a name="step-2:-your-engagement-program"></a>Step 2: Your Engagement Program
+
+
+A great mobile engagement program should be considered a key component of your app. This should absolutely include a great welcome program that executes for a user during the first days of app usage. This tends to have a very positive effect on engagement and retention of your app. Studies have shown that the majority of users stop using an app the first few days after installation. You want to strive to meet or exceed customer expectation driving interest early while the user is still focused on your app. Make sure you present the key value and benefits of your app to your customers. 
 
 
 ![](./media/mobile-engagement-getting-started-best-practices/unsegmented-push-notifications.png)
 
-推播通知是盡早觸及行動裝置使用者的最佳途徑。不過，在區隔推播通知的使用者時，必須十分謹慎。因為一旦使用者覺得收到的是垃圾郵件或不感興趣的通知，後果可能很嚴重。使用者只要按幾下滑鼠，就會刪除您的應用程式且永遠不再安裝。使用者想收到的是高度個人化的應用程式內價值，而不是常見的垃圾郵件。
+Push notifications are the best approach to early engagements with mobile device users. However, great care should be taken when segmenting users for push notifications. Because once a user feels like they are receiving spam or uninteresting notifications, it can have serious affect. In few clicks, a user may delete your application never to return. The user should be receiving highly personalized in-app value instead of generic spam.
 
-一旦使用者主動投入，您的業務開發計劃即可開始推動應用程式的其他層面。
+Once users are actively engaged, then your engagement program can help drive other aspects of the app.
 
-例如，您可以設定要求使用中的使用者為應用程式評等的活動。因為這個使用者區段最活躍，且使用應用程式的經驗最豐富，您會希望他們提供最精確的評等。一旦您獲得較高的應用程式評等，將因此帶動應用程式的下載次數，進而降低您爭取新客戶的成本。
-
-
-
-#### 參與系列
+For instance, you could setup a campaign that requests your active users to rate your app. Since this user segment is the most active and has the most experience with you app, you would expect them to give the most accurate rating. Once you have a high app rating, it can help drive up the organic download of your app as well reducing your new customer acquisition costs.
 
 
-全域業務開發計劃包含不同的參與系列。每個系列都有其需要達成的幾項目標。
+
+#### <a name="engagement-sequence"></a>Engagement Sequence
 
 
-###### 即時推播系列
+A global Engagement Program includes different engagement sequences. Each sequence aims to reach several objectives.
 
 
-即時推播系列的目標會隨著使用者對應用程式的使用週期而有所不同。一個使用者有可能是剛接觸、偶爾玩玩或非常熱衷的。在參與週期的不同系列中，使用者有可能透過提示或文件連結的形式，而享受到您新穎的內容。
-
-例如，新的使用者在第一次啟動應用程式時可能會需要應用程式的操作指示，或取得如下的新進使用者優惠...
-
-*「很高興您能加入！ 請記得登入，您的第 1 個月便可免費！」*
+###### <a name="life-push-sequence"></a>Life push sequence
 
 
-###### 行為推播系列
+The objectives for a Life push sequence are different depending on the lifecycle of the user’s engagement with the app. A particular user may be new, inactive, or very active. At different stages of an engagement lifecycle, users may benefit from your fresh content in the form of tips or links to documentation. 
 
-行為推播系列的目標，是要根據針對應用程式而收集的使用者行為來增加使用量。
+For example a new user may need help getting oriented to an app or benefit from a new user incentive similar to the following the first time they launch the app...
 
-例如，美式足球應用程式的愛好者可能會因為收到下列推播通知而受益...
-
-*「John，您真是個十足的美式足球迷！ 請登入我們的 NFL 區段，贏得免費的超級盃門票！」*
+*"Glad to have you onboard! Remember to login to get your 1st month free!"*
 
 
-###### 警示推播系列
+###### <a name="behavioral-push-sequence"></a>Behavioral push sequence
 
-使用者會關注與其自身權益有關的消息。警示推播系列可根據使用者已明確顯示的興趣來傳送警示，而強化參與程度。使用者在應用程式中選取其興趣時，就可能明確顯示。或者，這也可能根據在使用者與應用程式互動期間所收集到的資料，以間接的方式判定。
+The behavioral push sequence aims to increase usage based on user behavior collected for the app.  
 
-例如，電子商務應用程式的使用者可能定期購買特定品牌的咖啡，而商務 KPI 擷取到這項資訊。下列警示可強化這名使用者對應用程式的參與程度。
+For example, a very active user of a fantasy football app might benefit from being engaged with the following push notification...
+
+*"John you are a serious football fan! Log in to our NFL section and win free access to the SuperBowl!"*
+
+
+###### <a name="alerting-push-sequence"></a>Alerting push sequence
+
+Users will appreciate relevant news focused on their interests. An alert push sequence enhances engagement by sending alerts based on interests a user has clearly shown. This could be explicit when a user selects their own interests in the app. It could also be determined implicitly based on data collected during user interaction with the app.
+
+For example, the user of an E-Commerce app may regularly buy a specific brand of coffee which you have captured with a business KPI. The following alert can enhance this user's engagement with the app.
  
-*「嗨 Wes，您最喜愛的咖啡品牌將在 2015 年 9 月的第一週推出七五折優惠。為表達對客戶的謝意，我們將這項資訊提供給您。」*
+*"Hi Wes, One of your favorite brands of coffee will be on sale 25% off the first week of September 2015. We appreciate you as a customer and wanted to make sure you were aware."*
 
-###### 保留推播系列
+###### <a name="rentention-push-sequence"></a>Rentention push sequence
 
-此系列的目標是要透過重複的推播通知活動維繫使用者，以養成固定使用應用程式的習慣。只要使用者喜歡互動，這就可能有助於提高應用程式的存留性。
+This sequence aims to retain users using a repetitive push notification campaigns to help drive a regular habit of engaging with the app. This can help increase app retention if the user enjoys the interactions. 
 
-例如，運動相關應用程式的使用者可能會根據其喜愛的球隊，每週收到下列推播通知：
+For example, the user of a sports related app might receive the following push notification weekly based on the user's favorite teams:
 
-*「投票預測紐約洋基隊本身是否可擊敗多倫多藍鳥隊，就有機會獲得 200 點！」*
+*"For a chance to win 200 points, go vote whether the New York Yankees will win their game this week against Toronto Blue Jays!"*
 
 
-#### 3W 法
+#### <a name="the-3w-approach"></a>The 3W approach
 
-嫻熟運用不同的推播系列，將有助於您與使用者交流互動。不過，在您設計個人化通知時，還需要使用 3W 法。3W 法應可指出每個通知的 Who (對象)、What (主旨) 和 When (時間)。如果您能釐清這三個問題，您的通知即應可正確聚焦在業務開發上。
+Mastering the different push sequences will help you engage with end-users. However, you still need to use the 3W approach for personalizing your notifications. The 3W approach should address Who, What and When for each notification. If you clearly satisfy these three questions you notifications should be properly focused for engagement.
 
 ![](./media/mobile-engagement-getting-started-best-practices/who-what-when.png)
 
 
 
-###### Who (對象)：將收到訊息的使用者區段
+###### <a name="who:-the-user-segment-that-will-receive-messages"></a>Who: The user segment that will receive messages
 
-將通知推播給使用者，應被視為高敏感度的通訊管道。請務必將您預計要傳送至使用者區段的通知妥善劃分範圍，使其僅限於該使用者區段的相關事務。不當傳送的通知，很可能對使用者造成負面的影響。這些通知可能會被視為垃圾郵件，而導致您的應用程式被解除安裝。
+Pushing notifications to your users should be considered a very sensitive communication channel. Make sure the notifications you aim to send to a user segment are well scoped to the interests of that user segment. An incorrectly routed notification is very likely to have a negative affect on a user. They may consider it spam leading to your app being uninstalled. 
 
-在定義將會收到通知的使用者區段時，請搭配使用特定的技術與行為條件。以簡單的範例來說明，使用者區段的定義可類似於下列陳述：
+Use a combination of specific technical and behavioral criteria when defining user segments that will receive notifications. A simple example defining a user segment could be similar to the following statement:
 
-「在 3 天前第一次啟動行動應用程式，且曾經瀏覽過兩次登入頁面、但未實際完成登入的所有使用者」。
+"All users who launched the a mobile application for the first time 3 days ago, and have visited the login page twice without actually completing a login".
  
-這段陳述有助於識別您為了支援特定案例所需收集的資料。
+That statement helps identify the data you would need to collect to support a specific scenario.
 
 
-###### What (主旨)：您要傳送的訊息
+###### <a name="what:-the-message-that-you-will-send"></a>What: The message that you will send
 
-**語氣**
+**Tone**
 
-在開發業務的過程中，請使用您的使用者區段易於接受的語氣。要與使用者有良好的互動，以及激發使用者對您應用程式的興趣，這絕對是個好方法。
+In your engagements use a tone that is appropriate for your for your segmented users. This is definitely a good way to connect with your end-users and promote a user's interest in your app. 
 
-**重新導向**
+**Redirection**
 
-推播通知不只可用來推薦應用程式。如果通知訊息提供如廣播新聞或產品促銷之類的內容，此通知或許可直接深入連結至應用程式中的正確內容。為支援此功能，您必須建立讓應用程式管理重新導向的 URL 配置。在處理參與系列時，這是絕不可遺漏的重要步驟。
+A push notification can be used for more than opening up the application. If the notification message provides a context such as broadcast news or a product promotion, this notification may deep link directly to the right content within the application. To support this, you must create a URL scheme to let the application manage the redirection. When working on your engagement sequences, this is an important step that must not be forgotten.
 
-重新導向也可以用於其他系統。以動作 URL 為例，使用者可被重新導向至許多其他系統，包括：
+Redirection can also be managed for other systems. For instance, with an Action URL it is possible to redirect end-users to many other systems including the following:
 
-- 網站
-- 已設定電子郵件的信箱
-- SMS Box
-- 撥號服務
-- 直接到應用程式商店為應用程式評等。
+- A website
+- A mailbox with email already set up
+- An SMS box
+- A dial service
+- Directly to the application store for rating the application. 
 
-這將可提供許多吸引使用者的機會，並且可建立自動規則來改善效能。
+This provides many opportunities to engage end-users and create automatic rules to improve performances.
 
 
-**格式/內容**
+**Format/Content**
 
-不同類型和推播通知格式：
+Different types and Push notification formats:
 
-1. **公告**：可讓您在不同的時間傳送廣告郵件給使用者 (未使用應用程式時、使用應用程式時或任何時間)。
-2. **投票**：可讓您透過詢問使用者問題，向使用者收集資訊。這些答案隨後可用來建立目標使用者的條件。
-3. **資料推播**：可讓您傳送二進位或 base64 資料檔案以更新應用程式。資料推播中包含的資訊會傳送至您的應用程式，以個人化使用者在您的應用程式中的體驗。您的應用程式必須能夠支援資料推播中的資料。
-4. **磚 (僅限 Windows Phone)**：可讓您使用 Microsoft 推播通知服務 (MPNS) 傳送包含 XML 資料的原生推播通知 (自 SDK 0.9.0 版起受到支援。磚的最後一個裝載不可超過 32 KB)。訊息會直接出現在面板的磚上。
-5. **Web 檢視**：Web 檢視是包含 Web 內容的快顯視窗。使用者按下推播通知時，就會出現這個快顯視窗。網頁檢視可讓您與使用者有更多互動。
+1. **Announcements** : enables you to send advertising messages to users at different moments (out of app, in app or anytime).
+2. **Polls** : enabled you to gather information from end-users by asking them questions. Those answers are then available when creating criteria  to target end-users.
+3. **Data Pushes** : enables you to send a binary or base64 data file to update the app. The information contained in a data push is sent to your application to personalize the users' experience in your app. Your application needs to be designed to support the data in a data push.
+4. **Tiles (Windows Phone only)** : enabled you to use the Microsoft Push Notification Service (MPNS) to send Native Push Notification containing XML Data (Supported since SDK version 0.9.0. The final payload for tiles cannot exceed 32 kilobytes.). The message appears directly on your board’s tile.
+5. **Webview** : A web view is a pop-up containing web content. This pop-up appears when the end-user has clicked on the push notification. A web view allows you to have more interaction with the end-user.
  
->[AZURE.NOTE] 請確定您要以推播通知形式傳送的內容符合各自的平台 (iOS、Android、Windows) 開發應用程式和傳送推播通知的指導方針。
+>[AZURE.NOTE] Make sure that the content you are sending as push notifications complies with the respective platform (iOS, Android, Windows) guidelines for developing apps and sending push notifications.
 
  
 
 
-###### When (時間)：活動的時間
+###### <a name="when:-the-timing-of-your-campaign"></a>When: The timing of your campaign
 
-何時是啟動活動而觸發推播通知的最佳時機？ 應採手動還是自動？ 是否為週期性的？ 與使用者的接觸想要有最好的結果，判斷正確的時間或頻率是不可或缺的。針對每個參與系列和案例，您必須指定何時將是傳送推播通知的最佳時機。以下是可能的範例：
+When is the best time to activate a campaign triggering push notifications? Should it be manual or automatic? Should it be recurring? Determining the right time or frequency is essential to engage users with the best results. For each engagement sequence and scenario, you must specify when will be the best time to send push notifications. Here are some possible examples:
 
 ![](./media/mobile-engagement-getting-started-best-practices/campaign-timing-examples.png)
 
-如果您每天都傳送許多通知，您必須慎重考量使用者是否會覺得您的訊息是垃圾郵件。
+If you are sending many notifications daily, you must take serious consideration that your users may perceive your communications as spam. 
 
-Azure Mobile Engagement 提供兩種方式，協助您避免讓傳送的訊息被視為垃圾郵件。首先，請使用精細的區隔來確保您未以相同的使用者為目標。此外，Azure Mobile Engagement 提供了「配額」功能。這項功能可限制針對某個活動傳送的通知。例如，若將預設配額設定為每週 5 個，將可確保包含在活動使用者區段中的使用者在該週收到的通知不會超過 5 個。
-
-
-
-
-
-#### 腳本練習 2：建立業務開發計劃
-
-花點時間摘列您的目標，並定義您預計要使用特定系列來執行的活動。請確實對您活動中的通知套用 3W 法。
-
-您可以使用[媒體腳本範本][Media Playbook link]中的**業務開發計劃**工作表，取得相關範例和指引。
-
-
-## 步驟 3：應用程式整合
-
-
-#### 建立標記計劃
-
-若要將 Azure Mobile Engagement 整合到您的應用程式中，您必須建立標記計劃。標記計劃是專案的基石。它可定義行銷規格、應用程式的工作流程與實際在應用程式中收集到的標記資料之間的關聯性，以測量 KPI。它可指出您將能夠在入口網站中看到哪些分析。它也可協助您定義使用者區段，並傳送聚焦的推播通知給您的使用者。定義標記計劃後，您可以使用 Azure Mobile Engagement SDK 加上程式碼，輕鬆將其整合到您的應用程式中。
-
-標記計劃不應標記應用程式中的所有項目。它只應包含屬於行動業務開發策略的標記資料。這可能隨著應用程式而有所不同。Azure Mobile Engagement 所提供的[媒體腳本範本][Media Playbook link]可協助您透過給定的方法來建置標記計劃。請使用**標記計劃**工作表做為建置標記計劃的指南。
-
-在工作表中定義標記區段時，請盡可能明確。為避免混淆，這是非常重要的。請詳細說明預期將會傳送各個標記的每個案例。對於內嵌各個標記的活動，請加上活動名稱。這些資料應全都納入工作表的 [資訊] 部分中。標記計劃工作表應為測試驗證的主要參考。
-
-在 [要收集的資料] 區段中，您的開發團隊應可找到每個要內嵌在應用程式中的標記所需的類型、名稱、值和額外資訊的索引鍵/值組。
-
-建議您與專案的所有相關團隊共同檢閱標記計劃。請進行必要的更正，並確認行銷和開發團隊都可確實了解。
-
-[工作陳述] 工作表可用來引導專案中的每個相關人員。
-
-
-#### 資料類型
-
-這些是 Azure Mobile Engagement 所支援的一般資料類型。
-
-###### 裝置和使用者
-
-Azure Mobile Engagement 會為每個裝置產生唯一識別碼來識別使用者。這個識別碼稱為裝置識別碼 (或 deviceid)。產生此識別碼的方式，會讓相同裝置的所有執行中應用程式共用相同的裝置識別碼。
-
-###### 工作階段和活動
-
-工作階段是由使用者執行的一個應用程式執行個體。工作階段的範圍始於使用者啟動應用程式時，終於應用程式停止。
-
-活動是應用程式工作階段期間各個項目的邏輯群組。它通常是應用程式中的特定畫面，但也可以是應用程式的邏輯所定義的任何項目。您至少應標記應用程式的每個螢幕或活動。這可讓您了解使用者路徑。
-
-
-###### 事件
-
-事件可用來報告使用者與應用程式的互動。事件可以是即時的動作，像是共用內容或啟動影片。標記事件可為您提供資料集合，以顯示使用者與應用程式的互動情形。
-
-###### 作業
-
-工作可用來報告具有持續時間的動作。其範例包括：
-
-- API 呼叫的執行
-- 廣告的顯示時間
-- 背景工作持續時間
-- 購買程序持續時間
-- 觀看影片
-
-
-###### 錯誤數
-
-錯誤可用來報告應用程式偵測到的問題。例如，不正確的使用者動作，或 API 呼叫失敗。
-
-###### 應用程式資訊
-
-應用程式資訊 (App-Info) 可用來標記與使用者的應用程式體驗相關的資料。這項資訊會在使用者與應用程式互動後產生。
-
-針對一個給定的應用程式資訊索引鍵，Mobile Engagement 只會追蹤最新的值 (沒有記錄)。應用程式資訊會顯示您的應用程式或使用者的狀態。例如登入狀態，或使用者最喜愛的產品群組。
-
-###### 當機資料
-
-Mobile Engagement SDK 自動收集的當機資料，會報告應用程式未處理的應用程式失敗。例如，已發生而未處理的例外狀況。
-
-
-###### 額外的資料
-
-事件、錯誤、活動和工作皆可使用參數來處理。開發人員可提供這些額外資訊，做為來自應用程式的特定資料。這很重要，因為可以定義精細的客群區隔。
-
-例如，「文章」標記的值可讓您根據該篇文章的檢視者來區段使用者。不過，這樣可能還不夠。如果相同「文章」標記的值也包含額外資訊 (例如活動中的 "news\_category")，可能會更好。這將有助於以動態方式判斷使用者最喜愛的類別。
-
-額外的資訊會以索引鍵/值組的形式報告。在此媒體應用程式的範例中，"news\_category" 的額外資訊將是該類別的值。例如「體育」、「經濟」或「政治」。
+Azure Mobile Engagement provides two ways to help avoid your communications being perceived as spam. First, use fine grain segmentation to ensure you do not target the same users. Additionally, Azure Mobile Engagement provides a “quota” feature. This feature can limit notifications sent for a campaign. For example, setting a default quota to 5 per week will ensure that a user included as part of the campaign user segment receives no more than 5 notifications for that week.
 
 
 
 
 
-#### 標記和 SDK 整合 
+#### <a name="playbook-exercise-2:-create-your-engagement-program"></a>Playbook Exercise 2: Create your engagement program
 
-如需將 Azure Mobile Engagement SDK 整合到應用程式中的逐步指示，請參閱 Azure 網站上的 [Engagement SDK 整合](mobile-engagement-windows-store-integrate-engagement.md)文件。請從位於該頁頂端的連結中選擇您的目標平台。
+Spend some time summarizing your objectives and defining the campaigns you expect to play using specific sequences. Make sure you apply the 3W approach to the notifications in your campaigns. 
 
-建議您為兩個建置於 Azure Mobile Engagement 之上的應用程式建立專案。一個用於開發和測試預備，另一個用於生產預備。接著，當使用者接受度測試成功時，IT 團隊即可從測試預備升級至生產環境。
+Use the **Engagement Program** worksheet in the [Media Playbook Template][Media Playbook link] for examples and guidance.
+
+
+## <a name="step-3:-app-integration"></a>Step 3: App Integration
+
+
+#### <a name="create-a-tag-plan"></a>Create a tag plan
+
+To integrate Azure Mobile Engagement into your app you will need to create a tag plan. The tag plan is the cornerstone of the project. It defines the relationship between marketing specifications, the work flow of the application, and the real tag data collected in the app to measure KPIs. It indicates what analytics you will be able to see in the portal. It also helps you define user segments, and send focused push notifications to engage your end-users. Once you have the tag plan defined, adding the code to integrate it into your app is simple using the Azure Mobile Engagement SDK.
+
+A tag plan should not tag everything in an application. It should only include tag data that is part of your mobile engagement strategy. This will likely be diverse between applications. The [Media Playbook Template][Media Playbook link] provided by Azure Mobile Engagement helps you build a tag plan with a given method. Use the **Tag Plan** worksheet as a guide to building your tag plan.
+
+When defining a tag section in the worksheet, be very specific. This is very important to avoid confusion. Detail each expected scenario in which each tag will be sent. Include the name of the activity where each tag is embedded. This should all be included in the **Informative** part of the worksheet. The tag plan worksheet should be the main reference for test verification. 
+
+In the **Data to collect** section, your development team should find the types, names, values and extra-info key/value pairs required for each tag that will be embedded in the application.
+
+We recommend reviewing the Tag plan with all teams associated with the project. Make necessary corrections and confirm everything is clear for marketing and development teams.
+
+The **Statement of work** worksheet can be used to help guide everyone involved in the project.
+
+
+#### <a name="data-types"></a>Data Types
+
+These are common types of data support by Azure Mobile Engagement.
+
+###### <a name="devices-and-users"></a>Devices and users
+
+Azure Mobile Engagement identifies users by generating a unique identifier for each device. This identifier is called the device identifier (or deviceid). It is generated in such a way that all applications running on that same device share the same device identifier.
+
+###### <a name="sessions-and-activities"></a>Sessions and activities
+
+A session is one instance of the app being run by a user. The session spans from the time the user starts the app, until it stops.
+
+An activity is a logical grouping of a set of things the app may do during a session. It is usually a particular screen in the app, but it can be anything defined by the logic of the application. At a minimum you should tag each screen or Activity for your app. This will allow you to understand the user-path.
+
+
+###### <a name="events"></a>Events
+
+Events are used to report user interaction with the app. They can be instant actions, like sharing content or launching a video. Tagging events will provide you with data collections that show how users interact with the app. 
+
+###### <a name="jobs"></a>Jobs
+
+Jobs are used to report actions that have a duration. Some examples would include:
+
+- Execution of API calls
+- Display time of ads
+- Background tasks duration 
+- Purchase process duration
+- Viewing a video
+
+
+###### <a name="errors"></a>Errors
+
+Errors are used to report issues detected by the app. For example, incorrect user actions, or API call failures.
+
+###### <a name="application-information"></a>Application information
+
+Application information (App-Info) is used to tag data related to a user's experience with an application. It is generated by a user's interaction with the application. 
+
+For a given app-info key, Azure Mobile Engagement only keeps track of the latest value (no history). App-info reveals the status of your app or your end-users. For example the log-in status, or a user's favorite product group.
+
+###### <a name="crash-data"></a>Crash data
+
+Crash data automatically collected by the Mobile Engagement SDK reports application failures not handled by the application. For example an unhandled exception that occurs.
+
+
+###### <a name="extra-data"></a>Extra data
+
+Events, errors, activities and jobs can be enhanced with parameters. This is extra-information a developer may provide as specific data from the application. This is important for defining fine-grained segmentation. 
+
+For example, the value of an “article” tag will allow you to segment end-users based on who viewed that particular article. However, that may not be enough. It may be better if that same "article" tag also included extra-info such as “news_category” within an activity. This would be useful to determine dynamically the favorite categories for the user. 
+
+Extra-info is reported as a key/value pair. In the example for this media application, the extra-info for “news_category” would be the value for that category. For example, “sports", "economy", or "politics".
 
 
 
-#### 使用者接受度測試 (UAT)
 
-使用者接受度測試 (UAT) 必須確認一切運作皆符合設計。工作流程可以完成，並根據標記計劃收集所有必要的資料：
+
+#### <a name="tag-and-sdk-integration"></a>Tag and SDK integration 
+
+For step by step instructions for integrating the Azure Mobile Engagement SDK into your app, follow the  [Engagement SDK Integration](mobile-engagement-windows-store-integrate-engagement.md) documentation on Azure website. Choose your target platform from the links at the top of that page.
+
+We recommend creating projects for two apps built on top of Azure Mobile Engagement. One for development and test staging and the other for production staging. Your IT team can then promote from test staging to production when the user acceptance testing is successful.
+
+
+
+#### <a name="user-acceptance-testing-(uat)"></a>User acceptance testing (UAT)
+
+User acceptance testing (UAT) involves making sure that everything works as designed. Work flows can be completed and gather all required data based on your tag plan:
  
-- 資訊標記應根據文件中的 AZME 概念完成
-- 收集您所需的所有資訊 (包括額外的資訊值、應用程式資訊值)
-- 根據您的標記計劃來比對專門用語
-- 未傳送重複的標記
+- Information tagging should be in place according to documented AZME concepts
+- All information you need is collected (including Extra info value, App info value)
+- Nomenclature matches according to yout Tag Plan
+- There is no duplicate tags sent
 
-徹底測試您的應用程式中內嵌的各類通知行為
+Thoroughly test all the types of notification behavior you have embedded in your app
 
-- 應用程式外和應用程式內的公告、投票、資料推播
-- 文字/Web 檢視
-- 徽章更新、類別
-
-
-
-#### 設定
-
-設定 Azure Mobile Engagement 其實很簡單。使用者介面的所有相關文件，都可從 Azure Mobile Engagement 網站取得：[如何瀏覽使用者介面](mobile-engagement-user-interface-home.md)。
-
-建議您一開始先為專案的使用者設定正確的角色和角色成員資格。這有助於您為所有使用者設定適當的平台存取。您的角色可能包括：
-
-- 系統管理員
-- 開發人員
-- 檢視者
-
-之後︰
-- 註冊您的 deviceID，以在自己的裝置上進行測試。
-- 移至您的帳戶設定，設定附有圖表的時區，並為您的時區設定通知傳遞時間。
-- 移至應用程式的設定，並在 [聯繫對象] 中註冊您要設定目標使用者所需的「應用程式的資訊」。
-
-如需有關如何執行第一個推播通知活動的詳細資訊，請參閱[如何開始使用及管理推播通知以推送給使用者](mobile-engagement-how-tos.md)。
+- Announcements, Polls, Data pushes out of app and in-app
+- Text/Web views
+- Badge update, Categories
 
 
 
-## 結論
+#### <a name="setup"></a>Setup
+
+Setting up Azure Mobile Engagement is very simple. All the documentation related to the user interface is available on the Azure Mobile Engagement website, [How to navigate the user interface](mobile-engagement-user-interface-home.md).
+
+It is recommended that you start by setting up the right roles and role memberships for the users of your project. This helps you manage proper access to the platform for all users. Your roles may include:
+
+- Administrators
+- Developers
+- Viewers 
+
+Afterwards:
+- Register your deviceID to test on your own device.
+- Go to the settings of your account and set up the time zone to have charts and notification delivery time set for your time zone.
+- Go to the settings of your application and register the “App-info” you need to target end-user within Reach.
+
+For more information on how to run your first push notification campaign, review [How to get started using and managing pushes to reach out to your end users](mobile-engagement-how-tos.md).
 
 
-業務開發計劃是反覆進行的，您應持續加以改善，透過實驗找出您的應用程式最適用的計劃。
 
-剛開始開發體驗與業務開發策略時，請不要嘗試建置全域業務開發策略。請逐步找出您的 KPI 及其運用方式。每個應用程式都應有獨特的業務開發策略。
-
-在您開發出某些體驗後，您可以考慮將下列項目新增至業務開發計劃中：
-
-- 追蹤：爭取到使用者後，您可能會定義資料收集來源。Azure Mobile Engagement 可連結至資料收集來源。它可讓您監視每個來源的效能。這項資訊將微妙地大幅提升您爭取客戶的成效。
-
-- A/B 測試：這是業務開發計劃不可或缺的一部分。每個應用程式都有本身的特性。透過 A/B 測試，您將可改善業務開發計劃。
-
-- 地理位置：這是發展品牌的大好機會。拜此功能之賜，您得以在正確的時機站上有利的位置。建議您確認在開始使用地理位置功能前，已收集到足夠的使用者行為資料。
-
-- 資料推播：資料推播是不可見的推播。資料推播可讓您根據使用者行為自訂您的應用程式。例如，如果某個使用者區段經常詢問高科技產品的相關資訊，應用程式擁有者可以傳送能夠以高科技內容將其首頁個人化的資料推播。
+## <a name="conclusion"></a>Conclusion
 
 
+Engagement Programs are iterative and you should continuously improve yours as you experiment with what works best for your app. 
 
-## 後續步驟
+Initially, while developing experience with engagement strategies don't try to build an entire global engagement strategy. Take a step by step approach identifying your KPIs and how to leverage them. Engagement strategy will be unique for each app.
 
-- [建立 Azure Mobile Engagement 帳戶](mobile-engagement-create.md)。
-- 請瀏覽[定義 Mobile Engagement 策略](mobile-engagement-define-your-mobile-engagement-strategy.md)，以深入了解如何定義您的 Mobile Engagement 策略。
+After you have developed some experience you might consider adding the following to your engagement programs:
+
+- Tracking:  You acquire users and you probably define data-collection sources. Azure mobile Engagement can be linked to data-collection sources. It allows you to monitor performances of each source. This information will be interesting to maximize your acquisition investment. 
+
+- A/B testing: This is an essential part of Engagement program. Each app has its own specifics. With A/B testing, you can improve your engagement program.
+
+- Geo-location: This is a big opportunity for brands. Thanks to this feature you can reach at the right place and time. We recommend verifying you have gathered enough end-user behavior data before starting to use geo-location.
+
+- Data push: Data push is an invisible push. Data push allows customizing your application based on end-user behavior. For example, if a user segment often consults high-tech products, the app owner can send a data push which will personalize her home page with high-tech content.
+
+
+
+## <a name="next-steps"></a>Next Steps
+
+- [Create an Azure Mobile Engagement account](mobile-engagement-create.md).
+- Visit [Define your Mobile Engagement strategy](mobile-engagement-define-your-mobile-engagement-strategy.md) to learn more about defining your Mobile Engagement strategy.
 
 
 
@@ -407,4 +408,8 @@ Mobile Engagement SDK 自動收集的當機資料，會報告應用程式未處�
 <!--Link references-->
 [Media Playbook link]: https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

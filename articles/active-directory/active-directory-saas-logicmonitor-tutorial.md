@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 LogicMonitor 整合 | Microsoft Azure" 
-    description="了解如何使用 LogicMonitor 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with LogicMonitor | Microsoft Azure" 
+    description="Learn how to use LogicMonitor with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,139 +11,149 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/08/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 LogicMonitor 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-logicmonitor"></a>Tutorial: Azure Active Directory integration with LogicMonitor
   
-本教學課程的目的是要示範 Azure 與 LogicMonitor 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and LogicMonitor.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   LogicMonitor 租用戶
+-   A valid Azure subscription
+-   A LogicMonitor tenant
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 LogicMonitor 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for LogicMonitor
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-logicmonitor-tutorial/IC790045.png "案例")
-##啟用 LogicMonitor 的應用程式整合
+![Scenario](./media/active-directory-saas-logicmonitor-tutorial/IC790045.png "Scenario")
+##<a name="enabling-the-application-integration-for-logicmonitor"></a>Enabling the application integration for LogicMonitor
   
-本節的目的是要說明如何啟用 LogicMonitor 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for LogicMonitor.
 
-###若要啟用 LogicMonitor 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-logicmonitor,-perform-the-following-steps:"></a>To enable the application integration for LogicMonitor, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-logicmonitor-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-logicmonitor-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-logicmonitor-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-logicmonitor-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-logicmonitor-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-logicmonitor-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-logicmonitor-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在搜尋方塊中，輸入 **logicmonitor**。
+6.  In the **search box**, type **logicmonitor**.
 
-    ![應用程式庫](./media/active-directory-saas-logicmonitor-tutorial/IC790046.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-logicmonitor-tutorial/IC790046.png "Application Gallery")
 
-7.  在結果窗格中，選取 [LogicMonitor]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **LogicMonitor**, and then click **Complete** to add the application.
 
     ![LogicMonitor](./media/active-directory-saas-logicmonitor-tutorial/IC790047.png "LogicMonitor")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 LogicMonitor 中進行驗證。
+The objective of this section is to outline how to enable users to authenticate to LogicMonitor with their account in Azure AD using federation based on the SAML protocol.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [LogicMonitor] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **LogicMonitor **application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-logicmonitor-tutorial/IC790048.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-logicmonitor-tutorial/IC790048.png "Configure Single Sign-On")
 
-2.  在 [您希望使用者如何登入 LogicMonitor] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  On the **How would you like users to sign on to LogicMonitor** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-logicmonitor-tutorial/IC790049.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-logicmonitor-tutorial/IC790049.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [登入 URL] 文字方塊中，輸入使用者用來登入 LogicMonitor 的 URL (如："*http://company.logicmonitor.com*"\)，然後按一下 *[下一步]*。
+3.  On the **Configure App URL** page, in the **Sign On URL** textbox, type your URL used by your users to sign on to LogicMonitor \(e,g,: "*http://company.logicmonitor.com*"\), and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-logicmonitor-tutorial/IC790050.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-logicmonitor-tutorial/IC790050.png "Configure App URL")
 
-4.  在 [設定在 LogicMonitor 單一登入] 頁面上，按一下 [下載中繼資料]，然後將中繼資料儲存在您的電腦中。
+4.  On the **Configure single sign-on at LogicMonitor** page, click **Download metadata**, and then save it on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-logicmonitor-tutorial/IC790051.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-logicmonitor-tutorial/IC790051.png "Configure Single Sign-On")
 
-5.  以系統管理員身分登入您的 **LogicMonitor** 公司網站。
+5.  Log in to your **LogicMonitor** company site as an administrator.
 
-6.  在頂端的功能表中，按一下 [設定]。
+6.  In the menu on the top, click **Settings**.
 
-    ![設定](./media/active-directory-saas-logicmonitor-tutorial/IC790052.png "設定")
+    ![Settings](./media/active-directory-saas-logicmonitor-tutorial/IC790052.png "Settings")
 
-7.  在左側導覽列中按一下 [單一登入]
+7.  In the navigation bat on the left side, click **Single Sign On**
 
-    ![單一登入](./media/active-directory-saas-logicmonitor-tutorial/IC790053.png "單一登入")
+    ![Single Sign-On](./media/active-directory-saas-logicmonitor-tutorial/IC790053.png "Single Sign-On")
 
-8.  在 [單一登入 (SSO) 設定] 區段中，執行下列步驟：
+8.  In the **Single Sign-on (SSO) settings** section, perform the following steps:
 
-    ![單一登入設定](./media/active-directory-saas-logicmonitor-tutorial/IC790054.png "單一登入設定")
+    ![Single Sign-On Settings](./media/active-directory-saas-logicmonitor-tutorial/IC790054.png "Single Sign-On Settings")
 
-    1.  選取 [啟用單一登入]。
-    2.  在 [預設角色指派] 中選取 [唯讀]。
-    3.  在記事本中開啟下載的中繼資料檔，然後將檔案內容貼到 [識別提供者中繼資料] 文字方塊中。
-    4.  按一下 [儲存變更]。
+    1.  Select **Enable Single Sign-on**.
+    2.  As **Default Role Assignment**, select **readonly**.
+    3.  Open the downloaded metadata file in notepad, and then paste content of the file into the **Identity Provider Metadata** textbox.
+    4.  Click **Save Changes**.
 
-9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-logicmonitor-tutorial/IC790055.png "設定單一登入")
-##設定使用者佈建
+    ![Configure Single Sign-On](./media/active-directory-saas-logicmonitor-tutorial/IC790055.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 AAD 使用者能夠登入，必須使用他們的 Azure Active Directory 使用者名稱將他們佈建到 LogicMonitor 應用程式。
+For AAD users to be able to sign in, they must be provisioned to the LogicMonitor application using their Azure Active Directory user names.
 
-###若要設定使用者佈建，請執行下列步驟：
+###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
 
-1.  以系統管理員身分登入您的 LogicMonitor 公司網站。
+1.  Log in to your LogicMonitor company site as an administrator.
 
-2.  在頂端的功能表中，按一下 [設定]，然後按一下 [角色與使用者]。
+2.  In the menu on the top, click **Settings**, and then click **Roles and Users**.
 
-    ![角色和使用者](./media/active-directory-saas-logicmonitor-tutorial/IC790056.png "角色和使用者")
+    ![Roles and Users](./media/active-directory-saas-logicmonitor-tutorial/IC790056.png "Roles and Users")
 
-3.  按一下 [新增]。
+3.  Click **Add**.
 
-4.  在 [新增帳戶] 區段中，執行下列步驟：
+4.  In the **Add an account** section, perform the following steps:
 
-    ![新增帳戶](./media/active-directory-saas-logicmonitor-tutorial/IC790057.png "新增帳戶")
+    ![Add an account](./media/active-directory-saas-logicmonitor-tutorial/IC790057.png "Add an account")
 
-    1.  在相關的文字方塊中輸入您想要佈建之 Azure Active Directory 使用者的 [使用者名稱]、[電子郵件]、[密碼] 及 [重新輸入密碼] 值。
-    2.  選取 [角色]、[檢視權限] 及 [狀態]。
-    3.  按一下 [提交]。
+    1.  Type the **Username**, **Email**, **Password** and **Retype password** values of the Azure Active Directory user you want to provision into the related textboxes.
+    2.  Select **Roles**, **View Permissions** and the **Status**.
+    3.  Click **Submit**.
 
->[AZURE.NOTE]您可以使用任何其他的 LogicMonitor 使用者帳戶建立工具或 LogicMonitor 提供的 API，佈建 Azure Active Directory 使用者帳戶。
+>[AZURE.NOTE]You can use any other LogicMonitor user account creation tools or APIs provided by LogicMonitor to provision Azure Active Directory user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 LogicMonitor，請執行下列步驟：
+###<a name="to-assign-users-to-logicmonitor,-perform-the-following-steps:"></a>To assign users to LogicMonitor, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [LogicMonitor] 應用程式整合頁面中，按一下 [指派使用者]。
+2.  On the **LogicMonitor** application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-logicmonitor-tutorial/IC790058.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-logicmonitor-tutorial/IC790058.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-logicmonitor-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-logicmonitor-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

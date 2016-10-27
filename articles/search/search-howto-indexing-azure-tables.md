@@ -1,6 +1,6 @@
 <properties
-pageTitle="使用 Azure 搜尋服務對 Azure 表格儲存體編制索引"
-description="了解如何使用 Azure 搜尋服務對 Azure 資料表中儲存的資料編制索引"
+pageTitle="Indexing Azure Table Storage with Azure Search"
+description="Learn how to index data stored in Azure Tables with Azure Search"
 services="search"
 documentationCenter=""
 authors="chaosrealm"
@@ -15,113 +15,117 @@ ms.tgt_pltfrm="na"
 ms.date="08/16/2016"
 ms.author="eugenesh" />
 
-# 使用 Azure 搜尋服務對 Azure 表格儲存體編制索引
 
-本文章說明如何使用 Azure 搜尋服務來對儲存於 Azure 表格儲存體中的資料編制索引。新的 Azure 搜尋服務資料表索引子可以讓此程序快速且順暢。
+# <a name="indexing-azure-table-storage-with-azure-search"></a>Indexing Azure Table Storage with Azure Search
 
-> [AZURE.IMPORTANT] 這項功能目前為預覽狀態。僅適用於使用 **2015-02-28-Preview** 版本的 REST API 和 .NET SDK 的版本 2.0 預覽本。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+This article shows how to use Azure Search to index data stored in Azure Table Storage. The new Azure Search table indexer makes this process quick and seamless. 
 
-## 設定 Azure 資料表編制索引
+> [AZURE.IMPORTANT] Currently this functionality is in preview. It is available only in the REST API using version **2015-02-28-Preview** and in version 2.0-preview of the .NET SDK. Please remember, preview APIs are intended for testing and evaluation, and should not be used in production environments.
 
-若要設定 Azure 資料表索引子，您可以使用 Azure 搜尋服務 REST API 來建立和管理**索引子**及**資料來源**，如[索引子的作業](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。您也可以使用 .NET SDK 的[版本 2.0 預覽版](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx)。在未來，對資料表索引的支援將會新增至 Azure 入口網站。
+## <a name="setting-up-azure-table-indexing"></a>Setting up Azure table indexing
 
-資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些政策能讓 Azure 搜尋服務有效識別資料變更 (新增、修改或刪除的資料列)。
+To set up and configure an Azure table indexer, you can use the Azure Search REST API to create and manage **indexers** and **data sources** as described in [Indexer operations](https://msdn.microsoft.com/library/azure/dn946891.aspx). You can also use [version 2.0-preview](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx) of the .NET SDK. In the future, support for table indexing will be added to the Azure Portal.
 
-索引子會從資料來源讀取資料，然後將資料載入到目標搜尋索引。
+A data source specifies which data to index, credentials needed to access the data, and policies that enable Azure Search to efficiently identify changes in the data (new, modified or deleted rows).
 
-設定資料表編製索引：
+An indexer reads data from a data source and loads it into a target search index.
 
-1. 建立資料來源
-	- 將 `type` 參數設定為 `azuretable`
-	- 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
-	- 使用 `container.name` 參數指定資料表名稱
-	- (選擇性) 使用 `container.query` 參數指定查詢。可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
-2. 使用與您想要編製索引的資料表中的資料行對應的結構描述，建立搜尋索引。
-3. 將資料來源連接到搜尋索引來建立索引子。
+To set up table indexing:
 
-### 建立資料來源
+1. Create a data source
+    - Set the `type` parameter to `azuretable`
+    - Pass in your storage account connection string as the `credentials.connectionString` parameter
+    - Specify the table name using the `container.name` parameter
+    - Optionally, specify a query using the `container.query` parameter. Whenever possible, use a filter on PartitionKey for best performance; any other query will result in a full table scan, which can result in poor performance for large tables.
+2. Create a search index with the schema that corresponds to the columns in the table that you want to index. 
+3. Create the indexer by connecting your data source to the search index.
 
-	POST https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
-	Content-Type: application/json
-	api-key: [admin key]
+### <a name="create-data-source"></a>Create data source
 
-	{
-	    "name" : "table-datasource",
-	    "type" : "azuretable",
-	    "credentials" : { "connectionString" : "<my storage connection string>" },
-	    "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
-	}   
+    POST https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
+    Content-Type: application/json
+    api-key: [admin key]
 
-如需建立資料來源 API 的詳細資訊，請參閱[建立資料來源](search-api-indexers-2015-02-28-preview.md#create-data-source)。
+    {
+        "name" : "table-datasource",
+        "type" : "azuretable",
+        "credentials" : { "connectionString" : "<my storage connection string>" },
+        "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
+    }   
 
-### 建立索引 
+For more on the Create Datasource API, see [Create Datasource](search-api-indexers-2015-02-28-preview.md#create-data-source).
 
-	POST https://[service name].search.windows.net/indexes?api-version=2015-02-28
-	Content-Type: application/json
-	api-key: [admin key]
+### <a name="create-index"></a>Create index 
 
-	{
-  		"name" : "my-target-index",
-  		"fields": [
-    		{ "name": "key", "type": "Edm.String", "key": true, "searchable": false },
-    		{ "name": "SomeColumnInMyTable", "type": "Edm.String", "searchable": true }
-  		]
-	}
+    POST https://[service name].search.windows.net/indexes?api-version=2015-02-28
+    Content-Type: application/json
+    api-key: [admin key]
 
-如需建立索引 API 的詳細資訊，請參閱[建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/dn798941.aspx)。
+    {
+        "name" : "my-target-index",
+        "fields": [
+            { "name": "key", "type": "Edm.String", "key": true, "searchable": false },
+            { "name": "SomeColumnInMyTable", "type": "Edm.String", "searchable": true }
+        ]
+    }
 
-### 建立索引子 
+For more on the Create Index API, see [Create Index](https://msdn.microsoft.com/library/dn798941.aspx)
 
-最後，建立參考資料來源和目標索引的索引子。例如：
+### <a name="create-indexer"></a>Create indexer 
 
-	POST https://[service name].search.windows.net/indexers?api-version=2015-02-28-Preview
-	Content-Type: application/json
-	api-key: [admin key]
+Finally, create the indexer that references the data source and the target index. For example:
 
-	{
-	  "name" : "table-indexer",
-	  "dataSourceName" : "table-datasource",
-	  "targetIndexName" : "my-target-index",
-	  "schedule" : { "interval" : "PT2H" }
-	}
+    POST https://[service name].search.windows.net/indexers?api-version=2015-02-28-Preview
+    Content-Type: application/json
+    api-key: [admin key]
 
-如需建立索引子 API 的詳細資訊，請參閱[建立索引子](search-api-indexers-2015-02-28-preview.md#create-indexer)。
+    {
+      "name" : "table-indexer",
+      "dataSourceName" : "table-datasource",
+      "targetIndexName" : "my-target-index",
+      "schedule" : { "interval" : "PT2H" }
+    }
 
-就是這麼簡單 - 快樂地編制索引吧！
+For more details on the Create Indexer API, check out [Create Indexer](search-api-indexers-2015-02-28-preview.md#create-indexer).
 
-## 處理不同的欄位名稱
+That's all there is to it - happy indexing!
 
-通常，您現有索引中的欄位名稱會與您資料表中的屬性名稱不同。您可以使用**欄位對應**，將資料表中的屬性名稱對應至您搜尋索引中的欄位名稱。若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異](search-indexer-field-mappings.md)。
+## <a name="dealing-with-different-field-names"></a>Dealing with different field names
 
-## 處理文件索引鍵
+Often, the field names in your existing index will be different from the property names in your table. You can use **field mappings** to map the property names from the table to the field names in your search index. To learn more about field mappings, see [Azure Search indexer field mappings bridge the differences between data sources and search indexes](search-indexer-field-mappings.md).
 
-在 Azure 搜尋服務中，文件索引鍵會唯一識別文件。每個搜尋索引必須確實具有一個 `Edm.String` 類型的索引鍵欄位。要新增至索引的每個文件都需要有索引鍵欄位 (實際上它是唯一必要的欄位)。
+## <a name="handling-document-keys"></a>Handling document keys
 
-由於資料表資料列有複合索引鍵，Azure 搜尋服務會產生名為 `Key` 的綜合欄位，該欄位為資料分割索引鍵與資料列索引鍵值的串連。例如，如果資料列的 PartitionKey 為 `PK1` 且 RowKey 是 `RK1`，則 `Key` 欄位的值是 `PK1RK1`。
+In Azure Search, the document key uniquely identifies a document. Every search index must have exactly one key field of type `Edm.String`. The key field is required for each document that is being added to the index (in fact, it is the only required field).
 
-> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以使用`base64Encode` [欄位對應函式](search-indexer-field-mappings.md#base64EncodeFunction)來處理無效字元。如果您這樣做，請記得在 API 呼叫 (例如查閱) 中傳遞文件索引鍵時，也使用 URL 安全 Base64 編碼。
+Since table rows have a compound key, Azure Search generates a synthetic field called `Key` that is a concatenation of partition key and row key values. For example, if a row’s PartitionKey is `PK1` and RowKey is `RK1`, then `Key` field's value will be `PK1RK1`. 
 
-## 增量編製索引和刪除偵測
+> [AZURE.NOTE] The `Key` value may contain characters that are invalid in document keys, such as dashes. You can deal with invalid characters by using the `base64Encode` [field mapping function](search-indexer-field-mappings.md#base64EncodeFunction). If you do this, remember to also use URL-safe Base64 encoding when passing document keys in API calls such as Lookup.
+
+## <a name="incremental-indexing-and-deletion-detection"></a>Incremental indexing and deletion detection
  
-當您將資料表索引子設為依排程執行時，它會根據資料列的 `Timestamp` 值來決定是否只對新的或已更新過的資料列重新編製索引。您不需要指定變更偵測原則 – 會自動為您啟用增量編制索引。
+When you set up a table indexer to run on a schedule, it reindexes only new or updated rows, as determined by a row’s `Timestamp` value. You don’t have to specify a change detection policy – incremental indexing is enabled for you automatically. 
 
-若要指示必須從索引中移除特定文件，您可以使用虛刪除策略 – 新增屬性以表示它已遭到刪除，而非刪除資料列，並在資料來源上設定虛刪除偵測原則。例如，如果資料列有值為 `"true"` 的屬性 `IsDeleted`，則以下顯示的原則會認為資料列已刪除：
+To indicate that certain documents must be removed from the index, you can use a soft delete strategy – instead of deleting a row, add a property to indicate that it is deleted, and set up a soft deletion detection policy on the datasource. For example, the policy shown below will consider that a row is deleted if it has a property `IsDeleted` with the value `"true"`: 
 
-	PUT https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
-	Content-Type: application/json
-	api-key: [admin key]
-	
-	{
-	    "name" : "my-table-datasource",
-	    "type" : "azuretable",
-	    "credentials" : { "connectionString" : "<your storage connection string>" },
-	    "container" : { "name" : "table name", "query" : "query" },
-	    "dataDeletionDetectionPolicy" : { "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy", "softDeleteColumnName" : "IsDeleted", "softDeleteMarkerValue" : "true" }
-	}   
+    PUT https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
+    Content-Type: application/json
+    api-key: [admin key]
+    
+    {
+        "name" : "my-table-datasource",
+        "type" : "azuretable",
+        "credentials" : { "connectionString" : "<your storage connection string>" },
+        "container" : { "name" : "table name", "query" : "query" },
+        "dataDeletionDetectionPolicy" : { "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy", "softDeleteColumnName" : "IsDeleted", "softDeleteMarkerValue" : "true" }
+    }   
 
 
-## 協助我們改進 Azure 搜尋服務
+## <a name="help-us-make-azure-search-better"></a>Help us make Azure Search better
 
-如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
+If you have feature requests or ideas for improvements, please reach out to us on our [UserVoice site](https://feedback.azure.com/forums/263029-azure-search/).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

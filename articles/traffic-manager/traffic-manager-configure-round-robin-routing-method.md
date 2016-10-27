@@ -1,55 +1,60 @@
 <properties
-   pageTitle="設定流量管理員循環配置資源流量路由方法 |Microsoft Azure"
-   description="本文將協助您設定流量管理員端點的循環配置資源負載平衡。"
+   pageTitle="Configure Traffic Manager round robin traffic routing method | Microsoft Azure"
+   description="This article will help you configure round robin load balancing for your Traffic Manager endpoints."
    services="traffic-manager"
    documentationCenter=""
    authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
-<tags 
+<tags
    ms.service="traffic-manager"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/17/2016"
+   ms.date="10/18/2016"
    ms.author="sewhee" />
 
-# 設定循環配置資源路由方法
+<!-- repub for nofollow -->
 
-常見的流量路由方法提供一組完全相同的端點 (包括雲端服務和網站)，並以循環配置資源方式將流量傳送到每一個端點。下列步驟概述如何設定流量管理員才能執行此種類型的流量路由方法。如需不同流量路由方法的詳細資訊，請參閱[關於流量管理員流量路由方法](traffic-manager-routing-methods.md)。
+# <a name="configure-round-robin-routing-method"></a>Configure Round Robin routing method
 
->[AZURE.NOTE] Azure 網站已為資料中心 (也稱為「區域」) 內的網站提供循環配置資源負載平衡功能。流量管理員可讓您在不同的資料中心網站中指定循環配置資源流量路由方法。
+A common traffic routing method pattern is to provide a set of identical endpoints, which include cloud services and websites, and send traffic to each in a round-robin fashion. The steps below outline how to configure Traffic Manager in order to perform this type of traffic routing method. For more information on the different traffic routing methods, see [About Traffic Manager traffic routing methods](traffic-manager-routing-methods.md).
 
-## 將流量平均地路由 (循環配置資源) 到一組端點：
+>[AZURE.NOTE] Azure Websites already provides round-robin load balancing functionality for websites within a datacenter (also known as a region). Traffic Manager allows you to specify round-robin traffic routing method for websites in different datacenters.
 
-1. 在 Azure 傳統入口網站的左側窗格中，按一下 [流量管理員] 圖示以開啟 [流量管理員] 窗格。如果您尚未建立流量管理員設定檔，請參閱[管理流量管理員設定檔](traffic-manager-manage-profiles.md)的步驟來建立基本的流量管理員設定檔。
-2. 在 Azure 傳統入口網站的 [流量管理員] 窗格中，找出包含您要修改設定的流量管理員設定檔，然後按一下設定檔名稱右側的箭號。這會開啟設定檔的設定頁面。
-3. 在您的設定檔頁面上，按一下頁面頂端的 [端點]，並確認您要納入組態的服務端點已存在。如需加入或移除端點的步驟，請參閱[在流量管理員中管理端點](traffic-manager-endpoints.md)。
-4. 在您的設定檔頁面上，按一下頂端的 [設定] 以開啟 [組態] 頁面。
-5. 在 [**流量路由方法設定**] 中，確認流量流量路由方法為 [**循環配置資源**]。如果不是，請按一下下拉式清單中的 [循環配置資源]。
-6. 確認已正確地設定 [監視設定]。監視可確保處於離線狀態的端點不會傳送流量。為了要能夠監視端點，您必須指定路徑和檔案名稱。請注意，正斜線 “/“ 是相對路徑的有效項目，表示檔案位於根目錄 (預設值)。如需有關監視的詳細資訊，請參閱[關於流量管理員監視](traffic-manager-monitoring.md)。
-7. 完成組態變更之後，請按一下頁面底部的 [**儲存**]。
-8. 測試組態中的變更。如需詳細資訊，請參閱[測試流量管理員設定](traffic-manager-testing-settings.md)。
-9. 在已設定並執行流量管理員設定檔之後，您可以編輯授權 DNS 伺服器上的 DNS 記錄，以將您的公司網域名稱指向流量管理員網域名稱。如需有關如何執行這項操作的詳細資訊，請參閱[將公司網際網路網域指向流量管理員網域](traffic-manager-point-internet-domain.md)。
+## <a name="routing-traffic-equally-(round-robin)-across-a-set-of-endpoints:"></a>Routing traffic equally (round robin) across a set of endpoints:
 
-## 後續步驟
+1. In the Azure classic portal, in the left pane, click the **Traffic Manager** icon to open the Traffic Manager pane. If you have not yet created your Traffic Manager profile, see [Manage Traffic Manager Profiles](traffic-manager-manage-profiles.md) for steps to create a basic Traffic Manager profile.
+2. In the Azure classic portal, on the Traffic Manager pane, locate the Traffic Manager profile that contains the settings that you want to modify, and then click the arrow to the right of the profile name. This will open the settings page for the profile.
+3. On the page for your profile, click **Endpoints** at the top of the page and verify that the service endpoints that you want to include in your configuration are present. For steps to add or remove endpoints, see [Manage Endpoints in Traffic Manager](traffic-manager-endpoints.md).
+4. On your profile page, click **Configure** at the top to open the configuration page.
+5. For **traffic routing method Settings**, verify that the traffic routing method is **Round Robin**. If it is not, click **Round Robin** in the dropdown list.
+6. Verify that the **Monitoring Settings** are configured appropriately. Monitoring ensures that endpoints that are offline are not sent traffic. In order to monitor endpoints, you must specify a path and filename. Note that a forward slash “/“ is a valid entry for the relative path and implies that the file is in the root directory (default). For more information about monitoring, see [About Traffic Manager Monitoring](traffic-manager-monitoring.md).
+7. After you complete your configuration changes, click **Save** at the bottom of the page.
+8. Test the changes in your configuration. For more information, see [Testing Traffic Manager Settings](traffic-manager-testing-settings.md).
+9. Once your Traffic Manager profile is setup and working, edit the DNS record on your authoritative DNS server to point your company domain name to the Traffic Manager domain name. For more information about how to do this, see [Point a Company Internet Domain to a Traffic Manager Domain](traffic-manager-point-internet-domain.md).
+
+## <a name="next-steps"></a>Next steps
 
 
-[將公司網際網路網域指向流量管理員網域](traffic-manager-point-internet-domain.md)
+[Point a company Internet domain to a Traffic Manager domain](traffic-manager-point-internet-domain.md)
 
-[流量管理員路由方法](traffic-manager-routing-methods.md)
+[Traffic Manager routing methods](traffic-manager-routing-methods.md)
 
-[設定容錯移轉路由方法](traffic-manager-configure-failover-routing-method.md)
+[Configure failover routing method](traffic-manager-configure-failover-routing-method.md)
 
-[設定效能路由方法](traffic-manager-configure-performance-routing-method.md)
+[Configure performance routing method](traffic-manager-configure-performance-routing-method.md)
 
-[疑難排解流量管理員的已降級狀態](traffic-manager-troubleshooting-degraded.md)
+[Troubleshooting Traffic Manager degraded state](traffic-manager-troubleshooting-degraded.md)
 
-[流量管理員 - 停用、啟用或刪除設定檔](disable-enable-or-delete-a-profile.md)
+[Traffic Manager - Disable, enable or delete a profile](disable-enable-or-delete-a-profile.md)
 
-[流量管理員 - 停用或啟用端點](disable-or-enable-an-endpoint.md)
+[Traffic Manager - Disable or enable an endpoint](disable-or-enable-an-endpoint.md)
 
- 
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

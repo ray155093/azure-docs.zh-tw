@@ -1,9 +1,9 @@
 <properties 
-   pageTitle="Azure 客體 OS 可支援性和淘汰原則指南 | Microsoft Azure" 
-   description="提供關於雲端服務使用之 Azure 客體作業系統的 Microsoft 支援事項資訊。" 
+   pageTitle="Supportability and retirement policy guide for Azure Guest OS | Microsoft Azure" 
+   description="Provides information about what Microsoft will support as regards to the Azure Guest OS used by Cloud Services." 
    services="cloud-services" 
    documentationCenter="na" 
-   authors="yuemlu" 
+   authors="raiye" 
    manager="timlt" 
    editor=""/>
 
@@ -13,81 +13,86 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
-   ms.date="04/19/2016"
-   ms.author="yuemlu"/>
-
-# Azure 客體作業系統可支援性和淘汰原則
-本頁面中的資訊涉及雲端服務背景工作和 Web 角色 (PaaS) 適用的 Azure 客體作業系統 ([客體 OS](cloud-services-guestos-update-matrix.md))。這些資訊不適用於虛擬機器 (IaaS)。
-
-Microsoft 已發佈[客體 OS 支援原則](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq)。您正在閱讀的頁面描述原則的實施方式。
-
-原則包括
-
-1. Microsoft 將支援至少兩個**最新系列的客體 OS**。當某個系列遭到淘汰時，客戶有 12 個月的時間 (從官方淘汰日期開始計算) 更新為較新的受支援客體作業系統系列。
-2. Microsoft 將支援**至少兩個最新版本的支援客體 OS系列**。 
-3. Microsoft 將支援**至少兩個最新版本的 Azure SDK**。當某個版本的 SDK 遭到淘汰時，客戶有 12 個月的時間 (從官方淘汰日期開始計算) 更新為較新版本。 
-
-Microsoft 有時候會支援兩個以上的系列或版本。正式的客體 OS 支援資訊會公告於「[Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)」中。
+   ms.date="10/24/2016"
+   ms.author="raiye"/>
 
 
-## 當客體作業系統系列或版本遭到淘汰時 
+# <a name="azure-guest-os-supportability-and-retirement-policy"></a>Azure Guest OS supportability and retirement policy
+The information on this page relates to the Azure Guest operating system ([Guest OS](cloud-services-guestos-update-matrix.md)) for Cloud Services worker and web roles (PaaS). It does not apply to Virtual Machines (IaaS). 
+
+Microsoft has a published [support policy for the Guest OS](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq). The page you are reading now describes how the policy is implemented.
+
+The policy is 
+
+1. Microsoft will support **at least the latest two families of the Guest OS**. When a family is retired, customers have 12 months from the official retirement date to update to a newer supported Guest OS family.
+2. Microsoft will support the **at least the latest two versions of the supported Guest OS families**. 
+3. Microsoft will support the at **least the latest two versions of the Azure SDK**. When a version of the SDK is retired, customers will have 12 months from the official retirement date to update to a newer version. 
+
+At times more than two families or releases may be supported. Official Guest OS support information will appear on the [Azure Guest OS Releases and SDK Compatibility Matrix](cloud-services-guestos-update-matrix.md).
 
 
-Microsoft 會在新的正式版本 Windows Server 作業系統發行後，擇日推出新的客體 OS **系列**。每當推出新客體作業系統時，Microsoft 都會淘汰最舊的客體作業系統系列。
-
-Microsoft 大約會每月推出新的客體 OS **版本**，以納入最新的 MSRC 更新。因每月定期更新之故，每個客體作業系統版本通常會在發行的 60 天後遭到停用。如此可保持每個系列至少有兩個客體作業系統版本可供使用。
-
-### 客體作業系統系列淘汰期間的程序 
+## <a name="when-a-guest-os-family-or-version-is-retired"></a>When a Guest OS family or version is retired 
 
 
-從 Microsoft 公佈淘汰資訊到正式移除服務中最舊的系列，客戶有 12 個月的「轉換」期。Microsoft 會斟酌是否延長這段轉換時間。更新資訊會張貼在「[Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)」。
+A new Guest OS **family** is introduced sometime after the release of a new official version of the Windows Server operating system. Whenever a new Guest OS family is introduced, Microsoft will retire the oldest Guest OS family. 
 
-漸進式淘汰程序將會在轉換期的 6 個月前開始。在這段時間：
+New Guest OS **versions** are introduced about every month to incorporate the latest MSRC updates. Because of the regular monthly updates, a Guest OS version is normally disabled 60 days after its release. This keeps at least two Guest OS versions for each family available for use. 
 
-1. Microsoft 將通知客戶有關淘汰的資訊。 
-2. 新版本的 Azure SDK 將不支援淘汰的客體作業系統系列。
-3. 淘汰的系列將不允許新部署和重新部署的雲端服務。
-
-Microsoft 將繼續推出併入最新 MSRC 更新的新客體作業系統版本，直到轉換期的最後一天為止 (稱為「到期日」)。屆時，Azure SLA 將不支援任何依然處於運作狀態的雲端服務。Microsoft 可決定是否在該日期後強制升級、刪除或停止這些服務。
+### <a name="process-during-a-guest-os-family-retirement"></a>Process during a Guest OS family retirement 
 
 
+Once the retirement is announced, customers have a 12 month "transition" period before the older family is officially removed from service. This transition time may be extended at the discretion of Microsoft. Updates will be posted on the [Azure Guest OS Releases and SDK Compatibility Matrix](cloud-services-guestos-update-matrix.md).
 
-### 客體作業系統版本淘汰期間的程序 
-如果客戶將客體作業系統設定為自動更新，他們永遠不需要擔心該如何處置客體作業系統版本的問題。他們一律能使用最新版本的客體作業系統。
+A gradual retirement process will begin 6 months into the transition period. During this time:
 
-Microsoft 會在每個月發行客體作業系統。由於定期發行頻繁之故，每個版本都有固定的週期。
+1. Microsoft will notify customers of the retirement. 
+2. The newer version of the Azure SDK won’t support the retired Guest OS family.
+3. New deployments and redeployments of Cloud Services will not be allowed on the retired family
 
-到了週期的第 60 天，版本即會遭到「*停用*」。「停用」表示 Microsoft 會從 Azure 傳統入口網站將該版本移除。您也無法再從 CSCFG 組態檔加以設定。現有部署仍可繼續執行，但新部署和現有部署的程式碼與組態更新將遭到禁止。
-
-經過一段時間後，客體 OS 版本將會「*到期*」，屆時所有仍執行該版本的安裝將受迫升級，以及設定為在未來自動更新客體 OS。到期係以批次進行，因此從停用到到期之間的這段期間不盡相同。
-
-Microsoft 可自行決定是否延長該期間，以緩和客戶轉換時的不便。所有的更新資訊都會發佈於「[Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)」。
+Microsoft will continue to introduce new Guest OS version incorporating the latest MSRC updates until the last day of the transition period, known as the "expiration date". At that time, the any Cloud Services still running will be unsupported under the Azure SLA. Microsoft has the discretion to force upgrade, delete or stop those services after that date.
 
 
 
-### 淘汰期間的通知 
+### <a name="process-during-a-guest-os-version-retirement"></a>Process during a Guest OS Version retirement 
+If customers set their Guest OS to automatically update, they never have to worry about dealing with Guest OS versions. They will always be using the latest Guest OS version.
 
-* **系列淘汰** <br>Microsoft 會透過部落格文章和 Azure 傳統入口網站通知公告。對於仍在使用遭淘汰之客體作業系統系列的客戶，Microsoft 會透過直接通訊 (電子郵件、入口網站訊息、撥打電話) 通知其指派的服務管理員。所有變更資訊都將張貼在這個頁面和頁面開頭所列的 RSS 摘要。 
+Guest OS Versions are released every month. Because of the rate of regular releases, each version has a fixed lifespan.
+
+At 60 days into the lifespan a version is "*disabled*". "Disabled" means that the version is removed from the Azure classic portal. It also can no longer be set from the CSCFG configuration file. Existing deployments are left running, but new deployments and code and configuration updates to existing deployments will not be allowed. 
+
+At a later time, the Guest OS version "*expires*" and any installations still running that version are force upgraded and set to automatically update the Guest OS in the future. Expiration is done in batches so the period of time from disablement to expiration can vary. 
+
+These periods may be made longer at Microsoft's discretion to ease customer transitions. Any changes will be communicated on the [Azure Guest OS Releases and SDK Compatibility Matrix](cloud-services-guestos-update-matrix.md).
 
 
-* **版本淘汰** <br>所有的變更資訊都將張貼在此頁面和頁面開頭所列的 RSS 摘要中，包括版本、停用日及到期日。如果遭停用的客體作業系統版本或系列之上仍有運作中的部署，服務管理員將會收到電子郵件。這些電子郵件的發送時間不盡相同。雖然發送電子郵件的時間不屬於官方 SLA，不過 Microsoft 通常會在停用之前至少一個月發出。
+
+### <a name="notifications-during-retirement"></a>Notifications during retirement 
+
+* **Family retirement** <br>Microsoft will use blog posts and Azure classic portal notification. Customers who are still using a retired Guest OS family will be notified through direct communication (email, portal messages, phone call) to assigned service administrators. All changes will be posted to this page and the RSS feed listed at the beginning of this page. 
 
 
-## 常見問題集
+* **Version Retirement** <br>All changes will be posted to this page and the RSS feed listed at the beginning of this page, including the release, disabled and expiration dates. Services admins will receive emails if they have deployments running on a disabled Guest OS version or family. The timing of these emails can vary. Generally they are at least a month before disablement, though this timing is not an official SLA. 
 
-**如何降低移轉的影響？**
 
-您應該使用最新的客體作業系統系列來設計雲端服務。
+## <a name="frequently-asked-questions"></a>Frequently asked questions
 
-1. 儘早規劃新系列的移轉。 
-2. 設定暫時性的測試部署，以測試在新系列上運作的雲端服務。 
-3. 將客體 OS 版本設為 **Automatic** ([.CSCFG](cloud-services-model-and-package.md#cscfg) 檔案中的 osVersion=*)，新客體 OS 版本的移轉作業即能自動執行。
+**How can I mitigate the impacts of migration?**
 
-**如果 Web 應用程式需要與 OS 更深入的整合，該怎麼辦？**
+You should use latest Guest OS family for designing your Cloud Services. 
 
-如果 Web 應用程式架構與基礎作業系統之間需要更深入的相依性，您可以使用「[啟動工作](cloud-services-startup-tasks.md)」之類的平台支援功能或我們未來可能會推出的其他擴充性機制。您也可以使用 [Azure 虛擬機器](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS – 基礎結構即服務)，只不過您需要自行負責維護基礎作業系統。
+1. Start planning your migration to a newer family early. 
+2. Set up temporary test deployments to test your Cloud Service running on the new family. 
+3. Set your Guest OS version to **Automatic** (osVersion=* in the [.cscfg](cloud-services-model-and-package.md#cscfg) file) so the migration to new Guest OS versions occurs automatically.
+
+**What if my web application requires deeper integration with the OS?**
+
+If your web application architecture requires deeper dependency on the underlying operating system, use platform supported capabilities such as [startup tasks](cloud-services-startup-tasks.md) or other extensibility mechanisms which may exist in the future. Alternatively, you can also use [Azure Virtual Machines](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS – Infrastructure as a Service), where you are responsible for maintaining the underlying operating system.
  
-## 後續步驟
-檢閱最新的[客體作業系統版本](cloud-services-guestos-update-matrix.md)。
+## <a name="next-steps"></a>Next steps
+Review the latest [Guest OS releases](cloud-services-guestos-update-matrix.md).
 
-<!---HONumber=AcomDC_0427_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

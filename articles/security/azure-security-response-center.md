@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Microsoft 安全性回應中心 | Microsoft Azure"
-   description="本文提供的策劃清單可用來取得更多有關 MSRC 作法和建議的 Microsoft 安全性回應中心 (MSRC) 資源的詳細資訊。"
+   pageTitle="Microsoft Security Response Center | Microsoft Azure"
+   description="The article provides a curated list of Microsoft Security Response Center (MSRC) resources that can be used to obtain more information about MSRC practices and recommendations."
    services="security"
    documentationCenter="na"
    authors="TomShinder"
@@ -13,31 +13,36 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/02/2016"
+   ms.date="10/18/2016"
    ms.author="yurid"/>
 
-# Microsoft 安全性回應中心
 
-Microsoft 安全性回應中心 (MSRC) 是由某些世界上最資深安全性專家帶領。這些專家會每天日以繼夜地尋找、監視、回應和解決安全性事件與內部部署和雲端弱點。
+# <a name="microsoft-security-response-center"></a>Microsoft Security Response Center
 
-除了 MSRC 在幕後進行的持續工作，MSRC 團隊有許多可供您使用的資源，讓您可以瞭解如何更有效地保護您的 Azure 資產和部署。
+The Microsoft Security Response Center (MSRC) is led by some of the world’s most experienced security experts. These experts identify, monitor, respond to and resolve security incidents and on-premises and cloud vulnerabilities around the clock, each day of the year.
 
-## MSRC 部落格
+In addition to the continuous work the MSRC does in the background, the MSRC team has a number of resources available to you so that you can understand how to secure your Azure assets and deployments more effectively.
 
-[MSRC 部落格](https://blogs.technet.microsoft.com/msrc/)是可取得為了協助保護您防範雲端威脅，MSRC 正在進行之動作的最新消息的去處。
+## <a name="the-msrc-blog"></a>The MSRC Blog
+
+The [MSRC blog](https://blogs.technet.microsoft.com/msrc/) is the place to go to get the latest news on what the MSRC is doing to help protect you against cloud threats.
  
-## 白皮書
+## <a name="white-papers"></a>White Papers
 
-MSRC 已發佈一些[白皮書](https://technet.microsoft.com/library/bb969102.aspx)，可協助您了解他們執行的動作以及其作法。有些內容可提供我們如何保護 Microsoft 雲端的深入見解，並且包含有關您如何運用相同安全性組態的實用資訊。
+The MSRC has published a number of [white papers](https://technet.microsoft.com/library/bb969102.aspx) that will help you understand what they do and how they do it. Some provide insights into how we secure the Microsoft cloud and include useful information on how you can employ the same security configurations.
  
-## 安全性研究人員的參與和獎勵計畫
+## <a name="security-researcher-engagement-and-bounty-programs"></a>Security Researcher Engagement and Bounty Programs
 
-MSRC 支援與全球安全性研究人員的合作與關係，以提升 Microsoft 產品的安全性。
+The MSRC supports collaboration and relationships with security researchers globally to advance Microsoft product security.
 
-Microsoft 獎勵計畫會就嶄新的入侵技術、可以減輕嶄新入侵的具防禦性構想，以及找出 Microsoft 內部部署和雲端軟體的重大弱點方面支付費用給研究人員。
+Microsoft bounty programs pay researchers for novel exploitation techniques, defensive ideas that mitigate novel exploitations, and identification of critical vulnerabilities in Microsoft on-premises and cloud software.
  
-在 [MSRC 錯誤獎勵](https://technet.microsoft.com/security/dn425036)頁面和 [MSRC 部落格](https://blogs.technet.microsoft.com/msrc/)深入了解這些計畫。
+Learn more about these programs at the [MSRC Bug Bounty](https://technet.microsoft.com/security/dn425036) page and the [MSRC blog](https://blogs.technet.microsoft.com/msrc/).
 
-若要深入了解 MSRC，請造訪 [MSRC 首頁](https://technet.microsoft.com/library/dn440717.aspx)。
+To learn more about the MSRC, please visit the [MSRC home page](https://technet.microsoft.com/library/dn440717.aspx).
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

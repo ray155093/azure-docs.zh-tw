@@ -1,67 +1,72 @@
 <properties
-	pageTitle="備份已啟用延展功能的資料庫 |Microsoft Azure"
-	description="了解如何備份已啟用延展功能的資料庫。"
-	services="sql-server-stretch-database"
-	documentationCenter=""
-	authors="douglaslMS"
-	manager=""
-	editor=""/>
+    pageTitle="Backup Stretch-enabled databases | Microsoft Azure"
+    description="Learn how to back up Stretch\-enabled databases."
+    services="sql-server-stretch-database"
+    documentationCenter=""
+    authors="douglaslMS"
+    manager=""
+    editor=""/>
 
 <tags
-	ms.service="sql-server-stretch-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/14/2016"
-	ms.author="douglasl"/>
+    ms.service="sql-server-stretch-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/14/2016"
+    ms.author="douglasl"/>
 
-# 備份已啟用延展功能的資料庫
 
-資料庫備份可協助您從眾多類型的失敗、錯誤及災害進行復原。
+# <a name="backup-stretch-enabled-databases"></a>Backup Stretch-enabled databases
 
--   您必須備份已啟用延展功能的 SQL Server 資料庫。  
+Database backups help you to recover from many types of failures, errors, and disasters.  
 
--   Microsoft Azure 會自動備份 Stretch Database 已從 SQL Server 移轉到 Azure 的遠端資料。
+-   You have to back up your Stretch\-enabled SQL Server databases.  
 
->    [AZURE.NOTE] 備份只是完整的高可用性及商務持續性解決方案的一部分。如需有關高可用性的詳細資訊，請參閱[高可用性解決方案](https://msdn.microsoft.com/library/ms190202.aspx)。
+-   Microsoft Azure automatically backs up the remote data that Stretch Database has migrated from SQL Server to Azure.  
 
-## 備份您的 SQL Server 資料  
+>    [AZURE.NOTE] Backup is only one part of a complete high availability and business continuity solution. For more info about high availability, see [High Availability Solutions](https://msdn.microsoft.com/library/ms190202.aspx).
 
-若要備份已啟用延展功能的 SQL Server 資料庫，您可以繼續使用您目前使用的 SQL Server 備份方法。如需詳細資訊，請參閱 [SQL Server 資料庫的備份與還原](https://msdn.microsoft.com/library/ms187048.aspx)。
+## <a name="back-up-your-sql-server-data"></a>Back up your SQL Server data  
 
-已啟用延展功能之 SQL Server 資料庫的備份只包含執行備份時，該時間點的本機資料及符合移轉資格的資料。(合格資料是尚未移轉但將根據資料表的移轉設定移轉到 Azure 的資料)。 這稱為「淺層」備份，其中不包括已經移轉到 Azure 的資料。
+To back up your Stretch\-enabled SQL Server databases, you can continue to use the SQL Server backup methods that you currently use. For more info, see [Back Up and Restore of SQL Server Databases](https://msdn.microsoft.com/library/ms187048.aspx).
 
-## 備份您的遠端 Azure 資料   
+Backups of a Stretch-enabled SQL Server database contain only local data and data eligible for migration at the point in time when the backup runs. \(Eligible data is data that has not yet been migrated, but will be migrated to Azure based on the migration settings of the tables.\) This is known as a **shallow** backup and does not include the data already migrated to Azure.  
 
-Microsoft Azure 會自動備份 Stretch Database 已從 SQL Server 移轉到 Azure 的遠端資料。
+## <a name="back-up-your-remote-azure-data"></a>Back up your remote Azure data   
 
-### Azure 藉由自動備份降低資料遺失風險  
-Azure 上的 SQL Server Stretch Database 服務會至少每 8 小時自動建立一次儲存體快照，來保護您的遠端資料庫。每個快照會保留 7 天，為您提供一系列可能的還原點。
+Microsoft Azure automatically backs up the remote data that Stretch Database has migrated from SQL Server to Azure.  
 
-### Azure 藉由異地備援降低資料遺失風險  
-Azure 資料庫備份儲存在異地備援「Azure 儲存體」(RA-GRS) 上，因此預設為異地備援資料庫。異地備援儲存體會將資料複寫到與主要區域距離數百英哩的次要區域。在主要和次要區域中，您的資料都會複寫三次，且跨越不同的容錯網域和升級網域。這可確保在即使發生全區中斷或災害而造成其中一個 Azure 區域無法供使用的情況下，仍可持續提供資料。
+### <a name="azure-reduces-the-risk-of-data-loss-with-automatic-backup"></a>Azure reduces the risk of data loss with automatic backup  
+The SQL Server Stretch Database service on Azure protects your remote databases with automatic storage snapshots at least every 8 hours. It retains each snapshot for 7 days to provide you with a range of possible restore points.  
 
-### <a name="stretchRPO"></a>Stretch Database 透過暫時保留已移轉的資料，降低 Azure 資料遺失風險
-在 Stretch Database 將合格資料列從 SQL Server 移轉到 Azure 之後，它會將這些資料列保留在暫存資料表中至少 8 小時。如果您還原 Azure 資料庫的備份，Stretch Database 將會使用暫存資料表中儲存的資料列，將 SQL Server 與 Azure 資料庫重新同步化。
+### <a name="azure-reduces-the-risk-of-data-loss-with-geo\-redundancy"></a>Azure reduces the risk of data loss with geo\-redundancy  
+Azure database backups are stored on geo\-redundant Azure Storage (RA\-GRS) and are therefore geo\-redundant by default. Geo\-redundant storage replicates your data to a secondary region that is hundreds of miles away from the primary region. In both primary and secondary regions, your data is replicated three times each, across separate fault domains and upgrade domains. This ensures that your data is durable even in the case of a complete regional outage or disaster that renders one of the Azure regions unavailable.
 
-還原 Azure 資料的備份之後，您必須執行 [sys.sp\_rda\_reauthorize\_db](https://msdn.microsoft.com/library/mt131016.aspx) 預存程序將已啟用延展功能的 SQL Server 資料庫重新連接到遠端 Azure 資料庫。當您執行 **sys.sp\_rda\_reauthorize\_db** 時，Stretch Database 會自動將 SQL Server 與 Azure 資料庫重新同步化。
+### <a name="<a-name="stretchrpo"></a>stretch-database-reduces-the-risk-of-data-loss-for-your-azure-data-by-retaining-migrated-rows-temporarily"></a><a name="stretchRPO"></a>Stretch Database reduces the risk of data loss for your Azure data by retaining migrated rows temporarily
+After Stretch Database migrates eligible rows from SQL Server to Azure, it retains those rows in the staging table for a minimum of 8 hours. If you restore a backup of your Azure database, Stretch Database uses the rows saved in the staging table to reconcile the SQL Server and the Azure databases.
 
-若要增加 Stretch Database 在暫存資料表中暫時保留已移轉之資料的時數，請執行 [sys.sp\_rda\_set\_rpo\_duration](https://msdn.microsoft.com/library/mt707766.aspx) 預存程序並指定大於 8 的時數。若要決定所要保留的資料多寡，請考量下列因素︰
--   自動 Azure 備份的頻率 (至少每 8 小時一次)。
--   問題發生後辨識問題及決定還原備份所需的時間。
--   Azure 還原作業的持續時間。
+After you restore a backup of your Azure data, you have to run the stored procedure [sys.sp_rda_reauthorize_db](https://msdn.microsoft.com/library/mt131016.aspx) to reconnect the Stretch\-enabled SQL Server database to the remote Azure database. When you run **sys.sp_rda_reauthorize_db**, Stretch Database automatically reconciles the SQL Server and the Azure databases.
 
-> [AZURE.NOTE] 增加 Stretch Database 在暫存資料表中暫時保留的資料數量會增加 SQL Server 上所需的空間大小。
+To increase the number of hours of migrated data that Stretch Database retains temporarily in the staging table, run the stored procedure [sys.sp_rda_set_rpo_duration](https://msdn.microsoft.com/library/mt707766.aspx) and specify a number of hours greater than 8. To decide how much data to retain, consider the following factors:
+-   The frequency of automatic Azure backups (at least every 8 hours).
+-   The time required after a problem to recognize the problem and to decide to restore a backup.
+-   The duration of the Azure restore operation.
 
-若要檢查 Stretch Database 目前在暫存資料表中暫時保留資料的時數，請執行 [sys.sp\_rda\_get\_rpo\_duration](https://msdn.microsoft.com/library/mt707767.aspx) 預存程序。
+> [AZURE.NOTE] Increasing the amount of data that Stretch Database retains temporarily in the staging table increases the amount of space required on the SQL Server.
 
-## 另請參閱
+To check the number of hours of data that Stretch Database currently retains temporarily in the staging table, run the stored procedure [sys.sp_rda_get_rpo_duration](https://msdn.microsoft.com/library/mt707767.aspx).
 
-[Manage and troubleshoot Stretch Database (Stretch Database 的管理和疑難排解)](sql-server-stretch-database-manage.md)
+## <a name="see-also"></a>See also
 
-[sys.sp\_rda\_reauthorize\_db (Transact-SQL)](https://msdn.microsoft.com/library/mt131016.aspx)
+[Manage and troubleshoot Stretch Database](sql-server-stretch-database-manage.md)
 
-[備份和還原 SQL Server 資料庫](https://msdn.microsoft.com/library/ms187048.aspx)
+[sys.sp_rda_reauthorize_db (Transact-SQL)](https://msdn.microsoft.com/library/mt131016.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+[Back Up and Restore of SQL Server Databases](https://msdn.microsoft.com/library/ms187048.aspx)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

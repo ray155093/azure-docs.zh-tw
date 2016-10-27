@@ -1,40 +1,40 @@
 
 
 
-##使用 VM 擴充功能
+##<a name="using-vm-extensions"></a>Using VM Extensions
 
-Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure VM 上運作 (例如，**WebDeployForVSDevTest** 延伸模組可讓 Visual Studio 在您的 Azure VM 上進行 Web 部署解決方案)，或是讓您能夠與 VM 互動以支援一些其他行為 (例如，您可以使用 PowerShell 的 VM 存取延伸模組、Azure CLI 和 REST 用戶端，來重設或修改 Azure VM 上的遠端存取值)。
+Azure VM Extensions implement behaviors or features that either help other programs work on Azure VMs (for example, the **WebDeployForVSDevTest** extension allows Visual Studio to Web Deploy solutions on your Azure VM) or provide the ability for you to interact with the VM to support some other behavior (for example, you can use the VM Access extensions from PowerShell, the Azure CLI, and REST clients to reset or modify remote access values on your Azure VM).
 
->[AZURE.IMPORTANT] 如需所支援功能的完整延伸模組清單，請參閱 [Azure VM 延伸模組與功能](../articles/virtual-machines/virtual-machines-windows-extensions-features.md)。因為每個 VM 擴充功能支援特定功能，您確切可以及不可以使用擴充功能做到的事取決於擴充功能。因此，在修改 VM 之前，請確定您已閱讀想要使用之 VM 擴充功能的文件。不支援移除一些 VM 擴充功能。其他則具有已設定來大幅變更 VM 行為的屬性。
+>[AZURE.IMPORTANT] For a complete list of extensions by the features they support, see [Azure VM Extensions and Features](../articles/virtual-machines/virtual-machines-windows-extensions-features.md). Because each VM extension supports a specific feature, exactly what you can and cannot do with an extension depends on the extension. Therefore, before modifying your VM, make sure you have read the documentation for the VM Extension you want to use. Removing some VM Extensions is not supported; others have properties that can be set that change VM behavior radically.
 
-最常見的工作如下：
+The most common tasks are:
 
-1.  尋找可用的擴充功能
+1.  Finding Available Extensions
 
-2.  更新已載入的擴充功能
+2.  Updating Loaded Extensions
 
-3.  加入擴充功能
+3.  Adding Extensions
 
-4.  移除擴充功能
+4.  Removing Extensions
 
-##尋找可用的擴充功能
+##<a name="find-available-extensions"></a>Find Available Extensions
 
-您可以使用下列各項找到擴充功能和其他資訊：
+You can locate extension and extended information using:
 
 -   PowerShell
--   Azure 跨平台命令列介面 (Azure CLI)
--   服務管理 REST API
+-   Azure Cross-Platform Command Line Interface (Azure CLI)
+-   Service Management REST API
 
-###Azure PowerShell
+###<a name="azure-powershell"></a>Azure PowerShell
 
-有些擴充功能有特有的 PowerShell Cmdlet，這可能會使其更容易從 PowerShell 進行設定。但下列 Cmdlet 適用於所有的 VM 擴充功能。
+Some extensions have PowerShell cmdlets that are specific to them, which may make their configuration from PowerShell easier; but the following cmdlets work for all VM extensions.
 
-您可以使用下列 Cmdlet 來取得可用擴充功能的相關資訊：
+You can use the following cmdlets to obtain information about available extensions:
 
--   針對 Web 角色或背景工作角色的執行個體，您可以使用 [Get-AzureServiceAvailableExtension](https://msdn.microsoft.com/library/azure/dn722498.aspx) Cmdlet。
--   針對虛擬機器的執行個體，您可以使用 [Get-AzureVMAvailableExtension](https://msdn.microsoft.com/library/azure/dn722480.aspx) Cmdlet。
+-   For instances of web roles or worker roles, you can use the [Get-AzureServiceAvailableExtension](https://msdn.microsoft.com/library/azure/dn722498.aspx) cmdlet.
+-   For instances of Virtual Machines, you can use the [Get-AzureVMAvailableExtension](https://msdn.microsoft.com/library/azure/dn722480.aspx) cmdlet.
 
-     例如，下列程式碼範例示範如何使用 PowerShell 來列出 **IaaSDiagnostics** 延伸模組的資訊。
+     For example, the following code example shows how to list the information for the **IaaSDiagnostics** extension using PowerShell.
 
         PS C:\> Get-AzureVMAvailableExtension -ExtensionName IaaSDiagnostics
 
@@ -58,13 +58,13 @@ Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure V
         CompanyName                 :
 
 
-###Azure 命令列介面 (Azure CLI)
+###<a name="azure-command-line-interface-(azure-cli)"></a>Azure Command Line Interface (Azure CLI)
 
-有些延伸模組有特有的 Azure CLI 命令 (Docker VM 延伸模組便是一個例子)，這可能會讓其更容易進行設定。但下列命令適用於所有的 VM 延伸模組。
+Some extensions have Azure CLI commands that are specific to them (the Docker VM Extension is one example), which may make their configuration easier; but the following commands work for all VM extensions.
 
-您可以使用 **azure vm extension list** 命令來取得可用延伸模組的相關資訊，並使用 **--json** 選項來顯示有關一或多個延伸模組的所有可用資訊。如果您不使用擴充功能名稱，命令會傳回所有可用擴充功能的 JSON 描述。
+You can use the **azure vm extension list** command to obtain information about available extensions, and use the **–-json** option to display all available information about one or more extensions. If you do not use an extension name, the command returns a JSON description of all available extensions.
 
-例如，下列程式碼範例示範如何使用 Azure CLI **azure vm extension list** 命令列出 **IaaSDiagnostics** 延伸模組的資訊，並使用 **–-json** 選項傳回完整資訊。
+For example, the following code example shows how to list the information for the **IaaSDiagnostics** extension using the Azure CLI **azure vm extension list** command and uses the **–-json** option to return complete information.
 
 
     $ azure vm extension list -n IaaSDiagnostics --json
@@ -82,39 +82,42 @@ Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure V
 
 
 
-###服務管理 REST API
+###<a name="service-management-rest-apis"></a>Service Management REST APIs
 
-您可以使用下列 REST API 來取得可用擴充功能的相關資訊：
+You can use the following REST APIs to obtain information about available extensions:
 
--   針對 Web 角色或背景工作角色的執行個體，您可以使用[列出可用延伸模組](https://msdn.microsoft.com/library/dn169559.aspx)作業。若要列出可用延伸模組的版本，您可以使用[列出延伸模組版本](https://msdn.microsoft.com/library/dn495437.aspx)。
+-   For instances of web roles or worker roles, you can use the [List Available Extensions](https://msdn.microsoft.com/library/dn169559.aspx) operation. To list the versions of available extensions, you can use [List Extension Versions](https://msdn.microsoft.com/library/dn495437.aspx).
 
--   針對虛擬機器的執行個體，您可以使用[列出資源延伸模組](https://msdn.microsoft.com/library/dn495441.aspx)作業。若要列出可用延伸模組的版本，您可以使用[列出資源延伸模組版本](https://msdn.microsoft.com/library/dn495440.aspx)。
+-   For instances of Virtual Machines, you can use the [List Resource Extensions](https://msdn.microsoft.com/library/dn495441.aspx) operation. To list the versions of available extensions, you can use [List Resource Extension Versions](https://msdn.microsoft.com/library/dn495440.aspx).
 
-##加入、更新或停用擴充功能
+##<a name="add,-update,-or-disable-extensions"></a>Add, Update, or Disable Extensions
 
-擴充功能可以在建立執行個體或是它們可以加入執行中的執行個體時加入。可以更新、停用或移除擴充功能。您可以使用 Azure PowerShell Cmdlet 或使用服務管理 REST API 作業來執行這些動作。安裝和設定部分擴充功能時需要參數。擴充功能支援公用和私人參數。
+Extensions can be added when an instance is created or they can be added to a running instance. Extensions can be updated, disabled, or removed. You can perform these actions by using Azure PowerShell cmdlets or by using the Service Management REST API operations. Parameters are required to install and set up some extensions. Public and private parameters are supported for extensions.
 
 
-###Azure PowerShell
+###<a name="azure-powershell"></a>Azure PowerShell
 
-使用 Azure PowerShell Cmdlet 是加入與更新擴充功能最簡單的方式。當您使用擴充功能 Cmdlet 時，會為您完成大部分的擴充功能組態。有時您可能需要以程式設計方式加入擴充功能。需要如此做時，必須提供擴充功能的組態。
+Using Azure PowerShell cmdlets is the easiest way to add and update extensions. When you use the extension cmdlets, most of the configuration of the extension is done for you. At times, you may need to programmatically add an extension. When you need to do this, you must provide the configuration of the extension.
 
-您可以使用下列 Cmdlet 來了解擴充功能是否需要公用和私用參數的組態：
+You can use the following cmdlets to know whether an extension requires a configuration of public and private parameters:
 
--   針對 Web 角色或背景工作角色的執行個體，您可以使用 **Get-AzureServiceAvailableExtension** Cmdlet。
+-   For instances of web roles or worker roles, you can use the **Get-AzureServiceAvailableExtension** cmdlet.
 
--   針對虛擬機器的執行個體，您可以使用 **Get-AzureVMAvailableExtension** Cmdlet。
+-   For instances of Virtual Machines, you can use the **Get-AzureVMAvailableExtension** cmdlet.
 
-###服務管理 REST API
+###<a name="service-management-rest-apis"></a>Service Management REST APIs
 
-當您使用 REST API 擷取可用擴充功能清單時，會收到擴充功能設定方式的相關資訊。傳回的資訊可能會顯示由公用結構描述和私用結構描述代表的參數資訊。關於執行個體的查詢會傳回公用參數值。不會傳回私用參數值。
+When you retrieve a listing of available extensions by using the REST APIs, you receive information about how the extension is to be configured. The information that is returned might show parameter information represented by a public schema and private schema. Public parameter values are returned in queries about the instances. Private parameter values are not returned.
 
-您可以使用下列 REST API 來了解擴充功能是否需要公用和私用參數的組態：
+You can use the following REST APIs to know whether an extension requires a configuration of public and private parameters:
 
--   針對 Web 角色或背景工作角色的執行個體，**PublicConfigurationSchema** 和 **PrivateConfigurationSchema** 元素包含來自[列出可用延伸模組](https://msdn.microsoft.com/library/dn169559.aspx)作業回應的資訊。
+-   For instances of web roles or worker roles, the **PublicConfigurationSchema** and **PrivateConfigurationSchema** elements contain the information in the response from the [List Available Extensions](https://msdn.microsoft.com/library/dn169559.aspx) operation.
 
--   針對虛擬機器的執行個體，**PublicConfigurationSchema** 和 **PrivateConfigurationSchema** 元素包含來自[列出資源延伸模組](https://msdn.microsoft.com/library/dn495441.aspx)作業回應的資訊。
+-   For instances of Virtual Machines, the **PublicConfigurationSchema** and **PrivateConfigurationSchema** elements contain the information in the response from the [List Resource Extensions](https://msdn.microsoft.com/library/dn495441.aspx) operation.
 
->[AZURE.NOTE]擴充功能也可以使用 JSON 所定義的組態。使用這些類型的延伸模組時，只會使用 **SampleConfig** 元素。
+>[AZURE.NOTE]Extensions can also use configurations that are defined with JSON. When these types of extensions are used, only the **SampleConfig** element is used.
 
-<!---HONumber=AcomDC_0706_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

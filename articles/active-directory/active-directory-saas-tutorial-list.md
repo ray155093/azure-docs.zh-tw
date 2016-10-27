@@ -13,16 +13,17 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="09/28/2016"
+    ms.date="10/07/2016"
     ms.author="markvi"/>
 
-#如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單
+
+#<a name="list-of-tutorials-on-how-to-integrate-saas-apps-with-azure-active-directory"></a>如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單
 
 為了協助您與 Azure Active Directory 整合所有雲端 [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) 應用程式，我們開發出一系列教學課程，示範每個必要的設定步驟。
 
 如需已預先整合到 Azure AD 的 SaaS 應用程式完整清單，請參閱 [Active Directory Marketplace](https://azure.microsoft.com/marketplace/active-directory/)。
 
-##教學課程清單
+##<a name="list-of-tutorials"></a>教學課程清單
 
 | 標誌| 應用程式名稱 |
 | --- | --- |
@@ -106,10 +107,11 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_EverBridge.png)| [EverBridge](https://go.microsoft.com/fwLink/?LinkID=808005&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Expensify.png)| [Expensify](https://go.microsoft.com/fwLink/?LinkID=733442&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_FBAtWork.png)| [Facebook at Work](http://go.microsoft.com/fwlink/?LinkID=708665&clcid=0x409)|
-| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_FieldGlass.png)| [Fieldglass](https://go.microsoft.com/fwLink/?LinkID=822857&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Fieldglass.png)| [Fieldglass](https://go.microsoft.com/fwLink/?LinkID=822857&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_FlatterFiles.png)| [Flatter Files](https://go.microsoft.com/fwLink/?LinkID=530224&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_FMSystems.png)| [FM:Systems](https://go.microsoft.com/fwLink/?LinkID=512744&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Freshdesk.png)| [Freshdesk](https://go.microsoft.com/fwLink/?LinkID=522553&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Freshgrade.png)| [Freshgrade](https://go.microsoft.com/fwLink/?LinkID=823739&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Freshservice.png)| [FreshService](https://go.microsoft.com/fwLink/?LinkID=512743&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Front.png)| [Front](https://go.microsoft.com/fwLink/?LinkID=823725&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Fuse.png)| [Fuse](https://go.microsoft.com/fwLink/?LinkID=691858&clcid=0x409)|
@@ -154,6 +156,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Learningpool.png)| [Learningpool](https://go.microsoft.com/fwLink/?LinkID=530220&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_LearnUpon.png)| [LearnUpon](https://go.microsoft.com/fwLink/?LinkID=708690&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Lessonly.png)| [Lesson.ly](https://go.microsoft.com/fwLink/?LinkID=708686&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_LifesizeCloud.png)| [Lifesize Cloud](https://go.microsoft.com/fwLink/?LinkID=828374&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Litmos.png)| [Litmos](https://go.microsoft.com/fwLink/?LinkID=691853&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_LogicMonitor.png)| [LogicMonitor](https://go.microsoft.com/fwLink/?LinkID=403233&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Lucidchart.png)| [Lucidchart](https://go.microsoft.com/fwLink/?LinkID=522563&clcid=0x409)|
@@ -180,6 +183,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Optimizely.png)| [Optimizely](https://go.microsoft.com/fwLink/?LinkID=808000&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Origami.png)| [Origami Risk](http://go.microsoft.com/fwlink/?LinkID=785284&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_OverdriveBooks.png)| [Overdrive Books](https://go.microsoft.com/fwLink/?LinkID=512730&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_PacificTimesheet.png)| [Pacific Timesheet](https://go.microsoft.com/fwLink/?LinkID=828369&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_PagerDuty.png)| [Pagerduty](https://go.microsoft.com/fwLink/?LinkID=510244&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Panopto.png)| [Panopto](https://go.microsoft.com/fwLink/?LinkID=512739&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Panorama9.png)| [Panorama9](https://go.microsoft.com/fwLink/?LinkID=510253&clcid=0x409)|
@@ -195,6 +199,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Printix.png)| [Printix](https://go.microsoft.com/fwLink/?LinkID=785283&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Projectplace.png)| [Projectplace](https://go.microsoft.com/fwLink/?LinkID=510265&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_ProMapp.png)| [Promapp](http://go.microsoft.com/fwlink/?LinkId=530229)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_ProofpointOnDemand.png)| [Proofpoint on Demand](https://go.microsoft.com/fwLink/?LinkID=708678&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_QlikSenseEnterprise.png)| [Qlik Sense Enterprise](https://go.microsoft.com/fwLink/?LinkID=822859&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Qualtrics.png)| [Qualtrics](https://go.microsoft.com/fwLink/?LinkID=522567&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Questetra_BPM_Suite.png)| [Questetra BPM Suite](https://go.microsoft.com/fwLink/?LinkID=530240&clcid=0x409)|
@@ -282,10 +287,13 @@
 
 
 
-
-##相關文章
+##<a name="related-articles"></a>相關文章
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

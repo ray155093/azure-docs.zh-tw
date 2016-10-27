@@ -1,121 +1,128 @@
 <properties
-	pageTitle="如何新增或變更 Azure 管理員角色 | Microsoft Azure"
-	description="說明如何新增或變更 Azure 共同管理員、服務管理員和帳戶管理員"
-	services=""
-	documentationCenter=""
-	authors="genlin"
-	manager="msmbaldwin"
-	editor=""
-	tags="billing"/>
+    pageTitle="How to add or change Azure administrator roles | Microsoft Azure"
+    description="Describes how to add or change Azure Co-Administrator, Service Administrator and Account Administrator"
+    services=""
+    documentationCenter=""
+    authors="genlin"
+    manager="mbaldwin"
+    editor=""
+    tags="billing"/>
 
 <tags
-	ms.service="billing"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="genli"/>
+    ms.service="billing"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/17/2016"
+    ms.author="genli"/>
 
-# 如何新增或變更 Azure 管理員角色
 
-Microsoft Azure 中的管理員角色有三種：
+# <a name="how-to-add-or-change-azure-administrator-roles"></a>How to add or change Azure administrator roles
 
-| 管理角色 | 限制 | 說明
+There are three kinds of administrator roles in Microsoft Azure:
+
+| Administrative role   | Limit  | Description
 | ------------- | ------------- |---------------|
-|帳戶管理員 (AA) | 每個 Azure 帳戶 1 名 |這就是註冊或購買 Azure 訂用帳戶，且經過授權可存取[帳戶中心](https://account.windowsazure.com/Home/Index)及執行各種管理工作的那個人。包括能夠建立訂用帳戶、取消訂用帳戶、變更訂用帳戶的計費方式以及變更服務管理員。
-| 服務管理員 (SA) | 每個 Azure 訂用帳戶 1 名 |此角色經過授權，可管理 [Azure 入口網站](https://portal.azure.com)上的服務。根據預設，新訂用帳戶的帳戶管理員也是服務管理員。|
-|[Azure 傳統入口網站](https://manage.windowsazure.com)中的共同管理員 (CA)|每個訂用帳戶 200 名| 此角色的存取權限與服務管理員相同，但無法變更訂用帳戶與 Azure 目錄的關聯。 |
+|Account Administrator (AA)  | 1 per Azure account  |This is the person who signed up for or bought Azure subscriptions, and is authorized to access the [Account Center](https://account.windowsazure.com/Home/Index) and perform various management tasks. These include being able to create subscriptions, cancel subscriptions, change the billing for a subscription, and change the Service Administrator.
+| Service Administrator (SA) | 1 per Azure subscription  |This role is authorized to manage services in the [Azure portal](https://portal.azure.com). By default, for a new subscription, the Account Administrator is also the Service Administrator.|
+|Co-administrator (CA) in the [Azure classic portal](https://manage.windowsazure.com)|200 per subscription| This role has the same access privileges as the Service Administrator, but can’t change the association of subscriptions to Azure directories. |
 
-> [AZURE.NOTE] Azure Active Directory 角色型存取控制 (RBAC) 能讓使用者擁有多個角色。如需詳細資訊，請參閱 [Azure Active Directory 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
+> [AZURE.NOTE] Azure Active Directory Role-based Access Control (RBAC) allows users to be added to multiple roles. For more information, see [Azure Active Directory Role-based Access Control](./active-directory/role-based-access-control-configure.md).
 
-> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+> [AZURE.NOTE] If you need more help at any point in this article, please [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
 
-## 如何新增訂用帳戶的管理員
+## <a name="how-to-add-an-admin-for-a-subscription"></a>How to add an admin for a subscription
 
-**Azure 入口網站**
+**Azure portal**
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-2. 在 [中樞] 功能表中，選取 [訂用帳戶] >「您想要讓管理員存取的訂用帳戶」。
+2. On the Hub menu, select **Subscription** > *the subscription that you want the admin to access*.
 
-	![newselectsub](./media/billing-add-change-azure-subscription-administrator/newselectsub.png)
+    ![newselectsub](./media/billing-add-change-azure-subscription-administrator/newselectsub.png)
 
-3. 在 [訂用帳戶] 刀鋒視窗中，選取 [設定]> [使用者]。
+3. In the subscription blade, select **Settings**> **Users**.
 
-	![newsettings](./media/billing-add-change-azure-subscription-administrator/newsettings.png)
-4. 在 [使用者] 刀鋒視窗中，選取 [新增] > [選取角色] > [擁有者]。
+    ![newsettings](./media/billing-add-change-azure-subscription-administrator/newsettings.png)
+4. In the Users blade, select **Add**>**Select a role** > **Owner**.
 
-	![newselectrole](./media/billing-add-change-azure-subscription-administrator/newselectrole.png)
+    ![newselectrole](./media/billing-add-change-azure-subscription-administrator/newselectrole.png)
 
-	**注意**
-	- 擁有者角色具有與共同管理員相同的存取權限。此角色沒有 [Azure 帳戶中心](https://account.windowsazure.com/subscriptions)的存取權限。
-	- 您透過 [Azure 入口網站](https://portal.azure.com)新增的擁有者無法管理 [Azure 傳統入口網站](https://manage.windowsazure.com)中的服務。
+    **Note**
+    - The owner role has same access privileges as co-administrator. This role does not have access privilege to the [Azure Account Center](https://account.windowsazure.com/subscriptions).
+    - The owners you added through the [Azure portal](https://portal.azure.com) cannot manage services in the [Azure classic portal](https://manage.windowsazure.com).  
 
-5. 輸入您想要新增為擁有者的使用者的電子郵件地址，按一下使用者，然後按一下 [選取]。
+5. Type the email address of the user you want to add as owner, click the user, and then click **Select**.
 
-	![newadduser](./media/billing-add-change-azure-subscription-administrator/newadduser.png)
+    ![newadduser](./media/billing-add-change-azure-subscription-administrator/newadduser.png)
 
-**Azure 傳統入口網站**
+**Azure classic portal**
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
+1. Sign in to the [Azure classic portal](https://manage.windowsazure.com/).
 
-2. 在導覽窗格中，選取 [設定]> [管理員]> [新增]。</br>
+2. In the navigation pane, select **Settings**> **Administrators**> **Add**. </br>
 
-	![addcodmin](./media/billing-add-change-azure-subscription-administrator/addcoadmin.png)
+    ![addcodmin](./media/billing-add-change-azure-subscription-administrator/addcoadmin.png)
 
-3. 輸入您想新增為共同管理員之人員的電子郵件地址，然後選取您想讓共同管理員存取的訂用帳戶。</br>
+3. Type the email address of the person you want to add as Co-administrator and then select the subscription that you want the Co-administrator to access.</br>
 
-	![addcoadmin2](./media/billing-add-change-azure-subscription-administrator/addcoadmin2.png)</br>
+    ![addcoadmin2](./media/billing-add-change-azure-subscription-administrator/addcoadmin2.png)</br>
 
-下列電子郵件地址可以新增為共同管理員：
+The following email address can be added as a Co-Administrator:
 
-* **Microsoft 帳戶** (先前稱為 Windows Live ID) </br> 您可以使用 Microsoft 帳戶登入所有消費者導向的 Microsoft 產品和雲端服務，例如 Outlook (Hotmail)、Skype (MSN)、OneDrive、Windows Phone 和 Xbox LIVE。
-* **組織帳戶**</br> 組織帳戶是建立在 Azure Active Directory 之下的帳戶。組織帳戶地址的樣式如下：user@&lt;您的網域&gt;.onmicrosoft.com
+* **Microsoft Account** (formerly Windows Live ID) </br>
+ You can use a Microsoft Account to sign in to all consumer-oriented Microsoft products and cloud services, such as Outlook (Hotmail), Skype (MSN), OneDrive, Windows Phone, and Xbox LIVE.
+* **Organizational account**</br>
+ An organizational account is an account that is created under Azure Active Directory. The organizational account address resembles the following: user@&lt;your domain&gt;.onmicrosoft.com
 
-### 限制和約束
+### <a name="limitations-and-restrictions"></a>Limitations and restrictions
 
- * 每個訂用帳戶都與一個 Azure AD 目錄 (也就是預設目錄) 相關聯。若要尋找與訂用帳戶相關聯的預設目錄，請前往 [Azure 傳統入口網站](https://manage.windowsazure.com/)，然後選取 [設定] > [訂用帳戶]。請查看訂用帳戶識別碼來尋找預設目錄。
+ * Each subscription is associated with an Azure AD directory (also known as the Default Directory). To find the Default Directory the subscription is associated with, go to the [Azure classic portal](https://manage.windowsazure.com/), select **Settings** > **Subscriptions**. Check the subscription ID to find the Default Directory.
 
- * 如果您以 Microsoft 帳戶登入，就只能將其他 Microsoft 帳戶或預設目錄中的使用者新增為共同管理員。
+ * If you are logged in with a Microsoft Account, you can only add other Microsoft Accounts or users within the Default Directory as Co-Administrator.
 
- * 如果您以組織帳戶登入，就可以將組織中的其他組織帳戶新增為共同管理員。舉例來說，abby@contoso.com 可以將 bob@contoso.com 新增為服務管理員或共同管理員，但無法新增 john@notcontoso.com，除非 john@noncontoso.com 在預設目錄中。以組織帳戶登入的使用者，可以繼續將 Microsoft 帳戶使用者新增為服務管理員或共同管理員。
+ * If you are logged in with an organizational account, you can add other organizational accounts in your organization as Co-Administrator. For example, abby@contoso.com can add bob@contoso.com as Service Administrator or Co-Administrator, but cannot add john@notcontoso.com unless john@noncontoso.com is the user in Default Directory. Users logged in with organizational accounts can continue to add Microsoft Account users as Service Administrator or Co-Administrator.
 
- * 現在可以使用組織帳戶登入至 Azure，以下是服務管理員和共同管理員帳戶需求的變更：
+ * Now that it is possible to log into Azure with an organizational account, here are the changes to Service Administrator and Co-administrator account requirements:
 
-	登入方法| 將 Microsoft 帳戶或預設目錄中的使用者新增為 CA 或 SA？ |將相同組織中的組織帳戶新增為 CA 或 SA？ |將不同組織中的組織帳戶新增為 CA 或 SA？
-	------------- | ------------- |---------------|---------------
-	Microsoft 帳戶 |是|否|否
-	組織帳戶|是|是|否
+    Login Method| Add Microsoft Account or users within Default Directory as CA or SA?  |Add organizational account in the same organization as CA or SA? |Add organizational account in different organization as CA or SA?
+    ------------- | ------------- |---------------|---------------
+    Microsoft Account |Yes|No|No
+    Organizational Account|Yes|Yes|No
 
-## 如何變更訂用帳戶的服務管理員
+## <a name="how-to-change-service-administrator-for-a-subscription"></a>How to change Service Administrator for a subscription
 
-只有帳戶管理員可以變更訂用帳戶的服務管理員。
+Only the Account Administrator can change the Service Administrator for a subscription.
 
-1. 使用帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/subscriptions)。
+1. Log on into [Azure Account Center](https://account.windowsazure.com/subscriptions) by using the Account Administrator.
 
-2. 選取您想變更的訂用帳戶。
+2. Select the subscription you want to change.
 
-3. 按一下右側的 [編輯訂用帳戶詳細資料]。</br>
+3. On the right side, click **Edit subscription** details. </br>
 
-	![editsub](./media/billing-add-change-azure-subscription-administrator/editsub.png)
+    ![editsub](./media/billing-add-change-azure-subscription-administrator/editsub.png)
 
-4. 在 [服務管理員] 方塊中，輸入新的服務管理員的電子郵件地址。</br>
+4. In the **SERVICE ADMINISTRATOR** box, enter the email address of the new Service Administrator. </br>
 
-	![changeSA](./media/billing-add-change-azure-subscription-administrator/changeSA.png)
+    ![changeSA](./media/billing-add-change-azure-subscription-administrator/changeSA.png)
 
-## 如何變更帳戶管理員
+## <a name="how-to-change-the-account-administrator"></a>How to change the Account Administrator
 
-若要將 Azure 帳戶的擁有權轉移到另一個帳戶，請參閱[轉移 Azure 訂用帳戶的擁有權](billing-subscription-transfer.md)。
+To transfer ownership of the Azure account to another account, see [Transferring Ownership of an Azure subscription](billing-subscription-transfer.md).
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-* 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱[了解 Azure 中的資源存取](./active-directory/active-directory-understanding-resource-access.md)
+* To learn more about how resource access is controlled in Microsoft Azure, see [Understanding resource access in Azure](./active-directory/active-directory-understanding-resource-access.md)
 
-* 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)
+* For more information on how Azure Active Directory relates to your Azure subscription, see [How Azure subscriptions are associated with Azure Active Directory](./active-directory/active-directory-how-subscriptions-associated-directory.md)
 
-* 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱[在 Azure Active Directory (Azure AD) 中指派系統管理員角色](./active-directory/active-directory-assign-admin-roles.md)
+* For more information on how Azure Active Directory relates to your Azure subscription, see [Assigning administrator roles in Azure Active Directory](./active-directory/active-directory-assign-admin-roles.md)
 
-> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+> [AZURE.NOTE] If you still have further questions, please [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,8 @@
 
-| 資源 | 限制 |
+| Resource | Limit |
 |----|----|
-| 自動調整設定 | 每個訂用帳戶每個區域 100 個 |
+| Autoscale Settings | 100 per region per subscription |
 
-<!----HONumber=AcomDC_0907_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

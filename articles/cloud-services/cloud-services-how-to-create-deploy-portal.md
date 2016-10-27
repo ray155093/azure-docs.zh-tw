@@ -1,122 +1,126 @@
 <properties
-	pageTitle="如何建立和部署雲端服務 | Microsoft Azure"
-	description="了解如何使用 Azure 入口網站建立和部署雲端服務。"
-	services="cloud-services"
-	documentationCenter=""
-	authors="Thraka"
-	manager="timlt"
-	editor=""/>
+    pageTitle="How to create and deploy a cloud service | Microsoft Azure"
+    description="Learn how to create and deploy a cloud service using the Azure portal."
+    services="cloud-services"
+    documentationCenter=""
+    authors="Thraka"
+    manager="timlt"
+    editor=""/>
 
 <tags
-	ms.service="cloud-services"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/05/2016"
-	ms.author="adegeo"/>
+    ms.service="cloud-services"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/11/2016"
+    ms.author="adegeo"/>
 
 
 
 
-# 如何建立和部署雲端服務
+
+# <a name="how-to-create-and-deploy-a-cloud-service"></a>How to create and deploy a cloud service
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](cloud-services-how-to-create-deploy-portal.md)
-- [Azure 傳統入口網站](cloud-services-how-to-create-deploy.md)
+- [Azure portal](cloud-services-how-to-create-deploy-portal.md)
+- [Azure classic portal](cloud-services-how-to-create-deploy.md)
 
-Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快速建立」和「自訂建立」。
+The Azure portal provides two ways for you to create and deploy a cloud service: *Quick Create* and *Custom Create*.
 
-本主題說明如何使用「快速建立」方法建立新的雲端服務，然後使用 [上傳] 上傳雲端服務封裝並在 Azure 中部署。當您使用這個方法時，Azure 入口網站會在過程中提供便利的連結，讓您完成所有要求。如果您準備在建立雲端服務時加以部署，可以同時使用 [自訂建立] 進行這兩項作業。
+This article explains how to use the Quick Create method to create a new cloud service and then use **Upload** to upload and deploy a cloud service package in Azure. When you use this method, the Azure portal makes available convenient links for completing all requirements as you go. If you're ready to deploy your cloud service when you create it, you can do both at the same time using Custom Create.
 
-> [AZURE.NOTE] 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用快速建立，然後從 Azure 快速入門或儀表板設定 VSTS 發佈。如需詳細資訊，請參閱[使用 Visual Studio Team Services 連續傳遞][TFSTutorialForCloudService]，或 [**快速啟動**] 頁面的說明。
+> [AZURE.NOTE] If you plan to publish your cloud service from Visual Studio Team Services (VSTS), use Quick Create, and then set up VSTS publishing from the Azure Quickstart or the dashboard. For more information, see [Continuous Delivery to Azure by Using Visual Studio Team Services][TFSTutorialForCloudService], or see help for the **Quick Start** page.
 
-## 概念
-需要三個元件才能部署應用程式成為 Azure 中的雲端服務：
+## <a name="concepts"></a>Concepts
+Three components are required to deploy an application as a cloud service in Azure:
 
-- **服務定義**
- 雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
+- **Service Definition**  
+  The cloud service definition file (.csdef) defines the service model, including the number of roles.
 
-- **服務組態**
- 雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
+- **Service Configuration**  
+  The cloud service configuration file (.cscfg) provides configuration settings for the cloud service and individual roles, including the number of role instances.
 
-- **服務封裝**
- 服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
+- **Service Package**  
+  The service package (.cspkg) contains the application code and configurations and the service definition file.
 
-您可以在[這裡](cloud-services-model-and-package.md)深入了解這些內容，以及如何建立封裝。
+You can learn more about these and how to create a package [here](cloud-services-model-and-package.md).
 
-## 準備您的應用程式
-您部署雲端服務之前，必須先從應用程式程式碼和雲端服務組態檔 (.cscfg) 建立雲端服務封裝 (.cspkg)。Azure SDK 提供準備這些必要部署檔案的工具。您可以從 [Azure 下載](https://azure.microsoft.com/downloads/)頁面安裝 SDK，使用您偏好的語言開發應用程式程式碼。
+## <a name="prepare-your-app"></a>Prepare your app
+Before you can deploy a cloud service, you must create the cloud service package (.cspkg) from your application code and a cloud service configuration file (.cscfg). The Azure SDK provides tools for preparing these required deployment files. You can install the SDK from the [Azure Downloads](https://azure.microsoft.com/downloads/) page, in the language in which you prefer to develop your application code.
 
-三個雲端服務功能需要特別組態，您才能匯出服務封裝：
+Three cloud service features require special configurations before you export a service package:
 
-- 如果您要部署使用安全通訊端層 (SSL) 進行資料加密的雲端服務，請針對 SSL [設定應用程式](cloud-services-configure-ssl-certificate-portal.md#modify)。
+- If you want to deploy a cloud service that uses Secure Sockets Layer (SSL) for data encryption, [configure your application](cloud-services-configure-ssl-certificate-portal.md#modify) for SSL.
 
-- 如果您要設定角色執行個體的遠端桌面連線，請[設定遠端桌面的角色](cloud-services-role-enable-remote-desktop.md)。這只能在傳統入口網站中完成。
+- If you want to configure Remote Desktop connections to role instances, [configure the roles](cloud-services-role-enable-remote-desktop.md) for Remote Desktop. This can only be done in the classic portal.
 
-- 如果您要設定雲端服務的詳細資訊監視，請啟用雲端服務的 Azure 診斷。*最小監視* (預設監視層級) 使用從角色執行個體 (虛擬機器) 的主機作業系統收集的效能計數器。*詳細資訊監視*會按照角色執行個體內的效能資料來收集其他度量，以便進一步分析應用程式處理期間發生的問題。若要了解如何啟用 Azure 診斷，請參閱[在 Azure 中啟用診斷](cloud-services-dotnet-diagnostics.md)。
+- If you want to configure verbose monitoring for your cloud service, enable Azure Diagnostics for the cloud service. *Minimal monitoring* (the default monitoring level) uses performance counters gathered from the host operating systems for role instances (virtual machines). *Verbose monitoring* gathers additional metrics based on performance data within the role instances to enable closer analysis of issues that occur during application processing. To find out how to enable Azure Diagnostics, see [Enabling diagnostics in Azure](cloud-services-dotnet-diagnostics.md).
 
-若要使用 Web 角色或背景工作角色的部署來建立雲端服務，您必須[建立服務封裝](cloud-services-model-and-package.md#servicepackagecspkg)。
+To create a cloud service with deployments of web roles or worker roles, you must [create the service package](cloud-services-model-and-package.md#servicepackagecspkg).
 
-## 開始之前
+## <a name="before-you-begin"></a>Before you begin
 
-- 如果您尚未安裝 Azure SDK，請按一下 [Install Azure SDK] 開啟 [Azure 下載頁面](https://azure.microsoft.com/downloads/) (英文)，然後對於開發程式碼所偏好使用的語言下載 SDK。(您稍後將有機會這麼做。)
+- If you haven't installed the Azure SDK, click **Install Azure SDK** to open the [Azure Downloads page](https://azure.microsoft.com/downloads/), and then download the SDK for the language in which you prefer to develop your code. (You'll have an opportunity to do this later.)
 
-- 如果任何角色執行個體需要憑證，請建立憑證。雲端服務需要含有私密金鑰的 .pfx 檔。[您建立並部署雲端服務時，可以將憑證上傳至 Azure]()。
+- If any role instances require a certificate, create the certificates. Cloud services require a .pfx file with a private key. [You can upload the certificates to Azure]() as you create and deploy the cloud service.
 
-- 如果您計劃將雲端服務部署至同質群組，請建立同質群組。您可以使用同質群組，將雲端服務和其他 Azure 服務部署到區域中的同一個位置。您可以在 Azure 傳統入口網站之 [網路] 區域中出現的 [同質群組] 頁面上建立同質群組。
-
-
-## 建立和部署
-
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 [新增] > [虛擬機器]，然後向下捲動並按一下 [雲端服務]。
-
-    ![發佈您的雲端服務](media/cloud-services-how-to-create-deploy-portal/create-cloud-service.png)
-
-3. 在 [資訊] 頁面底部，按一下 [建立]。
-4. 在新的 [雲端服務] 刀鋒視窗中，輸入 [DNS 名稱] 的值。
-5. 建立新的 [資源群組] 或選取現有的資源群組。
-6. 選取 [位置]。
-7. 按一下 [封裝]。這會開啟 [上傳封裝] 刀鋒視窗。填寫必要欄位。
-
-     如果您的任一個角色包含單一執行個體，請確定核取 [即使一個或多個角色包含單一執行個體，也要部署]。
-
-8. 請確定已選取 [開始部署]。
-9. 按一下 [確定] 以關閉 [上傳封裝] 刀鋒視窗。
-10. 如果您沒有任何憑證可新增，請按一下 [建立]。
-
-    ![發佈您的雲端服務](media/cloud-services-how-to-create-deploy-portal/select-package.png)
-
-## 上傳憑證
-
-如果您的部署套件[設定為使用憑證](cloud-services-configure-ssl-certificate-portal.md#modify)，您現在可以上傳憑證。
-
-1. 選取 [憑證]，然後在 [加入憑證] 刀鋒視窗中，選取 SSL 憑證 .pfx 檔案，並提供憑證的 [密碼]。
-2. 按一下 [附加憑證]，然後在 [加入憑證] 刀鋒視窗按一下 [確定]。
-3. 在 [雲端服務] 刀鋒視窗按一下 [建立]。當部署達到了 [就緒] 狀態時，您可以繼續進行接下來的步驟。
-
-    ![發佈您的雲端服務](media/cloud-services-how-to-create-deploy-portal/attach-cert.png)
+- If you plan to deploy the cloud service to an affinity group, create the affinity group. You can use an affinity group to deploy your cloud service and other Azure services to the same location in a region. You can create the affinity group in the **Networks** area of the Azure classic portal, on the **Affinity Groups** page.
 
 
-## 確認部署是否成功完成
+## <a name="create-and-deploy"></a>Create and deploy
 
-1. 按一下雲端服務執行個體。
+1. Log in to the [Azure portal](https://portal.azure.com/).
+2. Click **New > Virtual Machines**, and then scroll down to and click **Cloud Service**.
 
-	狀態應該會顯示服務為 [正在執行]。
+    ![Publish your cloud service](media/cloud-services-how-to-create-deploy-portal/create-cloud-service.png)
 
-2. 在 [基本功能] 下，按一下 [網站 URL]，在網頁瀏覽器中開啟您的雲端服務。
+3. At the bottom of the information page that displays, click **Create**. 
+4. In the new **Cloud Service** blade, enter a value for the **DNS name**.
+5. Create a new **Resource Group** or select an existing one.
+6. Select a **Location**.
+7. Click **Package**. This will open the **Upload a package** blade. Fill in the required fields.  
 
-    ![CloudServices\_QuickGlance](./media/cloud-services-how-to-create-deploy-portal/running.png)
+     If any of your roles contain a single instance, ensure **Deploy even if one or more roles contain a single instance** is selected.
+
+8. Make sure that **Start deployment** is selected.
+9. Click **OK** which will close the **Upload a package** blade.
+10. If you do not have any certificates to add, click **Create**.
+
+    ![Publish your cloud service](media/cloud-services-how-to-create-deploy-portal/select-package.png)
+
+## <a name="upload-a-certificate"></a>Upload a certificate
+
+If your deployment package was [configured to use certificates](cloud-services-configure-ssl-certificate-portal.md#modify), you can upload the certificate now.
+
+1. Select **Certificates**, and on the **Add certificates** blade, select the SSL certificate .pfx file, and then provide the **Password** for the certificate,
+2. Click **Attach certificate**, and then click **OK** on the **Add certificates** blade.
+3. Click **Create** on the **Cloud Service** blade. When the deployment has reached the **Ready** status, you can proceed to the next steps.
+
+    ![Publish your cloud service](media/cloud-services-how-to-create-deploy-portal/attach-cert.png)
+
+
+## <a name="verify-your-deployment-completed-successfully"></a>Verify your deployment completed successfully
+
+1. Click the cloud service instance.
+
+    The status should show that the service is **Running**.
+
+2. Under **Essentials**, click the **Site URL** to open your cloud service in a web browser.
+
+    ![CloudServices_QuickGlance](./media/cloud-services-how-to-create-deploy-portal/running.png)
 
 
 [TFSTutorialForCloudService]: http://go.microsoft.com/fwlink/?LinkID=251796
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-* [雲端服務的一般設定](cloud-services-how-to-configure-portal.md)。
-* 設定[自訂網域名稱](cloud-services-custom-domain-name-portal.md)。
-* [管理您的雲端服務](cloud-services-how-to-manage-portal.md)。
-* 設定 [SSL 憑證](cloud-services-configure-ssl-certificate-portal.md)。
+* [General configuration of your cloud service](cloud-services-how-to-configure-portal.md).
+* Configure a [custom domain name](cloud-services-custom-domain-name-portal.md).
+* [Manage your cloud service](cloud-services-how-to-manage-portal.md).
+* Configure [ssl certificates](cloud-services-configure-ssl-certificate-portal.md).
 
-<!---HONumber=AcomDC_0706_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

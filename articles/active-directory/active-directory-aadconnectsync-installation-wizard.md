@@ -1,87 +1,94 @@
 <properties
-	pageTitle="Azure AD Connect 同步處理︰第二次執行安裝精靈 | Microsoft Azure"
-	description="說明安裝精靈在第二次執行時的運作方式。"
-	keywords="Azure AD Connect 安裝精靈可讓您在第二次執行時設定維護設定"
-	services="active-directory"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor=""/>
+    pageTitle="Azure AD Connect sync: Running the installation wizard a second time | Microsoft Azure"
+    description="Explains how the installation wizard works the second time you run it."
+    keywords="The Azure AD Connect installation wizard lets you configure maintenance settings the second time you run it"
+    services="active-directory"
+    documentationCenter=""
+    authors="andkjell"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/31/2016"
-	ms.author="andkjell"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/31/2016"
+    ms.author="billmath"/>
 
 
-# Azure AD Connect 同步處理︰第二次執行安裝精靈
-第一次執行 Azure AD Connect 安裝精靈時，它會逐步引導您設定安裝。如果您再次執行安裝精靈，它則會提供維護選項。
 
-您可以在 [開始] 功能表中找到名為 **Azure AD Connect** 的安裝精靈。
+# <a name="azure-ad-connect-sync:-running-the-installation-wizard-a-second-time"></a>Azure AD Connect sync: Running the installation wizard a second time
+The first time you run the Azure AD Connect installation wizard, it walks you through how to configure your installation. If you run the installation wizard again, it offers options for maintenance.
 
-![[開始] 功能表](./media/active-directory-aadconnectsync-installation-wizard/startmenu.png)
+You can find the installation wizard in the start menu named **Azure AD Connect**.
 
-當您啟動安裝精靈時，您會看到具有下列選項的頁面︰
+![Start menu](./media/active-directory-aadconnectsync-installation-wizard/startmenu.png)
 
-![含有其他工作清單的頁面](./media/active-directory-aadconnectsync-installation-wizard/additionaltasks.png)
+When you start the installation wizard, you see a page with these options:
 
-如果您已使用 Azure AD Connect 安裝 ADFS，您會有更多選項。[ADFS 管理](active-directory-aadconnect-federation-management.md#ad-fs-management)中記載了您擁有的其他 ADFS 選項。
+![Page with a list of additional tasks](./media/active-directory-aadconnectsync-installation-wizard/additionaltasks.png)
 
-請選取其中一項工作，然後按 [下一步] 繼續。
+If you have installed ADFS with Azure AD Connect, you have even more options. The additional options you have for ADFS are documented in [ADFS management](active-directory-aadconnect-federation-management.md#ad-fs-management).
 
-> [AZURE.IMPORTANT] 當您開啟安裝精靈時，同步處理引擎中的所有作業都會暫停。請確定您有在完成組態變更後，就馬上關閉安裝精靈。
+Select one of the tasks and click **Next** to continue.
 
-## 檢視目前的組態
-此選項可讓您快速檢視目前設定的選項。
+> [AZURE.IMPORTANT] While you have the installation wizard open, all operations in the sync engine are suspended. Make sure you close the installation wizard as soon as you have completed your configuration changes.
 
-![含有所有選項和其狀態之清單的頁面](./media/active-directory-aadconnectsync-installation-wizard/viewconfig.png)
+## <a name="view-current-configuration"></a>View current configuration
+This option gives you a quick view of your currently configured options.
 
-按 [上一步] 返回。如果您選取 [結束]，您會關閉安裝精靈。
+![Page with a list of all options and their state](./media/active-directory-aadconnectsync-installation-wizard/viewconfig.png)
 
-## 自訂同步處理選項
-此選項可用來變更同步處理組態。您會在自訂組態安裝路徑中看到選項子集。即使您一開始是使用快速安裝也會看到此選項。
+Click **Previous** to go back. If you select **Exit**, you close the installation wizard.
 
-- [新增其他目錄](active-directory-aadconnect-get-started-custom.md#connect-your-directories)。若要移除目錄，請參閱[刪除連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md#delete)。
-- [變更網域和 OU 篩選](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering)。
-- 移除群組篩選。
-- [變更選用功能](active-directory-aadconnect-get-started-custom.md#optional-features)。
+## <a name="customize-synchronization-options"></a>Customize synchronization options
+This option is used to make changes to the sync configuration. You see a subset of options from the custom configuration installation path. You see this option even if you used express installation initially.
 
-初始安裝中的其他選項既無法變更，也不能使用。這些選項包括：
+- [Add more directories](active-directory-aadconnect-get-started-custom.md#connect-your-directories). For removing a directory, see [Delete a Connector](active-directory-aadconnectsync-service-manager-ui-connectors.md#delete).
+- [Change Domain and OU filtering](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering).
+- Remove Group filtering.
+- [Change optional features](active-directory-aadconnect-get-started-custom.md#optional-features).
 
-- 變更用於 userPrincipalName 和 sourceAnchor 的屬性。
-- 變更不同樹系之物件的聯結方法。
-- 啟用群組式篩選。
+The other options from the initial installation cannot be changed and are not available. These options are:
 
-## 重新整理目錄結構描述
-如果您已變更其中一個內部部署 AD DS 樹系中的結構描述，則會使用這個選項。例如，您可能已安裝 Exchange，或升級至 Windows Server 2012 結構描述 (含裝置物件)。在此情況下，您必須指示 Azure AD Connect，讓其從 AD DS 再次讀取結構描述並更新其快取。此動作也會重新產生同步處理規則。舉例來說，如果您新增 Exchange 結構描述，組態中就會新增 Exchange 的同步處理規則。
+- Change the attribute to use for userPrincipalName and sourceAnchor.
+- Change the joining method for objects from different forest.
+- Enable group-based filtering.
 
-當您選取此選項時，便會列出組態中的所有目錄。您可以保留預設設定，並重新整理所有樹系或取消選取其中某些樹系。
+## <a name="refresh-directory-schema"></a>Refresh directory schema
+This option is used if you have changed the schema in one of your on-premises AD DS forests. For example, you might have installed Exchange or upgraded to a Windows Server 2012 schema with device objects. In this case, you need to instruct Azure AD Connect to read the schema again from AD DS and update its cache. This action also regenerates the Sync Rules. If you add the Exchange schema, as an example, the Sync Rules for Exchange are added to the configuration.
 
-![含有環境中所有目錄清單的頁面](./media/active-directory-aadconnectsync-installation-wizard/refreshschema.png)
+When you select this option, all the directories in your configuration are listed. You can keep the default setting and refresh all forests or unselect some of them.
 
-## 設定預備模式
-此選項可讓您啟用及停用伺服器上的預備模式。預備模式和其使用方式的詳細資訊可在[作業](active-directory-aadconnectsync-operations.md#staging-mode)中找到。
+![Page with a list of all directories in the environment](./media/active-directory-aadconnectsync-installation-wizard/refreshschema.png)
 
-此選項會顯示預備模式目前是已啟用還是已停用︰![也會顯示預備模式目前狀態的選項](./media/active-directory-aadconnectsync-installation-wizard/stagingmodecurrentstate.png)
+## <a name="configure-staging-mode"></a>Configure staging mode
+This option allows you to enable and disable staging mode on the server. More information about staging mode and how it is used can be found in [Operations](active-directory-aadconnectsync-operations.md#staging-mode).
 
-若要變更狀態，請選取此選項，並選取或取消選取核取方塊。 ![也會顯示預備模式目前狀態的選項](./media/active-directory-aadconnectsync-installation-wizard/stagingmodeenable.png)
+The option shows if staging is currently enabled or disabled:  
+![Option that is also showing the current state of staging mode](./media/active-directory-aadconnectsync-installation-wizard/stagingmodecurrentstate.png)
 
-## 變更使用者登入
-此選項可讓您從密碼同步處理變更為同盟，反之亦然。您無法變更為 [不設定]。
+To change the state, select this option and select or unselect the checkbox.  
+![Option that is also showing the current state of staging mode](./media/active-directory-aadconnectsync-installation-wizard/stagingmodeenable.png)
 
-如需此選項的詳細資訊，請參閱[使用者登入](active-directory-aadconnect-user-signin.md#changing-user-sign-in-method)。
+## <a name="change-user-sign-in"></a>Change user sign-in
+This option allows you to change from password sync to federation or the other way around. You cannot change to **do not configure**.
 
-## 後續步驟
+For more information on this option, see [user sign-in](active-directory-aadconnect-user-signin.md#changing-user-sign-in-method).
 
-- 如需 Azure AD Connect 同步處理所用的組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+## <a name="next-steps"></a>Next steps
 
-**概觀主題**
+- Learn more about the configuration model used by Azure AD Connect sync in [Understanding Declarative Provisioning](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+**Overview topics**
 
-<!----HONumber=AcomDC_0907_2016-->
+- [Azure AD Connect sync: Understand and customize synchronization](active-directory-aadconnectsync-whatis.md)
+- [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

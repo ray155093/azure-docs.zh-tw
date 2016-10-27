@@ -1,7 +1,7 @@
 
 <properties
-    pageTitle="變更 Azure RemoteApp 計費 | Microsoft Azure"
-    description="了解如何停止支付 Azure RemoteApp。"
+    pageTitle="Change the billing for Azure RemoteApp | Microsoft Azure"
+    description="Learn how to stop being billed for Azure RemoteApp."
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -18,19 +18,23 @@
 
 
 
-# 如何停止支付 Azure RemoteApp
+
+# <a name="how-to-stop-being-billed-for-azure-remoteapp"></a>How to stop being billed for Azure RemoteApp
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-只要您擁有 Azure RemoteApp 集合，即使未指派使用者，您都需支付 RemoteApp。若要停止此計費，請刪除您所有的集合。
+As long as you have Azure RemoteApp collections, even with no users assigned, you will be billed for RemoteApp. To stop this billing, delete all of your collections. 
 
-若要刪除您的集合：
+To delete your collection:
 
-1. 在 Azure 傳統入口網站中，開啟 RemoteApp 頁面。
-2. 按一下您想要刪除的集合，然後按一下頁面底部的 [刪除]。
-3. 針對您的訂用帳戶中的每個集合重複此步驟。
+1. In the Azure classic portal, open the RemoteApp page.
+2. Click the collection you want to delete, and then click **Delete** at the bottom of the page.
+3. Repeat this for each collection in your subscription. 
 
-可能需要幾分鐘才能刪除每個集合。
+It might take a few minutes to delete each collection.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

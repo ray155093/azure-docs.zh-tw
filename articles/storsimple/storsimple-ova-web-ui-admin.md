@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Virtual Array Web UI 管理 |Microsoft Azure"
-   description="描述如何透過 StorSimple Virtual Array Web UI 執行基本的裝置管理工作。"
+   pageTitle="StorSimple Virtual Array web UI administration | Microsoft Azure"
+   description="Describes how to perform basic device administration tasks through the StorSimple Virtual Array web UI."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,120 +15,125 @@
    ms.date="04/07/2016"
    ms.author="alkohli" />
 
-# 使用 Web UI 來管理 StorSimple Virtual Array
 
-![安裝程序流程](./media/storsimple-ova-web-ui-admin/manage4.png)
+# <a name="use-the-web-ui-to-administer-your-storsimple-virtual-array"></a>Use the Web UI to administer your StorSimple Virtual Array
 
-## 概觀
+![setup process flow](./media/storsimple-ova-web-ui-admin/manage4.png)
 
-本文中的教學課程適用於執行 2016 年 3 月公開上市 (GA) 版的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置)。本文將說明一些可以在 StorSimple Virtual Array 執行的複雜工作流程和管理工作。您可以使用 StorSimple Manager 服務 UI (又稱為入口網站 UI) 和裝置的本機 Web UI 來管理 StorSimple Virtual Array。本文著重於可使用 Web UI 執行的工作。
+## <a name="overview"></a>Overview
 
-本文包含下列教學課程：
+The tutorials in this article apply to the Microsoft Azure StorSimple Virtual Array (also known as the StorSimple on-premises virtual device) running March 2016 general availability (GA) release. This article describes some of the complex workflows and management tasks that can be performed on the StorSimple Virtual Array. You can manage the StorSimple Virtual Array using the StorSimple Manager service UI (referred to as the portal UI) and the local web UI for the device. This article focuses on the tasks that you can perform using the web UI.
 
-- 取得服務資料加密金鑰
-- 疑難排解 Web UI 安裝程式錯誤
-- 產生記錄檔封裝
-- 關閉或重新啟動您的裝置
+This article includes the following tutorials:
 
-## 取得服務資料加密金鑰
+- Get the service data encryption key
+- Troubleshoot web UI setup errors
+- Generate a log package
+- Shut down or restart your device
 
-當您向 StorSimple Manager 服務註冊您的第一個裝置時，會產生服務資料加密金鑰。這個金鑰需要與服務註冊金鑰搭配使用，以向 StorSimple Manager 服務註冊其他裝置。
+## <a name="get-the-service-data-encryption-key"></a>Get the service data encryption key
 
-如果您弄丟您的服務資料加密金鑰而需要擷取它，請在向您的服務註冊的裝置的本機 Web UI 中執行下列步驟。
+A service data encryption key is generated when you register your first device with the StorSimple Manager service. This key is then required with the service registration key to register additional devices with the StorSimple Manager service.
 
-#### 取得服務資料加密金鑰
+If you have misplaced your service data encryption key and need to retrieve it, perform the following steps in the local web UI of the device registered with your service.
 
-1. 連線到本機 Web UI。移至 [組態] > [雲端設定]。
+#### <a name="to-get-the-service-data-encryption-key"></a>To get the service data encryption key
+
+1. Connect to the local web UI. Go to **Configuration** > **Cloud Settings**.
   
 
-2. 按一下頁面底部的 [取得服務資料加密金鑰]。金鑰將會顯示。複製並儲存此金鑰。
-  	
-	![取得服務資料加密金鑰 1](./media/storsimple-ova-web-ui-admin/image27.png)
+2. At the bottom of the page, click **Get service data encryption key**. A key will appear. Copy and save this key.
+    
+    ![get service data encryption key 1](./media/storsimple-ova-web-ui-admin/image27.png)
    
 
 
-## 疑難排解 Web UI 安裝程式錯誤
+## <a name="troubleshoot-web-ui-setup-errors"></a>Troubleshoot web UI setup errors
 
-在某些情況下，當您透過本機 Web UI 設定裝置時，可能會遇到錯誤。若要診斷和移難排解這類錯誤，您可以執行診斷測試。
+In some instances when you configure the device through the local web UI, you might run into errors. To diagnose and troubleshoot such errors, you can run the diagnostics tests.
 
-#### 執行診斷測試
+#### <a name="to-run-the-diagnostic-tests"></a>To run the diagnostic tests
 
-1. 在本機 Web UI 中，移至 [疑難排解] > [診斷測試]。
+1. In the local web UI, go to **Troubleshooting** > **Diagnostic tests**.
 
-    ![執行診斷 1](./media/storsimple-ova-web-ui-admin/image29.png)
+    ![run diagnostics 1](./media/storsimple-ova-web-ui-admin/image29.png)
 
-2. 按一下頁面底部的 [執行診斷測試]。這樣會起始測試以診斷和您的網路、裝置、Web Proxy、時間或雲端設定相關的任何可能問題。您將收到裝置正在執行測試的通知。
+2. At the bottom of the page, click **Run Diagnostic Tests**. This will initiate tests to diagnose any possible issues with your network, device, web proxy, time, or cloud settings. You will be notified that the device is running tests.
 
-3. 測試完成後會顯示結果。下列範例顯示診斷測試的結果。請注意，此裝置上未設定 Web Proxy 設定，因此未執行 Web Proxy 測試。網路設定、DNS 伺服器和時間設定的所有其他測試均成功。
+3. After the tests have completed, the results will be displayed. The following example shows the results of diagnostic tests. Note that the web proxy settings were not configured on this device, and therefore, the web proxy test was not run. All the other tests for network settings, DNS server, and time settings were successful.
 
-    ![執行診斷 2](./media/storsimple-ova-web-ui-admin/image30.png)
+    ![run diagnostics 2](./media/storsimple-ova-web-ui-admin/image30.png)
 
-## 產生記錄檔封裝
+## <a name="generate-a-log-package"></a>Generate a log package
 
-記錄檔封裝包含有助於 Microsoft 支援小組疑難排解任何裝置問題的所有相關記錄檔。在此版本中，可透過本機 Web UI 產生記錄檔封裝。
+A log package is comprised of all the relevant logs that can assist Microsoft Support with troubleshooting any device issues. In this release, a log package can be generated via the local web UI.
 
-#### 產生記錄檔封裝
+#### <a name="to-generate-the-log-package"></a>To generate the log package
 
-1. 在本機 Web UI 中，移至 [疑難排解] > [系統記錄檔]。
+1. In the local web UI, go to **Troubleshooting** > **System logs**.
 
-    ![產生記錄檔封裝 1](./media/storsimple-ova-web-ui-admin/image31.png)
+    ![generate log package 1](./media/storsimple-ova-web-ui-admin/image31.png)
 
-2. 按一下頁面底部的 [建立記錄檔封裝]。將建立系統記錄檔的封裝。這需要幾分鐘的時間。
+2. At the bottom of the page, click **Create log package**. A package of the system logs will be created. This will take a couple of minutes.
 
-    ![產生記錄檔封裝 2](./media/storsimple-ova-web-ui-admin/image32.png)
+    ![generate log package 2](./media/storsimple-ova-web-ui-admin/image32.png)
 
-    系統會通知您已成功建立封裝，並會更新頁面以顯示封裝建立的日期與時間。
+    You will be notified after the package is successfully created, and the page will be updated to indicate the time and date when the package was created.
 
-    ![產生記錄檔封裝 3](./media/storsimple-ova-web-ui-admin/image33.png)
+    ![generate log package 3](./media/storsimple-ova-web-ui-admin/image33.png)
 
-3. 按一下 [下載記錄檔封裝]。壓縮的封裝將會下載到您的系統上。
+3. Click **Download log package**. A zipped package will be downloaded on your system.
 
-    ![產生記錄檔封裝 4](./media/storsimple-ova-web-ui-admin/image34.png)
+    ![generate log package 4](./media/storsimple-ova-web-ui-admin/image34.png)
 
-4. 您可以解壓縮下載的記錄檔封裝，並檢視系統記錄檔。
+4. You can unzip the downloaded log package and view the system log files.
 
-## 關閉並重新啟動您的裝置
+## <a name="shut-down-and-restart-your-device"></a>Shut down and restart your device
 
-您可以使用本機 Web UI 關閉或重新啟動您的虛擬裝置。我們建議您在重新啟動之前，讓主機上的磁碟區或共用離線，然後讓裝置離線。這樣可以讓資料損毀的可能性降至最低。
+You can shut down or restart your virtual device using the local web UI. We recommend that before you restart, take the volumes or shares offline on the host and then the device. This will minimize any possibility of data corruption. 
 
-#### 關閉虛擬裝置
+#### <a name="to-shut-down-your-virtual-device"></a>To shut down your virtual device
 
-1. 在本機 Web UI 中，移至 [維護] > [電源設定]。
+1. In the local web UI, go to **Maintenance** > **Power settings**.
 
-2. 按一下頁面底部的 [關閉]。
+2. At the bottom of the page, click **Shutdown**.
 
-    ![裝置關閉 1](./media/storsimple-ova-web-ui-admin/image36.png)
+    ![device shutdown 1](./media/storsimple-ova-web-ui-admin/image36.png)
 
-3. 會出現警告，指出關閉裝置將中斷已在進行的任何 IO，因而導致停機。按一下核取圖示 ![核取圖示](./media/storsimple-ova-web-ui-admin/image3.png)。
+3. A warning will appear stating that a shutdown of the device will interrupt any IO that were in progress, resulting in a downtime. Click the check icon ![check icon](./media/storsimple-ova-web-ui-admin/image3.png).
 
-    ![裝置關閉警告](./media/storsimple-ova-web-ui-admin/image37.png)
+    ![device shutdown warning](./media/storsimple-ova-web-ui-admin/image37.png)
 
-    系統會通知您已起始關機。
+    You will be notified that the shutdown has been initiated.
 
-    ![已開始關閉裝置](./media/storsimple-ova-web-ui-admin/image38.png)
+    ![device shutdown started](./media/storsimple-ova-web-ui-admin/image38.png)
 
-    裝置會立即關閉。如果您想要啟動您的裝置，您必須透過 Hyper-V 管理員執行。
+    The device will now shut down. If you want to start your device, you will need to do that through the Hyper-V Manager.
 
-#### 重新啟動虛擬裝置
+#### <a name="to-restart-your-virtual-device"></a>To restart your virtual device
 
-1. 在本機 Web UI 中，移至 [維護] > [電源設定]。
+1. In the local web UI, go to **Maintenance** > **Power settings**.
 
-2. 按一下頁面底部的 [重新啟動]。
+2. At the bottom of the page, click **Restart**.
 
-    ![裝置重新啟動](./media/storsimple-ova-web-ui-admin/image36.png)
+    ![device restart](./media/storsimple-ova-web-ui-admin/image36.png)
 
-3. 會出現警告，指出重新啟動裝置將中斷已在進行的任何 IO，因而導致停機。按一下核取圖示 ![核取圖示](./media/storsimple-ova-web-ui-admin/image3.png)。
+3. A warning will appear stating that restarting the device will interrupt any IOs that were in progress, resulting in a downtime. Click the check icon ![check icon](./media/storsimple-ova-web-ui-admin/image3.png).
 
-    ![重新啟動警告](./media/storsimple-ova-web-ui-admin/image37.png)
+    ![restart warning](./media/storsimple-ova-web-ui-admin/image37.png)
 
-    系統會通知您已起始重新啟動。
+    You will be notified that the restart has been initiated.
 
-    ![已起始重新啟動](./media/storsimple-ova-web-ui-admin/image39.png)
+    ![restart initiated](./media/storsimple-ova-web-ui-admin/image39.png)
 
-    重新啟動時，將會中斷 UI 連線。您可以定期重新整理 UI 以監視重新啟動的情況。或者，您可以透過 Hyper-V 管理員監視裝置重新啟動狀態。
+    While the restart is in progress, you will lose the connection to the UI. You can monitor the restart by refreshing the UI periodically. Alternatively, you can monitor the device restart status through the Hyper-V Manager.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-了解如何[使用 StorSimple Manager 服務管理裝置](storsimple-manager-service-administration.md)。
+Learn how to [use the StorSimple Manager service to manage your device](storsimple-manager-service-administration.md).
 
-<!---HONumber=AcomDC_0413_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

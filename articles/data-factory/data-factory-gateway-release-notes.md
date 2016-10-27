@@ -1,178 +1,183 @@
 <properties 
-	pageTitle="資料管理閘道的版本資訊 | Azure Data Factory" 
-	description="資料管理閘道 tory 版本資訊" 
-	services="data-factory" 
-	documentationCenter="" 
-	authors="spelluru" 
-	manager="jhubbard" 
-	editor="monicar"/>
+    pageTitle="Release notes for Data Management Gateway | Azure Data Factory" 
+    description="Data Management Gateway tory release notes" 
+    services="data-factory" 
+    documentationCenter="" 
+    authors="spelluru" 
+    manager="jhubbard" 
+    editor="monicar"/>
 
 <tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/26/2016" 
-	ms.author="spelluru"/>
-
-# 資料管理閘道的版本資訊
-現代資料整合的挑戰之一是順暢地在內部部署和雲端之間來回移動資料。Data Factory 藉由「資料管理閘道」讓這項整合變得順暢無比；「資料管理閘道」是一個您可以在內部部署環境安裝來啟用混合式資料移動功能的代理程式。
-
-如需有關「資料管理閘道」的詳細資訊及其使用方式，請參閱下列文章：
-
-- [資料管理閘道](data-factory-data-management-gateway.md)
-- [在內部部署和雲端之間使用 Azure Data Factory 移動資料](data-factory-move-data-between-onprem-and-cloud.md)
-
-## 目前版本 (2.2.6072.1)
-
-- 支援使用「閘道組態管理員」來設定閘道的 HTTP Proxy。如果有設定，就會透過 HTTP Proxy 來存取 Azure Blob、「Azure 資料表」、Azure Data Lake 及 DocumentDB。
-- 從 Azure Blob、Azure Data Lake Store、內部部署「檔案系統」及內部部署 HDFS 複製資料，或將資料複製到這些位置時，支援處理 TextFormat 的標頭。
-- 除了已支援的「區塊 Blob」之外，也支援從「附加 Blob」和「分頁 Blob」複製資料。
-- 導入新的閘道狀態「線上 (受限)」，此狀態代表除了對「複製精靈」的互動式操作支援之外，閘道的主要功能都可運作。
-- 使用註冊金鑰增強閘道註冊的健全度。
-
-## 較早的版本
-
-## 2\.1.6040.1
-
-- DB2 驅動程式現已包含在閘道安裝封裝中。您不需要另外安裝。
-- DB2 驅動程式現可支援適用於 i (AS/400) 的 z/OS 和 DB2 以及早已支援的平台 (Linux、Unix 和 Windows)。
-- 支援使用 DocumentDB 做為內部部署資料存放區的來源或目的地
-- 支援在冷/熱 Blob 儲存體以及早已支援的一般用途儲存體帳戶來回複製資料。
-- 可讓您透過閘道以遠端登入權限連線到內部部署 SQL Server。
-
-## 2\.0.6013.1
-
-- 您可以選取要在手動安裝期間供閘道器使用的語言/文化特性。
-- 當閘道未如預期般運作時，您可以選擇將過去 7 天的閘道記錄檔傳送給 Microsoft，以協助進行問題的疑難排解。如果閘道器未連接到雲端服務，您可以選擇儲存並封存閘道器記錄檔。
-- 閘道器組態管理員的使用者介面增強功能：
-	- 讓閘道器狀態在 [常用] 索引標籤上看起來更清楚。
-	- 重新組織並簡化控制項。
-- 您可以使用[無程式碼複製預覽工具](data-factory-copy-data-wizard-tutorial.md)從儲存體複製資料。如需此功能的一般詳細資料，請參閱[分段複製](data-factory-copy-activity-performance.md#staged-copy)。
-- 您可以使用「資料管理閘道」，將資料從內部部署 SQL Server 資料庫直接輸入到 Azure Machine Learning 中。
-- 效能改進
-	- 在無程式碼複製預覽工具中，改進對於 SQL Server 檢視結構描述或預覽的效能。
+    ms.service="data-factory" 
+    ms.workload="data-services" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/26/2016" 
+    ms.author="spelluru"/>
 
 
+# <a name="release-notes-for-data-management-gateway"></a>Release notes for Data Management Gateway
+One of the challenges for modern data integration is to seamlessly move data to and from on-premises to cloud. Data Factory makes this integration seamless with Data Management Gateway, which is an agent that you can install on-premises to enable hybrid data movement.
 
-## 1\.12.5953.1
-- 錯誤修正
+See the following articles for detailed information about Data Management Gateway and how to use it: 
 
-## 1\.11.5918.1
+- [Data Management Gateway](data-factory-data-management-gateway.md)
+- [Move data between on-premises and cloud using Azure Data Factory](data-factory-move-data-between-onprem-and-cloud.md) 
 
-- 閘道事件記錄檔的大小上限已經從 1 MB 增加到 40 MB。
-- 如果在閘道自動更新期間必須重新啟動，則會顯示警告對話方塊。您可以選擇立即重新啟動，或之後再重新啟動。
-- 如果自動更新失敗，閘道安裝程式最多會重試自動更新 3 次。
-- 效能改進
-	- 改善無程式碼複製案例中從內部部署伺服器載入大型資料表的效能。
-- 錯誤修正
+## <a name="current-version-(2.2.6072.1)"></a>Current version (2.2.6072.1)
 
-## 1\.10.5892.1
+- Supports setting HTTP proxy for the gateway using the Gateway Configuration Manager. If configured, Azure Blob, Azure Table, Azure Data Lake, and Document DB are accessed through HTTP proxy.
+- Supports header handling for TextFormat when copying data from/to Azure Blob, Azure Data Lake Store, on-premises File System, and on-premises HDFS.
+- Supports copying data from Append Blob and Page Blob along with the already supported Block Blob.
+- Introduces a new gateway status **Online (Limited)**, which indicates that the main functionality of the gateway works except the interactive operation support for Copy Wizard.
+- Enhances the robustness of gateway registration using registration key.
 
-- 效能改進
-- 錯誤修正
+## <a name="earlier-versions"></a>Earlier versions
 
-## 1\.9.5865.2
+## <a name="2.1.6040.1"></a>2.1.6040.1
 
-- 零接觸自動更新功能
-- 閘道狀態指示器的新系統匣圖示
-- 能夠從用戶端「立即更新」
-- 能夠設定更新排程時間
-- 用來開啟/關閉自動更新的 PowerShell 指令碼
-- JSON 格式支援
-- 效能改進
-- 錯誤修正
+- DB2 driver is included in the gateway installation package now. You do not need to install it separately. 
+- DB2 driver now supports z/OS and DB2 for i (AS/400) along with the platforms already supported (Linux, Unix, and Windows). 
+- Supports using DocumentDB as a source or destination for on-premises data stores
+- Supports copying data from/to cold/hot blob storage along with the already supported general-purpose storage account. 
+- Allows you to connect to on-premises SQL Server via gateway with remote login privileges.  
 
-## 1\.8.5822.1
+## <a name="2.0.6013.1"></a>2.0.6013.1
 
-- 改善疑難排解體驗
-- 效能改進
-- 錯誤修正
-
-### 1\.7.5795.1
-
-- 效能改進
-- 錯誤修正
-
-### 1\.7.5764.1
-
-- 效能改進
-- 錯誤修正
-
-### 1\.6.5735.1
-
-- 支援內部部署 HDFS 來源/接收器
-- 效能改進
-- 錯誤修正
-
-### 1\.6.5696.1
-
-- 效能改進
-- 錯誤修正
-
-### 1\.6.5676.1
-
-- 在組態管理員上支援診斷工具
-- 支援 Azure Data Factory 表格式資料來源的資料表資料行
-- 針對 Azure Data Factory 支援 SQL DW
-- 針對 Azure Data Factory 支援 BlobSource 和 FileSource 的 Reclusive
-- 針對 Azure Data Factory 支援 BlobSink 和 FileSink 中與「二進位複製」相關的 CopyBehavior - MergeFiles、PreserveHierarchy 及 FlattenHierarchy
-- 針對 Azure Data Factory 支援複製活動報告進度
-- 針對 Azure Data Factory 支援資料來源連線驗證
-- 錯誤修正
+- You can select the language/culture to be used by a gateway during manual installation.
+- When gateway does not work as expected, you can choose to send gateway logs of last seven days to Microsoft to facilitate troubleshooting of the issue. If gateway is not connected to the cloud service, you can choose to save and archive gateway logs.  
+- User interface improvements for gateway configuration manager:
+    - Make gateway status more visible on the Home tab.
+    - Reorganized and simplified controls.
+- You can copy data from a storage using the [code-free copy preview tool](data-factory-copy-data-wizard-tutorial.md). See [Staged Copy](data-factory-copy-activity-performance.md#staged-copy) for details about this feature in general. 
+- You can use Data Management Gateway to ingress data directly from an on-premises SQL Server database into Azure Machine Learning.
+- Performance improvements
+    - Improve performance on viewing Schema/Preview against SQL Server in code-free copy preview tool.
 
 
-### 1\.6.5672.1
 
-- 針對 Azure Data Factory 支援 ODBC 資料來源的資料表名稱
-- 效能改進
-- 錯誤修正
+## <a name="1.12.5953.1"></a>1.12.5953.1
+- Bug fixes
 
-### 1\.6.5658.1
+## <a name="1.11.5918.1"></a>1.11.5918.1
 
-- 針對 Azure Data Factory 支援檔案接收
-- 針對 Azure Data Factory 在二進位複製中支援保留階層
-- 針對 Azure Data Factory 支援複製活動等冪性
-- 錯誤修正
+- Maximum size of the gateway event log has been increased from 1 MB to 40 MB.
+- A warning dialog is displayed in case a restart is needed during gateway auto-update. You can choose to restart right then or later. 
+- In case auto-update fails, gateway installer retries auto-updating three times at maximum.
+- Performance improvements
+    - Improve performance for loading large tables from on-premises server in code-free copy scenario.
+- Bug fixes
 
-### 1\.6.5640.1
+## <a name="1.10.5892.1"></a>1.10.5892.1
 
-- 針對 Azure Data Factory 另外支援 3 種資料來源 (ODBC、OData、HDFS)
-- 針對 Azure Data Factory 在 csv 剖析器中支援引號字元
-- 壓縮支援 (BZip2)
-- 錯誤修正
+- Performance improvements
+- Bug fixes
 
-### 1\.5.5612.1
+## <a name="1.9.5865.2"></a>1.9.5865.2
 
-- 針對 Azure Data Factory 支援 5 種關聯式資料庫 (MySQL、PostgreSQL、DB2、Teradata 和 Sybase)
-- 壓縮支援 (Gzip 和 Deflate)
-- 效能改進
-- 錯誤修正
+- Zero touch auto update capability
+- New tray icon with gateway status indicators
+- Ability to “Update now” from the client
+- Ability to set update schedule time
+- PowerShell script for toggling auto-update on/off
+- Support for JSON format  
+- Performance improvements
+- Bug fixes
+
+## <a name="1.8.5822.1"></a>1.8.5822.1
+
+- Improve troubleshooting experience
+- Performance improvements
+- Bug fixes
+
+### <a name="1.7.5795.1"></a>1.7.5795.1
+
+- Performance improvements
+- Bug fixes
+
+### <a name="1.7.5764.1"></a>1.7.5764.1
+
+- Performance improvements
+- Bug fixes
+
+### <a name="1.6.5735.1"></a>1.6.5735.1
+
+- Support on-premises HDFS Source/Sink
+- Performance improvements
+- Bug fixes
+
+### <a name="1.6.5696.1"></a>1.6.5696.1
+
+- Performance improvements
+- Bug fixes
+
+### <a name="1.6.5676.1"></a>1.6.5676.1
+
+- Support diagnostic tools on Configuration Manager
+- Support table columns for tabular data sources for Azure Data Factory
+- Support SQL DW for Azure Data Factory
+- Support Reclusive in BlobSource and FileSource for Azure Data Factory
+- Support CopyBehavior – MergeFiles, PreserveHierarchy, and FlattenHierarchy in BlobSink and FileSink with Binary Copy for Azure Data Factory
+- Support Copy Activity reporting progress for Azure Data Factory
+- Support Data Source Connectivity Validation for Azure Data Factory
+- Bug fixes
 
 
-### 1\.4.5549.1
+### <a name="1.6.5672.1"></a>1.6.5672.1
 
-- 針對 Azure Data Factory 新增 Oracle 資料來源支援
-- 效能改進
-- 錯誤修正
+- Support table name for ODBC data source for Azure Data Factory
+- Performance improvements
+- Bug fixes
 
-### 1\.4.5492.1
+### <a name="1.6.5658.1"></a>1.6.5658.1
 
-- 支援 Microsoft Azure Data Factory 和 Office 365 Power BI 服務的統一二進位檔
-- 調整組態 UI 和註冊程序
-- Azure Data Factory - 針對 SQL Server 資料來源的 Azure 輸入和輸出支援
+- Support File Sink for Azure Data Factory
+- Support preserving hierarchy in binary copy for Azure Data Factory
+- Support Copy Activity Idempotency for Azure Data Factory
+- Bug fixes
 
-### 1\.2.5303.1
+### <a name="1.6.5640.1"></a>1.6.5640.1
 
-- 	修正逾時問題以支援更多耗時的資料來源連線。
- 	
-### 1\.1.5526.8
+- Support 3 more data sources for Azure Data Factory (ODBC, OData, HDFS)
+- Support quote character in csv parser for Azure Data Factory
+- Compression support (BZip2)
+- Bug fixes
 
-- 在設定期間，必要條件是需要 .NET Framework 4.5.1。
+### <a name="1.5.5612.1"></a>1.5.5612.1
 
-### 1\.0.5144.2
+- Support five relational databases for Azure Data Factory (MySQL, PostgreSQL, DB2, Teradata, and Sybase)
+- Compression support (Gzip and Deflate)
+- Performance improvements
+- Bug fixes
 
-- 沒有任何會影響 Azure Data Factory 案例的變更。
 
-<!---HONumber=AcomDC_0831_2016-->
+### <a name="1.4.5549.1"></a>1.4.5549.1
+
+- Add Oracle data source support for Azure Data Factory
+- Performance improvements
+- Bug fixes
+
+### <a name="1.4.5492.1"></a>1.4.5492.1
+
+- Unified binary that supports both Microsoft Azure Data Factory and Office 365 Power BI services
+- Refine the Configuration UI and registration process
+- Azure Data Factory – Azure Ingress and Egress support for SQL Server data source
+
+### <a name="1.2.5303.1"></a>1.2.5303.1
+
+-   Fix timeout issue to support more time-consuming data source connections. 
+    
+### <a name="1.1.5526.8"></a>1.1.5526.8
+
+- Requires .NET Framework 4.5.1 as a prerequisite during setup.
+
+### <a name="1.0.5144.2"></a>1.0.5144.2
+
+- No changes that affect Azure Data Factory scenarios. 
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

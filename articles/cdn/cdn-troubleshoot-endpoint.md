@@ -1,100 +1,105 @@
 <properties
-	pageTitle="疑難排解傳回 404 狀態的 Azure CDN 端點 | Microsoft Azure"
-	description="針對 Azure CDN 端點的 404 回應碼進行疑難排解。"
-	services="cdn"
-	documentationCenter=""
-	authors="camsoper"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Troubleshooting Azure CDN endpoints returning 404 status | Microsoft Azure"
+    description="Troubleshoot 404 response codes with Azure CDN endpoints."
+    services="cdn"
+    documentationCenter=""
+    authors="camsoper"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="cdn"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/28/2016"
-	ms.author="casoper"/>
+    ms.service="cdn"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/28/2016"
+    ms.author="casoper"/>
     
-# 針對傳回 404 狀態的 CDN 端點進行疑難排解
 
-這篇文章可協助您針對 [CDN 端點](cdn-create-new-endpoint.md)傳回 404 錯誤的問題進行疑難排解。
+# <a name="troubleshooting-cdn-endpoints-returning-404-statuses"></a>Troubleshooting CDN endpoints returning 404 statuses
 
-若您對本文中的任何步驟有需要進一步協助的地方，請連絡 [MSDN Azure 和堆疊溢位論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
+This article helps you troubleshoot issues with [CDN endpoints](cdn-create-new-endpoint.md) returning 404 errors.
 
-## 徵狀
+If you need more help at any point in this article, you can contact the Azure experts on [the MSDN Azure and the Stack Overflow forums](https://azure.microsoft.com/support/forums/). Alternatively, you can also file an Azure support incident. Go to the [Azure Support site](https://azure.microsoft.com/support/options/) and click on **Get Support**.
 
-您已建立 CDN 設定檔和端點，但您的內容似乎無法在 CDN 上使用。嘗試透過 CDN URL 存取內容的使用者收到 HTTP 404 狀態碼。
+## <a name="symptom"></a>Symptom
 
-## 原因
+You've created a CDN profile and an endpoint, but your content doesn't seem to be available on the CDN.  Users who attempt to access your content via the CDN URL receive HTTP 404 status codes. 
 
-有幾個可能的原因，包括︰
+## <a name="cause"></a>Cause
 
-- CDN 看不到檔案的來源
-- 端點設定錯誤，導致 CDN 找錯位置
-- 主機正在拒絕來自 CDN 的主機標頭
-- 端點沒有足夠的時間散佈到整個 CDN
+There are several possible causes, including:
 
-## 疑難排解步驟
+- The file's origin isn't visible to the CDN
+- The endpoint is misconfigured, causing the CDN to look in the wrong place
+- The host is rejecting the host header from the CDN
+- The endpoint hasn't had time to propagate throughout the CDN
 
-> [AZURE.IMPORTANT] 建立 CDN 端點之後，無法立即使用，因為註冊需要時間透過 CDN 進行散佈。若為<b>來自 Akamai 的 Azure CDN</b> 設定檔，通常會在一分鐘之內完成傳播。若為<b>來自 Verizon 的 Azure CDN</b> 設定檔，則通常會在 90 分鐘之內完成傳播，但在某些情況下可能會更久。如果您完成這份文件中的步驟，而仍然收到 404 回應；請考慮在開啟支援票證之前，等候數小時後再次進行檢查。
+## <a name="troubleshooting-steps"></a>Troubleshooting steps
 
-### 請檢查來源檔案
+> [AZURE.IMPORTANT] After creating a CDN endpoint, it will not immediately be available for use, as it takes time for the registration to propagate through the CDN.  For <b>Azure CDN from Akamai</b> profiles, propagation usually completes within one minute.  For <b>Azure CDN from Verizon</b> profiles, propagation will usually complete within 90 minutes, but in some cases can take longer.  If you complete the steps in this document and you're still getting 404 responses, consider waiting a few hours to check again before opening a support ticket.
 
-首先，我們應確認要快取的檔案在來源上可使用，且可供公開存取。要做到這一點，最快的做法是在 In-Private 或 Incognito 工作階段中開啟瀏覽器，並直接瀏覽至檔案。只需輸入 URL，或將此 URL 貼入網址方塊，並查看是否會產生您所預期的檔案。此範例中，我將使用在 Azure 儲存體帳戶中的檔案，可在 `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt` 中存取。如您所見，它已成功通過測試。
+### <a name="check-the-origin-file"></a>Check the origin file
 
-![成功！](./media/cdn-troubleshoot-endpoint/cdn-origin-file.png)
+First, we should verify the that the file we want cached is available on our origin and is publicly accessible.  The quickest way to do that is to open a browser in an In-Private or Incognito session and browse directly to the file.  Just type or paste the URL into the address box and see if that results in the file you expect.  For this example, I'm going to use a file I have in an Azure Storage account, accessible at `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`.  As you can see, it successfully passes the test.
 
-> [AZURE.WARNING] 雖然這是驗證檔案已公開可用最快且最簡單的方式；在您組織中的某些網路設定會給您一種假象，認為這個檔案是公開可用；但事實上，只有您網路內的使用者才看得見 (即便其已裝載在 Azure 中)。如果您有外部瀏覽器，便可進行測試，例如行動裝置並未連線到您組織的網路，或是在 Azure 的虛擬機器上驗證，這會是最佳的作法。
+![Success!](./media/cdn-troubleshoot-endpoint/cdn-origin-file.png)
 
-### 請檢查來源設定
+> [AZURE.WARNING] While this is the quickest and easiest way to verify your file is publicly available, some network configurations in your organization could give you the illusion that this file is publicly available when it is, in fact, only visible to users of your network (even if it's hosted in Azure).  If you have an external browser from which you can test, such as a mobile device that is not connected to your organization's network, or a virtual machine in Azure, that would be best.
 
-現在我們已確認檔案在網際網路上已公開可用，接著應該驗證來源設定。在 [Azure 入口網站](https://portal.azure.com)，瀏覽至您的 CDN 設定檔，並按一下您要進行疑難排解的端點。在產生的 [端點] 刀鋒視窗中，按一下來源。
+### <a name="check-the-origin-settings"></a>Check the origin settings
 
-![來源反白的端點刀鋒視窗](./media/cdn-troubleshoot-endpoint/cdn-endpoint.png)
+Now that we've verified the file is publicly available on the internet, we should verify our origin settings.  In the [Azure Portal](https://portal.azure.com), browse to your CDN profile and click the endpoint you're troubleshooting.  In the resulting **Endpoint** blade, click the origin.  
 
-[來源] 刀鋒視窗隨即出現。
+![Endpoint blade with origin highlighted](./media/cdn-troubleshoot-endpoint/cdn-endpoint.png)
 
-![原始刀鋒視窗](./media/cdn-troubleshoot-endpoint/cdn-origin-settings.png)
+The **Origin** blade appears. 
 
-#### 來源類型和主機名稱
+![Origin blade](./media/cdn-troubleshoot-endpoint/cdn-origin-settings.png)
 
-確認**來源類型**正確無誤，並確認 **來源主機名稱**。在我的範例中，`https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`，URL 的主機名稱部分是 `cdndocdemo.blob.core.windows.net`。您可以在螢幕擷取畫面中看到，這部分是正確的。對於 Azure 儲存體、Web 應用程式，及雲端服務的來源，[來源主機名稱] 欄位為下拉式清單，所以我們不需要擔心拼寫正確的問題。不過，如果您使用的是自訂來源，則您的主機名稱的拼字正確便「十分重要」！
+#### <a name="origin-type-and-hostname"></a>Origin type and hostname
 
-#### HTTP 和 HTTPS 連接埠
+Verify the **Origin type** is correct, and verify the **Origin hostname**.  In my example, `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`, the hostname portion of the URL is `cdndocdemo.blob.core.windows.net`.  As you can see in the screenshot, this is correct.  For Azure Storage, Web App, and Cloud Service origins, the **Origin hostname** field is a dropdown, so we don't need to worry about spelling it correctly.  However, if you're using a custom origin, it is *absolutely critical* your hostname is spelled correctly!
 
-其他需要在此檢查的是 **HTTP** 和 **HTTPS 連接埠**。在大部分情況下，80 和 443 皆正確，而且您不需要進行任何變更。不過，如果原始伺服器是透過不同連接埠連接，那麼就必須在這裡表示。如果您不確定，不妨看一下原始檔案的 URL。HTTP 和 HTTPS 規格指定連接埠 80 和 443 做為預設值。在我的 URL 中，`https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`，未指定連接埠，因此會假設預設值為 443，而且我的設定值正確無誤。
+#### <a name="http-and-https-ports"></a>HTTP and HTTPS ports
 
-不過，假如您在稍早測試的原始檔案 URL 為 `http://www.contoso.com:8080/file.txt`。請注意主機名稱區段結尾的 `:8080`。這會告知瀏覽器使用連接埠 `8080` 來連線到於 `www.contoso.com` 的 Web 伺服器，因此您必須在 [HTTP 連接埠] 欄位輸入 8080。請務必注意，這些連接埠設定只會影響端點用來從來源擷取資訊的連接埠。
+The other thing to check here is your **HTTP** and **HTTPS ports**.  In most cases, 80 and 443 are correct, and you will require no changes.  However, if the origin server is listening on a different port, that will need to be represented here.  If you're not sure, just look at the URL for your origin file.  The HTTP and HTTPS specifications specify ports 80 and 443 as the defaults. In my URL, `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`, a port is not specified, so the default of 443 is assumed and my settings are correct.  
 
-> [AZURE.NOTE] **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 允許的原始連接埠](https://msdn.microsoft.com/library/mt757337.aspx)。
+However, say the URL for your origin file that you tested earlier is `http://www.contoso.com:8080/file.txt`.  Note the `:8080` at the end of the hostname segment.  That tells the browser to use port `8080` to connect to the web server at `www.contoso.com`, so you'll need to enter 8080 in the **HTTP port** field.  It's important to note that these port settings only affect what port the endpoint uses to retrieve information from the origin.
+
+> [AZURE.NOTE] **Azure CDN from Akamai** endpoints do not allow the full TCP port range for origins.  For a list of origin ports that are not allowed, see [Azure CDN from Akamai Allowed Origin Ports](https://msdn.microsoft.com/library/mt757337.aspx).  
   
-### 請檢查端點設定
+### <a name="check-the-endpoint-settings"></a>Check the endpoint settings
 
-回到 [端點] 刀鋒視窗中，按一下 [設定] 按鈕。
+Back on the **Endpoint** blade, click the **Configure** button.
 
-![以反白顯示設定按鈕的端點刀鋒視窗](./media/cdn-troubleshoot-endpoint/cdn-endpoint-configure-button.png)
+![Endpoint blade with configure button highlighted](./media/cdn-troubleshoot-endpoint/cdn-endpoint-configure-button.png)
 
-端點的 [設定] 刀鋒視窗隨即出現。
+The endpoint's **Configure** blade appears.
 
-![設定刀鋒視窗](./media/cdn-troubleshoot-endpoint/cdn-configure.png)
+![Configure blade](./media/cdn-troubleshoot-endpoint/cdn-configure.png)
 
-#### 通訊協定
+#### <a name="protocols"></a>Protocols
 
-針對**通訊協定**，請確認已選取用戶端所使用的通訊協定。用戶端使用的通訊協定和用來存取來源的協定相同，因此正確設定來源連接埠 (如上一節所示) 相當重要。不論來源連接埠為何，只會透過預設的 HTTP 和 HTTPS 連接埠 (80 和 443) 連接端點。
+For **Protocols**, verify that the protocol being used by the clients is selected.  The same protocol used by the client will be the one used to access the origin, so it's important to have the origin ports configured correctly in the previous section.  The endpoint only listens on the default HTTP and HTTPS ports (80 and 443), regardless of the origin ports.
 
-讓我們回到 `http://www.contoso.com:8080/file.txt` 的假設範例。之前 Contoso 指定 `8080` 做為其 HTTP 連接埠，但讓我們也假設其指定 `44300` 做為 HTTPS 連接埠。如果他們建立名為 `contoso` 的端點，其 CDN 端點的主機名稱會是 `contoso.azureedge.net`。`http://contoso.azureedge.net/file.txt` 的要求為 HTTP 要求，因此端點會使用連接埠 8080 上的 HTTP 從來源擷取該要求。對 HTTPS 的安全要求 `https://contoso.azureedge.net/file.txt`，會導致當從來源擷取檔案時，端點會使用在連接埠 44300 上的 HTTPS。
+Let's return to our hypothetical example with `http://www.contoso.com:8080/file.txt`.  As you'll remember, Contoso specified `8080` as their HTTP port, but let's also assume they specified `44300` as their HTTPS port.  If they created an endpoint named `contoso`, their CDN endpoint hostname would be `contoso.azureedge.net`.  A request for `http://contoso.azureedge.net/file.txt` is an HTTP request, so the endpoint would use HTTP on port 8080 to retrieve it from the origin.  A secure request over HTTPS, `https://contoso.azureedge.net/file.txt`, would cause the endpoint to use HTTPS on port 44300 when retriving the file from the origin.
 
-#### 原始主機標頭
+#### <a name="origin-host-header"></a>Origin host header
 
-**原始主機標頭**為隨著每個要求傳送至來源的主機標頭值。在大部分情況下，這應該和我們稍早驗證的是相同的**原始主機名稱**。此欄位中不正確的值通常不會造成 404 狀態；但根據來源預期的結果，可能會導致其他 4xx 狀態。
+The **Origin host header** is the host header value sent to the origin with each request.  In most cases, this should be the same as the **Origin hostname** we verified earlier.  An incorrect value in this field won't generally cause 404 statuses, but is likely to cause other 4xx statuses, depending on what the origin expects.
 
-#### 原始路徑
+#### <a name="origin-path"></a>Origin path
 
-最後，我們應該確認**原始路徑**。依預設這會是空白。如果您想要縮小在 CDN 上使用原始裝載資源的範圍，應該只使用此欄位。
+Lastly, we should verify our **Origin path**.  By default this is blank.  You should only use this field if you want to narrow the scope of the origin-hosted resources you want to make available on the CDN.  
 
-例如，在我的端點中，我想要能夠使用儲存體帳戶上的所有資源，因此我會將**來源路徑**保留空白。這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，結果會讓我的端點連線至要求 `/publicblob/lorem.txt` 的 `cdndocdemo.core.windows.net`。同樣地，對於 `https://cdndocdemo.azureedge.net/donotcache/status.png` 的要求會導致端點從原始要求 `/donotcache/status.png`。
+For example, in my endpoint, I wanted all resources on my storage account to be available, so I left **Origin path** blank.  This means that a request to `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` results in a connection from my endpoint to `cdndocdemo.core.windows.net` that requests `/publicblob/lorem.txt`.  Likewise, a request for `https://cdndocdemo.azureedge.net/donotcache/status.png` results in the endpoint requesting `/donotcache/status.png` from the origin.
 
-但如果我不想在我的來源上的每個路徑使用 CDN 呢？ 假設我只想要公開 `publicblob` 路徑。如果我在 [原始路徑] 欄位中輸入 */publicblob*，將導致端點在對來源做每個要求之前，都要插入 */publicblob*。這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，現在實際上會取 URL 的 `/publicblob/lorem.txt` 要求部分，並將 `/publicblob` 附加至開頭。這會造成從來源對 `/publicblob/publicblob/lorem.txt` 進行要求。如果該路徑未解析為實際檔案，來源會傳回 404 狀態。實際上，在此範例中擷取 lorem.txt 的正確 URL 會是 `https://cdndocdemo.azureedge.net/lorem.txt`。請注意，我們完全不會納入 */publicblob * 路徑，因為 URL 要求的部份是 `/lorem.txt`，且端點新增 `/publicblob` 會造成 `/publicblob/lorem.txt` 將要求傳遞至來源。
+But what if I don't want to use the CDN for every path on my origin?  Say I only wanted to expose the `publicblob` path.  If I enter */publicblob* in my **Origin path** field, that will cause the endpoint to insert */publicblob* before every request being made to the origin.  This means that the request for `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` will now actually take the request portion of the URL, `/publicblob/lorem.txt`, and append `/publicblob` to the beginning. This results in a request for `/publicblob/publicblob/lorem.txt` from the origin.  If that path doesn't resolve to an actual file, the origin will return a 404 status.  The correct URL to retrieve lorem.txt in this example would actually be `https://cdndocdemo.azureedge.net/lorem.txt`.  Note that we don't include the */publicblob* path at all, because the request portion of the URL is `/lorem.txt` and the endpoint adds `/publicblob`, resulting in `/publicblob/lorem.txt` being the request passed to the origin.
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

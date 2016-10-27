@@ -1,58 +1,61 @@
-## 設定資源管理員範本的 PowerShell
+## <a name="setting-up-powershell-for-resource-manager-templates"></a>Setting up PowerShell for Resource Manager templates
 
-您必須擁有正確的 Windows PowerShell 和 Azure PowerShell 版本，才能搭配使用 Azure PowerShell 與資源管理員。
+Before you can use Azure PowerShell with Resource Manager, you will need to have the right Windows PowerShell and Azure PowerShell versions.
 
-### 確認 PowerShell 版本
+### <a name="verify-powershell-versions"></a>Verify PowerShell versions
 
-確認您有 Windows PowerShell 3.0 或 4.0 版。若要尋找 Windows PowerShell 版本，請在 Windows PowerShell 命令提示字元中輸入這個命令。
+Verify you have Windows PowerShell version 3.0 or 4.0. To find the version of Windows PowerShell, type this command at a Windows PowerShell command prompt.
 
-	$PSVersionTable
+    $PSVersionTable
 
-您會收到下列類型的資訊：
+You will receive the following type of information:
 
-	Name                           Value
-	----                           -----
-	PSVersion                      3.0
-	WSManStackVersion              3.0
-	SerializationVersion           1.1.0.1
-	CLRVersion                     4.0.30319.18444
-	BuildVersion                   6.2.9200.16481
-	PSCompatibleVersions           {1.0, 2.0, 3.0}
-	PSRemotingProtocolVersion      2.2
+    Name                           Value
+    ----                           -----
+    PSVersion                      3.0
+    WSManStackVersion              3.0
+    SerializationVersion           1.1.0.1
+    CLRVersion                     4.0.30319.18444
+    BuildVersion                   6.2.9200.16481
+    PSCompatibleVersions           {1.0, 2.0, 3.0}
+    PSRemotingProtocolVersion      2.2
 
 
-確認 **PSVersion** 的值是 3.0 或 4.0。如果為否，請參閱 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)。
+Verify that the value of **PSVersion** is 3.0 or 4.0. If not, see [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) or [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855).
 
-### 設定 Azure 帳戶和訂用帳戶
+### <a name="set-your-azure-account-and-subscription"></a>Set your Azure account and subscription
 
-如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或申請[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+If you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).
 
-使用這個命令，開啟 Azure PowerShell 命令提示字元，並登入 Azure。
+Open an Azure PowerShell command prompt and log on to Azure with this command.
 
-	Login-AzureRmAccount
+    Login-AzureRmAccount
 
-如果您有多個 Azure 訂用帳戶，則可以使用這個命令列出 Azure 訂用帳戶。
+If you have multiple Azure subscriptions, you can list your Azure subscriptions with this command.
 
-	Get-AzureRmSubscription
+    Get-AzureRmSubscription
 
-您會收到下列類型的資訊：
+You will receive the following type of information:
 
-	SubscriptionId            : fd22919d-eaca-4f2b-841a-e4ac6770g92e
-	SubscriptionName          : Visual Studio Ultimate with MSDN
-	Environment               : AzureCloud
-	SupportedModes            : AzureServiceManagement,AzureResourceManager
-	DefaultAccount            : johndoe@contoso.com
-	Accounts                  : {johndoe@contoso.com}
-	IsDefault                 : True
-	IsCurrent                 : True
-	CurrentStorageAccountName :
-	TenantId                  : 32fa88b4-86f1-419f-93ab-2d7ce016dba7
+    SubscriptionId            : fd22919d-eaca-4f2b-841a-e4ac6770g92e
+    SubscriptionName          : Visual Studio Ultimate with MSDN
+    Environment               : AzureCloud
+    SupportedModes            : AzureServiceManagement,AzureResourceManager
+    DefaultAccount            : johndoe@contoso.com
+    Accounts                  : {johndoe@contoso.com}
+    IsDefault                 : True
+    IsCurrent                 : True
+    CurrentStorageAccountName :
+    TenantId                  : 32fa88b4-86f1-419f-93ab-2d7ce016dba7
 
-您可以在 Azure PowerShell 命令提示字元下執行這些命令，設定目前 Azure 訂用帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+You can set the current Azure subscription by running these commands at the Azure PowerShell command prompt. Replace everything within the quotes, including the < and > characters, with the correct name.
 
-	$subscr="<SubscriptionName from the display of Get-AzureRmSubscription>"
-	Select-AzureRmSubscription -SubscriptionName $subscr -Current
+    $subscr="<SubscriptionName from the display of Get-AzureRmSubscription>"
+    Select-AzureRmSubscription -SubscriptionName $subscr -Current
 
-如需 Azure 訂用帳戶和帳戶的詳細資訊，請參閱[如何：連線至訂用帳戶](powershell-install-configure.md#Connect)。
+For more information about Azure subscriptions and accounts, see [How to: Connect to your subscription](powershell-install-configure.md#Connect).
 
-<!---HONumber=AcomDC_0128_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

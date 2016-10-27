@@ -1,56 +1,64 @@
 <properties
-	pageTitle="Azure SQL 資料倉儲服務的所有主題 | Microsoft Azure"
-	description="http://azure.microsoft.com/documentation/articles/ 上名為「SQL 資料倉儲」的 Azure 服務的所有主題表格 (標題與說明)。"
-	services="sql-data-warehouse"
-	documentationCenter=""
-	authors="barbkess"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Azure SQL 資料倉儲服務的所有主題 | Microsoft Azure"
+    description="http://azure.microsoft.com/documentation/articles/ 上名為「SQL 資料倉儲」的 Azure 服務的所有主題表格 (標題與說明)。"
+    services="sql-data-warehouse"
+    documentationCenter=""
+    authors="barbkess"
+    manager="jhubbard"
+    editor="MightyPen"/>
 
 <tags
-	ms.service="sql-data-warehouse"
-	ms.workload="sql-data-warehouse"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/21/2016"
-	ms.author="barbkess"/>
-
-
-# Azure SQL 資料倉儲服務的所有主題
-
-本主題會列出每一個直接適用於 Azure **SQL 資料倉儲**服務的主題。您可以使用 **Ctrl+F**，利用關鍵字搜尋本網頁，以尋找目前感興趣的主題。
+    ms.service="sql-data-warehouse"
+    ms.workload="sql-data-warehouse"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/05/2016"
+    ms.author="barbkess"/>
 
 
 
-## 更新的文章
+# <a name="all-topics-for-azure-sql-data-warehouse-service"></a>Azure SQL 資料倉儲服務的所有主題
 
-本節列出具有重大更新內容的最近更新文章。針對每篇更新的文章，會顯示一段新增的 Markdown 文字概略程式碼片段。文章的更新日期範圍是在 **2016-07-26** 到 **2016-08-21**。
-
-| &nbsp; | 文章 | 更新的文字、程式碼片段 |
-| --: | :-- | :-- |
-| 1 | [SQL 資料倉儲中的並行存取和工作負載管理](sql-data-warehouse-develop-concurrency.md) | **接受並行存取限制的查詢** - 大多數查詢都受到資源類別控管。這些查詢必須同時符合並行查詢和並行存取插槽臨界值。一般使用者無法選擇從並行存取插槽模型中排除查詢。重申一下，下列陳述式確實「接受」資源類別：/ INSERT-SELECT / UPDATE / DELETE / SELECT (查詢使用者資料表時) / ALTER INDEX REBUILD / ALTER INDEX REORGANIZE / ALTER TABLE REBUILD / CREATE INDEX / CREATE CLUSTERED COLUMNSTORE INDEX / CREATE TABLE AS SELECT (CTAS) / 資料載入 / 由「資料移動服務」(DMS) 執行的資料移動作業 **並行存取限制的查詢例外** |
-| 2 | [移轉至進階儲存體詳細資料](sql-data-warehouse-migrate-to-premium-storage.md) | 除了變更為進階儲存體，我們也會增加資料倉儲基礎架構中的資料庫 blob 檔案數目。如果您遇到任何效能問題，建議您使用下列指令碼重建叢集資料行存放區索引。這會強制將某些現有的資料移至其他 blob。如果您不採取任何動作，隨著您將更多的資料載入資料倉儲資料表中，資料會在一段時間後自然重新分配。**必要條件：**1.「資料倉儲」應以 1,000 個 DWU 或更多數量來執行 (請參閱調整計算能力) 2.執行指令碼的使用者應具有 mediumrc 角色或更高權限 1.若要將使用者新增到此角色中，請執行下列命令：1. ````EXEC sp_addrolemember 'xlargerc', 'MyUser'```` ````sql /------------------------------------------------------------------------------ /- 步驟 1：建立「資料表」來控制「索引重建」 /- 以 mediumrc 或更高權限的使用者身分執行 /------------------------------------------------------------ |
+本主題會列出每一個直接適用於 Azure **SQL 資料倉儲** 服務的主題。 您可以使用 **Ctrl+F**，利用關鍵字搜尋本網頁，以尋找目前感興趣的主題。
 
 
 
 
-
-## 開始使用
+## <a name="new"></a>新增
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
-| 3 | [適用於 Azure SQL 資料倉儲的驗證](sql-data-warehouse-authentication.md) | 適用於 Azure SQL 資料倉儲的 Azure Active Directory (AAD) 與 SQL Server 驗證。 |
-| 4 | [Azure SQL 資料倉儲最佳做法](sql-data-warehouse-best-practices.md) | 開發 Azure SQL 資料倉儲的解決方案時應該知道的建議和最佳作法。這些可協助您成功。 |
-| 5 | [適用於 Azure SQL 資料倉儲的驅動程式](sql-data-warehouse-connection-strings.md) | 適用於 SQL 資料倉儲的連接字串和驅動程式 |
-| 6 | [連接到 Azure SQL 資料倉儲](sql-data-warehouse-connect-overview.md) | 連接到 Azure SQL 資料倉儲的連線概觀 |
-| 7 | [使用 Azure Machine Learning 分析資料](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md) | 使用 Azure Machine Learning，根據 Azure 資料倉儲中儲存的資料建置預測性機器學習模型。 |
-| 8 | [查詢 Azure SQL 資料倉儲 (sqlcmd)](sql-data-warehouse-get-started-connect-sqlcmd.md) | 使用 sqlcmd 命令列公用程式查詢 Azure SQL 資料倉儲。 |
-| 9 | [使用 Transact-SQL (TSQL) 建立 SQL 資料倉儲資料庫](sql-data-warehouse-get-started-create-database-tsql.md) | 了解如何使用 TSQL 建立 Azure SQL 資料倉儲 |
-| 10 | [如何為 SQL 資料倉儲建立支援票證](sql-data-warehouse-get-started-create-support-ticket.md) | 如何在 Azure SQL 資料倉儲中建立支援票證。 |
-| 11 | [使用 Azure Data Factory 載入資料](sql-data-warehouse-get-started-load-with-azure-data-factory.md) | 了解如何使用 Azure Data Factory 載入資料 |
-| 12 | [在 SQL 資料倉儲中使用 PolyBase 載入資料](sql-data-warehouse-get-started-load-with-polybase.md) | 瞭解 PolyBase 是什麼及如何用於資料倉儲案例。 |
-| 13 | [建立新的邏輯伺服器](sql-data-warehouse-get-started-new-server.md) | 了解如何在 Azure 入口網站中建立 Azure SQL 資料倉儲 |
+| 1 | [SQL 資料倉儲備份](sql-data-warehouse-backup.md) | 了解 SQL 資料倉儲內建資料庫備份，它可以讓您將 Azure SQL 資料倉儲還原到還原點或不同的地理區域。 |
+
+
+## <a name="updated-articles,-sql-data-warehouse"></a>更新的文章, SQL 資料倉儲
+
+本節列出具有重大更新內容的最近更新文章。 針對每篇更新的文章，會顯示一段新增的 Markdown 文字概略程式碼片段。 文章的更新日期範圍是在 **2016-08-22** 到 **2016-10-05**。
+
+| &nbsp; | 文章 | 更新的文字、程式碼片段 | 更新時機 |
+| --: | :-- | :-- | :-- |
+| 2 | [從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) | /- 若要追蹤位元組和檔案 SELECT  r.command,  s.request_id,  r.status,  count(distinct input_name) as nbr_files,  sum(s.bytes_processed)/1024/1024 as gb_processed FROM  sys.dm_pdw_exec_requests r  inner join sys.dm_pdw_dms_external_work s  on r.request_id = s.request_id WHERE  r. label  = 'CTAS : Load  cso . DimProduct  '  OR r. label  = 'CTAS : Load  cso . FactOnlineSales  ' GROUP BY  r.command,  s.request_id,  r.status ORDER BY  nbr_files desc,  gb_processed desc;  | 2016-09-07 |
+| 3 | [SQL 資料倉儲還原](sql-data-warehouse-restore-database-overview.md) | **可以還原暫停的資料倉儲嗎？** 若要還原已經暫停的資料倉儲，您需要先讓它恢復上限。 在資料倉儲恢復上線之後，您有七天的還原點可以選擇。 **還原到異地備援區域** 如果您正在使用異地備援儲存體，您可以將資料倉儲還原到您位於不同地理區域的付費資料中心。 資料倉儲已經從上次每日備份還原。 **還原時間軸** 您可以將資料庫還原到過去七天內的任何還原點。 快照集每四到八個小時會啟動，並且可供使用七天。 當快照集存在時間超過七天，它就會過期，而且無法再使用其還原點。 **還原成本** 針對已還原資料倉儲所做的還原變更會以 Azure 進階儲存體費率收費。 如果您將已還原的資料倉儲暫停，會依據 Azure 進階儲存體費率向您收取儲存體費用。 暫停的好處是您不會被收取費用 | 2016-09-29 |
+
+
+
+
+
+## <a name="get-started"></a>開始使用
+
+| &nbsp; | 課程名稱 | 說明 |
+| --: | :-- | :-- |
+| 4 | [適用於 Azure SQL 資料倉儲的驗證](sql-data-warehouse-authentication.md) | 適用於 Azure SQL 資料倉儲的 Azure Active Directory (AAD) 與 SQL Server 驗證。 |
+| 5 | [Azure SQL 資料倉儲最佳做法](sql-data-warehouse-best-practices.md) | 開發 Azure SQL 資料倉儲的解決方案時應該知道的建議和最佳作法。 這些可協助您成功。 |
+| 6 | [適用於 Azure SQL 資料倉儲的驅動程式](sql-data-warehouse-connection-strings.md) | 適用於 SQL 資料倉儲的連接字串和驅動程式 |
+| 7 | [連接到 Azure SQL 資料倉儲](sql-data-warehouse-connect-overview.md) | 如何尋找您的伺服器名稱和 Azure SQL 資料倉儲的連接字串 |
+| 8 | [使用 Azure Machine Learning 分析資料](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md) | 使用 Azure Machine Learning，根據 Azure 資料倉儲中儲存的資料建置預測性機器學習模型。 |
+| 9 | [查詢 Azure SQL 資料倉儲 (sqlcmd)](sql-data-warehouse-get-started-connect-sqlcmd.md) | 使用 sqlcmd 命令列公用程式查詢 Azure SQL 資料倉儲。 |
+| 10 | [使用 Transact-SQL (TSQL) 建立 SQL 資料倉儲資料庫](sql-data-warehouse-get-started-create-database-tsql.md) | 了解如何使用 TSQL 建立 Azure SQL 資料倉儲 |
+| 11 | [如何為 SQL 資料倉儲建立支援票證](sql-data-warehouse-get-started-create-support-ticket.md) | 如何在 Azure SQL 資料倉儲中建立支援票證。 |
+| 12 | [使用 Azure Data Factory 載入資料](sql-data-warehouse-get-started-load-with-azure-data-factory.md) | 了解如何使用 Azure Data Factory 載入資料 |
+| 13 | [在 SQL 資料倉儲中使用 PolyBase 載入資料](sql-data-warehouse-get-started-load-with-polybase.md) | 瞭解 PolyBase 是什麼及如何用於資料倉儲案例。 |
 | 14 | [建立 Azure SQL 資料倉儲](sql-data-warehouse-get-started-provision.md) | 了解如何在 Azure 入口網站中建立 Azure SQL 資料倉儲 |
 | 15 | [使用 PowerShell 建立 SQL 資料倉儲](sql-data-warehouse-get-started-provision-powershell.md) | 使用 PowerShell 建立 SQL 資料倉儲 |
 | 16 | [使用 Power BI 視覺化資料](sql-data-warehouse-get-started-visualize-with-power-bi.md) | 使用 Power BI 視覺化 SQL 資料倉儲資料 |
@@ -58,7 +66,7 @@
 
 
 
-## 開發
+## <a name="develop"></a>開發
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
@@ -78,26 +86,26 @@
 
 
 
-## 管理
+## <a name="manage"></a>管理
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
-| 31 | [管理 Azure SQL 資料倉儲中的計算能力 (概觀)](sql-data-warehouse-manage-compute-overview.md) | Azure SQL 資料倉儲中的效能相應放大功能。藉由調整 DWU 以相應放大或暫停和繼續計算資源來節省成本。 |
-| 32 | [管理 Azure SQL 資料倉儲中的計算能力 (Azure 入口網站)](sql-data-warehouse-manage-compute-portal.md) | 管理計算能力的 Azure 入口網站工作。透過調整 DWU 以調整計算資源。或者，暫停和繼續計算資源以節省成本。 |
-| 33 | [管理 Azure SQL 資料倉儲中的計算能力 (PowerShell)](sql-data-warehouse-manage-compute-powershell.md) | 管理計算能力的 PowerShell 工作。透過調整 DWU 以調整計算資源。或者，暫停和繼續計算資源以節省成本。 |
-| 34 | [管理 Azure SQL 資料倉儲中的計算能力 (REST)](sql-data-warehouse-manage-compute-rest-api.md) | 管理計算能力的 PowerShell 工作。透過調整 DWU 以調整計算資源。或者，暫停和繼續計算資源以節省成本。 |
-| 35 | [管理 Azure SQL 資料倉儲中的計算能力 (T-SQL)](sql-data-warehouse-manage-compute-tsql.md) | 透過調整 DWU 以相應放大效能的 Transact-SQL (T-SQL) 工作。透過在非尖峰時間進行縮減以節省成本。 |
+| 31 | [管理 Azure SQL 資料倉儲中的計算能力 (概觀)](sql-data-warehouse-manage-compute-overview.md) | Azure SQL 資料倉儲中的效能相應放大功能。 藉由調整 DWU 以相應放大或暫停和繼續計算資源來節省成本。 |
+| 32 | [管理 Azure SQL 資料倉儲中的計算能力 (Azure 入口網站)](sql-data-warehouse-manage-compute-portal.md) | 管理計算能力的 Azure 入口網站工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。 |
+| 33 | [管理 Azure SQL 資料倉儲中的計算能力 (PowerShell)](sql-data-warehouse-manage-compute-powershell.md) | 管理計算能力的 PowerShell 工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。 |
+| 34 | [管理 Azure SQL 資料倉儲中的計算能力 (REST)](sql-data-warehouse-manage-compute-rest-api.md) | 管理計算能力的 PowerShell 工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。 |
+| 35 | [管理 Azure SQL 資料倉儲中的計算能力 (T-SQL)](sql-data-warehouse-manage-compute-tsql.md) | 透過調整 DWU 以相應放大效能的 Transact-SQL (T-SQL) 工作。 透過在非尖峰時間進行縮減以節省成本。 |
 | 36 | [使用 DMV 監視工作負載](sql-data-warehouse-manage-monitor.md) | 了解如何使用 DMV 監視工作負載。 |
-| 37 | [管理 Azure SQL 資料倉儲中的資料庫](sql-data-warehouse-overview-manage.md) | 管理 SQL 資料倉儲資料庫的概觀。包含管理工具、DWU 與相應放大效能、疑難排解查詢效能、建立良好的安全性原則，以及從資料損毀或區域性停電還原資料庫。 |
+| 37 | [管理 Azure SQL 資料倉儲中的資料庫](sql-data-warehouse-overview-manage.md) | 管理 SQL 資料倉儲資料庫的概觀。 包含管理工具、DWU 與相應放大效能、疑難排解查詢效能、建立良好的安全性原則，以及從資料損毀或區域性停電還原資料庫。 |
 | 38 | [監視 Azure SQL 資料倉儲中的使用者查詢](sql-data-warehouse-overview-manage-user-queries.md) | 監視 Azure SQL 資料倉儲中使用者查詢之考量、最佳做法及工作的概觀。 |
-| 39 | [還原 Azure SQL 資料倉儲 (概觀)](sql-data-warehouse-restore-database-overview.md) | 復原 Azure SQL 資料倉儲中資料庫之資料庫還原選項的概觀。 |
+| 39 | [SQL 資料倉儲還原](sql-data-warehouse-restore-database-overview.md) | 復原 Azure SQL 資料倉儲中資料庫之資料庫還原選項的概觀。 |
 | 40 | [還原 Azure SQL 資料倉儲 (入口網站)](sql-data-warehouse-restore-database-portal.md) | 還原 Azure SQL 資料倉儲的 Azure 入口網站工作。 |
 | 41 | [還原 Azure SQL 資料倉儲 (PowerShell)](sql-data-warehouse-restore-database-powershell.md) | 還原 Azure SQL 資料倉儲的 PowerShell 工作。 |
 | 42 | [還原 Azure SQL 資料倉儲 (REST API)](sql-data-warehouse-restore-database-rest-api.md) | 還原 Azure SQL 資料倉儲的 REST API 工作。 |
 
 
 
-## 資料表與索引
+## <a name="tables-and-indexes"></a>資料表與索引
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
@@ -111,7 +119,7 @@
 
 
 
-## 整合
+## <a name="integrate"></a>整合
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
@@ -119,16 +127,16 @@
 | 51 | [搭配使用 Azure 機器學習服務與 SQL 資料倉儲](sql-data-warehouse-integrate-azure-machine-learning.md) | 搭配使用 Azure 機器學習服務與 SQL 資料倉儲以便開發解決方案的秘訣。 |
 | 52 | [搭配使用 Azure 串流分析與 SQL 資料倉儲](sql-data-warehouse-integrate-azure-stream-analytics.md) | 搭配使用 Azure 串流分析與 SQL 資料倉儲以便開發解決方案的秘訣。 |
 | 53 | [搭配使用 Power BI 與 SQL 資料倉儲](sql-data-warehouse-integrate-power-bi.md) | 搭配使用 Power BI 與 Azure SQL 資料倉儲以便開發解決方案的秘訣。 |
-| 54 | [以 SQL 資料倉儲來搭配運用其他服務](sql-data-warehouse-overview-integrate.md) | 工具以及提供可與 SQL 資料倉儲整合之解決方案的合作夥伴。 |
+| 54 | [以 SQL 資料倉儲來搭配運用其他服務](sql-data-warehouse-overview-integrate.md) | 工具以及提供可與 SQL 資料倉儲整合之解決方案的合作夥伴。  |
 
 
 
-## 載入
+## <a name="load"></a>載入
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
 | 55 | [從 Azure blob 儲存體將資料載入 Azure SQL 資料倉儲 (Azure Data Factory)](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md) | 了解如何使用 Azure Data Factory 載入資料 |
-| 56 | [從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) | 了解如何此用 PolyBase 從 Azure Blob 儲存體將資料載入 SQL 資料倉儲。從公用資料將幾個資料表載入 Contoso 零售資料倉儲結構描述。 |
+| 56 | [從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) | 了解如何此用 PolyBase 從 Azure Blob 儲存體將資料載入 SQL 資料倉儲。 從公用資料將幾個資料表載入 Contoso 零售資料倉儲結構描述。 |
 | 57 | [將資料從 SQL Server 載入 Azure SQL 資料倉儲 (AZCopy)](sql-data-warehouse-load-from-sql-server-with-azcopy.md) | 使用 bcp 將資料從 SQL Server 匯出到一般檔案、使用 AZCopy 將資料匯入至 Azure Blob 儲存體，以及使用 PolyBase 將資料擷取到 Azure SQL 資料倉儲中。 |
 | 58 | [將資料從 SQL Server 載入 Azure SQL 資料倉儲 (一般檔案)](sql-data-warehouse-load-from-sql-server-with-bcp.md) | 對於小型資料，請使用 bcp 將資料從 SQL Server 匯出至一般檔案，以及將資料直接匯入 Azure SQL 資料倉儲。 |
 | 59 | [將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS)](sql-data-warehouse-load-from-sql-server-with-integration-services.md) | 示範如何建立 SQL Server Integration Services (SSIS) 封裝，以將資料從各種資料來源移至 SQL 資料倉儲。 |
@@ -136,11 +144,11 @@
 | 61 | [在 SQL 資料倉儲中使用 PolyBase 的指南](sql-data-warehouse-load-polybase-guide.md) | 在 SQL 資料倉儲案例中使用 PolyBase 的指導方針和建議。 |
 | 62 | [將範例資料載入 SQL 資料倉儲](sql-data-warehouse-load-sample-databases.md) | 將範例資料載入 SQL 資料倉儲 |
 | 63 | [使用 bcp 載入資料](sql-data-warehouse-load-with-bcp.md) | 瞭解 bcp 是什麼及如何用於資料倉儲案例。 |
-| 64 | [將資料載入 Azure SQL 資料倉儲](sql-data-warehouse-overview-load.md) | 了解將資料載入 SQL 資料倉儲的常見案例這包含使用 PolyBase、Azure Blob 儲存體、一般檔案及寄送磁碟。您也可以使用協力廠商工具。 |
+| 64 | [將資料載入 Azure SQL 資料倉儲](sql-data-warehouse-overview-load.md) | 了解將資料載入 SQL 資料倉儲的常見案例 這包含使用 PolyBase、Azure Blob 儲存體、一般檔案及寄送磁碟。 您也可以使用協力廠商工具。 |
 
 
 
-## 移轉
+## <a name="migrate"></a>移轉
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
@@ -152,7 +160,7 @@
 
 
 
-## 合作夥伴
+## <a name="partners"></a>合作夥伴
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
@@ -162,7 +170,7 @@
 
 
 
-## 參考
+## <a name="reference"></a>參考
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
@@ -174,19 +182,19 @@
 
 
 
-## 安全性
+## <a name="security"></a>安全性
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
-| 78 | [SQL 資料倉儲 - 下層用戶端對稽核和動態資料遮罩的支援](sql-data-warehouse-auditing-downlevel-clients.md) | 了解 SQL 資料倉儲下層用戶端對資料稽核的支援 |
+| 78 | [SQL 資料倉儲 -  下層用戶端對稽核和動態資料遮罩的支援](sql-data-warehouse-auditing-downlevel-clients.md) | 了解 SQL 資料倉儲下層用戶端對資料稽核的支援 |
 | 79 | [Azure SQL 資料倉儲中的稽核](sql-data-warehouse-auditing-overview.md) | 開始使用 Azure SQL 資料倉儲中的稽核 |
-| 80 | [開始使用 SQL 資料倉儲中的透明資料加密 (TDE)](sql-data-warehouse-encryption-tde.md) | 開始使用 SQL 資料倉儲中的透明資料加密 (TDE) |
-| 81 | [開始使用透明資料加密 (TDE)](sql-data-warehouse-encryption-tde-tsql.md) | 開始使用 SQL 資料倉儲透明資料加密 (TDE) TSQL |
+| 80 | [開始使用 SQL 資料倉儲中的透明資料加密 (TDE)](sql-data-warehouse-encryption-tde.md) | SQL 資料倉儲中的透明資料加密 (TDE) |
+| 81 | [開始使用透明資料加密 (TDE)](sql-data-warehouse-encryption-tde-tsql.md) | SQL 資料倉儲中的透明資料加密 (TDE) (T-SQL) |
 | 82 | [保護 SQL 資料倉儲中的資料庫](sql-data-warehouse-overview-manage-security.md) | 保護 Azure SQL 資料倉儲中的資料庫以便開發解決方案的秘訣。 |
 
 
 
-## 其他資訊
+## <a name="miscellaneous"></a>其他資訊
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
@@ -196,4 +204,9 @@
 | 86 | [SQL 資料倉儲容量限制](sql-data-warehouse-service-capacity-limits.md) | SQL 資料倉儲的連接、資料庫、資料表及查詢最大值。 |
 | 87 | [針對 Azure SQL 資料倉儲問題進行疑難排解](sql-data-warehouse-troubleshoot.md) | 針對 Azure SQL 資料倉儲問題進行疑難排解。 |
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-    pageTitle="在建立期間使用 cloud-init 自訂 Linux VM | Microsoft Azure"
-    description="在建立期間使用 cloud-init 自訂 Linux VM。"
+    pageTitle="Using cloud-init to customize a Linux VM during creation | Microsoft Azure"
+    description="Using cloud-init to customize a Linux VM during creation."
     services="virtual-machines-linux"
     documentationCenter=""
     authors="vlivech"
@@ -19,17 +19,18 @@
     ms.author="v-livech"
 />
 
-# 在建立期間使用 cloud-init 自訂 Linux VM
 
-本文中示範如何製作 cloud-init 指令碼來設定主機名稱、更新已安裝的封裝及管理使用者帳戶。在 VM 建立期間，會從 Azure CLI 呼叫 cloud-init 指令碼。
+# <a name="using-cloud-init-to-customize-a-linux-vm-during-creation"></a>Using cloud-init to customize a Linux VM during creation
 
-## 必要條件
+This article shows how to make a cloud-init script to set the hostname, update installed packages, and manage user accounts.  The cloud-init scripts are called during the VM creation from Azure CLI.
 
-必要條件︰[Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)、[SSH 公開金鑰與私密金鑰](virtual-machines-linux-mac-create-ssh-keys.md)和使用 `azure config mode arm` 切換至 Azure Resource Manager 模式的 [Azure CLI](../xplat-cli-install.md)。
+## <a name="prerequisites"></a>Prerequisites
 
-## 快速命令
+Prerequisites are: [an Azure account](https://azure.microsoft.com/pricing/free-trial/), [SSH public and private keys](virtual-machines-linux-mac-create-ssh-keys.md), and [the Azure CLI](../xplat-cli-install.md) switched to Azure Resource Manager mode using `azure config mode arm`.
 
-建立一個設定主機名稱、更新所有封裝、並將 sudo 使用者新增至 Linux 的 cloud-init.txt 指令碼。
+## <a name="quick-commands"></a>Quick Commands
+
+Create a cloud-init.txt script that sets the hostname, updates all packages, and adds a sudo user to Linux.
 
 ```bash
 #cloud-config
@@ -44,7 +45,7 @@ users:
       - ssh-rsa AAAAB3<snip>==exampleuser@slackwarelaptop
 ```
 
-使用 cloud-init 建立一個 Linux VM 以在開機時進行設定。
+Create a Linux VM using cloud-init to configure it during boot.
 
 ```bash
 azure group create cloudinitexample westus
@@ -68,44 +69,44 @@ azure vm create \
 
 ```
 
-## 簡介
+## <a name="introduction"></a>Introduction
 
-啟動新的 Linux VM 時，Linux VM 會是標準模式，沒有自訂或符合您需求的選項。[Cloud-init](https://cloudinit.readthedocs.org) 第一次啟動時，會是在 Linux VM 中插入指令碼或組態設定的標準方法。
+When you launch a new Linux VM, you are getting a standard Linux VM with nothing customized or ready for your needs. [Cloud-init](https://cloudinit.readthedocs.org) is a standard way to inject a script or configuration settings into that Linux VM as it is booting up for the first time.
 
-Azure 有三種不同的方法可在 Linux VM 部署或啟動時進行變更。
+On Azure, there are a three different ways to make changes onto a Linux VM as it is being deployed or booted.
 
-- 使用 cloud-init 插入指令碼。
-- 使用 Azure [VMAccess 延伸模組](virtual-machines-linux-using-vmaccess-extension.md)插入指令碼。
-- 使用 cloud-init 的 Azure 範本。
-- 使用 [CustomScriptExtention](virtual-machines-linux-extensions-customscript.md) 的 Azure 範本。
+- Inject scripts using cloud-init.
+- Inject scripts using the Azure [VMAccess Extension](virtual-machines-linux-using-vmaccess-extension.md).
+- An Azure template using cloud-init.
+- An Azure template using [CustomScriptExtention](virtual-machines-linux-extensions-customscript.md).
 
-若開機後隨時要插入指令碼︰
+To inject scripts at any time after boot:
 
-- 直接執行命令的 SSH
-- 使用 Azure [VMAccess 延伸模組](virtual-machines-linux-using-vmaccess-extension.md)，以命令方式或在 Azure 範本中插入指令碼
-- 組態管理工具，例如 Ansible、Salt、Chef 及 Puppet。
+- SSH to run commands directly
+- Inject scripts using the Azure [VMAccess Extension](virtual-machines-linux-using-vmaccess-extension.md), either imperatively or in an Azure template
+- Configuration management tools like Ansible, Salt, Chef, and Puppet.
 
->[AZURE.NOTE]：VMAccess 延伸模組會以 root 身分，以使用 SSH 時的相同方式執行指令碼。不過，使用 VM 延伸模組可視您的案例啟用數個 Azure 提供的實用功能。
+>[AZURE.NOTE]: VMAccess Extension executes a script as root in the same way using SSH can.  However, using the VM extension enables several features that Azure offers that can be useful depending upon your scenario.
 
-### Cloud-init 在 Azure VM quick-create 映像別名上的可用性︰
+### <a name="cloud-init-availability-on-azure-vm-quick-create-image-aliases:"></a>Cloud-init availability on Azure VM quick-create image aliases:
 
-| Alias | 發佈者 | 提供項目 | SKU | 版本 | cloud-init |
+| Alias     | Publisher | Offer        | SKU         | Version | cloud-init |
 |:----------|:----------|:-------------|:------------|:--------|:-----------|
-| CentOS | OpenLogic | Centos | 7\.2 | 最新 | no |
-| CoreOS | CoreOS | CoreOS | Stable | 最新 | yes |
-| Debian | credativ | Debian | 8 | 最新 | no |
-| openSUSE | SUSE | openSUSE | 13\.2 | 最新 | no |
-| RHEL | Redhat | RHEL | 7\.2 | 最新 | no |
-| UbuntuLTS | Canonical | UbuntuServer | 14\.04.4-LTS | 最新 | yes |
+| CentOS    | OpenLogic | Centos       | 7.2         | latest  | no         |
+| CoreOS    | CoreOS    | CoreOS       | Stable      | latest  | yes        |
+| Debian    | credativ  | Debian       | 8           | latest  | no         |
+| openSUSE  | SUSE      | openSUSE     | 13.2        | latest  | no         |
+| RHEL      | Redhat    | RHEL         | 7.2         | latest  | no         |
+| UbuntuLTS | Canonical | UbuntuServer | 14.04.4-LTS | latest  | yes        |
 
-Microsoft 正與我們的合作夥伴合作，以期在他們提供給 Azure 的映像中包含和使用 cloud-init。
+Microsoft is working with our partners to get cloud-init included and working in the images that they provide to Azure.
 
 
-## 詳細的逐步解說
+## <a name="detailed-walkthrough"></a>Detailed walkthrough
 
-### 將 cloud-init 指令碼加入使用 Azure CLI 建立 VM 的作業中
+### <a name="adding-a-cloud-init-script-to-the-vm-creation-with-the-azure-cli"></a>Adding a cloud-init script to the VM creation with the Azure CLI
 
-在 Azure 中建立 VM 時，若要啟動 cloud-init 指令碼，請使用 Azure CLI `--custom-data` 參數來指定 cloud-init 檔案。
+To launch a cloud-init script when creating a VM in Azure, specify the cloud-init file using the Azure CLI `--custom-data` switch.
 
 ```bash
 azure group create cloudinitexample westus
@@ -129,18 +130,18 @@ azure vm create \
 
 ```
 
-### 建立 cloud-init 指令碼設定 Linux VM 的主機名稱
+### <a name="creating-a-cloud-init-script-to-set-the-hostname-of-a-linux-vm"></a>Creating a cloud-init script to set the hostname of a Linux VM
 
-對任何 Linux VM 而言，其中一個最簡單且最重要的設定就是主機名稱。使用 cloud-init 和這個指令碼就可以輕鬆地設定這個項目。
+One of the simplest and most important settings for any Linux VM would be the hostname. We can easily set this using cloud-init with this script.  
 
-#### 名為 `cloud_config_hostname.txt` 的範例 cloud-init 指令碼。
+#### <a name="example-cloud-init-script-named-`cloud_config_hostname.txt`."></a>Example cloud-init script named `cloud_config_hostname.txt`.
 
 ``` bash
 #cloud-config
 hostname: exampleServerName
 ```
 
-在 VM 首次啟動期間，這個 cloud-init 指令碼會將主機名稱設定為 `exampleServerName`。
+During the initial startup of the VM, this cloud-init script sets the hostname to `exampleServerName`.
 
 ```bash
 azure vm create \
@@ -160,7 +161,7 @@ azure vm create \
 
 ```
 
-登入並驗證新 VM 的主機名稱。
+Login and verify the hostname of the new VM.
 
 ```bash
 ssh exampleVM
@@ -168,18 +169,18 @@ hostname
 exampleServerName
 ```
 
-### 建立 cloud-init 指令碼以更新 Linux
+### <a name="creating-a-cloud-init-script-to-update-linux"></a>Creating a cloud-init script to update Linux
 
-基於安全性，您希望您的 Ubuntu VM 能在第一次開機時進行更新。我們可以使用 cloud-init 和下列指令碼執行這個作業，視您使用的 Linux 散發套件而定。
+For security, you want your Ubuntu VM to update on the first boot.  Using cloud-init we can do that with the follow script, depending on the Linux distribution you are using.
 
-#### 適用於 Debian 系列的範例 cloud-init 指令碼 `cloud_config_apt_upgrade.txt`
+#### <a name="example-cloud-init-script-`cloud_config_apt_upgrade.txt`-for-the-debian-family"></a>Example cloud-init script `cloud_config_apt_upgrade.txt` for the Debian Family
 
 ```bash
 #cloud-config
 apt_upgrade: true
 ```
 
-在 Linux 開機後，所有已安裝的封裝都會透過 `apt-get` 更新。
+After Linux has booted, all the installed packages are updated via `apt-get`.
 
 ```bash
 azure vm create \
@@ -198,7 +199,7 @@ azure vm create \
 --custom-data cloud_config_apt_upgrade.txt
 ```
 
-登入並驗證所有封裝是否皆已更新。
+Login and verify all packages are updated.
 
 ```bash
 ssh exampleVM
@@ -212,11 +213,11 @@ The following packages have been kept back:
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 ```
 
-### 建立 cloud-init 指令碼將使用者加入 Linux 中
+### <a name="creating-a-cloud-init-script-to-add-a-user-to-linux"></a>Creating a cloud-init script to add a user to Linux
 
-針對任何新的 Linux VM，首要工作之一就是為您自己新增一位使用者，或是避免使用 `root`。SSH 金鑰是基於安全性和可用性的最佳作法，它們會隨此 cloud-init 指令碼新增至 `~/.ssh/authorized_keys` 檔案。
+One of the first tasks on any new Linux VM is to add a user for yourself or to avoid using `root`. SSH keys are best practice for security and for usability and they are added to the `~/.ssh/authorized_keys` file with this cloud-init script.
 
-#### 適用於 Debian 系列的範例 cloud-init 指令碼 `cloud_config_add_users.txt`
+#### <a name="example-cloud-init-script-`cloud_config_add_users.txt`-for-debian-family"></a>Example cloud-init script `cloud_config_add_users.txt` for Debian Family
 
 ```bash
 #cloud-config
@@ -229,7 +230,7 @@ users:
       - ssh-rsa AAAAB3<snip>==exampleuser@slackwarelaptop
 ```
 
-Linux 開機之後，所有列出的使用者就會建立並加入 sudo 群組。
+After Linux has booted, all the listed users are created and added to the sudo group.
 
 ```bash
 azure vm create \
@@ -248,13 +249,13 @@ azure vm create \
 --custom-data cloud_config_add_users.txt
 ```
 
-登入並驗證新建立的使用者。
+Login and verify the newly created user.
 
 ```bash
 cat /etc/group
 ```
 
-輸出
+Output
 
 ```bash
 root:x:0:
@@ -264,12 +265,16 @@ sudo:x:27:exampleUser
 exampleUser:x:1000:
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-Cloud-init 已成為在開機時修改 Linux VM 的一種標準方式。Azure 也有 VM 延伸模組，可讓您在開機或執行時修改您的 LinuxVM。例如，當 VM 執行時，您可以使用 Azure VMAccessExtension 來重設 SSH 或使用者資訊。使用 cloud-init，您必須重新開機才能重設密碼。
+Cloud-init is becoming one standard way to modify your Linux VM on boot. Azure also has VM extensions, which allow you to modify your LinuxVM on boot or while it is running. For example, you can use the Azure VMAccessExtension to reset SSH or user information while the VM is running. With cloud-init, you would need a reboot to reset the password.
 
-[有關虛擬機器擴充功能和功能](virtual-machines-linux-extensions-features.md)
+[About virtual machine extensions and features](virtual-machines-linux-extensions-features.md)
 
-[管理使用者、SSH，並使用 VMAccess 擴充功能檢查或修復 Azure Linux VM 上的磁碟](virtual-machines-linux-using-vmaccess-extension.md)
+[Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension](virtual-machines-linux-using-vmaccess-extension.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

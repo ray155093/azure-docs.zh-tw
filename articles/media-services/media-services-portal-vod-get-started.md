@@ -1,233 +1,240 @@
 <properties
-	pageTitle=" 使用 Azure 入口網站傳遞點播內容入門 | Microsoft Azure"
-	description="本教學課程會逐步引導您使用 Azure 入口網站實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。"
-	services="media-services"
-	documentationCenter=""
-	authors="Juliako"
-	manager="erikre"
-	editor=""/>
+    pageTitle=" Get started with delivering content on demand using the Azure portal | Microsoft Azure"
+    description="This tutorial walks you through the steps of implementing a basic Video-on-Demand (VoD) content delivery service with Azure Media Services (AMS) application using the Azure portal."
+    services="media-services"
+    documentationCenter=""
+    authors="Juliako"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="media-services"
-	ms.workload="media"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/30/2016"
-	ms.author="juliako"/>
+    ms.service="media-services"
+    ms.workload="media"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="08/30/2016"
+    ms.author="juliako"/>
 
 
-# 使用 Azure 入口網站傳遞點播內容入門
+
+# <a name="get-started-with-delivering-content-on-demand-using-the-azure-portal"></a>Get started with delivering content on demand using the Azure portal
 
 [AZURE.INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-本教學課程會逐步引導您使用 Azure 入口網站實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。
+This tutorial walks you through the steps of implementing a basic Video-on-Demand (VoD) content delivery service with Azure Media Services (AMS) application using the Azure portal.
 
-> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+> [AZURE.NOTE] To complete this tutorial, you need an Azure account. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/). 
 
-本教學課程內容包括以下工作：
+This tutorial includes the following tasks:
 
-1.  建立 Azure 媒體服務帳戶。
-2.  設定串流端點。
-1.  上傳視訊檔案。
-1.  將來源檔案編碼為一組自適性 MP4 檔案。
-1.  發佈資產並取得串流和漸進式下載 URL。
-1.  播放您的內容。
+1.  Create an Azure Media Services account.
+2.  Configure streaming endpoint.
+1.  Upload a video file.
+1.  Encode the source file into a set of adaptive bitrate MP4 files.
+1.  Publish the asset and get streaming and progressive download URLs.  
+1.  Play your content.
 
 
-## 建立 Azure 媒體服務帳戶
+## <a name="create-an-azure-media-services-account"></a>Create an Azure Media Services account
 
-本節中的步驟示範如何建立 AMS 帳戶。
+The steps in this section show how to create an AMS account.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 [+新增] > [媒體 + CDN] > [媒體服務]。
+1. Log in at the [Azure portal](https://portal.azure.com/).
+2. Click **+New** > **Media + CDN** > **Media Services**.
 
-	![建立媒體服務](./media/media-services-portal-vod-get-started/media-services-new1.png)
+    ![Media Services Create](./media/media-services-portal-vod-get-started/media-services-new1.png)
 
-3. 在 [建立媒體服務帳戶] 中輸入必要的值。
+3. In **CREATE MEDIA SERVICES ACCOUNT** enter required values.
 
-	![建立媒體服務](./media/media-services-portal-vod-get-started/media-services-new3.png)
-	
-	1. 在 [帳戶名稱] 中，輸入新 AMS 帳戶的名稱。媒體服務帳戶名稱為全部小寫且不含空格的數字或字母，且長度是 3 到 24 個字元。
-	2. 在訂用帳戶中，從您可存取的不同 Azure 訂用帳戶中進行選取。
-	
-	2. 在 [資源群組] 中，選取新的或現有資源。資源群組是共用生命週期、權限及原則的資源集合。在[按此](resource-group-overview.md#resource-groups)深入了解。
-	3. 在 [位置] 中，選取用來儲存您媒體服務帳戶之媒體和中繼資料記錄的地理區域。此區域用於處理和串流媒體。只有可用的媒體服務區域才會出現在下拉式清單方塊中。
-	
-	3. 在 [儲存體帳戶] 中，選取儲存體帳戶以從媒體服務帳戶提供媒體內容的 Blob 儲存體。您可以選取與媒體服務帳戶相同地理區域中的現有儲存體帳戶，也可以建立儲存體帳戶。新的儲存體帳戶會建立於相同的區域中。儲存體帳戶名稱的規則會與媒體服務帳戶相同。
+    ![Media Services Create](./media/media-services-portal-vod-get-started/media-services-new3.png)
+    
+    1. In **Account Name**, enter the name of the new AMS account. A Media Services account name is all lowercase numbers or letters with no spaces, and is 3 to 24 characters in length.
+    2. In Subscription, select among the different Azure subscriptions that you have access to.
+    
+    2. In **Resource Group**, select the new or existing resource.  A resource group is a collection of resources that share lifecycle, permissions, and policies. Learn more [here](resource-group-overview.md#resource-groups).
+    3. In **Location**,  select the geographic region is used to store the media and metadata records for your Media Services account. This  region is used to process and stream your media. Only the available Media Services regions appear in the drop-down list box. 
+    
+    3. In **Storage Account**, select a storage account to provide blob storage of the media content from your Media Services account. You can select an existing storage account in the same geographic region as your Media Services account, or you can create a storage account. A new storage account is created in the same region. The rules for storage account names are the same as for Media Services accounts.
 
-		在[這裡](storage-introduction.md)深入了解儲存體。
+        Learn more about storage [here](storage-introduction.md).
 
-	4. 選取 [釘選到儀表板] 以查看帳戶部署的進度。
-	
-7. 按一下表單底部的 [建立]。
+    4. Select **Pin to dashboard** to see the progress of the account deployment.
+    
+7. Click **Create** at the bottom of the form.
 
-	成功建立帳戶之後，狀態會變更為 [執行中]。
+    Once the account is successfully created, the status changes to **Running**. 
 
-	![媒體服務設定](./media/media-services-portal-vod-get-started/media-services-settings.png)
+    ![Media Services settings](./media/media-services-portal-vod-get-started/media-services-settings.png)
 
-	若要管理 AMS 帳戶 (例如，上傳視訊、為資產編碼、監視作業進度)，請使用 [設定] 視窗。
+    To manage your AMS account (for example, upload videos, encode assets, monitor job progress) use the **Settings** window.
 
-## Manage Keys
+## <a name="manage-keys"></a>Manage Keys
 
-您需要帳戶名稱和主要金鑰資訊，以便以程式設計方式存取媒體服務帳戶。
+You need the account name and the primary key information to programmatically access the Media Services account.
 
-1. 在 Azure 入口網站中，選取您的帳戶。
+1. In the Azure portal, select your account. 
 
-	[設定] 視窗隨即出現在右邊。
+    The **Settings** window appears on the right. 
 
-2. 在 [設定] 視窗中，選取 [金鑰]。
+2. In the **Settings** window, select **Keys**. 
 
-	[管理金鑰] 視窗會顯示帳戶名稱以及主要和次要金鑰。
-3. 按複製按鈕以複製這些值。
-	
-	![媒體服務金鑰](./media/media-services-portal-vod-get-started/media-services-keys.png)
+    The **Manage keys** windows shows the account name and the primary and secondary keys is displayed. 
+3. Press the copy button to copy the values.
+    
+    ![Media Services Keys](./media/media-services-portal-vod-get-started/media-services-keys.png)
 
-## 設定串流端點
+## <a name="configure-streaming-endpoints"></a>Configure streaming endpoints
 
-使用 Azure 媒體服務時，其中一個最常見案例是透過自適性串流提供影片給您的用戶端。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
+When working with Azure Media Services one of the most common scenarios is delivering video via adaptive bitrate streaming to your clients. Media Services supports the following adaptive bitrate streaming technologies: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH, and HDS (for Adobe PrimeTime/Access licensees only).
 
-媒體服務提供動態封裝，這讓您以媒體服務即時支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供自適性 MP4 編碼內容，而不必儲存這些串流格式個別的預先封裝版本。
+Media Services provides dynamic packaging, which allows you to deliver your adaptive bitrate MP4  encoded content in streaming formats supported by Media Services (MPEG DASH, HLS, Smooth Streaming, HDS) just-in-time, without you having to store pre-packaged versions of each of these streaming formats.
 
-若要利用動態封裝，您需要執行下列動作：
+To take advantage of dynamic packaging, you need to do the following:
 
-- 將您的夾層 (來源) 檔編碼為一組自適性 MP4 檔案 (編碼步驟稍後示範於本教學課程中)。
-- 為您計畫從該處傳遞內容的「串流端點」至少建立一個串流單位。以下步驟顯示如何變更串流單位數目。
+- Encode your mezzanine (source) file into a set of adaptive bitrate MP4 files (the encoding steps are demonstrated later in this tutorial).  
+- Create at least one streaming unit for the *streaming endpoint* from which you plan to delivery your content. The steps below show how to change the number of streaming units.
 
-使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
+With dynamic packaging, you only need to store and pay for the files in single storage format and Media Services builds and serves the appropriate response based on requests from a client.
 
-若要建立和變更串流保留單位數目，請執行下列動作：
+To create and change the number of streaming reserved units, do the following:
 
 
-1. 在 [設定] 視窗中，按一下 [串流端點]。
+1. In the **Settings** window, click **Streaming endpoints**. 
 
-2. 按一下預設串流端點。
+2. Click the default streaming endpoint. 
 
-	[預設串流端點詳細資料] 視窗隨即出現。
+    The **DEFAULT STREAMING ENDPOINT DETAILS** window appears.
 
-3. 若要指定串流單位數目，請滑動 [串流單位] 滑桿。
+3. To specify the number of streaming units, slide the **Streaming units** slider.
 
-	![串流單位](./media/media-services-portal-vod-get-started/media-services-streaming-units.png)
+    ![Streaming units](./media/media-services-portal-vod-get-started/media-services-streaming-units.png)
 
-4. 按一下 [儲存] 按鈕以儲存您的變更。
+4. Click the **Save** button to save your changes.
 
-	>[AZURE.NOTE]配置任何新的單位最多需要 20 分鐘的時間才能完成。
+    >[AZURE.NOTE]The allocation of any new units can take up to 20 minutes to complete.
 
-## 上傳檔案
+## <a name="upload-files"></a>Upload files
 
-若要使用 Azure 媒體服務串流處理視訊，您必須上傳來源影片、將它們編碼成多個位元速率，以及發佈結果。這一節涵蓋第一個步驟。
+To stream videos using Azure Media Services, you need to upload the source videos, encode them into multiple bitrates, and publish the result. The first step is covered in this section. 
 
-1. 在 [設定] 視窗中，按一下 [資產]。
+1. In the **Setting** window, click **Assets**.
 
-	![上傳檔案](./media/media-services-portal-vod-get-started/media-services-upload.png)
+    ![Upload files](./media/media-services-portal-vod-get-started/media-services-upload.png)
 
-3. 按一下 [上傳] 按鈕。
+3. Click the **Upload** button.
 
-	[上傳視訊資產] 視窗隨即出現。
+    The **Upload a video asset** window appears.
 
-	>[AZURE.NOTE] 檔案大小不受限。
-	
-4. 瀏覽至您的電腦上想要的視訊，加以選取，然後點擊 [確定]。
+    >[AZURE.NOTE] There is no file size limitation.
+    
+4. Browse to the desired video on your computer, select it, and hit OK.  
 
-	開始上傳，您可以在檔名底下看到進度。
+    The upload starts and you can see the progress under the file name.  
 
-上傳完成後，您會看到新資產列在 [資產] 清單中。
+Once the upload completes, you see the new asset listed in the **Assets** window. 
 
-## 為資產編碼
+## <a name="encode-assets"></a>Encode assets
 
-使用 Azure 媒體服務時，其中一個最常見案例是提供自適性串流給您的用戶端。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。若要針對自適性串流準備您的視訊，您必須將來源視訊編碼為多位元速率檔案。您應該使用 [媒體編碼器標準] 編碼器來為您的視訊編碼。
+When working with Azure Media Services one of the most common scenarios is delivering adaptive bitrate streaming to your clients. Media Services supports the following adaptive bitrate streaming technologies: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH, and HDS (for Adobe PrimeTime/Access licensees only). To prepare your videos for adaptive bitrate streaming, you need to encode your source video into multi-bitrate files. You should use the **Media Encoder Standard** encoder to encode your videos.  
 
-媒體服務也提供動態封裝，這讓您以下列串流格式 (MPEG DASH、HLS、Smooth Streaming 或 HDS) 提供多位元速率 MP4，而不必重新封裝成這些串流格式。使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
+Media Services also provides dynamic packaging, which allows you to deliver your multi-bitrate MP4s in the following streaming formats: MPEG DASH, HLS, Smooth Streaming, or HDS, without you having to repackage into these streaming formats. With dynamic packaging, you only need to store and pay for the files in single storage format and Media Services builds and serves the appropriate response based on requests from a client.
 
-若要利用動態封裝，您需要執行下列動作：
+To take advantage of dynamic packaging, you need to do the following:
 
-- 將您的來源檔編碼為一組多位元速率 MP4 檔案 (編碼步驟稍後示範於本節中)。
-- 為您計畫從該處傳遞內容的串流端點至少取得一個串流單元。如需詳細資訊，請參閱[設定串流端點](media-services-portal-vod-get-started.md#configure-streaming-endpoints)。
+- Encode your source file into a set of multi-bitrate MP4 files (the encoding steps are demonstrated later in this section).
+- Get at least one streaming unit for the streaming endpoint from which you plan to delivery your content. For more information, see [configuring streaming endpoints](media-services-portal-vod-get-started.md#configure-streaming-endpoints). 
 
-### 使用入口網站進行編碼
+### <a name="to-use-the-portal-to-encode"></a>To use the portal to encode
 
-本節說明當您利用媒體編碼器標準為您的內容編碼時，可以採取的步驟。
+This section describes the steps you can take to encode your content with Media Encoder Standard.
 
-1.  在 [設定] 視窗中，選取 [資產]。
-2.  在 [資產] 視窗中，選取您想要編碼的資產。
-3.  按 [編碼] 按鈕。
-4.  在 [為資產編碼] 視窗中，選取 [媒體編碼器標準] 處理器和預設值。例如，如果您知道您的輸入視訊的解析度為 1920x1080 像素，您則可使用 [H264 多位元速率 1080p] 預設值。如需預設值的詳細資訊，請參閱[這篇](https://msdn.microsoft.com/library/azure/mt269960.aspx)文章 – 務必選取最適合您的輸入視訊的預設值。如果您有低解析度 (640x360) 視訊，則不應該使用預設 [H264 多位元速率 1080p] 預設值。
-	
-	為了方便管理，您可以選擇編輯輸出資產的名稱和作業的名稱。
-		
-	![為資產編碼](./media/media-services-portal-vod-get-started/media-services-encode1.png)
-5. 按下 [建立]。
+1.  In the **Settings** window, select **Assets**.  
+2.  In the **Assets** window, select the asset that you would like to encode.
+3.  Press the **Encode** button.
+4.  In the **Encode an asset** window, select the "Media Encoder Standard" processor and a preset. For example, if you know your input video has a resolution of 1920x1080 pixels, then you could use the "H264 Multiple Bitrate 1080p" preset. For more information about presets, see [this](https://msdn.microsoft.com/library/azure/mt269960.aspx) article – it is important to select the preset that is most appropriate for your input video. If you have a low resolution (640x360) video, then you should not be using the default "H264 Multiple Bitrate 1080p" preset.
+    
+    For easier management, you have an option of editing the name of the output asset, and the name of the job.
+        
+    ![Encode assets](./media/media-services-portal-vod-get-started/media-services-encode1.png)
+5. Press **Create**.
 
-### 監視編碼作業進度
+### <a name="monitor-encoding-job-progress"></a>Monitor encoding job progress
 
-若要監視編碼作業的進度，請按一下 [設定]\(位於頁面頂端)，然後選取 [作業]。
+To monitor the progress of the encoding job, click **Settings** (at the top of the page) and then select **Jobs**.
 
-![作業](./media/media-services-portal-vod-get-started/media-services-jobs.png)
+![Jobs](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
-## 發佈內容
+## <a name="publish-content"></a>Publish content
 
-如要想提供 URL 給使用者，讓使用者可以利用這個 URL 來傳送或下載內容，請您先建立定位器來發佈您的資產。定位器提供對於資產中包含之檔案的存取。媒體服務支援兩種類型的定位器：
+To provide your user with a  URL that can be used to stream or download your content, you first need to "publish" your asset by creating a locator. Locators provide access to files contained in the asset. Media Services supports two types of locators: 
 
-- 串流 (OnDemandOrigin) 定位器，用來自適性串流 (例如，串流處理 MPEG DASH、HLS 或 Smooth Streaming)。若要建立串流定位器，您的資產必須包含 .ism 檔案。
-- 漸進式 (SAS) 定位器，用於透過漸進式下載傳遞視訊。
+- Streaming (OnDemandOrigin) locators, used for adaptive streaming (for example, to stream MPEG DASH, HLS, or Smooth Streaming). To create a streaming locator your asset must contain an .ism file. 
+- Progressive (SAS) locators, used for delivery of video via progressive download.
 
 
-資料流 URL 的格式如下，還可以用它來播放 Smooth Streaming 資產。
+A streaming URL has the following format and you can use it to play Smooth Streaming assets.
 
-	{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
+    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
 
-若要建立 HLS 資料流 URL，請在 URL 加上 (format=m3u8-aapl)。
+To build an HLS streaming URL, append (format=m3u8-aapl) to the URL.
 
-	{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
+    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-若要建置 MPEG DASH 串流 URL，請將 (格式=mpd-time-csf) 附加至 URL。
+To build an  MPEG DASH streaming URL, append (format=mpd-time-csf) to the URL.
 
-	{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
+    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
 
-SAS URL 具有下列格式。
+A SAS URL has the following format.
 
-	{blob container name}/{asset name}/{file name}/{SAS signature}
+    {blob container name}/{asset name}/{file name}/{SAS signature}
 
->[AZURE.NOTE] 如果您在 2015 年 3 月前使用入口網站來建立定位器，則建立的定位器 2 年後便告失效。
+>[AZURE.NOTE] If you used the portal to create locators before March 2015, locators with a two-year expiration date were created.  
 
-若要更新定位器的到期日，請使用 [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。當您更新 SAS 定位器的到期日，URL 也會隨之變更。
+To update an expiration date on a locator, use [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator ) or [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) APIs. When you update the expiration date of a SAS locator, the URL changes.
 
-### 使用入口網站發佈資產
+### <a name="to-use-the-portal-to-publish-an-asset"></a>To use the portal to publish an asset
 
-若要使用入口網站發佈資產，請執行下列作業：
+To use the portal to publish an asset, do the following:
 
-1. 選取 [設定] > [資產]。
-1. 選取您要發佈的資產。
-1. 按一下 [發佈] 按鈕。
-1. 選取定位器類型。
-2. 按 [新增]。
+1. Select **Settings** > **Assets**.
+1. Select the asset that you want to publish.
+1. Click the **Publish** button.
+1. Select the locator type.
+2. Press **Add**.
 
-	![發佈](./media/media-services-portal-vod-get-started/media-services-publish1.png)
+    ![Publish](./media/media-services-portal-vod-get-started/media-services-publish1.png)
 
-URL 便會加入 [已發佈的 URL] 清單中。
+The URL is added to the list of **Published URLs**.
 
-## 從入口網站播放內容
+## <a name="play-content-from-the-portal"></a>Play content from the portal
 
-Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
+The Azure portal provides a content player that you can use to test your video.
 
-按一下想要的視訊，然後按一下 [播放] 按鈕。
+Click the desired video and then click the **Play** button.
 
-![發佈](./media/media-services-portal-vod-get-started/media-services-play.png)
+![Publish](./media/media-services-portal-vod-get-started/media-services-play.png)
 
-適用一些考量事項：
+Some considerations apply:
 
-- 確定已發佈視訊。
-- 此**媒體播放器**會從預設串流端點播放。如果您想要從非預設串流端點播放，請按一下以複製 URL 並使用其他播放器。例如，[Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
+- Make sure the video has been published.
+- This **Media player** plays from the default streaming endpoint. If you want to play from a non-default streaming endpoint, click to copy the URL and use another player. For example, [Azure Media Services Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-檢閱媒體服務學習路徑。
+Review Media Services learning paths.
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##提供意見反應
+##<a name="provide-feedback"></a>Provide feedback
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

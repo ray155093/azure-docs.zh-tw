@@ -1,106 +1,112 @@
 <properties
-	pageTitle="在 Azure CDN 中疑難排解檔案壓縮 | Microsoft Azure"
-	description="針對 Azure CDN 檔案壓縮的問題進行疑難排解。"
-	services="cdn"
-	documentationCenter=""
-	authors="camsoper"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Troubleshooting file compression in Azure CDN | Microsoft Azure"
+    description="Troubleshoot issues with Azure CDN file compression."
+    services="cdn"
+    documentationCenter=""
+    authors="camsoper"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="cdn"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/01/2016"
-	ms.author="casoper"/>
+    ms.service="cdn"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/01/2016"
+    ms.author="casoper"/>
     
-# CDN 檔案壓縮疑難排解
 
-這篇文章可協助您針對 [CDN 檔案壓縮](cdn-improve-performance.md)的問題進行疑難排解。
+# <a name="troubleshooting-cdn-file-compression"></a>Troubleshooting CDN file compression
 
-如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
+This article helps you troubleshoot issues with [CDN file compression](cdn-improve-performance.md).
 
-## 徵狀
+If you need more help at any point in this article, you can contact the Azure experts on [the MSDN Azure and the Stack Overflow forums](https://azure.microsoft.com/support/forums/). Alternatively, you can also file an Azure support incident. Go to the [Azure Support site](https://azure.microsoft.com/support/options/) and click **Get Support**.
 
-已為您的端點啟用壓縮，但會傳回未壓縮的檔案。
+## <a name="symptom"></a>Symptom
 
->[AZURE.TIP] 若要檢查傳回的檔案是否會壓縮，您需要使用 [Fiddler](http://www.telerik.com/fiddler) 之類的工具或您瀏覽器的[開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/)。檢查隨快取的 CDN 內容傳回的 HTTP 回應標頭。如果名為 `Content-Encoding` 的標頭有 **gzip**、**bzip2** 或 **deflate** 值，內容會進行壓縮。
+Compression for your endpoint is enabled, but files are being returned uncompressed.
+
+>[AZURE.TIP] To check whether your files are being returned compressed, you need to use a tool like [Fiddler](http://www.telerik.com/fiddler) or your browser's [developer tools](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/).  Check the HTTP response headers returned with your cached CDN content.  If there is a header named `Content-Encoding` with a value of **gzip**, **bzip2**, or **deflate**, your content is compressed.
 >
->![Content-Encoding 標頭](./media/cdn-troubleshoot-compression/cdn-content-header.png)
+>![Content-Encoding header](./media/cdn-troubleshoot-compression/cdn-content-header.png)
 
-## 原因
+## <a name="cause"></a>Cause
 
-有幾個可能的原因，包括︰
+There are several possible causes, including:
 
-- 要求的內容不適合進行壓縮。
-- 要求的檔案類型未啟用壓縮。
-- HTTP 要求未包含要求有效壓縮類型的標頭。
+- The requested content is not eligible for compression.
+- Compression is not enabled for the requested file type.
+- The HTTP request did not include a header requesting a valid compression type.
 
-## 疑難排解步驟
+## <a name="troubleshooting-steps"></a>Troubleshooting steps
 
-> [AZURE.TIP] 隨著新端點的部署，CDN 組態變更會需要一些時間才能傳播至整個網路。變更通常會在 90 分鐘內套用。如果這是您第一次設定 CDN 端點壓縮，您應該考慮先等候 1-2 小時，確定壓縮設定已傳播至 POP。
+> [AZURE.TIP] As with deploying new endpoints, CDN configuration changes take some time to propagate through the network.  Usually, changes are applied within 90 minutes.  If this is the first time you've set up compression for your CDN endpoint, you should consider waiting 1-2 hours to be sure the compression settings have propagated to the POPs. 
 
-### 驗證要求
+### <a name="verify-the-request"></a>Verify the request
 
-首先，我們應該對要求進行快速的例行性檢查。您可以使用瀏覽器的[開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/)來檢視所做的要求。
+First, we should do a quick sanity check on the request.  You can use your browser's [developer tools](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/) to view the requests being made.
 
-- 驗證要求正傳送至您的端點 URL `<endpointname>.azureedge.net`，而不是您的來源。
-- 驗證要求包含 **Accept-Encoding** 標頭，且該標頭的值包含 **gzip**、**deflate** 或 **bzip2**。
+- Verify the request is being sent to your endpoint URL, `<endpointname>.azureedge.net`, and not your origin.
+- Verify the request contains an **Accept-Encoding** header, and the value for that header contains **gzip**, **deflate**, or **bzip2**.
 
-> [AZURE.NOTE] **來自 Akamai 的 Azure CDN** 設定檔只支援 **gzip** 編碼。
+> [AZURE.NOTE] **Azure CDN from Akamai** profiles only support **gzip** encoding.
 
-![CDN 要求標頭](./media/cdn-troubleshoot-compression/cdn-request-headers.png)
+![CDN request headers](./media/cdn-troubleshoot-compression/cdn-request-headers.png)
 
-### 驗證壓縮設定 (標準 CDN 設定檔)
+### <a name="verify-compression-settings-(standard-cdn-profile)"></a>Verify compression settings (Standard CDN profile)
 
-> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Akamai 的 Azure CDN 標準**或**來自 Verizon 的 Azure CDN 標準**設定檔，才能套用此步驟。
+> [AZURE.NOTE] This step only applies if your CDN profile is an **Azure CDN Standard from Verizon** or **Azure CDN Standard from Akamai** profile. 
 
-在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [設定] 按鈕。
+Navigate to your endpoint in the [Azure portal](https://portal.azure.com) and click the **Configure** button.
 
-- 驗證已啟用壓縮。
-- 驗證要壓縮之內容的 MIME 類型已包含在壓縮格式清單中。
+- Verify compression is enabled.
+- Verify the MIME type for the content to be compressed is included in the list of compressed formats.
 
-![CDN 壓縮設定](./media/cdn-troubleshoot-compression/cdn-compression-settings.png)
+![CDN compression settings](./media/cdn-troubleshoot-compression/cdn-compression-settings.png)
 
-### 驗證壓縮設定 (進階 CDN 設定檔)
+### <a name="verify-compression-settings-(premium-cdn-profile)"></a>Verify compression settings (Premium CDN profile)
 
-> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Verizon 的 Azure CDN 進階**設定檔，才能套用此步驟。
+> [AZURE.NOTE] This step only applies if your CDN profile is an **Azure CDN Premium from Verizon** profile.
 
-在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [管理] 按鈕。即會開啟補充入口網站。將滑鼠移至 [**HTTP 大型**] 索引標籤上，然後將滑鼠移至 [**快取設定**] 飛出視窗上。按一下 [壓縮]。
+Navigate to your endpoint in the [Azure portal](https://portal.azure.com) and click the **Manage** button.  The supplemental portal will open.  Hover over the **HTTP Large** tab, then hover over the **Cache Settings** flyout.  Click **Compression**. 
 
-- 驗證已啟用壓縮。
-- 驗證 [檔案類型] 清單包含以逗號分隔 (無空格) 的 MIME 類型清單。
-- 驗證要壓縮之內容的 MIME 類型已包含在壓縮格式清單中。
+- Verify compression is enabled.
+- Verify the **File Types** list contains a comma-separated list (no spaces) of MIME types.
+- Verify the MIME type for the content to be compressed is included in the list of compressed formats.
 
-![CDN 進階壓縮設定](./media/cdn-troubleshoot-compression/cdn-compression-settings-premium.png)
+![CDN premium compression settings](./media/cdn-troubleshoot-compression/cdn-compression-settings-premium.png)
 
-### 驗證已快取內容
+### <a name="verify-the-content-is-cached"></a>Verify the content is cached
 
-> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
+> [AZURE.NOTE] This step only applies if your CDN profile is an **Azure CDN from Verizon** profile (Standard or Premium).
 
-使用您瀏覽器的開發人員工具，檢查回應標頭以確保檔案會快取在要求它的區域中。
+Using your browser's developer tools, check the response headers to ensure the file is cached in the region where it is being requested.
 
-- 檢查 **Server** 回應標頭。標頭應該具有格式**平台 (POP/伺服器識別碼)**，如下列範例所示。
-- 檢查 **X-Cache** 回應標頭。標頭應為 **HIT**。
+- Check the **Server** response header.  The header should have the format **Platform (POP/Server ID)**, as seen in the following example.
+- Check the **X-Cache** response header.  The header should read **HIT**.  
 
-![CDN 回應標頭](./media/cdn-troubleshoot-compression/cdn-response-headers.png)
+![CDN response headers](./media/cdn-troubleshoot-compression/cdn-response-headers.png)
 
-### 驗證檔案符合大小需求
+### <a name="verify-the-file-meets-the-size-requirements"></a>Verify the file meets the size requirements
 
-> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
+> [AZURE.NOTE] This step only applies if your CDN profile is an **Azure CDN from Verizon** profile (Standard or Premium).
 
-若要進行壓縮，檔案必須符合下列的大小需求︰
+To be eligible for compression, a file must meet the following size requirements:
 
-- 超過 128 個位元組。
-- 小於 1 MB。
+- Larger than 128 bytes.
+- Smaller than 1 MB.
 
-### 在原始伺服器中檢查要求的 **Via** 標頭
+### <a name="check-the-request-at-the-origin-server-for-a-**via**-header"></a>Check the request at the origin server for a **Via** header
 
-**Via** HTTP 標頭會向 Web 伺服器指出正在由 Proxy 伺服器傳遞要求。Microsoft IIS Web 伺服器預設不會在要求包含 **Via** 標頭時壓縮回應。若要覆寫這個行為，請執行下列作業︰
+The **Via** HTTP header indicates to the web server that the request is being passed by a proxy server.  Microsoft IIS web servers by default do not compress responses when the request contains a **Via** header.  To override this behavior, perform the following:
 
-- **IIS 6**：[在 IIS Metabase 屬性中設定 HcNoCompressionForProxies="FALSE"](https://msdn.microsoft.com/library/ms525390.aspx)
-- **IIS 7 和更新版本**：[在伺服器組態中將 **noCompressionForHttp10** 和 **noCompressionForProxies** 設定為 False](http://www.iis.net/configreference/system.webserver/httpcompression)
+- **IIS 6**: [Set HcNoCompressionForProxies="FALSE" in the IIS Metabase properties](https://msdn.microsoft.com/library/ms525390.aspx)
+- **IIS 7 and up**: [Set both **noCompressionForHttp10** and **noCompressionForProxies** to False in the server configuration](http://www.iis.net/configreference/system.webserver/httpcompression)
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

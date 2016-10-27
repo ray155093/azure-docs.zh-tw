@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure RemoteApp 集合中發佈應用程式給個別使用者 (預覽) | Microsoft Azure"
-   description="了解如何在 Azure RemoteApp 中發佈應用程式給個別使用者，而非以群組為單位來發佈。"
+   pageTitle="Publish applications to individual users in an Azure RemoteApp collection (Preview) | Microsoft Azure"
+   description="Learn how you can publish apps to individual users, instead of depending on groups, in Azure RemoteApp."
    services="remoteapp-preview"
    documentationCenter=""
    authors="piotrci"
@@ -16,93 +16,98 @@
    ms.date="08/15/2016"
    ms.author="piotrci"/>
 
-# 在 Azure RemoteApp 集合中發佈應用程式給個別使用者 (預覽)
+
+# <a name="publish-applications-to-individual-users-in-an-azure-remoteapp-collection-(preview)"></a>Publish applications to individual users in an Azure RemoteApp collection (Preview)
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-本文說明如何在 Azure RemoteApp 集合中發佈應用程式給個別使用者。這是 Azure RemoteApp 的新功能，目前還是「私人預覽」狀態，僅提供給選出的早期採用者進行評估。
+This article explains how to publish applications to individual users in an Azure RemoteApp collection. This is new functionality in Azure RemoteApp, currently in “private preview” and available only to select early adopters for evaluation purposes.
 
-Azure RemoteApp 最初只啟用一種「發佈」應用程式的方式：系統管理員會從映像發佈應用程式，而且集合中的所有使用者都能看見。
+Originally Azure RemoteApp enabled only one way of “publishing” applications: the administrator would publish apps from the image and they would be visible to all users in the collection.
 
-常見的案例是在單一映像中包含許多應用程式並部署一個集合，以降低管理成本。但有時候並非所有應用程式都與所有使用者有關，因此系統管理員會想要將應用程式發佈給個別使用者，讓使用者不會在應用程式摘要中看到不必要的應用程式。
+A common scenario is to include many applications in a single image and deploy one collection in order to reduce management costs. Oftentimes not all applications are relevant to all users – administrators would prefer to publish apps to individual users so they don’t see unnecessary applications in their application feed.
 
-現在 Azure RemoteApp 已提供這項功能，但目前為受限制的預覽功能。以下是新功能的簡短摘要：
+This is now possible in Azure RemoteApp – currently as a limited preview feature. Here is a brief summary of the new functionality:
 
-1. 集合可以設定成兩種模式之一：
+1. A collection can be set into one of two modes:
  
-  - 原始的「集合模式」，在此模式中，集合內的所有使用者都可以看到所有已發佈的應用程式。這是預設模式。
-  - 新推出的「應用程式模式」，在此模式中，使用者只能看見明確指派給他們的應用程式。
+  - the original “collection mode”, where all users in a collection can see all published applications. This is the default mode.
+  - the new “application mode”, where users only see applications that have been explicitly assigned to them
 
-2. 應用程式模式目前只能使用 Azure RemoteApp PowerShell Cmdlet 來啟用。
+2. At the moment the application mode can only be enabled using Azure RemoteApp PowerShell cmdlets.
 
-  - 設定為應用程式模式時，將無法透過 Azure 入口網站管理集合中的使用者指派。您必須透過 PowerShell Cmdlet 管理使用者指派。
+  - When set to application mode, user assignment in the collection cannot be managed through the Azure portal. User assignment has to be managed through PowerShell cmdlets.
 
-3. 使用者只會看到直接發佈給他們的應用程式。不過，使用者若想啟動映像上的其他可用應用程式，仍可藉由在作業系統中直接進行存取來達成。
-  - 此功能只是限制應用程式摘要中的可見性，並不提供應用程式的安全鎖定。
-  - 如果您需要讓使用者與應用程式隔離開來，您必須使用不同的集合。
+3. Users will only see the applications published directly to them. However, it may still be possible for a user to launch the other applications available on the image by accessing them directly in the operating system.
+  - This feature does not provide a secure lockdown of applications; it only limits visibility in the application feed.
+  - If you need to isolate users from applications, you will need to use separate collections for that.
 
-## 如何取得 Azure RemoteApp PowerShell Cmdlet
+## <a name="how-to-get-azure-remoteapp-powershell-cmdlets"></a>How to get Azure RemoteApp PowerShell cmdlets
 
-若要嘗試新的預覽功能，您必須使用 Azure PowerShell Cmdlet。目前還無法使用 Azure 管理入口網站來啟用新的應用程式發佈模式。
+To try the new preview functionality, you will need to use Azure PowerShell cmdlets. It is currently not possible to use the Azure Management portal to enable the new application publishing mode.
 
-首先請確定您已安裝 [Azure PowerShell 模組](../powershell-install-configure.md)。
+First, make sure you have the [Azure PowerShell module](../powershell-install-configure.md) installed.
 
-然後以系統管理員模式啟動 PowerShell 主控台，並執行下列 Cmdlet：
+Then launch the PowerShell console in administrator mode and run the following cmdlet:
 
-		Add-AzureAccount
+        Add-AzureAccount
 
-它會提示您輸入 Azure 使用者名稱和密碼。登入後，您就可以針對 Azure 訂用帳戶執行 Azure RemoteApp Cmdlet。
+It will prompt you for your Azure user name and password. Once signed in, you will be able to run Azure RemoteApp cmdlets against your Azure subscriptions.
 
-## 如何確認集合目前是什麼模式
+## <a name="how-to-check-which-mode-a-collection-is-in"></a>How to check which mode a collection is in
 
-執行下列 Cmdlet：
+Run the following cmdlet:
 
-		Get-AzureRemoteAppCollection <collectionName>
+        Get-AzureRemoteAppCollection <collectionName>
 
-![查看集合模式](./media/remoteapp-perapp/araacllelvel.png)
+![Check the collection mode](./media/remoteapp-perapp/araacllelvel.png)
 
-AclLevel 屬性的可能值如下：
+The AclLevel property can have the following values:
 
-- 集合：原始發佈模式。所有使用者都能看到所有已發佈的應用程式。
-- 應用程式：新的發佈模式。使用者只會看到直接發佈給他們的應用程式。
+- Collection: the original publishing mode. All users see all published apps.
+- Application: the new publishing mode. Users see only the apps published directly to them.
 
-## 如何切換為應用程式發佈模式
+## <a name="how-to-switch-to-application-publishing-mode"></a>How to switch to application publishing mode
 
-執行下列 Cmdlet：
+Run the following cmdlet:
 
-		Set-AzureRemoteAppCollection -CollectionName -AclLevel Application
+        Set-AzureRemoteAppCollection -CollectionName -AclLevel Application
 
-應用程式發佈狀態將會保留下來：一開始所有使用者會看到所有原本已發佈的應用程式。
+Application publishing state will be preserved: initially all users will see all of the original published apps.
 
-## 如何列出可以看到特定應用程式的使用者
+## <a name="how-to-list-users-who-can-see-a-specific-application"></a>How to list users who can see a specific application
 
-執行下列 Cmdlet：
+Run the following cmdlet:
 
-		Get-AzureRemoteAppUser -CollectionName <collectionName> -Alias <appAlias>
+        Get-AzureRemoteAppUser -CollectionName <collectionName> -Alias <appAlias>
 
-這會列出所有能看到應用程式的使用者。
+This lists all users who can see the application.
 
-附註：執行 Get-AzureRemoteAppProgram -CollectionName <collectionName> 就能看到應用程式別名 (在上述語法中稱為 "app alias")。
+Note: You can see the application aliases (called "app alias" in the syntax above) by running Get-AzureRemoteAppProgram -CollectionName <collectionName>.
 
-## 如何指派應用程式給使用者
+## <a name="how-to-assign-an-application-to-a-user"></a>How to assign an application to a user
 
-執行下列 Cmdlet：
+Run the following cmdlet:
 
-		Add-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
+        Add-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
-使用者現在將會看到 Azure RemoteApp 用戶端中的應用程式，並且能夠與其連接。
+The user will now see the application in the Azure RemoteApp client and will be able to connect to it.
 
-## 如何移除使用者的應用程式
+## <a name="how-to-remove-an-application-from-a-user"></a>How to remove an application from a user
 
-執行下列 Cmdlet：
+Run the following cmdlet:
 
-		Remove-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
+        Remove-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
-## 提供意見反應
-歡迎您提供有關這項預覽功能的意見反應和建議。請填寫[問卷](http://www.instant.ly/s/FDdrb)，以讓我們知道您的想法。
+## <a name="providing-feedback"></a>Providing feedback
+We appreciate your feedback and suggestions regarding this preview feature. Please fill out the [survey](http://www.instant.ly/s/FDdrb) to let us know what you think.
 
-## 還沒有機會試用預覽功能嗎？
-如果您還未參與使用預覽功能，請使用本[問卷](http://www.instant.ly/s/AY83p)來要求存取權。
+## <a name="haven't-had-a-chance-to-try-the-preview-feature?"></a>Haven't had a chance to try the preview feature?
+If you have not participated in the preview yet, please use this [survey](http://www.instant.ly/s/AY83p) to request access.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

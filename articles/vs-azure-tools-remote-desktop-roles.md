@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="搭配使用遠端桌面與 Azure 角色 | Microsoft Azure"
-   description="搭配使用遠端桌面與 Azure 角色"
+   pageTitle="Using Remote Desktop with Azure Roles | Microsoft Azure"
+   description="Using Remote Desktop with Azure Roles"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,64 +15,71 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 搭配使用遠端桌面與 Azure 角色
 
-使用 Azure SDK 和遠端桌面服務，您可以存取 Azure 角色和由 Azure 裝載的虛擬機器。在 Visual Studio 中，您可以從 Azure 專案設定遠端桌面服務。若要啟用遠端桌面服務，您必須建立包含一或多個角色的工作專案並發佈至 Azure。
+# <a name="using-remote-desktop-with-azure-roles"></a>Using Remote Desktop with Azure Roles
 
->[AZURE.IMPORTANT] 您應該只基於疑難排解或開發目的來存取 Azure 角色。每個虛擬機器的用途是在 Azure 應用程式中執行特定角色，而不是執行其他用戶端應用程式。如果您想要使用 Azure 來裝載可做為任何用途的虛擬機器，請參閱「從伺服器總管存取 Azure 虛擬機器」。
+By using the Azure SDK and Remote Desktop Services, you can access Azure roles and virtual machines that are hosted by Azure. In Visual Studio, you can configure Remote Desktop Services from an Azure project. To enable Remote Desktop Services, you must create a working project that contains one or more roles and then publish it to Azure.
 
-## 啟用和使用遠端桌面來存取 Azure 角色
+>[AZURE.IMPORTANT] You should access an Azure role for troubleshooting or development only. The purpose of each virtual machine is to run a specific role in your Azure application, not to run other client applications. If you want to use Azure to host a virtual machine that you can use for any purpose, see Accessing Azure Virtual Machines from Server Explorer.
 
-1. 在 [方案總管] 中，開啟專案的捷徑功能表並按一下 [發佈]。
+## <a name="to-enable-and-use-remote-desktop-for-an-azure-role"></a>To enable and use Remote Desktop for an Azure Role
 
-    [發佈 Azure 應用程式] 精靈隨即出現。
+1. In Solution Explorer, open the shortcut menu for your project, and then choose **Publish**.
 
-    ![雲端服務專案的發佈命令](./media/vs-azure-tools-remote-desktop-roles/IC799161.png)
+    The **Publish Azure Application** wizard appears.
 
-1. 在精靈的 [Microsoft Azure 發佈設定] 頁面底部，選取 [啟用所有角色的遠端桌面] 核取方塊。
+    ![Publish command for a Cloud Service project](./media/vs-azure-tools-remote-desktop-roles/IC799161.png)
 
-    [遠端桌面組態] 對話方塊隨即出現。
+1. At the bottom of **Microsoft Azure Publish Settings** page of the wizard, select the **Enable Remote Desktop** for all roles check box. 
 
-1. 在 [遠端桌面組態] 對話方塊底部，選擇 [更多選項] 按鈕。
+    The **Remote Desktop Configuration** dialog box appears.
+
+1. At the bottom of the **Remote Desktop Configuration** dialog box, choose the **More Options** button. 
  
-    這會顯示下拉式清單方塊，可讓您建立或選擇的憑證，以便您在透過遠端桌面連線時可以加密認證資訊。
+    This displays a dropdown list box that lets you create or choose a certificate so that you can encrypt credentials information when connecting via remote desktop.
 
-1. 在下拉式清單中，選擇 [&lt;建立>]，或從選擇清單中現有的憑證。
+1. In the dropdown list, choose **&lt;Create>**, or choose an existing one from the list. 
 
-    如果您選擇現有憑證，請略過下列步驟。
+    If you choose an existing certificate, skip the following steps.
 
-    >[AZURE.NOTE] 遠端桌面連線所需的憑證不同於用於其他 Azure 作業的憑證。遠端存取憑證必須具有私密金鑰。
+    >[AZURE.NOTE] The certificates that you need for a remote desktop connection are different from the certificates that you use for other Azure operations. The remote access certificate must have a private key.
 
-    [建立憑證] 對話方塊會隨即出現。
+    The **Create Certificate** dialog box appears.
 
-    1. 為新憑證提供易記的名稱，然後選擇 [確定] 按鈕。新的憑證會出現在下拉式清單方塊中。
+    1. Provide a friendly name for the new certificate, and then choose the **OK** button. The new certificate appears in the dropdown list box.
 
-    1. 在 [遠端桌面組態] 對話方塊中，提供使用者名稱和密碼。
+    1. In the **Remote Desktop Configuration** dialog box, provide a user name and a password.
     
-        您無法使用現有的帳戶。請勿指定 Administrator 做為新帳戶的使用者名稱。
+        You can’t use an existing account. Don’t specify Administrator as the user name for the new account.
 
-        >[AZURE.NOTE] 如果密碼不符合複雜性需求，密碼文字方塊旁會出現紅色圖示。密碼必須包含大寫字母、小寫字母和數字或符號。
+        >[AZURE.NOTE] If the password doesn’t meet the complexity requirements, a red icon appears next to the password text box. The password must include capital letters, lowercase letters, and numbers or symbols.
 
-    1. 選擇帳戶的到期日期，在此日期之後，遠端桌面連線會遭到封鎖。
+    1. Choose a date on which the account will expire and after which remote desktop connections will be blocked.
 
-    1. 當您提供所有必要的資訊之後，選擇 [確定] 按鈕。
+    1. After you've provided all the required information, choose the **OK** button.
     
-        啟用遠端存取服務的數個設定會加入至 .cscfg 和 .csdef 檔案。
+        Several settings that enable Remote Access Services are added to the .cscfg and .csdef files.
 
-1. 當您準備好要發佈雲端服務時，在 [Microsoft Azure 發佈設定] 精靈中選擇 [確定] 按鈕。
+1. In the **Microsoft Azure Publish Settings** wizard, choose the **OK** button when you’re ready to publish your cloud service.
 
-    如果您還沒準備好要發佈，請選擇 [取消] 按鈕。將會儲存組態設定，您可以稍後再發佈雲端服務。
+    If you're not ready to publish, choose the **Cancel** button. The configuration settings are saved, and you can publish your cloud service later.
 
-## 使用遠端桌面連接到 Azure 角色
+## <a name="connect-to-an-azure-role-by-using-remote-desktop"></a>Connect to an Azure Role by using Remote Desktop
 
-在 Azure 上發佈雲端服務之後，您可以使用 [伺服器總管] 來登入 Azure 所裝載的虛擬機器。
+After you publish your cloud service on Azure, you can use Server Explorer to log into the virtual machines that Azure hosts. 
 
-1. 在 [伺服器總管] 中展開 [Azure] 節點，然後展開某個雲端服務的節點及其中一個角色，以顯示執行個體的清單。
+1. In Server Explorer, expand the **Azure** node, and then expand the node for a cloud service and one of its roles to display a list of instances.
 
-1. 開啟執行個體節點的捷徑功能表，然後選擇 [使用遠端桌面連接]。
+1. Open the shortcut menu for an instance node, and then choose **Connect Using Remote Desktop**.
 
-    ![透過遠端桌面連接](./media/vs-azure-tools-remote-desktop-roles/IC799162.png)
+    ![Connecting via remote desktop](./media/vs-azure-tools-remote-desktop-roles/IC799162.png)
 
-1. 輸入您先前建立的使用者名稱和密碼。您現在已登入遠端工作階段。
+1. Enter the user name and password that you created previously. You are now logged into your remote session.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

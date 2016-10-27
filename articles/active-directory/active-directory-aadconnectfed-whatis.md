@@ -1,29 +1,30 @@
 <properties
-	pageTitle="Azure AD Connect 和同盟 | Microsoft Azure"
-	description="此頁面是有關使用 Azure AD Connect 執行 AD FS 作業的所有文件的中心位置"
-	services="active-directory"
-	documentationCenter=""
-	authors="anandyadavmsft"
-	manager="femila"
-	editor=""/>
+    pageTitle="Azure AD Connect 和同盟 | Microsoft Azure"
+    description="此頁面是有關使用 Azure AD Connect 執行 AD FS 作業的所有文件的中心位置"
+    services="active-directory"
+    documentationCenter=""
+    authors="anandyadavmsft"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/14/2016"
-	ms.author="anandy"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/14/2016"
+    ms.author="anandy"/>
 
 
-# Azure AD Connect 和同盟
 
-Azure AD Connect 可讓您設定與內部部署 AD FS 和 Azure AD 同盟。使用同盟登入，您可以讓使用者使用內部部署密碼登入 Azure AD 服務；使用公司網路時，無須再次輸入密碼就可登入服務。使用 AD FS 的同盟選項可讓您在 Windows Server 2012 R2 伺服器陣列中部署新的或指定現有的 AD FS。
+# <a name="azure-ad-connect-and-federation"></a>Azure AD Connect 和同盟
 
-本主題是 Azure AD Connect 的「同盟」相關功能的主要資訊來源，並列出其他所有相關主題的連結。如需 Azure AD Connect 的連結，請參閱＜整合內部部署身分識別與 Azure Active Directory＞。
+Azure AD Connect 可讓您設定與內部部署 AD FS 和 Azure AD 同盟。 使用同盟登入，您可以讓使用者使用內部部署密碼登入 Azure AD 服務；使用公司網路時，無須再次輸入密碼就可登入服務。 使用 AD FS 的同盟選項可讓您在 Windows Server 2012 R2 伺服器陣列中部署新的或指定現有的 AD FS。
 
-## Azure AD Connect - 同盟主題
+本主題是 Azure AD Connect 的「同盟」相關功能的主要資訊來源，並列出其他所有相關主題的連結。 如需 Azure AD Connect 的連結，請參閱＜整合內部部署身分識別與 Azure Active Directory＞。
+
+## <a name="azure-ad-connect---federation-topics"></a>Azure AD Connect - 同盟主題
 
 | 主題 | 涵蓋內容和讀取時機 |
 |:------|:-----------|
@@ -43,9 +44,14 @@ Azure AD Connect 可讓您設定與內部部署 AD FS 和 Azure AD 同盟。使�
 | [修改 AD FS 宣告規則](active-directory-aadconnect-federation-management.md#modifying-ad-fs-claim-rules) | 修改/新增 AD FS 中對應至 Azure AD Connect 同步組態的宣告規則 |
 
 
-## 其他資源
+## <a name="additional-resources"></a>其他資源
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

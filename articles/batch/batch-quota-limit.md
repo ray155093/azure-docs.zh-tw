@@ -1,104 +1,105 @@
 <properties
-	pageTitle="Batch 服務配額和限制 | Microsoft Azure"
-	description="了解預設的 Azure Batch 配額、限制和條件約束，以及如何要求增加配額"
-	services="batch"
-	documentationCenter=""
-	authors="mmacy"
-	manager="timlt"
-	editor=""/>
+    pageTitle="Batch service quotas and limits | Microsoft Azure"
+    description="Learn about default Azure Batch quotas, limits, and constraints, and how to request quota increases"
+    services="batch"
+    documentationCenter=""
+    authors="mmacy"
+    manager="timlt"
+    editor=""/>
 
 <tags
-	ms.service="batch"
-	ms.workload="big-compute"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/10/2016"
-	ms.author="marsma"/>
+    ms.service="batch"
+    ms.workload="big-compute"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/10/2016"
+    ms.author="marsma"/>
 
-# Azure Batch 服務的配額和限制
 
-如同使用其他 Azure 服務，對於與 Batch 服務相關聯的特定資源有一些限制。這其中有許多限制是 Azure 在訂用帳戶或帳戶層級上所套用的預設配額。本文將討論這些預設值，以及如何申請加大配額。
+# <a name="quotas-and-limits-for-the-azure-batch-service"></a>Quotas and limits for the Azure Batch service
 
-如果您計劃在 Batch 中執行生產工作負載，您可能需要增加一或多個高於預設值的配額。若要加大配額，您可以開啟線上[客戶支援要求](#increase-a-quota)，不另外加收費用。
+As with other Azure services, there are limits on certain resources associated with the Batch service. Many of these limits are default quotas applied by Azure at the subscription or account level. This article discusses those defaults, and how you can request quota increases.
 
->[AZURE.NOTE] 配額是一種信用限制，不是容量保證。如果您有大規模的容量需求，請連絡 Azure 支援。
+If you plan to run production workloads in Batch, you may need to increase one or more of the quotas above the default. If you want to raise a quota, you can open an online [customer support request](#increase-a-quota) at no charge.
 
-## 訂用帳戶配額
-**Resource**|**預設限制**|**上限**
+>[AZURE.NOTE] A quota is a credit limit, not a capacity guarantee. If you have large-scale capacity needs, please contact Azure support.
+
+## <a name="subscription-quotas"></a>Subscription quotas
+**Resource**|**Default Limit**|**Maximum Limit**
 ---|---|---
-Batch 帳戶 (每一區域的每一訂用帳戶) | 1 | 50
+Batch accounts per region per subscription | 1 | 50
 
-## Batch 帳戶配額
+## <a name="batch-account-quotas"></a>Batch account quotas
 [AZURE.INCLUDE [azure-batch-limits](../../includes/azure-batch-limits.md)]
 
-## 其他限制
-**Resource**|**上限**
+## <a name="other-limits"></a>Other limits
+**Resource**|**Maximum Limit**
 ---|---
-每個計算節點的[並行工作](batch-parallel-node-tasks.md) | 4 x 節點的核心數目
-每一 Batch 帳戶的[應用程式](batch-application-packages.md) | 20
-每個應用程式的應用程式封裝 | 40
-應用程式封裝大小 (每一個) | 大約 195 GB<sup>1</sup>
+[Concurrent tasks](batch-parallel-node-tasks.md) per compute node | 4 x number of node cores
+[Applications](batch-application-packages.md) per Batch account        | 20
+Application packages per application  | 40
+Application package size (each)       | Approx. 195GB<sup>1</sup>
 
-<sup>1</sup> 對於區塊 Blob 大小上限的 Azure 儲存體限制
+<sup>1</sup> Azure Storage limit for maximum block blob size
 
-## 檢視 Batch 配額
+## <a name="view-batch-quotas"></a>View Batch quotas
 
-在 [Azure 入口網站][portal]中檢視您的 Batch 帳戶配額。
+View your Batch account quotas in the [Azure portal][portal].
 
-1. 在入口網站中選取 [Batch 帳戶]，然後選取您感興趣的 Batch 帳戶。
+1. Select **Batch accounts** in the portal, then select the Batch account you're interested in.
 
-2. 在 Batch 帳戶的功能表刀鋒視窗上選取 [屬性]
+2. Select **Properties** on the Batch account's menu blade
 
-3. [屬性] 刀鋒視窗會顯示目前套用至 Batch 帳戶的「配額」
+3. The Properties blade displays the **quotas** currently applied to the Batch account
 
-	![Batch 帳戶配額][account_quotas]
+    ![Batch account quotas][account_quotas]
 
-## 增加配額
+## <a name="increase-a-quota"></a>Increase a quota
 
-遵循下列步驟，使用 [Azure 入口網站][portal]來申請加大配額。
+Follow the steps below to request a quota increase using the [Azure portal][portal].
 
-1. 選取入口網站儀表板上的 [說明 + 支援] 圖格或入口網站右上角的問號 (**？**)。
+1. Select the **Help + support** tile on your portal dashboard, or the question mark (**?**) in the upper-right corner of the portal.
 
-2. 選取 [新增支援要求] > [基本]。
+2. Select **New support request** > **Basics**.
 
-3. 在 [基本] 刀鋒視窗上：
+3. On the **Basics** blade:
 
-	a.[問題類型] > [配額]
+    a. **Issue Type** > **Quota**
 
-	b.選取您的訂用帳戶。
+    b. Select your subscription.
 
-	c.[配額類型] > [Batch]
+    c. **Quota type** > **Batch**
 
-	d.[支援方案] > [配額支援 - 已包含]
+    d. **Support plan** > **Quota support - Included**
 
-	按 [下一步]。
+    Click **Next**.
 
-4. 在 [問題] 刀鋒視窗上：
+4. On the **Problem** blade:
 
-	a.根據[商業影響][support_sev]選取 [嚴重性]。
+    a. Select a **Severity** according to your [business impact][support_sev].
 
-	b.在 [詳細資料] 中，指定每個您想要變更的配額、Batch 帳戶名稱和新限制。
+    b. In **Details**, specify each quota you want to change, the Batch account name, and the new limit.
 
-	按 [下一步]。
+    Click **Next**.
 
-5. 在 [連絡資訊] 刀鋒視窗上：
+5. On the **Contact information** blade:
 
-	a.選取 [偏好的連絡方式]。
+    a. Select a **Preferred contact method**.
 
-	b.確認並輸入必要的連絡人詳細資料。
+    b. Verify and enter the required contact details.
 
-	按一下 [建立] 提交支援要求。
+    Click **Create** to submit the support request.
 
-一旦您上傳支援要求，Azure 支援會與您連絡。請注意，完成要求最多需要花費 2 個工作天。
+Once you've submitted your support request, Azure support will contact you. Note that completing the request can take up to 2 business days.
 
-## 相關主題
+## <a name="related-topics"></a>Related topics
 
-* [使用 Azure 入口網站建立 Azure Batch 帳戶](batch-account-create-portal.md)
+* [Create an Azure Batch account using the Azure portal](batch-account-create-portal.md)
 
-* [Azure Batch 功能概觀](batch-api-basics.md)
+* [Azure Batch feature overview](batch-api-basics.md)
 
-* [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)
+* [Azure subscription and service limits, quotas, and constraints](../azure-subscription-service-limits.md)
 
 [portal]: https://portal.azure.com
 [portal_classic_increase]: https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/
@@ -106,4 +107,8 @@ Batch 帳戶 (每一區域的每一訂用帳戶) | 1 | 50
 
 [account_quotas]: ./media/batch-quota-limit/accountquota_portal.PNG
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

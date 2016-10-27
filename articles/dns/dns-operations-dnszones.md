@@ -1,10 +1,10 @@
-<properties 
-   pageTitle="使用 PowerShell 管理 DNS 區域 | Microsoft Azure" 
-   description="您可以使用 Azure Powershell 管理 DNS 區域。如何在 Azure DNS 上更新、刪除及建立 DNS 區域" 
-   services="dns" 
-   documentationCenter="na" 
-   authors="cherylmc" 
-   manager="carmonm" 
+<properties
+   pageTitle="Manage DNS zones using PowerShell | Microsoft Azure"
+   description="You can manage DNS zones using Azure Powershell. How to update, delete and create DNS zones on Azure DNS"
+   services="dns"
+   documentationCenter="na"
+   authors="sdwheeler"
+   manager="carmonm"
    editor=""/>
 
 <tags
@@ -12,11 +12,12 @@
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services" 
+   ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+   ms.author="sewhee"/>
 
-# 如何管理使用 PowerShell 的 DNS 區域
+
+# <a name="how-to-manage-dns-zones-using-powershell"></a>How to manage DNS Zones using PowerShell
 
 > [AZURE.SELECTOR]
 - [Azure CLI](dns-operations-dnszones-cli.md)
@@ -24,74 +25,78 @@
 
 
 
-本文將說明如何使用 PowerShell 管理 DNS 區域。為了使用這些步驟，您必須安裝最新版的 Azure Resource Manager PowerShell Cmdlet (1.0 或更新版本)。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+This article will show you how to manage your DNS zone by using PowerShell. In order to use these steps, you'll need to install the latest version of the Azure Resource Manager PowerShell cmdlets (1.0 or later). See [How to install and configure Azure PowerShell](../powershell-install-configure.md) for more information about installing the PowerShell cmdlets.
 
 
-## 建立新的 DNS 區域
+## <a name="create-a-new-dns-zone"></a>Create a new DNS zone
 
-若要建立 DNS 區域，請參閱[使用 PowerShell 建立 DNS 區域](dns-getstarted-create-dnszone.md)。
+To create a DNS zone, see [Create a DNS zone by using PowerShell](dns-getstarted-create-dnszone.md).
 
-## 取得 DNS 區域
+## <a name="get-a-dns-zone"></a>Get a DNS zone
 
-若要擷取 DNS 區域，請使用 `Get-AzureRmDnsZone` Cmdlet。此作業會傳回對應至 Azure DNS 中現有區域的 DNS 區域物件。這個物件包含區域的相關資料 (例如記錄集的數目)，但不包含記錄集本身。
+To retrieve a DNS zone, use the `Get-AzureRmDnsZone` cmdlet. This operation returns a DNS zone object corresponding to an existing zone in Azure DNS. The object contains data about the zone (such as the number of record sets), but does not contain the record sets themselves.
 
-	$zone = Get-AzureRmDnsZone -Name contoso.com –ResourceGroupName MyAzureResourceGroup
+    $zone = Get-AzureRmDnsZone -Name contoso.com –ResourceGroupName MyAzureResourceGroup
 
-## 列出 DNS 區域
+## <a name="list-dns-zones"></a>List DNS zones
 
-您可以從 `Get-AzureRmDnsZone` 中省略區域名稱，以列舉資源群組中的所有區域：此作業會傳回一系列的區域物件。
+By omitting the zone name from `Get-AzureRmDnsZone`, you can enumerate all zones in a resource group. This operation returns an array of zone objects.
 
-	$zoneList = Get-AzureRmDnsZone -ResourceGroupName MyAzureResourceGroup
+    $zoneList = Get-AzureRmDnsZone -ResourceGroupName MyAzureResourceGroup
 
-## 更新 DNS 區域
+## <a name="update-a-dns-zone"></a>Update a DNS zone
 
-您可以使用 `Set-AzureRmDnsZone` 變更 DNS 區域資源。這不會更新區域內的任何 DNS 記錄集 (請參閱[如何管理 DNS 記錄](dns-operations-recordsets.md))。它只用來更新區域資源本身的屬性。這在目前限於區域資源的 Azure 資源管理員「標記」。如需詳細資訊，請參閱 [Etag 和標記](dns-getstarted-create-dnszone.md#Etags-and-tags)。
+Changes to a DNS zone resource can be made by using `Set-AzureRmDnsZone`. This does not update any of the DNS record sets within the zone (see [How to Manage DNS records](dns-operations-recordsets.md)). It's only used to update properties of the zone resource itself. This is currently limited to the Azure Resource Manager ‘tags’ for the zone resource. See [Etags and Tags](dns-getstarted-create-dnszone.md#Etags-and-tags) for more information.
 
-請使用下列兩種方法之一來更新 DNS 區域：
+Use one of the following two ways to update DNS zone:
 
-### 使用區域名稱和資源群組來指定區域
+### <a name="specify-the-zone-using-the-zone-name-and-resource-group"></a>Specify the zone using the zone name and resource group
 
-	Set-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup [-Tag $tags]
+    Set-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup [-Tag $tags]
 
-### 使用 $zone 物件來指定區域
+### <a name="specify-the-zone-using-a-$zone-object"></a>Specify the zone using a $zone object
 
-使用 `Get-AzureRmDnsZone` 傳回的 $zone 物件來指定區域。使用 `Set-AzureRmDnsZone` 搭配 $zone 物件時，將會使用 Etag 檢查，以確保不會覆寫並行變更。您可以使用選擇性的 *-Overwrite* 參數來停用這些檢查。如需詳細資訊，請參閱 [Etag 和標記](dns-getstarted-create-dnszone.md#Etags-and-tags)。
-
-
-	$zone = Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup
-	<..modify $zone.Tags here...>
-	Set-AzureRmDnsZone -Zone $zone [-Overwrite]
+Specify the zone using a $zone object from `Get-AzureRmDnsZone`. When using `Set-AzureRmDnsZone` with a $zone object, Etag checks will be used to ensure concurrent changes are not overwritten. You can use the optional *-Overwrite* switch to suppress these checks. See [Etags and Tags](dns-getstarted-create-dnszone.md#Etags-and-tags) for more information.
 
 
-## 刪除 DNS 區域
-
-您可以使用 Remove-AzureRmDnsZone cmdlet 刪除 DNS 區域。
- 
-在 Azure DNS 中刪除 DNS 區域之前，您必須刪除所有記錄集，但建立區域時在區域的根自動建立的 NS 和 SOA 記錄除外。
-
-請使用下列兩種方法之一來移除 DNS 區域：
-
-### 使用區域名稱和資源群組名稱來指定區域
-
-此作業具有選擇性的 *-Force* 參數，可不提示您確認是否想要移除 DNS 區域。
-
-	Remove-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup [-Force] 
-
-### 使用 $zone 物件來指定區域 
-
-使用 `Get-AzureRmDnsZone` 傳回的 $zone 物件來指定區域。此作業有選擇性的 *-Force* 參數，可不提示您確認是否想要移除 DNS 區域。如同 `Set-AzureRmDnsZone` 一樣，使用 $zone 物件指定區域可啟用 Etag 檢查，以確保不會刪除並行的變更。<BR> 選擇性的 *-Overwrite* 旗標可停用這些檢查。如需詳細資訊，請參閱 [Etag 和標記](dns-getstarted-create-dnszone.md#Etags-and-tags)。
-
-	$zone = Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsZone -Zone $zone [-Force] [-Overwrite]
+    $zone = Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup
+    <..modify $zone.Tags here...>
+    Set-AzureRmDnsZone -Zone $zone [-Overwrite]
 
 
+## <a name="delete-a-dns-zone"></a>Delete a DNS Zone
 
-區域物件也可以經由管道輸送，而不是當做參數傳遞：
+DNS zones can be deleted using the Remove-AzureRmDnsZone cmdlet.
 
-	Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup | Remove-AzureRmDnsZone [-Force] [-Overwrite]
+Before deleting a DNS zone in Azure DNS, you will need to delete all records sets, except for the NS and SOA records at the root of the zone that were created automatically when the zone was created.
 
-## 後續步驟
+Use one of the following two ways to remove a DNS zone:
 
-建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset.md)，以開始解析您的網際網路網域名稱。
+### <a name="specify-the-zone-using-the-zone-name-and-resource-group-name"></a>Specify the zone using the zone name and resource group name
 
-<!---HONumber=AcomDC_0817_2016-->
+This operation has an optional *-Force* switch which suppresses the prompt to confirm you want to remove the DNS zone.
+
+    Remove-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup [-Force]
+
+### <a name="specify-the-zone-using-a-$zone-object"></a>Specify the zone using a $zone object
+
+Specify the zone using a $zone object from `Get-AzureRmDnsZone`. This operation has an optional *-Force* switch which suppresses the prompt to confirm you want to remove the DNS zone. As with `Set-AzureRmDnsZone`, specifying the zone using a $zone object enables Etag checks to ensure concurrent changes are not deleted. <BR>
+The optional *-Overwrite* flag suppresses these checks. See [Etags and Tags](dns-getstarted-create-dnszone.md#Etags-and-tags) for more information.
+
+    $zone = Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsZone -Zone $zone [-Force] [-Overwrite]
+
+
+
+The zone object can also be piped instead of being passed as a parameter:
+
+    Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup | Remove-AzureRmDnsZone [-Force] [-Overwrite]
+
+## <a name="next-steps"></a>Next steps
+
+After creating a DNS zone, create [record sets and records](dns-getstarted-create-recordset.md) to start resolving names for your Internet domain.
+
+
+<!--HONumber=Oct16_HO2-->
+
+

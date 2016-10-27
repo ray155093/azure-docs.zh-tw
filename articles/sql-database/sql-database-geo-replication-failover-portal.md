@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉 | Microsoft Azure" 
-    description="使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉" 
+    pageTitle="Initiate a planned or unplanned failover for Azure SQL Database with the Azure portal | Microsoft Azure" 
+    description="Initiate a planned or unplanned failover for Azure SQL Database using the Azure portal" 
     services="sql-database" 
     documentationCenter="" 
     authors="stevestein" 
@@ -16,45 +16,46 @@
     ms.date="08/29/2016"
     ms.author="sstein"/>
 
-# 使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉
+
+# <a name="initiate-a-planned-or-unplanned-failover-for-azure-sql-database-with-the-azure-portal"></a>Initiate a planned or unplanned failover for Azure SQL Database with the Azure portal
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-geo-replication-failover-portal.md)
+- [Azure portal](sql-database-geo-replication-failover-portal.md)
 - [PowerShell](sql-database-geo-replication-failover-powershell.md)
 - [T-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
 
-本文說明如何使用 [Azure 入口網站](http://portal.azure.com)起始容錯移轉至次要 SQL Database。若要設定「異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)。
+This article shows you how to initiate failover to a secondary SQL Database with the [Azure portal](http://portal.azure.com). To configure Geo-Replication, see [Configure Geo-Replication for Azure SQL Database](sql-database-geo-replication-portal.md).
 
 
-## 起始容錯移轉
+## <a name="initiate-a-failover"></a>Initiate a failover
 
-次要資料庫可被切換成為主要資料庫。
+The secondary database can be switched to become the primary.  
 
-1. 在 [Azure 入口網站](http://portal.azure.com)中，瀏覽至「異地複寫」合作關係中的主要資料庫。
-2. 在 [SQL Database] 刀鋒視窗上，選取 [所有設定] > [異地複寫]。
-3. 在 [次要] 清單中，選取要做為新主要資料庫的資料庫，然後按一下 [容錯移轉]。
+1. In the [Azure portal](http://portal.azure.com) browse to the primary database in the Geo-Replication partnership.
+2. On the SQL Database blade, select **All settings** > **Geo-Replication**.
+3. In the **SECONDARIES** list, select the database you want to become the new primary and click **Failover**.
 
-    ![容錯移轉][2]
+    ![failover][2]
 
-4. 按一下 [是] 即可開始容錯移轉。
+4. Click **Yes** to begin the failover.
 
-命令會立即會將次要資料庫切換為主要角色。
+The command will immediately switch the secondary database into the primary role. 
 
-切換角色時，會有一小段時間無法使用這兩個資料庫 (大約為 0 到 25 秒)。如果主要資料庫有多個次要資料庫，此命令會自動重新設定其他次要複本以連接至新的主要複本。在正常情況下，完成整個作業所需的時間應該少於一分鐘。
+There is a short period during which both databases are unavailable (on the order of 0 to 25 seconds) while the roles are switched. If the primary database has multiple secondary databases, the command will automatically reconfigure the other secondaries to connect to the new primary. The entire operation should take less than a minute to complete under normal circumstances. 
 
->[AZURE.NOTE] 發出命令時，如果主要複本處於線上並且正在認可交易，可能會發生部分資料遺失。
+>[AZURE.NOTE] If the primary is online and committing transactions when the command is issued some data loss may occur.
 
 
-## 後續步驟   
+## <a name="next-steps"></a>Next steps   
 
-- 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。如需詳細資訊，請參閱[災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
-- 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱[災害復原演練](sql-database-disaster-recovery.md)
-- 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱[新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
-- 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱[使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- 如需使用主動式異地複寫與彈性資料庫集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
-- 如需商務持續性的概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- After failover, ensure the authentication requirements for your server and database are configured on the new primary. For details, see [SQL Database security after disaster recovery](sql-database-geo-replication-security-config.md).
+- To learn recovering after a disaster using Active Geo-Replication, including pre and post recovery steps and performing a disaster recovery drill, see [Disaster Recovery Drills](sql-database-disaster-recovery.md)
+- For a Sasha Nosov blog post about Active Geo-Replication, see [Spotlight on new Geo-Replication capabilities](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
+- For information about designing cloud applications to use Active Geo-Replication, see [Designing cloud applications for business continuity using Geo-Replication](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- For information about using Active Geo-Replication with elastic database pools, see [Elastic Pool disaster recovery strategies](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
+- For an overview of business continurity, see [Business Continuity Overview](sql-database-business-continuity.md)
 
 
 
@@ -63,4 +64,8 @@
 [1]: ./media/sql-database-geo-replication-failover-portal/failover.png
 [2]: ./media/sql-database-geo-replication-failover-portal/secondaries.png
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

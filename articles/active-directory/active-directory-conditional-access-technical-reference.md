@@ -1,85 +1,90 @@
 
 <properties
-	pageTitle="Azure Active Directory 條件式存取的技術參考 | Microsoft Azure"
-	description="透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
+    pageTitle="Azure Active Directory Conditional Access technical reference | Microsoft Azure"
+    description="With Conditional access control, Azure Active Directory checks the specific conditions you pick when authenticating the user and before allowing access to the application. Once those conditions are met, the user is authenticated and allowed access to the application."
     services="active-directory"
-	documentationCenter=""
-	authors="markusvi"
-	manager="femila"
-	editor=""/>
+    documentationCenter=""
+    authors="MarkusVi"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.devlang="na"
-	ms.topic="article"
+    ms.service="active-directory"
+    ms.devlang="na"
+    ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="07/26/2016"
-	ms.author="markvi"/>
+    ms.date="10/20/2016"
+    ms.author="markvi"/>
 
-# Azure Active Directory 條件式存取的技術參考
 
-## 已啟用條件式存取功能的服務
-各種 Azure AD 應用程式類型都支援「條件式存取」規則。此清單包括：
+# <a name="azure-active-directory-conditional-access-technical-reference"></a>Azure Active Directory Conditional Access technical reference
 
-- 來自 Azure AD 應用程式庫的同盟應用程式
-- 來自 Azure AD 應用程式庫的密碼 SSO 應用程式
-- 已向 Azure 應用程式 Proxy 註冊的應用程式
-- 已開發並已向 Azure AD 註冊的企業營運及多租用戶應用程式
+## <a name="services-enabled-with-conditional-access"></a>Services enabled with conditional access
+Conditional Access rules are supported across various Azure AD application types. This list includes:
+
+- Federated applications from the Azure AD application gallery
+- Password SSO applications from the Azure AD application gallery
+- Applications registered with the Azure Application Proxy
+- Developed line of business and multi-tenant applications registered with Azure AD
 - Visual Studio Online
-- Azure 遠端應用程式
-- 	Dynamics CRM
+- Azure Remote App
+-   Dynamics CRM
 - Microsoft Office 365 Yammer
 - Microsoft Office 365 Exchange Online
-- Microsoft Office 365 SharePoint Online (包括商務用 OneDrive)
+- Microsoft Office 365 SharePoint Online (includes OneDrive for Business)
 
 
-## 啟用存取規則
+## <a name="enable-access-rules"></a>Enable access rules
 
-您可以依據個別應用程式來啟用或停用每個規則。當規則為 **ON** 時，系統將會針對存取應用程式的使用者啟用並強制執行這些規則。當規則為 **OFF** 時，系統就不會使用這些規則，也就不會影響使用者的登入體驗。
+Each rule can be enabled or disabled on a per application bases. When rules are **ON** they will be enabled and enforced for users accessing the application. When they are **OFF** they will not be used and will not impact the users sign in experience.
 
-## 將規則套用到特定的使用者
-您可以透過設定 [套用對象]，根據安全性群組，將規則套用到特定的幾組使用者。[套用對象] 可以設定為 [所有使用者] 或 [群組]。設定為 [所有使用者] 時，會將規則套用到任何可以存取應用程式的使用者。[群組] 選項可允許選取特定的安全性和通訊群組，系統將只會針對這些群組強制執行規則。
+## <a name="applying-rules-to-specific-users"></a>Applying rules to specific users
+Rules can be applied to specific sets of users based on security group by setting **Apply To**. **Apply To** can be set to **All Users** or **Groups**. When set to **All Users** the rules will apply to any user with access to the application. The **Groups** option allows specific security and distribution groups to be selected, rules will only be enforced for these groups.
 
-部署規則時，通常會先將它套用到一組有限的使用者，即試驗群組的成員。完成後，規則就可以套用至 [所有使用者]。這會造成規則對組織中的所有使用者強制執行。
+When deploying a rule,  it is common to first apply it a limited set of users, that are members of a piloting groups. Once complete the rule can be applied to **All Users**. This will cause the rule to be enforced for all users in the organization.
 
-您也可以使用 [例外] 選項來免除對選取的群組套用原則。這些群組的任何成員即使出現在包含群組中，也不必套用原則。
+Select groups may also be exempted from policy using the **Except** option. Any members of these groups will be exempted even if they appear in an included group.
 
-## 「工作時」網路
-
-
-使用「工作時」網路的條件式存取規則會依賴 Azure AD 中已設定的可信任 IP 位址範圍，或者從 AD FS 中使用「公司網路內部」宣告。這些規則包含：
-
-- 不在工作時需要多重要素驗證
-- 不工作時封鎖存取
-
-用於指定「工作時」網路的選項
-
-1. 在 [Multi-Factor Authentication 組態頁面](../multi-factor-authentication/multi-factor-authentication-whats-next.md)中設定可信任的 IP位址範圍。「條件式存取」原則會在每個驗證要求和權杖發行上使用已設定的範圍來評估規則。
-2. 設定使用公司網路內部的宣告，您可以使用 AD FS，將此選項與同盟目錄搭配使用。[深入了解公司網路內部宣告](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips)。
-3. 設定公用 IP 位址範圍。您可以在 [設定] 索引標籤中，為您的目錄設定公用 IP 位址。條件式存取將使用這些 IP 位址做為「工作中」IP 位址，這樣就能在 MFA 設定頁面強制執行的 50 個 IP 位址限制以外設定其他的範圍。
+## <a name="“at-work”-networks"></a>“At work” networks
 
 
+Conditional access rules that use an “At work” network, rely on trusted IP address ranges that have been configured in Azure AD, or use of the "inside corpnet" claim from AD FS. These rules include:
 
-## 根據應用程式敏感性的規則
+- Require multi-factor authentication when not at work
+- Block access when not at work
 
-規則是依據個別應用程式來設定，以允許對高價值服務進行保護，而不影響對其他服務的存取。條件式存取規則可以在應用程式的 [設定] 索引標籤上設定。
+Options for specifiying “at work” networks
 
-目前提供的規則︰
+1. Configure trusted IP address ranges in the [multi-factor authentication configuration page](../multi-factor-authentication/multi-factor-authentication-whats-next.md). Conditional Access policy will use the configured ranges on each authentication request and token issuance to evaluate rules. 
+2. Configure use of the inside corpnet claim, this option can be used with federated directories, using AD FS. [Learn more about the inside coronet claims](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips).
+3. Configure public IP address ranges. On the configure tab, for your directory, you can set public IP addresses. Conditional Access will use these as ‘at work’ IP addresses, this allows additional ranges to be configure, above the 50 IP address limit that is enforced by the MFA setting page.
 
-- **需要多重要素驗證**
- - 所有套用了這個原則的使用者都必須透過 Multi-Factor Authentication 至少驗證一次。
+
+
+## <a name="rules-based-on-application-sensitivity"></a>Rules based on application sensitivity
+
+Rules are configured per application allowing the high value services to be secured without impacting access to other services. Conditional access rules can be configured on the  **Configure** tab of the application. 
+
+Rules currently offered:
+
+- **Require multi-factor authentication**
+ - All users that this policy is applied to will be required to authenticate via multi-factor authentication at least once.
  
-- **不在工作時需要多重要素驗證**
- - 如果套用了這個原則，所有使用者如果是從非工作遠端位置存取服務，都必須至少執行一次 Multi-Factor Authentication。如果他們從工作位置移到遠端位置，則在存取服務時，就必須執行 Multi-Factor Authentication。
+- **Require multi-factor authentication when not at work**
+ - If this policy is applied, all users will be required to have performed multi-factor authentication at least once if they access the service from a non-work remote location. If they move from a work to remote location, they will be required to perform multifactor authentication when accessing the service.
  
-- **不工作時封鎖存取**
- - 當使用者從工作位置移至遠端位置時，如果套用了 [不工作時封鎖存取] 原則，他們就會被封鎖。當他們回到工作位置時，就會再次允許他們存取。
+- **Block access when not at work** 
+ - When users move from work to a remote location, they will be blocked if the "Block access when not at work" policy is applied to them.  They will be re-allowed access when at a work location.
 
 
-## 相關主題
+## <a name="related-topics"></a>Related topics
 
-- [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+- [Securing access to Office 365 and other apps connected to Azure Active Directory](active-directory-conditional-access.md)
+- [Article Index for Application Management in Azure Active Directory](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

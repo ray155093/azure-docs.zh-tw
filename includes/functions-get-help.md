@@ -1,7 +1,9 @@
-### 需要協助嗎？
+### <a name="need-some-help?"></a>Need some help?
 
-在 Azure 論壇發表問題。 - [瀏覽 MSDN](http://go.microsoft.com/fwlink/?LinkId=780719)
+Post questions in the Azure forums. - [Visit MSDN](http://go.microsoft.com/fwlink/?LinkId=780719)
 
-以關鍵字 `azure-functions` 標示問題。 - [瀏覽 Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)
+Tag questions with the keyword `azure-functions`. - [Visit Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)
 
-<!---HONumber=AcomDC_0912_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

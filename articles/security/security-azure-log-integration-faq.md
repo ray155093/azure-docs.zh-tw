@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure 記錄整合常見問題集 | Microsoft Azure"
-   description="此常見問題集會回答 Azure 記錄整合的相關問題。"
+   pageTitle="Azure log integration FAQ | Microsoft Azure"
+   description="This FAQ answers questions about Azure log integration."
    services="security"
    documentationCenter="na"
    authors="TomShinder"
@@ -16,17 +16,18 @@
    ms.date="08/23/2016"
    ms.author="TomSh"/>
 
-# Azure 記錄整合常見問題集 (FAQ)
 
-此常見問題集會回答有關 Azure 記錄整合的問題，這是種服務，可讓您將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。這項整合提供您內部部署或在雲端中所有資產統一的儀表板，以便您彙總、相互關聯、分析和警示與應用程式相關聯的安全性事件。
+# <a name="azure-log-integration-frequently-asked-questions-(faq)"></a>Azure log integration frequently asked questions (FAQ)
 
-## 如何查看 Azure 記錄整合從中提取 Azure VM 記錄檔的儲存體帳戶？
+This FAQ answers questions about Azure log integration, a service that enables you to integrate raw logs from your Azure resources into your on-premises Security Information and Event Management (SIEM) systems. This integration provides a unified dashboard for all your assets, on-premises or in the cloud, so that you can aggregate, correlate, analyze, and alert for security events associated with your applications.
 
-執行 **azlog source list** 命令。
+## <a name="how-can-i-see-the-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs-from?"></a>How can I see the storage accounts from which Azure log integration is pulling Azure VM logs from?
 
-## 如何更新 Proxy 組態？
+Run the command **azlog source list**.
 
-如果您的 Proxy 設定不允許直接存取 Azure 儲存體，請開啟 **c:\\Program Files\\Microsoft Azure Log Integration** 中的 **AZLOG.EXE.CONFIG** 檔案。更新檔案，以便將組織的 Proxy 位址納入 **defaultProxy** 區段。更新完成之後，停止並使用 **net stop azlog** 和 **net start azlog** 命令來啟動服務。
+## <a name="how-can-i-update-the-proxy-configuration?"></a>How can I update the proxy configuration?
+
+If your proxy setting does not allow Azure storage access directly, open the **AZLOG.EXE.CONFIG** file in **c:\Program Files\Microsoft Azure Log Integration**. Update the file to include the **defaultProxy** section with the proxy address of your organization. After update is done, stop and start the service using commands **net stop azlog** and **net start azlog**.
 
     <?xml version="1.0" encoding="utf-8"?>
     <configuration>
@@ -44,50 +45,50 @@
         <performanceCounters filemappingsize="20971520" />
       </system.diagnostics>   
 
-## 如何查看 Windows 事件中的訂用帳戶資訊？
+## <a name="how-can-i-see-the-subscription-information-in-windows-events?"></a>How can I see the subscription information in Windows events?
 
-在新增來源時將 **subscriptionid** 附加到易記名稱的後面。
+Append the **subscriptionid** to the friendly name while adding the source.
 
     Azlog source add <sourcefriendlyname>.<subscription id> <StorageName> <StorageKey>  
 
-事件 XML 具有如下所示的中繼資料，包括訂用帳戶識別碼。
+The event XML has the metadata as shown below, including the subscription id.
 
-![事件 XML][1]
+![Event XML][1]
 
-## 錯誤訊息
+## <a name="error-messages"></a>Error messages
 
-### 執行 **azlog createazureid** 命令時，為什麼收到下列錯誤訊息？
-
-Error:
-
-  *無法建立 AAD 應用程式 - 租用戶 72f988bf-86f1-41af-91ab-2d7cd011db37 - 原因 = 「禁止」 - 訊息 = 「權限不足以完成作業。」*
-
-**Azlog createazureid** 嘗試在 Azure 登入具有存取權的訂用帳戶所有的 Azure AD 租用戶中建立服務主體。如果您的 Azure 登入在該 Azure AD 租用戶中只是來賓使用者，然後命令會失敗，並出現「權限不足以完成作業」訊息。 要求租用戶系統管理員將您的帳戶新增為租用戶中的使用者。
-
-### 執行 **azlog authorize** 命令時，為什麼收到下列錯誤訊息？
+### <a name="when-running-command-**azlog-createazureid**,-why-do-i-get-the-following-error?"></a>When running command **azlog createazureid**, why do I get the following error?
 
 Error:
 
-  *建立角色指派警告 - AuthorizationFailed：具有物件識別碼 'fe9e03e4-4dad-4328-910f-fd24a9660bd2' 的用戶端 janedo@microsoft.com 沒有在 '/subscriptions/70d95299-d689-4c97-b971-0d8ff0000000' 範圍內執行動作 'Microsoft.Authorization/roleAssignments/write' 的權限。*
+  *Failed to create AAD Application - Tenant 72f988bf-86f1-41af-91ab-2d7cd011db37 - Reason = 'Forbidden' - Message = 'Insufficient privileges to complete the operation.'*
 
-**Azlog authorize** 命令會將 Azure AD 服務主體讀取者的角色指派給 (以 **Azlog createazureid** 建立) 所提供的訂用帳戶。如果 Azure 登入不是訂用帳戶的共同管理員或擁有者，就會失敗，並出現「授權失敗」錯誤訊息。需要 Azure 角色型存取控制 (RBAC) 的共同管理員或擁有者才能完成此動作。
+**Azlog createazureid** attempts to create a service principal in all the Azure AD tenants for the subscriptions on which the Azure login has access to. If your Azure login is only a Guest user in that Azure AD tenant, then the command fails with ‘Insufficient privileges to complete the operation.’ Request Tenant admin to add your account as a user in the tenant.
 
-## 哪裡可以找到稽核記錄檔中屬性的定義？
+### <a name="when-running-command-**azlog-authorize**,-why-do-i-get-the-following-error?"></a>When running command **azlog authorize**, why do I get the following error?
 
-請參閱：
+Error:
 
-- [使用 Resource Manager 來稽核作業](../resource-group-audit.md)
-- [在 Azure Insights REST API 中列出訂用帳戶中的管理事件](https://msdn.microsoft.com/library/azure/dn931934.aspx)
+  *Warning creating Role Assignment - AuthorizationFailed: The client janedo@microsoft.com' with object id 'fe9e03e4-4dad-4328-910f-fd24a9660bd2' does not have authorization to perform action 'Microsoft.Authorization/roleAssignments/write' over scope '/subscriptions/70d95299-d689-4c97-b971-0d8ff0000000'.*
 
-## 哪裡可以找到 Azure 資訊安全中心警示的詳細資訊？
+**Azlog authorize** command assigns the role of Reader to the Azure AD service principal (created with **Azlog createazureid**) to the subscriptions provided. If the Azure login is not a Co-Administrator or an Owner of the subscription, it fails with ‘Authorization Failed’ error message. Azure role-based access control (RBAC) of Co-Administrator or Owner is needed to complete this action.
 
-請參閱[管理及回應 Azure 資訊安全中心的安全性警示](../security-center/security-center-managing-and-responding-alerts.md)。
+## <a name="where-can-i-find-the-definition-of-the-properties-in-audit-log?"></a>Where can I find the definition of the properties in audit log?
 
-## 如何修改 VM 診斷會收集什麼？
+See:
 
-如需如何取得、修改和設定 Windows Azure 診斷 *(WAD)* 組態的詳細資訊，請參閱[使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md)。以下是範例︰
+- [Audit operations with Resource Manager](../resource-group-audit.md)
+- [List the management events in a subscription in Azure Insights REST API](https://msdn.microsoft.com/library/azure/dn931934.aspx)
 
-### 取得 WAD 設定
+## <a name="where-can-i-find-details-on-azure-security-center-alerts?"></a>Where can I find details on Azure Security Center alerts?
+
+See [Managing and responding to security alerts in Azure Security Center](../security-center/security-center-managing-and-responding-alerts.md).
+
+## <a name="how-can-i-modify-what-is-collected-with-vm-diagnostics?"></a>How can I modify what is collected with VM diagnostics?
+
+See [Use PowerShell to enable Azure Diagnostics in a virtual machine running Windows](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md) for details on how to Get, Modify, and Set the Azure Diagnostics in Windows *(WAD)* configuration. Following is a sample:
+
+### <a name="get-the-wad-config"></a>Get the WAD config
 
     -AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient
     $publicsettings = (Get-AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient).PublicSettings
@@ -97,25 +98,29 @@ Error:
 
     $xmlconfig | Out-File -Encoding utf8 -FilePath "d:\WADConfig.xml"
 
-### 修改 WAD 設定
+### <a name="modify-the-wad-config"></a>Modify the WAD Config
 
-下列範例是只有從安全性事件記錄檔中收集 EventID 4624 和 EventId 4625 的組態。會從系統事件記錄檔中收集 Microsoft 反惡意程式碼事件。如需使用 XPath 運算式的詳細資訊，請參閱 [使用事件](https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85)。
+The following example is a configuration where only EventID 4624 and EventId 4625 are collected from the security event log. Microsoft Antimalware events are collected from the System event log. See [Consuming Events](https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85) for details on the use of XPath expressions.
 
     <WindowsEventLog scheduledTransferPeriod="PT1M">
         <DataSource name="Security!*[System[(EventID=4624 or EventID=4625)]]" />
         <DataSource name="System!*[System[Provider[@Name='Microsoft Antimalware']]]"/>
     </WindowsEventLog>
 
-### 設定 WAD 組態
+### <a name="set-the-wad-configuration"></a>Set the WAD configuration
 
     $diagnosticsconfig_path = "d:\WADConfig.xml"
     Set-AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient -DiagnosticsConfigurationPath $diagnosticsconfig_path -StorageAccountName log3121 -StorageAccountKey <storage key>
 
-完成變更之後，請檢查儲存體帳戶，以確保會收集正確的事件。
+After making changes, check the storage account to ensure that the correct events are collected.
 
-如果您有關於「Azure 記錄整合」的問題，請傳送電子郵件給 [AzSIEMteam@microsoft.com](mailto:AzSIEMteam@microsoft.com)
+If you have questions about Azure Log Integration, please send an email to [AzSIEMteam@microsoft.com] (mailto:AzSIEMteam@microsoft.com)
 
 <!--Image references-->
 [1]: ./media/security-azure-log-integration-faq/event-xml.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

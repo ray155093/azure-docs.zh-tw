@@ -1,6 +1,6 @@
 <properties
- pageTitle="徹底保護您的物聯網 | Microsoft Azure"
- description="本文說明 Microsoft Azure IoT 套件的內建安全性功能"
+ pageTitle="Securing your Internet of Things from the ground up | Microsoft Azure"
+ description="This article describes the built-in security features of the Microsoft Azure IoT Suite"
  services=""
  suite="iot-suite"
  documentationCenter=""
@@ -17,26 +17,31 @@
  ms.date="08/16/2016"
  ms.author="yurid"/>
 
+
 [AZURE.INCLUDE [iot-security-ground-up](../../includes/iot-security-ground-up.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要深入了解如何保護您的 IoT 解決方案，請參閱︰
+To learn more about securing your IoT solution, see:
 
-- [IoT 安全性最佳做法][lnk-security-best-practices]
-- [IoT 安全性架構][lnk-security-architecture]
-- [保護您的 IoT 部署][lnk-security-deployment]
+- [IoT Security Best Practices][lnk-security-best-practices]
+- [IoT Security Architecture][lnk-security-architecture]
+- [Secure your IoT deployment][lnk-security-deployment]
 
 [lnk-security-best-practices]: iot-security-best-practices.md
 [lnk-security-architecture]: iot-security-architecture.md
 [lnk-security-deployment]: iot-suite-security-deployment.md
 
-您也可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
+You can also explore some of the other features and capabilities of the IoT Suite preconfigured solutions:
 
-- [預先設定的預防性維護解決方案概觀][lnk-predictive-overview]
-- [IoT 套件的常見問題集][lnk-faq]
+- [Predictive maintenance preconfigured solution overview][lnk-predictive-overview]
+- [Frequently asked questions for IoT Suite][lnk-faq]
 
 [lnk-predictive-overview]: iot-suite-predictive-overview.md
 [lnk-faq]: iot-suite-faq.md
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

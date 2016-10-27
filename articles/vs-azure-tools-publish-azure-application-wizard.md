@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="發佈 Azure 應用程式精靈 | Microsoft Azure"
-   description="發佈 Azure 應用程式精靈"
+   pageTitle="Publish Azure Application Wizard | Microsoft Azure"
+   description="Publish Azure Application Wizard"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,128 +15,134 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 發佈 Azure 應用程式精靈
 
-## Overview
+# <a name="publish-azure-application-wizard"></a>Publish Azure Application Wizard
 
-在 Visual Studio 中開發 web 應用程式之後，您可以使用**發佈 Azure 應用程式**精靈，更輕鬆地將應用程式發佈至 Azure 雲端服務。第一節說明您在使用精靈前必須完成的步驟，其他節說明精靈的功能。
+## <a name="overview"></a>Overview
 
->[AZURE.NOTE] 本主題是關於部署到雲端服務，而不是網站。如需部署到網站的相關資訊，請參閱[如何部署到 Azure 網站](https://social.msdn.microsoft.com/Search/windowsazure?query=How%20to%20Deploy%20an%20Azure%20Web%20Site&Refinement=138&ac=4#refinementChanges=117&pageNumber=1&showMore=false)。
+After you develop a web application in Visual Studio, you can publish that application more easily to an Azure cloud service by using the **Publish Azure Application** wizard. The first section explains the steps that you must complete before you use the wizard, and the remaining sections explain the features of the wizard.
 
-## 必要條件
+>[AZURE.NOTE] This topic is about deploying to cloud services, not to web sites. For information about deploying to web sites, see [How to Deploy an Azure Web Site](https://social.msdn.microsoft.com/Search/windowsazure?query=How%20to%20Deploy%20an%20Azure%20Web%20Site&Refinement=138&ac=4#refinementChanges=117&pageNumber=1&showMore=false).
 
-發佈 web 應用程式到 Azure 之前，您必須有 Microsoft 帳戶和 Azure 訂用帳戶，而且您必須將 web 應用程式與 Azure 雲端服務產生關聯。如果您已經完成這些工作，您就可以跳至下一節。
+## <a name="prerequisites"></a>Prerequisites
 
-1. 取得 Microsoft 帳戶和 Azure 訂用帳戶。您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)免費試用 Azure 訂用帳戶一個月
+Before you can publish your web application to Azure, you need to have a Microsoft account and an Azure subscription, and you have to associate your web application with an Azure cloud service. If you’ve already completed these tasks, you can skip to the next section.
 
-1. 在 Azure 上建立雲端服務和儲存體帳戶。您可以從 Visual Studio 中的 [伺服器總管] 執行此動作，或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)執行。
+1. Get a Microsoft account and an Azure subscription. You can try a free one month free Azure subscription [here](https://azure.microsoft.com/pricing/free-trial/)
 
-1. 啟用 Azure 的 web 應用程式。若要啟用 web 應用程式以將其從 Visual Studio 發佈至 Azure，您必須將它與 Visual Studio 中的 Azure 雲端服務專案產生關聯。若要建立相關聯的雲端服務專案，請開啟 web 應用程式專案的捷徑功能表，然後選擇 [轉換]，**轉換成 Azure 雲端服務專案**。
+1. Create a cloud service and a storage account on Azure. You can do this from Server Explorer in Visual Studio, or by using the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-1. 雲端服務專案加入至您的方案之後，請再次開啟相同的捷徑功能表並選擇 [發佈]。如需有關如何啟用 Azure 的應用程式之詳細資訊，請參閱[作法：將 Web 應用程式從 Visual Studio 移轉並發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/hh420322.aspx)。
+1. Enable your web application for Azure. To enable your web application to be published to Azure from Visual Studio, you’ll need to associate it with an Azure cloud service project in Visual Studio. To create the associated cloud service project, open the shortcut menu for the project for your web application, and then choose Convert, **Convert to Azure Cloud Service Project**.
 
->[AZURE.NOTE] 請務必以系統管理員認證啟動 Visual Studio (以系統管理員身分執行)。
+1. After the cloud service project is added to your solution, open the same shortcut menu again and then choose **Publish**. For more information about how to enable applications for Azure, see [How to: Migrate and Publish a Web Application to an Azure Cloud Service from Visual Studio](https://msdn.microsoft.com/library/azure/hh420322.aspx).
 
-1. 當您準備好發佈應用程式時，開啟 Azure 雲端服務專案的捷徑功能表，然後選擇 [發佈]。下列步驟會顯示發佈 Azure 應用程式精靈。
+>[AZURE.NOTE] Be sure to start Visual Studio with administrator credentials (Run As Administrator).
 
-## 選擇您的訂用帳戶
+1. When you’re ready to publish your application, open the shortcut menu for the Azure cloud service project, and then choose **Publish**. The following steps show the Publish Azure Application wizard.
 
-### 選擇訂用帳戶
+## <a name="choosing-your-subscription"></a>Choosing Your Subscription
 
-1. 第一次使用精靈之前，您必須登入。選擇**登入**連結。出現提示時登入 Azure 入口網站，並提供您的 Azure 使用者名稱和密碼。
+### <a name="to-choose-a-subscription"></a>To choose a subscription
 
-    ![這是其中一個發佈精靈畫面](./media/vs-azure-tools-publish-azure-application-wizard/IC799159.png)
+1. Before you use the wizard for the first time, you must sign in. Choose the **Sign In** link. Sign in to the Azure portal when prompted, and provide your Azure user name and password. 
 
-    在訂用帳戶清單中填入與您的帳戶相關聯的訂用帳戶。您也可能會從您先前匯入的任何訂用帳戶檔案看到訂用帳戶。
+    ![This is one of the publishing wizard screens](./media/vs-azure-tools-publish-azure-application-wizard/IC799159.png)
 
-1. 在 [選擇您的訂用帳戶] 清單中，選擇要用於這個部署的訂用帳戶。
+    The list of subscriptions populates with the subscriptions associated with your account. You might also see subscriptions from any subscription files that you imported previously.
 
-   如果您選擇 **<管理...>**，[管理訂用帳戶] 對話方塊會隨即出現，而且您可以選擇您想要使用的訂用帳戶和使用者帳戶。[帳戶] 索引標籤會顯示您的所有帳戶，而 [訂用帳戶] 索引標籤會顯示與帳戶相關聯的所有訂用帳戶。您也可以選擇要從其中使用 Azure 資源的區域，並且從 Azure 入口網站建立或匯入訂用帳戶的憑證。如果您從訂用帳戶檔案匯入任何訂用帳戶，相關聯的憑證將會出現在 [憑證] 索引標籤下。完成時，請選擇 [關閉] 按鈕。
+1. In the **Choose your subscription** list, choose the subscription to use for this deployment.
+
+   If you choose **<Manage…>**, the **Manage Subscriptions** dialog box appears, and you can choose the subscription and user account you want to use. The **Accounts** tab shows all of your accounts, and the **Subscriptions** tab shows all of the subscriptions associated with the accounts. You can also choose a region from which to use Azure resources, as well as create or import certificates for your subscription from the Azure portal. If you imported any subscriptions from a subscription file, the associated certificates will appear under the **Certificates** tab. When you're done, choose the **Close** button.
 
     ![Manage subscriptions](./media/vs-azure-tools-publish-azure-application-wizard/IC799160.png)
 
     >[AZURE.NOTE] A subscription file can contain more than one subscription.
 
-1. 選擇 [下一步] 按鈕以繼續。
+1. Choose the **Next** button to continue. 
 
-    如果您的訂用帳戶中沒有任何雲端服務，您需要在 Azure 中建立雲端服務以裝載您的專案。[建立雲端服務和儲存體帳戶] 對話方塊會隨即出現。
+    If there aren't any cloud services in your subscription, you need to create a cloud service in Azure to host your project. The **Create Cloud Service and Storage Account** dialog box appears.
 
-    指定雲端服務的新名稱。名稱在 Azure 中必須是唯一的。然後指定接近您或大部分用戶端之資料中心的區域或同質群組。此名稱也用於 Azure 為雲端服務所建立的新儲存體帳戶。
+    Specify a new name for the cloud service. The name must be unique in Azure. Then specify a region or affinity group for a data center that’s near you or most of your clients. This name is also used for a new storage account that Azure creates for your cloud service.
 
-1. 修改您想要用於這個部署的任何設定，然後選擇 [發佈] 按鈕將它發佈 (下一節會提供各種設定的詳細資料)。若要在發佈之前檢閱設定，請選擇 [下一步] 按鈕。
+1. Modify any settings you want for this deployment and then publish it by choosing the **Publish** button (The next section provides more details about the various settings). To review the settings before publishing, choose the **Next** button.
 
-    >[AZURE.NOTE] 如果您在此步驟中選擇 [發佈]，您可以在 Visual Studio 中監視此部署的狀態。
+    >[AZURE.NOTE] If you chose Publish in this step, you can monitor the status of this deployment in Visual Studio.
 
-您可以使用 [發佈 Azure 應用程式] 精靈修改部署的一般及進階設定。例如，您可以選擇一項設定，在發佈應用程式前將其部署至測試環境。下圖顯示 Azure 部署的 [一般設定] 索引標籤。
+You can modify both common and advanced settings for a deployment by using the **Publish Azure Application** wizard. For example, you can choose a setting to deploy your application to a test environment before you release it. The following illustration shows the **Common Settings** tab for an Azure deployment.
 
-![一般設定](./media/vs-azure-tools-publish-azure-application-wizard/IC749013.png)
+![Common Settings](./media/vs-azure-tools-publish-azure-application-wizard/IC749013.png)
 
-## 設定您的發佈設定
+## <a name="configuring-your-publish-settings"></a>Configuring Your Publish Settings
 
-### 設定發佈設定
+### <a name="to-configure-the-publish-settings"></a>To configure the publish settings
 
-1. 在 [雲端服務] 清單中，執行下列其中一組步驟：
+1. In the **Cloud service** list, perform one of the following sets of steps:
 
-   1. 在下拉式清單方塊中，選擇現有的雲端服務。服務的資料中心位置會隨即出現。您應該記下這個位置並確定您的儲存體帳戶位置位於相同的資料中心。
+   1. In the dropdown list box, choose an existing cloud service. The data center location for the service appears. You should note this location and make sure that your storage account location is in the same data center.
 
-    1. 選擇 [建立新的] 來建立 Azure 裝載的雲端服務。在 [建立雲端服務] 對話方塊中，提供服務的名稱，然後指定區域或同質群組，以指定您想要裝載此雲端服務的資料中心位置。名稱在 Azure 中必須是唯一的。
+    1. Choose **Create New** to create a cloud service that Azure hosts. In the **Create Cloud Service** dialog box, provide a name for the service, and then specify a region or affinity group to specify the location of the data center that you want to host this cloud service. The name must be unique in Azure.
 
-1. 在 [環境] 清單中，選擇 [生產] 或 [預備]。如果您想要將應用程式部署至測試環境，請選擇預備環境。您可以在稍後將應用程式移至生產環境。
+1. In the **Environment** list, choose either **Production** or **Staging**. Choose the staging environment if you want to deploy your application to a test environment. You can move your application to the production environment later.
 
-1. 在 [建置組態] 清單中，選擇 [偵錯] 或 [發行]。
+1. In the **Build configuration** list, choose either **Debug** or **Release**.
 
-1. 在 [服務組態] 清單中，選擇 [雲端] 或 [本機]。
+1. In the **Service configuration** list, choose either **Cloud** or **Local**.
 
-    如果您想要從遠端連線到服務，請選取 [啟用所有角色的遠端桌面] 核取方塊。此選項主要用於疑難排解。當您選取此核取方塊，[遠端桌面組態] 對話方塊會隨即出現。選擇設定連結以變更組態。
+    Select the **Enable Remote Desktop for all roles** check box if you want to be able to remotely connect to the service. This option is primarily used for troubleshooting. When you select this check box, the **Remote Desktop Configuration** dialog box appears. Choose the Settings link to change the configuration.
 
-    選取 [啟用所有 web 角色的 Web 部署] 核取方塊以啟用服務的 web 部署。您必須啟用遠端桌面以使用這項功能。如需詳細資訊，請參閱[[使用 Azure Tools 發佈雲端服務](https://msdn.microsoft.com/library/azure/ff683672.aspx)](https://msdn.microsoft.com/library/azure/ff683672.aspx)。如需 Web 部署的詳細資訊，請參閱[[使用 Azure Tools 發佈雲端服務](https://msdn.microsoft.com/library/azure/ff683672.aspx)](https://msdn.microsoft.com/library/azure/ff683672.aspx)。
+    Select the **Enable Web Deploy for all web roles** check box to enable web deployment for the service. You must enable Remote Desktop to use this feature. For more information, see [[Publishing a Cloud Service using the Azure Tools](https://msdn.microsoft.com/library/azure/ff683672.aspx)](https://msdn.microsoft.com/library/azure/ff683672.aspx). For more information about Web Deploy, see [[Publishing a Cloud Service using the Azure Tools](https://msdn.microsoft.com/library/azure/ff683672.aspx)](https://msdn.microsoft.com/library/azure/ff683672.aspx).
 
-1. 選擇 [進階設定] 所引標籤。在 [部署標籤] 欄位中，接受預設名稱，或輸入您所選擇的名稱。若要將日期附加至部署標籤，請選取核取方塊。
+1. Choose the **Advanced Settings** tab. In the **Deployment label** field, either accept the default name, or enter a name of your choosing. To append the date to the deployment label, leave the check box selected.
 
-    ![發佈精靈的第三個畫面](./media/vs-azure-tools-publish-azure-application-wizard/IC749014.png)
+    ![Third screen of the Publishing Wizard](./media/vs-azure-tools-publish-azure-application-wizard/IC749014.png)
 
-1. 在 [儲存體帳戶] 清單中，選擇要用於這個部署的儲存體帳戶。比較雲端服務和儲存體帳戶的資料中心位置。在理想的情況下，這些位置應該相同。
+1. In the **Storage account** list, choose the storage account to use for this deployment. Compare the locations of the data centers for your cloud service and your storage account. Ideally, these locations should be the same.
 
-    >[AZURE.NOTE] Azure 儲存體帳戶會儲存應用程式部署的封裝。部署應用程式之後，封裝會從儲存體帳戶中移除。
+    >[AZURE.NOTE] The Azure storage account stores the package for the application deployment. After the application is deployed, the package is removed from the storage account.
 
-1. 如果您只想要部署更新的元件，請選取 [部署更新] 核取方塊。這種部署類型比完整部署更快速。選擇**設定**連結以開啟 [部署更新設定] 對話方塊，如下圖所示。
+1. Select the **Deployment update** check box if you want to deploy only updated components. This type of deployment can be faster than a full deployment. Choose the **Settings** link to open the **Deployment update settings** dialog box, shown in the following illustration. 
 
-    ![部署設定](./media/vs-azure-tools-publish-azure-application-wizard/IC617060.png)
+    ![Deployment Settings](./media/vs-azure-tools-publish-azure-application-wizard/IC617060.png)
 
-    您可以選擇更新部署的兩個選項之一，累加或同時。累加部署一次會更新一個已部署的執行個體，讓您的應用程式保持連線並可供使用者使用。同時部署會一次更新所有已部署的執行個體。同時更新的速度比累加更新還快，但如果您選擇此選項，您的應用程式可能無法在更新過程中使用。
+    You can choose either of two options for update deployment, incremental or simultaneous. An incremental deployment updates one deployed instance at a time, so that your application remains online and available to users. A simultaneous deployment updates all deployed instances at once. Simultaneous update is faster than incremental update, but if you choose this option, your application might not be available during the update process.
 
-    如果無法更新部署，您應該選取此核取方塊，如果您想要在更新部署失敗時自動更新完整部署，請執行完整部署。完整部署會重設雲端服務的虛擬 IP (VIP) 位址。如需詳細資訊，請參閱[作法：保持雲端服務的固定虛擬 IP 位址](https://msdn.microsoft.com/library/azure/jj614593.aspx)。
-
-
-1. 若要偵錯您的服務，請選取 [啟用 IntelliTrace] 核取方塊，或者如果您要部署**偵錯**組態並且想要在 Azure 中偵錯雲端服務，請選取 [啟用所有角色的遠端偵錯工具] 核取方塊以部署遠端偵錯服務。
-
-2. 若要分析應用程式，請選取 [啟用分析] 核取方塊，然後選擇**設定**連結以顯示分析選項。
+    You should select the check box for If deployment can't be updated, do a full deployment if you want the full deployment to take place automatically if an update deployment fails. A full deployment resets the virtual IP (VIP) address for the cloud service. For more information, see [How to: Retain a Constant Virtual IP Address for a Cloud Service](https://msdn.microsoft.com/library/azure/jj614593.aspx).
 
 
-    >[AZURE.NOTE] 您必須使用 Visual Studio Ultimate 以啟用 IntelliTrace 或階層互動分析 (TIP)，而且兩者不能同時啟用。
+1. To debug your service, select the **Enable IntelliTrace** check box, or if you are deploying a **Debug** configuration and want to debug your cloud service in Azure, select the **Enable Remote Debugger for all roles** checkbox to deploy the remote debugging services.
 
-    如需詳細資訊，請參閱[使用 IntelliTrace 和 Visual Studio 進行已發佈的雲端服務偵錯](https://msdn.microsoft.com/library/azure/ff683671.aspx)和[測試雲端服務的效能](https://msdn.microsoft.com/library/azure/hh369930.aspx)。
+2. To profile the application, select the **Enable profiling** check box, and then choose the **Settings** link to display the profiling options. 
 
-1. 選擇 [下一步] 以檢視應用程式的摘要頁面。
 
-## 發佈您的應用程式
+    >[AZURE.NOTE] You must use Visual Studio Ultimate to enable either IntelliTrace or Tier Interaction Profiling (TIP), and you can't enable both at the same time.
 
-1. 您可以選擇從您所選擇的設定建立發佈設定檔。例如，您可能會建立一個設定檔用於測試環境，並建立另一個用於生產。若要儲存這個設定檔，請選擇**儲存**圖示。此精靈會建立設定檔並將它儲存在 Visual Studio 專案。若要修改設定檔名稱，請開啟 [目標設定檔] 清單，然後選擇 **< 管理...>**。
+    For more information, see [Debugging a Published Cloud Service with IntelliTrace and Visual Studio](https://msdn.microsoft.com/library/azure/ff683671.aspx) and [Testing the Performance of a Cloud Service](https://msdn.microsoft.com/library/azure/hh369930.aspx).
 
-    ![發佈精靈的摘要畫面](./media/vs-azure-tools-publish-azure-application-wizard/IC749015.png)
+1. Choose **Next** to view the summary page for the application.
 
-    >[AZURE.NOTE] 發佈設定檔會出現在 Visual Studio 的 [方案總管] 中，而且設定檔設定會寫入至副檔名為.azurePubxml 的檔案。設定會儲存為 XML 標記的屬性。
+## <a name="publishing-your-application"></a>Publishing Your Application
 
-1. 選擇 [發佈] 以發佈應用程式。您可以在 Visual Studio 中監視 [輸出] 視窗中的處理序狀態。
+1. You can choose to create a publishing profile from the settings that you have chosen. For example, you might create one profile for a test environment and another for production. To save this profile, choose the **Save** icon. The wizard creates the profile and saves it in the Visual Studio project. To modify the profile name, open the **Target profile** list, and then choose **<Manage…>**.
 
-## 另請參閱
+    ![Summary screen of the Publishing Wizard](./media/vs-azure-tools-publish-azure-application-wizard/IC749015.png)
 
-[作法：從 Visual Studio 將 Web 應用程式移轉並發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/hh420322.aspx)
+    >[AZURE.NOTE] The publishing profile appears in Solution Explorer in Visual Studio, and the profile settings are written to a file with an .azurePubxml extension. Settings are saved as attributes of XML tags.
 
-[使用 Azure Tools 發佈雲端服務](https://msdn.microsoft.com/library/azure/ff683672.aspx)
+1. Choose **Publish** to publish your application. You can monitor the process status in the **Output** window in Visual Studio.
 
-[使用 IntelliTrace 和 Visual Studio 偵錯發佈的雲端服務](https://msdn.microsoft.com/library/azure/ff683671.aspx)
+## <a name="see-also"></a>See Also
 
-[測試雲端服務的效能](https://msdn.microsoft.com/library/azure/hh369930.aspx)
+[How to: Migrate and Publish a Web Application to an Azure Cloud Service from Visual Studio](https://msdn.microsoft.com/library/azure/hh420322.aspx)
 
-<!---HONumber=AcomDC_0817_2016-->
+[Publishing a Cloud Service using the Azure Tools](https://msdn.microsoft.com/library/azure/ff683672.aspx)
+
+[Debugging a Published Cloud Service with IntelliTrace and Visual Studio](https://msdn.microsoft.com/library/azure/ff683671.aspx)
+
+[Testing the Performance of a Cloud Service](https://msdn.microsoft.com/library/azure/hh369930.aspx)
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

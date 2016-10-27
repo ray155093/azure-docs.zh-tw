@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Publish-WebApplicationWebSite (Windows PowerShell 指令碼) | Microsoft Azure"
-   description="了解如何將 Web 專案發佈至 Azure 網站。此指令碼會在您的 Azure 訂用帳戶中建立所需的資源 (如果它們不存在)。"
+   pageTitle="Publish-WebApplicationWebSite (Windows PowerShell script) | Microsoft Azure"
+   description="Learn how to publish a web project to an Azure website. This script creates the required resources in your Azure subscription if they don't exist."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,118 +15,123 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# Publish-WebApplicationWebSite (Windows PowerShell 指令碼)
 
-##語法
+# <a name="publish-webapplicationwebsite-(windows-powershell-script)"></a>Publish-WebApplicationWebSite (Windows PowerShell script)
 
-將 Web 專案發佈至 Azure 網站。指令碼會在您的 Azure 訂用帳戶中建立所需的資源 (如果它們不存在)。
+##<a name="syntax"></a>Syntax
 
-	Publish-WebApplicationWebSite
-	–Configuration <configuration>
-	-SubscriptionName <subscriptionName>
-	-WebDeployPackage <packageName>
-	-DatabaseServerPassword @{Name = "name"; Password = "password"}
-	-SendHostMessagesToOutput
-	-Verbose
+Publishes a web project to an Azure website. The script creates the required resources in your Azure subscription if they don't exist.
+
+    Publish-WebApplicationWebSite
+    –Configuration <configuration>
+    -SubscriptionName <subscriptionName>
+    -WebDeployPackage <packageName>
+    -DatabaseServerPassword @{Name = "name"; Password = "password"}
+    -SendHostMessagesToOutput
+    -Verbose
 
 
-## 組態
+## <a name="configuration"></a>Configuration
 
-描述部署詳細資訊的 JSON 組態檔路徑。
+The path to the JSON configuration file that describes the details of the deployment.
 
-|參數|預設值|
+|Parameter|Default value|
 |---|---|
-|別名|無|
-|必要？|true|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+|Aliases|none|
+|Required?|true|
+|Position|named|
+|Default value|none|
+|Accept pipeline input?|false|
+|Accept wildcard characters?|false|
 
-## SubscriptionName
+## <a name="subscriptionname"></a>SubscriptionName
 
-您要建立網站的 Azure 訂用帳戶名稱。
+The name of the Azure subscription that you want to create the website in.
 
-|參數|預設值|
+|Parameter|Default value|
 |---|---|
-|別名|無|
-|必要？|false|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+|Aliases|none|
+|Required?|false|
+|Position|named|
+|Default value|none|
+|Accept pipeline input?|false|
+|Accept wildcard characters?|false|
 
-## WebDeployPackage
+## <a name="webdeploypackage"></a>WebDeployPackage
 
-要發佈至網站的 Web 部署封裝路徑。您可以使用 Visual Studio 的 [發佈 Web] 精靈來建立此封裝。如需詳細資訊，請參閱[開始使用 Azure 雲端服務和 ASP.NET](http://go.microsoft.com/fwlink/p/?LinkID=623089)。
+The path to the web deployment package to publish to the website. You can create this package by using the Publish Web wizard in Visual Studio. For more information, see [Get started with Azure Cloud Services and ASP.NET](http://go.microsoft.com/fwlink/p/?LinkID=623089).
 
-|參數|預設值|
+|Parameter|Default value|
 |---|---|
-|別名|無|
-|必要？|false|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+|Aliases|none|
+|Required?|false|
+|Position|named|
+|Default value|none|
+|Accept pipeline input?|false|
+|Accept wildcard characters?|false|
 
-## DatabaseServerPassword
+## <a name="databaseserverpassword"></a>DatabaseServerPassword
 
-在 Azure 中 SQL Database 的使用者名稱和密碼。
+The username and password for the SQL database in Azure.
 
-|參數|預設值|
+|Parameter|Default value|
 |---|---|
-|別名|無|
-|必要？|false|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+|Aliases|none|
+|Required?|false|
+|Position|named|
+|Default value|none|
+|Accept pipeline input?|false|
+|Accept wildcard characters?|false|
 
-## SendHostMessagesToOutput
+## <a name="sendhostmessagestooutput"></a>SendHostMessagesToOutput
 
-如果為 true，將訊息從指令碼列印至輸出資料流。
+If true, print messages from the script to the output stream.
 
-|參數|預設值|
+|Parameter|Default value|
 |---|---|
-|別名|無|
-|必要？|false|
-|位置|已命名|
-|預設值|false|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+|Aliases|none|
+|Required?|false|
+|Position|named|
+|Default value|false|
+|Accept pipeline input?|false|
+|Accept wildcard characters?|false|
 
-## 備註
+## <a name="remarks"></a>Remarks
 
-如需如何使用指令碼來建立開發和測試環境的完整說明，請參閱[使用 Windows PowerShell 指令碼來發佈至開發和測試環境](vs-azure-tools-publishing-using-powershell-scripts.md)。
+For a complete explanation of how to use the script to create Dev and Test environments, see [Using Windows PowerShell Scripts to Publish to Dev and Test Environments](vs-azure-tools-publishing-using-powershell-scripts.md).
 
-JSON 組態檔會指定待部署項目的詳細資料。它會包含您在建立專案時所指定的資訊，例如網站的名稱和使用者名稱。它還包含要佈建的資料庫 (如果有的話)。下列程式碼片段將顯示一個 JSON 組態檔範例：
+The JSON configuration file specifies the details of what is to be deployed. It includes the information that you specified when you created the project, such as the name and username for the website. It also includes the database to provision, if any. The following code shows an example JSON configuration file:
 
-	{
-	    "environmentSettings": {
-	        "webSite": {
-	            "name": "WebApplication10554",
-	            "location": "West US"
-	        },
-	        "databases": [
-	            {
-	                "connectionStringName": "DefaultConnection",
-	                "databaseName": "WebApplication10554_db",
-	                "serverName": "iss00brc88",
-	                "user": "sqluser2",
-	                "password": "",
-	                "edition": "",
-	                "size": "",
-	                "collation": "",
-	                "location": "West US"
-	            }
-	        ]
-	    }
-	}
+    {
+        "environmentSettings": {
+            "webSite": {
+                "name": "WebApplication10554",
+                "location": "West US"
+            },
+            "databases": [
+                {
+                    "connectionStringName": "DefaultConnection",
+                    "databaseName": "WebApplication10554_db",
+                    "serverName": "iss00brc88",
+                    "user": "sqluser2",
+                    "password": "",
+                    "edition": "",
+                    "size": "",
+                    "collation": "",
+                    "location": "West US"
+                }
+            ]
+        }
+    }
 
-您可以編輯 JSON 組態檔來變更部署項目。[網站] 區段是必要項目，但 [資料庫] 區段是選用項目。
+You can edit the JSON configuration file to change what is deployed. A webSite section is required, but the database section is optional.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需詳細資訊，請參閱 [Publish-WebApplicationVM (Windows PowerShell 指令碼)](vs-azure-tools-publish-webapplicationvm.md)
+For more information, see [Publish-WebApplicationVM (Windows PowerShell script)](vs-azure-tools-publish-webapplicationvm.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

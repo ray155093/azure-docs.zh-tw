@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Elasticsearch 做為 Service Fabric 應用程式追蹤存放區 | Microsoft Azure"
-   description="描述 Service Fabric 應用程式如何使用 Elasticsearch 和 Kibana 來儲存、檢索和搜尋應用程式追蹤 (記錄檔)"
+   pageTitle="Using Elasticsearch as a Service Fabric application trace store | Microsoft Azure"
+   description="Describes how Service Fabric applications can use Elasticsearch and Kibana to store, index, and search through application traces (logs)"
    services="service-fabric"
    documentationCenter=".net"
    authors="karolz-ms"
@@ -16,163 +16,166 @@
    ms.date="08/09/2016"
    ms.author="karolz@microsoft.com"/>
 
-# 把 Elasticsearch 當做 Service Fabric 應用程式追蹤存放區來使用
-## 簡介
-本文將說明 [Azure Service Fabric](https://azure.microsoft.com/documentation/services/service-fabric/) 應用程式如何使用 **Elasticsearch** 和 **Kibana** 來儲存、檢索和搜尋應用程式追蹤。[Elasticsarch](https://www.elastic.co/guide/index.html) 是開放原始碼、分散式和可調整的即時搜尋和分析引擎，很適合執行這項工作。它可以安裝在 Microsoft Azure 中執行的 Windows 和 Linux 虛擬機器上。Elasticsearch 可有效率地處理使用「Windows 事件追蹤 (ETW)」之類的技術所產生的「結構化」追蹤。
 
-Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也是 Service Fabric 應用程式取得其診斷資訊的建議方法。使用相同的機制，可讓執行階段提供和應用程式提供的追蹤之間相互關聯，讓您更輕鬆地執行疑難排解作業。Visual Studio 中的 Service Fabric 專案範本包含記錄 API (根據.NET **EventSource** 類別)，依預設會發出 ETW 追蹤。如需使用 ETW 的 Service Fabric 應用程式追蹤的一般概觀，請參閱[監視和診斷本機開發設定中的服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)。
+# <a name="use-elasticsearch-as-a-service-fabric-application-trace-store"></a>Use Elasticsearch as a Service Fabric application trace store
+## <a name="introduction"></a>Introduction
+This article describes how [Azure Service Fabric](https://azure.microsoft.com/documentation/services/service-fabric/) applications can use **Elasticsearch** and **Kibana** for application trace storage, indexing, and search. [Elasticsearch](https://www.elastic.co/guide/index.html) is an open-source, distributed, and scalable real-time search and analytics engine that is well-suited for this task. It can be installed on Windows and Linux virtual machines running in Microsoft Azure. Elasticsearch can efficiently process *structured* traces produced using technologies such as **Event Tracing for Windows (ETW)**.
 
-需要在 Service Fabric 叢集節點上即時 (當應用程式正在執行時) 擷取追蹤並傳送至 Elasticsearch 端點，Elasticsearch 中才會顯示追蹤。追蹤擷取有兩個主要選項：
+ETW is used by Service Fabric runtime to source diagnostic information (traces). It is the recommended method for Service Fabric applications to source their diagnostic information, too. Using the same mechanism allows for correlation between runtime-supplied and application-supplied traces and makes troubleshooting easier. Service Fabric project templates in Visual Studio include a logging API (based on the .NET **EventSource** class) that emits ETW traces by default. For a general overview of Service Fabric application tracing using ETW, see [Monitoring and diagnosing services in a local machine development setup](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
 
-+ **同處理序追蹤擷取** 應用程式 (更準確來說是服務處理序) 負責將診斷資料送出到追蹤存放區 (Elasticsearch)。
+For the traces to show up in Elasticsearch, they need to be captured at the Service Fabric cluster nodes in real time (while the application is running) and sent to an Elasticsearch endpoint. There are two major options for trace capturing:
 
-+ **跨處理序追蹤擷取** 另外的代理程式擷取來自一或多個服務處理序的追蹤，並傳送至追蹤存放區。
++ **In-process trace capturing**  
+The application, or more precisely, service process, is responsible for sending out the diagnostic data to the trace store (Elasticsearch).
 
-以下說明如何在 Azure 上設定 Elasticsearch、討論這兩種擷取選項的優缺點，並說明如何設定 Service Fabric 服務將資料傳送至 Elasticsearch。
++ **Out-of-process trace capturing**  
+A separate agent is capturing traces from the service process or processes and sending them to the trace store.
+
+Below, we describe how to set up Elasticsearch on Azure, discuss the pros and cons for both capture options, and explain how to configure a Service Fabric service to send data to Elasticsearch.
 
 
-## 在 Azure 上設定 Elasticsearch
-若要在 Azure 上設定 Elasticsearch 服務，最直接的方法是透過 [**Azure 資源管理員範本**](../resource-group-overview.md)。Azure 快速入門範本儲存機制提供完整的 [Elasticsearch 快速入門 Azure 資源管理員範本](https://github.com/Azure/azure-quickstart-templates/tree/master/elasticsearch)。這個範本會針對縮放單位使用不同的儲存體帳戶 (節點群組)。它也可以佈建具有不同組態和連接各種數量的資料磁碟的個別用戶端與伺服器節點。
+## <a name="set-up-elasticsearch-on-azure"></a>Set up Elasticsearch on Azure
+The most straightforward way to set up the Elasticsearch service on Azure is through [**Azure Resource Manager templates**](../resource-group-overview.md). A comprehensive [Quickstart Azure Resource Manager template for Elasticsearch](https://github.com/Azure/azure-quickstart-templates/tree/master/elasticsearch) is available from Azure Quickstart templates repository. This template uses separate storage accounts for scale units (groups of nodes). It can also provision separate client and server nodes with different configurations and various numbers of data disks attached.
 
-此處我們會使用 [Azure diagnostic tools repository (Azure 診斷工具儲存機制)](https://github.com/Azure/azure-diagnostics-tools) 中的另一個範本，稱為 **ES-MultiNode**。這個範本比較容易使用，其會建立由 HTTP 基本驗證所保護的 Elasticsearch 叢集。繼續之前，請從 GitHub 將儲存機制下載到您的電腦 (透過複製儲存機制或下載 ZIP 檔案)。ES-MultiNode 範本位於具有相同名稱的資料夾中。
+Here, we use another template, called **ES-MultiNode** from the [Azure diagnostic tools repository](https://github.com/Azure/azure-diagnostics-tools). This template is easier to use, and it creates an Elasticsearch cluster protected by HTTP basic authentication. Before you proceed, download the repository from GitHub to your machine (by either cloning the repository or downloading a zip file). The ES-MultiNode template is located in the folder with the same name.
 
-### 準備電腦以執行 Elasticsearch 安裝指令碼
-若要使用 ES-MultiNode 範本，最簡單的方式是透過提供的 Azure PowerShell 指令碼，稱為 `CreateElasticSearchCluster`。若要使用這個指令碼，您需要安裝 PowerShell 模組和名為 **openssl** 的工具。需要後者，才能建立可用來從遠端管理 Elasticsearch 叢集的 SSH 金鑰。
+### <a name="prepare-a-machine-to-run-elasticsearch-installation-scripts"></a>Prepare a machine to run Elasticsearch installation scripts
+The easiest way to use the ES-MultiNode template is through a provided Azure PowerShell script called `CreateElasticSearchCluster`. To use this script, you need to install PowerShell modules and a tool called **openssl**. The latter is needed for creating an SSH key that can be used to administer your Elasticsearch cluster remotely.
 
-`CreateElasticSearchCluster` 指令碼主要是為了從 Windows 電腦輕鬆使用 ES-MultiNode 範本所設計。可以在非 Windows 電腦上使用此範本，但這已超出本文的範圍。
+`CreateElasticSearchCluster` script is designed for ease of use with the ES-MultiNode template from a Windows machine. It is possible to use the template on a non-Windows machine, but that scenario is beyond the scope of this article.
 
-1. 如果您尚未安裝它們，請安裝 [**Azure PowerShell 模組**](http://aka.ms/webpi-azps)。出現提示時，請按一下 [執行]，然後按一下 [安裝]。需要 Azure PowerShell 1.3 或更新版本。
+1. If you haven't installed them already, install [**Azure PowerShell modules**](http://aka.ms/webpi-azps). When prompted, click **Run**, then **Install**. Azure PowerShell 1.3 or newer is required.
 
-2. [**Git for Windows**](http://www.git-scm.com/downloads) 的散發中包含 **openssl** 工具。如果您尚未安裝，請立即安裝 [Git for Windows](http://www.git-scm.com/downloads)。(預設安裝選項是 [確定])。
+2. The **openssl** tool is included in the distribution of [**Git for Windows**](http://www.git-scm.com/downloads). If you have not done so already, install [Git for Windows](http://www.git-scm.com/downloads) now. (The default installation options are OK.)
 
-3. 假設 Git 已安裝，但未包含在系統路徑中，請開啟 Microsoft Azure PowerShell 視窗並執行下列命令：
+3. Assuming that Git has been installed but not included in the system path, open a Microsoft Azure PowerShell window and run the following commands:
 
     ```powershell
     $ENV:PATH += ";<Git installation folder>\usr\bin"
     $ENV:OPENSSL_CONF = "<Git installation folder>\usr\ssl\openssl.cnf"
     ```
 
-    以您電腦上的 Git 位置取代 `<Git installation folder>`，預設值為 **"C:\\Program Files\\Git"**。請注意第一個路徑開頭的分號字元。
+    Replace the `<Git installation folder>` with the Git location on your machine; the default is **"C:\Program Files\Git"**. Note the semicolon character at the beginning of the first path.
 
-4. 確定您已登入 Azure (透過 [`Add-AzureRmAccount`](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet)，且已選取應該用來建立 Elasticsearch 叢集的訂用帳戶。您可以使用 `Get-AzureRmContext` 和 `Get-AzureRmSubscription` Cmdlet，確認選取的是正確的訂用帳戶。
+4. Ensure that you are logged on to Azure (via [`Add-AzureRmAccount`](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet) and that you have selected the subscription that should be used to create your Elastic Search cluster. You can verify that correct subscription is selected using `Get-AzureRmContext` and `Get-AzureRmSubscription` cmdlets.
 
-5. 如果您尚未將目前目錄切換至 ES-MultiNode 資料夾，請切換。
+5. If you haven't done so already, change the current directory to the ES-MultiNode folder.
 
-### 執行 CreateElasticSearchCluster 指令碼
-執行指令碼之前，開啟 `azuredeploy-parameters.json` 檔案，確認或提供指令碼參數的值。提供下列參數：
+### <a name="run-the-createelasticsearchcluster-script"></a>Run the CreateElasticSearchCluster script
+Before you run the script, open the `azuredeploy-parameters.json` file and verify or provide values for the script parameters. The following parameters are provided:
 
-|參數名稱 |說明|
+|Parameter Name           |Description|
 |-----------------------  |--------------------------|
-|dnsNameForLoadBalancerIP |此名稱用來為 Elasticsearch 叢集建立公開可見的 DNS 名稱 (將 Azure 區域網域附加至提供的名稱)。例如，如果此參數值為 "myBigCluster"，而選擇的 Azure 區域是美國西部，則為叢集產生的 DNS 名稱會是 myBigCluster.westus.cloudapp.azure.com。<br /><br />對於 Elasticsearch 叢集相關聯的許多構件名稱，例如資料節點名稱，此名稱也會成為這些名稱的根。|
-|adminUsername |用於管理 Elasticsearch 叢集的系統管理員帳戶名稱 (對應的 SSH 金鑰會自動產生)。|
-|dataNodeCount |Elastic Search 叢集中的節點數目。目前版本的指令碼不會區分資料與查詢節點。所有節點會同時扮演這兩種角色。預設為 3 個節點。|
-|dataDiskSize |配置給每個資料節點的資料磁碟大小 (以 GB 為單位)。每個節點會收到 4 個資料磁碟，專供 Elasticsearch 服務使用。|
-|region |應該放置 Elastic Search 叢集的 Azure 區域的名稱。|
-|esUserName |此使用者名稱適用於設定為可存取 ES 叢集的使用者 (受限於 HTTP 基本驗證)。密碼不是參數檔案的一部分，而且必須在叫用 `CreateElasticSearchCluster` 指令碼時提供。|
-|vmSizeDataNodes |Elastic Search 叢集節點的 Azure 虛擬機器大小。預設為 Standard\_D2。|
+|dnsNameForLoadBalancerIP |The name that is used to create the publicly visible DNS name for the Elastic Search cluster (by appending the Azure region domain to the provided name). For example, if this parameter value is "myBigCluster" and the chosen Azure region is West US, the resulting DNS name for the cluster is myBigCluster.westus.cloudapp.azure.com. <br /><br />This name also serves as a root name for many artifacts associated with the Elastic Search cluster, such as data node names.|
+|adminUsername           |The name of the administrator account for managing the Elastic Search cluster (corresponding SSH keys are generated automatically).|
+|dataNodeCount           |The number of nodes in the Elastic Search cluster. The current version of the script does not distinguish between data and query nodes; all nodes play both roles. Defaults to 3 nodes.|
+|dataDiskSize            |The size of data disks (in GB) that is allocated for each data node. Each node receives 4 data disks, exclusively dedicated to Elastic Search service.|
+|region                  |The name of Azure region where the Elastic Search cluster should be located.|
+|esUserName              |The user name of the user that is configured to have access to ES cluster (subject to HTTP basic authentication). The password is not part of parameters file and must be provided when `CreateElasticSearchCluster` script is invoked.|
+|vmSizeDataNodes         |The Azure virtual machine size for Elastic Search cluster nodes. Defaults to Standard_D2.|
 
-您現在可以開始執行指令碼。發出以下命令：
+Now you are ready to run the script. Issue the following command:
 
 ```powershell
 CreateElasticSearchCluster -ResourceGroupName <es-group-name> -Region <azure-region> -EsPassword <es-password>
 ```
 
-其中
+where 
 
-|指令碼參數名稱 |說明|
+|Script Parameter Name    |Description|
 |-----------------------  |--------------------------|
-|`<es-group-name>` |將包含所有 Elasticsearch 叢集資源的 Azure 資源群組名稱。|
-|`<azure-region>` |應該建立 Elasticsearch 叢集的 Azure 區域名稱。|         
-|`<es-password>` |Elasticsearch 使用者的密碼。|
+|`<es-group-name>`        |The name of the Azure resource group that will contain all Elastic Search cluster resources.|
+|`<azure-region>`         |The name of the Azure region where the Elastic Search cluster should be created.|         
+|`<es-password>`          |The password for the Elastic Search user.|
 
->[AZURE.NOTE] 如果您從 Test-AzureResourceGroup Cmdlet 收到 NullReferenceException，表示您忘記登入 Azure (`Add-AzureRmAccount`)。
+>[AZURE.NOTE] If you get a NullReferenceException from the Test-AzureResourceGroup cmdlet, you have forgotten to log on to Azure (`Add-AzureRmAccount`).
 
-如果執行指令碼發生錯誤，而且您判斷錯誤起因於錯誤的範本參數值，請更正參數檔案，然後以不同資源群組名稱再次執行指令碼。您也可以將 `-RemoveExistingResourceGroup` 參數加入至指令碼引動過程，以重複使用相同的資源群組名稱，並讓指令碼清除舊的資源群組。
+If you get an error from running the script and you determine that the error was caused by a wrong template parameter value, correct the parameter file and run the script again with a different resource group name. You can also reuse the same resource group name and have the script clean up the old one by adding the `-RemoveExistingResourceGroup` parameter to the script invocation.
 
-### 執行 CreateElasticSearchCluster 指令碼的結果
-執行 `CreateElasticSearchCluster` 指令碼之後會建立下列主要構件。針對此範例，我們假設您已使用 "myBigCluster" 作為 `dnsNameForLoadBalancerIP` 參數的值，而且您建立叢集的區域為美國西部。
+### <a name="result-of-running-the-createelasticsearchcluster-script"></a>Result of running the CreateElasticSearchCluster script
+After you run the `CreateElasticSearchCluster` script, the following main artifacts will be created. For this example we assume that you have used "myBigCluster" as the value of the `dnsNameForLoadBalancerIP` parameter and that the region where you created the cluster is West US.
 
-|構件|名稱、位置及備註|
+|Artifact|Name, location, and remarks|
 |----------------------------------|----------------------------------|
-|用於遠端系統管理的 SSH 金鑰 |myBigCluster.key 檔 (在執行 CreateElasticSearchCluster 的目錄中)。<br /><br />此金鑰檔案可用於連線至叢集中的管理節點，以及 (透過管理節點) 連線至資料節點。|
-|管理節點 |myBigCluster-admin.westus.cloudapp.azure.com <br /><br />用於遠端 Elasticsearch 叢集管理的專用 VM，也是唯一允許外部 SSH 連線的 VM。其與所有 Elasticsearch 叢集節點一樣在相同的虛擬網路上執行，但不會執行 Elasticsearch 服務。|
-|資料節點 |myBigCluster1 … myBigCluster*N* <br /><br />執行 Elasticsearch 和 Kibana 服務的資料節點。您可以透過 SSH 連接至每個節點，但只能透過管理節點。|
-|Elasticsearch 叢集 |http://myBigCluster.westus.cloudapp.azure.com/es/ <br /><br />Elasticsearch 叢集的主要端點 (請注意 /es 尾碼)。它是由基本 HTTP 驗證保護 (由 ES-MultiNode 範本的 esUserName/esPassword 參數指定認證)。叢集也已安裝前端外掛程式 (http://myBigCluster.westus.cloudapp.azure.com/es/_plugin/head) 來進行基本叢集管理。|
-|Kibana 服務 |http://myBigCluster.westus.cloudapp.azure.com <br /><br />將 Kibana 服務設為顯示已建立的 Elasticsearch 叢集資料。其受與叢集本身相同的驗證認證保護。|
+|SSH key for remote administration |myBigCluster.key file (in the directory from which the CreateElasticSearchCluster was run). <br /><br />This key file can be used to connect to the admin node and (through the admin node) to data nodes in the cluster.|
+|Admin node                        |myBigCluster-admin.westus.cloudapp.azure.com <br /><br />A dedicated VM for remote Elasticsearch cluster administration--the only one that allows external SSH connections. It runs on the same virtual network as all the Elasticsearch cluster nodes, but it does not run any Elasticsearch services.|
+|Data nodes                        |myBigCluster1 … myBigCluster*N* <br /><br />Data nodes that are running Elasticsearch and Kibana services. You can connect via SSH to each node, but only via the admin node.|
+|Elasticsearch cluster             |http://myBigCluster.westus.cloudapp.azure.com/es/ <br /><br />The primary endpoint for the Elasticsearch cluster (note the /es suffix). It is protected by basic HTTP authentication (the credentials were the specified esUserName/esPassword parameters of the ES-MultiNode template). The cluster has also the head plug-in installed (http://myBigCluster.westus.cloudapp.azure.com/es/_plugin/head) for basic cluster administration.|
+|Kibana service                    |http://myBigCluster.westus.cloudapp.azure.com <br /><br />The Kibana service is set up to show data from the created Elasticsearch cluster. It is protected by the same authentication credentials as the cluster itself.|
 
-## 同處理序與跨處理序追蹤擷取
-在簡介中，我們曾提過收集診斷資料的兩種基本方法：同處理序和跨處理序。各有優缺點。
+## <a name="in-process-versus-out-of-process-trace-capturing"></a>In-process versus out-of-process trace capturing
+In the introduction, we mentioned two fundamental ways of collecting diagnostic data: in-process and out-of-process. Each has strengths and weaknesses.
 
-**同處理序追蹤擷取**的優點包括：
+Advantages of the **in-process trace capturing** include:
 
-1. *輕鬆設定及部署*
+1. *Easy configuration and deployment*
 
-    * 診斷資料收集組態只是應用程式組態的一部分。將其與應用程式的其餘部分始終保持「同步」很簡單。
+    * The configuration of diagnostic data collection is just part of the application configuration. It is easy to always keep it "in sync" with the rest of the application.
 
-    * 輕鬆就可達成個別應用程式或個別服務的組態。
+    * Per-application or per-service configuration is easily achievable.
 
-    * 跨處理序追蹤擷取通常需要另外部署和設定診斷代理程式，這是額外的系統管理工作，也是可能的錯誤來源。特定代理程式的技術通常只允許每個虛擬機器 (節點) 有一個執行個體。這表示該節點上執行的所有應用程式和服務會共用診斷組態集合的組態。
+    * Out-of-process trace capturing usually requires a separate deployment and configuration of the diagnostic agent, which is an extra administrative task and a potential source of errors. The particular agent technology often allows only one instance of the agent per virtual machine (node). This means that configuration for the collection of the diagnostic configuration is shared among all applications and services running on that node.
 
-2. *彈性*
+2. *Flexibility*
 
-    * 只要用戶端程式庫支援目標資料儲存系統，應用程式可以將資料傳送至任何需要的地方。可以依需要加入新的來源。
+    * The application can send the data wherever it needs to go, as long as there is a client library that supports the targeted data storage system. New sinks can be added as desired.
 
-    * 可以實作複雜的擷取、篩選和資料彙總規則。
+    * Complex capture, filtering, and data-aggregation rules can be implemented.
 
-    * 跨處理序追蹤擷取通常受限於代理程式支援的資料來源。有些代理程式是可擴充的。
+    * An out-of-process trace capturing is often limited by the data sinks that the agent supports. Some agents are extensible.
 
-3. *存取內部應用程式資料與內容*
+3. *Access to internal application data and context*
 
-    * 應用程式/服務處理序內執行的診斷子系統可以輕鬆地隨著內容資訊而擴大追蹤。
+    * The diagnostic subsystem running inside the application/service process can easily augment the traces with contextual information.
 
-    * 在跨處理序方法中，必須透過 Windows 事件追蹤之類的處理序間通訊機制，將資料傳送至代理程式。此機制可能會造成額外的限制。
+    * In the out-of-process approach, the data must be sent to an agent via some inter-process communication mechanism, such as Event Tracing for Windows. This mechanism could impose additional limitations.
 
-**跨處理序追蹤擷取**的優點包括：
+Advantages of the **out-of-process trace capturing** include:
 
-1. *能夠監視應用程式並收集損毀傾印*
+1. *The ability to monitor the application and collect crash dumps*
 
-    * 如果應用程式啟動失敗或損毀，同處理序追蹤擷取可能不會成功。獨立代理程式有更好的機會可擷取重要的疑難排解資訊。<br /><br />
+    * In-process trace capturing may be unsuccessful if the application fails to start or crashes. An independent agent has a much better chance of capturing crucial troubleshooting information.<br /><br />
 
-2. *成熟度、穩健性和已證實的效能*
+2. *Maturity, robustness, and proven performance*
 
-    * 平台廠商所開發的代理程式 (例如 Microsoft Azure 診斷代理程式) 都經過嚴格的測試和實戰鍛鍊。
+    * An agent developed by a platform vendor (such as a Microsoft Azure Diagnostics agent) has been subject to rigorous testing and battle-hardening.
 
-    * 執行同處理序追蹤擷取時，必須確保從應用程式程序傳送診斷資料的活動不會干擾應用程式的主要工作，或引起計時或效能問題。獨立執行的代理程式比較不容易發生這些問題，且亦特別設計為限制其對系統的影響。
+    * With in-process trace capturing, care must be taken to ensure that the activity of sending diagnostic data from an application process does not interfere with the application's main tasks or introduce timing or performance problems. An independently running agent is less prone to these issues and is specifically designed to limit its impact on the system.
 
-您可以結合這兩種方法的優點。事實上，它可能是許多應用程式的最佳解決方案。
+It is possible to combine and benefit from both approaches. Indeed, it might be the best solution for many applications.
 
-此處我們將使用 **Microsoft.Diagnostic.Listeners 程式庫**和同處理序追蹤擷取，將資料從 Service Fabric 應用程式傳送到 Elasticsearch 叢集。
+Here, we use the **Microsoft.Diagnostic.Listeners library** and the in-process trace capturing to send data from a Service Fabric application to an Elasticsearch cluster.
 
-## 使用 Listeners 程式庫將診斷資料傳送至 Elasticsearch
-Microsoft.Diagnostic.Listeners 程式庫是 PartyCluster 範例 Service Fabric 應用程式的一部分。使用方式：
+## <a name="use-the-listeners-library-to-send-diagnostic-data-to-elasticsearch"></a>Use the Listeners library to send diagnostic data to Elasticsearch
+The Microsoft.Diagnostic.Listeners library is part of PartyCluster sample Service Fabric application. To use it:
 
-1. 從 GitHub 下載 [PartyCluster 範例](https://github.com/Azure-Samples/service-fabric-dotnet-management-party-cluster)。
+1. Download [the PartyCluster sample](https://github.com/Azure-Samples/service-fabric-dotnet-management-party-cluster) from GitHub.
 
-2. 從 PartyCluster 叢集範例目錄中，將 Microsoft.Diagnostics.Listeners 和 Microsoft.Diagnostics.Listeners.Fabric 專案 (整個資料夾)，複製到應該會將資料傳送到 Elasticsearch 的應用程式的方案資料夾。
+2. Copy the Microsoft.Diagnostics.Listeners and Microsoft.Diagnostics.Listeners.Fabric projects (whole folders) from the PartyCluster sample directory to the solution folder of the application that is supposed to send the data to Elasticsearch.
 
-3. 開啟目標方案，在方案總管中的方案節點上按一下滑鼠右鍵，然後選擇 [加入現有專案]。將 Microsoft.Diagnostics.Listeners 專案加入至方案。針對 Microsoft.Diagnostics.Listeners.Fabric 專案重複相同的步驟。
+3. Open the target solution, right-click the solution node in the Solution Explorer, and choose **Add Existing Project**. Add the Microsoft.Diagnostics.Listeners project to the solution. Repeat the same for the Microsoft.Diagnostics.Listeners.Fabric project.
 
-4. 新增從服務專案至兩個已加入之專案的專案參考。 (每個應該會將資料傳送至 Elasticsearch 的服務，都應該參考 Microsoft.Diagnostics.EventListeners 和 Microsoft.Diagnostics.EventListeners.Fabric)。
+4. Add a project reference from your service project(s) to the two added projects. (Each service that is supposed to send data to Elasticsearch should reference Microsoft.Diagnostics.EventListeners and Microsoft.Diagnostics.EventListeners.Fabric).
 
-    ![Microsoft.Diagnostics.EventListeners 和 Microsoft.Diagnostics.EventListeners.Fabric 程式庫的專案參考][1]
+    ![Project references to Microsoft.Diagnostics.EventListeners and Microsoft.Diagnostics.EventListeners.Fabric libraries][1]
 
-### Service Fabric 公開上市版本和 Microsoft.Diagnostics.Tracing Nuget 封裝
-以 Service Fabric 公開上市版本 (2.0.135，2016 年 3 月 31 日發行) 建置的應用程式會以 **.NET Framework 4.5.2** 為目標。這是 Azure 在 GA 版本支援的最新 .NET Framework 版本。可惜，這個版本的架構缺少 Microsoft.Diagnostics.Listeners 程式庫所需的某些 EventListener API。因為 EventSource (Fabric 應用程式中形成記錄 API 基礎的元件) 和 EventListener 緊密結合，每個使用 Microsoft.Diagnostics.Listeners 程式庫的專案都必須使用替代的 EventSource 實作。此實作由 Microsoft 撰寫的 **Microsoft.Diagnostics.Tracing NuGet 封裝**所提供。此封裝完全與架構中包含的舊版 EventSource 相容，除了變更參考的命名空間，應該不需要變更任何程式碼。
+### <a name="service-fabric-general-availability-release-and-microsoft.diagnostics.tracing-nuget-package"></a>Service Fabric General Availability release and Microsoft.Diagnostics.Tracing Nuget package
+Applications built with Service Fabric General Availability release (2.0.135, released March 31, 2016) target **.NET Framework 4.5.2**. This version is the highest version of the .NET Framework supported by Azure at the time of the GA release. Unfortunately, this version of the framework lacks certain EventListener APIs that the Microsoft.Diagnostics.Listeners library needs. Because EventSource (the component that forms the basis of logging APIs in Fabric applications) and EventListener are tightly coupled, every project that uses the Microsoft.Diagnostics.Listeners library must use an alternative implementation of EventSource. This implementation is provided by the **Microsoft.Diagnostics.Tracing Nuget package**, authored by Microsoft. The package is fully backward-compatible with EventSource included in the framework, so no code changes should be necessary other than referenced namespace changes.
 
-若要開始使用 Microsoft.Diagnostics.Tracing 的 EventSource 類別實作，請針對需要將資料傳送至 Elasticsearch 的每個服務專案，執行下列步驟：
+To start using the Microsoft.Diagnostics.Tracing implementation of the EventSource class, follow these steps for each service project that needs to send data to Elasticsearch:
 
-1. 以滑鼠右鍵按一下服務專案，然後選擇 [管理 Nuget 封裝]。
+1. Right-click on the service project and choose **Manage Nuget Packages**.
 
-2. 切換到 nuget.org 封裝來源 (如果尚未選取)，搜尋「**Microsoft.Diagnostics.Tracing**」。
+2. Switch to the nuget.org package source (if it is not already selected) and search for "**Microsoft.Diagnostics.Tracing**".
 
-3. 安裝 `Microsoft.Diagnostics.Tracing.EventSource` 封裝 (及其相依項目)。
+3. Install the `Microsoft.Diagnostics.Tracing.EventSource` package (and its dependencies).
 
-4. 開啟服務專案中的 **ServiceEventSource.cs** 或 **ActorEventSource.cs** 檔案，並將檔案頂端的 `using System.Diagnostics.Tracing` 指示詞取代為 `using Microsoft.Diagnostics.Tracing` 指示詞。
+4. Open the **ServiceEventSource.cs** or **ActorEventSource.cs** file in your service project and replace the `using System.Diagnostics.Tracing` directive on top of the file with the `using Microsoft.Diagnostics.Tracing` directive.
 
-當 Microsoft Azure 支援 **.NET Framework 4.6** 時，就不需要這些步驟。
+These steps will not be necessary once the **.NET Framework 4.6** is supported by Microsoft Azure.
 
-### Elasticsearch 接聽程式具現化和組態
-將診斷資料傳送至 Elasticsearch 所需的最後一個步驟，就是建立 `ElasticSearchListener` 的執行個體，並以 Elasticsearch 連線資料來設定它。接聽程式會自動擷取所有透過服務專案中定義的 EventSource 類別所引發的事件。它必須在服務的存留期間運作，所以服務初始化程式碼中是建立它的最佳位置。以下是無狀態服務的初始化程式碼在完成必要變更後的樣子 (以 `****` 開頭的註解指出新增的部分)：
+### <a name="elasticsearch-listener-instantiation-and-configuration"></a>Elasticsearch listener instantiation and configuration
+The final step for sending diagnostic data to Elasticsearch is to create an instance of `ElasticSearchListener` and configure it with Elasticsearch connection data. The listener automatically captures all events raised via EventSource classes defined in the service project. It needs to be alive during the lifetime of the service, so the best place to create it is in the service initialization code. Here is how the initialization code for a stateless service could look after the necessary changes (additions pointed out in comments starting with `****`):
 
 ```csharp
 using System;
@@ -231,7 +234,7 @@ namespace Stateless1
 }
 ```
 
-Elasticsearch 連接資料應該放在服務組態檔 (**PackageRoot\\Config\\Settings.xml**) 中的個別區段。區段的名稱必須對應至傳給 `FabricConfigurationProvider` 建構函式的值，例如：
+Elasticsearch connection data should be put in a separate section in the service configuration file (**PackageRoot\Config\Settings.xml**). The name of the section must correspond to the value passed to the `FabricConfigurationProvider` constructor, for example:
 
 ```xml
 <Section Name="ElasticSearchEventListener">
@@ -241,18 +244,22 @@ Elasticsearch 連接資料應該放在服務組態檔 (**PackageRoot\\Config\\Se
   <Parameter Name="indexNamePrefix" Value="myapp" />
 </Section>
 ```
-`serviceUri`、`userName` 和 `password` 的值分別對應到 Elasticsearch 叢集端點位址、Elasticsearch 使用者名稱和密碼。`indexNamePrefix` 是 Elasticsearch 索引的首碼。Microsoft.Diagnostics.Listeners 程式庫會每天建立其資料的新索引。
+The values of `serviceUri`, `userName` and `password` parameters correspond to the Elasticsearch cluster endpoint address, Elasticsearch user name, and password, respectively. `indexNamePrefix` is the prefix for Elasticsearch indexes; the Microsoft.Diagnostics.Listeners library creates a new index for its data daily.
 
-### 驗證
-就這麼簡單！ 現在每當服務執行時，就會開始將追蹤傳送至組態中指定的 ElasticSearch 服務。您可開啟與目標 Elasticsearch 執行個體關聯的 Kibana UI 進行驗證。在我們的範例中，網頁位址為 http://myBigCluster.westus.cloudapp.azure.com/。檢查是否已確實建立為`ElasticSearchListener`執行個體選擇名稱前置詞的索引，並已填入資料。
+### <a name="verification"></a>Verification
+That's it! Now, whenever the service is run, it starts sending traces to the Elasticsearch service specified in the configuration. You can verify this by opening the Kibana UI associated with the target Elasticsearch instance. In our example, the page address is http://myBigCluster.westus.cloudapp.azure.com/. Check that indexes with the name prefix chosen for the `ElasticSearchListener` instance have indeed been created and populated with data.
 
-![顯示 PartyCluster 應用程式事件的 Kibana][2]
+![Kibana showing PartyCluster application events][2]
 
-## 後續步驟
-- [深入了解診斷和監視 Service Fabric 服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
+## <a name="next-steps"></a>Next steps
+- [Learn more about diagnosing and monitoring a Service Fabric service](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 
 <!--Image references-->
 [1]: ./media/service-fabric-diagnostics-how-to-use-elasticsearch/listener-lib-references.png
 [2]: ./media/service-fabric-diagnostics-how-to-use-elasticsearch/kibana.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

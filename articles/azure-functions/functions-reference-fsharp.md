@@ -1,43 +1,44 @@
 <properties
-	pageTitle="Azure Functions F# 開發人員參考 | Microsoft Azure"
-	description="了解如何使用 F# 開發 Azure Functions。"
-	services="functions"
-	documentationCenter="fsharp"
-	authors="sylvanc"
-	manager="jbronsk"
-	editor=""
-	tags=""
-	keywords="azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構, F#"/>
+    pageTitle="Azure Functions F# developer reference | Microsoft Azure"
+    description="Understand how to develop Azure Functions using F#."
+    services="functions"
+    documentationCenter="fsharp"
+    authors="sylvanc"
+    manager="jbronsk"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, webhooks, dynamic compute, serverless architecture, F#"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="fsharp"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="09/09/2016"
-	ms.author="syclebsc"/>
+    ms.service="functions"
+    ms.devlang="fsharp"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="09/09/2016"
+    ms.author="syclebsc"/>
 
-# Azure Functions F# 開發人員參考
+
+# <a name="azure-functions-f#-developer-reference"></a>Azure Functions F# Developer Reference
 
 > [AZURE.SELECTOR]
-- [C# 指令碼](../articles/azure-functions/functions-reference-csharp.md)
-- [F# 指令碼](../articles/azure-functions/functions-reference-fsharp.md)
+- [C# script](../articles/azure-functions/functions-reference-csharp.md)
+- [F# script](../articles/azure-functions/functions-reference-fsharp.md)
 - [Node.js](../articles/azure-functions/functions-reference-node.md)
 
-Azure Functions 的 F# 是可在雲端輕鬆執行程式碼片段或「函式」的解決方案。資料會透過函式引數流入您的 F# 函式。引數名稱會指定於 `function.json` 中，而且有預先定義的名稱可用來存取函式記錄器和取消權杖等項目。
+F# for Azure Functions is a solution for easily running small pieces of code, or "functions," in the cloud. Data flows into your F# function via function arguments. Argument names are specified in `function.json`, and there are predefined names for accessing things like the function logger and cancellation tokens.
 
-本文假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)。
+This article assumes that you've already read the [Azure Functions developer reference](functions-reference.md).
 
-## .fsx 的運作方式
+## <a name="how-.fsx-works"></a>How .fsx works
 
-`.fsx` 檔案是 F# 指令碼。您可以將它視為包含在單一檔案內的 F# 專案。檔案包含程式的程式碼 (在此案例中為您的 Azure 函式) 和用於管理相依性的指示詞。
+An `.fsx` file is an F# script. It can be thought of as an F# project that's contained in a single file. The file contains both the code for your program (in this case, your Azure Function) and directives for managing dependencies.
 
-當您使用 Azure 函式的 `.fsx` 時，其中會自動包含常用的必要組件，讓您得以專注於函式本身而非「重複使用」的程式碼。
+When you use an `.fsx` for an Azure Function, commonly required assemblies are automatically included for you, allowing you to focus on the function rather than "boilerplate" code.
 
-## 繫結至引數
+## <a name="binding-to-arguments"></a>Binding to arguments
 
-如 [Azure Functions 觸發程序和繫結開發人員參考](functions-triggers-bindings.md)所述，每個繫結都支援某幾組引數。例如，Blob 觸發程序支援的其中一個引數繫結是可使用 F# 記錄來表示的 POCO。例如：
+Each binding supports some set of arguments, as detailed in the [Azure Functions triggers and bindings developer reference](functions-triggers-bindings.md). For example, one of the argument bindings a blob trigger supports is a POCO, which can be expressed using an F# record. For example:
 
 ```fsharp
 type Item = { Id: string }
@@ -47,11 +48,11 @@ let Run(blob: string, output: byref<Item>) =
     output <- item
 ```
 
-F# Azure 函式會採用一個或多個引數。在談論 Azure Functions 引數時，我們指的是「輸入」引數和「輸出」引數。輸入引數的用途正如其名︰輸入到 F# Azure 函式。「輸出」引數是可變動的資料或 `byref<>` 引數，可用來將資料從函式「往外」送回。
+Your F# Azure Function will take one or more arguments. When we talk about Azure Functions arguments, we refer to _input_ arguments and _output_ arguments. An input argument is exactly what it sounds like: input to your F# Azure Function. An _output_ argument is mutable data or a `byref<>` argument that serves as a way to pass data back _out_ of your function.
 
-在上述範例中，`blob` 是輸入引數，而 `output` 是輸出引數。請注意，我們使用 `byref<>` 做為 `output` (不必加上 `[<Out>]` 註解)。使用 `byref<>` 類型可讓您的函式變更引數所指稱的記錄或物件。
+In the example above, `blob` is an input argument, and `output` is an output argument. Notice that we used `byref<>` for `output` (there's no need to add the `[<Out>]` annotation). Using a `byref<>` type allows your function to change which record or object the argument refers to.
 
-使用 F# 記錄做為輸入類型時，記錄定義必須標上 `[<CLIMutable>]`，以便讓 Azure Functions 架構先適當地設定欄位，再將記錄傳遞給您的函式。實際上，`[<CLIMutable>]` 會產生記錄屬性的 setter。例如：
+When an F# record is used as an input type, the record definition must be marked with `[<CLIMutable>]` in order to allow the Azure Functions framework to set the fields appropriately before passing the record to your function. Under the hood, `[<CLIMutable>]` generates setters for the record properties. For example:
 
 ```fsharp
 [<CLIMutable>]
@@ -63,7 +64,7 @@ let Run(req: TestObject, log: TraceWriter) =
     { req with Greeting = sprintf "Hello, %s" req.SenderName }
 ```
 
-F# 類別也可用於輸入和輸出引數。針對類別，屬性通常需要 getter 和 setter。例如：
+An F# class can also be used for both in and out arguments. For a class, properties will usually need getters and setters. For example:
 
 ```fsharp
 type Item() =
@@ -75,9 +76,9 @@ let Run(input: string, item: byref<Item>) =
     item <- result
 ```
 
-## 記錄
+## <a name="logging"></a>Logging
 
-若要將輸出記錄至 F# 的[串流記錄](../app-service-web/web-sites-streaming-logs-and-console.md)，您的函式應該採用 `TraceWriter` 類型的引數。為求一致，我們建議將此引數命名為 `log`。例如：
+To log output to your [streaming logs](../app-service-web/web-sites-streaming-logs-and-console.md) in F#, your function should take an argument of type `TraceWriter`. For consistency, we recommend this argument is named `log`. For example:
 
 ```fsharp
 let Run(blob: string, output: byref<string>, log: TraceWriter) =
@@ -85,9 +86,9 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
     output <- input
 ```
 
-## 非同步處理
+## <a name="async"></a>Async
 
-可以使用 `async` 工作流程，但結果需要傳回 `Task`。這可以透過 `Async.StartAsTask` 來完成，例如︰
+The `async` workflow can be used, but the result needs to return a `Task`. This can be done with `Async.StartAsTask`, for example:
 
 ```fsharp
 let Run(req: HttpRequestMessage) =
@@ -96,9 +97,9 @@ let Run(req: HttpRequestMessage) =
     } |> Async.StartAsTask
 ```
 
-## 取消權杖
+## <a name="cancellation-token"></a>Cancellation Token
 
-如果您的函式需要正常地處理關閉，您可以為其指定 [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) 引數。這可與 `async` 結合，例如︰
+If your function needs to handle shutdown gracefully, you can give it a [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) argument. This can be combined with `async`, for example:
 
 ```fsharp
 let Run(req: HttpRequestMessage, token: CancellationToken)
@@ -109,9 +110,9 @@ let Run(req: HttpRequestMessage, token: CancellationToken)
     Async.StartAsTask(f, token)
 ```
 
-## 匯入命名空間
+## <a name="importing-namespaces"></a>Importing namespaces
 
-命名空間可透過一般方式開啟︰
+Namespaces can be opened in the usual way:
 
 ```fsharp
 open System.Net
@@ -121,7 +122,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-下列命名空間會自動開啟︰
+The following namespaces are automatically opened:
 
 * `System`
 * `System.Collections.Generic`
@@ -130,11 +131,11 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
 * `System.Net.Http`
 * `System.Threading.Tasks`
 * `Microsoft.Azure.WebJobs`
-* `Microsoft.Azure.WebJobs.Host`。
+* `Microsoft.Azure.WebJobs.Host`.
 
-## 參考外部組件
+## <a name="referencing-external-assemblies"></a>Referencing External Assemblies
 
-同樣地，在新增架構組件參考時也可以加上 `#r "AssemblyName"` 指示詞。
+Similarly, framework assembly references be added with the `#r "AssemblyName"` directive.
 
 ```fsharp
 #r "System.Web.Http"
@@ -147,7 +148,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-Azure Functions 裝載環境會自動加入下列組件︰
+The following assemblies are automatically added by the Azure Functions hosting environment:
 
 * `mscorlib`,
 * `System`
@@ -158,21 +159,21 @@ Azure Functions 裝載環境會自動加入下列組件︰
 * `Microsoft.Azure.WebJobs.Host`
 * `Microsoft.Azure.WebJobs.Extensions`
 * `System.Web.Http`
-* `System.Net.Http.Formatting`。
+* `System.Net.Http.Formatting`.
 
-此外，下列組件為特殊案例，可以使用簡單名稱來參考 (例如 `#r "AssemblyName"`)：
+In addition, the following assemblies are special cased and may be referenced by simplename (e.g. `#r "AssemblyName"`):
 
 * `Newtonsoft.Json`
 * `Microsoft.WindowsAzure.Storage`
 * `Microsoft.ServiceBus`
 * `Microsoft.AspNet.WebHooks.Receivers`
-* `Microsoft.AspNEt.WebHooks.Common`。
+* `Microsoft.AspNEt.WebHooks.Common`.
 
-如果您需要參考私用組件，可以將組件檔案上傳至相對於您函式的 `bin` 資料夾並使用檔案名稱 (例如 `#r "MyAssembly.dll"`) 來參考它。如需如何將檔案上傳至函數資料夾的資訊，請參閱以下的＜封裝管理＞小節。
+If you need to reference a private assembly, you can upload the assembly file into a `bin` folder relative to your function and reference it by using the file name (e.g.  `#r "MyAssembly.dll"`). For information on how to upload files to your function folder, see the following section on package management.
 
-## 編輯器序言
+## <a name="editor-prelude"></a>Editor Prelude
 
-支援 F# 編譯器服務的編輯器不會知道 Azure Functions 自動包含的命名空間和組件。因此，最好在其中包含序言以協助編輯器找到您使用的組件，並明確開啟命名空間。例如：
+An editor that supports F# Compiler Services will not be aware of the namespaces and assemblies that Azure Functions automatically includes. As such, it can be useful to include a prelude that helps the editor find the assemblies you are using, and to explicitly open namespaces. For example:
 
 ```fsharp
 #if !COMPILED
@@ -187,11 +188,11 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
     ...
 ```
 
-當 Azure Functions 執行程式碼時，它會在定義了 `COMPILED` 的情況下處理來源，所以編輯器序言會遭到忽略。
+When Azure Functions executes your code, it processes the source with `COMPILED` defined, so the editor prelude will be ignored.
 
-## 封裝管理
+## <a name="package-management"></a>Package management
 
-若要在 F# 函式中使用 NuGet 封裝，請將 `project.json` 檔案新增至函式應用程式檔案系統中的函式資料夾。以下的 `project.json` 範例檔案會對 `Microsoft.ProjectOxford.Face` 1.1.0 版新增 NuGet 封裝參考︰
+To use NuGet packages in an F# function, add a `project.json` file to the the function's folder in the function app's file system. Here is an example `project.json` file that adds a NuGet package reference to `Microsoft.ProjectOxford.Face` version 1.1.0:
 
 ```json
 {
@@ -205,19 +206,19 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
 }
 ```
 
-只有 .NET Framework 4.6 會受到支援，因此請確認您的 `project.json` 檔案會如這裡所示指定 `net46`。
+Only the .NET Framework 4.6 is supported, so make sure that your `project.json` file specifies `net46` as shown here.
 
-當您上傳 `project.json` 檔案時，執行階段會取得封裝並自動加入對封裝組件的參考。您不需要加入 `#r "AssemblyName"` 指示詞。只需將必要的 `open` 陳述式加入您的 `.fsx` 檔案。
+When you upload a `project.json` file, the runtime gets the packages and automatically adds references to the package assemblies. You don't need to add `#r "AssemblyName"` directives. Just add the required `open` statements to your `.fsx` file.
 
-您可能會想在編輯器序言中自動放入參考組件，來改善您的編輯器與 F# 編譯器服務的互動。
+You may wish to put automatically references assemblies in your editor prelude, to improve your editor's interaction with F# Compile Services.
 
-### 如何將 `project.json` 檔案新增至 Azure 函式
+### <a name="how-to-add-a-`project.json`-file-to-your-azure-function"></a>How to add a `project.json` file to your Azure Function
 
-1. 首先，在 Azure 入口網站中開啟您的函式，以確定函式應用程式正在執行中。這也可供存取將要顯示封裝安裝輸出的串流記錄檔。
+1. Begin by making sure your function app is running, which you can do by opening your function in the Azure portal. This also gives access to the streaming logs where package installation output will be displayed.
 
-2. 若要上傳 `project.json` 檔案，請使用[如何更新函式應用程式檔案](functions-reference.md#fileupdate)中所述的其中一個方法。如果您使用 [Azure Functions 的持續部署](functions-continuous-deployment.md)，您可以將 `project.json` 檔案加入預備分支，以便在試驗過後再將它加入至部署分支。
+2. To upload a `project.json` file, use one of the methods described in [how to update function app files](functions-reference.md#fileupdate). If you are using [Continuous Deployment for Azure Functions](functions-continuous-deployment.md), you can add a `project.json` file to your staging branch in order to experiment with it before adding it to your deployment branch.
 
-3. 加入 `project.json` 檔案之後，您會在函式的串流記錄中看到類似下列範例的輸出：
+3. After the `project.json` file is added, you will see output similar to the following example in your function's streaming log:
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -236,9 +237,9 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
 2016-04-04T19:02:57.455 Packages restored.
 ```
 
-## 環境變數
+## <a name="environment-variables"></a>Environment variables
 
-若要取得環境變數或應用程式設定值，請使用 `System.Environment.GetEnvironmentVariable`，例如：
+To get an environment variable or an app setting value, use `System.Environment.GetEnvironmentVariable`, for example:
 
 ```fsharp
 open System.Environment
@@ -248,9 +249,9 @@ let Run(timer: TimerInfo, log: TraceWriter) =
     log.Info("Site = " + GetEnvironmentVariable("WEBSITE_SITE_NAME"))
 ```
 
-## 重複使用 .fsx 程式碼
+## <a name="reusing-.fsx-code"></a>Reusing .fsx code
 
-您可以使用 `#load` 指示詞以使用其他 `.fsx` 檔案中的程式碼。例如：
+You can use code from other `.fsx` files by using a `#load` directive. For example:
 
 `run.fsx`
 
@@ -268,26 +269,30 @@ let mylog(log: TraceWriter, text: string) =
     log.Verbose(text);
 ```
 
-提供給 `#load` 指示詞的路徑會相對於 `.fsx` 檔案的位置。
+Paths provides to the `#load` directive are relative to the location of your `.fsx` file.
 
-* `#load "logger.fsx"` 會載入位於函式資料夾中的檔案。
+* `#load "logger.fsx"` loads a file located in the function folder.
 
-* `#load "package\logger.fsx"` 會載入位於函式資料夾的 `package`資料夾中的檔案。
+* `#load "package\logger.fsx"` loads a file located in the `package` folder in the function folder.
 
-* `#load "..\shared\mylogger.fsx"` 會載入位於與函式資料夾相同層級的 `shared`資料夾中的檔案 (也就是在 `wwwroot` 的正下方)。
+* `#load "..\shared\mylogger.fsx"` loads a file located in the `shared` folder at the same level as the function folder, that is, directly under `wwwroot`.
 
-`#load` 指示詞只能搭配 `.fsx` (F# 指令碼) 檔案運作，而不能與 `.fs` 檔案搭配。
+The `#load` directive only works with `.fsx` (F# script) files, and not with `.fs` files.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需詳細資訊，請參閱下列資源：
+For more information, see the following resources:
 
-* [F# 指南](https://docs.microsoft.com/zh-TW/dotnet/articles/fsharp/index)
-* [Azure Functions 開發人員參考](functions-reference.md)
-* [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
-* [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
-* [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
-* [Azure Functions 測試](functions-test-a-function.md)
-* [Azure Functions 調整](functions-scale.md)
+* [F# Guide](https://docs.microsoft.com/en-us/dotnet/articles/fsharp/index)
+* [Azure Functions developer reference](functions-reference.md)
+* [Azure Functions C# developer reference](functions-reference-csharp.md)
+* [Azure Functions NodeJS developer reference](functions-reference-node.md)
+* [Azure Functions triggers and bindings](functions-triggers-bindings.md)
+* [Azure Functions testing](functions-test-a-function.md)
+* [Azure Functions scaling](functions-scale.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Service Fabric 回報和檢查健康情況 | Microsoft Azure"
-   description="了解如何從您的服務程式碼傳送健全狀況報告，以及如何使用 Azure Service Fabric 所提供的健全狀況監視工具檢查您服務的健全狀況。"
+   pageTitle="Report and check health with Azure Service Fabric | Microsoft Azure"
+   description="Learn how to send health reports from your service code and how to check the health of your service by using the health monitoring tools that Azure Service Fabric provides."
    services="service-fabric"
    documentationCenter=".net"
    authors="toddabel"
@@ -16,66 +16,69 @@
    ms.date="09/06/2016"
    ms.author="toddabel"/>
 
-# 回報和檢查服務健康情況
-當您的服務發生問題時，您回應並修正事件和中斷的能力，取決於您快速偵測問題的能力。如果您從服務程式碼向 Azure Service Fabric 健全狀況管理員回報問題和失敗，您便可以使用 Service Fabric 提供的標準健全狀況監視工具來檢查健全狀況。
 
-有兩種方式可讓您回報服務的健全狀況：
+# <a name="report-and-check-service-health"></a>Report and check service health
+When your services encounter problems, your ability to respond to and fix incidents and outages depends on your ability to detect the issues quickly. If you report problems and failures to the Azure Service Fabric health manager from your service code, you can use standard health monitoring tools that Service Fabric provides to check the health status.
 
-- 使用 [Partition](https://msdn.microsoft.com/library/system.fabric.istatefulservicepartition.aspx) 或 [CodePackageActivationContext](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.aspx) 物件。您可以使用 `Partition` 和 `CodePackageActivationContext` 物件在屬於目前內容一部分的項目中回報健全狀況。比方說，做為複本一部分執行的程式碼只能回報該複本、其所屬的分割區，以及其所屬應用程式的健全狀況。
+There are two ways that you can report health from the service:
 
-- 使用 `FabricClient`。當叢集不是[安全的](service-fabric-cluster-security.md)或者服務是以系統管理員權限執行時，您才能使用 `FabricClient`，從服務程式碼回報健全狀況。在大部分的真實案例中都不會發生此情況。您可以使用 `FabricClient`，回報任何屬於叢集一部分之實體的健全狀況。然而在理想的情況下，服務程式碼應該只會傳送與其本身健全狀況相關的報告。
+- Use [Partition](https://msdn.microsoft.com/library/system.fabric.istatefulservicepartition.aspx) or [CodePackageActivationContext](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.aspx) objects.  
+You can use the `Partition` and `CodePackageActivationContext` objects to report the health of elements that are part of the current context. For example, code that runs as part of a replica can report health only on that replica, the partition that it belongs to, and the application that it is a part of.
 
-這篇文章會引導您完成從服務程式碼回報健全狀況的範例。此範例也示範如何使用 Service Fabric 提供的工具檢查健全狀態。本文旨在快速介紹 Service Fabric 的健全狀況監視功能。如需更詳細的資訊，您可以閱讀一系列有關健全狀況的深入文章，從本文結尾的連結開始。
+- Use `FabricClient`.   
+You can use `FabricClient` to report health from the service code if the cluster is not [secure](service-fabric-cluster-security.md) or if the service is running with admin privileges. This won't be true in most real-world scenarios. With `FabricClient`, you can report health on any entity that is a part of the cluster. Ideally, however, service code should only send reports that are related to its own health.
 
-## 必要條件
-您必須安裝下列項目：
+This article walks you through an example that reports health from the service code. The example also shows how the tools that Service Fabric provides can be used to check the health status. This article is intended to be a quick introduction to the health monitoring capabilities of Service Fabric. For more detailed information, you can read the series of in-depth articles about health that start with the link at the end of this article.
+
+## <a name="prerequisites"></a>Prerequisites
+You must have the following installed:
 
    * Visual Studio 2015
    * Service Fabric SDK
 
-## 建立本機的安全開發人員叢集
-- 以系統管理員權限開啟 PowerShell 並執行下列命令。
+## <a name="to-create-a-local-secure-dev-cluster"></a>To create a local secure dev cluster
+- Open PowerShell with admin privileges, and run the following commands.
 
-![示範如何建立安全開發人員叢集的命令](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-secure-dev-cluster.png)
+![Commands that show how to create a secure dev cluster](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-secure-dev-cluster.png)
 
-## 部署應用程式並檢查其健康情況
+## <a name="to-deploy-an-application-and-check-its-health"></a>To deploy an application and check its health
 
-1. 以系統管理員身分開啟 Visual Studio。
+1. Open Visual Studio as an administrator.
 
-2. 使用**具狀態服務**範本建立專案。
+2. Create a project by using the **Stateful Service** template.
 
-    ![建立與具狀態服務搭配使用的 Service Fabric 應用程式](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-stateful-service-application-dialog.png)
+    ![Create a Service Fabric application with Stateful Service](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-stateful-service-application-dialog.png)
 
-3. 按 **F5** 以在偵錯模式中執行應用程式。應用程式將會部署至本機叢集。
+3. Press **F5** to run the application in debug mode. The application will be deployed to the local cluster.
 
-4. 應用程式執行之後，在通知區域中的本機叢集管理員圖示上按一下滑鼠右鍵，然後從捷徑功能表選取 [管理本機叢集]，以開啟 [Service Fabric 總管。
+4. After the application is running, right-click the Local Cluster Manager icon in the notification area and select **Manage Local Cluster** from the shortcut menu to open Service Fabric Explorer.
 
-    ![從通知區域開啟 Service Fabric 總管](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/LaunchSFX.png)
+    ![Open Service Fabric Explorer from notification area](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/LaunchSFX.png)
 
-5. 應用程式健全狀況應該會如此圖所示。此時，應用程式應該狀況良好而沒有任何錯誤。
+5. The application health should be displayed as in this image. At this time, the application should be healthy with no errors.
 
-    ![Service Fabric 總管中狀況良好的應用程式](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/sfx-healthy-app.png)
+    ![Healthy application in Service Fabric Explorer](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/sfx-healthy-app.png)
 
-6. 您也可以使用 PowerShell 來檢查健康情況。您可以使用 ```Get-ServiceFabricApplicationHealth``` 檢查應用程式的健全狀況，而且您可以使用 ```Get-ServiceFabricServiceHealth``` 來檢查服務的健全狀況。在 PowerShell 中適用於相同應用程式的健全狀況報告位於此圖中。
+6. You can also check the health by using PowerShell. You can use ```Get-ServiceFabricApplicationHealth``` to check an application's health, and you can use ```Get-ServiceFabricServiceHealth``` to check a service's health. The health report for the same application in PowerShell is in this image.
 
-    ![PowerShell 中狀況良好的應用程式](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/ps-healthy-app-report.png)
+    ![Healthy application in PowerShell](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/ps-healthy-app-report.png)
 
-## 將自訂健康情況事件新增至您的服務程式碼
-Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。以下步驟說明如何從您的服務程式碼回報自訂健全狀況事件。這類報告會自動顯示在 Service Fabric 所提供之健全狀況監視的標準工具中，例如 Service Fabric 總管、Azure 入口網站健全狀況檢視以及 PowerShell。
+## <a name="to-add-custom-health-events-to-your-service-code"></a>To add custom health events to your service code
+The Service Fabric project templates in Visual Studio contain sample code. The following steps show how you can report custom health events from your service code. Such reports will automatically show up in the standard tools for health monitoring that Service Fabric provides, such as Service Fabric Explorer, Azure portal health view, and PowerShell.
 
-1. 在 Visual Studio 中重新開啟您先前建立的應用程式，或使用**具狀態服務** Visual Studio 範本建立新應用程式。
+1. Reopen the application that you created previously in Visual Studio, or create a new application by using the **Stateful Service** Visual Studio template.
 
-2. 開啟 Stateful1.cs 檔案，並尋找 `RunAsync` 方法中的 `myDictionary.TryGetValueAsync` 呼叫。您可以看到這個方法傳回存放目前計數器值的 `result`，因為此應用程式的主要邏輯是要讓計數能夠執行。如果這是一個實際的應用程式，且缺乏結果代表失敗，您會想要標示該事件。
+2. Open the Stateful1.cs file, and find the `myDictionary.TryGetValueAsync` call in the `RunAsync` method. You can see that this method returns a `result` that holds the current value of the counter because the key logic in this application is to keep a count running. If this were a real application, and if the lack of result represented a failure, you would want to flag that event.
 
-3. 若要在缺乏結果代表失敗時回報健全狀況事件，請新增下列步驟。
+3. To report a health event when the lack of result represents a failure, add the following steps.
 
-    a.請將 `System.Fabric.Health` 命名空間新增至 Stateful1.cs 檔案。
+    a. Add the `System.Fabric.Health` namespace to the Stateful1.cs file.
 
     ```csharp
     using System.Fabric.Health;
     ```
 
-    b.在 `myDictionary.TryGetValueAsync` 呼叫之後新增下列程式碼
+    b. Add the following code after the `myDictionary.TryGetValueAsync` call
 
     ```csharp
     if (!result.HasValue)
@@ -84,9 +87,9 @@ Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。以下�
         this.Partition.ReportReplicaHealth(healthInformation);
     }
     ```
-    我們會回報複本健全狀況，因為它是從具狀態服務回報的。`HealthInformation` 參數會儲存所要回報之健全狀況問題的相關資訊。
+    We report replica health because it's being reported from a stateful service. The `HealthInformation` parameter stores information about the health issue that's being reported.
 
-    如果您已建立無狀態服務，請使用下列程式碼
+    If you had created a stateless service, use the following code
 
     ```csharp
     if (!result.HasValue)
@@ -96,15 +99,15 @@ Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。以下�
     }
     ```
 
-4. 如果您的服務是以系統管理員權限執行，或者叢集不是[安全的](service-fabric-cluster-security.md)，您也可以使用 `FabricClient` 來回報健全狀況，如下列步驟所示。
+4. If your service is running with admin privileges or if the cluster is not [secure](service-fabric-cluster-security.md), you can also use `FabricClient` to report health as shown in the following steps.  
 
-    a.在 `var myDictionary` 宣告之後建立 `FabricClient`。
+    a. Create the `FabricClient` instance after the `var myDictionary` declaration.
 
     ```csharp
     var fabricClient = new FabricClient(new FabricClientSettings() { HealthReportSendInterval = TimeSpan.FromSeconds(0) });
     ```
 
-    b.在 `myDictionary.TryGetValueAsync` 呼叫之後新增下列程式碼。
+    b. Add the following code after the `myDictionary.TryGetValueAsync` call.
 
     ```csharp
     if (!result.HasValue)
@@ -117,7 +120,7 @@ Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。以下�
     }
     ```
 
-5. 讓我們來模擬此失敗並看它顯示在健康情況監視工具中。若要模擬此失敗，請將您稍早新增的健全狀況回報程式碼中的第一行標記成註解。將第一行標記成註解之後，程式碼會看起來如下列範例所示。
+5. Let's simulate this failure and see it show up in the health monitoring tools. To simulate the failure, comment out the first line in the health reporting code that you added earlier. After you comment out the first line, the code will look like the following example.
 
     ```csharp
     //if(!result.HasValue)
@@ -126,26 +129,26 @@ Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。以下�
         this.Partition.ReportReplicaHealth(healthInformation);
     }
     ```
- 現在，這個程式碼就會在每次 `RunAsync` 執行時引發此健全狀況報告。在您進行變更之後，請按 **F5** 執行應用程式。
+ This code will now fire this health report each time `RunAsync` executes. After you make the change, press **F5** to run the application.
 
-6. 在應用程式執行之後，開啟 [Service Fabric 總管] 來檢查應用程式的健全狀況。這次，[Service Fabric 總管] 會將應用程式顯示為狀況不良。這是因為我們先前新增的程式碼所回報的錯誤所致。
+6. After the application is running, open Service Fabric Explorer to check the health of the application. This time, Service Fabric Explorer will show that the application is unhealthy. This is because of the error that was reported from the code that we added previously.
 
-    ![Service Fabric 總管中狀況不良的應用程式](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/sfx-unhealthy-app.png)
+    ![Unhealthy application in Service Fabric Explorer](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/sfx-unhealthy-app.png)
 
-7. 如果您在 [Service Fabric 總管] 的樹狀結構檢視中選取主要複本，您將會看到**健全狀態**也顯示為發生錯誤。[Service Fabric 總管] 也會顯示已新增至程式碼中 `HealthInformation` 參數的健全狀況報告詳細資料。您可以在 PowerShell 和 Azure 入口網站中看到相同的健全狀況報告。
+7. If you select the primary replica in the tree view of Service Fabric Explorer, you will see that **Health State** indicates an error, too. Service Fabric Explorer also displays the health report details that were added to the `HealthInformation` parameter in the code. You can see the same health reports in PowerShell and the Azure portal.
 
-    ![Service Fabric 總管中的複本健康情況](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/replica-health-error-report-sfx.png)
+    ![Replica health in Service Fabric Explorer](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/replica-health-error-report-sfx.png)
 
-此報告將會保留在健全狀況管理員中，直到被另一份報告取代或直到此複本被刪除為止。因為我們並未設定 `HealthInformation` 物件中此健全狀況報告的 `TimeToLive`，所以報告永遠不會到期。
+This report will remain in the health manager until it is replaced by another report or until this replica is deleted. Because we did not set `TimeToLive` for this health report in the `HealthInformation` object, the report will never expire.
 
-建議您應該在最細微的層級上回報健全狀況，在此案例中為複本。您也可以回報 `Partition` 的健全狀況。
+We recommend that health should be reported on the most granular level, which in this case is the replica. You can also report health on `Partition`.
 
 ```csharp
 HealthInformation healthInformation = new HealthInformation("ServiceCode", "StateDictionary", HealthState.Error);
 this.Partition.ReportPartitionHealth(healthInformation);
 ```
 
-若要回報 `Application`、`DeployedApplication` 和 `DeployedServicePackage` 的健全狀況，請使用 `CodePackageActivationContext`。
+To report health on `Application`, `DeployedApplication`, and `DeployedServicePackage`, use  `CodePackageActivationContext`.
 
 ```csharp
 HealthInformation healthInformation = new HealthInformation("ServiceCode", "StateDictionary", HealthState.Error);
@@ -153,7 +156,11 @@ var activationContext = FabricRuntime.GetActivationContext();
 activationContext.ReportApplicationHealth(healthInformation);
 ```
 
-## 後續步驟
-[深入了解 Service Fabric 健康情況](service-fabric-health-introduction.md)
+## <a name="next-steps"></a>Next steps
+[Deep dive on Service Fabric health](service-fabric-health-introduction.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用動態 DNS 來登錄主機名稱"
-   description="此頁面會提供詳細資料，告知您如何設定動態 DNS，以便在您的 DNS 伺服器中註冊主機名稱。"
+   pageTitle="Using Dynamic DNS to register hostnames"
+   description="This page gives details on how to set up Dynamic DNS to register hostnames in your own DNS servers."
    services="dns"
    documentationCenter="na"
    authors="GarethBradshawMSFT"
@@ -15,23 +15,24 @@
    ms.date="08/31/2016"
    ms.author="sewhee" />
 
-# 在您自己的 DNS 伺服器中使用動態 DNS 來登錄主機名稱
 
-[Azure 會為虛擬機器 (VM) 及角色執行個體提供名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)。但是，當您的名稱解析需求超過 Azure 所提供的名稱解析時，您可以提供自己的 DNS 伺服器。這讓您有能力量身打造自己的 DNS 方案，來符合您特定的需求。例如，您可能需要透過 Active Directory 網域控制站存取內部部署資源。
+# <a name="using-dynamic-dns-to-register-hostnames-in-your-own-dns-server"></a>Using Dynamic DNS to register hostnames in your own DNS server
 
-當您的自訂 DNS 伺服器裝載為 Azure VM 時，您可以將主機名稱查詢 (適用於相同的虛擬網路) 轉送至 Azure，以解析主機名稱。如果您不想使用此路由，您可以在您的 DNS 伺服器中使用動態 DNS 註冊您的 VM 主機名稱。Azure 沒有能力 (例如認證) 直接在您的 DNS 伺服器中建立記錄，因此通常需要有其他的安排。以下是一些常見案例與替代方案。
+[Azure provides name resolution](virtual-networks-name-resolution-for-vms-and-role-instances.md) for virtual machines (VMs) and role instances. However, when your name resolution needs go beyond those provided by Azure, you can provide your own DNS servers. This gives you the power to tailor your DNS solution to suit your own specific needs. For example, you may need to access on-premises resources via your Active Directory domain controller.
 
-## Windows 用戶端
+When your custom DNS servers are hosted as Azure VMs you can forward hostname queries for the same vnet to Azure to resolve hostnames. If you do not wish to use this route, you can register your VM hostnames in your DNS server using Dynamic DNS.  Azure doesn't have the ability (e.g. credentials) to directly create records in your DNS servers, so alternative arrangements are often needed. Here are some common scenarios with alternatives.
 
-未加入網域的 Windows 用戶端在開機或在 IP 位址改變時，會嘗試進行不安全的動態 DNS (DDNS) 更新。DNS 名稱就是主機名稱加上主要 DNS 尾碼。Azure 會讓主要 DNS 尾碼留白，但您可以在 VM 中透過 [UI](https://technet.microsoft.com/library/cc794784.aspx) 或 [使用自動化](https://social.technet.microsoft.com/forums/windowsserver/3720415a-6a9a-4bca-aa2a-6df58a1a47d7/change-primary-dns-suffix)設定這個項目。
+## <a name="windows-clients"></a>Windows clients
 
-已加入網域的 Windows 用戶端會使用安全的動態 DNS，向網域控制站註冊自己的 IP 位址。網域加入程序會設定用戶端上的主要 DNS 尾碼，並建立和維護信任關係。
+Non-domain-joined Windows clients attempt unsecured Dynamic DNS (DDNS) updates when they boot or when their IP address changes. The DNS name is the hostname plus the primary DNS suffix. Azure leaves the primary DNS suffix blank, but you can set this in the VM, via the [UI](https://technet.microsoft.com/library/cc794784.aspx) or [by using automation](https://social.technet.microsoft.com/forums/windowsserver/3720415a-6a9a-4bca-aa2a-6df58a1a47d7/change-primary-dns-suffix).
 
-## Linux 用戶端
+Domain-joined Windows clients register their IP addresses with the domain controller by using secure Dynamic DNS. The domain-join process sets the primary DNS suffix on the client and creates and maintains the trust relationship.
 
-Linux 用戶端通常不會在啟動時向 DNS 伺服器自行登錄，其假設 DHCP 伺服器會這麼做。Azure 的 DHCP 伺服器並不具能力或認證，無法在您的 DNS 伺服器登錄記錄。您可以使用稱為 *nsupdate* 的工具，該工具隨附於繫結封裝，以傳送動態 DNS 更新。因為動態 DNS 通訊協定已標準化，您甚至可以在您並非於 DNS 伺服器上使用繫結時，使用 *nsupdate*。
+## <a name="linux-clients"></a>Linux clients
 
-您可以使用 DHCP 用戶端所提供的勾點，在 DNS 伺服器中建立及維護主機名稱實體。在 DHCP 週期中，用戶端在 */etc/dhcp/dhclient-exit-hooks.d/* 中執行指令碼。這可以用來使用 *nsupdate* 註冊新的 IP 位址。例如：
+Linux clients generally don't register themselves with the DNS server on startup, they assume the DHCP server does it. Azure's DHCP servers do not have the ability or credentials to register records in your DNS server.  You can use a tool called *nsupdate*, which is included in the Bind package, to send Dynamic DNS updates. Because the Dynamic DNS protocol is standardized, you can use *nsupdate* even when you're not using Bind on the DNS server.
+
+You can use the hooks that are provided by the DHCP client to create and maintain the hostname entry in the DNS server. During the DHCP cycle, the client executes the scripts in */etc/dhcp/dhclient-exit-hooks.d/*. This can be used to register the new IP address by using *nsupdate*. For example:
 
         #!/bin/sh
         requireddomain=mydomain.local
@@ -58,12 +59,17 @@ Linux 用戶端通常不會在啟動時向 DNS 伺服器自行登錄，其假設
         #done
         exit 0;
 
-您也可以使用 *nsupdate* 命令來執行安全動態 DNS 更新。例如，當您使用繫結 DNS 伺服器時，會[產生](http://linux.yyz.us/nsupdate/)公開-私密金鑰組。DNS 伺服器已使用金鑰的公開部分進行[設定](http://linux.yyz.us/dns/ddns-server.html)，因此其可驗證要求的簽章。您必須使用 *-k* 選項以提供金鑰組給 *nsupdate*，以便簽署動態 DNS 更新要求。
+You can also use the *nsupdate* command to perform secure Dynamic DNS updates. For example, when you're using a Bind DNS server, a public-private key pair is [generated](http://linux.yyz.us/nsupdate/).  The DNS server is [configured](http://linux.yyz.us/dns/ddns-server.html) with the public part of the key so that it can verify the signature on the request. You must use the *-k* option to provide the key-pair to *nsupdate* in order for the Dynamic DNS update request to be signed.
 
-當您使用 Windows DNS 伺服器時，您可以使用 Kerberos 驗證搭配 *nsupdate* 的 *-g* 參數 (*nsupdate* 的 Windows 版本未提供)。若要這樣做，請使用 *kinit* 載入認證 (例如從 [keytab 檔案](http://www.itadmintools.com/2011/07/creating-kerberos-keytab-files.html))。然後 *nsupdate -g* 會從快取挑選認證。
+When you're using a Windows DNS server, you can use Kerberos authentication with the *-g* parameter in *nsupdate* (not available in the Windows version of *nsupdate*). To do this, use *kinit* to load the credentials (e.g. from a [keytab file](http://www.itadmintools.com/2011/07/creating-kerberos-keytab-files.html)). Then *nsupdate -g* will pick up the credentials from the cache.
 
-如有需要，您可以將 DNS 搜尋尾碼加入您的 VM。DNS 尾碼是在 */etc/resolv.conf* 檔案中指定。大多數的 Linux 發行版會自動管理這個檔案的內容，因此通常您無法編輯該檔案。不過，您可以使用 DHCP 用戶端的 *supersede* 命令以覆寫尾碼。若要這樣做，請在 */etc/dhcp/dhclient.conf* 中，加入：
+If needed, you can add a DNS search suffix to your VMs. The DNS suffix is specified in the */etc/resolv.conf* file. Most Linux distros automatically manage the content of this file, so usually you can't edit it. However, you can override the suffix by using the DHCP client's *supersede* command. To do this, in */etc/dhcp/dhclient.conf*, add:
 
         supersede domain-name <required-dns-suffix>;
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

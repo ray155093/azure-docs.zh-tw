@@ -1,98 +1,99 @@
 <properties 
-	pageTitle="在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯 | Microsoft Azure" 
-	description="本教學課程示範如何使用 Azure Toolkit for IntelliJ，對 Azure 上執行的 Java Web 應用程式進行偵錯。" 
-	services="app-service\web" 
-	documentationCenter="java" 
-	authors="selvasingh" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Debug a Java Web App on Azure in IntelliJ | Microsoft Azure" 
+    description="This tutorial shows you how to use the Azure Toolkit for IntelliJ to debug a Java Web App running on Azure." 
+    services="app-service\web" 
+    documentationCenter="java" 
+    authors="selvasingh" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service-web" 
-	ms.workload="web" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="Java" 
-	ms.topic="article" 
-	ms.date="09/20/2016" 
-	ms.author="asirveda;robmcm"/>
+    ms.service="app-service-web" 
+    ms.workload="web" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="Java" 
+    ms.topic="article" 
+    ms.date="09/20/2016" 
+    ms.author="asirveda;robmcm"/>
 
-# 在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯
 
-本教學課程示範如何使用[適用於 IntelliJ 的 Azure 工具組]，對 Azure 上執行的 Java Web 應用程式進行偵錯。為了簡單起見，您將針對本教學課程使用基本的 Java Server Page (JSP) 範例，但在 Azure 上進行偵錯時，步驟與 Java Servlet 類似。
+# <a name="debug-a-java-web-app-on-azure-in-intellij"></a>Debug a Java Web App on Azure in IntelliJ
 
-當您完成本教學課程之後，在 IntelliJ 中對應用程式進行偵錯時，其看起來類似下圖：
+This tutorial shows how to debug a Java Web App running on Azure by using the [Azure Toolkit for IntelliJ]. For the sake of simplicity, you will use a basic Java Server Page (JSP) example for this tutorial, but the steps would be similar for a Java servlet when you are debugging on Azure.
+
+When you have completed this tutorial, your application will look similar to the following illustration when you are debugging it in IntelliJ:
 
 ![][01]
  
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-* Java Developer Kit (JDK) 1.8 版或更新版本。
-* IntelliJ 概念旗艦版。這可透過 <https://www.jetbrains.com/idea/download/index.html> 下載。
-* Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat 或 Jetty。
-* Azure 訂用帳戶，可從 <https://azure.microsoft.com/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
-* 適用於 IntelliJ 的 Azure 工具組。如需詳細資訊，請參閱 [Installing the Azure Toolkit for IntelliJ (安裝適用於 IntelliJ 的 Azure 工具組)]。
-* 動態 Web 專案已建立並部署到 Azure App Service；例如，請參閱[在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式]。
+* A Java Developer Kit (JDK), v 1.8 or later.
+* IntelliJ IDEA Ultimate Edition. This can be downloaded from <https://www.jetbrains.com/idea/download/index.html>.
+* A distribution of a Java-based web server or application server, such as Apache Tomcat or Jetty.
+* An Azure subscription, which can be acquired from <https://azure.microsoft.com/en-us/free/> or <http://azure.microsoft.com/pricing/purchase-options/>.
+* The Azure Toolkit for IntelliJ. For more information, see [Installing the Azure Toolkit for IntelliJ].
+* A Dynamic Web Project created and deployed to Azure App Service; for example see [Create a Hello World Web App for Azure in IntelliJ].
 
-## 對 Azure 上的 Java Web 應用程式進行偵錯
+## <a name="to-debug-a-java-web-app-on-azure"></a>To Debug a Java Web App on Azure
 
-若要完成本節中的這些步驟，您可以使用現有的動態 Web 專案 (您已經將其部署為 Azure 上的 Java Web 應用程式)、下載[動態 Web 專案範例]，並依照[在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式]的步驟，將其部署於 Azure 上。
+To complete these steps in this section, you can use an existing Dynamic Web Project which you have already deployed as a Java Web App on Azure, you download a [Sample Dynamic Web Project] and follow steps in [Create a Hello World Web App for Azure in IntelliJ] to deploy it on Azure. 
 
-1. 在 IntelliJ 中，開啟您已部署到 Azure 的 Java Web 應用程式專案。
+1. Open the Java Web App project which you deployed to Azure in IntelliJ.
 
-1. 按一下 [執行] 功能表，然後按一下 [編輯組態...]。
+1. Click the **Run** menu, and then click **Edit Configurations...**.
 
     ![][02]
 
-1. 當 [執行/偵錯組態] 對話方塊開啟時：
+1. When the **Run/Debug Configurations** dialog box opens: 
 
-    1. 選取 [Azure Web 應用程式]。
-    1. 按一下 [+] 以加入新的組態。
-    1. 提供組態的**名稱**。
-    1. 接受 Azure 工具組所建議的其餘預設值，然後按一下 [確定]。
+    1. Select **Azure Web App**.
+    1. Click on **+** to add a new configuration.
+    1. Provide a **Name** for the configuration.
+    1. Accept the remaining default values which are suggested by the Azure Toolkit, and then click **OK**.
 
         ![][03]
 
-1. 在功能表右上方，選取您剛建立的 Azure Web 應用程式偵錯組態，然後按一下 [偵錯]
+1. Select the Azure Web App debug configuration that you just created on the right top of the menu and click on **Debug**
 
     ![][04]
 
-1. 當系統顯示 [立即在遠端 Web 應用程式中啟用遠端偵錯？] 的提示時，按一下 [確定]。
+1. When prompted to **Enable remote debugging in the remote Web App now?**, click **OK**.
 
-1. 當系統顯示 [您的 Web 應用程式現在已準備好進行遠端偵錯] 的提示時，按一下 [確定]。
+1. When prompted that **Your web app is now ready for remote debugging**, click **OK**.
 
     ![][05]
 
-1. 在功能表右上方，選取您剛建立的 Azure Web 應用程式偵錯組態，然後按一下 [偵錯]。
+1. Select the Azure Web App debug configuration that you just created on the right top of the menu, and then click on **Debug**.
 
-1. Windows 命令提示字元或 Unix 殼層隨即開啟並準備好必要的連接進行偵錯。您必須等到與遠端 Java Web 應用程式的連接成功之後，才能繼續。如果您使用 Windows，它將看起來類似下圖：
+1. A Windows command prompt or Unix shell will open and prepare necessary connection for debugging; you need to wait until the connection to your remote Java Web app is successful before you continue. If you are using Windows, it will look like the following illustration:
 
     ![][06]
 
-1. 在 JSP 頁面中插入中斷點，然後在瀏覽器中開啟 Java Web 應用程式的 URL：
+1. Insert a break point in your JSP page, then open the URL for your Java Web App in a browser:
 
-    1. 在 IntelliJ 中，開啟 [Azure 總管]。
-    1. 瀏覽到 [Web Apps] 以及您要偵錯的 Java Web 應用程式。
-    1. 以滑鼠右鍵按一下 Web 應用程式，然後按一下 [在瀏覽器中開啟]。
-    1. IntelliJ 現在會進入偵錯模式。
+    1. Open up **Azure Explorer** in IntelliJ.
+    1. Navigate to **Web Apps** and the Java Web App you want to debug.
+    1. Right click on the Web App, and click **Open in Browser**.
+    1. IntelliJ will now enter into debug mode.
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+For more information about using Azure with Java, see the [Azure Java Developer Center].
 
-如需建立 Azure Web Apps 的詳細資訊，請參閱 [Web 應用程式概觀]。
+For additional information about creating Azure Web Apps, see the [Web Apps Overview].
 
 [AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- URL List -->
 
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
-[適用於 IntelliJ 的 Azure 工具組]: ../azure-toolkit-for-intellij.md
-[Installing the Azure Toolkit for IntelliJ (安裝適用於 IntelliJ 的 Azure 工具組)]: ../azure-toolkit-for-intellij-installation.md
-[在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式]: ./app-service-web-intellij-create-hello-world-web-app.md
-[動態 Web 專案範例]: http://go.microsoft.com/fwlink/?LinkId=817337
+[Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij.md
+[Installing the Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-installation.md
+[Create a Hello World Web App for Azure in IntelliJ]: ./app-service-web-intellij-create-hello-world-web-app.md
+[Sample Dynamic Web Project]: http://go.microsoft.com/fwlink/?LinkId=817337
 
-[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
-[Web 應用程式概觀]: ./app-service-web-overview.md
+[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Web Apps Overview]: ./app-service-web-overview.md
 
 <!-- IMG List -->
 
@@ -103,4 +104,8 @@
 [05]: ./media/app-service-web-debug-java-web-app-in-intellij/05-ready-for-remote-debugging.png
 [06]: ./media/app-service-web-debug-java-web-app-in-intellij/06-windows-command-prompt-connection-successful-to-remote.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

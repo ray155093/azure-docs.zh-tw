@@ -1,6 +1,6 @@
 <properties
-    pageTitle="使用 Transact-SQL 為 Azure SQL Database 設定異地複寫 | Microsoft Azure"
-    description="使用 Transact-SQL 為 Azure SQL Database 設定異地複寫"
+    pageTitle="Configure Geo-Replication for Azure SQL Database with Transact-SQL | Microsoft Azure"
+    description="Configure Geo-Replication for Azure SQL Database using Transact-SQL"
     services="sql-database"
     documentationCenter=""
     authors="CarlRabeler"
@@ -13,168 +13,170 @@
     ms.topic="article"
     ms.tgt_pltfrm="NA"
     ms.workload="NA"
-    ms.date="07/18/2016"
+    ms.date="10/13/2016"
     ms.author="carlrab"/>
 
-# 使用 Transact-SQL 為 Azure SQL Database 設定異地複寫
+
+# <a name="configure-geo-replication-for-azure-sql-database-with-transact-sql"></a>Configure Geo-Replication for Azure SQL Database with Transact-SQL
 
 > [AZURE.SELECTOR]
-- [概觀](sql-database-geo-replication-overview.md)
-- [Azure 入口網站](sql-database-geo-replication-portal.md)
+- [Overview](sql-database-geo-replication-overview.md)
+- [Azure Portal](sql-database-geo-replication-portal.md)
 - [PowerShell](sql-database-geo-replication-powershell.md)
 - [T-SQL](sql-database-geo-replication-transact-sql.md)
 
-本文說明如何使用 Transact-SQL，為 Azure SQL Database 設定主動式異地複寫。
+This article shows you how to configure Active Geo-Replication for an Azure SQL Database with Transact-SQL.
 
-若要使用 Transact-SQL 起始容錯移轉，請參閱[使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md)。
+To initiate failover using Transact-SQL, see [Initiate a planned or unplanned failover for Azure SQL Database with Transact-SQL](sql-database-geo-replication-failover-transact-sql.md).
 
->[AZURE.NOTE] 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
+>[AZURE.NOTE] Active Geo-Replication (readable secondaries) is now available for all databases in all service tiers. In April 2017 the non-readable secondary type will be retired and existing non-readable databases will automatically be upgraded to readable secondaries.
 
-若要使用 Transact-SQL 設定主動式異地複寫，您需要下列項目：
+To configure Active Geo-Replication using Transact-SQL, you need the following:
 
-- Azure 訂用帳戶。
-- 邏輯 Azure SQL Database 伺服器 <MyLocalServer> 和 SQL Database <MyDB> - 您想要複寫的主要資料庫。
-- 一或多個邏輯 Azure SQL Database 伺服器 <MySecondaryServer(n)> - 您將在其中建立次要資料庫的夥伴伺服器的邏輯伺服器。
-- 一個主要複本上的 DBManager 登入身分、具備您將進行異地複寫之本機資料庫的 db\_ownership，以及成為您將設定「異地複寫」之夥伴伺服器上的 DBManager。
+- An Azure subscription.
+- A logical Azure SQL Database server <MyLocalServer> and a SQL database <MyDB> - The primary database that you want to replicate.
+- One or more logical Azure SQL Database servers <MySecondaryServer(n)> - The logical servers that will be the partner servers in which you will create secondary databases.
+- A login that is DBManager on the primary, have db_ownership of the local database that you will geo-replicate, and be DBManager on the partner server(s) to which you will configure Geo-Replication.
 - SQL Server Management Studio (SSMS)
 
-> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+> [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 
 
-## 加入次要資料庫
+## <a name="add-secondary-database"></a>Add secondary database
 
-您可以使用 **ALTER DATABASE** 陳述式，在夥伴伺服器上建立異地複寫的次要資料庫。您在包含要複寫的資料庫伺服器的 master 資料庫上執行此陳述式。異地複寫資料庫 (「主要資料庫」) 會具備與要複寫的資料庫相同的名稱，並且預設與主要資料庫具有相同的服務層級。次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性資料庫。如需詳細資訊，請參閱 [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 和[服務層](sql-database-service-tiers.md)。建立次要資料庫並植入之後，資料就會開始以非同步方式從主要資料庫複寫。下列步驟說明如何使用 Management Studio 來設定「異地複寫」。提供使用單一資料庫或彈性資料庫建立不可讀取和可讀取次要複本的步驟。
+You can use the **ALTER DATABASE** statement to create a geo-replicated secondary database on a partner server. You execute this statement on the master database of the server containing the database to be replicated. The geo-replicated database (the "primary database") will have the same name as the database being replicated and will, by default, have the same service level as the primary database. The secondary database can be readable or non-readable, and can be a single database or an elastic databbase. For more information, see [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) and [Service Tiers](sql-database-service-tiers.md).
+After the secondary database is created and seeded, data will begin replicating asynchronously from the primary database. The steps below describe how to configure Geo-Replication using Management Studio. Steps to create non-readable and readable secondaries, either with a single database or an elastic database, are provided.
 
-> [AZURE.NOTE] 如果指定的夥伴伺服器上存在與名稱與主要資料庫相同的資料庫，則命令會失敗。
-
-
-### 加入不可讀取次要複本 (單一資料庫)
-
-您可以使用下列步驟，將不可讀取次要複本建立為單一資料庫。
-
-1. 使用版本 13.0.600.65 或 SQL Server Management Studio 的更新版本。
-
- 	 > [AZURE.IMPORTANT] 下載[最新](https://msdn.microsoft.com/library/mt238290.aspx)版本的 SQL Server Management Studio。建議您一律使用最新版本的 Management Studio 保持與 Azure 入口網站更新同步。
+> [AZURE.NOTE] If a database exists on the specified partner server with the same name as the primary database the command will fail.
 
 
-2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
+### <a name="add-non-readable-secondary-(single-database)"></a>Add non-readable secondary (single database)
 
-3. 使用下列 **ALTER DATABASE** 陳述式，使本機資料庫成為一個在 MySecondaryServer1 上具有不可讀取之次要資料庫的「異地複寫」主要複本 (其中 MySecondaryServer1 是您的伺服器易記名稱)。
+Use the following steps to create a non-readable secondary as a single database.
+
+1. Using version 13.0.600.65 or later of SQL Server Management Studio.
+
+     > [AZURE.IMPORTANT] Download the [latest](https://msdn.microsoft.com/library/mt238290.aspx) version of SQL Server Management Studio. It is recommended that you always use the latest version of Management Studio to remain in sync with updates to the Azure portal.
+
+
+2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
+
+3. Use the following **ALTER DATABASE** statement to make a local database into a Geo-Replication primary with a non-readable secondary database on MySecondaryServer1 where MySecondaryServer1 is your friendly server name.
 
         ALTER DATABASE <MyDB>
            ADD SECONDARY ON SERVER <MySecondaryServer1> WITH (ALLOW_CONNECTIONS = NO);
 
-4. 按一下 [執行] 來執行查詢。
+4. Click **Execute** to run the query.
 
 
-### 加入可讀取次要複本 (單一資料庫)
-您可以使用下列步驟，將可讀取次要複本建立為單一資料庫。
+### <a name="add-readable-secondary-(single-database)"></a>Add readable secondary (single database)
+Use the following steps to create a readable secondary as a single database.
 
-1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
+1. In Management Studio, connect to your Azure SQL Database logical server.
 
-2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
+2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
 
-3. 使用下列 **ALTER DATABASE** 陳述式，使本機資料庫成為一個在次要伺服器上具有可讀取之次要資料庫的「異地複寫」主要複本。
+3. Use the following **ALTER DATABASE** statement to make a local database into a Geo-Replication primary with a readable secondary database on a secondary server.
 
         ALTER DATABASE <MyDB>
            ADD SECONDARY ON SERVER <MySecondaryServer2> WITH (ALLOW_CONNECTIONS = ALL);
 
-4. 按一下 [執行] 來執行查詢。
+4. Click **Execute** to run the query.
 
 
 
-### 加入不可讀取次要複本 (彈性資料庫)
+### <a name="add-non-readable-secondary-(elastic-database)"></a>Add non-readable secondary (elastic database)
 
-您可以使用下列步驟，將不可讀取次要複本建立為彈性資料庫。
+Use the following steps to create a non-readable secondary as an elastic database.
 
-1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
+1. In Management Studio, connect to your Azure SQL Database logical server.
 
-2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
+2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
 
-3. 使用下列 **ALTER DATABASE** 陳述式，使本機資料庫成為一個在彈性集區中次要伺服器上具有不可讀取之次要資料庫的「異地複寫」主要複本。
+3. Use the following **ALTER DATABASE** statement to make a local database into a Geo-Replication primary with a non-readable secondary database on a secondary server in an elastic pool.
 
         ALTER DATABASE <MyDB>
            ADD SECONDARY ON SERVER <MySecondaryServer3> WITH (ALLOW_CONNECTIONS = NO
            , SERVICE_OBJECTIVE = ELASTIC_POOL (name = MyElasticPool1));
 
-4. 按一下 [執行] 來執行查詢。
+4. Click **Execute** to run the query.
 
 
 
-### 加入可讀取次要複本 (彈性資料庫)
-您可以使用下列步驟，將可讀取次要複本建立為彈性資料庫。
+### <a name="add-readable-secondary-(elastic-database)"></a>Add readable secondary (elastic database)
+Use the following steps to create a readable secondary as an elastic database.
 
-1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
+1. In Management Studio, connect to your Azure SQL Database logical server.
 
-2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
+2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
 
-3. 使用下列 **ALTER DATABASE** 陳述式，使本機資料庫成為一個在彈性集區中次要伺服器上具有可讀取之次要資料庫的「異地複寫」主要複本。
+3. Use the following **ALTER DATABASE** statement to make a local database into a Geo-Replication primary with a readable secondary database on a secondary server in an elastic pool.
 
         ALTER DATABASE <MyDB>
            ADD SECONDARY ON SERVER <MySecondaryServer4> WITH (ALLOW_CONNECTIONS = ALL
            , SERVICE_OBJECTIVE = ELASTIC_POOL (name = MyElasticPool2));
 
-4. 按一下 [執行] 來執行查詢。
+4. Click **Execute** to run the query.
 
 
 
-## 移除次要資料庫
+## <a name="remove-secondary-database"></a>Remove secondary database
 
-您可以使用 **ALTER DATABASE** 陳述式以永久終止次要資料庫與其主要資料庫之間的複寫關係。此陳述式是在主要資料庫所在的 master 資料庫上執行。關聯性終止之後，次要資料庫會成為一般的讀寫資料庫。如果與次要資料庫的連線中斷，命令將會成功，但次要資料庫必須等到連線恢復後才會變成可讀寫。如需詳細資訊，請參閱 [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 和[服務層](sql-database-service-tiers.md)。
+You can use the **ALTER DATABASE** statement to permanently terminate the replication partnership between a secondary database and its primary. This statement is executed on the master database on which the primary database resides. After the relationship termination, the secondary database becomes a regular read-write database. If the connectivity to secondary database is broken the command succeeds but the secondary will become read-write after connectivity is restored. For more information, see [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) and [Service Tiers](sql-database-service-tiers.md).
 
-使用下列步驟可從「異地複寫」合作關係中移除異地複寫的次要複本。
+Use the following steps to remove geo-replicated secondary from a Geo-Replication partnership.
 
-1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
+1. In Management Studio, connect to your Azure SQL Database logical server.
 
-2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
+2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
 
-3. 使用下列 **ALTER DATABASE** 陳述式來移除異地複寫的次要複本。
+3. Use the following **ALTER DATABASE** statement to remove a geo-replicated secondary.
 
         ALTER DATABASE <MyDB>
            REMOVE SECONDARY ON SERVER <MySecondaryServer1>;
 
-4. 按一下 [執行] 來執行查詢。
+4. Click **Execute** to run the query.
 
-## 監視異地複寫組態和健康狀態
+## <a name="monitor-geo-replication-configuration-and-health"></a>Monitor Geo-Replication configuration and health
 
-監視工作包括監視「異地複寫」組態及監視資料複寫健康狀態。您可以使用 master 資料庫中的 **sys.dm\_geo\_replication\_links** 動態管理檢視，傳回 Azure SQL Database 邏輯伺服器上每個資料庫的所有現有複寫連結的相關資訊。這個檢視針對每個主要和次要資料庫之間的複寫連結包含一個資料列。您可以使用 **sys.dm\_replication\_status** 動態管理檢視，對目前參與複寫連結的每個 Azure SQL Database 傳回一個資料列。這包括主要和次要資料庫。如果給定主要資料庫有一個以上的連續複寫連結，此資料表會對每個關聯性包含一個資料列。會在所有資料庫 (包括邏輯主機) 中建立檢視。不過，在邏輯主機中查詢此檢視會傳回空集合。您可以使用 **sys.dm\_operation\_status** 動態管理檢視來顯示所有資料庫作業的狀態，包括複寫連結的狀態。如需詳細資訊，請參閱 [sys.geo\_replication\_links (Azure SQL Database)](https://msdn.microsoft.com/library/mt575501.aspx)、[sys.dm\_geo\_replication\_link\_status (Azure SQL Database)](https://msdn.microsoft.com/library/mt575504.aspx) 和 [sys.dm\_operation\_status (Azure SQL Database)](https://msdn.microsoft.com/library/dn270022.aspx)。
+Monitoring tasks include monitoring of the Geo-Replication configuration and monitoring data replication health.  You can use the **sys.dm_geo_replication_links** dynamic management view in the master database to return information about all exiting replication links for each database on the Azure SQL Database logical server. This view contains a row for each of the replication link between primary and secondary databases. You can use the **sys.dm_replication_link_status** dynamic management view to return a row for each Azure SQL Database that is currently engaged in a replication replication link. This includes both primary and secondary databases. If more than one continuous replication link exists for a given primary database, this table contains a row for each of the relationships. The view is created in all databases, including the logical master. However, querying this view in the logical master returns an empty set. You can use the **sys.dm_operation_status** dynamic management view to show the status for all database operations including the status of the replication links. For more information, see [sys.geo_replication_links (Azure SQL Database)](https://msdn.microsoft.com/library/mt575501.aspx), [sys.dm_geo_replication_link_status (Azure SQL Database)](https://msdn.microsoft.com/library/mt575504.aspx), and [sys.dm_operation_status (Azure SQL Database)](https://msdn.microsoft.com/library/dn270022.aspx).
 
-使用下列步驟可監視「異地複寫」合作關係。
+Use the following steps to monitor a Geo-Replication partnership.
 
-1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
+1. In Management Studio, connect to your Azure SQL Database logical server.
 
-2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
+2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
 
-3. 使用下列陳述式可顯示具有「異地複寫」連結的所有資料庫。
+3. Use the following statement to show all databases with Geo-Replication links.
 
         SELECT database_id, start_date, modify_date, partner_server, partner_database, replication_state_desc, role, secondary_allow_connections_desc FROM [sys].geo_replication_links;
 
-4. 按一下 [執行] 來執行查詢。
-5. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **MyDB** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
-6. 使用下列陳述式來顯示複寫落後和我的次要資料庫 MyDB 上次複寫的開始時間。
+4. Click **Execute** to run the query.
+5. Open the Databases folder, expand the **System Databases** folder, right-click on **MyDB**, and then click **New Query**.
+6. Use the following statement to show the replication lags and last replication time of my secondary databases of MyDB.
 
         SELECT link_guid, partner_server, last_replication, replication_lag_sec FROM sys.dm_geo_replication_link_status
 
-7. 按一下 [執行] 來執行查詢。
-8. 使用下列陳述式可顯示與 MyDB 資料庫相關聯的最新異地複寫作業。
+7. Click **Execute** to run the query.
+8. Use the following statement to show the most recent geo-replication operations associated with database MyDB.
 
         SELECT * FROM sys.dm_operation_status where major_resource_id = 'MyDB'
         ORDER BY start_time DESC
 
-9. 按一下 [執行] 來執行查詢。
+9. Click **Execute** to run the query.
 
-## 將不可讀取的次要資料庫升級為可讀取
+## <a name="upgrade-a-non-readable-secondary-to-readable"></a>Upgrade a non-readable secondary to readable
 
-在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。如果您目前使用的是不可讀取的次要資料庫，而您想要將它們升級為可讀取，您可以針對每個次要資料庫使用下列簡單步驟。
+In April 2017 the non-readable secondary type will be retired and existing non-readable databases will automatically be upgraded to readable secondaries. If you are using non-readable secondaries today and want to upgrade them to be readable, you can use the following simple steps for each secondary.
 
-> [AZURE.IMPORTANT] 並沒有自助升級方法能夠將不可讀取的次要資料庫就地升級為可讀取次要資料庫。如果您僅卸除次要資料庫，則主要資料庫將會維持未受保護的狀態，直到新的次要資料庫完全同步為止。如果您的應用程式 SLA 要求主要資料庫永遠受到保護，您應該考慮在其他伺服器中建立平行次要資料庫，然後才套用上述的升級步驟。請注意，每個主要資料庫最多可以有 4 個次要資料庫。
+> [AZURE.IMPORTANT] There is no self-service method of in-place upgrading of a non-readable secondary to readable. If you drop your only secondary, then the primary database will remain unprotected until the new secondary is fully synchronized. If your application’s SLA requires that the primary is always protected, you should consider creating a parallel secondary in a different server before applying the upgrade steps above. Note each primary can have up to 4 secondary databases.
 
 
-1. 首先，連接到「次要」資料庫，然後卸除不可讀取的次要資料庫：
+1. First, connect to the *secondary* server and drop the non-readable secondary database:  
         
         DROP DATABASE <MyNonReadableSecondaryDB>;
 
-2. 現在，連線到「主要」伺服器，然後新增新的可讀取次要資料庫
+2. Now connect to the *primary* server and add a new readable secondary
 
         ALTER DATABASE <MyDB>
             ADD SECONDARY ON SERVER <MySecondaryServer> WITH (ALLOW_CONNECTIONS = ALL);
@@ -182,9 +184,13 @@
 
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 若要深入了解主動式異地複寫，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
-- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- To learn more about Active Geo-Replication, see - [Active Geo-Replication](sql-database-geo-replication-overview.md)
+- For a business continuity overview and scenarios, see [Business continuity overview](sql-database-business-continuity.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

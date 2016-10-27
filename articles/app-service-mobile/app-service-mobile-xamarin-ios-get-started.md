@@ -1,94 +1,94 @@
 <properties
-	pageTitle="在 Xamarin.iOS app 中開始使用 Azure App Service Mobile Apps | Microsoft Azure"
-	description="遵循本教學課程，開始使用 Mobile Apps 進行 Xamarin.iOS 開發。"
-	services="app-service\mobile"
-	documentationCenter="xamarin"
-	authors="adrianhall"
-	manager="dwrede"
-	editor=""/>
+    pageTitle="Get started with Azure App Service Mobile Apps for Xamarin.iOS apps | Microsoft Azure"
+    description="Follow this tutorial to get started with using Mobile Apps for Xamarin.iOS development."
+    services="app-service\mobile"
+    documentationCenter="xamarin"
+    authors="adrianhall"
+    manager="dwrede"
+    editor=""/>
 
 <tags
-	ms.service="app-service-mobile"
-	ms.workload="na"
-	ms.tgt_pltfrm="mobile-xamarin-ios"
-	ms.devlang="dotnet"
-	ms.topic="hero-article"
-	ms.date="10/01/2016"
-	ms.author="adrianha"/>
+    ms.service="app-service-mobile"
+    ms.workload="na"
+    ms.tgt_pltfrm="mobile-xamarin-ios"
+    ms.devlang="dotnet"
+    ms.topic="hero-article"
+    ms.date="10/01/2016"
+    ms.author="adrianha"/>
 
 
-#建立 Xamarin.iOS 應用程式
+
+#<a name="create-a-xamarin.ios-app"></a>Create a Xamarin.iOS app
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
-##概觀
+##<a name="overview"></a>Overview
 
-本教學課程說明如何使用 Azure 行動 app 後端，將雲端型後端服務加入至 Xamarin.iOS 行動 app。您將建立新的行動 app 後端，以及簡單的 Todo list Xaamrin.iOS 應用程式，後者會在 Azure 中儲存 app 資料。
+This tutorial shows you how to add a cloud-based backend service to a Xamarin.iOS mobile app by using an Azure mobile app backend.  You create both a new mobile app backend and a simple _Todo list_ Xamarin.iOS app that stores app data in Azure.
 
-您必須先完成此教學課程，才能進行所有其他在 Azure App Service 中使用 Mobile Apps 的 Xamarin.iOS 相關教學課程。
+Completing this tutorial is a prerequisite for all other Xamarin.iOS tutorials about using the Mobile Apps feature in Azure App Service.
 
-##必要條件
+##<a name="prerequisites"></a>Prerequisites
 
-若要完成此教學課程，您需要下列項目：
+To complete this tutorial, you need the following prerequisites:
 
-* 使用中的 Azure 帳戶。如果您沒有帳戶，可以註冊 Azure 試用版並取得最多 10 個免費的行動應用程式，即使在試用期結束之後仍可繼續使用這些應用程式。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* An active Azure account. If you don't have an account, sign up for an Azure trial and get up to 10 free mobile apps that you can keep using even after your trial ends. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).
 
-* Visual Studio 和 Xamarin。如需相關指示，請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
+* Visual Studio with Xamarin. See [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) for instructions.
 
-* 已安裝 Xcode v7.0 或更新版本以及 Xamarin Studio Community 的 Mac。請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 以及[針對 Mac 使用者的設定、安裝和驗證](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN)。
+* A Mac with Xcode v7.0 or later and Xamarin Studio Community installed. See [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) and [Setup, install, and verifications for Mac users](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN).
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往[試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)。您可以於該處，在 App Service 中立即建立短期的入門行動 app - 不需信用卡，不需任何承諾。
+>[AZURE.NOTE] If you want to get started with Azure App Service before you sign up for an Azure account, go to [Try App Service](https://tryappservice.azure.com/?appServiceName=mobile). You can immediately create a short-lived starter mobile app in App Service—no credit card required, and no commitments.
 
-## 建立新的 Azure 行動應用程式後端
+## <a name="create-an-azure-mobile-app-backend"></a>Create an Azure Mobile App backend
 
-依照下列步驟建立新的行動應用程式後端。
+Follow these steps to create a Mobile App backend.
 
 [AZURE.INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-## 設定伺服器專案
+## <a name="configure-the-server-project"></a>Configure the server project
 
-您現在已佈建 Azure 行動應用程式後端，可供您的行動用戶端應用程式使用。接下來，您將下載簡易「待辦事項清單」後端的伺服器專案，然後將專案發佈至 Azure。
+You have now provisioned an Azure Mobile App backend that can be used by your mobile client applications. Next, download a server project for a simple "todo list" backend and publish it to Azure.
 
-請遵循下列步驟來設定伺服器專案使用 Node.js 或 .NET 後端。
+Follow the following steps to configure the server project to use either the Node.js or .NET backend.
 
 [AZURE.INCLUDE [app-service-mobile-configure-new-backend](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## 下載並執行 Xamarin.iOS 應用程式
+## <a name="download-and-run-the-xamarin.ios-app"></a>Download and run the Xamarin.iOS app
 
-1. 在瀏覽器視窗中開啟 [Azure 入口網站]。
+1. Open the [Azure portal] in a browser window.
 
-2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] \(如果尚未選取的話)。接著按一下 [下載] 按鈕。
+2. On the settings blade for your Mobile App, click **Get Started** > **Xamarin.iOS**. Under step 3, click **Create a new app** if it's not already selected.  Next click the **Download** button.
 
-  	這會下載包含連線到您行動應用程式之用戶端應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
+    A client application that connects to your mobile backend is downloaded. Save the compressed project file to your local computer, and make a note of where you save it.
 
-3. 將您下載的專案解壓縮，並在 Xamarin Studio (或 Visual Studio) 中開啟。
+3. Extract the project that you downloaded, and then open it in Xamarin Studio (or Visual Studio).
 
-	![][9]
+    ![][9]
 
-	![][8]
+    ![][8]
 
-4. 按 F5 鍵，以建置專案並在 iPhone 模擬器中啟動 app。
+4. Press the F5 key to build the project and start the app in the iPhone emulator.
 
-5. 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin (Learn Xamarin)」)，然後按一下 **+** 按鈕。
+5. In the app, type meaningful text, such as _Learn Xamarin_, and then click the **+** button.
 
-	![][10]
+    ![][10]
 
-	如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。要求中的資料會插入 TodoItem 資料表中。行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
+    Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile app backend, and the data is displayed in the list.
 
->[AZURE.NOTE]您可以在 QSTodoService.cs C# 檔案中檢閱用來存取行動應用程式後端以查詢和插入資料的程式碼。
+>[AZURE.NOTE]You can review the code that accesses your mobile app backend to query and insert data in the QSTodoService.cs C# file.
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-* [將驗證新增至您的應用程式](app-service-mobile-xamarin-ios-get-started-users.md) <br/>了解如何使用身分識別提供者來驗證應用程式的使用者。
-
-* [將推播通知新增至您的應用程式](app-service-mobile-xamarin-ios-get-started-push.md) <br/>了解如何將非常基本的推播通知傳送至應用程式。
+* [Add Offline Sync to your app](app-service-mobile-xamarin-ios-get-started-offline-data.md)
+* [Add authentication to your app ](app-service-mobile-xamarin-ios-get-started-users.md)
+* [Add push notifications to your Xamarin.Android app](app-service-mobile-xamarin-ios-get-started-push.md)
+* [How to use the managed client for Azure Mobile Apps](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 <!-- Anchors. -->
-[Getting started with mobile app backends]: #getting-started
-[Create a new mobile app backend]: #create-new-service
-[Next Steps]: #next-steps
-
-
+[Getting started with mobile app backends]:#getting-started
+[Create a new mobile app backend]:#create-new-service
+[Next Steps]:#next-steps
 
 <!-- Images. -->
 [6]: ./media/app-service-mobile-xamarin-ios-get-started/xamarin-ios-quickstart.png
@@ -97,6 +97,10 @@
 [10]: ./media/app-service-mobile-xamarin-ios-get-started/mobile-quickstart-startup-ios.png
 
 <!-- URLs. -->
-[Azure 入口網站]: https://portal.azure.com/
+[Azure portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

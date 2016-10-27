@@ -1,121 +1,126 @@
 <properties
-	pageTitle="在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇 | Microsoft Azure"
-	description="比較和對照 Microsoft 的雲端整合服務，並決定您應該使用哪一項服務。"
-	services="functions,app-service\logic"
-	documentationCenter="na"
-	authors="cephalin"
-	manager="wpickett"
-	tags=""
-	keywords="microsoft flow, 流程, logic apps, azure functions, 函數, azure webjobs, webjobs, 事件處理, 動態計算, 無伺服器架構"/>
+    pageTitle="Choose between Flow, Logic Apps, Functions, and WebJobs | Microsoft Azure"
+    description="Compare and contrast the for cloud integration services from Microsoft and decide which service(s) you should use."
+    services="functions,app-service\logic"
+    documentationCenter="na"
+    authors="cephalin"
+    manager="wpickett"
+    tags=""
+    keywords="microsoft flow, flow, logic apps, azure functions, functions, azure webjobs, webjobs, event processing, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="article"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="09/08/2016"
-	ms.author="chrande; glenga"/>
+    ms.service="functions"
+    ms.devlang="multiple"
+    ms.topic="article"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="09/08/2016"
+    ms.author="chrande; glenga"/>
 
-# 在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇
 
-本文會比較和對照 Microsoft Cloud 中的下列服務，這些服務全都可以解決商務程序的整合問題和自動化︰
+# <a name="choose-between-flow,-logic-apps,-functions,-and-webjobs"></a>Choose between Flow, Logic Apps, Functions, and WebJobs
+
+This article compares and contrasts the following services in the Microsoft cloud, which can all solve integration problems and automation of business processes:
 
 - [Microsoft Flow](https://flow.microsoft.com/)
 - [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/)
 - [Azure Functions](https://azure.microsoft.com/services/functions/)
 - [Azure App Service WebJobs](../app-service-web/web-sites-create-web-jobs.md)
 
-這些服務和不同系統「結合」在一起時全都會變得很有用。它們全都可以定義輸入、動作、條件和輸出。您可以在排程或觸發程序上執行上述各項服務。不過，每項服務都會新增一組唯一值，比較這些服務不是「哪一項服務最好？」的問題，而是「哪一項服務最適合這種情況？」的問題。 這些服務的組合通常是快速建置可調整的全功能整合方案的最佳方式。
+All these services are useful when "gluing" together disparate systems. They can all define input, actions, conditions, and output. You can run each of them on a schedule or trigger. However, each service adds a unique set of value, and comparing them is not a question of "Which service is the best?" but one of "Which service is best suited for this situation?" Often, a combination of these services is the best way to rapidly build a scalable, full featured integration solution.
 
 <a name="flow"></a>
-## Flow 與 Logic Apps
+## <a name="flow-vs.-logic-apps"></a>Flow vs. Logic Apps
 
-我們可以將 Microsoft Flow 和 Azure Logic Apps 放在一起討論，因為兩者都是「組態優先」的整合服務，因此能夠輕鬆地建置處理程序和工作流程，並與各種 SaaS 和企業應用程式整合。
+We can discuss Microsoft Flow and Azure Logic Apps together because they are both *configuration-first* integration services, which makes it easy to build processes and workflows and integrate with various SaaS and enterprise applications. 
 
-- Flow 是以 Logic Apps 為基礎所建置
-- 它們擁有相同的工作流程設計工具
-- 可在其中一項服務運作的[連接器](../connectors/apis-list.md)也可在另一項服務中運作
+- Flow is built on top of Logic Apps
+- They have the same workflow designer
+- [Connectors](../connectors/apis-list.md) that work in one can also work in the other
 
-Flow 可讓任何辦公室工作人員有能力執行簡單的整合 (例如取得重要電子郵件的簡訊)，而不必透過開發人員或 IT。另一方面，Logic Apps 則可以實現需要企業級 DevOps 和安全性作法的進階或關鍵任務整合 (例如 B2B 處理程序)。一般來說，商務工作流程會隨著時間而趨於複雜。因此，一開始您可以先從流程著手，然後再視需要將它轉換為邏輯應用程式。
+Flows empowers any office worker to perform simple integrations (e.g. get SMS for important emails) without going through developers or IT. On the other hand, Logic Apps can enable advanced or mission-critical integrations (e.g. B2B processes) where enterprise-level DevOps and security practices are required. It is typical for a business workflow to grow in complexity overtime. Accordingly, you can start with a flow at first, then convert it to a logic app as needed.
 
-下表可協助您判斷最適合所給定整合的是 Flow 還是 Logic Apps。
+The following table helps you determine whether Flow or Logic Apps is best for a given integration.
 
-| | Flow | Logic Apps |
+|               | Flow                                                                             | Logic Apps                                                                                          |
 |---------------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| 觀眾 | 辦公室工作人員、商務使用者 | IT 專家、開發人員 |
-| 案例 | 自助服務 | 關鍵任務 |
-| 設計工具 | 瀏覽器中、僅限 UI | 瀏覽器中，有 [Visual Studio](../app-service/logic/app-service-logic-deploy-from-vs.md)、[程式碼檢視](../app-service-logic/app-service-logic-author-definitions.md)可供使用 |
-| DevOps | 特定、在生產環境中開發 | 在 [Azure 資源管理](../app-service-logic/app-service-logic-arm-provision.md)中提供原始檔控制、測試、支援和自動化與管理能力|
-| 管理員體驗| [https://flow.microsoft.com](https://flow.microsoft.com) | [https://portal.azure.com](https://portal.azure.com) |
-| 安全性 | 標準作法︰[資料主權](https://wikipedia.org/wiki/Technological_Sovereignty)、敏感資料的[待用加密](https://wikipedia.org/wiki/Data_at_rest#Encryption)等。 | Azure 的安全性保證︰[Azure 安全性](https://www.microsoft.com/trustcenter/Security/AzureSecurity)、[資訊安全中心](https://azure.microsoft.com/services/security-center/)、[稽核記錄檔](https://azure.microsoft.com/blog/azure-audit-logs-ux-refresh/)等。 |
+| Audience      | office workers, business users                                                   | IT pros, developers                                                                                 |
+| Scenarios     | Self-service                                                                     | Mission-critical                                                                                    |
+| Design Tool   | In-browser, UI only                                                              | In-browser and [Visual Studio](../app-service/logic/app-service-logic-deploy-from-vs.md), [Code view](../app-service-logic/app-service-logic-author-definitions.md) available |
+| DevOps        | Ad-hoc, develop in production                                                    | source control, testing, support, and automation and manageability in [Azure Resource Management](../app-service-logic/app-service-logic-arm-provision.md)|
+| Admin Experience| [https://flow.microsoft.com](https://flow.microsoft.com)                       | [https://portal.azure.com](https://portal.azure.com)                                                |
+| Security      | Standard practices: [data sovereignty](https://wikipedia.org/wiki/Technological_Sovereignty), [encryption at rest](https://wikipedia.org/wiki/Data_at_rest#Encryption) for sensitive data, etc. | Security assurance of Azure: [Azure Security](https://www.microsoft.com/trustcenter/Security/AzureSecurity), [Security Center](https://azure.microsoft.com/services/security-center/), [audit logs](https://azure.microsoft.com/blog/azure-audit-logs-ux-refresh/), and more. |
 
 <a name="function"></a>
-## Functions 與 WebJobs
+## <a name="functions-vs.-webjobs"></a>Functions vs. WebJobs
 
-我們可以將 Azure Functions 和 Azure App Service WebJobs 放在一起討論，因為兩者都是針對開發人員所設計的「程式碼優先」整合服務。它們可讓您執行指令碼或一段程式碼以回應各種事件，例如[新的儲存體 Blob](functions-bindings-storage.md) 或 [WebHook 要求](functions-bindings-http-webhook.md)。以下是其相似之處︰
+We can discuss Azure Functions and Azure App Service WebJobs together because they are both *code-first* integration services and designed for developers. They enable you to run a script or a piece of code in response to various events, such as [new Storage Blobs](functions-bindings-storage.md) or [a WebHook request](functions-bindings-http-webhook.md). Here are their similarities: 
 
-- 兩者都是以 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 為基礎所建置，並享有[原始檔控制](../app-service-web/app-service-continuous-deployment.md)、[驗證](../app-service/app-service-authentication-overview.md)和[監視](../app-service-web/web-sites-monitor.md)等功能。
-- 兩者都是以開發人員為主的服務。
-- 兩者皆支援標準的指令碼和程式設計語言。
-- 兩者都有 NuGet 和 NPM 支援。
+- Both are built on [Azure App Service](../app-service/app-service-value-prop-what-is.md) and enjoy features such as [source control](../app-service-web/app-service-continuous-deployment.md), [authentication](../app-service/app-service-authentication-overview.md), and [monitoring](../app-service-web/web-sites-monitor.md).
+- Both are developer-focused services.
+- Both support standard scripting and programming languages.
+- Both have NuGet and NPM support.
 
-Functions 是 WebJobs 的自然進化，因為它採用有關 WebJobs 的最佳功能並加以改善。其改善項目包括︰
+Functions is the natural evolution of WebJobs in that it takes the best things about WebJobs and improves upon them. The improvements include: 
 
-- 簡化程式碼的開發、測試和執行，在瀏覽器中就可直接進行。
-- 與其他 Azure 服務和第三方服務 (例如 [GitHub Webhook](https://developer.github.com/webhooks/creating/)) 內建整合。
-- 按使用次數付費，不需要支付 [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。
-- 自動的[動態調整](functions-scale.md)。
-- 現有 App Service 客戶仍可在 App Service 方案上執行 (以利用使用量過低的資源)。
-- 與 Logic Apps 整合。
+- Streamlined dev, test, and run of code, directly in the browser.
+- Built-in integration with more Azure services and 3rd-party services like [GitHub WebHooks](https://developer.github.com/webhooks/creating/).
+- Pay-per-use, no need to pay for an [App Service plan](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
+- Automatic, [dynamic scaling](functions-scale.md).
+- For existing customers of App Service, running on App Service plan still possible (to take advantage of under-utilized resources).
+- Integration with Logic Apps.
 
-下表摘要說明 Functions 和 WebJobs 之間的差異︰
+The following table summarizes the differences between Functions and WebJobs:
 
-| | Functions | WebJobs |
+|                        | Functions                                                                                                                                                                | WebJobs                            |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
-| 調整大小 | 無組態調整 | 隨著 App Service 方案調整 |
-| 價格 | 按使用次數付費或屬於 App Service 方案的一部分 | 屬於 App Service 方案的一部分 |
-| 執行類型 | 觸發、排程 (依計時器觸發程序) | 觸發、連續、排程 |
-| 觸發程序事件 | [計時器](functions-bindings-timer.md)、[Azure DocumentDB](functions-bindings-documentdb.md)、[Azure 事件中樞](functions-bindings-event-hubs)、[HTTP/WebHook (GitHub、Slack)](functions-bindings-http-webhook.md)、[Azure App Service Mobile Apps](functions-bindings-mobile-apps.md)、[Azure 通知中樞](functions-bindings-notification-hubs.md)、[Azure 服務匯流排](functions-bindings-service-bus.md)、[Azure 儲存體](articles/functions-bindings-storage.md) | [Azure 儲存體](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)、[Azure 服務匯流排](websites-dotnet-webjobs-sdk-service-bus.md) |
-| 瀏覽器中開發 | x | |
-| 視窗指令碼 | 實驗性 | x |
-| PowerShell | 實驗性 | x |
-| C# | x | x |
-| F# | x | |
-| Bash | 實驗性 | x |
-| PHP | 實驗性 | x |
-| Python | 實驗性 | x |
-| JavaScript | x | x |
-| Java | 實驗性 | x |
+| Scaling                | Configurationless scaling                                                                                                                                                | scale with App Service plan        |
+| Pricing                | Pay-per-use or part of App Service plan                                                                                                                                  | Part of App Service plan           |
+| Run-type               | triggered, scheduled (by timer trigger)                                                                                                                                  | triggered, continuous, scheduled   |
+| Trigger events         | [timer](functions-bindings-timer.md), [Azure DocumentDB](functions-bindings-documentdb.md), [Azure Event Hubs](functions-bindings-event-hubs), [HTTP/WebHook (GitHub, Slack)](functions-bindings-http-webhook.md), [Azure App Service Mobile Apps](functions-bindings-mobile-apps.md), [Azure Notification Hubs](functions-bindings-notification-hubs.md), [Azure Service Bus](functions-bindings-service-bus.md), [Azure Storage](articles/functions-bindings-storage.md) | [Azure Storage](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md), [Azure Service Bus](websites-dotnet-webjobs-sdk-service-bus.md)         |
+| In-browser development | x                                                                                                                                                                        |                                    |
+| Window scripting       | experimental                                                                                                                                                             | x                                  |
+| PowerShell             | experimental                                                                                                                                                             | x                                  |
+| C#                     | x                                                                                                                                                                        | x                                  |
+| F#                     | x                                                                                                                                                                        |                                    |
+| Bash                   | experimental                                                                                                                                                             | x                                  |
+| PHP                    | experimental                                                                                                                                                             | x                                  |
+| Python                 | experimental                                                                                                                                                             | x                                  |
+| JavaScript             | x                                                                                                                                                                        | x                                  |
+| Java                   | experimental                                                                                                                                                             | x                                  |
 
-要使用 Functions 還是 WebJobs 最終取決於您已使用 App Service 做了什麼。如果您有要為其執行程式碼片段的 App Service 應用程式，而且想要在相同的 DevOps 環境中一起管理，您應該使用 WebJobs。如果您想要為其他 Azure 服務或甚至是第三方應用程式執行程式碼片段、如果您想要分開管理整合程式碼片段與 App Service 應用程式，或如果您想要從邏輯應用程式呼叫程式碼片段，您應該利用 Functions 中的所有改善項目。
+Whether to use Functions or WebJobs ultimately depends on what you're already doing with App Service. If you have an App Service app for which you want to run code snippets, and you want to manage them together in the same DevOps environment, you should use WebJobs. If you want to run code snippets for other Azure services or even 3rd-party apps, or if you want to manage your integration code snippets separately from your App Service apps, or if you want to call your code snippets from a Logic app, you should take advantage of all the improvements in Functions.  
 
 <a name="together"></a>
-## Flow、Logic Apps 和 Functions 一起
+## <a name="flow,-logic-apps,-and-functions-together"></a>Flow, Logic Apps, and Functions together
 
-如先前所述，哪一項服務最適合您取決於您的情況。
+As previously mentioned, which service is best suited to you depends on your situation. 
 
-- 若為簡單的商務最佳化，則使用 Flow。
-- 如果您的整合案例對於 Flow 來說過於先進，或是您需要 DevOps 功能和安全性與法規遵循，則請使用 Logic Apps。
-- 如果整合案例中的步驟需要高度自訂的轉換或專門的程式碼，則請撰寫函數應用程式，然後在邏輯應用程式中觸發函數做為動作。
+- For simple business optimization, then use Flow.
+- If your integration scenario is too advanced for Flow, or you need DevOps capabilities and security compliances, then use Logic Apps.
+- If a step in your integration scenario requires highly custom transformation or specialized code, then write a function app, and then trigger a function as an action in your logic app.
 
-您可以在流程中呼叫邏輯應用程式。您也可以在邏輯應用程式中呼叫函數，以及在函數中呼叫邏輯應用程式。Flow、Logic Apps 和 Functions 之間的整合會隨時間持續改進。您可以在某項服務中建置某物並用於其他服務。因此，您對這三種技術所做的投資都是值得的。
+You can call a logic app in a flow. You can also call a function in a logic app, and a logic app in a funciton. The integration between Flow, Logic Apps, and Functions continue to improve overtime. You can build something in one service and use it in the other services. Therefore, any investment you make in these three technologies is worthwhile.
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-建立您的第一個流程、邏輯應用程式、函數應用程式或 WebJob 來開始使用每一項服務。按一下下列任何連結︰
+Get started with each of the services by creating your first flow, logic app, function app, or WebJob. Click any of the following links:
 
-- [開始使用 Microsoft Flow](https://flow.microsoft.com/zh-TW/documentation/getting-started/)
-- [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
-- [建立您的第一個 Azure 函式](../azure-functions/functions-create-first-azure-function.md)
-- [使用 Visual Studio 部署 WebJob](../app-service-web/websites-dotnet-deploy-webjobs.md)
+- [Get started with Microsoft Flow](https://flow.microsoft.com/en-us/documentation/getting-started/)
+- [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
+- [Create your first Azure Function](../azure-functions/functions-create-first-azure-function.md)
+- [Deploy WebJobs using Visual Studio](../app-service-web/websites-dotnet-deploy-webjobs.md)
 
-或者，透過下列連結取得有關這些整合服務的詳細資訊︰
+Or, get more information on these integration services with the following links:
 
-- [利用 Azure Functions 和 Azure App Service 來進行整合案例，主講人：Christopher Anderson](http://www.biztalk360.com/integrate-2016-resources/leveraging-azure-functions-azure-app-service-integration-scenarios/)
-- [整合變得簡單，主講人：Charles Lamanna](http://www.biztalk360.com/integrate-2016-resources/integrations-made-simple/)
-- [Logic Apps 即時網路廣播](http://aka.ms/logicappslive)
-- [Microsoft Flow 常見問題集](https://flow.microsoft.com/documentation/frequently-asked-questions/)
-- [Azure WebJobs 文件資源](../app-service-web/websites-webjobs-resources.md)
+- [Leveraging Azure Functions & Azure App Service for integration scenarios by Christopher Anderson](http://www.biztalk360.com/integrate-2016-resources/leveraging-azure-functions-azure-app-service-integration-scenarios/)
+- [Integrations Made Simple by Charles Lamanna](http://www.biztalk360.com/integrate-2016-resources/integrations-made-simple/)
+- [Logic Apps Live Webcast](http://aka.ms/logicappslive)
+- [Microsoft Flow Frequently asked questions](https://flow.microsoft.com/documentation/frequently-asked-questions/)
+- [Azure WebJobs documentation resources](../app-service-web/websites-webjobs-resources.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

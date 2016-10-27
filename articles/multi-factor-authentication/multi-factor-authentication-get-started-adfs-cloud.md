@@ -1,96 +1,106 @@
 <properties
-	pageTitle="使用 Azure Multi-Factor Authentication 與 AD FS 保護雲端資源"
-	description="這是說明如何在雲端開始使用 Azure MFA 和 AD FS 的 Azure Multi-Factor Authentication 頁面。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor="curtland"/>
+    pageTitle="Securing cloud resources with Azure Multi-Factor Authentication and AD FS"
+    description="This is the Azure Multi-Factor authentication page that describes how to get started with Azure MFA and AD FS in the cloud."
+    services="multi-factor-authentication"
+    documentationCenter=""
+    authors="kgremban"
+    manager="femila"
+    editor="curtland"/>
 
 <tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
-
-# 使用 Azure Multi-Factor Authentication 與 AD FS 保護雲端資源
-
-如果您的組織與 Azure Active Directory 結盟，而且您有 Azure AD 所存取的資源，您可以使用 Azure Multi-factor Authentication 或 Active Directory Federation Services 來保護這些資源。使用下列程序可利用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 來保護 Azure Active Directory 資源。
-
-## 若要使用 AD FS 保護 Azure AD 資源，請執行下列作業：
+    ms.service="multi-factor-authentication"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="08/04/2016"
+    ms.author="kgremban"/>
 
 
+# <a name="securing-cloud-resources-with-azure-multi-factor-authentication-and-ad-fs"></a>Securing cloud resources with Azure Multi-Factor Authentication and AD FS
 
-1. 使用[開啟 Multi-Factor Authentication](active-directory/multi-factor-authentication-get-started-cloud.md#turn-on-multi-factor-authentication-for-users) 中概述的步驟，讓使用者啟用帳戶。
-2. 請使用下列程序來設定宣告規則：
+If your organization is federated with Azure Active Directory and you have resources that are accessed by Azure AD, you can use Azure Multi-Factor Authentication or Active Directory Federation Services to secure these resources. Use the procedures below to secure Azure Active Directory resources with either Azure Multi-Factor Authentication or Active Directory Federation Services.
 
-![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/adfs1.png)
-
-- 	啟動 AD FS 管理主控台。
-- 	瀏覽至 [信賴憑證者信任]，並以滑鼠右鍵按一下 [信賴憑證者信任]。選取 [編輯宣告規則...]
-- 	按一下 [新增規則…]
-- 	從下拉式清單中，選取 [使用自訂規則傳送宣告] 並按 [下一步]。
-- 	輸入宣告規則的名稱。
-- 	在自訂規則之下：新增下列各項：
-
-
-		=> issue(Type = "http://schemas.microsoft.com/claims/authnmethodsreferences", Value = "http://schemas.microsoft.com/claims/multipleauthn");
-
-	對應宣告：
-
-		<saml:Attribute AttributeName="authnmethodsreferences" AttributeNamespace="http://schemas.microsoft.com/claims">
-		<saml:AttributeValue>http://schemas.microsoft.com/claims/multipleauthn</saml:AttributeValue>
-		</saml:Attribute>
-- 按一下 [確定]。按一下 完成 (Finish)。關閉 AD FS 管理主控台。
-
-使用者便可以使用內部部署方法 (例如智慧卡) 完成登入。
-
-## 同盟使用者的可信任 IP
-信任的 IP 可讓系統管理員針對特定的 IP 位址，或針對從他們自己的內部網路發出要求的同盟使用者，略過多因素驗證。下列各節說明當要求是來自同盟使用者的內部網路時，如何設定同盟使用者的 Azure Multi-Factor Authentication 信任的 IP，以及略過多因素驗證。這是藉由設定 AD FS 使用「通過或篩選傳入宣告」範本與「位於公司網路之內」宣告類別來達成。此範例使用 Office 365 做為信賴憑證者信任。
-
-### 設定 AD FS 宣告規則
-
-我們要做的第一件事是設定 AD FS 宣告。我們將建立兩個宣告規則，一個用於「位於公司網路之內」宣告類型，另一個用於保持使用者登入。
-
-1. 開啟 [AD FS 管理]。
-2. 在左側選取 [信賴憑證者信任]。
-3. 在中間，以滑鼠右鍵按一下 [Microsoft Office 365 身分識別平台]，然後選取 [**編輯宣告規則...**] ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip1.png)。
-4. 在 [發佈轉換規則] 上，按一下 [**新增規則**] ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip2.png)。
-5. 在 [新增轉換宣告規則精靈] 上，從下拉式清單選取 [通過或篩選傳入宣告]，然後按 [下一步]。![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip3.png)
-6. 在 [宣告規則名稱] 旁邊的方塊中，命名您的規則。例如：InsideCorpNet。
-7. 從 [連入宣告類型] 旁邊的下拉式清單中，選取 [位於公司網路之內]。![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip4.png)
-8. 按一下 完成 (Finish)。
-9. 在 [發佈轉換規則] 上，按一下 [**新增規則**]。
-10. 在 [新增轉換宣告規則精靈] 上，從下拉式清單選取 [使用自訂規則傳送宣告]，然後按 [下一步]。
-11. 在 [宣告規則名稱] 下的方塊中：輸入「保持使用者登入」。
-12. 在 [自訂規則] 方塊中輸入：
-
-		c:[Type == "http://schemas.microsoft.com/2014/03/psso"]
-			=> issue(claim = c);
-![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip5.png)
-13. 按一下 [完成]。
-14. 按一下 [Apply (套用)]。
-15. 按一下 [**確定**]。
-16. 關閉 [AD FS 管理]。
+## <a name="to-secure-azure-ad-resources-using-ad-fs-do-the-following:"></a>To secure Azure AD resources using AD FS do the following:
 
 
 
-### 搭配同盟使用者設定 Azure Multi-Factor Authentication 信任的 IP
-既然已經有宣告，我們可以開始設定信任的 IP。
+1. Use the steps outlined in [turn-on multi-factor authentication](active-directory/multi-factor-authentication-get-started-cloud.md#turn-on-multi-factor-authentication-for-users) for users to enable an account.
+2. Use the following procedure to setup a claims rule:
 
-1. 登入 Azure 管理入口網站。
-2. 在左側按一下 [Active Directory]。
-3. 在 [目錄] 下，按一下要設定信任的 IP 的目錄。
-4. 在您選取的目錄上，按一下 [設定]。
-5. 在 Multi-Factor Authentication 區段中，按一下 [管理服務設定]。
-6. 在 [服務設定] 頁面的 [信任的 IP] 下，選取 [**適用於從我的內部網路產生的同盟使用者提出的要求**] ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip6.png)。
-7. 按一下 [儲存]。
-8. 套用更新之後，請按一下 [關閉]。
+![Cloud](./media/multi-factor-authentication-get-started-adfs-cloud/adfs1.png)
+
+-   Start the AD FS Management console.
+-   Navigate to Relying Party Trusts and right-click on the Relying Party Trust. Select Edit Claim Rules…
+-   Click Add Rule…
+-   From the drop down, select Send Claims Using a Custom Rule and click Next.
+-   Enter a name for the claim rule.
+-   Under Custom rule: add the following:
 
 
-這樣就大功告成了！ 現在，當宣告來自公司內部網路之外時，Office 365 使用者同盟只需要使用 MFA。
+        => issue(Type = "http://schemas.microsoft.com/claims/authnmethodsreferences", Value = "http://schemas.microsoft.com/claims/multipleauthn");
 
-<!---HONumber=AcomDC_0921_2016-->
+    Corresponding claim:
+
+        <saml:Attribute AttributeName="authnmethodsreferences" AttributeNamespace="http://schemas.microsoft.com/claims">
+        <saml:AttributeValue>http://schemas.microsoft.com/claims/multipleauthn</saml:AttributeValue>
+        </saml:Attribute>
+- Click OK. Click Finish. Close the AD FS Management console.
+
+Users then can complete signing in using the on-premises method (such as smartcard).
+
+## <a name="trusted-ips-for-federated-users"></a>Trusted IPs for federated users
+Trusted IPs allow administrators to by-pass multi-factor authentication for specific IP address or for federated users that have requests originating from within their own intranet. The following sections will describe how to configure Azure Multi-Factor Authentication Trusted IPs with federated users and by-pass multi-factor authentication, when a request originates from within a federated users intranet.  This is achieved by configuring AD FS to use a pass through or filter an incoming claim template with the Inside Corporate Network claim type.  This example uses Office 365 for our Relying Party Trusts.
+
+### <a name="configure-the-ad-fs-claims-rules"></a>Configure the AD FS claims rules
+
+The first thing we need to do is to configure the AD FS claims. We will be creating two claims rules, one for the Inside the Corporate Network claim type and an additional one for keeping our users signed in.
+
+1. Open AD FS Management.
+2. On the left, select Relying Party Trusts.
+3. In the middle, right-click on Microsoft Office 365 Identity Platform and select **Edit Claim Rules…**
+![Cloud](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip1.png)
+4. On Issuance Transform Rules click **Add Rule.**
+![Cloud](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip2.png)
+5. On the Add Transform Claim Rule Wizard, select Pass Through or Filter an Incoming Claim from the drop down and click Next.
+![Cloud](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip3.png)
+6. In the box next to Claim rule name, give your rule a name. For example: InsideCorpNet.
+7. From the drop-down, next to Incoming claim type, select Inside Corporate Network.
+![Cloud](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip4.png)
+8. Click Finish.
+9. On Issuance Transform Rules click **Add Rule**.
+10. On the Add Transform Claim Rule Wizard, select Send Claims Using a Custom Rule from the drop down and click Next.
+11. In the box under Claim rule name: enter Keep Users Signed In.
+12. In the Custom rule box enter:
+
+        c:[Type == "http://schemas.microsoft.com/2014/03/psso"]
+            => issue(claim = c);
+![Cloud](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip5.png)
+13. Click **Finish**.
+14. Click **Apply**.
+15. Click **Ok**.
+16. Close AD FS Management.
+
+
+
+### <a name="configure-azure-multi-factor-authentication-trusted-ips-with-federated-users"></a>Configure Azure Multi-Factor Authentication Trusted IPs with Federated Users
+Now that the claims are in place, we cane configure trusted ips.
+
+1. Sign-in to the Azure Management Portal.
+2. On the left, click Active Directory.
+3. Under, Directory click on the directory you wish to setup Trusted IPs on.
+4. On the Directory you have selected, click Configure.
+5. In the multi-factor authentication section, click Manage service settings.
+6. On the Service Settings page, under Trusted IPs, select **For requests from federated users originating from my intranet.**
+![Cloud](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip6.png)
+7. Click save.
+8. Once the updates have been applied, click close.
+
+
+That’s it! At this point, federated Office 365 users should only have to use MFA when a claim originates from outside the corporate intranet.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

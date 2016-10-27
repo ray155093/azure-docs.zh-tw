@@ -1,29 +1,32 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### 透過 Windows PowerShell for StorSimple 安裝維護模式更新
+#### <a name="to-install-maintenance-mode-updates-via-windows-powershell-for-storsimple"></a>To install Maintenance mode updates via Windows PowerShell for StorSimple
 
-1. 如果您尚未這樣做，請存取裝置序列主控台並選取選項 1 [使用完整存取權登入]。 
+1. If you haven't done so already, access the device serial console and select option 1, **Log in with full access**. 
 
-2. 輸入密碼。預設密碼為 **Password1**。
+2. Type the password. The default password is **Password1**.
 
-3. 在命令提示字元中，輸入：
+3. At the command prompt, type:
 
-     `Get-HcsUpdateAvailability`
+     `Get-HcsUpdateAvailability` 
     
-4. 系統將通知您是否有可用的更新，以及更新是否為破壞性或非破壞性更新。若要套用干擾性更新，您需要使裝置進入維護模式。如需相關指示，請參閱[步驟 2：進入維護模式](storsimple-update-device.md#step2)。
+4. You will be notified if updates are available and whether the updates are disruptive or non-disruptive. To apply disruptive updates, you need to put the device into Maintenance mode. See [Step 2: Enter Maintenance mode](storsimple-update-device.md#step2) for instructions.
 
-5. 當裝置處於維護模式時，在命令提示字元中輸入：`Start-HcsUpdate`
+5. When your device is in Maintenance mode, at the command prompt, type: `Start-HcsUpdate`
 
-6. 系統將提示您進行確認。當您確認更新之後，它們將安裝於您目前正在存取的控制站上。安裝更新之後，將重新啟動控制站。
+6. You will be prompted for confirmation. After you confirm the updates, they will be installed on the controller that you are currently accessing. After the updates are installed, the controller will restart. 
 
-7. 監視更新的狀態。輸入：
+7. Monitor the status of updates. Type:
 
-	`Get-HcsUpdateStatus`
-	
-	如果 `RunInProgress` 是 `True`，表示更新仍在進行中。如果 `RunInProgress` 是 `False`，表示已完成更新。
+    `Get-HcsUpdateStatus`
+    
+    If the `RunInProgress` is `True`, the update is still in progress. If `RunInProgress` is `False`, it indicates that the update has completed.  
 
-7. 當目前的控制站上已安裝更新並重新啟動後，請連接到另一個控制站，然後執行步驟 1 到 6。
+7. When the update is installed on the current controller and it has restarted, connect to the other controller and perform steps 1 through 6.
 
-8. 更新這兩個控制站之後，結束維護模式。如需相關指示，請參閱[步驟 4：結束維護模式](storsimple-update-device.md#step4)。
+8. After both controllers are updated, exit Maintenance mode. See [Step 4: Exit Maintenance mode](storsimple-update-device.md#step4) for instructions.
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Oct16_HO2-->
+
+

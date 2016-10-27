@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="檢視 Azure Data Lake Store 的診斷記錄 | Microsoft Azure" 
-   description="了解如何設定及存取 Azure Data Lake Store 的診斷記錄 " 
+   pageTitle="Viewing diagnostic logs for Azure Data Lake Store | Microsoft Azure" 
+   description="Understand how to setup and access diagnostic logs for Azure Data Lake Store " 
    services="data-lake-store" 
    documentationCenter="" 
    authors="nitinme" 
@@ -13,183 +13,189 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="07/19/2016"
+   ms.date="10/05/2016"
    ms.author="nitinme"/>
 
-# 存取 Azure Data Lake Store 的診斷記錄
 
-了解如何啟用 Data Lake Store 帳戶的診斷記錄，以及如何檢視針對帳戶收集的記錄。
+# <a name="accessing-diagnostic-logs-for-azure-data-lake-store"></a>Accessing diagnostic logs for Azure Data Lake Store
 
-組織可以啟用 Azure Data Lake Store 帳戶的診斷記錄，以便收集資料存取稽核記錄，取得如存取資料的使用者清單、資料存取頻率、儲存在帳戶內的資料量等資訊。
+Learn about how to enable diagnostic logging for your Data Lake Store account and how to view the logs collected for your account.
 
-## 必要條件
+Organizations can enable diagnostic logging for their Azure Data Lake Store account to collect data access audit trails that provides information such as list of users accessing the data, how frequently the data is accessed, how much data is stored in the account, etc.
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **啟用您的 Azure 訂用帳戶**以使用「Data Lake Store 公開預覽版」。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
-- **Azure Data Lake Store 帳戶**。遵循[使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。
+## <a name="prerequisites"></a>Prerequisites
 
-## 啟用 Data Lake Store 帳戶的診斷記錄
+- **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
 
-1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
+- **Azure Data Lake Store account**. Follow the instructions at [Get started with Azure Data Lake Store using the Azure Portal](data-lake-store-get-started-portal.md).
 
-2. 開啟 Data Lake Store 帳戶，接著在 Data Lake Store 帳戶刀鋒視窗中依序按一下 [設定] 和 [診斷設定]。
+## <a name="enable-diagnostic-logging-for-your-data-lake-store-account"></a>Enable diagnostic logging for your Data Lake Store account
 
-3. 在 [診斷] 刀鋒視窗中，變更下列項目以設定診斷記錄。
+1. Sign on to the new [Azure Portal](https://portal.azure.com).
 
-	![啟用診斷記錄](./media/data-lake-store-diagnostic-logs/enable-diagnostic-logs.png "啟用診斷記錄")
+2. Open your Data Lake Store account, and from your Data Lake Store account blade, click **Settings**, and then click **Diagnostic Settings**.
 
-	* 將 [狀態] 設定為 [開啟] 以啟用診斷記錄。
-	* 您可以選擇兩種不同的資料儲存/處理方法。
-		* 選取 [匯出到事件中樞] 選項可將記錄資料串流到 Azure 事件中樞。如果您有即時分析內送記錄的下游處理管線，很可能會使用這個選項。如果您選取此選項，必須提供要使用的 Azure 事件中樞詳細資料。
-		* 選取 [匯出到儲存體帳戶] 選項可將記錄儲存到 Azure 儲存體帳戶。如果您想要保存資料以供日後批次處理，可以使用此選項。如果您選取此選項，必須提供用來儲存記錄的 Azure 儲存體帳戶。
-	* 指定要取得稽核記錄、要求記錄或兩者。
-	* 指定的資料的保留天數。
-	* 按一下 [儲存]。
+3. In the **Diagnostic** blade, make the following changes to configure diagnostic logging.
 
-一旦您啟用了診斷設定，即可在 [診斷記錄] 索引標籤中查看記錄。
+    ![Enable diagnostic logging](./media/data-lake-store-diagnostic-logs/enable-diagnostic-logs.png "Enable diagnostic logs")
 
-## 檢視 Data Lake Store 帳戶的診斷記錄
+    * Set **Status** to **On** to enable diagnostic logging.
+    * You can choose to store/process the data in two different ways.
+        * Select the option to **Export to Event Hub** to stream log data to an Azure Event Hub. Most likely you will use this option if you have a downstream processing pipeline to analyze incoming logs at real time. If you select this option, you must provide the details for the Azure Event Hub you want to use.
+        * Select the option to **Export to Storage Account** to store logs to an Azure Storage account. You use this option if you want to archive the data that will be batch-processed at a later date. If you select this option you must provide an Azure Storage account to save the logs to.
+    * Specify whether you want to get audit logs or request logs or both.
+    * Specify the number of days for which the data must be retained.
+    * Click **Save**.
 
-檢視 Data Lake Store 帳戶的記錄資料有兩種方式。
+Once you have enabled diagnostic settings, you can watch the logs in the **Diagnostic Logs** tab.
 
-* 從 Data Lake Store 帳戶設定檢視
-* 從儲存資料的 Azure 儲存體帳戶
+## <a name="view-diagnostic-logs-for-your-data-lake-store-account"></a>View diagnostic logs for your Data Lake Store account
 
-### 使用 Data Lake Store 設定檢視
+There are two ways to view the log data for your Data Lake Store account.
 
-1. 在 Data Lake Store 帳戶的 [設定] 刀鋒視窗中，按一下 [診斷記錄]。
+* From the Data Lake Store account settings view
+* From the Azure Storage account where the data is stored
 
-	![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "檢視診斷記錄")
+### <a name="using-the-data-lake-store-settings-view"></a>Using the Data Lake Store Settings view
 
-2. 在 [診斷記錄] 刀鋒視窗中，您應該會看到依照 [稽核記錄] 和 [要求記錄] 分類的記錄。
-	* 要求記錄能擷取所有以 Data Lake Store 帳戶提出的 API 要求。
-	* 稽核記錄與要求記錄相似，不過能針對以 Data Lake Store 帳戶執行之作業提供更詳細的明細。例如，要求記錄中的一個上傳 API 呼叫可能會致使稽核記錄出現多個「附加」作業。
+1. From your Data Lake Store account **Settings** blade, click **Diagnostic Logs**.
 
-3. 針對每個記錄項目按一下 [下載] 連結來下載記錄。
+    ![View diagnostic logging](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "View diagnostic logs") 
 
-### 從包含記錄資料的 Azure 儲存體帳戶
+2. In the **Diagnostic Logs** blade, you should see the logs categorized by **Audit Logs** and **Request Logs**.
+    * Request logs capture every API request made on the Data Lake Store account.
+    * Audit Logs are similar to request Logs but provide a much more detailed breakdown of the operations being performed on the Data Lake Store account. For example, a single upload API call in request logs might result in multiple "Append" operations in the audit logs.
 
-1. 開啟與與用於記錄的 Data Lake Store 關聯的Azure 儲存體帳戶刀鋒視窗，然後按一下 [Blob]。[Blob 服務] 刀鋒視窗會列出兩個容器。
+3. Click the **Download** link against each log entry to download the logs.
 
-	![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account.png "檢視診斷記錄")
+### <a name="from-the-azure-storage-account-that-contains-log-data"></a>From the Azure Storage account that contains log data
 
-	* 容器 **insights-logs-audit** 包含稽核記錄檔。
-	* 容器 **insights-logs-requests** 包含要求記錄檔。
+1. Open the Azure Storage account blade associated with Data Lake Store for logging, and then click Blobs. The **Blob service** blade lists two containers.
 
-2. 在這些容器中，紀錄會儲存在下列結構底下。
+    ![View diagnostic logging](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account.png "View diagnostic logs")
 
-	![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account-structure.png "檢視診斷記錄")
+    * The container **insights-logs-audit** contains the audit logs.
+    * The container **insights-logs-requests** contains the request logs.
 
-	例如，稽核記錄檔的完整路徑可能是 `https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
+2. Within these containers, the logs are stored under the following structure.
 
-	同樣的，要求記錄檔的完整路徑可能是 `https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=14/m=00/PT1H.json`
+    ![View diagnostic logging](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account-structure.png "View diagnostic logs")
 
-## 了解記錄資料的結構
+    As an example, the complete path to an audit log could be `https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
 
-稽核和要求記錄採用 JSON 格式。在本節中，我們要探討要求和稽核記錄的 JSON 結構。
+    Similary, the complete path to a request log could be `https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=14/m=00/PT1H.json`
 
-### 要求記錄
+## <a name="understand-the-structure-of-the-log-data"></a>Understand the structure of the log data
 
-以下是採用 JSON 格式之要求記錄中的範例項目。每個 Blob 會一個名為**記錄**的根物件，其中包含記錄檔物件的陣列。
+The audit and request logs are in a JSON format. In this section, we look at the structure of JSON for request and audit logs.
 
-	{
-	"records": 
-	  [		
-		. . . .
-		,
-		{
-			 "time": "2016-07-07T21:02:53.456Z",
-			 "resourceId": "/SUBSCRIPTIONS/<subscription_id>/RESOURCEGROUPS/<resource_group_name>/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/<data_lake_store_account_name>",
-			 "category": "Requests",
-			 "operationName": "GETCustomerIngressEgress",
-			 "resultType": "200",
-			 "callerIpAddress": "::ffff:1.1.1.1",
-			 "correlationId": "4a11c709-05f5-417c-a98d-6e81b3e29c58",
-			 "identity": "1808bd5f-62af-45f4-89d8-03c5e81bac30",
-			 "properties": {"HttpMethod":"GET","Path":"/webhdfs/v1/Samples/Outputs/Drivers.csv","RequestContentLength":0,"ClientRequestId":"3b7adbd9-3519-4f28-a61c-bd89506163b8","StartTime":"2016-07-07T21:02:52.472Z","EndTime":"2016-07-07T21:02:53.456Z"}
-		}
-		,
-		. . . .
-	  ]
-	}
+### <a name="request-logs"></a>Request logs
 
-#### 要求記錄的結構描述
+Here's a sample entry in the JSON-formatted request log. Each blob has one root object called **records** that contains an array of log objects.
 
-| Name | 類型 | 說明 |
+    {
+    "records": 
+      [     
+        . . . .
+        ,
+        {
+             "time": "2016-07-07T21:02:53.456Z",
+             "resourceId": "/SUBSCRIPTIONS/<subscription_id>/RESOURCEGROUPS/<resource_group_name>/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/<data_lake_store_account_name>",
+             "category": "Requests",
+             "operationName": "GETCustomerIngressEgress",
+             "resultType": "200",
+             "callerIpAddress": "::ffff:1.1.1.1",
+             "correlationId": "4a11c709-05f5-417c-a98d-6e81b3e29c58",
+             "identity": "1808bd5f-62af-45f4-89d8-03c5e81bac30",
+             "properties": {"HttpMethod":"GET","Path":"/webhdfs/v1/Samples/Outputs/Drivers.csv","RequestContentLength":0,"ClientRequestId":"3b7adbd9-3519-4f28-a61c-bd89506163b8","StartTime":"2016-07-07T21:02:52.472Z","EndTime":"2016-07-07T21:02:53.456Z"}
+        }
+        ,
+        . . . .
+      ]
+    }
+
+#### <a name="request-log-schema"></a>Request log schema
+
+| Name            | Type   | Description                                                                    |
 |-----------------|--------|--------------------------------------------------------------------------------|
-| 分析 | String | 記錄的時間戳記 (UTC 時間) |
-| resourceId | String | 作業發生之資源的識別碼 |
-| category | String | 記錄類別。例如，**要求**。 |
-| operationName | String | 記錄的作業名稱。例如，getfilestatus。 |
-| resultType | String | 作業的狀態。例如，200。 |
-| callerIpAddress | String | 提出要求之用戶端的 IP 位址 |
-| correlationId | String | 用來將一組相關記錄項目分組在一起的記錄識別碼 |
-| 身分識別 | Object | 產生記錄的身分識別 |
-| properties | JSON | 如需詳細資料，請參閱下文 |
+| time            | String | The timestamp (in UTC) of the log                                              |
+| resourceId      | String | The ID of the resource that operation took place on                            |
+| category        | String | The log category. For example, **Requests**.                                   |
+| operationName   | String | Name of the operation that is logged. For example, getfilestatus.              |
+| resultType      | String | The status of the operation, For example, 200.                                 |
+| callerIpAddress | String | The IP address of the client making the request                                |
+| correlationId   | String | The id of the log that can used to group together a set of related log entries |
+| identity        | Object | The identity that generated the log                                            |
+| properties      | JSON   | See below for details                                                          |
 
-#### 要求記錄屬性結構描述
+#### <a name="request-log-properties-schema"></a>Request log properties schema
 
-| Name | 類型 | 說明 |
+| Name                 | Type   | Description                                               |
 |----------------------|--------|-----------------------------------------------------------|
-| HttpMethod | String | 作業使用的 HTTP 方法。例如，GET。 |
-| Path | String | 執行作業的所在路徑 |
-| RequestContentLength | int | HTTP 要求的內容長度 |
-| ClientRequestId | String | 可唯一識別要求的識別碼 |
-| StartTime | String | 伺服器接收到要求的時間 |
-| EndTime | String | 伺服器傳送回應的時間 |
+| HttpMethod           | String | The HTTP Method used for the operation. For example, GET. |
+| Path                 | String | The path the operation was performed on                   |
+| RequestContentLength | int    | The content length of the HTTP request                    |
+| ClientRequestId      | String | The Id that uniquely identifies this request              |
+| StartTime            | String | The time at which the server received the request         |
+| EndTime              | String | The time at which the server sent a response              |
 
-### 稽核記錄檔
+### <a name="audit-logs"></a>Audit logs
 
-以下是採用 JSON 格式之稽核記錄中的範例項目。每個 Blob 會一個名為**記錄**的根物件，其中包含記錄檔物件的陣列
+Here's a sample entry in the JSON-formatted audit log. Each blob has one root object called **records** that contains an array of log objects
 
-	{
-	"records": 
-	  [		
-		. . . .
-		,
-		{
-			 "time": "2016-07-08T19:08:59.359Z",
-			 "resourceId": "/SUBSCRIPTIONS/<subscription_id>/RESOURCEGROUPS/<resource_group_name>/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/<data_lake_store_account_name>",
-			 "category": "Audit",
-			 "operationName": "SeOpenStream",
-			 "resultType": "0",
-			 "correlationId": "381110fc03534e1cb99ec52376ceebdf;Append_BrEKAmg;25.66.9.145",
-			 "identity": "A9DAFFAF-FFEE-4BB5-A4A0-1B6CBBF24355",
-			 "properties": {"StreamName":"adl://<data_lake_store_account_name>.azuredatalakestore.net/logs.csv"}
-		}
-		,
-		. . . .
-	  ]
-	}
+    {
+    "records": 
+      [     
+        . . . .
+        ,
+        {
+             "time": "2016-07-08T19:08:59.359Z",
+             "resourceId": "/SUBSCRIPTIONS/<subscription_id>/RESOURCEGROUPS/<resource_group_name>/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/<data_lake_store_account_name>",
+             "category": "Audit",
+             "operationName": "SeOpenStream",
+             "resultType": "0",
+             "correlationId": "381110fc03534e1cb99ec52376ceebdf;Append_BrEKAmg;25.66.9.145",
+             "identity": "A9DAFFAF-FFEE-4BB5-A4A0-1B6CBBF24355",
+             "properties": {"StreamName":"adl://<data_lake_store_account_name>.azuredatalakestore.net/logs.csv"}
+        }
+        ,
+        . . . .
+      ]
+    }
 
-#### 稽核記錄的結構描述
+#### <a name="audit-log-schema"></a>Audit log schema
 
-| Name | 類型 | 說明 |
+| Name            | Type   | Description                                                                    |
 |-----------------|--------|--------------------------------------------------------------------------------|
-| 分析 | String | 記錄的時間戳記 (UTC 時間) |
-| resourceId | String | 作業發生之資源的識別碼 |
-| category | String | 記錄類別。例如，**稽核**。 |
-| operationName | String | 記錄的作業名稱。例如，getfilestatus。 |
-| resultType | String | 作業的狀態。例如，200。 |
-| correlationId | String | 用來將一組相關記錄項目分組在一起的記錄識別碼 |
-| 身分識別 | Object | 產生記錄的身分識別 |
-| properties | JSON | 如需詳細資料，請參閱下文 |
+| time            | String | The timestamp (in UTC) of the log                                              |
+| resourceId      | String | The ID of the resource that operation took place on                            |
+| category        | String | The log category. For example, **Audit**.                                      |
+| operationName   | String | Name of the operation that is logged. For example, getfilestatus.              |
+| resultType      | String | The status of the operation, For example, 200.                                 |
+| correlationId   | String | The id of the log that can used to group together a set of related log entries |
+| identity        | Object | The identity that generated the log                                            |
+| properties      | JSON   | See below for details                                                          |
 
-#### 稽核記錄屬性結構描述
+#### <a name="audit-log-properties-schema"></a>Audit log properties schema
 
-| Name | 類型 | 說明 |
+| Name       | Type   | Description                              |
 |------------|--------|------------------------------------------|
-| StreamName | String | 執行作業的所在路徑 |
+| StreamName | String | The path the operation was performed on  |
 
 
-## 處理記錄資料的範例
+## <a name="samples-to-process-the-log-data"></a>Samples to process the log data
 
-Azure Data Lake Store 會提供有關如何處理和分析記錄資料的範例。您可以在 [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample) 找到範例。
+Azure Data Lake Store provides a sample on how to process and analyze the log data. You can find the sample at [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample). 
 
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-- [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
-- [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
+- [Overview of Azure Data Lake Store](data-lake-store-overview.md)
+- [Secure data in Data Lake Store](data-lake-store-secure-data.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

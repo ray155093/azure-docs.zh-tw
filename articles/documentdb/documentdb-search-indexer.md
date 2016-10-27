@@ -1,9 +1,9 @@
 <properties
-    pageTitle="使用索引子連接 DocumentDB 與 Azure 搜尋服務 | Microsoft Azure"
-    description="本文將說明如何在 DocumentDB 中使用 Azure 搜尋服務索引子做為資料來源。"
+    pageTitle="Connecting DocumentDB with Azure Search using indexers | Microsoft Azure"
+    description="This article shows you how to use to Azure Search indexer with DocumentDB as a data source."
     services="documentdb"
     documentationCenter=""
-    authors="AndrewHoh"
+    authors="dennyglee"
     manager="jhubbard"
     editor="mimig"/>
 
@@ -14,78 +14,79 @@
     ms.tgt_pltfrm="NA"
     ms.workload="data-services"
     ms.date="07/08/2016"
-    ms.author="anhoh"/>
-
-#使用索引子連接 DocumentDB 與 Azure 搜尋
-
-如果您想要實作 DocumentDB 資料上的絕佳搜尋經驗，請在 DocumentDB 中使用 Azure 搜尋索引子！ 在本文中，我們將說明如何整合 Azure DocumentDB 與 Azure 搜尋，而不需要撰寫任何程式碼來維護索引的基礎結構！
-
-若要設定此功能，您必須[設定 Azure 搜尋服務帳戶](../search/search-create-service-portal.md) (您不需要升級至標準搜尋)，然後呼叫 [Azure 搜尋 REST API](https://msdn.microsoft.com/library/azure/dn798935.aspx) 以建立 DocumentDB **資料來源**和該資料來源的**索引子**。
-
-為了傳送要求來與 REST API 互動，您可以使用 [Postman](https://www.getpostman.com/)、[Fiddler](http://www.telerik.com/fiddler)，或您喜好的任何工具。
+    ms.author="denlee"/>
 
 
-##<a id="Concepts"></a>Azure 搜尋服務索引子概念
+#<a name="connecting-documentdb-with-azure-search-using-indexers"></a>Connecting DocumentDB with Azure Search using indexers
 
-Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操作這些資料來源的索引子。
+If you're looking to implement great search experiences over your DocumentDB data, use Azure Search indexer for DocumentDB! In this article, we will show you how to integrate Azure DocumentDB with Azure Search without having to write any code to maintain indexing infrastructure!
 
-「**資料來源**」指定哪些資料需要編製索引、存取資料的認證，以及啟用 Azure 搜尋服務的原則，以便有效地識別資料中的變更 (例如修改或刪除集合內的文件)。資料來源會被定義為獨立的資源，因此可供多個索引子使用。
+To set this up, you have to [setup an Azure Search account](../search/search-create-service-portal.md) (you don't need to upgrade to standard search), and then call the [Azure Search REST API](https://msdn.microsoft.com/library/azure/dn798935.aspx) to create a DocumentDB **data source** and an **indexer** for that data source.
 
-「**索引子**」說明資料如何從資料來源流動到目標搜尋索引。您應該規劃為每個目標索引和資料來源組合建立一個索引子。雖然您可以擁有寫入相同索引的多個索引子，但一個索引子只能寫入單一索引。索引子可用來：
+In order send requests to interact with the REST APIs, you can use [Postman](https://www.getpostman.com/), [Fiddler](http://www.telerik.com/fiddler), or any tool of your preference.
 
-- 執行資料的一次性複製以填入索引。
-- 依照排程將索引與資料來源中的變更同步。排程是索引子定義的一部分。
-- 視需要叫用索引的隨選更新。
 
-##<a id="CreateDataSource"></a>步驟 1：建立資料來源
+##<a name="<a-id="concepts"></a>azure-search-indexer-concepts"></a><a id="Concepts"></a>Azure Search indexer concepts
 
-發出 HTTP POST 要求，以便在您的 Azure 搜尋服務中建立新的資料來源，包括下列要求標頭。
+Azure Search supports the creation and management of data sources (including DocumentDB) and indexers that operate against those data sources.
+
+A **data source** specifies what data needs to be indexed, credentials to access the data, and policies to enable Azure Search to efficiently identify changes in the data (such as modified or deleted documents inside your collection). The data source is defined as an independent resource so that it can be used by multiple indexers.
+
+An **indexer** describes how the data flows from your data source into a target search index. You should plan on creating one indexer for every target index and data source combination. While you can have multiple indexers writing into the same index, an indexer can only write into a single index. An indexer is used to:
+
+- Perform a one-time copy of the data to populate an index.
+- Sync an index with changes in the data source on a schedule. The schedule is part of the indexer definition.
+- Invoke on-demand updates to an index as needed.
+
+##<a name="<a-id="createdatasource"></a>step-1:-create-a-data-source"></a><a id="CreateDataSource"></a>Step 1: Create a data source
+
+Issue a HTTP POST request to create a new data source in your Azure Search service, including the following request headers.
 
     POST https://[Search service name].search.windows.net/datasources?api-version=[api-version]
     Content-Type: application/json
     api-key: [Search service admin key]
 
-`api-version` 為必要項目。有效值包括 `2015-02-28` 或更新版本。請瀏覽 [Azure 搜尋服務中的 API 版本](../search/search-api-versions.md)，查看所有支援的搜尋服務 API 版本。
+The `api-version` is required. Valid values include `2015-02-28` or a later version. Visit [API versions in Azure Search](../search/search-api-versions.md) to see all supported Search API versions.
 
-要求的主體包含資料來源定義，其中應包含下列欄位：
+The body of the request contains the data source definition, which should include the following fields:
 
-- **名稱**：選擇任何名稱，以代表您的 DocumentDB 資料庫。
+- **name**: Choose any name to represent your DocumentDB database.
 
-- **類型**：使用 `documentdb`。
+- **type**: Use `documentdb`.
 
-- **認證**：
+- **credentials**:
 
-    - **connectionString**：必要。以下列格式指定 Azure DocumentDB 資料庫的連接資訊：`AccountEndpoint=<DocumentDB endpoint url>;AccountKey=<DocumentDB auth key>;Database=<DocumentDB database id>`
+    - **connectionString**: Required. Specify the connection info to your Azure DocumentDB database in the following format: `AccountEndpoint=<DocumentDB endpoint url>;AccountKey=<DocumentDB auth key>;Database=<DocumentDB database id>`
 
-- **容器**：
+- **container**:
 
-    - **名稱**：必要。指定要編製索引的 DocumentDB 集合的識別碼。
+    - **name**: Required. Specify the id of the DocumentDB collection to be indexed.
 
-    - **查詢**：選擇性。您可以指定查詢將任意 JSON 文件簡維成 Azure 搜尋服務可以編製索引的一般結構描述。
+    - **query**: Optional. You can specify a query to flatten an arbitrary JSON document into a flat schema that Azure Search can index.
 
-- **dataChangeDetectionPolicy**：選擇性。請參閱以下的[資料變更偵測原則](#DataChangeDetectionPolicy)。
+- **dataChangeDetectionPolicy**: Optional. See [Data Change Detection Policy](#DataChangeDetectionPolicy) below.
 
-- **dataDeletionDetectionPolicy**：選擇性。請參閱以下的[資料刪除偵測原則](#DataDeletionDetectionPolicy)。
+- **dataDeletionDetectionPolicy**: Optional. See [Data Deletion Detection Policy](#DataDeletionDetectionPolicy) below.
 
-請參閱下面的[要求本文範例](#CreateDataSourceExample)。
+See below for an [example request body](#CreateDataSourceExample).
 
-###<a id="DataChangeDetectionPolicy"></a>擷取已變更的文件
+###<a name="<a-id="datachangedetectionpolicy"></a>capturing-changed-documents"></a><a id="DataChangeDetectionPolicy"></a>Capturing changed documents
 
-資料變更偵測原則是用來有效識別已變更的資料項目。目前，唯一支援的原則是使用 DocumentDB 所提供之 `_ts` 上次修改時間戳記屬性的 `High Water Mark` 原則，指定方式如下：
+The purpose of a data change detection policy is to efficiently identify changed data items. Currently, the only supported policy is the `High Water Mark` policy using the `_ts` last-modified timestamp property provided by DocumentDB - which is specified as follows:
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
         "highWaterMarkColumnName" : "_ts"
     }
 
-您還必須為查詢在投射中加入 `_ts` 和 `WHERE` 子句。例如：
+You will also need to add `_ts` in the projection and `WHERE` clause for your query. For example:
 
     SELECT s.id, s.Title, s.Abstract, s._ts FROM Sessions s WHERE s._ts >= @HighWaterMark
 
 
-###<a id="DataDeletionDetectionPolicy"></a>擷取已刪除的文件
+###<a name="<a-id="datadeletiondetectionpolicy"></a>capturing-deleted-documents"></a><a id="DataDeletionDetectionPolicy"></a>Capturing deleted documents
 
-當從來源資料表中刪除資料列時，您也應該在搜尋索引中刪除這些資料列。資料刪除偵測原則可用來有效識別刪除的資料項目。目前，唯一支援的原則是「`Soft Delete`」原則 (刪除會標示為某種形式的旗標)，指定方式如下：
+When rows are deleted from the source table, you should delete those rows from the search index as well. The purpose of a data deletion detection policy is to efficiently identify deleted data items. Currently, the only supported policy is the `Soft Delete` policy (deletion is marked with a flag of some sort), which is specified as follows:
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
@@ -93,11 +94,11 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
         "softDeleteMarkerValue" : "the value that identifies a document as deleted"
     }
 
-> [AZURE.NOTE] 如果您使用自訂投射，則必須在 SELECT 子句中包含 softDeleteColumnName 屬性。
+> [AZURE.NOTE] You will need to include the softDeleteColumnName property in your SELECT clause if you are using a custom projection.
 
-###<a id="CreateDataSourceExample"></a>要求本文範例
+###<a name="<a-id="createdatasourceexample"></a>request-body-example"></a><a id="CreateDataSourceExample"></a>Request body example
 
-下列範例會建立包含自訂查詢和原則提示的資料來源：
+The following example creates a data source with a custom query and policy hints:
 
     {
         "name": "mydocdbdatasource",
@@ -120,39 +121,39 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
         }
     }
 
-###Response
+###<a name="response"></a>Response
 
-如果已成功建立該資料來源，您將會收到一則 HTTP 201 已建立的回應。
+You will receive an HTTP 201 Created response if the data source was successfully created.
 
-##<a id="CreateIndex"></a>步驟 2：建立索引
+##<a name="<a-id="createindex"></a>step-2:-create-an-index"></a><a id="CreateIndex"></a>Step 2: Create an index
 
-建立目標 Azure 搜尋服務索引 (如果您尚未建立)。您可以從 [Azure 入口網站 UI](../search/search-create-index-portal.md) 或使用[建立索引 API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 來執行此作業。
+Create a target Azure Search index if you don’t have one already. You can do this from the [Azure Portal UI](../search/search-create-index-portal.md) or by using the [Create Index API](https://msdn.microsoft.com/library/azure/dn798941.aspx).
 
-	POST https://[Search service name].search.windows.net/indexes?api-version=[api-version]
-	Content-Type: application/json
-	api-key: [Search service admin key]
+    POST https://[Search service name].search.windows.net/indexes?api-version=[api-version]
+    Content-Type: application/json
+    api-key: [Search service admin key]
 
 
-請確定目標索引的結構描述會與來源 JSON 文件的結構描述或自訂查詢投射的輸出相容。
+Ensure that the schema of your target index is compatible with the schema of the source JSON documents or the output of your custom query projection.
 
->[AZURE.NOTE] 對於資料分割後的集合，預設文件索引鍵是 DocumentDB 的 `_rid` 屬性，它在 Azure 搜尋服務中重新命名為 `rid`。此外，DocumentDB 的 `_rid` 值包含在 Azure 搜尋服務索引鍵中無效的字元，因此 `_rid` 值採用 Base64 編碼。
+>[AZURE.NOTE] For partitioned collections, the default document key is DocumentDB's `_rid` property, which gets renamed to `rid` in Azure Search. Also, DocumentDB's `_rid` values contain characters that are invalid in Azure Search keys; therefore, the `_rid` values are Base64 encoded.
 
-###圖 A：JSON 資料類型與 Azure 搜尋服務資料類型之間的對應
+###<a name="figure-a:-mapping-between-json-data-types-and-azure-search-data-types"></a>Figure A: Mapping between JSON Data Types and Azure Search Data Types
 
-| JSON 資料類型|	相容的目標索引欄位類型|
+| JSON DATA TYPE|   COMPATIBLE TARGET INDEX FIELD TYPES|
 |---|---|
-|Bool|Edm.Boolean、Edm.String|
-|看起來像是整數的數字|Edm.Int32、Edm.Int64、Edm.String|
-|看起來像是浮點的數字|Edm.Double、Edm.String|
+|Bool|Edm.Boolean, Edm.String|
+|Numbers that look like integers|Edm.Int32, Edm.Int64, Edm.String|
+|Numbers that look like floating-points|Edm.Double, Edm.String|
 |String|Edm.String|
-|基本類型的陣列，例如 "a"、"b"、"c" |Collection(Edm.String)|
-|看起來像是日期的字串| Edm.DateTimeOffset、Edm.String|
-|GeoJSON 物件，例如 { "type": "Point"、"coordinates": [ long, lat ] } | Edm.GeographyPoint |
-|其他 JSON 物件|N/A|
+|Arrays of primitive types e.g. "a", "b", "c" |Collection(Edm.String)|
+|Strings that look like dates| Edm.DateTimeOffset, Edm.String|
+|GeoJSON objects e.g. { "type": "Point", "coordinates": [ long, lat ] } | Edm.GeographyPoint |
+|Other JSON objects|N/A|
 
-###<a id="CreateIndexExample"></a>要求本文範例
+###<a name="<a-id="createindexexample"></a>request-body-example"></a><a id="CreateIndexExample"></a>Request body example
 
-下列範例會建立包含識別碼和描述欄位的索引：
+The following example creates an index with an id and description field:
 
     {
        "name": "mysearchindex",
@@ -171,39 +172,39 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
        }]
      }
 
-###Response
+###<a name="response"></a>Response
 
-如果已成功建立該索引，您將會收到一則 [HTTP 201 已建立] 的回應。
+You will receive an HTTP 201 Created response if the index was successfully created.
 
-##<a id="CreateIndexer"></a>步驟 3：建立索引子
+##<a name="<a-id="createindexer"></a>step-3:-create-an-indexer"></a><a id="CreateIndexer"></a>Step 3: Create an indexer
 
-您可以使用包含下列標頭的 HTTP POST 要求，在 Azure 搜尋服務內建立新的索引子。
+You can create a new indexer within an Azure Search service by using an HTTP POST request with the following headers.
 
     POST https://[Search service name].search.windows.net/indexers?api-version=[api-version]
     Content-Type: application/json
     api-key: [Search service admin key]
 
-要求的本文包含索引子定義，其中應包含下列欄位：
+The body of the request contains the indexer definition, which should include the following fields:
 
-- **名稱**：必要。索引子的名稱。
+- **name**: Required. The name of the indexer.
 
-- **dataSourceName**：必要。現有資料來源的名稱。
+- **dataSourceName**: Required. The name of an existing data source.
 
-- **targetIndexName**：必要。現有索引的名稱。
+- **targetIndexName**: Required. The name of an existing index.
 
-- **排程**：選擇性。請參閱以下的[索引排程](#IndexingSchedule)。
+- **schedule**: Optional. See [Indexing Schedule](#IndexingSchedule) below.
 
-###<a id="IndexingSchedule"></a>依照排程執行索引子
+###<a name="<a-id="indexingschedule"></a>running-indexers-on-a-schedule"></a><a id="IndexingSchedule"></a>Running indexers on a schedule
 
-索引子可以選擇性地指定排程。如有排程，索引子將會依照排程定期執行。排程具有下列屬性：
+An indexer can optionally specify a schedule. If a schedule is present, the indexer will run periodically as per schedule. Schedule has the following attributes:
 
-- **間隔**：必要。可用以指定索引子執行間隔或期間的持續時間值。允許的最小間隔為 5 分鐘；最長間隔為一天。其必須格式化為 XSD "dayTimeDuration" 值 ([ISO 8601 持續時間](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration)值的受限子集)。間隔的模式為：`P(nD)(T(nH)(nM))`。範例：`PT15M` 代表每隔 15 分鐘，`PT2H` 代表每隔 2 小時。
+- **interval**: Required. A duration value that specifies an interval or period for indexer runs. The smallest allowed interval is 5 minutes; the longest is one day. It must be formatted as an XSD "dayTimeDuration" value (a restricted subset of an [ISO 8601 duration](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) value). The pattern for this is: `P(nD)(T(nH)(nM))`. Examples: `PT15M` for every 15 minutes, `PT2H` for every 2 hours.
 
-- **startTime**：必要。指定索引子應該開始執行的 UTC 日期時間。
+- **startTime**: Required. An UTC datetime that specifies when the indexer should start running.
 
-###<a id="CreateIndexerExample"></a>要求本文範例
+###<a name="<a-id="createindexerexample"></a>request-body-example"></a><a id="CreateIndexerExample"></a>Request body example
 
-下列範例會建立索引子，可將資料從 `myDocDbDataSource` 資料來源所參考的集合，依照排程 (從 2015 年 1 月 1 日 UTC 開始，每小時執行一次) 複製到 `mySearchIndex` 索引。
+The following example creates an indexer that copies data from the collection referenced by the `myDocDbDataSource` data source to the `mySearchIndex` index on a schedule that starts on Jan 1, 2015 UTC and runs hourly.
 
     {
         "name" : "mysearchindexer",
@@ -212,33 +213,33 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
         "schedule" : { "interval" : "PT1H", "startTime" : "2015-01-01T00:00:00Z" }
     }
 
-###Response
+###<a name="response"></a>Response
 
-如果已成功建立該索引子，您將會收到一則 [HTTP 201 已建立] 的回應。
+You will receive an HTTP 201 Created response if the indexer was successfully created.
 
-##<a id="RunIndexer"></a>步驟 4：執行索引子
+##<a name="<a-id="runindexer"></a>step-4:-run-an-indexer"></a><a id="RunIndexer"></a>Step 4: Run an indexer
 
-為了依照排程定期執行，您也可以發出下列 HTTP POST 要求，視需要叫用索引子：
+In addition to running periodically on a schedule, an indexer can also be invoked on demand by issuing the following HTTP POST request:
 
     POST https://[Search service name].search.windows.net/indexers/[indexer name]/run?api-version=[api-version]
     api-key: [Search service admin key]
 
-###Response
+###<a name="response"></a>Response
 
-如果已成功叫用該索引子，您將會收到一則 [HTTP 202 已接受] 的回應。
+You will receive an HTTP 202 Accepted response if the indexer was successfully invoked.
 
-##<a name="GetIndexerStatus"></a>步驟 5：取得索引子狀態
+##<a name="<a-name="getindexerstatus"></a>step-5:-get-indexer-status"></a><a name="GetIndexerStatus"></a>Step 5: Get indexer status
 
-您可以發出 HTTP GET 要求來擷取索引子的目前狀態和執行記錄：
+You can issue a HTTP GET request to retrieve the current status and execution history of an indexer:
 
     GET https://[Search service name].search.windows.net/indexers/[indexer name]/status?api-version=[api-version]
     api-key: [Search service admin key]
 
-###Response
+###<a name="response"></a>Response
 
-您將會看到隨著回應本文傳回的一則 [HTTP 200 確定] 的回應，內容包括整體索引子健全狀況狀態、最後索引子引動過程，以及最新索引子引動過程 (如果有的話) 的歷程記錄等相關資訊。
+You will see a HTTP 200 OK response returned along with a response body that contains information about overall indexer health status, the last indexer invocation, as well as the history of recent indexer invocations (if present).
 
-回應看起來應該如下所示：
+The response should look similar to the following:
 
     {
         "status":"running",
@@ -266,14 +267,18 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
         }]
     }
 
-執行歷程記錄包含多達 50 個最近完成的執行，以倒序的方式進行儲存 (因此最新的執行會排在回應中的第一位)。
+Execution history contains up to the 50 most recent completed executions, which are sorted in reverse chronological order (so the latest execution comes first in the response).
 
-##<a name="NextSteps"></a>接續步驟
+##<a name="<a-name="nextsteps"></a>next-steps"></a><a name="NextSteps"></a>Next steps
 
-恭喜！ 您剛剛了解如何使用 DocumentDB 的索引子來整合 Azure DocumentDB 與 Azure 搜尋服務。
+Congratulations! You have just learned how to integrate Azure DocumentDB with Azure Search using the indexer for DocumentDB.
 
- - 若要深入了解 Azure DocumentDB，請參閱 [DocumentDB 服務頁面](https://azure.microsoft.com/services/documentdb/)。
+ - To learn how more about Azure DocumentDB, see the [DocumentDB service page](https://azure.microsoft.com/services/documentdb/).
 
- - 若要深入了解 Azure 搜尋服務，請參閱[搜尋服務頁面](https://azure.microsoft.com/services/search/)。
+ - To learn how more about Azure Search, see the [Search service page](https://azure.microsoft.com/services/search/).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

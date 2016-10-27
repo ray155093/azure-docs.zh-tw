@@ -1,51 +1,52 @@
 <properties 
-	pageTitle="App Service 環境 | Microsoft Azure" 
-	description="何謂 Azure App Service 環境？ App Service 環境簡介。" 
-	keywords="azure app service 環境, 虛擬網路, 安全網路"
-	services="app-service" 
-	documentationCenter="" 
-	authors="yochay" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="App Service Environment | Microsoft Azure" 
+    description="What is an Azure App Service Environment? An introduction to App Service Environment." 
+    keywords="azure app service environment, virtual network, secure networking"
+    services="app-service" 
+    documentationCenter="" 
+    authors="stefsch" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/15/2016" 
-	ms.author="stefsch"/>
+    ms.service="app-service" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/04/2016" 
+    ms.author="stefsch"/>
 
-# App Service 環境文件
 
-App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，可提供完全隔離的專用環境，以便安全地以高延展性執行 Azure App Service 應用程式，包括 [Web Apps][WebApps]、[行動應用程式][MobileApps]和 [API 應用程式][APIApps]。
+# <a name="app-service-environment-documentation"></a>App Service Environment Documentation
 
-適合應用程式工作負載的 App Service 環境需要：
+An App Service Environment is a [Premium][PremiumTier] service plan option of Azure App Service that provides a fully isolated and dedicated environment for securely running Azure App Service apps at high scale, including [Web Apps][WebApps], [Mobile Apps][MobileApps], and [API Apps][APIApps].  
 
-- 非常高的延展性
-- 隔離和安全的網路存取
+App Service Environments are ideal for application workloads requiring:
 
-客戶可以在單一 Azure 區域，以及跨多個 Azure 區域中建立多個 App Service 環境。這使得 App Service 環境很適合用來水平調整無狀態應用程式層的規模，以支援高 RPS 工作負載。
+- Very high scale
+- Isolation and secure network access
 
-App Service 環境已經過隔離，可執行只有單一客戶的應用程式，且一律會部署到虛擬網路。使用[網路安全性群組][NetworkSecurityGroups]，客戶對於輸入和輸出的應用程式網路流量都能有更細微的控制。應用程式也可以透過虛擬網路建立與內部部署公司資源的高速安全連線。
+Customers can create multiple App Service Environments within a single Azure region, as well as across multiple Azure regions.  This makes App Service Environments ideal for horizontally scaling state-less application tiers in support of high RPS workloads.
 
-應用程式經常需要存取公司資源，例如內部資料庫和 Web 服務。App Service 環境上執行的應用程式可以存取能透過[站對站][SiteToSite] VPN 和 [Azure ExpressRoute][ExpressRoute] 連線存取的資源。
+App Service Environments are isolated to running only a single customer's applications, and are always deployed into a virtual network.  Customers have fine-grained control over both inbound and outbound application network traffic using [network security groups][NetworkSecurityGroups].  Applications can also establish high-speed secure connections over virtual networks to on-premises corporate resources.
 
-* [何謂 App Service 環境？](../app-service-web/app-service-app-service-environment-intro.md)
-* [建立 App Service 環境](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)
-* [在 App Service 環境中建立應用程式](../app-service-web/app-service-web-how-to-create-a-web-app-in-an-ase.md)
-* [使用 App Service 環境建立和使用內部負載平衡器](../app-service-web/app-service-environment-with-internal-load-balancer.md)
-* [設定 App Service 環境](../app-service-web/app-service-web-configure-an-app-service-environment.md)
-* [在 App Service 環境中調整應用程式](../app-service-web/app-service-web-scale-a-web-app-in-an-app-service-environment.md)
-* [網路安全性與架構](../app-service-web/app-service-app-service-environment-network-architecture-overview.md)
+Apps frequently need to access corporate resources such as internal databases and web services.  Apps running on App Service Environments can access resources reachable via [Site-to-Site][SiteToSite] VPN and [Azure ExpressRoute][ExpressRoute] connections.
 
-## 作法
+* [What is an App Service Environment?](../app-service-web/app-service-app-service-environment-intro.md)
+* [Creating an App Service Environment](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)
+* [Creating Apps in an App Service Environment](../app-service-web/app-service-web-how-to-create-a-web-app-in-an-ase.md)
+* [Creating and Using an Internal Load Balancer with App Service Environments](../app-service-web/app-service-environment-with-internal-load-balancer.md)
+* [Configuring an App Service Environment](../app-service-web/app-service-web-configure-an-app-service-environment.md) 
+* [Scaling Apps in an App Service Environment](../app-service-web/app-service-web-scale-a-web-app-in-an-app-service-environment.md)
+* [Network Security and Architecture](../app-service-web/app-service-app-service-environment-network-architecture-overview.md)
+
+## <a name="how-to's"></a>How To's
 
 [AZURE.INCLUDE [app-service-blueprint-app-service-environment](../../includes/app-service-blueprint-app-service-environment.md)]
 
 
-## 影片
+## <a name="videos"></a>Videos
 [AZURE.VIDEO azurecon-2015-deploying-highly-scalable-and-secure-web-and-mobile-apps]
 
 [AZURE.VIDEO microsoft-ignite-2015-running-enterprise-web-and-mobile-apps-on-azure-app-service]
@@ -60,4 +61,8 @@ App Service 環境已經過隔離，可執行只有單一客戶的應用程式�
 [SiteToSite]: https://azure.microsoft.com/documentation/articles/vpn-gateway-site-to-site-create/
 [ExpressRoute]: http://azure.microsoft.com/services/expressroute/
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

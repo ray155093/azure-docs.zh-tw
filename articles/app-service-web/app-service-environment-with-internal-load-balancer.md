@@ -1,162 +1,163 @@
 <properties
-	pageTitle="搭配 App Service 環境建立及使用內部負載平衡器 | Microsoft Azure"
-	description="搭配 ILB 建立及使用 ASE"
-	services="app-service"
-	documentationCenter=""
-	authors="ccompy"
-	manager="stefsch"
-	editor=""/>
+    pageTitle="Creating and using an Internal Load Balancer with an App Service Environment | Microsoft Azure"
+    description="Creating and using an ASE with an ILB"
+    services="app-service"
+    documentationCenter=""
+    authors="ccompy"
+    manager="stefsch"
+    editor=""/>
 
 <tags
-	ms.service="app-service"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/12/2016"
-	ms.author="ccompy"/>
-
-# 搭配 App Service 環境使用內部負載平衡器 #
-
-App Service 環境 (ASE) 功能是 Azure App Service 的進階服務選項，可提供多租用戶戳記中不提供的增強式設定功能。ASE功能基本上會在您的 Azure 虛擬網路 (VNet) 中部署 Azure App Service。若要更深入了解 App Service 環境所提供的功能，請閱讀[什麼是 App Service 環境][WhatisASE]文件。如果您不了解在 VNet 中操作的優點，請閱讀 [Azure 虛擬網路常見問題集][virtualnetwork]。
+    ms.service="app-service"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/12/2016"
+    ms.author="ccompy"/>
 
 
-## 概觀 ##
+# <a name="using-an-internal-load-balancer-with-an-app-service-environment"></a>Using an Internal Load Balancer with an App Service Environment #
+
+The App Service Environments(ASE) feature is a Premium service option of Azure App Service that delivers an enhanced configuration capability that is not available in the multi-tenant stamps.  The ASE feature essentially deploys the Azure App Service in your Azure Virtual Network(VNet).  To gain a greater understanding of the capabilities offered by App Service Environments read the [What is an App Service Environment][WhatisASE] documentation.  If you don't know the benefits of operating in a VNet read the [Azure Virtual Network FAQ][virtualnetwork].  
 
 
-ASE 可以使用網際網路可存取的端點或您 Vnet 中的 IP 位址加以部署。為了將 IP 位址設定為 VNet 位址，您必須搭配內部負載平衡器 (ILB) 來部署您的 ASE。當您的 ASE 是使用 ILB 設定時，您要提供：
-
-- 您自己的網域或子網域。為了能順利進行，本文件假設是子網域，但是您還是可以設定。
-- 針對 HTTPS 使用的憑證
-- 您子網域的 DNS 管理。
+## <a name="overview"></a>Overview ##
 
 
-相對的，您可以執行以下動作：
+An ASE can be deployed with an internet accessible endpoint or with an IP address in your VNet.  In order to set the IP address to a VNet address you need to deploy your ASE with an Internal Load Balancer(ILB).  When your ASE is configured with an ILB you provide:
 
-- 在您可以透過「端對端」或 ExpressRoute VPN 存取的雲端，安全地裝載內部網路應用程式 (例如企業營運應用程式)
-- 在雲端裝載未在公用 DNS 伺服器中列出的 app
-- 建立與網際網路隔離，且您的前端 app 可以安全地與之整合的後端應用程式
-
-
-#### 已停用的功能 ####
-
-當您使用 ILB ASE 時，有一些動作您無法執行。這些動作包括︰
-
-- 使用 IPSSL
-- 將 IP 位址指派給特定 app
-- 透過入口網站購買憑證並搭配 app 使用。您當然也可以直接透過「憑證授權單位」取得憑證並搭配您的 app 使用，只是無法透過 Azure 入口網站這樣做。
+- your own domain or subdomain.  To make it easy, this document assumes subdomain but you can configure it either way.  
+- the certificate used for HTTPS
+- DNS management for your subdomain.  
 
 
-## 建立 ILB ASE ##
+In return, you can do things such as:
 
-建立 ILB ASE 通常與建立 ASE 沒有太大差異。如需有關建立 ASE 的深入討論，請參閱[如何建立 App Service 環境][HowtoCreateASE]。在 ASE 建立期間建立 VNet 或選取既存的 VNet 之間，建立 ILB ASE 的程序是相同的。若要建立 ILB ASE：
+- host intranet applications, like line of business applications, securely in the cloud which you access through a Site to Site or ExpressRoute VPN
+- host apps in the cloud that are not listed in public DNS servers
+- create internet isolated backend apps which your front end apps can securely integrate with
 
-1.	在 Azure 入口網站中選取 [新增] -> [Web + 行動] -> [App Service 環境]
-2.	選取您的訂用帳戶
-3.	選取或建立資源群組
-4.	選取或建立 VNet
-5.	選取或建立子網路 (如果選取 VNet)
-6.	選取 [虛擬網路/位置] -> [VNet 組態]，並將 [VIP 類型] 設定為 [內部]
-7.	提供子網域名稱 (這會成為在此 ASE 中建立的 app 所使用的子網域)
-8.	選取 [確定]，然後選取 [建立]
+
+#### <a name="disabled-functionality"></a>Disabled functionality ####
+
+There are some things that you cannot do when using an ILB ASE.  Those things include:
+
+- using IPSSL
+- assigning IP addresses to specific apps
+- buying and using a certificate with an app through the portal.  You can of course still obtain certificates directly with a Certificate Authority and use it with your apps, just not through the Azure portal.
+
+
+## <a name="creating-an-ilb-ase"></a>Creating an ILB ASE ##
+
+Creating an ILB ASE is not much different from creating an ASE normally.  For a deeper discussion on creating an ASE read [How to Create an App Service Environment][HowtoCreateASE].  The process to create an ILB ASE is the same between creating a VNet during ASE creation or selecting a pre-existing VNet.  To create an ILB ASE: 
+
+1.  In the Azure portal select **New -> Web + Mobile -> App Service Environment**
+2.  Select your subscription
+3.  Select or create a resource group
+4.  Select or create a VNet
+5.  Select or create a subnet if selecting a VNet
+6.  Select **Virtual Network/Location -> VNet Configuration** and set the VIP Type to Internal
+7.  Provide subdomain name (this will be the subdomain used for apps created in this ASE)
+8.  Select Ok and then Create
 
 
 ![][1]
 
 
-在 [虛擬網路] 刀鋒視窗中，會有一個 [VNet 組態] 選項。這個選項可讓您在 [外部 VIP] 或 [內部 VIP] 之間選擇。預設為「外部」。如果您設定為外部，您的 ASE 會使用一個網際網路可存取的 VIP。如果您選取內部，您的 ASE 會使用您 VNet 內 IP 位址搭配 ILB 進行設定。
+Within the Virtual Network blade there is a VNet Configuration option.  This lets you select between an External VIP or Internal VIP.  The default is External.  If you have it set to External then your ASE will use an internet accessible VIP.  If you select Internal, your ASE will be configured with an ILB on an IP address within your VNet.  
 
 
-選取內部之後，將會移除把更多 IP 位址新增至您 ASE 的功能，取而代之的是您必須提供 ASE 的子網域。在使用外部 VIP 的 ASE 中，ASE 的名稱會在子網域中用於在該 ASE 中建立的 app。如果您的 ASE 名稱為 ***contosotest***，而您在該 ASE 中的 app 名稱為 ***mytest***，子網域的格式就會是 ***contosotest.p.azurewebsites.net***，該 app 的 URL 則會是 ***mytest.contosotest.p.azurewebsites.net***。如果您將 VIP 類型設定為 [內部]，您的 ASE 名稱不會在 ASE 的子網域中使用。您可以明確地指定子網域。如果您的子網域是 ***contoso.corp.net*** 而您在該 ASE 中建立一個名為 ***timereporting*** 的 app，該 app 的 URL 會是 ***timereporting.contoso.corp.net***。
+After selecting Internal, the ability to add more IP addresses to your ASE is removed and instead you need to provide the subdomain of the ASE.  In an ASE with an External VIP the name of the ASE is used in the subdomain for apps created in that ASE.  
+If your ASE was called ***contosotest*** and your app in that ASE was called ***mytest*** then the subdomain would be of the format ***contosotest.p.azurewebsites.net*** and the URL for that app would be ***mytest.contosotest.p.azurewebsites.net***.  
+If you set the VIP Type to Internal, your ASE name is not used in the subdomain for the ASE.  You specify the subdomain explicitly.  If your subdomain was ***contoso.corp.net*** and you made an app in that ASE named ***timereporting*** then the URL for that app would be ***timereporting.contoso.corp.net***.
 
 
-## ILB ASE 中的 App ##
+## <a name="apps-in-an-ilb-ase"></a>Apps in an ILB ASE ##
 
-在 ILB ASE 中建立 app，通常與在 ASE 中建立 app 相同。
+Creating an app in an ILB ASE is the same as creating an app in an ASE normally.  
 
-1. 在 Azure 入口網站選取 [新增] -> [Web + 行動] -> [Web] 或 [行動]，或者 [API 應用程式]
-2. 輸入 app 的名稱
-2. 選取訂用帳戶
-3. 選取或建立資源群組
-4. 選取或建立 App Service 方案 (ASP)。如果是建立新的 ASP，請選取您的 ASE 作為位置並選取您希望在其中建立 ASP 的背景工作集區。當您建立 ASP 時，可以選取您的 ASE 作為位置與背景工作集區。當您指定 app 的名稱時，您會看見您 app 名稱底下的子網域會由您 ASE 的子網域取代。
-5. 選取 [建立]。如果您希望 app 顯示在儀表板上，您應該選取 [釘選到儀表板] 核取方塊。
+1. In the Azure portal select **New -> Web + Mobile -> Web** or **Mobile** or **API App**
+2. Enter name of app
+2. Select subscription
+3. Select or create resource group
+4. Select or create App Service Plan(ASP).  If creating a new ASP then select your ASE as the location and select the worker pool you want your ASP to be created in.  When you create the ASP you select your ASE as the location and the worker pool.  When you specify the name of the app you will see that the subdomain under your app name is replaced by the subdomain for your ASE.   
+5. Select Create.  You should select the **Pin to dashboard** checkbox if you want the app to show up on your dashboard.  
 
 ![][2]
 
 
-在 app 名稱底下，子網域名稱會更新，以反映您的 ASE 子網域。
+Under the app name the subdomain name gets updated to reflect the subdomain of your ASE.  
 
 
-## ILB ASE 建立後驗證 ##
+## <a name="post-ilb-ase-creation-validation"></a>Post ILB ASE creation validation ##
 
-ILB ASE 與非 ILB ASE 稍微有些不同。如先前所述，您必須管理您自己的 DNS，而且您也必須提供您自己的 HTTPS 連線憑證。
+An ILB ASE is slightly different than the non-ILB ASE.  As already noted you need to manage your own DNS and you also have to provide your own certificate for HTTPS connections.  
 
 
-建立您的 ASE 之後，您會注意到子網域顯示您所指定的子網域，且 [設定] 功能表中會有一個稱為 [ILB 憑證] 的新項目。在您設定您 ASE 的憑證之前，您無法透過 HTTPS 存取您 ASE 中的 app。
+After you create your ASE you will notice that the subdomain shows the subdomain you specified and there is a new item in the **Setting** menu called **ILB Certificate**.  Until you set a certificate for your ASE you will not be able to reach the apps in your ASE over HTTPS.  
 
 ![][3]
 
 
-如果您只是要測試而且不知道如何建立憑證，您可以使用 IIS MMC 主控台應用程式來建立自我簽署憑證。建立之後，您可以將它匯出為 .pfx 檔案，然後在 ILB 憑證 UI 中上傳。當您存取使用自我簽署憑證保護的網站時，您的瀏覽器將發出警告指出您正在存取的網站不安全，因為無法驗證憑證。如果您想要避免這個警告產生，您需要一個符合您的子網域、具有您的瀏覽器已識別的信任鏈結，並且已經正確簽署的憑證。
+If you are simply trying things out and don't know how to create a certificate, you can use the IIS MMC console application to create a self signed certificate.  Once it is created you can export it as a .pfx file and then upload it in the ILB Certificate UI. When you access a site secured with a self-signed certificate, your browser will give you a warning that the site you are accessing is not secure due to the inability to validate the certificate.  If you want to avoid that warning you need a properly signed certificate that matches your subdomain and has a chain of trust that is recognized by your browser.
 
 ![][6]
 
-如果您想要同時測試透過 HTTP 和 HTTPS 存取您的 ASE：
+If you want to test both HTTP and HTTPS access to your ASE:
 
-1.	在建立 ASE 之後移至 ASE UI ([ASE] -> [設定] -> [ILB 憑證])
-2.	選取憑證 .pfx 檔案並提供密碼，來設定 ILB 憑證。這個步驟需要一些時間來處理，且會顯示調整作業正在進行中的訊息。
-3.	取得您 ASE 的 ILB 位址 ([ASE] -> [屬性] -> [虛擬 IP 位址])
-4.	建立後，在 ASE 中建立 Web 應用程式
-5.	如果您在該 VNET 中沒有 VM 的話，請建立一個 (不是在與 ASE 相同的子網路中，否則會無法運作)
-6.	設定您子網域的 DNS。您可以在您 DNS 中使用萬用字元搭配您的子網域，或者如果您想要執行一些簡單測試，請編輯您 VM 上的主機檔案來將 Web 應用程式名稱設定為 VIP IP 位址。如果您的 ASE 具有子網域名稱 .ilbase.com 且 Web 應用程式名稱為 mytestapp，它將會定址為 mytestapp.ilbase.com 並在您的主機檔案中設定。(在 Windows 上，主機檔案位於 C:\\Windows\\System32\\drivers\\etc\\ )
-7.	在該 VM 上使用瀏覽器並移至 http://mytestapp.ilbase.com (或者您的 Web 應用程式名稱與您的子網域)
-8.	在該 VM 上使用瀏覽器並移至 https://mytestapp.ilbase.com，如果使用自我簽署憑證，您將必須接受安全性不足的問題。
+1.  Go to ASE UI after ASE is created **ASE -> Settings -> ILB Certificates**
+2.  Set ILB certificate by selecting certificate pfx file and provide password.  This step takes a little while to process and the message that a scaling operation is in progress will be shown.
+3.  Get the ILB address for your ASE (**ASE -> Properties -> Virtual IP Address**)
+4.  Create a web app in ASE after creation 
+5.  Create a VM if you don't have one in that VNET (Not in the same subnet as the ASE or things break)
+6.  Set DNS for your subdomain.  You can use a wildcard with your subdomain in your DNS or if you want to do some simple tests, edit the hosts file on your VM to set web app name to VIP IP address.  If your ASE had the subdomain name .ilbase.com and you made the web app mytestapp so that it would be addressed at mytestapp.ilbase.com then set that in your hosts file.  (On Windows the hosts file is at C:\Windows\System32\drivers\etc\ )
+7.  Use a browser on that VM and go to http://mytestapp.ilbase.com (or whatever your web app name is with your subdomain)
+8.  Use a browser on that VM and go to https://mytestapp.ilbase.com   You will have to accept the lack of security if using a self-signed certificate.  
 
 
-您 ILB 的 IP 位址會在您的 [屬性] 中列出為 [虛擬 IP 位址]
+The IP address for your ILB is listed in your Properties as the Virtual IP Address
 
 ![][4]
 
 
-## 使用 ILB ASE ##
+## <a name="using-an-ilb-ase"></a>Using an ILB ASE ##
 
-#### 網路安全性群組 ####
+#### <a name="network-security-groups"></a>Network Security Groups ####
 
-ILB ASE 可針對您的 app 啟用網路隔離，讓 app 無法透過網際網路存取或讓 app 在網際網路中完全找不到。這非常適合用來裝載內部網路網站，例如企業營運應用程式。當您需要更進一步地限制存取時，您仍然可以使用「網路安全性群組 (NSG)」來控制網路層級的存取。
-
-
-如果您想要使用 NSG 來進一步限制存取，您需要確定您不會中斷 ASE 運作所需的通訊。即使 HTTP/HTTPS 存取只會透過 ASE 所使用的 ILB 進行，ASE 仍需依賴 VNet 外部資源。若要查看仍需要何種網路存取權，請查看[控制 App Service 環境的輸入流量][ControlInbound]和[使用 ExpressRoute 的 App Service 環境的網路組態詳細資料][ExpressRoute]中的文件所提供的資訊。
+An ILB ASE enables network isolation for your apps as the apps are not accessible or even known by the internet.  This is excellent for hosting intranet sites such as line of business applications.  When you need to restrict access even further you can still use Network Security Groups(NSGs) to control access at the network level. 
 
 
-若要設定您的 NSG，您需要知道 Azure 所使用的 IP 位址，以管理您的 ASE。如果該 IP 位址提出網際網路要求，它也會成為您 ASE 的輸出 IP 位址。若要尋找此 IP 位址，請移至 [設定] -> [屬性] 並尋找 [輸出 IP 位址]。
+If you wish to use NSGs to further restrict access then you need to make sure you do not break the communication that the ASE needs in order to operate.  Even though the HTTP/HTTPS access is only through the ILB used by the ASE the ASE still depends on resource outside of the VNet.  To see what network access is still required look at the information in the document on [Controlling Inbound Traffic to an App Service Environment][ControlInbound] and the document on [Network Configuration Details for App Service Environments with ExpressRoute][ExpressRoute].  
+
+
+To configure your NSGs you need to know the IP address that is used by Azure to manage your ASE.  That IP address is also the outbound IP address from your ASE if it makes internet requests.  To find this IP address go to **Settings -> Properties** and find the **Outbound IP Address**.  
 
 ![][5]
 
 
-#### 一般 ILB ASE 管理 ####
+#### <a name="general-ilb-ase-management"></a>General ILB ASE management ####
 
-管理 ILB ASE 通常大部分與管理 ASE 相同。您需要相應增加您的背景工作集區來裝載更多 ASP 執行個體，並相應增加您的前端伺服器，以處理增加的 HTTP/HTTPS 流量。如需管理 ASE 組態的一般資訊，請參閱[設定 App Service 環境][ASEConfig]中的文件。
-
-
-其他管理項目是憑證管理和 DNS 管理。在建立 ILB ASE 之後，您必須取得並上傳針對 HTTPS 使用的憑證，並在它到期之前將它取代。因為 Azure 擁有基底網域，所以我們可以使用外部 VIP 提供 ASE 的憑證。因為 ILB ASE 所使用的子網域可以是任何項目，所以您必須提供您自己的 HTTPS 憑證。
+Managing an ILB ASE is largely the same as managing an ASE normally.  You need to scale up your worker pools to host more ASP instances and scale up your Front End servers to handle increased amounts of HTTP/HTTPS traffic.  For general information on managing the configuration of an ASE, read the document on [Configuring an App Service Environment][ASEConfig].  
 
 
-#### DNS 組態 ####
-
-使用外部 VIP 時，DNS 是由 Azure 管理。在您 ASE 中建立的任何 app 都會自動新增至 Azure DNS，這是一個公用 DNS。在 ILB ASE 中，您必須管理您自己的 DNS。針對指定的子網域 (例如 contoso.corp.net)，您必須建立指向您 ILB 位址的 DNS A 記錄，以︰
-
-	* 
-	*.scm 
-	ftp 
-	publish 
+The additional management items are certificate management and DNS management.  You need to obtain and upload the certificate used for HTTPS after ILB ASE creation and replace it before it expires.  Because Azure owns the base domain we can provide certificates for ASEs with an External VIP.  Since the subdomain used by an ILB ASE can be anything, you need to provide your own certificate for HTTPS. 
 
 
-## 開始使用
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+#### <a name="dns-configuration"></a>DNS Configuration ####
 
-若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][WhatisASE]
+When using an External VIP the DNS is managed by Azure.  Any app created in your ASE is automatically added to Azure DNS which is a public DNS.  In an ILB ASE you have to manage your own DNS.  For a given subdomain such as contoso.corp.net you need to create DNS A records that point to your ILB address for:
 
-如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][AzureAppService]。
+    * 
+    *.scm ftp publish 
+
+
+## <a name="getting-started"></a>Getting started
+All articles and How-To's for App Service Environments are available in the [README for Application Service Environments](../app-service/app-service-app-service-environments-readme.md).
+
+To get started with App Service Environments, see [Introduction to App Service Environments][WhatisASE]
+
+For more information about the Azure App Service platform, see [Azure App Service][AzureAppService].
 
 [AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
@@ -183,4 +184,8 @@ ILB ASE 可針對您的 app 啟用網路隔離，讓 app 無法透過網際網�
 [vnetnsgs]: http://azure.microsoft.com/documentation/articles/virtual-networks-nsg/
 [ASEConfig]: http://azure.microsoft.com/documentation/articles/app-service-web-configure-an-app-service-environment/
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

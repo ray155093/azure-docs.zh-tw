@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure SQL 資料倉儲中監視使用者查詢 | Microsoft Azure"
-   description="監視 Azure SQL 資料倉儲中使用者查詢之考量、最佳做法及工作的概觀。"
+   pageTitle="Monitor user queries in Azure SQL Data Warehouse | Microsoft Azure"
+   description="Overview of the considerations, best practices, and tasks for monitoring user queries in Azure SQL Data Warehouse"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -16,36 +16,41 @@
    ms.date="08/17/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
-# 監視 Azure SQL 資料倉儲中的使用者查詢
 
-監視 SQL 資料倉儲中使用者查詢之考量、最佳做法及工作的概觀。
+# <a name="monitor-user-queries-in-azure-sql-data-warehouse"></a>Monitor user queries in Azure SQL Data Warehouse
+
+Overview of the considerations, best practices, and tasks for monitoring user queries in SQL Data Warehouse.
 
 
 
-| 類別 | 工作或考量 | 說明 |
+| Category                | Task or consideration                           | Description  |
 | :-----------------------| :---------------------------------------------- | :----------- |
-| 效能變慢 | 尋找長時間執行的使用者查詢 | [尋找長時間執行的查詢][] |
-| 並行 | 指派並行資源給使用者查詢 | [並行存取和工作負載管理][] |
+| Slow performance        | Find a long-running user query                  | [Find long-running queries][] |
+| Concurrency             | Assign concurrent resources to user queries     | [Concurrency and workload management][] |
 
 
 
 
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需更多管理祕訣，請移至[管理概觀][]。
+For more management tips, head over to the [Management overview][].
 
 <!--Image references-->
 
 <!--Article references-->
-[尋找長時間執行的查詢]: sql-data-warehouse-manage-monitor.md
-[並行存取和工作負載管理]: sql-data-warehouse-develop-concurrency.md
-[管理概觀]: sql-data-warehouse-overview-manage.md
+[Find long-running queries]: sql-data-warehouse-manage-monitor.md
+[Concurrency and workload management]: sql-data-warehouse-develop-concurrency.md
+[Management overview]: sql-data-warehouse-overview-manage.md
 
 <!--MSDN references-->
 
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

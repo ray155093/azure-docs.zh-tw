@@ -1,35 +1,37 @@
 <properties 
-	pageTitle="Application Insights 資料模型" 
-	description="描述從 JSON 中的連續匯出匯出的屬性，並做為篩選器。" 
-	services="application-insights" 
+    pageTitle="Application Insights Data Model" 
+    description="Describes properties exported from continuous export in JSON, and used as filters." 
+    services="application-insights" 
     documentationCenter=""
-	authors="alancameronwills" 
-	manager="douge"/>
+    authors="alancameronwills" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="03/21/2016" 
-	ms.author="awills"/>
-
-# Application Insights 匯出資料模型
-
-此表列出從 [Application Insights](app-insights-overview.md) SDK 傳送至入口網站的遙測屬性。您會在[連續匯出](app-insights-export-telemetry.md)的資料輸出中看到這些屬性。它們也會出現在[度量總管](app-insights-metrics-explorer.md)和[診斷搜尋](app-insights-diagnostic-search.md)的屬性篩選中。
-
-注意事項：
-
-* 這些資料表中的 `[0]` 代表您必須在路徑中插入索引的一點，但它未必是 0。
-* 持續時間的長度單位是微秒，因此 10000000 == 1 秒。
-* 日期和時間是 UTC，並以 ISO 格式 `yyyy-MM-DDThh:mm:ss.sssZ` 表示
-
-有數個[範例](app-insights-export-telemetry.md#code-samples)說明如何使用它們。
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="03/21/2016" 
+    ms.author="awills"/>
 
 
+# <a name="application-insights-export-data-model"></a>Application Insights Export Data Model
 
-## 範例
+This table lists the properties of telemetry sent from the [Application Insights](app-insights-overview.md) SDKs to the portal. You'll see these properties in data output from [Continuous Export](app-insights-export-telemetry.md).
+They also appear in property filters in [Metric Explorer](app-insights-metrics-explorer.md) and [Diagnostic Search](app-insights-diagnostic-search.md).
+
+Points to note:
+
+* `[0]` in these tables denotes a point in the path where you have to insert an index; but it isn't always 0.
+* Time durations are in tenths of a microsecond, so 10000000 == 1 second.
+* Dates and times are UTC, and are given in the ISO format `yyyy-MM-DDThh:mm:ss.sssZ`
+
+There are several [samples](app-insights-export-telemetry.md#code-samples) that illustrate how to use them.
+
+
+
+## <a name="example"></a>Example
 
     // A server report about an HTTP request
     {
@@ -113,222 +115,222 @@
 
 
 
-## Context
+## <a name="context"></a>Context
 
-所有類型的遙測都會伴隨內容區段。並非所有的欄位都會連同每個資料點傳輸。
+All types of telemetry are accompanied by a context section. Not all of these fields are transmitted with every data point.
 
 
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| context.custom.dimensions [0] | 物件 [ ] | 由自訂屬性參數設定的索引鍵-值字串組。索引鍵的最大長度 100，值的最大長度 1024。超過 100 個唯一值時，屬性可供搜尋，但無法用來分割。每個 ikey 的最大值 200 索引鍵。 |
-| context.custom.metrics [0] | 物件 [ ] | 由自訂測量參數和 TrackMetrics 設定的索引鍵-值組。索引鍵的最大長度 100，值可能為數值。 |
-| context.data.eventTime | 字串 | UTC |
-| context.data.isSynthetic | 布林值 | 要求似乎來自 bot 或 web 測試。 |
-| context.data.samplingRate | number | 由傳送至入口網站之 SDK 所產生的遙測百分比。範圍 0.0-100.0。|
-| context.device | 物件 | 用戶端裝置 |
-| context.device.browser | 字串 | IE, Chrome, ... |
-| context.device.browserVersion | 字串 | Chrome 48.0, ... |
-| context.device.deviceModel | 字串 | |
-| context.device.deviceName | 字串 | |
-| context.device.id | 字串 | |
-| context.device.locale | 字串 | en-GB, de-DE, ... |
-| context.device.network | 字串 | |
-| context.device.oemName | 字串 | |
-| context.device.osVersion | 字串 | 主機作業系統 |
-| context.device.roleInstance | 字串 | 伺服器主機的識別碼 |
-| context.device.roleName | 字串 | |
-| context.device.type | 字串 | PC, Browser, ... |
-| context.location | 物件 | 衍生自 clientip。 |
-| context.location.city | 字串 | 衍生自 clientip (如果已知) |
-| context.location.clientip | 字串 | 最後一個八邊形匿名設定為 0。 |
-| context.location.continent | 字串 | |
-| context.location.country | 字串 | |
-| context.location.province | 字串 | 州或省 |
-| context.operation.id | 字串 | 具有相同作業識別碼的項目會在入口網站中顯示為相關項目。通常為要求 id。 |
-| context.operation.name | 字串 | url 或要求名稱 |
-| context.operation.parentId | 字串 | 允許巢狀的相關項目。 |
-| context.session.id | 字串 | 來自相同來源的作業群組識別碼。在 30 分鐘期間沒有發出工作階段結束訊號的作業。 |
-| context.session.isFirst | 布林值 | |
-| context.user.accountAcquisitionDate | 字串 | |
-| context.user.anonAcquisitionDate | 字串 | |
-| context.user.anonId | 字串 | |
-| context.user.authAcquisitionDate | 字串 | [已驗證的使用者](app-insights-api-custom-events-metrics.md#authenticated-users) |
-| context.user.isAuthenticated | 布林值 | |
-| internal.data.documentVersion | 字串 | |
-| internal.data.id | 字串 | |
+| context.custom.dimensions [0]  | object [ ]  | Key-value string pairs set by custom properties parameter. Key max length 100, values max length 1024. More than 100 unique values, the property can be searched but cannot be used for segmentation. Max 200 keys per ikey.  |
+| context.custom.metrics [0]  | object [ ]  | Key-value pairs set by custom measurements parameter and by TrackMetrics. Key max length 100, values may be numeric. |
+| context.data.eventTime | string | UTC |
+| context.data.isSynthetic | boolean | Request appears to come from a bot or web test. |
+| context.data.samplingRate | number | Percentage of telemetry generated by the SDK that is sent to portal. Range 0.0-100.0.|
+| context.device | object | Client device |
+| context.device.browser | string | IE, Chrome, ... |
+| context.device.browserVersion | string | Chrome 48.0, ... |
+| context.device.deviceModel | string | |
+| context.device.deviceName | string | |
+| context.device.id | string | |
+| context.device.locale | string | en-GB, de-DE, ... |
+| context.device.network | string | |
+| context.device.oemName | string | |
+| context.device.osVersion | string | Host OS |
+| context.device.roleInstance | string | ID of server host |
+| context.device.roleName | string | |
+| context.device.type | string | PC, Browser, ... |
+| context.location | object | Derived from clientip. |
+| context.location.city | string | Derived from clientip, if known  |
+| context.location.clientip | string | Last octagon is anonymized to 0. |
+| context.location.continent | string | |
+| context.location.country | string | |
+| context.location.province | string | State or province |
+| context.operation.id | string | Items that have the same operation id are shown as Related Items in the portal. Usually the request id. |
+| context.operation.name | string | url or request name |
+| context.operation.parentId | string | Allows nested related items. |
+| context.session.id | string | Id of a group of operations from the same source. A period of 30 minutes without an operation signals the end of a session. |
+| context.session.isFirst | boolean | |
+| context.user.accountAcquisitionDate | string | |
+| context.user.anonAcquisitionDate | string | |
+| context.user.anonId | string | |
+| context.user.authAcquisitionDate | string | [Authenticated User](app-insights-api-custom-events-metrics.md#authenticated-users) |
+| context.user.isAuthenticated | boolean | |
+| internal.data.documentVersion | string | |
+| internal.data.id | string | |
 
 
 
-## 事件
+## <a name="events"></a>Events
 
-[TrackEvent()](app-insights-api-custom-events-metrics.md#track-event) 產生的自訂事件。
+Custom events generated by [TrackEvent()](app-insights-api-custom-events-metrics.md#track-event). 
 
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| 事件 [0] 計數 | integer | 100/([取樣](app-insights-sampling.md)率)。例如 4 =&gt; 25%。 |
-| 事件 [0] 名稱 | 字串 | 事件名稱。最大長度 250。 |
-| 事件 [0] url | 字串 | |
-| 事件 [0] urlData.base | 字串 | |
-| 事件 [0] urlData.host | 字串 | |
+| event [0] count | integer | 100/([sampling](app-insights-sampling.md) rate). For example 4 =&gt; 25%. |
+| event [0] name | string | Event name.  Max length 250. |
+| event [0] url | string | |
+| event [0] urlData.base | string | |
+| event [0] urlData.host | string | |
 
-## 例外狀況
+## <a name="exceptions"></a>Exceptions
 
-回報在伺服器和瀏覽器中的[例外狀況](app-insights-asp-net-exceptions.md)。
+Reports [exceptions](app-insights-asp-net-exceptions.md) in the server and in the browser. 
 
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| basicException [0] 組件 | 字串 | |
-| basicException [0] 計數 | integer | 100/([取樣](app-insights-sampling.md)率)。例如 4 =&gt; 25%。 |
-| basicException [0] exceptionGroup | 字串 | |
-| basicException [0] exceptionType | 字串 | |字串 | |
-| basicException [0] failedUserCodeMethod | 字串 | |
-| basicException [0] failedUserCodeAssembly | 字串 | |
-| basicException [0] handledAt | 字串 | |
-| basicException [0] hasFullStack | 布林值 | |
-| basicException [0] id | 字串 | |
-| basicException [0] 方法 | 字串 | |
-| basicException [0] 訊息 | 字串 | 例外狀況訊息。最大長度 10k。|
-| basicException [0] outerExceptionMessage | 字串 | |
-| basicException [0] outerExceptionThrownAtAssembly | 字串 | |
-| basicException [0] outerExceptionThrownAtMethod | 字串 | |
-| basicException [0] outerExceptionType | 字串 | |
-| basicException [0] outerId | 字串 | |
-| basicException [0] parsedStack [0] 組件 | 字串 | |
-| basicException [0] parsedStack [0] fileName | 字串 | |
-| basicException [0] parsedStack [0] 層級 | integer | |
-| basicException [0] parsedStack [0] 列 | integer | |
-| basicException [0] parsedStack [0] 方法 | 字串 | |
-| basicException [0] 堆疊 | 字串 | 最大長度 10k|
-| basicException [0] typeName | 字串 | |
+| basicException [0] assembly | string | |
+| basicException [0] count | integer | 100/([sampling](app-insights-sampling.md) rate). For example 4 =&gt; 25%. |
+| basicException [0] exceptionGroup | string | |
+| basicException [0] exceptionType | string | |string | |
+| basicException [0] failedUserCodeMethod | string | |
+| basicException [0] failedUserCodeAssembly | string | |
+| basicException [0] handledAt | string | |
+| basicException [0] hasFullStack | boolean | |
+| basicException [0] id | string | |
+| basicException [0] method | string | |
+| basicException [0] message | string | Exception message. Max length 10k.|
+| basicException [0] outerExceptionMessage | string | |
+| basicException [0] outerExceptionThrownAtAssembly | string | |
+| basicException [0] outerExceptionThrownAtMethod | string | |
+| basicException [0] outerExceptionType | string | |
+| basicException [0] outerId | string | |
+| basicException [0] parsedStack [0] assembly | string | |
+| basicException [0] parsedStack [0] fileName | string | |
+| basicException [0] parsedStack [0] level | integer | |
+| basicException [0] parsedStack [0] line | integer | |
+| basicException [0] parsedStack [0] method | string | |
+| basicException [0] stack | string | Max length 10k|
+| basicException [0] typeName | string | |
 
 
 
-## 追蹤訊息
+## <a name="trace-messages"></a>Trace Messages
 
-由 [TrackTrace](app-insights-api-custom-events-metrics.md#track-trace) 以及[記錄配接器](app-insights-asp-net-trace-logs.md)傳送。
+Sent by [TrackTrace](app-insights-api-custom-events-metrics.md#track-trace), and by the [logging adapters](app-insights-asp-net-trace-logs.md).
 
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| 訊息 [0] loggerName | 字串 ||
-| 訊息 [0] 參數 | 字串 ||
-| 訊息 [0] 原始碼 | 字串 | 記錄檔訊息，最大長度 10k。 |
-| 訊息 [0] severityLevel | 字串 | |
+| message [0] loggerName | string ||
+| message [0] parameters | string ||
+| message [0] raw | string | The log message, max length 10k. |
+| message [0] severityLevel | string | |
 
 
 
-## 遠端相依性
+## <a name="remote-dependency"></a>Remote dependency
 
-由 TrackDependency 傳送。用於回報伺服器中[相依性呼叫](app-insights-asp-net-dependencies.md)以及瀏覽器中 AJAX 呼叫的效能和使用情形。
+Sent by TrackDependency. Used to report performance and usage of [calls to dependencies](app-insights-asp-net-dependencies.md) in the server, and AJAX calls in the browser.
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| remoteDependency [0] async | 布林值 | |
-| remoteDependency [0] baseName | 字串 | |
-| remoteDependency [0] commandName | 字串 | 例如 "home/index" |
-| remoteDependency [0] 計數 | integer | 100/([取樣](app-insights-sampling.md)率)。例如 4 =&gt; 25%。 |
-| remoteDependency [0] dependencyTypeName | 字串 | HTTP、SQL、... |
-| remoteDependency [0] durationMetric.value | number | 從根據相依性呼叫回應完成開始計算的時間 |
-| remoteDependency [0] id | 字串 | |
-| remoteDependency [0] 名稱 | 字串 | Url。最大長度 250。|
-| remoteDependency [0] resultCode | 字串 | 從 HTTP 相依性 |
-| remoteDependency [0] 成功 | 布林值 | |
-| remoteDependency [0] 類型 | 字串 | Http、Sql、... |
-| remoteDependency [0] url | 字串 | 最大長度 2000 |
-| remoteDependency [0] urlData.base | 字串 | 最大長度 2000 |
-| remoteDependency [0] urlData.hashTag | 字串 | |
-| remoteDependency [0] urlData.host | 字串 | 最大長度 200 |
+| remoteDependency [0] async | boolean | |
+| remoteDependency [0] baseName | string |  |
+| remoteDependency [0] commandName | string | For example "home/index" |
+| remoteDependency [0] count | integer | 100/([sampling](app-insights-sampling.md) rate). For example 4 =&gt; 25%. |
+| remoteDependency [0] dependencyTypeName | string | HTTP, SQL, ... |
+| remoteDependency [0] durationMetric.value | number | Time from call to completion of response by dependency |
+| remoteDependency [0] id | string | |
+| remoteDependency [0] name | string | Url. Max length 250.|
+| remoteDependency [0] resultCode | string | from HTTP dependency |
+| remoteDependency [0] success | boolean | |
+| remoteDependency [0] type | string | Http, Sql,... |
+| remoteDependency [0] url | string |  Max length 2000 |
+| remoteDependency [0] urlData.base | string | Max length 2000 |
+| remoteDependency [0] urlData.hashTag | string | |
+| remoteDependency [0] urlData.host | string | Max length 200 |
 
 
-## 要求
+## <a name="requests"></a>Requests
 
-由 [TrackRequest](app-insights-api-custom-events-metrics.md#track-request) 傳送。標準模組使用它回報在伺服器上測量的伺服器回應時間。
+Sent by [TrackRequest](app-insights-api-custom-events-metrics.md#track-request). The standard modules use this to reports server response time, measured at the server. 
 
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| 要求 [0] 計數 | integer | 100/([取樣](app-insights-sampling.md)率)。例如：4 =&gt; 25%。 |
-| 要求 [0] durationMetric.value | number | 從要求抵達到回應的時間。1e7 == 1s |
-| 要求 [0] id | 字串 | 作業 id |
-| 要求 [0] 名稱 | 字串 | GET/POST + url 基底。最大長度 250 |
-| 要求 [0] responseCode | integer | 傳送至用戶端的 HTTP 回應 |
-| 要求 [0] 成功 | 布林值 | 預設值 == (responseCode &lt; 400) |
-| 要求 [0] url | 字串 | 不包括主機 |
-| 要求 [0] urlData.base | 字串 | |
-| 要求 [0] urlData.hashTag | 字串 | |
-| 要求 [0] urlData.host | 字串 | |
+| request [0] count | integer | 100/([sampling](app-insights-sampling.md) rate). For example: 4 =&gt; 25%. |
+| request [0] durationMetric.value | number | Time from request arriving to response. 1e7 == 1s |
+| request [0] id | string | Operation id |
+| request [0] name | string | GET/POST + url base.  Max length 250 |
+| request [0] responseCode | integer | HTTP response sent to client |
+| request [0] success | boolean | Default == (responseCode &lt; 400) |
+| request [0] url | string | Not including host |
+| request [0] urlData.base | string | |
+| request [0] urlData.hashTag | string |  |
+| request [0] urlData.host | string | |
 
 
-## 頁面檢視效能
+## <a name="page-view-performance"></a>Page View Performance
 
-由瀏覽器傳送。測量處理頁面的時間，從使用者起始要求到顯示完成 (不包括非同步 AJAX 呼叫)。
+Sent by the browser. Measures the time to process a page, from user initiating the request to display complete (excluding async AJAX calls).
 
-內容值會顯示用戶端作業系統和瀏覽器版本。
+Context values show client OS and browser version. 
 
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| clientPerformance [0] clientProcess.value | integer | 從接收 HTML 完成到顯示頁面的時間。 |
-| clientPerformance [0] 名稱 | 字串 | |
-| clientPerformance [0] networkConnection.value | integer | 建立網路連線所需的時間。 |
-| clientPerformance [0] receiveRequest.value | integer | 從傳送要求完成至接收回覆中 HTML 的時間。 |
-| clientPerformance [0] sendRequest.value | integer | 傳送 HTTP 要求所需的時間。 |
-| clientPerformance [0] total.value | integer | 從開始傳送要求到顯示頁面的時間。 |
-| clientPerformance [0] url | 字串 | 此要求的 URL |
-| clientPerformance [0] urlData.base | 字串 | |
-| clientPerformance [0] urlData.hashTag | 字串 | |
-| clientPerformance [0] urlData.host | 字串 | |
-| clientPerformance [0] urlData.protocol | 字串 | |
+| clientPerformance [0] clientProcess.value | integer | Time from end of receiving the HTML to displaying the page. |
+| clientPerformance [0] name | string | |
+| clientPerformance [0] networkConnection.value | integer | Time taken to establish a network connection. |
+| clientPerformance [0] receiveRequest.value | integer | Time from end of sending the request to receiving the HTML in reply. |
+| clientPerformance [0] sendRequest.value | integer | Time from taken to send the HTTP request. |
+| clientPerformance [0] total.value | integer | Time from starting to send the request to displaying the page. |
+| clientPerformance [0] url | string | URL of this request |
+| clientPerformance [0] urlData.base | string | |
+| clientPerformance [0] urlData.hashTag | string | |
+| clientPerformance [0] urlData.host | string | |
+| clientPerformance [0] urlData.protocol | string | |
 
-## 頁面檢視
+## <a name="page-views"></a>Page Views
 
-由 trackPageView() 或 [stopTrackPage](app-insights-api-custom-events-metrics.md#page-view) 傳送
+Sent by trackPageView() or [stopTrackPage](app-insights-api-custom-events-metrics.md#page-view)
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| 檢視 [0] 計數 | integer | 100/([取樣](app-insights-sampling.md)率)。例如 4 =&gt; 25%。 |
-| 檢視 [0] durationMetric.value | integer | 在 trackPageView() 中或由 startTrackPage() - stopTrackPage() 選擇性設定的值。和 clientPerformance 的值不同。 |
-| 檢視 [0] 名稱 | 字串 | 頁面標題。最大長度 250 |
-| 檢視 [0] url | 字串 | |
-| 檢視 [0] urlData.base | 字串 | |
-| 檢視 [0] urlData.hashTag | 字串 | |
-| 檢視 [0] urlData.host | 字串 | |
+| view [0] count | integer | 100/([sampling](app-insights-sampling.md) rate). For example 4 =&gt; 25%. |
+| view [0] durationMetric.value | integer | Value optionally set in trackPageView() or by startTrackPage() - stopTrackPage(). Not the same as clientPerformance values. |
+| view [0] name | string | Page title.  Max length 250 |
+| view [0] url | string | |
+| view [0] urlData.base | string | |
+| view [0] urlData.hashTag | string | |
+| view [0] urlData.host | string | |
 
 
 
-## Availability
+## <a name="availability"></a>Availability
 
-回報[可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
+Reports [availability web tests](app-insights-monitor-web-app-availability.md).
 
-|Path|類型|注意事項|
+|Path|Type|Notes|
 |---|---|---|
-| 可用性 [0] availabilityMetric.name | 字串 | availability |
-| 可用性 [0] availabilityMetric.value | number |1\.0 或 0.0 |
-| 可用性 [0] 計數 | integer | 100/([取樣](app-insights-sampling.md)率)。例如 4 =&gt; 25%。 |
-| 可用性 [0] dataSizeMetric.name | 字串 | |
-| 可用性 [0] dataSizeMetric.value | integer | |
-| 可用性 [0] durationMetric.name | 字串 | |
-| 可用性 [0] durationMetric.value | number | 測試持續時間。1e7==1s |
-| 可用性 [0] 訊息 | 字串 | 失敗診斷 |
-| 可用性 [0] 結果 | 字串 | 通過/失敗 |
-| 可用性 [0] runLocation | 字串 | http req 的地理區域來源 |
-| 可用性 [0] testName | 字串 | |
-| 可用性 [0] testRunId | 字串 | |
-| 可用性 [0] testTimestamp | 字串 | |
+| availability [0] availabilityMetric.name | string | availability |
+| availability [0] availabilityMetric.value | number |1.0 or 0.0 |
+| availability [0] count | integer | 100/([sampling](app-insights-sampling.md) rate). For example 4 =&gt; 25%. |
+| availability [0] dataSizeMetric.name | string | |
+| availability [0] dataSizeMetric.value | integer | |
+| availability [0] durationMetric.name | string | |
+| availability [0] durationMetric.value | number | Duration of test. 1e7==1s |
+| availability [0] message | string | Failure diagnostic |
+| availability [0] result | string | Pass/Fail |
+| availability [0] runLocation | string | Geo source of http req |
+| availability [0] testName | string | |
+| availability [0] testRunId | string | |
+| availability [0] testTimestamp | string | |
 
 
 
 
-## 度量
+## <a name="metrics"></a>Metrics
 
-由 TrackMetric() 產生。
+Generated by TrackMetric().
 
-度量值位於 context.custom.metrics[0]
+The metric value is found in context.custom.metrics[0]
 
-例如：
+For example:
 
     {
      "metric": [ ],
@@ -353,9 +355,9 @@
          } ] }
     }
 
-## 關於度量值
+## <a name="about-metric-values"></a>About metric values
 
-在度量報告和其他位置中的度量值，會利用標準物件結構回報。例如：
+Metric values, both in metric reports and elsewhere, are reported with a standard object structure. For example:
 
       "durationMetric": {
         "name": "contoso.org",
@@ -368,25 +370,31 @@
         "sampledValue": 468.71603053650279
       }
 
-目前 - 雖然近期內可能會變更 - 在所有從標準 SDK 模組回報的值中，`count==1` 以及只有 `name` 和 `value` 欄位是有用的。它們會有差異的唯一案例是，如果您撰寫自己的 TrackMetric 呼叫，而且您在其中設定其他參數。
+Currently - though this might change in the future - in all values reported from the standard SDK modules, `count==1` and only the `name` and `value` fields are useful. The only case where they would be different would be if you write your own TrackMetric calls in which you set the other parameters. 
 
-其他欄位的目的是允許度量在 SDK 中彙總，以減少入口網站的流量。例如，您可以在傳送每個度量報告之前平均數個連續的讀數。然後您會計算 min、max、標準差和彙總值 (sum 或 average)，並將計數設為報告所代表的讀數數目。
+The purpose of the other fields is to allow metrics to be aggregated in the SDK, to reduce traffic to the portal. For example, you could average several successive readings before sending each metric report. Then you would calculate the min, max, standard deviation and aggregate value (sum or average) and set count to the number of readings represented by the report. 
 
-在上述資料表中，我們省略了很少使用的欄位計數、min、max、stdDev 和 sampledValue。
+In the tables above, we have omitted the rarely-used fields count, min, max, stdDev and sampledValue.
 
-除了使用預先彙總的度量，如果您需要減少遙測量，您可以改為使用[取樣](app-insights-sampling.md)。
-
-
-### 持續時間
-
-除非另有說明，否則持續時間皆以十分之一微秒表示，所以 10000000.0 表示 1 秒。
+Instead of pre-aggregating metrics, you can use [sampling](app-insights-sampling.md) if you need to reduce the volume of telemetry.
 
 
+### <a name="durations"></a>Durations
 
-## 另請參閱
+Except where otherwise noted, durations are represented in tenths of a microsecond, so that 10000000.0 means 1 second.
+
+
+
+## <a name="see-also"></a>See also
 
 * [Application Insights](app-insights-overview.md) 
-* [連續匯出](app-insights-export-telemetry.md)
-* [程式碼範例](app-insights-export-telemetry.md#code-samples)
+* [Continuous Export](app-insights-export-telemetry.md)
+* [Code samples](app-insights-export-telemetry.md#code-samples)
 
-<!---HONumber=AcomDC_0518_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

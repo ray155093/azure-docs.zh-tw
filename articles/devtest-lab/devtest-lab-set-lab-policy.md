@@ -1,140 +1,146 @@
 <properties
-	pageTitle="在 Azure DevTest Labs 中定義實驗室原則 | Microsoft Azure"
-	description="了解如何定義實驗室原則，例如 VM 大小、每位使用者的 VM 數目上限，以及自動關機。"
-	services="devtest-lab,virtual-machines"
-	documentationCenter="na"
-	authors="tomarcher"
-	manager="douge"
-	editor=""/>
+    pageTitle="Define lab policies in Azure DevTest Labs| Microsoft Azure"
+    description="Learn how to define lab policies such as VM sizes, maximum VMs per user, and shutdown automation."
+    services="devtest-lab,virtual-machines"
+    documentationCenter="na"
+    authors="tomarcher"
+    manager="douge"
+    editor=""/>
 
 <tags
-	ms.service="devtest-lab"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/12/2016"
-	ms.author="tarcher"/>
+    ms.service="devtest-lab"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/12/2016"
+    ms.author="tarcher"/>
 
-# 在 Azure DevTest Labs 中定義實驗室原則
+
+# <a name="define-lab-policies-in-azure-devtest-labs"></a>Define lab policies in Azure DevTest Labs
 
 > [AZURE.VIDEO how-to-set-vm-policies-in-a-devtest-lab]
 
-Azure DevTest Labs 可讓您指定可協助您控制成本並減少實驗室浪費的主要原則。這些實驗室原則包括每位使用者和每個實驗室可建立的 VM 數目上限，以及各種自動關機和自動啟動選項。
+Azure DevTest Labs enables you to specify key policies that help you to control cost and minimize waste in your labs. These lab policies include the maximum number of VMs created per user and per lab, and various auto-shutdown and auto-start options. 
 
-## 在 Azure DevTest Labs 中存取實驗室的原則
+## <a name="accessing-a-lab's-policies-in-azure-devtest-labs"></a>Accessing a lab's policies in Azure DevTest Labs
 
-下列步驟將引導您完成在 Azure DevTest Labs 中設定實驗室原則的步驟︰
+The following steps guide you through setting up policies for a lab in Azure DevTest Labs:
 
-若要檢視 (及變更) 實驗室的原則，請依照下列步驟操作：
+To view (and change) the policies for a lab, follow these steps:
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. Select **More services**, and then select **DevTest Labs** from the list.
 
-1. 從實驗室清單中，選取所需的實驗室。
+1. From the list of labs, select the desired lab.   
 
-1. 選取 [原則設定]。
+1. Select **Policy settings**.
 
-1. [原則設定] 刀鋒視窗包含一個功能表，內含您可以指定的設定︰
+1. The **Policy settings** blade contains a menu of settings that you can specify: 
 
-	![[原則設定] 刀鋒視窗](./media/devtest-lab-set-lab-policy/policies.png)
+    ![Policy settings blade](./media/devtest-lab-set-lab-policy/policies.png)
 
-	若要深入了解如何設定某個原則，請從下列清單中選取它：
+    To learn more about setting a policy, select it from the following list:
 
-	- [允許的虛擬機器大小](#set-allowed-virtual-machine-sizes) - 選取實驗室中允許的 VM 大小清單。使用者只能從此清單中建立 VM。
+    - [Allowed virtual machine sizes](#set-allowed-virtual-machine-sizes) - Select the list of VM sizes allowed in the lab. A user can create VMs only from this list.
 
-	- [每位使用者的虛擬機器數目](#set-virtual-machines-per-user) - 指定一位使用者可以建立的 VM 數目上限。
+    - [Virtual machines per user](#set-virtual-machines-per-user) - Specify the maximum number of VMs that can be created by a user. 
 
-	- [每個實驗室的虛擬機器數目](#set-virtual-machines-per-lab) - 指定可以為一個實驗室建立的 VM 數目上限。
+    - [Virtual machines per lab](#set-virtual-machines-per-lab) - Specify the maximum number of VMs that can be created for a lab. 
 
-	- [自動關機](#set-auto-shutdown) - 指定目前實驗室的 VM 自動關機時間。
+    - [Auto-shutdown](#set-auto-shutdown) - Specify the time when the current lab's VMs automatically shut down.
 
-	- [自動啟動](#set-auto-start) - 指定目前實驗室的 VM 自動啟動時間。
+    - [Auto-start](#set-auto-start) - Specify the time when the current lab's VMs automatically start up.
 
-## 設定允許的虛擬機器大小
+## <a name="set-allowed-virtual-machine-sizes"></a>Set allowed virtual machine sizes
 
-設定允許的 VM 大小的原則有助於將實驗室的成本浪費降至最低，方式是讓您指定實驗室中允許的 VM 大小。如果啟用此原則，就只能使用此清單中的 VM 大小來建立 VM。
+The policy for setting the allowed VM sizes helps to minimize lab waste by enabling you to specify which VM sizes are allowed in the lab. If this policy is activated, only VM sizes from this list can be used to create VMs.
 
-1. 在實驗室的 [原則設定] 刀鋒視窗上，選取 [允許的虛擬機器大小]。
+1. On the lab's **Policy settings** blade, select **Allowed virtual machines sizes**.
 
-	![允許的虛擬機器大小](./media/devtest-lab-set-lab-policy/allowed-vm-sizes.png)
+    ![Allowed virtual machines sizes](./media/devtest-lab-set-lab-policy/allowed-vm-sizes.png)
  
-1. 選取 [開啟] 來啟用此原則，以及選取 [關閉] 來停用它。
+1. Select **On** to enable this policy, and **Off** to disable it.
 
-1. 如果啟用這個原則，請選取一或多個可在實驗室中建立的 VM 大小。
+1. If you enable this policy, select one or more VM sizes that can be created in your lab.
 
-1. 選取 [**儲存**]。
+1. Select **Save**.
 
-## 設定每位使用者的虛擬機器數目
+## <a name="set-virtual-machines-per-user"></a>Set virtual machines per user
 
-[每位使用者的虛擬機器數目] 原則可讓您指定個別使用者可以建立的 VM 數目上限。當達到使用者限制時，如果使用者嘗試建立 VM，就會顯示錯誤訊息，指出無法建立 VM。
+The policy for **Virtual machines per user** allows you to specify the maximum number of VMs that can be created by an individual user. If a user attempts to create a VM when the user limit has been met, an error message indicates that the VM cannot be created. 
 
-1. 在實驗室的 [原則設定] 刀鋒視窗上，選取 [每位使用者的虛擬機器數目]。
+1. On the lab's **Policy settings** blade, select **Virtual machines per user**.
 
-	![每位使用者的虛擬機器數目](./media/devtest-lab-set-lab-policy/max-vms-per-user.png)
+    ![Virtual machines per user](./media/devtest-lab-set-lab-policy/max-vms-per-user.png)
 
-1. 選取 [開啟] 來啟用此原則，以及選取 [關閉] 來停用它。
+1. Select **On** to enable this policy, and **Off** to disable it.
 
-1. 如果您啟用這個原則，請輸入一個指出使用者可建立之 VM 數目上限的數值。如果您輸入無效的數字，UI 將會顯示此欄位允許的最大數目。
+1. If you enable this policy, enter a numeric value indicating the maximum number of VMs that can be created by a user. If you enter a number that is not valid, the UI displays the maximum number allowed for this field.
 
-1. 選取 [儲存]。
+1. Select **Save**.
 
-## 設定每個實驗室的虛擬機器數目
+## <a name="set-virtual-machines-per-lab"></a>Set virtual machines per lab
 
-[每個實驗室的虛擬機器數目] 原則可讓您指定可為目前實驗室建立的 VM 數目上限。當達到實驗室限制時，如果使用者嘗試建立 VM，就會顯示錯誤訊息，指出無法建立 VM。
+The policy for **Virtual machines per lab** allows you to specify the maximum number of VMs that can be created for the current lab. If a user attempts to create a VM when the lab limit has been met, an error message indicates that the VM cannot be created. 
 
-1. 在實驗室的 [原則設定] 刀鋒視窗上，選取 [每個實驗室的虛擬機器數目]。
+1. On the lab's **Policy settings** blade, select **Virtual machines per lab**.
 
-	![每個實驗室的虛擬機器數目](./media/devtest-lab-set-lab-policy/total-vms-allowed.png)
+    ![Virtual machines per lab](./media/devtest-lab-set-lab-policy/total-vms-allowed.png)
 
-1. 選取 [開啟] 來啟用此原則，以及選取 [關閉] 來停用它。
+1. Select **On** to enable this policy, and **Off** to disable it.
 
-1. 如果啟用這個原則，請輸入一個指出可為目前實驗室建立之 VM 數目上限的數值。如果您輸入無效的數字，UI 將會顯示此欄位允許的最大數目。
+1. If you enable this policy, enter a numeric value indicating the maximum number of VMs that can be created for the current lab. If you enter a number that is not valid, the UI displays the maximum number allowed for this field.
 
-1. 選取 [儲存]。
+1. Select **Save**.
 
-## 設定自動關機
+## <a name="set-auto-shutdown"></a>Set auto-shutdown
 
-自動關機原則有助於將實驗室的成本浪費降至最低，方式是讓您指定這個實驗室中 VM 的關機時間。
+The auto-shutdown policy helps to minimize lab waste by allowing you to specify the time that this lab's VMs shut down.
 
-1. 在實驗室的 [原則設定] 刀鋒視窗上，選取 [自動關機]。
+1. On the lab's **Policy settings** blade, select **Auto-shutdown**.
 
-	![自動關機](./media/devtest-lab-set-lab-policy/auto-shutdown.png)
+    ![Auto-shutdown](./media/devtest-lab-set-lab-policy/auto-shutdown.png)
 
-1. 選取 [開啟] 來啟用此原則，以及選取 [關閉] 來停用它。
+1. Select **On** to enable this policy, and **Off** to disable it.
 
-1. 如果啟用這個原則，您可指定目前實驗室中所有 VM 關機的當地時間。
+1. If you enable this policy, specify the local time to shut down all VMs in the current lab.
 
-1. 選取 [**儲存**]。
+1. Select **Save**.
 
-1. 根據預設，這個原則一經啟用，就會套用到目前實驗室的所有 VM。若要移除特定 VM 的這項設定，請開啟 VM 的刀鋒視窗並變更其 [自動關機] 設定。
+1. By default, once enabled, this policy applies to all VMs in the current lab. To remove this setting from a specific VM, open the VM's blade and change its **Auto-shutdown** setting 
 
-## 設定自動啟動
+## <a name="set-auto-start"></a>Set auto-start
 
-自動啟動原則可讓您指定目前實驗室 VM 應該啟動的時間。
+The auto-start policy allows you to specify when the VMs in the current lab should be started.  
 
-1. 在實驗室的 [原則設定] 刀鋒視窗上，選取 [自動啟動]。
+1. On the lab's **Policy settings** blade, select **Auto-start**.
 
-	![自動啟動](./media/devtest-lab-set-lab-policy/auto-start.png)
+    ![Auto-start](./media/devtest-lab-set-lab-policy/auto-start.png)
 
-1. 選取 [開啟] 來啟用此原則，以及選取 [關閉] 來停用它。
+1. Select **On** to enable this policy, and **Off** to disable it.
 
-1. 如果您啟用這個原則，請指定本機排定的啟動時間和該時間適用於星期幾。
+1. If you enable this policy, specify the local scheduled start time and the days of the week for which the time applies. 
 
-1. 選取 [**儲存**]。
+1. Select **Save**.
 
-1. 這個原則一經啟用，就不會自動套用到目前實驗室中的任何 VM。若要將這項設定套用至特定的 VM，請開啟 VM 的刀鋒視窗並變更其 [自動啟動] 設定。
+1. Once enabled, this policy is not automatically applied to any VMs in the current lab. To apply this setting to a specific VM, open the VM's blade and change its **Auto-start** setting 
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-實驗室一旦定義並套用了各種 VM 原則設定，接下來就要嘗試一些作業：
+Once you've defined and applied the various VM policy settings for your lab, here are some things to try next:
 
-- [設定成本管理](./devtest-lab-configure-cost-management.md) - 示範如何使用 [每月估計成本趨勢] 圖表，來檢視本月到目前為止的估計成本，以及預計的月底成本。
-- [建立自訂映像](./devtest-lab-create-template.md) - 當您建立 VM 時，您要指定一個基本映像，它可以是自訂映像或 Marketplace 映像。本文會示範如何從 VHD 檔案建立自訂的映像。
-- [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - Azure DevTest Labs 支援根據 Azure Marketplace 映像建立 VM。本文會示範在實驗室中建立 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
-- [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立 VM，以及如何使用 VM 中的構件。
+- [Configure cost management](./devtest-lab-configure-cost-management.md) - Illustrates how to use the **Monthly Estimated Cost Trend** chart  
+to view the current month's estimated cost-to-date and the projected end-of-month cost.
+- [Create custom image](./devtest-lab-create-template.md) - When you create a VM, you specify a base, which can be either a custom image or a Marketplace image. This article illustrates how to create a custom image from a VHD file.
+- [Configure Marketplace images](./devtest-lab-configure-marketplace-images.md) - Azure DevTest Labs supports creating VMs based on Azure Marketplace images. This article illustrates how to specify which, if any, Azure Marketplace images can be used when creating VMs in a lab.
+- [Create a VM in a lab](./devtest-lab-add-vm-with-artifacts.md) - Illustrates how to create a VM from a base image (either custom or Marketplace), and how to work with artifacts in your VM.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

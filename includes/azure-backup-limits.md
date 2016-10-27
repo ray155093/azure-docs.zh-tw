@@ -1,24 +1,35 @@
-<properties
-   pageTitle="Azure 備份限制資料表"
-   description="描述 Azure 備份的系統限制。"
+ (backup vaults<properties
+   pageTitle="Azure Backup limits table"
+   description="Describes system limits for Azure Backup."
    services="backup"
    documentationCenter="NA"
    authors="Jim-Parker"
    manager="jwhit"
    editor="" />
-<tags  ms.service="backup" ms.devlang="NA" ms.topic="article" ms.tgt_pltfrm="NA" ms.workload="TBD" ms.date="10/05/2015" ms.author="trinadhk";"jimpark"; "aashishr" />
+<tags
+   ms.service="backup"
+   ms.devlang="NA"
+   ms.topic="article"
+   ms.tgt_pltfrm="NA"
+   ms.workload="TBD"
+   ms.date="10/05/2015"
+   ms.author="trinadhk";"jimpark"; "aashishr" />
 
 
-下列限制適用於 Azure 備份。
+The following limits apply to Azure Backup.
 
-| 限制識別碼 | 預設限制 |
+| Limit Identifier | Default Limit |
 |---|---|
-|可針對每個保存庫註冊的伺服器/電腦數目|如為 Windows Server/用戶端/SCDPM 則有 50 個，<br/>如為 IaaS VM 則有 200 個|
-|在 Azure 保存庫儲存體中所儲存資料的資料來源大小|最大 54400 GB<sup>1</sup>|
-|可以在每個 Azure 訂用帳戶中建立的備份保存庫的數目|25|
-|每日可以排程的備份次數|Windows 伺服器/用戶端每日 3 次<br/>SCDPM 每日 2 次<br/> IaaS VM 每日一次|
-|連接到 Azure 虛擬機器進行備份的資料磁碟|16|
+|Number of servers/machines that can be registered against each vault|50 for Windows Server/Client/SCDPM <br/> 200 for IaaS VMs|
+|Size of a data source for data stored in Azure vault storage|54400 GB max<sup>1</sup>|
+|Number of backup vaults that can be created in each Azure subscription|25(Backup vaults) <br/> 25 Recovery Services vault per region|
+|Number of times backup can be scheduled per day|3 per day for Windows Server/Client <br/> 2 per day for SCDPM <br/> Once a day for IaaS VMs|
+|Data disks attached to an Azure virtual machine for backup|16|
 
-- <sup>1</sup>54400 GB 上限並不適用於 IaaS VM 備份。
+- <sup>1</sup>The 54400 GB limit does not apply to IaaS VM backup.
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

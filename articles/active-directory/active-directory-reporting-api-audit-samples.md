@@ -16,29 +16,32 @@
     ms.date="09/28/2016"
     ms.author="dhanyahk;markvi"/>
 
-# Azure Active Directory 報告稽核 API 範例
 
-本主題是 Azure Active Directory 報告 API 相關主題集合的一部分。Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽核資料。本主題的範疇是為您提供**稽核 API** 的範例程式碼。
+# <a name="azure-active-directory-reporting-audit-api-samples"></a>Azure Active Directory 報告稽核 API 範例
+
+本主題是 Azure Active Directory 報告 API 相關主題集合的一部分。  
+Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽核資料。
+本主題的範疇是為您提供 **稽核 API**的範例程式碼。
 
 請參閱：
 
-- [稽核記錄](active-directory-reporting-azure-portal.md#audit-logs)以取得詳細概念資訊
+- [稽核記錄](active-directory-reporting-azure-portal.md#audit-logs) 以取得詳細概念資訊
 
 - [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
 
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
 
-## 必要條件
-您必須先完成[存取 Azure AD 報告 API 的必要條件](active-directory-reporting-api-prerequisites.md)，才能使用本主題中的範例。
+## <a name="prerequisites"></a>必要條件
+您必須先完成 [存取 Azure AD 報告 API 的必要條件](active-directory-reporting-api-prerequisites.md)，才能使用本主題中的範例。  
   
 
-## 已知問題
+## <a name="known-issue"></a>已知問題
 
-如果您的租用戶位於歐洲地區，「應用程式驗證」將無法運作。請使用「使用者驗證」做為因應措施來存取稽核 API，直到我們修正此問題為止。
+如果您的租用戶位於歐洲地區，「應用程式驗證」將無法運作。 請使用「使用者驗證」做為因應措施來存取稽核 API，直到我們修正此問題為止。 
 
 
-## PowerShell 指令碼
+## <a name="powershell-script"></a>PowerShell 指令碼
     # This script will require registration of a Web Application in Azure Active Directory (see https://azure.microsoft.com/documentation/articles/active-directory-reporting-api-getting-started/)
 
     # Constants
@@ -83,13 +86,13 @@
     $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 
-### 執行 PowerShell 指令碼
+### <a name="executing-the-powershell-script"></a>執行 PowerShell 指令碼
 完成指令碼編輯後，加以執行並確認從稽核記錄報告傳回預期的資料。
 
-指令碼會以 JSON 格式傳回稽核報告的輸出。它也會建立具有相同輸出的 `audit.json` 檔案。您可透過修改指令碼以從其他報告傳回資料來進行實驗，以及取消註解您不需要的輸出格式。
+指令碼會以 JSON 格式傳回稽核報告的輸出。 它也會建立具有相同輸出的 `audit.json` 檔案。 您可透過修改指令碼以從其他報告傳回資料來進行實驗，以及取消註解您不需要的輸出格式。
 
 
-## Bash 指令碼
+## <a name="bash-script"></a>Bash 指令碼
 
     #!/bin/bash
 
@@ -118,58 +121,62 @@
 
     echo $REPORT | ./jq-win64.exe -r '.value' | ./jq-win64.exe -r ".[]"
 
-## Python 指令碼
+## <a name="python-script"></a>Python 指令碼
 
-	# Author: Michael McLaughlin (michmcla@microsoft.com)
-	# Date: January 20, 2016
-	# This requires the Python Requests module: http://docs.python-requests.org
+    # Author: Michael McLaughlin (michmcla@microsoft.com)
+    # Date: January 20, 2016
+    # This requires the Python Requests module: http://docs.python-requests.org
 
-	import requests
-	import datetime
-	import sys
+    import requests
+    import datetime
+    import sys
 
-	client_id = 'your-application-client-id-here'
-	client_secret = 'your-application-client-secret-here'
-	login_url = 'https://login.windows.net/'
-	tenant_domain = 'your-directory-name-here.onmicrosoft.com'
+    client_id = 'your-application-client-id-here'
+    client_secret = 'your-application-client-secret-here'
+    login_url = 'https://login.windows.net/'
+    tenant_domain = 'your-directory-name-here.onmicrosoft.com'
 
-	# Get an OAuth access token
-	bodyvals = {'client_id': client_id,
-	            'client_secret': client_secret,
-	            'grant_type': 'client_credentials'}
+    # Get an OAuth access token
+    bodyvals = {'client_id': client_id,
+                'client_secret': client_secret,
+                'grant_type': 'client_credentials'}
 
-	request_url = login_url + tenant_domain + '/oauth2/token?api-version=1.0'
-	token_response = requests.post(request_url, data=bodyvals)
+    request_url = login_url + tenant_domain + '/oauth2/token?api-version=1.0'
+    token_response = requests.post(request_url, data=bodyvals)
 
-	access_token = token_response.json().get('access_token')
-	token_type = token_response.json().get('token_type')
+    access_token = token_response.json().get('access_token')
+    token_type = token_response.json().get('token_type')
 
-	if access_token is None or token_type is None:
-	    print "ERROR: Couldn't get access token"
-	    sys.exit(1)
+    if access_token is None or token_type is None:
+        print "ERROR: Couldn't get access token"
+        sys.exit(1)
 
-	# Use the access token to make the API request
-	yesterday = datetime.date.strftime(datetime.date.today() - datetime.timedelta(days=1), '%Y-%m-%d')
+    # Use the access token to make the API request
+    yesterday = datetime.date.strftime(datetime.date.today() - datetime.timedelta(days=1), '%Y-%m-%d')
 
-	header_params = {'Authorization': token_type + ' ' + access_token}
-	request_string = 'https://graph.windows.net/' + tenant_domain + 'activities/audit?api-version=beta&$filter=eventTime%20gt%20' + yesterday   
-	response = requests.get(request_string, headers = header_params)
+    header_params = {'Authorization': token_type + ' ' + access_token}
+    request_string = 'https://graph.windows.net/' + tenant_domain + 'activities/audit?api-version=beta&$filter=eventTime%20gt%20' + yesterday   
+    response = requests.get(request_string, headers = header_params)
 
-	if response.status_code is 200:
-	    print response.content
-	else:
-	    print 'ERROR: API request failed'
-
-
+    if response.status_code is 200:
+        print response.content
+    else:
+        print 'ERROR: API request failed'
 
 
 
-## 後續步驟
 
-- 您要自訂本主題中的範例嗎？ 請查看 [Azure Active Directory 稽核 API 參考](active-directory-reporting-api-audit-reference.md)。
 
-- 如果您想要查看使用 Azure Active Directory 報告 API 的完整概觀，請參閱[開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
+## <a name="next-steps"></a>後續步驟
 
-- 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。
+- 您要自訂本主題中的範例嗎？ 請查看 [Azure Active Directory 稽核 API 參考](active-directory-reporting-api-audit-reference.md)。 
 
-<!---HONumber=AcomDC_0928_2016-->
+- 如果您想要查看使用 Azure Active Directory 報告 API 的完整概觀，請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
+
+- 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Lynda.com 整合 | Microsoft Azure" 
-    description="了解如何使用 Lynda.com 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Lynda.com | Microsoft Azure" 
+    description="Learn how to use Lynda.com with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,108 +11,115 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/08/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Lynda.com 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-lynda.com"></a>Tutorial: Azure Active Directory integration with Lynda.com
   
-本教學課程的目的是要示範 Azure 與 Lynda.com 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Lynda.com.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   Lynda.com 租用戶
+-   A valid Azure subscription
+-   A Lynda.com tenant
   
-完成本教學課程之後，您指派給 Lynda.com 的 Azure AD 使用者就能夠單一登入您 Lynda.com 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+After completing this tutorial, the Azure AD users you have assigned to Lynda.com will be able to single sign into the application at your Lynda.com company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Lynda.com 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Lynda.com
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-lynda-tutorial/IC781046.png "案例")
-##啟用 Lynda.com 的應用程式整合
+![Scenario](./media/active-directory-saas-lynda-tutorial/IC781046.png "Scenario")
+##<a name="enabling-the-application-integration-for-lynda.com"></a>Enabling the application integration for Lynda.com
   
-本節的目的是要說明如何啟用 Lynda.com 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Lynda.com.
 
-###若要啟用 Lynda.com 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-lynda.com,-perform-the-following-steps:"></a>To enable the application integration for Lynda.com, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-lynda-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-lynda-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-lynda-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-lynda-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-lynda-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-lynda-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-lynda-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在搜尋方塊中，輸入 **Lynda.com**。
+6.  In the **search box**, type **Lynda.com**.
 
-    ![應用程式庫](./media/active-directory-saas-lynda-tutorial/IC777524.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-lynda-tutorial/IC777524.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Lynda.com]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Lynda.com**, and then click **Complete** to add the application.
 
     ![Lynda.com](./media/active-directory-saas-lynda-tutorial/IC777525.png "Lynda.com")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Lynda.com 中進行驗證。
+The objective of this section is to outline how to enable users to authenticate to Lynda.com with their account in Azure AD using federation based on the SAML protocol.
 
->[AZURE.IMPORTANT]為了能夠在您的 Lynda.com 租用戶上設定單一登入，您必須先連絡 Lynda.com 技術支援以啟用此功能。
+>[AZURE.IMPORTANT]In order to be able to configure single sign-on on your Lynda.com tenant, you need to contact first the Lynda.com technical support to get this feature enabled.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Lynda.com] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Lynda.com** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-lynda-tutorial/IC777526.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-lynda-tutorial/IC777526.png "Configure single sign-on")
 
-2.  在 [要如何讓使用者登入 Lynda.com] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Lynda.com** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-lynda-tutorial/IC777527.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-lynda-tutorial/IC777527.png "Configure single sign-on")
 
-3.  在 [設定應用程式 URL] 頁面的 [Lynda.com 登入 URL] 文字方塊中，輸入您的 Lynda.com 租用戶 URL (例如：*https://shib.lynda.com/Shibboleth.sso/InCommon?providerId=https://sts.windows-ppe.net/6247032d-9415-403c-b72b-277e3fb6f2c8/&target=https://shib.lynda.com/InCommon*)，然後按一下 *[下一步]*。
+3.  On the **Configure App URL** page, in the **Lynda.com Sign In URL** textbox, type your Lynda.com tenant URL (e.g.: *https://shib.lynda.com/Shibboleth.sso/InCommon?providerId=https://sts.windows-ppe.net/6247032d-9415-403c-b72b-277e3fb6f2c8/&target=https://shib.lynda.com/InCommon*), and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-lynda-tutorial/IC781047.png "設定應用程式 URL")
+    ![Configure app URL](./media/active-directory-saas-lynda-tutorial/IC781047.png "Configure app URL")
 
-4.  在 [設定在 Lynda.com 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後將憑證檔儲存在您的本機電腦中。
+4.  On the **Configure single sign-on at Lynda.com** page, to download your metadata, click **Download metadata**, and then save the certificate file locally on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-lynda-tutorial/IC777529.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-lynda-tutorial/IC777529.png "Configure single sign-on")
 
-5.  將下載的中繼資料檔案傳送給 Lynda.com 支援小組。Lynda.com 支援小組會為您執行單一登入設定。
+5.  Send the downloaded metadata file to the Lynda.com support team. The Lynda.com support team does the Single Sign On configuration for you.
 
-6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+6.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-lynda-tutorial/IC777530.png "設定單一登入")
-##設定使用者佈建
+    ![Configure single sign-on](./media/active-directory-saas-lynda-tutorial/IC777530.png "Configure single sign-on")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-沒有動作項目可讓您設定 Lynda.com 使用者佈建。當指派的使用者嘗試使用存取面板登入 Lynda.com 時，Lynda.com 會檢查使用者是否存在。如果尚無可用的使用者帳戶，Lynda.com 會自動予以建立。
+There is no action item for you to configure user provisioning to Lynda.com.  
+When an assigned user tries to log into Lynda.com using the access panel, Lynda.com checks whether the user exists.  
+If there is no user account available yet, it is automatically created by Lynda.com.
 
->[AZURE.NOTE]您可以使用 Lynda.com 提供的任何其他 Lynda.com 使用者帳戶建立工具或 API，佈建 AAD 使用者帳戶。
+>[AZURE.NOTE]You can use any other Lynda.com user account creation tools or APIs provided by Lynda.com to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Lynda.com，請執行下列步驟：
+###<a name="to-assign-users-to-lynda.com,-perform-the-following-steps:"></a>To assign users to Lynda.com, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Lynda.com] 應用程式整合頁面中，按一下 [指派使用者]。
+2.  On the **Lynda.com **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-lynda-tutorial/IC777531.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-lynda-tutorial/IC777531.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-lynda-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-lynda-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

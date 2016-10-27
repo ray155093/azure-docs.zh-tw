@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用 Service Fabric Reliable Actors | Microsoft Azure"
-   description="本教學課程將引導您使用 Service Fabric Reliable Actors，建立、偵錯及部署簡易動作項目型服務的步驟。"
+   pageTitle="Get started with Service Fabric Reliable Actors | Microsoft Azure"
+   description="This tutorial walks you through the steps of creating, debugging, and deploying a simple actor-based service using Service Fabric Reliable Actors."
    services="service-fabric"
    documentationCenter=".net"
    authors="vturecek"
@@ -13,54 +13,64 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="07/06/2016"
+   ms.date="09/25/2016"
    ms.author="vturecek"/>
 
-# 開始使用 Reliable Actors
-本文說明 Azure Service Fabric Reliable Actors 的基本概念，並將逐步引導您在 Visual Studio 中建立、偵錯及部署簡單的 Reliable Actor 應用程式。
 
-## 安裝與設定
-開始之前，確定機器上已設定 Service Fabric 開發環境。如果需要加以設定，請參閱[如何設定開發環境](service-fabric-get-started.md)的詳細指示。
+# <a name="getting-started-with-reliable-actors"></a>Getting started with Reliable Actors
 
-## 基本概念
-若要開始使用 Reliable Actors，您只需要了解 4 個基本概念：
+> [AZURE.SELECTOR]
+- [C# on Windows](service-fabric-reliable-actors-get-started.md)
+- [Java on Linux](service-fabric-reliable-actors-get-started-java.md)
 
-* **動作項目服務**。Reliable Actors 封裝在可在 Service Fabric 基礎結構內部署的 Reliable Services 中。服務可以裝載一或多個動作項目。我們稍後將詳細討論如何在各服務之間取捨一或多個動作項目。現在讓我們假設只需要實作一個動作項目。
-* **動作項目介面**。動作項目介面用於定義動作項目的強型別公用介面。在 Reliable Actor 模型術語中，動作項目介面定義動作項目可以了解並處理的訊息類型。其他的動作項目或用戶端應用程式會使用動作項目介面將訊息「傳送」(非同步) 給動作項目。Reliable Actors 可實作多個介面。如我們所見，HelloWorld 動作項目可實作 IHelloWorld 介面，但也可以實作用來定義不同訊息和/或功能的 ILogging 介面。
-* **動作項目註冊**。在 Reliable Actors 服務中，必須註冊動作項目類型。如此一來，Service Fabric 才能感知新的類型，並將其用於建立新的動作項目。
-* **ActorProxy 類別**。用戶端應用程式會使用 ActorProxy 類別來叫用透過其介面公開的方法。ActorProxy 類別提供兩個重要的功能：
-	* 它會解析名稱。它能夠在叢集中找到動作項目 (尋找裝載動作項目的叢集節點)。
-	* 它會處理失敗。它可以重試方法叫用並重新決定動作項目位置，例如在需要動作項目重新定位至叢集中另一個節點失敗後進行。
+This article explains the basics of Azure Service Fabric Reliable Actors and walks you through creating, debugging, and deploying a simple Reliable Actor application in Visual Studio.
 
-值得一提的是下列與動作項目介面相關的規則︰
+## <a name="installation-and-setup"></a>Installation and setup
+Before you start, ensure that you have the Service Fabric development environment set up on your machine.
+If you need to set it up, see detailed instructions on [how to set up the development environment](service-fabric-get-started.md).
 
-- 動作項目介面方法無法多載。
-- 動作項目介面方法不能有 out、ref 或選擇性參數。
-- 不支援泛型介面。
+## <a name="basic-concepts"></a>Basic concepts
+To get started with Reliable Actors, you only need to understand a few basic concepts:
 
-## 在 Visual Studio 中建立新專案
-安裝 Visual Studio 專用的 Service Fabric 工具後，您可以建立新的專案類型。新專案類型位在 [新專案] 對話方塊的 [雲端] 類別下。
+ * **Actor service**. Reliable Actors are packaged in Reliable Services that can be deployed in the Service Fabric infrastructure. Actor instances are activated in a named service instance.
+ 
+ * **Actor registration**. As with Reliable Services, a Reliable Actor service needs to be registered with the Service Fabric runtime. In addition, the actor type needs to be registered with the Actor runtime.
+ 
+ * **Actor interface**. The actor interface is used to define a strongly typed public interface of an actor. In the Reliable Actor model terminology, the actor interface defines the types of messages that the actor can understand and process. The actor interface is used by other actors and client applications to "send" (asynchronously) messages to the actor. Reliable Actors can implement multiple interfaces.
+ 
+ * **ActorProxy class**. The ActorProxy class is used by client applications to invoke the methods exposed through the actor interface. The ActorProxy class provides two important functionalities:
+    * Name resolution: It is able to locate the actor in the cluster (find the node of the cluster where it is hosted).
+    * Failure handling: It can retry method invocations and re-resolve the actor location after, for example, a failure that requires the actor to be relocated to another node in the cluster.
+
+The following rules that pertain to actor interfaces are worth mentioning:
+
+- Actor interface methods cannot be overloaded.
+- Actor interface methods must not have out, ref, or optional parameters.
+- Generic interfaces are not supported.
+
+## <a name="create-a-new-project-in-visual-studio"></a>Create a new project in Visual Studio
+After you have installed the Service Fabric tools for Visual Studio, you can create new project types. The new project types are under the **Cloud** category of the **New Project** dialog box.
 
 
-![適用於 Visual Studio 的 Service Fabric 工具 - 新專案][1]
+![Service Fabric tools for Visual Studio - new project][1]
 
-在下一個對話方塊中，您可選擇您要建立的專案類型。
+In the next dialog box, you can choose the type of project that you want to create.
 
-![Service Fabric 專案範本][5]
+![Service Fabric project templates][5]
 
-讓我們為 HelloWorld 專案使用 Service Fabric Reliable Actors 服務。
+For the HelloWorld project, let's use the Service Fabric Reliable Actors service.
 
-建立方案之後，您應該會看到下列結構：
+After you have created the solution, you should see the following structure:
 
-![Service Fabric 專案結構][2]
+![Service Fabric project structure][2]
 
-## Reliable Actors 項目基本建置組塊
+## <a name="reliable-actors-basic-building-blocks"></a>Reliable Actors basic building blocks
 
-典型的 Reliable Actors 方案是由 3 個專案組成：
+A typical Reliable Actors solution is composed of three projects:
 
-* **應用程式專案 (MyActorApplication)**。此專案會將所有的服務封裝在一起部署。其包含了用於管理應用程式的 ApplicationManifest.xml 與 PowerShell 指令碼。
+* **The application project (MyActorApplication)**. This is the project that packages all of the services together for deployment. It contains the *ApplicationManifest.xml* and PowerShell scripts for managing the application.
 
-* **介面專案 (MyActor.Interfaces)**。此專案包含動作項目的介面定義。在 MyActor.Interfaces 專案中，您可以定義將由方案中的動作項目使用者介面。可以在任何專案中使用任何名稱定義動作項目介面，不過該介面會定義由動作項目實作與呼叫動作項目的用戶端所共用的動作項目合約，因此通常適合在不同於動作項目實作的組件中定義該合約，並可由多個其他專案共用。
+* **The interface project (MyActor.Interfaces)**. This is the project that contains the interface definition for the actor. In the MyActor.Interfaces project, you can define the interfaces that will be used by the actors in the solution. Your actor interfaces can be defined in any project with any name, however the interface defines the actor contract that is shared by the actor implementation and the clients calling the actor, so it typically makes sense to define it in an assembly that is separate from the actor implementation and can be shared by multiple other projects.
 
 ```csharp
 public interface IMyActor : IActor
@@ -69,7 +79,7 @@ public interface IMyActor : IActor
 }
 ```
 
-* **動作項目服務專案 (MyActor)**。此專案用於定義即將裝載動作項目的 Service Fabric 服務。它包含動作項目的實作。動作項目實作是衍生自基底類型 `Actor` 的類別，可實作 MyActor.Interfaces 專案中所定義的介面。
+* **The actor service project (MyActor)**. This is the project used to define the Service Fabric service that is going to host the actor. It contains the implementation of the actor. An actor implementation is a class that derives from the base type `Actor` and implements the interface(s) that are defined in the MyActor.Interfaces project.
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -82,7 +92,7 @@ internal class MyActor : Actor, IMyActor
 }
 ```
 
-必須在 Service Fabric 執行階段中以某個服務類型註冊動作項目服務。為了讓動作項目服務執行您的動作項目執行個體，也必須向動作項目服務註冊動作項目類型。`ActorRuntime` 註冊方法會替動作項目執行這項工作。
+The actor service must be registered with a service type in the Service Fabric runtime. In order for the Actor Service to run your actor instances, your actor type must also be registered with the Actor Service. The `ActorRuntime` registration method performs this work for actors.
 
 ```csharp
 internal static class Program
@@ -106,31 +116,31 @@ internal static class Program
 
 ```
 
-如果您從在 Visual Studio 中建立新專案開始，且您只有一個動作項目定義，則該註冊預設會包含在 Visual Studio 產生的程式碼中。如果您在服務中定義其他的動作，您必須使用下列項目新增動作項目註冊：
+If you start from a new project in Visual Studio and you have only one actor definition, the registration is included by default in the code that Visual Studio generates. If you define other actors in the service, you need to add the actor registration by using:
 
 ```csharp
  ActorRuntime.RegisterActorAsync<MyOtherActor>();
 
 ```
 
-> [AZURE.TIP] Service Fabric Actors 執行階段會發出某些[事件和與動作項目方法相關的效能計數器](service-fabric-reliable-actors-diagnostics.md#actor-method-events-and-performance-counters)。這些項目對於診斷與效能監視很有幫助。
+> [AZURE.TIP] The Service Fabric Actors runtime emits some [events and performance counters related to actor methods](service-fabric-reliable-actors-diagnostics.md#actor-method-events-and-performance-counters). They are useful in diagnostics and performance monitoring.
 
 
-## Debugging
+## <a name="debugging"></a>Debugging
 
-Visual Studio 專用的 Service Fabric 工具支援在本機機器上偵錯。您可以點擊 F5 鍵開始偵錯工作階段。Visual Studio 會建置封裝 (如有必要)。它也會在本機 Service Fabric 叢集上部署應用程式並附加偵錯工具。
+The Service Fabric tools for Visual Studio support debugging on your local machine. You can start a debugging session by hitting the F5 key. Visual Studio builds (if necessary) packages. It also deploys the application on the local Service Fabric cluster and attaches the debugger.
 
-在部署的過程中，您可在 [輸出] 視窗中查看進度。
+During the deployment process, you can see the progress in the **Output** window.
 
-![Service Fabric 偵錯輸出視窗][3]
+![Service Fabric debugging output window][3]
 
 
-## 後續步驟
- - [Reliable Acto 如何使用 Service Fabric 平台](service-fabric-reliable-actors-platform.md)
- - [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)
- - [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
- - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
- - [範例程式碼](https://github.com/Azure/servicefabric-samples)
+## <a name="next-steps"></a>Next steps
+ - [How Reliable Actors use the Service Fabric platform](service-fabric-reliable-actors-platform.md)
+ - [Actor state management](service-fabric-reliable-actors-state-management.md)
+ - [Actor lifecycle and garbage collection](service-fabric-reliable-actors-lifecycle.md)
+ - [Actor API reference documentation](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+ - [Sample code](https://github.com/Azure/servicefabric-samples)
 
 
 <!--Image references-->
@@ -140,4 +150,8 @@ Visual Studio 專用的 Service Fabric 工具支援在本機機器上偵錯。�
 [4]: ./media/service-fabric-reliable-actors-get-started/vs-context-menu.png
 [5]: ./media/service-fabric-reliable-actors-get-started/reliable-actors-newproject1.PNG
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

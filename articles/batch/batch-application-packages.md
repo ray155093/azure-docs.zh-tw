@@ -1,192 +1,193 @@
 <properties
-	pageTitle="Azure Batch 中的簡易應用程式安裝和管理功能 |Microsoft Azure"
-	description="使用 Azure Batch 的應用程式封裝功能輕鬆地管理多個應用程式和版本，以便安裝在 Batch 計算節點。"
-	services="batch"
-	documentationCenter=".net"
-	authors="mmacy"
-	manager="timlt"
-	editor="" />
+    pageTitle="Easy application installation and management in Azure Batch | Microsoft Azure"
+    description="Use the application packages feature of Azure Batch to easily manage multiple applications and versions for installation on Batch compute nodes."
+    services="batch"
+    documentationCenter=".net"
+    authors="mmacy"
+    manager="timlt"
+    editor="" />
 
 <tags
-	ms.service="batch"
-	ms.devlang="multiple"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows"
-	ms.workload="big-compute"
-	ms.date="08/25/2016"
-	ms.author="marsma" />
+    ms.service="batch"
+    ms.devlang="multiple"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows"
+    ms.workload="big-compute"
+    ms.date="08/25/2016"
+    ms.author="marsma" />
 
-# 使用 Azure Batch 應用程式封裝部署應用程式
 
-Azure Batch 的應用程式套件功能可讓您輕鬆管理工作應用程式並將其部署到集區中的計算節點。透過應用程式套件，您可以上傳和管理工作所執行的多個應用程式版本，包括其支援檔案。接著，您可以將一或多個這種類型的應用程式自動部署到集區中的計算節點。
+# <a name="application-deployment-with-azure-batch-application-packages"></a>Application deployment with Azure Batch application packages
 
-在本文中，您將了解如何使用 Azure 入口網站上傳和管理應用程式套件。然後，您將了解如何使用 [Batch .NET][api_net] 程式庫將套件安裝在集區的計算節點上。
+The application packages feature of Azure Batch provides easy management of task applications and their deployment to the compute nodes in your pool. With application packages, you can upload and manage multiple versions of the applications your tasks run, including their supporting files. You can then automatically deploy one or more of these applications to the compute nodes in your pool.
 
-> [AZURE.NOTE] 此處所述的應用程式封裝功能取代了舊版服務中的「Batch Apps」功能。
+In this article, you will learn how to upload and manage application packages in the Azure portal. You will then learn how to install them on a pool's compute nodes with the [Batch .NET][api_net] library.
 
-## 應用程式封裝需求
+> [AZURE.NOTE] The application packages feature described here supersedes the "Batch Apps" feature available in previous versions of the service.
 
-您必須先[連結 Azure 儲存體帳戶](#link-a-storage-account)到您的 Batch 帳戶，才能使用應用程式套件。
+## <a name="application-package-requirements"></a>Application package requirements
 
-本文所討論的應用程式套件功能「僅」能與 2016 年 3 月 10 日後建立的 Batch 集區相容。應用程式封裝將無法部署到在此日期之前建立之集區中的計算節點。
+You must [link an Azure Storage account](#link-a-storage-account) to your Batch account to use application packages.
 
-[Batch REST API][api_rest] 2015-12-01.2.2 版和對應的 [Batch .NET][api_net] 程式庫 3.1.0 版引進這項功能。使用 Batch 時，我們建議您一律使用最新的 API 版本。
+The application packages feature discussed in this article is compatible *only* with Batch pools that were created after 10 March 2016. Application packages will not be deployed to compute nodes in pools created before this date.
 
-> [AZURE.IMPORTANT] 目前，只有「CloudServiceConfiguration」集區支援應用程式套件。您無法在使用 VirtualMachineConfiguration 映像建立的集區中使用應用程式封裝。如需這兩種不同組態的詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)的[虛擬機器組態](batch-linux-nodes.md#virtual-machine-configuration)一節。
+This feature was introduced in [Batch REST API][api_rest] version 2015-12-01.2.2 and the corresponding [Batch .NET][api_net] library version 3.1.0. We recommend that you always use the latest API version when working with Batch.
 
-## 關於應用程式和應用程式封裝
+> [AZURE.IMPORTANT] Currently, only *CloudServiceConfiguration* pools support application packages. You cannot use Application packages in pools created by using VirtualMachineConfiguration images. See the [Virtual machine configuration](batch-linux-nodes.md#virtual-machine-configuration) section of [Provision Linux compute nodes in Azure Batch pools](batch-linux-nodes.md) for more information about the two different configurations.
 
-在 Azure Batch 中，「應用程式」是指一組已建立版本的二進位檔，這些檔案可自動下載到集區中的計算節點。「應用程式套件」指的是這些二進位檔的「特定組合」，其代表應用程式的特定「版本」。
+## <a name="about-applications-and-application-packages"></a>About applications and application packages
 
-![應用程式和應用程式封裝的高階圖表][1]
+Within Azure Batch, an *application* refers to a set of versioned binaries that can be automatically downloaded to the compute nodes in your pool. An *application package* refers to a *specific set* of those binaries and represents a given *version* of the application.
 
-### 應用程式
+![High-level diagram of applications and application packages][1]
 
-Batch 中的應用程式包含一或多個應用程式封裝，並且會指定應用程式的組態選項。例如，應用程式可以指定要安裝在計算節點上的預設應用程式套件版本，以及應用程式的套件是否可以更新或刪除。
+### <a name="applications"></a>Applications
 
-### 應用程式封裝
+An application in Batch contains one or more application packages and specifies configuration options for the application. For example, an application can specify the default application package version to install on compute nodes and whether its packages can be updated or deleted.
 
-應用程式封裝為 .zip 檔案，其中包含工作執行所需的應用程式二進位檔和支援檔案。每個應用程式封裝都代表特定版本的應用程式。
+### <a name="application-packages"></a>Application packages
 
-您可以在集區和工作層級指定應用程式封裝。當您建立集區或工作時，您可以指定這些套件之中的一個或多個，以及 (選擇性) 指定版本。
+An application package is a .zip file that contains the application binaries and supporting files that are required for execution by your tasks. Each application package represents a specific version of the application.
 
-* **集區應用程式套件**會部署到集區中的「每個」節點。當節點加入集區以及重新啟動或重新安裝映像時，就會部署應用程式。
+You can specify application packages at the pool and task level. You can specify one or more of these packages and (optionally) a version when you create a pool or task.
 
-    當集區中的所有節點都執行某作業的工作時，便適合使用集區應用程式套件。您可以在建立集區時指定一或多個應用程式套件，而且可以新增或更新現有集區的套件。如果您更新現有集區的應用程式套件，您必須重新啟動它的節點，以安裝新的套件。
+* **Pool application packages** are deployed to *every* node in the pool. Applications are deployed when a node joins a pool, and when it is rebooted or reimaged.
 
-* 在執行工作的命令列之前，**工作應用程式套件**只會部署到排程要執行工作的計算節點。如果節點上已有指定的應用程式套件和版本，則不會重新部署，而會使用現有套件。
+    Pool application packages are appropriate when all nodes in a pool execute a job's tasks. You can specify one or more application packages when you create a pool, and you can add or update an existing pool's packages. If you update an existing pool's application packages, you must restart its nodes to install the new package.
 
-    在共用集區的環境中，工作應用程式套件裝很有用：不同的作業會在一個集區上執行，而某項作業完成時並不會刪除該集區。如果您的作業擁有的工作少於集區中的節點，工作應用程式封裝可以減少資料傳輸，因為您的應用程式只會部署至執行工作的節點。
+* **Task application packages** are deployed only to a compute node scheduled to run a task, just before running the task's command line. If the specified application package and version is already on the node, it is not redeployed and the existing package is used.
 
-    其他可受益於工作應用程式套件的案例為使用特別大型應用程式，但只用於少數工作的作業。例如，前置處理或合併應用程式非常龐大的前置處理階段或合併工作。
+    Task application packages are useful in shared-pool environments, where different jobs are run on one pool, and the pool is not deleted when a job is completed. If your job has less tasks than nodes in the pool, task application packages can minimize data transfer since your application is deployed only to the nodes that run tasks.
 
-> [AZURE.IMPORTANT] Batch 帳戶中的應用程式和應用程式封裝數目，以及應用程式封裝的大小上限有其限制。如需這些限制的詳細資料，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
+    Other scenarios that can benefit from task application packages are jobs that use a particularly large application, but for only a small number of tasks. For example, a pre-processing stage or a merge task, where the pre-processing or merge application is heavyweight.
 
-### 應用程式封裝的優點
+> [AZURE.IMPORTANT] There are restrictions on the number of applications and application packages within a Batch account, as well as the maximum application package size. See [Quotas and limits for the Azure Batch service](batch-quota-limit.md) for details about these limits.
 
-應用程式套件可以簡化 Batch 解決方案中的程式碼，以及降低工作所執行之應用程式的必要管理成本。
+### <a name="benefits-of-application-packages"></a>Benefits of application packages
 
-集區的啟動工作不需要指定在節點上安裝一長串的個別資源檔案。您不需要在 Azure 儲存體中或在節點上手動管理應用程式檔案的多個版本。再者，您也不必費心產生 [SAS URL](../storage/storage-dotnet-shared-access-signature-part-1.md) 來提供這些檔案在儲存體帳戶中的存取權限。Batch 會在背景中與 Azure 儲存體合作來儲存應用程式套件，並將其部署到計算節點。
+Application packages can simplify the code in your Batch solution and lower the overhead required to manage the applications that your tasks run.
 
-## 上傳及管理應用程式
+Your pool's start task doesn't have to specify a long list of individual resource files to install on the nodes. You don't have to manually manage multiple versions of your application files in Azure Storage, or on your nodes. And, you don't need to worry about generating [SAS URLs](../storage/storage-dotnet-shared-access-signature-part-1.md) to provide access to the files in your Storage account. Batch works in the background with Azure Storage to store application packages and deploy them to compute nodes.
 
-您可以使用 [Azure 入口網站][portal]或 [Batch 管理 .NET](batch-management-dotnet.md) 程式庫來管理 Batch 帳戶中的應用程式套件。在接下來的幾節中，我們會先連結儲存體帳戶，接著討論如何使用入口網站來新增應用程式和套件以及管理它們。
+## <a name="upload-and-manage-applications"></a>Upload and manage applications
 
-### 連結儲存體帳戶
+You can use the [Azure portal][portal] or the [Batch Management .NET](batch-management-dotnet.md) library to manage the application packages in your Batch account. In the next few sections, we first link a Storage account, then discuss adding applications and packages and managing them with the portal.
 
-若要使用應用程式封裝，您必須先將 Azure 儲存體帳戶連結到 Batch 帳戶。如果您還沒有為 Batch 帳戶設定儲存體帳戶，Azure 入口網站會在您第一次按一下 [Batch 帳戶] 刀鋒視窗中的 [應用程式] 圖格時顯示警告。
+### <a name="link-a-storage-account"></a>Link a Storage account
 
-> [AZURE.IMPORTANT] Batch 目前僅支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的步驟 5 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)所述。當您將 Azure 儲存體帳戶連結至 Batch 帳戶時，請「只」連結**一般用途**的儲存體帳戶。
+To use application packages, you must first link an Azure Storage account to your Batch account. If you have not yet configured a Storage account for your Batch account, the Azure portal will display a warning the first time you click the **Applications** tile in the **Batch account** blade.
 
-![Azure 入口網站中的未設定儲存體帳戶警告][9]
+> [AZURE.IMPORTANT] Batch currently supports *only* the **General purpose** storage account type as described in step 5, [Create a storage account](../storage/storage-create-storage-account.md#create-a-storage-account), in [About Azure storage accounts](../storage/storage-create-storage-account.md). When you link an Azure Storage account to your Batch account, link *only* a **General purpose** storage account.
 
-Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯的儲存體帳戶。在連結兩個帳戶之後，Batch 便能將儲存在連結之儲存體帳戶中的封裝自動部署到計算節點。按一下 [警告] 刀鋒視窗中的 [儲存體帳戶設定]，然後按一下 [儲存體帳戶] 刀鋒視窗上的 [儲存體帳戶]，將現有的儲存體帳戶連結至 Batch 帳戶。
+![No storage account configured warning in Azure portal][9]
 
-![Azure 入口網站中的選擇儲存體帳戶刀鋒視窗][10]
+The Batch service uses the associated Storage account for the storage and retrieval of application packages. After you've linked the two accounts, Batch can automatically deploy the packages stored in the linked Storage account to your compute nodes. Click **Storage account settings** on the **Warning** blade, and then click **Storage Account** on the **Storage Account** blade to link a storage account to your Batch account.
 
-我們建議您建立「專門」用來與 Batch 帳戶搭配使用的儲存體帳戶，並在此處選取它。如需如何建立儲存體帳戶的詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的＜建立儲存體帳戶＞。在建立儲存體帳戶之後，您可以使用 [儲存體帳戶] 刀鋒視窗，將它連結到 Batch 帳戶。
+![Choose storage account blade in Azure portal][10]
 
-> [AZURE.WARNING] 由於 Batch 會使用 Azure 儲存體來儲存應用程式套件，所以我們會針對區塊 Blob 資料向您收取[標準費用][storage_pricing]。請務必考量應用程式封裝的大小和數目，並定期移除過時的封裝以降低成本。
+We recommend that you create a storage account *specifically* for use with your Batch account, and select it here. For details about how to create a storage account, see "Create a storage account" in [About Azure storage accounts](../storage/storage-create-storage-account.md). After you've created a Storage account, you can then link it to your Batch account by using the **Storage Account** blade.
 
-### 檢視目前的應用程式
+> [AZURE.WARNING] Because Batch uses Azure Storage to store your application packages, you are [charged as normal][storage_pricing] for the block blob data. Be sure to consider the size and number of your application packages, and periodically remove deprecated packages to minimize cost.
 
-若要檢視 Batch 帳戶中的應用程式，請按一下 [Batch 帳戶] 刀鋒視窗中的 [應用程式] 圖格。
+### <a name="view-current-applications"></a>View current applications
 
-![應用程式圖格][2]
+To view the applications in your Batch account, click the **Applications** tile in the **Batch account** blade.
 
-這會開啟 [應用程式] 刀鋒視窗︰
+![Applications tile][2]
 
-![列出應用程式][3]
+This opens the **Applications** blade:
 
-[應用程式] 刀鋒視窗會顯示帳戶中每個應用程式的識別碼，以及下列屬性︰
+![List applications][3]
 
-* **套件**--與此應用程式相關聯的版本號碼。
-* **預設版本**--如果您在設定集區的應用程式時未指定版本，系統會安裝此版本。這項設定是選擇性的。
-* **允許更新**--此值會指定是否允許更新、刪除和新增套件。如果此值設為 [否]，應用程式會停用套件的更新和刪除，而只能新增新的應用程式封裝版本。預設值為 [是]。
+The **Applications** blade displays the ID of each application in your account and the following properties:
 
-### 檢視應用程式詳細資料
+* **Packages**--The number of versions associated with this application.
+* **Default version**--The version that will be installed if you do not specify a version when you set the application for a pool. This setting is optional.
+* **Allow updates**--The value that specifies whether package updates, deletions, and additions are allowed. If this is set to **No**, package updates and deletions are disabled for the application. Only new application package versions can be added. The default is **Yes**.
 
-在 [應用程式] 刀鋒視窗中按一下應用程式，就能開啟包含該應用程式詳細資料的刀鋒視窗。
+### <a name="view-application-details"></a>View application details
 
-![應用程式詳細資料][4]
+Click an application in the **Applications** blade to open the blade that includes the details for that application.
 
-在應用程式詳細資料刀鋒視窗中，您可以配置應用程式的以下設定。
+![Application details][4]
 
-* **允許更新**--指定是否可更新或刪除應用程式的應用程式套件。請參閱本文稍後的＜更新或刪除應用程式封裝＞。
-* **預設版本**--指定要部署至計算節點的預設應用程式套件。
-* **顯示名稱**--指定 Batch 解決方案在顯示應用程式相關資訊時 (例如，在透過 Batch 提供給客戶之服務的 UI 中)，可以使用的「易記」名稱。
+In the application details blade, you can configure the following settings for your application.
 
-### 加入新的應用程式
+* **Allow updates**--Specify whether its application packages can be updated or deleted. See "Update or Delete an application package" later in this article.
+* **Default version**--Specify a default application package to deploy to compute nodes.
+* **Display name**--Specify a "friendly" name that your Batch solution can use when it displays information about the application, such as in the UI of a service that you provide your customers through Batch.
 
-若要建立新應用程式，請新增應用程式封裝並指定新的唯一應用程式識別碼。使用新應用程式識別碼加入的第一個應用程式封裝也會建立新的應用程式。
+### <a name="add-a-new-application"></a>Add a new application
 
-按一下 [應用程式] 刀鋒視窗中的 [加入]，以開啟 [新增應用程式] 刀鋒視窗。
+To create a new application, add an application package and specify a new, unique application ID. The first application package that you add with the new application ID will also create the new application.
 
-![Azure 入口網站中的新增應用程式刀鋒視窗][5]
+Click **Add** on the **Applications** blade to open the **New application** blade.
 
-[新增應用程式] 刀鋒視窗提供以下欄位，供您指定新應用程式和應用程式套件的設定。
+![New application blade in Azure portal][5]
 
-**應用程式識別碼**
+The **New application** blade provides the following fields to specify the settings of your new application and application package.
 
-此欄位能指定新應用程式的識別碼，其須符合標準 Azure Batch 識別碼驗證規則的規範︰
+**Application id**
 
-* 可包含英數字元的任何組合，包括連字號和底線。
-* 不能包含超過 64 個字元。
-* 在 Batch 帳戶內必須是唯一的。
-* 保留大小寫且不區分大小寫。
+This field specifies the ID of your new application, which is subject to the standard Azure Batch ID validation rules:
 
-**版本**
+* Can contain any combination of alphanumeric characters, including hyphens and underscores.
+* Cannot contain more than 64 characters.
+* Must be unique within the Batch account.
+* Is case preserving and case insensitive.
 
-指定要上傳的應用程式封裝版本。版本字串須符合以下驗證規則的規範︰
+**Version**
 
-* 可包含英數字元的任何組合，包括連字號、底線和句點。
-* 不能包含超過 64 個字元。
-* 在應用程式內必須是唯一的。
-* 保留大小寫且不區分大小寫。
+Specifies the version of the application package you are uploading. Version strings are subject to the following validation rules:
 
-**應用程式封裝**
+* Can contain any combination of alphanumeric characters, including hyphens, underscores, and periods.
+* Cannot contain more than 64 characters.
+* Must be unique within the application.
+* Case preserving, and case insensitive.
 
-此欄位指定包含應用程式執行所需之應用程式二進位檔和支援檔案的 .zip 檔案。按一下 [選取檔案] 方塊或資料夾圖示，以瀏覽及選取包含應用程式檔案的 .zip 檔案。
+**Application package**
 
-在選取檔案之後，請按一下 [確定] 以開始上傳到 Azure 儲存體。當上傳作業完成時，系統會通知您且刀鋒視窗會關閉。因上傳之檔案的大小和網路連線速度不盡相同，這項作業可能需要花費一些時間。
+This field specifies the .zip file that contains the application binaries and supporting files that are required to execute the application. Click the **Select a file** box or the folder icon to browse to and select a .zip file that contains your application's files.
 
-> [AZURE.WARNING] 上傳作業完成之前，請勿關閉 [新增應用程式] 刀鋒視窗。否則上傳程序將會停止。
+After you've selected a file, click **OK** to begin the upload to Azure Storage. When the upload operation is complete, you will be notified and the blade will close. Depending on the size of the file that you are uploading and the speed of your network connection, this operation may take some time.
 
-### 加入新應用程式封裝
+> [AZURE.WARNING] Do not close the **New application** blade before the upload operation is complete. Doing so will stop the upload process.
 
-若要加入現有應用程式的新應用程式套件版本，請在 [應用程式] 刀鋒視窗中選取應用程式，然後依序按一下 [套件] 和 [加入] 以開啟 [加入套件] 刀鋒視窗。
+### <a name="add-a-new-application-package"></a>Add a new application package
 
-![Azure 入口網站中的加入應用程式封裝刀鋒視窗][8]
+To add a new application package version for an existing application, select an application in the **Applications** blade, click **Packages**, then click **Add** to open the **Add package** blade.
 
-如您所見，欄位與 [新增應用程式] 刀鋒視窗中的欄位相符，但 [應用程式識別碼] 方塊已停用。依照和新增應用程式相同的方式，指定新套件的 [版本]，瀏覽至您的**應用程式套件** .zip 檔案，然後按一下 [確定] 以上傳套件。
+![Add application package blade in Azure portal][8]
 
-### 更新或刪除應用程式封裝
+As you can see, the fields match those of the **New application** blade, but the **Application id** box is disabled. As you did for the new application, specify the **Version** for your new package, browse to your **Application package** .zip file, then click **OK** to upload the package.
 
-若要更新或刪除現有的應用程式套件，請開啟應用程式的詳細資料刀鋒視窗，按一下 [套件] 以開啟 [套件] 刀鋒視窗，按一下要修改之應用程式套件資料列中的**省略符號**，然後選取要執行的動作。
+### <a name="update-or-delete-an-application-package"></a>Update or delete an application package
 
-![在 Azure 入口網站中更新或刪除封裝][7]
+To update or delete an existing application package, open the details blade for the application, click **Packages** to open the **Packages** blade, click the **ellipsis** in the row of the application package that you want to modify, and select the action that you want to perform.
 
-**更新**
+![Update or delete package in Azure portal][7]
 
-當您按一下 [更新] 時，[更新套件] 刀鋒視窗隨即出現。此刀鋒視窗與 [新增應用程式套件] 刀鋒視窗相似，只不過已啟用套件選取欄位，因此您可以指定要上傳的新 ZIP 檔案。
+**Update**
 
-![Azure 入口網站中的更新封裝刀鋒視窗][11]
+When you click **Update**, the *Update package* blade is displayed. This blade is similar to the *New application package* blade, however only the package selection field is enabled, allowing you to specify a new ZIP file to upload.
 
-**刪除**
+![Update package blade in Azure portal][11]
 
-當您按一下 [刪除] 時，系統會要求您確認要刪除套件版本，隨後 Batch 會從 Azure 儲存體中刪除該套件。如果您刪除應用程式的預設版本，系統會移除應用程式的 [預設版本] 設定。
+**Delete**
 
-![刪除應用程式][12]
+When you click **Delete**, you are asked to confirm the deletion of the package version, and Batch deletes the package from Azure Storage. If you delete the default version of an application, the **Default version** setting is removed for the application.
 
-## 將應用程式安裝在計算節點上
+![Delete application ][12]
 
-您已了解如何使用 Azure 入口網站管理應用程式套件，接下來我們可以討論如何使用 Batch 工作將它們部署到計算節點並加以執行。
+## <a name="install-applications-on-compute-nodes"></a>Install applications on compute nodes
 
-### 安裝集區應用程式套件
+Now that you've seen how to manage application packages with the Azure portal, we can discuss how to deploy them to compute nodes and run them with Batch tasks.
 
-若要將應用程式套件安裝在集區中的所有計算節點上，請為集區指定一或多個應用程式套件「參考」。您針對集區指定的應用程式封裝會在每個電腦節點加入集區時，以及該節點重新啟動或重新安裝映像時，安裝於該節點上。
+### <a name="install-pool-application-packages"></a>Install pool application packages
 
-在 Batch .NET 中，請在建立新集區時指定一或多個 [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]，或為現有集區指定。[ApplicationPackageReference][net_pkgref] 類別能指定要安裝在集區之計算節點上的應用程式識別碼和版本。
+To install an application package on all compute nodes in a pool, specify one or more application package *references* for the pool. The application packages that you specify for a pool are installed on each compute node when that node joins the pool, and when the node is rebooted or reimaged.
+
+In Batch .NET, specify one or more [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref] when you create a new pool, or for an existing pool. The [ApplicationPackageReference][net_pkgref] class specifies an application ID and version to install on a pool's compute nodes.
 
 ```csharp
 // Create the unbound CloudPool
@@ -210,13 +211,13 @@ myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
 await myCloudPool.CommitAsync();
 ```
 
->[AZURE.IMPORTANT] 如果應用程式套件部署基於任何因素而失敗，Batch 服務會將節點標示為[無法使用][net_nodestate]，而且不會在該節點上排程任何要執行的工作。在此情況下，您應該**重新啟動**節點以重新初始化套件部署。重新啟動節點也會在節點上再次啟用工作排程。
+>[AZURE.IMPORTANT] If an application package deployment fails for any reason, the Batch service marks the node [unusable][net_nodestate], and no tasks will be scheduled for execution on that node. In this case, you should **restart** the node to reinitiate the package deployment. Restarting the node will also enable task scheduling again on the node.
 
-### 安裝工作應用程式套件
+### <a name="install-task-application-packages"></a>Install task application packages
 
-類似於集區，您可以為工作指定應用程式套件「參考」。在節點上排程要執行的工作時，會先下載並解壓縮套件，再執行工作的命令列。如果節點上已安裝指定的套件和版本，則不會下載套件，而會使用現有套件裝。
+Similar to a pool, you specify application package *references* for a task. When a task is scheduled to run on a node, the package is downloaded and extracted just before the task's command line is executed. If a specified package and version is already installed on the node, the package is not downloaded and the existing package is used.
 
-若要安裝工作應用程式套件，請設定工作的 [CloudTask][net_cloudtask].[ApplicationPackageReferences][net_cloudtask_pkgref] 屬性︰
+To install a task application package, configure the task's [CloudTask][net_cloudtask].[ApplicationPackageReferences][net_cloudtask_pkgref] property:
 
 ```csharp
 CloudTask task =
@@ -234,21 +235,21 @@ task.ApplicationPackageReferences = new List<ApplicationPackageReference>
 };
 ```
 
-## 執行安裝的應用程式
+## <a name="execute-the-installed-applications"></a>Execute the installed applications
 
-您為集區或工作所指定的套件會下載並解壓縮至節點的 `AZ_BATCH_ROOT_DIR` 中的具名目錄。Batch 也會建立包含具名目錄路徑的環境變數。在參考節點上的應用程式時，工作的命令列會使用這個環境變數。變數格式如下：
+The packages that you've specified for a pool or task are downloaded and extracted to a named directory within the `AZ_BATCH_ROOT_DIR` of the node. Batch also creates an environment variable that contains the path to the named directory. Your task command lines use this environment variable when referencing the application on the node. The variable is in the following format:
 
 `AZ_BATCH_APP_PACKAGE_APPLICATIONID#version`
 
-`APPLICATIONID` 和 `version` 是對應於為部署所指定的應用程式和套件版本的值。例如，如果您指定應該安裝 2.7 版的「Blender」應用程式，您的工作命令列會使用此環境變數來存取其檔案︰
+`APPLICATIONID` and `version` are values that correspond to the application and package version you've specified for deployment. For example, if you specifed that version 2.7 of application *blender* should be installed, your task command lines would use this environment variable to access its files:
 
 `AZ_BATCH_APP_PACKAGE_BLENDER#2.7`
 
-如果您為應用程式指定預設版本，則可以省略版本尾碼。例如，如果您設定「2.7」做為「Blender」應用程式的預設版本，您的工作可以參考下列環境變數，而且會執行 2.7 版：
+If you specify a default version for an application, you can omit the version suffix. For example, if you set "2.7" as the default version for application *blender*, your tasks can reference the following environment variable and they will execute version 2.7:
 
 `AZ_BATCH_APP_PACKAGE_BLENDER`
 
-下列程式碼片段會顯示工作命令列範例，其可啟動「Blender」應用程式的預設版本︰
+The following code snippet shows an example task command line that launches the default version of the *blender* application:
 
 ```csharp
 string taskId = "blendertask01";
@@ -257,17 +258,17 @@ string commandLine =
 CloudTask blenderTask = new CloudTask(taskId, commandLine);
 ```
 
-> [AZURE.TIP] 如需計算節點環境設定的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的[工作的環境設定](batch-api-basics.md#environment-settings-for-tasks)。
+> [AZURE.TIP] See [Environment settings for tasks](batch-api-basics.md#environment-settings-for-tasks) in the [Batch feature overview](batch-api-basics.md) for more information about compute node environment settings.
 
-## 更新集區的應用程式封裝
+## <a name="update-a-pool's-application-packages"></a>Update a pool's application packages
 
-如果您已設定現有集區的應用程式封裝，可以指定集區的新封裝。如果您為集區指定新的封裝參考，則會適用下列情況：
+If an existing pool has already been configured with an application package, you can specify a new package for the pool. If you specify a new package reference for a pool, the following apply:
 
-* 加入集區的所有新節點和任何重新啟動或重新安裝映像的現有節點都會安裝新指定的封裝。
-* 在更新封裝參考時已存在集區中的計算節點不會自動安裝新應用程式封裝。這些計算節點必須重新啟動或重新安裝映像才能接收新封裝。
-* 部署新的封裝之後，所建立的環境變數會反映新的應用程式封裝參考。
+* All new nodes that join the pool and any existing node that is rebooted or reimaged will install the newly specified package.
+* Compute nodes that are already in the pool when you update the package references do not automatically install the new application package. These compute nodes must be rebooted or reimaged to receive the new package.
+* When a new package is deployed, the created environment variables reflect the new application package references.
 
-在此範例中，現有集區已將「Blender」應用程式的 2.7 版設定為其中一個 [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]。若要將集區的節點更新為 2.76b 版，請將 [ApplicationPackageReference][net_pkgref] 指定為新版本並認可變更。
+In this example, the existing pool has version 2.7 of the *blender* application configured as one of its [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]. To update the pool's nodes with version 2.76b, specify a new [ApplicationPackageReference][net_pkgref] with the new version, and commit the change.
 
 ```csharp
 string newVersion = "2.76b";
@@ -281,11 +282,11 @@ boundPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
 await boundPool.CommitAsync();
 ```
 
-既然您已設定新版本，任何加入集區的「新」節點都會部署 2.76b 版。若要將 2.76b 安裝在「已存在」集區中的節點上，請將節點重新啟動或重新安裝映像。請注意，重新啟動的節點會保留前次封裝部署的檔案。
+Now that the new version has been configured, any *new* node that joins the pool will have version 2.76b deployed to it. To install 2.76b on the nodes that are *already* in the pool, reboot or reimage them. Note that rebooted nodes will retain the files from previous package deployments.
 
-## 列出 Batch 帳戶中的應用程式
+## <a name="list-the-applications-in-a-batch-account"></a>List the applications in a Batch account
 
-您可以使用 [ApplicationOperations][net_appops].[ListApplicationSummaries][net_appops_listappsummaries] 方法列出 Batch 帳戶中的應用程式和應用程式套件。
+You can list the applications and their packages in a Batch account by using the [ApplicationOperations][net_appops].[ListApplicationSummaries][net_appops_listappsummaries] method.
 
 ```csharp
 // List the applications and their application packages in the Batch account.
@@ -301,15 +302,15 @@ foreach (ApplicationSummary app in applications)
 }
 ```
 
-## 總結
+## <a name="wrap-up"></a>Wrap up
 
-透過應用程式封裝，您可以協助客戶選取其作業適用的應用程式，以及指定在以啟用 Batch 功能的服務處理作業時所要使用的確切版本。您也可以在服務中提供讓客戶上傳及追蹤其應用程式的功能。
+With application packages, you can help your customers select the applications for their jobs and specify the exact version to use when processing jobs with your Batch-enabled service. You might also provide the ability for your customers to upload and track their own applications in your service.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-* [Batch REST API][api_rest] 也提供應用程式套件的使用支援。例如，請參閱[將集區加入至帳戶][rest_add_pool]中的 [applicationPackageReferences][rest_add_pool_with_packages] 項目，以取得如何使用 REST API 來指定要安裝之套件的相關資訊。如需如何使用 Batch REST API 來取得應用程式資訊的詳細資料，請參閱[應用程式][rest_applications]。
+* The [Batch REST API][api_rest] also provides support to work with application packages. For example, see the [applicationPackageReferences][rest_add_pool_with_packages] element in [Add a pool to an account][rest_add_pool] for information about how to specify packages to install by using the REST API. See [Applications][rest_applications] for details about how to obtain application information by using the Batch REST API.
 
-* 了解如何以程式設計方式[使用 Batch Management .NET 管理 Azure Batch 帳戶和配額](batch-management-dotnet.md)。[Batch Management .NET][api_net_mgmt] 程式庫可以啟用 Batch 應用程式或服務的帳戶建立和刪除功能。
+* Learn how to programmatically [manage Azure Batch accounts and quotas with Batch Management .NET](batch-management-dotnet.md). The [Batch Management .NET][api_net_mgmt] library can enable account creation and deletion features for your Batch application or service.
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_mgmt]: https://msdn.microsoft.com/library/azure/mt463120.aspx
@@ -330,16 +331,20 @@ foreach (ApplicationSummary app in applications)
 [rest_add_pool]: https://msdn.microsoft.com/library/azure/dn820174.aspx
 [rest_add_pool_with_packages]: https://msdn.microsoft.com/library/azure/dn820174.aspx#bk_apkgreference
 
-[1]: ./media/batch-application-packages/app_pkg_01.png "應用程式封裝高階圖表"
-[2]: ./media/batch-application-packages/app_pkg_02.png "Azure 入口網站中的應用程式圖格"
-[3]: ./media/batch-application-packages/app_pkg_03.png "Azure 入口網站中的應用程式刀鋒視窗"
-[4]: ./media/batch-application-packages/app_pkg_04.png "Azure 入口網站中的應用程式詳細資料刀鋒視窗"
-[5]: ./media/batch-application-packages/app_pkg_05.png "Azure 入口網站中的新增應用程式刀鋒視窗"
-[7]: ./media/batch-application-packages/app_pkg_07.png "Azure 入口網站中的更新或刪除封裝下拉式清單"
-[8]: ./media/batch-application-packages/app_pkg_08.png "Azure 入口網站中的新增應用程式封裝刀鋒視窗"
-[9]: ./media/batch-application-packages/app_pkg_09.png "沒有連結的儲存體帳戶警示"
-[10]: ./media/batch-application-packages/app_pkg_10.png "Azure 入口網站中的選擇儲存體帳戶刀鋒視窗"
-[11]: ./media/batch-application-packages/app_pkg_11.png "Azure 入口網站中的更新封裝刀鋒視窗"
-[12]: ./media/batch-application-packages/app_pkg_12.png "Azure 入口網站中的刪除封裝確認對話方塊"
+[1]: ./media/batch-application-packages/app_pkg_01.png "Application packages high-level diagram"
+[2]: ./media/batch-application-packages/app_pkg_02.png "Applications tile in Azure portal"
+[3]: ./media/batch-application-packages/app_pkg_03.png "Applications blade in Azure portal"
+[4]: ./media/batch-application-packages/app_pkg_04.png "Application details blade in Azure portal"
+[5]: ./media/batch-application-packages/app_pkg_05.png "New application blade in Azure portal"
+[7]: ./media/batch-application-packages/app_pkg_07.png "Update or delete packages drop-down in Azure portal"
+[8]: ./media/batch-application-packages/app_pkg_08.png "New application package blade in Azure portal"
+[9]: ./media/batch-application-packages/app_pkg_09.png "No linked Storage account alert"
+[10]: ./media/batch-application-packages/app_pkg_10.png "Choose storage account blade in Azure portal"
+[11]: ./media/batch-application-packages/app_pkg_11.png "Update package blade in Azure portal"
+[12]: ./media/batch-application-packages/app_pkg_12.png "Delete package confirmation dialog in Azure portal"
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,52 +1,62 @@
 <properties
-	pageTitle="使用 .NET (C#) 連接到 SQL Database | Microsoft Azure"
-	description="使用這個快速入門中的範例程式碼建置現代應用程式，這個應用程式使用 C#，並受到具有 Azure SQL Database 的雲端中之強大關聯式資料庫的支援。"
-	services="sql-database"
-	documentationCenter=""
-	authors="tobbox"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Connect to SQL Database by using .NET (C#) | Microsoft Azure"
+    description="Use the sample code in this quick start to build a modern application with C# and backed by a powerful relational database in the cloud with Azure SQL Database."
+    services="sql-database"
+    documentationCenter=""
+    authors="tobbox"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.workload="drivers"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="06/16/2016"
-	ms.author="tobiast"/>
+    ms.service="sql-database"
+    ms.workload="drivers"
+    ms.tgt_pltfrm="na"
+    ms.devlang="dotnet"
+    ms.topic="article"
+    ms.date="06/16/2016"
+    ms.author="tobiast"/>
 
-# 使用 .NET (C#) 連接到 SQL Database
 
-[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)]
+# <a name="connect-to-sql-database-by-using-.net-(c#)"></a>Connect to SQL Database by using .NET (C#)
 
-## 步驟 1︰設定開發環境
+[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)] 
 
-[設定 ADO.NET 開發的開發環境](https://msdn.microsoft.com/library/mt718321.aspx)
+## <a name="step-1:-configure-development-environment"></a>Step 1:  Configure Development Environment
 
-## 步驟 2：建立 SQL Database
+[Configure development environment for ADO.NET development](https://msdn.microsoft.com/library/mt718321.aspx)
 
-請參閱[快速入門頁面](sql-database-get-started.md)，以了解如何建立範例資料庫。請務必遵循該指南以建立 **AdventureWorks 資料庫範本**。以下所示的範例僅適用於 **AdventureWorks 結構描述**。
+## <a name="step-2:-create-a-sql-database"></a>Step 2: Create a SQL database
 
-## 步驟 3：取得連接字串
+See the [getting started page](sql-database-get-started.md) to learn how to create a sample database.  It is important you follow the guide to create an **AdventureWorks database template**. The samples shown below only work with the **AdventureWorks schema**.  
+
+## <a name="step-3:-get-connection-string"></a>Step 3:  Get Connection String
 
 [AZURE.INCLUDE [sql-database-include-connection-string-dotnet-20-portalshots](../../includes/sql-database-include-connection-string-dotnet-20-portalshots.md)]
 
-## 步驟 4︰執行範例程式碼
+## <a name="step-4:-run-sample-code"></a>Step 4: Run sample code
 
-* [使用 ADO.NET 連接到 SQL 的概念證明](https://msdn.microsoft.com/library/mt718320.aspx)
-* [使用 ADO.NET 復原連接 SQL](https://msdn.microsoft.com/library/mt703195.aspx)
+* [Proof of concept connecting to SQL using ADO.NET](https://msdn.microsoft.com/library/mt718320.aspx)
+* [Connect resiliently to SQL with ADO.NET](https://msdn.microsoft.com/library/mt703195.aspx)
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-* [使用驗證和 SQL DB 建立 ASP.NET MVC 應用程式並部署至 Azure App Service](../app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)
-* [使用現有的 SQL Database 和行動服務 .NET 後端建置服務](../mobile-services/mobile-services-dotnet-backend-use-existing-sql-database.md)
-* 檢閱 [SQL Database 開發概觀](sql-database-develop-overview.md)
-* 更多有關 [Microsoft ADO.Net Driver for SQL Server](https://msdn.microsoft.com/library/mt657768.aspx) 的資訊
+* [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service]( ../app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)
+* [Build a service using an existing SQL database with the Mobile Services .NET backend](../mobile-services/mobile-services-dotnet-backend-use-existing-sql-database.md)
+* Review the [SQL Database Development Overview](sql-database-develop-overview.md)
+* More information on the [Microsoft ADO.Net Driver for SQL Server](https://msdn.microsoft.com/library/mt657768.aspx)
 
-## 其他資源 
+## <a name="additional-resources"></a>Additional resources 
 
-* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
-* 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)
+* [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* Explore all the [capabilities of SQL Database](https://azure.microsoft.com/services/sql-database/)
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

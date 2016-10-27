@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用 Azure 入口網站在資源管理員中建立內部負載平衡器 | Microsoft Azure"
-   description="了解如何使用 Azure 入口網站在資源管理員中建立內部負載平衡器"
+   pageTitle="Get started creating an Internal load balancer in Resource Manager using the Azure portal | Microsoft Azure"
+   description="Learn how to create an Internal load balancer in Resource Manager using the Azure portal"
    services="load-balancer"
    documentationCenter="na"
    authors="sdwheeler"
@@ -17,7 +17,8 @@
    ms.date="08/31/2016"
    ms.author="sewhee" />
 
-# 開始在 Azure 入口網站中建立內部負載平衡器
+
+# <a name="get-started-creating-an-internal-load-balancer-in-the-azure-portal"></a>Get started creating an Internal load balancer in the Azure portal
 
 [AZURE.INCLUDE [load-balancer-get-started-ilb-arm-selectors-include.md](../../includes/load-balancer-get-started-ilb-arm-selectors-include.md)]
 
@@ -28,75 +29,80 @@
 [AZURE.INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
 
-## 開始使用 Azure 入口網站建立內部負載平衡器
+## <a name="get-started-creating-an-internal-load-balancer-using-azure-portal"></a>Get started creating an Internal load balancer using Azure portal
 
-若要從 Azure 入口網站建立內部負載平衡器，請依照下列步驟執行。
+To create an internal load balancer from the Azure portal, follow the steps below.
 
-1. 透過瀏覽器瀏覽至 [Azure 入口網站](http://portal.azure.com)，並視需要使用您的 Azure 帳戶登入。
-2. 在畫面的左上方，按一下 [新增] > [網路] > [負載平衡器]。
-3. 在 [建立負載平衡器] 刀鋒視窗中，輸入負載平衡器的**名稱**。
-4. 在 [配置] 中，按一下 [內部]。
-5. 按一下 [虛擬網路]，然後選取您要建立負載平衡器的虛擬網路。
+1. From a browser, navigate to the [Azure Portal](http://portal.azure.com) and, if necessary, sign in with your Azure account.
+2. In the upper left hand side of the screen, click **New** > **Networking** > **Load balancer**.
+3. In the **Create load balancer** blade, type a **Name** for your load balancer.
+4. Under **Scheme**, click **Internal**.
+5. Click **Virtual network**, and then select the virtual network where you want to create the load balancer.
 
-    >[AZURE.NOTE] 如果沒看到想要使用的虛擬網路，請檢查您為負載平衡器使用的**位置**，並據以變更它。
+    >[AZURE.NOTE] If you do not see the virtual network you want to use, check the **Location** you are using for the load balancer, and change it accordingly.
 
-6. 按一下 [子網路]，然後選取您要建立負載平衡器的子網路。
-7. 在 [IP 位址指派] 下，按一下 [動態] 或 [靜態]，視您想要讓負載平衡器的 IP 位址固定 (靜態) 或不固定而定。
+6. Click **Subnet**, and then select the subnet where you want to create the load balancer.
+7. Under **IP address assignment**, click either **Dynamic** or **Static**, depending on whether you want the IP address for the load balancer to be fixed (static) or not.
 
-    >[AZURE.NOTE] 如果您選擇使用靜態 IP 位址，您必須提供負載平衡器的位址。
+    >[AZURE.NOTE] If you select to use a static IP address, you will have to provide an address for the load balancer.
 
-8. 在 [資源群組] 下，指定負載平衡器的新資源群組名稱，或按一下 [選取現有]，然後選取現有的資源群組。
-9. 按一下 [建立]。
+8. Under **Resource group** either specify the name of a new resource group for the load balancer, or click **select existing** and select an existing resource group.
+9. Click **Create**.
 
-## 設定負載平衡規則
+## <a name="configure-load-balancing-rules"></a>Configure load balancing rules
 
-負載平衡器建立之後，瀏覽至負載平衡器資源來設定它。您必須先設定後端位址集區和探查，然後再設定負載平衡規則。
+After the load balancer creation, navigate to the load balancer resource to configure it.
+You need to configure first a back-end address pool and a probe before configuring a load balancing rule.
 
-### 步驟 1
+### <a name="step-1"></a>Step 1
 
-設定後端集區︰
+Configure a back-end pool:
 
-1. 在 Azure 入口網站中，按一下 [瀏覽] > [負載平衡器]，然後按一下您先前建立的負載平衡器。
-2. 在 [設定] 刀鋒視窗中，按一下 [後端集區]。
-3. 在 [後端位址集區] 刀鋒視窗中，按一下 [加入]。
-4. 在 [加入後端集區] 刀鋒視窗中，輸入後端集區的**名稱**，然後按一下 [確定]。
+1. In the Azure portal, click **Browse** > **Load balancers**, and then click the load balancer you created above.
+2. In the **Settings** blade, click **Backend pools**.
+3. In the **Backend address pools** blade, click **Add**.
+4. In the **Add backend pool** blade, type a **Name** for the backend pool, and then click **OK**.
 
-### 步驟 2
+### <a name="step-2"></a>Step 2
 
-設定探查︰
+Configure a probe:
 
-1. 在 Azure 入口網站中，按一下 [瀏覽] > [負載平衡器]，然後按一下您先前建立的負載平衡器。
-2. 在 [設定] 刀鋒視窗中，按一下 [探查]。
-3. 在 [探查] 刀鋒視窗中，按一下 [加入]。
-4. 在 [加入探查] 刀鋒視窗中，輸入探查的**名稱**。
-5. 在 [通訊協定] 下，選取 [HTTP] \(適用於網站) 或 [TCP] \(適用於其他 TCP 型應用程式)。
-6. 在 [連接埠] 下，指定用於存取探查的連接埠。
-7. 在 [路徑] \(僅適用於 HTTP 探查) 下，指定要用來作為探查的路徑。
-8. 在 [間隔] 下，指定探查應用程式的頻率。
-9. 在 [狀況不良臨界值] 下，指定後端 VM 標示為狀況不良之前，應該失敗的嘗試次數。
-10. 按一下 [確定] 以建立探查。
+1. In the Azure portal, click **Browse** > **Load balancers**, and then click the load balancer you created above.
+2. In the **Settings** blade, click **Probes**.
+3. In the **Probes**  blade, click **Add**.
+4. In the **Add probe** blade, type a **Name** for the probe.
+5. Under **Protocol**, select **HTTP** (for web sites) or **TCP** (for other TCP based applications).
+6. Under **Port**, specify the port to use when accessing the probe.
+7. Under **Path** (for HTTP probes only), specify the path to use as a probe.
+8. Under **Interval** specify how frequently to probe the application.
+9. Under **Unhealthy threshold**, specify how many attempts should fail before the backend VM is marked as unhealthy.
+10. Click **OK** to create probe.
 
-### 步驟 3
+### <a name="step-3"></a>Step 3
 
-設定負載平衡規則：
+Configure load balancing rules:
 
-1. 在 Azure 入口網站中，按一下 [瀏覽] > [負載平衡器]，然後按一下您先前建立的負載平衡器。
-2. 在 [設定] 刀鋒視窗中，按一下 [負載平衡規則]。 
-3. 在 [負載平衡規則] 刀鋒視窗中，按一下 [加入]。
-4. 在 [加入負載平衡規則] 刀鋒視窗中，輸入規則的**名稱**。
-5. 在 [通訊協定] 下，選取 [HTTP] \(適用於網站) 或 [TCP] \(適用於其他 TCP 型應用程式)。
-6. 在 [連接埠] 下，指定用戶端在負載平衡器中連接的連接埠。
-7. 在 [後端連接埠] 下，指定要用於後端集區的連接埠 (負載平衡器連接埠和後端連接埠通常會相同)。
-8. 在 [後端集區] 下，選取您先前建立的後端集區。
-9. 在 [工作階段持續性] 下，選取要保存工作階段的方式。
-10. 在 [閒置逾時 (分鐘)] 下，指定閒置逾時。
-11. 在 [浮動 IP (伺服器直接回傳)] 下，按一下 [停用] 或 [啟用]。
-12. 按一下 [確定]。
+1. In the Azure portal, click **Browse** > **Load balancers**, and then click the load balancer you created above.
+2. In the **Settings** blade, click **Load balancing rules**.
+3. In the **Load balancing rules** blade, click **Add**.
+4. In the **Add load balancing rule** blade, type a **Name** for the rule.
+5. Under **Protocol**, select **HTTP** (for web sites) or **TCP** (for other TCP based applications).
+6. Under **Port**, specify the port clients connect to int he load balancer.
+7. Under **Backend port**, specify the port to be used in the backend pool (usually, the load balancer port and the backend port are the same).
+8. Under **Backend pool**, select the backend pool you created above.
+9. Under **Session persistence**, select how you want sessions to persist.
+10. Under **Idle timeout (minutes)**, specify the idle timeout.
+11. Under **Floating IP (direct server return)**, click **Disabled** or **Enabled**.
+12. Click **OK**.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[設定負載平衡器分配模式](load-balancer-distribution-mode.md)
+[Configure a load balancer distribution mode](load-balancer-distribution-mode.md)
 
-[設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
+[Configure idle TCP timeout settings for your load balancer](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

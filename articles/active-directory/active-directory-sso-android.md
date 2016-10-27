@@ -1,74 +1,75 @@
 <properties
-	pageTitle="如何使用 ADAL 在 Android 上啟用跨應用程式的 SSO | Microsoft Azure"
-	description="如何使用 ADAL SDK 的功能來啟用跨應用程式的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="brandwe"
-	manager="mbaldwin"
-	editor=""/>
+    pageTitle="How to enable cross-app SSO on Android using ADAL | Microsoft Azure"
+    description="How to use the features of the ADAL SDK to enable Single Sign On across your applications. "
+    services="active-directory"
+    documentationCenter=""
+    authors="brandwe"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="android"
-	ms.devlang="java"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="brandwe"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="android"
+    ms.devlang="java"
+    ms.topic="article"
+    ms.date="09/16/2016"
+    ms.author="brandwe"/>
 
 
-# 如何使用 ADAL 在 Android 上啟用跨應用程式的 SSO
+
+# <a name="how-to-enable-cross-app-sso-on-android-using-adal"></a>How to enable cross-app SSO on Android using ADAL
 
 
-提供單一登入 (SSO)，讓使用者只需要輸入一次認證，就可以讓認證自動跨應用程式運作，這是客戶目前的期待。在小型螢幕上輸入其使用者名稱和密碼的困難，通常伴隨著其他因素 (2FA)，例如撥打電話或簡訊傳送程式碼，如果使用者必須對您的產品執行這個動作多次，會容易讓使用者不滿。
+Providing Single Sign-On (SSO) so that users only need to enter their credentials once and have those credentials automatically work across applications is now expected by customers. The difficulty in entering their username and password on a small screen, often times combined with an additional factor (2FA) like a phone call or a texted code, results in quick dissatisfaction if a user has to do this more than one time for your product. 
 
-此外，如果您利用其他應用程式可能使用的身分識別平台，例如 Microsoft 帳戶或來自 Office365 的工作帳戶，客戶會預期這些認證可以跨所有應用程式使用，無論是什麼廠商。
+In addition, if you leverage an identity platform that other applications may use such as Microsoft Accounts or a work account from Office365, customers expect that those credentials to be available to use across all their applications no matter the vendor. 
 
-Microsoft 身分識別平台以及我們的 Microsoft 身分識別 SDK 會為您執行所有繁重的工作，並讓您符合客戶的期待，在整個裝置上使用本身應用程式中的 SSO，或利用我們的訊息代理程式功能和 Authenticator 應用程式。
+The Microsoft Identity platform, along with our Microsoft Identity SDKs, does all of this hard work for you and gives you the ability to delight your customers with SSO either within your own suite of applications or, as with our broker capability and Authenticator applications, across the entire device.
 
-本逐步解說會告訴您如何在應用程式中設定我們的 SDK 以提供這個優勢給客戶。
+This walkthrough will tell you how to configure our SDK within your application to provide this benefit to your customers.
 
-本逐步解說適用於：
+This walkthrough applies to:
 
 * Azure Active Directory
 * Azure Active Directory B2C
 * Azure Active Directory B2B
-* Azure Active Directory 條件式存取
+* Azure Active Directory Conditional Access
 
-請注意，下列文件假設您已了解如何[在 Azure Active directory 的舊版入口網站中佈建應用程式](active-directory-how-to-integrate.md)，並且已整合應用程式和 [Microsoft Identity Android SDK](https://github.com/AzureAD/azure-activedirectory-library-for-android)。
+Note that the document below assumes you have knowledge of how to [provision applications in the legacy portal for Azure Active Directory](active-directory-how-to-integrate.md) as well as have integrated your application with the [Microsoft Identity Android SDK](https://github.com/AzureAD/azure-activedirectory-library-for-android).
 
-## Microsoft 身分識別平台中的 SSO 概念
+## <a name="sso-concepts-in-the-microsoft-identity-platform"></a>SSO Concepts in the Microsoft Identity Platform
 
-### Microsoft 身分識別代理人
+### <a name="microsoft-identity-brokers"></a>Microsoft Identity Brokers
 
-Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用程式橋接認證，並且允許需要單一安全地方來驗證認證的特殊增強功能。我們稱它們為**訊息代理程式**。在 iOS 和 Android 上，會透過可下載的應用程式提供訊息代理程式，這些應用程式由客戶獨立安裝，或由為員工管理部分或全部裝置的公司推送至裝置。這些訊息代理程式支援只管理某些應用程式或整個裝置的安全性，取決於 IT 系統管理員的需求。在 Windows 中，內建於作業系統的帳戶選擇器會提供此功能，在技術上稱為 Web 驗證訊息代理程式。
+Microsoft provides applications for every mobile platform that allow for the bridging of credentials across applications from different vendors as well as allows for special enhanced features that require a single secure place from where to validate credentials. We call these **brokers**. On iOS and Android these are provided through downloadable applications that customers either install independently or can be pushed to the device by a company who manages some or all of the device for their employee. These brokers support managing security just for some applications or the entire device based on what IT Administrators desire. In Windows this functionality is provided by an account chooser built in to the operating system, known technically as the Web Authentication Broker.
 
-若要了解我們如何使用這些訊息代理程式，以及客戶可能如何在其 Microsoft 身分識別平台的登入流程中看見它們，請參閱詳細資訊。
+To understand how we use these brokers and how your customers might see them in their login flow for the Microsoft Identity platform read on for more information.
 
-### 在行動裝置上登入的模式
+### <a name="patterns-for-logging-in-on-mobile-devices"></a>Patterns for logging in on mobile devices
 
-如需在裝置上存取認證，請遵循 Microsoft 身分識別平台的兩個基本模式︰
+Access to credentials on devices follow two basic patterns for the Microsoft Identity platform: 
 
-* 非訊息代理程式協助登入
-* 訊息代理程式協助登入
+* Non-broker assisted logins
+* Broker assisted logins
 
-#### 非訊息代理程式協助登入
+#### <a name="non-broker-assisted-logins"></a>Non-broker assisted logins
 
-非訊息代理程式協助登入是在應用程式內發生的登入體驗，並且使用該應用程式之裝置上的本機儲存體。儲存體可能會跨應用程式共用，但認證會緊密繫結至使用該認證的應用程式或應用程式套件。這是您在許多行動應用程式中最可能經歷的體驗，您會在應用程式本身內部輸入使用者名稱和密碼。
+Non-broker assisted logins are login experiences that happen inline with the application and use the local storage on the device for that application. This storage may be shared across applications but the credentials are tightly bound to the app or suite of apps using that credential. This is the experience you've most likely experienced in many mobile applications where you enter a username and password within the application itself.
 
-這些登入具備下列優點︰
+These logins have the following benefits:
 
--  使用者體驗完全存在於應用程式內部。
--  認證可以跨由相同憑證登入的應用程式共用，提供單一登入體驗給您的應用程式套件。
--  在登入前後，會提供登入體驗的控制項給應用程式。
+-  User experience exists entirely within the application.
+-  Credentials can be shared across applications that are signed by the same certificate, providing a single sign-on experience to your suite of applications. 
+-  Control around the experience of logging in is provided to the application before and after sign-in.
 
-這些登入具備下列缺點︰
+These logins have the following drawbacks:
 
-- 使用者無法跨所有使用 Microsoft 身分識別的應用程式體驗單一登入，只會跨應用程式擁有且已設定的 Microsoft 身分識別。
-- 您的應用程式無法搭配更進階的商務功能使用，例如條件式存取，或使用產品的 InTune 套件。
-- 您的應用程式無法支援商務使用者之以憑證為基礎的驗證。
+- User cannot experience single-sign on across all apps that use a Microsoft Identity, only across those Microsoft Identities that are your application owns and have configured.
+- Your application can not be used with more advanced business features such as Conditional Access or use the InTune suite of products.
+- Your application can't support certificate based authentication for business users.
 
-以下說明 Microsoft Identity SDK 如何使用應用程式的共用儲存體來啟用 SSO：
+Here is a representation of how the Microsoft Identity SDKs work with the shared storage of your applications to enable SSO:
 
 ```
 +------------+ +------------+  +-------------+
@@ -84,35 +85,35 @@ Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用�
 +--------------------------------------------+
 ```
 
-#### 訊息代理程式協助登入
+#### <a name="broker-assisted-logins"></a>Broker assisted logins
 
-訊息代理程式協助登入在訊息代理程式應用程式中發生的登入體驗，並且使用訊息代理程式的儲存體和安全性，跨利用 Microsoft 身分識別平台之裝置上的所有應用程式共用認證。這表示您的應用程式將會依賴訊息代理程式才能讓使用者登入。在 iOS 和 Android 上，會透過可下載的應用程式提供訊息代理程式，這些應用程式由客戶獨立安裝，或由為使用者管理裝置的公司推送至裝置。此類型應用程式的範例為 iOS 上的 Azure Authenticator 應用程式。在 Windows 中，內建於作業系統的帳戶選擇器會提供此功能，在技術上稱為 Web 驗證訊息代理程式。體驗會依平台而有所不同，如果未正確管理，有時可能會干擾使用者。如果您已安裝 Facebook 應用程式，並在另一個應用程式中使用 Facebook 登入功能，您可能最熟悉這種模式。Microsoft 身分識別平台會利用相同的模式。
+Broker-assisted logins are login experiences that occur within the broker application and use the storage and security of the broker to share credentials across all applications on the device that leverage the Microsoft Identity platform. This means that your applications will rely on the broker in order to sign users in. On iOS and Android these are provided through downloadable applications that customers either install independently or can be pushed to the device by a company who manages the device for their user. An example of this type of application is the Azure Authenticator application on iOS. In Windows this functionality is provided by an account chooser built in to the operating system, known technically as the Web Authentication Broker. The experience varies by platform and can sometimes be disruptive to users if not managed correctly. You're probably most familiar with this pattern if you have the Facebook application installed and use Facebook Login functionality in another application. The Microsoft Identity platform leverages the same pattern.
 
-對於 iOS 而言，這會前往「轉換」動畫，您的應用程式已在其中傳送到背景工作，而 Azure Authenticator 應用程式則來到前景讓使用者選取他們想要登入的帳戶。
+For iOS this leads to a "transition" animation where your application is sent to the background while the Azure Authenticator applications comes to the foreground for the user to select which account they would like to sign in with.  
 
-對於 Android 和 Windows 而言，帳戶選擇器會顯在比較不干擾使用者的應用程式頂端。
+For Android and Windows the account chooser is displayed on top of your application which is less disruptive to the user.
 
-#### 如何叫用訊息代理程式
+#### <a name="how-the-broker-gets-invoked"></a>How the broker gets invoked
 
-如果在裝置上安裝相容的訊息代理程式，例如 Azure Authenticator 應用程式，當使用者指出他們想要使用 Microsoft 身分識別平台的任何帳戶登入時，Microsoft 身分識別 SDK 會自動為您叫用訊息代理程式。這可以是個人的 Microsoft 帳戶、工作或學校帳戶，或您提供的帳戶，以及在 Azure 中使用 B2C 和 B2B 產品的主機。藉由使用非常安全的演算法和加密，我們確定會以安全的方式要求這些認證並將其傳送回您的應用程式。這些機制的確切技術詳細資料並為發佈，但已透過 Apple 和 Google 的共同作業開發。
+If a compatible broker is installed on the device, like the Azure Authenticator application, the Microsoft Identity SDKs will automatically do the work of invoking the broker for you when a user indicates they wish to log in using any account from the Microsoft Identity platform. This could be an a personal Microsoft Account, a work or school account, or an account that you provide and host in Azure using our B2C and B2B products. By using extremely secure algorithms and encryption we ensure that the credentials are asked for and delivered back to your application in a secure manner. The exact technical detail of these mechanisms is not published but have been developed with collaboration by Apple and Google.
 
-**如果 Microsoft Identity SDK 呼叫訊息代理程式或使用非訊息代理程式協助流程，開發人員就有這個選項。** 不過，如果開發人員選擇不使用訊息代理程式協助流程，他們會失去利用 SSO 認證的優點，使用者可能已在裝置上新增這些認證，並防止 Microsoft 提供給客戶的商務功能使用其應用程式，例如條件式存取、Intune 管理功能和以憑證為基礎的驗證。
+**The developer has the choice of if the Microsoft Identity SDK calls the broker or uses the non-broker assisted flow.** However if the developer chooses not to use the broker-assisted flow they lose the benefit of leveraging SSO credentials that the user may have already added on the device as well as prevents their application from being used with business features Microsoft provides its customers such as Conditional Access, Intune Management capabilities, and certificate based authentication. 
 
-這些登入具備下列優點︰
+These logins have the following benefits:
 
--  無論廠商為何，使用者都可以跨所有應用程式體驗 SSO。
--  您的應用程式可利用更進階的商務功能，例如條件式存取，或使用產品的 InTune 套件。
--  您的應用程式可支援商務使用者之以憑證為基礎的驗證。
-- 由訊息代理程式利用額外的安全性演算法和加密來驗證應用程式和使用者身分識別，可享有更多安全的登入體驗。
+-  User experiences SSO across all their applications no matter the vendor.
+-  Your application can leverage more advanced business features such as Conditional Access or use the InTune suite of products.
+-  Your application can support certificate based authentication for business users.
+- Much more secure sign-in experience as the identity of the application and the user are verified by the broker application with additional security algorithms and encryption.
 
-這些登入具備下列缺點︰
+These logins have the following drawbacks:
 
-- 在 iOS 中，使用者可在選擇認證時轉換出您的應用程式體驗。
-- 喪失在應用程式內為客戶管理登入體驗的功能。
+- In iOS the user is transitioned out of your application's experience while credentials are chosen.
+- Loss of the ability to manage the login experience for your customers within your application.
 
 
 
-以下說明 Microsoft Identity SDK 如何使用訊息代理程式應用程式來啟用 SSO：
+Here is a representation of how the Microsoft Identity SDKs work with the broker applications to enable SSO:
 
 ```
 +------------+ +------------+   +-------------+
@@ -139,42 +140,42 @@ Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用�
 
 ```
               
-有了這個背景資訊，您應該能夠使用 Microsoft 身分識別平台和 SDK 在應用程式內進一步了解和實作 SSO。
+Armed with this background information you should be able to better understand and implement SSO within your application using the Microsoft Identity platform and SDKs.
 
 
-## 使用 ADAL 啟用跨應用程式的 SSO
+## <a name="enabling-cross-app-sso-using-adal"></a>Enabling cross-app SSO using ADAL
 
-我們將在此使用 ADAL iOS SDK 執行以下動作︰
+Here we'll use the ADAL Android SDK to:
 
-- 開啟應用程式套件的非訊息代理程式協助 SSO
-- 開啟訊息代理程式協助 SSO 的支援
+- Turn on non-broker assisted SSO for your suite of apps
+- Turn on support for broker-assisted SSO
 
 
-### 開啟非訊息代理程式協助 SSO 的 SSO
+### <a name="turning-on-sso-for-non-broker-assisted-sso"></a>Turning on SSO for non-broker assisted SSO
 
-對於跨應用程式的非訊息代理程式協助 SSO，Microsoft Identity SDK 會為您管理 SSO 的大部分複雜內容。這包括在快取中尋找適當的使用者，以及維護登入使用者的清單以便您查詢。
+For non-broker assisted SSO across applications the Microsoft Identity SDKs manage much of the complexity of SSO for you. This includes finding the right user in the cache and maintaining a list of logged in users for you to query. 
 
-若要跨您擁有的應用程式啟用 SSO，您需要執行下列動作︰
+To enable SSO across applications you own you need to do the following:
 
-1. 請確定您所有的應用程式使用相同的用戶端識別碼或應用程式識別碼。
-* 請確定您所有的應用程式具有相同的 SharedUserID 集合。
-* 請確定您所有的應用程式共用來自 Google Play 商店的相同簽署憑證，以便您可以共用儲存體。
+1. Ensure all your applications user the same Client ID or Application ID. 
+* Ensure all your applications have the same SharedUserID set.
+* Ensure that all of your applications share the same signing certificate from the Google Play store so that you can share storage.
 
-#### 步驟 1：將相同的用戶端識別碼 / 應用程式識別碼使用於應用程式套件中的所有應用程式
+#### <a name="step-1:-using-the-same-client-id-/-application-id-for-all-the-applications-in-your-suite-of-apps"></a>Step 1: Using the same Client ID / Application ID for all the applications in your suite of apps
 
-為了讓 Microsoft 身分識別平台知道它可以跨應用程式共用權杖，您的每個應用程式必須共用相同的用戶端識別碼或應用程式識別碼。這是您在入口網站中註冊第一個應用程式時提供給您的唯一識別碼。
+In order for the Microsoft Identity platform to know that it's allowed to share tokens across your applications, each of your applications will need to share the same Client ID or Application ID. This is the unique identifier that was provided to you when you registered your first application in the portal. 
 
-如果 Microsoft 識別服務使用相同的應用程式識別碼，您可能想知道如何識別它的不同應用程式。答案是使用**重新導向 URI**。每個應用程式可以在上架的入口網站中註冊多個重新導向 URI。組件中的每個應用程式將會有不同的重新導向 URI。其外觀的範例如下：
+You may be wondering how you will identify different apps to the Microsoft Identity service if it uses the same Application ID. The answer is with the **Redirect URIs**. Each application can have multiple Redirect URIs registered in the onboarding portal. Each app in your suite will have a different redirect URI. An example of how this looks is below:
 
-App1 重新導向 URI：`msauth://com.example.userapp/IcB5PxIyvbLkbFVtBI%2FitkW%2Fejk%3D`
+App1 Redirect URI: `msauth://com.example.userapp/IcB5PxIyvbLkbFVtBI%2FitkW%2Fejk%3D`
 
-App2 重新導向 URI：`msauth://com.example.userapp1/KmB7PxIytyLkbGHuI%2UitkW%2Fejk%4E`
+App2 Redirect URI: `msauth://com.example.userapp1/KmB7PxIytyLkbGHuI%2UitkW%2Fejk%4E`
 
-App3 重新導向 URI：`msauth://com.example.userapp2/Pt85PxIyvbLkbKUtBI%2SitkW%2Fejk%9F`
+App3 Redirect URI: `msauth://com.example.userapp2/Pt85PxIyvbLkbKUtBI%2SitkW%2Fejk%9F`
 
 ....
 
-它們在相同的用戶端識別碼 / 應用程式識別碼之下是巢狀的，並且可根據您在 SDK 組態中傳回給我們的重新導向 URI 查看。
+These are nested under the same client ID / application ID and looked up based on the redirect URI you return to us in your SDK configuration. 
 
 ```
 +-------------------+
@@ -200,57 +201,57 @@ App3 重新導向 URI：`msauth://com.example.userapp2/Pt85PxIyvbLkbKUtBI%2SitkW
 ```
 
 
-請注意，以下將說明這些重新導向 URI 的格式。您可以使用任何重新導向 URI，除非您想要支援訊息代理程式，在此情況下，它們的外觀必須如上所示
+*Note that the format of these Redirect URIs are explained below. You may use any Redirect URI unless you wish to support the broker, in which case they must look something like the above*
 
 
-#### 步驟 2︰在 Android 中設定共用儲存體
+#### <a name="step-2:-configuring-shared-storage-in-android"></a>Step 2: Configuring shared storage in Android
 
-設定 `SharedUserID` 已超出本文件的範圍，但可藉由閱讀[資訊清單](http://developer.android.com/guide/topics/manifest/manifest-element.html)上的 Google Android 文件來學習。您必須決定 sharedUserID 的名稱，並且跨所有的應用程式使用該名稱。
+Setting the `SharedUserID` is beyond the scope of this document but can be learned by reading the Google Android documentation on the [Manifest](http://developer.android.com/guide/topics/manifest/manifest-element.html). What is important is that you decide what you want your sharedUserID will be called and use that across all your applications. 
 
-一旦所有的應用程式中都有 `SharedUserID`，您即可立即使用 SSO。
+Once you have the `SharedUserID` in all your applications you are ready to use SSO.
 
 > [AZURE.WARNING] 
-當您跨應用程式共用儲存體時，任何應用程式都可以刪除使用者，更糟的是可以跨應用程式刪除所有權杖。如果您的應用程式依賴這些權杖來執行背景工作，這樣會造成可怕的災難。共用儲存體表示您在整個 Microsoft Identity SDK 必須非常小心進行任何移除作業。
+When you share a storage across your applications any application can delete users, or worse delete all the tokens across your application. This is particularly disastrous if you have applications that rely on the tokens to do background work. Sharing storage means that you must be very careful in any and all remove operations through the Microsoft Identity SDKs.
 
-就這麼簡單！ Microsoft Identity SDK 現在會跨所有應用程式共用認證。使用者清單也會跨應用程式執行個體共用。
+That's it! The Microsoft Identity SDK will now share credentials across all your applications. The user list will also be shared across application instances.
 
-### 開啟訊息代理程式協助 SSO 的 SSO
+### <a name="turning-on-sso-for-broker-assisted-sso"></a>Turning on SSO for broker assisted SSO
 
-應用程式使用任何已安裝在裝置上之訊息代理程式的功能**預設為關閉**。若要搭配使用應用程式與訊息代理程式，您必須執行一些額外的設定，並將一些程式碼新增至您的應用程式。
+The ability for an application to use any broker that is installed on the device is **turned off by default**. In order to use your application with the broker you must do some additional configuration and add some code to your application.
 
-要遵循的步驟如下：
+The steps to follow are:
 
-1. 在應用程式程式碼呼叫 MS SDK 時啟用訊息代理程式模式
-2. 建立新的重新導向 URI，並將其提供給應用程式與應用程式註冊
-3. 在 Android 資訊清單中設定正確的權限
+1. Enable broker mode in your application code's call to the MS SDK
+2. Establish a new redirect URI and provide that to both the app and your app registration
+3. Setting up the correct permissions in the Android manifest
 
 
-#### 步驟 1︰在應用程式中啟用訊息代理程式模式
-當您建立「設定」或驗證執行個體的初始設定時，已開啟應用程式使用訊息代理程式的功能。您可以設定程式碼中的 ApplicationSettings 類型就可以辦到︰
+#### <a name="step-1:-enable-broker-mode-in-your-application"></a>Step 1: Enable broker mode in your application
+The ability for your application to use the broker is turned on when you create the "settings" or initial setup of your Authentication instance. You do this by setting your ApplicationSettings type in your code:
 
 ```
 AuthenticationSettings.Instance.setUseBroker(true);
 ```
 
 
-#### 步驟 2︰利用 URL 配置建立新的重新導向 URI
+#### <a name="step-2:-establish-a-new-redirect-uri-with-your-url-scheme"></a>Step 2: Establish a new redirect URI with your URL Scheme
 
-為了確保我們永遠傳回認證權杖給正確的應用程式，我們必須確定 Android 作業系統可以確認我們回呼應用程式的方式。Android 作業系統會使用 Google Play 商店中的憑證雜湊。這樣就不會讓惡意應用程式假冒。因此，我們利用這個方法搭配訊息代理程式應用程式的 URI，以確保將權杖傳回給正確的應用程式。我們需要您在應用程式中建立此唯一重新導向 URI，並在我們的開發人員入口網站中設定為重新導向 URI。
+In order to ensure that we always return the credential tokens to the correct application, we need to make sure we call back to your application in a way that the Android operating system can verify. The Android operating system uses the hash of the certificate in the Google Play store. This cannot be spoofed by a rogue application. Therefore, we leverage this along with the URI of our broker application to ensure that the tokens are returned to the correct application. We require you to establish this unique redirect URI both in your application and set as a Redirect URI in our developer portal. 
 
-您的重新導向 URI 必須是適當的格式︰
+Your redirect URI must be in the proper form of:
 
 `msauth://packagename/Base64UrlencodedSignature`
 
-例如：*msauth://com.example.userapp/IcB5PxIyvbLkbFVtBI%2FitkW%2Fejk%3D*
+ex: *msauth://com.example.userapp/IcB5PxIyvbLkbFVtBI%2FitkW%2Fejk%3D*
 
-此重新導向 URI 必須在使用 [Azure 傳統入口網站](https://manage.windowsazure.com/)的應用程式註冊中指定。如需 Azure AD 應用程式註冊的詳細資訊，請參閱[與 Azure Active Directory 整合](active-directory-how-to-integrate.md)。
+This Redirect URI needs to be specified in your app registration using the [Azure classic portal](https://manage.windowsazure.com/). For more information on Azure AD app registration, see [Integrating with Azure Active Directory](active-directory-how-to-integrate.md).
 
 
-#### 步驟 3：在您的應用程式中設定正確的權限
+#### <a name="step-3:-set-up-the-correct-permissions-in-your-application"></a>Step 3: Set up the correct permissions in your application
 
-我們的 Android 訊息代理程式應用程式會使用 Android 作業系統的 Accounts Manager 功能來管理所有應用程式的認證。若要在 Android 中使用此訊息代理程式，您的應用程式資訊清單必須有使用 AccountManager 帳戶的權限。在[此處適用於帳戶管理員的 Google 文件](http://developer.android.com/reference/android/accounts/AccountManager.html)中有詳細的討論
+Our broker application in Android uses the Accounts Manager feature of the Android OS to manage credentials across applications. In order to use the broker in Android your app manifest must have permissions to use AccountManager accounts. This is discussed in detail in the [Google documentation for Account Manager here] (http://developer.android.com/reference/android/accounts/AccountManager.html)
 
-特別是以下這些權限︰
+In particular, these permissions are:
 
 ```
 GET_ACCOUNTS
@@ -258,8 +259,21 @@ USE_CREDENTIALS
 MANAGE_ACCOUNTS
 ```
 
-### 您已設定 SSO！
+### <a name="you've-configured-sso!"></a>You've configured SSO!
 
-現在 Microsoft Identity SDK 會自動跨應用程式共用認證，並在訊息代理程式出現在其裝置上時叫用它。
+Now the Microsoft Identity SDK will automatically both share credentials across your applications and invoke the broker if it's present on their device.
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+
+
+
+
+
+
+
+
+<!--HONumber=Oct16_HO4-->
+
+

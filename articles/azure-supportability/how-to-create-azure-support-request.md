@@ -1,88 +1,100 @@
 <properties
-	 pageTitle="如何建立 Azure 支援要求 | Microsoft Azure"
-	 description="如何建立 Azure 支援要求。"
-	 services="Azure Supportability"
-	 documentationCenter=""
-	 authors="ganganarayanan"
-	 manager="scotthit"
-	 editor=""/>
+     pageTitle="How to create an Azure support request | Microsoft Azure"
+     description="How to create an Azure support request."
+     services="Azure Supportability"
+     documentationCenter=""
+     authors="ganganarayanan"
+     manager="scotthit"
+     editor=""/>
 
 <tags
-	 ms.service="azure-supportability"
-	 ms.workload="na"
-	 ms.tgt_pltfrm="na"
-	 ms.devlang="na"
-	 ms.topic="article"
-	 ms.date="07/25/2016"
-	 ms.author="gangan"/>
+     ms.service="azure-supportability"
+     ms.workload="na"
+     ms.tgt_pltfrm="na"
+     ms.devlang="na"
+     ms.topic="article"
+     ms.date="07/25/2016"
+     ms.author="gangan"/>
 
-# 如何建立 Azure 支援要求
 
-## 摘要
-Azure 客戶可以在 Azure 入口網站 ([https://portal.azure.com](https://portal.azure.com)) 中建立和管理支援要求。根據客戶的意見反應，我們已更新支援要求體驗，著重在三個主要目標︰
+# <a name="how-to-create-an-azure-support-request"></a>How to create an Azure support request
 
-- **流暢**︰減少點按次數以及讓刀鋒視窗提交支援要求的程序更簡單。
-- **整合**︰當您在疑難排解 Azure 資源的問題時，很輕易就能開啟該資源的支援要求，而不需要切換內容。
-- **有效**︰收集支援工程師所需的重要資訊，有效率地解決問題。
+## <a name="summary"></a>Summary
+Azure customers can create and manage support requests in the Azure portal, [https://portal.azure.com](https://portal.azure.com).
+Based on customer feedback, we’ve updated the support request experience to focus on three main goals:
 
-## 開始使用
-您可以從頂端導覽功能表或直接從資源刀鋒視窗中建立支援要求。
+- **Streamlined**: Reduce clicks and blades to make the process of submitting a support request simple.
+- **Integrated**: When you’re troubleshooting an issue with an Azure resource, it should be easy to open a support request for that resource without switching context.
+- **Efficient**: Gather the key information your support engineer will need to efficiently resolve your issue.
 
-**從頂端導覽列**
+## <a name="getting-started"></a>Getting started
+You can create a support request from the top navigation menu or directly from a resource blade.
 
-![新的支援要求](./media/how-to-create-azure-support-request/NewSupportRequest.png)
+**From the top navigation bar**
 
-**從資源刀鋒視窗**
+![New Support Request](./media/how-to-create-azure-support-request/NewSupportRequest.png)
 
-![在內容中](./media/how-to-create-azure-support-request/Incontext.png)
+**From a resource blade**
 
-## 基本概念
-支援要求程序的第一個步驟會收集您的問題和支援計劃的基本資訊。
+![In context](./media/how-to-create-azure-support-request/Incontext.png)
 
-讓我們來看一個範例︰您面臨虛擬機器的技術問題，而且懷疑是網路連接問題。選取服務 (「執行 Windows 的虛擬機器」)，精靈的第一個步驟中的資源 (您的虛擬機器的名稱) 會啟動取得此問題協助的程序。
+## <a name="basics"></a>Basics
+The first step of the support request process gathers basic information about your issue and your support plan.
 
-![基本概念刀鋒視窗](./media/how-to-create-azure-support-request/Basics.png)
+Let’s take an example: You’re facing technical difficulties with your virtual machine and suspect a network connectivity issue.
+Selecting the service ("Virtual Machine running Windows") and the resource (the name of your virtual machine) in the first step of the wizard starts the process of getting help for this issue.
 
->[AZURE.NOTE] Azure 提供無限制的訂用帳戶管理支援 (例如帳單、配額調整和帳戶轉換)。如需技術支援，您必須加入支援計劃。[深入了解支援計劃](https://azure.microsoft.com/support/plans)。
+![Basics blade](./media/how-to-create-azure-support-request/Basics.png)
 
-## 問題
-精靈的第二個步驟會收集問題的相關額外詳細資料。在此步驟中提供精確的詳細資料，可讓我們將您的案例路由傳送至最佳的問題支援工程師，並且儘速開始診斷問題。
+>[AZURE.NOTE] Azure provides unlimited support for subscription management (things like billing, quota adjustments, and account transfers). For technical support, you need a support plan. [Learn more about support plans](https://azure.microsoft.com/support/plans).
 
-![問題刀鋒視窗](./media/how-to-create-azure-support-request/Problem.png)
+## <a name="problem"></a>Problem
+The second step of the wizard gathers additional details about the issue. Providing accurate details in this step allows us to route your case to the best support engineer for the issue and to begin diagnosing the issue as soon as possible.
 
-繼續上述的虛擬機器連接範例，您需要填寫此表單以指出是網路連接問題，提供問題的進一步詳細資料，包括當您遇到問題時的大約時間。
+![Problem blade](./media/how-to-create-azure-support-request/Problem.png)
 
-## 相關說明
-針對某些問題，我們會提供相關說明連結以對問題進行疑難排解。如果建議的文件並沒有幫助，您可以繼續程序以建立支援要求。![相關說明](./media/how-to-create-azure-support-request/RelatedHelp.png)
+Continuing with the virtual machine connectivity example from above, you would fill out this form to indicate a network connectivity issue, and you would provide further details about the issue, including the approximate time when you experienced the issue.
 
-## 連絡人資訊
-精靈的最後一個步驟是確認您的連絡人資訊，讓我們知道要如何與您連絡。![連絡人資訊](./media/how-to-create-azure-support-request/ContactInformation.png)
+## <a name="related-help"></a>Related Help
+For some problems, we provide related help links to troubleshoot the issue. If the recommended documents do not help, you can continue through the process to create a support request.
+![Related help](./media/how-to-create-azure-support-request/RelatedHelp.png)
 
-根據您的問題的嚴重性，可能會要求您指出要在營業時間與您連絡，或者您希望全天候回應，這表示我們可能會隨時與您連絡。![全天候連絡人資訊](./media/how-to-create-azure-support-request/ContactInformation-2.png)
+## <a name="contact-information"></a>Contact Information
+The last step of the wizard confirms your contact information so we know how to reach you.
+![Contact Information](./media/how-to-create-azure-support-request/ContactInformation.png)
 
-## 管理支援要求
-建立支援要求之後，您可以從 [管理支援要求] 頁面檢視詳細資料。
+Depending on the severity of your issue, you may be asked to indicate if you would like us to contact you during business hours or if you would prefer a 24x7 response, which means we may contact you at any time.
+![Contact Information 24x7](./media/how-to-create-azure-support-request/ContactInformation-2.png)
 
-**從頂端導覽列**
+## <a name="manage-support-requests"></a>Manage support requests
+After you create the support request, you can view the details from the **Manage Support Requests** page.
 
-![管理支援要求連結](./media/how-to-create-azure-support-request/ManageSupportRequest-link.png)
+**From the top navigation bar**
 
-在 [管理支援要求] 頁面上，您可以檢視所有的支援要求及其狀態。![管理支援要求](./media/how-to-create-azure-support-request/ManageSupportRequest.png)
+![Manage Support Request link](./media/how-to-create-azure-support-request/ManageSupportRequest-link.png)
 
-選取支援要求以檢視詳細資料，包括嚴重性和支援工程師回應的預期時間。![VID](./media/how-to-create-azure-support-request/VID.png)
+On the **Manage support requests** page, you can view all support requests and their status.
+![Manage Support Request](./media/how-to-create-azure-support-request/ManageSupportRequest.png)
 
-如果您想要變更要求的嚴重性，請按一下 [業務衝擊] 圖格。在先前範例中，要求目前設為嚴重性 C。
+Select the support request to view details, including severity and the expected time it will take for a support engineer to respond.
+![VID](./media/how-to-create-azure-support-request/VID.png)
 
-按一下圖格會顯示可以指派給開啟支援要求的嚴重性清單。
+If you want to change the severity of the request, click the **Business impact** tile. In the preceeding example, the request is currently set to Severity C.
 
->[AZURE.NOTE] 最高嚴重性層級取決於您的支援計劃。[深入了解支援計劃](https://azure.microsoft.com/support/plans)。
+Clicking the tile shows you the list of severities you can assign to an open support request.
+
+>[AZURE.NOTE] The maximum severity level depends on your support plan. [Learn more about support plans](https://azure.microsoft.com/support/plans).
 
 ![VID-2](./media/how-to-create-azure-support-request/VID-2.png)
 
-## 意見反應
-我們歡迎意見反應和建議！ 請將您的[建議](https://feedback.azure.com/forums/266794-support-feedback)傳送給我們。此外，您可以透過 [Twitter](https://twitter.com/azuresupport) 或 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure)與我們連絡。
+## <a name="feedback"></a>Feedback
+We are always open to feedback and suggestions! Please send us your [suggestions](https://feedback.azure.com/forums/266794-support-feedback). Additionally, you can engage with us via [Twitter](https://twitter.com/azuresupport) or the [MSDN forums](https://social.msdn.microsoft.com/Forums/azure).
 
-## 詳細資訊
-[Azure 支援常見問題集](https://azure.microsoft.com/support/faq)
+## <a name="learn-more"></a>Learn more
+[Azure Support FAQ](https://azure.microsoft.com/support/faq)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

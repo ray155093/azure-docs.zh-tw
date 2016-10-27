@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure Tools 發佈雲端服務 | Microsoft Azure"
-   description="了解如何使用 Visual Studio 發佈 Azure 雲端服務專案。"
+   pageTitle="Publishing a Cloud Service using the Azure Tools | Microsoft Azure"
+   description="Learn about how to publish Azure cloud service projects by using Visual Studio."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,162 +15,167 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 使用 Azure Tools 發佈雲端服務
 
-您可以使用 Azure Tools for Microsoft Visual Studio，直接從 Visual Studio 發佈 Azure 應用程式。Visual Studio 支援以整合方式發佈至雲端服務的預備或生產環境。
+# <a name="publishing-a-cloud-service-using-the-azure-tools"></a>Publishing a Cloud Service using the Azure Tools
 
-您必須具有 Azure 訂用帳戶才可以發佈 Azure 應用程式。您也必須設定要供應用程式使用的雲端服務和儲存體帳戶。在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)即可進行這些設定。
+By using the Azure Tools for Microsoft Visual Studio, you can publish your Azure application directly from Visual Studio. Visual Studio supports integrated publishing to either the Staging or the Production environment of a cloud service.
 
->[AZURE.IMPORTANT] 在發佈時，您可以為雲端服務選取部署環境。您也必須選取用來儲存部署所需應用程式套件的儲存體帳戶。在部署後，就會從儲存體帳戶移除應用程式套件。
+Before you can publish an Azure application, you must have an Azure subscription. You must also set up a cloud service and storage account to be used by your application. You can set these up at the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-在開發和測試 Azure 應用程式時，可以使用 Web Deploy 以累加方式對 Web 角色發佈變更。在將應用程式發佈至部署環境後，Web Deploy 可讓您直接將變更部署至執行 Web 角色的虛擬機器。您不必在每次想要更新 Web 角色以測試變更時封裝和發佈整個 Azure 應用程式。透過這個方法，即可在雲端提供 Web 角色變更來進行測試，而不必等到應用程式發佈至部署環境後才進行。
+>[AZURE.IMPORTANT] When you publish, you can select the deployment environment for your cloud service. You must also select a storage account that is used to store the application package for deployment. After deployment, the application package is removed from the storage account.
 
-請使用下列程序來發佈 Azure 應用程式以及利用 Web Deploy 更新 Web 角色：
+When you are developing and testing an Azure application, you can use Web Deploy to publish changes incrementally for your web roles. After you publish your application to a deployment environment, Web Deploy lets you deploy changes directly to the virtual machine that is running the web role. You do not have to package and publish your entire Azure application each time you want to update your web role to test out the changes. With this approach you can have your web role changes available in the cloud for testing without waiting to have your application published to a deployment environment.
 
-- 從 Visual Studio 發佈或封裝 Azure 應用程式
+Use the following procedures to publish your Azure application and to update a web role by using Web Deploy:
 
-- 在開發和測試週期期間更新 Web 角色
+- Publish or Package an Azure application from Visual Studio
 
-## 從 Visual Studio 發佈或封裝 Azure 應用程式
+- Update a web role as part of the development and testing cycle
 
-在發佈 Azure 應用程式時，可以執行下列其中一項工作：
+## <a name="publish-or-package-an-azure-application-from-visual-studio"></a>Publish or Package an Azure Application from Visual Studio
 
-- 建立服務封裝：您可以從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，使用此封裝和服務組態檔將應用程式發佈至部署環境。
+When you publish your Azure application, you can do one of the following tasks:
 
-- 從 Visual Studio 發佈 Azure 專案：若要將應用程式直接發佈至 Azure，您可以使用 [發佈精靈]。如需相關資訊，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
+- Create a service package: You can use this package and the service configuration file to publish your application to a deployment environment from the [Azure Classic Portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-### 從 Visual Studio 建立服務封裝
+- Publish your Azure project from Visual Studio: To publish your application directly to Azure, you use the Publish Wizard. For information, see [Publish Azure Application Wizard](vs-azure-tools-publish-azure-application-wizard.md).
 
-1. 準備好發佈應用程式時，請開啟 [方案總管]，開啟包含角色的 Azure 專案的捷徑功能表，然後選擇 [發佈]。
+### <a name="to-create-a-service-package-from-visual-studio"></a>To create a service package from Visual Studio
 
-1. 若只要建立服務封裝，請遵循下列步驟：
+1. When you are ready to publish your application, open Solution Explorer, open the shortcut menu for the Azure project that contains your roles, and choose Publish.
 
-  1. 開啟 Azure 專案的捷徑功能表，然後選擇 [封裝]。
+1. To create a service package only, follow these steps:  
 
-  1. 在 [封裝 Azure 應用程式] 對話方塊中選擇要建立封裝的服務組態，然後選擇組建組態。
+  1. On the shortcut menu for the Azure project, choose **Package**.
 
-  1. (選用) 若要在發佈雲端服務後，為雲端服務開啟「遠端桌面」，請選取 [啟用所有角色的遠端桌面] 核取方塊，然後選取 [設定] 來設定「遠端桌面」。如果要在發佈後偵錯雲端服務，請選取 [啟用所有角色的遠端偵錯工具] 來開啟遠端偵錯。
+  1. In the **Package Azure Application** dialog box, choose the service configuration for which you want to create a package, and then choose the build configuration.
 
-      如需詳細資訊，請參閱[搭配使用遠端桌面與 Azure 角色](vs-azure-tools-using-remote-desktop-with-azure-roles.md)。
+  1. (optional) To turn on Remote Desktop for the cloud service after you publish it, select the **Enable Remote Desktop for all Roles** check box, and then select **Settings** to configure Remote Desktop. If you want to debug your cloud service after you publish it, turn on remote debugging by selecting **Enable Remote Debugger for all Roles**.
 
-  1. 若要建立封裝，請選擇 [封裝] 連結。
+      For more information, see [Using Remote Desktop with Azure Roles](vs-azure-tools-using-remote-desktop-with-azure-roles.md).
 
-      [檔案總管] 會顯示新建立之封裝的檔案位置。您可以複製這個位置，以從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)使用它。
+  1. To create the package, choose the **Package** link.
 
-  1. 若要將此封裝發佈至部署環境，您必須在建立雲端服務時使用此位置做為封裝位置，並透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將此封裝部署到環境中。
+      File Explorer shows the file location of the newly created package. You can copy this location so that you can use it from the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-1. (選用) 若要取消部署程序，請在活動記錄檔細目的捷徑功能表上，選擇 [取消並移除]。這會停止部署程序，並從 Azure 中刪除部署環境。
+  1. To publish this package to a deployment environment, you must use this location as the Package location when you create a cloud service and deploy this package to an environment with the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-    >[AZURE.NOTE] 若要在部署此部署環境後將其移除，您必須使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
+1. (Optional) To cancel the deployment process, on the shortcut menu for the line item in the activity log, choose **Cancel and remove**. This stops the deployment process and deletes the deployment environment from Azure.
 
-1. (選用) 角色執行個體啟動後，Visual Studio 會自動在 [伺服器總管] 的 [雲端服務] 節點中顯示部署環境。您可以從這裡檢視個別角色執行個體的狀態。請參閱[使用雲端總管管理 Azure 資源](vs-azure-tools-resources-managing-with-cloud-explorer.md)。下圖顯示仍處於初始化狀態的角色執行個體：
+    >[AZURE.NOTE] To remove this deployment environment after it has been deployed, you must use the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-    ![VST\_DeployComputeNode](./media/vs-azure-tools-publishing-a-cloud-service/IC744134.png)
+1. (Optional) After your role instances have started, Visual Studio automatically shows the deployment environment in the **Cloud Services** node in Server Explorer. From here you can see the status of the individual role instances. See [Managing Azure resources with Cloud Explorer](vs-azure-tools-resources-managing-with-cloud-explorer.md).The following illustration shows the role instances while they are still in the Initializing state:
 
-## 在開發和測試週期期間更新 Web 角色
+    ![VST_DeployComputeNode](./media/vs-azure-tools-publishing-a-cloud-service/IC744134.png)
 
-如果您的應用程式有穩定的後端基礎結構，但 Web 角色需要更頻繁的更新，您可以使用 Web Deploy，僅更新專案中的 Web 角色。當您不想要重建並重新部署後端背景工作角色，或如果您有多個 Web 角色但只想要更新其中一個 Web 角色，這個方法就能派上用場。
+## <a name="update-a-web-role-as-part-of-the-development-and-testing-cycle"></a>Update a Web Role as Part of the Development and Testing Cycle
 
-### 需求
+If your app’s backend infrastructure is stable, but the web roles need more frequent updating, you can use Web Deploy to update only a web role in your project. This is handy when you don’t want to rebuild and redeploy the backend worker roles, or if you have multiple web roles and you want to update only one of the web roles.
 
-以下是使用 Web Deploy 更新 Web 角色的需求：
+### <a name="requirements"></a>Requirements
 
-- **只能用於開發和測試目的：**系統會直接對執行 Web 角色的虛擬機器進行變更。如果此虛擬機器必須回收，您就會遺失變更，因為您發佈的原始封裝會用來重新建立角色的虛擬機器。您必須重新發佈應用程式以取得 Web 角色的最新變更。
+Here are the requirements to use Web Deploy to update your web role:
 
-- **只能更新 Web 角色：**無法更新背景工作角色。此外，您無法更新 web role.cs 中的 RoleEntryPoint。
+- **For development and testing purposes only:** The changes are made directly to the virtual machine where the web role is running. If this virtual machine has to be recycled, the changes are lost because the original package that you published is used to recreate the virtual machine for the role. You must republish your application to get the latest changes for the web role.
 
-- **只能支援一個 Web 角色執行個體：**所有 Web 角色在部署環境中都不能有多個執行個體。不過，可支援多個各只有一個執行個體的 Web 角色。
+- **Only web roles can be updated:** Worker roles can’t be updated. In addition, you can’t update the RoleEntryPoint in web role.cs.
 
-- **必須啟用遠端桌面連線：**這是必要動作，如此一來，Web Deploy 才能使用使用者名稱和密碼來連線到虛擬機器，以將變更部署到執行網際網路資訊服務 (IIS) 的伺服器。此外，您可能需要連線到虛擬機器，以將信任的憑證新增到此虛擬機器上的 IIS。(這可確保 Web Deploy 所使用的 IIS 的遠端連線安全無虞。)
+- **Can only support a single instance of a web role:** You can’t have multiple instances of any web role in your deployment environment. However, multiple web roles each with only one instance are supported.
 
-下列程序假設您是使用 [發佈 Azure 應用程式] 精靈。
+- **You must enable remote desktop connections:** This is required so that Web Deploy can use the user and password to connect to the virtual machine to deploy the changes to the server that’s running Internet Information Services (IIS). In addition, you might need to connect to the virtual machine to add a trusted certificate to IIS on this virtual machine. (This ensures that the remote connection for IIS that is used by Web Deploy is secure.)
 
-### 在發佈應用程式時啟用 Web Deploy
+The following procedure assumes that you are using the **Publish Azure Application** wizard.
 
-1. 若要啟用 [啟用所有 Web 角色的 Web Deploy] 核取方塊，您必須先設定遠端桌面連線。選取 [啟用所有角色的遠端桌面]，然後在出現的 [遠端桌面組態] 方塊中提供要用來進行遠端連線的認證。如需詳細資訊，請參閱[搭配使用遠端桌面與 Azure 角色](vs-azure-tools-remote-desktop-roles.md)。
+### <a name="to-enable-web-deploy-when-you-publish-your-application"></a>To Enable Web Deploy When You Publish Your Application
 
-1. 若要啟用應用程式中所有 Web 角色的 Web Deploy，請選取 [啟用所有 Web 角色的 Web Deploy]。
+1. To enable the **Enable Web Deploy** for all web roles check box, you must first configure remote desktop connections. Select **Enable Remote Desktop** for all roles and then supply the credentials that will be used to connect remotely in the **Remote Desktop Configuration** box that appears. See [Using Remote Desktop with Azure Roles](vs-azure-tools-remote-desktop-roles.md) for more information.
 
-    此時會出現黃色警告三角形。Web Deploy 預設會使用不受信任的自我簽署憑證，在上傳機密資料時不建議使用此憑證。如果您需要確保機密資料在進行此程序時安全無虞，可以新增 SSL 憑證以用於 Web Deploy 連線。此憑證必須是受信任的憑證。如需如何執行這項操作的相關資訊，請參閱本主題後面的＜讓 Web Deploy 安全無虞＞一節。
+1. To enable Web Deploy for all the web roles in your application, select **Enable Web Deploy for all web roles**.
 
-1. 選擇 [下一步] 以顯示 [摘要] 畫面，然後選擇 [發佈] 部署雲端服務。
+    A yellow warning triangle appears. Web Deploy uses an untrusted, self-signed certificate by default, which is not recommended for uploading sensitive data. If you need to secure this process for sensitive data, you can add a SSL certificate to be used for Web Deploy connections. This certificate needs to be a trusted certificate. For information about how to do this, see the section **To Make Web Deploy Secure** later in this topic.
 
-    雲端服務隨即進行發佈。所建立的虛擬機器已啟用遠端連線的 IIS 功能，因此可以使用 Web Deploy 來更新 Web 角色，而不必重新發佈。
+1. Choose **Next** to show the **Summary** screen, and then choose **Publish** to deploy the cloud service.
 
-    >[AZURE.NOTE] 如果您對 Web 角色設定了多個執行個體，則會出現警告訊息，指出在為了發佈應用程式所建立的封裝中，每個 Web 角色限制只能有一個執行個體。選取 [確定] 以繼續操作。如＜需求＞一節所述，您可以有多個 Web 角色，但每個角色只能有一個執行個體。
+    The cloud service is published. The virtual machine that is created has remote connections enabled for IIS so that Web Deploy can be used to update your web roles without republishing them.
 
-### 使用 Web Deploy 更新 Web 角色
+    >[AZURE.NOTE] If you have more than one instance configured for a web role, a warning message appears, stating that each web role will be limited to one instance only in the package that’s created to publish your application. Select **OK** to continue. As stated in the Requirements section, you can have more than one web role but only one instance of each role.
 
-1. 若要使用 Web Deploy，請對 Visual Studio 中您想要發佈的任何 Web 角色，變更其專案的程式碼，然後在方案中的這個專案節點上按一下滑鼠右鍵，並指向 [發佈]。[發佈 Web] 對話方塊隨即出現。
+### <a name="to-update-your-web-role-by-using-web-deploy"></a>To Update Your Web Role by Using Web Deploy
 
-1. (選用) 如果您已新增受信任的 SSL 憑證以用於 IIS 的遠端連線，您可以清除 [允許未受信任的憑證] 核取方塊。如需如何新增憑證以安全執行 Web Deploy，請參閱本主題稍後的＜讓 Web Deploy 安全無虞＞一節。
+1. To use Web Deploy, make code changes to the project for any of your web roles in Visual Studio that you want to publish, and then right-click this project node in your solution and point to **Publish**. The **Publish Web** dialog box appears.
 
-1. 若要使用 Web Deploy，發佈機制會需要您首先發佈封裝時針對遠端桌面連線所設定的使用者名稱和密碼。
+1. (Optional) If you added a trusted SSL certificate to use for remote connections for IIS, you can clear the **Allow untrusted certificate** check box. For information about how to add a certificate to make Web Deploy secure, see the section **To Make Web Deploy Secure** later in this topic.
 
-  1. 在 [使用者名稱] 中輸入使用者名稱。
+1. To use Web Deploy, the publish mechanism needs the user name and password that you set up for your remote desktop connection when you first published the package.
 
-  1. 在 [密碼] 中輸入密碼。
+  1. In **User name**, enter the user name.
 
-  1. (選用) 如果您想要將此密碼儲存在此設定檔中，請選擇 [儲存密碼]。
+  1. In **Password**, enter the password.
 
-1. 若要發佈 Web 角色的變更，請選擇 [發佈]。
+  1. (Optional) If you want to save this password in this profile, choose **Save password**.
 
-    狀態列會顯示 [發佈已開始]。當發佈完成時，則會出現 [發佈成功]。現在變更已部署至虛擬機器上的 Web 角色。您現在可以在 Azure 環境中啟動 Azure 應用程式來測試變更。
+1. To publish the changes to your web role, choose **Publish**.
 
-### 讓 Web Deploy 安全無虞
+    The status line displays **Publish started**. When the publishing has completed, **Publish succeeded** appears. The changes have now been deployed to the web role on your virtual machine. Now you can start your Azure application in the Azure environment to test your changes.
 
-1. Web Deploy 預設會使用不受信任的自我簽署憑證，在上傳機密資料時不建議使用此憑證。如果您需要確保機密資料在進行此程序時安全無虞，可以新增 SSL 憑證以用於 Web Deploy 連線。此憑證必須是從憑證授權單位 (CA) 取得的受信任憑證。
+### <a name="to-make-web-deploy-secure"></a>To Make Web Deploy Secure
 
-    若要讓每個 Web 角色的每個虛擬機器都能夠安全使用 Web Deploy，您必須將想要用於 Web Deploy 的受信任憑證上傳到 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。如此可確保在您發佈應用程式時，針對 Web 角色所建立的虛擬機器中會新增此憑證。
+1. Web Deploy uses an untrusted, self-signed certificate by default, which is not recommended for uploading sensitive data. If you need to secure this process for sensitive data, you can add a SSL certificate to be used for Web Deploy connections. This certificate needs to be a trusted certificate, which you obtain from a certificate authority (CA).
 
-1. 若要將受信任的 SSL 憑證新增至 IIS 以用於遠端連線，請遵循下列步驟：
+    To make Web Deploy secure for each virtual machine for each of your web roles, you must upload the trusted certificate that you want to use for web deploy to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885). This makes sure that the certificate is added to the virtual machine that is created for the web role when you publish your application.
 
-  1. 若要連接至執行 Web 角色的虛擬機器，請在 [雲端總管] 或 [伺服器總管] 中選取 Web 角色的執行個體，然後選擇 [使用遠端桌面連接] 命令。如需如何連線到虛擬機器的詳細步驟，請參閱[搭配使用遠端桌面與 Azure 角色](vs-azure-tools-remote-desktop-roles.md)。
+1. To add a trusted SSL certificate to IIS to use for remote connections, follow these steps:
 
-      瀏覽器會提示您下載 .RDP 檔案。
+  1. To connect to the virtual machine that is running the web role, select the instance of the web role in **Cloud Explorer** or **Server Explorer**, and then choose the **Connect using Remote Desktop** command. For detailed steps about how to connect to the virtual machine, see [Using Remote Desktop with Azure Roles](vs-azure-tools-remote-desktop-roles.md).
 
-  1. 若要新增 SSL 憑證，請開啟 IIS 管理員中的管理服務。在 IIS 管理員中，開啟 [動作] 窗格中的 [繫結] 連結來啟用 SSL。[新增站台繫結] 對話方塊隨即出現。選擇 [新增]，然後在 [類型] 下拉式清單中選擇 HTTPS。在 [SSL 憑證] 清單中，選擇您已透過 CA 簽署並上傳至 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)的 SSL 憑證。如需詳細資訊，請參閱[設定管理服務的連線設定](http://go.microsoft.com/fwlink/?LinkId=215824)。
+      Your browser will prompt you to download an .RDP file.
 
-      >[AZURE.NOTE] 如果您新增受信任的 SSL 憑證，[發佈精靈] 中就不會再出現黃色警告三角形。
+  1. To add an SSL certificate, open the management service in IIS Manager. In IIS Manager, enable SSL by opening the **Bindings** link in the **Action** pane. The **Add Site Binding** dialog box appears. Choose **Add**, and then choose HTTPS in the **Type** dropdown list. In the **SSL certificate** list, choose the SSL certificate that you had signed by a CA and that you uploaded to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885). For more information, see [Configure Connection Settings for the Management Service](http://go.microsoft.com/fwlink/?LinkId=215824).
 
-## 將檔案納入服務封裝
+      >[AZURE.NOTE] If you add a trusted SSL certificate, the yellow warning triangle no longer appears in the **Publish Wizard**.
 
-您可能需要在服務封裝中納入特定檔案，以在為角色建立的虛擬機器上提供使用。例如，您可以在服務封裝中加入啟動指令碼所使用的 .exe 或 .msi 檔案。或者您可能需要加入 Web 角色或背景工作角色專案所需的組件。若要納入檔案，必須將檔案加入 Azure 應用程式的方案中。
+## <a name="include-files-in-the-service-package"></a>Include Files in the Service Package
 
-### 將檔案納入服務封裝
+You might need to include specific files in your service package so that they are available on the virtual machine that is created for a role. For example, you might want to add an .exe or an .msi file that is used by a startup script to your service package. Or you might need to add an assembly that a web role or worker role project requires. To include files they must be added to the solution for your Azure application.
 
-1. 若要將組件加入服務封裝中，請使用下列步驟：
+### <a name="to-include-files-in-the-service-package"></a>To include files in the service package
 
-  1. 在 [方案總管] 中開啟遺漏所參考組件之專案的專案節點。
+1. To add an assembly to a service package, use the following steps:
 
-  1. 若要將組件加入至專案，請開啟 [參考] 資料夾的捷徑功能表，然後選擇 [加入參考]。[加入參考] 對話方塊隨即出現。
+  1. In **Solution Explorer** open the project node for the project that is missing the referenced assembly.
 
-  1. 選擇您想要加入的參考，然後選擇 [確定] 按鈕。
+  1. To add the assembly to the project, open the shortcut menu for the **References** folder and then choose **Add Reference**. The Add Reference dialog appears.
 
-      參考便會加入 [參考] 資料夾底下的清單。
+  1. Choose the reference that you want to add and then choose the **OK** button.
 
-  1. 開啟您所加入之組件的捷徑功能表，然後選擇 [屬性]。[屬性] 視窗隨即出現。
+      The reference is added to the list under the **References** folder.
 
-      若要將此組件納入服務封裝，請在 [複製到本機] 清單中選擇 [True]。
+  1. Open the shortcut menu for the assembly that you added and choose **Properties**. The **Properties** window appears.
 
-1. 在 [方案總管] 中開啟遺漏所參考組件之專案的專案節點。
+      To include this assembly in the service package, in the **Copy Local list** choose **True**.
 
-1. 若要將組件加入至專案，請開啟 [參考] 資料夾的捷徑功能表，然後選擇 [加入參考]。[加入參考] 對話方塊隨即出現。
+1. In **Solution Explorer** open the project node for the project that is missing the referenced assembly.
 
-1. 選擇您想要加入的參考，然後選擇 [確定] 按鈕。
+1. To add the assembly to the project, open the shortcut menu for the **References** folder and then choose **Add Reference**. The **Add Reference** dialog appears.
 
-    參考便會加入 [參考] 資料夾底下的清單。
+1. Choose the reference that you want to add and then choose the **OK** button.
 
-1. 開啟您所加入之組件的捷徑功能表，然後選擇 [屬性]。[屬性] 視窗隨即出現。
+    The reference is added to the list under the **References** folder.
 
-1. 若要將此組件納入服務封裝，請在 [複製本機清單] 中選擇 [True]。
+1. Open the shortcut menu for the assembly that you added and choose **Properties**. The Properties window appears.
 
-1. 若要在已新增至 Web 角色專案的服務封裝中納入檔案，請開啟該檔案的捷徑功能表，然後選擇 [屬性]。在 [屬性] 視窗中，選擇 [建置動作] 清單方塊中的 [內容]。
+1. To include this assembly in the service package, in the **Copy Local** list, choose **True**.
 
-1. 若要在已新增至背景工作角色專案的服務封裝中納入檔案，請開啟該檔案的捷徑功能表，然後選擇 [屬性]。在 [屬性] 視窗中，選擇 [複製到輸出目錄] 清單方塊中的 [有更新時才複製]。
+1. To include files in the service package that have been added to your web role project, open the shortcut menu for the file, and then choose **Properties**. From the **Properties** window, choose **Content** from the **Build Action** list box.
 
-## 後續步驟
+1. To include files in the service package that have been added to your worker role project, open the shortcut menu for the file, and then choose **Properties**. From the **Properties** window, choose **Copy if newer** from the **Copy to output directory** list box.
 
-若要深入了解如何從 Visual Studio 發佈至 Azure，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0817_2016-->
+To learn more about publishing to Azure from Visual Studio, see [Publish Azure Application Wizard](vs-azure-tools-publish-azure-application-wizard.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

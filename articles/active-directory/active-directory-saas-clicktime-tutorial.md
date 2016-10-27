@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 ClickTime 整合 | Microsoft Azure" 
-    description="了解如何使用 ClickTime 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with ClickTime | Microsoft Azure" 
+    description="Learn how to use ClickTime with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"
     documentationCenter="na" 
@@ -14,210 +14,212 @@
     ms.date="08/16/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 ClickTime 整合
 
-在本教學課程中，您會了解如何整合 ClickTime 與 Azure Active Directory (Azure AD)。
+#<a name="tutorial:-azure-active-directory-integration-with-clicktime"></a>Tutorial: Azure Active Directory integration with ClickTime
 
-ClickTime 與 Azure AD 整合提供下列優點：
+In this tutorial, you learn how to integrate ClickTime with Azure Active Directory (Azure AD).
 
-- 您可以在 Azure AD 中控制可存取 ClickTime 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 ClickTime (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+Integrating ClickTime with Azure AD provides you with the following benefits:
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+- You can control in Azure AD who has access to ClickTime
+- You can enable your users to automatically get signed-on to ClickTime (Single Sign-On) with their Azure AD accounts
+- You can manage your accounts in one central location - the Azure classic portal
 
-## 必要條件
+If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-若要設定 Azure AD 與 ClickTime 整合，您需要下列項目：
+## <a name="prerequisites"></a>Prerequisites
 
-- Azure AD 訂用帳戶
-- 啟用 ClickTime 單一登入的訂用帳戶
+To configure Azure AD integration with ClickTime, you need the following items:
 
-
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+- An Azure AD subscription
+- A ClickTime single-sign on enabled subscription
 
 
-若要測試本教學課程中的步驟，您應該遵循這些建議：
-
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
 
 
-## 案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。
+To test the steps in this tutorial, you should follow these recommendations:
 
-本教學課程中說明的案例由二個主要建置組塊組成：
+- You should not use your production environment, unless this is necessary.
+- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
 
-1. 從資源庫新增 ClickTime
-2. 設定並測試 Azure AD 單一登入
 
-##從資源庫新增 ClickTime
+## <a name="scenario-description"></a>Scenario description
+In this tutorial, you test Azure AD single sign-on in a test environment.
 
-本節的目的是要說明如何啟用 ClickTime 的應用程式整合。
+The scenario outlined in this tutorial consists of two main building blocks:
 
-###若要啟用 ClickTime 的應用程式整合，請執行下列步驟：
+1. Adding ClickTime from the gallery
+2. Configuring and testing Azure AD single sign-on
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+##<a name="adding-clicktime-from-the-gallery"></a>Adding ClickTime from the gallery
+
+The objective of this section is to outline how to enable the application integration for ClickTime.
+
+###<a name="to-enable-the-application-integration-for-clicktime,-perform-the-following-steps:"></a>To enable the application integration for ClickTime, perform the following steps:
+
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-clicktime-tutorial/tic700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-clicktime-tutorial/tic700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-clicktime-tutorial/tic700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-clicktime-tutorial/tic749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-clicktime-tutorial/tic749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-clicktime-tutorial/tic749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-clicktime-tutorial/tic749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **ClickTime**。
+6.  In the **search box**, type **ClickTime**.
 
-    ![應用程式庫](./media/active-directory-saas-clicktime-tutorial/tic777275.png "應用程式庫")
+    ![Application gallery](./media/active-directory-saas-clicktime-tutorial/tic777275.png "Application gallery")
 
-7.  在結果窗格中，選取 [ClickTime]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **ClickTime**, and then click **Complete** to add the application.
 
     ![ClickTime](./media/active-directory-saas-clicktime-tutorial/tic777276.png "ClickTime")
 
-##  設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 ClickTime 設定及測試 Azure AD 單一登入。
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
+In this section, you configure and test Azure AD single sign-on with ClickTime based on a test user called "Britta Simon".
 
-若要讓單一登入運作，Azure AD 必須知道 ClickTime 與 Azure AD 中互相對應的使用者。換句話說，必須建立 Azure AD 使用者和 ClickTime 中相關使用者之間的連結關聯性。
+For single sign-on to work, Azure AD needs to know what the counterpart user in ClickTime is to a user in Azure AD. In other words, a link relationship between an Azure AD user and the related user in ClickTime needs to be established.
 
-建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 ClickTime 中 **Username** 的值。
+This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in ClickTime.
 
-若要設定及測試與 ClickTime 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
+To configure and test Azure AD single sign-on with ClickTime, you need to complete the following building blocks:
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 ClickTime 測試使用者](#creating-a-clicktime-test-user)** - 在 ClickTime 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表 Britta Simon 的項目連結。
-4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
-
-
-### 設定 Azure AD 單一登入
-
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 ClickTime。
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.
+2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
+3. **[Creating a ClickTime test user](#creating-a-clicktime-test-user)** - to have a counterpart of Britta Simon in ClickTime that is linked to the Azure AD representation of her.
+4. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
 
 
->[AZURE.IMPORTANT] 為了能夠設定對您的 ClickTime 租用戶進行單一登入，您必須先連絡 ClickTime 技術支援人員以啟用這項功能。
+### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD single sign-on
 
-**若要設定與 ClickTime 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
+The objective of this section is to outline how to enable users to authenticate to ClickTime with their account in Azure AD using federation based on the SAML protocol.  
 
-1.  在 Azure 傳統入口網站的 [ClickTime] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![啟用單一登入](./media/active-directory-saas-clicktime-tutorial/tic777277.png "啟用單一登入")
+>[AZURE.IMPORTANT] In order to be able to configure single sign-on on your ClickTime tenant, you need to contact first the ClickTime technical support to get this feature enabled.
 
-2.  在 [要如何讓使用者登入 ClickTime] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+**To configure Azure AD single sign-on with ClickTime, perform the following steps:**
 
-    ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777278.png "設定單一登入")
+1.  In the Azure classic portal, on the **ClickTime** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On** dialog.
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
+    ![Enable single sign-on](./media/active-directory-saas-clicktime-tutorial/tic777277.png "Enable single sign-on")
 
-	![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777286.png)
+2.  On the **How would you like users to sign on to ClickTime** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    a.在 [識別碼] 文字方塊中，以下列模式輸入 URL：https://app.clicktime.com/sp/**
-	
-	b.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：https://app.clicktime.com/Login/**
+    ![Configure single sign-on](./media/active-directory-saas-clicktime-tutorial/tic777278.png "Configure single sign-on")
 
-	c. 按 [下一步]
+3. On the **Configure App Settings** dialog page, perform the following steps:
 
-4.  於 [在 ClickTime 設定單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
+    ![Configure Single Sign-On](./media/active-directory-saas-clicktime-tutorial/tic777286.png) 
 
-    ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777279.png "設定單一登入")
-
-4.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 ClickTime 公司網站。
-
-5.  在頂端工具列中，按一下 [喜好設定]，然後按一下 [安全性設定]。
-
-6.  在 [單一登入喜好設定] 組態區段中，執行下列步驟：
-
-    ![安全性設定](./media/active-directory-saas-clicktime-tutorial/tic777280.png "安全性設定")
-
-    a.選取 [允許]，以搭配 **Azure AD** 使用單一登入 (SSO) 進行登入。
+    a. In the **IdentifierL** textbox, type the URL using the following pattern: **https://app.clicktime.com/sp/**
     
-    b.在 Azure 傳統入口網站的 [在 ClickTime 設定單一登入] 對話頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [識別提供者端點] 文字方塊中。
+    b. In the **Reply URL** textbox, type the URL using the following pattern: **https://app.clicktime.com/Login/**
 
-    c.在**記事本**中開啟 base-64 編碼的憑證，複製其內容，然後貼到 [X.509 憑證] 文字方塊中。
+    c. click **Next**
+
+4.  On the **Configure single sign-on at ClickTime** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
+
+    ![Configure single sign-on](./media/active-directory-saas-clicktime-tutorial/tic777279.png "Configure single sign-on")
+
+4.  In a different web browser window, log into your ClickTime company site as an administrator.
+
+5.  In the toolbar on the top, click **Preferences**, and then click **Security Settings**.
+
+6.  In the **Single Sign-On Preferences** configuration section, perform the following steps:
+
+    ![Security Settings](./media/active-directory-saas-clicktime-tutorial/tic777280.png "Security Settings")
+
+    a.  Select **Allow** sign-in using Single Sign-On (SSO) with **Azure AD**.
     
-    d.按一下 [儲存]。
+    b.  In the Azure classic portal, on the **Configure single sign-on at ClickTime** dialog page, copy the **Single Sign-On Service URL** value, and then paste it into the **Identity Provider Endpoint** textbox.
 
-7.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
-
-    ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777281.png "設定單一登入")
-
-##設定使用者佈建
-
-若要讓 Azure AD 使用者可以登入 ClickTime，必須將他們佈建到 ClickTime。ClickTime 需以手動方式佈建。
-
-###若要佈建使用者帳戶，請執行下列步驟：
-
-1.  登入您的 **ClickTime** 租用戶。
-
-2.  在頂端工具列中，按一下 [公司]，然後按一下 [人員]。
-
-    ![人員](./media/active-directory-saas-clicktime-tutorial/tic777282.png "人員")
-
-3.  按一下 [新增人員]。
-
-    ![新增人員](./media/active-directory-saas-clicktime-tutorial/tic777283.png "新增人員")
-
-4.  在 [新人員] 區段中，執行下列步驟：
-
-    ![人員](./media/active-directory-saas-clicktime-tutorial/tic777284.png "人員")
-
-    a.在 [電子郵件地址] 文字方塊中，輸入您的 Azure AD 帳戶的電子郵件地址。
+    c.  Open the base-64 encoded certificate in **Notepad**, copy the content, and then paste it into the **X.509 Certificate** textbox.
     
-    b.在 [全名] 文字方塊中，輸入您 Azure AD 帳戶的名稱。
+    d.  Click **Save**.
 
-    >[AZURE.NOTE] 您可以視需要設定新人員物件的其他屬性。
+7.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    c.按一下 [儲存]。
+    ![Configure single sign-on](./media/active-directory-saas-clicktime-tutorial/tic777281.png "Configure single sign-on")
 
->[AZURE.NOTE] 您可以使用任何其他的 ClickTime 使用者帳戶建立工具或 ClickTime 提供的 API 來佈建 Azure AD 使用者帳戶。
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
 
-### 指派 Azure AD 測試使用者
+In order to enable Azure AD users to log into ClickTime, they must be provisioned into ClickTime.  
+In the case of ClickTime, provisioning is a manual task.
 
-在本節中，您會把 ClickTime 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
 
-![指派使用者][200]
+1.  Log in to your **ClickTime** tenant.
 
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+2.  In the toolbar on the top, click **Company**, and then click **People**.
 
-**若要將 Britta Simon 指派給 ClickTime，請執行下列步驟**
+    ![People](./media/active-directory-saas-clicktime-tutorial/tic777282.png "People")
 
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  Click **Add Person**.
 
-	![指派使用者][201]
+    ![Add Person](./media/active-directory-saas-clicktime-tutorial/tic777283.png "Add Person")
 
-2. 在應用程式清單中，選取 [ClickTime]。
+4.  In the New Person section, perform the following steps:
 
-	![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_50.png)
+    ![People](./media/active-directory-saas-clicktime-tutorial/tic777284.png "People")
 
-3. 在頂端的功能表中，按一下 [使用者]。
+    a.  In the **email address** textbox, type the email address of your Azure AD account.
+    
+    b.  In the **full name** textbox, type the name of your Azure AD account.  
 
-	![指派使用者][203]
+    >[AZURE.NOTE] If you want to, you can set additional properties of the new person object.
 
-4. 在 [使用者] 清單中，選取 [Britta Simon]。
+    c.  Click **Save**.
 
-5. 在底部的工具列中，按一下 [指派]。
+>[AZURE.NOTE] You can use any other ClickTime user account creation tools or APIs provided by ClickTime to provision Azure AD user accounts.
 
-	![指派使用者][205]
+### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
 
-## 測試單一登入
-在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
+In this section, you enable Britta Simon to use Azure single sign-on by granting her access to ClickTime.
 
-當您在「存取面板」中按一下 [ClickTime] 圖格時，應該會自動登入您的 ClickTime 應用程式。
+![Assign User][200]
+
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+
+**To assign Britta Simon to ClickTime, perform the following steps**
+
+1. On the classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
+
+    ![Assign User][201] 
+
+2. In the applications list, select **ClickTime**.
+
+    ![Configure Single Sign-On](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_50.png) 
+
+3. In the menu on the top, click **Users**.
+
+    ![Assign User][203]
+
+4. In the Users list, select **Britta Simon**.
+
+5. In the toolbar on the bottom, click **Assign**.
+
+    ![Assign User][205]
+
+## <a name="testing-single-sign-on"></a>Testing single sign-on
+In this section, you test your Azure AD single sign-on configuration using the Access Panel.
+
+When you click the ClickTime tile in the Access Panel, you should get automatically signed-on to your ClickTime application.
 
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 
 <!--Image references-->
@@ -227,4 +229,7 @@ ClickTime 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-clicktime-tutorial/tutorial_general_203.png
 [205]: ./media/active-directory-saas-clicktime-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

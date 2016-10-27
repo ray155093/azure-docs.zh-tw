@@ -1,37 +1,38 @@
 <properties
-	pageTitle="Azure Functions NodeJS 開發人員參考 | Microsoft Azure"
-	description="了解如何使用 NodeJS 開發 Azure Functions。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"/>
+    pageTitle="Azure Functions NodeJS developer reference | Microsoft Azure"
+    description="Understand how to develop Azure Functions using NodeJS."
+    services="functions"
+    documentationCenter="na"
+    authors="christopheranderson"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, webhooks, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="nodejs"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="05/13/2016"
-	ms.author="chrande"/>
+    ms.service="functions"
+    ms.devlang="nodejs"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="05/13/2016"
+    ms.author="chrande"/>
 
-# Azure Functions NodeJS 開發人員參考
+
+# <a name="azure-functions-nodejs-developer-reference"></a>Azure Functions NodeJS developer reference
 
 > [AZURE.SELECTOR]
-- [C# 指令碼](../articles/azure-functions/functions-reference-csharp.md)
-- [F# 指令碼](../articles/azure-functions/functions-reference-fsharp.md)
+- [C# script](../articles/azure-functions/functions-reference-csharp.md)
+- [F# script](../articles/azure-functions/functions-reference-fsharp.md)
 - [Node.js](../articles/azure-functions/functions-reference-node.md)
 
-Azure Functions 的 Node/JavaScript 體驗能讓您輕鬆地匯出函式，系統會傳遞一個 `context` 物件給該函式以便與執行階段通訊，以及用來透過繫結接收和傳送資料。
+The Node/JavaScript experience for Azure Functions makes it easy to export a function which is passed a `context` object for communicating with the runtime, and for receiving and sending data via bindings.
 
-本文假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)。
+This article assumes that you've already read the [Azure Functions developer reference](functions-reference.md).
 
-## 匯出函數
+## <a name="exporting-a-function"></a>Exporting a function
 
-所有 JavaScript 函式都必須透過 `module.exports` 匯出單一 `function`，如此執行階段才能找到函式並執行它。此函式一定要包含 `context` 物件。
+All JavaScript functions must export a single `function` via `module.exports` for the runtime to find the function and run it. This function must always include a `context` object.
 
 ```javascript
 // You must include a context, but other arguments are optional
@@ -47,17 +48,17 @@ module.exports = function(context, myTrigger, myInput, myOtherInput) {
 };
 ```
 
-`direction === "in"` 的繫結會和函式引數一起傳遞，這表示您可以使用 [`arguments`](https://msdn.microsoft.com/library/87dw3w1k.aspx) 以動態方式處理新的輸入 (例如，藉由使用 `arguments.length` 來反覆查看您的所有輸入)。如果您只有不含任何其他輸入的觸發程序，這項功能就很便利，因為您可以如預期般存取觸發程序資料，而不需要參考 `context` 物件。
+Bindings of `direction === "in"` are passed along as function arguments, meaning you can use [`arguments`](https://msdn.microsoft.com/library/87dw3w1k.aspx) to dynamically handle new inputs (for example, by using `arguments.length` to iterate over all your inputs). This functionality is very convenient if you only have a trigger with no additional inputs, as you can predictably access your trigger data without referencing your `context` object.
 
-引數一律會以在 function.json 中出現的順序傳遞至函式，即使您未在匯出陳述式中指定也一樣。例如，如果您有 `function(context, a, b)` 並將它變更為 `function(context, a)`，您仍然可以在函式程式碼中藉由參考 `arguments[3]` 來取得 `b` 的值。
+The arguments are always passed along to the function in the order they occur in *function.json*, even if you don't specify them in your exports statement. For example, if you have `function(context, a, b)` and change it to `function(context, a)`, you can still get the value of `b` in function code by referring to `arguments[3]`.
 
-所有繫結 (不論方向為何) 也都會傳遞到 `context` 物件 (如下所示)。
+All bindings, regardless of direction, are also passed along on the `context` object (see below). 
 
-## context 物件
+## <a name="context-object"></a>context object
 
-執行階段使用 `context` 物件來將資料傳遞至函式並從中傳出，而且可讓您與執行階段進行通訊。
+The runtime uses a `context` object to pass data to and from your function and to let you communicate with the runtime.
 
-內容物件一律為函式的第一個參數且應一律包含，因為它具有像是 `context.done` 和 `context.log` 的方法，而您必須要有這些方法才能正確地使用執行階段。您可以任意方式命名物件 (也就是 `ctx` 或 `c`)。
+The context object is always the first parameter to a function and should always be included because it has methods such as `context.done` and `context.log` which are required to correctly use the runtime. You can name the object whatever you like (i.e. `ctx` or `c`).
 
 ```javascript
 // You must include a context, but other arguments are optional
@@ -66,9 +67,9 @@ module.exports = function(context) {
 };
 ```
 
-## context.bindings
+## <a name="context.bindings"></a>context.bindings
 
-`context.bindings` 物件會收集所有輸入和輸出資料。資料會透過繫結的 `name` 屬性加入至 `context.bindings` 物件。例如，假設 function.json 中有下列繫結定義，您可以透過 `context.bindings.myInput` 存取佇列的內容。
+The `context.bindings` object collects all your input and output data. The data is added onto the `context.bindings` object via the `name` property of the binding. For instance, given the following binding definition in *function.json*, you can access the contents of the queue via `context.bindings.myInput`. 
 
 ```json
     {
@@ -90,9 +91,9 @@ context.bindings.myOutput = {
 
 ## `context.done([err],[propertyBag])`
 
-`context.done` 函式會通知執行階段您已完成執行。當您完成使用函數時呼叫它是很重要的。如果沒有這麼做，執行階段仍然永遠不會知道您的函數已完成。
+The `context.done` function tells the runtime that you're done running. This is important to call when you're done with the function; if you don't, the runtime will still never know that your function completed. 
 
-`context.done` 函式可讓您將使用者定義的錯誤傳回執行階段，以及傳回屬性的屬性包，這些屬性將會覆寫 `context.bindings` 物件上的屬性。
+The `context.done` function allows you to pass back a user-defined error to the runtime, as well as a property bag of properties which will overwrite the properties on the `context.bindings` object.
 
 ```javascript
 // Even though we set myOutput to have:
@@ -104,9 +105,9 @@ context.done(null, { myOutput: { text: 'hello there, world', noNumber: true }});
 //  -> text: hello there, world, noNumber: true
 ```
 
-## context.log(message)
+## <a name="context.log(message)"></a>context.log(message)
 
-`context.log` 方法可讓您輸出相互關聯在一起的記錄檔陳述式，以進行記錄。如果您使用 `console.log`，您的訊息將只會針對處理序層級記錄而顯示，但這樣並沒有什麼用處。
+The `context.log` method allows you to output log statements that are correlated together for logging purposes. If you use `console.log`, your messages will only show for process level logging, which isn't as useful.
 
 ```javascript
 /* You can use context.log to log output specific to this 
@@ -114,23 +115,23 @@ function. You can access your bindings via context.bindings */
 context.log({hello: 'world'}); // logs: { 'hello': 'world' } 
 ```
 
-`context.log` 方法與 Node [util.format 方法](https://nodejs.org/api/util.html#util_util_format_format)支援相同的參數格式。因此，比方說，像這樣的程式碼︰
+The `context.log` method supports the same parameter format that the Node [util.format method](https://nodejs.org/api/util.html#util_util_format_format) supports. So, for example, code like this:
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=' + req.originalUrl);
 context.log('Request Headers = ' + JSON.stringify(req.headers));
 ```
 
-可以撰寫成這樣︰
+can be written like this:
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
 context.log('Request Headers = ', JSON.stringify(req.headers));
 ```
 
-## HTTP 觸發程序︰context.req 和 context.res
+## <a name="http-triggers:-context.req-and-context.res"></a>HTTP triggers: context.req and context.res
 
-在 HTTP 觸發程序的情況下，因為針對 HTTP 要求和回應物件使用 `req` 和 `res` 的模式相當常見，我們決定讓您能夠輕易地在內容物件中存取它們，而不會強迫您使用完整的 `context.bindings.name` 模式。
+In the case of HTTP Triggers, because it is such a common pattern to use `req` and `res` for the HTTP request and response objects, we decided to make it easy to access those on the context object, instead of forcing you to use the full `context.bindings.name` pattern.
 
 ```javascript
 // You can access your http request off of the context ...
@@ -139,23 +140,23 @@ if(context.req.body.emoji === ':pizza:') context.log('Yay!');
 context.res = { status: 202, body: 'You successfully ordered more coffee!' };   
 ```
 
-## Node 版本和封裝管理
+## <a name="node-version-&-package-management"></a>Node Version & Package Management
 
-Node 版本目前鎖定在 `5.9.1`。我們正在調查加入更多版本並允許設定的支援。
+The node version is currently locked at `5.9.1`. We're investigating adding support for more versions and making it configurable.
 
-您可以在您的函式中加入封裝，做法是將 project.json 檔案上傳至函式應用程式檔案系統中的函式資料夾。如需檔案上傳指示，請參閱 [Azure Functions 開發人員參考主題](functions-reference.md#fileupdate)中的**如何更新函式應用程式檔案**一節。
+You can include packages in your function by uploading a *package.json* file to your function's folder in the function app's file system. For file upload instructions, see the **How to update function app files** section of the [Azure Functions developer reference topic](functions-reference.md#fileupdate). 
 
-您也可以在函式應用程式的 SCM (Kudu) 命令列介面中使用 `npm install`：
+You can also use `npm install` in the function app's SCM (Kudu) command line interface:
 
-1. 瀏覽至 `https://<function_app_name>.scm.azurewebsites.net`。
+1. Navigate to: `https://<function_app_name>.scm.azurewebsites.net`.
 
-2. 按一下 [偵錯主控台] > [CMD]。
+2. Click **Debug Console > CMD**.
 
-3. 瀏覽至 `D:\home\site\wwwroot<function_name>`。
+3. Navigate to `D:\home\site\wwwroot\<function_name>`.
 
-4. 執行 `npm install`。
+4. Run `npm install`.
 
-一旦安裝您需要的封裝之後，就能以一般方式將它們匯入您的函式 (也就是透過 `require('packagename')`)
+Once the packages you need are installed, you import them to your function in the usual ways (i.e. via `require('packagename')`)
 
 ```javascript
 // Import the underscore.js library
@@ -168,9 +169,9 @@ module.exports = function(context) {
         .where(context.bindings.myInput.names, {first: 'Carla'});
 ```
 
-## 環境變數
+## <a name="environment-variables"></a>Environment variables
 
-若要取得環境變數或應用程式設定值，請使用 `process.env`，如下列程式碼範例所示：
+To get an environment variable or an app setting value, use `process.env`, as shown in the following code example:
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -189,17 +190,21 @@ function GetEnvironmentVariable(name)
 }
 ```
 
-## TypeScript/CoffeeScript 支援
+## <a name="typescript/coffeescript-support"></a>TypeScript/CoffeeScript support
 
-目前仍沒有對於透過執行階段自動編譯 TypeScript/CoffeeScript 的任何支援，因此全都需要在部署時期的執行階段之外處理。
+There isn't, yet, any direct support for auto-compiling TypeScript/CoffeeScript via the runtime, so that would all need to be handled outside the runtime, at deployment time. 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需詳細資訊，請參閱下列資源：
+For more information, see the following resources:
 
-* [Azure Functions 開發人員參考](functions-reference.md)
-* [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
-* [Azure Functions F# 開發人員參考](functions-reference-fsharp.md)
-* [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
+* [Azure Functions developer reference](functions-reference.md)
+* [Azure Functions C# developer reference](functions-reference-csharp.md)
+* [Azure Functions F# developer reference](functions-reference-fsharp.md)
+* [Azure Functions triggers and bindings](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

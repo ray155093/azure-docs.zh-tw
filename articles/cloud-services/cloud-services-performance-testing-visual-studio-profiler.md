@@ -1,62 +1,66 @@
 <properties 
-	pageTitle="在本機的計算模擬器中分析雲端服務 | Microsoft Azure" 
-	services="cloud-services"
-	description="使用 Visual Studio 分析工具調查雲端服務中的效能問題" 
-	documentationCenter=""
-	authors="TomArcher" 
-	manager="douge" 
-	editor=""
-	tags="" 
-	/>
+    pageTitle="Profiling a Cloud Service Locally in the Compute Emulator | Microsoft Azure" 
+    services="cloud-services"
+    description="Investigate performance issues in cloud services with the Visual Studio profiler" 
+    documentationCenter=""
+    authors="TomArcher" 
+    manager="douge" 
+    editor=""
+    tags="" 
+    />
 
 <tags 
-	ms.service="cloud-services" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="multiple" 
-	ms.topic="article" 
-	ms.date="07/30/2016" 
-	ms.author="tarcher"/>
-
-# 使用 Visual Studio 分析工具，在 Azure 計算模擬器中本機測試雲端服務的效能
-
-各種工具和技術可用於測試雲端服務的效能。當您將雲端服務發佈至 Azure 時，可以讓 Visual Studio 收集分析資料，然後在本機分析它 (如[測試雲端服務的效能][1]中所述)。您也可以使用診斷追蹤各種效能計數器 (如[在 Azure 中使用效能計數器][2] \(英文)。您也可能想要先在計算模擬器中本機分析應用程式，再將之部署至雲端。
-
-本文涵蓋進行分析的「CPU 取樣」方法，這可以在模擬器上本機完成。CPU 取樣不是非常侵入式的分析方法。分析工具會按指定的取樣間隔取得呼叫堆疊的快照集。會收集一段時間的資料，而且資料會顯示在報告中。此分析方法傾向指出在計算密集應用程式中的哪個位置完成大部分的 CPU 工作。這可讓您有機會聚焦在應用程式耗用最多時間的「最忙碌路徑」。
+    ms.service="cloud-services" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="multiple" 
+    ms.topic="article" 
+    ms.date="07/30/2016" 
+    ms.author="tarcher"/>
 
 
+# <a name="testing-the-performance-of-a-cloud-service-locally-in-the-azure-compute-emulator-using-the-visual-studio-profiler"></a>Testing the Performance of a Cloud Service Locally in the Azure Compute Emulator Using the Visual Studio Profiler
 
-## 1：設定 Visual Studio 進行分析
+A variety of tools and techniques are available for testing the performance of cloud services.
+When you publish a cloud service to Azure, you can have Visual Studio collect profiling data and then analyze it locally, as described in [Profiling an Azure Application][1].
+You can also use diagnostics to track a variety of performance counters, as described in [Using performance counters in Azure][2].
+You might also want to profile your application locally in the compute emulator before deploying it to the cloud.
 
-首先，有些 Visual Studio 組態選項可能在進行分析時很實用。若要讓分析報告發揮作用，您需要應用程式的符號 (.pdb 檔案)，也需要系統庫的符號。您會希望確定參考可用的符號伺服器。若要這樣做，請在 Visual Studio 的 [工具] 功能表上，依序選擇 [選項]、[偵錯] 和 [符號]。請確定 Microsoft Symbol Servers 列在 [符號檔 (.pdb) 位置] 下方。您也可以參考 http://referencesource.microsoft.com/symbols，其中可能有其他符號檔案。
+This article covers the CPU Sampling method of profiling, which can be done locally in the emulator. CPU sampling is a method of profiling that is not very intrusive. At a designated sampling interval, the profiler takes a snapshot of the call stack. The data is collected over a period of time, and shown in a report. This method of profiling tends to indicate where in a computationally intensive application most of the CPU work is being done.  This gives you the opportunity to focus on the "hot path" where your application is spending the most time.
 
-![符號選項][4]
 
-如有需要，您可以設定 Just My Code 來簡化分析工具所產生的報告。啟用 Just My Code 之後，會簡化函數呼叫堆疊，因此報告中會隱藏整個是程式庫和 .NET Framework 的內部呼叫。在 [工具] 功能表上，選擇 [選項]。然後展開 [效能工具] 節點，並選擇 [一般]。選取 [啟用 Just My Code 以進行分析工具報告] 核取方塊。
 
-![Just My Code 選項][17]
+## <a name="1:-configure-visual-studio-for-profiling"></a>1: Configure Visual Studio for profiling
 
-您可以將這些指示與現有專案或新的專案搭配使用。如果您建立新的專案來嘗試上面所述的技術，請選擇 C# [Azure 雲端服務] 專案，然後選取 [Web 角色] 和 [背景工作角色]。
+First, there are a few Visual Studio configuration options that might be helpful when profiling. To make sense of the profiling reports, you'll need symbols (.pdb files) for your application and also symbols for system libraries. You'll want to make sure that you reference the available symbol servers. To do this, on the **Tools** menu in Visual Studio, choose **Options**, then choose **Debugging**, then **Symbols**. Make sure that Microsoft Symbol Servers is listed under **Symbol file (.pdb) locations**.  You can also reference http://referencesource.microsoft.com/symbols, which might have additional symbol files.
 
-![Azure 雲端服務專案角色][5]
+![Symbol options][4]
 
-舉例來說，會在專案中新增某個程式碼，而這個程式碼耗用許多時間，並且示範某個明顯的效能問題。例如，將下列程式碼新增至背景工作角色專案：
+If desired, you can simplify the reports that the profiler generates by setting Just My Code. With Just My Code enabled, function call stacks are simplified so that calls entirely internal to libraries and the .NET Framework are hidden from the reports. On the **Tools** menu, choose **Options**. Then expand the **Performance Tools** node, and choose **General**. Select the checkbox for **Enable Just My Code for profiler reports**.
 
-	public class Concatenator
-	{
-	    public static string Concatenate(int number)
-	    {
-	        int count;
-	        string s = "";
-	        for (count = 0; count < number; count++)
-	        {
-	            s += "\n" + count.ToString();
-	        }
-	        return s;
-	    }
-	}
+![Just My Code options][17]
 
-請在背景工作角色的 RoleEntryPoint 衍生類別中，從 RunAsync 方法呼叫此程式碼。(忽略有關同步執行方法的警告。)
+You can use these instructions with an existing project or with a new project.  If you create a new project to try the techniques described below, choose a C# **Azure Cloud Service** project, and select a **Web Role** and a **Worker Role**.
+
+![Azure Cloud Service project roles][5]
+
+For example purposes, add some code to your project that takes a lot of time and demonstrates some obvious performance problem. For example, add the following code to a worker role project:
+
+    public class Concatenator
+    {
+        public static string Concatenate(int number)
+        {
+            int count;
+            string s = "";
+            for (count = 0; count < number; count++)
+            {
+                s += "\n" + count.ToString();
+            }
+            return s;
+        }
+    }
+
+Call this code from the RunAsync method in the worker role's RoleEntryPoint-derived class. (Ignore the warning about the method running synchronously.)
 
         private async Task RunAsync(CancellationToken cancellationToken)
         {
@@ -68,103 +72,104 @@
             }
         }
 
-在方案組態設定為 [**發行**] 的情況下，在本機建置和執行雲端服務，而不要進行偵錯 (Ctrl+F5)。這確保建立在本機執行應用程式的所有檔案和資料夾，並確保已啟動所有模擬器。從工作列啟動 Compute Emulator UI，以驗證您的背景工作角色執行中。
+Build and run your cloud service locally without debugging (Ctrl+F5), with the solution configuration set to **Release**. This ensures that all files and folders are created for running the application locally, and ensures that all the emulators are started. Start the Compute Emulator UI from the taskbar to verify that your worker role is running.
 
-## 2：連結至程序
+## <a name="2:-attach-to-a-process"></a>2: Attach to a process
 
-您必須將分析工具連結至執行中程序，而不是從 Visual Studio 2010 IDE 啟動應用程式來分析應用程式。
+Instead of profiling the application by starting it from the Visual Studio 2010 IDE, you must attach the profiler to a running process. 
 
-若要將分析工具連結至程序，請在 [分析] 功能表上選擇 [分析工具] 和 [連結/中斷連結]。
+To attach the profiler to a process, on the **Analyze** menu, choose **Profiler** and **Attach/Detach**.
 
-![附加設定檔選項][6]
+![Attach profile option][6]
 
-若為背景工作角色，請尋找 WaWorkerHost.exe 程序。
+For a worker role, find the WaWorkerHost.exe process.
 
-![WaWorkerHost 程序][7]
+![WaWorkerHost process][7]
 
-如果您的專案資料夾位於網路磁碟機上，則分析工具會要求您提供另一個位置來儲存分析報告。
+If your project folder is on a network drive, the profiler will ask you to provide another location to save the profiling reports.
 
- 您也可以藉由連結至 WaIISHost.exe 來連結至 Web 角色。如果您的應用程式中有多個背景工作角色程序，則需使用 processID 進行區別。您可以存取 Process 物件，以透過程式設計方式查詢 processID。例如，如果您將此程式碼新增至角色中 RoleEntryPoint 衍生類別的 Run 方法，則可以查看計算模擬器 UI 中的記錄，得知要連線的程序。
+ You can also attach to a web role by attaching to WaIISHost.exe.
+If there are multiple worker role processes in your application, you need to use the processID to distinguish them. You can query the processID programmatically by accessing the Process object. For example, if you add this code to the Run method of the RoleEntryPoint-derived class in a role, you can look at the log in the Compute Emulator UI to know what process to connect to.
 
-	var process = System.Diagnostics.Process.GetCurrentProcess();
-	var message = String.Format("Process ID: {0}", process.Id);
-	Trace.WriteLine(message, "Information");
+    var process = System.Diagnostics.Process.GetCurrentProcess();
+    var message = String.Format("Process ID: {0}", process.Id);
+    Trace.WriteLine(message, "Information");
 
-若要檢視記錄，請啟動計算模擬器 UI。
+To view the log, start the Compute Emulator UI.
 
-![啟動計算模擬器 UI][8]
+![Start the Compute Emulator UI][8]
 
-按一下主控台視窗的標題列，以在計算模擬器 UI 中開啟背景工作角色記錄主控台視窗。您可以在記錄中看到程序 ID。
+Open the worker role log console window in the Compute Emulator UI by clicking on the console window's title bar. You can see the process ID in the log.
 
-![檢視處理序識別碼][9]
+![View process ID][9]
 
-連結之後，請在應用程式 UI 中執行步驟 (需要時) 來重現案例。
+One you've attached, perform the steps in your application's UI (if needed) to reproduce the scenario.
 
-當您想要停止分析時，請選擇 [停止分析] 連結。
+When you want to stop profiling, choose the **Stop Profiling** link.
 
-![停止分析選項][10]
+![Stop Profiling option][10]
 
-## 3：檢視效能報告
+## <a name="3:-view-performance-reports"></a>3: View performance reports
 
-會顯示您應用程式的效能報告。
+The performance report for your application is displayed.
 
-此時，分析工具會停止執行、以 .vsp 檔案儲存資料，並顯示可顯示此資料分析的報告。
+At this point, the profiler stops executing, saves data in a .vsp file, and displays a report that shows an analysis of this data.
 
-![分析工具報告][11]
+![Profiler report][11]
 
 
-如果您在「最忙碌路徑」中看到 String.wstrcpy，請按一下 Just My Code 變更檢視，只顯示使用者程式碼。如果您看到 String.Concat，請嘗試按 [顯示所有程式碼] 按鈕。
+If you see String.wstrcpy in the Hot Path, click on Just My Code to change the view to show user code only.  If you see String.Concat, try pressing the Show All Code button.
 
-您應該會看到 Concatenate 方法和 String.Concat 耗用大部分的執行時間。
+You should see the Concatenate method and String.Concat taking up a large portion of the execution time.
 
-![報告的分析][12]
+![Analysis of report][12]
 
-如果您已在本文中新增字串串連碼，則應該會在 [工作清單] 中看到警告。您也可能會看到有大量記憶體回收的警告，原因是建立和處置的字串數目。
+If you added the string concatenation code in this article, you should see a warning in the Task List for this. You may also see a warning that there is an excessive amount of garbage collection, which is due to the number of strings that are created and disposed.
 
-![效能警告][14]
+![Performance warnings][14]
 
-## 4：進行變更與比較效能
+## <a name="4:-make-changes-and-compare-performance"></a>4: Make changes and compare performance
 
-您也可以在變更程式碼之前和之後比較效能。請停止執行中流程並編輯程式碼，以使用 StringBuilder 取代字串串連作業：
+You can also compare the performance before and after a code change.  Stop the running process, and edit the code to replace the string concatenation operation with the use of StringBuilder:
 
-	public static string Concatenate(int number)
-	{
-	    int count;
-	    System.Text.StringBuilder builder = new System.Text.StringBuilder("");
-	    for (count = 0; count < number; count++)
-	    {
-	         builder.Append("\n" + count.ToString());
-	    }
-	    return builder.ToString();
-	}
+    public static string Concatenate(int number)
+    {
+        int count;
+        System.Text.StringBuilder builder = new System.Text.StringBuilder("");
+        for (count = 0; count < number; count++)
+        {
+             builder.Append("\n" + count.ToString());
+        }
+        return builder.ToString();
+    }
 
-請進行另一個效能執行，然後比較效能。在 [效能總管] 中，如果這些執行都位於相同的工作階段中，則只能選取兩份報告，並開啟捷徑功能表，然後選擇 [比較效能報告]。如果您想要與另一個效能工作階段中的執行進行比較，請開啟 [分析] 功能表，然後選擇 [比較效能報告]。請在顯示的對話方塊中指定兩個檔案。
+Do another performance run, and then compare the performance. In the Performance Explorer, if the runs are in the same session, you can just select both reports, open the shortcut menu, and choose **Compare Performance Reports**. If you want to compare with a run in another performance session, open the **Analyze** menu, and choose **Compare Performance Reports**. Specify both files in the dialog box that appears.
 
-![比較效能報告選項][15]
+![Compare performance reports option][15]
 
-報告會反白顯示兩個執行之間的差異。
+The reports highlight differences between the two runs.
 
-![比較報告][16]
+![Comparison report][16]
 
-恭喜！ 您已開始使用分析工具。
+Congratulations! You've gotten started with the profiler.
 
-## 疑難排解
+## <a name="troubleshooting"></a>Troubleshooting
 
-- 確定您正在分析發行組建並開始而不進行偵錯。
+- Make sure you are profiling a Release build and start without debugging.
 
-- 如果未在 [分析工具] 功能表上啟用 [連結/中斷連結] 選項，請執行 [效能精靈]。
+- If the Attach/Detach option is not enabled on the Profiler menu, run the Performance Wizard.
 
-- 使用計算模擬器 UI 檢視您應用程式的狀態。
+- Use the Compute Emulator UI to view the status of your application. 
 
-- 如果您在模擬器中啟動應用程式或是連結分析工具時發生問題，請關閉並重新啟動計算模擬器。如果這樣未解決問題，請嘗試重新開機。如果您使用計算模擬器來暫停和移除執行中部署，則可能會發生此問題。
+- If you have problems starting applications in the emulator, or attaching the profiler, shut down the compute emulator and restart it. If that doesn't solve the problem, try rebooting. This problem can occur if you use the Compute Emulator to suspend and remove running deployments.
 
-- 如果您已從命令列使用任何分析命令 (尤其是全域設定)，請確定已呼叫 VSPerfClrEnv /globaloff，並已關閉 VsPerfMon.exe。
+- If you have used any of the profiling commands from the command line, especially the global settings, make sure that VSPerfClrEnv /globaloff has been called and that VsPerfMon.exe has been shut down.
 
-- 取樣時，如果您看到訊息 [PRF0025: No data was collected]，請確認您所連結的程序具有 CPU 活動。未執行任何計算工作的應用程式可能不會產生任何取樣資料。在執行任何取樣之前，也可能已結束程序。請確認所分析角色的 Run 方法未終止。
+- If when sampling, you see the message "PRF0025: No data was collected," check that the process you attached to has CPU activity. Applications that are not doing any computational work might not produce any sampling data.  It's also possible that the process exited before any sampling was done. Check to see that the Run method for a role that you are profiling does not terminate.
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-在 Visual Studio 分析工具中，不支援在模擬器中檢測 Azure 二進位，但是，如果您想要測試記憶體配置，則可以在分析時選擇該選項。您也可以選擇並行分析來協助您判斷執行緒是否浪費時間來競爭鎖定，或選擇階層互動分析來協助您追蹤在應用程式階層之間互動時的效能問題 (最常發生在資料層與背景工作角色之間)。您可以檢視應用程式所產生的資料庫查詢，以及使用分析資料來提高資料庫的使用。如需階層互動分析的詳細資訊，請參閱部落格文章[逐步介紹：在 Visual Studio Team System 2010 中使用階層互動分析][3]。
+Instrumenting Azure binaries in the emulator is not supported in the Visual Studio profiler, but if you want to test memory allocation, you can choose that option when profiling. You can also choose concurrency profiling, which helps you determine whether threads are wasting time competing for locks, or tier interaction profiling, which helps you track down performance problems when interacting between tiers of an application, most frequently between the data tier and a worker role.  You can view the database queries that your app generates and use the profiling data to improve your use of the database. For information about tier interaction profiling, see the blog post [Walkthrough: Using the Tier Interaction Profiler in Visual Studio Team System 2010][3].
 
 
 
@@ -180,10 +185,13 @@
 [10]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally06.png
 [11]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally03.png
 [12]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally011.png
-[14]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally04.png
+[14]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally04.png 
 [15]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally013.png
 [16]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally012.png
 [17]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally08.png
  
 
-<!---HONumber=AcomDC_0803_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

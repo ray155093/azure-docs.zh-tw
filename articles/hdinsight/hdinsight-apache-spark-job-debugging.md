@@ -1,149 +1,154 @@
 <properties 
-	pageTitle="追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業 | Microsoft Azure" 
-	description="使用 YARN UI、Spark UI 和 Spark 歷程記錄伺服器，追蹤和偵錯在 Azure HDInsight 中的 Spark 叢集上執行的作業" 
-	services="hdinsight" 
-	documentationCenter="" 
-	authors="nitinme" 
-	manager="jhubbard" 
-	editor="cgronlun"
-	tags="azure-portal"/>
+    pageTitle="Track and debug jobs running on Apache Spark cluster in HDInsight | Microsoft Azure" 
+    description="Use YARN UI, Spark UI, and Spark History server to track and debug jobs running on a Spark cluster in Azure HDInsight" 
+    services="hdinsight" 
+    documentationCenter="" 
+    authors="nitinme" 
+    manager="jhubbard" 
+    editor="cgronlun"
+    tags="azure-portal"/>
 
 <tags 
-	ms.service="hdinsight" 
-	ms.workload="big-data" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/25/2016" 
-	ms.author="nitinme"/>
+    ms.service="hdinsight" 
+    ms.workload="big-data" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/25/2016" 
+    ms.author="nitinme"/>
 
-# 追蹤和偵錯在 HDInsight Linux 中的 Apache Spark 叢集上執行的作業
 
-在這篇文章中，您將學習如何使用 YARN UI、Spark UI 和 Spark 歷程記錄伺服器，追蹤和偵錯 Spark 作業。在本文中，我們會使用 Spark 叢集中可用的 Notebook 啟動 Spark 作業，**機器學習服務︰使用 MLLib 對食物檢查資料進行預測分析**。您可以使用下列步驟來追蹤您使用任何其他方法提交的應用程式，例如，**spark-submit**。
+# <a name="track-and-debug-jobs-running-on-apache-spark-cluster-in-hdinsight-linux"></a>Track and debug jobs running on Apache Spark cluster in HDInsight Linux
 
-##必要條件
+In this article you will learn how to track and debug Spark jobs using the YARN UI, Spark UI, and the Spark History Server. For this article, we will start a Spark job using a notebook available with the Spark cluster, **Machine learning: Predictive analysis on food inspection data using MLLib**. You can use the steps below to track an application that you submitted using any other approach as well, for example, **spark-submit**.
 
-您必須滿足以下條件：
+##<a name="prerequisites"></a>Prerequisites
 
-- Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
-- 您應該開始執行 Notebook，**[機器學習服務：使用 MLLib 對食品檢查資料進行預測分析](hdinsight-apache-spark-machine-learning-mllib-ipython.md)**。如需有關如何執行此 Notebook 的指示，請依照下列連結。
+You must have the following:
 
-## 追蹤 YARN UI 中的應用程式
+- An Azure subscription. See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
+- An Apache Spark cluster on HDInsight Linux. For instructions, see [Create Apache Spark clusters in Azure HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md).
+- You should have started running the notebook, **[Machine learning: Predictive analysis on food inspection data using MLLib](hdinsight-apache-spark-machine-learning-mllib-ipython.md)**. For instructions on how to run this notebook, follow the link.  
 
-1. 啟動 YARN UI。從叢集刀鋒視窗按一下 [叢集儀表板]，然後按一下 [YARN]。
+## <a name="track-an-application-in-the-yarn-ui"></a>Track an application in the YARN UI
 
-	![啟動 YARN UI](./media/hdinsight-apache-spark-job-debugging/launch-yarn-ui.png)
+1. Launch the YARN UI. From the cluster blade, click **Cluster Dashboard**, and then click **YARN**.
 
-	>[AZURE.TIP] 或者，您也可以從 Ambari UI 啟動 YARN UI。若要啟動 Ambari UI，請從叢集刀鋒視窗中按一下 [叢集儀表板]，然後按一下 [HDInsight 叢集儀表板]。從 Ambari UI 按一下 [YARN]、按一下 [快速連結]、按一下作用中的資源管理員，然後按一下 [ResourceManager UI]。
+    ![Launch YARN UI](./media/hdinsight-apache-spark-job-debugging/launch-yarn-ui.png)
 
-3. 因為您使用 Jupyter Notebook 啟動 Spark 作業，應用程式具有名稱 **remotesparkmagics** (這是從 Notebook 啟動之所有應用程式的名稱)。針對應用程式名稱按一下應用程式識別碼，取得作業的詳細資訊。這會啟動應用程式檢視。
+    >[AZURE.TIP] Alternatively, you can also launch the YARN UI from the Ambari UI. To launch the Ambari UI, from the cluster blade, click **Cluster Dashboard**, and then click **HDInsight Cluster Dashboard**. From the Ambari UI, click **YARN**, click **Quick Links**, click the active resource manager, and then click **ResourceManager UI**.  
 
-	![尋找 Spark 應用程式識別碼](./media/hdinsight-apache-spark-job-debugging/find-application-id.png)
+3. Because you started the Spark job using Jupyter notebooks, the application has the name **remotesparkmagics** (this is the name for all applications that are started from the notebooks). Click the application ID against the application name to get more information about the job. This launches the application view.
 
-	對於從 Jupyter Notebook 啟動的應用程式，狀態一律是 [執行中]，直到您結束 Notebook。
+    ![Find Spark application ID](./media/hdinsight-apache-spark-job-debugging/find-application-id.png)
 
-4. 從應用程式檢視中，您可以進一步向下鑽研以找出與應用程式和記錄檔 (stdout/stderr) 相關聯的容器。您也可以藉由按一下對應至 [追蹤 URL] 的連結，即可啟動 Spark UI，如下所示。
+    For such applications that are launched from the Jupyter notebooks, the status is always **RUNNING** until you exit the notebook.
 
-	![下載容器記錄檔](./media/hdinsight-apache-spark-job-debugging/download-container-logs.png)
+4. From the application view, you can drill down further to find out the containers associated with the application and the logs (stdout/stderr). You can also launch the Spark UI by clicking the linking corresponding to the **Tracking URL**, as shown below. 
 
-## 追蹤 Spark UI 中的應用程式
+    ![Download container logs](./media/hdinsight-apache-spark-job-debugging/download-container-logs.png)
 
-在 Spark UI 中，您可以向下鑽研至您先前啟動的應用程式所繁衍的 Spark 作業。
+## <a name="track-an-application-in-the-spark-ui"></a>Track an application in the Spark UI
 
-1. 若要啟動 Spark UI，請從應用程式檢視中，針對 [追蹤 URL] 按一下連結，如上面的螢幕擷取畫面所示。您可以看到應用程式啟動的所有 Spark 作業在 Jupyter Notebook 中執行。
+In the Spark UI, you can drill down into the Spark jobs that are spawned by the application you started earlier.
 
-	![檢視 Spark 作業](./media/hdinsight-apache-spark-job-debugging/view-spark-jobs.png)
+1. To launch the Spark UI, from the application view, click the link against the **Tracking URL**, as shown in the screen capture above. You can see all the Spark jobs that are launched by the application running in the Jupyter notebook.
 
-2. 按一下 [執行程式] 索引標籤，查看每個執行程式的處理和儲存資訊。您也可以按一下 [執行緒傾印] 連結，擷取呼叫堆疊。
+    ![View Spark jobs](./media/hdinsight-apache-spark-job-debugging/view-spark-jobs.png)
 
-	![檢視 Spark 執行程式](./media/hdinsight-apache-spark-job-debugging/view-spark-executors.png)
+2. Click the **Executors** tab to see processing and storage information for each executor. You can also retrieve the call stack by clicking on the **Thread Dump** link.
+
+    ![View Spark executors](./media/hdinsight-apache-spark-job-debugging/view-spark-executors.png)
  
-3. 按一下 [階段] 索引標籤，查看與應用程式相關聯的階段。
+3. Click the **Stages** tab to see the stages associated with the application.
 
-	![檢視 Spark 階段](./media/hdinsight-apache-spark-job-debugging/view-spark-stages.png)
+    ![View Spark stages](./media/hdinsight-apache-spark-job-debugging/view-spark-stages.png)
 
-	每個階段可以有多個工作，您可以檢視其執行統計資料，如下所示。
+    Each stage can have multiple tasks for which you can view execution statistics, like shown below.
 
-	![檢視 Spark 階段](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-details.png)
+    ![View Spark stages](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-details.png) 
 
-4. 從階段詳細資料頁面上，您可以啟動 DAG 視覺效果。展開頁面頂端的 [DAG 視覺效果] 連結，如下所示。
+4. From the stage details page, you can launch DAG Visualization. Expand the **DAG Visualization** link at the top of the page, as shown below.
 
-	![檢視 Spark 階段 DAG 視覺效果](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-dag-visualization.png)
+    ![View Spark stages DAG visualization](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-dag-visualization.png)
 
-	DAG 或 Direct Aclyic Graph 代表應用程式中的不同階段。每個圖形中的藍色方塊表示從應用程式叫用的 Spark 作業。
+    DAG or Direct Aclyic Graph represents the different stages in the application. Each blue box in the graph represents a Spark operation invoked from the application.
 
-5. 您也可以從階段詳細資料頁面上，啟動應用程式時間軸檢視。展開頁面頂端的 [事件時間軸] 連結，如下所示。
+5. From the stage details page, you can also launch the application timeline view. Expand the **Event Timeline** link at the top of the page, as shown below.
 
-	![檢視 Spark 階段事件時間軸](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-event-timeline.png)
+    ![View Spark stages event timeline](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-event-timeline.png)
 
-	這會以時間軸的形式顯示 Spark 事件。時間軸檢視有三個層級，跨作業、作業內以及階段內。以上的映像擷取指定階段的時間軸檢視。
+    This displays the Spark events in the form of a timeline. The timeline view is available at three levels, across jobs, within a job, and within a stage. The image above captures the timeline view for a given stage.
 
-	>[AZURE.TIP] 如果您選取 [啟用縮放功能] 核取方塊，您可以跨時間軸檢視左右捲動。
+    >[AZURE.TIP] If you select the **Enable zooming** check box, you can scroll left and right across the timeline view.
 
-6. Spark UI 中的其他索引標籤也提供 Spark 執行個體的實用資訊。
+6. Other tabs in the Spark UI provide useful information about the Spark instance as well.
 
-	* [儲存體] 索引標籤 - 如果您的應用程式建立 RDD，您可以在 [儲存體] 索引標籤中找到相關資訊。
-	* [環境]索引標籤 - 這個標籤提供關於您的 Spark 執行個體的實用資訊，例如
-		* Scala 版本
-		* 與叢集相關聯的事件記錄檔目錄
-		* 應用程式的執行程式核心數目
-		* 等等
+    * Storage tab - If your application creates an RDDs, you can find information about those in the Storage tab.
+    * Environment tab - This tab provides a lot of useful information about your Spark instance such as the 
+        * Scala version
+        * Event log directory associated with the cluster
+        * Number of executor cores for the application
+        * Etc.
 
-## 使用 Spark 歷程記錄伺服器尋找已完成作業的相關資訊
+## <a name="find-information-about-completed-jobs-using-the-spark-history-server"></a>Find information about completed jobs using the Spark History Server
 
-完成作業後，作業的相關資訊會保存在 Spark 歷程記錄伺服器。
+Once a job is completed, the information about the job is persisted in the Spark History Server.
 
-1. 若要啟動 Spark 歷程記錄伺服器，請從叢集刀鋒視窗中按一下 [叢集儀表板]，然後按一下 [Spark 歷程記錄伺服器]。
+1. To launch the Spark History Server, from the cluster blade, click **Cluster Dashboard**, and then click **Spark History Server**.
 
-	![啟動 Spark 歷程記錄伺服器](./media/hdinsight-apache-spark-job-debugging/launch-spark-history-server.png)
+    ![Launch Spark History Server](./media/hdinsight-apache-spark-job-debugging/launch-spark-history-server.png)
 
-	>[AZURE.TIP] 或者，您也可以從 Ambari UI 啟動 Spark 歷程記錄伺服器 UI。若要啟動 Ambari UI，請從叢集刀鋒視窗中按一下 [叢集儀表板]，然後按一下 [HDInsight 叢集儀表板]。從 Ambari UI 中，按一下 [Spark]、按一下 [快速連結]，然後按一下 [Spark 歷程記錄伺服器 UI]。
+    >[AZURE.TIP] Alternatively, you can also launch the Spark History Server UI from the Ambari UI. To launch the Ambari UI, from the cluster blade, click **Cluster Dashboard**, and then click **HDInsight Cluster Dashboard**. From the Ambari UI, click **Spark**, click **Quick Links**, and then click **Spark History Server UI**.
 
-2. 您會看到列出所有已完成應用程式。按一下應用程式識別碼，向下鑽研至應用程式以取得其他資訊。
+2. You will see all the completed applications listed. Click an application ID to drill down into an application for more info.
 
-	![啟動 Spark 歷程記錄伺服器](./media/hdinsight-apache-spark-job-debugging/view-completed-applications.png)
-	
+    ![Launch Spark History Server](./media/hdinsight-apache-spark-job-debugging/view-completed-applications.png)
+    
 
-## <a name="seealso"></a>另請參閱
+## <a name="<a-name="seealso"></a>see-also"></a><a name="seealso"></a>See also
 
 
-* [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
+* [Overview: Apache Spark on Azure HDInsight](hdinsight-apache-spark-overview.md)
 
-### 案例
+### <a name="scenarios"></a>Scenarios
 
-* [Spark 和 BI：在 HDInsight 中搭配使用 Spark 和 BI 工具執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
+* [Spark with BI: Perform interactive data analysis using Spark in HDInsight with BI tools](hdinsight-apache-spark-use-bi-tools.md)
 
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
+* [Spark with Machine Learning: Use Spark in HDInsight for analyzing building temperature using HVAC data](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
 
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark with Machine Learning: Use Spark in HDInsight to predict food inspection results](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 
-* [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
+* [Spark Streaming: Use Spark in HDInsight for building real-time streaming applications](hdinsight-apache-spark-eventhub-streaming.md)
 
-* [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
+* [Website log analysis using Spark in HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
-### 建立及執行應用程式
+### <a name="create-and-run-applications"></a>Create and run applications
 
-* [使用 Scala 建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
+* [Create a standalone application using Scala](hdinsight-apache-spark-create-standalone-application.md)
 
-* [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
+* [Run jobs remotely on a Spark cluster using Livy](hdinsight-apache-spark-livy-rest-interface.md)
 
-### 工具和擴充功能
+### <a name="tools-and-extensions"></a>Tools and extensions
 
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons](hdinsight-apache-spark-intellij-tool-plugin.md)
 
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 
-* [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
+* [Use Zeppelin notebooks with a Spark cluster on HDInsight](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
-* [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
+* [Kernels available for Jupyter notebook in Spark cluster for HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 
-* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+* [Use external packages with Jupyter notebooks](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
 
-* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Install Jupyter on your computer and connect to an HDInsight Spark cluster](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
-### 管理資源
+### <a name="manage-resources"></a>Manage resources
 
-* [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
+* [Manage resources for the Apache Spark cluster in Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

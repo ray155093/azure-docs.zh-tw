@@ -1,6 +1,6 @@
 <properties
- pageTitle="何謂 Azure 排程器？| Microsoft Azure"
- description="Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。然後它會排程這些動作並且自動執行。"
+ pageTitle="What is Azure Scheduler? | Microsoft Azure"
+ description="Azure Scheduler allows you to declaratively describe actions to run in the cloud. It then schedules and runs those actions automatically."
  services="scheduler"
  documentationCenter=".NET"
  authors="derek1ee"
@@ -15,39 +15,44 @@
  ms.date="08/18/2016"
  ms.author="deli"/>
 
-# 何謂 Azure 排程器？
 
-Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。然後它會排程這些動作並且自動執行。排程器會使用 [Azure 入口網站](scheduler-get-started-portal.md)、程式碼、[REST API](https://msdn.microsoft.com/library/mt629143.aspx) 或 Azure PowerShell 來完成這個動作。
+# <a name="what-is-azure-scheduler?"></a>What is Azure Scheduler?
 
-排程器會建立、 維護和叫用已排程的工作。排程器不會裝載任何工作負載或執行任何程式碼。它只會叫用其他位置裝載的程式碼：裝載於 Azure、內部部署或另一個提供者。它會透過 HTTP、HTTPS、儲存體佇列、服務匯流排佇列或服務匯流排主題叫用。
+Azure Scheduler allows you to declaratively describe actions to run in the cloud. It then schedules and runs those actions automatically.  Scheduler does this by using [the Azure portal](scheduler-get-started-portal.md), code, [REST API](https://msdn.microsoft.com/library/mt629143.aspx), or Azure PowerShell.
 
-排程器會排程[工作](scheduler-concepts-terms.md)、保留使用者可以檢閱的工作執行結果歷程記錄，並且決定性地和可靠地排程要執行的工作負載。Azure WebJobs (Azure App Service 之 Web Apps 功能的一部分) 和其他 Azure 排程功能會在背景使用排程器。[排程器 REST API](https://msdn.microsoft.com/library/mt629143.aspx) 會協助管理這些動作的通訊。因此，排程器可輕鬆地支援[複雜的排程和進階週期](scheduler-advanced-complexity.md)。
+Scheduler creates, maintains, and invokes scheduled work.  Scheduler does not host any workloads or run any code. It only _invokes_ code hosted elsewhere—in Azure, on-premises, or with another provider. It invokes via HTTP, HTTPS, a storage queue, a service bus queue, or a service bus topic.
 
-需要使用排程器的案例有幾個。例如：
+Scheduler schedules [jobs](scheduler-concepts-terms.md), keeps a history of job execution results that one can review, and deterministically and reliably schedules workloads to be run. Azure WebJobs (part of the Web Apps feature in Azure App Service) and other Azure scheduling capabilities use Scheduler in the background. The [Scheduler REST API](https://msdn.microsoft.com/library/mt629143.aspx) helps manage the communication for these actions. As such, Scheduler supports [complex schedules and advanced recurrence](scheduler-advanced-complexity.md) easily.
 
-+ 週期性應用程式動作：定期將 Twitter 中的資料收集到摘要中。
-+ 每日維護：每日剪除記錄、執行備份及其他維護工作。例如，系統管理員可以選擇接下來的九個月，每天早上 1:00 備份資料庫。
+There are several scenarios that lend themselves to the usage of Scheduler. For example:
 
-排程器可讓您使用指令碼，在入口網站中以程式設計方式建立、更新、刪除、檢視及管理工作和[工作集合](scheduler-concepts-terms.md)。
++ _Recurring application actions:_ Periodically gathering data from Twitter into a feed.
++ _Daily maintenance:_ Daily pruning of logs, performing backups, and other maintenance tasks. For example, an administrator may choose to back up the database at 1:00 A.M. every day for the next nine months.
 
-## 另請參閱
+Scheduler allows you to create, update, delete, view, and manage jobs and [job collections](scheduler-concepts-terms.md) programmatically, by using scripts, and in the portal.
 
- [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
+## <a name="see-also"></a>See also
 
- [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
+ [Azure Scheduler concepts, terminology, and entity hierarchy](scheduler-concepts-terms.md)
 
- [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
+ [Get started using Scheduler in the Azure portal](scheduler-get-started-portal.md)
 
- [如何使用 Azure 排程器建立複雜的排程和進階週期](scheduler-advanced-complexity.md)
+ [Plans and billing in Azure Scheduler](scheduler-plans-billing.md)
 
- [Azure 排程器 REST API 參考](https://msdn.microsoft.com/library/mt629143)
+ [How to build complex schedules and advanced recurrence with Azure Scheduler](scheduler-advanced-complexity.md)
 
- [Azure 排程器 PowerShell Cmdlet 參考](scheduler-powershell-reference.md)
+ [Azure Scheduler REST API reference](https://msdn.microsoft.com/library/mt629143)
 
- [Azure 排程器高可用性和可靠性](scheduler-high-availability-reliability.md)
+ [Azure Scheduler PowerShell cmdlets reference](scheduler-powershell-reference.md)
 
- [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
+ [Azure Scheduler high-availability and reliability](scheduler-high-availability-reliability.md)
 
- [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
+ [Azure Scheduler limits, defaults, and error codes](scheduler-limits-defaults-errors.md)
 
-<!---HONumber=AcomDC_1005_2016-->
+ [Azure Scheduler outbound authentication](scheduler-outbound-authentication.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

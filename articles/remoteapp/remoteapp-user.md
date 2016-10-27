@@ -1,8 +1,8 @@
 <properties
-    pageTitle="將使用者新增至您的 Azure RemoteApp 集合 | Microsoft Azure"
-    description="了解如何將使用者新增至您的 Azure RemoteApp 集合"
+    pageTitle="Add a user to your Azure RemoteApp collection | Microsoft Azure"
+    description="Learn how to add users to your Azure RemoteApp collection"
     services="remoteapp"
-	documentationCenter=""
+    documentationCenter=""
     authors="lizap"
     manager="mbaldwin" />
 
@@ -15,44 +15,49 @@
     ms.date="08/15/2016"
     ms.author="elizapo" />
 
-# 如何將使用者新增至您的 Azure RemoteApp 集合
+
+# <a name="how-to-add-a-user-to-your-azure-remoteapp-collection"></a>How to add a user to your Azure RemoteApp collection
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-您必須先授與使用者您集合的存取權，他們才能在 Azure RemoteApp 中看到和使用您的應用程式。這是最簡單的部分：在 [**使用者存取**] 索引標籤上，輸入使用者的帳戶資訊，然後按一下核取記號。
+Before your users can see and use your apps in Azure RemoteApp, you have to grant them access to your collection. This is the easy part: On the **User Access** tab, enter the account information for the user, and then click the check mark.
 
-您需要什麼帳戶資訊？ 這取決於您建立的收藏類型 (雲端或混合式)，還有您是否正在該收藏中使用 Office 365 ProPlus。
+What account information do you need? That depends on the type of collection you created (cloud or hybrid) and whether you are using Office 365 ProPlus in that collection.
 
-## 支援的使用者識別
+## <a name="supported-user-identities"></a>Supported user identities
 
-不同的集合類型 (雲端或混合式) 支援使用不同的使用者身分識別，存取應用程式。
+The different collection types (cloud vs. hybrid) support using different user identities for access to applications.  
 
-對於 RemoteApp 的混合式收藏，您必須設定內部部署的 Active Directory 網域基礎結構和具備目錄整合的 Azure Active Directory 租用戶 (及選擇性的單一登入)。此外，您必須在內部部署的目錄中建立一些 Active Directory 物件。
+For a hybrid collection of RemoteApp, you need to set up an Active Directory domain infrastructure on premises and an Azure Active Directory tenant with Directory Integration (and optionally single sign-on). Additionally, you need to create some Active Directory objects in the on-premises directory.  
 
-對於 RemoteApp 的雲端收藏，具有 Azure Active Directory 支援識別的任何使用者都可以被授與 RemoteApp 的使用者存取權以包含 Microsoft 帳戶。請參閱下表。
+For a cloud collection of RemoteApp, any user that has Azure Active Directory support identities can be granted user access to RemoteApp to include Microsoft Accounts.  See the table below.
 
-Office 365 使用者為 Azure Active Directory 使用者。如果這些使用者有 Azure Active Directory 混合式、目錄同步處理的帳戶，就可以在 RemoteApp 混合式部署中授與他們使用者存取權。
+Office 365 users are Azure Active Directory users. If they have Azure Active Directory hybrid, Directory synchronized accounts, they can be granted user access in a RemoteApp hybrid deployment.   
 
-您可以使用這個表格快速參考在您的收藏中支援何種識別，以及 Active Directory 的需求為何。
+You can use this table as a quick reference for which identity is supported in your collection and what the Active Directory requirements are.
 
-|使用者帳戶 |雲端 |混合式|
+|User accounts |Cloud   |Hybrid|
 |--------------|--------|------|
-|Microsoft 帳戶| 	是|	否|
+|Microsoft Account|     Yes|    No|
 |Azure Active Directory (Azure AD)| | |
-|僅 Azure AD 雲端 |是 |否 |
-|具有密碼同步的 ADsync |是 |是 |
-|不具密碼同步的 ADsync|	是 |否 |
-|具 AD FS 的 ADsync |是 |是 |
-|[Azure 支援的第 3 方識別提供者](https://msdn.microsoft.com/library/azure/jj679342.aspx) (例如 Ping) |是 |是|
-|Multi-Factor Authentication |是 |是 |
+|Azure AD cloud only    |Yes    |No |
+|ADsync with password sync  |Yes    |Yes    |
+|ADsync without password sync|  Yes |No |
+|ADsync with AD FS  |Yes    |Yes    |
+|[3rd-party Azure supported identity providers](https://msdn.microsoft.com/library/azure/jj679342.aspx)  (example Ping) |Yes    |Yes|
+|Multi-Factor Authentication    |Yes    |Yes    |
 
-請查看有關設定 RemoteApp 的 Active Directory 的[詳細資訊](remoteapp-ad.md)。
+Check out [more information](remoteapp-ad.md) about configuring Active Directory for RemoteApp.
 
 
-> [AZURE.NOTE] Azure Active Directory 使用者必須來自於與您的訂用帳戶相關聯的租用戶。(您可以在入口網站的 [設定] 索引標籤上檢視和修改您的訂用帳戶。如需詳細資訊，請參閱[變更 RemoteApp 所使用的 Azure Active Directory 租用戶](remoteapp-changetenant.md)。)
+> [AZURE.NOTE] The Azure Active Directory users must be from the tenant that's associated with your subscription. (You can view and modify your subscription on the **Settings** tab in the portal. See [Change the Azure Active Directory tenant used by RemoteApp](remoteapp-changetenant.md) for more information.)
 
-## Office 365 ProPlus 使用者帳戶資訊
-如果您的收藏中使用 Office 365 ProPlus 範本映像，*或者*如果您建立了使用 Office 365 的自訂映像，則您只能新增在您的訂用帳戶的預設網域中擁有 Office 365 訂閱的 Azure Active Directory 使用者。如需詳細資訊，請參閱[透過 Azure RemoteApp 使用 Office 365](remoteapp-o365.md)。
+## <a name="office-365-proplus-user-account-information"></a>Office 365 ProPlus user account information
+If you are using the Office 365 ProPlus template image in your collection *or* if you created a custom image that uses Office 365, you are only allowed to add Azure Active Directory users that have Office 365 subscriptions for the default domain of your subscription. See [Using Office 365 with Azure RemoteApp](remoteapp-o365.md) for more information.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

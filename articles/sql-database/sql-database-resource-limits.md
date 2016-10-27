@@ -1,82 +1,87 @@
 <properties
-	pageTitle="Azure SQL Database 資源限制"
-	description="此頁面描述一些 Azure SQL Database 常見的資源限制。"
-	services="sql-database"
-	documentationCenter="na"
-	authors="CarlRabeler"
-	manager="jhubbard"
-	editor="monicar" />
+    pageTitle="Azure SQL Database Resource Limits"
+    description="This page describes some common resource limits for Azure SQL Database."
+    services="sql-database"
+    documentationCenter="na"
+    authors="CarlRabeler"
+    manager="jhubbard"
+    editor="monicar" />
 
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="data-management"
-	ms.date="07/19/2016"
-	ms.author="carlrab" />
+    ms.service="sql-database"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="data-management"
+    ms.date="10/13/2016"
+    ms.author="carlrab" />
 
 
-# Azure SQL Database 資源限制
 
-## 概觀
+# <a name="azure-sql-database-resource-limits"></a>Azure SQL Database resource limits
 
-Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源：**資源管理**和**限制強制執行**。本主題將說明這兩種主要的資源管理方法。
+## <a name="overview"></a>Overview
 
-## 資源管理
-基本、標準和進階服務層的設計目的之一，是讓 Azure SQL Database 彷彿在獨立的電腦上執行，與其他資料庫完全隔離。資源管理便會模擬這個行為。如果彙總的資源使用率達到可用 CPU、記憶體、記錄 I/O 和資料 I/O 資源 (指派至資料庫) 的上限，資源管理會將查詢排入執行佇列中，並在系統釋出資源時，適時將資源指派給佇列中的查詢。
+Azure SQL Database manages the resources available to a database using two different mechanisms: **Resources Governance** and **Enforcement of Limits**. This topic explains these two main areas of resource management.
 
-在專用的電腦上使用所有可用的資源，會導致目前正在執行的查詢花費更多執行時間，而這可能會使得用戶端上的命令逾時。具備積極重試邏輯的應用程式，以及時常對資料庫執行查詢的應用程式，若在嘗試執行新查詢時達到並行要求的上限，便可能出現錯誤訊息。
+## <a name="resource-governance"></a>Resource governance
+One of the design goals of the Basic, Standard, and Premium service tiers is for Azure SQL Database to behave as if the database is running on its own machine, completely isolated from other databases. Resource governance emulates this behavior. If the aggregated resource utilization reaches the maximum available CPU, Memory, Log I/O, and Data I/O resources assigned to the database, resource governance will queue queries in execution and assign resources to the queued queries as they free up.
 
-### 建議：
-資料庫使用率接近上限時，監視資源使用率以及查詢的平均回應時間。查詢的延遲較高時，您通常可採取三種應對方式：
+As on a dedicated machine, utilizing all available resources will result in a longer execution of currently executing queries, which can result in command timeouts on the client. Applications with aggressive retry logic and applications that execute queries against the database with a high frequency can encounter errors messages when trying to execute new queries when the limit of concurrent requests has been reached.
 
-1.	減少資料庫的傳入要求數量，以避免逾時和要求不斷累積。
+### <a name="recommendations:"></a>Recommendations:
+Monitor the resource utilization as well as the average response times of queries when nearing the maximum utilization of a database. When encountering higher query latencies you generally have three options:
 
-2.	為資料庫指派更高的效能層級。
+1.  Reduce the amount of incoming requests to the database to prevent timeout and the pile up of requests.
 
-3.	將查詢最佳化，以降低每個查詢的資源使用率。如需詳細資訊，請參閱＜Azure SQL Database 效能指南＞一文的「查詢微調/提示」章節。
+2.  Assign a higher performance level to the database.
 
-## 限制強制執行
-系統會在達到上限時拒絕新的要求，藉此強制執行 CPU、記憶體、記錄 I/O 和資料 I/O 以外的資源。用戶端收到的[錯誤訊息](sql-database-develop-error-messages.md)會因達到的上限而有所不同。
+3.  Optimize queries to reduce the resource utilization of each query. For more information, see the Query Tuning/Hinting section in the Azure SQL Database Performance Guidance article.
 
-例如，SQL Database 的連接數，以及可以處理的並行要求數目都將受到限制。SQL Database 可允許資料庫的連接數大於並行要求的數目，以支援連接共用。雖然應用程式能輕易控制可用的連接數，但平行要求的數量通常難以預估及控制。尤其在尖峰負載期間，應用程式往往傳送過多的要求，或是資料庫在達到資源上限後，因為執行耗時較長的查詢而開始累積背景工作執行緒，此時就可能發生錯誤。
+## <a name="enforcement-of-limits"></a>Enforcement of limits
+Resources other than CPU, Memory, Log I/O, and Data I/O are enforced by denying new requests when limits are reached. Clients will receive an [error message](sql-database-develop-error-messages.md) depending on the limit that has been reached.
 
-## 服務層和效能等級
+For example, the number of connections to a SQL database as well as the number of concurrent requests that can be processed are restricted. SQL Database allows the number of connections to the database to be greater than the number of concurrent requests to support connection pooling. While the amount of connections that are available can easily be controlled by the application, the amount of parallel requests is often times harder to estimate and to control. Especially during peak loads when the application either sends too many requests or the database reaches its resource limits and starts piling up worker threads due to longer running queries, errors can be encountered.
 
-獨立資料庫和彈性集區都有服務層和效能等級。
+## <a name="service-tiers-and-performance-levels"></a>Service tiers and performance levels
 
-### 獨立資料庫
+There are service tiers and performance levels for both standalone database and elastic pools.
 
-就獨立資料庫而言，資料庫的限制是由資料庫服務層和效能等級所定義。下表說明基本、標準和高階資料庫在不同效能等級的特性。
+### <a name="standalone-databases"></a>Standalone databases
 
-[AZURE.INCLUDE [SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table.md)]
+For a standalone database, the limits of a database are defined by the database service tier and performance level. The following table describes the characteristics of Basic, Standard, and Premium databases at varying performance levels.
 
-### 彈性集區
+[AZURE.INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
 
-[彈性集區](sql-database-elastic-pool.md)可在集區中的資料庫之間共用資源。下表說明基本、標準和高階彈性資料庫集區的特性。
+### <a name="elastic-pools"></a>Elastic pools
 
-[AZURE.INCLUDE [彈性資料庫的 SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
+[Elastic pools](sql-database-elastic-pool.md) share resources across databases in the pool. The following table describes the characteristics of Basic, Standard, and Premium elastic database pools.
 
-如需上述表格所列之每項資源的擴充定義，請參閱[服務層功能和限制](sql-database-performance-guidance.md#service-tier-capabilities-and-limits)中的說明。如需服務層的概觀，請參閱 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)。
+[AZURE.INCLUDE [SQL DB service tiers table for elastic databases](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
 
-## 其他 SQL Database 限制
+For an expanded definition of each resource listed in the previous tables, see the descriptions in [Service tier capabilities and limits](sql-database-performance-guidance.md#service-tier-capabilities-and-limits). For an overview of service tiers, see [Azure SQL Database Service Tiers and Performance Levels](sql-database-service-tiers.md).
 
-| 領域 | 限制 | 說明 |
+## <a name="other-sql-database-limits"></a>Other SQL Database limits
+
+| Area | Limit | Description |
 |---|---|---|
-| 每個訂用帳戶使用自動匯出的資料庫 | 10 | 自動匯出可讓您建立自訂排程以備份 SQL Database。如需詳細資訊，請參閱 [SQL Database：自動 SQL Database 匯出的支援](http://weblogs.asp.net/scottgu/windows-azure-july-updates-sql-database-traffic-manager-autoscale-virtual-machines)。|
-| 每一部伺服器的資料庫 | 最多 5000 個 | 在 V12 伺服器上，每一伺服器最多允許 5000 個資料庫。 |  
-| 每一部伺服器的 DTU | 45000 | 在 V12 伺服器上，每一部伺服器會有 45000 個 DTU，用於佈建資料庫、彈性集區和資料倉儲。 |
+| Databases using Automated export per subscription | 10 | Automated export allows you to create a custom schedule for backing up your SQL databases. For more information, see [SQL Databases: Support for Automated SQL Database Exports](http://weblogs.asp.net/scottgu/windows-azure-july-updates-sql-database-traffic-manager-autoscale-virtual-machines).|
+| Database per server | Up to 5000 | Up to 5000 databases are allowed per server on V12 servers. |  
+| DTUs per server | 45000 | 45000 DTUs are available per server on V12 servers for provisioning databases, elastic pools and data warehouses. |
 
 
 
-## 資源
+## <a name="resources"></a>Resources
 
-[Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)
+[Azure Subscription and Service Limits, Quotas, and Constraints](../azure-subscription-service-limits.md)
 
-[Azure SQL Database 服務層和效能層級](sql-database-service-tiers.md)
+[Azure SQL Database Service Tiers and Performance Levels](sql-database-service-tiers.md)
 
-[SQL Database 用戶端程式的錯誤訊息](sql-database-develop-error-messages.md)
+[Error messages for SQL Database client programs](sql-database-develop-error-messages.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

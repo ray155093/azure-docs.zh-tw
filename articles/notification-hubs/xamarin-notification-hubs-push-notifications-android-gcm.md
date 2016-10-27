@@ -1,206 +1,208 @@
 <properties
-	pageTitle="開始使用適用於 Xamarin.Android 應用程式的通知中樞 | Microsoft Azure"
-	description="在本教學課程中，您會了解如何使用 Azure 通知中樞將推播通知傳送至 Xamarin Android 應用程式。"
-	authors="wesmc7777"
-	manager="erikre"
-	editor=""
-	services="notification-hubs"
-	documentationCenter="xamarin"/>
+    pageTitle="Get started with Notification Hubs for Xamarin.Android apps | Microsoft Azure"
+    description="In this tutorial, you learn how to use Azure Notification Hubs to send push notifications to a Xamarin Android application."
+    authors="wesmc7777"
+    manager="erikre"
+    editor=""
+    services="notification-hubs"
+    documentationCenter="xamarin"/>
 
 <tags
-	ms.service="notification-hubs"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-xamarin-android"
-	ms.devlang="dotnet"
-	ms.topic="hero-article"
-	ms.date="06/29/2016"
-	ms.author="wesmc"/>
+    ms.service="notification-hubs"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-xamarin-android"
+    ms.devlang="dotnet"
+    ms.topic="hero-article"
+    ms.date="06/29/2016"
+    ms.author="wesmc"/>
 
-# 開始使用適用於 Android 應用程式的通知中樞
+
+# <a name="get-started-with-notification-hubs-with-xamarin-for-android"></a>Get started with Notification Hubs with Xamarin for Android
 
 [AZURE.INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-##概觀
+##<a name="overview"></a>Overview
 
-本教學課程示範如何使用 Azure 通知中樞將推播通知傳送至 Xamarin.Android 應用程式。您將建立可使用 Google Cloud Messaging (GCM) 接收推播通知的空白 Xamarin.Android app。完成時，您便能夠使用通知中樞，將推播通知廣播到所有執行您 app 的裝置。[NotificationHubs 應用程式][GitHub]範例中提供完成的程式碼。
+This tutorial shows you how to use Azure Notification Hubs to send push notifications to a Xamarin.Android application.
+You'll create a blank Xamarin.Android app that receives push notifications by using Google Cloud Messaging (GCM). When you're finished, you'll be able to use your notification hub to broadcast push notifications to all the devices running your app. The finished code is available in the [NotificationHubs app][GitHub] sample.
 
-本教學課程示範使用通知中樞的簡單廣播案例。
+This tutorial demonstrates the simple broadcast scenario in using Notification Hubs.
 
 
-## 開始之前
+## <a name="before-you-begin"></a>Before you begin
 
 [AZURE.INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-您可以在[此處](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/Xamarin/GetStartedXamarinAndroid)的 GitHub 上找到本教學課程的完整程式碼。
+The completed code for this tutorial can be found on GitHub [here](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/Xamarin/GetStartedXamarinAndroid).
 
 
 
-##先決條件
+##<a name="prerequisites"></a>Prerequisites
 
-本教學課程需要下列各項：
+This tutorial requires the following:
 
-+ Windows 的 Visual Studio 與 Xamarin 或 Mac OS X 的 Xamarin Studio。完整的安裝指示位於[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
-+ 有效的 Google 帳戶
-+ [Azure 訊息元件]
-+ [Google Cloud Messaging 用戶端元件]
++ Visual Studio with Xamarin on Windows or Xamarin Studio on Mac OS X. Complete installation instructions are on [Setup and Install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx).
++ Active Google account
++ [Azure Messaging Component]
++ [Google Cloud Messaging Client Component]
 
-完成本教學課程是 Xamarin.Android app 所有其他通知中樞教學課程的先決條件。
+Completing this tutorial is a prerequisite for all other Notification Hubs tutorials for Xamarin.Android apps.
 
-> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A9C9624B5&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fpartner-xamarin-notification-hubs-android-get-started%2F)。
+> [AZURE.IMPORTANT] To complete this tutorial, you must have an active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A9C9624B5&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fpartner-xamarin-notification-hubs-android-get-started%2F).
 
-##啟用 Google 雲端通訊
+##<a name="enable-google-cloud-messaging"></a>Enable Google Cloud Messaging
 
 [AZURE.INCLUDE [mobile-services-enable-Google-cloud-messaging](../../includes/mobile-services-enable-google-cloud-messaging.md)]
 
-##設定您的通知中樞
+##<a name="configure-your-notification-hub"></a>Configure your notification hub
 
 [AZURE.INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 
 <ol start="7">
-<li><p>按一下頂端的 [設定]<b></b> 索引標籤，輸入前一節中取得的 [API Key]<b></b> 值，然後按一下 [儲存]<b></b>。</p>
+<li><p>Click the <b>Configure</b> tab at the top, enter the <b>API Key</b> value you obtained in the previous section, and then click <b>Save</b>.</p>
 </li>
 </ol>
 &emsp;&emsp;![](./media/notification-hubs-android-get-started/notification-hub-configure-android.png)
 
 
-現在已將您的通知中樞設定成使用 GCM，而且您已擁有可用來註冊應用程式以接收通知和傳送推播通知的連接字串。
+Your notification hub is now configured to work with GCM, and you have the connection strings to both register your app to receive notifications and to send push notifications.
 
-##將您的應用程式連接到通知中樞
+##<a name="connect-your-app-to-the-notification-hub"></a>Connect your app to the notification hub
 
-###建立新專案
+###<a name="create-a-new-project"></a>Create a new project
 
-1. 在 Xamarin Studio 中，依序按一下 [新增方案]、[Android 應用程式] 和 [下一步]。
+1. In Xamarin Studio, click **New Solution**, click **Android App**, and click **Next**.
 
-   	![](./media/partner-xamarin-notification-hubs-android-get-started/notification-hub-create-xamarin-android-project1.png)
+    ![](./media/partner-xamarin-notification-hubs-android-get-started/notification-hub-create-xamarin-android-project1.png)
 
-2. 輸入您的**應用程式名稱**和**識別碼**。按一下您想要支援的 [目標平台]，然後按 [下一步] 和 [建立]。
+2. Enter your **App Name** and **Identifier**. Click the **Target Plaforms** you want to support and then click **Next** and **Create**.
 
-   	![](./media/partner-xamarin-notification-hubs-android-get-started/notification-hub-create-xamarin-android-project2.png)
-
-
-	這會建立新的 Android 專案。
-
-2. 在 [方案] 檢視中以滑鼠右鍵按一下新專案來開啟專案屬性，並選擇 [選項]。選取 [建置] 區段中的 [Android Application] 項目。
-
-	確定 [套件名稱] 的第一個字母是小寫。
-
-	> [AZURE.IMPORTANT] 套件名稱的第一個字母必須是小寫。否則，當您在下文為推播通知註冊 **BroadcastReceiver** 和 **IntentFilter** 時，將收到應用程式資訊清單錯誤。
-
-   	![](./media/partner-xamarin-notification-hubs-android-get-started/notification-hub--xamarin-android-app-options.png)
+    ![](./media/partner-xamarin-notification-hubs-android-get-started/notification-hub-create-xamarin-android-project2.png)
 
 
-3. 可選擇性地將 [最低 Android 版本] 設定為另一個 API 層級。
+    This creates a new Android project.
 
-4. 可選擇性地將 [目標 Android 版本] 設定為另一個想要的目標 API 版本 (必須是 API 層級 8 或更高版本)。
+2. Open the project properties by right-clicking your new project in the Solution view and choosing **Options**. Select the **Android Application** item in the **Build** section.
 
-按一下 [確定]，並關閉 [專案選項] 對話方塊。
+    Ensure that the first letter of your **Package name** is lowercase.
 
+    > [AZURE.IMPORTANT] The first letter of the package name must be lowercase. Otherwise, you will receive application manifest errors when you register your **BroadcastReceiver** and **IntentFilter** for push notifications below.
 
-###將必要元件新增至專案
-
-可在 Xamarin 元件存放區中取得的 Google Cloud Messaging 用戶端會簡化在 Xamarin.Android 中支援推播通知的程序。
-
-1. 以滑鼠右鍵按一下 Xamarin.Android app 中的 [元件] 資料夾，然後選擇 [取得其他元件]。
-
-2. 搜尋 [**Azure 訊息**] 元件，並將該元件新增至專案。
-
-3. 搜尋 [**Google Cloud Messaging 用戶端**] 元件，並將該元件新增至專案。
+    ![](./media/partner-xamarin-notification-hubs-android-get-started/notification-hub--xamarin-android-app-options.png)
 
 
-###在專案中設定通知中樞
+3. Optionally, set the **Minimum Android version** to another API Level.
 
-1. 收集您的 Android 應用程式和通知中樞的下列資訊：
+4. Optionally, set the **Target Android version** to the another API version that you want to target (must be API level 8 or higher).
 
-	- **GoogleProjectNumber**：在 Google 開發人員入口網站上，從您的應用程式概觀取得此專案編號值。當您在入口網站上建立應用程式時，您可以提早記下這個值。
-	- **接聽連接字串**：在 [Azure 傳統入口網站]的儀表板上，按一下 [檢視連接字串]。複製此值的 *DefaultListenSharedAccessSignature* 連線字串。
-	- **中樞名稱**：這是您在 [Azure 傳統入口網站]的中樞名稱。例如，*mynotificationhub2*。
-
-	為您的 Xamarin 專案建立 **Constants.cs** 類別，並定義類別中的下列常數值。以您的值取代預留位置。
-
-		public static class Constants
-		{
-			public const string SenderID = "<GoogleProjectNumber>"; // Google API Project Number
-			public const string ListenConnectionString = "<Listen connection string>";
-			public const string NotificationHubName = "<hub name>";
-		}
-
-2. 在 **MainActivity.cs** 中新增下列 using 陳述式：
-
-		using Android.Util;
-		using Gcm.Client;
-
-3. 將執行個體變數新增至 `MainActivity` 類別，以用來在應用程式執行時顯示警示對話方塊。
-
-		public static MainActivity instance;
+Click **OK** and close the Project Options dialog.
 
 
-3. 在 **MainActivity** 類別中建立下列方法：
+###<a name="add-the-required-components-to-your-project"></a>Add the required components to your project
 
-		private void RegisterWithGCM()
-		{
-			// Check to ensure everything's set up right
-			GcmClient.CheckDevice(this);
-			GcmClient.CheckManifest(this);
+The Google Cloud Messaging Client available on the Xamarin Component Store simplifies the process of supporting push notifications in Xamarin.Android.
 
-			// Register for push notifications
-			Log.Info("MainActivity", "Registering...");
-			GcmClient.Register(this, Constants.SenderID);
-		}
+1. Right-click the Components folder in Xamarin.Android app and choose **Get More Components**.
 
-4. 在 **MainActivity.cs** 的 `OnCreate` 方法中，初始化 `instance` 變數並新增 `RegisterWithGCM` 的呼叫：
+2. Search for the **Azure Messaging** component and add it to the project.
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			instance = this;
-
-			base.OnCreate (bundle);
-
-			// Set your view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
-
-			// Get your button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-
-			RegisterWithGCM();
-		}
+3. Search for the **Google Cloud Messaging Client** component and add it to the project.
 
 
-4. 建立新類別 **MyBroadcastReceiver**。
+###<a name="set-up-notification-hubs-in-your-project"></a>Set up notification hubs in your project
 
-	> [AZURE.NOTE] 我們將在下文中從頭逐步建立 **BroadcastReceiver** 類別。不過，手動建立 **MyBroadcastReceiver.cs** 之外的一個快速替代方式是參考可在 [NotificationHubs 範例][GitHub]隨附的範例 Xamarin.Android 專案中找到的 **GcmService.cs** 檔案。複製 **GcmService.cs** 之後再變更類別名稱，也是很好的開始。
+1. Gather the following information for your Android app and notification hub:
 
-5. 將下列 using 陳述式新增至 **MyBroadcastReceiver.cs** (請參閱稍早新增的元件和組件)：
+    - **GoogleProjectNumber**:  Get this Project Number value from the overview of your app on the Google Developer Portal. You made a note of this value earlier when you created the app on the portal.
+    - **Listen connection string**: On the dashboard in the [Azure Classic Portal], click **View connection strings**. Copy the *DefaultListenSharedAccessSignature* connection string for this value.
+    - **Hub name**: This is the name of your hub from the [Azure Classic Portal]. For example, *mynotificationhub2*.
 
-		using System.Collections.Generic;
-		using System.Text;
-		using Android.App;
-		using Android.Content;
-		using Android.Util;
-		using Gcm.Client;
-		using WindowsAzure.Messaging;
+    Create a **Constants.cs** class for your Xamarin project and define the following constant values in the class. Replace the placeholders with your values.
 
-5. 在 **MyBroadcastReceiver.cs** 中，於 **using** 陳述式與 **namespace** 宣告之間新增下列權限要求：
+        public static class Constants
+        {
+            public const string SenderID = "<GoogleProjectNumber>"; // Google API Project Number
+            public const string ListenConnectionString = "<Listen connection string>";
+            public const string NotificationHubName = "<hub name>";
+        }
 
-		[assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
-		[assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
-		[assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")]
+2. Add the following using statements to **MainActivity.cs**:
 
-		//GET_ACCOUNTS is needed only for Android versions 4.0.3 and below
-		[assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
-		[assembly: UsesPermission(Name = "android.permission.INTERNET")]
-		[assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
+        using Android.Util;
+        using Gcm.Client;
 
-6. 在 **MyBroadcastReceiver.cs** 中，變更 **MyBroadcastReceiver** 類別以符合下列內容：
+3. Add an instance variable to the `MainActivity` class that will be used to show an alert dialog when the app is running:
 
-    	[BroadcastReceiver(Permission=Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
+        public static MainActivity instance;
+
+
+3. Create the following method in the **MainActivity** class:
+
+        private void RegisterWithGCM()
+        {
+            // Check to ensure everything's set up right
+            GcmClient.CheckDevice(this);
+            GcmClient.CheckManifest(this);
+
+            // Register for push notifications
+            Log.Info("MainActivity", "Registering...");
+            GcmClient.Register(this, Constants.SenderID);
+        }
+
+4. In the `OnCreate` method of **MainActivity.cs**, initialize the `instance` variable and add a call to `RegisterWithGCM`:
+
+        protected override void OnCreate (Bundle bundle)
+        {
+            instance = this;
+
+            base.OnCreate (bundle);
+
+            // Set your view from the "main" layout resource
+            SetContentView (Resource.Layout.Main);
+
+            // Get your button from the layout resource,
+            // and attach an event to it
+            Button button = FindViewById<Button> (Resource.Id.myButton);
+
+            RegisterWithGCM();
+        }
+
+
+4. Create a new class, **MyBroadcastReceiver**.
+
+    > [AZURE.NOTE] We will walk through creating a **BroadcastReceiver** class from scratch below. However, a quick alternative to manually creating **MyBroadcastReceiver.cs** is to refer to the **GcmService.cs** file found in the sample Xamarin.Android project included with the [NotificationHubs samples][GitHub]. Duplicating **GcmService.cs** and changing class names can be a great place to start as well.
+
+5. Add the following using statements to **MyBroadcastReceiver.cs** (referring to the component and assembly that you added earlier):
+
+        using System.Collections.Generic;
+        using System.Text;
+        using Android.App;
+        using Android.Content;
+        using Android.Util;
+        using Gcm.Client;
+        using WindowsAzure.Messaging;
+
+5. In **MyBroadcastReceiver.cs**, add the following permission requests between the **using** statements and the **namespace** declaration:
+
+        [assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
+        [assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
+        [assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")]
+
+        //GET_ACCOUNTS is needed only for Android versions 4.0.3 and below
+        [assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
+        [assembly: UsesPermission(Name = "android.permission.INTERNET")]
+        [assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
+
+6. In **MyBroadcastReceiver.cs**, change the **MyBroadcastReceiver** class to match the following:
+
+        [BroadcastReceiver(Permission=Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
         [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_MESSAGE },
-			Categories = new string[] { "@PACKAGE_NAME@" })]
+            Categories = new string[] { "@PACKAGE_NAME@" })]
         [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_REGISTRATION_CALLBACK },
-			Categories = new string[] { "@PACKAGE_NAME@" })]
+            Categories = new string[] { "@PACKAGE_NAME@" })]
         [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_LIBRARY_RETRY },
-			Categories = new string[] { "@PACKAGE_NAME@" })]
+            Categories = new string[] { "@PACKAGE_NAME@" })]
         public class MyBroadcastReceiver : GcmBroadcastReceiverBase<PushHandlerService>
         {
             public static string[] SENDER_IDS = new string[] { Constants.SenderID };
@@ -208,88 +210,88 @@
             public const string TAG = "MyBroadcastReceiver-GCM";
         }
 
-7. 在 **MyBroadcastReceiver.cs** 中，新增另一個衍生自 **GcmServiceBase** 且名稱為 **PushHandlerService** 的類別。請一定要將 **Service** 屬性套用至類別：
+7. Add another class in **MyBroadcastReceiver.cs** named **PushHandlerService**, which derives from **GcmServiceBase**. Make sure to apply the **Service** attribute to the class:
 
-    	[Service] // Must use the service tag
-    	public class PushHandlerService : GcmServiceBase
-    	{
-        	public static string RegistrationID { get; private set; }
-        	private NotificationHub Hub { get; set; }
+        [Service] // Must use the service tag
+        public class PushHandlerService : GcmServiceBase
+        {
+            public static string RegistrationID { get; private set; }
+            private NotificationHub Hub { get; set; }
 
-        	public PushHandlerService() : base(Constants.SenderID)
-       		{
-            	Log.Info(MyBroadcastReceiver.TAG, "PushHandlerService() constructor");
-        	}
-    	}
-
-
-8. **GcmServiceBase** 實作 **OnRegistered()**、**OnUnRegistered()**、**OnMessage()**、**OnRecoverableError()** 和 **OnError()** 等方法。我們的 **PushHandlerService** 實作類別必須覆寫這些方法，而且這些方法將在發生與通知中心的互動時受到觸發作為回應。
+            public PushHandlerService() : base(Constants.SenderID)
+            {
+                Log.Info(MyBroadcastReceiver.TAG, "PushHandlerService() constructor");
+            }
+        }
 
 
-9. 使用下列程式碼覆寫 **PushHandlerService** 中的 **OnRegistered()** 方法：
+8. **GcmServiceBase** implements methods **OnRegistered()**, **OnUnRegistered()**, **OnMessage()**, **OnRecoverableError()**, and **OnError()**. Our **PushHandlerService** implementation class must override these methods, and these methods will fire in response to interacting with the notification hub.
 
-		protected override void OnRegistered(Context context, string registrationId)
-		{
-			Log.Verbose(MyBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
-			RegistrationID = registrationId;
 
-			createNotification("PushHandlerService-GCM Registered...",
-								"The device has been Registered!");
+9. Override the **OnRegistered()** method in **PushHandlerService** by using the following code:
 
-			Hub = new NotificationHub(Constants.NotificationHubName, Constants.ListenConnectionString,
-										context);
-			try
-			{
-				Hub.UnregisterAll(registrationId);
-			}
-			catch (Exception ex)
-			{
-				Log.Error(MyBroadcastReceiver.TAG, ex.Message);
-			}
+        protected override void OnRegistered(Context context, string registrationId)
+        {
+            Log.Verbose(MyBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
+            RegistrationID = registrationId;
 
-			//var tags = new List<string>() { "falcons" }; // create tags if you want
-			var tags = new List<string>() {};
+            createNotification("PushHandlerService-GCM Registered...",
+                                "The device has been Registered!");
 
-			try
-			{
-				var hubRegistration = Hub.Register(registrationId, tags.ToArray());
-			}
-			catch (Exception ex)
-			{
-				Log.Error(MyBroadcastReceiver.TAG, ex.Message);
-			}
-		}
+            Hub = new NotificationHub(Constants.NotificationHubName, Constants.ListenConnectionString,
+                                        context);
+            try
+            {
+                Hub.UnregisterAll(registrationId);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(MyBroadcastReceiver.TAG, ex.Message);
+            }
 
-	> [AZURE.NOTE] 在以上的 **OnRegistered()** 程式碼中，您應該發現能夠指定標籤來註冊特定傳訊通道。
+            //var tags = new List<string>() { "falcons" }; // create tags if you want
+            var tags = new List<string>() {};
 
-10. 使用下列程式碼覆寫 **PushHandlerService** 中的 **OnMessage** 方法：
+            try
+            {
+                var hubRegistration = Hub.Register(registrationId, tags.ToArray());
+            }
+            catch (Exception ex)
+            {
+                Log.Error(MyBroadcastReceiver.TAG, ex.Message);
+            }
+        }
 
-		protected override void OnMessage(Context context, Intent intent)
-		{
-			Log.Info(MyBroadcastReceiver.TAG, "GCM Message Received!");
+    > [AZURE.NOTE] In the **OnRegistered()** code above, you should note the ability to specify tags to register for specific messaging channels.
 
-			var msg = new StringBuilder();
+10. Override the **OnMessage** method in **PushHandlerService** by using the following code:
 
-			if (intent != null && intent.Extras != null)
-			{
-				foreach (var key in intent.Extras.KeySet())
-					msg.AppendLine(key + "=" + intent.Extras.Get(key).ToString());
-			}
+        protected override void OnMessage(Context context, Intent intent)
+        {
+            Log.Info(MyBroadcastReceiver.TAG, "GCM Message Received!");
 
-			string messageText = intent.Extras.GetString("message");
-			if (!string.IsNullOrEmpty (messageText))
-			{
-				createNotification ("New hub message!", messageText);
-			}
-			else
-			{
-				createNotification ("Unknown message details", msg.ToString ());
-			}
-		}
+            var msg = new StringBuilder();
 
-11. 新增下列 **createNotification** 和 **dialogNotify** 方法至 **PushHandlerService**，以在接收到通知時通知使用者。
+            if (intent != null && intent.Extras != null)
+            {
+                foreach (var key in intent.Extras.KeySet())
+                    msg.AppendLine(key + "=" + intent.Extras.Get(key).ToString());
+            }
 
-	>[AZURE.NOTE] Android 5.0 版與更新版本中的通知設計，與先前版本有極大的不同。如果您在 Android 5.0 版或更新版本上進行測試，必須執行應用程式才能收到通知。如需詳細資訊，請參閱 [Android 通知](http://go.microsoft.com/fwlink/?LinkId=615880)。
+            string messageText = intent.Extras.GetString("message");
+            if (!string.IsNullOrEmpty (messageText))
+            {
+                createNotification ("New hub message!", messageText);
+            }
+            else
+            {
+                createNotification ("Unknown message details", msg.ToString ());
+            }
+        }
+
+11. Add the following **createNotification** and **dialogNotify** methods to **PushHandlerService** for notifying users when a notification is received.
+
+    >[AZURE.NOTE] Notification design in Android version 5.0 and later represents a significant departure from that of previous versions. If you test this on Android 5.0 or later, the app will need to be running to receive the notification. For more information, see [Android Notifications](http://go.microsoft.com/fwlink/?LinkId=615880).
 
         void createNotification(string title, string desc)
         {
@@ -312,152 +314,152 @@
 
             //Show the notification
             notificationManager.Notify(1, notification);
-			dialogNotify (title, desc);
+            dialogNotify (title, desc);
         }
 
-		protected void dialogNotify(String title, String message)
-		{
+        protected void dialogNotify(String title, String message)
+        {
 
-			MainActivity.instance.RunOnUiThread(() => {
-				AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.instance);
-				AlertDialog alert = dlg.Create();
-				alert.SetTitle(title);
-				alert.SetButton("Ok", delegate {
-					alert.Dismiss();
-				});
-				alert.SetMessage(message);
-				alert.Show();
-			});
-		}
-
-
-12. 覆寫抽象成員 **OnUnRegistered()**、**OnRecoverableError()** 和 **OnError()**，以便您的程式碼進行編譯：
-
-		protected override void OnUnRegistered(Context context, string registrationId)
-		{
-			Log.Verbose(MyBroadcastReceiver.TAG, "GCM Unregistered: " + registrationId);
-
-			createNotification("GCM Unregistered...", "The device has been unregistered!");
-		}
-
-		protected override bool OnRecoverableError(Context context, string errorId)
-		{
-			Log.Warn(MyBroadcastReceiver.TAG, "Recoverable Error: " + errorId);
-
-			return base.OnRecoverableError (context, errorId);
-		}
-
-		protected override void OnError(Context context, string errorId)
-		{
-			Log.Error(MyBroadcastReceiver.TAG, "GCM Error: " + errorId);
-		}
+            MainActivity.instance.RunOnUiThread(() => {
+                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.instance);
+                AlertDialog alert = dlg.Create();
+                alert.SetTitle(title);
+                alert.SetButton("Ok", delegate {
+                    alert.Dismiss();
+                });
+                alert.SetMessage(message);
+                alert.Show();
+            });
+        }
 
 
-##在模擬器中執行您的應用程式
+12. Override abstract members **OnUnRegistered()**, **OnRecoverableError()**, and **OnError()** so that your code compiles:
 
-如果您在模擬器中執行此應用程式，請務必使用支援 Google API 的 Android 虛擬裝置 (AVD)。
+        protected override void OnUnRegistered(Context context, string registrationId)
+        {
+            Log.Verbose(MyBroadcastReceiver.TAG, "GCM Unregistered: " + registrationId);
 
-> [AZURE.IMPORTANT] 若要收到推播通知，您必須在 Android 虛擬裝置上設定 Google 帳戶(在模擬器中，瀏覽至 [設定]，然後按一下 [新增帳戶])。 另外，確定模擬器已連線到網際網路。
+            createNotification("GCM Unregistered...", "The device has been unregistered!");
+        }
 
->[AZURE.NOTE] Android 5.0 版與更新版本中的通知設計，與先前版本有極大的不同。如需詳細資訊，請參閱 [Android 通知](http://go.microsoft.com/fwlink/?LinkId=615880)。
+        protected override bool OnRecoverableError(Context context, string errorId)
+        {
+            Log.Warn(MyBroadcastReceiver.TAG, "Recoverable Error: " + errorId);
 
+            return base.OnRecoverableError (context, errorId);
+        }
 
-1. 從 [工具] 中，按一下 [Open Android Emulator Manager]，選取您的裝置，然後按一下 [Edit]。
-
-   	![][18]
-
-2. 在 [目標] 中選取 [Google API]，然後按一下 [確定]。
-
-   	![][19]
-
-3. 在頂端工具列上，按一下 [執行]，然後選取您的應用程式。這將啟動模擬器，並執行應用程式。
-
-  應用程式將從 GCM 擷取 *registrationId*，並向通知中樞註冊。
-
-##從後端傳送通知
+        protected override void OnError(Context context, string errorId)
+        {
+            Log.Error(MyBroadcastReceiver.TAG, "GCM Error: " + errorId);
+        }
 
 
-在 [Azure 傳統入口網站]中透過通知中樞上的偵錯索引標籤 (如下列螢幕畫面所示) 來傳送通知，即可在應用程式中測試通知的接收。
+##<a name="run-your-app-in-the-emulator"></a>Run your app in the emulator
+
+If you run this app in the emulator, make sure that you use an Android Virtual Device (AVD) that supports Google APIs.
+
+> [AZURE.IMPORTANT] In order to receive push notifications, you must set up a Google account on your Android Virtual Device. (In the emulator, navigate to **Settings** and click **Add Account**.) Also, make sure that the emulator is connected to the Internet.
+
+>[AZURE.NOTE] Notification design in Android version 5.0 and later represents a significant departure from that of previous versions. For more information, see [Android Notifications](http://go.microsoft.com/fwlink/?LinkId=615880).
+
+
+1. From **Tools**, click **Open Android Emulator Manager**, select your device, and then click **Edit**.
+
+    ![][18]
+
+2. Select **Google APIs** in **Target**, and then click **OK**.
+
+    ![][19]
+
+3. On the top toolbar, click **Run**, and then select your app. This starts the emulator and runs the app.
+
+  The app retrieves the *registrationId* from GCM and registers with the notification hub.
+
+##<a name="send-notifications-from-your-backend"></a>Send notifications from your backend
+
+
+You can test receiving notifications in your app by sending notifications in the [Azure Classic Portal] via the debug tab on the notification hub, as shown in the screen below.
 
 ![][30]
 
 
-推播通知通常會在後端服務 (例如行動服務) 中或透過相容程式庫的 ASP.NET 傳送。如果您的後端沒有程式庫，也可以直接使用 REST API 來傳送通知訊息。
+Push notifications are normally sent in a backend service like Mobile Services or ASP.NET through a compatible library. You can also use the REST API directly to send notification messages if a library is not available for your backend.
 
-以下是可供您檢閱，用於傳送通知的一些其他教學課程清單：
+Here is a list of some other tutorials that you may want to review for sending notifications:
 
-- ASP.NET：請參閱[使用通知中樞將通知推播給使用者]。
-- Azure 通知中樞 Java SDK：請參閱[如何從 Java 使用通知中樞](notification-hubs-java-push-notification-tutorial.md)，以便從 Java 傳送通知。這已在 Eclipse for Android Development 中測試。
-- PHP：請參閱[如何從 PHP 使用通知中樞](notification-hubs-php-push-notification-tutorial.md)。
+- ASP.NET: See [Use Notification Hubs to push notifications to users].
+- Azure Notification Hubs Java SDK: See [How to use Notification Hubs from Java](notification-hubs-java-push-notification-tutorial.md) for sending notifications from Java. This has been tested in Eclipse for Android Development.
+- PHP: See [How to use Notification Hubs from PHP](notification-hubs-php-push-notification-tutorial.md).
 
 
-在本教學課程接下來的小節中，您會使用 .NET 主控台應用程式以及透過節點指令碼使用行動服務來傳送通知。
+In the next subsections of the tutorial, you send notifications by using a .NET console app, and by using a mobile service through a node script.
 
-####(選用) 使用 .NET 應用程式傳送通知
+####<a name="(optional)-send-notifications-by-using-a-.net-app"></a>(Optional) Send notifications by using a .NET app
 
-在本節中，您將使用 .NET 主控台應用程式來傳送通知。
+In this section, we will send notifications by using a .NET console app
 
-1. 建立新的 Visual C# 主控台應用程式：
+1. Create a new Visual C# console application:
 
-   	![][20]
+    ![][20]
 
-2. 在 Visual Studio 中，依序按一下 [工具]、[NuGet 封裝管理員] 和 [封裝管理員主控台]。
+2. In Visual Studio, click **Tools**, click **NuGet Package Manager**, and then click **Package Manager Console**.
 
-	這會在 Visual Studio 中顯示 [封裝管理員主控台]。
+    This displays the Package Manager Console in Visual Studio.
 
-3. 在 [封裝管理員主控台] 視窗中，將 [預設專案] 設為新的主控台應用程式專案，然後在主控台視窗中執行下列命令：
+3. In the Package Manager Console window, set the **Default project** to your new console application project, and then in the console window, execute the following command:
 
         Install-Package Microsoft.Azure.NotificationHubs
 
-	這會使用 <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet 封裝</a>加入對 Azure 通知中樞 SDK 的參考。
+    This adds a reference to the Azure Notification Hubs SDK using the <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet package</a>.
 
-	![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
+    ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
 
-4. 開啟 Program.cs 檔案，並新增下列 `using` 陳述式：
+4. Open the Program.cs file and add the following `using` statement:
 
         using Microsoft.Azure.NotificationHubs;
 
-5. 在 `Program` 類別中，新增下列方法：使用您的 *DefaultFullSharedAccessSignature* 連接字串和 [Azure 傳統入口網站]的中樞名稱，來更新預留位置文字。
+5. In your `Program` class, add the following method. Update the placeholder text with your *DefaultFullSharedAccessSignature* connection string and hub name from the [Azure Classic Portal].
 
         private static async void SendNotificationAsync()
         {
             NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString("<connection string with full access>", "<hub name>");
-            await hub.SendGcmNativeNotificationAsync("{ "data" : {"message":"Hello from Azure!"}}");
+            await hub.SendGcmNativeNotificationAsync("{ \"data\" : {\"message\":\"Hello from Azure!\"}}");
         }
 
-6. 在您的 **Main** 方法中新增下列程式碼行：
+6. Add the following lines in your **Main** method:
 
          SendNotificationAsync();
-		 Console.ReadLine();
+         Console.ReadLine();
 
-7. 按 F5 鍵以執行應用程式。您應該會在應用程式中收到通知。
+7. Press the F5 key to run the app. You should receive a notification in the app.
 
-   	![][21]
+    ![][21]
 
-####(選用) 使用行動服務傳送通知
+####<a name="(optional)-send-notifications-by-using-a-mobile-service"></a>(Optional) Send notifications by using a mobile service
 
-1. 依照[開始使用行動服務]執行作業。
+1. Follow [Get started with Mobile Services].
 
-1. 登入 [Azure 傳統入口網站]，然後選取您的行動服務。
+1. Sign in to the [Azure Classic Portal], and select your mobile service.
 
-2. 選取頂端的 [排程器] 索引標籤。
+2. Select the **Scheduler** tab on the top.
 
-   	![][22]
+    ![][22]
 
-3. 建立新的排定工作、插入名稱，然後選取 [隨選]。
+3. Create a new scheduled job, insert a name, and select **On demand**.
 
-   	![][23]
+    ![][23]
 
-4. 在工作建立之後，按一下此工作名稱。然後按一下頂端列中的 [指令碼] 索引標籤。
+4. When the job is created, click the job name. Then click the **Script** tab on the top bar.
 
-5. 將下列指令碼插入您的排程器函數內。請確定使用您的通知中心名稱和稍早取得的 *DefaultFullSharedAccessSignature* 連接字串，來取代預留位置。按一下 [儲存]。
+5. Insert the following script inside your scheduler function. Make sure to replace the placeholders with your notification hub name and the connection string for *DefaultFullSharedAccessSignature* that you obtained earlier. Click **Save**.
 
         var azure = require('azure');
-		var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string>');
-		notificationHubService.gcm.send(null,'{"data":{"message" : "Hello from Mobile Services!"}}',
-    	  function (error)
-    	  {
-        	if (!error) {
+        var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string>');
+        notificationHubService.gcm.send(null,'{"data":{"message" : "Hello from Mobile Services!"}}',
+          function (error)
+          {
+            if (!error) {
                console.warn("Notification successful");
             }
             else
@@ -465,13 +467,13 @@
               console.warn("Notification failed" + error);
             }
           }
-	    );
+        );
 
-6. 按一下底列上的 [執行一次]。您應會收到快顯通知。
+6. Click **Run Once** on the bottom bar. You should receive a toast notification.
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-在此簡單範例中，您廣播通知到您的所有 Android 裝置。為了鎖定特定使用者，請參閱教學課程[使用通知中心來推播通知給使用者]。如果您想要按興趣群組分隔使用者，您可以參閱[使用通知中心傳送即時新聞]。若要深入了解如何使用通知中樞，請參閱[通知中樞指引]和 [Android 的通知中樞作法]。
+In this simple example, you broadcasted notifications to all your Android devices. In order to target specific users, refer to the tutorial [Use Notification Hubs to push notifications to users]. If you want to segment your users by interest groups, you can read [Use Notification Hubs to send breaking news]. Learn more about how to use Notification Hubs in [Notification Hubs Guidance] and in the [Notification Hubs How-To for Android].
 
 <!-- Anchors. -->
 [Enable Google Cloud Messaging]: #register
@@ -479,7 +481,7 @@
 [Connecting your app to the Notification Hub]: #connecting-app
 [Run your app with the emulator]: #run-app
 [Send notifications from your back-end]: #send
-[Next steps]: #next-steps
+[Next steps]:#next-steps
 
 <!-- Images. -->
 
@@ -503,21 +505,24 @@
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: http://go.microsoft.com/fwlink/p/?LinkId=262253
-[開始使用行動服務]: /develop/mobile/tutorials/get-started-xamarin-android/#create-new-service
+[Get started with Mobile Services]: /develop/mobile/tutorials/get-started-xamarin-android/#create-new-service
 [JavaScript and HTML]: /develop/mobile/tutorials/get-started-with-push-js
 
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[Azure Classic Portal]: https://manage.windowsazure.com/
 [wns object]: http://go.microsoft.com/fwlink/p/?LinkId=260591
-[通知中樞指引]: http://msdn.microsoft.com/library/jj927170.aspx
-[Android 的通知中樞作法]: http://msdn.microsoft.com/library/dn282661.aspx
+[Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
+[Notification Hubs How-To for Android]: http://msdn.microsoft.com/library/dn282661.aspx
 
-[使用通知中心來推播通知給使用者]: /manage/services/notification-hubs/notify-users-aspnet
-[使用通知中樞將通知推播給使用者]: /manage/services/notification-hubs/notify-users-aspnet
-[使用通知中心傳送即時新聞]: /manage/services/notification-hubs/breaking-news-dotnet
+[Use Notification Hubs to push notifications to users]: /manage/services/notification-hubs/notify-users-aspnet
+[Use Notification Hubs to send breaking news]: /manage/services/notification-hubs/breaking-news-dotnet
 [GCMClient Component page]: http://components.xamarin.com/view/GCMClient
 [Xamarin.NotificationHub GitHub page]: https://github.com/SaschaDittmann/Xamarin.NotificationHub
 [GitHub]: http://go.microsoft.com/fwlink/p/?LinkId=331329
-[Google Cloud Messaging 用戶端元件]: http://components.xamarin.com/view/GCMClient/
-[Azure 訊息元件]: http://components.xamarin.com/view/azure-messaging
+[Google Cloud Messaging Client Component]: http://components.xamarin.com/view/GCMClient/
+[Azure Messaging Component]: http://components.xamarin.com/view/azure-messaging
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,41 +1,47 @@
 <properties
-	pageTitle="關於 Linux 虛擬機器 | Microsoft Azure"
-	description="了解 Azure 中使用兩種部署模型的 Linux 虛擬機器基本概念。"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="cynthn"
-	manager="timlt"
-	editor="tysonn"
-	tags="azure-resource-manager,azure-service-management"/>
+    pageTitle="About Linux virtual machines | Microsoft Azure"
+    description="Learn about the basics of Linux virtual machines in Azure using both deployment models."
+    services="virtual-machines-linux"
+    documentationCenter=""
+    authors="cynthn"
+    manager="timlt"
+    editor="tysonn"
+    tags="azure-resource-manager,azure-service-management"/>
 
 <tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/15/2016"
-	ms.author="cynthn"/>
+    ms.service="virtual-machines-linux"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-linux"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="06/15/2016"
+    ms.author="cynthn"/>
 
-#關於 Azure 中的 Linux 虛擬機器
+
+#<a name="about-linux-virtual-machines-in-azure"></a>About Linux virtual machines in Azure
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 
-Azure 虛擬機器是由 Azure 所提供的隨選且可調整的數種運算資源類型之一。一般而言，如果您對於運算環境所需的控制權比其他選擇可提供的還要多，則您會選擇虛擬機器。
+Azure Virtual Machines is one of several types of on-demand, scalable computing resources that Azure offers. Typically, you'll choose a virtual machine if you need more control over the computing environment than the other choices offer.
 
-Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。不過，您仍然需要維護虛擬機器 - 設定、修補和維護在虛擬機器上執行的軟體。您也可以了解 [Azure 中的 Windows 虛擬機器](virtual-machines-windows-about.md)。
+An Azure virtual machine gives you the flexibility of virtualization without having to buy and maintain the physical hardware that runs the virtual machine. However, you still need to maintain the virtual machine -- configuring, patching, and maintaining the software that runs on the virtual machine. You can also learn [about Windows virtual machines in Azure](virtual-machines-windows-about.md).
 
-下表可協助您比較 Azure 所提供的選擇。
+This table helps you compare the choices offered by Azure.
 
 [AZURE.INCLUDE [compute-table](../../includes/compute-options-table.md)]
 
 [AZURE.INCLUDE [virtual-machines-choose-me-content](../../includes/virtual-machines-choose-me-content.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-藉由快速建立簡單的虛擬機器來試用虛擬機器。如需指示，請參閱[建立執行 Linux 的虛擬機器](virtual-machines-linux-quick-create-cli.md)。
+Try out a virtual machine by creating a simple virtual machine quickly. For instructions, see [Create a virtual machine running Linux](virtual-machines-linux-quick-create-cli.md).
 
-由於這些教學課程可協助您快速建立虛擬機器，因此它只會顯示一種這麼做的方式，而不會說明您可用來建立虛擬機器的各種工具。如需這些工具的摘要以及指示的連結，請參閱[建立 Linux 虛擬機器的不同方式](virtual-machines-linux-creation-choices.md)。
+Because the tutorial helps you create a virtual machine quickly, it only shows you one way to do it instead of describing the various tools you can use to create virtual machines. For a summary of these tools and links to instructions, see [Different ways to create a Linux virtual machine](virtual-machines-linux-creation-choices.md).
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

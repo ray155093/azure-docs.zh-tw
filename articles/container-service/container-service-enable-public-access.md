@@ -1,13 +1,13 @@
 <properties
-   pageTitle="啟用 ACS 應用程式的公用存取 | Microsoft Azure"
-   description="如何啟用 Azure Container Service 的公用存取。"
+   pageTitle="Enable Public Access to an ACS app | Microsoft Azure"
+   description="How to enable public access to an Azure Container Service."
    services="container-service"
    documentationCenter=""
    authors="Thraka"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker、容器、微服務、Mesos、Azure"/>
+   keywords="Docker, Containers, Micro-services, Mesos, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -16,83 +16,87 @@
    ms.tgt_pltfrm="na"
    ms.workload="na"
    ms.date="08/26/2016"
-   ms.author="adegeo"/>
+   ms.author="timlt"/>
 
-# 啟用 Azure Container Service 應用程式的公用存取
 
-ACS [公用代理程式集區](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container)中的任何 DC/OS 容器都會自動公開到網際網路。根據預設，連接埠 **80**、**443**、**8080** 已開啟，在這些連接埠上接聽的任何 (公用) 容器皆可供存取。本文將說明如何在 Azure Container Service 中開啟更多的連接埠供應用程式使用。
+# <a name="enable-public-access-to-an-azure-container-service-application"></a>Enable public access to an Azure Container Service application
 
-## 開啟連接埠 (入口網站) 
+Any DC/OS container in the ACS [public agent pool](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container) is automatically exposed to the internet. By default, ports **80**, **443**, **8080** are opened, and any (public) container listening on those ports are accessible. This article shows you how to open more ports for your applications in Azure Container Service.
 
-首先，我們必須開啟所需的連接埠。
+## <a name="open-a-port-(portal)"></a>Open a port (portal) 
 
-1. 登入入口網站。
-2. 尋找 Azure Container Service 所部署到的資源群組。
-3. 選取代理程式的負載平衡器 (其名稱類似 **XXXX-agent-lb-XXXX**)。
+First, we need to open the port we want.
 
-    ![Azure Container Service 的負載平衡器](media/container-service-dcos-agents/agent-load-balancer.png)
+1. Log in to the portal.
+2. Find the resource group that you deployed the Azure Container Service to.
+3. Select the agent load balancer (which is named similar to **XXXX-agent-lb-XXXX**).
 
-4. 依序按一下 [探查] 和 [新增]。
+    ![Azure container service load balancer](media/container-service-dcos-agents/agent-load-balancer.png)
 
-    ![Azure Container Service 的負載平衡器探查](media/container-service-dcos-agents/add-probe.png)
+4. Click **Probes** and then **Add**.
 
-5. 填寫探查表單，然後按一下 [確定]。
+    ![Azure container service load balancer probes](media/container-service-dcos-agents/add-probe.png)
 
-    | 欄位 | 說明 |
-    | ----- | ----------- |
-    | 名稱 | 探查的描述性名稱。 |
-    | 連接埠 | 要測試之容器的連接埠。 |
-    | Path | (處於 HTTP 模式時) 探查的相對網站路徑。不支援 HTTPS。 |
-    | 間隔 | 探查嘗試間隔的時間量 (秒)。 |
-    | 狀況不良臨界值 | 在將容器視為狀況不良之前的連續探查嘗試次數。 | 
+5. Fill out the probe form and click **OK**.
+
+  	| Field | Description |
+  	| ----- | ----------- |
+  	| Name  | A descriptive name of the probe. |
+  	| Port  | The port of the container to test. |
+  	| Path  | (When in HTTP mode) The relative website path to probe. HTTPS not supported. |
+  	| Interval | The amount of time between probe attempts, in seconds. |
+  	| Unhealthy threshold | Number of consecutive probe attempts before considering the container unhealthy. | 
     
 
-6. 回到代理程式負載平衡器的屬性中，依序按一下 [負載平衡規則] 和 [新增]。
+6. Back at the properties of the agent load balancer, click **Load balancing rules** and then **Add**.
 
-    ![Azure Container Service 的負載平衡器規則](media/container-service-dcos-agents/add-balancer-rule.png)
+    ![Azure container service load balancer rules](media/container-service-dcos-agents/add-balancer-rule.png)
 
-7. 填寫負載平衡器表單，然後按一下 [確定]。
+7. Fill out the load balancer form and click **OK**.
 
-    | 欄位 | 說明 |
-    | ----- | ----------- |
-    | 名稱 | 負載平衡器的描述性名稱。 |
-    | 連接埠 | 公用的連入通訊埠。 |
-    | 後端連接埠 | 要將流量路由傳送到之容器的內部對公用連接埠。 |
-    | 後端集區 | 此集區中的容器將會是此負載平衡器的目標。 |
-    | 探查 | 用來判斷**後端集區**中的目標是否狀況良好的探查。 |
-    | 工作階段持續性 | 判斷在工作階段的持續期間應如何處理來自用戶端的流量。<br><br>**無**︰來自相同用戶端的後續要求可由任何容器處理。<br>**用戶端 IP**︰來自相同用戶端 IP 的後續要求會由相同容器處理。<br>**用戶端 IP 和通訊協定**︰來自相同用戶端 IP 與通訊協定組合的後續要求會由相同容器處理。 |
-    | 閒置逾時 | (僅限 TCP) 讓 TCP/HTTP 用戶端保持開啟，而不依賴「keep-alive」訊息的時間，以分鐘為單位。 |
+  	| Field | Description |
+  	| ----- | ----------- |
+  	| Name  | A descriptive name of the load balancer. |
+  	| Port  | The public incoming port. |
+  	| Backend port | The internal-public port of the container to route traffic to. |
+  	| Backend pool | The containers in this pool will be the target for this load balancer. |
+  	| Probe | The probe used to determine if a target in the **Backend pool** is healthy. |
+  	| Session persistence | Determines how traffic from a client should be handled for the duration of the session.<br><br>**None**: Successive requests from the same client can be handled by any container.<br>**Client IP**: Successive requests from the same client IP are handled by the same container.<br>**Client IP and protocol**: Successive requests from the same client IP and protocol combination are handled by the same container. |
+  	| Idle timeout | (TCP only) In minutes, the time to keep a TCP/HTTP client open without relying on *keep-alive* messages. |
 
-## 新增安全性規則 (入口網站)
+## <a name="add-a-security-rule-(portal)"></a>Add a security rule (portal)
 
-接下來，我們需要新增會從開啟的連接埠通過防火牆路由傳送流量的安全性規則。
+Next, we need to add a security rule that routes traffic from our opened port through the firewall.
 
-1. 登入入口網站。
-2. 尋找 Azure Container Service 所部署到的資源群組。
-3. 選取**公用**代理程式網路安全性群組 (其名稱類似 **XXXX-agent-public-nsg-XXXX**)。
+1. Log in to the portal.
+2. Find the resource group that you deployed the Azure Container Service to.
+3. Select the **public** agent network security group (which is named similar to **XXXX-agent-public-nsg-XXXX**).
 
-    ![Azure Container Service 網路安全性群組](media/container-service-dcos-agents/agent-nsg.png)
+    ![Azure container service network security group](media/container-service-dcos-agents/agent-nsg.png)
 
-4. 依序選取 [輸入安全性規則] 和 [新增]。
+4. Select **Inbound security rules** and then **Add**.
 
-    ![Azure Container Service 網路安全性群組規則](media/container-service-dcos-agents/add-firewall-rule.png)
+    ![Azure container service network security group rules](media/container-service-dcos-agents/add-firewall-rule.png)
 
-5. 填寫防火牆規則以允許公用連接埠，然後按一下 [確定]。
+5. Fill out the firewall rule to allow your public port and click **OK**.
 
-    | 欄位 | 說明 |
-    | ----- | ----------- |
-    | 名稱 | 防火牆規則的描述性名稱。 |
-    | 優先順序 | 規則的優先順序排名。編號愈低，優先順序就愈高。 |
-    | 來源 | 限制此規則要允許或拒絕的連入 IP 位址範圍。使用**任何**即可不指定限制。 |
-    | 服務 | 選取一組適用此安全性規則的預先定義服務。否則，使用**自訂**建立自己的服務。 |
-    | 通訊協定 | 根據 **TCP** 或 **UDP** 限制流量。使用**任何**即可不指定限制。 |
-    | 連接埠範圍 | 當**服務**是**自訂**時，指定此規則會影響的連接埠範圍。您可以使用單一連接埠 (例如 **80**) 或 **1024-1500** 之類的範圍。 |
-    | 動作 | 允許或拒絕符合條件的流量。 |
+  	| Field | Description |
+  	| ----- | ----------- |
+  	| Name  | A descriptive name of the firewall rule. |
+  	| Priority | Priority rank for the rule. The lower the number the higher the priority. |
+  	| Source | Restrict the incoming IP address range to be allowed or denied by this rule. Use **Any** to not specify a restriction. |
+  	| Service | Select a set of predefined services this security rule is for. Otherwise use **Custom** to create your own. |
+  	| Protocol | Restrict traffic based on **TCP** or **UDP**. Use **Any** to not specify a restriction. |
+  	| Port range | When **Service** is **Custom**, specifies the range of ports that this rule affects. You can use a single port, such as **80**, or a range like **1024-1500**. |
+  	| Action | Allow or deny traffic that meets the criteria. |
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-了解[公用和私用 DC/OS 代理程式](container-service-dcos-agents.md)之間的差異。
+Learn about the difference between [public and private DC/OS agents](container-service-dcos-agents.md).
 
-深入了解[管理 DC/OS 容器](container-service-mesos-marathon-ui.md)。
+Read more information about [managing your DC/OS containers](container-service-mesos-marathon-ui.md).
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

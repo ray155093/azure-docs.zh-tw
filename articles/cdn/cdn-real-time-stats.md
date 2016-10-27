@@ -1,97 +1,103 @@
 <properties
-	pageTitle="Azure CDN 中的即時統計資料 | Microsoft Azure"
-	description="將內容傳遞給您的用戶端時，即時統計資料可提供關於 Azure CDN 效能的即時資料。"
-	services="cdn"
-	documentationCenter=""
-	authors="camsoper"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Real-Time-Stats in Azure CDN | Microsoft Azure"
+    description="Real-Time Statistics provides real-time data about the performance of Azure CDN when delivering content to your clients."
+    services="cdn"
+    documentationCenter=""
+    authors="camsoper"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="cdn"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/28/2016"
-	ms.author="casoper"/>
+    ms.service="cdn"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/28/2016"
+    ms.author="casoper"/>
 
-# Microsoft Azure CDN 中的即時統計資料
+
+# <a name="real-time-stats-in-microsoft-azure-cdn"></a>Real-time stats in Microsoft Azure CDN
 
 [AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
-## Overview
+## <a name="overview"></a>Overview
 
-本文件說明 Microsoft Azure CDN 中的即時統計資料。在將內容傳遞給您的用戶端時，這項功能會提供即時資料 (例如頻寬、快取狀態和並行連線) 給您的 CDN 設定檔。這可讓您隨時連續監視服務的健全狀況，包括上線事件。
+This document explains real-time stats in Microsoft Azure CDN.  This functionality provides real-time data, such as bandwidth, cache statuses, and concurrent connections to your CDN profile when delivering content to your clients. This enables continuous monitoring of the health of your service at any time, including go-live events.
 
-可用圖表如下︰
+The following graphs are available:
 
-* [頻寬](#bandwidth)
-* [狀態碼](#status-codes)
-* [快取狀態](#cache-statuses)
-* [連線](#connections)
+* [Bandwidth](#bandwidth)
+* [Status Codes](#status-codes)
+* [Cache Statuses](#cache-statuses)
+* [Connections](#connections)
 
 
-## 存取即時統計資料
+## <a name="accessing-real-time-stats"></a>Accessing real-time stats
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽到您的 CDN 設定檔。
+1. In the [Azure Portal](https://portal.azure.com), browse to your CDN profile.
 
-	![CDN 設定檔刀鋒視窗](./media/cdn-real-time-stats/cdn-profile-blade.png)
+    ![CDN profile blade](./media/cdn-real-time-stats/cdn-profile-blade.png)
 
-2. 在 [CDN 設定檔] 刀鋒視窗中，按一下 [管理] 按鈕。
+2. From the CDN profile blade, click the **Manage** button.
 
-	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-real-time-stats/cdn-manage-btn.png)
+    ![CDN profile blade manage button](./media/cdn-real-time-stats/cdn-manage-btn.png)
 
-	隨即開啟 CDN 管理入口網站。
+    The CDN management portal opens.
 
-3. 將滑鼠暫留在 [分析] 索引標籤上，然後暫留在 [即時統計資料] 飛出視窗上。按一下 [HTTP 大型物件]。
+3. Hover over the **Analytics** tab, then hover over the **Real-Time Stats** flyout.  Click on **HTTP Large Object**.
 
-	![CDN 管理入口網站](./media/cdn-real-time-stats/cdn-premium-portal.png)
+    ![CDN management portal](./media/cdn-real-time-stats/cdn-premium-portal.png)
 
-	隨即會顯示即時統計資料圖表。
-	
-每個圖表都會顯示所選時間範圍內的即時統計資料，並在頁面載入時啟動。圖表每隔幾秒鐘就會自動更新。[重新整理圖表] 按鈕 (如果有) 將會清除圖表，然後只顯示選取的資料。
+    The real-time stats graphs are displayed.
+    
+Each of the graphs displays real-time statistics for the selected time span, starting when the page loads.  The graphs update automatically every few seconds.  The **Refresh Graph** button, if present, will clear the graph, after which it will only display the selected data.
 
-## 頻寬
+## <a name="bandwidth"></a>Bandwidth
 
-![頻寬圖表](./media/cdn-real-time-stats/cdn-bandwidth.png)
+![Bandwidth graph](./media/cdn-real-time-stats/cdn-bandwidth.png)
 
-**頻寬**圖表會顯示所選時間範圍內，針對目前平台所使用的頻寬量。圖表的陰影部分表示頻寬使用量。目前使用的確切頻寬量會顯示於線條圖的正下方。
+The **Bandwidth** graph displays the amount of bandwidth used for the current platform over the selected time span. The shaded portion of the graph indicates bandwidth usage. The exact amount of bandwidth currently being used is displayed directly below the line graph.
 
-## 狀態碼
+## <a name="status-codes"></a>Status Codes
 
-![狀態碼圖表](./media/cdn-real-time-stats/cdn-status-codes.png)
+![Status code graph](./media/cdn-real-time-stats/cdn-status-codes.png)
 
-**狀態碼**圖表會指出某些 HTTP 回應碼在所選時間範圍內的發生頻率。
+The **Status Codes** graph indicates how often certain HTTP response codes are occurring over the selected time span.
 
-> [AZURE.TIP]  如需每個 HTTP 狀態碼選項的說明，請參閱 [Azure CDN HTTP 狀態碼](https://msdn.microsoft.com/library/mt759238.aspx)。
+> [AZURE.TIP]  For a description of each HTTP status code option, see [Azure CDN HTTP Status Codes](https://msdn.microsoft.com/library/mt759238.aspx).
 
-HTTP 狀態碼的清單會顯示於圖表正上方。此清單表示每個可包含於線條圖中的狀態碼，以及該狀態碼目前每秒的發生次數。根據預設，圖表中會針對這些狀態碼的每一個顯示一條線。不過，您可以選擇只監視對您的 CDN 組態具有特殊意義的狀態碼。若要這樣做，請檢查所需的狀態碼，並清除所有其他選項，然後按一下 [重新整理圖表]。
+A list of HTTP status codes is displayed directly above the graph. This list indicates each status code that can be included in the line graph and the current number of occurrences per second for that status code. By default, a line is displayed for each of these status codes in the graph. However, you can choose to only monitor the status codes that have special significance for your CDN configuration. To do this, check the desired status codes and clear all other options, then click **Refresh Graph**. 
 
-您可以暫時隱藏特定狀態碼的記錄資料。從圖表正下方的圖例中，按一下您想要隱藏的狀態碼。狀態碼將會立即從圖表中隱藏。再次按一下該狀態碼將導致該選項再次顯示。
+You can temporarily hide logged data for a particular status code.  From the legend directly below the graph, click the status code you want to hide. The status code will be immediately hidden from the graph. Clicking that status code again will cause that option to be displayed again.
 
-## 快取狀態
+## <a name="cache-statuses"></a>Cache Statuses
 
-![快取狀態圖表](./media/cdn-real-time-stats/cdn-cache-status.png)
+![Cache Statuses graph](./media/cdn-real-time-stats/cdn-cache-status.png)
 
-**快取狀態**圖表會指出某些類型的快取狀態在所選時間範圍內的發生頻率。
+The **Cache Statuses** graph indicates how often certain types of cache statuses are occurring over the selected time span. 
 
-> [AZURE.TIP]  如需每個快取狀態碼選項的說明，請參閱 [Azure CDN 快取狀態碼](https://msdn.microsoft.com/library/mt759237.aspx)。
+> [AZURE.TIP]  For a description of each cache status code option, see [Azure CDN Cache Status Codes](https://msdn.microsoft.com/library/mt759237.aspx).
 
-快取狀態碼的清單會顯示於圖表正上方。此清單表示每個可包含於線條圖中的狀態碼，以及該狀態碼目前每秒的發生次數。根據預設，圖表中會針對這些狀態碼的每一個顯示一條線。不過，您可以選擇只監視對您的 CDN 組態具有特殊意義的狀態碼。若要這樣做，請檢查所需的狀態碼，並清除所有其他選項，然後按一下 [重新整理圖表]。
+A list of cache status codes is displayed directly above the graph. This list indicates each status code that can be included in the line graph and the current number of occurrences per second for that status code. By default, a line is displayed for each of these status codes in the graph. However, you can choose to only monitor the status codes that have special significance for your CDN configuration. To do this, check the desired status codes and clear all other options, then click **Refresh Graph**. 
 
-您可以暫時隱藏特定狀態碼的記錄資料。從圖表正下方的圖例中，按一下您想要隱藏的狀態碼。狀態碼將會立即從圖表中隱藏。再次按一下該狀態碼將導致該選項再次顯示。
+You can temporarily hide logged data for a particular status code.  From the legend directly below the graph, click the status code you want to hide. The status code will be immediately hidden from the graph. Clicking that status code again will cause that option to be displayed again.
 
-## 連線
+## <a name="connections"></a>Connections
 
-![連線圖表](./media/cdn-real-time-stats/cdn-connections.png)
+![Connections graph](./media/cdn-real-time-stats/cdn-connections.png)
 
-此圖表會指出已為 Edge Server 建立的連線數。通過 CDN 的每個資產要求都會導致建立一個連線。
+This graph indicates how many connections have been established to your edge servers. Each request for an asset that passes through our CDN results in a connection.
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-- 透過 [Azure CDN 中的即時警示](cdn-real-time-alerts.md)獲得通知
-- 進一步了解[進階 HTTP 報告](cdn-advanced-http-reports.md)
-- 分析[使用模式](cdn-analyze-usage-patterns.md)
+- Get notified with [Real-time alerts in Azure CDN](cdn-real-time-alerts.md)
+- Dig deeper with [advanced HTTP reports](cdn-advanced-http-reports.md)
+- Analyze [usage patterns](cdn-analyze-usage-patterns.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

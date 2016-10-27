@@ -1,61 +1,66 @@
 <properties
-	pageTitle="使用 Azure 流量管理員來控制 Azure Web 應用程式的流量"
-	description="本文提供與 Azure Web 應用程式相關之 Azure 流量管理員的摘要資訊。";"
-	services="app-service\web"
-	documentationCenter=""
-	authors="cephalin"
-	writer="cephalin"
-	manager="wpickett"
-	editor="mollybos"/>
+    pageTitle="Controlling Azure web app traffic with Azure Traffic Manager"
+    description="This article provides summary information for  Azure Traffic Manager as it relates to Azure web apps."
+    services="app-service\web"
+    documentationCenter=""
+    authors="cephalin"
+    writer="cephalin"
+    manager="wpickett"
+    editor="mollybos"/>
 
 <tags
-	ms.service="app-service-web"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="02/25/2016"
-	ms.author="cephalin"/>
+    ms.service="app-service-web"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="02/25/2016"
+    ms.author="cephalin"/>
 
-# 使用 Azure 流量管理員來控制 Azure Web 應用程式的流量
 
-> [AZURE.NOTE] 本文提供與 Azure App Service Web Apps 相關之 Microsoft Azure 流量管理員的摘要資訊。如需 Azure 流量管理員本身的詳細資訊，請造訪本文結尾的連結。
+# <a name="controlling-azure-web-app-traffic-with-azure-traffic-manager"></a>Controlling Azure web app traffic with Azure Traffic Manager
 
-## 簡介
-您可以使用 Azure 流量管理員，來控制如何將來自 Web 用戶端的要求分散至 Azure App Service 中的 Web 應用程式。將 Web 應用程式端點新增至 Azure 流量管理員設定檔時，Azure 流量管理員就會持續追蹤您 Web 應用程式的狀態 (執行中、已停止或已刪除)，以判定其中哪些端點應接收流量。
+> [AZURE.NOTE] This article provides summary information for Microsoft Azure Traffic Manager as it relates to Azure App Service Web Apps. More information about Azure Traffic Manager itself can be found by visiting the links at the end of this article.
 
-## 負載平衡方法
-Azure 流量管理員使用三種不同的負載平衡方法。下列清單說明 Azure Web 應用程式專屬的這些方法。
+## <a name="introduction"></a>Introduction
+You can use Azure Traffic Manager to control how requests from web clients are distributed to web apps in Azure App Service. When web app endpoints are added to a Azure Traffic Manager profile, Azure Traffic Manager keeps track of the status of your web apps (running, stopped or deleted) so that it can decide which of those endpoints should receive traffic.
 
-* **容錯移轉**：如果您在不同地區有 Web 應用程式複本，就可以使用此方法，將某一個 Web 應用程式設定為服務所有 Web 用戶端流量，並在不同地區設定其他 Web 應用程式，以便在第一個 Web 應用程式無法使用時服務該流量。
+## <a name="load-balancing-methods"></a>Load Balancing Methods
+Azure Traffic Manager uses three different load balancing methods. These are described  in the following list as they pertain to Azure web apps.
 
-* **循環配置資源**：如果您在不同地區有 Web 應用程式複本，就可以使用此方法，將流量平均分散於不同地區的 Web 應用程式。
+* **Failover**: If you have web app clones in different regions, you can use this method to configure one web app to service all web client traffic, and configure another web app in a different region to service that traffic in case the first web app becomes unavailable.
 
-* **效能**：效能方法可根據前往用戶端的最短來回時間來分散流量。效能方法可用於相同地區內或不同地區中的 Web 應用程式。
+* **Round Robin**: If you have web app clones in different regions, you can use this method to distribute traffic equally across the web apps in different regions.
 
-##Web 應用程式和流量管理員設定檔
-若要設定以控制 Web 應用程式流量，可在使用上述三種負載平衡方法的其中一種之 Azure 流量管理員中建立設定檔，然後新增要控制其設定檔流量的端點 (在此案例中為 Web 應用程式)。系統會定期與設定檔溝通您的 Web 應用程式狀態 (執行中、已停止或已刪除)，讓 Azure 流量管理員可相應地導向流量。
+* **Performance**: The Performance method distributes traffic based on the shortest round trip time to clients. The Performance method can be used for web apps within the same region or in different regions.
 
-搭配使用 Azure 流量管理員與 Azure 時，請牢記下列重點：
+##<a name="web-apps-and-traffic-manager-profiles"></a>Web Apps and Traffic Manager Profiles
+To configure the control of web app traffic, you create a profile in Azure Traffic Manager that uses one of the three load balancing methods described previously, and then add the endpoints (in this case, web apps) for which you want to control traffic to the profile. Your web app status (running, stopped or deleted) is regularly communicated to the profile so that Azure Traffic Manager can direct traffic accordingly.
 
-* 若為相同地區內的純 Web 應用程式部署，Web Apps 已經提供與 Web 應用程式模式無關的容錯移轉和循環配置資源功能。
+When using Azure Traffic Manager with Azure, keep in mind the following points:
 
-* 若是在搭配使用 Web Apps 與其他 Azure 雲端服務的相同地區中進行部署，您可以結合兩種端點類型來啟用混合案例。
+* For web app only deployments within the same region, Web Apps already provides failover and round-robin functionality without regard to web app mode.
 
-* 在設定檔中，您只能針對每個地區指定一個 Web 應用程式。選取一個 Web 應用程式做為某一個地區的端點時，將無法為該設定檔選擇使用該地區中其餘的 Web 應用程式。
+* For deployments in the same region that use Web Apps in conjunction with another Azure cloud service, you can combine both types of endpoints to enable hybrid scenarios.
 
-* 您在 Azure 流量管理員設定檔中指定的 Web 應用程式端點，將出現在設定檔中該 Web 應用程式之 [設定] 頁面的 [網域名稱] 區段下方，但您無法在該處進行設定。
+* You can only specify one web app endpoint per region in a profile. When you select a web app as an endpoint for one region, the remaining web apps in that region become unavailable for selection for that profile.
 
-* 將 Web 應用程式新增至設定檔後，在該 Web 應用程式之入口網站頁面的 [儀表板] 上，[網站 URL] 將顯示 Web 應用程式的自訂網域 URL (如果已設定一個)。否則會顯示流量管理員設定檔 URL (例如，`contoso.trafficmgr.com`)。Web 應用程式的直接網域名稱和流量管理員 URL 都會顯示在 Web 應用程式之 [設定] 頁面的 [網域名稱] 區段下方。
+* The web app endpoints that you specify in a Azure Traffic Manager profile will appear under the **Domain Names** section on the Configure page for the web app in the profile, but will not be configurable there.
 
-* 您的自訂網域名稱將如預期般運作，但除了將之新增至 Web 應用程式外，您還必須設定 DNS 對應以指向流量管理員 URL。如需有關如何設定 Azure Web 應用程式之自訂網域的詳細資訊，請參閱[設定 Azure 網站的自訂網域名稱](web-sites-custom-domain-name.md)。
+* After you add a web app to a profile, the **Site URL** on the Dashboard of the web app's portal page will display the custom domain URL of the web app if you have set one up. Otherwise, it will display the Traffic Manager profile URL (for example, `contoso.trafficmgr.com`). Both the direct domain name of the web app and the Traffic Manager URL will be visible on the web app's Configure page under the **Domain Names** section.
 
-* 您只能將標準模式的 Web 應用程式新增至 Azure 流量管理員設定檔。
+* Your custom domain names will work as expected, but in addition to adding them to your web apps, you must also configure your DNS map to point to the Traffic Manager URL. For information on how to set up a custom domain for a Azure web app,  see [Configuring a custom domain name for an Azure web site](web-sites-custom-domain-name.md).
 
-## 後續步驟
+* You can only add web apps that are in standard mode to a Azure Traffic Manager profile.
 
-如需 Azure 流量管理員的概念和技術概觀，請參閱 [Traffic Manager 概觀](../traffic-manager/traffic-manager-overview.md)。
+## <a name="next-steps"></a>Next Steps
 
-如需將流量管理員與 Web Apps 搭配使用的詳細資訊，請參閱[將 Azure 流量管理員與 Azure 網站搭配使用](http://blogs.msdn.com/b/waws/archive/2014/03/18/using-windows-azure-traffic-manager-with-waws.aspx)和 [Azure 流量管理員現在可以與 Azure 網站整合](https://azure.microsoft.com/blog/2014/03/27/azure-traffic-manager-can-now-integrate-with-azure-web-sites/)部落格文章。
+For a conceptual and technical overview of Azure Traffic Manager, see [Traffic Manager Overview](../traffic-manager/traffic-manager-overview.md).
 
-<!---HONumber=AcomDC_0413_2016-->
+For more information about using Traffic Manager with Web Apps, see the blog posts [Using Azure Traffic Manager with Azure Web Sites](http://blogs.msdn.com/b/waws/archive/2014/03/18/using-windows-azure-traffic-manager-with-waws.aspx) and [Azure Traffic Manager can now integrate with Azure Web Sites](https://azure.microsoft.com/blog/2014/03/27/azure-traffic-manager-can-now-integrate-with-azure-web-sites/).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

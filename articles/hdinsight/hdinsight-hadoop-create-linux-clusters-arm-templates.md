@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集 | Microsoft Azure"
-   	description="了解如何使用 Azure Resource Manager 範本建立 Azure HDInsight 的叢集。"
+   pageTitle="Create Linux-based Hadoop clusters in HDInsight using Azure Resource Manager templates | Microsoft Azure"
+    description="Learn how to create clusters for Azure HDInsight using Azure Azure Resource Manager templates."
    services="hdinsight"
    documentationCenter=""
    tags="azure-portal"
@@ -17,52 +17,57 @@
    ms.date="09/02/2016"
    ms.author="jgao"/>
 
-# 使用 Azure Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集
 
-[AZURE.INCLUDE [選取器](../../includes/hdinsight-selector-create-clusters.md)]
+# <a name="create-linux-based-hadoop-clusters-in-hdinsight-using-azure-resource-manager-templates"></a>Create Linux-based Hadoop clusters in HDInsight using Azure Resource Manager templates
 
-了解如何使用 Azure 資源管理員 (ARM) 範本建立 HDInsight 叢集。如需詳細資訊，請參閱[使用 Azure 資源管理員範本部署應用程式](../resource-group-template-deploy.md)。如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱[叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
+[AZURE.INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-##必要條件：
+Learn how to create HDInsight clusters using Azure Resource Manager(ARM) templates. For more information, see [Deploy an application with Azure Resource Manager template](../resource-group-template-deploy.md). For other cluster creation tools and features click the tab select on the top of this page or see [Cluster creation methods](hdinsight-provision-clusters.md#cluster-creation-methods).
+
+##<a name="prerequisites:"></a>Prerequisites:
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-開始執行本文中的指示之前，您必須擁有以下項目：
+Before you begin the instructions in this article, you must have the following:
 
-- [Azure 訂用帳戶](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- Azure PowerShell 和/或 Azure CLI
+- [Azure subscription](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
+- Azure PowerShell and/or Azure CLI
 
     [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
-## Resource Manager 範本
+### <a name="access-control-requirements"></a>Access control requirements
 
-Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式建立 HDInsight 叢集、其依存的資源 (例如預設儲存體帳戶) 和其他資源 (例如使用 Apache Sqoop 所需的 Azure SQL Database)。在範本中，您會定義應用程式所需的資源，並指定部署參數以針對不同的環境輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
+[AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
-您可在[附錄 A](#appx-a-arm-template) 中找到用來建立 HDInsight 叢集和相依 Azure 儲存體帳戶的 Resource Manager 範本。使用跨平台 [VSCode](https://code.visualstudio.com/#alt-downloads) (附檔名為 [Resource Manager 附檔名](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)) 或文字編輯器，將範本儲存至您工作站上的檔案。您將了解如何使用各種方法來呼叫此範本。
+## <a name="resource-manager-templates"></a>Resource Manager templates
 
-如需 Resource Manager 範本的相關詳細資訊，請參閱
+Resource Manager template makes it easy to create HDInsight clusters, their dependent resources (such as the default storage account), and other resources (such as Azure SQL Database to use Apache Sqoop) for your application in a single, coordinated operation. In the template, you define the resources that are needed for the application and specify deployment parameters to input values for different environments. The template consists of JSON and expressions which you can use to construct values for your deployment.
 
-- [編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)
-- [使用 Azure 資源管理員範本部署應用程式](../resource-group-template-deploy.md)
+A Resource Manager template for creating an HDInsight cluster and the dependent Azure Storage account can be found in [Appendix-A](#appx-a-arm-template). Use cross-platform [VSCode](https://code.visualstudio.com/#alt-downloads) with the [Resource Manager extention](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) or a text editor to save the template into a file on your workstation. You will learn how to call the template using different methods.
 
-若要找出特定項目的 JSON 結構描述，您可以依照下列程序進行︰
+For more information about Resource Manager template, see
 
-1. 開啟 [Azure 入口網站](https://porta.azure.com)以建立 HDInsight 叢集。請參閱[使用 Azure 入口網站在 HDInsight 中建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-portal.md)。
-2. 設定必要的項目，以及您需要 JSON 結構描述的項目。
-3. 按一下 [建立] 之前，先按一下 [自動化選項]，如下列螢幕擷取畫面所示：
+- [Author Azure Resource Manager templates](../resource-group-authoring-templates.md)
+- [Deploy an application with Azure Resource Manager template](../resource-group-template-deploy.md)
 
-    ![HDInsight Hadoop 建立叢集 Resource Manager 範本結構描述自動化選項](./media/hdinsight-hadoop-create-linux-clusters-arm-templates/hdinsight-create-cluster-resource-manager-template-automation-option.png)
+To find out the JSON schema for certain elements, you can follow the following procedure:
 
-    入口網站會根據您的組態建立 Resource Manager 範本。
-## 使用 PowerShell 部署
+1. Open [Azure portal](https://porta.azure.com) to create an HDInsight cluster.  See [Create Linux-based clusters in HDInsight using the Azure portal](hdinsight-hadoop-create-linux-clusters-portal.md).
+2. Configure the required elements, and the elements you need the JSON schema.
+3. Before clicking **Create**, click **Automation options** as shown in the following screenshot:
 
-以下程序會建立以 Linux 為基礎的 HDInsight 叢集。
+    ![HDInsight Hadoop create cluster Resource Manager template schema automation options](./media/hdinsight-hadoop-create-linux-clusters-arm-templates/hdinsight-create-cluster-resource-manager-template-automation-option.png)
 
-**使用 Resource Manager 範本部署叢集**
+    The portal creates a Resource Manager template based on your configurations.
+## <a name="deploy-with-powershell"></a>Deploy with PowerShell
 
-1. 將[附錄 A](#appx-a-arm-template) 的 JSON 檔案儲存到您的工作站。在 PowerShell 指令碼中，檔案名稱為 *C:\\HDITutorials-ARM\\hdinsight-arm-template.json*。
-2. 視需要設定參數和變數。
-3. 使用下列 PowerShell 指令碼執行範本：
+The following procedure creates Linux-based HDInsight cluster.
+
+**To deploy a cluster using Resource Manager template**
+
+1. Save the json file in [Appendix A](#appx-a-arm-template) to your workstation. In the PowerShell script, the file name is *C:\HDITutorials-ARM\hdinsight-arm-template.json*.
+2. Set the parameters and variables if needed.
+3. Run the template using the following PowerShell script:
 
         ####################################
         # Set these variables
@@ -112,47 +117,47 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
         # List cluster
         Get-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $hdinsightClusterName 
 
-	PowerShell 指令碼只會設定叢集名稱。儲存體帳戶名稱是硬式編碼於範本中。系統將提示您輸入叢集使用者密碼 (預設使用者名稱為 *admin*) 和 SSH 使用者密碼 (預設 SSH 使用者名稱為 *sshuser*)。
-	
-如需詳細資訊，請參閱[使用 PowerShell 進行部署](../resource-group-template-deploy.md#deploy-with-powershell)。
+    The PowerShell script only configures the cluster name. The storage account name is hardcoded in the template. You will be prompted to enter the cluster user password (the default username is *admin*); and the SSH user password (the default SSH username is *sshuser*).  
+    
+For more information, see  [Deploy with PowerShell](../resource-group-template-deploy.md#deploy-with-powershell).
 
-## 使用 Azure CLI 進行部署
+## <a name="deploy-with-azure-cli"></a>Deploy with Azure CLI
 
-下列範例會藉由呼叫 Resource Manager 範本來建立叢集和其依存的儲存體帳戶與容器：
+The following sample creates a cluster and its dependent storage account and container by calling a Resource Manager template:
 
-	azure login
-	azure config mode arm
+    azure login
+    azure config mode arm
     azure group create -n hdi1229rg -l "East US"
     azure group deployment create --resource-group "hdi1229rg" --name "hdi1229" --template-file "C:\HDITutorials-ARM\hdinsight-arm-template.json"
     
-系統將提示您輸入叢集名稱、叢集使用者密碼 (預設使用者名稱為 *admin*) 和 SSH 使用者密碼 (預設 SSH 使用者名稱為 *sshuser*)。若要提供內嵌參數︰
+You will be prompted to enter the cluster name, cluster user password (the default username is *admin*), and the SSH user password (the default SSH username is *sshuser*). To provide in-line parameters:
 
-    azure group deployment create --resource-group "hdi1229rg" --name "hdi1229" --template-file "c:\Tutorials\HDInsightARM\create-linux-based-hadoop-cluster-in-hdinsight.json" --parameters '{"clusterName":{"value":"hdi1229"},"clusterLoginPassword":{"value":"Pass@word1"},"sshPassword":{"value":"Pass@word1"}}'
+    azure group deployment create --resource-group "hdi1229rg" --name "hdi1229" --template-file "c:\Tutorials\HDInsightARM\create-linux-based-hadoop-cluster-in-hdinsight.json" --parameters '{\"clusterName\":{\"value\":\"hdi1229\"},\"clusterLoginPassword\":{\"value\":\"Pass@word1\"},\"sshPassword\":{\"value\":\"Pass@word1\"}}'
 
-## 使用 REST API 進行部署
+## <a name="deploy-with-rest-api"></a>Deploy with REST API
 
-請參閱[使用 REST API 進行部署](../resource-group-template-deploy.md#deploy-with-the-rest-api)。
+See [Deploy with the REST API](../resource-group-template-deploy.md#deploy-with-the-rest-api).
 
-## 透過 Visual Studio 部署
+## <a name="deploy-with-visual-studio"></a>Deploy with Visual Studio
 
-有了 Visual Studio，您可以透過其使用者介面建立資源群組專案，並將其部署至 Azure。選取要包含在您專案中的資源類型後，這些資源會自動新增至資源管理員範本中。該專案也提供 PowerShell 指令碼來部署範本。
+With Visual Studio, you can create a resource group project and deploy it to Azure through the user interface. You select the type of resources to include in your project and those resources are automatically added to Resource Manager template. The project also provides a PowerShell script to deploy the template.
 
-如需搭配資源群組使用 Visual Studio 的簡介，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
+For an introduction to using Visual Studio with resource groups, see [Creating and deploying Azure resource groups through Visual Studio](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md).
 
-##後續步驟
-在本文中，您學到幾種建立 HDInsight 叢集的方法。若要深入了解，請參閱下列文章：
+##<a name="next-steps"></a>Next steps
+In this article, you have learned several ways to create an HDInsight cluster. To learn more, see the following articles:
 
-- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](../virtual-machines/virtual-machines-windows-csharp-template.md)。
-- 如需部署應用程式的深入範例，請參閱[透過可預測方式在 Azure 中佈建和部署微服務](../app-service-web/app-service-deploy-complex-application-predictably.md)。
-- 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](../solution-dev-test-environments.md)。
-- 若要了解 Azure Resource Manager 範本的區段，請參閱[編寫範本](../resource-group-authoring-templates.md)。
-- 如需可在 Azure Resource Manager 範本中使用的函式清單，請參閱[範本函式](../resource-group-template-functions.md)。
+- For an example of deploying resources through the .NET client library, see [Deploy resources using .NET libraries and a template](../virtual-machines/virtual-machines-windows-csharp-template.md).
+- For an in-depth example of deploying an application, see [Provision and deploy microservices predictably in Azure](../app-service-web/app-service-deploy-complex-application-predictably.md).
+- For guidance on deploying your solution to different environments, see [Development and test environments in Microsoft Azure](../solution-dev-test-environments.md).
+- To learn about the sections of the Azure Resource Manager template, see [Authoring templates](../resource-group-authoring-templates.md).
+- For a list of the functions you can use in an Azure Resource Manager template, see [Template functions](../resource-group-template-functions.md).
 
-##附錄 A：Resource Manager 範本
+##<a name="appx-a:-resource-manager-template"></a>Appx-A: Resource Manager template
 
-下列 Azure 資源管理員範本會建立 Linux 型 Hadoop 叢集與相依的 Azure 儲存體帳戶。
+The following Azure Resource Manger template creates a Linux-based Hadoop cluster with the dependent Azure storage account. 
 
-> [AZURE.NOTE] 範例包括 Hive 中繼存放區和 Oozie 中繼存放區的組態資訊。請在使用範本之前先移除區段或設定區段。
+> [AZURE.NOTE] The sample includes configuration information for Hive metastore and Oozie metastore.  Remove the section or configure the section before using the template.
 
     {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -353,4 +358,8 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
     }
     }
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

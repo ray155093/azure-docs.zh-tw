@@ -1,8 +1,8 @@
-## 取得資源管理員權杖
+## <a name="obtain-a-resource-manager-token"></a>Obtain a Resource Manager token
 
-Azure Active Directory 必須驗證您在使用 Azure 資源管理員的資源上執行的所有工作。此處顯示的範例使用密碼驗證，如需其他方法請參閱[驗證 Azure 資源管理員要求][lnk-authenticate-arm]。
+Azure Active Directory must authenticate all the tasks that you perform on resources using the Azure Resource Manager. The example shown here uses password authentication, for other approaches see [Authenticating Azure Resource Manager requests][lnk-authenticate-arm].
 
-1. 將下列程式碼加入 Program.cs 中的 **Main** 方法，以使用應用程式識別碼和密碼從 Azure AD 擷取權杖。
+1. Add the following code to the **Main** method in Program.cs to retrieve a token from Azure AD using the application id and password.
 
     ```
     var authContext = new AuthenticationContext(string.Format  
@@ -18,7 +18,7 @@ Azure Active Directory 必須驗證您在使用 Azure 資源管理員的資源�
     }
     ```
 
-2. 將下列程式碼加入 **Main** 方法的結尾，建立使用該權杖的 **ResourceManagementClient** 物件：
+2. Create a **ResourceManagementClient** object that uses the token by adding the following code to the end of the **Main** method:
 
     ```
     var creds = new TokenCredentials(token.AccessToken);
@@ -26,7 +26,7 @@ Azure Active Directory 必須驗證您在使用 Azure 資源管理員的資源�
     client.SubscriptionId = subscriptionId;
     ```
 
-3. 建立或取得您正在使用的資源群組參照：
+3. Create, or obtain a reference to, the resource group you are using:
 
     ```
     var rgResponse = client.ResourceGroups.CreateOrUpdate(rgName,
@@ -40,4 +40,6 @@ Azure Active Directory 必須驗證您在使用 Azure 資源管理員的資源�
 
 [lnk-authenticate-arm]: https://msdn.microsoft.com/library/azure/dn790557.aspx
 
-<!---HONumber=AcomDC_0218_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

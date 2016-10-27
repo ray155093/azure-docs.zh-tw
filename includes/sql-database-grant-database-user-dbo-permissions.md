@@ -1,24 +1,29 @@
 
 
-## 授與新的資料庫使用者 db\_owner 權限
+## <a name="grant-new-database-user-db_owner-permissions"></a>Grant new database user db_owner permissions
 
-使用下列步驟來授與現有的資料庫使用者 db\_owner 權限
+Use the following steps to grant an existing database user db_owner permissions
 
-下列步驟假設您已連接到 SSMS 中 [物件總管] 中的 SQL Database，而且以伺服器層級主體管理員身分或利用有權授與使用者權限的使用者帳戶連接到 SQL Database 邏輯伺服器。
+Theses steps assume that you are connected to SQL Database in Object Explorer in SSMS and are connected to your SQL Database logical server as a server-level principal administrator or with a user account with permissions to grant user permissions. 
 
-1. 在 [物件總管] 中，展開 [資料庫] 節點，然後選取具有您要授與 dbo 權限之使用者的資料庫。
+1. In Object Explorer, expand the Databases node and select the database with the user to which you wish to grant dbo permissions.
 
-     ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-create-new-database-user/sql-database-create-new-database-user-1.png)
+     ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-create-new-database-user/sql-database-create-new-database-user-1.png)
 
-2. 在選取的資料庫上按一下滑鼠右鍵，然後按一下 [查詢]。
+2. Right-click the selected database and then click **Query**.
 
-     ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-create-new-database-user/sql-database-create-new-database-user-2.png)
+     ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-create-new-database-user/sql-database-create-new-database-user-2.png)
 
-3. 在查詢視窗中，編輯並使用下列 Transact-SQL 陳述式，對指定的使用者授與 dbo 權限。
+3. In the query window, edit and use the following Transact-SQL statement to grant dbo permissions to a specified user. 
 
     ```ALTER ROLE db_owner ADD MEMBER user1;
     ```
 
-     ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-grant-database-user-dbo-permissions/sql-database-grant-database-user-dbo-permissions-1.png)
+     ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-grant-database-user-dbo-permissions/sql-database-grant-database-user-dbo-permissions-1.png)
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,86 +1,87 @@
 <properties
-	pageTitle="JavaScript Web App 適用的 Application Insights | Microsoft Azure"
-	description="取得頁面檢視和工作階段計數、Web 用戶端資料，並追蹤使用量模式。Detect exceptions and performance issues in JavaScript web pages."
-	services="application-insights"
+    pageTitle="Application Insights for JavaScript web apps | Microsoft Azure"
+    description="Get page view and session counts, web client data, and track usage patterns. Detect exceptions and performance issues in JavaScript web pages."
+    services="application-insights"
     documentationCenter=""
-	authors="alancameronwills"
-	manager="douge"/>
+    authors="alancameronwills"
+    manager="douge"/>
 
 <tags
-	ms.service="application-insights"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="ibiza"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/15/2016"
-	ms.author="awills"/>
+    ms.service="application-insights"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="ibiza"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="08/15/2016"
+    ms.author="awills"/>
 
-# 適用於網頁的 Application Insights
+
+# <a name="application-insights-for-web-pages"></a>Application Insights for web pages
 
 
 [AZURE.INCLUDE [app-insights-selector-get-started-dotnet](../../includes/app-insights-selector-get-started-dotnet.md)]
 
-了解您的網頁或應用程式的效能和使用量。如果將 Visual Studio Application Insights 新增至頁面指令碼，您會取得頁面載入的時間和 AJAX 呼叫、計數和瀏覽器例外狀況與 AJAX 失敗的詳細資料，以及使用者和工作階段計數。這些項目可以依據頁面、用戶端作業系統和瀏覽器版本、地區位置和其他維度分割。您也可以對失敗計數或緩慢頁面載入設定警示。
+Find out about the performance and usage of your web page or app. If you add Visual Studio Application Insights to your page script, you get timings of page loads and AJAX calls, counts and details of browser exceptions and AJAX failures, as well as users and session counts. All these can be segmented by page, client OS and browser version, geo location, and other dimensions. You can also set alerts on failure counts or slow page loading.
 
-您可以在任何網頁中使用 Application Insights - 您剛剛加入 JavaScript 的簡短片段。如果您的 Web 服務是 [Java](app-insights-java-get-started.md) 或 [ASP.NET](app-insights-asp-net.md)，您可以整合來自您的伺服器和用戶端的遙測。
+You can use Application Insights with any web pages - you just add a short piece of JavaScript. If your web service is [Java](app-insights-java-get-started.md) or [ASP.NET](app-insights-asp-net.md), you can integrate telemetry from your server and clients.
 
-您需要 [Microsoft Azure](https://azure.com) 訂用帳戶。如果您的小組擁有組織訂用帳戶，請洽詢擁有者將您的 Microsoft 帳戶新增至其中。有免費定價層，因此開發和小規模的使用不需要任何成本。
-
-
-## 為您的網頁設定 Application Insights
-
-首先，您是否需要將 Application Insights 新增至您的網頁？ 您可能已經這麼做。如果您選擇在 Visual Studio 的 [新增專案] 對話方塊中加入 Application Insights，指令碼即已加入。在此情況下，您不需要執行任何動作。
-
-否則，您必須在網頁加入程式碼片段，如下所示。
-
-### 開啟 Application Insights 資源
-
-Application Insights 資源是您的頁面的效能和使用量相關資料顯示的位置。
-
-登入 [Azure 入口網站](https://portal.azure.com)。
-
-如果您已經設定好應用程式伺服器端的監視，您已經擁有資源：
-
-![選擇 [瀏覽]、[開發人員服務]、[Application Insights]。](./media/app-insights-javascript/01-find.png)
-
-如果您沒有資源，請建立資源：
-
-![選擇 [新增]、[開發人員服務]、[Application Insights]。](./media/app-insights-javascript/01-create.png)
+You need a subscription to [Microsoft Azure](https://azure.com). If your team has an organizational subscription, ask the owner to add your Microsoft Account to it. There's a free pricing tier, so development and small-scale use won't cost anything.
 
 
-*已經有問題了嗎？* [建立資源的詳細資訊](app-insights-create-new-resource.md)。
+## <a name="set-up-application-insights-for-your-web-page"></a>Set up Application Insights for your web page
+
+First, do you need to add Application Insights to your web pages? You might already have done so. If you chose to add Application Insights to your web app in the New Project dialog in Visual Studio, the script was added then. In that case, you don't need to do any more.
+
+Otherwise, you need to add a snippet of code your web pages, as follows.
+
+### <a name="open-an-application-insights-resource"></a>Open an Application Insights resource
+
+The Application Insights resource is where data about your page's performance and usage is displayed. 
+
+Sign into [Azure portal](https://portal.azure.com).
+
+If you already set up monitoring for the server side of your app, you already have a resource:
+
+![Choose Browse, Developer Services, Application Insights.](./media/app-insights-javascript/01-find.png)
+
+If you don't have one, create it:
+
+![Choose New, Developer Services, Application Insights.](./media/app-insights-javascript/01-create.png)
 
 
-### 將 SDK 指令碼加入至您的應用程式或網頁
-
-在快速入門中，取得網頁指令碼：
-
-![在您的應用程式概觀刀鋒視窗中，選擇 [快速入門]，取得程式碼以監視我的網頁。複製指令碼。](./media/app-insights-javascript/02-monitor-web-page.png)
-
-在您想要追蹤的每一頁的 `</head>` 標記之前插入指令碼。如果您的網站有主版頁面，您可以那裡放入指令碼。例如：
-
-* 在 ASP.NET MVC 專案中，可放在 `View\Shared\_Layout.cshtml` 中
-* 在 SharePoint 網站中，在控制台中開啟[站台設定/主要頁面](app-insights-sharepoint.md)。
-
-指令碼包含檢測金鑰，會將資料導向您的 Application Insights 資源。
-
-([進一步說明指令碼。](http://apmtips.com/blog/2015/03/18/javascript-snippet-explained/))
-
-*(如果您使用的是已知網頁架構，請在 Application Insights 配接器附近尋找。例如，有 [AngularJS 模組](http://ngmodules.org/modules/angular-appinsights)。)*
+*Questions already?* [More about creating a resource](app-insights-create-new-resource.md).
 
 
-## 詳細組態
+### <a name="add-the-sdk-script-to-your-app-or-web-pages"></a>Add the SDK script to your app or web pages
 
-您可以設定數種[參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)，但是在大部分情況下，您應該不需要這麼做。例如，您可以停用或限制每個頁面檢視報告的 Ajax 呼叫的數目 (以減少流量)。或者您可以設定偵錯模式，讓遙測透過管線迅速移動而不需要批次處理。
+In Quick Start, get the script for web pages:
 
-若要設定這些參數，在程式碼片段中尋找這一行，並在後面加入多個以逗號分隔的項目：
+![On your app overview blade, choose Quick Start, Get code to monitor my web pages. Copy the script.](./media/app-insights-javascript/02-monitor-web-page.png)
+
+Insert the script just before the `</head>` tag of every page you want to track. If your website has a master page, you can put the script there. For example:
+
+* In an ASP.NET MVC project, you'd put it in `View\Shared\_Layout.cshtml`
+* In a SharePoint site, on the control panel, open [Site Settings / Master Page](app-insights-sharepoint.md).
+
+The script contains the instrumentation key that directs the data to your Application Insights resource. 
+
+([Deeper explanation of the script.](http://apmtips.com/blog/2015/03/18/javascript-snippet-explained/))
+
+*(If you're using a well-known web page framework, look around for Application Insights adaptors. For example, there's [an AngularJS module](http://ngmodules.org/modules/angular-appinsights).)*
+
+
+## <a name="detailed-configuration"></a>Detailed configuration
+
+There are several [parameters](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) you can set, though in most cases, you shouldn't need to. For example, you can disable or limit the number of Ajax calls reported per page view (to reduce traffic). Or you can set debug mode to have telemetry move rapidly through the pipeline without being batched.
+
+To set these parameters, look for this line in the code snippet, and add more comma-separated items after it:
 
     })({
       instrumentationKey: "..."
       // Insert here
     });
 
-[可用參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)包括：
+The [available parameters](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) include:
 
     // Send telemetry immediately without batching.
     // Remember to remove this when no longer required, as it
@@ -105,148 +106,154 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 
 
-## <a name="run"></a>執行您的應用程式
+## <a name="<a-name="run"></a>run-your-app"></a><a name="run"></a>Run your app
 
-執行您的 Web 應用程式，稍微使用一下來產生遙測，並等候數秒鐘。您可以在開發電腦上使用 **F5** 執行應用程式，或發佈應用程式讓使用者處理。
+Run your web app, use it a while to generate telemetry, and wait a few seconds. You can either run it using the **F5** key on your development machine, or publish it and let users play with it.
 
-如果您想要檢查 Web 應用程式傳送至 Application Insights 的遙測，請使用您瀏覽器的偵錯工具 (在許多瀏覽器上為 **F12**)。資料會傳送至 dc.services.visualstudio.com。
+If you want to check the telemetry that a web app is sending to Application Insights, use your browser's debugging tools (**F12** on many browsers). Data is sent to dc.services.visualstudio.com.
 
-## 探索瀏覽器效能資料
+## <a name="explore-your-browser-performance-data"></a>Explore your browser performance data
 
-開啟瀏覽器刀鋒視窗，以顯示使用者瀏覽器的彙總效能資料。
+Open the Browsers blade to show aggregated performance data from your users' browsers.
 
-![在 portal.azure.com 中，開啟您的應用程式資源然後按一下 [設定]、[瀏覽器]。](./media/app-insights-javascript/03.png)
+![In portal.azure.com, open your app's resource and click Settings, Browser](./media/app-insights-javascript/03.png)
 
 
-*仍沒有資料？ 按一下頁面頂端的 [重新整理]**。仍然沒有嗎？ 請參閱[疑難排解](app-insights-troubleshoot-faq.md)。*
+*No data yet? Click **Refresh** at the top of the page. Still nothing? See [Troubleshooting](app-insights-troubleshoot-faq.md).*
 
-[瀏覽器] 刀鋒視窗是[計量瀏覽器刀鋒視窗](app-insights-metrics-explorer.md)，具有預設篩選器與圖表選項。如果您想要的話，可以編輯時間範圍、篩選器和圖表設定，並將結果儲存為我的最愛。按一下 [還原預設值] 以返回原始刀鋒視窗設定。
+The Browsers blade is a [Metrics Explorer blade](app-insights-metrics-explorer.md) with preset filters and chart selections. You can edit the time range, filters, and chart configuration if you want, and save the result as a favorite. Click **Restore defaults** to get back to the original blade configuration.
 
-## 頁面載入效能
+## <a name="page-load-performance"></a>Page load performance
 
-最上層是頁面載入時間的分段圖表。圖表高度總計表示從您的應用程式載入頁面並且在您的使用者瀏覽器中顯示頁面的平均時間。時間是從瀏覽器傳送初始 HTTP 要求開始測量，直到已經處理所有同步載入事件，包括版面配置和執行中指令碼。不包含例如從 AJAX 呼叫載入 Web 組件的非同步工作。
+At the top is a segmented chart of page load times. The total height of the chart represents the average time to load and display pages from your app in your users' browsers. The time is measured from when the browser sends the initial HTTP request until all synchronous load events have been processed, including layout and running scripts. It doesn't include asynchronous tasks such as loading web parts from AJAX calls.
 
-圖表會將總頁面載入時間分段為 [W3C 所定義的標準時間](http://www.w3.org/TR/navigation-timing/#processing-model)。
+The chart segments the total page load time into the [standard timings defined by W3C](http://www.w3.org/TR/navigation-timing/#processing-model). 
 
 ![](./media/app-insights-javascript/08-client-split.png)
 
-請注意，「網路連接」時間通常低於您所預期的時間，因為它是從瀏覽器到伺服器之所有要求的平均值。許多個別要求的連接時間為 0，因為已經有與伺服器的作用中連線。
+Note that the *network connect* time is often lower than you might expect, because it's an average over all requests from the browser to the server. Many individual requests have a connect time of 0 because there is already an active connection to the server.
 
-### 載入緩慢？
+### <a name="slow-loading?"></a>Slow loading?
 
-頁面載入緩慢是您的使用者不滿的主要來源。如果圖表指出頁面載入緩慢，很容易就能執行某些診斷研究。
+Slow page loads are a major source of dissatisfaction for your users. If the chart indicates slow page loads, it's easy to do some diagnostic research.
 
-圖表會顯示您的應用程式中所有頁面載入的平均時間。若要查看問題是否僅限於特定頁面，請進一步查看刀鋒視窗，其中有依據網頁 URL 分段的方格：
+The chart shows the average of all page loads in your app. To see if the problem is confined to particular pages, look further down the blade, where there's a grid segmented by page URL:
 
 ![](./media/app-insights-javascript/09-page-perf.png)
 
-請注意頁面檢視計數和標準差。如果頁面計數非常低，則問題不太會影響使用者。高的標準差 (相當於平均值本身) 表示個別測量之間的變化。
+Notice the page view count and standard deviation. If the page count is very low, then the issue isn't affecting users much. A high standard deviation (comparable to the average itself) indicates a lot of variation between individual measurements.
 
-**放大某個 URL 和整頁檢視。** 按一下任何頁面名稱，即可查看針對該 URL 篩選的瀏覽器圖表的刀鋒視窗，接著是網頁檢視的執行個體。
+**Zoom in on one URL and one page view.** Click any page name to see a blade of browser charts filtered just to that URL; and then on an instance of a page view.
 
 ![](./media/app-insights-javascript/35.png)
 
-按一下 `...` 以取得該事件之屬性的完整清單，或檢查 Ajax 呼叫和相關的事件。如果它們是同步的，緩慢的 Ajax 呼叫會影響整體頁面載入時間。相關的事件包含伺服器要求相同的 URL (如果您已在 Web 伺服器上設定 Application Insights)。
+Click `...` for a full list of properties for that event, or inspect the Ajax calls and related events. Slow Ajax calls affect the overall page load time if they are synchronous. Related events include server requests for the same URL (if you've set up Application Insights on your web server).
 
 
-**經過一段時間的網頁效能。** 回到 [瀏覽器] 刀鋒視窗，將 [頁面檢視載入時間] 方格變更為折線圖，以查看在特定時間是否有尖峰：
+**Page performance over time.** Back at the Browsers blade, change the Page View Load Time grid into a line chart to see if there were peaks at particular times:
 
-![按一下方格的標頭，然後選取新的圖表類型](./media/app-insights-javascript/10-page-perf-area.png)
+![Click the head of the grid and select a new chart type](./media/app-insights-javascript/10-page-perf-area.png)
 
-**依據其他維度來分段。** 或許您的網頁在特定瀏覽器、用戶端作業系統或使用者位置載入時較緩慢？ 加入具有 **Group-by** 維度的圖表和實驗。
+**Segment by other dimensions.** Maybe your pages are slower to load on a particular browser, client OS, or user locality? Add a new chart and experiment with the **Group-by** dimension.
 
 ![](./media/app-insights-javascript/21.png)
 
 
-## AJAX 效能
+## <a name="ajax-performance"></a>AJAX Performance
 
-請確定您的網頁中的任何 AJAX 呼叫執行狀況良好。它們通常是用來以非同步方式填入網頁的組件。雖然可能會立即載入整個網頁，您的使用者可能會對於盯著空白網頁組件，等候其中的資料出現感到挫折。
+Make sure any AJAX calls in your web pages are performing well. They are often used to fill parts of your page asynchronously. Although the overall page might load promptly, your users could be frustrated by staring at blank web parts, waiting for data to appear in them.
 
-從您的網頁進行的 AJAX 呼叫會顯示在 [瀏覽器] 刀鋒視窗中做為相依項目。
+AJAX calls made from your web page are shown on the Browsers blade as dependencies.
 
-在刀鋒視窗的上方有摘要圖表：
+There are summary charts in the upper part of the blade:
 
 ![](./media/app-insights-javascript/31.png)
 
-在下方有詳細方格：
+and detailed grids lower down:
 
 ![](./media/app-insights-javascript/33.png)
 
-按一下任何資料列以取得特定詳細資料。
+Click any row for specific details.
 
 
-> [AZURE.NOTE] 如果您刪除刀鋒視窗上的 [瀏覽器] 篩選器，伺服器和 AJAX 相依項目會包含在這些圖表中。按一下 [還原預設值] 以重新設定篩選器。
+> [AZURE.NOTE] If you delete the Browsers filter on the blade, both server and AJAX dependencies are included in these charts. Click Restore Defaults to reconfigure the filter.
 
-**若要深入失敗的 Ajax 呼叫**，請向下捲動至 [相依性失敗] 方格，然後按一下資料列以查看特定執行個體。
+**To drill into failed Ajax calls** scroll down to the Dependency failures grid, and then click a row to see specific instances.
 
 ![](./media/app-insights-javascript/37.png)
 
-按一下 `...` 以取得 Ajax 呼叫的完整遙測。
+Click `...` for the full telemetry for an Ajax call.
 
-### 未報告任何 Ajax 呼叫？
+### <a name="no-ajax-calls-reported?"></a>No Ajax calls reported?
 
-Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。如果您沒有看到這些報告，請檢查程式碼片段未設定 `disableAjaxTracking` 或 `maxAjaxCallsPerView` [參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)。
+Ajax calls include any HTTP calls made from the script of your web page. If you don't see them reported, check that the code snippet doesn't set the `disableAjaxTracking` or `maxAjaxCallsPerView` [parameters](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config).
 
-## 瀏覽器例外狀況
+## <a name="browser-exceptions"></a>Browser exceptions
 
-在 [瀏覽器] 刀鋒視窗上，有例外狀況摘要圖表，進一步的刀鋒視窗中有例外狀況類型的方格。
+On the Browsers blade, there's an exceptions summary chart, and a grid of exception types further down the blade.
 
 ![](./media/app-insights-javascript/39.png)
 
-如果您沒有看到報告的瀏覽器例外狀況，請檢查程式碼片段未設定 `disableExceptionTracking` [參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)。
+If you don't see browser exceptions reported, check that the code snippet doesn't set the `disableExceptionTracking` [parameter](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config).
 
-## 檢查個別的頁面檢視事件
+## <a name="inspect-individual-page-view-events"></a>Inspect individual page view events
 
-頁面檢視遙測資料一般是由 Application Insights 進行分析，而您只會看見以所有使用者為單位平均計算的累積報告。然而在偵錯時，您也可以查看個別的頁面檢視事件。
+Usually page view telemetry is analyzed by Application Insights and you see only cumulative reports, averaged over all your users. But for debugging purposes, you can also look at individual page view events.
 
-在 [Diagnostic Search] 分頁中，將 [篩選器] 設定為 [網頁檢視]。
+In the Diagnostic Search blade, set Filters to Page View.
 
 ![](./media/app-insights-javascript/12-search-pages.png)
 
-選取任一事件以查看詳細資料。在詳細資料頁面中，按一下 "..." 來查看更多詳細資料。
+Select any event to see more detail. In the details page, click "..." to see even more detail.
 
-> [AZURE.NOTE] 如果您使用[搜尋](app-insights-diagnostic-search.md)，請注意，您必須比對完整字詞："Abou" 和 "bout" 與 "About" 不相符。
+> [AZURE.NOTE] If you use [Search](app-insights-diagnostic-search.md), notice that you have to match whole words: "Abou" and "bout" do not match "About".
 
-您也可以使用功能強大的[分析查詢語言](app-insights-analytics-tour.md)來搜尋頁面檢視。
+You can also use the powerful [Analytics query language](app-insights-analytics-tour.md) to search page views.
 
-### 頁面檢視屬性
+### <a name="page-view-properties"></a>Page view properties
 
-* **頁面檢視持續時間**
+* **Page view duration** 
 
- * 根據預設，載入頁面所花費的時間，從用戶端要求到完整載入 (包括輔助檔案，但不包括非同步工作，例如 Ajax 呼叫)。
- * 如果您在[頁面設定](#detailed-configuration)中設定 `overridePageViewDuration`，則為用戶端要求到執行第一個 `trackPageView` 之間的間隔。如果您在指令碼的初始設定之後將 trackPageView 從一般位置移走，它會反映不同的值。
- * 如果設定了 `overridePageViewDuration`，且 `trackPageView()` 呼叫中有提供持續時間引數，則會改為使用引數值。
+ * By default, the time it takes to load the page, from client request to full load (including auxiliary files but excluding asynchronous tasks such as Ajax calls). 
+ * If you set `overridePageViewDuration` in the [page configuration](#detailed-configuration), the interval between client request to execution of the first `trackPageView`. If you moved trackPageView from its usual position after the initialization of the script, it will reflect a different value.
+ * If `overridePageViewDuration` is set and a duration argument is provided in the `trackPageView()` call, then the argument value is used instead. 
 
 
-## 自訂頁面計數
+## <a name="custom-page-counts"></a>Custom page counts
 
-依預設，每當用戶端瀏覽器載入新頁面時，頁面計數便會發生。不過您也許會想要計算其他頁面檢視。例如，由於頁面可能會將內容顯示在索引標籤中，因此您想要在使用者切換索引標籤時計算一次頁面。抑或是頁面中的 JavaScript 程式碼可能會在未變更瀏覽器 URL 的情況下載入新內容。
+By default, a page count occurs each time a new page loads into the client browser.  But you might want to count additional page views. For example, a page might display its content in tabs and you want to count a page when the user switches tabs. Or JavaScript code in the page might load new content without changing the browser's URL.
 
-請將與以下範例相似的 JavaScript 呼叫插入用戶端程式碼中的適當位置：
+Insert a JavaScript call like this at the appropriate point in your client code:
 
     appInsights.trackPageView(myPageName);
 
-頁面名稱可能會含有與 URL 相同的字元，不過 "#" 或 "?" 之後的任何字元都會遭到忽略。
+The page name can contain the same characters as a URL, but anything after "#" or "?" is ignored.
 
 
 
-## 使用情況追蹤
+## <a name="usage-tracking"></a>Usage tracking
 
 
-想要了解使用者如何使用您的應用程式嗎？
+Want to find out what your users do with your app?
 
-* [深入了解使用情況追蹤](app-insights-web-track-usage.md)
-* [深入了解自訂事件和計量 API](app-insights-api-custom-events-metrics.md)。
+* [Learn about usage tracking](app-insights-web-track-usage.md)
+* [Learn about custom events and metrics API](app-insights-api-custom-events-metrics.md).
 
 
-#### <a name="video"></a>影片：追蹤使用量
+#### <a name="<a-name="video"></a>-video:-tracking-usage"></a><a name="video"></a> Video: Tracking Usage
 
 > [AZURE.VIDEO tracking-usage-with-application-insights]
 
-## <a name="next"></a> 後續步驟
+## <a name="<a-name="next"></a>-next-steps"></a><a name="next"></a> Next steps
 
-* [追蹤流量](app-insights-web-track-usage.md)
-* [自訂事件和計量](app-insights-api-custom-events-metrics.md)
+* [Track usage](app-insights-web-track-usage.md)
+* [Custom events and metrics](app-insights-api-custom-events-metrics.md)
 * [Build-measure-learn](app-insights-overview-usage.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

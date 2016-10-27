@@ -1,9 +1,9 @@
 <properties
-   pageTitle="使用 Azure 入口網站管理 DNS 記錄集和記錄 | Microsoft Azure"
-   description="將網域裝載於 Azure DNS 時，在 Azure DNS 管理 DNS 記錄集和記錄。對記錄集和記錄執行作業的所有 PowerShell 命令。"
+   pageTitle="Manage DNS record sets and records by using the Azure portal| Microsoft Azure"
+   description="Managing DNS record sets and records on Azure DNS when hosting your domain on Azure DNS. All PowerShell commands for operations on record sets and records."
    services="dns"
    documentationCenter="na"
-   authors="cherylmc"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""/>
 
@@ -14,227 +14,232 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+   ms.author="sewhee"/>
 
-# 使用 PowerShell 管理 DNS 記錄集和記錄集
+
+# <a name="manage-dns-records-and-record-sets-by-using-powershell"></a>Manage DNS records and record sets by using PowerShell
 
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](dns-operations-recordsets-portal.md)
+- [Azure Portal](dns-operations-recordsets-portal.md)
 - [Azure CLI](dns-operations-recordsets-cli.md)
 - [PowerShell](dns-operations-recordsets.md)
 
 
 
-本文說明如何使用 Windows PowerShell 來管理 DNS 區域的記錄集和記錄。
+This article shows you how to manage record sets and records for your DNS zone by using Windows PowerShell.
 
-請務必了解 DNS 記錄集和個別 DNS 記錄之間的差別。記錄集是指一個區域中有相同名稱和相同類型的記錄集合。如需詳細資訊，請參閱[使用 Azure 入口網站建立 DNS 記錄集和記錄](dns-getstarted-create-recordset-portal.md)。
+It's important to understand the difference between DNS record sets and individual DNS records. A record set is the collection of records in a zone that have the same name and are the same type. For more information, see [Create DNS record sets and records by using the Azure portal](dns-getstarted-create-recordset-portal.md).
 
-若要管理記錄集和記錄，您必須具有最新版的 Azure Resource Manager PowerShell Cmdlet。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。如需使用 PowerShell 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。
+To manage your record sets and records, you need the latest version of the Azure Resource Manager PowerShell cmdlets. For more information, see [How to install and configure Azure PowerShell](../powershell-install-configure.md). For more information about working with PowerShell, see [Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).
 
 
 
-## 建立新的記錄集和記錄
+## <a name="create-a-new-record-set-and-a-record"></a>Create a new record set and a record
 
-若要使用 PowerShell 建立記錄集，請參閱[使用 PowerShell 建立 DNS 記錄集和記錄](dns-getstarted-create-recordset.md)。
+To create a record set by using PowerShell, see [Create DNS record sets and records by using PowerShell](dns-getstarted-create-recordset.md).
 
-## 取得記錄集
+## <a name="get-a-record-set"></a>Get a record set
 
-若要擷取現有的記錄集，使用 `Get-AzureRmDnsRecordSet`。指定記錄集相對名稱、記錄類型、區域。
+To retrieve an existing record set, use `Get-AzureRmDnsRecordSet`. Specify the record set relative name, the record type, and the zone.
 
-	$rs = Get-AzureRmDnsRecordSet –Name www –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    $rs = Get-AzureRmDnsRecordSet –Name www –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
 
-如同 `New-AzureRmDnsRecordSet`，記錄名稱必須是相對名稱，表示它不能包含區域名稱。
+As with `New-AzureRmDnsRecordSet`, the record name must be a relative name, meaning it must exclude the zone name.
 
-您可以使用區域名稱和資源群組名稱，或使用區域物件來指定區域：
+You can specify the zone by using either the zone name and resource group name, or by using a zone object:
 
-	$zone = Get-AzureRmDnsZone -Name contoso.com -ResouceGroupName MyAzureResourceGroup
-	$rs = Get-AzureRmDnsRecordSet -Name www –RecordType A -Zone $zone
+    $zone = Get-AzureRmDnsZone -Name contoso.com -ResouceGroupName MyAzureResourceGroup
+    $rs = Get-AzureRmDnsRecordSet -Name www –RecordType A -Zone $zone
 
-`Get-AzureRmDnsRecordSet` 會傳回本機物件，代表在 Azure DNS 中建立的記錄集。
+`Get-AzureRmDnsRecordSet` returns a local object that represents the record set that was created in Azure DNS.
 
-## 列出記錄集
+## <a name="list-record-sets"></a>List record sets
 
-如果您省略 *–Name* 和/或 *–RecordType* 參數，也可以使用 `Get-AzureRmDnsRecordSet` 來列出記錄集。
+You can also use`Get-AzureRmDnsRecordSet` to list record sets if you omit the *–Name* and/or *–RecordType* parameters.
 
-### 列出所有記錄集
+### <a name="to-list-all-record-sets"></a>To list all record sets
 
-此範例會傳回所有記錄集，不論其名稱或記錄類型：
+This example returns all record sets, regardless of name or record type:
 
-	$list = Get-AzureRmDnsRecordSet -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    $list = Get-AzureRmDnsRecordSet -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
 
-### 列出指定記錄類型的記錄集
+### <a name="to-list-record-sets-of-a-given-record-type"></a>To list record sets of a given record type
 
-此範例會傳回符合指定記錄類型的所有記錄集。在此情況下，傳回的記錄集為 "A" 記錄：
+This example returns all record sets that match the given record type. In this case, the record set that is returned is "A" records:
 
-	$list = Get-AzureRmDnsRecordSet –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    $list = Get-AzureRmDnsRecordSet –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
 
-您可以使用 *–ZoneName* 和 *–ResourceGroupName* 參數來指定區域 (如上所示)，或透過指定區域物件來指定：
+The zone can be specified by using either the *–ZoneName* and *–ResourceGroupName* parameters (as shown), or by specifying a zone object:
 
-	$zone = Get-AzureRmDnsZone -Name contoso.com -ResouceGroupName MyAzureResourceGroup
-	$list = Get-AzureRmDnsRecordSet -Zone $zone
+    $zone = Get-AzureRmDnsZone -Name contoso.com -ResouceGroupName MyAzureResourceGroup
+    $list = Get-AzureRmDnsRecordSet -Zone $zone
 
-## 將記錄加入至記錄集
+## <a name="add-a-record-to-a-record-set"></a>Add a record to a record set
 
-您可以使用 `Add-AzureRmDnsRecordConfig` Cmdlet 來將記錄新增至記錄集。這是一種離線作業。只會變更代表記錄集的本機物件。
+You add records to record sets by using the `Add-AzureRmDnsRecordConfig` cmdlet. This is an offline operation. Only the local object that represents the record set is changed.
 
-將記錄加入至記錄集的參數，根據記錄集的類型而所有不同。例如，使用 "A" 類型的記錄集時，只能使用*-IPv4Address* 參數來指定記錄。
+The parameters for adding records to a record set vary depending on the type of the record set. For example, when using a record set of type "A", you can only specify records with the parameter *-IPv4Address*.
 
-您可以額外呼叫 `Add-AzureRmDnsRecordConfig`，將更多記錄新增至每個記錄集。任何記錄集最多只能加入 20 筆記錄。不過，"CNAME" 類型的記錄集最多只能包含一筆記錄，一個記錄集不能包含兩筆相同的記錄。您可以建立空的記錄集 (沒有記錄)，但該記錄集不會出現在 Azure DNS 名稱伺服器上。
+Additional records can be added to each record set by additional calls to `Add-AzureRmDnsRecordConfig`. You can add up to 20 records to any record set. However, record sets of type "CNAME" can contain at most one record, and a record set cannot contain two identical records. Empty record sets (with zero records) can be created, but do not appear on the Azure DNS name servers.
 
-當記錄集包含所要的記錄集合之後，您需要使用 `Set-AzureRmDnsRecordSet` Cmdlet 來認可它。認可記錄集之後，它會取代 Azure DNS 中現有的記錄集。
+After the record set contains the desired collection of records, you need to commit it by using the `Set-AzureRmDnsRecordSet` cmdlet. After a record set has been committed, it replaces the existing record set in Azure DNS.
 
-### 建立含有單一記錄的 A 記錄集
+### <a name="to-create-an-a-record-set-with-a-single-record"></a>To create an A record set with a single record
 
-	$rs = New-AzureRmDnsRecordSet -Name "test-a" -RecordType A -Ttl 60 -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address "1.2.3.4"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+    $rs = New-AzureRmDnsRecordSet -Name "test-a" -RecordType A -Ttl 60 -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address "1.2.3.4"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-用來建立記錄的作業序列也可以「經由管道輸送」，亦即使用管道傳遞記錄集物件，而不是當做參數傳遞。例如：
+The sequence of operations to create a record can also be *piped*, meaning you pass the record set object by using the pipe rather than passing it as a parameter. For example:
 
-	New-AzureRmDnsRecordSet -Name "test-a" -RecordType A -Ttl 60 -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup | Add-AzureRmDnsRecordConfig -Ipv4Address "1.2.3.4" | Set-AzureRmDnsRecordSet
+    New-AzureRmDnsRecordSet -Name "test-a" -RecordType A -Ttl 60 -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup | Add-AzureRmDnsRecordConfig -Ipv4Address "1.2.3.4" | Set-AzureRmDnsRecordSet
 
-### 其他記錄類型範例
+### <a name="additional-record-type-examples"></a>Additional record type examples
 
 [AZURE.INCLUDE [dns-add-record-ps-include](../../includes/dns-add-record-ps-include.md)]
 
-## 修改現有記錄集
+## <a name="modify-existing-record-sets"></a>Modify existing record sets
 
-修改現有記錄集的步驟，與建立記錄時所採取的步驟類似。作業序列如下：
+The steps for modifying an existing record set are similar to the steps you take when creating records. The sequence of operations is as follows:
 
-1.	使用 `Get-AzureRmDnsRecordSet` 擷取現有的記錄集。
+1.  Retrieve the existing record set by using `Get-AzureRmDnsRecordSet`.
 
-2.	修改記錄集，方法包括新增記錄、移除記錄、變更記錄參數，或變更記錄集存留時間 (TTL)。這是一種離線作業。只會變更代表記錄集的本機物件。
+2.  Modify the record set by either adding records, removing records, changing the record parameters, or changing the record set time to live (TTL). This is an offline operation. Only the local object that represents the record set is changed.
 
-3.	使用 `Set-AzureRmDnsRecordSet` Cmdlet 來認可您所做的變更。這會取代 Azure DNS 中現有的記錄集。
-
-
-### 更新現有記錄集中的記錄
-
-在此範例中，我們會變更現有 "A" 記錄的 IP 位址：
-
-	$rs = Get-AzureRmDnsRecordSet -name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	$rs.Records[0].Ipv4Address = "134.170.185.46"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
-
-`Set-AzureRmDnsRecordSet` Cmdlet 會使用 Etag 檢查，來確保不會覆寫並行變更。使用 *-Overwrite* 旗標來停用這些檢查。如需詳細資訊，請參閱[關於 Etag 和標籤](dns-getstarted-create-dnszone.md#tagetag)。
-
-### 修改 SOA 記錄
-
-您無法在區域頂點 (名稱 = "@") 自動建立的 SOA 記錄集中新增或移除記錄。不過，您可以修改 SOA 記錄 (「主機」除外) 和記錄集 TTL 內的任何參數。
-
-下列範例示範如何變更 SOA 記錄的 *Email* 屬性：
-
-	$rs = Get-AzureRmDnsRecordSet -Name "@" -RecordType SOA -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	$rs.Records[0].Email = "admin.contoso.com"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
-
-### 在區域頂點修改 NS 記錄
-
-您無法在區域頂點 (名稱 = "@") 自動建立的 NS 記錄集中新增、移除或修改記錄。修改記錄集 TTL 是唯一允許的變更。
-
-下列範例示範如何變更 NS 記錄集的 TTL 屬性：
-
-	$rs = Get-AzureRmDnsRecordSet -Name "@" -RecordType NS -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	$rs.Ttl = 300
-	Set-AzureRmDnsRecordSet -RecordSet $rs
-
-### 將記錄加入至現有的記錄集
-
-在此範例中，我們將兩個額外的 MX 記錄新增至現有的記錄集：
-
-	$rs = Get-AzureRmDnsRecordSet -name "test-mx" -RecordType MX -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Add-AzureRmDnsRecordConfig -RecordSet $rs -Exchange "mail2.contoso.com" -Preference 10
-	Add-AzureRmDnsRecordConfig -RecordSet $rs -Exchange "mail3.contoso.com" -Preference 20
-	Set-AzureRmDnsRecordSet -RecordSet $rs
-
-## 從現有的記錄集移除記錄
-
-您可以使用 `Remove-AzureRmDnsRecordConfig` 來移除記錄集中的記錄。要移除的記錄必須完全符合現有的資料錄，包括所有參數。必須使用 `Set-AzureRmDnsRecordSet` 認可變更。
-
-移除記錄集的最後一筆記錄不會刪除記錄集。如需詳細資訊，請參閱下方的[刪除記錄集](#delete-a-record-set)。
+3.  Commit your changes by using the `Set-AzureRmDnsRecordSet` cmdlet. This replaces the existing record set in Azure DNS.
 
 
-	$rs = Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address "1.2.3.4"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+### <a name="to-update-a-record-in-an-existing-record-set"></a>To update a record in an existing record set
 
-用來從記錄集中移除記錄的作業序列也可以經由管道輸送，亦即使用管道傳遞記錄集物件，而不是當做參數傳遞。例如：
+In this example, we change the IP address of an existing "A" record:
 
-	Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup | Remove-AzureRmDnsRecordConfig -Ipv4Address "1.2.3.4" | Set-AzureRmDnsRecordSet
+    $rs = Get-AzureRmDnsRecordSet -name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    $rs.Records[0].Ipv4Address = "134.170.185.46"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-### 從記錄集移除 AAAA 記錄
+The `Set-AzureRmDnsRecordSet` cmdlet uses etag checks to ensure that concurrent changes are not overwritten. Use the *-Overwrite* flag to suppress these checks. For more information, see [About etags and tags](dns-getstarted-create-dnszone.md#tagetag).
 
-	$rs = Get-AzureRmDnsRecordSet -Name "test-aaaa" -RecordType AAAA -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordConfig -RecordSet $rs -Ipv6Address "2607:f8b0:4009:1803::1005"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+### <a name="to-modify-an-soa-record"></a>To modify an SOA record
 
-### 從記錄集移除 CNAME 記錄
+You cannot add or remove records from the automatically-created SOA record set at the zone apex (name = "@"). However, you can modify any of the parameters within the SOA record (except "Host") and the record set TTL.
 
-因為 CNAME 記錄集最多只能包含一筆記錄，移除該記錄會留下空的記錄集。
+The following example shows how to change the *Email* property of the SOA record:
 
-	$rs =  Get-AzureRmDnsRecordSet -name "test-cname" -RecordType CNAME -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordConfig -RecordSet $rs -Cname "www.contoso.com"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+    $rs = Get-AzureRmDnsRecordSet -Name "@" -RecordType SOA -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    $rs.Records[0].Email = "admin.contoso.com"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-### 從記錄集移除 MX 記錄
+### <a name="to-modify-ns-records-at-the-zone-apex"></a>To modify NS records at the zone apex
 
-	$rs = Get-AzureRmDnsRecordSet -name "test-mx" -RecordType MX -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordConfig -RecordSet $rs -Exchange "mail.contoso.com" -Preference 5
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+You cannot add to, remove, or modify the records in the automatically-created NS record set at the zone apex (name = "@"). The only change that's permitted is to modify the record set TTL.
 
-### 從記錄集移除 NS 記錄
+The following example shows how to change the TTL property of the NS record set:
 
-	$rs = Get-AzureRmDnsRecordSet -Name "test-ns" -RecordType NS -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordConfig -RecordSet $rs -Nsdname "ns1.contoso.com"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+    $rs = Get-AzureRmDnsRecordSet -Name "@" -RecordType NS -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    $rs.Ttl = 300
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-### 從記錄集移除 SRV 記錄
+### <a name="to-add-records-to-an-existing-record-set"></a>To add records to an existing record set
 
-	$rs = Get-AzureRmDnsRecordSet -Name "_sip._tls" -RecordType SRV -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordConfig -RecordSet $rs –Priority 0 –Weight 5 –Port 8080 –Target "sip.contoso.com"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+In this example, we add two additional MX records to the existing record set:
 
-### 從記錄集移除 TXT 記錄
+    $rs = Get-AzureRmDnsRecordSet -name "test-mx" -RecordType MX -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Add-AzureRmDnsRecordConfig -RecordSet $rs -Exchange "mail2.contoso.com" -Preference 10
+    Add-AzureRmDnsRecordConfig -RecordSet $rs -Exchange "mail3.contoso.com" -Preference 20
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-	$rs = Get-AzureRmDnsRecordSet -Name "test-txt" -RecordType TXT -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordConfig -RecordSet $rs -Value "This is a TXT record"
-	Set-AzureRmDnsRecordSet -RecordSet $rs
+## <a name="remove-a-record-from-an-existing-record-set"></a>Remove a record from an existing record set
 
-## 刪除記錄集
+Records can be removed from a record set by using `Remove-AzureRmDnsRecordConfig`. The record that's being removed must be an exact match with an existing record across all parameters. Changes must be committed by using `Set-AzureRmDnsRecordSet`.
 
-您可以使用 `Remove-AzureRmDnsRecordSet` Cmdlet 來刪除記錄集。您無法在建立區域時所自動建立的區域頂點 (名稱 = "@") 刪除 SOA 和 NS 記錄集。刪除區域時會自動加以刪除。
-
-使用下列三種方法之一來移除記錄集：
-
-### 依名稱指定所有參數
-
-選擇性的 *-Force* 參數可用來隱藏確認提示。
-
-	Remove-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup [-Force]
+Removing the last record from a record set does not delete the record set. See [Delete a record set](#delete-a-record-set) below for more information.
 
 
-### 依名稱和類型指定記錄集，並且依物件指定區域
+    $rs = Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address "1.2.3.4"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-	$zone = Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordSet -Name "test-a" -RecordType A -Zone $zone [-Force]
+The sequence of operations to remove a record from a record set can also be piped, meaning you pass the record set object by using the pipe rather than passing it as a parameter. For example:
 
-### 依物件指定記錄集
+    Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup | Remove-AzureRmDnsRecordConfig -Ipv4Address "1.2.3.4" | Set-AzureRmDnsRecordSet
 
-	$rs = Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
-	Remove-AzureRmDnsRecordSet –RecordSet $rs [-Overwrite] [-Force]
+### <a name="remove-an-aaaa-record-from-a-record-set"></a>Remove an AAAA record from a record set
 
-使用物件指定記錄集時，即會啟用 Etag 檢查，來確保不會刪除並行的變更。選擇性的 *-Overwrite* 旗標可停用這些檢查。如需詳細資訊，請參閱 [Etag 和標記](dns-getstarted-create-dnszone.md#tagetag)。
+    $rs = Get-AzureRmDnsRecordSet -Name "test-aaaa" -RecordType AAAA -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordConfig -RecordSet $rs -Ipv6Address "2607:f8b0:4009:1803::1005"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-記錄集物件也可以經由管道輸送，而不是當做參數傳遞：
+### <a name="remove-a-cname-record-from-a-record-set"></a>Remove a CNAME record from a record set
 
-	Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup | Remove-AzureRmDnsRecordSet [-Overwrite] [-Force]
+Because a CNAME record set can contain at most one record, removing that record leaves an empty record set.
 
-## 後續步驟
+    $rs =  Get-AzureRmDnsRecordSet -name "test-cname" -RecordType CNAME -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordConfig -RecordSet $rs -Cname "www.contoso.com"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。如需自動化 DNS 的相關資訊，請參閱[使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
+### <a name="remove-an-mx-record-from-a-record-set"></a>Remove an MX record from a record set
 
-如需反向 DNS 記錄的詳細資訊，請參閱[如何使用 PowerShell 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)。
+    $rs = Get-AzureRmDnsRecordSet -name "test-mx" -RecordType MX -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordConfig -RecordSet $rs -Exchange "mail.contoso.com" -Preference 5
+    Set-AzureRmDnsRecordSet -RecordSet $rs
 
-<!---HONumber=AcomDC_0824_2016-->
+### <a name="remove-an-ns-record-from-record-set"></a>Remove an NS record from record set
+
+    $rs = Get-AzureRmDnsRecordSet -Name "test-ns" -RecordType NS -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordConfig -RecordSet $rs -Nsdname "ns1.contoso.com"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
+
+### <a name="remove-an-srv-record-from-a-record-set"></a>Remove an SRV record from a record set
+
+    $rs = Get-AzureRmDnsRecordSet -Name "_sip._tls" -RecordType SRV -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordConfig -RecordSet $rs –Priority 0 –Weight 5 –Port 8080 –Target "sip.contoso.com"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
+
+### <a name="remove-a-txt-record-from-a-record-set"></a>Remove a TXT record from a record set
+
+    $rs = Get-AzureRmDnsRecordSet -Name "test-txt" -RecordType TXT -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordConfig -RecordSet $rs -Value "This is a TXT record"
+    Set-AzureRmDnsRecordSet -RecordSet $rs
+
+## <a name="delete-a-record-set"></a>Delete a record set
+
+Record sets can be deleted by using the `Remove-AzureRmDnsRecordSet` cmdlet. You cannot delete the SOA and NS record sets at the zone apex (name = "@") that were created automatically when the zone was created. They will be deleted automatically if the zone is deleted.
+
+Use one of the following three methods to remove a record set:
+
+### <a name="specify-all-the-parameters-by-name"></a>Specify all the parameters by name
+
+The optional *-Force* switch can be used to suppress the confirmation prompt.
+
+    Remove-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup [-Force]
+
+
+### <a name="specify-the-record-set-by-name-and-type,-and-specify-the-zone-by-object"></a>Specify the record set by name and type, and specify the zone by object
+
+    $zone = Get-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordSet -Name "test-a" -RecordType A -Zone $zone [-Force]
+
+### <a name="specify-the-record-set-by-object"></a>Specify the record set by object
+
+    $rs = Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+    Remove-AzureRmDnsRecordSet –RecordSet $rs [-Overwrite] [-Force]
+
+When you specify the record set by using an object, it enables etag checks to ensure that concurrent changes are not deleted. The optional *-Overwrite* flag suppresses these checks. See [Etags and tags](dns-getstarted-create-dnszone.md#tagetag) for more information.
+
+The record set object can also be piped instead of being passed as a parameter:
+
+    Get-AzureRmDnsRecordSet -Name "test-a" -RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup | Remove-AzureRmDnsRecordSet [-Overwrite] [-Force]
+
+## <a name="next-steps"></a>Next steps
+
+For more information about Azure DNS, see [Azure DNS overview](dns-overview.md). For information about automating DNS, see [Creating DNS zones and record sets using the .NET SDK](dns-sdk.md).
+
+For more information about reverse DNS records, see [How to manage reverse DNS records for your services using PowerShell](dns-reverse-dns-record-operations-ps.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

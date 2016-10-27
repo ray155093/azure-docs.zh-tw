@@ -1,40 +1,41 @@
 <properties 
-	pageTitle="選取 Linux 的使用者名稱 | Microsoft Azure" 
-	description="了解如何在 Azure 中選取適用於 Linux 虛擬機器的使用者名稱。" 
-	services="virtual-machines-linux" 
-	documentationCenter="" 
-	authors="szarkos" 
-	manager="timlt" 
-	editor=""
-	tags="azure-service-management,azure-resource-manager" />
+    pageTitle="Selecting User Names for Linux | Microsoft Azure" 
+    description="Learn how to select user names for a Linux virtual machine in Azure." 
+    services="virtual-machines-linux" 
+    documentationCenter="" 
+    authors="szarkos" 
+    manager="timlt" 
+    editor=""
+    tags="azure-service-management,azure-resource-manager" />
 
 <tags 
-	ms.service="virtual-machines-linux" 
-	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="vm-linux" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/13/2016" 
-	ms.author="szark"/>
+    ms.service="virtual-machines-linux" 
+    ms.workload="infrastructure-services" 
+    ms.tgt_pltfrm="vm-linux" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/17/2016" 
+    ms.author="szark"/>
 
 
 
-#在 Azure 上選取適用於 Linux 的使用者名稱#
+
+#<a name="selecting-user-names-for-linux-on-azure#"></a>Selecting User Names for Linux on Azure#
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-在 Azure 上佈建 Linux 虛擬機器時，您必須指定非根使用者的名稱供稍後使用，以使用登入 VM。您可以選擇新使用者的名稱；如果是透過 Azure 傳統入口網站佈建，可以使用預設名稱「azureuser」。
+When you provision a Linux virtual machine on Azure you must specify the name of a non-root user that you can later use to log into the VM. You may choose the name of the new user, or if provisioning via the Azure classic portal you can accept the default name "azureuser".
 
-在大多數的情況中，這位使用者不會存在於基本映像中，而是會在佈建程序期間建立。若此使用者存在於基本 VM 映像，則 Azure Linux 代理程式只會根據建立 VM 時所指定的資訊，為該使用者設定密碼及 (或) SSH 金鑰。
+In most cases this user won't exist on the base image and will be created during the provisioning process. If the user exists on the base VM image, then the Azure Linux agent simply configures the password and/or SSH key for that user based on the information you specified when creating the VM.
 
-**不過**，Linux 會定義一組不應該使用的使用者名稱。如果您嘗試使用現有的系統使用者 (定義為具有 UID 0-99 的使用者) 佈建 Linux VM，佈建程序將**失敗**。常見的範例是 `root` 使用者，其 UID 為 0。
+**However**, Linux defines a set of user names that should not be used. The provisioning process will **fail** if you try to provision a Linux VM using an existing system user, which is defined as a user with UID 0-99. A typical example is the `root` user, which has UID 0.
 
- - 另請參閱：[Linux 標準基礎 - 使用者 ID 範圍](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
+ - See also: [Linux Standard Base - User ID Ranges](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
 
-以下是在 Azure 上佈建 Linux 虛擬機器時應避免使用的 CentOS 和 Ubuntu 常見內建系統使用者清單。此清單只是範例，請參閱散發套件的文件，以確保您所選擇的使用者名稱沒有與現有的系統使用者衝突。
+The following is a list of common built-in system users for CentOS and Ubuntu that you should avoid using when provisioning a Linux virtual machine on Azure. This list is just an example, please refer to the documentation for your distribution to ensure that the username you choose does not conflict with an existing system user.
 
 
-## CentOS
+## <a name="centos"></a>CentOS
 - abrt
 - adm
 - audio
@@ -91,7 +92,7 @@
 - wheel
 
 
-## Ubuntu
+## <a name="ubuntu"></a>Ubuntu
 - adm
 - admin
 - audio
@@ -148,4 +149,7 @@
 
  
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

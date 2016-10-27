@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure 資訊安全中心設定安全性原則 | Microsoft Azure"
-   description="本文件可協助您在「Azure 資訊安全中心」設定安全性原則。"
+   pageTitle="Set security policies in Azure Security Center | Microsoft Azure"
+   description="This document helps you to configure security policies in Azure Security Center."
    services="security-center"
    documentationCenter="na"
    authors="YuriDio"
@@ -16,95 +16,100 @@
    ms.date="09/22/2016"
    ms.author="yurid"/>
 
-# 在 Azure 資訊安全中心設定安全性原則
-這份文件透過帶領您完成執行這項工作的必要步驟，協助您設定資訊安全中心的安全性原則。
 
-## 什麼是安全性原則？
-安全性原則定義了針對指定之訂用帳戶或資源群組內的資源，所建議的一組控制項。在「資訊安全中心」中，您可以根據公司安全性需求，以及每個訂用帳戶中應用程式的類型或資料的敏感性，為您的 Azure 訂用帳戶或資源群組定義原則。
+# <a name="set-security-policies-in-azure-security-center"></a>Set security policies in Azure Security Center
+This document helps you to configure security policies in Security Center by guiding you through the necessary steps to perform this task.
 
-例如，用於開發或測試的資源與用於生產應用程式的資源，兩者的安全性需求可能不同。同樣地，使用個人識別資訊等規範資料的應用程式可能會需要較高層級的安全性。Azure 資訊安全中心中啟用的安全性原則將會決定安全性建議與監視，以協助您識別可能的弱點並減輕威脅。如需如何決定哪個選項適合您的詳細資訊，請閱讀 [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)。
+## <a name="what-are-security-policies?"></a>What are security policies?
+A security policy defines the set of controls, which are recommended for resources within the specified subscription or resource group. In Security Center, you define policies for your Azure subscriptions or resource group according to your company security needs and the type of applications or sensitivity of the data in each subscription.
 
-## 設定訂用帳戶的安全性原則
+For example, resources that are used for development or test might have different security requirements from resources that are used for production applications. Likewise, applications that use regulated data like personally identifiable information might require a higher level of security. Security policies that are enabled in Azure Security Center drive security recommendations and monitoring to help you identify potential vulnerabilities and mitigate threats. Read [Azure Security Center Planning and Operations Guide](security-center-planning-and-operations-guide.md) for more information about how to determine the option that is appropriate for you.
 
-您可以為每個訂用帳戶或資源群組設定安全性原則。若要修改安全性原則，您必須是該訂用帳戶的擁有者或參與者。登入 Azure 入口網站並依照下列步驟在資訊安全中心設定安全性原則：
+## <a name="set-security-policies-for-subscriptions"></a>Set security policies for subscriptions
 
-1. 按一下資訊安全中心儀表板中的 [原則] 圖格。
+You can configure security policies for each subscription or resource group. To modify a security policy, you must be an owner or contributor of that subscription. Sign in to the Azure portal and follow the succeeding steps to configure security polices in Security Center:
 
-2. 在開啟的 [安全性原則 - 定義每個訂用帳戶或資源群組的原則] 刀鋒視窗中，選取您想要啟用安全性原則的訂用帳戶。如果您想要啟用資源群組而非整個訂用帳戶的安全性原則，請向下捲動到下一節，該節會討論如何設定資源群組的安全性原則。
+1. Click the **Policy** tile in the Security Center dashboard.
 
-    ![定義原則](./media/security-center-policies/security-center-policies-fig1-ga.png)
+2. In the **Security Policy - Define policy per subscription or resource group** blade that opens, select the subscription on which you want to enable the security policy. If you prefer to enable the security policy for a resource group instead of the entire subscription, scroll down to the next section that talks about how to set up security policies for resource groups.
 
-3. 所選訂用帳戶的 [安全性原則] 刀鋒視窗隨即開啟，內含一組類似下列螢幕擷取畫面中的選項：
+    ![Defining policy](./media/security-center-policies/security-center-policies-fig1-ga.png)
 
-    ![啟用資料收集](./media/security-center-policies/security-center-policies-fig2-ga.png)
+3. The **Security policy** blade for the selected subscription opens with a set of options like the options in the following screenshot:
 
-	此刀鋒視窗中可用的選項如下：
-	- **預防原則**︰使用此選項為每個訂用帳戶或資源群組設定原則。
-	- **電子郵件通知**：使用此選項設定在每天第一個警示發生時傳送的電子郵件通知，以及針對高嚴重性警示傳送的電子郵件通知。電子郵件喜好設定只能針對訂用帳戶原則進行設定。如需如何設定電子郵件通知的詳細資訊，請閱讀[在 Azure 資訊安全中心提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md)。
-	- **定價層**：使用此選項來升級定價層選取項目。若要深入了解價格選項，請參閱[資訊安全中心](https://azure.microsoft.com/pricing/details/security-center/)頁面。
+    ![Enabling data collection](./media/security-center-policies/security-center-policies-fig2-ga.png)
+
+    The available options in this blade are:
+    - **Prevention policy**: Use this option to configure policies per subscription or resource group.  
+    - **Email notification**: Use this option to configure an email notification that's sent on the first daily occurrence of an alert and for high severity alerts. Email preferences can be configured only for subscription policies. Read [Provide security contact details in Azure Security Center](security-center-provide-security-contact-details.md) for more information about how to configure an email notification.
+    - **Pricing tier**: Use this option to upgrade the pricing tier selection. See [Security Center page](https://azure.microsoft.com/pricing/details/security-center/) to learn more about pricing options.
 
 
-4.  確定 [從虛擬機器收集資料] 選項為 [開啟]。此選項可啟用現有資源與新資源的自動記錄收集。
+4.  Make sure that **Collect data from virtual machines** options is **On**. This option enables automatic log collection for existing and new resources.
 
-    >[AZURE.NOTE] 建議您為每個訂用帳戶開啟資料收集功能，以確保安全性監視可用於所有現有的 VM 和新的 VM。如果啟用資料收集，將會安裝監視代理程式。如果您不想現在從這個位置開啟資料收集，可以稍後從 [健全狀況] 和 [建議] 檢視開啟。您也可以只針對訂用帳戶或特定 VM 啟用資料收集。若要深入了解支援的 VM，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md)。
+    >[AZURE.NOTE] We recommend that you turn on data collection for each of your subscriptions to ensure that security monitoring is available for all existing and new VMs. Enabling data collection installs the monitoring agent. If you don't want to turn on data collection now from this location, you can do it later from the **Health** and **Recommendations** views. You can also enable data collection for only the subscription or for select VMs. Refer to the [Azure Security Center FAQ](security-center-faq.md) to know more about the supported VMs.
 
-5. 如果尚未設定儲存體帳戶，則當您開啟 [安全性原則] 時，可能會看到類似下列螢幕擷取畫面中的警告：
+5. If your storage account is not configured yet, you might see a warning like the one in the following screenshot when you open **Security Policy**:
 
-    ![儲存體選擇](./media/security-center-policies/security-center-policies-fig2.png)
+    ![Storage selection](./media/security-center-policies/security-center-policies-fig2.png)
 
-6. 如果您看到這個警告，請按一下此選項並選取如下列螢幕擷取畫面所示的區域：
+6. If you see this warning, click this option and select the region as shown in the following screenshot:
 
-    ![儲存體選擇](./media/security-center-policies/security-center-policies-fig3-ga.png)
+    ![Storage selection](./media/security-center-policies/security-center-policies-fig3-ga.png)
 
-7. 針對每個有虛擬機器在其中執行的區域，請選擇儲存體帳戶，以儲存從這些虛擬機器收集到的資料。這可讓您針對隱私權和資料主權的考量，輕鬆將資料保留在相同的地理區域。在您決定將使用哪一個區域之後，請選取該區域，然後選取儲存體帳戶。
+7. For each region in which you have running virtual machines, choose the storage account where data that's collected from those virtual machines is stored. This makes it easy to keep data in the same geographic area for privacy and data sovereignty purposes. After you decide the region that you will use, select the region, and then select the storage account.
 
-8. 在 [選擇儲存體帳戶] 刀鋒視窗中，按一下 [確定]。
+8. In the **Choose storage accounts** blade, click **OK**.
 
-    > [AZURE.NOTE] 如果想要的話，您可以針對各種區域中的虛擬機器，將資料彙總到一個集中的儲存體帳戶。如需詳細資訊，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md)。
+    > [AZURE.NOTE] If you prefer, you can aggregate data in one central storage account for virtual machines that are in various regions. Refer to the [Azure Security Center FAQ](security-center-faq.md) for more information.
 
-9. 在 [安全性原則] 刀鋒視窗中，按一下 [開啟]，啟用您想要在此訂用帳戶使用的安全性建議。按一下 [防止原則] 可看到類似下列螢幕擷取畫面中的選項︰
+9. In the **Security Policy** blade, click **On** to enable the security recommendations that you want to use on this subscription. Click **Prevention policy** to see options like those in the following screenshot:
 
-	![選取安全性原則](./media/security-center-policies/security-center-policies-fig4-ga-new.png)
+    ![Selecting the security policies](./media/security-center-policies/security-center-policies-fig4-ga-new.png)
 
-請使用下表做為參考，以了解每個選項：
+Use the following table as a reference to understand each option:
 
-| 原則 | 當狀態為開啟時 |
+| Policy | When state is on |
 |----- |-----|
-| 系統更新 | 從 Windows Update 或 Windows Server Update Services (WSUS) 擷取每天可用的安全性和重大更新清單。擷取的清單取決於為該虛擬機器設定的服務，並建議要套用的遺漏更新。對於 Linux 系統，此原則會使用散發套件提供的套件管理系統，來判斷哪些套件有可用的更新。它也會檢查來自 [Azure 雲端服務](./cloud-services/cloud-services-how-to-configure.md)虛擬機器的安全性和重大更新。 |
-| 作業系統弱點 | 每天分析作業系統組態，以判斷讓虛擬機器容易遭受攻擊的問題。此原則還會建議可解決這些弱點的組態變更。如需受監視之特定組態的詳細資訊，請參閱[建議的基準清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。 |
-| 端點保護 | 建議為所有 Windows 虛擬機器佈建端點保護，以協助識別和移除病毒、間諜軟體及其他惡意軟體。|
-| 磁碟加密 | 建立在所有虛擬機器中啟用磁碟加密以增強待用資料保護。
-| 網路安全性群組 | 建議設定[網路安全性群組](../virtual-network/virtual-networks-nsg.md)來控制具有公用端點之 VM 的輸入與輸出流量。除非另有指定，否則所有虛擬機器網路介面都會繼承為子網路設定的網路安全性群組。除了檢查是否已設定網路安全性群組之外，此原則還會評估輸入安全性規則來識別可允許連入流量的規則。 |
-| Web 應用程式防火牆 | 建議於下列任一條件成立的情況下，在虛擬機器上佈建 Web 應用程式防火牆：使用</br></br>[執行個體層級公用 IP](../virtual-network/virtual-networks-instance-level-public-ip.md) (ILPIP) 並設定相關聯的「NSG 輸入安全性規則」來允許存取連接埠 80/443。</br></br>使用負載平衡 IP 並設定相關聯的負載平衡與輸入網路位址轉譯 NAT 規則，來允許存取連接埠 80/443。如需詳細資料，請參閱 [Azure Resource Manager 的負載平衡器支援](../load-balancer/load-balancer-arm.md)。 |
-| 新一代防火牆 | 提供超越 Azure 內建網路安全性群組的網路保護。資訊安全中心會探索建議使用新一代防火牆的部署，並可讓您佈建虛擬應用裝置。 |
-| SQL 稽核與威脅偵測 | 建議針對法規遵循、進階威脅偵測及調查用途，啟用 Azure 資料庫的存取稽核。 |
-| SQL 透明資料加密 | 建議為您的 Azure SQL Database、關聯的備份及交易記錄檔啟用待用期加密。您的資料即使遭到入侵，也無法被讀取。 |
-| 弱點評估 | 建議在 VM 上安裝弱點評估解決方案。 |
+| System updates | Retrieves a daily list of available security and critical updates from Windows Update or Windows Server Update Services. The retrieved list depends on the service that's configured for that virtual machine and recommends that the missing updates be applied. For Linux systems, the policy uses the distro-provided package management system to determine packages that have available updates. It also checks for security and critical updates from [Azure Cloud Services](./cloud-services/cloud-services-how-to-configure.md) virtual machines. |
+| OS vulnerabilities | Analyzes operating system configurations daily to determine issues that could make the virtual machine vulnerable to attack. The policy also recommends configuration changes to address these vulnerabilities. See the [list of recommended baselines](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335) for more information about the specific configurations that are being monitored. |
+| Endpoint protection | Recommends endpoint protection to be provisioned for all Windows virtual machines to help identify and remove viruses, spyware, and other malicious software.|
+| Disk encryption | Recommends enabling disk encryption in all virtual machines to enhance data protection at rest.
+| Network security groups | Recommends that [network security groups](../virtual-network/virtual-networks-nsg.md) be configured to control inbound and outbound traffic to VMs that have public endpoints. Network security groups that are configured for a subnet will be inherited by all virtual machine network interfaces unless otherwise specified. In addition to checking that a network security group has been configured, this policy assesses inbound security rules to identify rules that allow incoming traffic. |
+| Web application firewall | Recommends that a web application firewall be provisioned on virtual machines when either of the following is true:</br></br>[Instance-level public IP](../virtual-network/virtual-networks-instance-level-public-ip.md) (ILPIP) is used and the inbound security rules for the associated network security group are configured to allow access to port 80/443.</br></br>Load-balanced IP is used and the associated load balancing and inbound network address translation (NAT) rules are configured to allow access to port 80/443. (For more information, see [Azure Resource Manager support for Load Balancer](../load-balancer/load-balancer-arm.md). |
+| Next generation firewall | Extends network protections beyond network security groups, which are built into Azure. Security Center will discover deployments for which a next generation firewall is recommended and enable you to provision a virtual appliance. |
+| SQL auditing & Threat detection | Recommends that auditing of access to Azure Database be enabled for compliance and also advanced threat detection, for investigation purposes. |
+| SQL transparent data encryption | Recommends that encryption at rest be enabled for your Azure SQL Database, associated backups, and transaction log files. Even if your data is breached, it will not be readable. |
+| Vulnerability assessment | Recommends that you install a vulnerability assessment solution on your VM. |
 
-設定所有選項之後，請在具有建議的 [安全性原則] 刀鋒視窗中按一下 [確定]，然後在具有初始設定的 [安全性原則] 刀鋒視窗中按一下 [儲存]。
+After you configure all options, click **OK** in the **Security Policy** blade that has the recommendations, and then click **Save** in the **Security Policy** blade that  has the initial settings.
 
-## 設定資源群組的安全性原則
+## <a name="set-security-policies-for-resource-groups"></a>Set security policies for resource groups
 
-如果您想要設定每個資源群組的安全性原則，其步驟與用於設定訂用帳戶安全性原則的步驟類似。主要差異是您必須展開訂用帳戶名稱，然後選取想要設定唯一安全性原則的資源群組：
+If you prefer to configure your security policies per resource group, the steps are like those that you use to set up security policies for subscriptions. The main difference is that you will need to expand the subscription name and select the resource group for which you want to configure the unique security policy:
 
-![資源群組選取項目](./media/security-center-policies/security-center-policies-fig5-ga.png)
+![Resource group selection](./media/security-center-policies/security-center-policies-fig5-ga.png)
 
-選取資源群組後，[安全性原則] 刀鋒視窗會隨即開啟。預設會啟用 [繼承] 選項。這表示此資源群組的所有安全性原則都繼承自訂用帳戶層級。如果您想自訂資源群組的安全性原則，您可以變更此組態。如果情況是這樣，您需要選取 [唯一] 並在 [預防原則] 選項底下進行變更。
+After you select the resource group, the **Security policy** blade opens. By default, the **Inheritance** option is enabled. This means that all security policies for this resource group are inherited from the subscription level. You can change this configuration in case you want a custom security policy for a resource group. If that's the case, you need to select **Unique** and make the changes under the **Prevention policy** option.
 
-![每個資源群組的安全性原則](./media/security-center-policies/security-center-policies-fig6-ga.png)
+![Security policy per resource group](./media/security-center-policies/security-center-policies-fig6-ga.png)
 
-> [AZURE.NOTE] 如果訂用帳戶層級原則與資源群組層級原則之間有衝突，將會優先採用資源群組層級原則。
+> [AZURE.NOTE] In case of a conflict between subscription-level policy and resource group-level policy, the resource group-level policy takes precedence.
 
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-在本文件中，您已了解如何在「Azure 資訊安全中心」設定安全性原則。若要深入了解「Azure 資訊安全中心」，請參閱下列主題：
+In this document, you learned how to configure security policies in Azure Security Center. To learn more about Azure Security Center, see the following:
 
-- [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)。了解如何規劃及了解採用 Azure 資訊安全中心的設計考量。
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md)。了解如何監視 Azure 資源的健全狀況。
-- [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)。了解如何管理和回應安全性警示。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)。了解如何監視合作夥伴解決方案的健全狀態。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md)。尋找有關使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)。尋找有關 Azure 安全性與相容性的部落格文章。
+- [Azure Security Center planning and operations guide](security-center-planning-and-operations-guide.md). Learn how to plan and understand the design considerations to adopt Azure Security Center.
+- [Security health monitoring in Azure Security Center](security-center-monitoring.md). Learn how to monitor the health of your Azure resources.
+- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md). Learn how to manage and respond to security alerts.
+- [Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md). Learn how to monitor the health status of your partner solutions.
+- [Azure Security Center FAQ](security-center-faq.md). Find frequently asked questions about using the service.
+- [Azure Security Blog](http://blogs.msdn.com/b/azuresecurity/). Find blog posts about Azure security and compliance.
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

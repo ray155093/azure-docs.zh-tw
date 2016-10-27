@@ -1,127 +1,133 @@
 <properties
-	pageTitle="開始使用適用於 Web Apps 的 Azure Mobile Engagement | Microsoft Azure"
-	description="了解如何使用 Web Apps 的 Azure Mobile Engagement 與分析和推播通知。"
-	services="mobile-engagement"
-	documentationCenter="Mobile"
-	authors="piyushjo"
-	manager=""
-	editor="" />
+    pageTitle="Get started with Azure Mobile Engagement for Web Apps | Microsoft Azure"
+    description="Learn how to use Azure Mobile Engagement with analytics and push notifications for Web Apps."
+    services="mobile-engagement"
+    documentationCenter="Mobile"
+    authors="piyushjo"
+    manager=""
+    editor="" />
 
 <tags
-	ms.service="mobile-engagement"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="na"
-	ms.devlang="js"
-	ms.topic="hero-article"
-	ms.date="06/01/2016"
-	ms.author="piyushjo" />
+    ms.service="mobile-engagement"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="na"
+    ms.devlang="js"
+    ms.topic="hero-article"
+    ms.date="06/01/2016"
+    ms.author="piyushjo" />
 
-# 開始使用適用於 Web Apps 的 Azure Mobile Engagement
 
-[AZURE.INCLUDE [Hero 教學課程切換器](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
+# <a name="get-started-with-azure-mobile-engagement-for-web-apps"></a>Get started with Azure Mobile Engagement for Web Apps
 
-本主題說明如何使用 Azure Mobile Engagement 來了解 Web 應用程式的使用量。
+[AZURE.INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-本教學課程需要下列各項：
+This topic shows you how to use Azure Mobile Engagement to understand your Web App usage.
 
-+ Visual Studio 2015 或您選擇的其他任何編輯器
+This tutorial requires the following:
+
++ Visual Studio 2015 or any other editor of your choice
 + [Web SDK](http://aka.ms/P7b453) 
 
-此 Web SDK 目前為預覽狀態，目前僅支援分析，尚未支援傳送瀏覽器或應用程式內推播通知。
+This Web SDK is in Preview and only supports Analytics at the moment and doesn't support sending browser or in-app push notifications yet. 
 
-> [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fmobile-engagement-web-app-get-started)。
+> [AZURE.NOTE] To complete this tutorial, you must have an active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-web-app-get-started).
 
-##為 Web 應用程式設定 Mobile Engagement
+##<a name="setup-mobile-engagement-for-your-web-app"></a>Setup Mobile Engagement for your Web app
 
-[AZURE.INCLUDE [在入口網站中建立 Mobile Engagement App](../../includes/mobile-engagement-create-app-in-portal-new.md)]
+[AZURE.INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-##<a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+##<a name="<a-id="connecting-app"></a>connect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>Connect your app to the Mobile Engagement backend
 
-本教學課程將說明「基本整合」，這是收集資料時必要的最低設定。
+This tutorial presents a "basic integration," which is the minimal set required to collect data.
 
-我們將使用 Visual Studio 來建立基本 Web 應用程式，以便示範整合，但您也可以使用在 Visual Studio 之外建立的任何 Web 應用程式來進行這些步驟。
+We will create a basic web app with Visual Studio to demonstrate the integration though you can follow the steps with any web application created outside of Visual Studio also. 
 
-###建立新的 Web 應用程式
+###<a name="create-a-new-web-app"></a>Create a new Web App
 
-即使下列步驟與舊版 Visual Studio 中的步驟類似，但這些步驟假設使用的是 Visual Studio 2015。
+The following steps assume the use of Visual Studio 2015 though the steps are similar in earlier versions of Visual Studio. 
 
-1. 啟動 Visual Studio，然後在 [主畫面] 上選取 [新增專案]。
+1. Start Visual Studio, and in the **Home** screen, select **New Project**.
 
-2. 在快顯視窗中，選取 [Web] -> [ASP.Net Web 應用程式]。填入應用程式的 [名稱]、[位置] 和 [方案名稱]，然後按一下 [確定]。
+2. In the pop-up, select **Web** -> **ASP.Net Web Application**. Fill in the app **Name**, **Location** and  **Solution name**, and then click **OK**.
 
-3. 在 [選取範本] 快顯視窗中，選取 [ASP.Net 4.5 範本] 底下的 [空白]，然後按一下 [確定]。
+3. In the **Select a template** popup, select **Empty** under **ASP.Net 4.5 Templates** and click **OK**. 
 
-現在已建立新的空白 Web 應用程式專案，接著我們要將 Azure Mobile Engagement Web SDK 整合至其中。
+You have now created a new blank Web App project into which we will integrate the Azure Mobile Engagement Web SDK.
 
-###將您的應用程式連線至 Mobile Engagement 後端
+###<a name="connect-your-app-to-mobile-engagement-backend"></a>Connect your app to Mobile Engagement backend
 
-1. 在方案中建立名為 **javascript** 的新資料夾，並在其中新增 Web SDK JS 檔案 **azure-engagement.js**。 
+1. Create a new folder called **javascript** in your solution and add the Web SDK JS file **azure-engagement.js** into it. 
 
-2. 在此 javascript 資料夾中，新增名為 **main.js** 的新檔案和下列程式碼。請務必更新連接字串。此 `azureEngagement` 物件將會用來存取 Web SDK 方法。
+2. Add a new file called **main.js** in this javascript folder with the following code. Make sure to update the connection string. This `azureEngagement` object will be used to access Web SDK methods. 
 
-		var azureEngagement = {
-		    debug: true,
-		    connectionString: 'xxxxx'
-		};
+        var azureEngagement = {
+            debug: true,
+            connectionString: 'xxxxx'
+        };
 
-	![Visual Studio 和 js 檔案][1]
+    ![Visual Studio with js files][1]
 
-##啟用即時監視
+##<a name="enable-real-time-monitoring"></a>Enable real-time monitoring
 
-若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個活動到 Mobile Engagement 後端。在 Web 應用程式的內容中，活動就是網頁。
+In order to start sending data and ensuring that the users are active, you must send at least one Activity to the Mobile Engagement backend. An activity in the context of a web app is a web page. 
 
-1. 在方案中建立名為 **home.html** 的新頁面，並將其設為 Web 應用程式的開始頁面。 
-2. 在 body 標籤內新增下列內容，以在此頁面中包含我們稍早新增的兩個 javascript。 
+1. Create a new page called **home.html** in your solution and set it as the starting page for your web app. 
+2. Include the two javascripts we added earlier in this page by adding the following within the body tag. 
 
-	    <script type="text/javascript" src="javascript/main.js"></script>
-	    <script type="text/javascript" src="javascript/azure-engagement.js"></script>
+        <script type="text/javascript" src="javascript/main.js"></script>
+        <script type="text/javascript" src="javascript/azure-engagement.js"></script>
 
-3. 更新 body 標籤以呼叫 EngagementAgent 的 `startActivity` 方法
-		
-		<body onload="engagement.agent.startActivity('Home')">
+3. Update the body tag to call EngagementAgent's `startActivity` method
+        
+        <body onload="engagement.agent.startActivity('Home')">
 
-4. 您的 **home.html** 看起來會像下面這樣
-		
-		<html>
-		<head>
-			...
-		</head>
-		<body onload="engagement.agent.startActivity('Home')">
-		    <script type="text/javascript" src="javascript/main.js"></script>
-		    <script type="text/javascript" src="javascript/azure-engagement.js"></script>
-		</body>
-		</html>
+4. Here is what your **home.html** will look like
+        
+        <html>
+        <head>
+            ...
+        </head>
+        <body onload="engagement.agent.startActivity('Home')">
+            <script type="text/javascript" src="javascript/main.js"></script>
+            <script type="text/javascript" src="javascript/azure-engagement.js"></script>
+        </body>
+        </html>
 
-##將應用程式與即時監視連接
+##<a name="connect-app-with-real-time-monitoring"></a>Connect app with real-time monitoring
 
-[AZURE.INCLUDE [將應用程式與即時監視連接](../../includes/mobile-engagement-connect-app-with-monitor.md)]
+[AZURE.INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ![][2]
 
-##擴充分析
+##<a name="extend-analytics"></a>Extend analytics
 
-以下是 Web SDK 中目前可用於分析的所有可用方法︰
+Here are all the methods currently available with Web SDK that you can use for analytics:
 
-1. 活動/網頁︰
+1. Activities/Web pages:
 
-		engagement.agent.startActivity(name);
-		engagement.agent.endActivity();
+        engagement.agent.startActivity(name);
+        engagement.agent.endActivity();
 
-2. 事件
-		
-		engagement.agent.sendEvent(name, extras);
+2. Events
+        
+        engagement.agent.sendEvent(name, extras);
 
-3. 錯誤數
+3. Errors
 
-		engagement.agent.sendError(name, extras);
+        engagement.agent.sendError(name, extras);
 
-4. 作業
+4. Jobs
 
-		engagement.agent.startJob(name);
-		engagement.agent.endJob(name);
+        engagement.agent.startJob(name);
+        engagement.agent.endJob(name);
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-web-app-get-started/visual-studio-solution-js.png
 [2]: ./media/mobile-engagement-web-app-get-started/session.png
 
-<!----HONumber=AcomDC_0615_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

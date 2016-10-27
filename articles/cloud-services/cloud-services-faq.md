@@ -1,70 +1,79 @@
 <properties
-	pageTitle="雲端服務常見問題集 | Microsoft Azure"
-	description="關於雲端服務的常見問題集。"
-	services="cloud-services"
-	documentationCenter=""
-	authors="Thraka"
-	manager="timlt"
-	editor=""/>
+    pageTitle="Cloud Services FAQ | Microsoft Azure"
+    description="Frequently asked questions about Cloud Services."
+    services="cloud-services"
+    documentationCenter=""
+    authors="Thraka"
+    manager="timlt"
+    editor=""/>
 
 <tags
-	ms.service="cloud-services"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/19/2016"
-	ms.author="adegeo"/>
+    ms.service="cloud-services"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/19/2016"
+    ms.author="adegeo"/>
 
-# 雲端服務常見問題集
-本文提供 Microsoft Azure 雲端服務的一些常見問題解答。您也可以造訪 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083)，以取得一般的 Azure 價格和支援資訊。您也可以參閱[雲端服務 VM 大小頁面](cloud-services-sizes-specs.md)以取得大小資訊。
 
-## 憑證
+# <a name="cloud-services-faq"></a>Cloud Services FAQ
+This article answers some frequently asked questions about Microsoft Azure Cloud Services. You can also visit the [Azure Support FAQ](http://go.microsoft.com/fwlink/?LinkID=185083) for general Azure pricing and support information. You can also consult the [Cloud Services VM Size page](cloud-services-sizes-specs.md) for size information.
 
-### 我應該將憑證安裝在何處？
+## <a name="certificates"></a>Certificates
 
-- **My** 具有私密金鑰的應用程式憑證 (*.pfx、*.p12)。
+### <a name="where-should-i-install-my-certificate?"></a>Where should I install my certificate?
 
-- **CA** 所有中繼憑證都會放入此存放區 (原則和子 CA)。
+- **My**  
+Application Certificate with private key (\*.pfx, \*.p12).
 
-- **ROOT** 根 CA 存放區，因此主要的根 CA 憑證應該放在這裡。
+- **CA**  
+All your intermediate certificates go in this store (Policy and Sub CAs).
 
-### 無法移除過期的憑證
+- **ROOT**  
+The root CA store, so your main root CA cert should go here.
 
-Azure 會防止您移除使用中的憑證。您必須刪除使用憑證的部署，或使用不同憑證或更新的憑證來更新部署。
+### <a name="i-can't-remove-expired-certificate"></a>I can't remove expired certificate
 
-### 刪除過期的憑證
+Azure prevents you from removing a certificate while it is in use. You need to either delete the deployment that uses the certificate, or update the deployment with a different or renewed certificate.
 
-只要憑證不在使用中，您就可以使用 [Remove-AzureCertificate](https://msdn.microsoft.com/library/azure/mt589145.aspx) PowerShell Cmdlet 來移除憑證。
+### <a name="delete-an-expired-certificate"></a>Delete an expired certificate
 
-### 我有名為 Microsoft Azure Service Management for Extensions 的已過期憑證
+As long as the certificate is not in use, you can use the [Remove-AzureCertificate](https://msdn.microsoft.com/library/azure/mt589145.aspx) PowerShell cmdlet to remove a certificate.
 
-每當有擴充功能新增至雲端服務 (例如遠端桌面擴充功能)，就會建立這些憑證。這些憑證只會用於加密和解密擴充功能的私用組態。這些憑證是否過期並不重要。系統不會檢查到期日期。
+### <a name="i-have-expired-certificates-named-windows-azure-service-management-for-extensions"></a>I have expired certificates named Windows Azure Service Management for Extensions
 
-### 我已刪除的憑證一直重複出現
+These certificates are created whenever an extension is added to the cloud service such as the Remote Desktop extension. These certificates are only used for encrypting and decrypting the private configuration of the extension. It does not matter if these certificates expire. The expiration date is not checked.
 
-這些憑證會一直重複出現很可能是因為您所使用的工具，例如 Visual Studio。每當您以使用某憑證的工具重新連線，該憑證就會再次上傳至 Azure。
+### <a name="certificates-i-have-deleted-keep-reappearing"></a>Certificates I have deleted keep reappearing
 
-### 我的憑證一直消失
+These keep reappearing most likely because of a tool you're using, such as Visual Studio. Whenever you reconnect with a tool that is using a certificate, it will again be uploaded to Azure.
 
-當虛擬機器執行個體回收時，所有本機變更都會遺失。請在每次角色啟動時使用[啟動工作](cloud-services-startup-tasks.md)將憑證安裝到虛擬機器。
+### <a name="my-certificates-keep-disappearing"></a>My certificates keep disappearing
 
-### 我在入口網站中找不到我的管理憑證
+When the virtual machine instance recycles, all local changes are lost. Use a [startup task](cloud-services-startup-tasks.md) to install certificates to the virtual machine each time the role starts.
 
-[管理憑證](..\azure-api-management-certs.md)只能在 Azure 傳統入口網站中取得。目前的 Azure 入口網站沒有使用管理憑證。
+### <a name="i-cannot-find-my-management-certificates-in-the-portal"></a>I cannot find my management certificates in the portal
 
-### 如何停用管理憑證？
+[Management certificates](..\azure-api-management-certs.md) are only avialable in the Azure Classic Portal. The current Azure portal does not use management certificates. 
 
-[管理憑證](..\azure-api-management-certs.md)無法停用。當您不想再使用它們之後，可以透過 Azure 傳統入口網站將它們刪除。
+### <a name="how-can-i-disable-a-management-certificate?"></a>How can I disable a management certificate?
 
-### 如何為特定 IP 位址建立 SSL 憑證？
+[Management certificates](..\azure-api-management-certs.md) cannot be disabled. You delete them through the Azure Classic Portal when you do not want them to be used anymore.
 
-請遵照[建立憑證教學課程](cloud-services-certs-create.md)中的指示執行。使用 IP 位址做為 DNS 名稱。
+### <a name="how-do-i-create-an-ssl-certificate-for-a-specific-ip-address?"></a>How do I create an SSL certificate for a specific IP address?
 
-## 疑難排解
+Follow the directions in the [create a certificate tutorial](cloud-services-certs-create.md). Use the IP address as the DNS Name.
 
-### 無法在多 VIP 的雲端服務中保留 IP
+## <a name="troubleshooting"></a>Troubleshooting
 
-首先，請確定您想要保留其 IP 的虛擬機器執行個體已開啟。其次，請確定您會將保留的 IP 同時用於預備與生產部署。請**勿**於部署正在升級時變更設定。
+### <a name="i-can't-reserve-an-ip-in-a-multi-vip-cloud-service"></a>I can't reserve an IP in a multi-VIP cloud service
 
-<!---HONumber=AcomDC_0914_2016-->
+First, make sure that the virtual machine instance that you're trying to reserve the IP for is turned on. Second, make sure that you're using Reserved IPs for bother the staging and production deployments. **Do not** change the settings while the deployment is upgrading.
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

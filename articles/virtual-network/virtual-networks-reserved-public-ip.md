@@ -1,6 +1,6 @@
 <properties
-   pageTitle="保留的 IP |Microsoft Azure"
-   description="了解保留的 IP 以及如何管理"
+   pageTitle="Reserved IP | Microsoft Azure"
+   description="Understand reserved IPs and how to manage them"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -15,119 +15,124 @@
    ms.date="02/10/2016"
    ms.author="jdial" />
 
-# 保留的 IP 概觀
-Azure 中的 IP 位址分為兩個類別：動態和保留。依預設由 Azure 管理的公用 IP 位址是動態的。這表示當資源時關閉或解除配置時，用於指定雲端服務 (VIP)，或直接存取 VM 或角色執行個體 (ILPIP) 的 IP 位址可以隨時變更。
 
-若要防止 IP 位址變更，您可以保留 IP 位址。保留的 IP 僅能用作 VIP，即使資源都關閉或解除配置，也能確保雲端服務的 IP 位址將會相同。此外，您可以轉換現有的動態 IP，作為保留的 IP 位址的 VIP。
+# <a name="reserved-ip-overview"></a>Reserved IP Overview
+IP addresses in Azure fall into two categories: dynamic and reserved. Public IP addresses managed by Azure are dynamic by default. That means that the IP address used for a given cloud service (VIP) or to access a VM or role instance directly (ILPIP) can change from time to time, when resources are shutdown or deallocated.
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何使用 [Resource Manager 部署模型](virtual-network-ip-addresses-overview-arm.md)來保留靜態公用 IP 位址。
+To prevent IP addresses from changing, you can reserve an IP address. Reserved IPs can be used only as a VIP, ensuring that the IP address for the cloud service will be the same even as resources are shutdown or deallocated. Furthermore, you can convert existing dynamic IPs used as a VIP to a reserved IP address.
 
-請確定您了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md)在 Azure 中的運作方式。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Learn how to reserve a static public IP address using the [Resource Manager deployment model](virtual-network-ip-addresses-overview-arm.md).
 
-## 何時需要保留的 IP？
-- **您想要確保 IP 會保留在您的訂用帳戶中**。如果您想要保留 IP 位址，使其在任何情況下將不會從訂用帳戶釋放，您應該使用保留的公用 IP。
-- **即使在已停止或解除配置狀態 (VM)，您想要保持 IP 與雲端服務之間的關聯**。如果您想要讓服務可以使用 IP 位址來存取，且即使雲端服務中的 VM 已停止或解除配置，該 IP 位址也不會變更。
-- **您想要確保來自 Azure 的輸出流量使用可預測的 IP 位址**。您可能必須設定內部部署防火牆，以便僅允許來自特定 IP 位址的流量。藉由保留 IP，您將會知道來源 IP 位址，且不必因為 IP 變更而更新您的防火牆規則。
+Make sure you understand how [IP addresses](virtual-network-ip-addresses-overview-classic.md) work in Azure.
 
-## 常見問題集
-1. 我可以針對所有 Azure 服務使用保留的 IP 嗎？
-  - 保留的 IP 僅可用於 VM 和雲端服務透過 VIP 公開的執行個體角色。
-1. 我可以有多少保留的 IP？
-  - 目前，所有 Azure 訂用帳戶已獲授權可使用 20 個保留的 IP。不過，您可以要求其他保留的 IP。請參閱＜[訂用帳戶和服務限制](../azure-subscription-service-limits.md)＞頁面以取得詳細資訊。
-1. 保留的 IP 是否會收取費用？
-  - 請參閱＜[保留的 IP 位址定價詳細資料](http://go.microsoft.com/fwlink/?LinkID=398482)＞以取得定價資訊。
-1. 我該如何保留 IP 位址？
-  - 您可以使用 PowerShell 或 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)，在特定區域中保留 IP 位址。這個保留的 IP 位址與您的訂用帳戶相關聯。您無法使用管理入口網站來保留 IP 位址。
-1. 我可以使用這個搭配以同質群組為基礎的 VNet 嗎？
-  - 保留的 IP 僅在區域 VNet 才受支援。不支援與同質群組相關聯的 VNet。如需有關將 VNet 與區域或同質群組建立關聯的詳細資訊，請參閱＜[關於區域 VNet 與同質群組](virtual-networks-migrate-to-regional-vnet.md)＞。
+## <a name="when-do-i-need-a-reserved-ip?"></a>When do I need a reserved IP?
+- **You want to ensure that the IP is reserved in your subscription**. If you want to reserve an IP address that will not be released from your subscription under any circumstance, you should use a reserved public IP.  
+- **You want your IP to stay with your cloud service even across stopped or deallocated state (VMs)**. If you want your service to be accessed by using an IP address that will not change even when VMs in the cloud service are stop or deallocated.
+- **You want to ensure that outbound traffic from Azure uses a predictable IP address**. You may have your on-premises firewall configured to allow only traffic from specific IP addresses. By reserving an IP, you will know the source IP address and won’t have to update your firewall rules due to an IP change.
 
-## 如何管理保留的 VIP
+## <a name="faq"></a>FAQ
+1. Can I use a reserved IP for all Azure services?  
+  - Reserved IPs can only be used for VMs and cloud service instance roles exposed through a VIP.
+1. How many reserved IPs can I have?  
+  - At this time, all Azure subscriptions are authorized to use 20 reserved IPs. However, you can request additional reserved IPs. See the [Subscription and Service Limits](../azure-subscription-service-limits.md) page for more information.
+1. Is there a charge for reserved IPs?
+  - See [Reserved IP Address Pricing Details](http://go.microsoft.com/fwlink/?LinkID=398482) for pricing information.
+1. How do I reserve an IP address?
+  - You can use PowerShell or the [Azure Management REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx) to reserve an IP address in a particular region. This reserved IP address is associated to your subscription. You cannot reserve an IP address by using the Management Portal.
+1. Can I use this with affinity group based VNets?
+  - Reserved IPs are only supported in regional VNets. It is not supported for VNets that are associated with affinity groups. For more information about associating a VNet with a region or an affinity group, see [About Regional VNets and Affinity Groups](virtual-networks-migrate-to-regional-vnet.md).
 
-您必須將保留的 IP 新增至訂用帳戶才能使用。若要在*美國中部*位置從可用的公用 IP 位址集區來建立保留的 IP，請執行下列 PowerShell 命令：
+## <a name="how-to-manage-reserved-vips"></a>How to manage reserved VIPs
 
-	New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US"
+Before you can use reserved IPs, you must add it to your subscription. To create a reserved IP from the pool of public IP addresses available in the *Central US* location, run the following PowerShell command:
 
-但是請注意，您無法指定正在保留的 IP。若要檢視哪些 IP 位址會保留在訂用帳戶中，執行下列 PowerShell 命令，並注意 *ReservedIPName* 和 *Address* 的值：
+    New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US"
 
-	Get-AzureReservedIP
+Notice, however, that you cannot specify what IP is being reserved. To view what IP addresses are reserved in your subscription, run the following PowerShell command, and notice the values for *ReservedIPName* and *Address*:
 
-	ReservedIPName       : MyReservedIP
-	Address              : 23.101.114.211
-	Id                   : d73be9dd-db12-4b5e-98c8-bc62e7c42041
-	Label                :
-	Location             : Central US
-	State                : Created
-	InUse                : False
-	ServiceName          :
-	DeploymentName       :
-	OperationDescription : Get-AzureReservedIP
-	OperationId          : 55e4f245-82e4-9c66-9bd8-273e815ce30a
-	OperationStatus      : Succeeded
+    Get-AzureReservedIP
 
-一旦保留 IP，其就會與您的訂用帳戶相關聯，直到刪除為止。若要刪除如上所示之保留的 IP，請執行下列 PowerShell 命令：
+    ReservedIPName       : MyReservedIP
+    Address              : 23.101.114.211
+    Id                   : d73be9dd-db12-4b5e-98c8-bc62e7c42041
+    Label                :
+    Location             : Central US
+    State                : Created
+    InUse                : False
+    ServiceName          :
+    DeploymentName       :
+    OperationDescription : Get-AzureReservedIP
+    OperationId          : 55e4f245-82e4-9c66-9bd8-273e815ce30a
+    OperationStatus      : Succeeded
 
-	Remove-AzureReservedIP -ReservedIPName "MyReservedIP"
+Once an IP is reserved, it remains associated to your subscription until you delete it. To delete the reserved IP shown above, run the following PowerShell command:
 
-## 如何保留現有雲端服務的 IP 位址
+    Remove-AzureReservedIP -ReservedIPName "MyReservedIP"
 
-您可以新增 *-ServiceName* 參數，以保留現有雲端服務的 IP 位址。若要在*美國中部*位置保留雲端服務 *TestService* 的 IP 位址，請執行下列 PowerShell 命令：
+## <a name="how-to-reserve-the-ip-address-of-an-existing-cloud-service"></a>How to reserve the IP address of an existing cloud service
 
-	New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US" -ServiceName TestService
+You can reserve the IP address of an existing cloud service by adding the *-ServiceName* parameter. To reserve the IP address of a cloud service *TestService* in the *Central US* location, run the following PowerShell command:
+
+    New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US" -ServiceName TestService
 
 
-## 如何建立保留的 IP 至新雲端服務的關聯
-下面的指令碼會建立新保留的 IP，然後將其關聯至新的雲端服務，稱為 *TestService*。
+## <a name="how-to-associate-a-reserved-ip-to-a-new-cloud-service"></a>How to associate a reserved IP to a new cloud service
+The script below creates a new reserved IP, then associates it to a new cloud service named *TestService*.
 
-	New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US"
-	$image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
-	New-AzureVMConfig -Name TestVM -InstanceSize Small -ImageName $image.ImageName `
-	| Add-AzureProvisioningConfig -Windows -AdminUsername adminuser -Password MyP@ssw0rd!! `
-	| New-AzureVM -ServiceName TestService -ReservedIPName MyReservedIP -Location "Central US"
+    New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US"
+    $image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
+    New-AzureVMConfig -Name TestVM -InstanceSize Small -ImageName $image.ImageName `
+  	| Add-AzureProvisioningConfig -Windows -AdminUsername adminuser -Password MyP@ssw0rd!! `
+  	| New-AzureVM -ServiceName TestService -ReservedIPName MyReservedIP -Location "Central US"
 
->[AZURE.NOTE] 當您建立保留的 IP 以搭配使用雲端服務時，您仍然需要針對輸入通訊使用 *VIP:&lt;連接埠號碼>* 來參照 VM。保留 IP 並不表示您可以直接連接至 VM。保留的 IP 會指派給已部署 VM 的雲端服務。如果您想要透過 IP 直接連接到 VM，您必須設定執行個體層級公用 IP。執行個體層級公用 IP 是一種公用 IP 類型 (稱為 ILPIP)，其會直接指派給您的 VM。此類型 IP 無法保留。請參閱＜[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md)＞以取得詳細資訊。
+>[AZURE.NOTE] When you create a reserved IP to use with a cloud service, you’ll still need to refer to the VM by using *VIP:&lt;port number>* for inbound communication. Reserving an IP does not mean you can connect to the VM directly. The reserved IP is assigned to the cloud service that the VM has been deployed to. If you want to connect to a VM by IP directly, you have to configure an instance-level public IP. An instance-level public IP is a type of public IP (called a ILPIP) that is assigned directly to your VM. It cannot be reserved. See [Instance-level Public IP (ILPIP)](virtual-networks-instance-level-public-ip.md) for more information.
 
-## 如何從執行中部署移除保留的 IP
-若要針對上述指令碼中建立的新服務，移除新增至其中之保留的 IP，請執行下列 PowerShell 命令：
+## <a name="how-to-remove-a-reserved-ip-from-a-running-deployment"></a>How to remove a reserved IP from a running deployment
+To remove the reserved IP added to the new service created in the script above, run the following PowerShell command:
 
-	Remove-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestService
+    Remove-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestService
 
->[AZURE.NOTE] 從執行中部署移除保留的 IP 並不會從您的訂用帳戶移除保留項目。這僅會釋出 IP，以便訂用帳戶中的其他資源可以使用。
+>[AZURE.NOTE] Removing a reserved IP from a running deployment does not remove the reservation from your subscription. It simply frees the IP to be used by another resource in your subscription.
 
-## 如何建立保留的 IP 至執行中部署的關聯
-下方的指令碼會建立稱為 *TestService2* 的新雲端服務，以及稱為 *TestVM2* 的新 VM，然後建立稱為 *MyReservedIP* 之現有保留的 IP 至雲端服務的關聯。
+## <a name="how-to-associate-a-reserved-ip-to-a-running-deployment"></a>How to associate a reserved IP to a running deployment
+The script below creates a new cloud service named *TestService2* with a new VM named *TestVM2*, and then associates the existing reserved IP named *MyReservedIP* to the cloud service.
 
-	$image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
-	New-AzureVMConfig -Name TestVM2 -InstanceSize Small -ImageName $image.ImageName `
-	| Add-AzureProvisioningConfig -Windows -AdminUsername adminuser -Password MyP@ssw0rd!! `
-	| New-AzureVM -ServiceName TestService2 -Location "Central US"
-	Set-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestService2
+    $image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
+    New-AzureVMConfig -Name TestVM2 -InstanceSize Small -ImageName $image.ImageName `
+  	| Add-AzureProvisioningConfig -Windows -AdminUsername adminuser -Password MyP@ssw0rd!! `
+  	| New-AzureVM -ServiceName TestService2 -Location "Central US"
+    Set-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestService2
 
-## 如何使用服務組態檔建立保留的 IP 至雲端服務的關聯
-您也可以使用服務組態 (CSCFG) 檔建立保留的 IP 至雲端服務的關聯。下方範例 XML 示範如何設定雲端服務，以便使用稱為 *MyReservedIP* 之保留的 VIP：
+## <a name="how-to-associate-a-reserved-ip-to-a-cloud-service-by-using-a-service-configuration-file"></a>How to associate a reserved IP to a cloud service by using a service configuration file
+You can also associate a reserved IP to a cloud service by using a service configuration (CSCFG) file. The sample xml below shows how to configure a cloud service to use a reserved VIP named *MyReservedIP*:
 
-	<?xml version="1.0" encoding="utf-8"?>
-	<ServiceConfiguration serviceName="ReservedIPSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
-	  <Role name="WebRole1">
-	    <Instances count="1" />
-	    <ConfigurationSettings>
-	      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-	    </ConfigurationSettings>
-	  </Role>
-	  <NetworkConfiguration>
-	    <AddressAssignments>
-	      <ReservedIPs>
-	       <ReservedIP name="MyReservedIP"/>
-	      </ReservedIPs>
-	    </AddressAssignments>
-	  </NetworkConfiguration>
-	</ServiceConfiguration>
+    <?xml version="1.0" encoding="utf-8"?>
+    <ServiceConfiguration serviceName="ReservedIPSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
+      <Role name="WebRole1">
+        <Instances count="1" />
+        <ConfigurationSettings>
+          <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+        </ConfigurationSettings>
+      </Role>
+      <NetworkConfiguration>
+        <AddressAssignments>
+          <ReservedIPs>
+           <ReservedIP name="MyReservedIP"/>
+          </ReservedIPs>
+        </AddressAssignments>
+      </NetworkConfiguration>
+    </ServiceConfiguration>
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md)在傳統部署模型中的運作方式。
+- Understand how [IP addressing](virtual-network-ip-addresses-overview-classic.md) works in the classic deployment model.
 
-- 深入了解[保留的私人 IP 位址](virtual-networks-reserved-private-ip.md)。
+- Learn about [reserved private IP addresses](virtual-networks-reserved-private-ip.md).
 
-- 深入了解[執行個體層級公用 IP (ILPIP) 位址](virtual-networks-instance-level-public-ip.md)。
+- Learn about [Instance Level Public IP (ILPIP) addresses](virtual-networks-instance-level-public-ip.md).
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

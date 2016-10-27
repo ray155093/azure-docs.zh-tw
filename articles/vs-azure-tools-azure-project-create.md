@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Visual Studio 建立 Azure 私人雲端 | Microsoft Azure"
-   description="使用 Visual Studio 建立 Azure 專案"
+   pageTitle="Creating an Azure project with Visual Studio | Microsoft Azure"
+   description="Creating an Azure project with Visual Studio"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,51 +15,56 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 使用 Visual Studio 建立 Azure 專案
 
-Azure Tools for Visual Studio 提供可讓您建立 Azure 雲端服務的範本。此工具也可協助您設定、偵錯雲端服務，以及將雲端服務部署至 Azure。
+# <a name="creating-an-azure-project-with-visual-studio"></a>Creating an Azure Project with Visual Studio
 
-Azure 雲端服務解決方案包含下列專案類型：
+The Azure Tools for Visual Studio provide a template that lets you create a cloud service for Azure. The tools also help you configure, debug, and deploy the cloud service to Azure.
 
-- **Azure 專案**
+An Azure cloud service solution contains the following types of projects:
 
-    Azure 專案與方案中的角色專案有關。它還包含服務定義檔和服務組態檔。服務定義檔可定義應用程式的執行階段設定，包括需要哪些角色、端點和虛擬機器大小。服務組態檔可設定一個角色可以執行的執行個體數目，以及為角色定義的設定值。如需有關這些設定的詳細資訊，請參閱[如何：使用 Visual Studio 設定 Azure 雲端服務的角色](vs-azure-tools-configure-roles-for-cloud-service.md)。
+- **Azure project**
 
-- **Web 角色專案**
+    The Azure project has associations to the role projects in the solution. It also includes the service definition and service configuration files. The service definition file defines the runtime settings for your application including what roles are required, endpoints, and virtual machine size. The service configuration file configures how many instances of a role are run and the values of the settings defined for a role. For more information about these settings, see [How to: Configure the Roles for an Azure Cloud Service with Visual Studio](vs-azure-tools-configure-roles-for-cloud-service.md).
 
-    背景工作角色會執行背景處理。背景工作角色可以與儲存體服務和其他網際網路服務進行通訊。背景工作角色可以有任意數目的 HTTP、HTTPS 或 TCP 端點。
+- **Web role project**
 
-    - **ASP.NET Web 角色**：適用於建置 ASP.NET 應用程式與 Web 前端
-    - **ASP.NET MVC5 Web 角色**
-    - **ASP.NET MVC4 Web 角色**
-    - **ASP.NET MVC3 Web 角色**
-    - **WCF 服務 Web 角色**：適用於建置 WCF 服務
-    - **Silverlight 企業營運應用程式 Web 角色** (需要 Visual Studio 2012)
+    A worker role performs background processing. A worker role can communicate with storage services and with other Internet-based services. A worker role can have any number of HTTP, HTTPS, or TCP endpoints.
 
-- **快取背景工作角色**
+    - **ASP.NET Web Role**, for building an ASP.NET application with a web front end
+    - **ASP.NET MVC5 Web Role**
+    - **ASP.NET MVC4 Web Role**
+    - **ASP.NET MVC3 Web Role**
+    - **WCF Service Web Role**, for building a WCF service
+    - **Silverlight Business Application Web Role** (requires Visual Studio 2012)
 
-    可提供應用程式專用快取的角色。
+- **Cache Worker Role**
 
-- **搭配服務匯流排佇列的背景工作角色**
+    A role that provides a dedicated cache to your application.
 
-    服務匯流排佇列可提供與背景工作角色處理序進行通訊的訊息佇列功能。如需詳細資訊，請參閱[如何使用服務匯流排佇列](http://go.microsoft.com/fwlink/?LinkId=260560) (英文)。
+- **Worker Role with Service Bus Queue**
 
-## 在 Visual Studio 中建立 Azure 雲端服務專案
+    A service bus queue that provides message queuing functionality to communicate with the worker process. For more information, see [How to Use Service Bus Queues](http://go.microsoft.com/fwlink/?LinkId=260560).
 
-1. 以系統管理員身分啟動 Microsoft Visual Studio。
+## <a name="to-create-an-azure-cloud-service-project-in-visual-studio"></a>To create an Azure cloud service project in Visual Studio
 
-1. 在功能表上，依序選擇 [檔案]、[新增] 和 [專案]。
+1. Start Microsoft Visual Studio as an administrator.
 
-1. 在 [專案類型] 窗格中，從 Visual C# 或 Visual Basic 專案範本節點選擇 [雲端]。
+1. On the menu bar, choose **File**, **New**, **Project**.
 
-1. 在 [範本] 窗格中選擇 [Azure 雲端服務]。
+1. In the **Project Types** pane, choose **Cloud** from the Visual C# or Visual Basic project template nodes.
 
-1. 指定您想要用來開發專案的 .NET Framework 版本。
+1. In the **Templates** pane, choose  **Azure Cloud Service**.
 
-1. 輸入專案的名稱和位置以及方案的名稱。選擇 [確定] 按鈕。
+1. Specify which version of the .NET Framework you want to use to develop your project.
 
-1. 在 [新增 Azure 專案] 對話方塊中，選擇您想要新增的角色，並選擇向右箭號按鈕將它們加入至您的方案。您可以根據需求加入任意多個角色。
+1. Enter a name and location for your project and a name for the solution. Choose the **OK** button.
 
-1. 若要重新命名已加入至專案的角色，請將游標放在 [新增 Azure 專案] 對話方塊中的角色上面，然後選擇角色右側的 [重新命名]。您也可以為已加入方案的角色重新命名。
+1. In the **New Azure Project** dialog box, choose the roles that you want to add, and choose the right arrow button to add them to your solution. You can add as many roles as you need.
 
-<!---HONumber=AcomDC_0817_2016-->
+1. To rename a role that you've added to your project, hover on the role in the **New Azure Project** dialog box, and choose the **Rename** icon to the right of the role. You can also rename a role within your solution after it has been added.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

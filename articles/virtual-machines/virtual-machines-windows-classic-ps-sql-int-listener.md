@@ -1,152 +1,157 @@
 <properties
-	pageTitle="設定 Always On 可用性群組的 ILB 接聽程式 | Microsoft Azure"
-	description="本教學課程使用以傳統部署模型建立的資源，並使用內部負載平衡器 (ILB) 在 Azure 中建立 Always On 可用性群組接聽程式。"
-	services="virtual-machines-windows"
-	documentationCenter="na"
-	authors="MikeRayMSFT"
-	manager="jhubbard"
-	editor=""
-	tags="azure-service-management"/>
+    pageTitle="Configure an ILB Listener for Always On Availability Groups | Microsoft Azure"
+    description="This tutorial uses resources created with  the classic deployment model, and creates an Always On Availability Group Listener in Azure using an Internal Load Balancer (ILB)."
+    services="virtual-machines-windows"
+    documentationCenter="na"
+    authors="MikeRayMSFT"
+    manager="jhubbard"
+    editor=""
+    tags="azure-service-management"/>
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="08/19/2016"
-	ms.author="MikeRayMSFT" />
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="08/19/2016"
+    ms.author="MikeRayMSFT" />
 
-# 設定 Azure 中 Always On 可用性群組的 ILB 接聽程式
+
+# <a name="configure-an-ilb-listener-for-always-on-availability-groups-in-azure"></a>Configure an ILB listener for Always On Availability Groups in Azure
 
 > [AZURE.SELECTOR]
-- [內部接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)
-- [外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)
+- [Internal Listener](virtual-machines-windows-classic-ps-sql-int-listener.md)
+- [External Listener](virtual-machines-windows-classic-ps-sql-ext-listener.md)
 
-## 概觀
+## <a name="overview"></a>Overview
 
-本主題說明如何使用「內部負載平衡器」(ILB) 來設定「Always On 可用性群組」的接聽程式。
+This topic shows you how to configure a listener for an Always On Availability Group by using an **Internal Load Balancer (ILB)**.
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 若要在 Resource Manager 模型中設定 Always On 可用性群組的 ILB 接聽程式，請參閱[在 Azure 中設定 Always On 可用性群組的內部負載平衡器](virtual-machines-windows-portal-sql-alwayson-int-listener.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] To configure an ILB listener for an Always On availability group in Resource Manager model, see [Configure an internal load balancer for an Always On availability group in Azure](virtual-machines-windows-portal-sql-alwayson-int-listener.md).
 
 
-您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。下列步驟假設您已[設定可用性群組](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
+Your Availability Group can contain replicas that are on-premises only, Azure only, or span both on-premises and Azure for hybrid configurations. Azure replicas can reside within the same region or across multiple regions using multiple virtual networks (VNets). The steps below assume you have already [configured an availability group](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md) but have not configured a listener.
 
-## 內部接聽程式指導方針和限制
-請注意下列關於 Azure 中可用性群組接聽程式使用 ILB 的指導方針：
+## <a name="guidelines-and-limitations-for-internal-listeners"></a>Guidelines and limitations for internal listeners
+Note the following guidelines on the availability group listener in Azure using ILB:
 
-- 可用性群組接聽程式支援 Windows Server 2008 R2、Windows Server 2012 和 Windows Server 2012 R2。
+- The availability group listener is supported on Windows Server 2008 R2, Windows Server 2012, and Windows Server 2012 R2.
 
-- 每個雲端服務僅支援一個內部可用性群組接聽程式，因為接聽程式被設定為 ILB，且每個雲端服務僅有一個 ILB；但是可以建立多個外部接聽程式。如需詳細資訊，請參閱[在 Azure 中設定 Always On 可用性群組的外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)。
+- Only one internal availability group listener is supported per cloud service, because the listener is configured to the ILB, and there is only one ILB per cloud service. However, it is possible to create multiple external listeners. For more information, see [Configure an external listener for Always On Availability Groups in Azure](virtual-machines-windows-classic-ps-sql-ext-listener.md).
 
-- 有外部接聽程式也使用雲端服務的公開 VIP 時，無法在同一個雲端服務中建立內部接聽程式。
+- It is not supported to create an internal listener in the same cloud service where you also have an external listener using the cloud service's public VIP.
 
-## 判斷接聽程式的存取性
+## <a name="determine-the-accessibility-of-the-listener"></a>Determine the accessibility of the listener
 
 [AZURE.INCLUDE [ag-listener-accessibility](../../includes/virtual-machines-ag-listener-determine-accessibility.md)]
 
-本文著重於建立使用**內部負載平衡器 (ILB)** 的接聽程式。如果您需要公用/外部接聽程式，請參閱本文提供設定[外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)之步驟的版本。
+This article focuses on creating a listener that uses an **Internal Load Balancer (ILB)**. If you need an public/external listener, see the version of this article that provides steps for setting up an [external listener](virtual-machines-windows-classic-ps-sql-ext-listener.md)
 
-## 使用伺服器直接回傳建立負載平衡 VM 端點
+## <a name="create-load-balanced-vm-endpoints-with-direct-server-return"></a>Create load-balanced VM endpoints with direct server return
 
-對於 ILB，您必須先建立內部負載平衡器。此動作可使用下方的指令碼來完成。
+For ILB, you must first create the internal load balancer. This is done in the script below.
 
 [AZURE.INCLUDE [load-balanced-endpoints](../../includes/virtual-machines-ag-listener-load-balanced-endpoints.md)]
 
-1. 針對 **ILB**，請指派靜態 IP 位址。首先，執行下列命令來檢查目前的 VNet 組態：
+1. For **ILB**, you should assign a static IP address. First, examine the current VNet configuration by running the following command:
 
-		(Get-AzureVNetConfig).XMLConfiguration
+        (Get-AzureVNetConfig).XMLConfiguration
 
-1. 請記下子網路 (其中包含主控複本的 VM) 的 **Subnet** 名稱。這將用於指令碼中的 **$SubnetName** 參數。
+1. Note the **Subnet** name for the subnet that contains the VMs that host the replicas. This will be used in the **$SubnetName** parameter in the script.
 
-1. 然後記下子網路 (其中包含主控複本的 VM) 的 **VirtualNetworkSite** 名稱和起始的 **AddressPrefix**。將這兩個值傳遞至 **Test-AzureStaticVNetIP** 命令並檢查 **AvailableAddresses** 以尋找可用的 IP 位址。例如，如果 VNet 被命名為 *MyVNet* 且具有以 *172.16.0.128* 開始的子網路位址範圍，下列命令便會列出可用的位址：
+1. Then note the **VirtualNetworkSite** name and the starting **AddressPrefix** for the subnet that contains the VMs that host the replicas. Look for an available IP Address by passing both values to the **Test-AzureStaticVNetIP** command and examining the **AvailableAddresses**. For example, if the VNet was named *MyVNet* and had a subnet address range that started at *172.16.0.128*, the following command would list available addresses:
 
-		(Test-AzureStaticVNetIP -VNetName "MyVNet"-IPAddress 172.16.0.128).AvailableAddresses
+        (Test-AzureStaticVNetIP -VNetName "MyVNet"-IPAddress 172.16.0.128).AvailableAddresses
 
-1. 選擇其中一個可用的位址，並將其用於下列指令碼中的 **$ILBStaticIP** 參數。
+1. Choose one of the available addresses and use it in the **$ILBStaticIP** parameter of the following script.
 
-3. 將下方的 PowerShell 指令碼複製到文字編輯器，並設定變數值以符合您的環境 (請注意，某些參數已提供預設值)。請注意，使用同質群組的現有部署無法新增 ILB。如需有關 ILB 需求的詳細資訊，請參閱[內部負載平衡器](../load-balancer/load-balancer-internal-overview.md)。此外，如果您的可用性群組跨越 Azure 區域，您必須針對雲端服務和位於該資料中心的節點，在每個資料中心執行一次指令碼。
+3. Copy the PowerShell script below into a text editor and set the variable values to suit your environment (note that defaults have been provided for some parameters). Note that existing deployments that use affinity groups cannot add ILB. For more information on ILB requirements, see [Internal Load Balancer](../load-balancer/load-balancer-internal-overview.md). Also, if your availability group spans Azure regions, you must run the script once in each datacenter for the cloud service and nodes that reside in that datacenter.
 
-		# Define variables
-		$ServiceName = "<MyCloudService>" # the name of the cloud service that contains the availability group nodes
-		$AGNodes = "<VM1>","<VM2>","<VM3>" # all availability group nodes containing replicas in the same cloud service, separated by commas
-		$SubnetName = "<MySubnetName>" # subnet name that the replicas use in the VNet
-		$ILBStaticIP = "<MyILBStaticIPAddress>" # static IP address for the ILB in the subnet
-		$ILBName = "AGListenerLB" # customize the ILB name or use this default value
+        # Define variables
+        $ServiceName = "<MyCloudService>" # the name of the cloud service that contains the availability group nodes
+        $AGNodes = "<VM1>","<VM2>","<VM3>" # all availability group nodes containing replicas in the same cloud service, separated by commas
+        $SubnetName = "<MySubnetName>" # subnet name that the replicas use in the VNet
+        $ILBStaticIP = "<MyILBStaticIPAddress>" # static IP address for the ILB in the subnet
+        $ILBName = "AGListenerLB" # customize the ILB name or use this default value
 
-		# Create the ILB
-		Add-AzureInternalLoadBalancer -InternalLoadBalancerName $ILBName -SubnetName $SubnetName -ServiceName $ServiceName -StaticVNetIPAddress $ILBStaticIP
+        # Create the ILB
+        Add-AzureInternalLoadBalancer -InternalLoadBalancerName $ILBName -SubnetName $SubnetName -ServiceName $ServiceName -StaticVNetIPAddress $ILBStaticIP
 
-		# Configure a load balanced endpoint for each node in $AGNodes using ILB
-		ForEach ($node in $AGNodes)
-		{
-			Get-AzureVM -ServiceName $ServiceName -Name $node | Add-AzureEndpoint -Name "ListenerEndpoint" -LBSetName "ListenerEndpointLB" -Protocol tcp -LocalPort 1433 -PublicPort 1433 -ProbePort 59999 -ProbeProtocol tcp -ProbeIntervalInSeconds 10 -InternalLoadBalancerName $ILBName -DirectServerReturn $true | Update-AzureVM
-		}
+        # Configure a load balanced endpoint for each node in $AGNodes using ILB
+        ForEach ($node in $AGNodes)
+        {
+            Get-AzureVM -ServiceName $ServiceName -Name $node | Add-AzureEndpoint -Name "ListenerEndpoint" -LBSetName "ListenerEndpointLB" -Protocol tcp -LocalPort 1433 -PublicPort 1433 -ProbePort 59999 -ProbeProtocol tcp -ProbeIntervalInSeconds 10 -InternalLoadBalancerName $ILBName -DirectServerReturn $true | Update-AzureVM
+        }
 
-1. 一旦您已設定變數，請從文字編輯器將指令碼複製到您的 Azure PowerShell 工作階段來執行它。如果提示依然顯示「>>」，請再次按 ENTER 鍵以確定指令碼開始執行。注意
+1. Once you have set the variables, copy the script from the text editor into your Azure PowerShell session to run it. If the prompt still shows >>, type ENTER again to make sure the script starts running.Note
 
->[AZURE.NOTE] Azure 傳統入口網站目前不支援內部負載平衡器，因此您不會看到 ILB 或 Azure 傳統入口網站中的端點。不過，如果負載平衡器正在其中執行，**Get-AzureEndpoint** 便會傳回內部 IP 位址。否則，它會傳回 null。
+>[AZURE.NOTE] The Azure classic portal does not support the Internal Load Balancer at this time, so you will not see either the ILB or the endpoints in the Azure classic portal. However, **Get-AzureEndpoint** returns an internal IP address if the Load Balancer is running on it. Otherwise, it returns null.
 
-## 必要時，請確認已安裝 KB2854082
+## <a name="verify-that-kb2854082-is-installed-if-necessary"></a>Verify that KB2854082 is installed if necessary
 
 [AZURE.INCLUDE [kb2854082](../../includes/virtual-machines-ag-listener-kb2854082.md)]
 
-## 在可用性群組節點中開啟防火牆連接埠
+## <a name="open-the-firewall-ports-in-availability-group-nodes"></a>Open the firewall ports in availability group nodes
 
-[AZURE.INCLUDE [防火牆](../../includes/virtual-machines-ag-listener-open-firewall.md)]
+[AZURE.INCLUDE [firewall](../../includes/virtual-machines-ag-listener-open-firewall.md)]
 
-## 建立可用性群組接聽程式
+## <a name="create-the-availability-group-listener"></a>Create the availability group listener
 
-[AZURE.INCLUDE [防火牆](../../includes/virtual-machines-ag-listener-create-listener.md)]
+[AZURE.INCLUDE [firewall](../../includes/virtual-machines-ag-listener-create-listener.md)]
 
-1. 對於 ILB，您必須使用之前所建立內部負載平衡器 (ILB) 的 IP 位址。使用下列指令碼來取得 PowerShell 中的這個 IP 位址。
+1. For ILB, you must use the IP address of the Internal Load Balancer (ILB) created earlier. Use the following script to obtain this IP Address in PowerShell.
 
-		# Define variables
-		$ServiceName="<MyServiceName>" # the name of the cloud service that contains the AG nodes
-		(Get-AzureInternalLoadBalancer -ServiceName $ServiceName).IPAddress
+        # Define variables
+        $ServiceName="<MyServiceName>" # the name of the cloud service that contains the AG nodes
+        (Get-AzureInternalLoadBalancer -ServiceName $ServiceName).IPAddress
 
-1. 在其中一個 VM 上，將適用於您作業系統的 PowerShell 指令碼複製到文字編輯器中，並將變數設定為您先前記下的值。
+1. On one of the VMs, copy the PowerShell script for your operating system into a text editor and set the variables to the values you noted earlier.
 
-    針對 Windows Server 2012 或更新版本，請使用下列指令碼︰
+    For Windows Server 2012 or higher use the following script:
 
-		# Define variables
-		$ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
-		$IPResourceName = "<IPResourceName>" # the IP Address resource name
-		$ILBIP = “<X.X.X.X>” # the IP Address of the Internal Load Balancer (ILB)
+        # Define variables
+        $ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
+        $IPResourceName = "<IPResourceName>" # the IP Address resource name
+        $ILBIP = “<X.X.X.X>” # the IP Address of the Internal Load Balancer (ILB)
 
-		Import-Module FailoverClusters
+        Import-Module FailoverClusters
 
-	    Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"="59999";"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
-		
-    針對 Windows Server 2008 R2，請使用下列指令碼︰
+        Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"="59999";"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
+        
+    For Windows Server 2008 R2 use the following script:
 
-		# Define variables
-		$ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
-		$IPResourceName = "<IPResourceName>" # the IP Address resource name
-		$ILBIP = “<X.X.X.X>” # the IP Address of the Internal Load Balancer (ILB)
+        # Define variables
+        $ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
+        $IPResourceName = "<IPResourceName>" # the IP Address resource name
+        $ILBIP = “<X.X.X.X>” # the IP Address of the Internal Load Balancer (ILB)
 
-		Import-Module FailoverClusters
+        Import-Module FailoverClusters
 
-		cluster res $IPResourceName /priv enabledhcp=0 address=$ILBIP probeport=59999  subnetmask=255.255.255.255
-	
+        cluster res $IPResourceName /priv enabledhcp=0 address=$ILBIP probeport=59999  subnetmask=255.255.255.255
+    
 
-1. 設定變數之後，開啟提升權限的 Windows PowerShell 視窗中，然後從文字編輯器將指令碼複製並貼到您的 Azure PowerShell 工作階段來執行它。如果提示依然顯示「>>」，請再次按 ENTER 鍵以確定指令碼開始執行。
+1. Once you have set the variables, open an elevated Windows PowerShell window, then copy the script from the text editor and paste into your Azure PowerShell session to run it. If the prompt still shows >>, type ENTER again to make sure the script starts running.
 
-2. 在每個 VM 上重複此步驟。此指令碼會使用雲端服務的 IP 位址來設定 IP 位址資源，並設定類似探查連接埠的其他參數。當 IP 位址資源處於線上時，它會從本教學課程中稍早所建立的負載平衡端點，接著回應探查連接埠上的輪詢。
+2. Repeat this on each VM. This script configures the IP Address resource with the IP address of the cloud service and sets other parameters like the probe port. When the IP Address resource is brought online, it can then respond to the polling on the probe port from the load-balanced endpoint created earlier in this tutorial.
 
-## 使接聽程式上線
+## <a name="bring-the-listener-online"></a>Bring the listener online
 
 [AZURE.INCLUDE [Bring-Listener-Online](../../includes/virtual-machines-ag-listener-bring-online.md)]
 
-## 待處理項目
+## <a name="follow-up-items"></a>Follow-up items
 
 [AZURE.INCLUDE [Follow-up](../../includes/virtual-machines-ag-listener-follow-up.md)]
 
-## 測試可用性群組接聽程式 (位於相同的 VNet)
+## <a name="test-the-availability-group-listener-(within-the-same-vnet)"></a>Test the availability group listener (within the same VNet)
 
 [AZURE.INCLUDE [Test-Listener-Within-VNET](../../includes/virtual-machines-ag-listener-test.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
 [AZURE.INCLUDE [Listener-Next-Steps](../../includes/virtual-machines-ag-listener-next-steps.md)]
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

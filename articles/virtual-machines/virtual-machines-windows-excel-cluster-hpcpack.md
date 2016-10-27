@@ -1,6 +1,6 @@
 <properties
- pageTitle="Excel 和 SOA 適用的 HPC Pack 叢集 | Microsoft Azure"
- description="開始在 Azure 中的 HPC Pack 叢集上執行大規模 Excel 和 SOA 工作負載"
+ pageTitle="HPC Pack cluster for Excel and SOA | Microsoft Azure"
+ description="Get started running large-scale Excel and SOA workloads on an HPC Pack cluster in Azure"
  services="virtual-machines-windows"
  documentationCenter=""
  authors="dlepow"
@@ -17,84 +17,85 @@
  ms.date="08/25/2016"
  ms.author="danlep"/>
 
-# 開始在 Azure 中的 HPC Pack 叢集上執行 Excel 和 SOA 工作負載
 
-本文說明如何在 Azure 虛擬機器上使用 Azure 快速入門範本或 Azure PowerShell 部署指令碼 (選擇性) 部署 Microsoft HPC Pack 叢集。此叢集使用 Azure Marketplace VM 映像，其設計目的為使用 HPC Pack 執行 Microsoft Excel 或服務導向架構 (SOA) 工作負載。您可以從內部部署用戶端電腦使用叢集來執行簡單的 Excel HPC 和 SOA 服務。Excel HPC 服務包括 Excel 活頁簿卸載和 Excel 使用者定義函數或 UDF。
+# <a name="get-started-running-excel-and-soa-workloads-on-an-hpc-pack-cluster-in-azure"></a>Get started running Excel and SOA workloads on an HPC Pack cluster in Azure
+
+This article shows you how to deploy a Microsoft HPC Pack cluster on Azure virtual machines by using an Azure quickstart template, or optionally an Azure PowerShell deployment script. The cluster uses Azure Marketplace VM images designed to run Microsoft Excel or service-oriented architecture (SOA) workloads with HPC Pack. You can use the cluster to run simple Excel HPC and SOA services from an on-premises client computer. The Excel HPC services include Excel workbook offloading and Excel user-defined functions, or UDFs.
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-在較高層級上，下圖顯示您建立的 HPC Pack 叢集。
+At a high level, the following diagram shows the HPC Pack cluster you create.
 
-![HPC 叢集與執行 Excel 工作負載的節點][scenario]
+![HPC cluster with nodes running Excel workloads][scenario]
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-*   **用戶端電腦** - 您需要 Windows 用戶端電腦，以將範例 Excel 和 SOA 工作提交至叢集。您也需要 Windows 電腦來執行 Azure PowerShell 叢集部署指令碼 (如果您選擇該部署方法) 和
+*   **Client computer** - You need a Windows-based client computer to submit sample Excel and SOA jobs to the cluster. You also need a Windows computer to run the Azure PowerShell cluster deployment script (if you choose that deployment method) and
 
-*   **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+*   **Azure subscription** - If you don't have an Azure subscription, you can create a [free account](https://azure.microsoft.com/pricing/free-trial/) in just a couple of minutes.
 
-*   **核心配額** - 您可能需要增加核心的配額，特別是如果您部署多核心 VM 大小的數個叢集節點。如果您使用 Azure 快速入門範本，則 Resource Manager 中的核心配額是根據 Azure 區域而定。在此情況下，您可能需要增加特定區域中的配額。請參閱 [Azure 訂用帳戶限制、配額與限制](../azure-subscription-service-limits.md)。若要增加配額，請[開立線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) (免費)。
+*   **Cores quota** - You might need to increase the quota of cores, especially if you deploy several cluster nodes with multicore VM sizes. If you are using an Azure quickstart template, the cores quota in Resource Manager is per Azure region. In that case, you might need to increase the quota in a specific region. See [Azure subscription limits, quotas, and constraints](../azure-subscription-service-limits.md). To increase a quota, [open an online customer support request](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) at no charge.
 
-*   **Microsoft Office 授權** - 如果您使用包含 Microsoft Excel 的 Marketplace HPC Pack VM 映像部署計算節點，就會安裝 Microsoft Excel Professional Plus 2013 的 30 天評估版。評估期過後，您需要提供有效的 Microsoft Office 授權來啟用 Excel，才能繼續執行工作負載。請參閱在本文章稍候的[啟用 Excel](#excel-activation)。
-
-
-## 步驟 1.在 Azure 中設定 HPC Pack 叢集
-
-我們將說明設定叢集的兩種選項：第一，使用 Azure 快速入門範本和 Azure 入口網站；第二，使用 Azure PowerShell 部署指令碼。
+*   **Microsoft Office license** - If you deploy compute nodes using a Marketplace HPC Pack VM image with Microsoft Excel, a 30-day evaluation version of Microsoft Excel Professional Plus 2013 is installed. After the evaluation period, you need to provide a valid Microsoft Office license to activate Excel to continue to run workloads. See [Excel activation](#excel-activation) later in this article. 
 
 
-### 選項 1。使用快速入門範本
-使用 Azure 快速入門範本在 Azure 入口網站中快速、輕鬆地部署 HPC Pack 叢集。當您在入口網站中開啟範本時，您會取得一個簡單的 UI 讓您在其中輸入叢集的設定。步驟如下：
+## <a name="step-1.-set-up-an-hpc-pack-cluster-in-azure"></a>Step 1. Set up an HPC Pack cluster in Azure
 
->[AZURE.TIP]如果您願意的話，可以使用 [Azure Marketplace 範本](https://portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn)來專為 Excel 工作負載建立類似的叢集。其步驟與下文中的內容稍有不同。
+We show two options to set up the cluster: first, using an Azure quickstart template and the Azure portal; and second, using an Azure PowerShell deployment script.
 
-1.  造訪 [在 GitHub 上建立 HPC 叢集範本頁面](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster)。您可根據意願檢視範本和原始碼的相關資訊。
 
-2.  按一下 [部署至 Azure]，以在 Azure 入口網站中利用範本開始部署。
+### <a name="option-1.-use-a-quickstart-template"></a>Option 1. Use a quickstart template
+Use an Azure quickstart template to quickly and easily deploy an HPC Pack cluster in the Azure portal. When you open the template in the portal, you get a simple UI where you enter the settings for your cluster. Here are the steps. 
 
-    ![將範本部署到 Azure][github]
+>[AZURE.TIP]If you want, use an [Azure Marketplace template](https://portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn) that creates a similar cluster specifically for Excel workloads. The steps differ slightly from the following.
 
-3.  在入口網站中，遵循下列步驟輸入 HPC 叢集範本的參數。
+1.  Visit the [Create HPC Cluster template page on GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster). If you want, review information about the template and the source code.
 
-    a.在 [參數] 頁面上，輸入或修改範本參數的值。(按一下說明資訊的每個設定旁邊的圖示。) 下列畫面顯示範例值。此範例會在 *hpc.local* 網域中建立名為 *hpc01* 的叢集，由一個前端節點和 2 個計算節點組成。計算節點是從包括 Microsoft Excel 的 HPC Pack VM 映像建立。
+2.  Click **Deploy to Azure** to start a deployment with the template in the Azure portal.
 
-    ![輸入參數][parameters]
+    ![Deploy template to Azure][github]
 
-    >[AZURE.NOTE]前端節點 VM 會在 Windows Server 2012 R2 上從 HPC Pack 2012 R2 的[最新 Marketplace 映像](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/)自動建立。目前此映像以 HPC Pack 2012 R2 Update 3 為基礎。
+3.  In the portal, follow these steps to enter the parameters for the HPC cluster template.
+
+    a. On the **Parameters** page, enter or modify values for the template parameters. (Click the icon next to each setting for help information.) Sample values are shown in the following screen. This example creates a cluster named *hpc01* in the *hpc.local* domain consisting of a head node and 2 compute nodes. The compute nodes are created from an HPC Pack VM image that includes Microsoft Excel.
+
+    ![Enter parameters][parameters]
+
+    >[AZURE.NOTE]The head node VM is created automatically from the [latest Marketplace image](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) of HPC Pack 2012 R2 on Windows Server 2012 R2. Currently the image is based on HPC Pack 2012 R2 Update 3.
     >
-    >計算節點 VM 會從選取之計算節點系列的最新映像建立。選取 [ComputeNodeWithExcel] 選項做為最新的 HPC Pack 計算節點映像，包含評估版 Microsoft Excel Professional Plus 2013。如果要部署一般 SOA 工作階段或 Excel UDF 卸載的叢集，請選擇 **ComputeNode** 選項 (不需安裝 Excel)。
+    >Compute node VMs are created from the latest image of the selected compute node family. Select the **ComputeNodeWithExcel** option for the latest HPC Pack compute node image that includes an evaluation version of Microsoft Excel Professional Plus 2013. To deploy a cluster for general SOA sessions or for Excel UDF offloading, choose the **ComputeNode** option (without Excel installed).
 
-    b.選擇訂用帳戶。
+    b. Choose the subscription.
 
-    c.建立叢集的資源群組，例如 *hpc01RG*。
+    c. Create a resource group for the cluster, such as *hpc01RG*.
 
-    d.選擇資源群組的位置，例如美國中部。
+    d. Choose a location for the resource group, such as Central US.
 
-    e.在 [**法律條款**] 頁面上檢閱條款。如果您同意，請按一下 [購買]。接著，當您完成範本值的設定時，請按一下 [建立]。
+    e. On the **Legal terms** page, review the terms. If you agree, click **Purchase**. Then, when you are finished setting the values for the template, click **Create**.
 
-4.  當部署完成時 (通常需要約 30 分鐘)，從叢集前端節點匯出叢集憑證檔。在稍後的步驟中，您要在用戶端電腦上匯入此公開憑證以提供安全 HTTP 繫結的伺服器端驗證。
+4.  When the deployment completes (it typically takes around 30 minutes), export the cluster certificate file from the cluster head node. In a later step, you import this public certificate on the client computer to provide the server-side authentication for secure HTTP binding.
 
-    a.從 Azure 入口網站透過「遠端桌面」連線到前端節點。
+    a. Connect to the head node by Remote Desktop from the Azure portal.
 
-     ![連接至前端節點][connect]
+     ![Connect to the head node][connect]
 
-    b.在憑證管理員中，使用標準程序來匯出前端節點憑證 (位於 Cert: \\LocalMachine\\My 之下) 而不需私密金鑰。在此範例中，匯出 *CN = hpc01.eastus.cloudapp.azure.com*。
+    b. Use standard procedures in Certificate Manager to export the head node certificate (located under Cert:\LocalMachine\My) without the private key. In this example, export *CN = hpc01.eastus.cloudapp.azure.com*.
 
-    ![匯出憑證][cert]
+    ![Export the certificate][cert]
 
-### 選項 2。使用 HPC Pack IaaS 部署指令碼
+### <a name="option-2.-use-the-hpc-pack-iaas-deployment-script"></a>Option 2. Use the HPC Pack IaaS Deployment script
 
-HPC Pack IaaS 部署指令碼提供靈活的另一種方式部署 HPC Pack 叢集。它會在傳統部署模型中建立叢集，而範本則會使用 Azure Resource Manager 部署模型。指令碼也和 Azure 全域或 Azure China 服務中的訂用帳戶相容。
+The HPC Pack IaaS deployment script provides another versatile way to deploy an HPC Pack cluster. It creates a cluster in the classic deployment model, whereas the template uses the Azure Resource Manager deployment model. Also, the script is compatible with a subscription in either the Azure Global or Azure China service.
 
-**其他必要條件**
+**Additional prerequisites**
 
-* **Azure PowerShell** - 在您的用戶端電腦上[安裝和設定 Azure PowerShell](../powershell-install-configure.md) (0.8.10 版或更新版本)。
+* **Azure PowerShell** - [Install and configure Azure PowerShell](../powershell-install-configure.md) (version 0.8.10 or later) on your client computer.
 
-* **HPC Pack IaaS 部署指令碼** - 從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=44949)下載並解壓縮最新版的指令碼。執行 `New-HPCIaaSCluster.ps1 –Version` 以檢查指令碼的版本。這篇文章根據 4.5.0 版或更新版本的指令碼。
+* **HPC Pack IaaS deployment script** - Download and unpack the latest version of the script from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). Check the version of the script by running `New-HPCIaaSCluster.ps1 –Version`. This article is based on version 4.5.0 or later of the script.
 
-**建立組態檔**
+**Create the configuration file**
 
- HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC 叢集的基礎結構。若要部署由一個前端節點和從包含 Microsoft Excel 之運算節點映像所建立的 18 個運算節點組成的叢集，請將環境的值取代為下列範例組態檔。如需組態檔的詳細資訊，請參閱指令碼資料夾中的 Manual.rtf 檔案和[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。
+ The HPC Pack IaaS deployment script uses an XML configuration file as input that describes the infrastructure of the HPC cluster. To deploy a cluster consisting of a head node and 18 compute nodes created from the compute node image that includes Microsoft Excel, substitute values for your environment into the following sample configuration file. For more information about the configuration file, see the Manual.rtf file in the script folder and [Create an HPC cluster with the HPC Pack IaaS deployment script](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md).
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -138,13 +139,13 @@ HPC Pack IaaS 部署指令碼提供靈活的另一種方式部署 HPC Pack 叢�
 </IaaSClusterConfig>
 ```
 
-**組態檔的相關注意事項**
+**Notes about the configuration file**
 
-* 前端節點的 **VMName** **必須**和 **ServiceName** 相同，否則 SOA 工作會無法執行。
+* The **VMName** of the head node **MUST** be the same as the **ServiceName**, or SOA jobs fail to run.
 
-* 請確定您會指定 **EnableWebPortal**，所以已經產生並匯出前端節點憑證。
+* Make sure you specify **EnableWebPortal** so that the head node certificate is generated and exported.
 
-* 這個檔案會指定在前端節點上執行的後續組態 PowerShell 指令碼 PostConfig.ps1。下列範例指令碼會設定 Azure 儲存體連接字串、從前端節點中移除計算節點角色，並在所有節點部署後讓所有節點上線。
+* The file specifies a post-configuration PowerShell script PostConfig.ps1 that runs on the head node. THe following sample script configures the Azure storage connection string, removes the compute node role from the head node, and brings all nodes online when they are deployed. 
 
 ```
     # add the HPC Pack powershell cmdlets
@@ -174,52 +175,52 @@ HPC Pack IaaS 部署指令碼提供靈活的另一種方式部署 HPC Pack 叢�
         }
 ```
 
-**執行指令碼**
+**Run the script**
 
-1.  在用戶端電腦上以系統管理員身分開啟 PowerShell 主控台。
+1.  Open the PowerShell console on the client computer as an administrator.
 
-2.  將目錄變更為指令碼資料夾 (在本範例中為 E:\\IaaSClusterScript)。
+2.  Change directory to the script folder (E:\IaaSClusterScript in this example).
 
     ```
     cd E:\IaaSClusterScript
     ```
     
-3.  若要部署 HPC Pack 叢集，請執行下列命令。這個範例假設組態檔位於 E:\\HPCDemoConfig.xml。
+3.  To deploy the HPC Pack cluster, run the following command. This example assumes that the configuration file is located in E:\HPCDemoConfig.xml.
 
     ```
     .\New-HpcIaaSCluster.ps1 –ConfigFile E:\HPCDemoConfig.xml –AdminUserName MyAdminName
     ```
 
-HPC Pack 部署指令碼會執行一段時間。指令碼會匯出和下載叢集憑證，並將它儲存在用戶端電腦上目前使用者的文件資料夾中。指令碼會產生類似下方的訊息。在下列步驟中，您將在適當的憑證存放區中匯入憑證。
+The HPC Pack deployment script runs for some time. One thing the script does is to export and download the cluster certificate and save it in the current user’s Documents folder on the client computer. The script generates a message similar to the following. In a following step, you import the certificate in the appropriate certificate store.    
     
     You have enabled REST API or web portal on HPC Pack head node. Please import the following certificate in the Trusted Root Certification Authorities certificate store on the computer where you are submitting job or accessing the HPC web portal:
     C:\Users\hpcuser\Documents\HPCWebComponent_HPCExcelHN004_20150707162011.cer
 
-## 步驟 2.卸載 Excel 活頁簿並從內部部署用戶端執行 UDF
+## <a name="step-2.-offload-excel-workbooks-and-run-udfs-from-an-on-premises-client"></a>Step 2. Offload Excel workbooks and run UDFs from an on-premises client
 
-### 啟用 Excel
+### <a name="excel-activation"></a>Excel activation
 
-使用 ComputeNodeWithExcel VM 映像做為生產工作負載時，您需要提供有效的 Microsoft Office 授權金鑰才能啟用計算節點上的 Excel。否則，Excel 評估版會在 30 天後到期，且執行 Excel 活頁簿會失敗並出現 COMException (0x800AC472)。
+When using the ComputeNodeWithExcel VM image for production workloads, you need to provide a valid Microsoft Office license key to activate Excel on the compute nodes. Otherwise, the evaluation version of Excel expires after 30 days, and running Excel workbooks will fail with the COMException (0x800AC472). 
 
-您可以重新取得額外 30 天的 Excel 評估時間：登入前端節點，並透過 HPC 叢集管理員在所有 Excel 計算節點上執行 `%ProgramFiles(x86)%\Microsoft Office\Office15\OSPPREARM.exe`。您最多可以重新取得兩次。之後，您就必須提供有效的 Office 授權金鑰。
+You can rearm Excel for another 30 days of evaluation time: Log on to the head node and clusrun `%ProgramFiles(x86)%\Microsoft Office\Office15\OSPPREARM.exe` on all Excel compute nodes via HPC Cluster Manager. You can rearm a maximum of two times. After that, you must provide a valid Office license key.
 
-安裝在 VM 映像上的 Office Professional Plus 2013 是含有一般大量授權金鑰 (GVLK) 的大量授權版本。您可以透過金鑰管理服務 (KMS)/Active Directory 型啟用 (AD-BA) 或多重啟用金鑰 (MAK) 來啟用它。
+The Office Professional Plus 2013 installed on the VM image is a volume edition with a Generic Volume License Key (GVLK). You can activate it via Key Management Service (KMS)/Active Directory-Based Activation (AD-BA) or Multiple Activation Key (MAK). 
 
     * To use KMS/AD-BA, use an existing KMS server or set up a new one by using the Microsoft Office 2013 Volume License Pack. (If you want to, set up the server on the head node.) Then, activate the KMS host key via the Internet or telephone. Then clusrun `ospp.vbs` to set the KMS server and port and activate Office on all the Excel compute nodes. 
     
     * To use MAK, first clusrun `ospp.vbs` to input the key and then activate all the Excel compute nodes via the Internet or telephone. 
 
->[AZURE.NOTE]Office Professsional Plus 2013 的零售產品金鑰不適用於此 VM 映像。如果您擁有非此 Office Professional Plus 2013 大量授權版本之 Office 或 Excel 版本的有效金鑰和安裝媒體，您也可以改用它們。先解除安裝此大量授權版本，然後安裝您所擁有的版本。您可以將重新安裝的 Excel 計算節點擷取成自訂 VM 映像，以在大規模部署時使用。
+>[AZURE.NOTE]Retail product keys for Office Professional Plus 2013 cannot be used with this VM image. If you have valid keys and installation media for Office or Excel editions other than this Office Professional Plus 2013 volume edition, you can use them instead. First uninstall this volume edition and install the edition that you have. The reinstalled Excel compute node can be captured as a customized VM image to use in a deployment at scale.
 
-### 卸載 Excel 活頁簿
+### <a name="offload-excel-workbooks"></a>Offload Excel workbooks
 
-遵循下列步驟來卸載 Excel 活頁簿，以在 Azure 的 HPC Pack 叢集上執行。若要這樣做，您必須在用戶端電腦上安裝 Excel 2010 或 2013。
+Follow these steps to offload an Excel workbook so that it runs on the HPC Pack cluster in Azure. To do this, you must have Excel 2010 or 2013 already installed on the client computer.
 
-1. 使用步驟 1 中的其中一個選項，來部署具有 Excel 計算節點映像的 HPC Pack 叢集。取得叢集憑證檔 (.cer) 以及叢集的使用者名稱和密碼。
+1. Use one of the options in Step 1 to deploy an HPC Pack cluster with the Excel compute node image. Obtain the cluster certificate file (.cer) and cluster username and password.
 
-2. 在用戶端電腦上，在 Cert:\\CurrentUser\\Root 下匯入叢集憑證。
+2. On the client computer, import the cluster certificate under Cert:\CurrentUser\Root.
 
-3. 請確定已安裝 Excel。在與用戶端電腦上的 Excel.exe 相同的資料夾中，建立包含下列內容的 Excel.exe.config 檔案。這樣可確保 HPC Pack 2012 R2 Excel COM 增益集順利載入。
+3. Make sure Excel is installed. Create an Excel.exe.config file with the following contents in the same folder as Excel.exe on the client computer. This step ensures that the HPC Pack 2012 R2 Excel COM add-in loads successfully.
 
     ```
     <?xml version="1.0"?>
@@ -230,19 +231,19 @@ HPC Pack 部署指令碼會執行一段時間。指令碼會匯出和下載叢�
     </configuration>
     ```
     
-4.	設定用戶端以將工作提交到 HPC Pack 叢集。其中一個選項是下載完整的 [HPC Pack 2012 R2 Update 3 安裝](http://www.microsoft.com/download/details.aspx?id=49922)，並安裝 HPC Pack 用戶端。或者，為您的電腦 ([x64](http://www.microsoft.com/download/details.aspx?id=14632)、[x86](https://www.microsoft.com/download/details.aspx?id=5555)) 下載並安裝 [HPC Pack 2012 R2 Update 3 用戶端公用程式](https://www.microsoft.com/download/details.aspx?id=49923)及適當的 Visual C++ 2010 可轉散發套件。
+4.  Set up the client to submit jobs to the HPC Pack cluster. One option is to download the full [HPC Pack 2012 R2 Update 3 installation](http://www.microsoft.com/download/details.aspx?id=49922) and install the HPC Pack client. Alternatively, download and install the [HPC Pack 2012 R2 Update 3 client utilities](https://www.microsoft.com/download/details.aspx?id=49923) and the appropriate Visual C++ 2010 redistributable for your computer ([x64](http://www.microsoft.com/download/details.aspx?id=14632), [x86](https://www.microsoft.com/download/details.aspx?id=5555)).
 
-5.	在此範例中，我們使用名為 ConvertiblePricing\_Complete.xlsb 的範例 Excel 活頁簿。您可以從[這裡](https://www.microsoft.com/zh-TW/download/details.aspx?id=2939)下載。
+5.  In this example, we use a sample Excel workbook named ConvertiblePricing_Complete.xlsb. You can download it [here](https://www.microsoft.com/en-us/download/details.aspx?id=2939).
 
-6.	將 Excel 活頁簿複製到工作資料夾，例如 D:\\Excel\\Run。
+6.  Copy the Excel workbook to a working folder such as D:\Excel\Run.
 
-7.	開啟 Excel 活頁簿。在 [開發] 功能區上，按一下 [COM 增益集] 並確認 HPC Pack Excel COM 增益集已成功載入。
+7.  Open the Excel workbook. On the **Develop** ribbon, click **COM Add-Ins** and confirm that the HPC Pack Excel COM add-in is loaded successfully.
 
-    ![HPC Pack 的 Excel 增益集][addin]
+    ![Excel add-in for HPC Pack][addin]
 
-8.	藉由變更加上註解的行，編輯 Excel 中的 VBA 巨集 HPCControlMacros，如下列指令碼所示。請將您的環境取代為適當的值。
+8.  Edit the VBA macro HPCControlMacros in Excel by changing the commented lines as shown in the following script. Substitute appropriate values for your environment.
 
-    ![HPC Pack 的 Excel 巨集][macro]
+    ![Excel macro for HPC Pack][macro]
 
     ```
     'Private Const HPC_ClusterScheduler = "HEADNODE_NAME"
@@ -261,49 +262,49 @@ HPC Pack 部署指令碼會執行一段時間。指令碼會匯出和下載叢�
     HPCExcelClient.OpenSession headNode:=HPC_ClusterScheduler, remoteWorkbookPath:=HPCWorkbookPath, UserName:="hpc\azureuser", Password:="<YourPassword>"
 ```
 
-9.	將 Excel 活頁簿複製到上傳目錄，例如 D:\\Excel\\Upload。此目錄是在 VBA 巨集的 HPC\_DependsFiles 常數中指定。
+9.  Copy the Excel workbook to an upload directory such as D:\Excel\Upload. This directory is specified in the HPC_DependsFiles constant in the VBA macro.
 
-10.	若要在 Azure 的叢集中執行活頁簿，請按一下工作表上的 [叢集] 按鈕。
+10. To run the workbook on the cluster in Azure, click the **Cluster** button on the worksheet.
 
-### 執行 Excel UDF
+### <a name="run-excel-udfs"></a>Run Excel UDFs
 
-若要執行 Excel UDF，請遵循上述的步驟 1 - 3 來設定用戶端電腦。對於 Excel UDF，您不需在計算節點上安裝 Excel 應用程式。因此，在建立您的叢集計算節點時，您可以選擇一般計算節點映像，而不是含有 Excel 的計算節點映像。
+To run Excel UDFs, follow the preceding steps 1 – 3 to set up the client computer. For Excel UDFs, you don't need to have the Excel application installed on compute nodes. So, when creating your cluster compute nodes, you could choose a normal compute node image instead of the compute node image with Excel.
 
->[AZURE.NOTE] [Excel 2010 和 2013 叢集連接器] 對話方塊中有 34 個字元的限制。您可以使用此對話方塊來指定執行 UDF 的叢集。如果完整的叢集名稱過長 (例如 hpcexcelhn01.southeastasia.cloudapp.azure.com)，該名稱就無法放入對話方塊中。解決方法是使用完整叢集名稱的值設定電腦全域變數，例如 *CCP\_IAASHN*。然後，在對話方塊中輸入 *%CCP\_IAASHN%* 做為叢集前端節點名稱。
+>[AZURE.NOTE] There is a 34 character limit in the Excel 2010 and 2013 cluster connector dialog box. You use this dialog box to specify the cluster that runs the UDFs. If the full cluster name is longer (for example, hpcexcelhn01.southeastasia.cloudapp.azure.com), it does not fit in the dialog box. The workaround is to set a machine-wide variable such as *CCP_IAASHN* with the value of the long cluster name. Then, enter *%CCP_IAASHN%* in the dialog box as the cluster head node name. 
 
-成功部署叢集之後，繼續進行下列步驟來執行內建的範例 Excel UDF。關於自訂的 Excel UDF，請參閱這些[資源](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx)以建置 XLL 並將其部署在 IaaS 叢集上。
+After the cluster is successfully deployed, continue with the following steps to run a sample built-in Excel UDF. For customized Excel UDFs, see these [resources](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) to build the XLLs and deploy them on the IaaS cluster.
 
-1.	開啟新的 Excel 活頁簿。在 [開發] 功能區上，按一下 [增益集]。然後在對話方塊中按一下 [瀏覽]、瀏覽至 %CCP\_HOME%Bin\\XLL32 資料夾並選取範例 ClusterUDF32.xll。如果 ClusterUDF32 不存在於用戶端電腦上，您可以從前端節點上的 %CCP\_HOME%Bin\\XLL32 資料夾複製它。
+1.  Open a new Excel workbook. On the **Develop** ribbon, click **Add-Ins**. Then, in the dialog box, click **Browse**, navigate to the %CCP_HOME%Bin\XLL32 folder, and select the sample ClusterUDF32.xll. If the ClusterUDF32 doesn't exist on the client machine, copy it from the %CCP_HOME%Bin\XLL32 folder on the head node.
 
-    ![選取 UDF][udf]
+    ![Select the UDF][udf]
 
-2.	按一下 [檔案] > [選項] > [進階]。在 [公式] 下，核取 [允許使用者定義的 XLL 函數執行計算叢集]。然後按一下 [選項] 並在 [叢集前端節點名稱] 中輸入完整叢集名稱。(如先前所述，這個輸入方塊限制為 34 個字元，因此較長的叢集名稱可能不適合。您在這裡可以對完整叢集名稱使用電腦全域變數。)
+2.  Click **File** > **Options** > **Advanced**. Under **Formulas**, check **Allow user-defined XLL functions to run a compute cluster**. Then click **Options** and enter the full cluster name in **Cluster head node name**. (As noted previously this input box is limited to 34 characters, so a long cluster name may not fit. You may use a machine-wide variable here for a long cluster name.)
 
-    ![設定 UDF][options]
+    ![Configure the UDF][options]
 
-3.	若要在叢集上執行 UDF 運算，請按一下值 =XllGetComputerNameC() 的儲存格並按 Enter。函數只會擷取 UDF 執行所在的計算節點名稱。初次執行時，認證對話方塊會提示輸入使用者名稱和密碼以連接到 IaaS 叢集。
+3.  To run the UDF calculation on the cluster, click the cell with value =XllGetComputerNameC() and press Enter. The function simply retrieves the name of the compute node on which the UDF runs. For the first run, a credentials dialog box prompts for the username and password to connect to the IaaS cluster.
 
-    ![執行 UDF][run]
+    ![Run UDF][run]
 
-    有大量儲存格要計算時，請按 Alt-Shift-Ctrl + F9 以在所有儲存格上執行計算。
+    When there are many cells to calculate, press Alt-Shift-Ctrl + F9 to run the calculation on all cells.
 
-## 步驟 3.從內部部署用戶端執行 SOA 工作負載
+## <a name="step-3.-run-a-soa-workload-from-an-on-premises-client"></a>Step 3. Run a SOA workload from an on-premises client
 
-若要在 HPC Pack IaaS 叢集上執行一般 SOA 應用程式，請先使用步驟 1 的其中一個方法部署叢集。在此案例中請指定一般計算節點映像，因為在計算節點上您不需要 Excel。接著，遵循下列步驟。
+To run general SOA applications on the HPC Pack IaaS cluster, first use one of the methods in Step 1 to deploy the cluster. Specify a generic compute node image in this case, because you do not need Excel on the compute nodes. Then follow these steps.
 
-1. 擷取叢集憑證之後，在 Cert:\\CurrentUser\\Root 下的用戶端電腦上匯入叢集憑證。
+1. After retrieving the cluster certificate, import it on the client computer under Cert:\CurrentUser\Root.
 
-2. 安裝 [HPC Pack 2012 R2 Update 3 SDK](http://www.microsoft.com/download/details.aspx?id=49921) 和 [HPC Pack 2012 R2 Update 3 用戶端公用程式](https://www.microsoft.com/download/details.aspx?id=49923)。這些工具可讓您開發和執行 SOA 用戶端應用程式。
+2. Install the [HPC Pack 2012 R2 Update 3 SDK](http://www.microsoft.com/download/details.aspx?id=49921) and [HPC Pack 2012 R2 Update 3 client utilities](https://www.microsoft.com/download/details.aspx?id=49923). These tools enable you to develop and run SOA client applications.
 
-3. 下載 HelloWorldR2 [範例程式碼](https://www.microsoft.com/download/details.aspx?id=41633)。在 Visual Studio 2010 或 2012 中開啟 HelloWorldR2.sln。
+3. Download the HelloWorldR2 [sample code](https://www.microsoft.com/download/details.aspx?id=41633). Open the HelloWorldR2.sln in Visual Studio 2010 or 2012.
 
-4. 首先建置 EchoService 專案。接著以您部署至內部部署叢集的相同方式，將服務部署到 IaaS 叢集。如需詳細步驟，請參閱 HelloWordR2 中的 Readme.doc。以下一節所述的方式修改並建置 HelloWorldR2 和其他專案，以產生執行於 Azure IaaS 叢集上的 SOA 用戶端應用程式。
+4. Build the EchoService project first. Then, deploy the service to the IaaS cluster in the same way you deploy to an on-premises cluster. For detailed steps, see the Readme.doc in HelloWordR2. Modify and build the HellWorldR2 and other projects as described in the following section to generate the SOA client applications that run on an Azure IaaS cluster.
 
-### 搭配使用 Http 繫結和 Azure 儲存體佇列
+### <a name="use-http-binding-with-azure-storage-queue"></a>Use Http binding with Azure storage queue
 
-若要搭配使用 Http 繫結與 Azure 儲存體佇列，請對範例程式碼進行一些變更。
+To use Http binding with an Azure storage queue, make a few changes to the sample code.
 
-* 更新叢集名稱。
+* Update the cluster name.
 
     ```
 // Before
@@ -314,13 +315,13 @@ or
 const string headnode = "hpc01.cloudapp.net";
 ```
 
-* (選擇性) 在 SessionStartInfo 中使用預設 TransportScheme 或明確地將它設為 Http。
+* Optionally, use the default TransportScheme in SessionStartInfo or explicitly set it to Http.
 
 ```
     info.TransportScheme = TransportScheme.Http;
 ```
 
-* 使用預設繫結做為 BrokerClient。
+* Use default binding for the BrokerClient.
 
     ```
 // Before
@@ -329,47 +330,47 @@ using (BrokerClient<IService1> client = new BrokerClient<IService1>(session, bin
 using (BrokerClient<IService1> client = new BrokerClient<IService1>(session))
 ```
 
-    或者明確使用 basicHttpBinding 設定。
+    Or set explicitly using the basicHttpBinding.
 
     ```
 BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.TransportWithMessageCredential);
 binding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.UserName;    binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
 ```
 
-* 選擇性地，在 SessionStartInfo 中將 UseAzureQueue 旗標設為 true。如果未設定，它會根據預設，在叢集名稱具有 Azure 網域尾碼且 TransportScheme 為 Http 時設為 true。
+* Optionally, set the UseAzureQueue flag to true in SessionStartInfo. If not set, it will be set to true by default when the cluster name has Azure domain suffixes and the TransportScheme is Http.
 
     ```
     info.UseAzureQueue = true;
 ```
 
-###使用 Http 繫結而不使用 Azure 儲存體佇列
+###<a name="use-http-binding-without-azure-storage-queue"></a>Use Http binding without Azure storage queue
 
-若要使用不含 Azure 儲存體佇列的 Http 繫結，請在 SessionStartInfo 中將 UseAzureQueue 旗標明確設為 false。
+To use Http binding without an Azure storage queue, explicitly set the UseAzureQueue flag to false in the SessionStartInfo.
 
 ```
     info.UseAzureQueue = false;
 ```
 
-### 使用 NetTcp 繫結
+### <a name="use-nettcp-binding"></a>Use NetTcp binding
 
-若要使用 NetTcp 繫結，組態就像是連接至內部部署叢集。您必須在前端節點 VM 上開啟幾個端點。舉例來說，如果您使用 HPC Pack IaaS 部署指令碼來建立叢集，請依下列方式在 Azure 傳統入口網站中設定端點。
+To use NetTcp binding, the configuration is similar to connecting to an on-premises cluster. You need to open a few endpoints on the head node VM. If you used the HPC Pack IaaS deployment script to create the cluster, for example, set the endpoints in the Azure classic portal as follows.
 
 
-1. 停止 VM。
+1. Stop the VM.
 
-2. 新增 TCP 連接埠 9090、9087、9091、9094 分別做為工作階段、訊息代理程式、訊息代理程式背景工作和資料服務
+2. Add the TCP ports 9090, 9087, 9091, 9094 for the Session, Broker, Broker worker, and Data services, respectively
 
-    ![設定端點][endpoint]
+    ![Configure endpoints][endpoint]
 
-3. 啟動 VM。
+3. Start the VM.
 
-SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS 叢集的完整名稱。
+The SOA client application requires no changes except altering the head name to the IaaS cluster full name.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-* 請參閱[這些資源](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx)以取得使用 HPC Pack 執行 Excel 工作負載的詳細資訊。
+* See [these resources](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) for more information about running Excel workloads with HPC Pack.
 
-* 請參閱[管理 Microsoft HPC Pack 中的 SOA 服務](https://technet.microsoft.com/library/ff919412.aspx)以取得使用 HPC Pack 部署和管理 SOA 服務的詳細資訊。
+* See [Managing SOA Services in Microsoft HPC Pack](https://technet.microsoft.com/library/ff919412.aspx) for more about deploying and managing SOA services with HPC Pack.
 
 <!--Image references-->
 [scenario]: ./media/virtual-machines-windows-excel-cluster-hpcpack/scenario.png
@@ -386,4 +387,8 @@ SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS �
 [endpoint]: ./media/virtual-machines-windows-excel-cluster-hpcpack/endpoint.png
 [udf]: ./media/virtual-machines-windows-excel-cluster-hpcpack/udf.png
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

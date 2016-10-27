@@ -1,6 +1,6 @@
 <properties
-   pageTitle="將資料從 CSV 檔案載入 Azure SQL 資料倉儲 (bcp) | Microsoft Azure"
-   description="對於較小的資料大小，請使用 bcp 將資料匯入 Azure SQL Database。"
+   pageTitle="Load data from CSV file into Azure SQL Databaase (bcp) | Microsoft Azure"
+   description="For a small data size, uses bcp to import data into Azure SQL Database."
    services="sql-database"
    documentationCenter="NA"
    authors="CarlRabeler"
@@ -17,31 +17,32 @@
    ms.author="carlrab"/>
 
 
-# 將資料從 CSV 載入 Azure SQL 資料倉儲 (一般檔案)
 
-您可以使用 bcp 命令列公用程式，將資料從 CSV 檔案匯入 Azure SQL Database。
+# <a name="load-data-from-csv-into-azure-sql-data-warehouse-(flat-files)"></a>Load data from CSV into Azure SQL Data Warehouse (flat files)
 
-## 開始之前
+You can use the bcp command-line utility to import data from a CSV file into Azure SQL Database.
 
-### 必要條件
+## <a name="before-you-begin"></a>Before you begin
 
-若要逐步執行本教學課程，您需要：
+### <a name="prerequisites"></a>Prerequisites
 
-- Azure SQL Database 邏輯伺服器和資料庫
-- 已安裝的 bcp 命令列公用程式
-- 已安裝的 sqlcmd 命令列公用程式
+To step through this tutorial, you need:
 
-您可以從 [Microsoft 下載中心][]下載 bcp 和 sqlcmd 公用程式。
+- An Azure SQL Database logical server and database
+- The bcp command-line utility installed
+- The sqlcmd command-line utility installed
 
-### ASCII 或 UTF-16 格式的資料
+You can download the bcp and sqlcmd utilities from the [Microsoft Download Center][].
 
-如果您使用您自己的資料嘗試本教學課程，您的資料必須使用 ASCII 或 UTF-16 編碼，因為 bcp 不支援 UFT-8。
+### <a name="data-in-ascii-or-utf-16-format"></a>Data in ASCII or UTF-16 format
 
-## 1\.建立目的資料表
+If you are trying this tutorial with your own data, your data needs to use the ASCII or UTF-16 encoding since bcp does not support UTF-8. 
 
-在 SQL Database 中定義做為目的地資料表的資料表。資料表中的資料行必須對應到資料檔的每一個資料列中的資料。
+## <a name="1.-create-a-destination-table"></a>1. Create a destination table
 
-若要建立資料表，請開啟命令提示字元並使用 sqlcmd.exe 執行下列命令︰
+Define a table in SQL Database as the destination table. The columns in the table must correspond to the data in each row of your data file.
+
+To create a table, open a command prompt and use sqlcmd.exe to run the following command:
 
 
 ```sql
@@ -57,9 +58,9 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 ```
 
 
-## 2\.建立來源資料檔
+## <a name="2.-create-a-source-data-file"></a>2. Create a source data file
 
-開啟 [記事本]，將下列幾行資料複製到新的文字檔，然後將此檔案儲存到本機暫存目錄 C:\\Temp\\DimDate2.txt。此資料是 ASCII 格式。
+Open Notepad and copy the following lines of data into a new text file and then save this file to your local temp directory, C:\Temp\DimDate2.txt. This data is in ASCII format.
 
 ```
 20150301,1,3
@@ -76,26 +77,26 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 20150101,1,3
 ```
 
-(選擇性) 若要從 SQL Server 資料庫匯出您自己的資料，請開啟命令提示字元並執行下列命令。使用您自己的資訊取代 TableName、ServerName、DatabaseName、Username 和 Password。
+(Optional) To export your own data from a SQL Server database, open a command prompt and run the following command. Replace TableName, ServerName, DatabaseName, Username, and Password with your own information.
 
 ```sql
 bcp <TableName> out C:\Temp\DimDate2_export.txt -S <ServerName> -d <DatabaseName> -U <Username> -P <Password> -q -c -t ','
 ```
 
-## 3\.載入資料
-若要載入資料，請開啟命令提示字元並執行下列命令，使用您自己的資訊取代 ServerName、DatabaseName、Username 和 Password。
+## <a name="3.-load-the-data"></a>3. Load the data
+To load the data, open a command prompt and run the following command, replacing the values for Server Name, Database name, Username, and Password with your own information.
 
 ```sql
 bcp DimDate2 in C:\Temp\DimDate2.txt -S <ServerName> -d <DatabaseName> -U <Username> -P <password> -q -c -t  ','
 ```
 
-使用此命令來確認已正確載入資料
+Use this command to verify the data was loaded properly
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "SELECT * FROM DimDate2 ORDER BY 1;"
 ```
 
-結果應該如下所示：
+The results should look like this:
 
 DateId |CalendarQuarter |FiscalQuarter
 ----------- |--------------- |-------------
@@ -113,15 +114,19 @@ DateId |CalendarQuarter |FiscalQuarter
 20151201 |4 |2
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要移轉 SQL Server 資料庫，請參閱 [SQL Server 資料庫移轉](sql-database-cloud-migrate.md)。
+To migrate a SQL Server database, see [SQL Server database migration](sql-database-cloud-migrate.md).
 
 <!--MSDN references-->
 [bcp]: https://msdn.microsoft.com/library/ms162802.aspx
 [CREATE TABLE syntax]: https://msdn.microsoft.com/library/mt203953.aspx
 
 <!--Other Web references-->
-[Microsoft 下載中心]: https://www.microsoft.com/download/details.aspx?id=36433
+[Microsoft Download Center]: https://www.microsoft.com/download/details.aspx?id=36433
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,42 +1,43 @@
 <properties
-	pageTitle="在 Azure App Service 中建置和部署 Java API 應用程式"
-	description="了解如何建立 Java 應用程式封裝並將其部署至 Azure App Service。"
-	services="app-service\api"
-	documentationCenter="java"
-	authors="bradygaster"
-	manager="mohisri"
-	editor="tdykstra"/>
+    pageTitle="Build and deploy a Java API app in Azure App Service"
+    description="Learn how to create a Java API app package and deploy it to Azure App Service."
+    services="app-service\api"
+    documentationCenter="java"
+    authors="bradygaster"
+    manager="mohisri"
+    editor="tdykstra"/>
 
 <tags
-	ms.service="app-service-api"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="java"
-	ms.topic="get-started-article"
-	ms.date="08/31/2016"
-	ms.author="rachelap"/>
+    ms.service="app-service-api"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="java"
+    ms.topic="get-started-article"
+    ms.date="08/31/2016"
+    ms.author="rachelap"/>
 
-# 在 Azure App Service 中建置和部署 Java API 應用程式
+
+# <a name="build-and-deploy-a-java-api-app-in-azure-app-service"></a>Build and deploy a Java API app in Azure App Service
 
 [AZURE.INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
-本教學課程說明如何建立 Java 應用程式，並使用 [Git] 將其部署至 Azure App Service API 應用程式。本教學課程中的指示可運用在任何足以執行 Java 應用程式的作業系統上。本教學課程中的程式碼，是使用 [Maven] 建置的。我們使用[Jax RS] 來建立 RESTful 服務，而這些 Jax RS 是根據 [Swagger] 中繼資料規格使用[Swagger 編輯器]所產生的。
+This tutorial shows how to create a Java application and deploy it to Azure App Service API Apps using [Git]. The instructions in this tutorial can be followed on any operating system that is capable of running Java. The code in this tutorial is built using [Maven]. [Jax-RS] is used to create the RESTful Service, and is generated based on the [Swagger] metadata specification using the [Swagger Editor].
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-1. [Java Developer Kit 8] \(或更新版本)
-1. 安裝在您開發電腦上的 [Maven]
-1. 安裝在您開發電腦上的 [Git]
-1. 付費或[免費試用]的 [Microsoft Azure] 訂用帳戶
-1. HTTP 測試應用程式，例如 [Postman]
+1. [Java Developer's Kit 8] \(or later)
+1. [Maven] installed on your development machine
+1. [Git] installed on your development machine
+1. A paid or [free trial] subscription to [Microsoft Azure]
+1. An HTTP test application like [Postman]
 
-## 使用 Swagger.IO 來建立 API 結構。
+## <a name="scaffold-the-api-using-swagger.io"></a>Scaffold the API using Swagger.IO
 
-您可以使用 swagger.io 線上編輯器，來輸入代表您 API 結構的 Swagger JSON 或 YAML 程式碼。當您完成設計 API 介面區時，就可以針對各種不同平台和架構來匯出程式碼。在下一節中，我們將修改已建立結構的程式碼來包含模擬的功能。
+Using the swagger.io online editor, you can enter Swagger JSON or YAML code representing the structure of your API. Once you have the API surface area designed, you can export code for a variety of platforms and frameworks. In the next section, the scaffolded code will be modified to include mock functionality. 
 
-這個示範將從會貼到 swagger.io 編輯器的 Swagger JSON 主體開始，然後我們要用該編輯器來產生會利用 JAX RS 來存取 REST API 端點的程式碼。然後，您將編輯已建立結構的程式碼來傳回模擬資料，依照資料永續性機制來模擬 REST API 組建。
+This demonstration will begin with a Swagger JSON body that you will paste into the swagger.io editor, which will then be used to generate code making use of JAX-RS to access a REST API endpoint. Then, you'll edit the scaffolded code to return mock data, simulating a REST API built atop a data persistence mechanism.  
 
-1. 將下列 Swagger JSON 程式碼複製到剪貼簿中：
+1. Copy the following Swagger JSON code to your clipboard:
 
         {
             "swagger": "2.0",
@@ -131,33 +132,33 @@
             }
         }
 
-1. 瀏覽至[線上 Swagger 編輯器]。抵達之後，依序按一下 [File] \(檔案) -> [Paste JSON] \(貼上 JSON) 功能表項目 。
+1. Navigate to the [Online Swagger Editor]. Once there, click the **File -> Paste JSON** menu item.
 
-    ![貼上 JSON 功能表項目][paste-json]
+    ![Paste JSON menu item][paste-json]
 
-1. 貼上您之前複製的連絡人清單 API Swagger JSON 程式碼。
+1. Paste in the Contacts List API Swagger JSON you copied earlier. 
 
-    ![將 JSON 程式碼貼到 Swagger][pasted-swagger]
+    ![Pasting JSON code into Swagger][pasted-swagger]
 
-1. 檢視編輯器顯示的文件頁面和 API 摘要。
+1. View the documentation pages and API summary rendered in the editor. 
 
-    ![檢視 Swagger 產生的文件][view-swagger-generated-docs]
+    ![View Swagger Generated Docs][view-swagger-generated-docs]
 
-1. 依序選取 [Generate Server] \(產生伺服器) -> \[JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。
+1. Select the **Generate Server -> JAX-RS** menu option to scaffold the server-side code you'll edit later to add mock implementation. 
 
-    ![產生程式碼功能表項目][generate-code-menu-item]
+    ![Generate Code Menu Item][generate-code-menu-item]
 
-    程式碼產生之後，編輯器會提供 ZIP 檔案來讓您下載。這個檔案包含 Swagger 程式碼產生器所建構的程式碼，以及所有相關連的組建指令碼。將整個程式庫解壓縮到您的開發工作站上的某個目錄。
+    Once the code is generated, you'll be provided a ZIP file to download. This file contains the code scaffolded by the Swagger code generator and all associated build scripts. Unzip the entire library to a directory on your development workstation. 
 
-## 編輯程式碼來新增 API 實作
+## <a name="edit-the-code-to-add-api-implementation"></a>Edit the Code to add API Implementation
 
-在本節中，您將使用您自訂的程式碼，來取代 Swagger 所產生程式碼的伺服器端實作。新的程式碼會把連絡人實體的 ArrayList 傳回給呼叫中的用戶端。
+In this section, you'll replace the Swagger-generated code's server-side implementation with your custom code. The new code will return an ArrayList of Contact entities to the calling client. 
 
-1. 使用 [Visual Studio Code] 或您偏好的文字編輯器，來開啟「Contact.java」模型檔案 (位於「src/gen/java/io/swagger/model」資料夾)。
+1. Open the *Contact.java* model file, which is located in the *src/gen/java/io/swagger/model* folder, using [Visual Studio Code] or your favorite text editor. 
 
-    ![開啟連絡人模型檔案][open-contact-model-file]
+    ![Open Contact Model File][open-contact-model-file]
 
-1. 將下列建構函式新增到 **Contact** 類別。
+1. Add the following constructor to the **Contact** class. 
 
         public Contact(Integer id, String name, String email) 
         {
@@ -166,11 +167,11 @@
             this.emailAddress = email;
         }
 
-1. 使用 [Visual Studio Code] 或您偏好的文字編輯器，來開啟「ContactsApiServiceImpl.java」服務實作檔案 (位於「src/main/java/io/swagger/api/impl」資料夾)。
+1. Open the *ContactsApiServiceImpl.java* service implementation file, which is located in the *src/main/java/io/swagger/api/impl* folder, using [Visual Studio Code] or your favorite text editor.
 
-    ![開啟連絡人服務程式碼][open-contact-service-code-file]
+    ![Open Contact Service Code File][open-contact-service-code-file]
 
-1. 用新的程式碼覆寫檔案中的程式碼，來將模擬實作新增至服務程式碼。
+1. Overwrite the code in the file with this new code to add a mock implementation to the service code. 
 
         package io.swagger.api.impl;
 
@@ -222,64 +223,64 @@
             }
         }
 
-1. 開啟命令提示字元，並將目錄變更至應用程式的根資料夾。
+1. Open a command prompt and change directory to the root folder of your application.
 
-1. 執行下列 Maven 指令來建置程式碼，並在本機使用 Jetty 應用程式伺服器來執行。
+1. Execute the following Maven command to build the code and run it using the Jetty app server locally. 
 
         mvn package jetty:run
 
-1. 您應該會在命令視窗看到 Jetty 已經在連接埠 8080 啟動您的程式碼。
+1. You should see the command window reflect that Jetty has started your code on port 8080. 
 
-    ![開啟連絡人服務程式碼][run-jetty-war]
+    ![Open Contact Service Code File][run-jetty-war]
 
-1. 使用 [Postman] 來對「取得所有連絡人」API 方法 (位於 http://localhost:8080/api/contacts) 提出要求。
+1. Use [Postman] to make a request to the "get all contacts" API method at http://localhost:8080/api/contacts.
 
-    ![呼叫連絡人 API][calling-contacts-api]
+    ![Call the Contacts API][calling-contacts-api]
 
-1. 使用 [Postman] 來對「取得特定連絡人」API 方法 (位於 http://localhost:8080/api/contacts/2) 提出要求。
+1. Use [Postman] to make a request to the "get specific contact" API method located at http://localhost:8080/api/contacts/2.
 
-    ![呼叫連絡人 API][calling-specific-contact-api]
+    ![Call the Contacts API][calling-specific-contact-api]
 
-1. 最後，在您的主控台執行下列 Maven 命令來建立 Java WAR (網頁封存) 檔案。
+1. Finally, build the Java WAR (Web ARchive) file by executing the following Maven command in your console. 
 
         mvn package war:war
 
-1. 當 WAR 檔案建立之後，將會放入 [target] 資料夾。瀏覽至 [target] 資料夾，然後將 WAR 檔案重新命名為 **ROOT.war**。(請確定字母的大小寫符合這個格式)。
+1. Once the WAR file is built, it will be placed into the **target** folder. Navigate into the **target** folder and rename the WAR file to **ROOT.war**. (Make sure the capitalization matches this format).
 
          rename swagger-jaxrs-server-1.0.0.war ROOT.war
 
-1. 最後，從應用程式的根資料夾執行下列命令來建立 [deploy] 資料夾，以便用來將 WAR 檔案部署至 Azure。
+1. Finally, execute the following commands from the root folder of your application to create a **deploy** folder to use to deploy the WAR file to Azure. 
 
          mkdir deploy
          mkdir deploy\webapps
          copy target\ROOT.war deploy\webapps
          cd deploy
 
-## 將輸出資料發佈至 Azure App Service
+## <a name="publish-the-output-to-azure-app-service"></a>Publish the output to Azure App Service
 
-在本節中，您將了解如何使用 Azure 入口網站來建立新的 API 應用程式、準備該 API 應用程式來託管 Java 應用程式，以及將新建立的 WAR 檔案部署至 Azure App Service 來執行您的新 API 應用程式。
+In this section you'll learn how to create a new API App using the Azure Portal, prepare that API App for hosting Java applications, and deploy the newly-created WAR file to Azure App Service to run your new API App. 
 
-1. 在 [Azure 入口網站]建立新的 API 應用程式，方法是依序按一下 [新增] -> [Web + 行動] -> [API 應用程式] 功能表項目、輸入應用程式詳細資料，然後按一下 [建立]。
+1. Create a new API app in the [Azure portal], by clicking the **New -> Web + Mobile -> API app** menu item, entering your app details, and then clicking **Create**.
 
-    ![建立新的 API 應用程式][create-api-app]
+    ![Create a new API App][create-api-app]
 
-1. 在建立了 API 應用程式之後，開啟應用程式的 [設定] 刀鋒視窗，然後按一下 [應用程式設定] 功能表項目。在可用的選項中選取最新的 Java 版本，並在 [Web 容器] 功能表中選取最新的 Tomcat，然後按一下 [儲存]。
+1. Once your API app has been created, open your app's **Settings** blade, and then click the **Application settings** menu item. Select the latest Java versions from the available options, then select the latest Tomcat from the **Web container** menu, and then click **Save**.
 
-    ![在 API 應用程式刀鋒視窗中設定 Java][set-up-java]
+    ![Set up Java in the API App blade][set-up-java]
 
-1. 按一下 [部署認證] 設定功能表項目，並提供您要用來將檔案發佈至 API 應用程式的使用者名稱和密碼。
+1. Click the **Deployment credentials** settings menu item, and provide a username and password you wish to use for publishing files to your API App. 
 
-    ![設定部署認證][deployment-credentials]
+    ![Set deployment credentials][deployment-credentials]
 
-1. 按一下 [部署來源] 設定功能表項目。抵達之後，按一下 [選擇來源] 按鈕，選取 [本機 Git 儲存機制] 選項，然後按一下 [確定]。這會建立在 Azure 中執行的 Git 儲存機制，而它與您的 API 應用程式有關聯。每次您將程式碼交附給 Git 儲存機制的「主要」分支時，您的程式碼就會發佈到您執行中的 API 應用程式執行個體。
+1. Click the **Deployment source** settings menu item. Once there, click the **Choose source** button, select the **Local Git Repository** option, and then click **OK**. This will create a Git repository running in Azure, that has an association with your API App. Each time you commit code to the *master* branch of your Git repository, your code will be published into your live running API App instance. 
 
-    ![設定新的本機 Git 儲存機制][select-git-repo]
+    ![Set up a new local Git repository][select-git-repo]
 
-1. 將新的 Git 儲存機制 URL 複製到剪貼簿中。請務必保存這個網址，因為它在稍後會很重要。
+1. Copy the new Git repository's URL to your clipboard. Save this as it will be important in a moment. 
 
-    ![為您的應用程式設定新的 Git 儲存機制][copy-git-repo-url]
+    ![Set up a new Git repository for your app][copy-git-repo-url]
 
-1. Git 會把 WAR 檔案推送至線上儲存機制。方法是瀏覽至您先前建立的 [deploy] 資料，讓您能輕鬆地把程式碼交付給在您 App Service 中執行的儲存機制。當您抵達主控台視窗，並瀏覽至 [webapps] 資料夾所在的資料夾之後，請發出下列的 Git 命令來啟動處理程序並開始部署。
+1. Git push the WAR file to the online repository. To do this, navigate into the **deploy** folder you created earlier so that you can easily commit the code up to the repository running in your App Service. Once you're in the console window and navigated into the folder where the webapps folder is located, issue the following Git commands to launch the process and fire off a deployment. 
 
          git init
          git add .
@@ -287,37 +288,37 @@
          git remote add azure [YOUR GIT URL]
          git push azure master
 
-    當您發出「推送」要求之後，系統會詢問您之前為部署認證所建立的密碼。在輸入認證之後，您應該就會看到入口網站顯示已部署更新。
+    Once you issue the **push** request, you'll be asked for the password you created for the deployment credential earlier. After you enter your credentials, you should see your portal display that the update was deployed.
 
-1. 如果您再次使用 Postman 來叫用您剛部署，且在 Azure App Service 中執行的新 API 應用程式，就會看到行為是一致的，且現在它會如預期般傳回連絡人資料，還會對以 Swagger.io 建構的 Java 程式碼進行簡單的程式碼變更。
+1. If you once again use Postman to hit the newly-deployed API App running in Azure App Service, you'll see that the behavior is consistent and that now it is returning contact data as expected, and using simple code changes to the Swagger.io scaffolded Java code. 
 
-    ![在 Azure 中即時使用您的 Java 連絡人 REST API][postman-calling-azure-contacts]
+    ![Using your Java Contacts REST API live in Azure][postman-calling-azure-contacts]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-在這篇文章中，您從 Swagger JSON 檔案和一些利用 Swagger.io 編輯器建構的 Java 程式碼開始，然後您做的簡單變更和 Git 部署程序，讓您得到以 Java 撰寫的實用 API 應用程式。下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式][App Service API CORS]。本系列的教學課程稍後會顯示如何實作驗證與授權。
+In this article, you were able to start with a Swagger JSON file and some scaffolded Java code obtained from the Swagger.io editor. From there, your simple changes and a Git deploy process resulted in having a functional API app written in Java. The next tutorial shows how to [consume API apps from JavaScript clients, using CORS][App Service API CORS]. Later tutorials in the series show how to implement authentication and authorization.
 
-為了根據此範例進行建置，您可以深入了解 [Storage SDK for Java] 來保存 JSON blob。或者，您可以使用 [Document DB Java SDK] 來將您的連絡人資料儲存到 Azure Document DB。
+To build on this sample, you can learn more about the [Storage SDK for Java] to persist the JSON blobs. Or, you could use the [Document DB Java SDK] to save your Contact data to Azure Document DB. 
 
-如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [ 開發人員中心]。
+For more information about using Java in Azure, see the [Java Developer Center].
 
 <!-- URL List -->
 
 [App Service API CORS]: app-service-api-cors-consume-javascript.md
-[Azure 入口網站]: https://portal.azure.com/
+[Azure portal]: https://portal.azure.com/
 [Document DB Java SDK]: ../documentdb/documentdb-java-application.md
-[免費試用]: https://azure.microsoft.com/pricing/free-trial/
+[free trial]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: http://www.git-scm.com/
-[ 開發人員中心]: /develop/java/
-[Java Developer Kit 8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-[Jax RS]: https://jax-rs-spec.java.net/
+[Java Developer Center]: /develop/java/
+[Java Developer's Kit 8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+[Jax-RS]: https://jax-rs-spec.java.net/
 [Maven]: https://maven.apache.org/
 [Microsoft Azure]: https://azure.microsoft.com/
-[線上 Swagger 編輯器]: http://editor.swagger.io/
+[Online Swagger Editor]: http://editor.swagger.io/
 [Postman]: https://www.getpostman.com/
 [Storage SDK for Java]: ../storage/storage-java-how-to-use-blob-storage.md
 [Swagger]: http://swagger.io/
-[Swagger 編輯器]: http://editor.swagger.io/
+[Swagger Editor]: http://editor.swagger.io/
 [Visual Studio Code]: https://code.visualstudio.com
 
 <!-- IMG List -->
@@ -338,4 +339,8 @@
 [copy-git-repo-url]: ./media/app-service-api-java-api-app/copy-git-repo-url.png
 [postman-calling-azure-contacts]: ./media/app-service-api-java-api-app/postman-calling-azure-contacts.png
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,50 +1,51 @@
 <properties
-	pageTitle="Azure Functions HTTP 和 Webhook 繫結 | Microsoft Azure"
-	description="了解如何在 Azure Functions 中使用 HTTP 和 Webhook 觸發程序與繫結。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"/>
+    pageTitle="Azure Functions HTTP and webhook bindings | Microsoft Azure"
+    description="Understand how to use HTTP and webhook triggers and bindings in Azure Functions."
+    services="functions"
+    documentationCenter="na"
+    authors="christopheranderson"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, webhooks, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="08/22/2016"
-	ms.author="chrande"/>
+    ms.service="functions"
+    ms.devlang="multiple"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="08/22/2016"
+    ms.author="chrande"/>
 
-# Azure Functions HTTP 和 Webhook 繫結
+
+# <a name="azure-functions-http-and-webhook-bindings"></a>Azure Functions HTTP and webhook bindings
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 HTTP 和 Webhook 觸發程序與繫結進行設定及撰寫程式碼。
+This article explains how to configure and code HTTP and webhook triggers and bindings in Azure Functions. 
 
-[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
 
-## HTTP 和 Webhook 繫結的 function.json
+## <a name="function.json-for-http-and-webhook-bindings"></a>function.json for HTTP and webhook bindings
 
-「function.json」檔案會提供要求和回應的相關內容。
+The *function.json* file provides properties that pertain to both the request and response.
 
-HTTP 要求的屬性︰
+Properties for the HTTP request:
 
-- `name`︰函式程式碼中用於要求物件 (或是在 Node.js 函式的情況下，則是要求本文) 的變數名稱。
-- `type`︰必須設定為「httpTrigger」。
-- `direction`：必須設為「in」。
-- `webHookType`︰就 WebHook 觸發程序而言，有效值為「github」、「slack」及「genericJson」。對於非 WebHook 的 HTTP 觸發程序，會將這個屬性設為空字串。如需有關 Webhook 的詳細資訊，請參閱接下來的 [WebHook 觸發程序](#webhook-triggers)一節。
-- `authLevel`︰不適用於 WebHook 觸發程序。設定為 [function] 要求 API 金鑰、[anonymous] 以拖放 API 金鑰需求，或 [admin] 要求主要 API 金鑰。如需詳細資訊，請參閱 [API 金鑰](#apikeys)。
+- `name` : Variable name used in function code for the request object (or the request body in the case of Node.js functions).
+- `type` : Must be set to *httpTrigger*.
+- `direction` : Must be set to *in*. 
+- `webHookType` : For WebHook triggers, valid values are *github*, *slack*, and *genericJson*. For an HTTP trigger that isn't a WebHook, set this property to an empty string. For more information on WebHooks, see the following [WebHook triggers](#webhook-triggers) section.
+- `authLevel` : Doesn't apply to WebHook triggers. Set to "function" to require the API key, "anonymous" to drop the API key requirement, or "admin" to require the master API key. See [API keys](#apikeys) below for more information.
 
-HTTP 回應的屬性︰
+Properties for the HTTP response:
 
-- `name`︰函式程式碼中用於回應物件的變數名稱。
-- `type`：必須設定為「http」。
-- `direction`：必須設為「out」。
+- `name` : Variable name used in function code for the response object.
+- `type` : Must be set to *http*.
+- `direction` : Must be set to *out*. 
  
-範例「function.json」：
+Example *function.json*:
 
 ```json
 {
@@ -66,29 +67,29 @@ HTTP 回應的屬性︰
 }
 ```
 
-## WebHook 觸發程序
+## <a name="webhook-triggers"></a>WebHook triggers
 
-WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而設計的功能︰
+A WebHook trigger is an HTTP trigger that has the following features designed for WebHooks:
 
-* 對於特定 WebHook 提供者 (目前支援 GitHub 和 Slack)，Functions 執行階段會驗證提供者的簽章。
-* 對於 Node.js 函式，Functions 執行階段提供要求主體而非要求物件。C# 函式無需特殊的處理方式，因為您只要指定參數類型即可控制所提供的內容。如果指定 `HttpRequestMessage`，就會取得要求物件。如果指定 POCO 類型，Functions 執行階段會嘗試剖析要求主體中的 JSON 物件以填入物件屬性。
-* 若要觸發 WebHook 函式，HTTP 要求必須包含 API 金鑰。對於非 WebHook HTTP 觸發程序，這項需求是選擇性的。
+* For specific WebHook providers (currently GitHub and Slack are supported), the Functions runtime validates the provider's signature.
+* For Node.js functions, the Functions runtime provides the request body instead of the request object. There is no special handling for C# functions, because you control what is provided by specifying the parameter type. If you specify `HttpRequestMessage` you get the request object. If you specify a POCO type, the Functions runtime tries to parse a JSON object in the body of the request to populate the object properties.
+* To trigger a WebHook function the HTTP request must include an API key. For non-WebHook HTTP triggers,  this requirement is optional.
 
-如需有關如何設定 GitHub WebHook 的資訊，請參閱 [GitHub 開發人員 - 建立 Webhook](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409)。
+For information about how to set up a GitHub WebHook, see [GitHub Developer - Creating WebHooks](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409).
 
-## 用來觸發函數的 URL
+## <a name="url-to-trigger-the-function"></a>URL to trigger the function
 
-若要觸發函數，您需傳送 HTTP 要求給 URL，此要求是函數應用程式 URL 與函數名稱的組合：
+To trigger a function, you send an HTTP request to a URL that is a combination of the function app URL and the function name:
 
 ```
  https://{function app name}.azurewebsites.net/api/{function name} 
 ```
 
-## API 金鑰
+## <a name="api-keys"></a>API keys
 
-根據預設，API 金鑰必須包含在 HTTP 要求之中，才能觸發 HTTP 或 WebHook 函式。金鑰可以包含在名為 `code` 的查詢字串變數中，或包含在 `x-functions-key` HTTP 標頭。對於非 WebHook 函式，您可以在 function.json 檔案中將 `authLevel` 屬性設為 [anonymous]，以將 API 金鑰指定為非必要。
+By default, an API key must be included with an HTTP request to trigger an HTTP or WebHook function. The key can be included in a query string variable named `code`, or it can be included in an `x-functions-key` HTTP header. For non-WebHook functions, you can indicate that an API key is not required by setting the `authLevel` property to "anonymous" in the *function.json* file.
 
-您可以在函式應用程式的檔案系統中，於 D:\\home\\data\\Functions\\secrets 中找到 API 金鑰值。主要金鑰和函式金鑰均設定於 host.json 檔案之中，如此範例所示。
+You can find API key values in the *D:\home\data\Functions\secrets* folder in the file system of the function app.  The master key and function key are set in the *host.json* file, as shown in this example. 
 
 ```json
 {
@@ -97,9 +98,9 @@ WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而
 }
 ```
 
-host.json 的函式鍵可用來觸發任何函式，但不會觸發已停用的函式。主要金鑰可用來觸發任何函式，並且會觸發已停用的函式。您可以將 `authLevel` 屬性設為 [admin]，設定函式來要求主要金鑰。
+The function key from *host.json* can be used to trigger any function but won't trigger a disabled function. The master key can be used to trigger any function and will trigger a function even if it's disabled. You can configure a function to require the master key by setting the `authLevel` property to "admin". 
 
-如果 secrets 資料夾包含與函式同名的 JSON 檔案，也可使用該檔案中的 `key` 屬性來觸發函式，且此金鑰只會使用其參考的函式。例如，名為 `HttpTrigger` 之函式的 API 金鑰應在 secrets 資料夾的 HttpTrigger.json 中加以指定。下列是一個範例：
+If the *secrets* folder contains a JSON file with the same name as a function, the `key` property in that file can also be used to trigger the function, and this key will only work with the function it refers to. For example, the API key for a function named `HttpTrigger` is specified in *HttpTrigger.json* in the *secrets* folder. Here is an example:
 
 ```json
 {
@@ -107,11 +108,11 @@ host.json 的函式鍵可用來觸發任何函式，但不會觸發已停用的�
 }
 ```
 
-> [AZURE.NOTE] 設定 WebHook 觸發程序時，請不要與 WebHook 提供者共用主要金鑰。使用只適用於處理 WebHook 的函式。主要金鑰可用來觸發任何函式，即使已停用的函式亦然。
+> [AZURE.NOTE] When you're setting up a WebHook trigger, don't share the master key with the WebHook provider. Use a key that will only work with the function that processes the WebHook.  The master key can be used to trigger any function, even disabled functions.
 
-## HTTP 觸發程序函式的 C# 程式碼範例 
+## <a name="example-c#-code-for-an-http-trigger-function"></a>Example C# code for an HTTP trigger function 
 
-程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
+The example code looks for a `name` parameter either in the query string or the body of the HTTP request.
 
 ```csharp
 using System.Net;
@@ -138,9 +139,9 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 }
 ```
 
-## HTTP 觸發程序函式的 F# 程式碼範例
+## <a name="example-f#-code-for-an-http-trigger-function"></a>Example F# code for an HTTP trigger function
 
-程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
+The example code looks for a `name` parameter either in the query string or the body of the HTTP request.
 
 ```fsharp
 open System.Net
@@ -164,7 +165,7 @@ let Run(req: HttpRequestMessage) =
     } |> Async.StartAsTask
 ```
 
-您會需要 `project.json` 檔案，以使用 NuGet 來參考 `FSharp.Interop.Dynamic` 和 `Dynamitey` 組件，例如︰
+You will need a `project.json` file that uses NuGet to reference the `FSharp.Interop.Dynamic` and `Dynamitey` assemblies, like this:
 
 ```json
 {
@@ -179,11 +180,11 @@ let Run(req: HttpRequestMessage) =
 }
 ```
 
-這會使用 NuGet 來擷取相依性，並會在指令碼中加以參考。
+This will use NuGet to fetch your dependencies and will reference them in your script.
 
-## HTTP 觸發程序函式的 Node.js 程式碼範例 
+## <a name="example-node.js-code-for-an-http-trigger-function"></a>Example Node.js code for an HTTP trigger function 
 
-此程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
+This example code looks for a `name` parameter either in the query string or the body of the HTTP request.
 
 ```javascript
 module.exports = function(context, req) {
@@ -205,9 +206,9 @@ module.exports = function(context, req) {
 };
 ```
 
-## GitHub WebHook 函式的 C# 程式碼範例 
+## <a name="example-c#-code-for-a-github-webhook-function"></a>Example C# code for a GitHub WebHook function 
 
-此程式碼範例會記錄 GitHub 問題註解。
+This example code logs GitHub issue comments.
 
 ```csharp
 #r "Newtonsoft.Json"
@@ -230,9 +231,9 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 }
 ```
 
-## GitHub WebHook 函式的 F# 程式碼範例
+## <a name="example-f#-code-for-a-github-webhook-function"></a>Example F# code for a GitHub WebHook function
 
-此程式碼範例會記錄 GitHub 問題註解。
+This example code logs GitHub issue comments.
 
 ```fsharp
 open System.Net
@@ -255,9 +256,9 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     } |> Async.StartAsTask
 ```
 
-## GitHub WebHook 函式的 Node.js 程式碼範例 
+## <a name="example-node.js-code-for-a-github-webhook-function"></a>Example Node.js code for a GitHub WebHook function 
 
-此程式碼範例會記錄 GitHub 問題註解。
+This example code logs GitHub issue comments.
 
 ```javascript
 module.exports = function (context, data) {
@@ -267,8 +268,12 @@ module.exports = function (context, data) {
 };
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
+[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)] 
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

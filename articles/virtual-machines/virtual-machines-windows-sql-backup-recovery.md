@@ -1,95 +1,100 @@
 <properties
-	pageTitle="備份和還原 SQL Server |Microsoft Azure"
-	description="描述 Azure 虛擬機器上執行的 SQL Server 資料庫之備份和還原考量。"
-	services="virtual-machines-windows"
-	documentationCenter="na"
-	authors="rothja"
-	manager="jhubbard"
-	editor=""
-	tags="azure-resource-management" />
+    pageTitle="Backup and Restore for SQL Server | Microsoft Azure"
+    description="Describes backup and restore considerations for SQL Server databases running on Azure Virtual Machines."
+    services="virtual-machines-windows"
+    documentationCenter="na"
+    authors="rothja"
+    manager="jhubbard"
+    editor=""
+    tags="azure-resource-management" />
 
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="08/19/2016"
-	ms.author="jroth" />
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="08/19/2016"
+    ms.author="jroth" />
 
-# Azure 虛擬機器中的 SQL Server 備份和還原
 
-## 概觀
+# <a name="backup-and-restore-for-sql-server-in-azure-virtual-machines"></a>Backup and Restore for SQL Server in Azure Virtual Machines
 
-為防止因為應用程式或使用者錯誤而遺失資料，備份 SQL Server 資料庫的資料是該保護措施中的重要一環。這同樣適用於執行 Azure 虛擬機器 (VM) 上的 SQL Server。
+## <a name="overview"></a>Overview
+
+Backing up data in SQL Server databases is an important part of the strategy in protecting against data loss due to application or user errors. This is equally true for SQL Server running on Azure Virtual Machines (VMs).
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-針對在 Azure VM 中執行的 SQL Server，您可以藉助備份檔案目的地的連接磁碟，使用原生備份和還原技術。不過，根據該[虛擬機器的大小](virtual-machines-linux-sizes.md)而定，您可以連接到 Azure 虛擬機器的磁碟數有所限制。磁碟管理的負擔也需要加以考量。
+For SQL Server running in Azure VMs, you can use native backup and restore techniques using attached disks for the destination of the backup files. However, there is a limit to the number of disks you can attach to an Azure virtual machine, based on the [size of the virtual machine](virtual-machines-linux-sizes.md). There is also the overhead of disk management to consider.
 
-從 SQL Server 2014 開始，您可以備份和還原至 Microsoft Azure Blob 儲存體。SQL Server 2016 也提供這個選項的增強功能。此外，針對儲存在 Microsoft Azure Blob 儲存體的資料庫檔案，SQL Server 2016 提供的選項，可使用 Azure 的快照集，用於幾乎即時的備份和快速的還原作業。本文章提供這些選項的概觀，而您可以在 [SQL Server 備份及還原與 Microsoft Azure Blob 儲存體服務](https://msdn.microsoft.com/library/jj919148.aspx)中找到其他資訊。
+Beginning with SQL Server 2014, you can back up and restore to Microsoft Azure Blob storage. SQL Server 2016 also provides enhancements for this option. In addition, for database files stored in Microsoft Azure Blob storage, SQL Server 2016 provides an option for nearly instantaneous backups and for rapid restores using Azure snapshots. This article provides an overview of these options, and additional information can be found at [SQL Server Backup and Restore with Microsoft Azure Blob Storage Service](https://msdn.microsoft.com/library/jj919148.aspx).
 
->[AZURE.NOTE] 如需備份超大型資料庫選項的討論，請參閱[適用於 Azure 虛擬機器的多 TB 級 SQL Server 資料庫備份策略](http://blogs.msdn.com/b/igorpag/archive/2015/07/28/multi-terabyte-sql-server-database-backup-strategies-for-azure-virtual-machines.aspx)。
+>[AZURE.NOTE] For a discussion of the options for backing up very large databases, see [Multi-Terabyte SQL Server Database Backup Strategies for Azure Virtual Machines](http://blogs.msdn.com/b/igorpag/archive/2015/07/28/multi-terabyte-sql-server-database-backup-strategies-for-azure-virtual-machines.aspx).
 
-下列章節包含 Azure 虛擬機器所支援之不同版本 SQL Server 的特定資訊。
+The sections below include information specific to the different versions of SQL Server supported in an Azure virtual machine.
 
-## SQL Server 虛擬機器
+## <a name="sql-server-virtual-machines"></a>SQL Server Virtual Machines
 
-當您的 SQL Server 執行個體在 Azure 虛擬機器上執行時，您的資料庫檔案已經位於 Azure 中的資料磁碟。這些磁碟存在於 Azure Blob 儲存體中。因此，備份資料庫的原因和方法就會稍有不同。請考慮下列。
+When your SQL Server instance is running on an Azure Virtual Machine, your database files already reside on data disks in Azure. These disks live in Azure Blob storage. So the reasons for backing up your database and the approaches you take change slightly. Consider the following. 
 
-- 您不再需要執行資料庫備份來提供硬體或媒體故障防護，因為 Microsoft Azure 提供這項防護，做為 Microsoft Azure 服務的一部分。
+- You no longer need to perform database backups to provide protection against hardware or media failure because Microsoft Azure provides this protection as part of the Microsoft Azure service.
 
-- 您仍然需要執行資料庫備份來提供防護，以免發生使用者錯誤，或基於保存之目的、稽核的原因或系統管理目的而備份。
+- You still need to perform database backups to provide protection against user errors, or for archival purposes, regulatory reasons, or administrative purposes.
 
-- 您可以直接在 Azure 中儲存備份的檔案。如需詳細資訊，請參閱下列各節提供的不同版本 SQL Server 的指引。
+- You can store the backup file directly in Azure. For more information, see the following sections that provide guidance for the different versions of SQL Server.
 
-## SQL Server 2016
+## <a name="sql-server-2016"></a>SQL Server 2016
 
-Microsoft SQL Server 2016 支援在 SQL Server 2014 中也能找到的[使用 Azure Blob 進行備份及還原](https://msdn.microsoft.com/library/jj919148.aspx)功能。不過它也包含下列增強功能：
+Microsoft SQL Server 2016 supports [backup and restore with Azure blobs](https://msdn.microsoft.com/library/jj919148.aspx) features found in SQL Server 2014. But it also includes the following enhancements:
 
-| 2016 增強功能 | 詳細資料 |
+| 2016 Enhancement               | Details                          |
 |---------------------|-------------------------------|
-| **串接** | 當備份至 Microsoft Azure Blob 儲存體時，SQL Server 2016 支援備份至多個 Blob，以啟用可高達 12.8 TB 之大型資料庫的備份。 |
-| **快照集備份** | 藉由 Azure 快照集，SQL Server 檔案快照集備份對使用 Azure Blob 儲存體服務儲存的資料庫檔案，提供幾乎即時的備份及快速還原。這項功能可簡化備份和還原原則。檔案快照集備份也支援還原時間點。如需詳細資訊，請參閱[適用於在 Azure 中的資料庫檔案的快照集備份](https://msdn.microsoft.com/library/mt169363%28v=sql.130%29.aspx)。 |
-| **管理備份排程** | SQL Server Managed Backup 至 Azure 現在支援自訂排程。如需詳細資訊，請參閱 [SQL Server Managed Backup 至 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx)。 |
+| **Striping**              | When backing up to Microsoft Azure blob storage, SQL Server 2016 supports backing up to multiple blobs to enable backing up large databases, up to a maximum of 12.8 TB.      |
+| **Snapshot Backup**                | Through the use of Azure snapshots, SQL Server File-Snapshot Backup provides nearly instantaneous backups and rapid restores for database files stored using the Azure Blob storage service. This capability enables you to simplify your backup and restore policies. File-snapshot backup also supports point in time restore. For more information, see [Snapshot Backups for Database Files in Azure](https://msdn.microsoft.com/library/mt169363%28v=sql.130%29.aspx).   |
+| **Managed Backup Scheduling**            | SQL Server Managed Backup to Azure now supports custom schedules. For more information, see [SQL Server Managed Backup to Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).   |
 
-如需在使用 Azure Blob 儲存體時使用 SQL Server 2016 功能的教學課程，請參閱[教學課程：使用 Microsoft Azure Blob 儲存體服務搭配 SQL Server 2016 資料庫](https://msdn.microsoft.com/library/dn466438.aspx)。
+For a tutorial of the capabilities of SQL Server 2016 when using Azure Blob storage, see [Tutorial: Using the Microsoft Azure Blob storage service with SQL Server 2016 databases](https://msdn.microsoft.com/library/dn466438.aspx).
 
-## SQL Server 2014
+## <a name="sql-server-2014"></a>SQL Server 2014
 
-SQL Server 2014 包含下列增強功能：
+SQL Server 2014 includes the following enhancements:
 
-1. **備份和還原至 Azure**：
+1. **Backup and Restore to Azure**:
 
- - *SQL Server 備份至 URL* 現在也支援在 SQL Server Management Studio 中使用。現在，在 SQL Server Management Studio 中使用「備份」或「還原」工作或維護計畫精靈時，已可使用備份至 Azure 的選項。如需詳細資訊，請參閱 [SQL Server 備份至 URL](https://msdn.microsoft.com/library/jj919148%28v=sql.120%29.aspx)。
- - *SQL Server Managed Backup 至 Azure* 具有讓備份管理自動化的新功能。這特別適用於在 Azure 機器上執行的 SQL Server 2014 執行個體之自動化備份管理。如需詳細資訊，請參閱 [SQL Server Managed Backup 至 Microsoft Azure](https://msdn.microsoft.com/library/dn449496%28v=sql.120%29.aspx)。
- - *自動化備份*在 Azure 中的 SQL Server VM 所有現有和新的資料庫上，提供額外的自動化來自動啟用 *SQL Server Managed Backup 至 Azure*。如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的自動化備份](virtual-machines-windows-sql-automated-backup.md)。
- - 如需 SQL Server 2014 備份至 Azure 的所有選項概觀，請參閱[使用 Microsoft Azure Blob 儲存體服務備份及還原 SQL Server](https://msdn.microsoft.com/library/jj919148%28v=sql.120%29.aspx)。
+ - *SQL Server Backup to URL* now has support in SQL Server Management Studio. The option to back up to Azure is now available when using Backup or Restore task, or maintenance plan wizard in SQL Server Management Studio. For more information, see [SQL Server Backup to URL](https://msdn.microsoft.com/library/jj919148%28v=sql.120%29.aspx).
+ - *SQL Server Managed Backup to Azure* has new functionality that enables automated backup management. This is especially useful for automating backup management for SQL Server 2014 instances running on an Azure Machine. For more information, see [SQL Server Managed Backup to Microsoft Azure](https://msdn.microsoft.com/library/dn449496%28v=sql.120%29.aspx).
+ - *Automated Backup* provides additional automation to automatically enable *SQL Server Managed Backup to Azure* on all existing and new databases for a SQL Server VM in Azure. For more information, see [Automated Backup for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-automated-backup.md).
+ - For an overview of all the options for SQL Server 2014 Backup to Azure, see [SQL Server Backup and Restore with Microsoft Azure Blob Storage Service](https://msdn.microsoft.com/library/jj919148%28v=sql.120%29.aspx).
 
-1. **加密**：SQL Server 2014 支援在建立備份時加密資料。它支援數種加密演算法以及使用憑證或非對稱金鑰。如需詳細資訊，請參閱[備份加密](https://msdn.microsoft.com/library/dn449489%28v=sql.120%29.aspx)。
+1. **Encryption**: SQL Server 2014 supports encrypting data when creating a backup. It supports several encryption algorithms and the use osf a certificate or asymmetric key. For more information, see [Backup Encryption](https://msdn.microsoft.com/library/dn449489%28v=sql.120%29.aspx).
 
-## SQL Server 2012
+## <a name="sql-server-2012"></a>SQL Server 2012
 
-如需 SQL Server 2012 中 SQL Server 備份及還原的詳細資訊，請參閱 [SQL Server 資料庫備份及還原 (SQL Server 2012)](https://msdn.microsoft.com/library/ms187048%28v=sql.110%29.aspx)。
+For detailed information on SQL Server Backup and Restore in SQL Server 2012, see [Backup and Restore of SQL Server Databases (SQL Server 2012)](https://msdn.microsoft.com/library/ms187048%28v=sql.110%29.aspx).
 
-從 SQL Server 2012 SP1 累計更新 2 開始，您可以備份到 Azure Blob 儲存體服務及從中還原。這項增強功能可用來在於「Azure 虛擬機器」或在內部部署執行個體上執行的 SQL Server 上，備份 SQL Server 資料庫。如需詳細資訊，請參閱 [SQL Server 備份及還原與 Azure Blob 儲存體服務](https://msdn.microsoft.com/library/jj919148%28v=sql.110%29.aspx)。
+Starting in SQL Server 2012 SP1 Cumulative Update 2, you can back up to and restore from the Azure Blob Storage service. This enhancement can be used to back up SQL Server databases on a SQL Server running on an Azure Virtual Machine or an on-premises instance. For more information, see [SQL Server Backup and Restore with Azure Blob Storage Service](https://msdn.microsoft.com/library/jj919148%28v=sql.110%29.aspx).
 
-使用 Azure Blob 儲存體服務的一些優點包括：能夠略過針對連接的磁碟所設下的 16 個磁碟限制、容易管理，以及基於移轉或災害復原的目的，在 Azure 虛擬機器上執行之 SQL Server 執行個體的另一個執行個體或是內部部署執行個體可以直接使用備份檔案。若要使用 Azure Blob 儲存體服務進行 SQL Server 備份的優點完整清單，請參閱 [SQL Server 備份及還原與 Azure Blob 儲存體服務](https://msdn.microsoft.com/library/jj919148%28v=sql.110%29.aspx)中的*優點*一節。
+Some of the benefits of using the Azure Blob storage service include the ability to bypass the 16 disk limit for attached disks, ease of management, the direct availability of the backup file to another instance of SQL Server instance running on an Azure virtual machine, or an on-premises instance for migration or disaster recovery purposes. For a full list of benefits to using an Azure blob storage service for SQL Server backups, see the *Benefits* section in [SQL Server Backup and Restore with Azure Blob Storage Service](https://msdn.microsoft.com/library/jj919148%28v=sql.110%29.aspx).
 
-如需最佳做法建議和疑難排解資訊，請參閱[備份與還原最佳做法 (Azure Blob 儲存體服務)](https://msdn.microsoft.com/library/jj919149%28v=sql.110%29.aspx)。
+For Best Practice recommendations and troubleshooting information, see [Backup and Restore Best Practices (Azure Blob Storage Service)](https://msdn.microsoft.com/library/jj919149%28v=sql.110%29.aspx).
 
-## SQL Server 2008
+## <a name="sql-server-2008"></a>SQL Server 2008
 
-如需在 SQL Server 2008 R2 中進行 SQL Server 備份及還原，請參閱[在 SQL Server 中備份和還原資料庫 (SQL Server 2008 R2)](https://msdn.microsoft.com/library/ms187048%28v=sql.105%29.aspx)。
+For SQL Server Backup and Restore in SQL Server 2008 R2, see [Backing up and Restoring Databases in SQL Server (SQL Server 2008 R2)](https://msdn.microsoft.com/library/ms187048%28v=sql.105%29.aspx).
 
-如需在 SQL Server 2008 中進行 SQL Server 備份及還原，請參閱[在 SQL Server 中備份和還原資料庫 (SQL Server 2008)](https://msdn.microsoft.com/library/ms187048%28v=sql.100%29.aspx)。
+For SQL Server Backup and Restore in SQL Server 2008, see [Backing up and Restoring Databases in SQL Server (SQL Server 2008)](https://msdn.microsoft.com/library/ms187048%28v=sql.100%29.aspx).
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如果您計畫在 Azure VM 中部署 SQL Server，您可以在下列教學課程找到佈建的指示：[利用 Azure Resource Manager 在 Azure 中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
+If you are planning your deployment of SQL Server in an Azure VM, you can find provisioning guidance in the following tutorial: [Provisioning a SQL Server Virtual Machine on Azure with Azure Resource Manager](virtual-machines-windows-portal-sql-server-provision.md).
 
-雖然備份和還原可用來將資料移轉，但對於移轉到 Azure VM 上的 SQL Server，可能仍有更容易的資料移轉路徑。如需移轉選項和建議的完整討論，請參閱[將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)。
+Although backup and restore can be used to migrate your data, there are potentially easier data migration paths to SQL Server on an Azure VM. For a full discussion of migration options and recommendations, see [Migrating a Database to SQL Server on an Azure VM](virtual-machines-windows-migrate-sql.md).
 
-請檢閱其他[在 Azure 虛擬機器中執行 SQL Server 的資源](virtual-machines-windows-sql-server-iaas-overview.md)。
+Review other [resources for running SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-server-iaas-overview.md).
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

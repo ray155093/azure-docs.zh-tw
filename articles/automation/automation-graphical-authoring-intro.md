@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Azure 自動化中的圖形化編寫 | Microsoft Azure"
-    description="圖形化編寫可讓您建立 Azure 自動化的 Runbook，而不使用程式碼。本文章提供圖形化編寫的簡介和開始建立圖形化 Runbook 所需的所有詳細資料。"
+    pageTitle="Graphical Authoring in Azure Automation | Microsoft Azure"
+    description="Graphical authoring allows you to create runbooks for Azure Automation without working with code. This article provides an introduction to graphical authoring and all the details needed to start creating a graphical runbook."
     services="automation"   
     documentationCenter=""
     authors="mgoedtel"
@@ -15,214 +15,216 @@
     ms.date="06/03/2016"
     ms.author="magoedte;bwren" />
 
-# Azure 自動化中的圖形化編寫
 
-## 簡介
+# <a name="graphical-authoring-in-azure-automation"></a>Graphical authoring in Azure Automation
 
-圖形化編寫可讓您為 Azure 自動化建立 Runbook，而沒有基礎 Windows PowerShell 或 PowerShell 工作流程程式碼的複雜度。您可以從 Cmdlet 和 Runbook 的程式庫中將活動加入至畫布，並將其連結在一起並加以設定來形成工作流程。如果您曾經用過 System Center Orchestrator 或 Service Management Automation (SMA)，則這應該看起來很熟悉。
+## <a name="introduction"></a>Introduction
 
-本文章提供圖形化編寫的簡介及開始建立圖形化 Runbook 所需的概念。
+Graphical Authoring allows you to create runbooks for Azure Automation without the complexities of the underlying Windows PowerShell or PowerShell Workflow code. You add activities to the canvas from a library of cmdlets and runbooks, link them together and configure to form a workflow.  If you have ever worked with System Center Orchestrator or Service Management Automation (SMA), then this should look familiar to you.   
 
-## 圖形化 Runbook
+This article provides an introduction to graphical authoring and the concepts you need to get started in creating a graphical runbook.
 
-Azure 自動化中的所有 Runbook 都是 Windows PowerShell 工作流程。圖形化 Runbook 和圖形化 PowerShell 工作流程 Runbook 會產生由自動化背景工作執行的 PowerShell 程式碼，但是您無法檢視它或直接修改它。圖形化 Runbook 可以轉換為圖形化 PowerShell 工作流程 Runbook，反之亦然，但它們無法轉換為文字式 Runbook。現有的文字式 Runbook 無法匯入圖形化編輯器。
+## <a name="graphical-runbooks"></a>Graphical runbooks
 
-
-## 圖形化編輯器概觀
-
-您可以透過建立或編輯圖形化 Runbook，在 Azure 入口網站中開啟圖形化編輯器。
-
-![圖形化工作區](media/automation-graphical-authoring-intro/runbook-graphical-editor.png)
+All runbooks in Azure Automation are Windows PowerShell Workflows.  Graphical and Graphical PowerShell Workflow runbooks generate PowerShell code that is run by the Automation workers, but you are not able to view it or directly modify it.  A Graphical runbook can be converted to a Graphical PowerShell Workflow runbook and vice-versa, but they cannot be converted to a textual runbook. An existing textual runbook cannot be imported into the graphical editor.  
 
 
-下列各節說明圖形化編輯器中的控制項。
+## <a name="overview-of-graphical-editor"></a>Overview of graphical editor
+
+You can open the graphical editor in the Azure portal by creating or editing a graphical runbook.
+
+![Graphical workspace](media/automation-graphical-authoring-intro/runbook-graphical-editor.png)
 
 
-### 畫布
-畫布是您設計 Runbook 的位置。您會從程式庫控制項中的節點將活動加入至 Runbook，並以連結將它們連接來定義 Runbook 的邏輯。
+The following sections describe the controls in the graphical editor.
 
-您可以使用畫布底部的控制項來放大或縮小。
 
-![圖形化工作區](media/automation-graphical-authoring-intro/runbook-canvas-controls.png)
+### <a name="canvas"></a>Canvas
+The Canvas is where you design your runbook.  You add activities from the nodes in the Library control to the runbook and connect them with links to define the logic of the runbook.
 
-### 程式庫控制項
+You can use the controls at the bottom of the canvas to zoom in and out.
 
-程式庫控制項是您選取 [活動](#activities)以加入至您的 Runbook 的位置。您會將它們加入畫布，在畫布中將它們連接到其他活動。它包含下表所述的四個區段。
+![Graphical workspace](media/automation-graphical-authoring-intro/runbook-canvas-controls.png)
 
-| 區段 | 說明 |
+### <a name="library-control"></a>Library control
+
+The Library control is where you select [activities](#activities) to add to your runbook.  You add them to the canvas where you connect them to other activities.  It includes four sections described in the following table.
+
+| Section | Description |
 |:---|:---|
-| Cmdlet | 包含可以在 Runbook 中使用的所有 Cmdlet。Cmdlet 是依模組組織。已在您的自動化帳戶中安裝的所有模組將可供使用。 |
-| Runbook | 包含自動化帳戶中的 Runbook。這些 Runbook 可以加入至畫布以做為子 Runbook。只會顯示與所編輯之 Runbook 相同核心類型的 Runbook。針對圖形化 Runbook，只會顯示以 PowerShell 為基礎的 Runbook，而針對圖形化 PowerShell 工作流程 Runbook，只會顯示以 PowerShell 工作流程為基礎的 Runbook。
-| Assets | 包含您的自動化帳戶中可以在 Runbook 中使用的[自動化資產](http://msdn.microsoft.com/library/dn939988.aspx)。當您將資產加入至 Runbook 時，它會加入工作流程活動，取得所選資產。如果是變數資產，您可以選取是否要加入活動以取得變數或設定變數。
-| Runbook 控制項 | 包含可在目前的 Runbook 中使用的 Runbook 控制項活動。「接合」會接受多個輸入，並等待所有項目完成，然後再繼續工作流程。「程式碼」活動會根據圖形化 Runbook 類型而定，執行一或多行 PowerShell 或 PowerShell 工作流程程式碼。您可以對很難利用其他活動來達成的自訂程式碼或功能使用此活動。|
+| Cmdlets | Includes all the cmdlets that can be used in your runbook.  Cmdlets are organized by module.  All of the modules that you have installed in your automation account will be available.  |
+| Runbooks |  Includes the runbooks in your automation account. These runbooks can be added to the canvas to be used as child runbooks. Only runbooks of the same core type as the runbook being edited are shown; for Graphical runbooks only PowerShell-based runbooks are shown, while for Graphical PowerShell Workflow runbooks only PowerShell-Workflow-based runbooks are shown.
+| Assets | Includes the [automation assets](http://msdn.microsoft.com/library/dn939988.aspx) in your automation account that can be used in your runbook.  When you add an asset to a runbook, it will add a workflow activity that gets the selected asset.  In the case of variable assets, you can select whether to add an activity to get the variable or set the variable.
+| Runbook Control | Includes runbook control activities that can be used in your current runbook. A *Junction* takes multiple inputs and waits until all have completed before continuing the workflow. A *Code* activity runs one or more lines of PowerShell or PowerShell Workflow code depending on the graphical runbook type.  You can use this activity for custom code or for functionality that is difficult to achieve with other activities.|
 
-### 組態控制項
+### <a name="configuration-control"></a>Configuration control
 
-您可以在組態控制項中，針對畫布上所選取的物件提供詳細資料。此控制項中的可用屬性將取決於所選取的物件類型。當您在組態控制項中選取一個選項時，即會開啟其他分頁以提供其他資訊。
+The Configuration control is where you provide details for an object selected on the canvas. The properties available in this control will depend on the type of object selected.  When you select an option in the Configuration control, it will open additional blades in order to provide additional information.
 
-### 測試控制項
+### <a name="test-control"></a>Test control
 
-第一次啟動圖形化編輯器時，不會顯示測試控制項。當您以互動方式[測試圖形化 Runbook](#graphical-runbook-procedures) 時會開啟。
+The Test control is not displayed when the graphical editor is first started. It is opened when you interactively [test a graphical runbook](#graphical-runbook-procedures).  
 
-## 圖形化 Runbook 程序 
+## <a name="graphical-runbook-procedures"></a>Graphical runbook procedures 
 
-### 匯出和匯入圖形化 Runbook
+### <a name="exporting-and-importing-a-graphical-runbook"></a>Exporting and importing a graphical runbook
 
-您可以只匯出圖形化 Runbook 的已發行版本。如果尚未發行 Runbook，則 [匯出已發行] 按鈕將會停用。當您按一下 [匯出已發行] 按鈕，Runbook 就會下載到本機電腦。檔案名稱須符合帶有 *graphrunbook* 副檔名的 Runbook 名稱。
+You can only export the published version of a graphical runbook.  If the runbook has not yet been published, then the **Export published** button will be disabled.  When you click the **Export published** button, the runbook is downloaded to your local computer.  The name of the file matches the name of the runbook with a *graphrunbook* extension.
 
-![匯出已發行](media/automation-graphical-authoring-intro/runbook-export.png)
+![Export published](media/automation-graphical-authoring-intro/runbook-export.png)
 
-您可以在加入 Runbook 時選取 [匯入] 選項，藉以匯入圖形化或圖形化 PowerShell 工作流程 Runbook 檔案。當您選取要匯入的檔案時，您可以保留同一個**名稱**，或提供一個新名稱。[Runbook 類型] 欄位將會在評估所選取的檔案類型之後顯示 Runbook 的類型，而且如果您嘗試選取其他不正確的類型，即會顯示訊息，表示可能發生衝突，而且在轉換期間，可能會發生語法錯誤。
+You can import a Graphical or Graphical PowerShell Workflow runbook file by selecting the **Import** option when adding a runbook.   When you select the file to import, you can keep the same **Name** or provide a new one.  The Runbook Type field will display the type of runbook after it assesses the file selected and if you attempt to select a different type that is not correct, a message will be presented noting there are potential conflicts and during conversion, there could be syntax errors.  
 
-![匯入 Runbook](media/automation-graphical-authoring-intro/runbook-import-revised20165.png)
-
-
-### 測試圖形化 Runbook
-
-您可以在 Azure 入口網站中測試 Runbook 的草稿版本，同時讓 Runbook 的已發佈版本保持不變，或是在發佈全新的 Runbook 之前，先進行測試。這可讓您驗證取代已發行的版本之前，Runbook 正常運作。當您測試 Runbook 時，草稿 Runbook 會執行，而且它執行的任何動作都會完成。不會建立工作歷程記錄，但是會在 [測試輸出] 窗格中顯示輸出。
-
-開啟 Runbook 的測試控制項，方法是開啟 Runbook 進行編輯，然後按一下 [**測試窗格**] 按鈕。
-
-![測試窗格按鈕](media/automation-graphical-authoring-intro/runbook-edit-test-pane.png)
-
-測試控制項將提示輸入任何輸入參數，而您可以按一下 [**開始**] 按鈕來啟動 Runbook。
-
-![測試控制項按鈕](media/automation-graphical-authoring-intro/runbook-test-start.png)
-
-### 發行圖形化 Runbook
-
-Azure 自動化中的每個 Runbook 有草稿和已發行的版本。只可執行已發行版本，而且只可編輯草稿版本。已發行版本不會受到草稿版本的任何變更影響。草稿版本就緒可供使用時，您會將它發行，以草稿版本覆寫已發行版本。
-
-您可以開啟 Runbook 進行編輯，然後按一下 [**發行**] 按鈕來發行圖形化 Runbook。
-
-![發佈按鈕](media/automation-graphical-authoring-intro/runbook-edit-publish.png)
-
-尚未發行 Runbook 時，它的狀態為**新增**。發行時，它的狀態為**已發行**。如果在發行 Runbook 之後編輯 Runbook，且草稿和已發行版本不同，Runbook 的狀態會是**編輯中**。
-
-![Runbook 狀態](media/automation-graphical-authoring-intro/runbook-statuses-revised20165.png)
-
-您也可以選擇還原成 Runbook 的已發行版本。這樣會棄置上次發行 Runbook 後所進行的任何變更，並以已發行版本取代 Runbook 的草稿版本。
-
-![還原成已發行按鈕](media/automation-graphical-authoring-intro/runbook-edit-revert-published.png)
+![Import runbook](media/automation-graphical-authoring-intro/runbook-import-revised20165.png)
 
 
-## 活動
+### <a name="testing-a-graphical-runbook"></a>Testing a graphical runbook
 
-活動是 Runbook 的建置區塊。活動可以是 PowerShell Cmdlet、子 Runbook 或工作流程活動。以滑鼠右鍵按一下程式庫控制項的活動，然後選取 [**加入至畫布**]，即可將活動加入 Runbook。然後可以按一下並拖曳活動，將它放置在畫布上的任何位置。活動在畫布上的位置不會以任何方式影響 Runbook 的作業。您可以配置您的 Runbook，不過您會發現以視覺化方式檢視其作業最適合。
+You can test the Draft version of a runbook in the Azure portal while leaving the published version of the runbook unchanged, or you can test a new runbook before it has been published. This allows you to verify that the runbook is working correctly before replacing the published version. When you test a runbook, the Draft runbook is executed and any actions that it performs are completed. No job history is created, but output is displayed in the Test Output Pane. 
 
-![加入至畫布](media/automation-graphical-authoring-intro/add-to-canvas-revised20165.png)
+Open the Test control for a runbook by opening the runbook for edit and then click on the **Test pane** button.
 
-在組態分頁中的畫布上選取活動以設定其屬性和參數。您可以將活動的 [**標籤**] 變更成對您具意義的內容。原始的 Cmdlet 仍在執行，您只要變更它將在圖形化編輯器中使用的顯示名稱。標籤在 Runbook 內必須是唯一的。
+![Test pane button](media/automation-graphical-authoring-intro/runbook-edit-test-pane.png)
 
-### 參數集
+The Test control will prompt for any input parameters, and you can start the runbook by clicking on the **Start** button.
 
-參數集會定義將接受特定 Cmdlet 的值的強制和選擇性參數。所有的 Cmdlet 至少有一個參數集，而某些則有多個。如果 Cmdlet 有多個參數集，然後您必須選取可以設定參數之前，將使用參數集。您可以設定的參數將取決於您選擇的參數集。您可以變更活動使用的參數集，方法是選取 [**參數集**] 並選取其他設定。在此情況下，您設定的任何參數值都會遺失。
+![Test control buttons](media/automation-graphical-authoring-intro/runbook-test-start.png)
 
-在下列範例中，Get-AzureRmVM Cmdlet 有三個參數集。您無法設定參數值，直到您選取其中一個參數集。ListVirtualMachineInResourceGroupParamSet 參數集適用於傳回資源群組中的所有虛擬機器，並且具有單一選用參數。GetVirtualMachineInResourceGroupParamSet 適用於指定您想要傳回的虛擬機器，而且具有兩個強制參數和一個選用參數。
+### <a name="publishing-a-graphical-runbook"></a>Publishing a graphical runbook
 
-![參數集](media/automation-graphical-authoring-intro/get-azurermvm-parameter-sets.png)
+Each runbook in Azure Automation has a Draft and a Published version. Only the Published version is available to be run, and only the Draft version can be edited. The Published version is unaffected by any changes to the Draft version. When the Draft version is ready to be available, then you publish it which overwrites the Published version with the Draft version.
 
-#### 參數值
+You can publish a graphical runbook by opening the runbook for editing and then clicking on the **Publish** button.
 
-當您指定參數的值時，您會選取資料來源，以便判斷將如何指定值。特定參數可使用的資料來源將取決於該參數的有效值。例如，Null 不是不允許 null 值的參數可用的選項。
+![Publish button](media/automation-graphical-authoring-intro/runbook-edit-publish.png)
 
-| 資料來源 | 說明 |
+When a runbook has not yet been published, it has a status of **New**.  When it is published, it has a status of **Published**.  If you edit the runbook after it has been published, and the Draft and Published versions are different, the runbook has a status of **In edit**.
+
+![Runbook statuses](media/automation-graphical-authoring-intro/runbook-statuses-revised20165.png) 
+
+You also have the option to revert to the Published version of a runbook.  This throws away any changes made since the runbook was last published and replaces the Draft version of the runbook with the Published version.
+
+![Revert to published button](media/automation-graphical-authoring-intro/runbook-edit-revert-published.png)
+
+
+## <a name="activities"></a>Activities
+
+Activities are the building blocks of a runbook.  An activity can be a PowerShell cmdlet, a child runbook, or a workflow activity.  You add an activity to the runbook by right clicking it in the Library control and selecting **Add to canvas**.  You can then click and drag the activity to place it anywhere on the canvas that you like.  The location of the of the activity on the canvas does not effect the operation of the runbook in any way.  You can layout your runbook however you find it most suitable to visualize its operation. 
+
+![Add to canvas](media/automation-graphical-authoring-intro/add-to-canvas-revised20165.png)
+
+Select the activity on the canvas to configure its properties and parameters in the Configuration blade.  You can change the **Label** of the activity to something that is descriptive to you.  The original cmdlet is still being run, you are simply changing its display name that will be used in the graphical editor.  The label must be unique within the runbook. 
+
+### <a name="parameter-sets"></a>Parameter sets
+
+A parameter set defines the mandatory and optional parameters that will accept values for a particular cmdlet.  All cmdlets have at least one parameter set, and some have multiple.  If a cmdlet has multiple parameter sets, then you must select which one you will use before you can configure parameters.  The parameters that you can configure will depend on the parameter set that you choose.  You can change the parameter set used by an activity by selecting **Parameter Set** and selecting another set.  In this case, any parameter values that you configured are lost.
+
+In the following example, the Get-AzureRmVM cmdlet has three parameter sets.  You cannot configure parameter values until you select one of the parameter sets.  The ListVirtualMachineInResourceGroupParamSet parameter set is for returning all virtual machines in a resource group and has a single optional parameter.  The GetVirtualMachineInResourceGroupParamSet is for specifying the virtual machine you want to return and has two mandatory and one optional parameter.
+
+![Parameter set](media/automation-graphical-authoring-intro/get-azurermvm-parameter-sets.png)
+
+#### <a name="parameter-values"></a>Parameter values
+
+When you specify a value for a parameter, you select a data source to determine how the value will be specified.  The data sources that are available for a particular parameter will depend on the valid values for that parameter.  For example, Null will not be an available option for a parameter that does not allow null values.
+
+| Data Source | Description |
 |:---|:---|
-|常數值|輸入參數的值。這只適用於下列資料型別：Int32、Int64、String、Boolean、DateTime、Switch。 |
-|活動輸出|從優先於工作流程中的目前活動的活動輸出。將列出所有有效的活動。對參數值只選取要使用它的輸出的活動。如果活動會輸出具有多個屬性的物件，您可以在選取活動之後輸入名稱屬性。|
-|Runbook 輸入 |選取 Runbook 的輸入參數做為活動參數的輸入。|  
-|變數資產|選取「自動化變數」做為輸入。|  
-|認證資產|選取「自動化認證」做為輸入。|  
-|憑證資產|選取「自動化憑證」做為輸入。|  
-|連線資產|選取「自動化連線」做為輸入。| 
-|PowerShell 運算式|指定簡單 [PowerShell 運算式](#powershell-expressions)。在活動和用於參數值的結果之前，將會評估運算式。您可以使用變數來參照活動或 Runbook 的輸入參數的輸出。|
-|未設定|清除先前設定的任何值。|
+|Constant Value|Type in a value for the parameter.  This is only available for the following data types: Int32,Int64,String,Boolean,DateTime,Switch. |
+|Activity Output|Output from an activity that precedes the current activity in the workflow.  All valid activities will be listed.  Select just the activity to use its output for the parameter value.  If the activity outputs an object with multiple properties, then you can type in the name of the property after selecting the activity.|
+|Runbook Input |Select a runbook input parameter as input to the activity parameter.|  
+|Variable Asset|Select an Automation Variable as input.|  
+|Credential Asset|Select an Automation Credential as input.|  
+|Certificate Asset|Select an Automation Certificate as input.|  
+|Connection Asset|Select an Automation Connection as input.| 
+|PowerShell Expression|Specify simple [PowerShell expression](#powershell-expressions).  The expression will be evaluated before the activity and the result used for the parameter value.  You can use variables to refer to the output of an activity or a runbook input parameter.|
+|Not configured|Clears any value that was previously configured.|
 
 
-#### 選擇性的其他參數
+#### <a name="optional-additional-parameters"></a>Optional additional parameters
 
-所有的 Cmdlet 可選擇提供額外的參數。這些是 PowerShell 一般參數或其他自訂參數。您會看到一個文字方塊，您可以在其中使用 PowerShell 語法提供參數。例如，若要使用 **Verbose** 一般參數時，您會指定 **"-Verbose:$True"**。
+All cmdlets will have the option to provide additional parameters.  These are PowerShell common parameters or other custom parameters.  You are presented with a text box where you can provide parameters using PowerShell syntax.  For example, to use the **Verbose** common parameter, you would specify **"-Verbose:$True"**.
 
-### 重試活動
+### <a name="retry-activity"></a>Retry activity
 
-**重試行為**可讓活動執行多次，直到符合特定條件為止 (與迴圈非常類似)。您可以對應該執行多次的活動、容易出錯且可能需要嘗試一次以上才會成功的活動，或者針對有效資料測試活動輸出資料的活動，來使用這項功能。
+**Retry Behavior** allows an activity to be run multiple times until a particular condition is met, much like a loop.  You can use this feature for activities that should run multiple times, are error prone and may need more than one attempt for success, or test the output information of the activity for valid data.    
 
-當您對活動啟用重試時，您可以設定延遲和條件。延遲是時間 (以秒或分鐘計算)，Runbook 再次執行活動之前會等待的時間量。如果未指定延遲，則活動會在完成之後立即再次執行。
+When you enable retry for an activity, you can set a delay and a condition.  The delay is the time (measured in seconds or minutes) that the runbook will wait before it runs the activity again.  If no delay is specified, then the activity will run again immediately after it completes. 
 
-![活動重試延遲](media/automation-graphical-authoring-intro/retry-delay.png)
+![Activity retry delay](media/automation-graphical-authoring-intro/retry-delay.png)
 
-重試條件是 PowerShell 運算式，在每次活動執行之後評估。如果運算式解析為 True，則活動會再次執行。如果運算式解析為 False，則活動不會再次執行，且 Runbook 會移至下一個活動。
+The retry condition is a PowerShell expression that is evaluated after each time the activity runs.  If the expression resolves to True, then the activity runs again.  If the expression resolves to False then the activity does not run again, and the runbook moves on to the next activity. 
 
-![活動重試延遲](media/automation-graphical-authoring-intro/retry-condition.png)
+![Activity retry delay](media/automation-graphical-authoring-intro/retry-condition.png)
 
-重試條件可以使用名為 $RetryData 的變數，提供活動重試相關資訊的存取權。此變數具有下表中的屬性。
+The retry condition can use a variable called $RetryData that provides access to information about the activity retries.  This variable has the properties in the following table.
 
-| 屬性 | 說明 |
+| Property | Description |
 |:--|:--|
-| NumberOfAttempts | 活動已執行的次數。 |
-| 輸出 | 活動上次執行的輸出。 |
-| TotalDuration | 活動第一次開始之後的經過時間。 |
-| StartedAt | 活動第一次開始的時間 (UTC 格式)。 |
+| NumberOfAttempts | Number of times that the activity has been run.              |
+| Output           | Output from the last run of the activity.                    |
+| TotalDuration    | Timed elapsed since the activity was started the first time. |
+| StartedAt        | Time in UTC format the activity was first started.           |
 
-以下是活動重試條件的範例。
+Following are examples of activity retry conditions.
 
-	# Run the activity exactly 10 times.
-	$RetryData.NumberOfAttempts -ge 10 
+    # Run the activity exactly 10 times.
+    $RetryData.NumberOfAttempts -ge 10 
 
-	# Run the activity repeatedly until it produces any output.
-	$RetryData.Output.Count -ge 1 
+    # Run the activity repeatedly until it produces any output.
+    $RetryData.Output.Count -ge 1 
 
-	# Run the activity repeatedly until 2 minutes has elapsed. 
-	$RetryData.TotalDuration.TotalMinutes -ge 2
+    # Run the activity repeatedly until 2 minutes has elapsed. 
+    $RetryData.TotalDuration.TotalMinutes -ge 2
 
-設定活動的重試條件之後，該活動便會包含兩個視覺提示來提醒您。一個顯示於活動中，另一個則會在您檢閱活動的組態時顯示。
+After you configure a retry condition for an activity, the activity includes two visual cues to remind you.  One is presented in the activity and the other is when you review the configuration of the activity.
 
-![活動重試視覺指示器](media/automation-graphical-authoring-intro/runbook-activity-retry-visual-cue.png)
+![Activity Retry Visual Indicators](media/automation-graphical-authoring-intro/runbook-activity-retry-visual-cue.png)
 
 
-### 工作流程指令碼控制項
+### <a name="workflow-script-control"></a>Workflow Script control
 
-程式碼控制項是一種特殊活動，會根據所編寫的圖形化 Runbook 類型來接受 PowerShell 或 PowerShell 工作流程指令碼，以便提供可能無法使用的功能。它不能接受參數，但它可以對活動輸出和 Runbook 輸入參數使用變數。活動的任何輸出會加入至資料匯流排中，除非它在加入至 Runbook 的輸出中沒有連出的連結。
+A Code control is a special activity that accepts PowerShell or PowerShell Workflow script depending on the type of graphical runbook being authored in order to provide functionality that may otherwise not be available.  It cannot accept parameters, but it can use variables for activity output and runbook input parameters.  Any output of the activity is added to the databus unless it has no outgoing link in which case it is added to the output of the runbook.
 
-例如，下列程式碼會執行使用稱為$NumberOfDays 的 Runbook 輸入變數的日期計算。然後會將計算的日期時間傳送為輸出，供 Runbook 中後續的活動使用。
+For example the following code performs date calculations using a runbook input variable called $NumberOfDays.  It then sends a calculated date time as output to be used by subsequent activities in the runbook.
 
     $DateTimeNow = (Get-Date).ToUniversalTime()
     $DateTimeStart = ($DateTimeNow).AddDays(-$NumberOfDays)}
     $DateTimeStart
 
 
-## 連結和工作流程
+## <a name="links-and-workflow"></a>Links and workflow
 
-圖形化 Runbook 中的**連結**在連接兩個活動。就會在畫布上顯示為箭號，從來源活動指向目的地活動。活動會以箭頭的方向執行，在來源活動完成之後，目的地活動就會啟動。
+A **link** in a graphical runbook connects two activities.  It is displayed on the canvas as an arrow pointing from the source activity to the destination activity.  The activities run in the direction of the arrow with the destination activity starting after the source activity completes.  
 
-### 建立連結
+### <a name="create-a-link"></a>Create a link
 
-在兩個活動之間建立連結，方法是選取來源活動，然後按一下圖形底部的圓形。將箭頭拖曳到目的地活動和版本。
+Create a link between two activities by selecting the source activity and clicking the circle at the bottom of the shape.  Drag the arrow to the destination activity and release.
 
-![建立連結](media/automation-graphical-authoring-intro/create-link-revised20165.png)
+![Create a link](media/automation-graphical-authoring-intro/create-link-revised20165.png)
 
-在 [組態] 分頁中選取連結來設定其屬性。這包括下表中說明的連結類型。
+Select the link to configure its properties in the Configuration blade.  This will include the link type which is described in the following table.
 
-| 連結類型 | 說明 |
+| Link Type | Description |
 |:---|:---|
-| 管線 | 目的地活動會對從來源活動輸出的每一個物件執行一次。如果來源活動不會產生任何輸出，則不會執行目的地活動。從來源活動輸出以物件形式提供。 |
-| 順序 | 目的地活動只會執行一次。它會從來源活動接收物件的陣列。從來源活動輸出以物件陣列形式提供。 |
+| Pipeline | The destination activity is run once for each object output from the source activity.  The destination activity does not run if the source activity results in no output.  Output from the source activity is available as an object.  |
+| Sequence | The destination activity runs only once.  It receives an array of objects from the source activity.  Output from the source activity is available as an array of objects. |
 
-### 啟動活動
+### <a name="starting-activity"></a>Starting activity
 
-圖形化 Runbook 會從沒有連入連結的任何活動開始。這通常是只有一個活動，做為 Runbook 的啟動活動。如果多個活動沒有連入的連結，Runbook 將以平行方式執行它們來開始。然後，在每個完成時它會遵循連結以執行其他活動。
+A graphical runbook will start with any activities that do not have an incoming link.  This will often be only one activity which would act as the starting activity for the runbook.  If multiple activities do not have an incoming link, then the runbook will start by running them in parallel.  It will then follow the links to run other activities as each completes.
 
-### 條件
+### <a name="conditions"></a>Conditions
 
-當您指定連結的條件時，只有條件解析為 true 時才會執行目的地活動。您通常會在條件中使用 $ActivityOutput 變數來擷取從來源活動輸出。
+When you specify a condition on a link, the destination activity is only run if the condition resolves to true.  You will typically use an $ActivityOutput variable in a condition to retrieve the output from the source activity.  
 
-針對管線連結，您會指定單一物件的條件，並且來源活動會對每個物件輸出評估條件。然後目的地活動會對符合條件的每個物件執行。例如，透過 Get-AzureRmVm 的來源活動，可對條件式管線連結使用下列語法，僅擷取 *Group1* 資源群組中的虛擬機器。
+For a pipeline link, you specify a condition for a single object, and the condition is evaluated for each object output by the source activity.  The destination activity is then run for each object that satisfies the condition.  For example, with a source activity of Get-AzureRmVm, the following syntax could be used for a conditional pipeline link to retrieve only virtual machines in the resource group named *Group1*.  
 
-	$ActivityOutput['Get Azure VMs'].Name -match "Group1"
+    $ActivityOutput['Get Azure VMs'].Name -match "Group1"
 
-針對順序連結，因為單一陣列會傳回包含從來源活動輸出的所有物件，因此只會評估一次條件。因此，順序連結不能用於篩選 (如管線連結)，但只能判斷下一個活動是否會執行。例如，在我們的「啟動 VM」Runbook 中採用下列這組活動。<br> ![具有順序的條件式連結](media/automation-graphical-authoring-intro/runbook-conditional-links-sequence.png)<br> 有三個不同的連結，可確認提供給兩個 Runbook 輸入參數的值 (分別代表 VM 名稱和資源群組名稱)，以便決定要採用哪一個適當的動作 - 啟動單一 VM、啟動資源群組中的所有 VM，或者訂用帳戶中的所有 VM。針對「連接到 Azure」和「取得單一 VM」之間的順序連結，以下是條件邏輯：
+For a sequence link, the condition is only evaluated once since a single array is returned containing all objects output from the source activity.  Because of this, a sequence link cannot be used for filtering like a pipeline link but will simply determine whether or not the next activity is run. Take for example the following set of activities in our Start VM runbook.<br> ![Conditional Link with Sequences](media/automation-graphical-authoring-intro/runbook-conditional-links-sequence.png)<br>
+There are three different sequence links that are verifying values were provided to two runbook input parameters representing VM name and Resource Group name in order to determine which is the appropriate action to take - start a single VM, start all VMs in the resouce group, or all VMs in a subscription.  For the sequence link between Connect to Azure and Get single VM, here is the condition logic:
 
-	<# 
+    <# 
     Both VMName and ResourceGroupName runbook input parameters have values 
     #>
     (
@@ -231,192 +233,201 @@ Azure 自動化中的每個 Runbook 有草稿和已發行的版本。只可執�
     (($ResourceGroupName -ne $null) -and ($ResourceGroupName.Length -gt 0))
     )
 
-使用條件式連結時，可從來源活動提供該分支中的其他活動使用的資料將由條件篩選。如果活動是多個連結的來源，可用於每個分支中可用活動的資料取決於連接到該分支的連結中的條件。
+When you use a conditional link, the data available from the source activity to other activities in that branch will be filtered by the condition.  If an activity is the source to multiple links, then the data available to activities in each branch will depend on the condition in the link connecting to that branch.
 
-例如，下列 Runbook 中的 **Start-AzureRmVm** 活動會啟動所有虛擬機器。它有兩個條件式連結。第一個條件式連結會在 Start-AzureRmVm 活動順利完成時使用運算式 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -eq $true 來篩選。第二個會在 Start-AzureRmVm 活動無法啟動虛擬機器時使用運算式 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -ne $true 來篩選。
+For example, the **Start-AzureRmVm** activity in the runbook below starts all virtual machines.  It has two conditional links.  The first conditional link uses the expression *$ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -eq $true* to filter if the Start-AzureRmVm activity completed successfully.  The second uses the expression *$ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -ne $true* to filter if the Start-AzureRmVm activity failed to start the virtual machine.  
 
-![條件式連結範例](media/automation-graphical-authoring-intro/runbook-conditional-links.png)
+![Conditional link example](media/automation-graphical-authoring-intro/runbook-conditional-links.png)
 
-遵循第一個連結並使用 Get-AzureVM 活動輸出的任何活動，將只會取得 Get-AzureVM 執行時啟動的虛擬機器。遵循第二個連結的任何活動，將只會取得 Get-AzureVM 執行時已停止的虛擬機器。遵循第三個連結的任何活動，將會取得所有虛擬機器，不論其執行狀態為何。
+Any activity that follows the first link and uses the activity output from Get-AzureVM will only get the virtual machines that were started at the time that Get-AzureVM was run.  Any activity that follows the second link will only get the the virtual machines that were stopped at the time that Get-AzureVM was run.  Any activity following the third link will get all virtual machines regardless of their running state.
 
-### 接合
+### <a name="junctions"></a>Junctions
 
-接合是一個特殊的活動，將會等候直到所有內送的分支完成。這可讓您以平行方式執行多個活動，並確保所有活動已完成再繼續。
+A junction is a special activity that will wait until all incoming branches have completed.  This allows you to run multiple activities in parallel and ensure that all have completed before moving on.
 
-雖然接合可以有無限的數量的連入連結，但這些連結只有一個可以是管線。內送的順序連結數目不受限制。您可以使用多個內送的管線連結建立接合，並儲存 Runbook，但是執行時將會失敗。
+While a junction can have an unlimited number of incoming links, not more than one of those links can be a pipeline.  The number of incoming sequence links is not constrained.  You will be allowed to create the junction with multiple incoming pipeline links and save the runbook, but it will fail when it is run.
 
-下列範例是 Runbook 的一個部分，其會啟動一組虛擬機器，同時下載修補程式以套用到這些機器。接合用來確保兩個程序都已完成，才繼續 Runbook。
+The example below is part of a runbook that starts a set of virtual machines while simultaneously downloading patches to be applied to those machines.  A junction is used to ensure that both processes are completed before the runbook continues.
 
-![接合](media/automation-graphical-authoring-intro/runbook-junction.png)
+![Junction](media/automation-graphical-authoring-intro/runbook-junction.png)
 
-### 循環
+### <a name="cycles"></a>Cycles
 
-循環是目的地活動連結回到其來源活動，或到最後連結回其來源的另一個活動。圖形化編寫目前不允許循環。如果您的 Runbook 有循環，它會適當地儲存，但是它執行時會收到錯誤。
+A cycle is when a destination activity links back to its source activity or to another activity that eventually links back to its source.  Cycles are currently not allowed in graphical authoring.  If your runbook has a cycle, it will save properly but will receive an error when it runs.
 
-![循環](media/automation-graphical-authoring-intro/runbook-cycle.png)
-
-
-### 在活動之間共用資料
-
-由連出連結活動輸出的任何資料會寫入Runbook 的*資料匯流排*。Runbook 中的任何活動可以在資料匯流排上使用資料來填入參數值，或納入指令碼程式碼。活動可以存取工作流程中任何先前的活動的輸出。
-
-資料如何寫入至資料匯流排取決於活動上的連結類型。針對**管線**，資料會輸出為多個物件。針對**順序**連結，資料會輸出為陣列。如果只有一個值，則會輸出為單一元素陣列。
-
-您可以使用兩種方法之一來存取資料匯流排上的資料。第一個是使用 **活動輸出**資料來源來填入另一個活動的參數。如果輸出是物件，您可以指定單一屬性。
-
-![活動輸出](media/automation-graphical-authoring-intro/activity-output-datasource-revised20165.png)
-
-您也可以在 **PowerShell 運算式**資料來源中或使用 ActivityOutput 變數從**工作流程指令碼**活動擷取活動的輸出。如果輸出是物件，您可以指定單一屬性。ActivityOutput 變數使用下列語法。
-
-	$ActivityOutput['Activity Label']
-	$ActivityOutput['Activity Label'].PropertyName 
-
-### 檢查點
-
-您可以在圖形化 PowerShell 工作流程 Runbook 中設定[檢查點](automation-powershell-workflow.md#checkpoints)，方法是在任何活動上選取「檢查點 Runbook」。這會導致在執行活動之後設定檢查點。
-
-![檢查點](media/automation-graphical-authoring-intro/set-checkpoint.png)
-
-檢查點只能在圖形化 PowerShell 工作流程 Runbook 中啟用，無法在圖形化 Runbook 中使用。如果 Runbook 使用 Azure Cmdlet，當 Runbook 暫停並且在不同的背景工作從這個檢查點開始時，您應該使用 Add-AzureRMAccount 遵循任何檢查點活動。
+![Cycle](media/automation-graphical-authoring-intro/runbook-cycle.png)
 
 
-## 向 Azure 資源驗證
+### <a name="sharing-data-between-activities"></a>Sharing data between activities
 
-在管理 Azure 資源之 Azure 自動化中的 Runbook 將需要向 Azure 驗證。新的[執行身分帳戶](automation-sec-configure-azure-runas-account.md)功能 (也稱為服務主體)，是在您的訂用帳戶中使用自動化 Runbook 存取 Azure Resource Manager 資源的預設方法。您可以將此功能加入至圖形化 Runbook，方法是將 **AzureRunAsConnection** 連線資產 (使用 PowerShell [Get-AutomationConnection](https://technet.microsoft.com/library/dn919922%28v=sc.16%29.aspx) Cmdlet) 和 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 加入至畫布。下列範例就將此說明。<br>![執行身分驗證活動](media/automation-graphical-authoring-intro/authenticate-run-as-account.png)<br> 「取得執行身分連線」活動 (亦即 Get-AutomationConnection) 是使用名為 AzureRunAsConnection 的常數值資料來源所設定。<br>![執行身分連線組態](media/automation-graphical-authoring-intro/authenticate-runas-parameterset.png)<br> 下一個活動 (Add-AzureRmAccount) 會加入已驗證的執行身分帳戶，以便在 Runbook 中使用。<br> ![Add-AzureRmAccount 參數集](media/automation-graphical-authoring-intro/authenticate-conn-to-azure-parameter-set.png)<br> 針對 **APPLICATIONID**、**CERTIFICATETHUMBPRINT** 和 **TENANTID** 等參數，您需要針對 Field 路徑指定屬性名稱，因為活動會使用多個屬性來輸出物件。否則當您執行 Runbook 時，它在嘗試進行驗證便會失敗。這就是您使用執行身分帳戶驗證 Runbook 時所需的最低限度。
+Any data that is output by an activity with an outgoing link is written to the *databus* for the runbook.  Any activity in the runbook can use data on the databus to populate parameter values or include in script code.  An activity can access the output of any previous activity in the workflow.     
 
-若要針對使用 [Azure AD 使用者帳戶](automation-sec-configure-aduser-account.md)建立自動化帳戶來管理 Azure 服務管理 (ASM) 或 Azure Resource Manager 資源的訂閱者維持回溯相容性，用來驗證的方法是使用 dd-AzureAccount Cmdlet 搭配[認證資產](http://msdn.microsoft.com/library/dn940015.aspx)，代表可存取 Azure 帳戶的 Active Directory 使用者。
+How the data is written to the databus depends on the type of link on the activity.  For a **pipeline**, the data is output as multiples objects.  For a **sequence** link, the data is output as an array.  If there is only one value, it will be output as a single element array.
 
-您可以在 Add-AzureAccount 活動之後，將認證資產加入至畫布，以將這項功能加入至圖形化 Runbook。Add-AzureAccount 會對其輸入使用認證活動。下列範例就將此說明。
+You can access data on the databus using one of two methods.  First is using an **Activity Output** data source to populate a parameter of another activity.  If the output is an object, you can specify a single property.
 
-![驗證活動](media/automation-graphical-authoring-intro/authentication-activities.png)
+![Activity output](media/automation-graphical-authoring-intro/activity-output-datasource-revised20165.png)
 
-您必須在開始 Runbook 時，和每個檢查點之後進行驗證。這表示在任何 Checkpoint-Workflow 活動之後加入額外的 Add-AzureAccount 活動。因為您可以使用相同認證，因此不需要額外的認證活動
+You can also retrieve the output of an activity in a **PowerShell Expression** data source or from a **Workflow Script** activity with an ActivityOutput variable.  If the output is an object, you can specify a single property.  ActivityOutput variables use the following syntax.
 
-![活動輸出](media/automation-graphical-authoring-intro/authentication-activity-output.png)
+    $ActivityOutput['Activity Label']
+    $ActivityOutput['Activity Label'].PropertyName 
 
-## Runbook 輸入和輸出
+### <a name="checkpoints"></a>Checkpoints
 
-### Runbook 輸入
+You can set [checkpoints](automation-powershell-workflow.md#checkpoints) in a Graphical PowerShell Workflow runbook by selecting *Checkpoint runbook* on any activity.  This causes a checkpoint to be set after the activity runs.
 
-Runbook 可能需要來自使用者的輸入內容 (透過 Azure 入口網站啟動 Runbook 時進行的輸入)；如果目前的 Runbook 為子系，則需要來自另一個 Runbook 的輸入內容。例如，如果您有一個會建立虛擬機器的 Runbook，您可能需要在每次啟動 Runbook 時提供資訊，例如虛擬機器的名稱和其他屬性。
+![Checkpoint](media/automation-graphical-authoring-intro/set-checkpoint.png)
 
-您透過定義一或多個輸入參數來接受 Runbook 的輸入。您會在每次啟動 Runbook 時提供值給這些參數。當您透過 Azure 入口網站啟動 Runbook 時，它會提示您為 Runbook 的每個輸入參數提供值。
+Checkpoints are only enabled in Graphical PowerShell Workflow runbooks, it is not available in Graphical runbooks.  If the runbook uses Azure cmdlets, you should follow any checkpointed activity with an Add-AzureRMAccount in case the runbook is suspended and restarts from this checkpoint on a different worker. 
 
-您可以按一下 Runbook 工具列上的 [**輸入和輸出**] 按鈕來存取 Runbook 的輸入參數。
 
-![Runbook 輸入輸出](media/automation-graphical-authoring-intro/runbook-edit-input-output.png)
+## <a name="authenticating-to-azure-resources"></a>Authenticating to Azure resources
 
-這會開啟 [**輸入和輸出**] 控制項，您可以在其中編輯現有的輸入參數或按一下 [**加入輸入**] 即可建立一個新的。
+Runbooks in Azure Automation that manage Azure resources will require authentication to Azure.  The new [Run As account](automation-sec-configure-azure-runas-account.md) feature (also referred to as a service principal) is the default method to access Azure Resource Manager resources in your subscription with Automation runbooks.  You can add this functionality to a graphical runbook by adding the **AzureRunAsConnection** Connection asset, which is using the PowerShell [Get-AutomationConnection](https://technet.microsoft.com/library/dn919922%28v=sc.16%29.aspx) cmdlet, and [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet to the canvas. This is illustrated in the following example.<br>![Run As Authentication Activities](media/automation-graphical-authoring-intro/authenticate-run-as-account.png)<br>
+The Get Run As Connection activity (i.e. Get-AutomationConnection), is configured with a constant value data source named AzureRunAsConnection.<br>![Run As Connection Configuration](media/automation-graphical-authoring-intro/authenticate-runas-parameterset.png)<br>
+The next activity, Add-AzureRmAccount, adds the authenticated Run As account for use in the runbook.<br>
+![Add-AzureRmAccount Parameter Set](media/automation-graphical-authoring-intro/authenticate-conn-to-azure-parameter-set.png)<br>
+For the parameters **APPLICATIONID**, **CERTIFICATETHUMBPRINT**, and **TENANTID** you will need to specify the name of the property for the Field path because the activity outputs an object with multiple properties.  Otherwise when you execute the runbook, it will fail attempting to authenticate.  This is what you need at a minimum to authenticate your runbook with the Run As account.
 
-![加入輸入](media/automation-graphical-authoring-intro/runbook-edit-add-input.png)
+To maintain backwards compatibility for subscribers who have created an Automation account using an [Azure AD User account](automation-sec-configure-aduser-account.md) to manage Azure Service Management (ASM) or Azure Resource Manager resources, the method to authenticate is the Add-AzureAccount cmdlet with a [credential asset](http://msdn.microsoft.com/library/dn940015.aspx) that represents an Active Directory user with access to the Azure account.
 
-下表中的屬性定義每個輸入參數。
+You can add this functionality to a graphical runbook by adding a credential asset to the canvas followed by an Add-AzureAccount activity.  Add-AzureAccount uses the credential activity for its input.  This is illustrated in the following example.
 
-|屬性|說明|
+![Authentication activities](media/automation-graphical-authoring-intro/authentication-activities.png)
+
+You have to authenticate at the start of the runbook and after each checkpoint.  This means adding an addition Add-AzureAccount activity after any Checkpoint-Workflow activity. You do not need an addition credential activity since you can use the same 
+
+![Activity output](media/automation-graphical-authoring-intro/authentication-activity-output.png)
+
+## <a name="runbook-input-and-output"></a>Runbook input and output
+
+### <a name="runbook-input"></a>Runbook input
+
+A runbook may require input either from a user when they start the runbook through the Azure portal or from another runbook if the current one is used as a child.
+For example, if you have a runbook that creates a virtual machine, you may need to provide information such as the name of the virtual machine and other properties each time you start the runbook.  
+
+You accept input for a runbook by defining one or more input parameters.  You provide values for these parameters each time the runbook is started.  When you start a runbook with the Azure portal, it will prompt you to provide values for the each of the runbook's input parameters.
+
+You can access input parameters for a runbook by clicking the **Input and output** button on the runbook toolbar.  
+
+![Runbook Input Output](media/automation-graphical-authoring-intro/runbook-edit-input-output.png) 
+
+This opens the **Input and Output** control where you can edit an existing input parameter or create a new one by clicking **Add input**. 
+
+![Add input](media/automation-graphical-authoring-intro/runbook-edit-add-input.png)
+
+Each input parameter is defined by the properties in the following table.
+
+|Property|Description|
 |:---|:---|
-| 名稱 | 參數的唯一名稱。這只能包含數字字元，而且不能包含空格。 |
-| 說明 | 輸入參數的選擇性描述。 |
-| 類型 | 對參數值預期的資料型別。提示您輸入時，Azure 入口網站會對每個參數提供適當的資料類型控制。 |
-| 強制 | 指定是否必須提供參數的值。如果您未對未定義預設值的每個強制參數提供值，則無法啟動 Runbook。 |
-| 預設值 | 如果未提供其中一個的值，要對參數指定什麼值。這可以是 Null 或特定值。 |
+| Name | The unique name of the parameter.  This can only contain alpha numeric characters and cannot contain a space. |
+| Description | An optional description for the input parameter.  |
+| Type | Data type expected for the parameter value.  The Azure portal will provide an appropriate control for the data type for each parameter when prompting for input. |
+| Mandatory | Specifies whether a value must be provided for the parameter.  The runbook cannot be started if you do not provide a value for each mandatory parameter that does not have a default value defined. |
+| Default Value | Specifies what value is used for the parameter if one is not provided.  This can either be Null or a specific value. |
 
 
-### Runbook 輸出
+### <a name="runbook-output"></a>Runbook output
 
-沒有連出連結的任何活動所建立的資料會加入至 [Runbook 的輸出](http://msdn.microsoft.com/library/azure/dn879148.aspx)。輸出會隨著 Runbook 工作儲存，並且在 Runbook 用作子項時提供給父 Runbook 使用。
-
-
-## PowerShell 運算式
-
-圖形化撰寫的優點之一是提供您以 PowerShell 的基本知識建立 Runbook 的能力。目前，您還是需要知道一點 PowerShell，以填入某些[參數值](#activities)和設定[連結條件](#links-and-workflow)。本節提供 PowerShell 運算式的快速簡介，供不熟悉的使用者參考。PowerShell 的完整詳細資料位於 [使用 Windows PowerShell 撰寫指令碼](http://technet.microsoft.com/library/bb978526.aspx)。
+Data created by any activity that does not have an outgoing link will be added to the [output of the runbook](http://msdn.microsoft.com/library/azure/dn879148.aspx).  The output is saved with the runbook job and is available to a parent runbook when the runbook is used as a child.  
 
 
-### PowerShell 運算式資料來源
+## <a name="powershell-expressions"></a>PowerShell expressions
 
-您可以使用 PowerShell 運算式做為資料來源，使用一些 PowerShell 程式碼的結果來填入[活動參數](#activities)的值。這可以是執行一些簡單函式的單行程式碼，或執行一些複雜邏輯的多行程式碼。未指派給變數的任何命令輸出都會輸出到參數值。
+One of the advantages of graphical authoring is providing you with the ability to build a runbook with minimal knowledge of PowerShell.  Currently, you do need to know a bit of PowerShell though for populating certain [parameter values](#activities) and for setting [link conditions](#links-and-workflow).  This section provides a quick introduction to PowerShell expressions for those users who may not be familiar with it.  Full details of PowerShell are available at [Scripting with Windows PowerShell](http://technet.microsoft.com/library/bb978526.aspx). 
 
-例如，下列命令會輸出目前的日期。
 
-	Get-Date
+### <a name="powershell-expression-data-source"></a>PowerShell expression data source
 
-下列命令會從目前的日期建立字串並將它指派給變數。然後將變數的內容傳送至輸出
+You can use a PowerShell expression as a data source to populate the value of an [activity parameter](#activities) with the results of some PowerShell code.  This could be a single line of code that performs some simple function or multiple lines that perform some complex logic.  Any output from a command that is not assigned to a variable is output to the parameter value. 
 
-	$string = "The current date is " + (Get-Date)
-	$string
+For example, the following command would output the current date. 
 
-下列命令會評估目前的日期並傳回表示當天是工作日或週末的字串。
+    Get-Date
 
-	$date = Get-Date
-	if (($date.DayOfWeek = "Saturday") -or ($date.DayOfWeek = "Sunday")) { "Weekend" }
-	else { "Weekday" }
-	
+The following commands build a string from the current date and assign it to a variable.  The contents of the variable are then sent to the output 
+
+    $string = "The current date is " + (Get-Date)
+    $string
+
+The following commands evaluate the current date and return a string indicating whether the current day is a weekend or weekday. 
+
+    $date = Get-Date
+    if (($date.DayOfWeek = "Saturday") -or ($date.DayOfWeek = "Sunday")) { "Weekend" }
+    else { "Weekday" }
+    
  
-### 活動輸出
+### <a name="activity-output"></a>Activity output
 
-若要在 Runbook 中使用上一個活動的輸出，請以下列語法使用 $ActivityOutput 變數。
+To use the output from a previous activity in the runbook, use the $ActivityOutput variable with the following syntax.
 
-	$ActivityOutput['Activity Label'].PropertyName
+    $ActivityOutput['Activity Label'].PropertyName
 
-例如，您可能有一個活動，具有需要虛擬機器名稱的屬性，在此情況下您可以使用下列運算式。
+For example, you may have an activity with a property that requires the name of a virtual machine in which case you could use the following expression.
 
-	$ActivityOutput['Get-AzureVm'].Name
+    $ActivityOutput['Get-AzureVm'].Name
 
-如果是需要虛擬機器物件的屬性而非只是單純的屬性，則您要使用下列語法傳回整個物件。
+If the property that required the virtual machine object instead of just a property, then you would return the entire object using the following syntax.
 
-	$ActivityOutput['Get-AzureVm']
+    $ActivityOutput['Get-AzureVm']
 
-您也可以在更複雜的運算式中使用活動的輸出，例如串連文字到虛擬機器名稱的下列運算式。
+You can also use the output of an activity in a more complex expression such as the following that concatenates text to the virtual machine name.
 
-	"The computer name is " + $ActivityOutput['Get-AzureVm'].Name
-
-
-### 條件
-
-使用[比較運算子](https://technet.microsoft.com/library/hh847759.aspx)來比較值或判斷值是否符合指定的模式。比較會傳回 $true 或 $false 的值。
-
-例如，下列條件判斷活動的虛擬機器名稱 *Get-AzureVM* 目前是否「已停止」。
-
-	$ActivityOutput["Get-AzureVM"].PowerState –eq "Stopped"
-
-下列條件會檢查相同的虛擬機器是否處於「已停止」以外的任何狀態。
-
-	$ActivityOutput["Get-AzureVM"].PowerState –ne "Stopped"
-
-您可以使用[邏輯運算子](https://technet.microsoft.com/library/hh847789.aspx) (例如 **-and** 或 **-or**) 加入多個條件。例如，下列條件會檢查上述範例中相同虛擬機器的狀態是否為「已停止」或「正在停止」。
-
-	($ActivityOutput["Get-AzureVM"].PowerState –eq "Stopped") -or ($ActivityOutput["Get-AzureVM"].PowerState –eq "Stopping") 
+    "The computer name is " + $ActivityOutput['Get-AzureVm'].Name
 
 
-### 雜湊表
+### <a name="conditions"></a>Conditions
 
-[雜湊表](http://technet.microsoft.com/library/hh847780.aspx)是傳回一組值時很有用的名稱/值組。某些活動的屬性可能是雜湊表而不是簡單值。雜湊表也可能稱為字典。
+Use [comparison operators](https://technet.microsoft.com/library/hh847759.aspx) to compare values or determine if a value matches a specified pattern.  A comparison returns a value of either $true or $false.
 
-使用下列語法建立雜湊表。雜湊表可以包含任意數目的項目，但是每個項目都由一個名稱和值定義。
+For example, the following condition determines whether the virtual machine from an activity named *Get-AzureVM* is currently *stopped*. 
 
-	@{ <name> = <value>; [<name> = <value> ] ...}
+    $ActivityOutput["Get-AzureVM"].PowerState –eq "Stopped"
 
-例如，下列運算式建立要在活動參數的資料來源中使用的雜湊表，這個雜湊表的值要做為網際網路搜尋。
+The following condition checks whether the same virtual machine is in any state other than *stopped*.
 
-	$query = "Azure Automation"
-	$count = 10
-	$h = @{'q'=$query; 'lr'='lang_ja';  'count'=$Count}
-	$h
+    $ActivityOutput["Get-AzureVM"].PowerState –ne "Stopped"
 
-下列範例使用稱為 *Get Twitter Connection* 的活動的輸出來填入雜湊表。
+You can join multiple conditions using a [logical operator](https://technet.microsoft.com/library/hh847789.aspx) such as **-and** or **-or**.  For example, the following condition checks whether the same virtual machine in the previous example is in a state of *stopped* or *stopping*.
 
-	@{'ApiKey'=$ActivityOutput['Get Twitter Connection'].ConsumerAPIKey;
-	  'ApiSecret'=$ActivityOutput['Get Twitter Connection'].ConsumerAPISecret;
-	  'AccessToken'=$ActivityOutput['Get Twitter Connection'].AccessToken;
-	  'AccessTokenSecret'=$ActivityOutput['Get Twitter Connection'].AccessTokenSecret}
+    ($ActivityOutput["Get-AzureVM"].PowerState –eq "Stopped") -or ($ActivityOutput["Get-AzureVM"].PowerState –eq "Stopping") 
 
 
+### <a name="hashtables"></a>Hashtables
 
-## 後續步驟
+[Hashtables](http://technet.microsoft.com/library/hh847780.aspx) are name/value pairs that are useful for returning a set of values.  Properties for certain activities may expect a hashtable instead of a simple value.  You may also see as hashtable referred to as a dictionary. 
 
-- 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md) 
-- 若要開始使用圖形化 Runbook，請參閱[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
-- 若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
-- 若要了解如何使用自動化執行身分帳戶進行驗證，請參閱[設定 Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)
+You create a hashtable with the following syntax.  A hashtable can contain any number of entries but each is defined by a name and value.
+
+    @{ <name> = <value>; [<name> = <value> ] ...}
+
+For example, the following expression creates a hashtable to be used in the data source for an activity parameter that expected a hashtable with values for an internet search.
+
+    $query = "Azure Automation"
+    $count = 10
+    $h = @{'q'=$query; 'lr'='lang_ja';  'count'=$Count}
+    $h
+
+The following example uses output from an activity called *Get Twitter Connection* to populate a hashtable.
+
+    @{'ApiKey'=$ActivityOutput['Get Twitter Connection'].ConsumerAPIKey;
+      'ApiSecret'=$ActivityOutput['Get Twitter Connection'].ConsumerAPISecret;
+      'AccessToken'=$ActivityOutput['Get Twitter Connection'].AccessToken;
+      'AccessTokenSecret'=$ActivityOutput['Get Twitter Connection'].AccessTokenSecret}
+
+
+
+## <a name="next-steps"></a>Next Steps
+
+- To get started with PowerShell workflow runbooks, see [My first PowerShell workflow runbook](automation-first-runbook-textual.md) 
+- To get started with Graphical runbooks, see [My first graphical runbook](automation-first-runbook-graphical.md)
+- To know more about runbook types, their advantages and limitations, see [Azure Automation runbook types](automation-runbook-types.md)
+- To understand how to authenticate using the Automation Run As account, see [Configure Azure Run As Account](automation-sec-configure-azure-runas-account.md)
  
 
-<!---HONumber=AcomDC_0608_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

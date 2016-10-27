@@ -1,48 +1,52 @@
-若要修改閘道 IP 位址，請使用 `New-AzureRmVirtualNetworkGatewayConnection` Cmdlet。只要您將區域網路閘道的名稱保持與現有名稱完全相同，設定就能覆寫。"Set" Cmdlet 目前不支援修改閘道 IP 位址。
+To modify the gateway IP address, use the `New-AzureRmVirtualNetworkGatewayConnection` cmdlet. As long as you keep the name of the local network gateway exactly the same as the existing name, the settings will overwrite. At this time, the "Set" cmdlet does not support modifying the gateway IP address.
 
-### <a name="gwipnoconnection"></a>如何修改閘道 IP 位址 - 無閘道連線
+### <a name="<a-name="gwipnoconnection"></a>how-to-modify-the-gateway-ip-address---no-gateway-connection"></a><a name="gwipnoconnection"></a>How to modify the gateway IP address - no gateway connection
 
-若要更新尚無連線之區域網路閘道的閘道 IP 位址，請使用以下範例。您也可以同時更新位址首碼。您指定的設定會覆寫現有設定。請務必使用區域網路閘道的現有名稱。否則您將會建立新的區域網路閘道，而不是覆寫現有閘道。
+To update the gateway IP address for your local network gateway that doesn't yet have a connection, use the example below. You can also update the address prefixes at the same time. The settings you specify will overwrite the existing settings. Be sure to use the existing name of your local network gateway. If you don't, you'll be creating a new local network gateway, not overwriting the existing one.
 
-使用下列範例，並將值替換為您自己的值。
+Use the following example, replacing the values for your own.
 
-	New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
-	-Location "West US" -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24') `
-	-GatewayIpAddress "5.4.3.2" -ResourceGroupName MyRGName
-
-
-### <a name="gwipwithconnection"></a>如何修改閘道 IP 位址 - 現有閘道連線
-
-如果閘道連線已存在，您將需要先移除連線。接著，您可以修改閘道 IP 位址，然後重新建立新連線。這會導致您 VPN 連線的停機時間。
+    New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
+    -Location "West US" -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24') `
+    -GatewayIpAddress "5.4.3.2" -ResourceGroupName MyRGName
 
 
->[AZURE.IMPORTANT] 請勿刪除 VPN 閘道。如果您這樣做，必須再次進行這些步驟來重新建立它，並以即將指派給新建立之閘道的 IP 位址重新設定內部部署路由器。
+### <a name="<a-name="gwipwithconnection"></a>how-to-modify-the-gateway-ip-address---existing-gateway-connection"></a><a name="gwipwithconnection"></a>How to modify the gateway IP address - existing gateway connection
+
+If a gateway connection already exists, you'll first need to remove the connection. Then, you can modify the gateway IP address and recreate a new connection. This will result in some downtime for your VPN connection.
+
+
+>[AZURE.IMPORTANT] Don’t delete the VPN gateway. If you do so, you’ll have to go back through the steps to recreate it, as well as reconfigure your on-premises router with the IP address that will be assigned to the newly created gateway.
  
 
-1. 移除連線。您可以使用 `Get-AzureRmVirtualNetworkGatewayConnection` Cmdlet 找出連線名稱。
+1. Remove the connection. You can find the name of your connection by using the `Get-AzureRmVirtualNetworkGatewayConnection` cmdlet.
 
-		Remove-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName `
-		-ResourceGroupName MyRGName
+        Remove-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName `
+        -ResourceGroupName MyRGName
 
-2. 修改 GatewayIpAddress 值。如果需要的話，此時您也可以修改位址首碼。請注意，這會覆寫現有的區域網路閘道設定。修改時，請使用區域網路閘道的現有名稱，讓設定得以覆寫。否則您將會建立新的區域網路閘道，而不是修改現有閘道。
+2. Modify the GatewayIpAddress value. You can also modify your address prefixes at this time, if necessary. Note that this will overwrite the existing local network gateway settings. Use the existing name of your local network gateway when modifying so that the settings will overwrite. If you don't, you'll be creating a new local network gateway, not modifying the existing one.
 
-		New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
-		-Location "West US" -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24') `
-		-GatewayIpAddress "104.40.81.124" -ResourceGroupName MyRGName
+        New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
+        -Location "West US" -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24') `
+        -GatewayIpAddress "104.40.81.124" -ResourceGroupName MyRGName
 
-3. 建立連線。在此範例中，我們要設定 IPsec 連線類型。當您重新建立連線時，請使用針對設定指定的連線類型。如需其他連線類型的相關資訊，請參閱 [PowerShell Cmdlet](https://msdn.microsoft.com/library/mt603611.aspx) 頁面。若要取得 VirtualNetworkGateway 名稱，您可以執行 `Get-AzureRmVirtualNetworkGateway` Cmdlet。
+3. Create the connection. In this example, we are configuring an IPsec connection type. When you recreate your connection, use the connection type that is specified for your configuration. For additional connection types, see the [PowerShell cmdlet](https://msdn.microsoft.com/library/mt603611.aspx) page.  To obtain the VirtualNetworkGateway name, you can run the `Get-AzureRmVirtualNetworkGateway` cmdlet.
 
-	設定變數︰
+    Set the variables:
 
-		$local = Get-AzureRMLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
-		$vnetgw = Get-AzureRmVirtualNetworkGateway -Name RMGateway -ResourceGroupName MyRGName
+        $local = Get-AzureRMLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
+        $vnetgw = Get-AzureRmVirtualNetworkGateway -Name RMGateway -ResourceGroupName MyRGName
 
-	建立連線：
-	
-		New-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName -ResourceGroupName MyRGName `
-		-Location "West US" `
-		-VirtualNetworkGateway1 $vnetgw `
-		-LocalNetworkGateway2 $local `
-		-ConnectionType IPsec -RoutingWeight 10 -SharedKey 'abc123'
+    Create the connection:
+    
+        New-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName -ResourceGroupName MyRGName `
+        -Location "West US" `
+        -VirtualNetworkGateway1 $vnetgw `
+        -LocalNetworkGateway2 $local `
+        -ConnectionType IPsec -RoutingWeight 10 -SharedKey 'abc123'
 
-<!---HONumber=AcomDC_0810_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

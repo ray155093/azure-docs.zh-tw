@@ -1,6 +1,6 @@
 <properties
- pageTitle="管理 HPC Pack 叢集計算節點 |Microsoft Azure"
- description="了解可在 Azure 中新增、移除、啟動和停止 HPC Pack 叢集計算節點的 PowerShell 指令碼工具"
+ pageTitle="Manage HPC Pack cluster compute nodes | Microsoft Azure"
+ description="Learn about PowerShell script tools to add, remove, start, and stop HPC Pack cluster compute nodes in Azure"
  services="virtual-machines-windows"
  documentationCenter=""
  authors="dlepow"
@@ -16,22 +16,23 @@ ms.service="virtual-machines-windows"
  ms.date="07/22/2016"
  ms.author="danlep"/>
 
-# 在 Azure 的 HPC Pack 叢集中管理計算節點的數目和可用性
 
-如果您已在 Azure VM 中建立 HPC Pack 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 多個計算節點 VM 的方法。若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。
+# <a name="manage-the-number-and-availability-of-compute-nodes-in-an-hpc-pack-cluster-in-azure"></a>Manage the number and availability of compute nodes in an HPC Pack cluster in Azure
+
+If you created an HPC Pack cluster in Azure VMs, you might want ways to easily add, remove, start (provision), or stop (deprovision) a number of compute node VMs in the cluster. To do these tasks, run Azure PowerShell scripts that are installed on the head node VM. These scripts help you control the number and availability of your HPC Pack cluster resources so you can control costs.
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-* **Azure VM 中的 HPC Pack 叢集** - 使用 HPC Pack 2012 R2 Update 1 或更新版本，在傳統部署模型中建立 HPC Pack 叢集。例如，您可以使用 Azure Marketplace 中的目前 HPC Pack VM 映像和 Azure PowerShell 指令碼，將部署自動化。如需相關資訊和必要條件，請參閱[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。
+* **HPC Pack cluster in Azure VMs** - Create an HPC Pack cluster in the classic deployment model by using at least HPC Pack 2012 R2 Update 1. For example, you can automate the deployment by using the current HPC Pack VM image in the Azure Marketplace and an Azure PowerShell script. For information and prerequisites, see [Create an HPC Cluster with the HPC Pack IaaS deployment script](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md).
 
-    部署之後，會在前端節點的 %CCP\_HOME%bin 資料夾中發現節點管理指令碼。您必須以系統管理員身分執行每個指令碼。
+    After deployment, find the node management scripts in the %CCP\_HOME%bin folder on the head node. You must run each of the scripts as an administrator.
 
-* **Azure 發佈設定檔或管理憑證** - 您必須前端節點上執行下列其中一項：
+* **Azure publish settings file or management certificate** - You need to do one of the following on the head node:
 
-    * **匯入 Azure 發佈設定檔**。若要這麼做，請在前端節點上執行下列 Azure PowerShell Cmdlet：
+    * **Import the Azure publish settings file**. To do this, run the following Azure PowerShell cmdlets on the head node:
 
     ```
     Get-AzurePublishSettingsFile
@@ -39,48 +40,48 @@ ms.service="virtual-machines-windows"
     Import-AzurePublishSettingsFile –PublishSettingsFile <publish settings file>
     ```
 
-    * **前端節點上設定 Azure 管理憑證**。如果您有 .cer 檔案，請在 CurrentUser\\My certificate store 中將其匯入，並為您的 Azure 環境 (AzureCloud 或 AzureChinaCloud) 執行下列 Azure PowerShell Cmdlet：
+    * **Configure the Azure management certificate on the head node**. If you have the .cer file, import it in the CurrentUser\My certificate store and then run the following Azure PowerShell cmdlet for your Azure environment (either AzureCloud or AzureChinaCloud):
 
     ```
-    Set-AzureSubscription -SubscriptionName <Sub Name> -SubscriptionId <Sub ID> -Certificate (Get-Item Cert:\CurrentUser\My<Cert Thrumbprint>) -Environment <AzureCloud | AzureChinaCloud>
+    Set-AzureSubscription -SubscriptionName <Sub Name> -SubscriptionId <Sub ID> -Certificate (Get-Item Cert:\CurrentUser\My\<Cert Thrumbprint>) -Environment <AzureCloud | AzureChinaCloud>
     ```
 
-## 新增計算節點 VM
+## <a name="add-compute-node-vms"></a>Add compute node VMs
 
-使用 **Add-HpcIaaSNode.ps1** 指令碼新增計算節點。
+Add compute nodes with the **Add-HpcIaaSNode.ps1** script.
 
-### 語法
+### <a name="syntax"></a>Syntax
 ```
 Add-HPCIaaSNode.ps1 [-ServiceName] <String> [-ImageName] <String>
  [-Quantity] <Int32> [-InstanceSize] <String> [-DomainUserName] <String> [[-DomainUserPassword] <String>]
  [[-NodeNameSeries] <String>] [<CommonParameters>]
 
 ```
-### 參數
+### <a name="parameters"></a>Parameters
 
-* **ServiceName** - 將會新增計算節點 VM 之雲端服務的名稱。
+* **ServiceName** - Name of the cloud service that new compute node VMs will be added to.
 
-* **ImageName** - Azure VM 映像名稱，透過 Azure 傳統入口網站或 Azure PowerShell Cmdlet **Get-AzureVMImage** 可以取得此名稱。這些映像必須符合下列需求：
+* **ImageName** - Azure VM image name, which can be obtained through the Azure classic portal or Azure PowerShell cmdlet **Get-AzureVMImage**. The image must meet the following requirements:
 
-    1. 必須安裝 Windows 作業系統。
+    1. A Windows operating system must be installed.
 
-    2. 必須在計算節點角色中安裝 HPC Pack。
+    2. HPC Pack must be installed in the compute node role.
 
-    3. 映像必須是使用者類別中的私人映像，而不是公用 Azure VM 映像。
+    3. The image must be a private image in the User category, not a public Azure VM image.
 
-* **Quantity**- 要新增的計算節點 VM 數目。
+* **Quantity** - Number of compute node VMs to be added.
 
-* **InstanceSize** - 計算節點 VM 的大小。
+* **InstanceSize** - Size of the compute node VMs.
 
-* **DomainUserName** - 網域使用者名稱，會用來將新的 VM 加入網域中。
+* **DomainUserName** - Domain user name, which will be used to join the new VMs to the domain.
 
-* **DomainUserPassword** - 網域使用者的密碼。
+* **DomainUserPassword** - Password of the domain user.
 
-* **NodeNameSeries** (選用) - 計算節點的命名模式。格式必須是 &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%。例如，MyCN%10% 表示從 MyCN11 開始的一系列計算節點名稱。如果未指定，指令碼會使用 HPC 叢集中已設定的節點命名序列。
+* **NodeNameSeries** (optional) - Naming pattern for the compute nodes. The format must be &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%. For example, MyCN%10% means a series of the compute node names starting from MyCN11. If not specified, the script uses the configured node naming series in the HPC cluster.
 
-### 範例
+### <a name="example"></a>Example
 
-下列範例會根據 VM 映像 *hpccnimage1*，在雲端服務 *hpcservice1* 中新增 20 個大型計算節點 VM。
+The following example adds 20 size Large compute node VMs in the cloud service *hpcservice1*, based on the VM image *hpccnimage1*.
 
 ```
 Add-HPCIaaSNode.ps1 –ServiceName hpcservice1 –ImageName hpccniamge1
@@ -89,11 +90,11 @@ Add-HPCIaaSNode.ps1 –ServiceName hpcservice1 –ImageName hpccniamge1
 ```
 
 
-## 移除計算節點 VM
+## <a name="remove-compute-node-vms"></a>Remove compute node VMs
 
-使用 **Remove-HpcIaaSNode.ps1** 指令碼移除計算節點。
+Remove compute nodes with the **Remove-HpcIaaSNode.ps1** script.
 
-### 語法
+### <a name="syntax"></a>Syntax
 
 ```
 Remove-HPCIaaSNode.ps1 -Name <String[]> [-DeleteVHD] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
@@ -101,58 +102,58 @@ Remove-HPCIaaSNode.ps1 -Name <String[]> [-DeleteVHD] [-Force] [-WhatIf] [-Confir
 Remove-HPCIaaSNode.ps1 -Node <Object> [-DeleteVHD] [-Force] [-Confirm] [<CommonParameters>]
 ```
 
-### 參數
+### <a name="parameters"></a>Parameters
 
-* **Name** - 要移除之叢集節點的名稱。支援萬用字元。參數集名稱是 Name。您無法同時指定 **Name** 和 **Node** 參數。
+* **Name** - Names of cluster nodes to be removed. Wildcards are supported. The parameter set name is Name. You can't specify both the **Name** and **Node** parameters.
 
-* **Node** - 要移除之節點的 HpcNode 物件，可透過 HPC PowerShell Cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx) 取得。參數集名稱是 Node。您無法同時指定 **Name** 和 **Node** 參數。
+* **Node** - The HpcNode object for the nodes to be removed, which can be obtained through the HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx). The parameter set name is Node. You can't specify both the **Name** and **Node** parameters.
 
-* **DeleteVHD** (選擇性) - 針對已移除的 VM 進行相關磁碟的刪除時所使用的設定。
+* **DeleteVHD** (optional) - Setting to delete the associated disks for the VMs that are removed.
 
-* **Force** (選擇性) - 在移除 HPC 節點前強制使其離線的設定。
+* **Force** (optional) - Setting to force HPC nodes offline before removing them.
 
-* **Confirm** (選擇性) - 執行命令前先行確認的提示。
+* **Confirm** (optional) - Prompt for confirmation before executing the command.
 
-* **WhatIf** - 用來說明您所執行的命令未實際執行時將會有何狀況的設定。
+* **WhatIf** - Setting to describe what would happen if you executed the command without actually executing the command.
 
-### 範例
+### <a name="example"></a>Example
 
-下列範例會使名稱開頭為 *HPCNode-CN-* 的節點強制離線，然後移除節點及其相關聯的磁碟。
+The following example forces offline nodes with names beginning *HPCNode-CN-* and them removes the nodes and their associated disks.
 
 ```
 Remove-HPCIaaSNode.ps1 –Name HPCNodeCN-* –DeleteVHD -Force
 ```
 
-## 啟動計算節點 VM
+## <a name="start-compute-node-vms"></a>Start compute node VMs
 
-使用 **Start-HpcIaaSNode.ps1** 指令碼啟動計算節點。
+Start compute nodes with the **Start-HpcIaaSNode.ps1** script.
 
-### 語法
+### <a name="syntax"></a>Syntax
 
 ```
 Start-HPCIaaSNode.ps1 -Name <String[]> [<CommonParameters>]
 
 Start-HPCIaaSNode.ps1 -Node <Object> [<CommonParameters>]
 ```
-### 參數
+### <a name="parameters"></a>Parameters
 
-* **Name** - 要啟動之叢集節點的名稱。支援萬用字元。參數集名稱是 Name。您無法同時指定 **Name** 和 **Node** 參數。
+* **Name** - Names of the cluster nodes to be started. Wildcards are supported. The parameter set name is Name. You cannot specify both the **Name** and **Node** parameters.
 
-* **Node** - 要啟動之節點的 HpcNode 物件，可透過 HPC PowerShell Cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx) 取得。參數集名稱是 Node。您無法同時指定 **Name** 和 **Node** 參數。
+* **Node**- The HpcNode object for the nodes to be started, which can be obtained through the HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx). The parameter set name is Node. You cannot specify both the **Name** and **Node** parameters.
 
-### 範例
+### <a name="example"></a>Example
 
-下列範例會啟動名稱開頭為 *HPCNode-CN-* 的節點。
+The following example starts nodes with names beginning *HPCNode-CN-*.
 
 ```
 Start-HPCIaaSNode.ps1 –Name HPCNodeCN-*
 ```
 
-## 停止計算節點 VM
+## <a name="stop-compute-node-vms"></a>Stop compute node VMs
 
-使用 **Stop-HpcIaaSNode.ps1** 指令碼停止計算節點。
+Stop compute nodes with the **Stop-HpcIaaSNode.ps1** script.
 
-### 語法
+### <a name="syntax"></a>Syntax
 
 ```
 Stop-HPCIaaSNode.ps1 -Name <String[]> [-Force] [<CommonParameters>]
@@ -160,23 +161,27 @@ Stop-HPCIaaSNode.ps1 -Name <String[]> [-Force] [<CommonParameters>]
 Stop-HPCIaaSNode.ps1 -Node <Object> [-Force] [<CommonParameters>]
 ```
 
-### 參數
+### <a name="parameters"></a>Parameters
 
 
-* **Name** - 要停止之叢集節點的名稱。支援萬用字元。參數集名稱是 Name。您無法同時指定 **Name** 和 **Node** 參數。
+* **Name**- Names of the cluster nodes to be stopped. Wildcards are supported. The parameter set name is Name. You cannot specify both the **Name** and **Node** parameters.
 
-* **Node** - 要停止之節點的 HpcNode 物件，可透過 HPC PowerShell Cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx) 取得。參數集名稱是 Node。您無法同時指定 **Name** 和 **Node** 參數。
+* **Node** - The HpcNode object for the nodes to be stopped, which can be obtained through the HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx). The parameter set name is Node. You cannot specify both the **Name** and **Node** parameters.
 
-* **Force** (選擇性) - 在停止 HPC 節點前強制使其離線的設定。
+* **Force** (optional) - Setting to force HPC nodes offline before stopping them.
 
-### 範例
+### <a name="example"></a>Example
 
-下列範例會使名稱開頭為 *HPCNode-CN-* 的節點強制離線，然後停止節點。
+The following example forces offline nodes with names beginning *HPCNode-CN-* and then stops the nodes.
 
 Stop-HPCIaaSNode.ps1 –Name HPCNodeCN-* -Force
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-* 如果您需要能根據叢集上目前工作的工作負載自動增加或縮減叢集節點的方法，請參閱[在 Azure 中根據叢集工作負載自動增加和縮減 HPC Pack 叢集資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
+* If you want a way to automatically grow or shrink the cluster nodes according to the current workload of jobs and tasks on the cluster, see [Automatically grow and shrink the HPC Pack cluster resources in Azure according to the cluster workload](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md).
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

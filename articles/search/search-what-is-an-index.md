@@ -1,73 +1,78 @@
 <properties
-	pageTitle="建立 Azure 搜尋服務索引 | Microsoft Azure | 雲端託管搜尋服務"
-	description="Azure 搜尋服務中的索引是什麼？如何使用？"
-	services="search"
-	documentationCenter=""
+    pageTitle="Create an Azure Search index | Microsoft Azure | Hosted cloud search service"
+    description="What is an index in Azure Search and how is it used?"
+    services="search"
+    documentationCenter=""
 authors="ashmaka"
 />
 
 <tags
-	ms.service="search"
-	ms.devlang="na"
-	ms.workload="search"
-	ms.topic="get-started-article"
-	ms.tgt_pltfrm="na"
-	ms.date="08/29/2016"
-	ms.author="ashmaka"/>
+    ms.service="search"
+    ms.devlang="na"
+    ms.workload="search"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="na"
+    ms.date="08/29/2016"
+    ms.author="ashmaka"/>
 
-# 建立 Azure Search 索引
+
+# <a name="create-an-azure-search-index"></a>Create an Azure Search index
 > [AZURE.SELECTOR]
-- [概觀](search-what-is-an-index.md)
-- [入口網站](search-create-index-portal.md)
+- [Overview](search-what-is-an-index.md)
+- [Portal](search-create-index-portal.md)
 - [.NET](search-create-index-dotnet.md)
 - [REST](search-create-index-rest-api.md)
 
-## 什麼是索引？
+## <a name="what-is-an-index?"></a>What is an index?
 
-索引是對 Azure 搜尋服務所使用的文件和其他建構所做的持續性儲存。文件是索引中單一單位的可搜尋資料。例如，電子商務零售商可能會有儲存了每個銷售項目的文件、新聞組織可能會有儲存了每篇文章的文件，類似情況不一而足。對應這些概念到更熟悉的資料庫同等項目：索引在概念上類似於資料表，而文件大致上相當於資料表中的資料列。
+An *index* is a persistent store of *documents* and other constructs used by an Azure Search service. A document is a single unit of searchable data in your index. For example, an e-commerce retailer might have a document for each item they sell, a news organization might have a document for each article, etc. Mapping these concepts to more familiar database equivalents: an *index* is conceptually similar to a *table*, and *documents* are roughly equivalent to *rows* in a table.
 
-當您新增/上傳文件並提交搜尋查詢到 Azure 搜尋服務時，您是將要求提交到搜尋服務中的特定索引。
+When you add/upload documents and submit search queries to Azure Search, you submit your requests to a specific index in your search service.
 
-## Azure 搜尋服務索引中的欄位類型和屬性
+## <a name="field-types-and-attributes-in-an-azure-search-index"></a>Field types and attributes in an Azure Search index
 
-您在定義結構描述時必須指定索引中每個欄位的名稱、類型和屬性。欄位類型可分類該欄位中儲存的資料。個別欄位上設定的屬性可指定使用欄位的方式。下列幾個資料表列舉您可以指定的類型和屬性。
+As you define your schema, you must specify the name, type, and attributes of each field in your index. The field type classifies the data that is stored in that field. Attributes are set on individual fields to specify how the field is used. The following tables enumerate the types and attributes you can specify.
 
 
-### 欄位類型
-|類型|說明|
+### <a name="field-types"></a>Field types
+|Type|Description|
 |------------|-----------|
-|*Edm.String*|可選擇性予以 Token 化以供進行全文檢索搜尋 (斷字、詞幹分析等) 的文字。|
-|*Collection(Edm.String)*|可選擇性予以 Token 化以供進行全文檢索搜尋的字串清單。理論上，集合中的項目數沒有上限，但集合的承載大小有 16 MB 的上限。|
-|*Edm.Boolean*|包含 true/false 值。|
-|*Edm.Int32*|32 位元整數值。|
-|*Edm.Int64*|64 位元整數值。|
-|*Edm.Double*|雙精度數值資料。|
-|*Edm.DateTimeOffset*|以 OData V4 格式 (例如 `yyyy-MM-ddTHH:mm:ss.fffZ` 或 `yyyy-MM-ddTHH:mm:ss.fff[+/-]HH:mm`) 表示的日期時間值。|
-|*Edm.GeographyPoint*|代表地球上地理位置的一點。|
+|*Edm.String*|Text that can optionally be tokenized for full-text search (word-breaking, stemming, etc).|
+|*Collection(Edm.String)*|A list of strings that can optionally be tokenized for full-text search. There is no theoretical upper limit on the number of items in a collection, but the 16 MB upper limit on payload size applies to collections.|
+|*Edm.Boolean*|Contains true/false values.|
+|*Edm.Int32*|32-bit integer values.|
+|*Edm.Int64*|64-bit integer values.|
+|*Edm.Double*|Double-precision numeric data.|
+|*Edm.DateTimeOffset*|Date time values represented in the OData V4 format (e.g. `yyyy-MM-ddTHH:mm:ss.fffZ` or `yyyy-MM-ddTHH:mm:ss.fff[+/-]HH:mm`).|
+|*Edm.GeographyPoint*|A point representing a geographic location on the globe.|
 
-您可以在 MSDN 上找到有關 Azure 搜尋服務[支援的資料類型](https://msdn.microsoft.com/library/azure/dn798938.aspx)的詳細資訊。
+You can find more detailed information about Azure Search's [supported data types on MSDN](https://msdn.microsoft.com/library/azure/dn798938.aspx).
 
 
 
-### 欄位屬性
-|屬性|說明|
+### <a name="field-attributes"></a>Field attributes
+|Attribute|Description|
 |------------|-----------|
-|*Key*|字串，提供每一份文件的唯一識別碼，用於查閱文件。每個索引必須有一個索引鍵。只有一個欄位可以做為索引鍵，而且其類型必須設定為 Edm.String。|
-|*Retrievable*|指定搜尋結果中是否可傳回某欄位。|
-|*Filterable*|允許欄位用於篩選查詢。|
-|*Sortable*|允許查詢使用此欄位排序搜尋結果。|
-|*Facetable*|允許欄位用於使用者自我引導篩選的[多面向導覽](search-faceted-navigation.md)結構中。通常，欄位若包含您可以用來將多份文件群組在一起的重複值 (例如，落在單一品牌或服務類別目錄下的多份文件)，最適合做為 Facet。|
-|*Searchable*|將欄位標記為可供全文檢索。|
+|*Key*|A string that provides the unique ID of each document, used for document look up. Every index must have one key. Only one field can be the key, and its type must be set to Edm.String.|
+|*Retrievable*|Specifies whether a field can be returned in a search result.|
+|*Filterable*|Allows the field to be used in filter queries.|
+|*Sortable*|Allows a query to sort search results using this field.|
+|*Facetable*|Allows a field to be used in a [faceted navigation](search-faceted-navigation.md) structure for user self-directed filtering. Typically fields containing repetitive values that you can use to group multiple documents together (for example, multiple documents that fall under a single brand or service category) work best as facets.|
+|*Searchable*|Marks the field as full-text searchable.|
 
-您可以在 MSDN 上找到有關 Azure 搜尋服務[索引屬性](https://msdn.microsoft.com/library/azure/dn798941.aspx)的詳細資訊。
-
-
-
-## 適用於定義索引結構描述的指引
-
-當設計索引時，請在規劃階段花時間仔細考量每個決策。由於必須為每個欄位指派[適當屬性](https://msdn.microsoft.com/library/azure/dn798941.aspx)，因此在設計索引時，請務必牢記搜尋服務使用者體驗和商務需求。在索引部署後若要加以變更，將牽涉到重建和重新載入資料。
+You can find more detailed information about Azure Search's [index attributes on MSDN](https://msdn.microsoft.com/library/azure/dn798941.aspx).
 
 
-如果資料儲存體需求在之後有所改變，您可以藉由新增或移除資料分割來增加或減少容量。如需詳細資料，請參閱[在 Azure 中管理您的搜尋服務](search-manage.md)或[服務限制](search-limits-quotas-capacity.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+## <a name="guidance-for-defining-an-index-schema"></a>Guidance for defining an index schema
+
+As you design your index, take your time in the planning phase to think through each decision. It is important that you keep your search user experience and business needs in mind when designing your index as each field must be assigned the [proper attributes](https://msdn.microsoft.com/library/azure/dn798941.aspx). Changing an index after it is deployed involves rebuilding and reloading the data.
+
+
+If data storage requirements change over time, you can increase or decrease capacity by adding or removing partitions. For details, see [Manage your Search service in Azure](search-manage.md) or [Service Limits](search-limits-quotas-capacity.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

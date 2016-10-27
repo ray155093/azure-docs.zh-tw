@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure 的資料分類 | Microsoft Azure"
-   description="本文提供資料分類基本概念的簡介並且強調其價值，尤其是雲端運算和使用 Microsoft Azure 方面的價值。"
+   pageTitle="Data Classification for Azure | Microsoft Azure"
+   description="This article provides an introduction to the fundamentals of data classification, and highlights its value, specifically in the context of cloud computing and using Microsoft Azure"
    services="security"
    documentationCenter="na"
    authors="YuriDio"
@@ -16,227 +16,233 @@
    ms.date="08/16/2016"
    ms.author="yurid"/>
 
-# Azure 的資料分類
 
-本文提供資料分類基本概念的簡介並且強調其價值，尤其是雲端運算和使用 Microsoft Azure 方面的價值。
+# <a name="data-classification-for-azure"></a>Data classification for Azure
 
-## 資料分類的基本概念
+This article provides an introduction to the fundamentals of data classification and highlights its value, specifically in the context of cloud computing and using Microsoft Azure. 
 
-組織若想成功進行資料分類，便需要廣泛認識自身的需求，並徹底了解資料資產的所在位置。
+## <a name="data-classification-fundamentals"></a>Data classification fundamentals
+
+Successful data classification in an organization requires broad awareness of your organization’s needs and a thorough understanding of where your data assets reside.  
  
-資料有三種基本存在狀態︰
+Data exists in one of three basic states: 
 
-- 待用
-- 處理中
-- 傳輸中
+- At rest 
+- In process 
+- In transit 
  
-這三種狀態全都需要獨特的資料分類技術解決方案，但卻各自適用同樣的資料分類原則。歸類為機密的資料在待用、處理中和傳輸中狀態時皆必須保持機密。
+All three states require unique technical solutions for data classification, but the applied principles of data classification should be the same for each. Data that is classified as confidential needs to stay confidential when at rest, in process, and in transit. 
  
-資料也可分為結構化或非結構化形式。相較於文件、原始程式碼和電子郵件等非結構化資料，在資料庫和試算表中所見到的結構化資料，其分類程序一般較不複雜且比較不必耗廢時間來管理。
+Data can also be either structured or unstructured. Typical classification processes for the structured data found in databases and spreadsheets are less complex and time-consuming to manage than those for unstructured data such as documents, source code, and email. 
 
-> [AZURE.TIP] 如需有關 Azure 功能與資料加密最佳作法的詳細資訊，請閱讀 [Azure 資料加密的最佳作法](azure-security-data-encryption-best-practices.md)
+> [AZURE.TIP] for more information regarding Azure capabilities and best practices for data encryption read [Azure Data Encryption Best Practices](azure-security-data-encryption-best-practices.md)
 
-一般來說，組織的非結構化資料會多過結構化資料。但不論資料屬於結構化或非結構化形式，您都必須管理資料的敏感性。妥善落實資料分類，有助於確保敏感或機密的資料資產受到管理，且比起可公開或免費散佈的資料資產，所獲得的監督更為周全。
+In general, organizations will have more unstructured data than structured data. Regardless of whether data is structured or unstructured, it is important for you to manage data sensitivity. When properly implemented, data classification helps ensure that sensitive or confidential data assets are managed with greater oversight than data assets that are considered public or free to distribute. 
 
-### 控制資料的存取 
+### <a name="controlling-access-to-data"></a>Controlling access to data 
 
-驗證和授權常被混淆，兩者角色也常被誤解。正如下圖所示，這兩者其實很不一樣。
+Authentication and authorization are often confused with each other and their roles misunderstood. In reality they are quite different, as shown in the following figure.  
 
-![資料存取和控制](./media/azure-security-data-classification/azure-security-data-classification-fig1.png)
+![Data access and control](./media/azure-security-data-classification/azure-security-data-classification-fig1.png)
 
-### 驗證 
+### <a name="authentication"></a>Authentication 
 
-驗證通常至少包含兩個部分︰用來識別使用者的使用者名稱或使用者識別碼，以及用來確認使用者名稱認證是否有效的權杖，例如密碼。此程序不會提供任何項目或服務的存取權給通過驗證的使用者；而是會驗證使用者所表明的身分是否屬實。
+Authentication typically consists of at least two parts: a username or user ID to identify a user and a token, such as a password, to confirm that the username credential is valid. The process does not provide the authenticated user with access to any items or services; it verifies that the user is who they say they are.   
 
-> [AZURE.TIP] [Azure Active Directory](../active-directory/active-directory-whatis.md) 會提供雲端型身分識別服務，以讓您驗證和授權使用者。
+> [AZURE.TIP] [Azure Active Directory](../active-directory/active-directory-whatis.md) provides cloud-based identity services that allow you to authenticate and authorize users. 
 
-### Authorization
+### <a name="authorization"></a>Authorization
  
-授權是讓通過驗證的使用者能夠存取應用程式、資料集、資料檔案或其他某些物件的程序。在對通過驗證的使用者指派其可以存取之項目的使用、修改或刪除權限時，必須注意資料分類。
+Authorization is the process of providing an authenticated user the ability to access an application, data set, data file, or some other object. Assigning authenticated users the rights to use, modify, or delete items that they can access requires attention to data classification. 
 
-想要成功授權就必須實作一項機制，以便根據角色、安全性原則和風險原則考量的組合，來驗證個別使用者對於存取檔案和資訊的需求。例如，來自企業營運 (LOB) 應用程式的資料可能不需要提供給所有員工存取，而且只有一小群員工可能需要存取人力資源 (HR) 檔案。但對於要控制資料存取者、以及存取時間和方式的組織來說，就必須具備有效的使用者驗證系統。
+Successful authorization requires implementation of a mechanism to validate individual users’ needs to access files and information based on a combination of role, security policy, and risk policy considerations. For example, data from specific line-of-business (LOB) applications might not need to be accessed by all employees, and only a small subset of employees will likely need access to human resources (HR) files. But for organizations to control who can access data, as well as when and how, an effective system for authenticating users must be in place. 
 
-> [AZURE.TIP] 在 Microsoft Azure 中，請務必利用 Azure 角色型存取控制 (RBAC)，只對使用者授與其執行工作所需的存取權數量。如需詳細資訊，請閱讀[使用角色指派來管理 Azure Active Directory 資源的存取權](../active-directory/role-based-access-control-configure.md)。
+> [AZURE.TIP] in Microsoft Azure, make sure to leverage Azure Role-Based Access Control (RBAC) to grant only the amount of access that users need to perform their jobs. Read [Use role assignments to manage access to your Azure Active Directory resources](../active-directory/role-based-access-control-configure.md) for more information. 
 
-### 雲端運算中的角色和責任 
+### <a name="roles-and-responsibilities-in-cloud-computing"></a>Roles and responsibilities in cloud computing 
 
-雖然雲端提供者可協助管理風險，但客戶也必須確定他們有正確實作資料分類管理和強制執行，以提供適當層級的資料管理服務。
+Although cloud providers can help manage risks, customers need to ensure that data classification management and enforcement is properly implemented to provide the appropriate level of data management services.  
  
-資料分類責任會根據所具備的雲端服務模型而有所不同，詳情如下圖所示。三個主要雲端服務模型分別是基礎結構即服務 (IaaS)、平台即服務 (PaaS) 以及軟體即服務 (Saas)。根據客戶對雲端提供者的依賴程度和期望，資料分類機制的實作也會有所不同。
+Data classification responsibilities will vary based on which cloud service model is in place, as shown in the following figure. The three primary cloud service models are infrastructure as a service (IaaS), platform as a service (PaaS), and software as a service (SaaS). Implementation of data classification mechanisms will also vary based on the reliance on and expectations of the cloud provider. 
 
-![角色](./media/azure-security-data-classification/azure-security-data-classification-fig2.png)
+![Roles](./media/azure-security-data-classification/azure-security-data-classification-fig2.png)
 
-雖然您要負責分類資料，但雲端提供者應該要以書面寫下他們的承諾，說明他們會如何保護和維護客戶儲存在其雲端中之資料的隱私權。
+Although you are responsible for classifying your data, cloud providers should make written commitments about how they will secure and maintain the privacy of the customer data stored within their cloud.  
 
-- **IaaS 提供者**需求僅限於確定虛擬環境可容納資料分類功能以及客戶法規遵循需求。IaaS 提供者只需要確保客戶資料可滿足法規遵循需求，因此在資料分類中所扮演的角色較不重要。不過，除了保護其資料中心的安全之外，提供者仍必須確定其虛擬環境可滿足資料分類需求。
-- **PaaS 提供者**可能會有混雜的責任，因為平台可能會用在分層方法中以為分類工具提供安全性。PaaS 提供者可能要負責驗證以及一些授權規則，而且必須為其應用程式層提供安全性和資料分類功能。和 IaaS 提供者非常像，PaaS 提供者必須確保他們的平台符合任何相關的資料分類需求。
-- **SaaS 提供者**經常被視為授權鏈結的一環，而且必須確保分類類型可以控制 SaaS 應用程式中儲存的資料。SaaS 應用程式可用於 LOB 應用程式，並依其本質需要提供方法來驗證和授權所使用與儲存的資料。
+- **IaaS providers** requirements are limited to ensuring that the virtual environment can accommodate data classification capabilities and customer compliance requirements. IaaS providers have a smaller role in data classification because they only need to ensure that customer data addresses compliance requirements. However, providers must still ensure that their virtual environments address data classification requirements in addition to securing their data centers.
+- **PaaS providers** responsibilities may be mixed, because the platform could be used in a layered approach to provide security for a classification tool. PaaS providers may be responsible for authentication and possibly some authorization rules, and must provide security and data classification capabilities to their application layer. Much like IaaS providers, PaaS providers need to ensure that their platform complies with any relevant data classification requirements.
+- **SaaS providers** will frequently be considered as part of an authorization chain, and will need to ensure that the data stored in the SaaS application can be controlled by classification type. SaaS applications can be used for LOB applications, and by their very nature need to provide the means to authenticate and authorize data that is used and stored. 
 
-## 分類程序 
+## <a name="classification-process"></a>Classification process 
 
-許多已了解資料分類需求並想要加以實作的組織均面臨一項基本挑戰：從何開始著手？
+Many organizations that understand the need for data classification and want to implement it face a basic challenge: where to begin?
 
-想要實作資料分類有一個有效而簡單的方式，那就是使用 [MOF](https://technet.microsoft.com/solutionaccelerators/dd320379.aspx) 所提出的「規劃、執行、檢查、行動」模型。下圖顯示要在此模型中順利實作資料分類所需的工作。
+One effective and simple way to implement data classification is to use the PLAN, DO, CHECK, ACT model from [MOF](https://technet.microsoft.com/solutionaccelerators/dd320379.aspx). The following figure charts the tasks that are required to successfully implement data classification in this model.  
 
-1. **規劃**。識別資料資產、用以部署分類計劃的資料保管者，以及開發保護設定檔。
-2. **執行**。在資料分類原則獲得一致同意之後，則需要部署計劃，並實作機密資料所需的強制執行技術。
-3. **檢查**。檢查並驗證報表，確定所使用的工具和方法可有效應付分類原則。
-4. **行動**。檢閱資料存取的狀態，並檢閱需要使用重新分類和修訂方法來修訂，以採納變更和解決新風險的檔案和資料。
+1. **PLAN**. Identify data assets, a data custodian to deploy the classification program, and develop protection profiles. 
+2. **DO**. After data classification policies are agreed upon, deploy the program and implement enforcement technologies as needed for confidential data.  
+3. **CHECK**. Check and validate reports to ensure that the tools and methods being used are effectively addressing the classification policies. 
+4. **ACT**. Review the status of data access and review files and data that require revision using a reclassification and revision methodology to adopt changes and to address new risks.  
 
-![規劃、執行、檢查、行動](./media/azure-security-data-classification/azure-security-data-classification-fig3.png)
+![Plan, do, Check, Act](./media/azure-security-data-classification/azure-security-data-classification-fig3.png)
  
-###選取可滿足您需求的術語模型
+###<a name="select-a-terminology-model-that-addresses-your-needs"></a>Select a terminology model that addresses your needs
  
-有好幾種程序類型可用來分類資料，包括手動程序、會根據使用者或系統的位置來分類資料的位置型程序、資料庫特定分類之類的應用程式型程序，以及各種技術所使用的自動化程序，其中某些程序會在本文稍後的＜保護機密資料＞一節中加以說明。
+Several types of processes exist for classifying data, including manual processes, location-based processes that classify data based on a user’s or system’s location, application-based processes such as database-specific classification, and automated processes used by various technologies, some of which are described in the “Protecting confidential data” section later in this article.  
  
-本文介紹兩種已廣受業界好評與使用的模型為基礎的通用術語模型。這兩種術語模型 (皆提供三種分類敏感性等級) 可在下表中看到。
+This article introduces two generalized terminology models that are based on well-used and industry-respected models. These terminology models, both of which provide three levels of classification sensitivity, are shown in the following table.  
 
-> [AZURE.NOTE] 在為通常分類在不同等級的資料所結合而成的檔案或資源進行分類時，應該由所存在的最高分類等級建立整體分類。例如，包含敏感資料和受限制資料的檔案應該歸類為受限制。
+> [AZURE.NOTE] when classifying a file or resource that combines data that would typically be classified at differing levels, the highest level of classification present should establish the overall classification. For example, a file containing sensitive and restricted data should be classified as restricted.  
 
-| **敏感性** | **術語模型 1** | **術語模型 2** |
+| **Sensitivity**   | **Terminology model 1**   | **Terminology model 2** |
 |--------------------|---------------------------|-------------------------|
-| 高 | 機密 | 受限制 |
-| 中 | 僅供內部使用 | 敏感 |
-| 低 | 公開 | 不受限制 |
+| High               | Confidential              | Restricted              |
+| Medium             | For internal use only     | Sensitive               |
+| Low                | Public                    | Unrestricted            |
 
-#### 機密 (受限制) 
+#### <a name="confidential-(restricted)"></a>Confidential (restricted) 
 
-歸類為機密或受限制的資訊，其所包含的資料如果外洩或遺失，對一或多個個人及/或組織來說可能是場災難。這類資訊經常是根據「有必要知悉」的原則來提供，其中可能包含︰
+Information that is classified as confidential or restricted includes data that can be catastrophic to one or more individuals and/or organizations if compromised or lost. Such information is frequently provided on a “need to know” basis and might include: 
 
-- 個人資料，包括個人識別資訊，例如社會安全號碼或身分證號碼、護照號碼、信用卡號碼、駕照號碼、醫療記錄和健保識別碼。
-- 金融記錄，包括金融帳戶號碼，例如支票或投資帳戶號碼。
-- 商務資料，例如屬於獨特或特定智慧財產的文件或資料。
-- 法律資料，包括可能的律師特權資料。
-- 驗證資料，包括私人的密碼編譯金鑰、使用者名稱密碼組，或其他識別數列，例如私人生物特徵金鑰檔。
+- Personal data, including personally identifiable information such as Social Security or national identification numbers, passport numbers, credit card numbers, driver's license numbers, medical records, and health insurance policy ID numbers.  
+- Financial records, including financial account numbers such as checking or investment account numbers. 
+- Business material, such as documents or data that is unique or specific intellectual property.  
+- Legal data, including potential attorney-privileged material. 
+- Authentication data, including private cryptography keys, username password pairs, or other identification sequences such as private biometric key files. 
 
-歸類為機密的資料通常具有資料處理方面的規章和法規遵循需求。
+Data that is classified as confidential frequently has regulatory and compliance requirements for data handling. 
 
-#### 僅供內部使用 (敏感)
+#### <a name="for-internal-use-only-(sensitive)"></a>For internal use only (sensitive)
  
-歸類為中度敏感性的資訊，其所包含的檔案和資料如果遺失或毀損，並不會對個人及/或組織造成嚴重影響。這類資訊可能包含︰
+Information that is classified as being of medium sensitivity includes files and data that would not have a severe impact on an individual and/or organization if lost or destroyed. Such information might include: 
 
-- 電子郵件，絕大部分均可刪除或散佈，而不會造成危機 (但不包括被識別為屬於機密分類之個人所擁有的信箱或電子郵件)。
-- 不包含機密資料的文件和檔案。
+- Email, most of which can be deleted or distributed without causing a crisis (excluding mailboxes or email from individuals who are identified in the confidential classification).  
+- Documents and files that do not include confidential data.
  
-一般而言，這個分類包含任何不屬於機密的項目。這個分類可能包含大部分的商務資料，因為大部分受到管理或者會在日常使用的檔案均可歸類為敏感。依預設，企業組織內的所有資料均可歸類為敏感資料 (歸類為公開或機密的資料除外)。
+Generally, this classification includes anything that is not confidential. This classification can include most business data, because most files that are managed or used day-to-day can be classified as sensitive. With the exception of data that is made public or is confidential, all data within a business organization can be classified as sensitive by default. 
 
-#### 公開 (不受限制)
+#### <a name="public-(unrestricted)"></a>Public (unrestricted)
  
-歸類為公開的資訊，其所包含的資料或檔案對於商務需求或作業來說並不重要。這個分類也可以包含刻意公開發行以供其使用的資料，例如行銷資料或新聞公告。此外，這個分類可能包含電子郵件服務中所儲存的垃圾郵件訊息之類的資料。
+Information that is classified as public includes data and files that are not critical to business needs or operations. This classification can also include data that has deliberately been released to the public for their use, such as marketing material or press announcements. In addition, this classification can include data such as spam email messages stored by an email service. 
 
-### 定義資料擁有權
+### <a name="define-data-ownership"></a>Define data ownership
  
-請務必要為所有資料資產建立清楚的擁有權保管鏈結。下表說明資料分類工作中的不同資料擁有權角色和其各自的權限。
+It’s important to establish a clear custodial chain of ownership for all data assets. The following table identifies different data ownership roles in data classification efforts and their respective rights.  
 
-| **角色** | **建立** | **修改/刪除** | **委派** | **讀取** | **封存/還原** |
+| **Role**        | **Create**    | **Modify/delete**   | **Delegate**  | **Read**    | **Archive/restore**   |
 |-----------------|---------------|---------------------|---------------|-------------|-----------------------|
-| 擁有者 | X | X | X | X | X |
-| 保管者 | | | X | | |
-| 系統管理員 | | | | | X |
-| 使用者* | | X | | X | |
-*保管者可能會授與使用者其他權限，例如編輯和刪除
+| Owner           | X             | X                   | X             | X           | X                     |
+| Custodian       |               |                     | X             |             |                       |
+| Administrator   |               |                     |               |             | X                     |
+| User\*          |               | X                   |               | X           |                       |
+**Users may be granted additional rights such as edit and delete by a custodian* 
 
-> [AZURE.NOTE] 此資料表並未提供完整的角色和權限清單，而是只提供了具有代表性的範例。
+> [AZURE.NOTE] this table does not provide an exhaustive list of roles and rights, but merely a representative sample. 
 
-**資料資產擁有者**是資料的原始建立者，他們可以委派擁有權和指派保管者。檔案在建立時，擁有者需能指派分類，這代表他們有責任了解，在組織的原則之下有哪些檔案需要歸類為機密檔案。除非資料資產擁有者負責擁有或建立機密 (受限制) 的資料類型，否則其所有資料都會自動歸類為僅供內部使用 (敏感)。擁有者的角色經常會在資料分類之後有所變更。例如，擁有者可能會在建立分類資訊資料庫之後，將其權限交給保管者。
+The **data asset owner** is the original creator of the data, who can delegate ownership and assign a custodian. When a file is created, the owner should be able to assign a classification, which means that they have a responsibility to understand what needs to be classified as confidential based on their organization’s policies. All of a data asset owner’s data can be auto-classified as for internal use only (sensitive) unless they are responsible for owning or creating confidential (restricted) data types. Frequently, the owner’s role will change after the data is classified. For example, the owner might create a database of classified information and relinquish their rights to the data custodian.  
 
-> [AZURE.NOTE] 資料資產擁有者通常會混合使用服務、裝置和媒體，其中有些屬於個人所有，有些則為組織所有。清楚的組織原則可協助確保裝置 (例如膝上型電腦和智慧型裝置) 的使用方式符合資料分類指導方針。
+> [AZURE.NOTE] data asset owners often use a mixture of services, devices, and media, some of which are personal and some of which belong to the organization. A clear organizational policy can help ensure that usage of devices such as laptops and smart devices is in accordance with data classification guidelines.  
 
-**資料資產保管者**是由資產擁有者 (或其委派人) 所指派，需負責根據與資產擁有者的協議或根據適用的原則需求來管理資產。理想情況下，保管者角色可實作到自動化系統中。資產保管者可確保您有提供必要的存取控制，並且需負責管理和保護委派給他們照料的資產。資產保管者的責任可能包含︰
+The **data asset custodian** is assigned by the asset owner (or their delegate) to manage the asset according to agreements with the asset owner or in accordance with applicable policy requirements. Ideally, the custodian role can be implemented in an automated system. An asset custodian ensures that necessary access controls are provided and is responsible for managing and protecting assets delegated to their care. The responsibilities of the asset custodian could include:  
 
-- 根據資產擁有者的指示或與資產擁有者的協議保護資產
-- 確保符合分類原則
-- 在雙方同意的控制和/或保護程序所要進行的變更生效之前，通知資產擁有者
-- 向資產擁有者報告資產保管者責任的變更或移除
-- **系統管理員**是指負責確保完整性受到維護的使用者，但他們不是資料資產的擁有者、保管者或使用者。事實上，有許多系統管理員角色可提供資料容器管理服務，而不需要存取資料。系統管理員角色包含備份和還原資料、維護資產記錄，以及選擇、取得和操作裝載資產的裝置和儲存體。
-- 資產使用者包含獲得資料或檔案存取權的任何人。存取指派通常是由擁有者委派給資產保管者。
+- Protecting the asset in accordance with the asset owner’s direction or in agreement with the asset owner 
+- Ensuring that classification policies are complied with 
+- Informing asset owners of any changes to agreed-upon controls and/or protection procedures prior to those changes taking effect 
+- Reporting to the asset owner about changes to or removal of the asset custodian’s responsibilities 
+- An **administrator** represents a user who is responsible for ensuring that integrity is maintained, but they are not a data asset owner, custodian, or user. In fact, many administrator roles provide data container management services without having access to the data. The administrator role includes backup and restoration of the data, maintaining records of the assets, and choosing, acquiring, and operating the devices and storage that house the assets. 
+- The asset user includes anyone who is granted access to data or a file. Access assignment is often delegated by the owner to the asset custodian.  
 
-### 實作
+### <a name="implementation"></a>Implementation
   
-管理考量適用於所有分類方法。這些考量必須包含有關何種資料資產要由誰在何時何處使用、存取、變更或刪除以及其進行原因的詳細資訊。在管理所有資產時一定要了解組織對風險的看法，但資料分類程序中已定義了簡單的方法可供您運用。其他資料分類考量則包括導入新的應用程式與工具，以及在實作分類方法之後管理變更。
+Management considerations apply to all classification methodologies. These considerations need to include details about who, what, where, when, and why a data asset would be used, accessed, changed, or deleted. All asset management must be done with an understanding of how an organization views its risks, but a simple methodology can be applied as defined in the data classification process. Additional considerations for data classification include the introduction of new applications and tools, and managing change after a classification method is implemented.  
 
-### 重新分類
+### <a name="reclassification"></a>Reclassification
  
-當使用者或系統判斷資料資產的重要性或風險設定檔已改變時，就必須重新分類或變更資料資產的分類狀態。這項工作對於確保繼續維持最新且有效的分類狀態來說至關重要。未以手動方式分類的大部分內容皆可自動分類，或根據資料保管者或資料擁有者的使用方式來加以分類。
+Reclassifying or changing the classification state of a data asset needs to be done when a user or system determines that the data asset’s importance or risk profile has changed. This effort is important for ensuring that the classification status continues to be current and valid. Most content that is not classified manually can be classified automatically or based on usage by a data custodian or data owner. 
 
-### 以手動方式重新分類資料
+### <a name="manual-data-reclassification"></a>Manual data reclassification
  
-在理想情況下，這項工作會確保可擷取和稽核變更詳細資料。之所以要手動重新分類，最可能的原因便是敏感性方面的理由、為了作為書面記錄，或是必須檢閱原先分類錯誤的資料。本白皮書所考慮的是資料分類和將資料移至雲端，因此在進行手動重新分類工作時，每個案例的注意事項並不相同，在應付分類需求時最好要檢閱風險管理情形。一般而言，這類工作會考慮組織關於所需分類的項目所制定的原則、預設分類狀態 (敏感但不是機密的所有資料和檔案)，以及針對高風險資料提出異議。
+Ideally, this effort would ensure that the details of a change are captured and audited. The most likely reason for manual reclassification would be for reasons of sensitivity, or for records kept in paper format, or a requirement to review data that was originally misclassified. Because this paper considers data classification and moving data to the cloud, manual reclassification efforts would require attention on a case-by-case basis and a risk management review would be ideal to address classification requirements. Generally, such an effort would consider the organization’s policy about what needs to be classified, the default classification state (all data and files being sensitive but not confidential), and take exceptions for high-risk data. 
 
-### 自動重新分類資料
+### <a name="automatic-data-reclassification"></a>Automatic data reclassification
  
-自動重新分類資料時會使用和手動分類相同的一般規則。例外情況是，自動化解決方案可確保會遵守並視需要套用規則。資料分類可作為資料分類強制執行原則的一部分來進行，而這項原則的強制執行時機為使用授權技術儲存、使用和傳輸資料時。
+Automatic data reclassification uses the same general rule as manual classification. The exception is that automated solutions can ensure that rules are followed and applied as needed. Data classification can be done as part of a data classification enforcement policy, which can be enforced when data is stored, in use, and in transit using authorization technology.
 
-- 應用程式型。使用某些應用程式時，依預設會設定分類等級。例如，來自客戶關係管理 (CRM) 軟體、HR 和健康記錄管理工具的資料預設是機密資料。
-- 位置型。資料位置可協助您識別資料敏感性。例如，HR 或財務部門所儲存的資料在本質上很可能是機密資料。
+- Application-based. Using certain applications by default sets a classification level. For example, data from customer relationship management (CRM) software, HR, and health record management tools is confidential by default. 
+- Location-based. Data location can help identify data sensitivity. For example, data that is stored by an HR or financial department is more likely to be confidential in nature.  
  
-### 資料保留、復原和處置 
+### <a name="data-retention,-recovery,-and-disposal"></a>Data retention, recovery, and disposal 
 
-資料復原和處置 (例如資料重新分類) 是管理資料資產時的重要層面。資料復原和處置的原則是由資料保留原則所定義和強制執行，其方式和資料重新分類一樣；這類工作會由保管者和系統管理員角色作為共同作業工作來執行。
+Data recovery and disposal, like data reclassification, is an essential aspect of managing data assets. The principles for data recovery and disposal would be defined by a data retention policy and enforced in the same manner as data reclassification; such an effort would be performed by the custodian and administrator roles as a collaborative task.  
 
-沒有資料保留原則可能表示資料外洩或無法遵守規章和法律探索需求。大部分未明確定義資料保留原則的組織往往會使用預設的「保留所有項目」保留原則。不過在雲端服務案例中，這類保留原則會有額外的風險。
+Failure to have a data retention policy could mean data loss or failure to comply with regulatory and legal discovery requirements. Most organizations that do not have a clearly defined data retention policy tend to use a default “keep everything” retention policy. However, such a retention policy has additional risks in cloud services scenarios. 
 
-例如，雲端服務提供者的資料保留原則可以視為在「訂用帳戶的持續時間」內皆適用 (只要支付服務費用就會保留資料)。這種付款即保留的協議可能無法應付企業或法規的保留原則。為機密資料定義原則可確保資料會根據最佳作法來進行儲存和移除。此外，還可以建立封存原則來形成對於應在何時處置哪些資料的理解。
+For example, a data retention policy for cloud service providers can be considered as for "the duration of the subscription” (as long as the service is paid for, the data is retained). Such a pay-for-retention agreement may not address corporate or regulatory retention policies. Defining a policy for confidential data can ensure that data is stored and removed based on best practices. In addition, an archival policy can be created to formalize an understanding about what data should be disposed of and when. 
 
-資料保留原則應該滿足必要規章和法規遵循需求，以及公司的法律保留需求。經過分類的資料可能會引發關於提供者已儲存的資料在保留持續時間和例外方面的問題；未正確分類的資料更可能會有這類問題。
+Data retention policy should address the required regulatory and compliance requirements, as well as corporate legal retention requirements. Classified data might provoke questions about retention duration and exceptions for data that has been stored with a provider; such questions are more likely for data that has not been classified correctly. 
 
-> [AZURE.TIP] 若要深入了解 Azure 資料保留原則和其他資訊，請閱讀 [Microsoft 線上訂用帳戶合約](https://azure.microsoft.com/support/legal/subscription-agreement/)
+> [AZURE.TIP] learn more about Azure Data Retention policies and more by reading the [Microsoft Online Subscription Agreement](https://azure.microsoft.com/support/legal/subscription-agreement/)
 
-## 保護機密資料
+## <a name="protecting-confidential-data"></a>Protecting confidential data
   
-資料經過分類之後，尋找和實作用以保護機密資料的方法便會成為任何資料保護部署策略中不可或缺的一部分。保護機密資料需要額外注意資料在傳統架構和雲端中的儲存和傳輸方式。
+After data is classified, finding and implementing ways to protect confidential data becomes an integral part of any data protection deployment strategy. Protecting confidential data requires additional attention to how data is stored and transmitted in conventional architectures as well as in the cloud. 
 
-本節提供了一些技術的基本資訊，這些技術可以自動強制執行工作，協助保護已歸類為機密的資料。
+This section provides basic information about some technologies that can automate enforcement efforts to help protect data that has been classified as confidential. 
  
-如下圖所示，這些技術可以部署為內部部署或雲端型解決方案，也可以混合部署，也就是某些部署在內部部署環境，某些部署在雲端中。(加密和 Rights Management 之類的某些技術也可延伸至使用者裝置。)
+As the following figure shows, these technologies can be deployed as on-premises or cloud-based solutions—or in a hybrid fashion, with some of them deployed on-premises and some in the cloud. (Some technologies, such as encryption and rights management, also extend to user devices.)  
 
-![技術](./media/azure-security-data-classification/azure-security-data-classification-fig4.png)
+![Technologies](./media/azure-security-data-classification/azure-security-data-classification-fig4.png)
 
-### 版權管理軟體  
+### <a name="rights-management-software"></a>Rights management software  
 
-想要防止資料外洩，其中一個解決方案便是版權管理軟體。不同於嘗試在組織的端點中斷資訊流動的方式，版權管理軟體是在資料儲存技術的深處運作。文件會進行加密，並且會控制誰可以解密文件，所使用的存取控制會定義在驗證控制解決方案中，例如目錄服務。
+One solution for preventing data loss is rights management software. Unlike approaches that attempt to interrupt the flow of information at exit points in an organization, rights management software works at deep levels within data storage technologies. Documents are encrypted, and control over who can decrypt them uses access controls that are defined in an authentication control solution such as a directory service.  
 
-> [AZURE.TIP] 您可以使用 Azure Rights Management (Azure RMS) 作為資訊保護解決方案，以在不同案例中保護資料。如需有關此 Azure 解決方案的詳細資訊，請閱讀[什麼是 Azure Rights Management？](https://docs.microsoft.com/rights-management/understand-explore/what-is-azure-rms)。
+> [AZURE.TIP] you can use Azure Rights Management (Azure RMS) as the information protection solution to protect data in different scenarios. Read [What is Azure Rights Management?](https://docs.microsoft.com/rights-management/understand-explore/what-is-azure-rms) for more information about this Azure solution.
 
-版權管理軟體的某些優點包括︰
+Some of the benefits of rights management software include: 
 
-- 受保護的敏感資訊。使用者可以直接使用具有版權管理功能的應用程式保護其資料。不需要任何額外的步驟，撰寫文件、傳送電子郵件和發佈資料皆可提供一致的資料保護體驗。
-- 保護會隨資料移動。客戶仍可控制誰可以存取其資料，不論是在雲端、現有 IT 基礎結構或使用者的桌面上。組織可以根據其商務需求選擇加密其資料並限制存取。
-- 預設資訊保護原則。系統管理員和使用者可以針對許多常見商務案例使用標準原則，例如「公司機密 - 唯讀」和「不要轉送」。 支援一組豐富的使用權限，例如讀取、複製、列印、儲存、編輯和轉寄，以允許彈性地定義自訂使用權限。
+- Safeguarded sensitive information. Users can protect their data directly using rights management-enabled applications. No additional steps are required—authoring documents, sending email, and publishing data offer a consistent data protection experience. 
+- Protection travels with the data. Customers remain in control of who has access to their data, whether in the cloud, existing IT infrastructure, or at the user’s desktop. Organizations can choose to encrypt their data and restrict access according to their business requirements. 
+- Default information protection policies. Administrators and users can use standard policies for many common business scenarios, such as "Company Confidential–Read Only" and "Do Not Forward." A rich set of usage rights are supported such as read, copy, print, save, edit, and forward to allow flexibility in defining custom usage rights. 
 
-> [AZURE.TIP] 您可以使用[待用資料的 Azure 儲存體服務加密](../storage/storage-service-encryption.md)來保護 Azure 儲存體中的資料。您也可以使用 [Azure 磁碟加密](azure-security-disk-encryption.md)來協助保護 Azure 虛擬機器的虛擬磁碟上包含的資料。
+> [AZURE.TIP] you can protect data in Azure Storage by using [Azure Storage Service Encryption](../storage/storage-service-encryption.md) for Data at Rest. You can also use [Azure Disk Encryption](azure-security-disk-encryption.md) to help protect data contained on virtual disks used for Azure Virtual Machines.
 
-### 加密閘道
+### <a name="encryption-gateways"></a>Encryption gateways
 
-加密閘道會在專屬層運作，以透過將雲端架構資料的所有存取重新路由來提供加密服務。請勿將這個方法與虛擬私人網路 (VPN) 搞混。加密閘道的設計目的是為雲端型解決方案提供透明層。
+Encryption gateways operate in their own layers to provide encryption services by rerouting all access to cloud-based data. This approach should not be confused with that of a virtual private network (VPN). Encryption gateways are designed to provide a transparent layer to cloud-based solutions.   
 
-加密閘道可透過加密傳輸中資料和待用資料，來為已歸類為機密的資料提供管理和保護方法。
+Encryption gateways can provide a means to manage and secure data that has been classified as confidential by encrypting the data in transit as well as data at rest.  
  
-加密閘道會放入使用者裝置和應用程式資料中心之間的資料流程，以提供加密/解密服務。這些解決方案 (例如 VPN) 主要是內部部署解決方案。它們的設計目的是為協力廠商提供加密金鑰的控制權，以協助降低將資料和金鑰管理放在同一個提供者身上的風險。這類解決方案的設計很像加密，可在使用者與服務之間順暢且透明地運作。
+Encryption gateways are placed into the data flow between user devices and application data centers to provide encryption/decryption services. These solutions, like VPNs, are predominantly on-premises solutions. They are designed to provide a third party with control over encryption keys, which helps reduce the risk of placing both the data and key management with one provider. Such solutions are designed, much like encryption, to work seamlessly and transparently between users and the service. 
 
-> [AZURE.TIP] 您可以使用 Azure ExpressRoute，透過專用私人連線將內部部署網路擴充至 Microsoft Cloud。如需此功能的詳細資訊，請閱讀 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。內部部署網路與 Azure 之間的其他跨單位連線選項是[網站間 VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)。
+> [AZURE.TIP] you can use Azure ExpressRoute to extend your on-premises networks into the Microsoft cloud over a dedicated private connection. Read [ExpressRoute technical overview](../expressroute/expressroute-introduction.md) for more information about this capability. Another options for cross premises connectivity between your on-premises network and [Azure is a site-to-site VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md).
 
-### 資料外洩防護 
-資料外洩 (有時稱為資料流失) 是很重要的考量，對許多組織來說，最重要的事就是防止資料因為惡意和粗心的內部人員而外洩。
+### <a name="data-loss-prevention"></a>Data loss prevention 
+Data loss (sometimes referred to as data leakage) is an important consideration, and the prevention of external data loss via malicious and accidental insiders is paramount for many organizations.  
  
-資料外洩防護 (DLP) 技術可以協助確保解決方案 (例如電子郵件服務) 不會傳輸已歸類為機密的資料。組織可以利用現有產品中的 DLP 功能來協助防止資料外洩。這類功能所使用的原則可以輕易從頭建立，或透過軟體提供者所提供的範本來建立。
+Data loss prevention (DLP) technologies can help ensure that solutions such as email services do not transmit data that has been classified as confidential. Organizations can take advantage of DLP features in existing products to help prevent data loss. Such features use policies that can be easily created from scratch or by using a template supplied by the software provider.  
  
-DLP 技術可以透過關鍵字比對、字典比對、規則運算式評估和其他內容檢查來執行深入內容分析，以偵測違反組織 DLP 原則的內容。例如，DLP 可協助避免下列類型的資料外洩︰
+DLP technologies can perform deep content analysis through keyword matches, dictionary matches, regular expression evaluation, and other content examination to detect content that violates organizational DLP policies. For example, DLP can help prevent the loss of the following types of data: 
 
-- 社會安全號碼和身分證號碼
-- 銀行資訊
-- 信用卡號碼
-- IP 位址
+- Social Security and national identification numbers 
+- Banking information 
+- Credit card numbers  
+- IP addresses 
 
-有些 DLP 技術也提供覆寫 DLP 組態的功能 (例如，如果組織需要將社會安全號碼資訊傳送給薪資處理人員)。此外，也可以設定 DLP，讓使用者甚至在嘗試傳送不應傳送的敏感資訊之前就收到通知。
+Some DLP technologies also provide the ability to override the DLP configuration (for example, if an organization needs to transmit Social Security number information to a payroll processor). In addition, it’s possible to configure DLP so that users are notified before they even attempt to send sensitive information that should not be transmitted. 
 
-> [AZURE.TIP] 您可以使用 Office 365 DLP 功能來保護您的文件。如需詳細資訊，請閱讀 [Office 365 法規遵循控制︰資料外洩防護](https://blogs.office.com/2013/10/28/office-365-compliance-controls-data-loss-prevention/)。
+> [AZURE.TIP] you can use Office 365 DLP capabilities to protect your documents. Read [Office 365 compliance controls: Data Loss Prevention](https://blogs.office.com/2013/10/28/office-365-compliance-controls-data-loss-prevention/) for more information.
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-- [Azure 資料加密最佳作法](azure-security-data-encryption-best-practices.md)
-- [Azure 身分識別管理和存取控制安全性最佳作法](azure-security-identity-management-best-practices.md)
-- [Azure 安全性小組部落格](http://blogs.msdn.com/b/azuresecurity/)
-- [Microsoft 安全性回應中心](https://technet.microsoft.com/library/dn440717.aspx)
+- [Azure Data Encryption Best Practices](azure-security-data-encryption-best-practices.md)
+- [Azure Identity Management and access control security best practices](azure-security-identity-management-best-practices.md)
+- [Azure Security Team Blog](http://blogs.msdn.com/b/azuresecurity/)
+- [Microsoft Security Response Center](https://technet.microsoft.com/library/dn440717.aspx)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

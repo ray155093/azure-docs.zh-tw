@@ -1,86 +1,90 @@
 <properties 
-	pageTitle="了解企業整合套件解碼 AS2 訊息連接器 | Microsoft Azure App Service | Microsoft Azure" 
-	description="了解如何使用夥伴搭配企業整合套件與 Logic Apps" 
-	services="logic-apps" 
-	documentationCenter=".net,nodejs,java"
-	authors="padmavc" 
-	manager="erikre" 
-	editor=""/>
+    pageTitle="Learn about Enterprise Integration Pack Decode AS2 Message Connctor | Microsoft Azure App Service | Microsoft Azure" 
+    description="Learn how to use partners with the Enterprise Integration Pack and Logic apps" 
+    services="logic-apps" 
+    documentationCenter=".net,nodejs,java"
+    authors="padmavc" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="logic-apps" 
-	ms.workload="integration" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/15/2016" 
-	ms.author="padmavc"/>
+    ms.service="logic-apps" 
+    ms.workload="integration" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/15/2016" 
+    ms.author="padmavc"/>
 
-# 開始使用解碼 AS2 訊息
 
-連接到「解碼 AS2 訊息」以建立傳輸訊息時的安全性和可靠性。它可透過訊息處置通知 (MDN) 提供數位簽章、解密和通知。
+# <a name="get-started-with-decode-as2-message"></a>Get started with Decode AS2 Message
 
-## 建立連線
+Connect to Decode AS2 Message to establish security and reliability while transmitting messages. It provides digital signing, decryption, and acknowledgements via Message Disposition Notifications (MDN).
 
-### 必要條件
+## <a name="create-the-connection"></a>Create the connection
 
-* Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
+### <a name="prerequisites"></a>Prerequisites
 
-* 需要有整合帳戶才能使用解碼 AS2 訊息連接器。詳細資料請參閱如何建立[整合帳戶](./app-service-logic-enterprise-integration-create-integration-account.md)、[合作夥伴](./app-service-logic-enterprise-integration-partners.md)和 [AS2 合約](./app-service-logic-enterprise-integration-as2.md)
+* An Azure account; you can create a [free account](https://azure.microsoft.com/free)
 
-### 使用下列步驟連線至解碼 AS2 訊息︰
+* An Integration Account is required to use Decode AS2 message connector. See details on how to create an [Integration Account](./app-service-logic-enterprise-integration-create-integration-account.md), [partners](./app-service-logic-enterprise-integration-partners.md) and an [AS2 agreement](./app-service-logic-enterprise-integration-as2.md)
 
-1. [建立邏輯應用程式](./app-service-logic-create-a-logic-app.md)可提供範例。
+### <a name="connect-to-decode-as2-message-using-the-following-steps:"></a>Connect to Decode AS2 Message using the following steps:
 
-2. 此連接器並沒有任何觸發程序。您可以使用其他觸發程序來啟動邏輯應用程式，例如 [要求] 觸發程序。在邏輯應用程式設計工具中，新增一個觸發程序，然後新增一個動作。從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 "AS2"。選取 AS2 - 解碼 AS2 訊息
+1. [Create a Logic App](./app-service-logic-create-a-logic-app.md) provides an example.
 
-	![搜尋 AS2](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage1.png)
+2. This connector does not have any triggers. Use other triggers to start the Logic App, such as a Request trigger.  In the Logic App designer, add a trigger and add an action.  Select Show Microsoft managed APIs in the drop-down list and then enter “AS2” in the search box.  Select AS2 – Decode AS2 Message
 
-3. 如果您之前尚未建立與整合帳戶的任何連線，系統將會提示您輸入連線詳細資料
+    ![Search AS2](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage1.png)
 
-	![建立整合連線](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage2.png)
+3. If you haven’t previously created any connections to Integration Account, you are prompted for the connection details
 
-4. 輸入整合帳戶詳細資料。具有星號的屬性為必要項目
+    ![Create integration connection](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage2.png)
 
-	| 屬性 | 詳細資料 |
-	| --------   | ------- |
-	| 連線名稱 * | 為連線輸入任何名稱 |
-	| 整合帳戶 * | 輸入整合帳戶名稱。請確定您的整合帳戶和邏輯應用程式位於相同的 Azure 位置 |
+4. Enter the Integration Account details.  Properties with an asterisk are required
 
-  	完成後，連線詳細資料看起來類似下圖
+  	| Property   | Details |
+  	| --------   | ------- |
+  	| Connection Name *    | Enter any name for your connection |
+  	| Integration Account * | Enter the Integration Account name. Be sure your Integration Account and Logic app are in the same Azure location |
 
-  	![整合連線](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage3.png)
+    Once complete, your connection details look similar to the following
 
-5. 選取 [建立]
-	
-6. 請注意，已建立連線。現在，在您的邏輯應用程式中繼續其他步驟
+    ![integration connection](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage3.png)
 
-	![已建立整合連線](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage4.png)
+5. Select **Create**
+    
+6. Notice the connection has been created.  Now, proceed with the other steps in your Logic App
 
-7. 從要求輸出選取內文和標頭
+    ![integration connection created](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage4.png) 
 
-	![提供必要欄位](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage5.png)
+7. Select Body and Headers from Request outputs
 
-## AS2 解碼會執行下列動作：
+    ![provide mandatory fields](./media/app-service-logic-enterprise-integration-AS2connector/as2decodeimage5.png) 
 
-* 處理 AS2/HTTP 標頭
-* 驗證簽章 (若已設定)
-* 將訊息解密 (若已設定)
-* 將訊息解壓縮 (若已設定)
-* 協調收到的 MDN 與原始輸出訊息
-* 更新不可否認性資料庫中的記錄並使其相互關聯
-* 寫入記錄以便進行 AS2 狀態報告
-* 輸出承載內容是以 base64 編碼
-* 決定是否需要 MDN，以及根據 AS2 合約中的組態決定 MDN 應為同步或非同步
-* 產生同步或非同步 MDN (根據合約組態)
-* 在 MDN 上設定相互關聯權杖和屬性
+## <a name="the-as2-decode-does-the-following"></a>The AS2 Decode does the following
 
-##親身體驗
+* Processes AS2/HTTP headers
+* Verifies the signature (if configured)
+* Decrypts the messages (if configured)
+* Decompresses the message (if configured)
+* Reconciles a received MDN with the original outbound message
+* Updates and correlates records in the non-repudiation database
+* Writes records for AS2 status reporting
+* The output payload contents are base64 encoded
+* Determines whether an MDN is required, and whether the MDN should be synchronous or asynchronous based on configuration in AS2 agreement
+* Generates a synchronous or asynchronous MDN (based on agreement configurations)
+* Sets the correlation tokens and properties on the MDN
 
-何不嘗試看看。按一下[這裡](https://azure.microsoft.com/documentation/templates/201-logic-app-as2-send-receive/)，使用 Logic Apps AS2 功能部署您自己的全功能邏輯應用程式
+##<a name="try-it-for-yourself"></a>Try it for yourself
 
-## 後續步驟
+Why not give it a try. Click [here](https://azure.microsoft.com/documentation/templates/201-logic-app-as2-send-receive/) to deploy a fully operational logic app of your own using the Logic Apps AS2 features 
 
-[深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0914_2016-->
+[Learn more about the Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack") 
+
+
+<!--HONumber=Oct16_HO2-->
+
+

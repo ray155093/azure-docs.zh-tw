@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Veracode 整合 | Microsoft Azure" 
-    description="了解如何使用 Veracode 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Veracode | Microsoft Azure" 
+    description="Learn how to use Veracode with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,166 +14,174 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Veracode 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-veracode"></a>Tutorial: Azure Active Directory integration with Veracode
   
-本教學課程的目的是要示範 Azure 與 Veracode 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Veracode. The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂用帳戶
--   已啟用 Veracode 單一登入功能的訂用帳戶
+-   A valid Azure subscription
+-   A Veracode single sign-on enabled subscription
   
-完成本教學課程之後，您指派給 Veracode 的 Azure AD 使用者就能夠從您的 Veracode 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
+After completing this tutorial, the Azure AD users you have assigned to Veracode will be able to single sign into the application using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Veracode 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Veracode
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-veracode-tutorial/IC802903.png "案例")
+![Scenario](./media/active-directory-saas-veracode-tutorial/IC802903.png "Scenario")
 
-##啟用 Veracode 的應用程式整合
+##<a name="enabling-the-application-integration-for-veracode"></a>Enabling the application integration for Veracode
   
-本節的目的是要說明如何啟用 Veracode 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Veracode.
 
-###若要啟用 Veracode 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-veracode,-perform-the-following-steps:"></a>To enable the application integration for Veracode, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-veracode-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-veracode-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-veracode-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-veracode-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從資源庫新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749322.png "從資源庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-veracode-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在 [搜尋方塊] 中，輸入 **Veracode**。
+6.  In the **search box**, type **Veracode**.
 
-    ![應用程式庫](./media/active-directory-saas-veracode-tutorial/IC802904.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-veracode-tutorial/IC802904.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Veracode]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Veracode**, and then click **Complete** to add the application.
 
     ![Veracode](./media/active-directory-saas-veracode-tutorial/IC802905.png "Veracode")
 
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Veracode。Veracode 應用程式需要特定格式的 SAML 判斷提示，要求您加入自訂屬性對應到您的 **SAML 權杖屬性**組態。以下螢幕擷取畫面顯示上述的範例。
+The objective of this section is to outline how to enable users to authenticate to Veracode with their account in Azure AD using federation based on the SAML protocol.  
+Your Veracode application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your **saml token attributes** configuration.  
+The following screenshot shows an example for this.
 
-![屬性](./media/active-directory-saas-veracode-tutorial/IC802906.png "屬性")
+![Attributes](./media/active-directory-saas-veracode-tutorial/IC802906.png "Attributes")
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Veracode] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Veracode** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802907.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-veracode-tutorial/IC802907.png "Configure Single Sign-On")
 
-2.  在 [要如何讓使用者登入 Veracode] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Veracode** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802908.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-veracode-tutorial/IC802908.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式設定] 頁面上，按 [下一步]。
+3.  On the **Configure App Settings** page, click **Next**.
 
-    ![設定 App 設定](./media/active-directory-saas-veracode-tutorial/IC802909.png "設定 App 設定")
+    ![Configure App Settings](./media/active-directory-saas-veracode-tutorial/IC802909.png "Configure App Settings")
 
-4.  在 [設定在 Veracode 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在本機電腦上。
+4.  On the **Configure single sign-on at Veracode** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802910.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-veracode-tutorial/IC802910.png "Configure Single Sign-On")
 
-5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Veracode 公司網站。
+5.  In a different web browser window, log into your Veracode company site as an administrator.
 
-6.  在頂端功能表中，按一下 [設定]，然後按一下 [管理員]。
+6.  In the menu on the top, click **Settings**, and then click **Admin**.
 
-    ![系統管理](./media/active-directory-saas-veracode-tutorial/IC802911.png "系統管理")
+    ![Administration](./media/active-directory-saas-veracode-tutorial/IC802911.png "Administration")
 
-7.  按一下 [SAML] 索引標籤。
+7.  Click the **SAML** tab.
 
-8.  在 [組織 SAML 設定] 區段中，執行下列步驟：
+8.  In the **Organization SAML Settings** section, perform the following steps:
 
-    ![系統管理](./media/active-directory-saas-veracode-tutorial/IC802912.png "系統管理")
+    ![Administration](./media/active-directory-saas-veracode-tutorial/IC802912.png "Administration")
 
-    1.  在 Azure 傳統入口網站的 [設定在 Veracode 單一登入] 對話方塊頁面上，複製 [簽發者 URL] 值，然後將它貼到 [簽發者] 文字方塊中
-    2.  若要上傳您下載的憑證，請按一下 [選擇檔案]。
-    3.  選取 [啟用自動註冊]。
+    1.  In the Azure classic portal, on the **Configure single sign-on at Veracode** dialog page, copy the **Issuer URL** value, and then paste it into the **Issuer** textbox
+    2.  To upload your downloaded certificate, click **Choose File**.
+    3.  Select **Enable Self Registration**.
 
-9.  在 [自動註冊設定] 區段上，執行下列步驟，然後按一下 [儲存]：
+9.  In the **Self Registration Settings** section, perform the following steps, and then click **Save**:
 
-    ![系統管理](./media/active-directory-saas-veracode-tutorial/IC802913.png "系統管理")
+    ![Administration](./media/active-directory-saas-veracode-tutorial/IC802913.png "Administration")
 
-    1.  在 [啟用新的使用者] 選取 [不需要啟用]。
-    2.  在 [使用者資料更新] 選取 [Veracode 使用者資料喜好設定]。
-    3.  針對 [SAML 屬性詳細資料]，請選取下列選項：
-        -   **[使用者角色]**
-        -   **[原則系統管理員]**
-        -   **[檢閱者]**
-        -   **[安全性負責人]**
-        -   **[行政人員]**
-        -   **[傳送者]**
-        -   **[建立者]**
-        -   **[所有掃描類型]**
-        -   **[小組成員資格]**
-        -   **[預設小組]**
+    1.  As **New User Activation**, select **No Activation Required**.
+    2.  As **User Data Updates**, select **Preference Veracode User Data**.
+    3.  For **SAML Attribute Details**, select the following:
+        -   **User Roles**
+        -   **Policy Administrator**
+        -   **Reviewer**
+        -   **Security Lead**
+        -   **Executive**
+        -   **Submitter**
+        -   **Creator**
+        -   **All Scan Types**
+        -   **Team Memberships**
+        -   **Default Team**
 
-10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802914.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-veracode-tutorial/IC802914.png "Configure Single Sign-On")
 
-11. 在頂端的功能表中，按一下 [屬性] 以開啟 [SAML Token 屬性] 對話方塊。
+11. In the menu on the top, click **Attributes** to open the **SAML Token Attributes** dialog.
 
-    ![屬性](./media/active-directory-saas-veracode-tutorial/IC795920.png "屬性")
+    ![Attributes](./media/active-directory-saas-veracode-tutorial/IC795920.png "Attributes")
 
-12. 若要加入必要的屬性對應，請執行下列步驟：
+12. To add the required attribute mappings, perform the following steps:
 
-    ![屬性](./media/active-directory-saas-veracode-tutorial/IC802906.png "屬性")
+    ![Attributes](./media/active-directory-saas-veracode-tutorial/IC802906.png "Attributes")
 
-	| 屬性名稱 | 屬性值 |
-	|:---------------|:----------------|
-	| firstname | User.givenname |
-	| lastname | User.surname |
-	| 電子郵件 | User.mail |
+  	| Attribute Name | Attribute Value |
+  	|:---------------|:----------------|
+  	| firstname      | User.givenname  |
+  	| lastname       | User.surname    |
+  	| email          | User.mail       |
 
-    1.  針對上表中的每個資料列，按一下 [新增使用者屬性]。
+    1.  For each data row in the table above, click **add user attribute**.
     
-	2.  在 [屬性名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
+    2.  In the **Attribute Name** textbox, type the attribute name shown for that row.
 
-    3.  在 [屬性值] 文字方塊中，選取該資料列所顯示的屬性值。
+    3.  In the **Attribute Value** textbox, select the attribute value shown for that row.
 
-    4.  按一下 [完成]。
+    4.  Click **Complete**.
 
-13. 按一下 [套用變更]。
+13. Click **Apply Changes**.
 
-##設定使用者佈建
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 Azure AD 使用者可以登入 Veracode，則必須將他們佈建到 Veracode。若是 Veracode 的情況 來佈建是自動化的工作。沒有您適用的動作項目。
+In order to enable Azure AD users to log into Veracode, they must be provisioned into Veracode.  
+In the case of Veracode, provisioning is an automated task.  
+There is no action item for you..
   
-第一次嘗試單一登入時，會視需要自動建立使用者。
+Users are automatically created if necessary during the first single sign-on attempt.
 
->[AZURE.NOTE] 您可以使用任何其他的 Veracode 使用者帳戶建立工具或Veracode 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Veracode user account creation tools or APIs provided by Veracode to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Veracode，請執行下列步驟：
+###<a name="to-assign-users-to-veracode,-perform-the-following-steps:"></a>To assign users to Veracode, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Veracode] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Veracode **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-veracode-tutorial/IC802915.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-veracode-tutorial/IC802915.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-veracode-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-veracode-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

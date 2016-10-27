@@ -1,18 +1,21 @@
-### 新增位址空間
+### <a name="to-add-address-space"></a>To add address space
 
-1. 若要新增額外的位址空間，請按一下 [所有設定] 以開啟 [設定] 刀鋒視窗。 
+1. To add additional address space, click **All settings** to open the **Settings** blade. 
 
-2. 在 [設定] 刀鋒視窗上，按一下 [位址空間] 以開啟 [位址空間] 刀鋒視窗。在此刀鋒視窗中新增額外的位址空間，然後按一下刀鋒視窗頂端的 [儲存]。
+2. On the **Settings** blade, click **Address space** to open the Address space blade. Add the additional address space in this blade, and then click **Save** at the top of the blade.
 
-	![新增位址空間](./media/vpn-gateway-additional-address-space-include/address400.png)
+    ![Add address space](./media/vpn-gateway-additional-address-space-include/address400.png)
 
-### 新增子網路 
+### <a name="to-add-subnets"></a>To add subnets 
 
-1. 若要將其他子網路新增至您的位址空間，請在 [設定] 刀鋒視窗中，按一下 [子網路] 以開啟 [子網路] 刀鋒視窗。 
+1. To add additional subnets to your address spaces, in the **Settings** blade, click **Subnets** to open the **Subnets** blade. 
 
-2. 在 [子網路] 刀鋒視窗中，按一下 [新增] 以開啟 [新增子網路] 刀鋒視窗。替新的子網路命名並指定位址範圍，然後按一下刀鋒視窗底部的 [確定]。建立子網路後，您可以使用 [子網路] 刀鋒視窗來檢視 VNet 的所有子網路。
+2. In the Subnets blade, click **Add** to open the **Add subnet** blade. Name your new subnet and specify the address range, and then click **OK** at the bottom of the blade. Once a subnet has been created, you can use the subnets blade to view all of your subnets for a VNet.
 
 
-	![子網路設定](./media/vpn-gateway-additional-address-space-include/addsubnet250.png)
+    ![Subnet settings](./media/vpn-gateway-additional-address-space-include/addsubnet250.png)       
 
-<!---HONumber=AcomDC_0406_2016---->
+
+<!--HONumber=Oct16_HO2-->
+
+

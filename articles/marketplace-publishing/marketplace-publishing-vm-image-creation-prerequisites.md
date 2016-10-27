@@ -1,6 +1,6 @@
 <properties
-   pageTitle="建立 Azure Marketplace 虛擬機器映像的技術性必要條件 | Microsoft Azure"
-   description="了解建立和部署虛擬機器映像到 Azure Marketplace 供他人購買的要求。"
+   pageTitle="Technical prerequisites for creating a virtual machine image for the Azure Marketplace | Microsoft Azure"
+   description="Understand the requirements for creating and deploying a virtual machine image to the Azure Marketplace for others to purchase."
    services="marketplace-publishing"
    documentationCenter=""
    authors="HannibalSII"
@@ -16,41 +16,46 @@
   ms.date="04/29/2016"
   ms.author="hascipio; v-divte"/>
 
-# 建立 Azure Marketplace 虛擬機器映像的技術性必要條件
-開始之前，請先徹底閱讀程序，並且了解每個步驟執行的位置及原因。在供應項目建立程序之前，您應該盡可能準備您的公司資訊和其他資料、下載必要的工具，和/或建立技術元件。檢閱本文之後，您會更清楚這些項目。
 
-## 下載需要的工具和應用程式
-開始程序之前，您應該先準備好下列項目：
+# <a name="technical-prerequisites-for-creating-a-virtual-machine-image-for-the-azure-marketplace"></a>Technical prerequisites for creating a virtual machine image for the Azure Marketplace
+Read the process thoroughly before beginning and understand where and why each step is performed. As much as possible, you should prepare your company information and other data, download necessary tools, and/or create technical components before beginning the offer creation process. These items should be clear from reviewing this article.  
 
-- 視您的目標作業系統而定，從 [Azure 下載](https://azure.microsoft.com/downloads/)頁面安裝 [Azure PowerShell Cmdlet](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/WindowsAzurePowershellGet.3f.3f.3fnew.appids) 或 [Linux 命令列介面工具](https://go.microsoft.com/fwlink/?LinkId=253472&clcid=0x409)。
-- 從 CodePlex 安裝 Azure 儲存體總管。
-- 下載並安裝適用於 Azure 認證的認證測試工具：
-  - [http://go.microsoft.com/fwlink/?LinkID=526913](http://go.microsoft.com/fwlink/?LinkID=526913)。您需要 Windows 架構的電腦才能執行認證工具。如果您沒有 Windows 電腦，可以在 Azure 中使用 Windows 架構的 VM 執行工具。
+## <a name="download-needed-tools-&-applications"></a>Download needed tools & applications
+You should have the following items ready before beginning the process:
 
-## 支援的平台
-您可以在 Windows 或 Linux 上開發 Azure VM。發佈程序的一些項目—例如建立與 Azure 相容的虛擬硬碟 (VHD)—會根據使用的作業系統而使用不同的工具和步驟。
+- Depending on which operating system you are targeting, install the [Azure PowerShell cmdlets](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/WindowsAzurePowershellGet.3f.3f.3fnew.appids) or [Linux command-line interface tool](https://go.microsoft.com/fwlink/?LinkId=253472&clcid=0x409) from the [Azure Downloads](https://azure.microsoft.com/downloads/) page.
+- Install Azure Storage Explorer from CodePlex.
+- Download and install the Certification Test Tool for Azure Certified:
+  - [http://go.microsoft.com/fwlink/?LinkID=526913](http://go.microsoft.com/fwlink/?LinkID=526913). You need a Windows-based computer to run the certification tool. If you do not have a Windows-based computer available, you can run the tool using a Windows-based VM in Azure.
 
-- 如果您使用 Linux，請參閱[虛擬機器映像發佈指南](marketplace-publishing-vm-image-creation.md)的＜建立與 Azure 相容的 VHD (以 Linux 為基礎)＞一節。
-- 如果您使用 Windows，請參閱[虛擬機器映像發佈指南](marketplace-publishing-vm-image-creation.md)的＜建立與 Azure 相容的 VHD (以 Windows 為基礎)＞一節。
+## <a name="platforms-supported"></a>Platforms supported
+You can develop Azure-based VMs on Windows or Linux. Some elements of the publishing process--such as creating an Azure-compatible virtual hard disk (VHD)--use different tools and steps depending on which operating system you are using:  
 
-> [AZURE.NOTE] 您需要有 Windows 電腦的存取權才能︰
-- 執行憑證驗證工具。
-- 建立送出 VHD 憑證的 VHD 共用存取簽章 URL。
+- If you are using Linux, refer to the “Create an Azure-compatible VHD (Linux-based)” section of the [Virtual machine image publishing guide](marketplace-publishing-vm-image-creation.md).
+- If you are using Windows, refer to the “Create an Azure-compatible VHD (Windows-based)” section of the [Virtual machine image publishing guide](marketplace-publishing-vm-image-creation.md).
 
-## 開發您的 VHD
-您可以在雲端或內部部署中開發 Azure VHD：
+> [AZURE.NOTE] You need access to a Windows-based machine to:
+- Run the certification validation tool.
+- Create the VHD shared access signature URL for the VHD certification submission.
 
-- 雲端開發表示所有開發步驟都會在 Azure 的 VHD 上遠端執行。
-- 內部部署開發則需要使用內部部署基礎結構下載 VHD 和開發。雖然可行，但我們不建議您這麼做。請注意，為內部部署的 Windows 或 SQL 開發時，需要有相關的內部部署授權金鑰。建立 VM 之後即無法加入或安裝 SQL Server。此外，您必須讓供應項目以 Azure 入口網站中核准的 SQL 映像為基礎。如果您決定開發內部部署，必須執行一些不同於在雲端中開發的步驟。您可以在[建立內部部署 VM 映像](marketplace-publishing-vm-image-creation-on-premise.md)找到相關資訊。
+## <a name="develop-your-vhd"></a>Develop your VHD
+You can develop Azure VHDs in the cloud or on-premises:
 
-## 後續步驟
-現在，您已經檢閱必要條件並完成必要的工作，即可如[虛擬機器映像發佈指南](marketplace-publishing-vm-image-creation.md)中所詳述，繼續建立您的虛擬機器映像供應項目。
+- Cloud-based development means all development steps are performed remotely on a VHD resident on Azure.
+- On-premises development requires downloading a VHD and developing it using on-premises infrastructure. Although this is possible, we do not recommend it. Note that developing for Windows or SQL on-premises requires you to have the relevant on-premises license keys. You cannot include or install SQL Server after creating a VM. You must also base your offer on an approved SQL image from the Azure portal. If you decide to develop on-premises, you must perform some steps differently than if you were developing in the cloud. You can find relevant information in [Create an on-premises VM image](marketplace-publishing-vm-image-creation-on-premise.md).
 
-## 另請參閱
-- [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
-- [在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
+## <a name="next-steps"></a>Next steps
+Now that you reviewed the prerequisites and completed the necessary tasks, you can move forward with creating your virtual machine image offer as detailed in the [Virtual machine image publishing guide](marketplace-publishing-vm-image-creation.md).
+
+## <a name="see-also"></a>See also
+- [Getting started: How to publish an offer to the Azure Marketplace](marketplace-publishing-getting-started.md)
+- [Create a virtual machine running Windows in the Azure preview portal](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
 
-[link-acct-creation]: marketplace-publishing-accounts-creation-registration.md
+[link-acct-creation]:marketplace-publishing-accounts-creation-registration.md
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

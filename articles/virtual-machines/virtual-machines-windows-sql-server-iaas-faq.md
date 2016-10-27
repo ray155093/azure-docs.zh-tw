@@ -1,80 +1,85 @@
 <properties
-	pageTitle="Azure 虛擬機器上的 SQL Server 常見問題集 | Microsoft Azure"
-	description="本文章提供在 Azure VM 上執行 SQL Server 的常見問題解答。"
-	services="virtual-machines-windows"
-	documentationCenter=""
-	authors="v-shysun"
-	manager="felixwu"
-	editor=""
-	tags="azure-service-management"/>
+    pageTitle="SQL Server on Azure Virtual Machines FAQ | Microsoft Azure"
+    description="This article provides answers to frequently asked questions about running SQL Server on Azure VMs."
+    services="virtual-machines-windows"
+    documentationCenter=""
+    authors="v-shysun"
+    manager="felixwu"
+    editor=""
+    tags="azure-service-management"/>
 
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="09/13/2016"
-	ms.author="v-shysun"/>
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="09/13/2016"
+    ms.author="v-shysun"/>
 
-# Azure 虛擬機器上的 SQL Server 常見問題集
 
-本主題提供關於 [Azure 虛擬機器上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/) 一些最常見的執行問題解答。
+# <a name="sql-server-on-azure-virtual-machines-faq"></a>SQL Server on Azure Virtual Machines FAQ
 
-[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
+This topic provides answers to some of the most common questions about running [SQL Server on Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/sql-server/).
 
-## 常見問題集
+[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
-1. **如何使用 SQL Server 建立 Azure 虛擬機器？**
+## <a name="frequently-asked-questions"></a>Frequently Asked Questions
 
-	做法有二種。最簡單的解決方法是建立包含 SQL Server 的虛擬機器。如需註冊 Azure 並從入口網站建立 SQL VM 的教學課程，請參閱[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。您也可以選擇手動在 VM 上安裝 SQL Server，並重複使用 [Azure 上透過軟體保證的授權流動性](https://azure.microsoft.com/pricing/license-mobility/)提供的內部部署授權。
+1. **How do I create an Azure virtual machine with SQL Server?**
 
-1. **SQL VM 和 SQL Database 服務之間的差異為何？**
+    There are two ways to do this. The easiest solution is to create a Virtual Machine that includes SQL Server. For a tutorial on signing up for Azure and creating a SQL VM from the portal, see [Provision a SQL Server virtual machine in the Azure Portal](virtual-machines-windows-portal-sql-server-provision.md). You also have the option of manually installing SQL Server on a VM and reusing an on-premises license with [License Mobility through Software Assurance on Azure](https://azure.microsoft.com/pricing/license-mobility/).
 
-	從概念上來說，在 Azure 虛擬機器上執行 SQL Server 與在遠端資料中心中執行 SQL Server 並沒什麼不同。對比之下，[SQL Database](../sql-database/sql-database-technical-overview.md) 可提供資料庫即服務的功能。使用 SQL Database 時，您無法存取主控資料庫的機器。如需完整的比較，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/sql-database-paas-vs-sql-server-iaas.md)。
+1. **What is the difference between SQL VMs and the SQL Database service?**
 
-1. **如何將內部部署 SQL Server 資料庫移轉至雲端？**
+    Conceptually, running SQL Server on an Azure virtual machine is not that different from running SQL Server in a remote datacenter. In contrast, [SQL Database](../sql-database/sql-database-technical-overview.md) offers database-as-a-service. With SQL Database, you do not have access to the machines that host your databases. For a full comparison, see [Choose a cloud SQL Server option: Azure SQL (PaaS) Database or SQL Server on Azure VMs (IaaS)](../sql-database/sql-database-paas-vs-sql-server-iaas.md).
 
-	首先，請使用 SQL Server 執行個體來建立 Azure 虛擬機器。然後將您的內部部署資料庫移轉至該執行個體。如需資料移轉策略，請參閱[將 SQL Server 資料庫移轉至 Azure VM 中的 SQL Server](virtual-machines-windows-migrate-sql.md)。
+1. **How can I migrate my on-premises SQL Server database to the Cloud?**
 
-2. **是否可以變更已安裝的功能，或在相同的 VM 上安裝第二個 SQL Server 執行個體？**
+    First create an Azure virtual machine with a SQL Server instance. Then migrate your on-premises databases to that instance. For data migration strategies, see [Migrate a SQL Server database to SQL Server in an Azure VM](virtual-machines-windows-migrate-sql.md).
 
-	是。SQL Server 安裝媒體位於 **C** 磁碟機的資料夾中。您可從該位置執行 **Setup.exe** 來新增新的 SQL Server 執行個體，或變更機器上 SQL Server 的其他已安裝功能。
+2. **Can I change the installed features or install a second instance of SQL Server on the same VM?**
 
-3. **如何將 Azure VM 中的 SQL Server 升級至新版本？**
+    Yes. The SQL Server installation media is located in a folder on the **C** drive. Run **Setup.exe** from that location to add new SQL Server instances or to change other installed features of SQL Server on the machine.
 
-	目前，在 Azure VM 中執行的 SQL Server 不提供任何就地升級。因此，請使用所需的 SQL Server 版本來建立新的 Azure 虛擬機器，然後使用標準[資料移轉技術](virtual-machines-windows-migrate-sql.md)，將資料庫移轉到新的伺服器。
+3. **How do I upgrade to a new version/edition of the SQL Server in an Azure VM?**
 
-4. **如何在 Azure VM 上安裝 SQL Server 授權版本？**
+    Currently, there is no in-place upgrade for SQL Server running in an Azure VM. Create a new Azure virtual machine with the desired SQL Server version/edition, and then migrate your databases to the new server using standard [data migration techniques](virtual-machines-windows-migrate-sql.md).
 
-	將 SQL Server 安裝媒體複製到 Windows Server VM 上，然後在 VM 上安裝 SQL Server。基於授權原因，您必須具備 [Azure 上透過軟體保證的授權流動性](https://azure.microsoft.com/pricing/license-mobility/)。
+4. **How can I install my licensed copy of SQL Server on an Azure VM?**
 
-5. **如果只用來待命/容錯移轉，仍必須支付 VM 的 SQL 成本嗎？**
+    Copy the SQL Server installation media to the Windows Server VM, and then install SQL Server on the VM. For licensing reasons, you must have [License Mobility through Software Assurance on Azure](https://azure.microsoft.com/pricing/license-mobility/).
 
-	如果您要透過資源庫建立 SQL VM，就必須有個別的待命 SQL VM 授權，而這種授權的價格是相同的。如果您使用[授權流動性](https://azure.microsoft.com/pricing/license-mobility/)在虛擬機器上手動安裝 SQL Server，則可以選擇使用一個免費的被動 SQL 執行個體來進行容錯移轉。請檢閱相關限制和需求。
+5. **Do you have to pay the SQL costs of a VM if it is only being used for standby/failover?**
 
-6. **如何將更新和 Service Pack 套用到 SQL Server VM 上？**
+    If you are creating the SQL VM through the gallery, then you must have a separate license for the standby SQL VM and the pricing is the same. If you install SQL Server manually on a virtual machine with [License Mobility](https://azure.microsoft.com/pricing/license-mobility/), you have the option to have one free passive SQL instance for failover. Please review the restrictions and requirements.
 
-	虛擬機器可讓您控制主機電腦，包括套用更新的時間與方法。針對作業系統，您可以手動套用 Windows 更新，或是啟用名為[自動修補](virtual-machines-windows-classic-sql-automated-patching.md)的排程服務。自動修補會安裝任何標示為重要的更新，包括該類別目錄中的 SQL Server 更新。其他選擇性的 SQL Server 更新，則必須手動安裝。
+6. **How are updates and service packs applied on a SQL Server VM?**
 
-7. **是否可以設定虛擬機器資源庫中未顯示的組態 (例如 Windows 2008 R2 + SQL Server 2012)？**
+    Virtual machines give you control over the host machine, including when and how you apply updates. For the operating system, you can manually apply windows updates, or you can enable a scheduling service called [Automated Patching](virtual-machines-windows-classic-sql-automated-patching.md). Automated Patching installs any updates that are marked important, including SQL Server updates in that category. Other optional updates to SQL Server must be installed manually.
 
-	否，針對包含 SQL Server 的虛擬機器資源庫映像，您必須選取其中一個提供的映像。
+7. **Is it possible to set up configurations not shown in the virtual machine gallery (For example Windows 2008 R2 + SQL Server 2012)?**
 
-9. **如何在 Azure VM 上安裝 SQL 資料工具？**
+    No. For virtual machine gallery images that include SQL Server, you must select one of the provided images.
 
-	請從 [Microsoft SQL Server Data Tools - Business Intelligence for Visual Studio 2013](https://www.microsoft.com/zh-TW/download/details.aspx?id=42313) 下載並安裝 SQL 資料工具。
+9. **How do I install SQL Data tools on my Azure VM?**
 
-## 資源
+    Download and install the SQL Data tools from [Microsoft SQL Server Data Tools - Business Intelligence for Visual Studio 2013 ](https://www.microsoft.com/en-us/download/details.aspx?id=42313).
 
-如需 Azure 虛擬機器上的 SQL Server 概觀，請觀看影片 [Azure VM is the best platform for SQL Server 2016 (Azure VM 是 SQL Server 2016 的最佳平台)](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016)。您也可以在 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)主題中，取得詳盡的簡介。
+## <a name="resources"></a>Resources
 
-其他資源包括：
+For an overview of SQL Server on Azure Virtual Machines, watch the video [Azure VM is the best platform for SQL Server 2016](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016). You can also get a good introduction in the topic, [SQL Server on Azure Virtual Machines overview](virtual-machines-windows-sql-server-iaas-overview.md).
 
-- [在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)
-- [將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)
-- [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md)
-- [Azure 虛擬機器中的 SQL Server 效能最佳作法](virtual-machines-windows-sql-performance.md)
-- [Azure 虛擬機器中的 SQL Server 應用程式模式和開發策略](virtual-machines-windows-sql-server-app-patterns-dev-strategies.md)
+Other resources include:
 
-<!---HONumber=AcomDC_0914_2016-->
+- [Provision a SQL Server virtual machine in the Azure Portal](virtual-machines-windows-portal-sql-server-provision.md)
+- [Migrating a Database to SQL Server on an Azure VM](virtual-machines-windows-migrate-sql.md)
+- [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-high-availability-dr.md)
+- [Performance best practices for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-performance.md)
+- [Application Patterns and Development Strategies for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-server-app-patterns-dev-strategies.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

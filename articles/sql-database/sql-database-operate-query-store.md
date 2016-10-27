@@ -1,6 +1,6 @@
 <properties
-   pageTitle="操作 Azure SQL Database 中的查詢存放區"
-   description="了解如何操作 Azure SQL Database 中的查詢存放區"
+   pageTitle="Operating Query Store in Azure SQL Database"
+   description="Learn how to operate the Query Store in Azure SQL Database"
    keywords=""
    services="sql-database"
    documentationCenter=""
@@ -17,46 +17,51 @@
    ms.date="08/16/2016"
    ms.author="carlrab"/>
 
-# 操作 Azure SQL Database 中的查詢存放區 
 
-Azure 中的查詢存放區是完全受管理的資料庫功能，可持續收集及呈現有關所有查詢的詳細歷程記錄資訊。您可以將查詢存放區視為類似於飛航資料記錄器，可大幅簡化雲端選項與內部部署客戶的查詢效能疑難排解。這篇文章說明在 Azure 中操作查詢存放區的特定層面。您可以使用此預先收集的查詢資料，快速地診斷並解決效能問題，因此能夠花更多時間專注於業務上。
+# <a name="operating-the-query-store-in-azure-sql-database"></a>Operating the Query Store in Azure SQL Database 
 
-查詢存放區已自 2015 年 11 月在 Azure SQL Database 中[通用版本上市](https://azure.microsoft.com/updates/general-availability-azure-sql-database-query-store/)。查詢存放區是效能分析及調整功能的基礎，例如 [SQL Database 建議程式和效能儀表板](https://azure.microsoft.com/updates/sqldatabaseadvisorga/)。在本文發行時，查詢存放區正於 Azure 中 200,000 個以上的使用者資料庫內執行，不間斷地收集數個月的查詢相關資訊。
+Query Store in Azure is a fully managed database feature that continuously collects and presents detailed historic information about all queries. You can think about Query Store as similar to an airplane's flight data recorder that significantly simplifies query performance troubleshooting both for cloud and on-premises customers. This article explains specific aspects of operating Query Store in Azure. Using this pre-collected query data, you can quickly diagnose and resolve performance problems and thus spend more time focusing on their business. 
 
-> [AZURE.IMPORTANT] Microsoft 正在為所有 Azure SQL Database (現有和新的) 啟用「查詢存放區」。
+Query Store has been [globally available](https://azure.microsoft.com/updates/general-availability-azure-sql-database-query-store/) in Azure SQL Database since November, 2015. Query Store is the foundation for performance analysis and tuning features, such as [SQL Database Advisor and Performance Dashboard](https://azure.microsoft.com/updates/sqldatabaseadvisorga/). At the moment of publishing this article, Query Store is running in more than 200,000 user databases in Azure, collecting query-related information for several months, without interruption.
 
-## 最佳查詢存放區組態
+> [AZURE.IMPORTANT] Microsoft is in the process of activating Query Store for all Azure SQL databases (existing and new). 
 
-本節描述最佳的組態預設值，其設計目的是確保查詢存放區及相依功能 (例如 [SQL Database 建議程式和效能儀表板](https://azure.microsoft.com/updates/sqldatabaseadvisorga/)) 能夠可靠地運作。預設組態已針對持續收集資料最佳化，也就是在 OFF/READ\_ONLY 狀態花費最少的時間。
+## <a name="optimal-query-store-configuration"></a>Optimal Query Store Configuration
 
-| 組態 | 說明 | 預設值 | 註解 |
+This section describes optimal configuration defaults that are designed to ensure reliable operation of the Query Store and dependent features, such as [SQL Database Advisor and Performance Dashboard](https://azure.microsoft.com/updates/sqldatabaseadvisorga/). Default configuration is optimized for continuous data collection, that is minimal time spent in OFF/READ_ONLY states.
+
+| Configuration | Description | Default | Comment |
 | ------------- | ----------- | ------- | ------- |
-| MAX\_STORAGE\_SIZE\_MB | 指定查詢存放區在 z 客戶資料庫內佔用的資料空間限制 | 100 | 對新資料庫強制執行 |
-| INTERVAL\_LENGTH\_MINUTES | 定義彙總和保存查詢計畫所收集到的執行階段統計資料的時段大小。對於此組態定義的一段時間，每個使用中的查詢計劃最多會有一個資料列 | 60 | 對新資料庫強制執行 |
-| STALE\_QUERY\_THRESHOLD\_DAYS | 以時間為基礎的清理原則，可控制保存執行階段統計資料和非使用中查詢的保留期限 | 30 | 對新資料庫和具有先前的預設值 (367) 的資料庫強制執行 |
-| SIZE\_BASED\_CLEANUP\_MODE | 指定當查詢存放區資料大小接近限制時，是否進行自動資料清理 | AUTO | 對所有資料庫強制執行 |
-| QUERY\_CAPTURE\_MODE | 指定是否會追蹤所有查詢或只有查詢的子集 | AUTO | 對所有資料庫強制執行 |
-| FLUSH\_INTERVAL\_SECONDS | 指定擷取的執行階段統計資料在排清到磁碟之前，保留在記憶體中的最大期間 | 900 | 對新資料庫強制執行 |
+| MAX_STORAGE_SIZE_MB | Specifies the limit for the data space that Query Store can take inside z customer database | 100 | Enforced for new databases |
+| INTERVAL_LENGTH_MINUTES | Defines size of time window during which collected runtime statistics for query plans are aggregated and persisted. Every active query plan has at most one row for a period of time defined with this configuration | 60   | Enforced for new databases |
+| STALE_QUERY_THRESHOLD_DAYS | Time-based cleanup policy that controls the retention period of persisted runtime statistics and inactive queries | 30 | Enforced for new databases and databases with previous default (367) |
+| SIZE_BASED_CLEANUP_MODE | Specifies whether automatic data cleanup takes place when Query Store data size approaches the limit | AUTO | Enforced for all databases |
+| QUERY_CAPTURE_MODE | Specifies whether all queries or only a subset of queries are tracked | AUTO | Enforced for all databases |
+| FLUSH_INTERVAL_SECONDS | Specifies maximum period during which captured runtime statistics are kept in memory, before flushing to disk | 900 | Enforced for new databases |
 ||||||
 
-> [AZURE.IMPORTANT] 在所有 Azure SQL Database 中查詢存放區啟用的最後階段會自動套用這些預設值 (請參閱上面的重要附註)。在這次推出之後，Azure SQL Database 不會變更客戶所設定的組態值，除非該組態值會對主要工作負載或查詢存放區的可靠操作造成負面影響。
+> [AZURE.IMPORTANT] These defaults are automatically applied in the final stage of Query Store activation in all Azure SQL databases (see preceding important note). After this light up, Azure SQL Database won’t be changing configuration values set by customers, unless they negatively impact primary workload or reliable operations of the Query Store.
 
-如果您想要繼續使用自訂設定，請使用 [ALTER DATABASE 搭配查詢存放區選項](https://msdn.microsoft.com/library/bb522682.aspx)，以將組態還原到先前的狀態。請查看[使用查詢存放區的最佳作法](https://msdn.microsoft.com/library/mt604821.aspx)，以了解如何選擇最佳的組態參數。
+If you want to stay with your custom settings, use [ALTER DATABASE with Query Store options](https://msdn.microsoft.com/library/bb522682.aspx) to revert configuration to the previous state. Check out [Best Practices with the Query Store](https://msdn.microsoft.com/library/mt604821.aspx) in order to learn how top chose optimal configuration parameters.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[SQL Database 效能深入解析](sql-database-performance.md)
+[SQL Database Performance Insight](sql-database-performance.md)
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-如需詳細資訊，請參閱下列文章：
+For more information check out the following articles:
 
-- [您的資料庫的航班資料錄製器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database)
+- [A flight data recorder for your database](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database) 
 
-- [使用查詢存放區來監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
+- [Monitoring Performance By Using the Query Store](https://msdn.microsoft.com/library/dn817826.aspx)
 
-- [查詢存放區使用案例](https://msdn.microsoft.com/library/mt614796.aspx)
+- [Query Store Usage Scenarios](https://msdn.microsoft.com/library/mt614796.aspx)
 
-- [使用查詢存放區來監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
+- [Monitoring Performance By Using the Query Store](https://msdn.microsoft.com/library/dn817826.aspx) 
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

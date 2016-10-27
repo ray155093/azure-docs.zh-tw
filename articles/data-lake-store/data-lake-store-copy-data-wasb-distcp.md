@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Distcp 將送至/來自 WASB 的資料複製到資料湖存放區中 | Microsoft Azure"
-   description="使用 Distcp 工具將送至/來自 Azure 儲存體 Blob 的資料複製到資料湖存放區"
+   pageTitle="Copy data to and from WASB into Data Lake Store using Distcp| Microsoft Azure"
+   description="Use Distcp tool to copy data to and from Azure Storage Blobs to Data Lake Store"
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
@@ -16,64 +16,69 @@
    ms.date="08/02/2016"
    ms.author="nitinme"/>
 
-# 使用 Distcp 在 Azure 儲存體 Blob 與資料湖存放區之間複製資料
+
+# <a name="use-distcp-to-copy-data-between-azure-storage-blobs-and-data-lake-store"></a>Use Distcp to copy data between Azure Storage Blobs and Data Lake Store
 
 > [AZURE.SELECTOR]
-- [使用 DistCp](data-lake-store-copy-data-wasb-distcp.md)
-- [使用 AdlCopy](data-lake-store-copy-data-azure-storage-blob.md)
+- [Using DistCp](data-lake-store-copy-data-wasb-distcp.md)
+- [Using AdlCopy](data-lake-store-copy-data-azure-storage-blob.md)
 
 
-在您建立可存取 Data Lake Store 帳戶的 HDInsight 叢集後，您可以使用 Distcp 之類的 Hadoop 生態系統工具，將**送至/來自** HDInsight 叢集儲存體 (WASB) 的資料複製到 Data Lake Store 帳戶中。本文提供執行此作業的相關指示。
+Once you have created an HDInsight cluster that has access to a Data Lake Store account, you can use Hadoop ecosystem tools like Distcp to copy data **to and from** an HDInsight cluster storage (WASB) into a Data Lake Store account. This article provides instructions on how to achieve this.
 
-##必要條件
+##<a name="prerequisites"></a>Prerequisites
 
-開始閱讀本文之前，您必須符合下列必要條件：
+Before you begin this article, you must have the following:
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
-- 可存取 Data Lake Store 帳戶的 **Azure HDInsight 叢集**。請參閱[建立具有 Data Lake Store 的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。請確實為叢集啟用遠端桌面。
+- **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
+- **Enable your Azure subscription** for Data Lake Store public preview. See [instructions](data-lake-store-get-started-portal.md#signup).
+- **Azure HDInsight cluster** with access to a Data Lake Store account. See [Create an HDInsight cluster with Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md). Make sure you enable Remote Desktop for the cluster.
 
-## 使用影片快速學習？
+## <a name="do-you-learn-fast-with-videos?"></a>Do you learn fast with videos?
 
-[觀看這部影片](https://mix.office.com/watch/1liuojvdx6sie)，主題是關於如何使用 DistCp 在 Azure 儲存體 Blob 與 Data Lake Store 之間複製資料。
+[Watch this video](https://mix.office.com/watch/1liuojvdx6sie) on how to copy data between Azure Storage Blobs and Data Lake Store using DistCp.
 
-## 從遠端桌面 (Windows 叢集) 或 SSH (Linux 叢集) 使用 Distcp
+## <a name="use-distcp-from-remote-desktop-(windows-cluster)-or-ssh-(linux-cluster)"></a>Use Distcp from Remote Desktop (Windows cluster) or SSH (Linux cluster)
 
-HDInsight 叢集隨附 Distcp 公用程式，可用來將不同來源的資料複製到 HDInsight 叢集。如果您已將 HDInsight 叢集設定為使用資料湖存放區做為額外的儲存體，則您也可以使用現成可用的 Distcp 公用程式將資料複製到資料湖存放區帳戶，或從中複製資料。在本節中，我們將討論如何使用 Distcp 公用程式。
+An HDInsight cluster comes with the Distcp utility, which can be used to copy data from different sources into an HDInsight cluster. If you have configured the HDInsight cluster to use Data Lake Store as an additional storage, the Distcp utility can be used out-of-the-box to copy data to and from a Data Lake Store account as well. In this section we look at how to use the Distcp utility.
 
-1. 如果您有 Windows 叢集，請從遠端連接到可存取資料湖存放區帳戶的 HDInsight 叢集。如需指示，請參閱[使用 RDP 連接到叢集](../hdinsight/hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)。從叢集桌面開啟 Hadoop 命令列。
+1. If you have a Windows cluster, remote into an HDInsight cluster that has access to a Data Lake Store account. For instructions, see [Connect to clusters using RDP](../hdinsight/hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp). From the cluster Desktop, open the Hadoop command line.
 
-	如果您有 Linux 叢集，請使用 SSH 連接到叢集。請參閱[連線至以 Linux 為基礎的 HDInsight 叢集](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster)。從 SSH 提示字元執行命令。
+    If you have a Linux cluster, use SSH to connect to the cluster. See [Connect to a Linux-based HDInsight cluster](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster). Run the commands from the SSH prompt.
 
-3. 確認您是否可存取 Azure 儲存體 Blob (WASB)。執行以下命令：
+3. Verify whether you can access the Azure Storage Blobs (WASB). Run the following command:
 
-		hdfs dfs –ls wasb://<container_name>@<storage_account_name>.blob.core.windows.net/
+        hdfs dfs –ls wasb://<container_name>@<storage_account_name>.blob.core.windows.net/
 
-	這應會提供儲存體 blob 中的內容清單。
+    This should provide a list of contents in the storage blob.
 
-4. 同樣地，請確認您是否可從叢集存取資料湖存放區帳戶。執行以下命令：
+4. Similarly, verify whether you can access the Data Lake Store account from the cluster. Run the following command:
 
-		hdfs dfs -ls adl://<data_lake_store_account>.azuredatalakestore.net:443/
+        hdfs dfs -ls adl://<data_lake_store_account>.azuredatalakestore.net:443/
 
-	這應會提供資料湖存放區帳戶中的檔案/資料夾清單。
+    This should provide a list of files/folders in the Data Lake Store account.
 
-5. 使用 Distcp 將資料從 WASB 複製到資料湖存放區帳戶。
+5. Use Distcp to copy data from WASB to a Data Lake Store account.
 
-		hadoop distcp wasb://<container_name>@<storage_account_name>.blob.core.windows.net/example/data/gutenberg adl://<data_lake_store_account>.azuredatalakestore.net:443/myfolder
+        hadoop distcp wasb://<container_name>@<storage_account_name>.blob.core.windows.net/example/data/gutenberg adl://<data_lake_store_account>.azuredatalakestore.net:443/myfolder
 
-	這會將 WASB 中的 **/example/data/gutenberg/** 資料夾的內容複製到 Data Lake Store 帳戶中的 **/myfolder**。
+    This will copy the contents of the **/example/data/gutenberg/** folder in WASB to **/myfolder** in the Data Lake Store account.
 
-6. 同樣地，請使用 Distcp 將資料從資料湖存放區帳戶複製到 WASB。
+6. Similarly, use Distcp to copy data from Data Lake Store account to WASB.
 
-		hadoop distcp adl://<data_lake_store_account>.azuredatalakestore.net:443/myfolder wasb://<container_name>@<storage_account_name>.blob.core.windows.net/example/data/gutenberg
+        hadoop distcp adl://<data_lake_store_account>.azuredatalakestore.net:443/myfolder wasb://<container_name>@<storage_account_name>.blob.core.windows.net/example/data/gutenberg
 
-	這會將 Data Lake Store 帳戶中的 **/myfolder** 的內容複製到 WASB 中的 **/example/data/gutenberg/** 資料夾。
+    This will copy the contents of **/myfolder** in the Data Lake Store account to **/example/data/gutenberg/** folder in WASB.
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-- [將資料從 Azure 儲存體 Blob 複製到資料湖存放區](data-lake-store-copy-data-azure-storage-blob.md)
-- [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
-- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-- [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
+- [Copy data from Azure Storage Blobs to Data Lake Store](data-lake-store-copy-data-azure-storage-blob.md)
+- [Secure data in Data Lake Store](data-lake-store-secure-data.md)
+- [Use Azure Data Lake Analytics with Data Lake Store](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [Use Azure HDInsight with Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,7 +1,9 @@
-本文適用於 Azure App Service (Web Apps、API Apps、Mobile Apps、Logic Apps)；對於雲端服務，請參閱[設定 Azure 雲端服務的自訂網域名稱](../articles/cloud-services/cloud-services-custom-domain-name.md)。
+This article is for Azure App Service (Web Apps, API Apps, Mobile Apps, Logic Apps); for Cloud Services, see [Configuring a custom domain name for an Azure cloud service](../articles/cloud-services/cloud-services-custom-domain-name.md).
 
-> [AZURE.NOTE]  如果您的 app 是由 [Auzre 流量管理員](https://azure.microsoft.com/services/traffic-manager/)進行負載平衡，請按一下本文章頂端的選取器以取得特定步驟。
+> [AZURE.NOTE]  If you app is load-balanced by [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), click the selector at the top of this article to get specific steps.
 >
-> **免費層不會啟用自訂網域名稱**。您必須[相應增加到較高的定價層](../articles/app-service-web/web-sites-scale.md)，這可能會變更您的訂用帳戶計費費用。如需詳細資訊，請參閱 [App Service 定價](https://azure.microsoft.com/pricing/details/app-service/)。
+> **Custom domain names are not enabled for Free tier**. You must [scale up to a higher pricing tier](../articles/app-service-web/web-sites-scale.md), which may change how much you are billed for your subscription. See [App Service Pricing](https://azure.microsoft.com/pricing/details/app-service/) for more information.
 
-<!---HONumber=AcomDC_0727_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

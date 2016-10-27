@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="虛擬網路常見問題集"
-   description="Azure 虛擬網路 (VNet) 常見問題集"
+   pageTitle="Virtual Network FAQ"
+   description="Azure virtual network (VNet) FAQ"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -15,12 +15,17 @@
    ms.date="03/15/2016"
    ms.author="jdial" />
 
-# 虛擬網路常見問題集
+
+# <a name="virtual-network-faq"></a>Virtual Network FAQ
 
 [AZURE.INCLUDE [virtual-networks-vnet-faq-include](../../includes/virtual-networks-vnet-faq-include.md)]
 
-## 虛擬網路跨單位連線 (VPN)
+## <a name="virtual-network-cross-premises-connectivity-(vpns)"></a>Virtual Network Cross-premises Connectivity (VPNs)
 
-如需虛擬網路 VPN 的最新常見問題集，請參閱《[VPN 閘道常見問題集](../vpn-gateway/vpn-gateway-vpn-faq.md)》。
+For the latest FAQ on virtual network VPNs, see the [VPN Gateway FAQ](../vpn-gateway/vpn-gateway-vpn-faq.md).
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

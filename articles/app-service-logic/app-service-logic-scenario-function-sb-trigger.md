@@ -1,6 +1,6 @@
 <properties
-   pageTitle="邏輯應用程式案例︰建立 Azure Functions 服務匯流排觸發程序 | Microsoft Azure"
-   description="使用 Azure Functions 建立邏輯應用程式的服務匯流排觸發程序"
+   pageTitle="Logic app scenario: Create an Azure Functions Service Bus trigger | Microsoft Azure"
+   description="Use Azure Functions to create a Service Bus trigger for a logic app"
    services="logic-apps,functions"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
@@ -16,30 +16,32 @@
    ms.date="05/23/2016"
    ms.author="jehollan"/>
 
-# 邏輯應用程式案例︰使用 Azure Functions 建立 Azure 服務匯流排觸發程序
 
-當您需要部署長時間執行的接聽程式或工作時，可以使用 Azure Functions 來建立邏輯應用程式的觸發程序。例如，您可以建立一個將會在佇列上接聽的函數，接著立即引發邏輯應用程式成為推送觸發程序。
+# <a name="logic-app-scenario:-create-an-azure-service-bus-trigger-by-using-azure-functions"></a>Logic app scenario: Create an Azure Service Bus trigger by using Azure Functions
 
-## 建置邏輯應用程式
+You can use Azure Functions to create a trigger for a logic app when you need to deploy a long-running listener or task. For example, you can create a function that will listen in on a queue and then immediately fire a logic app as a push trigger.
 
-在此範例中，您會有針對需要觸發的每個邏輯應用程式執行的函數。首先，建立具有 HTTP 要求觸發程序的邏輯應用程式。每當收到佇列訊息時，函數即會呼叫該端點。
+## <a name="build-the-logic-app"></a>Build the logic app
 
-1. 建立新的邏輯應用程式；選取 [手動 - 收到 HTTP 要求時] 觸發程序。您可以選擇性地利用 [jsonschema.net](http://jsonschema.net) 之類的工具，來指定要與佇列訊息搭配使用的 JSON 結構描述。在觸發程序中貼上結構描述。這有助於讓設計工具了解資料的形式，而且可以更輕鬆地透過工作流程傳送屬性。
-1. 新增您想要在收到佇列訊息之後發生的任何其他步驟。例如，透過 Office 365 傳送電子郵件。
-1. 儲存邏輯應用程式，以產生此邏輯應用程式的觸發程序的回呼 URL。URL 會出現在觸發程序卡上。
+In this example, you have a function running for each logic app that needs to be triggered. First, create a logic app that has an HTTP request trigger. The function calls that endpoint whenever a queue message is received.  
 
-![回呼 URL 會出現在觸發程序卡上][1]
+1. Create a new logic app; select the **Manual - When an HTTP Request is Received** trigger.  
+   Optionally, you can specify a JSON schema to use with the queue message by using a tool like [jsonschema.net](http://jsonschema.net). Paste the schema in the trigger. This helps the designer understand the shape of the data and more easily flow properties through the workflow.
+1. Add any additional steps that you want to occur after a queue message is received. For example, send an email via Office 365.  
+1. Save the logic app to generate the callback URL for the trigger to this logic app. The URL appears on the trigger card.
 
-## 建置函數
+![The callback URL appears on the trigger card][1]
 
-接著，您必須建立一個函數，以做為觸發程序並接聽佇列。
+## <a name="build-the-function"></a>Build the function
 
-1. 在 [Azure Functions 入口網站](https://functions.azure.com/signin)中，依序選取 [新增函數] 與 [ServiceBusQueueTrigger - C#] 範本。
+Next, you need to create a function that will act as the trigger and listen to the queue.
 
-    ![Azure Functions 入口網站][2]
+1. In the [Azure Functions portal](https://functions.azure.com/signin), select **New Function**, and then select the **ServiceBusQueueTrigger - C#** template.
 
-2. 設定服務匯流排佇列的連接 (將使用服務匯流排 SDK `OnMessageReceive()` 接聽程式)。
-3. 撰寫簡單的函數，使用佇列訊息做為觸發程序來呼叫邏輯應用程式端點 (稍早建立的)。以下是函數的完整範例。此範例會使用 `application/json` 訊息內容類型，但是您可以視需要變更此類型。
+    ![Azure Functions portal][2]
+
+2. Configure the connection to the Service Bus queue (which will use the Azure Service Bus SDK `OnMessageReceive()` listener).
+3. Write a simple function to call the logic app endpoint (created earlier) by using the queue message as a trigger. Here's a full example of a function. The example uses an `application/json` message content type, but you can change this if needed.
 
    ```
    using System;
@@ -60,10 +62,14 @@
    }
    ```
 
-若要進行測試，請透過[服務匯流排總管](https://github.com/paolosalvatori/ServiceBusExplorer)之類的工具來新增佇列訊息。請查看在函數收到訊息之後立即引發的邏輯應用程式。
+To test, add a queue message via a tool like [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer). See the logic app fire immediately after the function receives the message.
 
 <!-- Image References -->
 [1]: ./media/app-service-logic-scenario-function-sb-trigger/manualTrigger.PNG
 [2]: ./media/app-service-logic-scenario-function-sb-trigger/newQueueTriggerFunction.PNG
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用多個服務組態設定 Azure 專案 | Microsoft Azure"
-   description="了解如何透過變更 ServiceDefinition.csdef 和 ServiceConfiguration.cscfg 檔案來設定 Azure 雲端服務專案。"
+   pageTitle="Configuring your Azure project using multiple service configurations | Microsoft Azure"
+   description="Learn how to configure an Azure cloud service project by changing the ServiceDefinition.csdef and ServiceConfiguration.cscfg files."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,99 +15,104 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 使用多個服務組態設定 Azure 專案
 
-Azure 雲端服務專案包含兩個組態檔：ServiceDefinition.csdef 和 ServiceConfiguration.cscfg。這些檔案會與您的 Azure 雲端服務應用程式一起封裝並部署至 Azure。
+# <a name="configuring-your-azure-project-using-multiple-service-configurations"></a>Configuring Your Azure Project Using Multiple Service Configurations
 
-- **ServiceDefinition.csdef** 檔案包含 Azure 環境為了符合雲端服務應用程式需求而需要的中繼資料，包括其內含的角色。這個檔案也包含套用至所有執行個體的組態設定。在執行階段可以使用 Azure 服務裝載執行階段 API 來讀取這些組態設定。當您的服務在 Azure 中執行時，無法更新此檔案。
+An Azure cloud service project includes two configuration files: ServiceDefinition.csdef and ServiceConfiguration.cscfg. These files are packaged with your Azure cloud service application and deployed to Azure.
 
-- **ServiceConfiguration.cscfg** 檔案會設定服務定義檔中所定義組態設定的值，並指定要針對每個角色執行的執行個體數目。當您的雲端服務在 Azure 中執行時，可以更新此檔案。
+- The **ServiceDefinition.csdef** file contains the metadata that is required by the Azure environment for the requirements of your cloud service application, including what roles it contains. This file also contains configuration settings that apply to all instances. These configuration settings can be read at runtime using the Azure Service Hosting Runtime API. This file cannot be updated while your service is running in Azure.
 
-Azure Tools for Microsoft Visual Studio 提供的屬性頁面可供您設定這些檔案中儲存的組態設定。若要存取屬性頁，請在 [方案總管] 中連按兩下 Azure 雲端服務專案底下的角色參考，或以滑鼠右鍵按一下角色參考並選擇 [屬性]，如下圖所示。
+- The **ServiceConfiguration.cscfg** file sets values for the configuration settings defined in the service definition file and specifies the number of instances to run for each role. This file can be updated while your cloud service is running in Azure.
 
-![VS\_Solution\_Explorer\_Roles\_Properties](./media/vs-azure-tools-multiple-services-project-configurations/IC784076.png)
+The Azure Tools for Microsoft Visual Studio provide property pages that you can use to set configuration settings stored in these files. To access the property pages, double-click the role reference underneath the Azure cloud service project in Solution Explorer, or right-click the role reference and choose **Properties**, as shown in the following figure.
 
-如需服務定義檔和服務組態檔的基礎結構描述相關資訊，請參閱[結構描述參考](https://msdn.microsoft.com/library/azure/dd179398.aspx)。如需服務組態的詳細資訊，請參閱[如何設定雲端服務](./cloud-services/cloud-services-how-to-configure.md)。
+![VS_Solution_Explorer_Roles_Properties](./media/vs-azure-tools-multiple-services-project-configurations/IC784076.png)
 
-## 設定角色屬性
+For information about the underlying schemas for the service definition and service configuration files, see the [Schema Reference](https://msdn.microsoft.com/library/azure/dd179398.aspx). For more information about service configuration, see [How to Configure Cloud Services](./cloud-services/cloud-services-how-to-configure.md).
 
-下列各節指出 Web 角色和背景工作角色的屬性頁很類似，但有一些差異。
+## <a name="configuring-role-properties"></a>Configuring role properties
 
-您可以從 [快取] 頁面設定 Azure 快取服務。
+The property pages for a web role and a worker role are similar, although there are a few differences, pointed out in the following sections.
 
-### 組態頁面
+From the **Caching** page, you can configure the Azure caching services.
 
-在 [組態] 頁面上，您可以設定下列屬性：
+### <a name="configuration-page"></a>Configuration page
 
-**執行個體**
+On the **Configuration** page, you can set these properties:
 
-將 [執行個體] 計數屬性設定為服務應對此角色執行的執行個體數目。
+**Instances**
 
-將 [VM 大小] 屬性設為 [超小]、[小型]、[中型]、[大型] 或 [特大]。如需詳細資訊，請參閱[雲端服務的大小](./cloud-services/cloud-services-sizes-specs.md)。
+Set the **Instance** count property to the number of instances the service should run for this role.
 
-**啟動動作** (僅限 Web 角色)
+Set the **VM size** property to **Extra Small**, **Small**, **Medium**, **Large**, or **Extra Large**.  For more information, see [Sizes for Cloud Services](./cloud-services/cloud-services-sizes-specs.md).
 
-設定此屬性，可指定當您開始偵錯時，Visual Studio 應針對 HTTP 端點或 HTTPS 端點或兩者啟動網頁瀏覽器。
+**Startup Action** (Web Role Only)
 
-只有在您已為角色定義 HTTPS 端點時，才可使用 HTTPS 端點選項。您可以在 [端點] 屬性頁面上定義 HTTPS 端點。
+Set this property to specify that Visual Studio should launch a web browser for either the HTTP endpoints or the HTTPS endpoints, or both when you start debugging.
 
-如果您已新增 HTTPS 端點，則預設會啟用 HTTPS 端點選項，而在您開始偵錯時，Visual Studio 會為此端點啟動瀏覽器 (除了為 HTTP 端點啟動瀏覽器以外)。這是假設兩個啟動選項都已啟用。
+The HTTPS endpoint option is available only if you have already defined an HTTPS endpoint for your role. You can define an HTTPS endpoint on the **Endpoints** property page.
 
-**診斷**
+If you have already added an HTTPS endpoint, the HTTPS endpoint option is enabled by default, and Visual Studio will launch a browser for this endpoint when you start debugging, in addition to a browser for your HTTP endpoint. This assumes that both startup options are enabled.
 
-Web 角色預設會啟用診斷。Azure 雲端服務專案和儲存體帳戶已設為使用本機儲存體模擬器。當您準備好部署至 Azure 時，您可以選取產生器按鈕 ([...])，將儲存體帳戶更新成使用雲端的 Azure 儲存體。您可以隨選方式或在自動排程的間隔，將診斷資料傳輸至儲存體帳戶。如需 Azure 診斷的詳細資訊，請參閱[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)。
+**Diagnostics**
 
-## 設定頁面
+By default, diagnostics is enabled for the Web role. The Azure cloud service project and storage account are set to use the local storage emulator. When you are ready to deploy to Azure, you can select the builder button (**…**) to update the storage account to use Azure storage in the cloud. You can transfer the diagnostics data to the storage account on demand or at automatically scheduled intervals. For more information about Azure diagnostics, see [Enabling Diagnostics in Azure Cloud Services and Virtual Machines](./cloud-services/cloud-services-dotnet-diagnostics.md).
 
-在 [設定] 頁面上，您可以新增服務的組態設定。組態設定是名稱-值組。在角色中執行的程式碼可以在執行階段使用 [Azure 受管理的資源庫](http://go.microsoft.com/fwlink?LinkID=171026)所提供的類別讀取組態設定的值。具體來說，[GetConfigurationSettingValue](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.getconfigurationsettingvalue.aspx) 方法會在執行階段傳回具名組態設定的值。
+## <a name="settings-page"></a>Settings page
 
-### 設定儲存體帳戶的連接字串
+On the **Settings** page, you can add configuration settings for your service. Configuration settings are name-value pairs. Code running in the role can read the values of your configuration settings at runtime using classes provided by the [Azure Managed Library](http://go.microsoft.com/fwlink?LinkID=171026). Specifically, the [GetConfigurationSettingValue](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.getconfigurationsettingvalue.aspx) method returns the value of a named configuration setting at runtime.
 
-連接字串是一個組態設定，可為儲存體模擬器或 Azure 儲存體帳戶提供連接和驗證資訊。每當您的程式碼必須從在角色中執行的程式碼存取 Azure 儲存體服務資料 (也就是 Blob、佇列或資料表資料) 時，您必須定義該儲存體帳戶的連接字串。
+### <a name="configuring-a-connection-string-to-a-storage-account"></a>Configuring a connection string to a storage account
 
-指向 Azure 儲存體帳戶的連接字串必須使用已定義的格式。如需如何建立連接字串的相關資訊，請參閱[設定 Azure 儲存體連接字串](./storage/storage-configure-connection-string.md)。
+A connection string is a configuration setting that provides connection and authentication information for the storage emulator or for an Azure storage account. Whenever your code must access Azure storage services data – that is, blob, queue, or table data – from code running in a role, you will have to define a connection string for that storage account.
 
-當您準備好要針對 Azure 儲存體服務測試您的服務，或當您準備好要將您的雲端服務部署至 Azure 時，您可以變更任何連接字串的值以指向您的 Azure 儲存體帳戶。選取 ([…])，選取 [輸入儲存體帳戶認證]。輸入您的帳戶資訊，包含您的帳戶名稱和帳戶金鑰。在 [儲存體帳戶連接字串] 對話方塊中，您也可以指出要使用預設 HTTPS 端點 (預設選項)、預設 HTTP 端點或自訂端點。如果您已為您的服務註冊自訂網域名稱，您可以決定使用自訂端點，如[針對 Azure 儲存體帳戶中的 Blob 資料設定自訂網域名稱](./storage/storage-custom-domain-name.md)中所述。
+A connection string that points to an Azure storage account must use a defined format. For information about how to create connection strings, see [Configure Azure Storage Connection Strings](./storage/storage-configure-connection-string.md).
 
->[AZURE.IMPORTANT] 您必須將連接字串修改成指向 Azure 儲存體帳戶，才能部署您的服務。無法執行這項操作，可能會導致您的角色無法啟動，或在初始化中、忙碌中和停止中狀態間循環。
+When you are ready to test your service against the Azure storage services, or when you are ready to deploy your cloud service to Azure, you can change the value of any connection strings to point to your Azure storage account. Select (**…**), select **Enter storage account credentials**. Enter your account information that includes your account name and account key. In the **Storage Account Connection String** dialog box, you can also indicate whether you want to use the default HTTPS endpoints (the default option), the default HTTP endpoints, or custom endpoints. You might decide to use custom endpoints if you have registered a custom domain name for your service, as described in [Configure a custom domain name for blob data in an Azure storage account](./storage/storage-custom-domain-name.md).
 
-## 端點頁面
+>[AZURE.IMPORTANT] You must modify your connection strings to point to an Azure storage account before you deploy your service. Failing to do this may cause your role not to start, or to cycle through the initializing, busy, and stopping states.
 
-背景工作角色可以有任意數目的 HTTP、HTTPS 或 TCP 端點。端點可以是可供外部用戶端使用的輸入端點，或是可供在服務中執行的其他角色使用的內部端點。
+## <a name="endpoints-page"></a>Endpoints page
 
-- 若要讓 HTTP 端點可供外部用戶端和網頁瀏覽器使用，請將端點類型變更為輸入，並指定名稱和公用連接埠號碼。
+A worker role can have any number of HTTP, HTTPS, or TCP endpoints. Endpoints can be input endpoints, which are available to external clients, or internal endpoints, which are available to other roles that are running in the service.
 
-- 若要讓 HTTPS 端點可供外部用戶端和網頁瀏覽器使用，請將端點類型變更為 [輸入]，並指定名稱、公用連接埠號碼和管理憑證名稱。
+- To make an HTTP endpoint available to external clients and Web browsers, change the endpoint type to input, and specify a name and a public port number.
 
-    請注意，您必須先在 [憑證] 屬性頁面上定義憑證，才可以指定管理憑證。
+- To make an HTTPS endpoint available to external clients and Web browsers, change the endpoint type to **input**, and specify a name, a public port number, and a management certificate name.
 
-- 若要讓端點可供雲端服務中的其他角色用於內部存取，請將端點類型變更為內部，並指定此端點的名稱和可能的私人連接埠。
+    Note that before you can specify a management certificate, you must define the certificate on the **Certificates** property page.
 
-## 本機儲存體頁面
+- To make an endpoint available for internal access by other roles in the cloud service, change the endpoint type to internal, and specify a name and possible private ports for this endpoint.
 
-您可以使用 [本機儲存體] 屬性頁面，為角色保留一或多個本機儲存體資源。本機儲存體資源是執行中角色執行個體所在之 Azure 虛擬機器的檔案系統中的保留目錄。
+## <a name="local-storage-page"></a>Local storage page
 
-## 憑證頁面
+You can use the **Local Storage** property page to reserve one or more local storage resources for a role. A local storage resource is a reserved directory in the file system of the Azure virtual machine in which an instance of a role is running.
 
-在 [憑證] 頁面上，您可以讓憑證與您的角色產生關聯。您新增的憑證可用來在 [端點] 屬性頁面上設定 HTTPS 端點。
+## <a name="certificates-page"></a>Certificates page
 
-[憑證] 屬性頁面會將憑證的相關資訊新增至您的服務組態。請注意，您的憑證不會與您的服務一起封裝；您必須透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將憑證分別上傳至 Azure。
+On the **Certificates** page, you can associate certificates with your role. The certificates that you add can be used to configure your HTTPS endpoints on the **Endpoints** property page.
 
-若要讓憑證與角色產生關聯，請提供憑證的名稱。在 [端點] 屬性頁面上設定 HTTPS 端點時，您可以使用這個名稱來參照憑證。接下來，指定憑證存放區為 [本機電腦] 或 [目前使用者] 和存放區的名稱。最後，輸入憑證的指紋。如果憑證在目前使用者 \\ 個人 (我的) 存放區中，您可從填入的清單中選取憑證，以輸入憑證的指紋。如果憑證位於任何其他位置，請以手動方式輸入指紋值。
+The **Certificates** property page adds information about your certificates to your service configuration. Note that your certificates are not packaged with your service; you must upload your certificates separately to Azure through the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-當您從憑證存放區新增憑證時，所有中繼憑證都會自動新增至您的組態設定。這些中繼憑證也必須上傳至 Azure，以便針對 SSL 正確設定您的服務。
+To associate a certificate with your role, provide a name for the certificate. You use this name to refer to the certificate when you configure an HTTPS endpoint on the **Endpoints** property page. Next, specify whether the certificate store is **Local Machine** or **Current User** and the name of the store. Finally, enter the certificate's thumbprint. If the certificate is in the Current User\Personal (My) store, you can enter the certificate's thumbprint by selecting the certificate from a populated list. If it resides in any other location, enter the thumbprint value by hand.
 
-只在您的服務在雲端執行時，與您的服務相關聯的管理憑證才會套用至您的服務。當您的服務在本機開發環境中執行時，它會使用由計算模擬器所管理的標準憑證。
+When you add a certificate from the certificate store, any intermediate certificates are automatically added to the configuration settings for you. These intermediate certificates must also be uploaded to Azure in order to correctly configure your service for SSL.
 
-## 建立 Azure 雲端服務專案
+Any management certificates that you associate with your service apply to your service only when it is running in the cloud. When your service is running in the local development environment, it uses a standard certificate that is managed by the compute emulator.
 
-若要設定套用至整個 Azure 雲端服務專案的設定，請先開啟該專案節點的捷徑功能表，然後選擇 [屬性] 以開啟其屬性頁面。下表顯示這些屬性頁面。
+## <a name="configuring-the-azure-cloud-service-project"></a>Configuring the Azure cloud service project
 
-|屬性頁面|說明|
+To configure settings that apply to an entire Azure cloud service project, you first open the shortcut menu for that project node, and then you choose Properties to open its property pages. The following table shows those property pages.
+
+|Property Page|Description|
 |---|---|
-|應用程式|在此頁面，您可以顯示此雲端服務專案使用的 Azure Tools 版本相關資訊，而且可以升級至目前版本的工具。|
-|建置事件|在此頁面，您可以設定建置前和建置後事件。|
-|開發|在此頁面，您可以指定組建組態指示以及執行任何建置後事件的條件。|
-|Web|在此頁面，您可以設定 Web 伺服器的相關設定。|
+|Application|From this page, you can display information about the version of Azure Tools that this cloud service project uses, and you can upgrade to the current version of the tools.|
+|Build Events|From this page, you can set pre-build and post-build events.|
+|Development|From this page, you can specify build configuration instructions and the conditions under which any post-build events are run.|
+|Web|From this page, you can configure settings that relate to the web server.|
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

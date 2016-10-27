@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="管理 StorSimple 中的存取控制記錄 | Microsoft Azure"
-   description="說明如何使用存取控制記錄 (ACR) 以判斷哪些主機可以連接至 StorSimple 裝置上的磁碟區。"
+   pageTitle="Manage access control records in StorSimple | Microsoft Azure"
+   description="Describes how to use access control records (ACRs) to determine which hosts can connect to a volume on the StorSimple device."
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,84 +15,89 @@
    ms.date="08/18/2016"
    ms.author="alkohli" />
 
-# 使用 StorSimple Manager 服務管理存取控制記錄
 
-## Overview
+# <a name="use-the-storsimple-manager-service-to-manage-access-control-records"></a>Use the StorSimple Manager service to manage access control records
 
-存取控制記錄 (ACR) 可讓您指定哪些主機可連接至 StorSimple 裝置上的磁碟區。ACR 設為特定的磁碟區，並且包含主機的 iSCSI 限定名稱 (IQN)。當主機嘗試連線到磁碟區時，裝置會檢查與該磁碟區相關聯的 ACR 的 IQN 名稱，如果相符，則會建立連接。[**設定**] 頁面上的存取控制記錄區段會顯示具有主機對應 IQN 的所有存取控制記錄。
+## <a name="overview"></a>Overview
 
-本教學課程將說明下列常見 ACR 相關工作：
+Access control records (ACRs) allow you to specify which hosts can connect to a volume on the StorSimple device. ACRs are set to a specific volume and contain the iSCSI Qualified Names (IQNs) of the hosts. When a host tries to connect to a volume, the device checks the ACR associated with that volume for the IQN name and if there is a match, then the connection is established. The access control records section on the **Configure** page displays all the access control records with the corresponding IQNs of the hosts.
 
-- 加入存取控制記錄
-- 編輯存取控制記錄
-- 刪除存取控制記錄
+This tutorial explains the following common ACR-related tasks:
+
+- Add an access control record 
+- Edit an access control record 
+- Delete an access control record 
 
 > [AZURE.IMPORTANT] 
 > 
-> - 將 ACR 指派到磁碟區時，請注意磁碟區並未被多個非叢集主機並行存取，因為這可能會損毀磁碟區。
-> - 從磁碟區刪除 ACR 時，請確定對應的主機未存取磁碟區，因為刪除作業可能會導致讀寫中斷。
+> - When assigning an ACR to a volume, take care that the volume is not concurrently accessed by more than one non-clustered host because this could corrupt the volume. 
+> - When deleting an ACR from a volume, make sure that the corresponding host is not accessing the volume because the deletion could result in a read-write disruption.
 
-## 加入存取控制記錄
+## <a name="add-an-access-control-record"></a>Add an access control record
 
-使用 StorSimple Manager 服務的 [設定] 頁面加入 ACR。一般而言，您會讓一個 ACR 與一個磁碟區產生關聯。
+You use the StorSimple Manager service **Configure** page to add ACRs. Typically, you will associate one ACR with one volume.
 
-執行下列步驟以加入 ACR。
+Perform the following steps to add an ACR.
 
-#### 加入存取控制記錄
+#### <a name="to-add-an-access-control-record"></a>To add an access control record
 
-1. 在服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [**設定**] 索引標籤。
+1. On the service landing page, select your service, double-click the service name, and then click the **Configure** tab.
 
-2. 在 [**存取控制記錄**] 底下的表格式清單中，提供 ACR 的 [**名稱**]。
+2. In the tabular listing under **Access control records**, supply a **Name** for your ACR.
 
-3. 在 [**iSCSI 啟動器名稱**] 下方，提供 Windows 主機的 IQN 名稱。若要取得 Windows Server 主機的 IQN，請執行下列動作：
+3. Provide the IQN name of your Windows host under **iSCSI Initiator Name**. To get the IQN of your Windows Server host, do the following:
 
-   - 在 Windows 主機上啟動 Microsoft iSCSI 啟動器。
-   - 在 [iSCSI 啟動器屬性] 視窗的 [設定] 索引標籤上，選取並複製 [啟動器名稱] 欄位的字串。
-   - 在 Azure 傳統入口網站的 ACR 表格上的 [iSCSI 啟動器名稱] 欄位中貼上此字串。
+   - Start the Microsoft iSCSI initiator on your Windows host.
+   - In the **iSCSI Initiator Properties** window, on the **Configuration** tab, select and copy the string from the **Initiator Name** field.
+   - Paste this string in the **iSCSI Initiator Name** field on the ACRs table in the Azure classic portal.
 
-4. 按一下 [**儲存**] 以儲存新建立的 ACR。表格式清單會更新以反映此新增。
+4. Click **Save** to save the newly created ACR. The tabular listing will be updated to reflect this addition.
 
-## 編輯存取控制記錄
+## <a name="edit-an-access-control-record"></a>Edit an access control record
 
-您可以使用 Azure 傳統入口網站中的 [設定] 頁面編輯 ACR。
+You use the **Configure** page in the Azure classic portal to edit ACRs. 
 
-> [AZURE.NOTE] 您只能修改目前未在使用中的 ACR。若要編輯與目前正在使用中的磁碟區相關聯的 ACR，您必須先讓磁碟區離線。
+> [AZURE.NOTE] You can modify only those ACRs that are currently not in use. To edit an ACR associated with a volume that is currently in use, you must first take the volume offline.
 
-執行下列步驟以編輯 ACR。
+Perform the following steps to edit an ACR.
 
-#### 編輯存取控制記錄
+#### <a name="to-edit-an-access-control-record"></a>To edit an access control record
 
-1. 在服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [**設定**] 索引標籤。
+1. On the service landing page, select your service, double-click the service name, and then click the **Configure** tab.
 
-2. 在存取控制記錄的表格式清單中，將滑鼠停留在您想要修改的 ACR 上。
+2. In the tabular listing of the access control records, hover over the ACR that you wish to modify.
 
-3. 為 ACR 提供新的名稱和/或 IQN。
+3. Supply a new name and/or IQN for the ACR.
 
-4. 按一下 [**儲存**] 以儲存修改的 ACR。表格式清單會更新以反映此變更。
+4. Click **Save** to save the modified ACR. The tabular listing will be updated to reflect this change.
 
-## 刪除存取控制記錄
+## <a name="delete-an-access-control-record"></a>Delete an access control record
 
-您可以使用 Azure 傳統入口網站中的 [設定] 頁面刪除 ACR。
+You use the **Configure** page in the Azure classic portal to delete ACRs. 
 
-> [AZURE.NOTE] 您只能刪除目前未在使用中的 ACR。若要刪除與目前正在使用中的磁碟區相關聯的 ACR，您必須先讓磁碟區離線。
+> [AZURE.NOTE] You can delete only those ACRs that are currently not in use. To delete an ACR associated with a volume that is currently in use, you must first take the volume offline.
 
-執行下列步驟來刪除存取控制記錄。
+Perform the following steps to delete an access control record.
 
-#### 刪除存取控制記錄
+#### <a name="to-delete-an-access-control-record"></a>To delete an access control record
 
-1. 在服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [**設定**] 索引標籤。
+1. On the service landing page, select your service, double-click the service name, and then click the **Configure** tab.
 
-2. 在存取控制記錄 (ACR) 的表格式清單中，將滑鼠停留在您想要刪除的 ACR 上。
+2. In the tabular listing of the access control records (ACRs), hover over the ACR that you wish to delete.
 
-3. 刪除圖示 (**x**) 會出現在您選取之 ACR 資料行的最右邊。按一下 [**x**] 圖示，以刪除 ACR。
+3. A delete icon (**x**) will appear in the extreme right column for the ACR that you select. Click the **x** icon to delete the ACR.
 
-4. 當系統提示您確認時，按一下 [**是**] 繼續進行刪除。表格式清單會更新以反映刪除。
+4. When prompted for confirmation, click **YES** to continue with the deletion. The tabular listing will be updated to reflect the deletion.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 深入了解[管理 StorSimple 磁碟區](storsimple-manage-volumes.md)。
+- Learn more about [managing StorSimple volumes](storsimple-manage-volumes.md).
 
-- 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+- Learn more about [using the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
  
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

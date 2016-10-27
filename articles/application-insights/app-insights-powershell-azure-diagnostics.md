@@ -1,6 +1,6 @@
 <properties
-    pageTitle="使用 PowerShell 將 Azure 診斷傳送至 Application Insights | Microsoft Azure"
-    description="自動設定 Azure 診斷以透過管道傳送至 Application Insights。"
+    pageTitle="Using PowerShell to send Azure Diagnostics to Application Insights | Microsoft Azure"
+    description="Automate configuring Azure Diagnostics to pipe to Application Insights."
     services="application-insights"
     documentationCenter=".net"
     authors="sbtron"
@@ -9,19 +9,20 @@
 <tags
     ms.service="application-insights"
     ms.workload="tbd"
-	ms.tgt_pltfrm="ibiza" 
+    ms.tgt_pltfrm="ibiza" 
     ms.devlang="na"
     ms.topic="get-started-article"
-	ms.date="11/17/2015"
+    ms.date="11/17/2015"
     ms.author="awills"/>
 
-# 使用 PowerShell 將 Azure 診斷傳送至 Application Insights
 
-[Microsoft Azure](https://azure.com) 可以[設定為傳送 Azure 診斷](app-insights-azure-diagnostics.md) 至 [Visual Studio Application Insights](app-insights-overview.md)。診斷與 Azure 雲端服務和 Azure VM 相關。可輔助您從應用程式使用 Application Insights SDK 傳送的遙測資料。在 Azure 中自動建立新資源的程序中，您可以使用 PowerShell 設定診斷。
+# <a name="using-powershell-to-send-azure-diagnostics-to-application-insights"></a>Using PowerShell to send Azure Diagnostics to Application Insights
 
-## 啟用診斷延伸模組做為部署雲端服務的一部分
+[Microsoft Azure](https://azure.com) can be [configured to send Azure Diagnostics](app-insights-azure-diagnostics.md) to [Visual Studio Application Insights](app-insights-overview.md). The diagnostics relate to Azure Cloud Services and Azure VMs. They complement the telemetry that you send from within the app using the Application Insights SDK. As part of automating the process of creating new resources in Azure, you can configure diagnostics using PowerShell.
 
-`New-AzureDeployment` Cmdlet 具有 `ExtensionConfiguration` 參數，其採用診斷組態的陣列。使用 `New-AzureServiceDiagnosticsExtensionConfig` Cmdlet 建立可以診斷組態。例如：
+## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>Enable diagnostics extension as part of deploying a Cloud Service
+
+The `New-AzureDeployment` cmdlet has a parameter `ExtensionConfiguration`, which takes an array of diagnostics configurations. These can be created using the `New-AzureServiceDiagnosticsExtensionConfig` cmdlet. For example:
 
 ```ps
 
@@ -56,9 +57,9 @@
 
 ``` 
 
-## 在現有的雲端服務上啟用診斷延伸模組
+## <a name="enable-diagnostics-extension-on-an-existing-cloud-service"></a>Enable diagnostics extension on an existing Cloud Service
 
-在現有的服務上，使用 `Set-AzureServiceDiagnosticsExtension`。
+On an existing service, use `Set-AzureServiceDiagnosticsExtension`.
 
 ```ps
  
@@ -86,7 +87,7 @@
         -Role "WorkerRole"
 ```
 
-## 取得目前的診斷延伸模組組態
+## <a name="get-current-diagnostics-extension-configuration"></a>Get current diagnostics extension configuration
 
 ```ps
 
@@ -94,16 +95,16 @@
 ```
 
 
-## 移除診斷延伸模組
+## <a name="remove-diagnostics-extension"></a>Remove diagnostics extension
 
 ```ps
 
     Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
-如果您在未使用 Role 參數的情況下使用 `Set-AzureServiceDiagnosticsExtension` 或 `New-AzureServiceDiagnosticsExtensionConfig` 啟用診斷延伸模組，則您可以在未使用 Role 參數的情況下使用 `Remove-AzureServiceDiagnosticsExtension` 移除延伸模組。如果啟用延伸模組時使用了 Role 參數，則移除延伸模組時也必須使用該參數。
+If you enabled the diagnostics extension using either `Set-AzureServiceDiagnosticsExtension` or `New-AzureServiceDiagnosticsExtensionConfig` without the Role parameter, then you can remove the extension using `Remove-AzureServiceDiagnosticsExtension` without the Role parameter. If the Role parameter was used when enabling the extension then it must also be used when removing the extension.
 
-若要從每個個別的角色移除診斷延伸模組：
+To remove the diagnostics extension from each individual role:
 
 ```ps
 
@@ -111,10 +112,15 @@
 ```
 
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-* [使用 Application Insights 監視 Azure 雲端服務應用程式](app-insights-cloudservices.md)
-* [將 Azure 診斷傳送至 Application Insights](app-insights-azure-diagnostics.md)
-* [自動化設定警示](app-insights-powershell-alerts.md)
+* [Monitor Azure Cloud Services apps with Application Insights](app-insights-cloudservices.md)
+* [Send Azure Diagnostics to Application Insights](app-insights-azure-diagnostics.md)
+* [Automate configuring alerts](app-insights-powershell-alerts.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

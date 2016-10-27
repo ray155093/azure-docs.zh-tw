@@ -1,47 +1,66 @@
 <properties
-	pageTitle="如何取消 Azure 訂用帳戶 | Microsoft Azure"
-	description="說明如何取消 Azure 訂用帳戶，例如免費試用訂用帳戶"
-	services=""
-	documentationCenter=""
-	authors="genlin"
-	manager="mbaldwin"
-	editor=""
-	tags="billing"
-	/>
+    pageTitle="Cancel your Azure subscription | Microsoft Azure"
+    description="Describes how to cancel your Azure subscription, like the Free Trial subscription"
+    services=""
+    documentationCenter=""
+    authors="genlin"
+    manager="mbaldwin"
+    editor=""
+    tags="billing"
+    />
 
 <tags
-	ms.service="billing"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/24/2016"
-	ms.author="genli"/>
+    ms.service="billing"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/26/2016"
+    ms.author="genli"/>
 
-# 如何取消 Azure 訂用帳戶
 
->[AZURE.NOTE] Azure 支援方案為 6 個月期，而 Microsoft 要求您對該期的期間履行貨幣承諾量。在期限到期前解約並不會免除剩餘的承諾量，亦不會針對任何預付金額進行退款。如果您不小心取消訂用帳戶並需要重新啟用，您可以[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。
+# <a name="cancel-your-azure-subscription"></a>Cancel your Azure subscription
 
-如果您取消訂用帳戶，根據 [Microsoft 的保留原則](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31)，您的資料將會儲存 90 天。深入了解 [Microsoft 信任中心](https://www.microsoft.com/zh-TW/TrustCenter/Privacy/You-are-in-control-of-your-data)。
+Cancel your Azure subscription from the [Azure Account Center](https://account.windowsazure.com/subscriptions). After you cancel the subscription, your access to Azure services and resources will end.
 
-1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/subscriptions)。
+Before you cancel your subscription:
 
-2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取您要取消的訂用帳戶。
+- Back up your data. For example, if you're storing data in Azure storage or SQL, download a copy. If you have a virtual machine, save an image of it locally.
 
-	![selectsub](./media/billing-how-to-cancel-azure-subscription/Selectsub.png)
+- Shut down your services. Go to the [resources page in the management portal](https://ms.portal.azure.com/?flight=1#blade/HubsExtension/Resources/resourceType/Microsoft.Resources%2Fresources), and **Stop** any running virtual machines, applications, or other services.
 
-3. 選取頁面右側的 [取消訂用帳戶]。
-	
-	![cancelsub](./media/billing-how-to-cancel-azure-subscription/cancelsub.png)
+If you cancel a paid [Azure Support plan](https://azure.microsoft.com/support/plans/), you will still be billed monthly for the rest of the 6-months term.
 
-4. 選取 [是，取消我的訂用帳戶]。
-	
-	![cancelbox](./media/billing-how-to-cancel-azure-subscription/cancelbox.png)
+## <a name="cancel-subscription"></a>Cancel subscription
 
-5. 按一下 ![checkbutton](./media/billing-how-to-cancel-azure-subscription/checkbutton.png) 關閉對話視窗並返回您的訂用帳戶頁面。
+1. Log on to the [Azure Account Center](https://account.windowsazure.com/subscriptions) as the Account Administrator.
 
-	> [AZURE.NOTE] 如果您不小心取消了「隨用隨付」訂用帳戶，您可以依照[這裡](https://azure.microsoft.com/documentation/articles/billing-subscription-become-disable/)所述的指示來重新啟用它。
+2. Under **Click a subscription to view details and usage**, select the subscription that you want to cancel. 
 
-> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+    ![selectsub](./media/billing-how-to-cancel-azure-subscription/Selectsub.png)
 
-<!---HONumber=AcomDC_0914_2016-->
+3. On the right side of the page, select **Cancel Subscription**.
+    
+    ![cancelsub](./media/billing-how-to-cancel-azure-subscription/cancelsub.png)
+
+4. Select **Yes, cancel my subscription**.
+    
+    ![cancelbox](./media/billing-how-to-cancel-azure-subscription/cancelbox.png)
+
+5. Click ![checkbutton](./media/billing-how-to-cancel-azure-subscription/checkbutton.png) to close the dialog window and return to your subscription page.
+
+After you cancel your subscription, we wait 90 days before permanently deleting your data in case you need to access it or change your mind. For more information, see [Microsoft Trust Center - How we manage your data](https://go.microsoft.com/fwLink/p/?LinkID=822930&clcid=0x409).
+
+## <a name="reactivate-subscription"></a>Reactivate subscription
+
+If you canceled your Pay-As-You-Go subscription accidentally, you can [reactivate it in the Accounts Center](billing-subscription-become-disable.md#how-to-re-enable-non-pay-as-you-go-subscriptions).
+
+## <a name="need-help?-contact-support."></a>Need help? Contact support.
+
+If you still have further questions, please [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

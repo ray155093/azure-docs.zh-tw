@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure 儲存體安全性概觀 | Microsoft Azure"
-   description=" Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。本文提供可用於 Azure 儲存體的核心 Azure 安全性功能概觀。"
+   pageTitle="Azure Storage Security Overview | Microsoft Azure"
+   description=" Azure Storage is the cloud storage solution for modern applications that rely on durability, availability, and scalability to meet the needs of their customers. This article provides an overview of the core Azure security features that can be used with Azure Storage. "
    services="security"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,89 +16,94 @@
    ms.date="09/16/2016"
    ms.author="terrylan"/>
 
-# Azure 儲存體安全性概觀
 
-Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。Azure 儲存體提供一組完整的安全性功能：
+# <a name="azure-storage-security-overview"></a>Azure storage security overview
 
-- 您可以使用角色型存取控制與 Azure Active Directory 來保護儲存體帳戶。
-- 您可以使用用戶端加密、HTTP 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。
-- 使用儲存體服務加密寫入 Azure 儲存體時，可將資料設定為自動加密。
-- 您可以使用 Azure 磁碟加密，將虛擬機器所使用的作業系統和資料磁碟設定為加密。
-- Azure 儲存體中資料物件的委派存取權可以使用「共用存取簽章」來授與。
-- 可以使用儲存體分析來追蹤某人存取儲存體時所使用的驗證方法。
+Azure Storage is the cloud storage solution for modern applications that rely on durability, availability, and scalability to meet the needs of their customers. Azure Storage provides a comprehensive set of security capabilities:
 
-若要深入了解「Azure 儲存體」中的安全性，請參閱 [Azure 儲存體安全性指南](../storage/storage-security-guide.md)。本指南深入探討 Azure 儲存體的安全性功能，例如儲存體帳戶金鑰、傳輸中資料和待用資料的加密，以及儲存體分析。
+- The storage account can be secured using Role-Based Access Control and Azure Active Directory.
+- Data can be secured in transit between an application and Azure by using Client-Side Encryption, HTTPS, or SMB 3.0.
+- Data can be set to be automatically encrypted when written to Azure Storage using Storage Service Encryption.
+- OS and Data disks used by virtual machines can be set to be encrypted using Azure Disk Encryption.
+- Delegated access to the data objects in Azure Storage can be granted using Shared Access Signatures.
+- The authentication method used by someone when they access storage can be tracked using Storage analytics.
 
-本文提供可與「Azure 儲存體」搭配使用的 Azure 安全性功能概觀。針對提供每項功能詳細資料的文章都提供了連結，以讓您深入了解。
+For a more detailed look at security in Azure Storage, see the [Azure Storage security guide](../storage/storage-security-guide.md). This guide provides a deep dive into the security features of Azure Storage such as storage account keys, data encryption in transit and at rest, and storage analytics.
 
-以下是本文所涵蓋的核心功能：
+This article provides an overview of Azure security features that can be used with Azure Storage. Links are provided to articles that give details of each feature so you can learn more.
 
-- 角色型存取控制
-- 儲存體物件的委派存取權
-- 傳輸中加密
-- 待用加密/儲存體服務加密
-- Azure 磁碟加密
-- Azure 金鑰保存庫
+Here are the core features to be covered in this article:
 
-## 角色型存取控制 (RBAC)
+- Role-Based Access Control
+- Delegated access to storage objects
+- Encryption in transit
+- Encryption at rest/Storage Service Encryption
+- Azure Disk Encryption
+- Azure Key Vault
 
-您可以使用角色型存取控制 (RBAC) 來保護儲存體帳戶。對於想要強制執行資料存取安全性原則的組織，根據[需要知道](https://en.wikipedia.org/wiki/Need_to_know)和[最低權限](https://en.wikipedia.org/wiki/Principle_of_least_privilege)安全性原則限制存取權限是必須做的事。在特定範圍將適當的 RBAC 角色指派給群組和應用程式，即可授與這些存取權限。您可以使用[內建的 RBAC 角色](../active-directory/role-based-access-built-in-roles.md) (例如儲存體帳戶參與者) 將權限指派給使用者。
+## <a name="role-based-access-control-(rbac)"></a>Role-Based Access Control (RBAC)
 
-深入了解：
+You can secure your storage account with Role-Based Access Control (RBAC). Restricting access based on the [need to know](https://en.wikipedia.org/wiki/Need_to_know) and [least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) security principles is imperative for organizations that want to enforce security policies for data access. These access rights are granted by assigning the appropriate RBAC role to groups and applications at a certain scope. You can use [built-in RBAC roles](../active-directory/role-based-access-built-in-roles.md), such as Storage Account Contributor, to assign privileges to users.
 
-- [Azure Active Directory 角色型存取控制](../active-directory/role-based-access-control-configure.md)
+Learn more:
 
-## 儲存體物件的委派存取權
+- [Azure Active Directory Role-based Access Control](../active-directory/role-based-access-control-configure.md)
 
-共用存取簽章 (SAS) 可提供您儲存體帳戶中資源的委派存取。SAS 意謂著您可以將儲存體帳戶中物件的有限權限授與用戶端，讓該用戶端可以在一段指定的時間內使用一組指定的權限來進行存取。您可以在不須分享您帳戶存取金鑰的情況下，授與這些有限的權限。SAS 是一種 URI，此 URI 會在其查詢參數中包含對儲存體資源進行驗證式存取所需的一切資訊。若要使用 SAS 存取儲存體資源，用戶端只需在適當的建構函式或方法中傳入 SAS 即可。
+## <a name="delegated-access-to-storage-objects"></a>Delegated access to storage objects
 
-深入了解：
+A shared access signature (SAS) provides delegated access to resources in your storage account. The SAS means that you can grant a client limited permissions to objects in your storage account for a specified period of time and with a specified set of permissions. You can grant these limited permissions without having to share your account access keys. The SAS is a URI that encompasses in its query parameters all the information necessary for authenticated access to a storage resource. To access storage resources with the SAS, the client only needs to pass in the SAS to the appropriate constructor or method.
 
-- [了解 SAS 模型](../storage/storage-dotnet-shared-access-signature-part-1.md)
-- [透過 Blob 儲存體來建立與使用 SAS](../storage/storage-dotnet-shared-access-signature-part-2.md)
+Learn more:
 
-## 傳輸中加密
-傳輸中加密是透過網路傳輸資料時用來保護資料的機制。使用 Azure 儲存體，您可以使用下列各向來保護資料︰
+- [Understanding the SAS model](../storage/storage-dotnet-shared-access-signature-part-1.md)
+- [Create and use a SAS with Blob storage](../storage/storage-dotnet-shared-access-signature-part-2.md)
 
-- [傳輸層級加密](../storage/storage-security-guide.md#encryption-in-transit)，例如從 Azure 儲存體傳入或傳出資料時的 HTTPS。
-- [連線加密](../storage/storage-security-guide.md#using-encryption-during-transit-with-azure-file-shares)，例如 Azure 檔案共用的 SMB 3.0 加密。
-- [用戶端加密](../storage/storage-security-guide.md#using-client-side-encryption-to-secure-data-that-you-send-to-storage)，以在將資料傳輸至儲存體之前加密資料，以及自儲存體傳出後解密資料。
+## <a name="encryption-in-transit"></a>Encryption in transit
+Encryption in transit is a mechanism of protecting data when it is transmitted across networks. With Azure Storage you can secure data using:
 
-深入了解用戶端加密︰
+- [Transport-level encryption](../storage/storage-security-guide.md#encryption-in-transit), such as HTTPS when you transfer data into or out of Azure Storage.
+- [Wire encryption](../storage/storage-security-guide.md#using-encryption-during-transit-with-azure-file-shares), such as SMB 3.0 encryption for Azure File Shares.
+- [Client-side encryption](../storage/storage-security-guide.md#using-client-side-encryption-to-secure-data-that-you-send-to-storage), to encrypt the data before it is transferred into storage and to decrypt the data after it is transferred out of storage.
 
-- [Microsoft Azure 儲存體的用戶端加密](https://blogs.msdn.microsoft.com/windowsazurestorage/2015/04/28/client-side-encryption-for-microsoft-azure-storage-preview/)
-- [雲端安全性控制項系列︰加密傳輸中的資料](http://blogs.microsoft.com/cybertrust/2015/08/10/cloud-security-controls-series-encrypting-data-in-transit/)
+Learn more about client-side encryption:
 
-## 待用加密
+- [Client-Side Encryption for Microsoft Azure Storage](https://blogs.msdn.microsoft.com/windowsazurestorage/2015/04/28/client-side-encryption-for-microsoft-azure-storage-preview/)
+- [Cloud security controls series: Encrypting Data in Transit](http://blogs.microsoft.com/cybertrust/2015/08/10/cloud-security-controls-series-encrypting-data-in-transit/)
 
-對許多組織來說，[待用資料加密](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/)是達到資料隱私性、法規遵循及資料主權的必要步驟。有三個 Azure 功能可提供「待用」資料的加密。
+## <a name="encryption-at-rest"></a>Encryption at rest
 
-- [儲存體服務加密](../storage/storage-security-guide.md#encryption-at-rest)可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加密資料。
-- [用戶端加密](../storage/storage-security-guide.md#client-side-encryption)也會提供待用加密的功能。
-- [Azure 磁碟加密](../storage/storage-security-guide.md#using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines)允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。
+For many organizations, [data encryption at rest](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/) is a mandatory step towards data privacy, compliance, and data sovereignty. There are three Azure features that provide encryption of data that is “at rest”:
 
-深入了解儲存體服務加密：
+- [Storage Service Encryption](../storage/storage-security-guide.md#encryption-at-rest) allows you to request that the storage service automatically encrypt data when writing it to Azure Storage.
+- [Client-side Encryption](../storage/storage-security-guide.md#client-side-encryption) also provides the feature of encryption at rest.
+- [Azure Disk Encryption](../storage/storage-security-guide.md#using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines) allows you to encrypt the OS disks and data disks used by an IaaS virtual machine.
 
-- [Azure 儲存體服務加密](https://azure.microsoft.com/services/storage/)適用於 [Azure Blob 儲存體](https://azure.microsoft.com/services/storage/blobs/)。如需其他 Azure 儲存體類型的詳細資訊，請參閱[檔案](https://azure.microsoft.com/services/storage/files/)、[磁碟 (進階儲存體)](https://azure.microsoft.com/services/storage/premium-storage/)、[資料表](https://azure.microsoft.com/services/storage/tables/)和[佇列](https://azure.microsoft.com/services/storage/queues/)。
-- [待用資料的 Azure 儲存體服務加密](../storage/storage-service-encryption.md)
+Learn more about Storage Service Encryption:
 
-## Azure 磁碟加密
+- [Azure Storage Service Encryption](https://azure.microsoft.com/services/storage/) is available for [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/). For details on other Azure storage types, see [File](https://azure.microsoft.com/services/storage/files/), [Disk (Premium Storage)](https://azure.microsoft.com/services/storage/premium-storage/), [Table](https://azure.microsoft.com/services/storage/tables/), and [Queue](https://azure.microsoft.com/services/storage/queues/).
+- [Azure Storage Service Encryption for Data at Rest](../storage/storage-service-encryption.md)
 
-適用於虛擬機器 (VM) 的 Azure 磁碟加密會使用您在 [Azure 金鑰保存庫](https://azure.microsoft.com/services/key-vault/)所控制的金鑰與原則將 VM 磁碟 (包括開機和資料磁碟) 加密，協助您達成組織安全性與相容性需求。
+## <a name="azure-disk-encryption"></a>Azure Disk Encryption
 
-適用於 VM 的磁碟加密可用於 Linux 與 Windows 作業系統。也會使用金鑰保存庫，協助您防護、管理和稽核您的磁碟加密金鑰的使用情形。VM 磁碟中的所有資料皆在待用時，透過 Azure 儲存體帳戶中符合業界標準的加密技術進行加密。Windows 的磁碟加密解決方案是建基於 [Microsoft BitLocker 磁碟機加密](https://technet.microsoft.com/library/cc732774.aspx)，而 Linux 解決方案是建基於 [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt)。
+Azure Disk Encryption for virtual machines (VMs) helps you address organizational security and compliance requirements by encrypting your VM disks (including boot and data disks) with keys and policies you control in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/).
 
-深入了解：
+Disk Encryption for VMs works for Linux and Windows operating systems. It also uses Key Vault to help you safeguard, manage, and audit use of your disk encryption keys. All the data in your VM disks is encrypted at rest by using industry-standard encryption technology in your Azure Storage accounts. The Disk Encryption solution for Windows is based on [Microsoft BitLocker Drive Encryption](https://technet.microsoft.com/library/cc732774.aspx), and the Linux solution is based on [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt).
 
-- [適用於 Windows 和 Linux IaaS 虛擬機器的 Azure 磁碟加密](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0)
+Learn more:
 
-## Azure 金鑰保存庫
+- [Azure Disk Encryption for Windows and Linux IaaS Virtual Machines](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0)
 
-「Azure 磁碟加密」會使用 [Azure 金鑰保存庫](https://azure.microsoft.com/services/key-vault/)，既幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時也確保虛擬機器磁碟中的所有資料在您「Azure 儲存體」中待用時會受到加密。您應使用金鑰保存庫來稽核金鑰和原則使用方式。
+## <a name="azure-key-vault"></a>Azure Key Vault
 
-深入了解：
+Azure Disk Encryption uses [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) to help you control and manage disk encryption keys and secrets in your key vault subscription, while ensuring that all data in the virtual machine disks are encrypted at rest in your Azure Storage. You should use Key Vault to audit keys and policy usage.
 
-- [什麼是 Azure 金鑰保存庫？](../key-vault/key-vault-whatis.md)
-- [開始使用 Azure 金鑰保存庫](../key-vault/key-vault-get-started.md)
+Learn more:
 
-<!---HONumber=AcomDC_0921_2016-->
+- [What is Azure Key Vault?](../key-vault/key-vault-whatis.md)
+- [Get started with Azure Key Vault](../key-vault/key-vault-get-started.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,167 +1,172 @@
 <properties
-	pageTitle="用以檢視 JSON 的 DocumentDB Document Explorer | Microsoft Azure"
-	description="深入了解 DocumentDB Document Explorer，它是一種 Azure 入口網站的工具，可用來檢視、編輯、建立和上傳使用 DocumentDB 的 JSON 文件、NoSQL 文件資料庫。"
-    keywords="檢視 json"
-	services="documentdb"
-	authors="AndrewHoh"
-	manager="jhubbard"
-	editor="monicar"
-	documentationCenter=""/>
+    pageTitle="DocumentDB Document Explorer, to view JSON | Microsoft Azure"
+    description="Learn about the DocumentDB Document Explorer, an Azure Portal tool to view JSON, edit, create, and upload JSON documents with DocumentDB, a NoSQL document database."
+    keywords="view json"
+    services="documentdb"
+    authors="kirillg"
+    manager="jhubbard"
+    editor="monicar"
+    documentationCenter=""/>
 
 <tags
-	ms.service="documentdb"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/30/2016"
-	ms.author="anhoh"/>
+    ms.service="documentdb"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/30/2016"
+    ms.author="kirillg"/>
 
-# 使用 DocumentDB Document Explorer 檢視、編輯、建立和上傳 JSON 文件
 
-本篇文章提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) Document Explorer 的概觀，它是一種 Azure 入口網站的工具，可讓您檢視、編輯、建立、上傳和篩選使用 DocumentDB 的 JSON 文件。
+# <a name="view,-edit,-create,-and-upload-json-documents-using-documentdb-document-explorer"></a>View, edit, create, and upload JSON documents using DocumentDB Document Explorer
 
-請注意，具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶不會啟用 Document Explorer。啟用此功能時，此頁面會加以更新。
+This article provides an overview of the [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) Document Explorer, an Azure portal tool that enables you to view, edit, create, upload, and filter JSON documents with DocumentDB. 
 
-## 啟動 Document Explorer
+Note that Document Explorer is not enabled on DocumentDB accounts with protocol support for MongoDB. This page will be updated when this feature is enabled.
 
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)]。如果看不到 [DocumentDB (NoSQL)]，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
+## <a name="launch-document-explorer"></a>Launch Document Explorer
 
-2. 在資源功能表中，按一下 [文件總管]。
+1. In the Azure portal, in the Jumpbar, click **DocumentDB (NoSQL)**. If **DocumentDB (NoSQL)** is not visible, click **More Services** and then click **DocumentDB (NoSQL)**.
+
+2. In the resource menu, click **Document Explorer**. 
  
-	![[Document Explorer] 命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorercommand.png)
+    ![Screenshot of the Document Explorer command](./media/documentdb-view-JSON-document-explorer/documentexplorercommand.png)
 
-    在 [文件總管] 刀鋒視窗中，會根據您在其中啟動 [文件總管] 的內容預先填入 [資料庫] 和 [集合] 下拉式清單。
+    In the **Document Explorer** blade, the **Databases** and **Collections** drop-down lists are pre-populated depending on the context in which you launched Document Explorer. 
 
-## 建立文件
+## <a name="create-a-document"></a>Create a document
 
-1. [啟動文件總管](#launch-document-explorer)。
+1. [Launch Document Explorer](#launch-document-explorer).
 
-2. 在 [文件總管] 刀鋒視窗中，按一下 [建立文件]。
+2. In the **Document Explorer** blade, click **Create Document**. 
 
-    [文件] 刀鋒視窗中會提供少量的 JSON 程式碼片段。
+    A minimal JSON snippet is provided in the **Document** blade.
 
-	![[Document Explorer] 建立文件體驗的螢幕擷取畫面，您可以在其中檢視 JSON 和編輯 JSON](./media/documentdb-view-json-document-explorer/createdocument.png)
+    ![Screenshot of Document Explorer create document experience, where you can view JSON and edit JSON](./media/documentdb-view-JSON-document-explorer/createdocument.png)
 
-2. 在 [文件] 刀鋒視窗中，輸入或貼上您想要建立的 JSON 文件內容，然後按一下 [儲存]，針對 [文件總管] 刀鋒視窗中指定的資料庫和集合認可您的文件。
+2. In the **Document** blade, type or paste in the content of the JSON document you wish to create, and then click **Save** to commit your document to the database and collection specified in the **Document Explorer** blade.
 
-	![[Document Explorer] 儲存命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/savedocument1.png)
+    ![Screenshot of Document Explorer save command](./media/documentdb-view-JSON-document-explorer/savedocument1.png)
 
-	> [AZURE.NOTE] 如果您未提供 "id" 屬性，則 Document Explorer 會自動新增 id 屬性，並產生一個 GUID 做為識別碼值。
+    > [AZURE.NOTE] If you do not provide an "id" property, then Document Explorer automatically adds an id property and generates a GUID as the id value.
 
-    如果您已經有來自 JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 資料表儲存體、Amazon DynamoDB、HBase，或其他 DocumentDB 集合的資料，即可使用 DocumentDB 的[資料移轉工具](documentdb-import-data.md)快速匯入資料。
+    If you already have data from JSON files, MongoDB, SQL Server, CSV files, Azure Table storage, Amazon DynamoDB, HBase, or from other DocumentDB collections, you can use DocumentDB's [data migration tool](documentdb-import-data.md) to quickly import your data.
 
-## 編輯文件
+## <a name="edit-a-document"></a>Edit a document
 
-1. [啟動文件總管](#launch-document-explorer)。
+1. [Launch Document Explorer](#launch-document-explorer).
 
-2. 若要編輯現有文件，在 [文件總管] 刀鋒視窗中選取該文件、在 [文件] 刀鋒視窗中進行編輯，然後按一下 [儲存]。
+2. To edit an existing document, select it in the **Document Explorer** blade, edit the document in the **Document** blade, and then click **Save**.
 
-    ![用來檢視 JSON 之 [Document Explorer] 編輯文件功能的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/editdocument.png)
+    ![Screenshot of Document Explorer edit document functionality used to view JSON](./media/documentdb-view-JSON-document-explorer/editdocument.png)
 
-    如果您正在編輯文件，並決定要捨棄目前這組編輯，只需按一下 [文件] 刀鋒視窗中的 [捨棄]、確認捨棄動作，然後就會重新載入文件的先前狀態。
+    If you're editing a document and decide that you want to discard the current set of edits, simply click **Discard** in the **Document** blade, confirm the discard action, and the previous state of the document is reloaded.
 
-    ![[Document Explorer] 捨棄命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/discardedit.png)
+    ![Screenshot of Document Explorer discard command](./media/documentdb-view-JSON-document-explorer/discardedit.png)
 
-## 刪除文件
+## <a name="delete-a-document"></a>Delete a document
 
-1. [啟動文件總管](#launch-document-explorer)。
+1. [Launch Document Explorer](#launch-document-explorer).
 
-2. 在 [文件總管] 中選取文件、按一下 [刪除]，然後確認刪除。確認後，系統會立即將文件從 Document Explorer 清單中移除。
+2. Select the document in **Document Explorer**, click **Delete**, and then confirm the delete. After confirming, the document is immediately removed from the Document Explorer list.
 
-	![[Document Explorer] 刪除命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/deletedocument.png)
+    ![Screenshot of Document Explorer delete command](./media/documentdb-view-JSON-document-explorer/deletedocument.png)
 
-## 使用 JSON 文件
+## <a name="work-with-json-documents"></a>Work with JSON documents
 
-Document Explorer 會驗證任何新的或已編輯文件是否包含有效 JSON。您甚至可藉由移至不正確的區段來檢視 JSON 錯誤，以取得有關驗證錯誤的詳細資訊。
+Document Explorer validates that any new or edited document contains valid JSON.  You can even view JSON errors by hovering over the incorrect section to get details about the validation error.
 
-![JSON 反白顯示無效之 [Document Explorer] 的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/invalidjson1.png)
+![Screenshot of Document Explorer with invalid JSON highlighting](./media/documentdb-view-JSON-document-explorer/invalidjson1.png)
 
-此外，Document Explorer 會防止您儲存包含無效 JSON 內容的文件。
+Additionally, Document Explorer prevents you from saving a document with invalid JSON content.
 
-![JSON 無效儲存錯誤之 [Document Explorer] 的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/invalidjson2.png)
+![Screenshot of Document Explorer with invalid JSON save error](./media/documentdb-view-JSON-document-explorer/invalidjson2.png)
 
-最後，Document Explorer 可讓您輕鬆地檢視目前載入之文件的系統屬性，您只需按一下 [屬性] 命令即可。
+Finally, Document Explorer allows you to easily view the system properties of the currently loaded document by clicking the **Properties** command.
 
-![[Document Explorer] 文件屬性檢視的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentproperties.png)
+![Screenshot of Document Explorer document properties view](./media/documentdb-view-JSON-document-explorer/documentproperties.png)
 
-> [AZURE.NOTE] 時間戳記 (\_ts) 屬性在內部會以 Epoch 時間表示，但是 Document Explorer 會以一般人可判讀的 GMT 格式顯示此值。
+> [AZURE.NOTE] The timestamp (_ts) property is internally represented as epoch time, but Document Explorer displays the value in a human readable GMT format.
 
-## 篩選文件
-[文件總管] 支援許多導覽選項以及進階設定。
+## <a name="filter-documents"></a>Filter documents
+Document Explorer supports a number of navigation options and advanced settings.
 
-根據預設，Document Explorer 會在選取的集合中，依照建立日期 (最早到最晚) 載入前 100 個文件。您可以選取 [Document Explorer] 刀鋒視窗底部的 [載入更多] 選項，載入其他的文件 (每批 100 個文件)。您可以透過 [篩選] 命令來選擇要載入哪些文件。
+By default, Document Explorer loads up to the first 100 documents in the selected collection, by their created date from earliest to latest.  You can load additional documents (in batches of 100) by selecting the **Load more** option at the bottom of the Document Explorer blade. You can choose which documents to load through the **Filter** command.
 
-1. [啟動文件總管](#launch-document-explorer)。
+1. [Launch Document Explorer](#launch-document-explorer).
 
-2. 在 [文件總管] 刀鋒視窗的頂端，按一下 [篩選]。
+2. At the top of the **Document Explorer** blade, click **Filter**.  
 
-    ![[Document Explorer 篩選設定] 的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfiltersettings.png)
+    ![Screenshot of Document Explorer Filter Settings](./media/documentdb-view-JSON-document-explorer/documentexplorerfiltersettings.png)
   
-3.  篩選設定會出現在命令列下方。在篩選設定中，提供 WHERE 子句及/或 ORDER BY 子句，然後按一下 [篩選]。
+3.  The filter settings appear below the command bar. In the filter settings, provide a WHERE clause and/or an ORDER BY clause, and then click **Filter**.
 
-	![[Document Explorer 設定] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfiltersettings2.png)
+    ![Screenshot of Document Explorer Settings blade](./media/documentdb-view-JSON-document-explorer/documentexplorerfiltersettings2.png)
 
-	Document Explorer 會以符合篩選查詢的文件自動重新整理結果。深入了解 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文中的 DocumentDB SQL 文法，或列印一份 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
+    Document Explorer automatically refreshes the results with documents matching the filter query. Read more about the DocumentDB SQL grammar in the [SQL query and SQL syntax](documentdb-sql-query.md) article or print a copy of the [SQL query cheat sheet](documentdb-sql-query-cheat-sheet.md).
 
-    [資料庫] 和 [集合] 下拉式清單方塊可用來輕鬆地變更目前檢視文件的集合，而無需關閉並重新啟動 Document Explorer。
+    The **Database** and **Collection** drop-down list boxes can be used to easily change the collection from which documents are currently being viewed without having to close and re-launch Document Explorer.  
 
-    Document Explorer 還支援根據 id 屬性篩選目前載入的文件集。您只需在 [依識別碼篩選文件] 方塊中輸入即可。
+    Document Explorer also supports filtering the currently loaded set of documents by their id property.  Simply type in the Documents Filter by id box.
 
-	![反白顯示篩選條件的 [Document Explorer] 螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfilter.png)
+    ![Screenshot of Document Explorer with filter highlighted](./media/documentdb-view-JSON-document-explorer/documentexplorerfilter.png)
 
-	Document Explorer 清單中的結果便會根據您所提供的準則進行篩選。
+    The results in the Document Explorer list are filtered based on your supplied criteria.
 
-	![含篩選結果的 [Document Explorer] 螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfilterresults.png)
+    ![Screenshot of Document Explorer with filtered results](./media/documentdb-view-JSON-document-explorer/documentexplorerfilterresults.png)
 
-	> [AZURE.IMPORTANT] Document Explorer 篩選功能只會從**目前**載入的文件集進行篩選，而且不會針對目前選取的集合執行查詢。
+    > [AZURE.IMPORTANT] The Document Explorer filter functionality only filters from the ***currently*** loaded set of documents and does not perform a query against the currently selected collection.
 
-4. 若要重新整理 Document Explorer 所載入的文件清單，請按一下刀鋒視窗頂端的 [重新整理]。
+4. To refresh the list of documents loaded by Document Explorer, click **Refresh** at the top of the blade.
 
-	![[Document Explorer] 重新整理命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerrefresh.png)
+    ![Screenshot of Document Explorer refresh command](./media/documentdb-view-JSON-document-explorer/documentexplorerrefresh.png)
 
-## 大量新增文件
+## <a name="bulk-add-documents"></a>Bulk add documents
 
-Document Explorer 支援大量擷取一或多個現有 JSON 文件，每個上傳作業最多 100 個 JSON 檔案。
+Document Explorer supports bulk ingestion of one or more existing JSON documents, up to 100 JSON files per upload operation.  
 
-1. [啟動文件總管](#launch-document-explorer)。
+1. [Launch Document Explorer](#launch-document-explorer).
 
-2. 若要開始上傳程序，請按一下 [上傳文件]。
+2. To start the upload process, click **Upload Document**.
 
-	![[Document Explorer] 大量擷取功能的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/uploaddocument1.png)
+    ![Screenshot of Document Explorer bulk ingestion functionality](./media/documentdb-view-JSON-document-explorer/uploaddocument1.png)
 
-    [上傳文件] 刀鋒視窗隨即開啟。
+    The **Upload Document** blade opens. 
 
-2. 按一下 [瀏覽] 按鈕以開啟檔案總管視窗、選取要上傳的一或多個 JSON 文件，然後按一下 [開啟]。
+2. Click the browse button to open a file explorer window, select one or more JSON documents to upload, and then click **Open**.
 
-	![[Document Explorer] 大量擷取程序的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/uploaddocument2.png)
+    ![Screenshot of Document Explorer bulk ingestion process](./media/documentdb-view-JSON-document-explorer/uploaddocument2.png)
 
-	> [AZURE.NOTE] Document Explorer 的每個個別上傳作業目前支援多達 100 個 JSON 文件。
+    > [AZURE.NOTE] Document Explorer currently supports up to 100 JSON documents per individual upload operation.
 
-3. 對您的選取項目感到滿意後，請按一下 [上傳] 按鈕。文件會自動新增至 Document Explorer 方格，且上傳結果會顯示為作業進度。系統會針對個別檔案回報匯入失敗。
+3. Once you're satisfied with your selection, click the **Upload** button.  The documents are automatically added to the Document Explorer grid and the upload results are displayed as the operation progresses. Import failures are reported for individual files.
 
-	![[Document Explorer] 大量擷取結果的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/uploaddocument3.png)
+    ![Screenshot of Document Explorer bulk ingestion results](./media/documentdb-view-JSON-document-explorer/uploaddocument3.png)
 
-4. 作業完成後，您可以另外選取多達 100 個文件進行上傳。
+4. Once the operation is complete, you can select up to another 100 documents to upload.
 
-## 在入口網站外部使用 JSON 文件
+## <a name="work-with-json-documents-outside-the-portal"></a>Work with JSON documents outside the portal
 
-Azure 入口網站中的 Document Explorer 只是一種處理 DocumentDB 中文件的方法。您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/mt489082.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 處理文件。如需範例程式碼，請參閱 [.NET SDK 文件範例](documentdb-dotnet-samples.md#document-examples)和 [Node.js SDK 文件範例](documentdb-nodejs-samples.md#document-examples)。
+The Document Explorer in the Azure portal is just one way to work with documents in DocumentDB. You can also work with documents using the [REST API](https://msdn.microsoft.com/library/azure/mt489082.aspx) or the [client SDKs](documentdb-sdk-dotnet.md). For example code, see the [.NET SDK document examples](documentdb-dotnet-samples.md#document-examples) and the [Node.js SDK document examples](documentdb-nodejs-samples.md#document-examples).
 
-如果您需要從其他來源 (JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 表格儲存體、Amazon DynamoDB 或 HBase) 匯入或移轉檔案，您可以使用 DocumentDB [資料移轉工具](documentdb-import-data.md)，將您的資料快速匯入 DocumentDB。
+If you need to import or migrate files from another source (JSON files, MongoDB, SQL Server, CSV files, Azure Table storage, Amazon DynamoDB, or HBase), you can use the DocumentDB [data migration tool](documentdb-import-data.md) to quickly import your data to DocumentDB.
 
-## 疑難排解
+## <a name="troubleshoot"></a>Troubleshoot
 
-**徵兆**︰[文件總管] 傳回 [找不到任何文件]。
+**Symptom**: Document Explorer returns **No documents found**.
 
-**解決方案**︰確定您已選取正確的訂用帳戶、資料庫，以及已插入文件的集合。此外，檢查以確定您是在輸送量配額內運作。如果您是在最大輸送量層級上運作並受到節流處理，請降低應用程式使用量，以便在集合的最大輸送量配額下運作。
+**Solution**: Ensure that you have selected the correct subscription, database and collection in which the documents were inserted. Also, check to ensure that you are operating within your throughput quotas. If you are operating at your maximum throughput level and getting throttled, lower application usage to operate under the maximum throughput quota for the collection.
 
-**說明**︰此入口網站是一個應用程式，就像所有其他應用程式一樣，可呼叫您的 DocumentDB 資料庫和集合。如果您的要求目前因為個別應用程式所進行的呼叫而受到節流處理，入口網站也可能會受到節流處理，因而導致資源不會在入口網站中顯示。若要解決此問題，請先解決導致出現高輸送使用量的原因，然後重新整理入口網站刀鋒視窗。如需如何測量並降低輸送使用量的詳細資訊，請參閱[效能祕訣](documentdb-performance-tips.md)文章的[輸送量](documentdb-performance-tips.md#throughput)一節。
+**Explanation**: The portal is an application like any other, making calls to your DocumentDB database and collection. If your requests are currently being throttled due to calls being made from a separate application, the portal may also be throttled, causing resources not to appear in the portal. To resolve the issue, address the cause of the high throughput usage, and then refresh the portal blade. Information on how to measure and lower throughput usage can be found in the [Throughput](documentdb-performance-tips.md#throughput) section of the [Performance tips](documentdb-performance-tips.md) article.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要深入了解 Document Explorer 中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
+To learn more about the DocumentDB SQL grammar supported in Document Explorer, see the [SQL query and SQL syntax](documentdb-sql-query.md) article or print out the [SQL query cheat sheet](documentdb-sql-query-cheat-sheet.md).
 
-[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)也是很實用的資源，可引導您深入了解 DocumentDB。
+The [Learning path](https://azure.microsoft.com/documentation/learning-paths/documentdb/) is also a useful resource to guide you as you learn more about DocumentDB. 
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

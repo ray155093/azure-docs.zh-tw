@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure Active Directory 開發人員詞彙 | Microsoft Azure"
-   description="常用 Azure Active Directory 開發人員概念與功能的詞彙清單。"
+   pageTitle="Azure Active Directory Developer Glossary | Microsoft Azure"
+   description="A list of terms for commonly used Azure Active Directory developer concepts and features."
    services="active-directory"
    documentationCenter=""
    authors="bryanla"
@@ -16,162 +16,163 @@
    ms.date="08/31/2016"
    ms.author="bryanla"/>
 
-# Azure Active Directory 開發人員詞彙
-本文包含某些核心 Azure Active Directory (AD) 開發人員概念的定義，以協助您了解 Azure AD 的應用程式開發。
 
-## 存取權杖 
-由[授權伺服器](#authorization-server)所簽發的一種[安全性權杖](#security-token)，可供[用戶端應用程式](#client-application)用來存取[受保護的資源伺服器](#resource-server)。此權杖的形式通常是 [JSON Web 權杖 (JWT)][JWT]，其內含[資源擁有者](#resource-owner)授與用戶端的授權，以便獲得所要求的存取層級。此權杖中會包含所有適用的主體相關[宣告](#claim)，可讓用戶端應用程式以它做為某種形式的認證以存取給定的資源。這也可讓資源擁有者不必對用戶端公開認證。
+# <a name="azure-active-directory-developer-glossary"></a>Azure Active Directory developer glossary
+This article contains definitions for some of the core Azure Active Directory (AD) developer concepts, which are helpful when learning about application development for Azure AD.
 
-根據所提供的認證而定，存取權杖有時會稱為「使用者 + 應用程式」或「僅限應用程式」。例如，當用戶端應用程式使用：
+## <a name="access-token"></a>access token 
+A type of [security token](#security-token) issued by an [authorization server](#authorization-server), and used by a [client application](#client-application) in order to access a [protected resource server](#resource-server). Typically in the form of a [JSON Web Token (JWT)][JWT], the token embodies the authorization granted to the client by the [resource owner](#resource-owner), for a requested level of access. The token contains all applicable [claims](#claim) about the subject, enabling the client application to use it as a form of credential when accessing a given resource. This also eliminates the need for the resource owner to expose credentials to the client. 
 
-- [「授權程式碼」授權授與](#authorization-grant)，使用者會先驗證為資源擁有者，將授權委派給用戶端來存取資源。之後，用戶端會在取得存取權杖時進行驗證。權杖有時可以更明確地稱為「使用者 + 應用程式」權杖，因為它同時代表授權用戶端應用程式的使用者，以及應用程式。
-- [「用戶端認證」授權授與](#authorization-grant)，用戶端會提供唯一的驗證，在沒有資源擁有者驗證/授權的情況下運作，因此這個權杖有時可以稱為「僅限應用程式」權杖。
+Access tokens are sometimes referred to as "User+App" or "App-Only", depending on the credentials being represented. For example, when a client application uses the:
 
-如需詳細資訊，請參閱 [Azure AD 權杖參考][AAD-Tokens-Claims]。
+- ["Authorization code" authorization grant](#authorization-grant), the end user authenticates first as the resource owner, delegating authorization to the client to access the resource. The client authenticates afterward when obtaining the access token. The token can sometimes be referred to more specifically as a "User+App" token, as it represents both the user that authorized the client application, and the application. 
+- ["Client credentials" authorization grant](#authorization-grant), the client provides the sole authentication, functioning without the resource-owner's authentication/authorization, so the token can sometimes be referred to as an "App-Only" token.
 
-## 應用程式資訊清單  
-[Azure 傳統入口網站][AZURE-classic-portal]所提供的功能，這會產生以 JSON 表示的應用程式身分識別組態，以做為其相關聯[應用程式][AAD-Graph-App-Entity]實體和 [ServicePrincipal][AAD-Graph-Sp-Entity] 實體的更新機制。如需詳細資訊，請參閱[了解 Azure Active Directory 應用程式資訊清單][AAD-App-Manifest]。
+See [Azure AD Token Reference][AAD-Tokens-Claims] for more details.
 
-## 應用程式物件  
-當您在 [Azure 傳統入口網站][AZURE-classic-portal]註冊/更新應用程式時，入口網站會為租用戶同時建立/更新應用程式物件和對應的[服務主體物件](#service-principal-object)。應用程式物件可全域 (在其能夠存取的所有租用戶中)「定義」應用程式的身分識別組態，並提供範本來「衍生」出其對應的服務主體物件，以在執行階段於本機 (在特定租用戶) 使用。
+## <a name="application-manifest"></a>application manifest  
+A feature provided by the [Azure classic portal][AZURE-classic-portal], which produces a JSON representation of the application's identity configuration, used as a mechanism for updating its associated [Application][AAD-Graph-App-Entity] and [ServicePrincipal][AAD-Graph-Sp-Entity] entities. See [Understanding the Azure Active Directory application manifest][AAD-App-Manifest] for more details.
 
-如需詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
+## <a name="application-object"></a>application object  
+When you register/update an application in the [Azure classic portal][AZURE-classic-portal], the portal creates/updates both an application object and a corresponding [service principal object](#service-principal-object) for that tenant. The application object *defines* the application's identity configuration globally (across all tenants where it has access), providing a template from which its corresponding service principal object(s) are *derived* for use locally at run-time (in a specific tenant).
 
-## 應用程式註冊  
-為了讓應用程式能夠整合身分識別和存取管理功能，並將這些功能委派給 Azure AD，您必須向 Azure AD [租用戶](#tenant)註冊應用程式。當您向 Azure AD 註冊應用程式時，您必須提供應用程式的身分識別組態，以允許它與 Azure AD 整合，並使用如下功能︰
+See [Application and Service Principal Objects][AAD-App-SP-Objects] for more information.
 
-- 使用 Azure AD 身分識別管理和 [OpenID Connect][OpenIDConnect] 通訊協定實作，健全地管理單一登入
-- 透過 Azure AD 的 OAuth 2.0 [授權伺服器](#authorization-server)實作，由[用戶端應用程式](#client-application)以代理方式存取[受保護的資源](#resource-server)
-- [同意架構](#consent)，根據資源擁有者授權來管理用戶端對受保護資源的存取權。
+## <a name="application-registration"></a>application registration  
+In order to allow an application to integrate with and delegate Identity and Access Management functions to Azure AD, it must be registered with an Azure AD [tenant](#tenant). When you register your application with Azure AD, you are providing an identity configuration for your application, allowing it to integrate with Azure AD and use features such as:
 
-如需詳細資訊，請參閱[整合應用程式與 Azure Active Directory][AAD-Integrating-Apps]。
+- Robust management of Single Sign-On using Azure AD Identity Management and [OpenID Connect][OpenIDConnect] protocol implementation
+- Brokered access to [protected resources](#resource-server) by [client applications](#client-application), via Azure AD's OAuth 2.0 [authorization server](#authorization-server) implementation
+- [Consent framework](#consent) for managing client access to protected resources, based on resource owner authorization.
 
-## 驗證
-對憑證者查問合法認證的動作，此動作可做為基礎來建立用於身分識別和存取控制的安全性主體。例如，在 [OAuth2 授權授與](#authorization-grant)期間，憑證者驗證會根據所使用的授與，填入[資源擁有者](#resource-owner)或[用戶端應用程式](#client-application)的角色。
+See [Integrating applications with Azure Active Directory][AAD-Integrating-Apps] for more details.
 
-## 授權
-授與已驗證的安全性主體權限以執行某些工作的動作。在 Azure AD 程式設計模型中有兩大使用案例︰
+## <a name="authentication"></a>authentication
+The act of challenging a party for legitimate credentials, providing the basis for creation of a security principal to be used for identity and access control. During an [OAuth2 authorization grant](#authorization-grant) for example, the party authenticating is filling the role of either [resource owner](#resource-owner) or [client application](#client-application), depending on the grant used.
 
-- 在 [OAuth2 授權授與](#authorization-grant)流程期間︰當[資源擁有者](#resource-owner)授與授權給[用戶端應用程式](#client-application)，以允許用戶端存取資源擁有者的資源。
-- 在用戶端存取資源期間︰和[資源伺服器](#resource-server)所實作的一樣，使用[存取權杖](#access-token)所提供的[宣告](#claim)值來據以做出存取控制決定。
+## <a name="authorization"></a>authorization
+The act of granting an authenticated security principal permission to do something. There are two primary use cases in the Azure AD programming model:
 
-## 授權碼
-在四個 OAuth2 [授權授與](#authorization-grant)之一的「授權碼」流程中，由[授權端點](#authorization-endpoint)提供給[用戶端應用程式](#client-application)的短暫「權杖」。為回應[資源擁有者](#resource-owner)的驗證，會將授權碼傳回給用戶端應用程式，以指出資源擁有者已委派存取所要求資源的授權。在流程進行期間稍後的時候，會將授權碼兌換為[存取權杖](#access-token)。
+- During an [OAuth2 authorization grant](#authorization-grant) flow: when the [resource owner](#resource-owner) grants authorization to the [client application](#client-application), allowing the client to access the resource owner's resources.
+- During resource access by the client: as implemented by the [resource server](#resource-server), using the [claim](#claim) values present in the [access token](#access-token) to make access control decisions based upon them.
 
-## 授權端點
-[授權伺服器](#authorization-server)所實作的其中一個端點，可用來與[資源擁有者](#resource-owner)互動，以在 OAuth2 授權授與流程期間提供[授權授與](#authorization-grant)。根據所使用的授權授與流程而定，實際提供的授與會不一樣，這包括[授權碼](#authorization-code)或[安全性權杖](#security-token)。
+## <a name="authorization-code"></a>authorization code
+A short lived "token" provided to a [client application](#client-application) by the [authorization endpoint](#authorization-endpoint), as part of the "authorization code" flow, one of the four OAuth2 [authorization grants](#authorization-grant). The code is returned to the client application in response to authentication of a [resource owner](#resource-owner), indicating the resource owner has delegated authorization to access the requested resources. As part of the flow, the code is later redeemed for an [access token](#access-token).
 
-如需詳細資訊，請參閱 OAuth2 規格的[授權授與類型][OAuth2-AuthZ-Grant-Types]和[授權端點][OAuth2-AuthZ-Endpoint]等節以及 [OpenIDConnect 規格][OpenIDConnect-AuthZ-Endpoint]。
+## <a name="authorization-endpoint"></a>authorization endpoint
+One of the endpoints implemented by the [authorization server](#authorization-server), used to interact with the [resource owner](#resource-owner) in order to provide an [authorization grant](#authorization-grant) during an OAuth2 authorization grant flow. Depending on the authorization grant flow used, the actual grant provided can vary, including an [authorization code](#authorization-code) or [security token](#security-token).
 
-## 授權授與
-授與給[用戶端應用程式](#client-application)的認證，代表[資源擁有者](#resource-owner)對其受保護資源存取權的[授權](#authorization)。視用戶端類型/需求而定，用戶端應用程式可以使用 [OAuth2 授權架構所定義的四種授與類型][OAuth2-AuthZ-Grant-Types]的其中一種來取得授與：「授權碼授與」、「用戶端認證授與」、「隱含授與」和「資源擁有者密碼認證授與」。視所使用的授權授與類型而定，傳回給用戶端的認證會是[存取權杖](#access-token)或[授權碼](#authorization-code) (稍後換成存取權杖)。
+See the OAuth2 specification's [authorization grant types][OAuth2-AuthZ-Grant-Types] and [authorization endpoint][OAuth2-AuthZ-Endpoint] sections, and the [OpenIDConnect specification][OpenIDConnect-AuthZ-Endpoint] for more details.
 
-## 授權伺服器
-如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是在成功驗證[資源擁有者](#resource-owner)並取得其授權之後，負責簽發存取權杖給[用戶端](#client-application)的伺服器。[用戶端應用程式](#client-application)會在執行階段根據 OAuth2 所定義的[授權授與](#authorization-grant)，透過其[授權](#authorization-endpoint)和[權杖](#token-endpoint)端點與授權伺服器互動。
+## <a name="authorization-grant"></a>authorization grant
+A credential representing the [resource owner's](#resource-owner) [authorization](#authorization) to access its protected resources, granted to a [client application](#client-application). A client application can use one of the [four grant types defined by the OAuth2 Authorization Framework][OAuth2-AuthZ-Grant-Types] to obtain a grant, depending on client type/requirements: "authorization code grant", "client credentials grant", "implicit grant", and "resource owner password credentials grant". The credential returned to the client is either an [access token](#access-token), or an [authorization code](#authorization-code) (exchanged later for an access token), depending on the type of authorization grant used. 
 
-在整合 Azure AD 應用程式的案例中，Azure AD 會為 Azure AD 應用程式和 Microsoft 服務 API (例如 [Microsoft 圖形 API][Microsoft-Graph]) 實作授權伺服器角色。
+## <a name="authorization-server"></a>authorization server
+As defined by the [OAuth2 Authorization Framework][OAuth2-Role-Def], the server responsible for issuing access tokens to the [client](#client-application) after successfully authenticating the [resource owner](#resource-owner) and obtaining its authorization. A [client application](#client-application) interacts with the authorization server at runtime via its [authorization](#authorization-endpoint) and [token](#token-endpoint) endpoints, in accordance with the OAuth2 defined [authorization grants](#authorization-grant).
 
-## 宣告
-[安全性權杖](#security-token)中包含宣告，而宣告可提供關於某一實體 (例如[用戶端應用程式](#client-application)或[資源擁有者](#resource-owner)) 的判斷提示給另一個實體 (例如[資源伺服器](#resource-server))。宣告是轉送權杖主體 (例如，由[授權伺服器](#authorization-server)驗證的安全性主體) 相關事實的名稱/值組。給定權杖所提供的宣告取決於幾項變數，包括權杖類型、用來驗證主體的認證類型，以及應用程式組態等。
+In the case of Azure AD application integration, Azure AD implements the authorization server role for Azure AD applications and Microsoft service APIs, for example [Microsoft Graph APIs][Microsoft-Graph].
 
-如需詳細資訊，請參閱 [Azure AD 權杖參考][AAD-Tokens-Claims]。
+## <a name="claim"></a>claim
+A [security token](#security-token) contains claims, which provide assertions about one entity (such as a [client application](#client-application) or [resource owner](#resource-owner)) to another entity (such as the [resource server](#resource-server)). Claims are name/value pairs that relay facts about the token subject (for example, the security principal that was authenticated by the [authorization server](#authorization-server)). The claims present in a given token are dependent upon several variables, including the type of token, the type of credential used to authenticate the subject, the application configuration, etc.
 
-## 用戶端應用程式  
-如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是代表[資源擁有者](#resource-owner)提出受保護資源要求的應用程式。「用戶端」一詞並不代表任何特定的硬體實作特性 (例如，應用程式執行於伺服器、桌面還是其他裝置)。
+See [Azure AD token reference][AAD-Tokens-Claims] for more details.
 
-用戶端應用程式會向資源擁有者要求[授權](#authorization)，以參與 [OAuth2 授權授與](#authorization-grant)流程，並可代表資源擁有者存取 API/資料。OAuth2 授權架構會根據用戶端是否能夠維護其認證的機密性，[定義兩種類型的用戶端][OAuth2-Client-Types]：「機密」和「公用」。應用程式可實作在 Web 伺服器上執行的 [Web 用戶端 (機密)](#web-client)、安裝在裝置上的[原生用戶端 (公用)](#native-client)，或在裝置的瀏覽器中執行的[使用者代理程式型用戶端 (公用)](#user-agent-based-client)。
+## <a name="client-application"></a>client application  
+As defined by the [OAuth2 Authorization Framework][OAuth2-Role-Def], an application that makes protected resource requests on behalf of the [resource owner](#resource-owner). The term "client" does not imply any particular hardware implementation characteristics (for instance, whether the application executes on a server, a desktop, or other devices).  
 
-## 同意
-[資源擁有者](#resource-owner)授與授權給[用戶端應用程式](#client-application)，以讓它獲得特定[權限](#permissions)來代表資源擁有者存取受保護資源的程序。根據用戶端所要求的權限，會要求系統管理員或使用者同意分別允許其組織/個人資料的存取權。請注意，在[多租用戶](#multi-tenant-application)案例中，應用程式的[服務主體](#service-principal-object)也會記錄在同意方使用者的租用戶中。
+A client application requests [authorization](#authorization) from a resource owner to participate in an [OAuth2 authorization grant](#authorization-grant) flow, and may access APIs/data on the resource owner's behalf. The OAuth2 Authorization Framework [defines two types of clients][OAuth2-Client-Types], "confidential" and "public", based on the client's ability to maintain the confidentiality of its credentials. Applications can implement a [web client (confidential)](#web-client) which runs on a web server, a [native client (public)](#native-client) installed on a device, or a [user-agent-based client (public)](#user-agent-based-client) which runs in a device's browser.
 
-## 識別碼權杖
-[授權伺服器](#authorization-server)的[授權端點](#authorization-endpoint)所提供的 [OpenID Connect][OpenIDConnect-ID-Token] [安全性權杖](#security-token)，其中包含與使用者[資源擁有者](#resource-owner)的驗證有關的[宣告](#claim)。和存取權杖一樣，識別碼權杖也會以數位簽署的 [JSON Web 權杖 (JWT)][JWT] 來表示。但識別碼權杖的宣告則不同於存取權杖，它並不會用來進行與資源存取相關的用途，具體來說也就是存取控制。
+## <a name="consent"></a>consent
+The process of a [resource owner](#resource-owner) granting authorization to a [client application](#client-application), specific [permissions](#permissions) to access protected resources, on behalf of the resource owner. Depending on the permissions requested by the client, an administrator or user will be asked to consent to allow access to their organization/individual data respectively. Note, in a [multi-tenant](#multi-tenant-application) scenario, the application's [service principal](#service-principal-object) is also recorded in the tenant of the consenting user.
 
-如需詳細資訊，請參閱 [Azure AD 權杖參考][AAD-Tokens-Claims]。
+## <a name="id-token"></a>ID token
+An [OpenID Connect][OpenIDConnect-ID-Token] [security token](#security-token) provided by an [authorization server's](#authorization-server) [authorization endpoint](#authorization-endpoint), which contains [claims](#claim) pertaining to the authentication of an end user [resource owner](#resource-owner). Like an access token, ID tokens are also represented as a digitally signed [JSON Web Token (JWT)][JWT]. Unlike an access token though, an ID token's claims are not used for purposes related to resource access and specifically access control.
 
-## 多租用戶應用程式
-一種[用戶端應用程式](#client-application)類別，能讓在任何 Azure AD [租用戶](#tenant) (包括用戶端註冊所在之租用戶以外的租用戶) 中佈建的使用者登入和[同意](#consent)。相反地，若應用程式註冊為單一租用戶，則只會允許來自應用程式註冊所在相同租用戶中所佈建之使用者帳戶的登入。[原生用戶端](#native-client)應用程式預設是多租用戶，而 [Web 用戶端](#web-client)應用程式則可以在單一和多租用戶之間做選擇。
+See [Azure AD token reference][AAD-Tokens-Claims] for more details.
 
-如需詳細資訊，請參閱[如何使用多租用戶應用程式模式登入任何 Azure AD 使用者][AAD-Multi-Tenant-Overview]。
+## <a name="multi-tenant-application"></a>multi-tenant application
+A class of [client application](#client-application) that enables sign in and [consent](#consent) by users provisioned in any Azure AD [tenant](#tenant), including tenants other than the one where the client is registered. By contrast, an application registered as single-tenant, would only allow sign-ins from user accounts provisioned in the same tenant as the one where the application is registered. [Native client](#native-client) applications are multi-tenant by default, whereas [web client](#web-client) applications have the ability to select between single and multi-tenant.
 
-## 原生用戶端
-裝置上原生安裝的[用戶端應用程式](#client-application)類型。所有程式碼都會在裝置上執行，因此裝置會因為無法私下/祕密地儲存認證而被視為「公用」用戶端。如需詳細資訊，請參閱 [OAuth2 用戶端類型和設定檔][OAuth2-Client-Types]。
+See [How to sign in any Azure AD user using the multi-tenant application pattern][AAD-Multi-Tenant-Overview] for more details.
 
-## 權限
-透過宣告權限要求來取得[資源伺服器](#resource-server)存取權的[用戶端應用程式](#client-application)。其可用類型有兩種︰
+## <a name="native-client"></a>native client
+A type of [client application](#client-application) that is installed natively on a device. Since all code is executed on a device, it is considered a "public" client due to its inability to store credentials privately/confidentially. See [OAuth2 client types and profiles][OAuth2-Client-Types] for more details.
 
-- 「委派」權限，其可依據登入的[資源擁有者](#resource-owner)的委派授權要求[範圍型](#scopes)存取，而在執行階段會以用戶端[存取權杖](#access-token)中的 ["scp" 宣告](#claim)形式顯示給資源。
-- 「應用程式」權限，其可依據用戶端應用程式的認證/身分識別要求[角色型](#roles)存取，而在執行階段會以用戶端存取權杖中的[「角色」宣告](#claim)形式顯示給資源。
+## <a name="permissions"></a>permissions
+A [client application](#client-application) gains access to a [resource server](#resource-server) by declaring permission requests. Two types are available: 
 
-權限也會在[同意](#consent)程序期間出現，讓系統管理員或資源擁有者有機會允許/拒絕用戶端對其租用戶中的資源進行存取。
+- "Delegated" permissions, which request [scope-based](#scopes) access under delegated authorization from the signed-in [resource owner](#resource-owner), are presented to the resource at run-time as ["scp" claims](#claim) in the client's [access token](#access-token).
+- "Application" permissions, which request [role-based](#roles) access under the client application's credentials/identity, are presented to the resource at run-time as ["roles" claims](#claim) in the client's access token. 
 
-在 [Azure 傳統入口網站][AZURE-classic-portal]的 [應用程式]/[設定] 索引標籤中，於 [其他應用程式的權限] 底下按照需要選取 [委派的權限] 和 [應用程式權限] \(後者需要全域管理員角色的成員資格)，即可設定權限要求。[公用用戶端](#client-application)無法維護認證，因此它只能要求委派的權限，而[機密用戶端](#client-application)則能夠要求委派的權限和應用程式權限。用戶端的[應用程式物件](#application-object)會將宣告的權限儲存在其 [requiredResourceAccess 屬性][AAD-Graph-App-Entity]中。
+They also surface during the [consent](#consent) process, giving the administrator or resource owner the opportunity to grant/deny the client access to resources in their tenant.
 
-## 資源擁有者
-如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是能夠授與受保護資源存取權的實體。個人資源擁有者就是指使用者。例如，當[用戶端應用程式](#client-application)想要透過 [Microsoft 圖形 API][Microsoft-Graph] 存取使用者的信箱時，它需要從信箱的資源擁有者取得權限。
+Permission requests are configured on the "Applications" / "Configure" tab in the [Azure classic portal][AZURE-classic-portal], under "Permissions to other applications", by selecting the desired "Delegated Permissions" and "Application Permissions" (the latter requires membership in the Global Admin role). Because a [public client](#client-application) can't maintain credentials, it can only request delegated permissions, while a [confidential client](#client-application) has the ability to request both delegated and application permissions. The client's [application object](#application-object) stores the declared permissions in its [requiredResourceAccess property][AAD-Graph-App-Entity].
 
-## 資源伺服器
-如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是裝載受保護資源的伺服器，且能夠接受並回應出示[存取權杖](#access-token)的[用戶端應用程式](#client-application)所提出的受保護資源要求。它也稱為「受保護的資源伺服器」或「資源應用程式」。
+## <a name="resource-owner"></a>resource owner
+As defined by the [OAuth2 Authorization Framework][OAuth2-Role-Def], an entity capable of granting access to a protected resource. When the resource owner is a person, it is referred to as an end user. For example, when a [client application](#client-application) wants to access a user's mailbox through the [Microsoft Graph API][Microsoft-Graph], it requires permission from the resource owner of the mailbox.
 
-資源伺服器會使用 OAuth 2.0 授權架構公開 API，並透過[範圍](#scopes)和[角色](#roles)強制執行其受保護資源的存取權。範例包括可存取 Azure AD 租用戶資料的 Azure AD 圖形 API，以及可存取郵件和行事曆等資料的 Office 365 API。這兩者也可從 [Microsoft 圖形 API][Microsoft-Graph] 進行存取。
+## <a name="resource-server"></a>resource server
+As defined by the [OAuth2 Authorization Framework][OAuth2-Role-Def], a server that hosts protected resources, capable of accepting and responding to protected resource requests by [client applications](#client-application) that present an [access token](#access-token). Also known as a protected resource server, or resource application.
 
-和用戶端應用程式一樣，資源應用程式的身分識別組態是透過 Azure AD 租用戶中的[註冊](#application-registration)程序來建立，可提供應用程式和服務主體物件。某些由 Microsoft 所提供的 API (例如 Azure AD 圖形 API) 會在佈建期間將所有租用戶中的預先註冊服務主體設為可用。
+A resource server exposes APIs and enforces access to its protected resources through [scopes](#scopes) and [roles](#roles), using the OAuth 2.0 Authorization Framework. Examples include the Azure AD Graph API which provides access to Azure AD tenant data, and the Office 365 APIs that provide access to data such as mail and calendar. Both of these are also accessible via the [Microsoft Graph API][Microsoft-Graph].  
 
-## 角色
-和[範圍](#scopes)一樣，角色會提供方法讓[資源伺服器](#resource-server)控管其受保護資源的存取權。角色有兩種類型：「使用者」角色會為需要資源存取權的使用者/群組實作角色型存取控制，「應用程式」角色則會為需要存取權的[用戶端應用程式](#client-application)實作相同的存取控制。
+Just like a client application, resource application's identity configuration is established via [registration](#application-registration) in an Azure AD tenant, providing both the application and service principal object. Some Microsoft-provided APIs, such as the Azure AD Graph API, have pre-registered service principals made available in all tenants during provisioning.
 
-角色是資源所定義的字串 (例如「經費支出核准者」、"Directory.ReadWrite.All")，可在 [Azure 傳統入口網站][AZURE-classic-portal]中透過資源的[應用程式資訊清單](#application-manifest)進行管理，並且會儲存在資源的 [appRoles 屬性][AAD-Graph-Sp-Entity]。Azure 傳統入口網站也可用來將使用者指派給「使用者」角色，並設定用戶端 [應用程式權限](#permissions)以存取「應用程式」角色。
+## <a name="roles"></a>roles
+Like [scopes](#scopes), roles provide a way for a [resource server](#resource-server) to govern access to its protected resources. There are two types: a "user" role implements role-based access control for users/groups that require access to the resource, while an "application" role implements the same for [client applications](#client-application) that require access. 
 
-如需 Azure AD 圖形 API 所公開之應用程式角色的詳細討論，請參閱[圖形 API 權限範圍][AAD-Graph-Perm-Scopes]。如需逐步實作範例，請參閱[雲端應用程式中使用 Azure AD 的角色型存取控制][Duyshant-Role-Blog]。
+Roles are resource-defined strings (for example "Expense approver", "Read-only", "Directory.ReadWrite.All"), managed in the [Azure classic portal][AZURE-classic-portal] via the resource's [application manifest](#application-manifest), and stored in the resource's [appRoles property][AAD-Graph-Sp-Entity]. The Azure classic portal is also used to assign users to "user" roles, and configure client [application permissions](#permissions) to access an "application" role.
 
-## 範圍
-和[角色](#roles)一樣，範圍會提供方法讓[資源伺服器](#resource-server)控管其受保護資源的存取權。針對已獲得資源擁有者委派資源存取權的[用戶端應用程式](#client-application)，範圍可用來實作[範圍型][OAuth2-Access-Token-Scopes]存取控制。
+For a detailed discussion of the application roles exposed by Azure AD's Graph API, see [Graph API Permission Scopes][AAD-Graph-Perm-Scopes]. For a step-by-step implementation example, see [Role based access control in cloud applications using Azure AD][Duyshant-Role-Blog]. 
 
-範圍是資源所定義的字串 (例如 "Mail.Read"、"Directory.ReadWrite.All")，可在 [Azure 傳統入口網站][AZURE-classic-portal]中透過資源的[應用程式資訊清單](#application-manifest)進行管理，並且會儲存在資源的 [oauth2Permissions 屬性][AAD-Graph-Sp-Entity]。Azure 傳統入口網站也可用來設定用戶端應用程式[委派的權限](#permissions)以存取某個範圍。
+## <a name="scopes"></a>scopes
+Like [roles](#roles), scopes provide a way for a [resource server](#resource-server) to govern access to its protected resources. Scopes are used to implement [scope-based][OAuth2-Access-Token-Scopes] access control, for a [client application](#client-application) that has been given delegated access to the resource by its owner. 
 
-命名慣例的最佳作法是使用「resource.operation.constraint」格式。如需 Azure AD 圖形 API 所公開之範圍的詳細討論，請參閱[圖形 API 權限範圍][AAD-Graph-Perm-Scopes]。如需 Office 365 服務所公開的範圍，請參閱 [Office 365 API 權限參考][O365-Perm-Ref]。
+Scopes are resource-defined strings (for example "Mail.Read", "Directory.ReadWrite.All"), managed in the [Azure classic portal][AZURE-classic-portal] via the resource's [application manifest](#application-manifest), and stored in the resource's [oauth2Permissions property][AAD-Graph-Sp-Entity]. The Azure classic portal is also used to configure client application [delegated permissions](#permissions) to access a scope.
 
-## 安全性權杖
-包含 OAuth2 權杖或 SAML 2.0 判斷提示等宣告的已簽署文件。對於 OAuth2 [授權授與](#authorization-grant)而言，[存取權杖](#access-token) (OAuth2) 和 [識別碼權杖] \(OpenID Connect) 皆為安全性權杖類型，而且這兩種類型都會實作為 [JSON Web 權杖 (JWT)][JWT]。
+A best practice naming convention, is to use a "resource.operation.constraint" format. For a detailed discussion of the scopes exposed by Azure AD's Graph API, see [Graph API Permission Scopes][AAD-Graph-Perm-Scopes]. For scopes exposed by Office 365 services, see [Office 365 API permissions reference][O365-Perm-Ref]. 
 
-## 服務主體物件
-當您在 [Azure 傳統入口網站][AZURE-classic-portal]註冊/更新應用程式時，入口網站會為租用戶同時建立/更新應用程式物件和對應的[服務主體物件](#application-object)。應用程式物件可全域 (在相關聯的應用程式已獲授與存取權的所有租用戶中)「定義」應用程式的身分識別組態，並可做為範本來「衍生」出其對應的服務主體物件，以在執行階段於本機 (在特定租用戶) 使用。
+## <a name="security-token"></a>security token
+A signed document containing claims, such as an OAuth2 token or SAML 2.0 assertion. For an OAuth2 [authorization grant](#authorization-grant), an [access token](#access-token) (OAuth2) and an [ID Token](OpenID Connect) are types of security tokens, both of which are implemented as a [JSON Web Token (JWT)][JWT].
 
-如需詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
+## <a name="service-principal-object"></a>service principal object
+When you register/update an application in the [Azure classic portal][AZURE-classic-portal], the portal creates/updates both an [application object](#application-object) and a corresponding service principal object for that tenant. The application object *defines* the application's identity configuration globally (across all tenants where the associated application has been granted access), and is the template from which its corresponding service principal object(s) are *derived* for use locally at run-time (in a specific tenant).
 
-## 登入
-[用戶端應用程式](#client-application)會透過此程序起始使用者驗證並擷取相關狀態，以便取得[安全性權杖](#security-token)並將應用程式工作階段侷限在該狀態。狀態中可包含使用者設定檔資訊之類的構件，以及衍生自權杖宣告的資訊。
+See [Application and Service Principal Objects][AAD-App-SP-Objects] for more information.
 
-應用程式的登入功能通常會用來實作單一登入 (SSO)。也可能會在這之前加上「註冊」功能，以做為進入點來讓使用者取得應用程式的存取權 (在第一次登入時)。註冊功能可用來收集並保存使用者專屬的其他狀態，而且可能需要[使用者同意](#consent)。
+## <a name="sign-in"></a>sign-in
+The process of a [client application](#client-application) initiating end user authentication and capturing related state, for the purpose of acquiring a [security token](#security-token) and scoping the application session to that state. State can include artifacts such as user profile information, and information derived from token claims. 
 
-## 登出
-讓使用者變成未驗證狀態的程序，以便解除使用者在[登入](#sign-in)期間與[用戶端應用程式](#client-application)工作階段相關聯的狀態
+The sign-in function of an application is typically used to implement single-sign-on (SSO). It may also be preceded by a "sign-up" function, as the entry point for an end user to gain access to an application (upon first sign-in). The sign-up function is used to gather and persist additional state specific to the user, and may require [user consent](#consent).
 
-## tenant
-Azure AD 目錄的執行個體會稱為 Azure AD 租用戶。它可提供各種功能，包括︰
+## <a name="sign-out"></a>sign-out
+The process of un-authenticating an end user, detaching the user state associated with the [client application](#client-application) session during [sign-in](#sign-in)
 
-- 整合式應用程式的登錄服務
-- 驗證使用者帳戶和已註冊的應用程式
-- 支援各種通訊協定 (包括 OAuth2 和 SAML) 所需的 REST 端點包括[授權端點](#authorization-endpoint)、[權杖端點](#token-endpoint)以及[多租用戶應用程式](#multi-tenant-application)所使用的「通用」端點。
+## <a name="tenant"></a>tenant
+An instance of an Azure AD directory is referred to as an Azure AD tenant. It provides a variety of features, including:
 
-租用戶也會在訂用帳戶佈建期間與 Azure AD 或 Office 365 訂用帳戶產生關聯，並提供身分識別的身分識別和存取管理功能。如需各種可存取租用戶之方式的詳細資訊，請參閱[如何取得 Azure Active Directory 租用戶][AAD-How-To-Tenant]。如需訂用帳戶與 Azure AD 租用戶之間關聯性的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯][AAD-How-Subscriptions-Assoc]。
+- a registry service for integrated applications
+- authentication of user accounts and registered applications
+- REST endpoints required to support various protocols including OAuth2 and SAML, including the [authorization endpoint](#authorization-endpoint), [token endpoint](#token-endpoint) and the "common" endpoint used by [multi-tenant applications](#multi-tenant-application).
 
-## 權杖端點
-[授權伺服器](#authorization-server)為了支援 OAuth2 [授權授與](#authorization-grant)所實作的其中一個端點。根據授與情形而定，權杖端點可用來取得[存取權杖](#access-token) (和相關的「重新整理」權杖) 給[用戶端](#client-application)，或搭配 [OpenID Connect][OpenIDConnect] 通訊協定使用時的[識別碼權杖](#ID-token)。
+A tenant is also associated with an Azure AD or Office 365 subscription during provisioning of the subscription, providing Identity & Access Management features for the subscription. See [How to get an Azure Active Directory tenant][AAD-How-To-Tenant] for details on the various ways you can get access to a tenant. See [How Azure subscriptions are associated with Azure Active Directory][AAD-How-Subscriptions-Assoc] for details on the relationship between subscriptions and an Azure AD tenant.
 
-## 使用者代理程式型用戶端
-一種[用戶端應用程式](#client-application)，可從 Web 伺服器下載程式碼並在使用者代理程式 (例如，網頁瀏覽器) 中執行，例如單一頁面應用程式 (SPA)。所有程式碼都會在裝置上執行，因此裝置會因為無法私下/祕密地儲存認證而被視為「公用」用戶端。如需詳細資訊，請參閱 [OAuth2 用戶端類型和設定檔][OAuth2-Client-Types]。
+## <a name="token-endpoint"></a>token endpoint
+One of the endpoints implemented by the [authorization server](#authorization-server) to support OAuth2 [authorization grants](#authorization-grant). Depending on the grant, it can be used to acquire an [access token](#access-token) (and related "refresh" token) to a [client](#client-application), or [ID token](#ID-token) when used with the [OpenID Connect][OpenIDConnect] protocol.
 
-## 使用者主體
-和服務主體物件用來表示應用程式執行個體的方式一樣，使用者主體物件是另一種類型的安全性主體，它所代表的是使用者。Azure AD Graph [使用者實體][AAD-Graph-User-Entity]可定義使用者物件的結構描述，包括使用者相關屬性，例如名字和姓氏、使用者主體名稱、目錄角色成員資格等。這可提供使用者身分識別設定，以便 Azure AD 在執行階段建立使用者主體。使用者主體可用來代表單一登入的已驗證使用者、記錄[同意](#consent)委派，以做出存取控制決策等。
+## <a name="user-agent-based-client"></a>User-agent-based client
+A type of [client application](#client-application) that downloads code from a web server and executes within a user-agent (for instance, a web browser), such as a Single Page Application (SPA). Since all code is executed on a device, it is considered a "public" client due to its inability to store credentials privately/confidentially. See [OAuth2 client types and profiles][OAuth2-Client-Types] for more details.
 
-## Web 用戶端
-一種[用戶端應用程式](#client-application)，它會在 Web 伺服器上執行所有程式碼，並且能夠藉由在伺服器上安全地儲存其認證，而當作「機密」用戶端運作。如需詳細資訊，請參閱 [OAuth2 用戶端類型和設定檔][OAuth2-Client-Types]。
+## <a name="user-principal"></a>user principal
+Similar to the way a service principal object is used to represent an application instance, a user principal object is another type of security principal, which represents a user. The Azure AD Graph [User entity][AAD-Graph-User-Entity] defines the schema for a user object, including user-related properties such as first and last name, user principal name, directory role membership, etc. This provides the user identity configuration for Azure AD to establish a user principal at run-time. The user principal is used to represent an authenticated user for Single Sign-On, recording [consent](#consent) delegation, making access control decisions, etc.
 
-## 後續步驟
-[Azure AD 開發人員指南][AAD-Dev-Guide]是適用於所有 Azure AD 開發相關主題的門戶，內容包括[應用程式整合][AAD-How-To-Integrate]的概觀和 [Azure AD 驗證與支援的驗證案例][AAD-Auth-Scenarios]的基本概念。
+## <a name="web-client"></a>web client
+A type of [client application](#client-application) that executes all code on a web server, and able to function as a "confidential" client by securely storing its credentials on the server. See [OAuth2 client types and profiles][OAuth2-Client-Types] for more details.
 
-請使用下列 Disqus 註解區段來提供意見反應，並協助我們改善及設計我們的內容。
+## <a name="next-steps"></a>Next steps
+The [Azure AD Developer's Guide][AAD-Dev-Guide] is the portal to use for all Azure AD development related topics, including an overview of [application integration][AAD-How-To-Integrate] and the basics of [Azure AD authentication and supported authentication scenarios][AAD-Auth-Scenarios]. 
+
+Please use the following Disqus comments section to provide feedback and help us refine and shape our content.
 
 <!--Image references-->
 
@@ -195,14 +196,32 @@ Azure AD 目錄的執行個體會稱為 Azure AD 租用戶。它可提供各種�
 [Duyshant-Role-Blog]: http://www.dushyantgill.com/blog/2014/12/10/roles-based-access-control-in-cloud-applications-using-azure-ad/
 [JWT]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
 [Microsoft-Graph]: https://graph.microsoft.io
-[O365-Perm-Ref]: https://msdn.microsoft.com/zh-TW/office/office365/howto/application-manifest
+[O365-Perm-Ref]: https://msdn.microsoft.com/en-us/office/office365/howto/application-manifest
 [OAuth2-Access-Token-Scopes]: https://tools.ietf.org/html/rfc6749#section-3.3
 [OAuth2-AuthZ-Endpoint]: https://tools.ietf.org/html/rfc6749#section-3.1
-[OAuth2-AuthZ-Grant-Types]: https://tools.ietf.org/html/rfc6749#section-1.3
+[OAuth2-AuthZ-Grant-Types]: https://tools.ietf.org/html/rfc6749#section-1.3 
 [OAuth2-Client-Types]: https://tools.ietf.org/html/rfc6749#section-2.1
 [OAuth2-Role-Def]: https://tools.ietf.org/html/rfc6749#page-6
 [OpenIDConnect]: http://openid.net/specs/openid-connect-core-1_0.html
 [OpenIDConnect-AuthZ-Endpoint]: http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint
 [OpenIDConnect-ID-Token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

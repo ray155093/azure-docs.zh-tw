@@ -1,6 +1,6 @@
 <properties
-pageTitle="使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob | Microsoft Azure"
-description="了解如何使用 Azure 搜尋服務編製索引 CSV Blob"
+pageTitle="Indexing CSV blobs with Azure Search blob indexer | Microsoft Azure"
+description="Learn how to index CSV blobs with Azure Search"
 services="search"
 documentationCenter=""
 authors="chaosrealm"
@@ -15,72 +15,77 @@ ms.tgt_pltfrm="na"
 ms.date="07/12/2016"
 ms.author="eugenesh" />
 
-# 使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob 
 
-根據預設，[Azure 搜尋服務 Blob 索引子](search-howto-indexing-azure-blob-storage.md)會將分隔符號文字 Blob 剖析為單一的文字區塊。不過，使用包含 CSV 資料的 blob，您通常想要將 blob 中的每一行當做個別文件。例如，假設有下列分隔符號文字：
+# <a name="indexing-csv-blobs-with-azure-search-blob-indexer"></a>Indexing CSV blobs with Azure Search blob indexer 
 
-	id, datePublished, tags
-	1, 2016-01-12, "azure-search,azure,cloud" 
-	2, 2016-07-07, "cloud,mobile" 
+By default, [Azure Search blob indexer](search-howto-indexing-azure-blob-storage.md) parses delimited text blobs as a single chunk of text. However, with blobs containing CSV data, you often want to treat each line in the blob as a separate document. For example, given the following delimited text: 
 
-您可能想要將它剖析為 2 個文件，每個都包含 [識別碼]、[發佈日期] 和 [標籤] 欄位。
+    id, datePublished, tags
+    1, 2016-01-12, "azure-search,azure,cloud" 
+    2, 2016-07-07, "cloud,mobile" 
 
-在本文中，您將深入了解如何使用 Azure 搜尋服務 blob 索引子來剖析 CSV blob：
+you might want to parse it into 2 documents, each containing "id", "datePublished", and "tags" fields.
 
-> [AZURE.IMPORTANT] 這項功能目前為預覽版本。僅適用於使用 **2015-02-28-Preview** 版本的 REST API。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+In this article you will learn how to parse CSV blobs with an Azure Search blob indexer. 
 
-## 設定 CSV 編製索引
+> [AZURE.IMPORTANT] This functionality is currently in preview. It is available only in the REST API using version **2015-02-28-Preview**. Please remember, preview APIs are intended for testing and evaluation, and should not be used in production environments. 
 
-若要對 CSV blob 編製索引，請使用 `delimitedText` 剖析模式建立或更新索引子定義︰
+## <a name="setting-up-csv-indexing"></a>Setting up CSV indexing
 
-	{
-	  "name" : "my-csv-indexer",
-	  ... other indexer properties
-	  "parameters" : { "configuration" : { "parsingMode" : "delimitedText", "firstLineContainsHeaders" : true } }
-	}
+To index CSV blobs, create or update an indexer definition with the `delimitedText` parsing mode:  
 
-如需建立索引子 API 的詳細資訊，請參閱[建立索引子](search-api-indexers-2015-02-28-preview.md#create-indexer)。
+    {
+      "name" : "my-csv-indexer",
+      ... other indexer properties
+      "parameters" : { "configuration" : { "parsingMode" : "delimitedText", "firstLineContainsHeaders" : true } }
+    }
 
-`firstLineContainsHeaders` 指出每個 blob 的第一個 (非空白) 行包含標頭。如果 blob 不包含初始的標頭行，應該在索引子組態中指定標頭︰
+For more details on the Create Indexer API, check out [Create Indexer](search-api-indexers-2015-02-28-preview.md#create-indexer).
 
-	"parameters" : { "configuration" : { "parsingMode" : "delimitedText", "delimitedTextHeaders" : "id,datePublished,tags" } } 
+`firstLineContainsHeaders` indicates that the first (non-blank) line of each blob contains headers.
+If blobs don't contain an initial header line, the headers should be specified in the indexer configuration: 
 
-目前，只支援 UTF-8 編碼。此外，僅支援逗號 `','` 字元做為分隔符號。如果您需要支援其他編碼或分隔符號，請在 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search)讓我們知道。
+    "parameters" : { "configuration" : { "parsingMode" : "delimitedText", "delimitedTextHeaders" : "id,datePublished,tags" } } 
 
-> [AZURE.IMPORTANT] 當您使用分隔符號文字剖析模式時，Azure 搜尋服務會假設您的資料來源中所有 Blob 都為 CSV。如果您需要支援在相同的資料來源中混用 CSV 和非 CSV Blob，請在 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search)讓我們知道。
+Currently, only the UTF-8 encoding is supported. Also, only the comma `','` character is supported as the delimiter. If you need support for other encodings or delimiters, please let us know on [our UserVoice site](https://feedback.azure.com/forums/263029-azure-search).
 
-## 要求範例
+> [AZURE.IMPORTANT] When you use the delimited text parsing mode, Azure Search assumes that all blobs in your data source will be CSV. If you need to support a mix of CSV and non-CSV blobs in the same data source, please let us know on [our UserVoice site](https://feedback.azure.com/forums/263029-azure-search).
 
-總而言之，以下是完整的承載範例。
+## <a name="request-examples"></a>Request examples
 
-資料來源：
+Putting this all together, here are the complete payload examples. 
 
-	POST https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
-	Content-Type: application/json
-	api-key: [admin key]
+Datasource: 
 
-	{
-	    "name" : "my-blob-datasource",
-	    "type" : "azureblob",
-	    "credentials" : { "connectionString" : "<my storage connection string>" },
-	    "container" : { "name" : "my-container", "query" : "<optional, my-folder>" }
-	}   
+    POST https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
+    Content-Type: application/json
+    api-key: [admin key]
 
-索引子：
+    {
+        "name" : "my-blob-datasource",
+        "type" : "azureblob",
+        "credentials" : { "connectionString" : "<my storage connection string>" },
+        "container" : { "name" : "my-container", "query" : "<optional, my-folder>" }
+    }   
 
-	POST https://[service name].search.windows.net/indexers?api-version=2015-02-28-Preview
-	Content-Type: application/json
-	api-key: [admin key]
+Indexer:
 
-	{
-	  "name" : "my-csv-indexer",
-	  "dataSourceName" : "my-blob-datasource",
-	  "targetIndexName" : "my-target-index",
+    POST https://[service name].search.windows.net/indexers?api-version=2015-02-28-Preview
+    Content-Type: application/json
+    api-key: [admin key]
+
+    {
+      "name" : "my-csv-indexer",
+      "dataSourceName" : "my-blob-datasource",
+      "targetIndexName" : "my-target-index",
       "parameters" : { "configuration" : { "parsingMode" : "delimitedText", "delimitedTextHeaders" : "id,datePublished,tags" } }
-	}
+    }
 
-## 協助我們改進 Azure 搜尋服務
+## <a name="help-us-make-azure-search-better"></a>Help us make Azure Search better
 
-如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
+If you have feature requests or ideas for improvements, please reach out to us on our [UserVoice site](https://feedback.azure.com/forums/263029-azure-search/).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

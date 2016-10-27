@@ -1,6 +1,6 @@
 <properties
-   pageTitle="安裝適用於 SQL 資料倉儲的 Visual Studio 和 SSDT | Microsoft Azure"
-   description="安裝適用於 Azure SQL 資料倉儲的 Visual Studio 和 SQL Server Development Tools (SSDT)"
+   pageTitle="Install Visual Studio and SSDT for SQL Data Warehouse | Microsoft Azure"
+   description="Install Visual Studio and SQL Server Development Tools (SSDT) for Azure SQL Data Warehouse"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="sonyam"
@@ -10,50 +10,55 @@
 <tags
    ms.service="sql-data-warehouse"
    ms.devlang="NA"
-   ms.topic="get-started-article"
+   ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
    ms.date="08/16/2016"
    ms.author="sonyama;barbkess"/>
 
-# 安裝適用於 SQL 資料倉儲的 Visual Studio 2015 和 SSDT
 
-若要開發 SQL 資料倉儲的應用程式，建議使用 Visual Studio 2015 並搭配最新版本的 SQL Server Data Tools (SSDT)。Visual Studio 2013 Update 5 搭配 SSDT 也支援回溯相容性。
+# <a name="install-visual-studio-2015-and-ssdt-for-sql-data-warehouse"></a>Install Visual Studio 2015 and SSDT for SQL Data Warehouse
 
-搭配使用 Visual Studio 和 SSDT 可讓您使用 SQL Server 物件總管，經由視覺化方式瀏覽資料表、檢視、預存程序和 SQL 資料倉儲中的其他許多物件，以及執行查詢。
+To develop applications for SQL Data Warehouse, we recommend using Visual Studio 2015 with the most recent version of SQL Server Data Tools (SSDT).  Visual Studio 2013 Update 5 with SSDT is also supported for backward compatibility.  
 
-> [AZURE.NOTE] SQL 資料倉儲尚未支援 Visual Studio 資料庫專案。此功能將會加入未來的版本中。
+Using Visual Studio with SSDT will allow you to use the SQL Server Object Explorer to visually explore tables, views, stored procedures and many more objects in your SQL Data Warehouse as well as run queries.
 
-## 步驟 1：安裝 Visual Studio 2015
+> [AZURE.NOTE] SQL Data Warehouse does not yet support Visual Studio Database Projects.  This feature will be added in a future version.
 
-遵循下列連結來下載並安裝 Visual Studio 2015。如果已安裝 Visual Studio 2013 或 2015，可以跳至步驟 2 安裝 SSDT。
+## <a name="step-1:-install-visual-studio-2015"></a>Step 1: Install Visual Studio 2015
 
-1. [下載 Visual Studio 2015][]。
-2. 依照 MSDN 上的[安裝 Visual Studio][] 指南並選擇預設組態。
+Follow these links to download and install Visual Studio 2015. If you already have Visual Studio 2013 or 2015 installed, you can skip to Step 2, install SSDT.
 
-## 步驟 2：安裝 SSDT
+1. [Download Visual Studio 2015][].
+2. Follow the [Installing Visual Studio][] guide on MSDN and choose the default configurations.
 
-若要安裝適用於 Visual Studio 的 SSDT，只需依照下列步驟，從 Visual Studio 檢查 SSDT 更新。
+## <a name="step-2:-install-ssdt"></a>Step 2: Install SSDT
 
-1. 在 Visual Studio 中，按一下 [工具] / [擴充功能和更新] / [更新]
-2. 選取 [產品更新]，然後尋找 [資料庫工具適用的 Microsoft SQL Server 更新]
+To install SSDT for Visual Studio simply check for an SSDT update from within Visual Studio by following these steps.
 
-如果找不到更新，表示您應該已安裝最新版本。若要確認已安裝 SSDT，請按一下 [說明] / [關於 Microsoft Visual Studio] 並在清單中尋找 SQL Server Data Tools。SSDT 的最新版本是 14.0.60525.0。如果無法在 Visual Studio 中使用安裝選項，或者您也可以瀏覽 [SSDT 下載][]頁面，手動下載和安裝 SSDT。
+1. In Visual Studio click on **Tools** / **Extensions and Updates…** / **Updates**
+2. Select **Product Updates** and then look for **Microsoft SQL Server Update for database tooling**
 
-## 後續步驟
+If an update is not found, then you should have the latest version installed.  To confirm SSDT is installed, click on **Help** / **About Microsoft Visual Studio** and look for SQL Server Data Tools in the list.  The latest version of SSDT is 14.0.60525.0.  If the option to install is not available from Visual Studio, alternatively you can visit the [SSDT Download][] page to download and install SSDT manually.
 
-既然有了最新版本的 SSDT，您可以開始[連接][]到 SQL 資料倉儲。
+## <a name="next-steps"></a>Next steps
+
+Now that you have the latest version of SSDT, you are ready to [connect][] to your SQL Data Warehouse.
 
 <!--Anchors-->
 
 <!--Image references-->
 
 <!--Articles-->
-[連接]: ./sql-data-warehouse-query-visual-studio.md
+[connect]: ./sql-data-warehouse-query-visual-studio.md
 
 <!--Other-->
-[下載 Visual Studio 2015]: https://www.visualstudio.com/downloads/
-[安裝 Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
-[SSDT 下載]: https://msdn.microsoft.com/library/mt204009.aspx
+[Download Visual Studio 2015]: https://www.visualstudio.com/downloads/
+[Installing Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
+[SSDT Download]: https://msdn.microsoft.com/library/mt204009.aspx
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

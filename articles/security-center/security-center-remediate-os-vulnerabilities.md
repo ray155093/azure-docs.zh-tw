@@ -1,6 +1,6 @@
 <properties
-   pageTitle="修復 Azure 資訊安全中心的 OS 弱點 | Microsoft Azure"
-   description="本文件說明如何實作 Azure 資訊安全中心建議的「修復 OS 弱點」。"
+   pageTitle="Remediate OS vulnerabilities in Azure Security Center | Microsoft Azure"
+   description="This document shows you how to implement the Azure Security Center recommendation **Remediate OS vulnerabilities**."
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,66 +16,72 @@
    ms.date="07/20/2016"
    ms.author="terrylan"/>
 
-# 修復 Azure 資訊安全中心的 OS 弱點
 
-Azure 資訊安全中心每天會分析可能造成虛擬機器 (VM) 更容易受到攻擊的 VM 作業系統 (OS) 組態，並建議進行組態變更來處理這些弱點。如需受監視之特定設定的詳細資訊，請參閱[建議的設定規則清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。當 VM 的 OS 設定不符合建議的設定規則時，資訊安全中心會建議您解決這些弱點。
+# <a name="remediate-os-vulnerabilities-in-azure-security-center"></a>Remediate OS vulnerabilities in Azure Security Center
 
-> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
+Azure Security Center analyzes daily your virtual machine (VM) operating system (OS) for configurations that could make the VM more vulnerable to attack and recommends configuration changes to address these vulnerabilities. See the [list of recommended configuration rules](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335) for more information on the specific configurations being monitored. Security Center will recommend that you resolve vulnerabilities when your VM’s OS configuration does not match the recommended configuration rules.
 
-## 實作建議
+> [AZURE.NOTE] This document introduces the service by using an example deployment.  This is not a step-by-step guide.
 
-1. 在 [建議] 刀鋒視窗中，選取 [修復 OS 弱點]。這樣會開啟 [修復 OS 弱點] 刀鋒視窗。![修復 OS 弱點][1]
+## <a name="implement-the-recommendation"></a>Implement the recommendation
 
-2. [修復 OS 弱點] 刀鋒視窗會列出您的 VM 和不符合建議的設定規則的 OS 設定。針對每部 VM，此刀鋒視窗會識別︰
+1. In the **Recommendations** blade, select **Remediate OS vulnerabilities**. This opens the **Remediate OS vulnerabilities** blade.
+![Remediate OS vulnerabilities][1]
 
- - **失敗規則** -- VM 的 OS 設定不符合的規則數目。
- - **上次掃描時間** -- 資訊安全中心上次掃描 VM OS 設定的日期與時間。
- - **狀態** -- 弱點的目前狀態：
+2. The **Remediate OS vulnerabilities** blade lists your VMs with OS configurations that do not match the recommended configuration rules.  For each VM, the blade identifies:
 
-      - 未處理：尚未解決的弱點
-      - 進行中：正在將建議套用到弱點，您不需要採取任何動作
-      - 已解決：弱點已解決 (問題已解決時，該項目會呈現灰色)。
- - **嚴重性** -- 所有弱點設為「低」嚴重性，表示弱點應解決，但不需要立即處理。
+ - **FAILED RULES** -- The number of rules that the VM's OS configuration failed.
+ - **LAST SCAN TIME** -- The date and time that Security Center last scanned the VM’s OS configuration.
+ - **STATE** -- The current state of the vulnerability:
 
-   選取 VM。這樣會開啟該 VM 的 [修復 OS 弱點] 刀鋒視窗，並顯示失敗的規則。
+      - Open: The vulnerability has not been addressed yet
+      - In Progress: The vulnerability is currently being applied, no action is required by you
+      - Resolved: The vulnerability was already addressed (when the issue has been resolved, the entry is grayed out)
+ - **SEVERITY** -- All vulnerabilities are set to a severity of Low, meaning a vulnerability should be addressed but does not require immediate attention.
 
-   ![失敗的設定規則][2]
+   Select a VM. This opens the **Remediate OS vulnerabilities** blade for that VM and displays the rules that have failed.
 
-選取規則。在此範例中，我們選取 [密碼必須符合複雜性需求]。隨即開啟說明失敗的規則和影響的刀鋒視窗。檢閱詳細資訊，並考慮如何套用作業系統設定。
+   ![Configuration rules that have failed][2]
 
-  ![失敗規則的說明][3]
+Select a rule. In this example, lets select **Password must meet complexity requirements**. A blade opens describing the failed rule and the impact. Review the details and consider how operating system configurations will be applied.
 
-  資訊安全中心會使用一般設定列舉 (CCE) 指派設定規則的唯一識別碼。此刀鋒視窗上提供下列資訊︰
+  ![Description for the failed rule][3]
 
-  - 名稱 -- 規則的名稱
-  - 嚴重性 -- 嚴重、重要或警告的 CCE 嚴重性值
-  - CCIED -- 規則的 CCE 唯一識別碼
-  - 說明 -- 規則的說明
-  - 弱點 -- 不套用規則的弱點或風險說明
-  - 影響 -- 套用規則時的業務影響
-  - 預期值 -- 資訊安全中心對照規則分析 VM OS 設定時的預期值
-  - 規則作業 -- 資訊安全中心對照規則分析 VM OS 設定時使用的規則作業
-  - 實際值 -- 對照規則分析 VM OS 設定時的傳回值
-  - 評估結果 -- 分析的結果︰通過、失敗
+  Security Center uses Common Configuration Enumeration (CCE) to assign unique identifiers for configuration rules. The following information is provided on this blade:
+
+  - NAME -- Name of rule
+  - SEVERITY -- CCE severity value of critical, important, or warning
+  - CCIED -- CCE unique identifier for the rule
+  - DESCRIPTION -- Description of rule
+  - VULNERABILITY -- Explanation of vulnerability or risk if rule is not applied
+  - IMPACT -- Business impact when rule is applied
+  - EXPECTED VALUE -- Value expected when Security Center analyzes your VM OS configuration against the rule
+  - RULE OPERATION -- Rule operation used by Security Center during analysis of your VM OS configuration against the rule
+  - ACTUAL VALUE -- Value returned after analysis of your VM OS configuration against the rule
+  - EVALUATION RESULT –- Result of analysis: Pass, Fail
 
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-本文說明了如何實作資訊安全中心建議的「修復 OS 弱點」。 您可在[此處](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)檢閱設定規則集。資訊安全中心會使用 CCE (一般設定列舉) 指派設定規則的唯一識別碼。如需詳細資訊，請造訪 [CCE](http://cce.mitre.org) 網站。
+This article showed you how to implement the Security Center recommendation "Remediate OS vulnerabilities." You can review the set of configuration rules [here](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335). Security Center uses CCE (Common Configuration Enumeration) to assign unique identifiers for configuration rules. Visit the [CCE](http://cce.mitre.org) site for more information.
 
-如要深入了解資訊安全中心，請參閱下列主題：
+To learn more about Security Center, see the following:
 
-- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
+- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies for your Azure subscriptions and resource groups.
+- [Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.
+- [Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.
+- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
+- [Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how to monitor the health status of your partner solutions.
+- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
+- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Find blog posts about Azure security and compliance.
 
 <!--Image references-->
 [1]: ./media/security-center-remediate-os-vulnerabilities/recommendation.png
-[2]: ./media/security-center-remediate-os-vulnerabilities/vm-remediate-os-vulnerabilities.png
+[2]:./media/security-center-remediate-os-vulnerabilities/vm-remediate-os-vulnerabilities.png
 [3]: ./media/security-center-remediate-os-vulnerabilities/vulnerability-details.png
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

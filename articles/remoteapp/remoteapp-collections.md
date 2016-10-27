@@ -1,8 +1,8 @@
 <properties 
-    pageTitle="Azure RemoteApp 需要何種集合？| Microsoft Azure" 
-    description="深入了解可搭配 Azure RemoteApp 使用的集合類型。" 
+    pageTitle="What kind of collection do you need for Azure RemoteApp? | Microsoft Azure" 
+    description="Learn about the types of collections available with Azure RemoteApp." 
     services="remoteapp" 
-	documentationCenter="" 
+    documentationCenter="" 
     authors="lizap" 
     manager="mbaldwin" />
 
@@ -17,81 +17,86 @@
 
 
 
-# Azure RemoteApp 需要何種集合？
+
+# <a name="what-kind-of-collection-do-you-need-for-azure-remoteapp?"></a>What kind of collection do you need for Azure RemoteApp?
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-Azure RemoteApp 可讓您在任何裝置上與使用者共用應用程式和資源。做法是建立來保存應用程式和資源的集合，然後與使用者共用那些集合。有兩個不同的集合選項，各有不同的網路和驗證選項 - 哪一種最適合您？
+Azure RemoteApp lets you share apps and resources with users on any device. We do this by creating collections to hold the apps and resources, and then you share those collections with users. There are 2 different collection options, with different network and authentication options - which is right for you?
 
-讓我們逐步說明不同的考量和您必須做的選擇，以充分利用 Azure RemoteApp 集合。
+Let's walk through the different considerations and choices you need to make to get the most out of your Azure RemoteApp collection. 
 
 
-## 快速了解不同集合類型間的差異
+## <a name="quick-differences-between-the-collection-types"></a>Quick differences between the collection types
 
-| | 雲端 | 混合式 |
+|           | Cloud | Hybrid |
 |-----------|-------|--------|
-|使用現有的 VNET| 是| 是|
-|需要連線到 AD 的帳戶 (DirSync)| 否| 是|
-|需要加入網域| 否| 是|
-|需讓網域控制站可以存取 VNET| 否| 是|
+|Use an existing VNET| Yes| Yes|
+|Requires AD-connected accounts (DirSync)| No| Yes|
+|Requires domain join| No| Yes|
+|Requires domain controller accessible to VNET| No| Yes|
 
-## 雲端集合
-- 可快速建立 - 集合的佈建速度很快，這表示使用者能更快取得您的應用程式。
-- 提供您自己的應用程式或共用我們的應用程式。您可以使用自訂映像 (從 Azure VM 建立) 或您訂用帳戶隨附的其中一個映像。
-- 您不需要設定集合與內部部署的網域之間的連線。
-- 但您可以選擇使用自己的 Azure VNET 為您的內部部署環境提供存取方式以共用資料，或對資源 (如 SQL Server) 使用非 Windows 驗證 (使用資料庫驗證)。
+## <a name="cloud-collections"></a>Cloud collections
+- Quick to create - the collection is quickly provisioned, meaning your apps get to users quicker.
+- Bring your own apps or share ours. You can use a custom image (built from an Azure VM) or one of the images included with your subscription.
+- You don't need to configure a connection between your collection and your on-premises domain.
+- But you can optionally use your own Azure VNET to provide access into your on-premises environment for data sharing or to use non-Windows authentication into resources like SQL Server (using database authentication).
 
 
-那麼，要怎麼建立？
+Ok, how do I create one?
 
-- 僅限雲端使用嗎？ 使用入口網站中的 [快速建立] 選項建立。
-- 雲端 + VNET？ 使用 [使用 VNET 建立] 選項建立，但「不要」選擇加入網域。
+- Cloud only? Create with the **Quick Create** option in the portal.
+- Cloud + VNET? Create using the **Create with VNET** option but do NOT choose to join a domain.
 
-## 混合式集合
-- 提供內部部署網路 + Azure VNET 的完整存取權限。
-- 包含應用程式和資料的網域加入存取權限。遠端應用程式可以向您內部部署的 Active Directory 驗證 - 接著便能存取您網域中的資源。
-- 以現有的 System Center 解決方案和 Windows 群組原則啟用進階監視和管理功能 (透過在 Windows Server 2012 R2 上建置的自訂映像)
-- 支援 [ExpressRoute](https://azure.microsoft.com/services/expressroute/)，可將您的 Azure VNET 連線到本機 VNET。
+## <a name="hybrid-collections"></a>Hybrid collections
+- Provide full access to on-premises network + Azure VNET.
+- Includes domain join access for apps and data. Remote applications can authentication against your on-premises Active Directory - they can then access resources in your domain.
+- Enable advanced monitoring and management with existing System Center solutions and Windows Group Policies (through a custom image built on Windows Server 2012 R2)
+- Support [ExpressRoute](https://azure.microsoft.com/services/expressroute/) to connect your Azure VNET to your local VNET.
 
-使用 [使用 VNET 建立] 選項建立，並「選擇」加入網域。
+Create using the **Create with VNET** option and DO choose to join a domain.
 
-## 驗證選項
-Azure RemoteApp 支援 Microsoft 帳戶和 Azure Active Directory 帳戶，但並非所有集合都支援所有方法。
+## <a name="authentication-options"></a>Authentication options
+Azure RemoteApp supports both Microsoft accounts and Azure Active Directory accounts, but not all collections support all methods. 
 
-| 帳戶類型 | | 雲端 | 雲端 + VNET | 混合式 |
+| Account type                      |                                                             | Cloud | Cloud + VNET | Hybrid |
 |-----------------------------------|-------------------------------------------------------------|-------|--------------|--------|
-| Microsoft 帳戶 | | 是 | 是 | 否 |
-| Azure Active Directory (Azure AD) | | | | |
-| | 僅限 Azure AD 使用 | 是 | 是 | 否 |
-| | 具有密碼同步的 AD Connect | 是 | 是 | 是 |
-| | 不具密碼同步的 AD Connect | 是 | 是 | 否 |
-| | 具 AD FS 的 AD Connect | 是 | 是 | 是 |
-| | Azure 支援的第三方識別提供者 (例如 Ping) | 是 | 是 | 是 |
-| Multi-Factor Authentication | | 是 | 是 | 是 |
+| Microsoft Account                 |                                                             | Yes   | Yes          | No     |
+| Azure Active Directory (Azure AD) |                                                             |       |              |        |
+|                                   | Azure AD only                                               | Yes   | Yes          | No     |
+|                                   | AD Connect with password sync                               | Yes   | Yes          | Yes    |
+|                                   | AD Connect without password sync                            | Yes   | Yes          | No     |
+|                                   | AD Connect with AD FS                                       | Yes   | Yes          | Yes    |
+|                                   | 3rd-party Azure-supported identity providers (such as Ping) | Yes   | Yes          | Yes    |
+| Multi-Factor Authentication       |                                                             | Yes   | Yes          | Yes    |
 
 
 
-### 雲端和雲端 + VNET 
-使用雲端集合時，您可以使用 Microsoft 帳戶、Azure AD 帳戶或混合使用兩者。使用您的使用者最適合的帳戶。
+### <a name="cloud-and-cloud-+-vnet"></a>Cloud and Cloud + VNET 
+With cloud collections, you can use Microsoft accounts, Azure AD accounts, or a mix of the two. Use the accounts that work best for your users.
 
-使用 Microsoft 帳戶沒有任何明確要求。
+There are no specific requirements for using Microsoft accounts. 
 
-如果您想要使用 Azure AD 帳戶，您必須確定您的 Azure AD 租用戶符合與您的訂用帳戶關聯的租用戶。當您建立 Azure RemoteApp 訂用帳戶時，您使用的 Azure AD 租用戶已自動與該訂用帳戶產生關聯。您授與權限的任一 Azure AD 使用者都必須是該租用戶。如有需要，您可以[變更 Azure AD 租用戶](remoteapp-changetenant.md) (與您的訂用帳戶關聯的 Azure AD 租用戶)。
+If you want to use Azure AD accounts, you need to make sure that your Azure AD tenant matches the one associated with your subscription. When you created your Azure RemoteApp subscription, the Azure AD tenant you were using was automatically associated with your subscription. Any Azure AD user you give permission to needs to be that same tenant. If needed, you can [change the Azure AD tenant](remoteapp-changetenant.md) associated with your subscription.
  
-### 混合式 (或雲端 + Azure AD + AD)
+### <a name="hybrid-(or-cloud-+-azure-ad-+-ad)"></a>Hybrid (or cloud + Azure AD + AD)
 
-使用 Azure AD + 內部部署 Active Directory 是混合式集合的必要條件。您需要使用 AD Connect 來整合兩個目錄。但是您可以自行選擇如何設定 AD Connect。
+Using Azure AD + on-premises Active Directory is a prerequisite for a hybrid collection. You need to use AD Connect to integrate the two directories. But you do have some choice when it comes to how you configure AD Connect. 
 
-AD Connect 有兩種案例 - 使用密碼同步化或使用 AD 同盟。請參閱 [AD Connect 資訊](../active-directory/active-directory-aadconnect.md)，了解哪一種案例最適合您。
+There are 2 AD Connect scenarios - using password synchronization or using AD federation. Check out the [AD Connect information](../active-directory/active-directory-aadconnect.md) to figure out which of these works best for you.
 
-您也可以使用 Azure AD + AD 搭配雲端集合。請確定您有遵循相同的設定步驟。
+You can also use Azure AD + AD with a cloud collection. Make sure you follow the same set up steps.
 
-如需設定 Azure AD 和 Active Directory 所需的步驟，請參閱 [Azure RemoteApp 的 Azure AD + Active Directory 需求](remoteapp-ad.md)。
+Check out [Azure AD + Active Directory requirements for Azure RemoteApp](remoteapp-ad.md) for the steps required to configure Azure AD and Active Directory.
 
-## 立即建立您的集合！
-嗯，我想我們現在已經說明白了，那麼只剩下一件事要做 - 建立您的第一個 Azure RemoteApp 集合。
+## <a name="go-create-your-collection!"></a>Go create your collection!
+Ok, I think we've figured it out now, so there's just one thing left to do - create your first Azure RemoteApp collection.
 
-[建立雲端集合](remoteapp-create-cloud-deployment.md)或[建立混合式集合](remoteapp-create-hybrid-deployment.md) -立即建立。
+[Create a cloud collection](remoteapp-create-cloud-deployment.md) or [create a hybrid collection](remoteapp-create-hybrid-deployment.md) - just get creating.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

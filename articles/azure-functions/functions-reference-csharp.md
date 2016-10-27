@@ -1,41 +1,42 @@
 <properties
-	pageTitle="Azure Functions 開發人員參考 | Microsoft Azure"
-	description="了解如何使用 C# 開發 Azure Functions。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"/>
+    pageTitle="Azure Functions developer reference | Microsoft Azure"
+    description="Understand how to develop Azure Functions using C#."
+    services="functions"
+    documentationCenter="na"
+    authors="christopheranderson"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, webhooks, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="dotnet"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="05/13/2016"
-	ms.author="chrande"/>
+    ms.service="functions"
+    ms.devlang="dotnet"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="05/13/2016"
+    ms.author="chrande"/>
 
-# Azure Functions C# 開發人員參考
+
+# <a name="azure-functions-c#-developer-reference"></a>Azure Functions C# developer reference
 
 > [AZURE.SELECTOR]
-- [C# 指令碼](../articles/azure-functions/functions-reference-csharp.md)
-- [F# 指令碼](../articles/azure-functions/functions-reference-fsharp.md)
+- [C# script](../articles/azure-functions/functions-reference-csharp.md)
+- [F# script](../articles/azure-functions/functions-reference-fsharp.md)
 - [Node.js](../articles/azure-functions/functions-reference-node.md)
  
-Azure Functions 的 C# 體驗是以 Azure WebJobs SDK 為基礎。資料會透過方法引數流入您的 C# 函式。引數名稱會指定於 `function.json` 中，而且有預先定義的名稱可用來存取函式記錄器和取消權杖等項目。
+The C# experience for Azure Functions is based on the Azure WebJobs SDK. Data flows into your C# function via method arguments. Argument names are specified in `function.json`, and there are predefined names for accessing things like the function logger and cancellation tokens.
 
-本文假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)。
+This article assumes that you've already read the [Azure Functions developer reference](functions-reference.md).
 
-## .csx 的運作方式
+## <a name="how-.csx-works"></a>How .csx works
 
-`.csx` 格式允許撰寫較少「重複使用」文字，只專注於撰寫 C# 函式。在 Azure Functions 中，您只要如往常般包含您所需的組件參考和命名空間，而不是在命名空間和類別中包裝所有項目，您可以只定義您的 `Run` 方法。如果您需要包含任何類別，例如若要定義 POCO 物件，您可以包含相同檔案內的類別。
+The `.csx` format allows to write less "boilerplate" and focus on writing just a C# function. For Azure Functions, you just include any assembly references and namespaces you need up top, as usual, and instead of wrapping everything in a namespace and class, you can just define your `Run` method. If you need to include any classes, for instance to define POCO objects, you can include a class inside the same file.
 
-## 繫結至引數
+## <a name="binding-to-arguments"></a>Binding to arguments
 
-各種繫結會透過 function.json 組態中的 `name` 屬性繫結至 C# 函式。每個繫結都有自己支援的類型 (已依照繫結記載)；例如，Blob 觸發程序可以支援字串、POCO 或數個其他類型。您可以使用最符合您需求的類型。
+The various bindings are bound to a C# function via the `name` property in the *function.json* configuration. Each binding has its own supported types which is documented per binding; for instance, a blob trigger can support a string, a POCO, or several other types. You can use the type which best suits your need. 
 
 ```csharp
 public static void Run(string myBlob, out MyClass myQueueItem)
@@ -50,9 +51,9 @@ public class MyClass
 }
 ```
 
-## 記錄
+## <a name="logging"></a>Logging
 
-若要在 C# 中將輸出記錄至串流記錄檔，您可以包含 `TraceWriter` 具類型引數。建議您將它命名為 `log`。建議您避免在 Azure Functions 中使用 `Console.Write`。
+To log output to your streaming logs in C#, you can include a `TraceWriter` typed argument. We recommend that you name it `log`. We recommend you avoid `Console.Write` in Azure Functions.
 
 ```csharp
 public static void Run(string myBlob, TraceWriter log)
@@ -61,9 +62,9 @@ public static void Run(string myBlob, TraceWriter log)
 }
 ```
 
-## 非同步處理
+## <a name="async"></a>Async
 
-若要讓函式變成非同步，請使用 `async` 關鍵字並傳回 `Task` 物件。
+To make a function asynchronous, use the `async` keyword and return a `Task` object.
 
 ```csharp
 public async static Task ProcessQueueMessageAsync(
@@ -75,9 +76,9 @@ public async static Task ProcessQueueMessageAsync(
     }
 ```
 
-## 取消權杖
+## <a name="cancellation-token"></a>Cancellation Token
 
-在某些情況下，您可能會有易受關閉影響的作業。雖然最好能撰寫可以處理當機的程式碼，但是當您想要處理順利關機要求時，您可以定義 [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) 具類型引數。如果觸發主機關機，則會提供 `CancellationToken`。
+In certain cases, you may have operations which are sensitive to being shut down. While it's always best to write code which can handle crashing,  in cases where you want to handle graceful shutdown requests, you define a [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) typed argument.  A `CancellationToken` will be provided if a host shutdown is triggered. 
 
 ```csharp
 public async static Task ProcessQueueMessageAsyncCancellationToken(
@@ -90,9 +91,9 @@ public async static Task ProcessQueueMessageAsyncCancellationToken(
     }
 ```
 
-## 匯入命名空間
+## <a name="importing-namespaces"></a>Importing namespaces
 
-如果您需要匯入命名空間，可以如往常一樣利用 `using` 子句。
+If you need to import namespaces, you can do so as usual, with the `using` clause.
 
 ```csharp
 using System.Net;
@@ -101,7 +102,7 @@ using System.Threading.Tasks;
 public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 ```
 
-下列命名空間會自動匯入，所以是選擇性的︰
+The following namespaces are automatically imported and are therefore optional:
 
 * `System`
 * `System.Collections.Generic`
@@ -110,11 +111,11 @@ public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter 
 * `System.Net.Http`
 * `System.Threading.Tasks`
 * `Microsoft.Azure.WebJobs`
-* `Microsoft.Azure.WebJobs.Host`。
+* `Microsoft.Azure.WebJobs.Host`.
 
-## 參考外部組件
+## <a name="referencing-external-assemblies"></a>Referencing External Assemblies
 
-若為架構組件，請使用 `#r "AssemblyName"` 指示詞加入參考。
+For framework assemblies, add references by using the `#r "AssemblyName"` directive.
 
 ```csharp
 #r "System.Web.Http"
@@ -126,7 +127,7 @@ using System.Threading.Tasks;
 public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 ```
 
-Azure Functions 裝載環境會自動加入下列組件︰
+The following assemblies are automatically added by the Azure Functions hosting environment:
 
 * `mscorlib`,
 * `System`
@@ -137,21 +138,21 @@ Azure Functions 裝載環境會自動加入下列組件︰
 * `Microsoft.Azure.WebJobs.Host`
 * `Microsoft.Azure.WebJobs.Extensions`
 * `System.Web.Http`
-* `System.Net.Http.Formatting`。
+* `System.Net.Http.Formatting`.
 
-此外，下列組件為特殊案例，可以使用簡單名稱來參考 (例如 `#r "AssemblyName"`)：
+In addition, the following assemblies are special cased and may be referenced by simplename (e.g. `#r "AssemblyName"`):
 
 * `Newtonsoft.Json`
 * `Microsoft.WindowsAzure.Storage`
 * `Microsoft.ServiceBus`
 * `Microsoft.AspNet.WebHooks.Receivers`
-* `Microsoft.AspNEt.WebHooks.Common`。
+* `Microsoft.AspNEt.WebHooks.Common`.
 
-如果您需要參考私用組件，可以將組件檔案上傳至相對於您函式的 `bin` 資料夾並使用檔案名稱 (例如 `#r "MyAssembly.dll"`) 來參考它。如需如何將檔案上傳至函數資料夾的資訊，請參閱以下的＜封裝管理＞小節。
+If you need to reference a private assembly, you can upload the assembly file into a `bin` folder relative to your function and reference it by using the file name (e.g.  `#r "MyAssembly.dll"`). For information on how to upload files to your function folder, see the following section on package management.
 
-## 封裝管理
+## <a name="package-management"></a>Package management
 
-若要在 C# 函式中使用 NuGet 封裝，請將 project.json 檔案上傳至函式應用程式檔案系統中的函式資料夾。以下是範例 project.json 檔案，該檔案會加入對 Microsoft.ProjectOxford.Face 1.1.0 版的參考：
+To use NuGet packages in a C# function, upload a *project.json* file to the the function's folder in the function app's file system. Here is an example *project.json* file that adds a reference to Microsoft.ProjectOxford.Face version 1.1.0:
 
 ```json
 {
@@ -165,20 +166,20 @@ Azure Functions 裝載環境會自動加入下列組件︰
 }
 ```
 
-只支援 .NET Framework 4.6，因此請確認您的 project.json 檔案會指定 `net46`，如下所示。
+Only the .NET Framework 4.6 is supported, so make sure that your *project.json* file specifies `net46` as shown here.
 
-當您上傳 project.json 檔案時，執行階段會取得封裝並自動加入對封裝組件的參考。您不需要加入 `#r "AssemblyName"` 指示詞。只要將所需的 `using` 陳述式加入至 run.csx 檔案，即可使用 NuGet 封裝中定義的類型。
+When you upload a *project.json* file, the runtime gets the packages and automatically adds references to the package assemblies. You don't need to add `#r "AssemblyName"` directives. Just add the required `using` statements to your *run.csx* file to use the types defined in the NuGet packages.
 
 
-### 如何上傳 project.json 檔案
+### <a name="how-to-upload-a-project.json-file"></a>How to upload a project.json file
 
-1. 首先，在 Azure 入口網站中開啟您的函式，以確定函式應用程式正在執行中。
+1. Begin by making sure your function app is running, which you can do by opening your function in the Azure portal. 
 
-	這也可供存取將要顯示封裝安裝輸出的串流記錄檔。
+    This also gives access to the streaming logs where package installation output will be displayed. 
 
-2. 若要上傳 project.json 檔案，請使用 [Azure Functions 開發人員參考主題](functions-reference.md#fileupdate)中**如何更新函式應用程式檔案**一節所述的其中一個方法。
+2. To upload a project.json file, use one of the methods described in the **How to update function app files** section of the [Azure Functions developer reference topic](functions-reference.md#fileupdate). 
 
-3. 上傳 project.json 檔案之後，您會在函式的串流記錄檔中看到如下列範例所示的輸出：
+3. After the *project.json* file is uploaded, you see output like the following example in your function's streaming log:
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -197,9 +198,9 @@ Azure Functions 裝載環境會自動加入下列組件︰
 2016-04-04T19:02:57.455 Packages restored.
 ```
 
-## 環境變數
+## <a name="environment-variables"></a>Environment variables
 
-若要取得環境變數或應用程式設定值，請使用 `System.Environment.GetEnvironmentVariable`，如下列程式碼範例所示：
+To get an environment variable or an app setting value, use `System.Environment.GetEnvironmentVariable`, as shown in the following code example:
 
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log)
@@ -216,11 +217,11 @@ public static string GetEnvironmentVariable(string name)
 }
 ```
 
-## 重複使用 .csx 程式碼
+## <a name="reusing-.csx-code"></a>Reusing .csx code
 
-您可以在您的 run.csx 檔案中使用其他 .csx 檔案中定義的類別和方法。若要這樣做，請在您的 run.csx 檔案中使用 `#load` 指示詞，如下列範例所示。
+You can use classes and methods defined in other *.csx* files in your *run.csx* file. To do that, use `#load` directives in your *run.csx* file, as shown in the following example.
 
-範例 run.csx：
+Example *run.csx*:
 
 ```csharp
 #load "mylogger.csx"
@@ -232,7 +233,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 }
 ```
 
-範例 mylogger.csx：
+Example *mylogger.csx*:
 
 ```csharp
 public static void MyLogger(TraceWriter log, string logtext)
@@ -241,23 +242,28 @@ public static void MyLogger(TraceWriter log, string logtext)
 }
 ```
 
-您可以使用包含 `#load` 指示詞的相對路徑：
+You can use a relative path with the `#load` directive:
 
-* `#load "mylogger.csx"` 會載入位於函式資料夾中的檔案。
+* `#load "mylogger.csx"` loads a file located in the function folder.
 
-* `#load "loadedfiles\mylogger.csx"` 會載入位於函式資料夾的資料夾中的檔案。
+* `#load "loadedfiles\mylogger.csx"` loads a file located in a folder in the function folder.
 
-* `#load "..\shared\mylogger.csx"` 會載入位於與函式資料夾相同層級的資料夾中的檔案 (也就是在 wwwroot 的正下方)。
+* `#load "..\shared\mylogger.csx"` loads a file located in a folder at the same level as the function folder, that is, directly under *wwwroot*.
  
-`#load` 指示詞只適用於 .csx (C# 指令碼) 檔案，不適用於 .cs 檔案。
+The `#load` directive works only with *.csx* (C# script) files, not with *.cs* files. 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需詳細資訊，請參閱下列資源：
+For more information, see the following resources:
 
-* [Azure Functions 開發人員參考](functions-reference.md)
-* [Azure Functions NodeJS 開發人員參考](functions-reference-fsharp.md)
-* [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
-* [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
+* [Azure Functions developer reference](functions-reference.md)
+* [Azure Functions NodeJS developer reference](functions-reference-fsharp.md)
+* [Azure Functions NodeJS developer reference](functions-reference-node.md)
+* [Azure Functions triggers and bindings](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

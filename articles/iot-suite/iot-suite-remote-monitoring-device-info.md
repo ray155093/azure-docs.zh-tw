@@ -1,6 +1,6 @@
 <properties
- pageTitle="遠端監視方案中的裝置資訊中繼資料 | Microsoft Azure"
- description="說明 Azure IoT 預先設定解決方案遠端監視及其架構。"
+ pageTitle="Device information metadata in the remote monitoring solution | Microsoft Azure"
+ description="A description of the Azure IoT preconfigured solution remote monitoring and its architecture."
  services=""
  suite="iot-suite"
  documentationCenter=""
@@ -17,24 +17,25 @@
  ms.date="09/12/2016"
  ms.author="dobett"/>
 
-# 遠端監視預先設定方案中的裝置資訊中繼資料
 
-Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼資料的方法。本文將概述此方案為了讓您了解而採用的方法︰
+# <a name="device-information-metadata-in-the-remote-monitoring-preconfigured-solution"></a>Device information metadata in the remote monitoring preconfigured solution
 
-- 方案會儲存哪些裝置中繼資料。
-- 方案如何管理裝置中繼資料。
+The Azure IoT Suite remote monitoring preconfigured solution demonstrates an approach for managing device metadata. This article outlines the approach this solution takes to enable you to understand:
 
-## Context
+- What device metadata the solution stores.
+- How the solution manages the device metadata.
 
-遠端監視預先設定方案會使用 [Azure IoT 中樞][lnk-iot-hub]，讓您的裝置將資料傳送至雲端。IoT 中樞包括[裝置身分識別登錄][lnk-identity-registry]，可控制 IoT 中樞的存取。IoT 中樞裝置身分識別登錄與儲存裝置資訊中繼資料的遠端監視方案專用「裝置登錄」彼此獨立。遠端監視方案使用 [DocumentDB][lnk-docdb] 資料庫來實作其裝置登錄，以便儲存裝置資訊中繼資料。[Microsoft Azure IoT 參考架構][lnk-ref-arch]說明典型 IoT 方案中裝置登錄的角色。
+## <a name="context"></a>Context
 
-> [AZURE.NOTE] 遠端監視預先設定方案會讓裝置身分識別登錄與裝置登錄保持同步。兩者都使用相同的裝置識別碼來唯一識別連線到您的 IoT 中樞的每個裝置。
+The remote monitoring preconfigured solution uses [Azure IoT Hub][lnk-iot-hub] to enable your devices to send data to the cloud. IoT Hub includes a [device identity registry][lnk-identity-registry] to control access to IoT Hub. The IoT Hub device identity registry is separate from the remote monitoring solution-specific *device registry* that stores device information metadata. The remote monitoring solution uses a [DocumentDB][lnk-docdb] database to implement its device registry for storing device information metadata. The [Microsoft Azure IoT Reference Architecture][lnk-ref-arch] describes the role of the device registry in a typical IoT solution.
 
-[IoT 中樞裝置管理預覽][lnk-dm-preview]會將與本文中所述裝置資訊管理功能類似的功能新增到「IoT 中樞」。目前，遠端監視方案只使用「IoT 中樞」中的正式運作 (GA) 功能。
+> [AZURE.NOTE] The remote monitoring preconfigured solution keeps the device identity registry in sync with the device registry. Both use the same device id to uniquely identify each device connected to your IoT hub.
 
-## 裝置資訊中繼資料
+The [IoT Hub device management preview][lnk-dm-preview] adds features to IoT Hub that are similar to the device information management features described in this article. Currently, the remote monitoring solution only uses generally available (GA) features in IoT Hub.
 
-儲存在裝置登錄 DocumentDB 資料庫中的裝置資訊中繼資料 JSON 文件具有下列結構︰
+## <a name="device-information-metadata"></a>Device information metadata
+
+A device information metadata JSON document stored in the device registry DocumentDB database has the following structure:
 
 ```
 {
@@ -55,53 +56,53 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 }
 ```
 
-- **DeviceProperties**：裝置本身會寫入這些屬性，而且裝置是此資料的授權單位。其他範例裝置屬性包括製造商、型號及序號。
-- **DeviceID**︰唯一的裝置識別碼。此值在 IoT 中樞裝置身分識別登錄中相同。
-- **HubEnabledState**：IoT 中樞中裝置的狀態。此值一開始是設定為 **null**，直到裝置第一次連接為止。在方案入口網站中，**null** 值會以裝置「已註冊但不存在」來表示。
-- **CreatedTime**︰建立裝置的時間。
-- **DeviceState**︰裝置所回報的狀態。
-- **UpdatedTime**︰上次透過方案入口網站更新裝置的時間。
-- **SystemProperties**︰方案入口網站會寫入系統屬性，而裝置並不知道這些屬性。如果方案已獲授權並連接到負責管理已啟用 SIM 功能之裝置的服務，**ICCID** 便是一個範例系統屬性。
-- **Commands**：裝置支援的命令清單。裝置會提供這項資訊給方案。
-- **CommandHistory**︰遠端監視方案傳送給裝置的命令清單，以及這些命令的狀態。
-- **IsSimulatedDevice**︰將裝置識別為模擬裝置的旗標。
-- **id**︰此裝置文件的唯一 DocumentDB 識別碼。
+- **DeviceProperties**: The device itself writes these properties and the device is the authority for this data. Other example device properties include manufacturer, model number, and serial number. 
+- **DeviceID**: The unique device id. This value is the same in the IoT Hub device identity registry.
+- **HubEnabledState**: The status of the device in IoT Hub. This value is initially set to **null** until the device first connects. In the solution portal, a **null** value is represented as the device being "registered but not present."
+- **CreatedTime**: The time the device was created.
+- **DeviceState**: The state reported by the device.
+- **UpdatedTime**: The time the device was last updated through the solution portal.
+- **SystemProperties**: The solution portal writes the system properties and the device has no knowledge of these properties. An example system property is the **ICCID** if the solution is authorized with and connected to a service managing SIM-enabled devices.
+- **Commands**: A list of the commands the device supports. The device supplies this information to the solution.
+- **CommandHistory**: A list of the commands sent by the remote monitoring solution to the device and the status of those commands.
+- **IsSimulatedDevice**: A flag that identifies a device as a simulated device.
+- **id**: The unique DocumentDB identifier for this device document.
 
-> [AZURE.NOTE] 裝置訊息也可包含中繼資料，以描述裝置傳送給 IoT 中樞的遙測。遠端監視方案會使用此遙測中繼資料，來自訂儀表板顯示[動態遙測][lnk-dynamic-telemetry]的方式。
+> [AZURE.NOTE] Device information can also include metadata to describe the telemetry the device sends to IoT Hub. The remote monitoring solution uses this telemetry metadata to customize how the dashboard displays [dynamic telemetry][lnk-dynamic-telemetry].
 
-## 生命週期
+## <a name="lifecycle"></a>Lifecycle
 
-當您第一次在方案入口網站中建立裝置時，方案會在其裝置登錄中建立一個項目，如先前所示。大部分的資訊一開始都是虛設，而 **HubEnabledState** 會設定為 **null**。此時，方案也會在裝置身分識別登錄中為裝置建立一個項目，以產生裝置用來向「IoT 中樞」進行驗證的金鑰。
+When you first create a device in the solution portal, the solution creates an entry in its device registry as shown previously. Much of the information is initially stubbed out and the **HubEnabledState** is set to **null**. At this point, the solution also creates an entry for the device in the device identity registry, which generates the keys the device uses to authenticate with IoT Hub.
 
-當裝置第一次連接至方案時，它會傳送裝置資訊訊息。此裝置資訊訊息包括裝置屬性，例如裝置製造商、型號及序號。裝置資訊訊息也包含裝置支援的命令清單，其中包括任何命令參數的相關資訊。當方案收到此訊息時，它會更新裝置登錄中的裝置資訊中繼資料。
+When a device first connects to the solution, it sends a device information message. This device information message includes device properties such as the device manufacturer, model number, and serial number. A device information message also includes a list of the commands the device supports including information about any command parameters. When the solution receives this message, it updates the device information metadata in the device registry.
 
-### 在方案入口網站中檢視和編輯裝置資訊
+### <a name="view-and-edit-device-information-in-the-solution-portal"></a>View and edit device information in the solution portal
 
-方案入口網站中的裝置清單會將下列裝置屬性顯示為資料行︰[狀態]、[裝置識別碼]、[製造商]、[型號編號]、[序號]、[韌體]、[平台]、[處理器] 和 [已安裝的 RAM]。裝置屬性 [緯度] 和 [經度] 會支配儀表板上「Bing 地圖」中的位置。
+The device list in the solution portal displays the following device properties as columns: **Status**, **DeviceId**, **Manufacturer**, **Model Number**, **Serial Number**, **Firmware**, **Platform**, **Processor**, and **Installed RAM**. The device properties **Latitude** and **Longitude** drive the location in the Bing Map on the dashboard. 
 
-![裝置清單][img-device-list]
+![Device list][img-device-list]
 
-如果您在方案入口網站的 [裝置詳細資料] 窗格中按一下 [編輯]，便可以編輯上述所有屬性。編輯這些屬性會更新 DocumentDB 資料庫中的裝置記錄。不過，如果裝置傳送已更新的裝置資訊訊息，它就會覆寫在方案入口網站中所做的一切變更。您無法在方案入口網站中編輯 **DeviceId**、**Hostname**、**HubEnabledState**、**CreatedTime**、**DeviceState** 和 **UpdatedTime** 屬性，因為只有裝置對這些屬性具有權限。
+If you click **Edit** in the **Device Details** pane in the solution portal, you can edit all these properties. Editing these properties updates the record for the device in the DocumentDB database. However, if a device sends an updated device info message, it overwrites any changes made in the solution portal. You cannot edit the **DeviceId**, **Hostname**, **HubEnabledState**, **CreatedTime**, **DeviceState**, and **UpdatedTime** properties in the solution portal because only the device has authority over these properties.
 
-![裝置編輯][img-device-edit]
+![Device edit][img-device-edit]
 
-您可以使用方案入口網站，從您的方案中移除裝置。當您移除裝置時，方案會從方案裝置登錄中移除裝置資訊中繼資料，並移除 IoT 中樞裝置身分識別登錄中的裝置項目。您必須先停用裝置，才可以將它移除。
+You can use the solution portal to remove a device from your solution. When you remove a device, the solution removes the device information metadata from the solution device registry and removes the device entry in the IoT Hub device identity registry. Before you can remove a device, you must disable it.
 
-![裝置移除][img-device-remove]
+![Device remove][img-device-remove]
 
-## 裝置資訊訊息處理
+## <a name="device-information-message-processing"></a>Device information message processing
 
-裝置所傳送的裝置資訊訊息與遙測訊息不同。裝置資訊訊息包含裝置屬性、裝置可以回應的命令及任何命令歷程記錄等資訊。IoT 中樞本身不知道裝置資訊訊息中內含的中繼資料，它會以處理任何裝置對雲端訊息的相同方式處理訊息。在遠端監視方案中，[Azure 串流分析][lnk-stream-analytics] \(ASA) 作業會從「IoT 中樞」讀取訊息。**DeviceInfo** 串流分析作業會篩選包含 **"ObjectType":"DeviceInfo"** 的訊息，並將這些訊息轉送至在 Web 作業中執行的 **EventProcessorHost** 主機執行個體。**EventProcessorHost** 執行個體中的邏輯會使用裝置識別碼，來尋找特定裝置的 DocumentDB 記錄並更新該記錄。裝置登錄記錄現在包含裝置屬性、命令和命令歷程記錄等資訊。
+Device information messages sent by a device are distinct from telemetry messages. Device information messages include information such as device properties, the commands a device can respond to, and any command history. IoT Hub itself has no knowledge of the metadata contained in a device information message and processes the message in the same way it processes any device-to-cloud message. In the remote monitoring solution, an [Azure Stream Analytics][lnk-stream-analytics] (ASA) job reads the messages from IoT Hub. The **DeviceInfo** stream analytics job filters for messages that contain **"ObjectType": "DeviceInfo"** and forwards them to the **EventProcessorHost** host instance that runs in a web job. Logic in the **EventProcessorHost** instance uses the device id to find the DocumentDB record for the specific device and update the record. The device registry record now includes information such as device properties, commands, and command history.
 
-> [AZURE.NOTE] 裝置資訊訊息是標準的裝置對雲端訊息。方案會使用 ASA 查詢，以區分裝置資訊訊息與遙測訊息。
+> [AZURE.NOTE] A device information message is a standard device-to-cloud message. The solution distinguishes between device information messages and telemetry messages by using ASA queries.
 
-## 範例裝置資訊記錄
+## <a name="example-device-information-records"></a>Example device information records
 
-遠端監視預先設定方案會使用兩種裝置資訊記錄︰使用方案部署之模擬裝置的記錄，以及您連接至方案之自訂裝置的記錄。
+The remote monitoring preconfigured solution uses two types of device information records: records for the simulated devices deployed with the solution and records for the custom devices you connect to the solution.
 
-### 模擬裝置
+### <a name="simulated-device"></a>Simulated device
 
-下列範例顯示模擬裝置的 JSON 裝置資訊記錄。此記錄有一個針對 **UpdatedTime** 設定的值，這指出裝置已將 **DeviceInfo** 訊息傳送給「IoT 中樞」。此記錄除了包含一些常見的裝置屬性之外，也定義了模擬裝置所支援的六個命令，並將 **IsSimulatedDevice** 旗標設定為 **1**。
+The following example shows the JSON device information record for a simulated device. This record has a value set for **UpdatedTime**, which indicates the device has sent a **DeviceInfo** message to IoT Hub. The record includes some common device properties, defines the six commands the simulated devices support, and has the **IsSimulatedDevice** flag set to **1**.
 
 ```
 {
@@ -181,9 +182,9 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 }
 ```
 
-### 自訂裝置
+### <a name="custom-device"></a>Custom device
 
-下列範例顯示自訂裝置的 JSON 裝置資訊記錄，並將 **IsSimulatedDevice** 旗標設定為 **0**。您可以看到此自訂裝置支援兩個命令，而且方案入口網站已將 **SetTemperature** 命令傳送給裝置︰
+The following example shows the JSON device information record for a custom device and has the **IsSimulatedDevice** flag set to **0**. You can see that this custom device supports two commands and that the solution portal has sent a **SetTemperature** command to the device:
 
 ```
 {
@@ -244,7 +245,7 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 }
 ```
 
-以下顯示裝置所傳送來更新裝置資訊中繼資料的 JSON **DeviceInfo** 訊息︰
+The following shows the JSON **DeviceInfo** message the device sent to update the device information metadata:
 
 ```
 { "ObjectType":"DeviceInfo",
@@ -258,13 +259,13 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 }
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-現在您已完成了解如何自訂預先設定的解決方案，您可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
+Now you've finished learning how you can customize the preconfigured solutions, you can explore some of the other features and capabilities of the IoT Suite preconfigured solutions:
 
-- [預先設定的預防性維護解決方案概觀][lnk-predictive-overview]
-- [IoT 套件的常見問題集][lnk-faq]
-- [從頭建立 IoT 安全性][lnk-security-groundup]
+- [Predictive maintenance preconfigured solution overview][lnk-predictive-overview]
+- [Frequently asked questions for IoT Suite][lnk-faq]
+- [IoT security from the ground up][lnk-security-groundup]
 
 
 
@@ -274,7 +275,7 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 [img-device-remove]: media/iot-suite-remote-monitoring-device-info/image3.png
 
 [lnk-iot-hub]: https://azure.microsoft.com/documentation/services/iot-hub/
-[lnk-identity-registry]: ../iot-hub/iot-hub-devguide.md#device-identity-registry
+[lnk-identity-registry]: ../iot-hub/iot-hub-devguide-identity-registry.md
 [lnk-docdb]: https://azure.microsoft.com/documentation/services/documentdb/
 [lnk-ref-arch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 [lnk-stream-analytics]: https://azure.microsoft.com/documentation/services/stream-analytics/
@@ -285,4 +286,8 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 [lnk-faq]: iot-suite-faq.md
 [lnk-security-groundup]: securing-iot-ground-up.md
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="部署 StorSimple Virtual Array 的 StorSimple Manager 服務 | Microsoft Azure"
-   description="說明如何在 Azure 傳統入口網站中建立和刪除 StorSimple Manager 服務，並說明如何管理服務註冊金鑰。"
+   pageTitle="Deploy the StorSimple Manager service for StorSimple virtual array| Microsoft Azure"
+   description="Explains how to create and delete the StorSimple Manager service in the Azure classic portal, and describes how to manage the service registration key."
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,102 +15,107 @@
    ms.date="05/19/2016"
    ms.author="alkohli" />
 
-# 部署 StorSimple Virtual Array 的 StorSimple Manager 服務
 
-## 概觀
+# <a name="deploy-the-storsimple-manager-service-for-storsimple-virtual-array"></a>Deploy the StorSimple Manager service for StorSimple Virtual Array
 
-StorSimple Manager 服務可在 Microsoft Azure 中執行，並且連接至多個 StorSimple 裝置。建立服務之後，您可以使用服務從在瀏覽器中執行的 Microsoft Azure 傳統入口網站管理這些裝置。這可讓您從單一集中位置監視連線至 StorSimple Manager 服務的所有裝置，所以可以盡可能降低管理負擔。
+## <a name="overview"></a>Overview
 
-StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您可用來管理您的 StorSimple 儲存體裝置。針對每個 StorSimple Manager 服務，下列資訊會顯示在 StorSimple Manager 頁面上：
+The StorSimple Manager service runs in Microsoft Azure and connects to multiple StorSimple devices. After you create the service, you can use it to manage the devices from the Microsoft Azure classic portal running in a browser. This allows you to monitor all the devices that are connected to the StorSimple Manager service from a single, central location, thereby minimizing administrative burden.
 
-- **名稱** – 在建立時指派給您的 StorSimple Manager 服務的名稱。建立服務之後，無法變更服務名稱。
+The StorSimple Manager landing page lists all the StorSimple Manager services that you can use to manage your StorSimple storage devices. For each StorSimple Manager service, the following information is presented on the StorSimple Manager page:
 
-- **狀態** – 服務的狀態，可以是 [**作用中**]、[**建立**] 或是 [**線上**]。
+- **Name** – The name that was assigned to your StorSimple Manager service when it was created. The service name cannot be changed after the service is created.
 
-- **位置** – 部署 StorSimple 裝置所在的地理位置。
+- **Status** – The status of the service, which can be **Active**, **Creating**, or **Online**.
 
-- **訂用帳戶** – 與您的服務相關聯的計費訂用帳戶。
+- **Location** – The geographical location in which the StorSimple device will be deployed.
 
-可以透過 StorSimple Manager 頁面執行的一般工作包括：
+- **Subscription** – The billing subscription that is associated with your service.
 
-- 建立服務
-- 刪除服務
-- 取得服務註冊金鑰。
-- 重新產生服務註冊金鑰
+The common tasks that can be performed through the StorSimple Manager page are:
 
-本教學課程說明如何執行這些工作。本文所含資訊僅適用於 StorSimple Virtual Array。如需 StorSimple 8000 系列的詳細資訊，請移至[部署 StorSimple Manager 服務](storsimple-manage-service.md)。
+- Create a service
+- Delete a service
+- Get the service registration key
+- Regenerate the service registration key
 
-## 建立服務
+This tutorial describes how to perform each of these tasks. The information contained in this article is applicable only to StorSimple Virtual Arrays. For more information on StorSimple 8000 series, go to [deploy a StorSimple Manager service](storsimple-manage-service.md).
 
-如果您想要部署您的 StorSimple 裝置，使用 [**快速建立**] 選項來建立 StorSimple Manager 服務。若要建立服務，您需要：
+## <a name="create-a-service"></a>Create a service
 
-- 具有企業合約的訂用帳戶
-- 使用中的 Microsoft Azure 儲存體帳戶
-- 用於存取管理的計費資訊
+Use the **Quick Create** option to create a StorSimple Manager service if you want to deploy your StorSimple device. To create a service, you need to have:
 
-您也可以選擇在建立服務時產生預設儲存體帳戶。
+- A subscription with an Enterprise Agreement
+- An active Microsoft Azure storage account
+- The billing information that is used for access management
 
-單一服務可以管理多個裝置。不過，裝置不能跨越多個服務。大型企業可以擁有多個服務執行個體使用不同的訂用帳戶、組織或甚至是部署位置。
+You can also choose to generate a default storage account when you create the service.
 
-> [AZURE.NOTE] 您需要個別的 StorSimple Manager 服務執行個體來管理 StorSimple 8000 系列裝置和 StorSimple Virtual Array。
+A single service can manage multiple devices. However, a device cannot span multiple services. A large enterprise can have multiple service instances to work with different subscriptions, organizations, or even deployment locations.  
 
-執行下列步驟來建立服務。
+> [AZURE.NOTE] You need separate instances of StorSimple Manager service to manage StorSimple 8000 series devices and StorSimple Virtual Arrays.
+
+Perform the following steps to create a service.
 
 [AZURE.INCLUDE [storsimple-ova-create-new-service](../../includes/storsimple-ova-create-new-service.md)]
 
-## 刪除服務
+## <a name="delete-a-service"></a>Delete a service
 
-刪除服務之前，請確定沒有任何連接的裝置正在使用它。如果服務正在使用中，請停用連接的裝置。停用作業將會斷絕裝置與服務之間的連接，但是會保留雲端中的裝置資料。
+Before you delete a service, make sure that no connected devices are using it. If the service is in use, deactivate the connected devices. The deactivate operation will sever the connection between the device and the service, but preserve the device data in the cloud. 
 
-> [AZURE.IMPORTANT] 刪除服務之後，就無法回復此作業。
+> [AZURE.IMPORTANT] After a service is deleted, the operation cannot be reversed. 
 
-執行下列步驟來刪除服務。
+Perform the following steps to delete a service.
 
-### 刪除服務
+### <a name="to-delete-a-service"></a>To delete a service
 
-1. 在 [**StorSimple Manager 服務**] 頁面上，選取您要刪除的服務。
+1. On the **StorSimple Manager service** page, select the service that you wish to delete.
 
-1. 按一下頁面底部的 [**刪除**]。
+1. Click **Delete** at the bottom of the page.
 
-1. 在確認通知處按一下 [**是**]。刪除服務可能需要數分鐘的時間。
+1. Click **Yes** in the confirmation notification. It may take a few minutes for the service to be deleted.
 
-## 取得服務註冊金鑰。
+## <a name="get-the-service-registration-key"></a>Get the service registration key
 
-在您成功建立服務之後，您必須在 StorSimple 裝置註冊服務。若要註冊您的第一個 StorSimple 裝置，您必須使用服務註冊金鑰。若要使用現有的 StorSimple 服務註冊其他裝置，您需要註冊金鑰和服務資料加密金鑰 (在註冊期間於第一個裝置上產生)。如需服務資料加密金鑰的詳細資訊，請參閱[從本機 Web UI 取得服務資料加密金鑰](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)。
+After you have successfully created a service, you will need to register your StorSimple device with the service. To register your first StorSimple device, you will need the service registration key. To register additional devices with an existing StorSimple service, you will need both the registration key and the service data encryption key (which is generated on the first device during registration). For more information about the service data encryption key, see [Get the service data encryption key from the local web UI](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key). 
 
-執行下列步驟以取得服務註冊金鑰。
+Perform the following steps to get the service registration key.
 
 [AZURE.INCLUDE [storsimple-ova-get-service-registration-key](../../includes/storsimple-ova-get-service-registration-key.md)]
 
-將服務註冊金鑰保存在安全的位置。您需要這個金鑰，以及服務資料加密金鑰，才能對額外裝置註冊此服務。取得服務註冊金鑰之後，您必須透過 Windows PowerShell for StorSimple 介面設定裝置。
+Keep the service registration key in a safe location. You will need this key, as well as the service data encryption key, to register additional devices with this service. After obtaining the service registration key, you will need to configure your device through the Windows PowerShell for StorSimple interface.
 
-## 重新產生服務註冊金鑰
+## <a name="regenerate-the-service-registration-key"></a>Regenerate the service registration key
 
-如果您必須執行金鑰替換或服務系統管理員的清單已變更，則您必須重新產生服務註冊金鑰。當您重新產生金鑰時，新的金鑰僅用於註冊後續裝置。已註冊的裝置不會受到此程序影響。
+You will need to regenerate a service registration key if you are required to perform key rotation or if the list of service administrators has changed. When you regenerate the key, the new key is used only for registering subsequent devices. The devices that were already registered are unaffected by this process.
 
-執行下列步驟以重新產生服務註冊金鑰。
+Perform the following steps to regenerate a service registration key.
 
-### 重新產生服務註冊金鑰
+### <a name="to-regenerate-the-service-registration-key"></a>To regenerate the service registration key
 
-1. 在 [**StorSimple Manager 服務**] 頁面上，按一下 [**註冊金鑰**]。
+1. On the **StorSimple Manager service** page, click **Registration Key**.
 
-1. 在 [**服務註冊金鑰**] 對話方塊中，按一下 [**重新產生**]。
+1. In the **Service Registration Key** dialog box, click **Regenerate**.
 
-1. 您將會看見確認訊息。按一下 [**確定**] 繼續重新產生。
+1. You will see a confirmation message. Click **OK** to continue with the regeneration.
 
-1. 新的服務註冊金鑰隨即顯示。
+1. A new service registration key will appear.
 
-1. 複製這個金鑰並儲存，以對任何新的裝置註冊此服務。
+1. Copy this key and save it for registering any new devices with this service.
 
-1. 按一下核取圖示 ![核取圖示](./media/storsimple-ova-manage-service/image7.png) 以關閉此對話方塊。
+1. Click the check icon ![Check icon](./media/storsimple-ova-manage-service/image7.png) to close this dialog box.
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 深入了解[開始使用](storsimple-ova-deploy1-portal-prep.md) StorSimple Virtual Array。
-	
-- 深入了解[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
+- Learn how to [get started](storsimple-ova-deploy1-portal-prep.md) with a StorSimple virtual array.
+    
+- Learn how to [administer your StorSimple device](storsimple-ova-web-ui-admin.md).
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

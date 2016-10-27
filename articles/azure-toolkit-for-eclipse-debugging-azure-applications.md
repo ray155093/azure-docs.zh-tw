@@ -1,6 +1,6 @@
 <properties
-    pageTitle="在 Eclipse 中偵錯 Azure 應用程式"
-    description="使用 Eclipse 的 Azure 工具組深入了解偵錯 Azure 應用程式。"
+    pageTitle="Debugging Azure Applications in Eclipse"
+    description="Learn about the Debugging Azure Applications using the Azure Toolkit for Eclipse."
     services=""
     documentationCenter="java"
     authors="rmcmurray"
@@ -16,121 +16,128 @@
     ms.date="08/11/2016" 
     ms.author="robmcm"/>
 
+
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690949.aspx -->
 
-# 在 Eclipse 中偵錯 Azure 應用程式 #
+# <a name="debugging-azure-applications-in-eclipse"></a>Debugging Azure Applications in Eclipse #
 
-使用 Azure Toolkit for Eclipse，無論您的應用程式是在 Azure 或計算模擬器 (如果您使用 Windows 做為作業系統) 中執行，您都可以進行偵錯。下列影像顯示用來啟用遠端偵錯的 [偵錯] 內容對話方塊：
+Using the Azure Toolkit for Eclipse, you can debug your applications whether they are running in Azure, or in the compute emulator if you are using Windows as your operating system. The following image shows the **Debugging** properties dialog used to enable remote debugging:
 
 ![][ic719504]
 
-本教學課程假設您已成功建立應用程式，而且熟悉計算模擬器和部署到 Azure 的操作。
+This tutorial assumes you already have an application that has been successfully created, and are familiar with the compute emulator and deploying to Azure.
 
-我們將使用[在 JSP 中使用 Azure 服務執行階段程式庫][]教學課程中的應用程式做為本主題的起始點。如果您尚未建立該應用程式，請先建立應用程式後再繼續。
+We'll use the application from the [Using the Azure Service Runtime Library in JSP][] tutorial as the starting point for this topic. Before proceeding, create that application if you have not already done so.
 
-## 在應用程式於 Azure 中執行時偵錯 ##
+## <a name="to-debug-your-application-while-running-in-azure"></a>To debug your application while running in Azure ##
 
->[AZURE.WARNING] 此工具組目前支援遠端 Java 偵錯，主要是針對在 Azure 計算模擬器中執行的部署所提供。由於偵錯連線不安全，您不應在生產環境部署中啟用遠端偵錯。如果您需要偵錯在 Azure 雲端中執行的應用程式，請使用預備環境部署，但您必須了解如果有人知道您的雲端部署的 IP 位址，可能會在未經授權的情況下存取您的偵錯工作階段，即使是預備環境部署也一樣。
+>[AZURE.WARNING] The toolkit's current support for remote Java debugging is intended primarily for deployments running in the Azure compute emulator. Because the debugging connection is not secure, you should not enable remote debugging in production deployments. If you need to debug an application running in the Azure cloud, use a staging deployment, but realize that unauthorized access to your debug session is possible if someone knows the IP address of your cloud deployment, even if it is a staging deployment.
 
-1. 在模擬器中建置要測試的專案：在 Eclipse 的專案總管中，以滑鼠右鍵按一下 [MyAzureProject]，依序按一下 [內容]、[Azure]，將 [建置目的]設為 [部署至雲端]。
-1. 重建您的專案：從 Eclipse 功能表按一下 [專案]，然後按一下 [全部建置]。
-1. 將應用程式部署至 Azure 中的 [預備]。
-    >[AZURE.IMPORTANT] 如前所述，在大部分情況下，強烈建議您在計算模擬器中偵錯，只有需要額外的偵錯時，才在預備環境中偵錯。建議您不要在生產環境中偵錯。
-1. 當您在 Azure 的部署準備就緒後，請從 [Azure 管理入口網站][]取得部署的 DNS 名稱。預備環境部署的 DNS 名稱的格式如下：http://*&lt;guid&gt;*.cloudapp.net，其中 *&lt;guid&gt;* 是 Azure 指派的 GUID 值。
-1. 在 Eclipse 的專案總管中，於 [WorkerRole1] 上按一下滑鼠右鍵，按一下 [Azure]，然後按一下 [偵錯]。
-1. 在 [WorkerRole1 偵錯內容] 對話方塊中：
-    1. 核取 [啟用這個角色的遠端偵錯]。
-    1. 針對 [要使用的輸入端點]，使用 [偵錯 (public:8090, private:8090)]。
-    1. 確定未核取 [將 JVM 啟動在暫停模式，等候偵錯工具連線]。
-        >[AZURE.IMPORTANT] [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項僅適用於計算模擬器中的進階偵錯案例 (不適用於雲端部署)。如果使用 [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項，它會暫停伺服器的啟動程序，直到 Eclipse 偵錯工具連線到其 JVM 為止。雖然您可以在使用計算模擬器的偵錯工作階段使用此選項，但請勿將它使用在雲端部署的偵錯工作階段。伺服器的初始化是在 Azure 啟動工作中進行，而 Azure 雲端在啟動工作完成之前不會提供公用端點。因此，如果在雲端部署中啟用此選項，啟動程序將無法順利完成，因為它無法接收來自外部 Eclipse 用戶端的連線。
-    1. 按一下 [建立偵錯組態]。
-1. 在 [Azure 偵錯組態] 對話方塊中：
-    1. 針對 [要偵錯的 Java 專案]，選取 [MyHelloWorld] 專案。
-    1. 針對 [設定偵錯的對象]，核取 [Azure 雲端 (預備)]。
-    1. 確定未核取 [Azure 計算模擬器]。
-    1. 針對 [主機]，輸入預備部署的 DNS 名稱，但不含前面的 **http://**。例如 (使用您的 GUID 取代以下顯示的 GUID)：**4e616d65-6f6e-6d65-6973-526f62657274.cloudapp.net**
-1. 按一下 [確定] 關閉 [Azure 偵錯組態] 對話方塊。
-1. 按一下 [確定] 關閉 [WorkerRole1 偵錯內容] 對話方塊。
-1. 如果您尚未在 index.jsp 中設定中斷點，請設定一個：
-    1. 在 Eclipse 的專案總管中，依序展開 [MyHelloWorld]、[WebContent]，然後按兩下 [index.jsp]。
-    1. 在 index.jsp 中，以滑鼠右鍵按一下 Java 程式碼左側的藍色列，按一下 [切換中斷點]，如下所示：![][ic551537]
-1. 在 Eclipse 的功能表，按一下 [執行]，然後按一下 [偵錯組態]。
-1. 在 [偵錯組態] 對話方塊中，展開左窗格中的 [遠端 Java 應用程式]，選取 [Azure 雲端 (WorkerRole1)]，然後按一下 [偵錯]。
-1. 在瀏覽器中，執行預備應用程式 **http://***&lt;guid&gt;***.cloudapp.net/MyHelloWorld**，以您的 DNS 名稱中的 GUID 取代「&lt;guid&gt;」。如果 [確認檢視參數]** 對話方塊提示，按一下 [是]。您的偵錯工作階段現在應該執行到設定中斷點的程式碼。
+1. Build your project for testing in the emulator: In Eclipse's Project Explorer, right-click **MyAzureProject**, click **Properties**, click **Azure**, and set **Build for** to **Deployment to cloud**.
+1. Rebuild your project: From the Eclipse menu, click **Project**, then click **Build All**.
+1. Deploy your application to *staging* in Azure.
+    >[AZURE.IMPORTANT] As mentioned above, it is highly recommended that you debug in the compute emulator in most cases, then debug in the staging environment only if additional debugging is needed. It is recommended to not debug in the production environment.
+1. Once your deployment is ready in Azure, obtain the DNS name for the deployment from the [Azure Management Portal][]. A staging deployment has a DNS name in the form of http://*&lt;guid&gt;*.cloudapp.net, where *&lt;guid&gt;* is a GUID value assigned by Azure.
+1. In Eclipse's Project Explorer, right-click **WorkerRole1**, click **Azure**, and then click **Debugging**.
+1. In the **Properties for WorkerRole1 Debugging** dialog:
+    1. Check **Enable remote debugging for this role.**
+    1. For **Input endpoint to use**, use **Debugging (public:8090, private:8090)**.
+    1. Ensure **Start JVM in suspended mode, waiting for a debugger connection** is unchecked.
+        >[AZURE.IMPORTANT] The **Start JVM in suspended mode, waiting for a debugger connection** option is intended for advanced debugging scenarios in the compute emulator only (not for cloud deployments). If the **Start JVM in suspended mode, waiting for a debugger connection** option is used, it will suspend the server's startup process until the Eclipse debugger is connected to its JVM. While you could use this option for a debugging session using the compute emulator, do not use it for a debugging session in a cloud deployment. A server's initialization takes place in an Azure startup task, and the Azure cloud does not make public endpoints available until the startup task is completed. Hence, a startup process will not complete successfully if this option is enabled in a cloud deployment, because it will not be able to receive a connection from an external Eclipse client.
+1. Click **Create Debug Configurations**.
+1. In the **Azure Debug Configuration** dialog:
+    1. For **Java project to debug**, select the **MyHelloWorld** project.
+    1. For **Configure debugging for**, check **Azure cloud (staging)**.
+    1. Ensure **Azure compute emulator** is unchecked.
+    1. For **Host**, enter the DNS name of your staged deployment, but without the preceding **http://**. For example (use your GUID in place of the GUID shown here): **4e616d65-6f6e-6d65-6973-526f62657274.cloudapp.net**
+1. Click **OK** to close the **Azure Debug Configuration** dialog.
+1. Click **OK** to close the **Properties for WorkerRole1 Debugging** dialog.
+1. If you don't have a breakpoint already set in index.jsp, set it:
+    1. Within Eclipse's Project Explorer, expand **MyHelloWorld**, expand **WebContent**, and double-click **index.jsp**.
+    1. Within index.jsp, right-click in the blue bar to the left of your Java code and click **Toggle Breakpoints**, as shown in the following:  ![][ic551537]
+1. Within Eclipse's menu, click **Run** and then click **Debug Configurations**.
+1. In the **Debug Configurations** dialog, expand **Remote Java Application** in the left-hand pane, select **Azure Cloud (WorkerRole1)**, and click **Debug**.
+1. Within your browser, run your staged application, **http://***&lt;guid&gt;***.cloudapp.net/MyHelloWorld**, substituting the GUID from your DNS name for *&lt;guid&gt;*. If prompted by a **Confirm Perspective Switch** dialog box, click **Yes**. Your debug session should now execute to the line of code where the breakpoint was set.
 
->[AZURE.NOTE] 如果您嘗試和執行多個角色執行個體的部署開始一個遠端偵錯連線，您目前尚無法控制偵錯工具會先連線至哪一個執行個體，因為 Azure 負載平衡器會隨機選取執行個體。不過，一旦您與該執行個體連線後，您就會繼續偵錯相同的執行個體。另外請注意，如果閒置時間超過 4 分鐘 (例如，當您停在中斷點的時間太長時)，Azure 可能會關閉連線。
+>[AZURE.NOTE] If you're attempting to start a remote debugging connection to a deployment that has multiple role instances running, you cannot currently control which instance the debugger will be initially connected to, as the Azure load balancer will pick an instance at random. Once you're connected with that instance, though, you will continue debugging the same instance. Note also, if there is a period of inactivity of more than 4 minutes (for example, when you're stopped at a breakpoint for too long), Azure may close the connection.
 
-## 在多個執行個體的部署中偵錯特定的角色執行個體 ##
+## <a name="debugging-a-specific-role-instance-in-a-multi-instance-deployment"></a>Debugging a specific role instance in a multi-instance deployment ##
 
-當您的部署在雲端中執行時，您很有可能在多個計算或角色執行個體中執行它。這可讓您充分利用 Azure 99.95% 的可用性保證，並擴充您的應用程式。
+When your deployment is running in the cloud, you will most likely be running it in multiple compute, or role, instances. This enables you to take advantage of Azure 99.95% availability guarantee, and to scale out your application.
 
-在這種情況下，您可能需要在特定的角色執行個體中遠端偵錯您的 Java 應用程式。不過，如果您只啟用一個一般輸入端點來偵錯，Azure 負載平衡器會讓您幾乎無法將偵錯工具連線到特定的角色執行個體。它會改將您連線至其隨機挑選的角色執行個體。
+In such scenarios, you may need to remotely debug your Java application in a specific role instance. However, if you enable only a regular input endpoint for debugging, the Azure load balancer will make it virtually impossible for you to connect the debugger to a specific role instance. Instead it will connect you to a role instance that it picks at random.
 
-這是利用執行個體輸入端點來讓您更輕鬆地偵錯特定角色執行個體的案例類型。
+This is the type of scenario where taking advantage of instance input endpoints will make it easier for you to debug a specific role instance.
 
-例如，假設您計劃在您的部署中執行最多 5 個角色執行個體。使用角色內容對話方塊中的 [端點] 內容頁，建立一個執行個體輸入端點，並為其指派一個公用連接埠範圍，而不是單一連接埠號碼。例如，在 [公用連接埠] 輸入方塊中，指定 **81-85**。
+Let's say you plan to run up to 5 role instances of your deployment. Using the **Endpoints** property page in the role properties dialog, create an instance input endpoint and assign it a range of public ports, rather than a single port number. For example, in the **Public port** input box, specify **81-85**.
 
-使用這個執行個體端點部署您的應用程式之後，Azure 會從這個範圍指派一個唯一的連接埠號碼到每個角色執行個體。然後，為了找出執行個體被指派的連接埠號碼，您可以使用您的部署中的工具組自動設定的 InstanceEndpointName**\_PUBLICPORT** 環境變數 (其中的 InstanceEndpointName 是您建立執行個體端點時所指派的名稱) (例如，藉由在網頁的頁尾傳回其值，當您瀏覽至它時就可以讀取)。
+After you deploy your application with this instance endpoint, Azure will assign a unique port number from this range to each of the role instances. Then, in order to find out which instance got assigned which port number, you can use the *InstanceEndpointName***_PUBLICPORT** environment variable (where *InstanceEndpointName* is the name you assigned when you created the instance endpoint) automatically configured by the toolkit in your deployment (for example, by returning its value in the footer of a webpage, so you could read it when you browse to it).
 
-一旦您知道該執行個體被指派的公用連接埠號碼，您可以將它加到服務的主機名稱，以在 Eclipse 的偵錯組態中參考它。這會讓 Eclipse 偵錯工具連線至該特定執行個體，而不是任何其他的執行個體。
+Once you know what public port number that instance was assigned, you can reference it in your debug configuration in Eclipse, by affixing it to the host name of your service. This will enable the Eclipse debugger to connect to that specific instance, and not any of the other instances.
 
-## 僅限 Windows：在計算模擬器中執行應用程式時偵錯 ##
+## <a name="windows-only:-to-debug-your-application-while-running-in-the-compute-emulator"></a>Windows only: To debug your application while running in the compute emulator ##
 
->[AZURE.NOTE] Azure 模擬器只在 Windows 中提供。如果您使用 Windows 以外的作業系統，請略過本節。
+>[AZURE.NOTE] The Azure emulator is only available on Windows. Skip this section if you are using an operating system other than Windows. 
 
-1. 在模擬器中建置要測試的專案：在 Eclipse 的專案總管中，以滑鼠右鍵按一下 [MyAzureProject]，依序按一下 [內容]、[Azure]，將 [建置目的]設為 [在模擬器中測試]。
-1. 重建您的專案：從 Eclipse 功能表按一下 [專案]，然後按一下 [全部建置]。
-1. 在 Eclipse 的專案總管中，於 [WorkerRole1] 上按一下滑鼠右鍵，按一下 [Azure]，然後按一下 [偵錯]。
-1. 在 [WorkerRole1 偵錯內容] 對話方塊中：
-    1. 核取 [啟用這個角色的遠端偵錯]。
-    1. 針對 [要使用的輸入端點]，使用工具組自動產生的預設端點，列為 [偵錯 (public:8090, private:8090)]。
-    1. 確定未核取 [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項。
-        >[AZURE.IMPORTANT] [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項僅適用於計算模擬器中的進階偵錯案例 (不適用於雲端部署)。如果使用 [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項，它會暫停伺服器的啟動程序，直到 Eclipse 偵錯工具連線到其 JVM 為止。雖然您可以在使用計算模擬器的偵錯工作階段使用此選項，但請勿將它使用在雲端部署的偵錯工作階段。伺服器的初始化是在 Azure 啟動工作中進行，而 Azure 雲端在啟動工作完成之前不會提供公用端點。因此，如果在雲端部署中啟用此選項，啟動程序將無法順利完成，因為它無法接收來自外部 Eclipse 用戶端的連線。
-    1. 按一下 [建立偵錯組態]。
-1. 在 [Azure 偵錯組態] 對話方塊中：
-    1. 針對 [要偵錯的 Java 專案]，選取 [MyHelloWorld] 專案。
-    1. 針對 [設定偵錯的對象]，核取 [Azure 計算模擬器]。
-1. 按一下 [確定] 關閉 [Azure 偵錯組態] 對話方塊。
-1. 按一下 [確定] 關閉 [WorkerRole1 偵錯內容] 對話方塊。
-1. 在 index.jsp 中設定中斷點：
-    1. 在 Eclipse 的專案總管中，依序展開 [MyHelloWorld]、[WebContent]，然後按兩下 [index.jsp]。
-    1. 在 index.jsp 中，以滑鼠右鍵按一下 Java 程式碼左側的藍色列，按一下 [切換中斷點]，如下所示：![][ic551537]
+1. Build your project for testing in the emulator: In Eclipse's Project Explorer, right-click **MyAzureProject**, click **Properties**, click **Azure**, and set **Build for** to **Testing in emulator**.
+1. Rebuild your project: From the Eclipse menu, click **Project**, then click **Build All**.
+1. In Eclipse's Project Explorer, right-click **WorkerRole1**, click **Azure**, and then click **Debugging**.
+1. In the **Properties for WorkerRole1 Debugging** dialog:
+    1. Check **Enable remote debugging for this role.**
+    1. For **Input endpoint to use**, use the default endpoint automatically generated by the toolkit, listed as **Debugging (public:8090, private:8090)**.
+    1. Ensure the **Start JVM in suspended mode, waiting for a debugger connection** option is unchecked.
+        >[AZURE.IMPORTANT] The **Start JVM in suspended mode, waiting for a debugger connection** option is intended for advanced debugging scenarios in the compute emulator only (not for cloud deployments). If the **Start JVM in suspended mode, waiting for a debugger connection** option is used, it will suspend the server's startup process until the Eclipse debugger is connected to its JVM. While you could use this option for a debugging session using the compute emulator, do not use it for a debugging session in a cloud deployment. A server's initialization takes place in an Azure startup task, and the Azure cloud does not make public endpoints available until the startup task is completed. Hence, a startup process will not complete successfully if this option is enabled in a cloud deployment, because it will not be able to receive a connection from an external Eclipse client.
+1. Click **Create Debug Configurations**.
+1. In the **Azure Debug Configuration** dialog:
+    1. For **Java project to debug**, select the **MyHelloWorld** project.
+    1. For **Configure debugging for**, check **Azure compute emulator**.
+1. Click **OK** to close the **Azure Debug Configuration** dialog.
+1. Click **OK** to close the **Properties for WorkerRole1 Debugging** dialog.
+1. Set a breakpoint in index.jsp:
+    1. Within Eclipse's Project Explorer, expand **MyHelloWorld**, expand **WebContent**, and double-click **index.jsp**.
+    1. Within index.jsp, right-click in the blue bar to the left of your Java code and click **Toggle Breakpoints**, as shown in the following:  ![][ic551537]
 
-       如果您在 Java 程式碼左邊的藍色列內看到一個中斷點圖示，表示已設定中斷點。
-1. 按一下 Azure 工具列上的 [在 Azure 模擬器中執行] 按鈕，以在計算模擬器中啟動應用程式。
-1. 在 Eclipse 的功能表，按一下 [執行]，然後按一下 [偵錯組態]。
-1. 在 [偵錯組態] 對話方塊中，展開左窗格中的 [遠端 Java 應用程式]，選取 [Azure 模擬器 (WorkerRole1)]，然後按一下 [偵錯]。
-1. 在計算模擬器指出應用程式正在執行後，在您的瀏覽器中執行 **http://localhost:8080/MyHelloWorld**。如果 [確認檢視參數]** 對話方塊提示，按一下 [是]。您的偵錯工作階段現在應該執行到設定中斷點的程式碼。
+       A breakpoint is set if you see a breakpoint icon within the blue bar to the left of your Java code.
+1. Start the application in the compute emulator by clicking the **Run in Azure Emulator** button on the Azure toolbar.
+1. Within Eclipse's menu, click **Run** and then click **Debug Configurations**.
+1. In the **Debug Configurations** dialog, expand **Remote Java Application** in the left-hand pane, select **Azure Emulator (WorkerRole1)**, and click **Debug**.
+1. After the compute emulator indicates that your application is running, within your browser, run **http://localhost:8080/MyHelloWorld**.
+    If prompted by a **Confirm Perspective Switch** dialog box, click **Yes**.
+    Your debug session should now execute to the line of code where the breakpoint was set.
 
-這會告訴您如何在計算模擬器中偵錯；下一節說明如何偵錯部署至 Azure 的應用程式。
+This showed you how to debug in the compute emulator; the next section shows you how to debug an application deployed to Azure.
 
-## 偵錯注意事項 ##
+## <a name="debugging-notes"></a>Debugging Notes ##
 
-* 偵錯之後，您可以透過依序按一下 Eclipse 的功能表、[視窗]、[開啟檢視]，然後選取您要使用的檢視，即可將檢視從 [偵錯] 切換成 [Java]。
-* 若要在 GlassFish 中啟用遠端偵錯，請勿使用 Eclipse 的 Azure 工具組的遠端偵錯組態功能。請改為手動設定 GlassFish。由於 GlassFish 處理預先定義在環境變數中的 Java 選項的方式，此工具組的遠端偵錯組態功能無法正確搭配 GlassFish 使用。如果工具組的遠端偵錯組態功能已啟用，可能造成 GlassFish 無法啟動。
+* After debugging, you can switch the perspective from **Debug** to **Java** via clicking Eclipse's menu, by clicking **Window**, **Open Perspective**, and selecting the perspective that you want to use.
+* To enable remote debugging in GlassFish, do not use the remote debugging configuration feature of the Azure Toolkit for Eclipse. Instead configure GlassFish manually. Because of the way GlassFish treats Java options predefined in environment variables, the toolkit's remote debugging configuration feature does not work properly with GlassFish. If the toolkit's remote debugging configuration feature is enabled, it may prevent GlassFish from starting.
 
-## 另請參閱 ##
+## <a name="see-also"></a>See Also ##
 
-[適用於 Eclipse 的 Azure 工具組][]
+[Azure Toolkit for Eclipse][]
 
-[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式][]
+[Creating a Hello World Application for Azure in Eclipse][]
 
-[安裝適用於 Eclipse 的 Azure 工具組][]
+[Installing the Azure Toolkit for Eclipse][] 
 
-如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][]。
+For more information about using Azure with Java, see the [Azure Java Developer Center][].
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Azure 管理入口網站]: http://go.microsoft.com/fwlink/?LinkID=512959
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[安裝適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkId=699546
-[在 JSP 中使用 Azure 服務執行階段程式庫]: http://go.microsoft.com/fwlink/?LinkID=699551
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Using the Azure Service Runtime Library in JSP]: http://go.microsoft.com/fwlink/?LinkID=699551
 
 <!-- IMG List -->
 
 [ic719504]: ./media/azure-toolkit-for-eclipse-debugging-azure-applications/ic719504.png
 [ic551537]: ./media/azure-toolkit-for-eclipse-debugging-azure-applications/ic551537.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

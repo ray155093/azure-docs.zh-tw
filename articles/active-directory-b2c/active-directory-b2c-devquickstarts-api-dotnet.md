@@ -1,69 +1,70 @@
 <properties
-	pageTitle="Azure AD B2C | Microsoft Azure"
-	description="如何使用 Azure Active Directory B2C 建置 .NET Web API，並使用 OAuth 2.0 存取權杖進行驗證加以保護。"
-	services="active-directory-b2c"
-	documentationCenter=".net"
-	authors="dstrockis"
-	manager="msmbaldwin"
-	editor=""/>
+    pageTitle="Azure AD B2C | Microsoft Azure"
+    description="How to build a .NET Web API by using Azure Active Directory B2C, secured by using OAuth 2.0 access tokens for authentication."
+    services="active-directory-b2c"
+    documentationCenter=".net"
+    authors="dstrockis"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="hero-article"
-	ms.date="07/22/2016"
-	ms.author="dastrock"/>
+    ms.service="active-directory-b2c"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="dotnet"
+    ms.topic="hero-article"
+    ms.date="07/22/2016"
+    ms.author="dastrock"/>
 
-# Azure Active Directory B2C：建置 .NET Web API
+
+# <a name="azure-active-directory-b2c:-build-a-.net-web-api"></a>Azure Active Directory B2C: Build a .NET web API
 
 <!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-web-switcher](../../includes/active-directory-b2c-devquickstarts-web-switcher.md)]-->
 
-透過 Azure Active Directory (Azure AD) B2C，您可以使用 OAuth 2.0 存取權杖來保護 Web API。這些權杖可讓您的用戶端 app 使用 Azure AD B2C 來對 API 進行驗證。本文將說明如何建立 .NET Model-View-Controller (MVC)「待辦事項清單」API，以便使用者進行 CRUD 工作。Web API 會使用 Azure AD B2C 進行保護，只允許已驗證的使用者管理他們的待辦事項清單。
+With Azure Active Directory (Azure AD) B2C, you can secure a web API by using OAuth 2.0 access tokens. These tokens allow your client apps that use Azure AD B2C to authenticate to the API. This article shows you how to create a .NET Model-View-Controller (MVC) "to-do list" API that allows users to CRUD tasks. The web API is secured using Azure AD B2C and only allows authenticated users to manage their to-do list.
 
-## 建立 Azure AD B2C 目錄
+## <a name="create-an-azure-ad-b2c-directory"></a>Create an Azure AD B2C directory
 
-您必須先建立目錄或租用戶，才可使用 Azure AD B2C。目錄是適用於所有使用者、app、群組等項目的容器。如果您還沒有此資源，請先[建立 B2C 目錄](active-directory-b2c-get-started.md)，再繼續進行本指南。
+Before you can use Azure AD B2C, you must create a directory, or tenant. A directory is a container for all of your users, apps, groups, and more. If you don't have one already, [create a B2C directory](active-directory-b2c-get-started.md) before you continue in this guide.
 
-## 建立應用程式
+## <a name="create-an-application"></a>Create an application
 
-接著，您必須在 B2C 目錄中建立應用程式。這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。若要建立應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。請務必：
+Next, you need to create an app in your B2C directory. This gives Azure AD information that it needs to securely communicate with your app. To create an app, follow [these instructions](active-directory-b2c-app-registration.md). Be sure to:
 
-- 在應用程式中加入 **Web 應用程式**或 **Web API**。
-- 針對 Web 應用程式使用**重新導向的統一資源識別項** `https://localhost:44316/`。這是適用於此程式碼範例的 Web 應用程式用戶端的預設位置。
-- 複製指派給您的應用程式的**應用程式識別碼**。稍後您將會用到此資訊。
+- Include a **web app** or **web API** in the application.
+- Use the **redirect uniform resource identifier** `https://localhost:44316/` for the web app. This is the default location of the web app client for this code sample.
+- Copy the **application ID** that is assigned to your app. You'll need it later.
 
  [AZURE.INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
-## 建立您的原則
+## <a name="create-your-policies"></a>Create your policies
 
-在 Azure AD B2C 中，每個使用者經驗皆由[原則](active-directory-b2c-reference-policies.md)所定義。此程式碼範例中的用戶端包含三個身分識別使用體驗：註冊、登入和編輯設定檔。您必須為每個類型建立一個原則，如[原則參考文章](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy)中所述。建立您的三個原則時，請務必：
+In Azure AD B2C, every user experience is defined by a [policy](active-directory-b2c-reference-policies.md). The client in this code sample contains three identity experiences: sign up, sign in, and edit profile. You will need to create a policy for each type, as described in the [policy reference article](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy). When you create your three policies, be sure to:
 
-- 在身分識別提供者刀鋒視窗中，選擇 [使用者識別碼註冊] 或 [電子郵件註冊]。
-- 在註冊原則中，選擇 [顯示名稱] 和其他註冊屬性。
-- 針對每個原則選擇 [顯示名稱] 和 [物件識別碼] 宣告做為應用程式宣告。您也可以選擇其他宣告。
-- 建立每個原則後，請複製原則的 [名稱]。稍後您將需要這些原則名稱。
+- Choose either **User ID sign-up** or **Email sign-up** in the identity providers blade.
+- Choose **Display name** and other sign-up attributes in your sign-up policy.
+- Choose **Display name** and **Object ID** claims as application claims for every policy. You can choose other claims as well.
+- Copy the **Name** of each policy after you create it. You'll need these policy names later.
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-當您成功建立這三個原則之後，就可以開始建置您的 app。
+After you have successfully created the three policies, you're ready to build your app.
 
-## 下載程式碼
+## <a name="download-the-code"></a>Download the code
 
-本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet)。如要依照指示建置範例，請[下載 .zip 檔案格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/skeleton.zip)。您也可以複製基本架構：
+The code for this tutorial [is maintained on GitHub](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet). To build the sample as you go, you can [download a skeleton project as a .zip file](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/skeleton.zip). You can also clone the skeleton:
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet.git
 ```
 
-完整的應用程式也[提供 .zip 檔案格式](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/complete.zip)，或放在相同儲存機制的 `complete` 分支中。
+The completed app is also [available as a .zip file](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/complete.zip) or on the `complete` branch of the same repository.
 
-下載範例程式碼之後，請開啟 Visual Studio .sln 檔案開始進行。方案檔包含兩個專案：`TaskWebApp` 和 `TaskService`。`TaskWebApp` 是使用者所互動的 MVC Web 應用程式。`TaskService` 是應用程式的後端 Web API，其會儲存每位使用者的待辦事項清單。
+After you download the sample code, open the Visual Studio .sln file to get started. The solution file contains two projects: `TaskWebApp` and `TaskService`. `TaskWebApp` is an MVC web application that the user interacts with. `TaskService` is the app's back-end web API that stores each user's to-do list.
 
-## 設定工作 Web 應用程式
+## <a name="configure-the-task-web-app"></a>Configure the task web app
 
-使用者與 `TaskWebApp` 互動時，用戶端會傳送要求給 Azure AD，然後傳回可用於呼叫 `TaskService` Web API 的權杖。若要讓使用者登入並取得權杖，您必須提供應用程式的部分相關資訊給 `TaskWebApp`。在 `TaskWebApp` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值：您可以將 `AadInstance`、`RedirectUri` 和 `TaskServiceUrl` 值保留原狀。
+When a user interacts with `TaskWebApp`, the client sends requests to Azure AD and gets back tokens that can be used to call the `TaskService` web API. To sign in the user and get tokens, you need to provide `TaskWebApp` with some information about your app. In the `TaskWebApp` project, open the `web.config` file in the root of the project and replace the values in the `<appSettings>` section.  You can leave the `AadInstance`, `RedirectUri`, and `TaskServiceUrl` values as-is.
 
 ```
   <appSettings>
@@ -82,14 +83,14 @@ git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebAPI-Dot
   </appSettings>
 ```
 
-本文未涵蓋建置 `TaskWebApp` 用戶端。若要了解如何使用 Azure AD B2C 建置 Web 應用程式，請參閱 [.NET Web 應用程式教學課程](active-directory-b2c-devquickstarts-web-dotnet.md)。
+This article does not cover building the `TaskWebApp` client.  To learn how to build a web app using Azure AD B2C, see [our .NET web app tutorial](active-directory-b2c-devquickstarts-web-dotnet.md).
 
-## 保護 API
+## <a name="secure-the-api"></a>Secure the API
 
-當您已有可代替使用者呼叫 API 的用戶端時，您可以使用 OAuth 2.0 持有人權杖來保護 `TaskService`。您的 API 可以使用 Microsoft 的 Open Web Interface for .NET (OWIN) 程式庫來接受並驗證權杖。
+When you have a client that calls the API on behalf of users, you can secure `TaskService` by using OAuth 2.0 bearer tokens. Your API can accept and validate tokens by using Microsoft's Open Web Interface for .NET (OWIN) library.
 
-### 安裝 OWIN
-首先要安裝 OWIN OAuth 驗證管線：
+### <a name="install-owin"></a>Install OWIN
+Begin by installing the OWIN OAuth authentication pipeline:
 
 ```
 PM> Install-Package Microsoft.Owin.Security.OAuth -ProjectName TaskService
@@ -97,8 +98,8 @@ PM> Install-Package Microsoft.Owin.Security.Jwt -ProjectName TaskService
 PM> Install-Package Microsoft.Owin.Host.SystemWeb -ProjectName TaskService
 ```
 
-### 輸入 B2C 詳細資料
-開啟 `TaskService` 專案根目錄中的 `web.config` 檔案，取代 `<appSettings>` 區段中的值。這些值將用於整個 API 和 OWIN 程式庫。您可以讓 `AadInstance` 值保持不變。
+### <a name="enter-your-b2c-details"></a>Enter your B2C details
+Open the `web.config` file in the root of the `TaskService` project and replace the values in the `<appSettings>` section. These values will be used throughout the API and OWIN library.  You can leave the `AadInstance` value unchanged.
 
 ```
   <appSettings>
@@ -115,8 +116,8 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb -ProjectName TaskService
   </appSettings>
 ```
 
-### 新增 OWIN 啟動類別
-將 OWIN 啟動類別加入名為 `Startup.cs` 的 `TaskService` 專案。以滑鼠右鍵按一下專案、依序選取 [新增] 和 [新增項目]，然後搜尋 OWIN。
+### <a name="add-an-owin-startup-class"></a>Add an OWIN startup class
+Add an OWIN startup class to the `TaskService` project called `Startup.cs`.  Right-click on the project, select **Add** and **New Item**, and then search for OWIN.
 
 
 ```C#
@@ -125,7 +126,7 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb -ProjectName TaskService
 // Change the class declaration to "public partial class Startup" - we’ve already implemented part of this class for you in another file.
 public partial class Startup
 {
-	// The OWIN middleware will invoke this method when the app starts
+    // The OWIN middleware will invoke this method when the app starts
     public void Configuration(IAppBuilder app)
     {
         ConfigureAuth(app);
@@ -133,8 +134,8 @@ public partial class Startup
 }
 ```
 
-### 設定 OAuth 2.0 驗證
-開啟檔案 `App_Start\Startup.Auth.cs` 並實作 `ConfigureAuth(...)` 方法：
+### <a name="configure-oauth-2.0-authentication"></a>Configure OAuth 2.0 authentication
+Open the file `App_Start\Startup.Auth.cs`, and implement the `ConfigureAuth(...)` method:
 
 ```C#
 // App_Start\Startup.Auth.cs
@@ -174,8 +175,8 @@ public partial class Startup
 }
 ```
 
-### 保護工作控制器
-將應用程式設定為使用 OAuth 2.0 驗證之後，只需將 `[Authorize]` 標記加入工作控制器，就能保護您的 Web API。所有的待辦事項清單操作都會在此控制器中進行，因此您應該在類別層級上保護整個控制器。您也可以將 `[Authorize]` 標記加入個別的動作，以進行更細微的控制。
+### <a name="secure-the-task-controller"></a>Secure the task controller
+After the app is configured to use OAuth 2.0 authentication, you can secure your web API by adding an `[Authorize]` tag to the task controller. This is the controller where all to-do list manipulation takes place, so you should secure the entire controller at the class level. You can also add the `[Authorize]` tag to individual actions for more fine-grained control.
 
 ```C#
 // Controllers\TasksController.cs
@@ -183,31 +184,31 @@ public partial class Startup
 [Authorize]
 public class TasksController : ApiController
 {
-	...
+    ...
 }
 ```
 
-### 從權杖取得使用者資訊
-`TasksController` 會將工作儲存在資料庫中，而每個工作都有一個「擁有」此工作的相關聯使用者。擁有者是藉由使用者的**物件識別碼**來識別(這就是為什麼您需要在所有原則中新增物件識別碼以做為應用程式宣告的原因)。
+### <a name="get-user-information-from-the-token"></a>Get user information from the token
+`TasksController` stores tasks in a database where each task has an associated user who "owns" the task. The owner is identified by the user's **object ID**. (This is why you needed to add the object ID as an application claim in all of your policies.)
 
 ```C#
 // Controllers\TasksController.cs
 
 public IEnumerable<Models.Task> Get()
 {
-	string owner = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
-	IEnumerable<Models.Task> userTasks = db.Tasks.Where(t => t.owner == owner);
-	return userTasks;
+    string owner = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+    IEnumerable<Models.Task> userTasks = db.Tasks.Where(t => t.owner == owner);
+    return userTasks;
 }
 ```
 
-## 執行範例應用程式
+## <a name="run-the-sample-app"></a>Run the sample app
 
-最後，請建置並執行 `TaskWebApp` 和 `TaskService`。使用電子郵件地址或使用者名稱來註冊應用程式。在使用者的待辦事項清單中建立一些工作，觀察即使停止並重新啟動用戶端之後，這些工作仍持續存在 API 中。
+Finally, build and run both `TaskWebApp` and `TaskService`. Sign up for the app by using an email address or username. Create some tasks on the user's to-do list and notice how they are persisted in the API even after you stop and restart the client.
 
-## 編輯您的原則
+## <a name="edit-your-policies"></a>Edit your policies
 
-在您使用 Azure AD B2C 來保護 API 之後，就可以測試應用程式的原則，並檢視對 API 產生的效果 (或沒有效果)。您可以操作原則中的應用程式宣告，然後變更 Web API 中可用的使用者資訊。如本文先前所述，您加入的任何宣告都可在 `ClaimsPrincipal` 物件中供您的 .NET MVC Web API 使用。
+After you have secured an API by using Azure AD B2C, you can experiment with your app's policies and view the effects (or lack thereof) on the API. You can manipulate the application claims in the policies and change the user information that is available in the web API. Any claims that you add will be available to your .NET MVC web API in the `ClaimsPrincipal` object, as described earlier in this article.
 
 <!--
 
@@ -221,4 +222,8 @@ You can now move onto more advanced B2C topics. You may try:
 
 -->
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

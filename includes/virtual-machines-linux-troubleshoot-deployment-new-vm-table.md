@@ -1,6 +1,11 @@
-下表列出 Linux 一般化和特殊化作業系統映像可能的上傳和擷取組合。將正確處理沒有任何錯誤的組合以 Y 表示，而將擲回錯誤的組合會以 N 表示。下表說明遇到不同錯誤的原因和解決辦法。
+The following table lists the possible upload and capture combinations of Linux generalized and specialized OS images. The combinations that will process without any errors are indicated by a Y, and those that will throw errors are indicated by an N. The causes and resolutions for the different errors you will run into are given below the table.
 
-| 作業系統 | 上傳特殊化 | 上傳一般化 | 擷取特殊化 | 擷取一般化 |
+| OS            | Upload spec. | Upload gen. | Capture spec. | Capture gen. |
 |---------------|--------------|-------------|---------------|--------------|
-| Linux 一般化 | N<sup>1</sup> | Y | N<sup>3</sup> | Y |
-| Linux 特殊化 | Y | N<sup>2</sup> | Y | N<sup>4</sup> |
+| Linux gen.  | N<sup>1</sup>            | Y           | N<sup>3</sup>             | Y            |
+| Linux spec. | Y            | N<sup>2</sup>           | Y             | N<sup>4</sup>            |
+
+
+<!--HONumber=Oct16_HO2-->
+
+

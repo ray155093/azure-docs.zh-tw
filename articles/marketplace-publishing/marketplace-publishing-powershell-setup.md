@@ -1,6 +1,6 @@
 <properties
-   pageTitle="設定 PowerShell 以建立 Marketplace 的 VM | Microsoft Azure"
-   description="設定 Azure PowerShell 的指示，可做為選擇性處理流程來建立要部署至 Azure Marketplace 並在其上銷售的 VM 映像"
+   pageTitle="Set up PowerShell to create a VM for the Marketplace | Microsoft Azure"
+   description="Instructions for setting up Azure PowerShell and using it as an optional process flow to create VM images to deploy to, and sell on, the Azure Marketplace"
    services="marketplace-publishing"
    documentationCenter=""
    authors="HannibalSII"
@@ -16,18 +16,23 @@
    ms.date="02/04/2016"
    ms.author="hascipio"/>
 
-# 設定 Azure PowerShell 以在 Azure Marketplace 上建立供應項目
-如需如何設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)。簡單的方式就是使用憑證方法，該方法會下載並匯入驗證所需的憑證。若要取得所需的憑證，請使用 **Get-AzurePublishSettingsFile** Cmdlet。出現系統提示時儲存檔案。若要將憑證匯入 PowerShell 工作階段，請使用 **Import-AzurePublishSettingsFile** Cmdlet。
 
-若要設定及儲存 PowerShell 工作階段的一般 Microsoft Azure 訂用帳戶設定，請使用 **Set-AzureSubscription** 和 **Select-AzureSubscription** Cmdlet：
+# <a name="set-up-azure-powershell-to-create-an-offer-for-the-azure-marketplace"></a>Set up Azure PowerShell to create an offer for the Azure Marketplace
+For detailed information on how to set up PowerShell in Azure, see [How to install and configure Azure PowerShell](../powershell-install-configure.md). A simple approach is to use the certificate method, which downloads and imports a certificate needed for authentication. To obtain the needed certificate, use the **Get-AzurePublishSettingsFile** cmdlet. Save the file when you're prompted. To import the certificate into a PowerShell session, use the **Import-AzurePublishSettingsFile** cmdlet.
+
+To configure and store the common Microsoft Azure subscription settings for the PowerShell session, use the **Set-AzureSubscription** and **Select-AzureSubscription** cmdlets:
 
         Set-AzureSubscription -SubscriptionName “mySubName” -CurrentStorageAccountName “mystorageaccount”
         Select-AzureSubscription -SubscriptionName "mySubName" –Current
 
-第一個命令會讓預設儲存體帳戶與訂用帳戶 (有些 VM 佈建作業所需) 產生關聯。第二個命令會讓訂用帳戶成為目前的訂用帳戶 (由其他 Cmdlet 辨識)。
+The first command associates a default storage account with the subscription (needed for some VM provisioning operations).  The second makes the subscription the current one (recognized by other cmdlets).
 
-## 另請參閱
-- [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
-- [建立 Marketplace 的虛擬機器映像](marketplace-publishing-vm-image-creation.md)
+## <a name="see-also"></a>See also
+- [Getting started: How to publish an offer to the Azure Marketplace](marketplace-publishing-getting-started.md)
+- [Creating a virtual machine image for the Marketplace](marketplace-publishing-vm-image-creation.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

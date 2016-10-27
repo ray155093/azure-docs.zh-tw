@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure SQL 資料庫索引建議程式" 
-   description="Azure SQL Database 建議程式會提供可改善現有 SQL Database 查詢效能的建議。" 
+   pageTitle="Azure SQL Database Advisor" 
+   description="The Azure SQL Database Advisor provides recommendations for your existing SQL Databases that can improve current query performance." 
    services="sql-database" 
    documentationCenter="" 
    authors="stevestein" 
@@ -13,67 +13,75 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management" 
-   ms.date="06/23/2016"
+   ms.date="09/30/2016"
    ms.author="sstein"/>
 
-# SQL Database 建議程式
+
+# <a name="sql-database-advisor"></a>SQL Database Advisor
 
 > [AZURE.SELECTOR]
-- [SQL Database 建議程式概觀](sql-database-advisor.md)
-- [入口網站](sql-database-advisor-portal.md)
+- [SQL Database Advisor Overview](sql-database-advisor.md)
+- [Portal](sql-database-advisor-portal.md)
 
-Azure SQL Database 提供建立和卸除索引、參數化查詢，以及修正結構描述問題的建議。SQL Database 建議程式會藉由分析 SQL 資料庫的使用狀況歷程記錄，來評估效能。建議採用最適合用於執行您的資料庫之一般工作負載的建議事項。
+Azure SQL Database learns and adapts with your application and provides customized recommendations enabling you to maximize the performance of your SQL databases. The SQL Database Advisor provides recommendations for creating and dropping indexes, parameterizing queries, and fixing schema issues. The advisor assesses performance by analyzing your SQL database's usage history. The recommendations that are best suited for running your database’s typical workload are recommended. 
 
-下列建議可供 V12 伺服器使用 (建議無法供 V11 伺服器使用)。您目前可以設定要自動套用建立和卸除索引建議，如需詳細資訊，請參閱[自動索引管理](sql-database-advisor-portal.md#enable-automatic-index-management)。
+The following recommendations are available for V12 servers (recommendations are not available for V11 servers). Currently you can set the create and drop index recommendations to be applied automatically, see [Automatic index management](sql-database-advisor-portal.md#enable-automatic-index-management) for details.
 
-## 建立索引建議 
+## <a name="create-index-recommendations"></a>Create Index recommendations 
 
-當 SQL Database 服務偵測到遺漏的索引，而如果建立索引會對您的資料庫工作負載有益 (僅限非叢集索引)，即會出現**建立索引**建議。
+**Create Index** recommendations appear when the SQL Database service detects a missing index that if created, can benefit your databases workload (non-clustered indexes only).
 
-## 卸除索引建議
+## <a name="drop-index-recommendations"></a>Drop Index recommendations
 
-當 SQL Database 服務偵測到重複的索引 (目前處於預覽狀態並且僅適用重複的索引)，即會出現**卸除索引**建議。
+**Drop Index** recommendations appear when the SQL Database service detects duplicate indexes (currently in preview and applies to duplicate indexes only).
 
-## 參數化查詢建議
+## <a name="parameterize-queries-recommendations"></a>Parameterize queries recommendations
 
-當 SQL Database 服務偵測到您有一或多個查詢不斷被重新編譯，但結果都是相同的查詢執行計畫時，即會出現**參數化查詢**建議。這樣可讓您套用強制參數化，將查詢計劃加入快取，並在未來重複使用，改善效能並減少資源使用量。
+**Parameterize queries** recommendations appear when you have one or more queries that are constantly being recompiled but end up with the same query execution plan. This condition opens up an opportunity to apply forced parameterization, which will allow query plans to be cached and reused in the future improving performance and reducing resource usage. 
 
-針對 SQL Server 發出的每個查詢一開始需要重新編譯，才能產生將用來執行查詢的執行計畫。每個產生的計畫都會加入至計畫快取，而相同查詢的後續執行可以從快取中重複使用這個計畫，而不需要進一步編譯。
+Every query issued against SQL Server initially needs to be compiled to generate an execution plan. Each generated plan is added to the plan cache and subsequent executions of the same query can reuse this plan from the cache, eliminating the need for additional compilation. 
 
-如果應用程式所傳送查詢包含非參數化的值，則該應用程式會導致效能額外負荷，其中會針對每個這類具有不同參數值的查詢，再次編譯執行計畫。在許多情況下，具有不同參數值的相同查詢都會產生相同執行計畫，但這些計畫仍會個別加入至計畫快取。這些重新編譯會使用資料庫資源、增加查詢持續時間，以及造成計畫快取溢位，因而導致系統從快取中回收計畫。您可以在資料庫上設定強制參數化選項，來改變這個 SQL Server 行為。
+Applications that send queries, which include non-parameterized values, can lead to a performance overhead, where for every such query with different parameter values the execution plan is compiled again. In many cases the same queries with different parameter values generate the same execution plans, but these plans are still separately added to the plan cache. Recompiling execution plans use database resources, increase the query duration time and overflow the plan cache causing plans to be evicted from the cache. This behavior of SQL Server can be altered by setting the forced parameterization option on the database. 
 
-為了協助您評估此建議的影響，我們提供了實際 CPU 使用量和預計 CPU 使用量 (如同已套用建議) 之間的比較。除了可節省 CPU 之外，您的查詢持續期間將會降低花費在編譯的時間。這也可讓計畫快取中的額外負荷降低不少，讓大多數的計畫可以保留在快取中並重複使用。您可以按一下 [套用] 命令，快速且輕鬆地套用此建議。
+To help you estimate the impact of this recommendation, you are provided with a comparison between the actual CPU usage and the projected CPU usage (as if the recommendation was applied). In addition to CPU savings, your query duration decreases for the time spent in compilation. There will also be much less overhead on plan cache, allowing majority of the plans to stay in cache and be reused. You can apply this recommendation quickly and easily by clicking on the **Apply** command. 
 
-一旦套用此建議之後，它將在幾分鐘內於您的資料庫上啟用強制參數化，而它將開始監視程序，此程序大約會持續 24 小時。經過這段期間之後，您就能看到驗證報告，其中顯示資料庫在套用建議前後 24 小時的 CPU 使用量。SQL Database 建議程式有一項安全機制，會在偵測到效能變差時，自動還原套用的建議。
+Once you apply this recommendation, it will enable forced parameterization within minutes on your database and it starts the monitoring process which approximately lasts for 24 hours. After this period, you will be able to see the validation report that shows CPU usage of your database 24 hours before and after the recommendation has been applied. SQL Database Advisor has a safety mechanism that automatically reverts the applied recommendation in case a performance regression has been detected.
 
-## 修正結構描述問題建議
+## <a name="fix-schema-issues-recommendations"></a>Fix schema issues recommendations
 
-當 SQL Database 服務注意到 Azure SQL Database上發生結構描述數目異常狀況相關的 SQL 錯誤時，即會出現**修正結構描述問題**建議。您的資料庫在一小時內遇到多個結構描述相關的錯誤時 (無效的資料行名稱、無效的物件名稱等)，通常會出現此建議。
+**Fix schema issues** recommendations appear when the SQL Database service notices an anomaly in the number of schema-related SQL errors happening on your Azure SQL Database. This recommendation typically appears when your database encounters multiple schema-related errors (invalid column name, invalid object name, etc.) within an hour.
 
-「結構描述問題」是 SQL Server 中一個語法錯誤的類別，當 SQL 查詢定義與資料庫結構描述定義不符 (例如，查詢預期的其中一個資料行可能在目標資料表中遺失) 時即會發生此問題。
+“Schema issues” are a class of syntax errors in SQL Server that happen when the definition of the SQL query and the definition of the database schema are not aligned. For example, one of the columns expected by the query may be missing in the target table, or vice versa. 
 
-當 Azure SQL Database 服務注意到 Azure SQL Database 上發生結構描述數目異常狀況相關的 SQL 錯誤時，即會出現「修正結構描述問題」建議。下表顯示與結構描述問題相關的錯誤：
+“Fix schema issue” recommendation appears when Azure SQL Database service notices an anomaly in the number of schema-related SQL errors happening on your Azure SQL Database. The following table shows the errors that are related to schema issues:
 
-|SQL 錯誤碼|訊息|
+|SQL Error Code|Message|
 |--------------|-------|
-|201|程序或函數 '' 必須有參數 ''，但未提供。|
-|207|無效的資料行名稱 '*'。|
-|208|無效的物件名稱 '*'。 |
-|213|資料行名稱或提供的數值數量與資料表定義不相符。 |
-|2812|找不到預存程序 ' *'。 |
-|8144|程序或函數 * 指定了太多的引數。 |
+|201|Procedure or function '*' expects parameter '*', which was not supplied.|
+|207|Invalid column name '*'.|
+|208|Invalid object name '*'. |
+|213|Column name or number of supplied values does not match table definition. |
+|2812|Could not find stored procedure '*'. |
+|8144|Procedure or function * has too many arguments specified. |
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-監視建議，並繼續套用建議以改善效能。資料庫工作負載會動態地持續變更。SQL Database 建議程式會繼續監視並提供可能改善資料庫效能的建議。
+Monitor your recommendations and continue to apply them to refine performance. Database workloads are dynamic and change continuously. SQL Database advisor continues to monitor and provide recommendations that can potentially improve your database's performance. 
 
- - 如需如何在 Azure 入口網站中使用 SQL Database 建議程式的步驟，請參閱 [Azure 入口網站中的 SQL Database 建議程式](sql-database-advisor-portal.md)。
- - 請參閱[查詢效能深入解析](sql-database-query-performance.md)，以了解如何檢視排名最前面查詢的效能影響。
+ - See [SQL Database Advisor in the Azure portal](sql-database-advisor-portal.md) for steps on how to use SQL Database Advisor in the Azure portal.
+ - See [Query Performance Insights](sql-database-query-performance.md) to learn about and view the performance impact of your top queries.
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-- [查詢存放區](https://msdn.microsoft.com/library/dn817826.aspx)
+- [Query Store](https://msdn.microsoft.com/library/dn817826.aspx)
 - [CREATE INDEX](https://msdn.microsoft.com/library/ms188783.aspx)
-- [角色型存取控制](../active-directory/role-based-access-control-configure.md)
+- [Role-based access control](../active-directory/role-based-access-control-configure.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

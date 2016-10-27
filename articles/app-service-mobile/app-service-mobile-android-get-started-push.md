@@ -1,83 +1,94 @@
 <properties
-	pageTitle="使用 Azure 行動應用程式將推播通知新增至 Android 應用程式"
-	description="了解如何使用 Azure 行動應用程式將推播通知傳送至 Android 應用程式。"
-	services="app-service\mobile"
-	documentationCenter="android"
-	manager="erikre"
-	editor=""
-	authors="RickSaling"/>
+    pageTitle="Add Push Notifications to Android App with Azure  Mobile Apps"
+    description="Learn how to use Azure Mobile Apps to send push notifications to your Android app."
+    services="app-service\mobile"
+    documentationCenter="android"
+    manager="erikre"
+    editor=""
+    authors="yuaxu"/>
 
 <tags
-	ms.service="app-service-mobile"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-android"
-	ms.devlang="java"
-	ms.topic="article"
-	ms.date="07/21/2016"
-	ms.author="ricksal"/>
+    ms.service="app-service-mobile"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-android"
+    ms.devlang="java"
+    ms.topic="article"
+    ms.date="10/01/2016"
+    ms.author="yuaxu"/>
 
-# 將推播通知新增至 Android 應用程式
+
+# <a name="add-push-notifications-to-your-android-app"></a>Add Push Notifications to your Android App
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-## 概觀
-在本教學課程中，您會將推播通知新增至 [Android 快速入門]專案，以便在每次插入一筆記錄時傳送推播通知。本教學課程以 [Android 快速入門]教學課程為基礎，您必須先完成該教學課程。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+## <a name="overview"></a>Overview
+This tutorial shows you how to add push notifications to the [Android quick start] project so that every time a record is inserted, a push notification is sent. This tutorial is based on the [Android quick start] tutorial, which you must complete first. If you do not use the downloaded quick start server project, you must add the push notification extension package to your project. For more information about server extension packages, see [Work with the .NET backend server SDK for Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
-##必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-若要完成此教學課程，您需要下列項目：
+The following items are needed to complete this tutorial:
 
-* 具有已驗證電子郵件地址的 [Google 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=268302)。
-* [Visual Studio Community 2013](https://go.microsoft.com/fwLink/p/?LinkID=391934) &mdash; Node.js 後端專案則不需要。
-* 完成[快速入門教學課程](app-service-mobile-android-get-started.md)。
+* [Google account](http://go.microsoft.com/fwlink/p/?LinkId=268302) with a verified email address.
 
-##<a name="create-hub"></a>建立通知中樞
+* An IDE depending on your project's backend:
+
+    * [Android Studio](https://developer.android.com/sdk/index.html) if this app has a Node.js backend.
+
+    * [Visual Studio Community 2013](https://go.microsoft.com/fwLink/p/?LinkID=391934) or later if this app has a .Net backend.
+
+* Complete the [quickstart tutorial](app-service-mobile-android-get-started.md).
+
+## <a name="create-a-project-that-supports-firebase-cloud-messaging"></a>Create a project that supports Firebase Cloud Messaging
+
+[AZURE.INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
+
+## <a name="create-a-notification-hub"></a>Create a Notification Hub
 
 [AZURE.INCLUDE [app-service-mobile-create-notification-hub](../../includes/app-service-mobile-create-notification-hub.md)]
 
-## 啟用 Google 雲端通訊
+## <a name="configure-the-mobile-app-backend-for-sending-push-requests"></a>Configure the Mobile App backend for sending push requests
 
-[AZURE.INCLUDE [mobile-services-enable-google-cloud-messaging](../../includes/mobile-engagement-enable-google-cloud-messaging.md)]
+[AZURE.INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push-for-firebase.md)]
 
-##設定行動應用程式後端以傳送推送要求
-
-[AZURE.INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push.md)]
-
-##<a id="update-service"></a>更新伺服器專案以傳送推播通知
+## <a name="enable-push-notifications-for-the-server-project"></a>Enable push notifications for the server project
 
 [AZURE.INCLUDE [app-service-mobile-dotnet-backend-configure-push-google](../../includes/app-service-mobile-dotnet-backend-configure-push-google.md)]
 
-## 將推播通知新增至應用程式
+## <a name="add-push-notifications-to-your-app"></a>Add push notifications to your app
 
-您必須確認自己的 Android 應用程式專案能夠處理推播通知。
+In this section, you enable your Android app project to handle push notifications.
 
-###驗證 Android SDK 版本
+### <a name="verify-android-sdk-version"></a>Verify Android SDK Version
 
 [AZURE.INCLUDE [app-service-mobile-verify-android-sdk-version](../../includes/app-service-mobile-verify-android-sdk-version.md)]
 
-下一個步驟是安裝 Google Play 服務。Google 雲端通訊在開發和測試方面有一些 API 層級的最低需求，這些是資訊清單中的 **minSdkVersion** 屬性所必須遵守。
+Your next step is to install Google Play services. Google Cloud Messaging has some minimum API level requirements for development and testing, which the **minSdkVersion** property in the Manifest must conform to.
 
-如果您要以較舊的裝置進行測試，請參考[設定 Google Play 服務 SDK]，以確認此值可以設得多低，並加以適當設定。
+If you are testing with an older device, then consult [Set Up Google Play Services SDK] to determine how low you can set this value, and set it appropriately.
 
-###新增 Google Play 服務至專案
+### <a name="add-google-play-services-to-the-project"></a>Add Google Play Services to the project
 
-[AZURE.INCLUDE [新增 Play 服務](../../includes/app-service-mobile-add-google-play-services.md)]
+[AZURE.INCLUDE [Add Play Services](../../includes/app-service-mobile-add-google-play-services.md)]
 
-###新增程式碼
+### <a name="add-code"></a>Add code
 
 [AZURE.INCLUDE [app-service-mobile-android-getting-started-with-push](../../includes/app-service-mobile-android-getting-started-with-push.md)]
 
-## 對已發佈的行動服務進行應用程式測試
+## <a name="test-the-app-against-the-published-mobile-service"></a>Test the app against the published mobile service
 
-您可以使用 USB 纜線直接連接 Android 手機，或使用模擬器中的虛擬裝置，對應用程式進行測試。
+You can test the app by directly attaching an Android phone with a USB cable, or by using a virtual device in the emulator.
 
-##<a id="more"></a>更多資訊
+## <a name="more"></a>More
 
-* 標記可讓您使用推播鎖定區隔的客戶。[使用適用於 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)一文，說明如何在裝置安裝中新增標記。
+* Tags allow you to target segmented customers with pushes. [Work with the .NET backend server SDK for Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) shows you how to add tags to a device installation.
 
 <!-- URLs -->
-[Android 快速入門]: app-service-mobile-android-get-started.md
+[Android quick start]: app-service-mobile-android-get-started.md
 
-[設定 Google Play 服務 SDK]: https://developers.google.com/android/guides/setup
+[Set Up Google Play Services SDK]:https://developers.google.com/android/guides/setup
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

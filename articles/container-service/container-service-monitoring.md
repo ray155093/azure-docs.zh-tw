@@ -1,13 +1,13 @@
 <properties
-   pageTitle="使用 Datadog 監視 Azure 容器服務叢集 | Microsoft Azure"
-   description="使用 Datadog 監視 Azure 容器服務叢集。使用 DC/OS Web UI 將 Datadog 代理程式部署至您的叢集。"
+   pageTitle="Monitor an Azure Container Service cluster with Datadog| Microsoft Azure"
+   description="Monitor an Azure Container Service cluster with Datadog. Use the DC/OS web UI to deploy the Datadog agents to your cluster."
    services="container-service"
    documentationCenter=""
    authors="rbitia"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="容器, DC/OS, Docker Swarm, Azure"/>
+   keywords="Containers, DC/OS, Docker Swarm, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -18,36 +18,41 @@
    ms.date="07/28/2016"
    ms.author="t-ribhat"/>
 
-# 使用 Datadog 監視 Azure 容器服務叢集
 
-本文中，我們會將 Datadog 代理程式部署到 Azure 容器服務叢集中的所有代理程式節點。您將需要 Datadog 帳戶以進行這項設定。
+# <a name="monitor-an-azure-container-service-cluster-with-datadog"></a>Monitor an Azure Container Service cluster with Datadog
 
-## 必要條件 
+In this article we will deploy Datadog agents to all the agent nodes in your Azure Container Service cluster. You will need an account with Datadog for this configuration. 
 
-[部署](container-service-deployment.md)和[連接](container-service-connect.md) Azure 容器服務所設定的叢集。瀏覽 [Marathon UI](container-service-mesos-marathon-ui.md)。移至 [http://datadoghq.com](http://datadoghq.com) 以設定 Datadog 帳戶。
+## <a name="prerequisites"></a>Prerequisites 
 
-## Datadog 
+[Deploy](container-service-deployment.md) and [connect](container-service-connect.md) a cluster configured by Azure Container Service. Explore the [Marathon UI](container-service-mesos-marathon-ui.md). Go to [http://datadoghq.com](http://datadoghq.com) to set up a Datadog account. 
 
-Datadog 是一項監視服務，會從 Azure 容器服務叢集內的容器收集監視資料。Datadog 有 Docker 整合儀表板，可供您查看容器內的特定度量。從容器收集到的度量會依 CPU、記憶體、網路和 I/O 來加以整理。Datadog 會將度量分割成容器和映像。以下是 CPU 使用量之 UI 樣貌的範例。
+## <a name="datadog"></a>Datadog 
+
+Datadog is a monitoring service that gathers monitoring data from your containers within your Azure Container Service cluster. Datadog has a Docker Integration Dashboard where you can see specific metrics within your containers. Metrics gathered from your containers are organized by CPU, Memory, Network and I/O. Datadog splits metrics into containers and images. An example of what the UI looks like for CPU usage is below.
 
 ![Datadog UI](./media/container-service-monitoring/datadog4.png)
 
-## 使用 Marathon 設定 Datadog 部署
+## <a name="configure-a-datadog-deployment-with-marathon"></a>Configure a Datadog deployment with Marathon
 
-這些步驟將說明如何使用 Marathon 設定並將 Datadog 應用程式部署到您的叢集。
+These steps will show you how to configure and deploy Datadog applications to your cluster with Marathon. 
 
-透過 [http://localhost:80/](http://localhost:80/) 存取 DC/OS UI。在進入 DC/OS UI 後，瀏覽至位於左下方的 [Universe]，然後搜尋「Datadog」並按一下 [安裝]。
+Access your DC/OS UI via [http://localhost:80/](http://localhost:80/). Once in the DC/OS UI navigate to the "Universe" which is on the bottom left and then search for "Datadog" and click "Install."
 
-![DC/OS Universe 內的 Datadog 封裝](./media/container-service-monitoring/datadog1.png)
+![Datadog package within the DC/OS Universe](./media/container-service-monitoring/datadog1.png)
 
-現在，若要完成設定，您將需要 Datadog 帳戶或免費試用帳戶。登入 Datadog 網站後請看左邊，然後移至 [整合] -> [API]。
+Now to complete the configuration you will need a Datadog account or a free trial account. Once you're logged in to the Datadog website look to the left and go to Integrations -> then API's. 
 
-![Datadog API 金鑰](./media/container-service-monitoring/datadog2.png)
+![Datadog API key](./media/container-service-monitoring/datadog2.png)
 
-接下來將 API 金鑰輸入到 DC/OS Universe 中的 Datadog 設定。
+Next enter your API key into the Datadog configuration within the DC/OS Universe. 
 
-![DC/OS Universe 中的 Datadog 設定](./media/container-service-monitoring/datadog3.png)
+![Datadog configuration in the DC/OS Universe](./media/container-service-monitoring/datadog3.png) 
 
-在上面的設定中，執行個體會設為 10000000，因此每當有新節點新增至叢集時，Datadog 就會自動將代理程式部署到該新節點。這是過渡解決方案。一旦您安裝了封裝，請瀏覽回到 Datadog 網站並尋找「儀表板」。 從該處，您會看到自訂和整合儀表板。Docker 整合儀表板會擁有為了監視叢集所需的所有容器度量。
+In the above configuration instances are set to 10000000 so whenever a new node is added to the cluster Datadog will automatically deploy an agent to that node. This is an interim solution. Once you've installed the package you should navigate back to the Datadog website and find "Dashboards." From there you will see Custom and Integration Dashboards. The Docker Integration Dashboard will have all the container metrics you need for monitoring your cluster. 
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Zoho Mail 整合 | Microsoft Azure" 
-    description="了解如何使用 Zoho Mail 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Zoho Mail | Microsoft Azure" 
+    description="Learn how to use Zoho Mail with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,153 +14,161 @@
     ms.date="09/09/2016" 
     ms.author="markvi" />
 
-#教學課程：Azure Active Directory 與 Zoho Mail 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-zoho-mail"></a>Tutorial: Azure Active Directory integration with Zoho Mail
   
-本教學課程的目的是要示範 Azure 與 Zoho Mail 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Zoho Mail.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂用帳戶
--   Zoho Mail 租用戶
+-   A valid Azure subscription
+-   A Zoho Mail tenant
   
-完成本教學課程之後，您指派給 Zoho Mail 的 Azure AD 使用者就能夠從您的 Zoho Mail 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
+After completing this tutorial, the Azure AD users you have assigned to Zoho Mail will be able to single sign into the application at your Zoho Mail company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Zoho Mail 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Zoho Mail
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-zoho-mail-tutorial/IC789600.png "案例")
+![Scenario](./media/active-directory-saas-zoho-mail-tutorial/IC789600.png "Scenario")
 
-##啟用 Zoho Mail 的應用程式整合
+##<a name="enabling-the-application-integration-for-zoho-mail"></a>Enabling the application integration for Zoho Mail
   
-本節的目的是要說明如何啟用 Zoho Mail 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Zoho Mail.
 
-###若要啟用 Zoho Mail 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-zoho-mail,-perform-the-following-steps:"></a>To enable the application integration for Zoho Mail, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-zoho-mail-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-zoho-mail-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-zoho-mail-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-zoho-mail-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-zoho-mail-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從資源庫新增應用程式](./media/active-directory-saas-zoho-mail-tutorial/IC749322.png "從資源庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-zoho-mail-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **Zoho Mail**。
+6.  In the **search box**, type **Zoho Mail**.
 
-    ![應用程式庫](./media/active-directory-saas-zoho-mail-tutorial/IC789601.png "應用程式資源庫")
+    ![Application Gallery](./media/active-directory-saas-zoho-mail-tutorial/IC789601.png "Application Gallery")
 
-7.  在結果窗格中，選取 Zoho Mail，然後按一下 [完成] 以新增應用程式。
+7.  In the results pane, select **Zoho Mail**, and then click **Complete** to add the application.
 
     ![Zoho Mail](./media/active-directory-saas-zoho-mail-tutorial/IC789602.png "Zoho Mail")
 
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Zoho Mail 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉此程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+The objective of this section is to outline how to enable users to authenticate to Zoho Mail with their account in Azure AD using federation based on the SAML protocol.  
+As part of this procedure, you are required to create a base-64 encoded certificate file.  
+If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Zoho Mail] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Zoho Mail** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-zoho-mail-tutorial/IC789603.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-zoho-mail-tutorial/IC789603.png "Configure Single Sign-On")
 
-2.  在 [您希望使用者如何登入 Zoho Mail] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Zoho Mail** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-zoho-mail-tutorial/IC789604.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-zoho-mail-tutorial/IC789604.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面上，執行下列步驟：
+3.  On the **Configure App URL** page, perform the following steps:
 
-    ![設定應用程式 URL](./media/active-directory-saas-zoho-mail-tutorial/IC789605.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-zoho-mail-tutorial/IC789605.png "Configure App URL")
 
-	a.在 [Zoho Mail 登入 URL] 文字方塊中，使用下列模式輸入您的 URL︰`http://<company name>.ZohoMail.com`
+    a. In the **Zoho Mail Sign On URL** textbox, type your URL using the following pattern: `http://<company name>.ZohoMail.com`
 
-	b.按 [下一步]。
+    b. Click **Next**.
 
 
-4.  在 [設定在 Zoho Mail 單一登入] 頁面上，按一下 [下載憑證]，然後將中繼資料檔儲存在您的電腦中。
+4.  On the **Configure single sign-on at Zoho Mail** page, click **Download certificate**, and then save the certificate file on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-zoho-mail-tutorial/IC789606.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-zoho-mail-tutorial/IC789606.png "Configure Single Sign-On")
 
-5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Zoho Mail 公司網站。
+5.  In a different web browser window, log into your Zoho Mail company site as an administrator.
 
-6.  移至 [控制台]。
+6.  Go to the **Control panel**.
 
-    ![控制台](./media/active-directory-saas-zoho-mail-tutorial/IC789607.png "控制台")
+    ![Control Panel](./media/active-directory-saas-zoho-mail-tutorial/IC789607.png "Control Panel")
 
-7.  按一下 [SAML 驗證] 索引標籤。
+7.  Click the **SAML Authentication** tab.
 
-    ![SAML 驗證](./media/active-directory-saas-zoho-mail-tutorial/IC789608.png "SAML 驗證")
+    ![SAML Authentication](./media/active-directory-saas-zoho-mail-tutorial/IC789608.png "SAML Authentication")
 
-8.  在 [SAML 驗證詳細資料] 區段中，執行下列步驟：
+8.  In the **SAML Authentication Details** section, perform the following steps:
 
-    ![SAML 驗證詳細資料](./media/active-directory-saas-zoho-mail-tutorial/IC789609.png "SAML 驗證詳細資料")
+    ![SAML Authentication Details](./media/active-directory-saas-zoho-mail-tutorial/IC789609.png "SAML Authentication Details")
 
-    1.  在 Azure 傳統入口網站的 [設定在 Zoho Mail 單一登入] 對話方塊頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [登入 URL] 文字方塊中。
-    2.  在 Azure 傳統入口網站的 [設定在 Zoho Mail 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值，然後將它貼到 [登出 URL] 文字方塊中。
-    3.  在 Azure 傳統入口網站的 [設定在 Zoho Mail 單一登入] 對話方塊頁面上，複製 [變更密碼 URL] 值，然後將它貼到 [變更密碼 URL] 文字方塊中。
-    4.  從您下載的憑證建立「Base-64 編碼」檔案。
+    1.  In the Azure classic portal, on the **Configure single sign-on at Zoho Mail** dialog page, copy the **Remote Login URL** value, and then paste it into the **Login URL** textbox.
+    2.  In the Azure classic portal, on the **Configure single sign-on at Zoho Mail** dialog page, copy the **Remote Logout URL** value, and then paste it into the **Logout URL** textbox.
+    3.  In the Azure classic portal, on the **Configure single sign-on at Zoho Mail** dialog page, copy the **Change Password URL** value, and then paste it into the **Change Password URL** textbox.
+    4.  Create a **base-64 encoded** file from your downloaded certificate.  
 
-        >[AZURE.TIP] 如需詳細資料，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
 
-    5.  在記事本中開啟 base-64 編碼的憑證，將其內容複製到剪貼簿，然後貼入 [公開金鑰] 文字方塊。
-    6.  選取 [RSA] 做為 [演算法]。
-    7.  按一下 [確定]。
+    5.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **PublicKey** textbox.
+    6.  As **Algorithm**, select **RSA**.
+    7.  Click **OK**.
 
-9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-zoho-mail-tutorial/IC789610.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-zoho-mail-tutorial/IC789610.png "Configure Single Sign-On")
 
-##設定使用者佈建
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 Azure AD 使用者可以登入 Zoho Mail，必須將他們佈建到 Zoho Mail。Zoho Mail 需以手動的方式佈建。
+In order to enable Azure AD users to log into Zoho Mail, they must be provisioned into Zoho Mail.  
+In the case of Zoho Mail, provisioning is a manual task.
 
-###若要佈建使用者帳戶，請執行下列步驟：
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
 
-1.  以系統管理員身分登入您的 **Zoho Mail** 公司網站。
+1.  Log in to your **Zoho Mail** company site as an administrator.
 
-2.  移至 [控制台] > [郵件和文件]。
+2.  Go to **Control Panel \> Mail & Docs**.
 
-3.  移至 [使用者詳細資料] > [新增使用者]。
+3.  Go to **User Details \> Add User**.
 
-    ![新增使用者](./media/active-directory-saas-zoho-mail-tutorial/IC789611.png "新增使用者")
+    ![Add User](./media/active-directory-saas-zoho-mail-tutorial/IC789611.png "Add User")
 
-4.  在 [新增使用者] 對話方塊上，執行下列步驟：
+4.  On the **Add users** dialog, perform the following steps:
 
-    ![新增使用者](./media/active-directory-saas-zoho-mail-tutorial/IC789612.png "新增使用者")
+    ![Add User](./media/active-directory-saas-zoho-mail-tutorial/IC789612.png "Add User")
 
-    1.  在相關的文字方塊中，輸入您要佈建之有效 Azure Active Directory 帳戶的 [名字]、[姓氏]、[電子郵件地址]、[密碼]。
-    2.  按一下 [確定]。
+    1.  Type the **First Name**, **Last Name**, **Email ID**, **Password** of a valid Azure Active Directory account you want to provision into the related textboxes.
+    2.  Click **OK**.  
 
-        >[AZURE.NOTE] Azure Active Directory 帳戶的持有者會收到一封包含連結的電子郵件，以在啟用帳戶前進行確認。
+        >[AZURE.NOTE] The Azure Active Directory account holder will receive an email with a link to confirm the account before it becomes active.
 
->[AZURE.NOTE] 您可以使用任何其他的 Zoho Mail 使用者帳戶建立工具或 Zoho Mail 提供的 API，佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Zoho Mail user account creation tools or APIs provided by Zoho Mail to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Zoho Mail，請執行下列步驟：
+###<a name="to-assign-users-to-zoho-mail,-perform-the-following-steps:"></a>To assign users to Zoho Mail, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Zoho Mail] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Zoho Mail **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-zoho-mail-tutorial/IC789613.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-zoho-mail-tutorial/IC789613.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-zoho-mail-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-zoho-mail-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,38 +1,43 @@
 <properties
-	pageTitle="Azure AD SAML 通訊協定參考 | Microsoft Azure"
-	description="這篇文章提供 Azure Active Directory 中單一登入和單一登出 SAML 設定檔的概觀。"
-	services="active-directory"
-	documentationCenter=".net"
-	authors="priyamohanram"
-	manager="mbaldwin"
-	editor=""/>
+    pageTitle="Azure AD SAML Protocol Reference | Microsoft Azure"
+    description="This article provides an overview of the Single Sign-On and Single Sign-Out SAML profiles in Azure Active Directory."
+    services="active-directory"
+    documentationCenter=".net"
+    authors="priyamohanram"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/23/2016"
-	ms.author="priyamo"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="06/23/2016"
+    ms.author="priyamo"/>
 
 
-# Azure Active Directory 使用 SAML 通訊協定的方式
 
-Azure Active Directory (Azure AD) 會使用 SAML 2.0 通訊協定，讓應用程式能為其使用者提供單一登入體驗。Azure AD 的[單一登入](active-directory-single-sign-on-protocol-reference.md)和[單一登出](active-directory-single-sign-out-protocol-reference.md) SAML 設定檔會說明識別提供者服務中如何使用 SAML 判斷提示、通訊協定和繫結。
+# <a name="how-azure-active-directory-uses-the-saml-protocol"></a>How Azure Active Directory uses the SAML protocol
 
-SAML 通訊協定需要識別提供者 (Azure AD) 和服務提供者 (應用程式)，才能交換本身的相關資訊。
+Azure Active Directory (Azure AD) uses the SAML 2.0 protocol to enable applications to provide a single sign-on experience to their users. The [Single Sign-On](active-directory-single-sign-on-protocol-reference.md) and [Single Sign-Out](active-directory-single-sign-out-protocol-reference.md) SAML profiles of Azure AD explain how SAML assertions, protocols and bindings are used in the identity provider service.
 
-向 Azure AD 註冊應用程式時，應用程式開發人員會向 Azure AD 註冊同盟的相關資訊。這包括應用程式的**重新導向 URI** 和**中繼資料 URI**。
+SAML Protocol requires the identity provider (Azure AD) and the service provider (the application) to exchange information about themselves.
 
-Azure AD 會使用雲端服務的 **中繼資料 URI** 來擷取雲端服務的簽署金鑰和登出 URI。如果應用程式不支援中繼資料 URI，開發人員必須連絡 Microsoft 支援服務以提供登出 URI 和簽署金鑰。
+When an application is registered with Azure AD, the app developer registers federation-related information with Azure AD. This includes the **Redirect URI** and **Metadata URI** of the application.
 
-Azure Active Directory 會公開租用戶專屬和一般 (租用戶獨立) 單一登入和單一登出端點。這些 URL 代表可定址的位置 -- 它們不只是識別碼 -- 因此您可以前往端點來讀取中繼資料。
+Azure AD uses the **Metadata URI** of the cloud service to retrieve the signing key and the logout URI of the cloud service. If the application does not support a metadata URI, the developer must contact Microsoft support to provide the logout URI and signing key.
 
- - 租用戶專屬端點位於 `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`。<TenantDomainName> 預留位置代表註冊的網域名稱或 Azure AD 租用戶的 TenantID GUID。例如，contoso.com 租用戶的同盟中繼資料位於：https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
+Azure Active Directory exposes tenant-specific and common (tenant-independent) single sign-on and single sign-out endpoints. These URLs represent addressable locations -- they are not just an identifiers -- so you can go to the endpoint to read the metadata.
 
-- 租用戶獨立端點位於 `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`。在此端點位址中，會出現 **common**，而不是租用戶網域名稱或識別碼。
+ - The Tenant-specific endpoint is located at `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  The <TenantDomainName> placeholder represents a registered domain name or TenantID GUID of an Azure AD tenant. For example, the federation metadata of the contoso.com tenant is at: https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
 
-如需 Azure AD 發佈的同盟中繼資料文件的相關資訊，請參閱[同盟中繼資料](active-directory-federation-metadata.md)。
+- The Tenant-independent endpoint is located at `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`.In this endpoint address, **common** appears, instead of a tenant domain name or ID.
 
-<!---HONumber=AcomDC_0629_2016-->
+For information about the Federation Metadata documents that Azure AD publishes, see [Federation Metadata](active-directory-federation-metadata.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

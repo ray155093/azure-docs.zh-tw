@@ -1,17 +1,19 @@
-1. 在您想要鎖定之資源、資源群組或訂用帳戶的 [設定] 刀鋒視窗中，選取 [鎖定]。
+1. In the Settings blade for the resource, resource group, or subscription that you wish to lock, select **Locks**.
 
-      ![選取鎖定](./media/resource-manager-lock-resources/select-lock.png)
+      ![select lock](./media/resource-manager-lock-resources/select-lock.png)
 
-2. 若要新增鎖定，請選取 [新增]。如果您想要在父層級建立鎖定，請選取父系。目前選取的資源會從父系繼承鎖定。例如，您可以鎖定資源群組以將鎖定套用到其所有資源。
+2. To add a lock, select **Add**. If you want to create a lock at a parent level, select the parent. The currently selected resource inherits the lock from the parent. For example, you could lock the resource group to apply a lock to all its resources.
 
-      ![新增鎖定](./media/resource-manager-lock-resources/add-lock.png)
+      ![add lock](./media/resource-manager-lock-resources/add-lock.png) 
 
-3. 提供鎖定的名稱和鎖定層級。您可以視需要新增描述鎖定的附註。
+3. Give the lock a name and lock level. Optionally, you can add notes that describe the lock.
 
-      ![設定鎖定](./media/resource-manager-lock-resources/set-lock.png)
+      ![set lock](./media/resource-manager-lock-resources/set-lock.png) 
 
-4. 若要刪除鎖定，請從可用的選項中選取省略符號和 [刪除]。
+4. To delete the lock, select the ellipsis and **Delete** from the available options.
 
-      ![刪除鎖定](./media/resource-manager-lock-resources/delete-lock.png)
+      ![delete lock](./media/resource-manager-lock-resources/delete-lock.png) 
 
-<!---HONumber=AcomDC_0803_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

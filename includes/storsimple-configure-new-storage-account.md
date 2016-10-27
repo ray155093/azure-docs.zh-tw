@@ -1,21 +1,24 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### 若要新增新的儲存體帳戶到 StorSimple 發行版本 (GA)
+#### <a name="to-add-a-new-storage-account-in-storsimple-release-version-(ga)"></a>To add a new storage account in StorSimple Release version (GA)
 
-1. 在 StorSimple Manager 服務登陸頁面上選取您的服務，然後按兩下該服務。這會將您帶領到 [快速入門] 頁面。選取 [設定] 頁面。
+1. On the StorSimple Manager service landing page, select your service and double-click it. This will take you to the **Quick Start** page. Select the **Configure** page.
 
-2. 按一下 [新增/編輯儲存體帳戶]。
+2. Click **Add/edit storage account**.
 
-3. 在 [新增/編輯儲存體帳戶] 對話方塊中，執行下列動作：
+3. In the **Add/Edit Storage Account** dialog box, do the following:
 
-  1. 按一下 [新增]。
-  2. 提供儲存體帳戶的名稱。
-  3. 提供 Microsoft Azure 儲存體帳戶的主要**存取金鑰**。
-  4. 選取 [啟用 SSL 模式] 來建立裝置與雲端之間網路通訊的安全通道。只有當您在私人雲端內進行操作時，才能清除 [啟用 SSL 模式] 核取方塊。
-  5. 按一下核取圖示 ![核取圖示](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png)。成功建立儲存體帳戶之後，系統將會通知您。
+  1. Click **Add new**.
+  2. Provide a name for your storage account.
+  3. Supply the primary **Access Key** for your Microsoft Azure storage account.
+  4. Select **Enable SSL Mode** to create a secure channel for network communication between your device and the cloud. Clear the **Enable SSL Mode** check box only if you are operating within a private cloud.
+  5. Click the check icon ![check icon](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png). You will be notified after the storage account is successfully created.
 
-    ![新增儲存體帳戶](./media/storsimple-configure-new-storage-account/HCS_AddStorageAccount-include.png)
+    ![Add storage account](./media/storsimple-configure-new-storage-account/HCS_AddStorageAccount-include.png)
 
-4. 新建立的儲存體帳戶將顯示於 [設定] 頁面上的 [儲存體帳戶] 下方。按一下 [儲存] 以儲存新建立的儲存體帳戶。系統提示您進行確認時，按一下 [確定]。
+4. The newly created storage account will be displayed on the **Configure** page under **Storage accounts**. Click **Save** to save the newly created storage account. Click **OK** when prompted for confirmation.
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Oct16_HO2-->
+
+

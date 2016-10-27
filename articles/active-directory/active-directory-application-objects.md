@@ -1,6 +1,6 @@
 <properties
-pageTitle="Azure Active Directory 應用程式和服務主體物件 | Microsoft Azure"
-description="Azure Active Directory 中的應用程式物件和服務主體物件之間的關聯性討論"
+pageTitle="Azure Active Directory Application and Service Principal Objects | Microsoft Azure"
+description="A discussion of the relationship between application and service principal objects in Azure Active Directory"
 documentationCenter="dev-center-name"
 authors="bryanla"
 manager="mbaldwin"
@@ -16,46 +16,47 @@ ms.workload="identity"
 ms.date="08/10/2016"
 ms.author="bryanla;mbaldwin"/>
 
-# Azure Active Directory 中的應用程式和服務主體物件
-當您在閱讀有關 Azure Active Directory (AD)「應用程式」的文章時，其內容不一定能清楚表達究竟作者所指為何。本文的目的是要藉由定義 Azure AD 應用程式整合的概念和具體層面，並舉例說明如何註冊和同意[多租用戶應用程式](active-directory-dev-glossary.md#multi-tenant-application)，提供更清楚的說明。
 
-## 概觀
-Azure AD 應用程式遠遠不只是一套軟體。它是一個概念性詞彙，指的不只是應用程式軟體，還包括它與 Azure AD 的註冊關係 (也稱為︰身分識別組態)，這可讓它在執行階段參與驗證和授權「對話」。根據定義，應用程式的運作身分可以是[用戶端](active-directory-dev-glossary.md#client-application)角色 (取用資源)、[資源伺服器](active-directory-dev-glossary.md#resource-server)角色 (對用戶端公開 API)，或甚至身兼兩者。對話通訊協定是由 [OAuth 2.0 授權授與流程](active-directory-dev-glossary.md#authorization-grant)所定義，目標是要讓用戶端/資源能夠各自存取/保護資源的資料。現在讓我們再深入一點，看看 Azure AD 應用程式模型在內部是如何代表應用程式。
+# <a name="application-and-service-principal-objects-in-azure-active-directory"></a>Application and service principal objects in Azure Active Directory
+When you read about an Azure Active Directory (AD) "application", it's not always clear exactly what is being referred to by the author. The goal of this article is to make it clearer, by defining the conceptual and concrete aspects of Azure AD application integration, with an example of registration and consent for a [multi-tenant application](active-directory-dev-glossary.md#multi-tenant-application).
 
-## 應用程式註冊
-當您在 [Azure 傳統入口網站][AZURE-Classic-Portal]註冊應用程式，Azure AD 租用戶中會建立兩個物件︰應用程式物件和服務主體物件。
+## <a name="overview"></a>Overview
+An Azure AD application is broader than just a piece of software. It's a conceptual term, referring not only to application software, but also its registration (aka: identity configuration) with Azure AD, which allows it to participate in authentication and authorization "conversations" at runtime. By definition, an application can function in a [client](active-directory-dev-glossary.md#client-application) role (consuming a resource), a [resource server](active-directory-dev-glossary.md#resource-server) role (exposing APIs to clients), or even both. The conversation protocol is defined by an [OAuth 2.0 Authorization Grant flow](active-directory-dev-glossary.md#authorization-grant), with a goal of allowing the client/resource to access/protect a resource's data respectively. Now let's go a level deeper, and see how the Azure AD application model represents an application internally. 
 
-#### 應用程式物件
-Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，該物件位於應用程式註冊所在的 Azure AD 租用戶，也就是所謂的應用程式的「主要」租用戶。應用程式物件能夠為應用程式提供身分識別相關資訊，並可做為其對應服務主體物件的「衍生」範本，以在執行階段使用。
+## <a name="application-registration"></a>Application registration
+When you register an application in the [Azure classic portal][AZURE-Classic-Portal], two objects are created in your Azure AD tenant: an application object, and a service principal object.
 
-您可以將應用程式看做是應用程式的「全域」代表 (用於所有租用戶)，而將服務主體看做是「本機」代表 (用於特定租用戶)。Azure AD Graph [應用程式實體][AAD-Graph-App-Entity]會定義應用程式物件的結構描述。因此，應用程式物件與軟體應用程式具有 1:1 關聯性，而與其對應的「n」個服務主體物件具有 1:n 關聯性。
+#### <a name="application-object"></a>Application object
+An Azure AD application is *defined* by its one and only application object, which resides in the Azure AD tenant where the application was registered, referred to as the application's "home" tenant. The application object provides identity-related information for an application, and is the template from which its corresponding service principal object(s) are *derived* for use at run-time. 
 
-#### 服務主體物件
-服務主體物件會定義應用程式的原則和權限，為安全性主體提供在執行階段存取資源時用來代表應用程式的基礎。Azure AD Graph [ServicePrincipal 實體][AAD-Graph-Sp-Entity]會定義服務主體物件的結構描述。
+You can think of the application as the *global* representation of your application (for use across all tenants), and the service principal as the *local* representation (for use in a specific tenant). The Azure AD Graph [Application entity][AAD-Graph-App-Entity] defines the schema for an application object. An application object therefore has a 1:1 relationship with the software application, and a 1:*n* relationship with its corresponding *n* service principal object(s).
 
-在每個租用戶中，只要其應用程式使用方式執行個體必須被代表，就必須要有服務主體物件，這樣才能安全地存取該租用戶的使用者帳戶所擁有的資源。單一租用戶應用程式將只有一個服務主體 (在其主要租用戶中)。多租用戶 [Web 應用程式](active-directory-dev-glossary.md#web-client)在租用戶的系統管理員或使用者已表示同意的每個租用戶中也會有一個服務主體，使其可以存取他們的資源。在同意之後，未來的授權要求都會參考服務主體物件。
+#### <a name="service-principal-object"></a>Service principal object
+The service principal object defines the policy and permissions for an application, providing the basis for a security principal to represent the application when accessing resources at run-time. The Azure AD Graph [ServicePrincipal entity][AAD-Graph-Sp-Entity] defines the schema for a service principal object. 
 
-> [AZURE.NOTE] 您對應用程式物件所做的任何變更也只會反映於它在應用程式的主要租用戶 (其註冊所在租用戶) 中的服務主體物件。就多租用戶應用程式而言，對應用程式物件所做的變更必須等到取用者租用戶移除存取權後再重新授與存取權，才會反映在任何取用者租用戶的服務主體物件上。
+A service principal object is required in each tenant for which an instance of the application's usage must be represented, enabling secure access to resources owned by user accounts from that tenant. A single-tenant application will have only one service principal (in its home tenant). A multi-tenant [Web application](active-directory-dev-glossary.md#web-client) will also have a service principal in each tenant where an administrator or user(s) from that tenant have given consent, allowing it to access their resources. Following consent, the service principal object will be consulted for future authorization requests. 
 
-## 範例
-下圖說明應用程式的應用程式物件與對應的服務主體物件之間的關係，是以一個稱為「HR 應用程式」的範例多租用戶應用程式為背景。此案例中有三個 Azure AD 租用戶︰
+> [AZURE.NOTE] Any changes you make to your application object, are also reflected in its service principal object in the application's home tenant only (the tenant where it was registered). For multi-tenant applications, changes to the application object are not reflected in any consumer tenants' service principal objects, until the consumer tenant removes access and grants access again.
 
-- **Adatum** - 開發 **HR 應用程式**之公司所使用的租用戶
-- **Contoso** - Contoso 組織所使用的租用戶，其為 **HR 應用程式**的取用者
-- **Fabrikam** - Fabrikam 組織所使用的租用戶，其亦會取用 **HR 應用程式**
+## <a name="example"></a>Example
+The following diagram illustrates the relationship between an application's application object and corresponding service principal objects, in the context of a sample multi-tenant application called **HR app**. There are three Azure AD tenants in this scenario: 
 
-![應用程式物件和服務主體物件之間的關聯性](./media/active-directory-application-objects/application-objects-relationship.png)
+- **Adatum** - the tenant used by the company that developed the **HR app**
+- **Contoso** - the tenant used by the Contoso organization, which is a consumer of the **HR app**
+- **Fabrikam** - the tenant used by the Fabrikam organization, which also consumes the **HR app**
 
-在前一張圖中，步驟 1 是在應用程式的主要租用戶中建立應用程式和服務主體物件的程序。
+![Relationship between an application object and a service principal object](./media/active-directory-application-objects/application-objects-relationship.png)
 
-在步驟 2 中，當 Contoso 和 Fabrikam 的系統管理員完成同意，系統就會在其公司的 Azure AD 租用戶中建立服務主體物件，並指派系統管理員所授與的權限。也請注意，HR 應用程式可能會設定/設計為允許由使用者同意以進行個人使用。
+In the previous diagram, Step 1 is the process of creating the application and service principal objects in the application's home tenant.
 
-在步驟 3 中，HR 應用程式的取用者租用戶 (Contoso 和 Fabrikam) 都分別擁有自己的服務主體物件。每個均代表他們在執行階段的應用程式執行個體使用，其中皆受到個別系統管理員所同意的權限控管。
+In Step 2, when Contoso and Fabrikam administrators complete consent, a service principal object is created in their company's Azure AD tenant and assigned the permissions that the administrator granted. Also note that the HR app could be configured/designed to allow consent by users for individual use.
 
-## 後續步驟
-若要存取應用程式的應用程式物件，可以透過 Azure AD Graph API 來存取 (如其 OData 的[應用程式實體][AAD-Graph-App-Entity]所代表)
+In Step 3, the consumer tenants of the HR application (Contoso and Fabrikam) each have their own service principal object. Each represents their use of an instance of the application at runtime, governed by the permissions consented by the respective administrator.
 
-若要存取應用程式的服務主體物件，可以透過 Azure AD Graph API 來存取 (如其 OData 的 [ServicePrincipal 實體][AAD-Graph-Sp-Entity]所代表)
+## <a name="next-steps"></a>Next steps
+An application's application object can be accessed via the Azure AD Graph API, as represented by its OData [Application entity][AAD-Graph-App-Entity]
+
+An application's service principal object can be accessed via the Azure AD Graph API, as represented by its OData [ServicePrincipal entity][AAD-Graph-Sp-Entity]
 
 
 
@@ -66,4 +67,7 @@ Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，�
 [AAD-Graph-Sp-Entity]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity
 [AZURE-Classic-Portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0810_2016------>
+
+<!--HONumber=Oct16_HO2-->
+
+

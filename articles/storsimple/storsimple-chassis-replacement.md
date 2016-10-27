@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="更換 StorSimple 裝置上的底座 | Microsoft Azure"
-   description="描述如何移除並更換 StorSimple 主要機箱或 EBOD 機箱的底座。"
+   pageTitle="Replace the chassis on a StorSimple device | Microsoft Azure"
+   description="Describes how to remove and replace the chassis for your StorSimple primary enclosure or EBOD enclosure."
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,52 +15,58 @@
    ms.date="08/17/2016"
    ms.author="alkohli" />
 
-# 更換 StorSimple 裝置上的底座
 
-## Overview
+# <a name="replace-the-chassis-on-your-storsimple-device"></a>Replace the chassis on your StorSimple device
 
-本教學課程說明如何取下並更換 StorSimple 8000 系列裝置中的底座。StorSimple 8100 模型是單一機箱裝置 (一個底座)，而 8600 是雙重機箱裝置 (兩個底座)。若為 8600 型號，裝置中可能有兩個會發生故障的底座：主要機箱的底座或 EBOD 機箱的底座。
+## <a name="overview"></a>Overview
 
-在任一情況下，Microsoft 隨附的更換底座是空的。將不會包含電源和冷卻模組 (PCM)、控制器模組、固態硬碟 (SSD)、硬碟機 (HDD) 或 EBOD 模組。
+This tutorial explains how to remove and replace a chassis in a StorSimple 8000 series device. The StorSimple 8100 model is a single enclosure device (one chassis), whereas the 8600 is a dual enclosure device (two chassis). For an 8600 model, there are potentially two chassis that could fail in the device: the chassis for the primary enclosure or the chassis for the EBOD enclosure.
 
->[AZURE.IMPORTANT] 取下並更換底座之前，請閱讀 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)中的安全資訊。
+In either case, the replacement chassis that is shipped by Microsoft is empty. No Power and Cooling Modules (PCMs), controller modules, solid state disk drives (SSDs), hard disk drives (HDDs), or EBOD modules will be included.
 
-## 取下底座
+>[AZURE.IMPORTANT] Before removing and replacing the chassis, review the safety information in [StorSimple hardware component replacement](storsimple-hardware-component-replacement.md).
 
-請執行下列步驟來取下 StorSimple 裝置上的底座。
+## <a name="remove-the-chassis"></a>Remove the chassis
 
-#### 若要取下底座
+Perform the following steps to remove the chassis on your StorSimple device.
 
-1. 確認 StorSimple 裝置已關閉，並與所有電源中斷連接。
+#### <a name="to-remove-a-chassis"></a>To remove a chassis
 
-2. 取下所有網路和 SAS 纜線 (如果適當的話)。
+1. Make sure that the StorSimple device is shut down and disconnected from all the power sources.
 
-3. 取下機架中的裝置。
+2. Remove all the network and SAS cables, if applicable.
 
-4. 取下每個磁碟機，並記下從哪些插槽中取下它們。如需詳細資訊，請參閱[取下磁碟機](storsimple-disk-drive-replacement.md#remove-the-disk-drive)。
+3. Remove the unit from the rack.
 
-5. 在 EBOD 機箱 (如果這是故障的底座) 上，取下 EBOD 控制器模組。如需詳細資訊，請參閱[取下 EBOD 控制器](storsimple-ebod-controller-replacement.md#remove-an-ebod-controller)。
+4. Remove each of the drives and note the slots from which they are removed. For more information, see [Remove the disk drive](storsimple-disk-drive-replacement.md#remove-the-disk-drive).
 
-    在主要機箱 (如果這是故障的底座) 上，取下控制器，並記下從哪些插槽中取下它們。如需詳細資訊，請參閱[取下控制器](storsimple-controller-replacement.md#remove-a-controller)。
+5. On the EBOD enclosure (if this is the chassis that failed), remove the EBOD controller modules. For more information, see [Remove an EBOD controller](storsimple-ebod-controller-replacement.md#remove-an-ebod-controller). 
 
-## 安裝底座
+    On the primary enclosure (if this is the chassis that failed), remove the controllers and note the slots from which they are removed. For more information, see [Remove a controller](storsimple-controller-replacement.md#remove-a-controller).
 
-請執行下列步驟來安裝 StorSimple 裝置上的底座。
+## <a name="install-the-chassis"></a>Install the chassis
 
-#### 若要安裝底座
+Perform the following steps to install the chassis on your StorSimple device.
 
-1. 以機架掛接底座。如需詳細資訊，請參閱[以機架掛接 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md#rack-mount-your-storsimple-8100-device)或[以機架掛接 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md#rack-mount-your-storsimple-8600-device)。
+#### <a name="to-install-a-chassis"></a>To install a chassis
 
-2. 在以機架掛接了底座之後，請將控制器模組安裝在先前安裝它們的同一位置中。
+1. Mount the chassis in the rack. For more information, see [Rack-mount your StorSimple 8100 device](storsimple-8100-hardware-installation.md#rack-mount-your-storsimple-8100-device) or [Rack-mount your StorSimple 8600 device](storsimple-8600-hardware-installation.md#rack-mount-your-storsimple-8600-device).
 
-3. 將磁碟機安裝在先前安裝它們的同一位置和插槽中。
+2. After the chassis is mounted in the rack, install the controller modules in the same positions that they were previously installed in.
 
-    >[AZURE.NOTE] 我們建議您先將 SSD 安裝於插槽中，然後再安裝 HDD。
+3. Install the drives in the same positions and slots that they were previously installed in.
 
-2. 在以機架掛接裝置，並安裝元件之後，請將裝置連接至適當的電源，並開啟裝置。如需詳細資料，請參閱[將您的 StorSimple 8100 裝置接上纜線](storsimple-8100-hardware-installation.md#cable-your-storsimple-8100-device)或[將您的 StorSimple 8600 裝置接上纜線](storsimple-8600-hardware-installation.md#cable-your-storsimple-8600-device)。
+    >[AZURE.NOTE] We recommend that you install the SSDs in the slots first, and then install the HDDs.
 
-## 後續步驟
+2. With the device mounted in the rack and the components installed, connect your device to the appropriate power sources, and turn on the device. For details, see [Cable your StorSimple 8100 device](storsimple-8100-hardware-installation.md#cable-your-storsimple-8100-device) or [Cable your StorSimple 8600 device](storsimple-8600-hardware-installation.md#cable-your-storsimple-8600-device).
 
-深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0817_2016-->
+Learn more about [StorSimple hardware component replacement](storsimple-hardware-component-replacement.md).
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

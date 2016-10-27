@@ -1,75 +1,81 @@
 <properties
-	pageTitle="Azure Active Directory Identity Protection - 如何解鎖使用者 | Microsoft Azure"
-	description="了解如何解鎖由 Azure Active Directory Identity Protection 原則所封鎖的使用者。"
-	services="active-directory"
-	keywords="Azure Active Directory Identity Protection，解鎖使用者"
-	documentationCenter=""
-	authors="markusvi"
-	manager="femila"
-	editor=""/>
+    pageTitle="Azure Active Directory Identity Protection - How to unblock users | Microsoft Azure"
+    description="Learn how unblock users that were blocked by an Azure Active Directory Identity Protection policy."
+    services="active-directory"
+    keywords="azure active directory identity protection, unblock user"
+    documentationCenter=""
+    authors="markusvi"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/20/2016"
-	ms.author="markvi"/>
-
-#Azure Active Directory Identity Protection - 如何解鎖使用者
-
-使用 Azure Active Directory Identity Protection 時，如果符合設定的條件，您就可以設定原則來封鎖使用者。一般而言，遭封鎖的使用者會聯絡服務台以解除封鎖。本主題說明解鎖遭封鎖使用者的執行步驟。
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/20/2016"
+    ms.author="markvi"/>
 
 
-## 判斷封鎖的原因
+#<a name="azure-active-directory-identity-protection---how-to-unblock-users"></a>Azure Active Directory Identity Protection - How to unblock users
 
-解鎖使用者的第一個步驟，您需要判斷封鎖使用者的原則類型為何，以決定後續步驟。使用 Azure Active Directory Identity Protection 時，使用者可能是因登入風險原則或使用者風險原則而遭封鎖。
+With Azure Active Directory Identity Protection, you can configure policies to block users if the configured conditions are satisfied. Typically, a blocked user contacts help desk to become unblocked. This topics explains the steps you can perform to unblock a blocked user.
 
-您可以從使用者嘗試登入期間所出現的對話方塊標題取得封鎖使用者的原則類型︰
 
-|原則 | 使用者對話方塊|
+## <a name="determine-the-reason-for-blocking"></a>Determine the reason for blocking
+
+As a first step to unblock a user, you need to determine the type of policy that has blocked the user because your next steps are depending on it. With Azure Active Directory Identity Protection, a user can be either blocked by a sign-in risk policy or a user risk policy. 
+
+You can get the type of policy that has blocked a user from the heading in the dialog that was presented to the user during a sign-in attempt:
+
+|Policy | User dialog|
 |--- | --- |
-|登入風險 | ![封鎖的登入](./media/active-directory-identityprotection-unblock-howto/02.png) |
-|使用者風險 | ![封鎖的帳戶](./media/active-directory-identityprotection-unblock-howto/104.png) |
+|Sign-in risk | ![Blocked sign-in](./media/active-directory-identityprotection-unblock-howto/02.png) |
+|User risk | ![Blocked account](./media/active-directory-identityprotection-unblock-howto/104.png) |
 
 
-封鎖使用者的類型為︰
+A user that is blocked by:
 
-- 登入風險原則，也就是可疑的登入
-- 使用者風險原則，也就是有風險的帳戶
+- A sign-in risk policy is also known as suspicious sign-in
+- A user risk policy is also known as an account at risk
 
  
-## 解鎖可疑的登入
+## <a name="unblocking-suspicious-sign-ins"></a>Unblocking suspicious sign-ins
 
-若要解鎖可疑的登入，您有下列選擇︰
+To unblock a suspicious sign-in, you have the following options:
 
-1. **從熟悉的位置或裝置登入** - 可疑的登入會遭封鎖通常是因為使用者嘗試從不熟悉的位置或裝置登入。使用者可以嘗試從熟悉的位置或裝置登入，以迅速判斷這是否是遭封鎖的原因。
+1. **Sign-in from a familiar location or device** - A common reason for blocked suspicious sign-ins are sign-in attempts from unfamiliar locations or devices. Your users can quickly determine whether this is the blocking reason by trying to sign-in from a familiar location or device.
 
 
-3. **從原則中排除** - 如果您認為目前的登入原則設定對特定使用者造成問題，您可以排除這些使用者。如需詳細資訊，請參閱[登入風險原則](active-directory-identityprotection.md#sign-in-risk-policy)。
+3. **Exclude from policy** - If you think that the current configuration of your sign-in policy is causing issues for specific users, you can exclude the users from it. See [sign-in risk policy](active-directory-identityprotection.md#sign-in-risk-policy) for more details.
  
-4. **停用原則** - 如果您認為您的原則設定對所有使用者造成問題，您可以停用原則。如需詳細資訊，請參閱[登入風險原則](active-directory-identityprotection.md#sign-in-risk-policy)。
+4. **Disable policy** - If you think that your policy configuration is causing issues for all your users, you can disable the policy. See [sign-in risk policy](active-directory-identityprotection.md#sign-in-risk-policy) for more details.
 
 
-## 解鎖有風險的帳戶
+## <a name="unblocking-accounts-at-risk"></a>Unblocking accounts at risk
 
-若要解鎖有風險的帳戶，您有下列選擇︰
+To unblock an account at risk, you have the following options:
 
-1. **重設密碼** - 您可以重設使用者的密碼。如需詳細資訊，請參閱[手動安全密碼重設](active-directory-identityprotection.md#manual-secure-password-reset)。
+1. **Reset password** - You can reset the user's password. See [manual secure password reset](active-directory-identityprotection.md#manual-secure-password-reset) for more details.
 
-2. **關閉所有風險事件** - 如果已達到設定的封鎖存取權限之使用者風險層級，使用者風險原則就會封鎖使用者。您可以手動關閉已報告的風險事件來降低使用者的風險層級。如需詳細資訊，請參閱[手動關閉風險事件](active-directory-identityprotection.md#closing-risk-events-manually)。
+2. **Dismiss all risk events** - The user risk policy blocks a user if the configured user risk level for blocking access has been reached. You can reduce a user's risk level by manually closing reported risk events. For more details, see [closing risk events manually](active-directory-identityprotection.md#closing-risk-events-manually).
 
-3. **從原則中排除** - 如果您認為目前的登入原則設定對特定使用者造成問題，您可以排除這些使用者。如需詳細資訊，請參閱[使用者風險原則](active-directory-identityprotection.md#user-risk-policy)。
+3. **Exclude from policy** - If you think that the current configuration of your sign-in policy is causing issues for specific users, you can exclude the users from it. See [user risk policy](active-directory-identityprotection.md#user-risk-policy) for more details.
  
-4. **停用原則** - 如果您認為您的原則設定對所有使用者造成問題，您可以停用原則。如需詳細資訊，請參閱[使用者風險原則](active-directory-identityprotection.md#user-risk-policy)。
+4. **Disable policy** - If you think that your policy configuration is causing issues for all your users, you can disable the policy. See [user risk policy](active-directory-identityprotection.md#user-risk-policy) for more details.
 
 
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
- 您想要深入了解 Azure AD Identity Protection？ 查看 [Azure Active Directory Identity Protection](active-directory-identityprotection.md)。
+ Do you want to know more about Azure AD Identity Protection? Check out [Azure Active Directory Identity Protection](active-directory-identityprotection.md).
  
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

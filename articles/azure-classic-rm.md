@@ -1,6 +1,6 @@
 <properties
-   pageTitle="資源管理員和服務管理 (傳統) 部署模式 | Microsoft Azure"
-   description="了解資源管理員與傳統部署模型之間的差異"
+   pageTitle="Resource Manager and Service Management (classic) deployment modes | Microsoft Azure"
+   description="Learn the differences between Resource Manager and classic deployment models."
    services="virtual-network"
    documentationCenter=""
    authors="telmosampaio"
@@ -17,54 +17,59 @@
    ms.date="02/11/2016"
    ms.author="telmos"/>
 
-# Azure 部署模型
 
-Azure 平台正在轉換。不論您是 Azure 新手或已使用它數年，務必了解我們在此轉換期間對此平台所做的一些重要變更。
+# <a name="azure-deployment-models"></a>Azure Deployment Models
 
-所有 Azure 資源都支援下列一或兩個部署模型：
+The Azure platform is in transition.  Whether you're new to Azure or have been using it for years, it's important to understand some of the key changes we're making to the platform during this transition.
 
-- **資源管理員︰**這是 Azure 資源的最新部署模型。大部分較新的資源都已支援這種部署模型，最後所有資源都會提供支援。
+All Azure resources support one or both of the following deployment models:
+
+- **Resource Manager:** This is the newest deployment model for Azure resources. Most newer resources already support this deployment model and eventually all resources will.   
  
-- **傳統︰**現在大部分現有的 Azure 資源都支援此模型。加入至 Azure 的新資源將不支援此模型。
+- **Classic:** This model is supported by most existing Azure resources today. New resources added to Azure will not support this model.
 
-每個 Azure 資源的文件會詳述可用以建立該資源的服務模型。
+The documentation for each Azure resource details which service models it can be created with.
 
-## 為何這有關係？ 
+## <a name="why-does-this-matter?"></a>Why does this matter? 
 
-有所關係的原因如下︰
+It matters for the following reasons:
 
-- 您在這兩種模型下使用的 Azure 平台功能會有所不同。例如，使用資源管理員部署模型 (或僅只資源管理員) 建立的資源可以透過 [Azure 資源管理員範本](resource-group-overview.md#template-deployment)建立，而使用傳統部署模型建立的資源則不能這麼做。
-- 個別 Azure 資源功能或行為在這兩種模型下會有所不同，或只存在於其中一種模型。例如，平衡使用傳統部署模型所建立之虛擬機器的流量負載是「隱含的」，因為虛擬機器是 Azure 雲端服務的成員，而雲端服務內的虛擬機器會自動平衡負載。使用資源管理員建立的虛擬機器不是雲端服務的成員，而必須明確建立個別的 Azure 負載平衡器資源，以平衡多部虛擬機器的流量負載。
-- 在這兩種模型中，建立、設定及管理 Azure 資源的方式有所不同。
-- 使用一種部署模型所建立的資源，不一定能與使用不同部署模型建立的資源交互操作。例如，使用一種部署模型所建立的 Azure 虛擬機器只能連接至使用相同部署模型建立的 Azure 虛擬網路。
+- The Azure platform features that you use are different across these two models.  For example, resources created using the Resource Manager deployment model (or just Resource Manager) can be created with [Azure Resource Manager templates](resource-group-overview.md#template-deployment), whereas resources created with the Classic deployment model cannot.
+- The individual Azure resource features or behaviors can be different across the two models, or only exist in one model or the other.  For example, load balancing traffic across virtual machines created with the Classic deployment model is *implicit* because virtual machines are members of an Azure Cloud Service, and load is automatically balanced across virtual machines within a cloud service. Virtual machines created using Resource Manager are not members of a cloud service, and a separate Azure Load Balancer resource must be *explicitly* created to load balance traffic across multiple virtual machines.  
+- How you create, configure, and manage your Azure resources is different between these two models.
+- Resources created using one deployment model can't necessarily interoperate with resources created using a different deployment model. For example, Azure Virtual Machines created using one deployment model can only be connected to Azure Virtual Networks created using the same deployment model.    
 
-每個部署模型的基礎就是每個資源的應用程式設計介面 (API)。[資源管理員 API](https://msdn.microsoft.com/library/azure/dn948464.aspx) 適用於資源管理員部署模型，而[服務管理 API](https://msdn.microsoft.com/library/azure/ee460799.aspx) 適用於傳統部署模型。開發人員可以撰寫程式碼，直接與這些 API 互動。
+Underlying each of the deployment models is an application programming interface (API) for each resource.  There's a [Resource Manager API](https://msdn.microsoft.com/library/azure/dn948464.aspx) for the Resource Manager deployment model and a [Service Management API](https://msdn.microsoft.com/library/azure/ee460799.aspx) for the Classic deployment model. Developers can write code to interact with these APIs *directly*.  
 
-不過，IT 專業人員通常會在網頁瀏覽器中使用圖形化入口網站、在 Windows 電腦上使用 Azure PowerShell Cmdlet，或在 Windows、OS X 或 Linux 電腦上使用 Azure 命令列介面 (CLI)，藉此與這些 API 間接互動。IT 專業人員所使用的這三種間接方法都會直接與 API 互動。這表示 Azure 平台或資源引進新功能時，一律可先透過 API 直接取得，而在 API 可供使用後透過間接方法取得新資源和功能的支援。
+IT pros however, typically interact with these APIs *indirectly* by using a graphical portal in a web browser, by using Azure PowerShell cmdlets on a Windows computer, or by using the Azure Command Line Interface (CLI) on either a Windows, OS X, or Linux computer. All three of these indirect methods used by the IT pro interact directly with the APIs. This means that when new functionality is introduced to the Azure platform or resources, it's always directly available through the API first, with the indirect methods gaining support for the new resources and features after the API is made available.  
 
-下列各節說明如何透過三種間接方法，使用不同的部署模型來設定 Azure 資源。
+The sections below explain how Azure resources are configured using the different deployment models through the three indirect methods.
 
-## 入口網站
-Azure 有兩個入口網站︰
+## <a name="portals"></a>Portals
+Azure has two portals:
 
-- **[Azure 入口網站](https://manage.windowsazure.com)︰**如果您已使用 Azure 一段時間，您便已使用過此入口網站。它用來建立及設定可支援傳統部署模型的較舊 Azure 資源。您無法使用它來建立或設定僅支援資源管理員的資源。
-- **[Azure Preview 入口網站](https://azure.microsoft.com/overview/preview-portal/)︰**如果您使用較新的 Azure 資源，您可能已使用過此入口網站。它可以用來建立及設定某些 Azure 資源。您最終能使用它來建立和設定所有的 Azure 資源。對於支援兩種部署模型的某些資源，此入口網站可用來建立及設定使用任何一種部署模型的資源。
+- **[Azure portal](https://manage.windowsazure.com):** If you've been using Azure for a while, you've used this portal. It is used to create and configure older Azure resources that support the classic deployment model. You cannot use it to create or configure resources that only support Resource Manager. 
+- **[Azure preview portal](https://azure.microsoft.com/overview/preview-portal/):** If you're using a newer Azure resource, you've likely used this portal. It can be used to create and configure some Azure resources. You'll eventually be able to create and configure all Azure resources with it. For some resources that support both deployment models, this portal can be used to create and configure a resource using either deployment model. 
 
-某些資源和功能只可以在其中一個入口網站中建立及設定。某些資源或功能還不能在任一個入口網站中建立或設定，而只能透過 PowerShell、CLI 或兩者進行設定。每個 Azure 資源的文件會詳述可用以建立該資源的方法。
+Some resources and features can only be created and configured in one portal or the other. Some resources or features can't (yet) be created or configured in either portal, and can only be configured with PowerShell, the CLI, or both. The documentation for each Azure resource details which method it can be created with. 
 
-## PowerShell
-透過 [PowerShell](powershell-install-configure.md)，您可以使用命令列或編寫指令碼，從 Windows 電腦建立及設定 Azure 資源。個別 Azure 資源具有[資源管理員 Cmdlet](https://msdn.microsoft.com/library/azure/mt125356.aspx)、[服務管理 Cmdlet](https://msdn.microsoft.com/library/azure/dn708504.aspx)，或兩者兼具。某些資源和功能只可以在使用 PowerShell 或 CLI 加以建立及設定。視資源而定，使用資源管理員 PowerShell Cmdlet 時，您可能會有兩個選項可供建立及設定 Azure 資源︰
+## <a name="powershell"></a>PowerShell
+With [PowerShell](powershell-install-configure.md) you can use a command line or author scripts to create and configure Azure resources from a Windows computer.  Individual Azure resources have [Resource Manager cmdlets](https://msdn.microsoft.com/library/azure/mt125356.aspx), [Service Management cmdlets](https://msdn.microsoft.com/library/azure/dn708504.aspx), or both.  Some resources and features can only be created and/or configured using PowerShell or the CLI. Depending on the resource, when using Resource Manager PowerShell cmdlets you may have two options for creating and configuring Azure resources:
 
-- **僅限 PowerShell Cmdlet︰**您可以使用每個資源的 Cmdlet，個別建立及設定每個 Azure 資源。從命令列執行這項操作，或在 PowerShell 指令碼中包含您可儲存和設定版本的多個命令。
+- **PowerShell cmdlets only:** You can create and configure each Azure resource individually using the cmdlets for each resource. You can do this from a command line, or by including multiple commands in a PowerShell script that you can store and version.
 
-- **具有 Azure 資源管理員範本的 PowerShell Cmdlet︰**您可以使用 PowerShell，透過 Azure 資源管理員範本建立 Azure 資源。範本可予以儲存及設定版本。如需詳細資訊，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)一文。常見解決方案也有數個 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)可供下載和修改。
+- **PowerShell cmdlets with an Azure Resource Manager template:** You can use PowerShell to create Azure resources using an Azure Resource Manager template. Templates can be saved and versioned. Learn more by reading the [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md) article. Several [Azure Quickstart Templates](https://azure.microsoft.com/documentation/templates/) exist for common solutions that can be downloaded and modified too.
 
-## CLI
-您可以從使用 CLI 的 Windows、OS X 或 Linux 電腦建立及設定 Azure 資源。請閱讀[安裝 Azure CLI](xplat-cli-install.md) 一文，以在您選擇的作業系統上安裝 CLI。如同 PowerShell，根據您是使用[資源管理員](xplat-cli-azure-resource-manager.md)或[傳統 (服務管理)](./virtual-machines/virtual-machines-linux-classic-manage-visual-studio.md) 部署模型建立資源，而必須使用不同的命令。
+## <a name="cli"></a>CLI
+You can create and configure Azure resources from Windows, OS X, or Linux computers using the CLI.  Read the [Install the Azure CLI](xplat-cli-install.md) article to install the CLI on your operating system of choice. Like PowerShell, there are different commands that must be used depending on whether you're creating resources using [Resource Manager](xplat-cli-azure-resource-manager.md) or the [Classic (Service Management)](./virtual-machines/virtual-machines-linux-classic-manage-visual-studio.md) deployment models.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 深入了解[資源管理員](resource-group-overview.md)。
-- 了解如何[設計範本](best-practices-resource-manager-design-templates.md)。
+- Learn more about [Resource Manager](resource-group-overview.md).
+- Understand how to [design templates](best-practices-resource-manager-design-templates.md).
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

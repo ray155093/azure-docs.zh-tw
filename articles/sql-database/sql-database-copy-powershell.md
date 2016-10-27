@@ -1,74 +1,75 @@
 <properties 
-    pageTitle="使用 PowerShell 複製 Azure SQL Database | Microsoft Azure" 
-    description="使用 PowerShell 建立 Azure SQL Database 的複本" 
-	services="sql-database"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Copy an Azure SQL database using PowerShell | Microsoft Azure" 
+    description="Create copy of an Azure SQL database using PowerShell" 
+    services="sql-database"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="NA"
-	ms.date="09/08/2016"
-	ms.author="sstein"
-	ms.workload="data-management"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"/>
+    ms.service="sql-database"
+    ms.devlang="NA"
+    ms.date="09/08/2016"
+    ms.author="sstein"
+    ms.workload="data-management"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"/>
 
 
-# 使用 PowerShell 複製 Azure SQL Database
+
+# <a name="copy-an-azure-sql-database-using-powershell"></a>Copy an Azure SQL database using PowerShell
 
 
 > [AZURE.SELECTOR]
-- [概觀](sql-database-copy.md)
-- [Azure 入口網站](sql-database-copy-portal.md)
+- [Overview](sql-database-copy.md)
+- [Azure portal](sql-database-copy-portal.md)
 - [PowerShell](sql-database-copy-powershell.md)
 - [T-SQL](sql-database-copy-transact-sql.md)
 
-本文說明如何使用 PowerShell，將 SQL Database 複製到相同的伺服器或不同的伺服器，或是將資料庫複製到[彈性資料庫集區](sql-database-elastic-pool.md)。資料庫複製作業會使用 [New-AzureRmSqlDatabaseCopy](https://msdn.microsoft.com/library/mt603644.aspx) Cmdlet。
+This article shows how to copy a SQL database with PowerShell to the same server, to a different server, or copy a database into an [elastic database pool](sql-database-elastic-pool.md). The database copy operation uses the [New-AzureRmSqlDatabaseCopy](https://msdn.microsoft.com/library/mt603644.aspx) cmdlet. 
 
 
-若要完成本文，您需要下列項目：
+To complete this article, you need the following:
 
-- Azure SQL Database (要複製的資料庫)。如果您沒有 SQL Database，請遵循此文章中的步驟來建立：[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
-- 最新版的 Azure PowerShell。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
-
-
-SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../resource-group-overview.md) 時才支援，所以範例會使用適用於 Resource Manager 的 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx)。為了提供回溯相容性，也支援現有的傳統部署模型 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx)，但是建議使用 Resource Manager Cmdlet。
+- An Azure SQL database (a database to copy). If you do not have a SQL database, create one following the steps in this article: [Create your first Azure SQL Database](sql-database-get-started.md).
+- The latest version of Azure PowerShell. For detailed information, see [How to install and configure Azure PowerShell](../powershell-install-configure.md).
 
 
->[AZURE.NOTE] 視資料庫大小而定，複製作業可能需要一些時間才能完成。
+Many new features of SQL Database are only supported when you are using the [Azure Resource Manager deployment model](../resource-group-overview.md), so examples use the [Azure SQL Database PowerShell cmdlets](https://msdn.microsoft.com/library/azure/mt574084.aspx) for Resource Manager. The existing classic deployment model [Azure SQL Database (classic) cmdlets](https://msdn.microsoft.com/library/azure/dn546723.aspx) are supported for backward compatibility, but we recommend you use the Resource Manager cmdlets.
 
 
-## 將 SQL Database 複製到相同伺服器
+>[AZURE.NOTE] Depending on the size of your database, the copy operation may take some time to complete.
 
-若要在相同的伺服器上建立複本，請省略 `-CopyServerName` 參數 (或將它設定為相同的伺服器)。
+
+## <a name="copy-a-sql-database-to-the-same-server"></a>Copy a SQL database to the same server
+
+To create the copy on the same server, omit the `-CopyServerName` parameter (or set it to the same server).
 
     New-AzureRmSqlDatabaseCopy -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -CopyDatabaseName "database1_copy"
 
-## 將 SQL Database 複製到不同伺服器
+## <a name="copy-a-sql-database-to-a-different-server"></a>Copy a SQL database to a different server
 
-若要在不同的伺服器上建立複本，請包含 `-CopyServerName` 參數並將它設定為不同的伺服器。「複製」伺服器必須已經存在。如果它是在不同的資源群組中，則必須一併包含 `-CopyResourceGroupName` 參數。
+To create the copy on a different server, include the `-CopyServerName` parameter and set it to a different server. The *copy* server must already exist. If it is in a different resource group, then you must also include the `-CopyResourceGroupName` parameter.
 
     New-AzureRmSqlDatabaseCopy -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -CopyServerName "server2" -CopyDatabaseName "database1_copy"
 
 
-## 將 SQL Database 複製到彈性資料庫集區
+## <a name="copy-a-sql-database-into-an-elastic-database-pool"></a>Copy a SQL database into an elastic database pool
 
-若要在集區中建立 SQL Database 的複本，請將 `-ElasticPoolName` 參數設定為現有的集區。
+To create a copy of a SQL database in a pool, set the `-ElasticPoolName` parameter to an existing pool.
 
     New-AzureRmSqlDatabaseCopy -ResourceGroupName "resourcegoup1" -ServerName "server1" -DatabaseName "database1" -CopyResourceGroupName "poolResourceGroup" -CopyServerName "poolServer1" -CopyDatabaseName "database1_copy" -ElasticPoolName "poolName"
 
 
-## 解析登入
+## <a name="resolve-logins"></a>Resolve logins
 
-若要在複製作業完成之後解析登入，請參閱[解析登入](sql-database-copy-transact-sql.md#resolve-logins-after-the-copy-operation-completes)
+To resolve logins after the copy operation completes, see [Resolve logins](sql-database-copy-transact-sql.md#resolve-logins-after-the-copy-operation-completes)
 
 
-## PowerShell 指令碼範例
+## <a name="example-powershell-script"></a>Example PowerShell script
 
-下列指令碼會假設所有資源群組、伺服器及集區都已經存在 (請以您現有的資源取代變數值)。除了資料庫複本之外，所有項目都必須存在。
+The following script assumes all resource groups, servers, and the pool already exist (replace the variable values with your existing resources). Everything must exist, except for the database copy.
 
     # Sign in to Azure and set the subscription to work with
     # ------------------------------------------------------
@@ -107,23 +108,27 @@ SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模
 
     
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 如需複製 Azure SQL Database 的概觀，請參閱[複製 Azure SQL Database](sql-database-copy.md)。
-- 若要使用 Azure 入口網站來複製資料庫，請參閱[使用 Azure 入口網站複製 Azure SQL Database](sql-database-copy-portal.md)。
-- 若要使用 Transact-SQL 複製資料庫，請參閱[使用 T-SQL 複製 Azure SQL Database](sql-database-copy-transact-sql.md)。
-- 請參閱[如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)，以了解如何在將資料庫複製到不同的邏輯伺服器時管理使用者與登入。
+- See [Copy an Azure SQL database](sql-database-copy.md) for an overview of copying an Azure SQL Database.
+- See [Copy an Azure SQL database using the Azure portal](sql-database-copy-portal.md) to copy a database using the Azure portal.
+- See [Copy an Azure SQL database using T-SQL](sql-database-copy-transact-sql.md) to copy a database using Transact-SQL.
+- See [How to manage Azure SQL database security after disaster recovery](sql-database-geo-replication-security-config.md) to learn about managing users and logins when copying a database to a different logical server.
 
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
 - [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/mt603644.aspx)
-- [Get AzureRmSqlDatabaseActivity](https://msdn.microsoft.com/library/mt603687.aspx)
-- [管理登入](sql-database-manage-logins.md)
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
-- [將資料庫匯出至 BACPAC](sql-database-export.md)
-- [商務持續性概觀](sql-database-business-continuity.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
-- [Azure SQL Database PowerShell Cmdlet 參考](https://msdn.microsoft.com/library/mt574084.aspx)
+- [Get-AzureRmSqlDatabaseActivity](https://msdn.microsoft.com/library/mt603687.aspx)
+- [Manage logins](sql-database-manage-logins.md)
+- [Connect to SQL Database with SQL Server Management Studio and perform a sample T-SQL query](sql-database-connect-query-ssms.md)
+- [Export the database to a BACPAC](sql-database-export.md)
+- [Business Continuity Overview](sql-database-business-continuity.md)
+- [SQL Database documentation](https://azure.microsoft.com/documentation/services/sql-database/)
+- [Azure SQL Database PowerShell Cmdlet Reference](https://msdn.microsoft.com/library/mt574084.aspx)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

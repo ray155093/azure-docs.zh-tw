@@ -1,92 +1,95 @@
 
 
 
-## Azure Resource Manager 部署模型提供整合計算、網路和存放功能等優點
+## <a name="advantages-of-integrating-compute,-network,-and-storage-under-the-azure-resource-manager-deployment-model"></a>Advantages of integrating Compute, Network, and Storage under the Azure Resource Manager deployment model
 
-Azure Resource Manager 部署模型可讓您輕鬆運用預先建立的應用程式範本，或建構應用程式範本來部署以及管理 Azure 上的計算、網路和儲存體資源。在本節中，我們將詳細說明利用 Azure Resource Manager 部署模型來部署資源有哪些優點。
+The Azure Resource Manager deployment model offers the ability to easily leverage pre-built application templates or construct an application template to deploy and manage compute, network, and storage resources on Azure. In this section, we’ll walk through the advantages of deploying resources through the Azure Resource Manager deployment model.
 
--	化繁為簡 -- 利用一個可共用的範本檔案來建立、整合及協調各種應用程式，它們可能包含整個範圍的 Azure 資源，例如網站、SQL 資料庫、虛擬機器或虛擬網路。
--	當您使用相同的範本檔案時，可以彈性重複部署開發、devOps 和系統管理員
--	利用 Azure Resource Manager 將 VM 延伸模組 (自訂指令碼、DSC、Chef、Puppet 等) 與範本檔案進行深度整合，輕鬆協調 VM 內部的各項安裝設定
--	為運算、網路和儲存體資源的標記，定義標記和帳單傳送
--	使用 Azure 角色型存取控制 (RBAC)，輕鬆準確管理組織資源的取用
--	修改原始範本，然後重新部署，讓整個升級/更新過程更加簡化
+-   Complexity made simple -- Build, integrate, and collaborate on complicated applications that can include the entire gamut of Azure resources (such as Websites, SQL Databases, Virtual Machines, or Virtual Networks) from a shareable template file
+-   Flexibility to have repeatable deployments for development, devOps, and system administrators when you use the same template file
+-   Deep integration of VM Extensions (Custom Scripts, DSC, Chef, Puppet, etc.) with the Azure Resource Manager in a template file allows easy orchestration of in-VM setup configuration
+-   Defining tags and the billing propagation of those tags for Compute, Network & Storage resources
+-   Simple and precise organizational resource access management using Azure Role-Based Access Control (RBAC)
+-   Simplified Upgrade/Update story by modifying the original template and then redeploying it
 
 
-## Azure Resource Manager 提供各種先進的運算、網路和儲存體 API
+## <a name="advancements-of-the-compute,-network,-and-storage-apis-under-azure-resource-manager"></a>Advancements of the Compute, Network, and Storage APIs under Azure Resource Manager
 
-除了上述優點之外，發行的 API 在效能方面還有一些重要的改善：
+In addition to the advantages mentioned above, there are some significant performance advancements in the APIs released:
 
--	大規模平行部署虛擬機器
--	可用性設定組 (Availability Set) 支援 3 個容錯網域
--	改良的「自訂指令碼」延伸模組，允許從任何可公開存取的自訂 URL 指定指令碼
-- 虛擬機器結合 Azure Key Vault，可以實現儲存體的高度安全而且還可以從 [FIPS 驗證的](http://wikipedia.org/wiki/FIPS_140-2)[硬體安全模組](http://wikipedia.org/wiki/Hardware_security_module)部署私人密碼
--	透過 API 提供基本的網路建置區塊，讓客戶建構複雜的應用程式，包括網路介面、負載平衡器，以及虛擬網路
--	「網路介面」做為新物件可以持續設定複雜的網路組態，並重複應用到虛擬機器
--	「負載平衡器」做為第一級資源可以指派 IP 位址
--	「細微虛擬網路 API」可讓您簡化個別虛擬網路的管理
+-   Enabling massive and parallel deployment of Virtual Machines
+-   Support for 3 Fault Domains in Availability Sets
+-   Improved Custom Script extension that allows specification of scripts from any publicly accessible custom URL
+- Integration of Virtual Machines with the Azure Key Vault for highly secure storage and private deployment of secrets from [FIPS-validated](http://wikipedia.org/wiki/FIPS_140-2) [Hardware Security Modules](http://wikipedia.org/wiki/Hardware_security_module)
+-   Provides the basic building blocks of networking through APIs to enable customers to construct complicated applications that include Network Interfaces, Load Balancers, and Virtual Networks
+-   Network Interfaces as a new object allows complicated network configuration to be sustained and reused for Virtual Machines
+-   Load Balancers as a first-class resource enables IP Address assignments
+-   Granular Virtual Network APIs allow you to simplify the management of individual Virtual Networks
 
-## 新 API 帶來的觀念差異
+## <a name="conceptual-differences-with-the-introduction-of-new-apis"></a>Conceptual differences with the introduction of new APIs
 
-在本節中，我們會詳細解說時下流行的 XML 型 API 和透過適用於運算、網路和儲存體的 Azure Resource Manager 所提供的 JSON 型 API，二者之間存在的重大觀念差異。
+In this section, we will walk through some of the most important conceptual differences between the XML based APIs available today and JSON based APIs available through the Azure Resource Manager for Compute, Network & Storage.
 
- 項目 | Azure 服務管理 (XML 型) | 運算、網路和儲存提供者 (JSON 型)
+ Item | Azure Service Management (XML-based)    | Compute, Network & Storage Providers (JSON-based)
  ---|---|---
-| 虛擬機器的雲端服務 |	雲端服務是一種容器，專門保管那些要求平台和負載平衡可用性的虛擬機器。 | 使用新模型建立虛擬機器時，雲端服務已經不是必要的物件了。 |
-| 可用性設定組 (Availability Sets) | 在虛擬機器上設定相同的 "AvailabilitySetName" 之後，即表示平台的可用性。容錯網域的最大個數為 2。 | 「可用性設定組」是 Microsoft.Compute 提供者公開的資源。需要高可用性的虛擬機器必須包含在「可用性設定組」中。容錯網域的最大個數現在是 3。 |
-| [同質群組] |	建立虛擬網路時需要同質群組。不過，隨著區域虛擬網路引進，就再也不需要了。 |簡而言之，透過 Azure Resource Manager 而公開的 API，其實不存在同質群組這種概念。 |
-| 負載平衡 | 雲端服務的建立，為部署的虛擬機器提供隱含的負載平衡器。 | 負載平衡器是 Microsoft.Network 提供者所公開的資源。虛擬機器如果需要平衡負載，其主要網路介面應該參考負載平衡器。負載平衡器可以放在內部或外部。[閱讀更多。](../articles/resource-groups-networking.md) |
-|虛擬 IP 位址 | 將 VM 新增到雲端服務後，雲端服務會得到預設的 VIP (虛擬 IP 位址)。虛擬 IP 位址是隱含性負載平衡器的相關位址。 | 公用 IP 位址是 Microsoft.Network 提供者所公開的資源。公用 IP 位址可以是靜態 (保留) 或動態。動態公用 IP 可以指派至負載平衡器。使用安全性群組可以保護公用 IP。 |
-|保留 IP 位址|	您可以將 IP 位址保留在 Azure 中，然後與雲端服務建立關聯，確保 IP 位址不會變動。 | 您可以在「靜態」模式中建立公用 IP 位址，然後它就具備「保留的 IP 位址」一樣的功能。靜態公用 IP 現在只能指派至負載平衡器。 |
-|每一個 VM 的公用 IP 位址 (PIP) | 公用 IP 位址也可以直接與 VM 建立關聯。 | 公用 IP 位址是 Microsoft.Network 提供者所公開的資源。公用 IP 位址可以是靜態 (保留) 或動態。不過，只有動態公用 IP 才可以指派至網路介面，以立即取得每一個 VM 的公用 IP。 |
-|端點| 輸入端點需要在開放特定連接埠連線的虛擬機器上設定。設定輸入端點之後，就能完成幾個常見的虛擬機器連線模式之一。 | 您可以在負載平衡器上設定「傳入 NAT 規則」，以達到啟用特定連接埠上的端點以連線至 VM 的相同功能。 |
-|DNS 名稱| 雲端服務會取得隱含的全域唯一 DNS 名稱。例如：`mycoffeeshop.cloudapp.net`。 | DNS 名稱是可以在公用 IP 位址資源上指定的選用參數。FQDN 的格式如下 - `<domainlabel>.<region>.cloudapp.azure.com`。 |
-|網路介面 | 主要和次要網路介面與其屬性會定義為虛擬機器的網路組態。 | 網路介面是 Microsoft.Network 提供者所公開的資源。網路介面的生命週期與虛擬機器無關。 |
+| Cloud Service for Virtual Machines |  Cloud Service was a container for holding the virtual machines that required Availability from the platform and Load Balancing. | Cloud Service is no longer an object required for creating a Virtual Machine using the new model. |
+| Availability Sets | Availability to the platform was indicated by configuring the same “AvailabilitySetName” on the Virtual Machines. The maximum count of fault domains was 2. | Availability Set is a resource exposed by Microsoft.Compute Provider. Virtual Machines that require high availability must be included in the Availability Set. The maximum count of fault domains is now 3. |
+| Affinity Groups | Affinity Groups were required for creating Virtual Networks. However, with the introduction of Regional Virtual Networks, that was not required anymore. |To simplify, the Affinity Groups concept doesn’t exist in the APIs exposed through Azure Resource Manager. |
+| Load Balancing    | Creation of a Cloud Service provides an implicit load balancer for the Virtual Machines deployed. | The Load Balancer is a resource exposed by the Microsoft.Network provider. The primary network interface of the Virtual Machines that needs to be load balanced should be referencing the load balancer. Load Balancers can be internal or external. [Read more.](../articles/resource-groups-networking.md) |
+|Virtual IP Address | Cloud Services will get a default VIP (Virtual IP Address) when a VM is added to a cloud service. The Virtual IP Address is the address associated with the implicit load balancer.   | Public IP address is a resource exposed by the Microsoft.Network provider. Public IP Address can be Static (Reserved) or Dynamic. Dynamic Public IPs can be assigned to a Load Balancer. Public IPs can be secured using Security Groups. |
+|Reserved IP Address|   You can reserve an IP Address in Azure and associate it with a Cloud Service to ensure that the IP Address is sticky.   | Public IP Address can be created in “Static” mode and it offers the same capability as a “Reserved IP Address”. Static Public IPs can only be assigned to a Load balancer right now. |
+|Public IP Address (PIP) per VM | Public IP Addresses can also associated to a VM directly. | Public IP address is a resource exposed by the Microsoft.Network provider. Public IP Address can be Static (Reserved) or Dynamic. However, only dynamic Public IPs can be assigned to a Network Interface to get a Public IP per VM right now. |
+|Endpoints| Input Endpoints needed to be configured on a Virtual Machine to be open up connectivity for certain ports. One of the common modes of connecting to virtual machines done by setting up input endpoints. | Inbound NAT Rules can be configured on Load Balancers to achieve the same capability of enabling endpoints on specific ports for connecting to the VMs. |
+|DNS Name| A cloud service would get an implicit globally unique DNS Name. For example: `mycoffeeshop.cloudapp.net`. | DNS Names are optional parameters that can be specified on a Public IP Address resource. The FQDN will be in the following format - `<domainlabel>.<region>.cloudapp.azure.com`. |
+|Network Interfaces | Primary and Secondary Network Interface and its properties were defined as network configuration of a Virtual machine. | Network Interface is a resource exposed by Microsoft.Network Provider. The lifecycle of the Network Interface is not tied to a Virtual Machine. |
 
-## 開始使用適用於虛擬機器的 Azure 範本
+## <a name="getting-started-with-azure-templates-for-virtual-machines"></a>Getting Started with Azure Templates for Virtual Machines
 
-您可以利用我們專為開發和部署到平台而設計的工具，開始使用 Azure 範本。
+You can get started with the Azure Templates by leveraging the various tools that we have for developing and deploying to the platform.
 
-### Azure 入口網站
+### <a name="azure-portal"></a>Azure portal
 
-Azure 入口網站將繼續提供同時以傳統部署模式來部署虛擬機器，以及以資源管理員部署模式來部署虛擬機器的選項。Azure 入口網站也允許部署自訂的範本。
+The Azure portal will continue to have the option to deploy Virtual Machines with the classic deployment model and Virtual Machines with the Resource Manager deployment model simultaneously. The Azure portal will also allow custom template deployments.
 
-### Azure PowerShell
+### <a name="azure-powershell"></a>Azure PowerShell
 
-Azure PowerShell 有兩種部署模式 - **AzureServiceManagement** 模式和 **AzureResourceManager** 模式。Azure ResourceManager 模式現在也包含 Cmdlet 來管理虛擬機器、虛擬網路和儲存體帳戶。您可以在[此處](../articles/powershell-azure-resource-manager.md)閱讀相關資訊。
+Azure PowerShell will have two modes of deployment – **AzureServiceManagement** mode and **AzureResourceManager** mode.  AzureResourceManager mode will now also contain the cmdlets to manage Virtual Machines, Virtual Networks, and Storage Accounts. You can read more about it [here](../articles/powershell-azure-resource-manager.md).
 
-### Azure CLI
+### <a name="azure-cli"></a>Azure CLI
 
-Azure 命令列介面 (Azure CLI) 有兩種部署模式 - **AzureServiceManagement** 模式和 **AzureResourceManager** 模式。AzureResourceManager 模式現在也包含管理虛擬機器、虛擬網路和儲存體帳戶的命令。您可以在[此處](../articles/xplat-cli-azure-resource-manager.md)閱讀相關資訊。
+The Azure Command-line Interface (Azure CLI) will have two modes of deployment – **AzureServiceManagement** mode and **AzureResourceManager** mode. The AzureResourceManager mode will now also contain commands to manage Virtual Machines, Virtual Networks, and Storage Accounts. You can read more about it [here](../articles/xplat-cli-azure-resource-manager.md).
 
-### Visual Studio
+### <a name="visual-studio"></a>Visual Studio
 
-利用適用於 Visual Studio 的 Azure SDK 最新版本，您可以直接從 Visual Studio 設計以及部署虛擬機器和複雜的應用程式。利用 Visual Studio，您可以從預先建立的範本清單或從空白範本開始進行部署。
+With the latest Azure SDK release for Visual Studio, you can author and deploy Virtual Machines and complex applications right from Visual Studio. Visual Studio offers the ability to deploy from a pre-built list of templates or start from an empty template.
 
-### REST API
+### <a name="rest-apis"></a>REST APIs
 
-您可以到[這裡](https://msdn.microsoft.com/library/azure/dn790568.aspx)找到與運算、網路和儲存體資源提供者有關的 REST API 詳細說明文件。
+You can find the detailed REST API documentation for the Compute, Network & Storage Resource Providers [here](https://msdn.microsoft.com/library/azure/dn790568.aspx).
 
-## 常見問題集
+## <a name="frequently-asked-questions"></a>Frequently Asked Questions
 
-**我可以使用新的 Azure Resource Manager 建立虛擬機器，來部署使用 Azure Service Management API 所建立的虛擬網路或儲存體帳戶嗎？**
+**Can I create a Virtual Machine using the new Azure Resource Manager to deploy in a Virtual Network or Storage Account created using the Azure Service Management APIs?**
 
-目前尚未支援。使用新的 Azure Resource Manager API 並無法將虛擬機器部署到使用 Service Management API 建立的虛擬網路中。
+This is not supported at the moment. You cannot deploy using the new Azure Resource Manager APIs to deploy a Virtual Machine into a Virtual Network that was created using the Service Management APIs.
 
-**我可以從使用 Azure Resource Manager API 建立的使用者映像建立使用新的 Azure Resource Manager API 的虛擬機器嗎？**
+**Can I create a Virtual Machine using the new Azure Resource Manager APIs from a user image that was created using the Azure Service Management APIs?**
 
-目前尚未支援。不過，您可以複製使用 Service Management API 所建立之儲存體帳戶中的 VHD 檔案，並將 VHD 檔案複製到使用新的 Azure Resource Manager API 建立的新帳戶。
+This is not supported at the moment. However, you can copy the VHD files from a Storage Account that was created using the Service Management APIs and copy it to a new account created using the using the new Azure Resource Manager APIs.
 
-**對訂閱的配額有何影響？**
+**What is the impact on the quota for my subscription?**
 
-虛擬機器、虛擬網路和透過新 Azure Resource Manager API 建立的儲存體帳戶，它們之間的配額與您現有的配額是分開的。每個訂閱會得到新的配額，然後就可以使用新的 API 建立資源。如需其他配額的詳細資訊，請參閱[這裡](../articles/azure-subscription-service-limits.md)。
+The quotas for the Virtual Machines, Virtual Networks, and Storage Accounts created through the new Azure Resource Manager APIs  are separate from the quotas that you currently have. Each subscription gets new quotas to create the resources using the new APIs. You can read more about the additional quotas [here](../articles/azure-subscription-service-limits.md).
 
-**我可以透過新的 Azure Resource Manager API，繼續使用自動指令碼佈建虛擬機器、虛擬網路、儲存體帳戶嗎？**
+**Can I continue to use my automated scripts for provisioning Virtual Machines, Virtual Networks, Storage Accounts etc. through the new Azure Resource Manager APIs?**
 
-所有您建立的自動化和指令碼，仍然適用於 Azure 服務管理模式下建立的現有虛擬機器和虛擬網路。不過，您必須更新指令碼，才能使用新的結構描述並透過 Azure Resource Manager 模式建立相同的資源。
+All the automation and scripts that you’ve built will continue to work for the existing Virtual Machines, Virtual Networks created under the Azure Service Management mode. However, the scripts have to be updated to use the new schema for creating the same resources through the new Azure Resource Manager mode.
 
-**哪裡可以找到 Azure Resource Manager 範本的範例？**
+**Where can I find examples of Azure Resource Manager templates?**
 
-一組完整的入門範本可在 [Azure 資源管理員快速入門範本](https://azure.microsoft.com/documentation/templates/)中找到。
+A comprehensive set of starter templates can be found on [Azure Resource Manager QuickStart Templates](https://azure.microsoft.com/documentation/templates/).
 
-<!---HONumber=AcomDC_0629_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

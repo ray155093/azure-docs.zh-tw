@@ -1,371 +1,379 @@
 <properties
-	pageTitle="建置您的第一個 Data Factory (Azure 入口網站) | Microsoft Azure"
-	description="在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立範例 Azure Data Factory 管線。"
-	services="data-factory"
-	documentationCenter=""
-	authors="spelluru"
-	manager="jhubbard"
-	editor="monicar"/>
+    pageTitle="Build your first data factory (Azure portal) | Microsoft Azure"
+    description="In this tutorial, you create a sample Azure Data Factory pipeline using Data Factory Editor in the Azure portal."
+    services="data-factory"
+    documentationCenter=""
+    authors="spelluru"
+    manager="jhubbard"
+    editor="monicar"/>
 
 <tags
-	ms.service="data-factory"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="hero-article" 
-	ms.date="09/14/2016"
-	ms.author="spelluru"/>
+    ms.service="data-factory"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="hero-article" 
+    ms.date="09/14/2016"
+    ms.author="spelluru"/>
 
-# 教學課程：使用 Azure 入口網站建置您的第一個 Azure Data Factory
+
+# <a name="tutorial:-build-your-first-azure-data-factory-using-azure-portal"></a>Tutorial: Build your first Azure data factory using Azure portal
 > [AZURE.SELECTOR]
-- [概觀和必要條件](data-factory-build-your-first-pipeline.md)
-- [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
+- [Overview and prerequisites](data-factory-build-your-first-pipeline.md)
+- [Azure portal](data-factory-build-your-first-pipeline-using-editor.md)
 - [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
-- [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
+- [Resource Manager Template](data-factory-build-your-first-pipeline-using-arm.md)
 - [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
-在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/)來建立您的第一個 Azure Data Factory。
+In this article, you learn how to use the [Azure portal](https://portal.azure.com/) to create your first Azure data factory. 
 
-## 必要條件		
-1. 詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文並完成**必要**步驟。
-2. 本文不提供 Azure Data Factory 服務的概念性概觀。建議您詳讀 [Azure Data Factory 簡介](data-factory-introduction.md)一文，了解服務的詳細概觀。
+## <a name="prerequisites"></a>Prerequisites        
+1. Read through [Tutorial Overview](data-factory-build-your-first-pipeline.md) article and complete the **prerequisite** steps.
+2. This article does not provide a conceptual overview of the Azure Data Factory service. We recommend that you go through [Introduction to Azure Data Factory](data-factory-introduction.md) article for a detailed overview of the service.  
 
-## 建立 Data Factory
-資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。讓我們在這個步驟中開始建立 Data Factory。
+## <a name="create-data-factory"></a>Create data factory
+A data factory can have one or more pipelines. A pipeline can have one or more activities in it. For example, a Copy Activity to copy data from a source to a destination data store and a HDInsight Hive activity to run Hive script to transform input data to product output data. Let's start with creating the data factory in this step. 
 
-1.	登入 [Azure 入口網站](https://portal.azure.com/)。
-2.	按一下左側功能表上的 [新增]、[資料 + 分析]，再按一下 [Data Factory]。
-		
-	![建立刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/create-blade.png)
+1.  Log in to the [Azure portal](https://portal.azure.com/).
+2.  Click **NEW** on the left menu, click **Data + Analytics**, and click **Data Factory**.
+        
+    ![Create blade](./media/data-factory-build-your-first-pipeline-using-editor/create-blade.png)
 
-2.	在 [新增 Data Factory] 刀鋒視窗中，輸入 **GetStartedDF** 做為 [名稱]。
+2.  In the **New data factory** blade, enter **GetStartedDF** for the Name.
 
-	![新增 Data Factory 刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/new-data-factory-blade.png)
+    ![New data factory blade](./media/data-factory-build-your-first-pipeline-using-editor/new-data-factory-blade.png)
 
-	> [AZURE.IMPORTANT] 
-	Azure Data Factory 的名稱必須是**全域唯一的**。如果您收到錯誤：**Data Factory 名稱 “GetStartedDF” 無法使用**。請變更 Data Factory 名稱 (例如 yournameGetStartedDF)，然後嘗試重新建立。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
-	> 
-	> Data Factory 的名稱未來可能會註冊為 **DNS** 名稱，因此會變成公開可見的名稱。
+    > [AZURE.IMPORTANT] 
+    > The name of the Azure data factory must be **globally unique**. If you receive the error: **Data factory name “GetStartedDF” is not available**. Change the name of the data factory (for example, yournameGetStartedDF) and try creating again. See [Data Factory - Naming Rules](data-factory-naming-rules.md) topic for naming rules for Data Factory artifacts.
+    > 
+    > The name of the data factory may be registered as a **DNS** name in the future and hence become publically visible.
 
-3.	選取您想要建立 Data Factory 的 [Azure 訂用帳戶]。
-4.	請選取現有的 **資源群組**，或建立資源群組。在教學課程中，建立名稱如下的資源群組：**ADFGetStartedRG**。
-5.	按一下 [新增 Data Factory] 刀鋒視窗上的 [建立]。
+3.  Select the **Azure subscription** where you want the data factory to be created. 
+4.  Select existing **resource group** or create a resource group. For the tutorial, create a resource group named: **ADFGetStartedRG**. 
+5.  Click **Create** on the **New data factory** blade.
 
-	> [AZURE.IMPORTANT] 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../active-directory/role-based-access-built-in-roles.md/#data-factory-contributor)角色成員。
-6.	您會看到 Data Factory 建立在 Azure 入口網站的「開始面板」 中，如下所示：
+    > [AZURE.IMPORTANT] To create Data Factory instances, you must be a member of the [Data Factory Contributor](../active-directory/role-based-access-built-in-roles.md/#data-factory-contributor) role at the subscription/resource group level. 
+6.  You see the data factory being created in the **Startboard** of the Azure portal as follows:   
 
-	![建立 Data Factory 狀態](./media/data-factory-build-your-first-pipeline-using-editor/creating-data-factory-image.png)
-7. 恭喜！ 您已成功建立您的第一個 Data Factroy。在 Data Factory 成功建立後，您會看到 Data Factory 頁面，顯示 Data Factory 的內容。
+    ![Creating data factory status](./media/data-factory-build-your-first-pipeline-using-editor/creating-data-factory-image.png)
+7. Congratulations! You have successfully created your first data factory. After the data factory has been created successfully, you see the data factory page, which shows you the contents of the data factory.   
 
-	![Data Factory 刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-blade.png)
+    ![Data Factory blade](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-blade.png)
 
-在 Data Factory 中建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示位於連結的資料存放區中的輸入/輸出資料，然後建立具有使用這些資料集的活動之管線。
+Before creating a pipeline in the data factory, you need to create a few Data Factory entities first. You first create linked services to link data stores/computes to your data store, define input and output datasets to represent input/output data in linked data stores, and then create the pipeline with an activity that uses these datasets. 
 
-## 建立連結服務
-在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。識別案例中使用的[資料存放區](data-factory-data-movement-activities.md)/[計算服務](data-factory-compute-linked-services.md)，並建立連結的服務將這些服務連結到 Data Factory。
+## <a name="create-linked-services"></a>Create linked services
+In this step, you link your Azure Storage account and an on-demand Azure HDInsight cluster to your data factory. The Azure Storage account holds the input and output data for the pipeline in this sample. The HDInsight linked service is used to run Hive script specified in the activity of the pipeline in this sample. Identify what [data store](data-factory-data-movement-activities.md)/[compute services](data-factory-compute-linked-services.md) are used in your scenario and link those services to the data factory by creating linked services.  
 
-### 建立 Azure 儲存體連結服務
-在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。在本教學課程中，您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
+### <a name="create-azure-storage-linked-service"></a>Create Azure Storage linked service
+In this step, you link your Azure Storage account to your data factory. In this tutorial, you use the same Azure Storage account to store input/output data and the HQL script file. 
 
-1.	在適用於 **GetStartedDF** 的 [DATA FACTORY] 刀鋒視窗中，按一下 [製作和部署]。您應該會看到 Data Factory 編輯器。
-	 
-	![[製作和部署] 圖格](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-author-deploy.png)
-2.	按一下 [新增資料存放區] 並選擇 [Azure 儲存體]。
+1.  Click **Author and deploy** on the **DATA FACTORY** blade for **GetStartedDF**. You should see the Data Factory Editor. 
+     
+    ![Author and deploy tile](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-author-deploy.png)
+2.  Click **New data store** and choose **Azure storage**.
 
-	![新增資料存放區 - Azure 儲存體 - 功能表](./media/data-factory-build-your-first-pipeline-using-editor/new-data-store-azure-storage-menu.png)
+    ![New data store - Azure Storage - menu](./media/data-factory-build-your-first-pipeline-using-editor/new-data-store-azure-storage-menu.png)
 
-3.	在編輯器中，您應該會看到用來建立 Azure 儲存體連結服務的 JSON 指令碼。
-	
-	![Azure 儲存體連結服務](./media/data-factory-build-your-first-pipeline-using-editor/azure-storage-linked-service.png)
-	 
-4. 使用您的 Azure 儲存體帳戶名稱取代帳戶名稱，並使用 Azure 儲存體帳戶的存取金鑰取代帳戶金鑰。若要了解如何取得儲存體存取金鑰，請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)
-5. 按一下命令列的 [部署]，部署連結服務。
+3.  You should see the JSON script for creating an Azure Storage linked service in the editor. 
+    
+    ![Azure Storage linked service](./media/data-factory-build-your-first-pipeline-using-editor/azure-storage-linked-service.png)
+     
+4. Replace **account name** with the name of your Azure storage account and **account key** with the access key of the Azure storage account. To learn how to get your storage access key, see [View, copy and regenerate storage access keys](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)
+5. Click **Deploy** on the command bar to deploy the linked service.
 
-	![[部署] 按鈕](./media/data-factory-build-your-first-pipeline-using-editor/deploy-button.png)
+    ![Deploy button](./media/data-factory-build-your-first-pipeline-using-editor/deploy-button.png)
 
-   成功部署連結的服務之後，應該會出現 **Draft-1** 視窗，而且您會在左側的樹狀檢視中看到 **StorageLinkedService**。
-   ![功能表中的儲存體連結服務](./media/data-factory-build-your-first-pipeline-using-editor/StorageLinkedServiceInTree.png)
+   After the linked service is deployed successfully, the **Draft-1** window should disappear and you see **AzureStorageLinkedService** in the tree view on the left. 
+    ![Storage Linked Service in menu](./media/data-factory-build-your-first-pipeline-using-editor/StorageLinkedServiceInTree.png)   
 
  
-### 建立 Azure HDInsight 連結服務
-在此步驟中，您可將隨選 HDInsight 叢集連結至 Data Factory。HDInsight 叢集會在執行階段自動建立，並在處理完成之後刪除，且會閒置一段時間。
+### <a name="create-azure-hdinsight-linked-service"></a>Create Azure HDInsight linked service
+In this step, you link an on-demand HDInsight cluster to your data factory. The HDInsight cluster is automatically created at runtime and deleted after it is done processing and idle for the specified amount of time. 
 
-1. 在 [Data Factory 編輯器] 中，按一下 [...更多]，按一下 [新增計算]，然後選取 [HDInsight 隨選叢集]。
+1. In the **Data Factory Editor**, click **... More**, click **New compute**, and select **On-demand HDInsight cluster**.
 
-	![新增計算](./media/data-factory-build-your-first-pipeline-using-editor/new-compute-menu.png)
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。此 JSON 程式碼片段描述用來建立隨選 HDInsight 叢集的屬性。
+    ![New compute](./media/data-factory-build-your-first-pipeline-using-editor/new-compute-menu.png)
+2. Copy and paste the following snippet to the **Draft-1** window. The JSON snippet describes the properties that are used to create the HDInsight cluster on-demand. 
 
-		{
-		  "name": "HDInsightOnDemandLinkedService",
-		  "properties": {
-		    "type": "HDInsightOnDemand",
-		    "typeProperties": {
-		      "version": "3.2",
-		      "clusterSize": 1,
-		      "timeToLive": "00:30:00",
-		      "linkedServiceName": "AzureStorageLinkedService"
-		    }
-		  }
-		}
-	
-	下表提供程式碼片段中所使用之 JSON 屬性的描述：
-	
-	| 屬性 | 說明 |
-	| :------- | :---------- |
-	| 版本 | 指定所建立的 HDInsight 版本為 3.2。 | 
-	| ClusterSize | 指定 HDInsight 叢集的大小。 | 
-	| TimeToLive | 指定 HDInsight 叢集在被刪除之前的閒置時間。 |
-	| linkedServiceName | 指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶。 |
+        {
+          "name": "HDInsightOnDemandLinkedService",
+          "properties": {
+            "type": "HDInsightOnDemand",
+            "typeProperties": {
+              "version": "3.2",
+              "clusterSize": 1,
+              "timeToLive": "00:30:00",
+              "linkedServiceName": "AzureStorageLinkedService"
+            }
+          }
+        }
+    
+    The following table provides descriptions for the JSON properties used in the snippet:
+    
+  	| Property | Description |
+  	| :------- | :---------- |
+  	| Version | Specifies that the version of the HDInsight created to be 3.2. | 
+  	| ClusterSize | Specifies the size of the HDInsight cluster. | 
+  	| TimeToLive | Specifies that the idle time for the HDInsight cluster, before it is deleted. |
+  	| linkedServiceName | Specifies the storage account that is used to store the logs that are generated by HDInsight. |
 
-	請注意下列幾點：
-	
-	- Data Factory 會使用 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
-	- 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
-	- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。這是設計的行為。在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每次處理配量時，就會建立 HDInsight 叢集。此叢集會在處理完成時自動刪除。
-	
-		隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具，來刪除 Azure Blob 儲存體中的容器。
+    Note the following points: 
+    
+    - The Data Factory creates a **Windows-based** HDInsight cluster for you with the JSON. You could also have it create a **Linux-based** HDInsight cluster. See [On-demand HDInsight Linked Service](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) for details. 
+    - You could use **your own HDInsight cluster** instead of using an on-demand HDInsight cluster. See [HDInsight Linked Service](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) for details.
+    - The HDInsight cluster creates a **default container** in the blob storage you specified in the JSON (**linkedServiceName**). HDInsight does not delete this container when the cluster is deleted. This behavior is by design. With on-demand HDInsight linked service, a HDInsight cluster is created every time a slice is processed unless there is an existing live cluster (**timeToLive**). The cluster is automatically deleted when the processing is done.
+    
+        As more slices are processed, you see many containers in your Azure blob storage. If you do not need them for troubleshooting of the jobs, you may want to delete them to reduce the storage cost. The names of these containers follow a pattern: "adf**yourdatafactoryname**-**linkedservicename**-datetimestamp". Use tools such as [Microsoft Storage Explorer](http://storageexplorer.com/) to delete containers in your Azure blob storage.
 
-	如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
-3. 按一下命令列的 [部署]，部署連結服務。
+    See [On-demand HDInsight Linked Service](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) for details.
+3. Click **Deploy** on the command bar to deploy the linked service. 
 
-	![部署 HDInsight 隨選連結服務](./media/data-factory-build-your-first-pipeline-using-editor/ondemand-hdinsight-deploy.png)
+    ![Deploy on-demand HDInsight linked service](./media/data-factory-build-your-first-pipeline-using-editor/ondemand-hdinsight-deploy.png)
 
-4. 確認您有在左側的樹狀檢視中看到 **AzureStorageLinkedService** 和 **HDInsightOnDemandLinkedService**。
+4. Confirm that you see both **AzureStorageLinkedService** and **HDInsightOnDemandLinkedService** in the tree view on the left.
 
-	![含連結服務的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-linked-services.png)
+    ![Tree view with linked services](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-linked-services.png)
 
-## 建立資料集
-在此步驟中，您會建立資料集來代表 Hive 處理的輸入和輸出資料。這些資料集是您稍早在本教學課程中建立的 **AzureStorageLinkedService**。連結的服務會指向 Azure 儲存體帳戶，而資料集則會指定保留輸入和輸出資料儲存體中的容器、資料夾和檔案名稱。
+## <a name="create-datasets"></a>Create datasets
+In this step, you create datasets to represent the input and output data for Hive processing. These datasets refer to the **AzureStorageLinkedService** you have created earlier in this tutorial. The linked service points to an Azure Storage account and datasets specify container, folder, file name in the storage that holds input and output data.   
 
-### 建立輸入資料集
+### <a name="create-input-dataset"></a>Create input dataset
 
-1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [...其他]，按一下 [新增資料集]，然後選取 [Azure Blob 儲存體]。
+1. In the **Data Factory Editor**, click **... More** on the command bar, click **New dataset**, and select **Azure Blob storage**.
 
-	![新增資料集](./media/data-factory-build-your-first-pipeline-using-editor/new-data-set.png)
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。在 JSON 程式碼片段中，您會建立名為 **AzureBlobInput** 的資料集，代表管線中活動的輸入資料。此外，您指定將輸入資料放在名為 **adfgetstarted** 的 Blob 容器及名為 **inputdata** 的資料夾中。
-		
-		{
-			"name": "AzureBlobInput",
-		    "properties": {
-		        "type": "AzureBlob",
-		        "linkedServiceName": "AzureStorageLinkedService",
-		        "typeProperties": {
-		            "fileName": "input.log",
-		            "folderPath": "adfgetstarted/inputdata",
-		            "format": {
-		                "type": "TextFormat",
-		                "columnDelimiter": ","
-		            }
-		        },
-		        "availability": {
-		            "frequency": "Month",
-		            "interval": 1
-		        },
-		        "external": true,
-		        "policy": {}
-		    }
-		} 
+    ![New dataset](./media/data-factory-build-your-first-pipeline-using-editor/new-data-set.png)
+2. Copy and paste the following snippet to the Draft-1 window. In the JSON snippet, you are creating a dataset called **AzureBlobInput** that represents input data for an activity in the pipeline. In addition, you specify that the input data is located in the blob container called **adfgetstarted** and the folder called **inputdata**.
+        
+        {
+            "name": "AzureBlobInput",
+            "properties": {
+                "type": "AzureBlob",
+                "linkedServiceName": "AzureStorageLinkedService",
+                "typeProperties": {
+                    "fileName": "input.log",
+                    "folderPath": "adfgetstarted/inputdata",
+                    "format": {
+                        "type": "TextFormat",
+                        "columnDelimiter": ","
+                    }
+                },
+                "availability": {
+                    "frequency": "Month",
+                    "interval": 1
+                },
+                "external": true,
+                "policy": {}
+            }
+        } 
 
-	下表提供程式碼片段中所使用之 JSON 屬性的描述：
+    The following table provides descriptions for the JSON properties used in the snippet:
 
-	| 屬性 | 說明 |
-	| :------- | :---------- |
-	| 類型 | 類型屬性設為 AzureBlob，因為資料位於 Azure Blob 儲存體。 |  
-	| linkedServiceName | 表示您稍早建立的 AzureStorageLinkedService。 |
-	| fileName | 這是選用屬性。如果您省略此屬性，會挑選位於 folderPath 的所有檔案。在這種情況下，只會處理 input.log。 |
-	| 類型 | 記錄檔為文字格式，因此我們會使用 TextFormat。 | 
-	| columnDelimiter | 記錄檔案中的資料行會以逗號字元 (,) 分隔 |
-	| frequency/interval | 頻率設為「每月」且間隔為 1，表示每個月都會可取得輸入配量。 | 
-	| external | 如果輸入資料不是由 Data Factory 服務產生，此屬性會設為 true。 | 
-	  	
-3. 按一下命令列的 [部署] 以部署新建立的資料集。您應該會看到左側樹狀檢視中的資料集。
+  	| Property | Description |
+  	| :------- | :---------- |
+  	| type | The type property is set to AzureBlob because data resides in Azure blob storage. |  
+  	| linkedServiceName | refers to the AzureStorageLinkedService you created earlier. |
+  	| fileName | This property is optional. If you omit this property, all the files from the folderPath are picked. In this case, only the input.log is processed. |
+  	| type | The log files are in text format, so we use TextFormat. | 
+  	| columnDelimiter | columns in the log files are delimited by comma character (,) |
+  	| frequency/interval | frequency set to Month and interval is 1, which means that the input slices are available monthly. | 
+  	| external | this property is set to true if the input data is not generated by the Data Factory service. | 
+        
+3. Click **Deploy** on the command bar to deploy the newly created dataset. You should see the dataset in the tree view on the left. 
 
 
-### 建立輸出資料集
-現在，您會建立輸出資料集來代表 Azure Blob 儲存體中儲存的輸出資料。
+### <a name="create-output-dataset"></a>Create output dataset
+Now, you create the output dataset to represent the output data stored in the Azure Blob storage. 
 
-1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [...其他]，按一下 [新增資料集]，然後選取 [Azure Blob 儲存體]。
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。在 JSON 程式碼片段中，建立名為 **AzureBlobOutput** 的資料集，並指定由 Hive 指令碼產生的資料結構。此外，指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。**availability** 區段指定每個月產生一次輸出資料集。
-	
-		{
-		  "name": "AzureBlobOutput",
-		  "properties": {
-		    "type": "AzureBlob",
-		    "linkedServiceName": "AzureStorageLinkedService",
-		    "typeProperties": {
-		      "folderPath": "adfgetstarted/partitioneddata",
-		      "format": {
-		        "type": "TextFormat",
-		        "columnDelimiter": ","
-		      }
-		    },
-		    "availability": {
-		      "frequency": "Month",
-		      "interval": 1
-		    }
-		  }
-		}
+1. In the **Data Factory Editor**, click **... More** on the command bar, click **New dataset**, and select **Azure Blob storage**.  
+2. Copy and paste the following snippet to the Draft-1 window. In the JSON snippet, you are creating a dataset called **AzureBlobOutput**, and specifying the structure of the data that is produced by the Hive script. In addition, you specify that the results are stored in the blob container called **adfgetstarted** and the folder called **partitioneddata**. The **availability** section specifies that the output dataset is produced on a monthly basis.
+    
+        {
+          "name": "AzureBlobOutput",
+          "properties": {
+            "type": "AzureBlob",
+            "linkedServiceName": "AzureStorageLinkedService",
+            "typeProperties": {
+              "folderPath": "adfgetstarted/partitioneddata",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              }
+            },
+            "availability": {
+              "frequency": "Month",
+              "interval": 1
+            }
+          }
+        }
 
-	請參閱 **建立輸入資料集**一節，了解這些屬性的說明。您並未在輸出資料集上設定外部屬性，因為資料集是由 Data Factory 服務產生。
-3. 按一下命令列的 [部署] 以部署新建立的資料集。
-4. 驗證資料集已成功建立。
+    See **Create the input dataset** section for descriptions of these properties. You do not set the external property on an output dataset as the dataset is produced by the Data Factory service.
+3. Click **Deploy** on the command bar to deploy the newly created dataset.
+4. Verify that the dataset is created successfully.
 
-	![含連結服務的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-data-set.png)
+    ![Tree view with linked services](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-data-set.png)
 
-## 建立管線
-在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每月。輸出資料集設定及活動排程器必須相符。目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。本節結尾會說明下列 JSON 中使用的屬性。
+## <a name="create-pipeline"></a>Create pipeline
+In this step, you create your first pipeline with a **HDInsightHive** activity. Input slice is available monthly (frequency: Month, interval: 1), output slice is produced monthly, and the scheduler property for the activity is also set to monthly. The settings for the output dataset and the activity scheduler must match. Currently, output dataset is what drives the schedule, so you must create an output dataset even if the activity does not produce any output. If the activity doesn't take any input, you can skip creating the input dataset. The properties used in the following JSON are explained at the end of this section. 
 
-1. 在 [Data Factory 編輯器] 中，按一下 [省略符號 (…) 其他命令]，然後按一下 [新增管線]。
-	
-	![新增管線按鈕](./media/data-factory-build-your-first-pipeline-using-editor/new-pipeline-button.png)
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。
+1. In the **Data Factory Editor**, click **Ellipsis (…) More commands** and then click **New pipeline**.
+    
+    ![new pipeline button](./media/data-factory-build-your-first-pipeline-using-editor/new-pipeline-button.png)
+2. Copy and paste the following snippet to the Draft-1 window.
 
-	> [AZURE.IMPORTANT] 在 JSON 中使用您的儲存體帳戶名稱取代 **storageaccountname**。
-		
-		{
-		    "name": "MyFirstPipeline",
-		    "properties": {
-		        "description": "My first Azure Data Factory pipeline",
-		        "activities": [
-		            {
-		                "type": "HDInsightHive",
-		                "typeProperties": {
-		                    "scriptPath": "adfgetstarted/script/partitionweblogs.hql",
-		                    "scriptLinkedService": "AzureStorageLinkedService",
-		                    "defines": {
-		                        "inputtable": "wasb://adfgetstarted@<storageaccountname>.blob.core.windows.net/inputdata",
-		                        "partitionedtable": "wasb://adfgetstarted@<storageaccountname>.blob.core.windows.net/partitioneddata"
-		                    }
-		                },
-		                "inputs": [
-		                    {
-		                        "name": "AzureBlobInput"
-		                    }
-		                ],
-		                "outputs": [
-		                    {
-		                        "name": "AzureBlobOutput"
-		                    }
-		                ],
-		                "policy": {
-		                    "concurrency": 1,
-		                    "retry": 3
-		                },
-		                "scheduler": {
-		                    "frequency": "Month",
-		                    "interval": 1
-		                },
-		                "name": "RunSampleHiveActivity",
-		                "linkedServiceName": "HDInsightOnDemandLinkedService"
-		            }
-		        ],
-		        "start": "2016-04-01T00:00:00Z",
-		        "end": "2016-04-02T00:00:00Z",
-		        "isPaused": false
-		    }
-		}
+    > [AZURE.IMPORTANT] Replace **storageaccountname** with the name of your storage account in the JSON.
+        
+        {
+            "name": "MyFirstPipeline",
+            "properties": {
+                "description": "My first Azure Data Factory pipeline",
+                "activities": [
+                    {
+                        "type": "HDInsightHive",
+                        "typeProperties": {
+                            "scriptPath": "adfgetstarted/script/partitionweblogs.hql",
+                            "scriptLinkedService": "AzureStorageLinkedService",
+                            "defines": {
+                                "inputtable": "wasb://adfgetstarted@<storageaccountname>.blob.core.windows.net/inputdata",
+                                "partitionedtable": "wasb://adfgetstarted@<storageaccountname>.blob.core.windows.net/partitioneddata"
+                            }
+                        },
+                        "inputs": [
+                            {
+                                "name": "AzureBlobInput"
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "AzureBlobOutput"
+                            }
+                        ],
+                        "policy": {
+                            "concurrency": 1,
+                            "retry": 3
+                        },
+                        "scheduler": {
+                            "frequency": "Month",
+                            "interval": 1
+                        },
+                        "name": "RunSampleHiveActivity",
+                        "linkedServiceName": "HDInsightOnDemandLinkedService"
+                    }
+                ],
+                "start": "2016-04-01T00:00:00Z",
+                "end": "2016-04-02T00:00:00Z",
+                "isPaused": false
+            }
+        }
  
-	您會在 JSON 程式碼片段中建立一個管線，其中包括在 HDInsight 叢集上使用 Hive 處理「資料」的單一活動。
-	
-	Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (透過 scriptLinkedService，名為 **AzureStorageLinkedService**)，且位於 **adfgetstarted** 容器的 **script** 資料夾中。
+    In the JSON snippet, you are creating a pipeline that consists of a single activity that uses Hive to process Data on an HDInsight cluster.
+    
+    The Hive script file, **partitionweblogs.hql**, is stored in the Azure storage account (specified by the scriptLinkedService, called **AzureStorageLinkedService**), and in **script** folder in the container **adfgetstarted**.
 
-	**defines** 區段可用來指定執行階段設定，該設定將傳遞到 Hive 指令碼做為 Hive 設定值 (例如 ${hiveconf:inputtable}、${hiveconf:partitionedtable})。
+    The **defines** section is used to specify the runtime settings that are passed to the hive script as Hive configuration values (e.g ${hiveconf:inputtable}, ${hiveconf:partitionedtable}).
 
-	管線的 **start** 和 **end** 屬性會指定管線的作用中期間。
+    The **start** and **end** properties of the pipeline specifies the active period of the pipeline.
 
-	在活動 JSON 中，您會指定 Hive 指令碼要在透過 **linkedServiceName** – **HDInsightOnDemandLinkedService** 指定的計算上執行。
+    In the activity JSON, you specify that the Hive script runs on the compute specified by the **linkedServiceName** – **HDInsightOnDemandLinkedService**.
 
-	> [AZURE.NOTE] 如需範例中使用的 JSON 屬性的詳細資訊，請參閱[管線的剖析](data-factory-create-pipelines.md#anatomy-of-a-pipeline)。
+    > [AZURE.NOTE] See [Anatomy of a Pipeline](data-factory-create-pipelines.md#anatomy-of-a-pipeline) for details about JSON properties used in the example. 
 
-3. 確認下列項目：
-	1. **input.log** 檔案存在於 Azure Blob 儲存體中 **adfgetstarted** 容器的 **inputdata** 資料夾中
-	2. **partitionweblogs.hql** 檔案存在於 Azure Blob 儲存體中 **adfgetstarted** 容器的 **script** 資料夾中。如果您沒有看見這些檔案，請完成[教學課程概觀](data-factory-build-your-first-pipeline.md)中的先決條件步驟。
-	3. 確認在管線 JSON 中使用您的儲存體帳戶名稱取代 **storageaccountname**。
-2. 按一下命令列上的 [部署]，部署管線。由於 **start** 和 **end** 時間設定在過去，且 **isPaused** 設為 false，管線 (管線中的活動) 會在部署之後立即執行。
-4. 確認您在樹狀檢視中看到管線。
+3. Confirm the following: 
+    1. **input.log** file exists in the **inputdata** folder of the **adfgetstarted** container in the Azure blob storage
+    2. **partitionweblogs.hql** file exists in the **script** folder of the **adfgetstarted** container in the Azure blob storage. Complete the prerequisite steps in the [Tutorial Overview](data-factory-build-your-first-pipeline.md) if you don't see these files. 
+    3. Confirm that you replaced **storageaccountname** with the name of your storage account in the pipeline JSON. 
+2. Click **Deploy** on the command bar to deploy the pipeline. Since the **start** and **end** times are set in the past and **isPaused** is set to false, the pipeline (activity in the pipeline) runs immediately after you deploy. 
+4. Confirm that you see the pipeline in the tree view.
 
-	![管線的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-pipeline.png)
-5. 恭喜，您已經成功建立您的第一個管線！
+    ![Tree view with pipeline](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-pipeline.png)
+5. Congratulations, you have successfully created your first pipeline!
 
-## 監視管線
+## <a name="monitor-pipeline"></a>Monitor pipeline
 
-### 使用圖表檢視監視管線
+### <a name="monitor-pipeline-using-diagram-view"></a>Monitor pipeline using Diagram View
 
-6. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
+6. Click **X** to close Data Factory Editor blades and to navigate back to the Data Factory blade, and click **Diagram**.
   
-	![[圖表] 磚](./media/data-factory-build-your-first-pipeline-using-editor/diagram-tile.png)
-7. 在 [圖表檢視] 中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
-	
-	![圖表檢視](./media/data-factory-build-your-first-pipeline-using-editor/diagram-view-2.png)
-8. 若要檢視管線中的所有活動，以滑鼠右鍵按一下圖表中的管線，再按一下 [開啟管線]。
+    ![Diagram tile](./media/data-factory-build-your-first-pipeline-using-editor/diagram-tile.png)
+7. In the Diagram View, you see an overview of the pipelines, and datasets used in this tutorial.
+    
+    ![Diagram View](./media/data-factory-build-your-first-pipeline-using-editor/diagram-view-2.png) 
+8. To view all activities in the pipeline, right-click pipeline in the diagram and click Open Pipeline. 
 
-	![開啟管線功能表](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-menu.png)
-9. 確認您在管線中看到了 HDInsightHive 活動。
+    ![Open pipeline menu](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-menu.png)
+9. Confirm that you see the HDInsightHive activity in the pipeline. 
   
-	![開啟管線檢視](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-view.png)
+    ![Open pipeline view](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-view.png)
 
-	若要瀏覽回上一個檢視，請按一下上方麵包屑導航功能表中的 [Data Factory]。
-10. 在 [圖表檢視] 中，按兩下 [AzureBlobInput] 資料集。確認配量為**就緒**狀態。可能需要數分鐘的時間，配量才會顯示為「就緒」狀態。如果一段時間之後還未顯示，請查看輸入檔案 (input.log) 是否放置在正確的容器 (adfgetstarted) 和資料夾 (inputdata) 中。
+    To navigate back to the previous view, click **Data factory** in the breadcrumb menu at the top. 
+10. In the **Diagram View**, double-click the dataset **AzureBlobInput**. Confirm that the slice is in **Ready** state. It may take a couple of minutes for the slice to show up in Ready state. If it does not happen after you wait for sometime, see if you have the input file (input.log) placed in the right container (adfgetstarted) and folder (inputdata).
 
-	![輸入配量處於就緒狀態](./media/data-factory-build-your-first-pipeline-using-editor/input-slice-ready.png)
-11. 按一下 **X** 關閉 **AzureBlobInput** 刀鋒視窗。
-12. 在 [圖表檢視] 中，按兩下 **AzureBlobOutput** 資料集。您會看到目前正在處理的配量。
+    ![Input slice in ready state](./media/data-factory-build-your-first-pipeline-using-editor/input-slice-ready.png)
+11. Click **X** to close **AzureBlobInput** blade. 
+12. In the **Diagram View**, double-click the dataset **AzureBlobOutput**. You see that the slice that is currently being processed.
 
-	![Dataset](./media/data-factory-build-your-first-pipeline-using-editor/dataset-blade.png)
-9. 處理完成時，您會看到配量處於 [就緒] 狀態。
-	>[AZURE.IMPORTANT] 建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。因此，管線預計需要**大約 30 分鐘**的時間來處理配量。
+    ![Dataset](./media/data-factory-build-your-first-pipeline-using-editor/dataset-blade.png)
+9. When processing is done, you see the slice in **Ready** state.
+    >[AZURE.IMPORTANT] Creation of an on-demand HDInsight cluster usually takes sometime (approximately 20 minutes). Therefore, expect the pipeline to take **approximately 30 minutes** to process the slice.    
 
-	![Dataset](./media/data-factory-build-your-first-pipeline-using-editor/dataset-slice-ready.png)
-	
-10. 當配量處於**就緒**狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。
+    ![Dataset](./media/data-factory-build-your-first-pipeline-using-editor/dataset-slice-ready.png) 
+    
+10. When the slice is in **Ready** state, check the **partitioneddata** folder in the **adfgetstarted** container in your blob storage for the output data.  
  
-	![輸出資料](./media/data-factory-build-your-first-pipeline-using-editor/three-ouptut-files.png)
-11. 按一下配量，以在 [資料配量] 刀鋒視窗中查看其詳細資料。
+    ![output data](./media/data-factory-build-your-first-pipeline-using-editor/three-ouptut-files.png)
+11. Click the slice to see details about it in a **Data slice** blade.
 
-	![資料配量詳細資料](./media/data-factory-build-your-first-pipeline-using-editor/data-slice-details.png)
-12. 按一下 [活動執行清單] 中的活動執行，以在 [活動執行詳細資料] 視窗中查看活動執行 (我們的案例中的 Hive 活動) 的詳細資料。
+    ![Data slice details](./media/data-factory-build-your-first-pipeline-using-editor/data-slice-details.png)  
+12. Click an activity run in the **Activity runs list** to see details about an activity run (Hive activity in our scenario) in an **Activity run details** window.   
 
-	![活動執行詳細資料](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-blade.png)
-	
-	從記錄檔中，您可以看到所執行的 Hive 查詢和狀態資訊。這些記錄檔適合用來排解任何疑難問題。如需詳細資訊，請參閱[使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md)一文。
+    ![Activity run details](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-blade.png)  
+    
+    From the log files, you can see the Hive query that was executed and status information. These logs are useful for troubleshooting any issues.
+See [Monitor and manage pipelines using Azure portal blades](data-factory-monitor-manage-pipelines.md) article for more details. 
 
-> [AZURE.IMPORTANT] 配量處理成功時就會刪除輸入檔案。因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 adfgetstarted 容器的 inputdata 資料夾。
+> [AZURE.IMPORTANT] The input file gets deleted when the slice is processed successfully. Therefore, if you want to rerun the slice or do the tutorial again, upload the input file (input.log) to the inputdata folder of the adfgetstarted container.
 
-### 使用監視及管理應用程式來監視管線
-您也可以使用「監視及管理應用程式」來監視您的管線。如需使用此應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視和管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
+### <a name="monitor-pipeline-using-monitor-&-manage-app"></a>Monitor pipeline using Monitor & Manage App
+You can also use Monitor & Manage application to monitor your pipelines. For detailed information about using this application, see [Monitor and manage Azure Data Factory pipelines using Monitoring and Management App](data-factory-monitor-manage-app.md).
 
-1. 在 Data Factory 首頁上按一下 [監視及管理] 圖格。
+1. Click **Monitor & Manage** tile on the home page for your data factory.
 
-	![監視及管理圖格](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-tile.png)
-2. 您應該會看到 [監視及管理] 應用程式。變更 [開始時間] 和 [結束時間] 以符合您管線的開始 (04-01-2016 12:00 AM) 和結束時間 (04-02-2016 12:00 AM)，然後按一下 [套用]。
+    ![Monitor & Manage tile](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-tile.png) 
+2. You should see **Monitor & Manage application**. Change the **Start time** and **End time** to match start (04-01-2016 12:00 AM) and end times (04-02-2016 12:00 AM) of your pipeline, and click **Apply**.
 
-	![監視及管理應用程式](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-app.png)
-3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。![活動時段詳細資料](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-details.png)
+    ![Monitor & Manage App](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-app.png) 
+3. Select an activity window in the **Activity Windows** list to see details about it. 
+    ![Activity window details](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-details.png)
 
 
-## 摘要 
-在本教學課程中，您會在 HDInsight hadoop 叢集上執行 Hive 指令碼，以建立 Azure Data Factory 來處理資料。您會在使用 Azure 入口網站中使用 Data Factory 編輯器來執行下列步驟︰
+## <a name="summary"></a>Summary 
+In this tutorial, you created an Azure data factory to process data by running Hive script on a HDInsight hadoop cluster. You used the Data Factory Editor in the Azure portal to do the following steps:  
 
-1.	建立 Azure **Data Factory**。
-2.	建立兩個**連結服務**：
-	1.	**Azure 儲存體**連結服務可將保留輸入/輸出檔案的 Azure Blob 儲存體連結至 Data Factory。
-	2.	**Azure HDInsight** 隨選連結服務可將 HDInsight Hadoop 隨選叢集連結至 Data Factory。Azure Data Factory 會即時建立 HDInsight Hadoop 叢集以處理輸入資料及產生輸出資料。
-3.	建立兩個**資料集**，以說明管線中 HDInsight Hive 活動的輸入和輸出資料。
-4.	建立具有 **HDInsight Hive** 活動的**管線**。
+1.  Created an Azure **data factory**.
+2.  Created two **linked services**:
+    1.  **Azure Storage** linked service to link your Azure blob storage that holds input/output files to the data factory.
+    2.  **Azure HDInsight** on-demand linked service to link an on-demand HDInsight Hadoop cluster to the data factory. Azure Data Factory creates a HDInsight Hadoop cluster just-in-time to process input data and produce output data. 
+3.  Created two **datasets**, which describe input and output data for HDInsight Hive activity in the pipeline. 
+4.  Created a **pipeline** with a **HDInsight Hive** activity. 
 
-## 後續步驟
-在本文中，您已經建立可在隨選 HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。若要了解如何使用「複製活動」從 Azure Blob 將資料複製到 Azure SQL，請參閱[教學課程：從 Azure Blob 將資料複製到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+## <a name="next-steps"></a>Next Steps
+In this article, you have created a pipeline with a transformation activity (HDInsight Activity) that runs a Hive script on an on-demand HDInsight cluster. To see how to use a Copy Activity to copy data from an Azure Blob to Azure SQL, see [Tutorial: Copy data from an Azure blob to Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
-## 另請參閱
-| 主題 | 說明 |
+## <a name="see-also"></a>See Also
+| Topic | Description |
 | :---- | :---- |
-| [資料轉換活動](data-factory-data-transformation-activities.md) | 本文提供 Azure Data Factory 所支援的資料轉換活動清單 (例如您在本教學課程中使用的 HDInsight Hive 轉換)。 | 
-| [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
-| [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
-| [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
+| [Data Transformation Activities](data-factory-data-transformation-activities.md) | This article provides a list of data transformation activities (such as HDInsight Hive transformation you used in this tutorial) supported by Azure Data Factory. | 
+| [Scheduling and execution](data-factory-scheduling-and-execution.md) | This article explains the scheduling and execution aspects of Azure Data Factory application model. |
+| [Pipelines](data-factory-create-pipelines.md) | This article helps you understand pipelines and activities in Azure Data Factory and how to use them to construct end-to-end data-driven workflows for your scenario or business. |
+| [Datasets](data-factory-create-datasets.md) | This article helps you understand datasets in Azure Data Factory.
+| [Monitor and manage pipelines using Monitoring App](data-factory-monitor-manage-app.md) | This article describes how to monitor, manage, and debug pipelines using the Monitoring & Management App. 
 
   
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

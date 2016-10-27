@@ -1,10 +1,13 @@
 
-| 資源 | 預設限制 
+| Resource  | Default limit 
 --- | ---
-| 每一訂用帳戶的區域 | 100 <sup>1</sup>
-| 每一區域的記錄集| 5000 <sup>1</sup>
-| 每一記錄集的記錄| 20
+| Zones per subscription | 100 <sup>1</sup>
+| Record sets per zone| 5000 <sup>1</sup>
+| Records per record set| 20
 
-<sup>1</sup> 如需增加這些限制，請連絡 Azure 支援中心。
+<sup>1</sup> Contact Azure Support in case you need to increase these limits.
 
-<!---HONumber=AcomDC_0413_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

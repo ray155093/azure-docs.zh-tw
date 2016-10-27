@@ -1,6 +1,6 @@
 <properties
-    pageTitle="在邏輯應用程式中新增 Microsoft Translator | Microsoft Azure"
-    description="搭配 REST API 參數來使用 Microsoft Translator 連接器的概觀"
+    pageTitle="Add the Microsoft Translator in logic apps| Microsoft Azure"
+    description="Overview of the Microsoft Translator connector with REST API parameters"
     services=""
     suite=""
     documentationCenter="" 
@@ -18,120 +18,130 @@
    ms.date="08/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 Microsoft Translator 連接器
-連線到 Microsoft Translator 來翻譯文字、偵測語言種類等等。您可以利用 Microsoft Translator 來：
 
-- 根據您從 Microsoft Translator 所取得的資料，來建置您的商務流程。
-- 使用動作來翻譯文字、偵測語言種類等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Dropbox 中有新檔案建立時，您可以利用 Microsoft Translator 把該檔案中的文字翻譯成另一種語言。
+# <a name="get-started-with-the-microsoft-translator-connector"></a>Get started with the Microsoft Translator connector
+Connect to Microsoft Translator to translate text, detect a language, and more. With Microsoft Translator, you can: 
 
-如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+- Build your business flow based on the data you get from Microsoft Translator. 
+- Use actions to translate text, detect a language, and more. These actions get a response, and then make the output available for other actions. For example, when a new file is created in Dropbox, you can translate the text in the file to another language using Microsoft Translator.
 
-## 觸發程序及動作
-Microsoft Translator 包含下列動作，但不包含觸發程序。
+To add an operation in logic apps, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-觸發程序 | 動作
+## <a name="triggers-and-actions"></a>Triggers and actions
+Microsoft Translator includes the following actions. There are no triggers.
+
+Triggers | Actions
 --- | ---
-None | <ul><li>偵測語言種類</li><li>將文字轉換成語音</li><li>翻譯文字</li><li>取得語言種類</li><li>取得語音的語言種類</li></ul>
+None | <ul><li>Detect language</li><li>Text to speech</li><li>Translate text</li><li>Get languages</li><li>Get speech languages</li></ul>
 
-所有連接器都支援 JSON 和 XML 格式的資料。
-
-
-## 建立至 Microsoft Translator 的連線
-
->[AZURE.INCLUDE [建立至 Microsoft Translator 連線的步驟](../../includes/connectors-create-api-microsofttranslator.md)]
+All connectors support data in JSON and XML formats.
 
 
-## Swagger REST API 參考
-適用的版本：1.0。
+## <a name="create-a-connection-to-microsoft-translator"></a>Create a connection to Microsoft Translator
 
-### 偵測語言種類    
-偵測指定文字的原始語言種類。```GET: /Detect```
+>[AZURE.INCLUDE [Steps to create a connection to Microsoft Translator](../../includes/connectors-create-api-microsofttranslator.md)]
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+
+## <a name="swagger-rest-api-reference"></a>Swagger REST API reference
+Applies to version: 1.0.
+
+### <a name="detect-language"></a>Detect language    
+Detects source language of given text.  
+```GET: /Detect```
+
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|query|字串|yes|query|無 |要確認其語言種類的文字|
+|query|string|yes|query|none |Text whose language will be identified|
 
-#### Response
-|Name|說明|
+#### <a name="response"></a>Response
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-### 將文字轉換成語音    
-將指定文字轉換成語音，成為 Wave 格式的音訊串流。```GET: /Speak```
+### <a name="text-to-speech"></a>Text to speech    
+Converts a given text into speech as an audio stream in wave format.  
+```GET: /Speak```
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|query|字串|yes|query|無 |要轉換的文字|
-|語言|string|yes|query|無 |用來產生語音的語言代碼 (例如：「zh-TW」)|
+|query|string|yes|query|none |Text to convert|
+|language|string|yes|query|none |Language code to generate speech (example: 'en-us')|
 
-#### Response
-|Name|說明|
+#### <a name="response"></a>Response
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-### 翻譯文字    
-利用 Microsoft Translator 來將文字翻譯成指定語言。```GET: /Translate```
+### <a name="translate-text"></a>Translate text    
+Translates text to a specified language using Microsoft Translator.  
+```GET: /Translate```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|query|字串|yes|query|無 |要翻譯的文字|
-|languageTo|string|yes|query| 無|目標語言代碼 (例如：「fr」)|
-|languageFrom|string|no|query|無 |原始語言；如果未提供，Microsoft Translator 會嘗試自動偵測 (例如：en)。|
-|category|string|no|query|一般 |翻譯類別 (預設值：「general」)|
+|query|string|yes|query|none |Text to translate|
+|languageTo|string|yes|query| none|Target language code (example: 'fr')|
+|languageFrom|string|no|query|none |Source language; if not provided, Microsoft Translator will try to auto-detect. (example: en)|
+|category|string|no|query|general |Translation category (default: 'general')|
 
-#### Response
-|名稱|說明|
+#### <a name="response"></a>Response
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-### 取得語言種類    
-擷取 Microsoft Translator 支援的所有語言種類。```GET: /TranslatableLanguages```
+### <a name="get-languages"></a>Get languages    
+Retrieves all languages that Microsoft Translator supports.  
+```GET: /TranslatableLanguages```
 
-這個呼叫沒有參數。
+There are no parameters for this call. 
 
-#### Response
-|名稱|說明|
+#### <a name="response"></a>Response
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
-### 取得語音的語言種類    
-擷取提供語音合成功能的語言種類。```GET: /SpeakLanguages```
+### <a name="get-speech-languages"></a>Get speech languages    
+Retrieves the languages available for speech synthesis.  
+```GET: /SpeakLanguages``` 
 
-這個呼叫沒有參數。
+There are no parameters for this call.
 
-#### Response
-|Name|說明|
+#### <a name="response"></a>Response
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
-## 物件定義
+## <a name="object-definitions"></a>Object definitions
 
-#### Language：Microsoft Translator 可翻譯語言的語言模型
+#### <a name="language:-language-model-for-microsoft-translator-translatable-languages"></a>Language: language model for Microsoft Translator translatable languages
 
-|屬性名稱 | 資料類型 | 必要|
+|Property Name | Data Type | Required|
 |---|---|---|
-|代碼|string|no|
-|名稱|string|no|
+|Code|string|no|
+|Name|string|no|
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-返回 [API 清單](apis-list.md)。
+Go back to the [APIs list](apis-list.md).
 
 
 <!--References-->
 [5]: https://datamarket.azure.com/developer/applications/
 [6]: ./media/connectors-create-api-microsofttranslator/register-your-application.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

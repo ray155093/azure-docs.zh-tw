@@ -1,6 +1,6 @@
 <properties
-   pageTitle="滲透測試 | Microsoft Azure"
-   description="本文提供滲透測試 (pentest) 程序和如何對 Azure 基礎結構中執行的應用程式執行滲透測試的概觀。"
+   pageTitle="Pen Testing | Microsoft Azure"
+   description="The article provides an overview of the penetration testing (pentest) process and how perform pentest against your apps running in Azure infrastructure."
    services="security"
    documentationCenter="na"
    authors="YuriDio"
@@ -13,31 +13,37 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/09/2016"
+   ms.date="10/25/2016"
    ms.author="yurid"/>
 
-# 滲透測試
 
-使用 Microsoft Azure 進行應用程式測試和部署最大的好處之一是，您不需要將內部部署基礎結構放在一起，即可開發、測試及部署應用程式。所有基礎結構都是由 Microsoft Azure 平台服務處理。您無需購置、取得和組裝自己的內部部署硬體。
+# <a name="pen-testing"></a>Pen Testing
 
-這很好 - 但您仍然需要確定您審慎執行一般的安全性作業。您所要做的事情之一是對您在 Azure 中部署的應用程式進行滲透測試。
+One of the great things about using Microsoft Azure for application testing and deployment is that you don’t need to put together an on-premises infrastructure to develop, test and deploy your applications. All the infrastructure is taken care of by the Microsoft Azure platform services. You don’t have to worry about requisitioning, acquiring, and “racking and stacking” your own on-premises hardware.
 
-您可能已經知道 Microsoft 會執行[我們的 Azure 環境的滲透測試](https://gallery.technet.microsoft.com/Cloud-Red-Teaming-b837392e)。這有助於改善我們的平台，並在改善安全性控制、推出新的安全性控制及改善我們的安全性程序方面引導我們的行動。
+This is great – but you still need to make sure you perform your normal security due diligence. One of the things you need to do is penetration test the applications you deploy in Azure.
 
-我們不會為您對應用程式進行滲透測試，但我們了解，您會想要並需要對自己的應用程式執行滲透測試。那是件好事，因為當您增強應用程式的安全性時，便有助於讓整個 Azure 生態系統更加安全。
+You might already know that Microsoft performs [penetration testing of our Azure environment](https://gallery.technet.microsoft.com/Cloud-Red-Teaming-b837392e). This helps us improve our platform and guides our actions in terms of improving security controls, introducing new security controls, and improving our security processes.
 
-當您對您的應用程式進行滲透測試時，它對我們來說可能像是攻擊。我們會[持續監視](http://blogs.msdn.com/b/azuresecurity/archive/2015/07/05/best-practices-to-protect-your-azure-deployment-against-cloud-drive-by-attacks.aspx)攻擊模式，並且在需要時會起始事件回應程序。如果我們由於您自己的審慎滲透測試而觸發事件回應，對您和我們都沒有幫助。
+We don’t pen test your application for you, but we do understand that you will want and need to perform pen testing on your own applications. That’s a good thing, because when you enhance the security of your applications, you help make the entire Azure ecosystem more secure.
 
-怎麼辦？
+When you pen test your applications, it might look like an attack to us. We [continuously monitor](http://blogs.msdn.com/b/azuresecurity/archive/2015/07/05/best-practices-to-protect-your-azure-deployment-against-cloud-drive-by-attacks.aspx) for attack patterns and will initiate an incident response process if we need to. It doesn’t help you and it doesn’t help us if we trigger an incident response due to your own due diligence pen testing.
 
-準備要對您的 Azure 代管應用程式進行滲透測試時，您需要讓我們知道。一旦我們知道您要執行特定測試，我們將不會不小心將您關閉 (例如封鎖您進行測試的來源 IP 位址)，只要測試符合 Azure 測試滲透條款和條件即可。您可以執行的標準測試包括：
+What to do?
 
-- 對端點進行測試，以發掘[開放式 Web 應用程式安全性專案 (OWASP) 的前 10 大弱點](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
-- 對端點進行[模糊測試](https://blogs.microsoft.com/cybertrust/2007/09/20/fuzz-testing-at-microsoft-and-the-triage-process/)
-- 對端點進行[連接埠掃描](https://en.wikipedia.org/wiki/Port_scanner)
+When you’re ready to pen test your Azure-hosted applications, you need to let us know. Once we know that you’re going to be performing specific tests, we won’t inadvertently shut you down (such as blocking the IP address that you’re testing from), as long as your tests conform to the Azure pen testing terms and conditions.
+Standard tests you can perform include:
 
-您不能執行的一種測試是任何種類的[拒絕服務 (DoS)](https://en.wikipedia.org/wiki/Denial-of-service_attack) 攻擊。這包括起始 DoS 攻擊本身，或是執行可能會決定、示範或模擬任何類型的 DoS 攻擊的相關測試。
+- Tests on your endpoints to uncover the [Open Web Application Security Project (OWASP) top 10 vulnerabilities](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
+- [Fuzz testing](https://blogs.microsoft.com/cybertrust/2007/09/20/fuzz-testing-at-microsoft-and-the-triage-process/) of your endpoints
+- [Port scanning](https://en.wikipedia.org/wiki/Port_scanner) of your endpoints
 
-您是否已準備好要開始對主控於 Microsoft Azure 的您的應用程式進行滲透測試？ 如果是，請前往[滲透測試概觀](https://security-forms.azure.com/penetration-testing/terms)頁面，然後按一下頁面底部的 [建立測試要求] 按鈕。您也可以在條款與條件中找到有關滲透測試的詳細資訊，以及如何報告與 Azure 或任何其他 Microsoft 服務的安全性問題的相關實用連結。
+One type of test that you can’t perform is any kind of [Denial of Service (DoS)](https://en.wikipedia.org/wiki/Denial-of-service_attack) attack. This includes initiating a DoS attack itself, or performing related tests that might determine, demonstrate or simulate any type of DoS attack.
 
-<!---HONumber=AcomDC_0810_2016------>
+Are you ready to get started with pen testing your applications hosted in Microsoft Azure? If so, then head on over to the [Penetration Test Overview](https://security-forms.azure.com/penetration-testing/terms) page (and click the Create a Testing Request button at the bottom of the page. You’ll also find more information on the pen testing terms and conditions and helpful links on how you can report security flaws related to Azure or any other Microsoft service.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

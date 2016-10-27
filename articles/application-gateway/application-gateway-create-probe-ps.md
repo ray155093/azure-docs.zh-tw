@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在資源管理員中使用 PowerShell 建立應用程式閘道的自訂探查 | Microsoft Azure"
-   description="了解如何在資源管理員中使用 PowerShell 建立應用程式閘道的自訂探查"
+   pageTitle="Create a custom probe for Application Gateway by using PowerShell in Resource Manager | Microsoft Azure"
+   description="Learn how to create a custom probe for Application Gateway by using PowerShell in Resource Manager"
    services="application-gateway"
    documentationCenter="na"
    authors="georgewallace"
@@ -17,229 +17,235 @@
    ms.date="09/06/2016"
    ms.author="gwallace" />
 
-# 使用 Azure 資源管理員的 PowerShell 建立 Azure 應用程式閘道的自訂探查
+
+# <a name="create-a-custom-probe-for-azure-application-gateway-by-using-powershell-for-azure-resource-manager"></a>Create a custom probe for Azure Application Gateway by using PowerShell for Azure Resource Manager
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](application-gateway-create-probe-portal.md)
+- [Azure portal](application-gateway-create-probe-portal.md)
 - [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
-- [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
+- [Azure Classic PowerShell](application-gateway-create-probe-classic-ps.md)
 
 [AZURE.INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](application-gateway-create-probe-classic-ps.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](application-gateway-create-probe-classic-ps.md).
 
 
 [AZURE.INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
 
-### 步驟 1
+### <a name="step-1"></a>Step 1
 
-使用 Login-AzureRmAccount 進行驗證。
+Use Login-AzureRmAccount to authenticate.
 
-	Login-AzureRmAccount
+    Login-AzureRmAccount
 
-### 步驟 2
+### <a name="step-2"></a>Step 2
 
-檢查帳戶的訂用帳戶。
+Check the subscriptions for the account.
 
-	Get-AzureRmSubscription
+    Get-AzureRmSubscription
 
-### 步驟 3
+### <a name="step-3"></a>Step 3
 
-選擇其中一個要使用的 Azure 訂用帳戶。<BR>
-
-
-	Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
+Choose which of your Azure subscriptions to use. <BR>
 
 
-### 步驟 4
+    Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 
-建立資源群組 (若使用現有的資源群組，請略過此步驟)。
+
+### <a name="step-4"></a>Step 4
+
+Create a resource group (skip this step if you're using an existing resource group).
 
     New-AzureRmResourceGroup -Name appgw-rg -location "West US"
 
-Azure Resource Manager 需要所有的資源群組指定一個位置。此位置用來作為該資源群組中資源的預設位置。請確定所有用來建立應用程式閘道的命令都使用同一個資源群組。
+Azure Resource Manager requires that all resource groups specify a location. This location is used as the default location for resources in that resource group. Make sure that all commands to create an application gateway use the same resource group.
 
-在上述範例中，我們建立名為 "appgw-RG" 的資源群組，且位置為美國西部 ("West US")。
+In the example above, we created a resource group called "appgw-RG" and location "West US".
 
-## 建立應用程式閘道的虛擬網路和子網路
+## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>Create a virtual network and a subnet for the application gateway
 
-下列步驟會建立應用程式閘道的虛擬網路和子網路。
+The following steps create a virtual network and a subnet for the application gateway.
 
-### 步驟 1
-
-
-將位址範圍 10.0.0.0/24 指派給用於建立虛擬網路的子網路變數。
-
-	$subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
-
-### 步驟 2
-
-使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 ("West US") 區域的 "appgw-rg" 資源群組中建立名為 "appgwvnet" 的虛擬網路。
-
-	$vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
+### <a name="step-1"></a>Step 1
 
 
-### 步驟 3
+Assign the address range 10.0.0.0/24 to a subnet variable to be used to create a virtual network.
 
-針對建立應用程式閘道的後續步驟，指派子網路變數。
+    $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
 
-	$subnet = $vnet.Subnets[0]
+### <a name="step-2"></a>Step 2
 
-## 建立前端組態的公用 IP 位址
+Create a virtual network named "appgwvnet" in resource group "appgw-rg" for the West US region using the prefix 10.0.0.0/16 with subnet 10.0.0.0/24.
 
-
-在美國西部區域的 "appgw-rg" 資源群組中建立公用 IP 資源 "publicIP01"。
-
-	$publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name publicIP01 -location "West US" -AllocationMethod Dynamic
+    $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
 
 
-## 使用自訂探查建立應用程式閘道組態物件
+### <a name="step-3"></a>Step 3
 
-您先設定所有組態項目，再建立應用程式閘道。下列步驟會建立應用程式閘道資源所需的組態項目。
+Assign a subnet variable for the next steps, which create an application gateway.
 
-### 步驟 1
+    $subnet = $vnet.Subnets[0]
 
-建立名為 "gatewayIP01" 的應用程式閘道 IP 組態。當「應用程式閘道」啟動時，它會從已設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。請記住，每個執行個體需要一個 IP 位址。
-
-	$gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
+## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>Create a public IP address for the front-end configuration
 
 
-### 步驟 2
+Create a public IP resource "publicIP01" in resource group "appgw-rg" for the West US region.
+
+    $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name publicIP01 -location "West US" -AllocationMethod Dynamic
 
 
-設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些值為 IP 位址，可接收來自前端 IP 端點的網路流量。您需取代上述 IP 位址來新增自己的應用程式 IP 位址端點。
+## <a name="create-an-application-gateway-configuration-object-with-a-custom-probe"></a>Create an application gateway configuration object with a custom probe
 
-	$pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
+You set up all configuration items before creating the application gateway. The following steps create the configuration items that are needed for an application gateway resource.
+
+### <a name="step-1"></a>Step 1
+
+Create an application gateway IP configuration named "gatewayIP01". When Application Gateway starts, it picks up an IP address from the subnet configured and route network traffic to the IP addresses in the back-end IP pool. Keep in mind that each instance takes one IP address.
+
+    $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
 
 
-### 步驟 3
+### <a name="step-2"></a>Step 2
 
 
-此步驟會設定自訂探查。
+Configure the back-end IP address pool named "pool01" with IP addresses "134.170.185.46, 134.170.188.221,134.170.185.50". Those values are the IP addresses that receive the network traffic that comes from the front-end IP endpoint. You replace the IP addresses above to add your own application IP address endpoints.
 
-所使用的參數如下：
+    $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 
-- **Interval** - 以秒為單位設定探查間隔檢查。
-- **Timeout** - 定義 HTTP 回應檢查的探查逾時。
-- **-Hostname 和 path** -「應用程式閘道」所叫用以判斷執行個體健全狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
-- **UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
+
+### <a name="step-3"></a>Step 3
+
+
+The custom probe is configured in this step.
+
+The parameters used are:
+
+- **Interval** - Configures the probe interval checks in seconds.
+- **Timeout** - Defines the probe time-out for an HTTP response check.
+- **-Hostname and path** - Complete URL path that is invoked by Application Gateway to determine the health of the instance. For example, if you have a website http://contoso.com/, then the custom probe can be configured for "http://contoso.com/path/custompath.htm" for probe checks to have a successful HTTP response.
+- **UnhealthyThreshold** - The number of failed HTTP responses needed to flag the back-end instance as *unhealthy*.
 
 <BR>
 
-	$probe = New-AzureRmApplicationGatewayProbeConfig -Name probe01 -Protocol Http -HostName "contoso.com" -Path "/path/path.htm" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
+    $probe = New-AzureRmApplicationGatewayProbeConfig -Name probe01 -Protocol Http -HostName "contoso.com" -Path "/path/path.htm" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
 
-### 步驟 4
+### <a name="step-4"></a>Step 4
 
-設定後端集區中流量的應用程式閘道設定 "poolsetting01"。此步驟中也有適用於應用程式閘道要求之後端集區回應的逾時組態。當後端回應達到逾時限制時，「應用程式閘道」就會取消要求。這個值與僅適用於探查檢查之後端回應的探查逾時不同。
+Configure application gateway setting "poolsetting01" for the traffic in the back-end pool. This step also has a time-out configuration that is for the back-end pool response to an application gateway request. When a back-end response hits a time-out limit, Application Gateway cancels the request. This value is different from a probe time-out that is only for the back-end response to probe checks.
 
-	$poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 80
+    $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 80
 
-### 步驟 5
+### <a name="step-5"></a>Step 5
 
-設定公用 IP 端點的前端 IP 連接埠 "frontendport01"。
+Configure the front-end IP port named "frontendport01" for the public IP endpoint.
 
-	$fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 80
+    $fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 80
 
-### 步驟 6
+### <a name="step-6"></a>Step 6
 
-建立名為 "fipconfig01" 的前端 IP 組態，並將公用 IP 位址與前端 IP 組態產生關聯。
-
-
-	$fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
-
-### 步驟 7
-
-建立名為 "listener01" 的接聽程式，並將前端連接埠與前端 IP 組態產生關聯。
-
-	$listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protocol Http -FrontendIPConfiguration $fipconfig -FrontendPort $fp
-
-### 步驟 8
-
-建立名為 "rule01" 的負載平衡器路由規則，設定負載平衡器的行為。
-
-	$rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
-
-### 步驟 9
-
-設定應用程式閘道的執行個體大小。
-
-	$sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
+Create the front-end IP configuration named "fipconfig01" and associate the public IP address with the front-end IP configuration.
 
 
->[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以在 Standard\_Small、Standard\_Medium 和 Standard\_Large 之間選擇。
+    $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
 
-## 使用 New-AzureRmApplicationGateway 建立應用程式閘道
+### <a name="step-7"></a>Step 7
 
-以上述步驟中的所有組態項目建立應用程式閘道。此範例中的應用程式閘道名為 "appgwtest"。
+Create the listener name "listener01" and associate the front-end port to the front-end IP configuration.
 
-	$appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -Probes $probe -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku
+    $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protocol Http -FrontendIPConfiguration $fipconfig -FrontendPort $fp
 
-## 將探查新增至現有應用程式閘道
+### <a name="step-8"></a>Step 8
 
-要將自訂探查新增至現有應用程式閘道需要四個步驟。
+Create the load balancer routing rule named "rule01" that configures the load balancer behavior.
 
-### 步驟 1
+    $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 
-使用 **Get-AzureRmApplicationGateway** 將應用程式閘道資源載入 PowerShell 變數中。
+### <a name="step-9"></a>Step 9
 
-	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
+Configure the instance size of the application gateway.
 
-### 步驟 2
-
-將探查新增至現有閘道組態。
-
-	$getgw = Add-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name probe01 -Protocol Http -HostName "contoso.com" -Path "/path/custompath.htm" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
+    $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 
 
-範例中會將自訂探查設定為每 30 秒檢查一次 URL 路徑 contoso.com/path/custompath.htm。所設定的逾時臨界值是 120 秒，最多只能有 8 個失敗的探查要求。
+>[AZURE.NOTE]  The default value for *InstanceCount* is 2, with a maximum value of 10. The default value for *GatewaySize* is Medium. You can choose between Standard_Small, Standard_Medium, and Standard_Large.
 
-### 步驟 3
+## <a name="create-an-application-gateway-by-using-new-azurermapplicationgateway"></a>Create an application gateway by using New-AzureRmApplicationGateway
 
-使用 **-Set-AzureRmApplicationGatewayBackendHttpSettings** 將探查新增到後端集區設定組態和逾時中。
+Create an application gateway with all configuration items from the steps above. In this example, the application gateway is called "appgwtest".
 
+    $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -Probes $probe -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku
 
-	 $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 120
+## <a name="add-a-probe-to-an-existing-application-gateway"></a>Add a probe to an existing application gateway
 
-### 步驟 4
+You have four steps to add a custom probe to an existing application gateway.
 
-使用 **Set-AzureRmApplicationGateway** 將組態儲存至應用程式閘道。
+### <a name="step-1"></a>Step 1
 
-	Set-AzureRmApplicationGateway -ApplicationGateway $getgw
+Load the application gateway resource into a PowerShell variable by using **Get-AzureRmApplicationGateway**.
 
-## 從現有應用程式閘道中移除探查
+    $getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 
-以下是從現有應用程式閘道中移除自訂探查的步驟。
+### <a name="step-2"></a>Step 2
 
-### 步驟 1
+Add a probe to the existing gateway configuration.
 
-使用 **Get-AzureRmApplicationGateway** 將應用程式閘道資源載入 PowerShell 變數中。
-
-	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
-
-
-### 步驟 2
-
-使用 **Remove-AzureRmApplicationGatewayProbeConfig** 將探查設定從應用程式閘道中移除。
-
-	$getgw = Remove-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name $getgw.Probes.name
-
-### 步驟 3
-
-使用 **-Set-AzureRmApplicationGatewayBackendHttpSettings** 來更新後端集區設定，以將探查與逾時設定移除。
+    $getgw = Add-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name probe01 -Protocol Http -HostName "contoso.com" -Path "/path/custompath.htm" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
 
 
-	 $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol http -CookieBasedAffinity Disabled
+In the example, the custom probe is configured to check for URL path contoso.com/path/custompath.htm every 30 seconds. A time-out threshold of 120 seconds is configured with a maximum number of 8 failed probe requests.
 
-### 步驟 4
+### <a name="step-3"></a>Step 3
 
-使用 **Set-AzureRmApplicationGateway** 將組態儲存至應用程式閘道。
+Add the probe to the back-end pool setting configuration and time-out by using **-Set-AzureRmApplicationGatewayBackendHttpSettings**.
 
-	Set-AzureRmApplicationGateway -ApplicationGateway $getgw
 
-## 後續步驟
+     $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 120
 
-請瀏覽[設定 SSL 卸載](application-gateway-ssl-arm.md)，以了解如何設定 SSL 卸載
+### <a name="step-4"></a>Step 4
 
-<!----HONumber=AcomDC_0907_2016-->
+Save the configuration to the application gateway by using **Set-AzureRmApplicationGateway**.
+
+    Set-AzureRmApplicationGateway -ApplicationGateway $getgw
+
+## <a name="remove-a-probe-from-an-existing-application-gateway"></a>Remove a probe from an existing application gateway
+
+Here are the steps to remove a custom probe from an existing application gateway.
+
+### <a name="step-1"></a>Step 1
+
+Load the application gateway resource into a PowerShell variable by using **Get-AzureRmApplicationGateway**.
+
+    $getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
+
+
+### <a name="step-2"></a>Step 2
+
+Remove the probe configuration from the application gateway by using **Remove-AzureRmApplicationGatewayProbeConfig**.
+
+    $getgw = Remove-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name $getgw.Probes.name
+
+### <a name="step-3"></a>Step 3
+
+Update the back-end pool setting to remove the probe and time-out setting by using **-Set-AzureRmApplicationGatewayBackendHttpSettings**.
+
+
+     $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol http -CookieBasedAffinity Disabled
+
+### <a name="step-4"></a>Step 4
+
+Save the configuration to the application gateway by using **Set-AzureRmApplicationGateway**. 
+
+    Set-AzureRmApplicationGateway -ApplicationGateway $getgw
+
+## <a name="next-steps"></a>Next steps
+
+Learn to configure SSL offloading by visiting [Configure SSL Offload](application-gateway-ssl-arm.md)
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

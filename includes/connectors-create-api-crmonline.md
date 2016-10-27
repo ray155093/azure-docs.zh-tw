@@ -1,16 +1,22 @@
-#### 必要條件
-- Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
-- [Dynamics CRM Online](https://www.microsoft.com/zh-TW/dynamics/crm-free-trial-overview.aspx) 帳戶
+#### <a name="prerequisites"></a>Prerequisites
+- An Azure account; you can create a [free account](https://azure.microsoft.com/free)
+- A [Dynamics CRM Online](https://www.microsoft.com/en-us/dynamics/crm-free-trial-overview.aspx) account 
 
-在邏輯應用程式中使用您的 Dynamics 帳戶之前，請先授權該邏輯應用程式連線到您的 CRM Online 帳戶。您可以在 Azure 入口網站上，從邏輯應用程式內輕鬆完成此操作。
+Before using your Dynamics account in a logic app, authorize the logic app to connect to your CRM Online account. You can do this easily within your logic app on the Azure portal. 
 
-使用以下步驟授權邏輯應用程式連接到 CRM Online 帳戶的權限：
+Authorize your logic app to connect to your CRM Online account using the following steps:
 
-1. 建立邏輯應用程式。在 Logic Apps 設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 "dynamics"。選取其中一個觸發程序或動作︰![](./media/connectors-create-api-crmonline/dynamics-triggers.png)
-2. 如果您之前尚未對 Dynamics 建立任何連線，系統會提示您使用 Dynamics 認證來登入：![](./media/connectors-create-api-crmonline/dynamics-signin.png)
-3. 選取 [登入]，然後輸入您的使用者名稱和密碼。選取 [登入]。
+1. Create a logic app. In the Logic Apps designer, select **Show Microsoft managed APIs** in the drop down list, and then enter "dynamics" in the search box. Select one of the triggers or actions:  
+  ![](./media/connectors-create-api-crmonline/dynamics-triggers.png)
+2. If you haven't previously created any connections to Dynamics, you are prompted to sign in using your Dynamics credentials:  
+  ![](./media/connectors-create-api-crmonline/dynamics-signin.png)
+3. Select **Sign in**, and enter your user name and password. Select **Sign in**. 
 
-	這些認證會用來授權邏輯應用程式連線到您的 Dynamics 帳戶，以及存取該帳戶中的資料。
-4. 請注意，已建立連線。現在，在您的邏輯應用程式中繼續其他步驟：![](./media/connectors-create-api-crmonline/dynamics-properties.png)
+    These credentials are used to authorize your logic app to connect to, and access the data in your Dynamics account. 
+4. Notice the connection has been created. Now, proceed with the other steps in your logic app:  
+  ![](./media/connectors-create-api-crmonline/dynamics-properties.png)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

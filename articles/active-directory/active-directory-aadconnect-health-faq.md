@@ -1,35 +1,36 @@
 <properties
-	pageTitle="Azure AD Connect Health 常見問題集"
-	description="此常見問題集會回答 Azure AD Connect Health 的相關問題。這個常見問題集涵蓋使用服務的相關問題，包括計費模型、功能、限制及支援。"
-	services="active-directory"
-	documentationCenter=""
-	authors="billmath"
-	manager="femila"
-	editor="curtand"/>
+    pageTitle="Azure AD Connect Health 常見問題集"
+    description="此常見問題集會回答 Azure AD Connect Health 的相關問題。 這個常見問題集涵蓋使用服務的相關問題，包括計費模型、功能、限制及支援。"
+    services="active-directory"
+    documentationCenter=""
+    authors="billmath"
+    manager="femila"
+    editor="curtand"/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/14/2016"
-	ms.author="vakarand"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/14/2016"
+    ms.author="vakarand"/>
 
 
-# Azure AD Connect Health 常見問題集 (FAQ)
 
-此常見問題集會回答 Azure AD Connect Health 的相關問題。這個常見問題集涵蓋使用服務的相關問題，包括計費模型、功能、限制及支援。
+# <a name="azure-ad-connect-health-frequently-asked-questions-(faq)"></a>Azure AD Connect Health 常見問題集 (FAQ)
 
-## 一般問題
+此常見問題集會回答 Azure AD Connect Health 的相關問題。 這個常見問題集涵蓋使用服務的相關問題，包括計費模型、功能、限制及支援。
+
+## <a name="general-questions"></a>一般問題
 
 
 
 **問：我管理多個 Azure AD 目錄。我如何切換到包含 Azure Active Directory Premium 的租用戶？**
 
-您可以切換不同的 Azure AD 目錄，方法為在右上角選取目前登入的使用者名稱，然後選擇適當的帳戶。如果此處未列出帳戶，請選取 [登出]，然後使用已啟用 Azure Active Directory Premium 之目錄的全域系統管理員認證登入。
+您可以切換不同的 Azure AD 目錄，方法為在右上角選取目前登入的使用者名稱，然後選擇適當的帳戶。 如果此處未列出帳戶，請選取 [登出]，然後使用已啟用 Azure Active Directory Premium 之目錄的全域系統管理員認證登入。
 
-## 安裝問題
+## <a name="installation-questions"></a>安裝問題
 
 
 
@@ -43,7 +44,7 @@
 - 記憶體耗用量：最多 10% 的系統總記憶體
 - 網路頻寬使用量：每 1000 個 ADFS 要求約 1 MB
 
->[AZURE.NOTE]如果代理程式無法與 Azure 通訊，則代理程式將在本機儲存資料，最多可達定義的上限。一旦代理程式達到限制，如果代理程式無法將資料上傳至服務，則新的 ADFS 交易將會根據「最近最少服務」覆寫任何「已快取」的交易。
+>[AZURE.NOTE]如果代理程式無法與 Azure 通訊，則代理程式將在本機儲存資料，最多可達定義的上限。 一旦代理程式達到限制，如果代理程式無法將資料上傳至服務，則新的 ADFS 交易將會根據「最近最少服務」覆寫任何「已快取」的交易。
 
 - AD Health 代理程式的本機緩衝區儲存體：約 20 MB
 - 稽核通道所需的資料存放區
@@ -53,44 +54,47 @@
 
 **問：在安裝 Azure AD Connect Health 代理程式期間，我是否需要重新啟動我的伺服器？**
 
-否，安裝代理程式不需要您重新啟動伺服器。不過，安裝某些先決條件的步驟可能需要重新啟動伺服器。
+否。 安裝代理程式不需要您重新啟動伺服器。 不過，安裝某些先決條件的步驟可能需要重新啟動伺服器。
 
 例如，在 Windows Server 2008 R2 上安裝 .Net 4.5 Framework 需要重新啟動伺服器。
 
 
 **問：Azure AD Connect Health 服務是否透過通過 http proxy 運作？**
 
-是。若是進行中的作業，您可以設定 Health 代理程式，以使用 HTTP Proxy 來轉送輸出 http 要求。如需詳細資訊，請參閱[設定 Azure AD Connect Health 代理程式使用 HTTP Proxy](active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy)。
+是。  若是進行中的作業，您可以設定 Health 代理程式，以使用 HTTP Proxy 來轉送輸出 http 要求。 如需詳細資訊，請參閱 [設定 Azure AD Connect Health 代理程式使用 HTTP Proxy](active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy) 。
 
-如果需要在代理程式註冊期間設定 Proxy，則您需要修改 Internet Explorer Proxy 設定。<br> 開啟 Internet Explorer -> [設定] -> [網際網路選項] -> [連線]-> [LAN 設定]。<br> 選取 [為您的 LAN 使用 Proxy 伺服器]。<br> 如果您有不同的 Proxy 連接埠供 HTTP 和 HTTPS/安全使用，請選取 [進階]。<br>
+如果需要在代理程式註冊期間設定 Proxy，則您需要修改 Internet Explorer Proxy 設定。 <br>
+開啟 Internet Explorer -> [設定] -> [網際網路選項] -> [連線]-> [LAN 設定]。<br>
+選取 [為您的 LAN 使用 Proxy 伺服器]。<br>
+如果您有不同的 Proxy 連接埠供 HTTP 和 HTTPS/安全使用，請選取 [進階]。<br>
 
 
 **問：連線到 Http Proxy 時，Azure AD Connect Health 服務是否支援基本驗證？**
 
-否，目前不支援為基本驗證指定任意使用者名稱/密碼的機制。
+否。 目前不支援為基本驗證指定任意使用者名稱/密碼的機制。
 
 
 **問︰適用於 AD DS 的 Azure AD Connect Health 支援哪個版本的 AD DS？**
 
-安裝於下列作業系統版本上時支援 AD DS 的監視︰
+安裝於下列作業系統版本上時支援 AD DS 的監視︰ 
 
 - Windows Server 2008 R2
 - Windows Server 2012
 - Windows Server 2012 R2
 
-## 操作問題
+## <a name="operations-questions"></a>操作問題
 
 
 
 **問：我是否需要在 AD FS 應用程式 Proxy 伺服器或 Web 應用程式 Proxy 伺服器上啟用稽核？**
 
-否，在 AD FS 應用程式 Proxy 伺服器或 Web 應用程式 Proxy 伺服器上都不需要啟用稽核。只需要在 AD FS 同盟伺服器上啟用即可。
+否，在 AD FS 應用程式 Proxy 伺服器或 Web 應用程式 Proxy 伺服器上都不需要啟用稽核。 只需要在 AD FS 同盟伺服器上啟用即可。
 
 
 
 **問：Azure AD Connect Health 警示如何獲得解決？**
 
-Azure AD Connect Health 警示會在成功情況下獲得解決。Azure AD Connect Health 代理程式會定期偵測成功情況，並向服務回報。對於少數幾個警示，隱藏是以時間為基礎。也就是說，如果在警示產生的 72 小時內未觀察到相同的錯誤狀況，就會自動解決警示。
+Azure AD Connect Health 警示會在成功情況下獲得解決。 Azure AD Connect Health 代理程式會定期偵測成功情況，並向服務回報。 對於少數幾個警示，隱藏是以時間為基礎。 也就是說，如果在警示產生的 72 小時內未觀察到相同的錯誤狀況，就會自動解決警示。
 
 
 
@@ -102,16 +106,21 @@ Azure AD Connect Health 警示會在成功情況下獲得解決。Azure AD Conne
 
 **問︰為什麼我會在 Azure AD Connect Health 入口網站中看到兩部名稱相同的伺服器？**
 
-當您從伺服器移除代理程式時，系統不會自動從 Azure AD Connect 入口網站移除伺服器。因此，如果您以手動方式從伺服器移除代理程式，或移除伺服器本身，就需要以手動方式從 Azure AD Connect Health 入口網站中刪除伺服器項目。如需詳細資訊，請參閱[刪除伺服器或服務執行個體](active-directory-aadconnect-health-operations.md#delete-a-server-or-service-instance)。 此外，如果您重新製作了伺服器的映像或使用相同的詳細資訊 (例如電腦名稱) 建立新的伺服器，但先未從 Azure AD Connect Health 入口網站移除伺服器，然後才在新伺服器上安裝代理程式，您現在可能就會看到該伺服器的兩個項目。在此情況下，您應該手動刪除屬於較舊伺服器的項目。具有此項目的資料通常是過期的。
+當您從伺服器移除代理程式時，系統不會自動從 Azure AD Connect 入口網站移除伺服器。  因此，如果您以手動方式從伺服器移除代理程式，或移除伺服器本身，就需要以手動方式從 Azure AD Connect Health 入口網站中刪除伺服器項目。  如需詳細資訊，請參閱[刪除伺服器或服務執行個體](active-directory-aadconnect-health-operations.md#delete-a-server-or-service-instance)。
+此外，如果您重新製作了伺服器的映像或使用相同的詳細資訊 (例如電腦名稱) 建立新的伺服器，但先未從 Azure AD Connect Health 入口網站移除伺服器，然後才在新伺服器上安裝代理程式，您現在可能就會看到該伺服器的兩個項目。  在此情況下，您應該手動刪除屬於較舊伺服器的項目。  具有此項目的資料通常是過期的。
 
-## 相關連結
+## <a name="related-links"></a>相關連結
 
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
 * [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
 * [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
 * [在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)
 * [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
-* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
+* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md) 
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

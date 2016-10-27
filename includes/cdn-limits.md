@@ -1,10 +1,13 @@
 
-資源 | 軟性限制
+Resource | Soft limit
 ---------|-----------
-CDN 設定檔 | 8
-每一設定檔的 CDN 端點 | 10
-每個端點的自訂網域 | 10 
+CDN profiles | 8
+CDN endpoints per profile | 10
+Custom domains per endpoint | 10 
 
-開啟支援票證來要求訂用帳戶彈性限制的更新。
+Request an update to your subscription's soft limits by opening a support ticket.
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

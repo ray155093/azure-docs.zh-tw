@@ -1,126 +1,132 @@
 <properties
-   	pageTitle="在 HDInsight 上安裝 Hadoop 應用程式 | Microsoft Azure"
-   	description="了解如何在 HDInsight 應用程式上安裝 HDInsight 應用程式。"
-   	services="hdinsight"
-   	documentationCenter=""
-   	authors="mumian"
-   	manager="jhubbard"
-   	editor="cgronlun"
-	tags="azure-portal"/>
+    pageTitle="Install Hadoop applications on HDInsight | Microsoft Azure"
+    description="Learn how to install HDInsight applications on HDInsight applications."
+    services="hdinsight"
+    documentationCenter=""
+    authors="mumian"
+    manager="jhubbard"
+    editor="cgronlun"
+    tags="azure-portal"/>
 
 <tags
-   	ms.service="hdinsight"
-   	ms.devlang="na"
-   	ms.topic="hero-article"
-   	ms.tgt_pltfrm="na"
-   	ms.workload="big-data"
-   	ms.date="09/14/2016"
-   	ms.author="jgao"/>
+    ms.service="hdinsight"
+    ms.devlang="na"
+    ms.topic="hero-article"
+    ms.tgt_pltfrm="na"
+    ms.workload="big-data"
+    ms.date="09/14/2016"
+    ms.author="jgao"/>
 
-# 安裝 HDInsight 應用程式
 
-HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢集上安裝的應用程式。Microsoft 獨立軟體廠商 (ISV) 或您可以自己開發這些應用程式。在本文章中，您將學習到如何安裝已發佈的應用程式。如需安裝自己的應用程式，請參閱[安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)。
+# <a name="install-hdinsight-applications"></a>Install HDInsight applications
 
-目前有一個已發佈的應用程式︰
+An HDInsight application is an application that users can install on a Linux-based HDInsight cluster. These applications can be developed by Microsoft, independent software vendors (ISV) or by yourself. In this article, you will learn how to install a published application. For installing your own application, see [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md). 
 
-- **Datameer**：[Datameer](http://www.datameer.com/documentation/display/DAS50/Home?ls=Partners&lsd=Microsoft&c=Partners&cd=Microsoft) 會提供互動方式，讓分析師探索、分析和視覺化巨量資料的結果。輕鬆拉進其他資料來源，以探索新的關聯性並迅速取得您所需的答案。
+Currently there is one published application:
 
->[AZURE.NOTE] 目前只有 Azure HDInsight 3.2 版叢集支援Datameer。
+- **Datameer**: [Datameer](http://www.datameer.com/documentation/display/DAS50/Home?ls=Partners&lsd=Microsoft&c=Partners&cd=Microsoft) offers analysts an interactive way to discover, analyze, and visualize the results on Big Data. Pull in additional data sources easily to discover new relationships and get the answers you need quickly.
 
-本文提供的指示將使用 Azure 入口網站。您也可以從入口網站匯出 Azure Resource Manager 範本或從廠商取得 Resource Manage 範本的複本，然後使用 Azure PowerShell 和 Azure CLI 來部署範本。請參閱 [使用 Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
+>[AZURE.NOTE] Datameer is currently only supported in Azure HDInsight version 3.2 clusters.
 
-## 必要條件
+The instructions provided in this article use Azure portal. You can also export the Azure Resource Manager template from the portal or obtain a copy of the Resource Manager template from vendors, and use Azure PowerShell and Azure CLI to deploy the template.  See [Create Linux-based Hadoop clusters in HDInsight using Resource Manager templates](hdinsight-hadoop-create-linux-clusters-arm-templates.md).
 
-如果您想要在現有的 HDInsight 叢集上安裝 HDInsight 應用程式，您必須有 HDInsight 叢集。若要建立叢集，請參閱[建立叢集](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)。您也可以在建立 HDInsight 叢集時安裝 HDInsight 應用程式。
+## <a name="prerequisites"></a>Prerequisites
 
-## 將應用程式安裝到現有的叢集
+If you want to install HDInsight applications on an existing HDInsight cluster, you must have an HDInsight cluster. To create one, see [Create clusters](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). You can also install HDInsight applications when you create an HDInsight cluster.
 
-下列程序示範如何將 HDInsight 應用程式安裝到現有的 HDInsight 叢集。
+## <a name="install-applications-to-existing-clusters"></a>Install applications to existing clusters
 
-**安裝 HDInsight 應用程式**
+The following procedure shows you how to install HDInsight applications to an existing HDInsight cluster.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左側功能表中的 [HDInsight 叢集]。如果沒有看到該功能表，請按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
-3. 按一下 HDInsight 叢集。如果您沒有叢集，則必須先建立一個。請參閱[建立叢集](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)。
-4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。[已安裝的應用程式] 刀鋒視窗會列出所有已安裝的應用程式。
+**To install an HDInsight application**
 
-    ![Hdinsight 應用程式入口網站功能表](./media/hdinsight-apps-install-applications/hdinsight-apps-portal-menu.png)
+1. Sign in to the [Azure portal](https://portal.azure.com).
+2. Click **HDInsight Clusters** in the left menu.  If you don't see it, click **Browse**, and then click **HDInsight Clusters**.
+3. Click an HDInsight cluster.  If you don't have one, you must create one first.  see [Create clusters](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster).
+4. From the **Settings** blade, click **Applications** under the **General** category. The **Installed Apps** blade lists all the installed applications. 
 
-5. 按一下刀鋒視窗功能表中的 [新增]。
+    ![hdinsight applications portal menu](./media/hdinsight-apps-install-applications/hdinsight-apps-portal-menu.png)
 
-    ![Hdinsight 應用程式安裝的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps.png)
+5. Click **Add** from the blade menu. 
 
-	您應該會看到現有的 HDInsight 應用程式清單。
+    ![hdinsight applications installed apps](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps.png)
 
-	![Hdinsight 應用程式可用的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-list.png)
+    You shall see a list of existing HDInsight applications.
 
-6. 按一下其中一個應用程式，接受法律條款，然後按一下 [選取]。
+    ![hdinsight applications available applications](./media/hdinsight-apps-install-applications/hdinsight-apps-list.png)
 
-您可以從入口網站通知看到安裝狀態 (按一下入口網站頂端的鈴鐺圖示)。安裝應用程式之後，應用程式會出現在 [已安裝的應用程式] 刀鋒視窗上。
+6. Click one of the applications, accept the legal terms, and then click **Select**.
 
-## 在叢集建立期間安裝應用程式
+You can see the installation status from the portal notifications (click the bell icon on the top of the portal). After the application is installed, the application will appear on the Installed Apps blade.
 
-您可以選擇在建立叢集時安裝 HDInsight 應用程式。在此過程中，HDInsight 應用程式會在叢集建立並處於執行中狀態後安裝。下列程序示範如何在建立叢集時安裝 HDInsight 應用程式。
+## <a name="install-applications-during-cluster-creation"></a>Install applications during cluster creation
 
-**安裝 HDInsight 應用程式**
+You have the option to install HDInsight applications when you create a cluster. During the process, HDInsight applications are installed after the cluster is created and is in the running state. The following procedure shows you how to install HDInsight applications when you create a cluster.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 依序按一下 [新增]、[資料 + 分析] 及 [HDInsight]。
-3. 輸入[叢集名稱]：此名稱必須是全域唯一的。
-4. 按一下 [訂用帳戶]，以選取將用於此叢集的 Azure 訂用帳戶。
-5. 按一下 [選取叢集類型]，然後選取︰
+**To install an HDInsight application**
 
-    - **叢集類型**︰如果您不知道要選擇哪一個項目，請選取 [Hadoop]。它是最受歡迎的叢集類型。
-    - **作業系統**：選取 [Linux]。
-    - **版本**︰ 如果您不知道要選擇哪一個項目，請使用預設版本。如需詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
-    - **叢集層**：Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：標準層和進階層。如需詳細資訊，請參閱[叢集層](hdinsight-hadoop-provision-linux-clusters.md#cluster-tiers)。
-6. 依序按一下 [應用程式]、其中一個已發佈的應用程式，然後按一下 [選取]。
-6. 按一下 [認證]，然後輸入 admin 使用者的密碼。您也必須輸入 [SSH 使用者名稱] 以及 [密碼] 或 [公開金鑰]，這將會用來驗證 SSH 使用者。建議使用公開金鑰的方法。按一下底部的 [選取] 以儲存認證組態。
-8. 按一下 [資料來源]，選取其中一個現有的儲存體帳戶，或建立新的儲存體帳戶，以做為叢集的預設儲存體帳戶。
-9. 按一下 [資源群組名稱] 以選取現有的資源群組，或按一下 [新增] 以建立一個新的資源群組
+1. Sign in to the [Azure  portal](https://portal.azure.com).
+2. Click **NEW**, Click **Data + Analytics**, and then click **HDInsight**.
+3. Enter **Cluster Name**: This name must be globally unique.
+4. Click **Subscription** to select the Azure subscription that will be used for the cluster.
+5. Click **Select cluster Type**, and then select:
 
-10. 在 [新的 HDInsight 叢集] 刀鋒視窗中，確認已選取 [釘選到「開始面板」]，然後按一下 [建立]。
+    - **Cluster Type**: If you don't know what to choose, select **Hadoop**. It is the most popular cluster type.
+    - **Operating System**: Select **Linux**.
+    - **Version**: Use the default version if you don't know what to choose. For more information, see [HDInsight cluster versions](hdinsight-component-versioning.md).
+    - **Cluster Tier**: Azure HDInsight provides the big data cloud offerings in two categories: Standard tier and Premium tier. For more information, see [Cluster tiers](hdinsight-hadoop-provision-linux-clusters.md#cluster-tiers).
+6. Click **Applications**, click one of the published applications, and then click **Select**.
+6. Click **Credentials** and then enter a password for the admin user. You must also enter an **SSH Username** and either a **PASSWORD** or **PUBLIC KEY**, which will be used to authenticate the SSH user. Using a public key is the recommended approach. Click **Select** at the bottom to save the credentials configuration.
+8. Click **Data Source**, select one of the existing storage account or create a new storage account to be used as the default storage account for the cluster.
+9. Click **Resource Group** to select an existing resource group, or click **New** to create a new resource group
 
-## 列出已安裝的 HDInsight 應用程式和屬性
+10. On the **New HDInsight Cluster** blade, ensure that **Pin to Startboard** is selected, and then click **Create**. 
 
-入口網站會顯示叢集的已安裝 HDInsight 應用程式清單，以及每個已安裝應用程式的屬性。
+## <a name="list-installed-hdinsight-apps-and-properties"></a>List installed HDInsight apps and properties
 
-**列出 HDInsight 應用程式並顯示屬性**
+The portal shows a list of the installed HDInsight applications for a cluster, and the properties of each installed application.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左側功能表中的 [HDInsight 叢集]。如果沒有看到該功能表，請按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
-3. 按一下 HDInsight 叢集。
-4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。[已安裝的應用程式] 刀鋒視窗會列出所有已安裝的應用程式。
+**To list HDInsight application and display properties**
 
-	![Hdinsight 應用程式安裝的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps-with-apps.png)
+1. Sign in to the [Azure portal](https://portal.azure.com).
+2. Click **HDInsight Clusters** in the left menu.  If you don't see it, click **Browse**, and then click **HDInsight Clusters**.
+3. Click an HDInsight cluster.
+4. From the **Settings** blade, click **Applications** under the **General** category. The Installed Apps blade lists all the installed applications. 
 
-5. 按一下其中一個已安裝的應用程式，以顯示屬性。屬性刀鋒視窗會列出︰
+    ![hdinsight applications installed apps](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps-with-apps.png)
 
-    - 應用程式名稱：應用程式名稱。
-    - 狀態︰應用程式狀態。
-    - 網頁︰您已部署到邊緣節點的 Web 應用程式的 URL (如果有的話)。此認證與您針對叢集設定的 HTTP 使用者認證相同。
-    - HTTP 端點︰此認證與您針對叢集設定的 HTTP 使用者認證相同。
-    - SSH 端點︰您可以使用 [SSH](hdinsight-hadoop-linux-use-ssh-unix.md) 連接到邊緣節點。SSH 認證與您針對叢集設定的 SSH 使用者認證相同。
+5. Click one of the installed applications to show the property. The property blade lists:
 
-6. 若要刪除應用程式，請以滑鼠右鍵按一下應用程式，然後按一下內容功能表中的 [刪除]。
+    - App name: application name.
+    - Status: application status. 
+    - Webpage: The URL of the web application that you have deployed to the edge node if there is any. The credential is the same as the HTTP user credentials that you have configured for the cluster.
+    - HTTP endpoint: The credential is the same as the HTTP user credentials that you have configured for the cluster. 
+    - SSH endpoint: You can use [SSH](hdinsight-hadoop-linux-use-ssh-unix.md) to connect to the edge node. The SSH credentials are the same as the SSH user credentials that you have configured for the cluster.
 
-## 連接到邊緣節點
+6. To delete a application, right-click the application, and then click **Delete** from the context menu.
 
-您可以使用 HTTP 和 SSH 連接到邊緣節點。您可以在[入口網站](#list-installed-hdinsight-apps-and-properties)中找到端點資訊。如需使用 SSH 的詳細資訊，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
+## <a name="connect-to-the-edge-node"></a>Connect to the edge node
 
-HTTP 端點認證是您已針對 HDInsight 叢集設定的 HTTP 使用者認證；SSH 端點認證就是您已針對 HDInsight 叢集設定的 SSH 認證。
+You can connect to the edge node using HTTP and SSH. The endpoint information can be found from the [portal](#list-installed-hdinsight-apps-and-properties). For more information on using SSH, see [Use SSH with Linux-based Hadoop on HDInsight from Linux, Unix, or OS X](hdinsight-hadoop-linux-use-ssh-unix.md). 
 
-## 疑難排解
+The HTTP endpoint credentials are the HTTP user credentials that you have configured for the HDInsight cluster; the SSH endpoint credentials are the SSH credentials that you have configured for the HDInsight cluster.
 
-請參閱[安裝問題疑難排解](hdinsight-apps-install-custom-applications.md#troubleshoot-the-installation)。
+## <a name="troubleshoot"></a>Troubleshoot
 
-## 後續步驟
+See [Troubleshoot the installation](hdinsight-apps-install-custom-applications.md#troubleshoot-the-installation).
 
-- [安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)︰了解如何將未發佈的 HDInsight 應用程式部署到 HDInsight。
-- [發佈 HDInsight 應用程式](hdinsight-apps-publish-applications.md)︰了解如何將自訂 HDInsight 應用程式發佈至 Azure Marketplace。
-- [MSDN：安裝 HDInsight 應用程式](https://msdn.microsoft.com/library/mt706515.aspx)︰了解如何定義 HDInsight 應用程式。
-- [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
-- [使用 Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 Resource Manager 範本來建立 HDInsight 叢集。
-- [在 HDInsight 中使用空白邊緣節點](hdinsight-apps-use-edge-node.md)︰了解如何使用空白邊緣節點來存取 HDInsight 叢集、測試 HDInsight 應用程式，以及裝載 HDInsight 應用程式。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0914_2016-->
+- [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md): learn how to deploy an un-published HDInsight application to HDInsight.
+- [Publish HDInsight applications](hdinsight-apps-publish-applications.md): Learn how to publish your custom HDInsight applications to Azure Marketplace.
+- [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx): Learn how to define HDInsight applications.
+- [Customize Linux-based HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster-linux.md): learn how to use Script Action to install additional applications.
+- [Create Linux-based Hadoop clusters in HDInsight using Resource Manager templates](hdinsight-hadoop-create-linux-clusters-arm-templates.md): learn how to call Resource Manager templates to create HDInsight clusters.
+- [Use empty edge nodes in HDInsight](hdinsight-apps-use-edge-node.md): learn how to use an empty edge node for accessing HDInsight cluster, testing HDInsight applications, and hosting HDInsight applications.
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

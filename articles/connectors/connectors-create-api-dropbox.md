@@ -1,10 +1,10 @@
 <properties
 pageTitle="Dropbox | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。連線到 Dropbox 來管理您的檔案。您可以執行各種動作，例如上傳、更新、取得及刪除 Dropbox 中的檔案。"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create Logic apps with Azure App service. Connect to Dropbox to manage your files. You can perform various actions such as upload, update, get, and delete files in Dropbox."
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,428 +17,430 @@ ms.workload="integration"
 ms.date="07/15/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Dropbox 連接器
 
-連線到 Dropbox 來管理您的檔案。您可以執行各種動作，例如上傳、更新、取得及刪除 Dropbox 中的檔案。
+# <a name="get-started-with-the-dropbox-connector"></a>Get started with the Dropbox connector
 
-若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
+Connect to Dropbox to manage your files. You can perform various actions such as upload, update, get, and delete files in Dropbox.
 
-## 連接至 Dropbox。
+To use [any connector](./apis-list.md), you first need to create a logic app. You can get started by [creating a Logic app now](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線至 Dropbox，您必須先建立 Dropbox「連線」。若要建立連線，您需要提供平常用來存取所要連線之服務的認證。因此，在 Dropbox 範例中，您需要 Dropbox 帳戶的認證，才能建立與 Dropbox 的連線。[深入了解連線]()
+## <a name="connect-to-dropbox"></a>Connect to Dropbox
 
-### 建立 Dropbox 連線
+Before your logic app can access any service, you first need to create a *connection* to the service. A connection provides connectivity between a logic app and another service. For example, in order to connect to Dropbox, you first need a Dropbox *connection*. To create a connection, you would need to provide the credentials you normally use to access the service you wish to connect to. So, in the Dropbox example, you would need the credentials to your Dropbox account in order to create the connection to Dropbox. [Learn more about connections]()
 
->[AZURE.INCLUDE [建立 Dropbox 連線的步驟](../../includes/connectors-create-api-dropbox.md)]
+### <a name="create-a-connection-to-dropbox"></a>Create a connection to Dropbox
 
-## 使用 Dropbox 觸發程序
+>[AZURE.INCLUDE [Steps to create a connection to Dropbox](../../includes/connectors-create-api-dropbox.md)]
 
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+## <a name="use-a-dropbox-trigger"></a>Use a Dropbox trigger
 
-在此範例中，我們將使用 [當檔案建立時] 觸發程序。當此觸發程序發生時，我們會呼叫 [使用路徑來取得檔案內容] Dropbox 動作。
+A trigger is an event that can be used to start the workflow defined in a logic app. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
 
-1. 在 Logic Apps 設計工具的搜尋方塊中輸入 dropbox，然後選取 [Dropbox - 當檔案建立時] 觸發程序。  
- ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)
+In this example, we will use the **When a file is created** trigger. When this trigger occurs, we will call the **Get file content using path** Dropbox action. 
+
+1. Enter *dropbox* in the search box on the Logic Apps designer, then select the **Dropbox - When a file is created** trigger.      
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)  
   
-2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] \(以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。  
- ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
+2. Select the folder in which you want to track file creation. Select ... (identified in the red box) and browse to the folder you wish to select for the trigger's input.  
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)  
 
-## 使用 Dropbox 動作
+## <a name="use-a-dropbox-action"></a>Use a Dropbox action
 
-動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
 
-現在已新增觸發程序，請遵循下列步驟來新增將會取得新檔案內容的動作。
+Now that the trigger has been added, follow these steps to add an action that will get the new file's content.
 
-1. 選取 [+ 新的步驟] 來新增您想要在新檔案建立時採取的動作。  
- 
+1. Select **+ New Step** to add the action you would like to take when a new file is created.  
  ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action.PNG)
 
-2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。  
+2. Select **Add an action**. This opens the search box where you can search for any action you would like to take.  
  ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-2.PNG)
 
-3. 輸入 dropbox 以搜尋與 Dropbox 相關的動作。
+3. Enter *dropbox* to search for actions related to Dropbox.  
 
-4. 選取 [Dropbox - 使用路徑來取得檔案內容]，做為在選取的 Dropbox 資料夾中建立新檔案時所要採取的動作。動作控制區塊便會開啟。如果您未曾授權邏輯應用程式存取您的 Dropbox 帳戶，系統會提示您這麼做。  
-
+4. Select **Dropbox - Get file content using path** as the action to take when a new file is created in the selected Dropbox folder. The action control block opens. You will be prompted to authorize your logic app to access your Dropbox account if you have not done so previously.  
  ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-3.PNG)  
 
-5. 選取 [...](位於 [檔案路徑] 控制項的右側)，並瀏覽至您想要使用的檔案路徑。或者，使用**檔案路徑**權杖來加速建立邏輯應用程式。  
+5. Select ... (located at the right side of the **File Path** control) and browse to the file path you would like to use. Or, use the **file path** token to speed up your logic app creation.  
  ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-4.PNG)  
 
-6. 儲存您的工作並在 Dropbox 中建立新檔案，以啟動您的工作流程。
+6. Save your work and create a new file in Dropbox to activate your workflow.  
 
-## 技術詳細資訊
+## <a name="technical-details"></a>Technical details
 
-以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+Here are the details about the triggers, actions and responses that this connection supports:
 
-## Dropbox 觸發程序
+## <a name="dropbox-triggers"></a>Dropbox triggers
 
-Dropbox 觸發程序具有下列動作︰
+The Dropbox connector has the following trigger(s):  
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|[當檔案建立時](connectors-create-api-dropbox.md#when-a-file-is-created)|當資料夾中有新檔案建立時，此作業就會觸發流程。|
-|[當檔案遭到修改時](connectors-create-api-dropbox.md#when-a-file-is-modified)|當資料夾中有檔案遭到修改時，此作業就會觸發流程。|
+|[When a file is created](connectors-create-api-dropbox.md#when-a-file-is-created)|This operation triggers a flow when a new file is created in a folder.|
+|[When a file is modified](connectors-create-api-dropbox.md#when-a-file-is-modified)|This operation triggers a flow when a file is modified in a folder.|
 
-## Dropbox 動作
+## <a name="dropbox-actions"></a>Dropbox actions
 
-Dropbox 連接器具有下列動作︰
+The Dropbox connector has the following actions:
 
-|動作|說明|
+|Action|Description|
 |--- | ---|
-|[取得檔案中繼資料](connectors-create-api-dropbox.md#get-file-metadata)|這項作業會取得檔案的中繼資料。|
-|[更新檔案](connectors-create-api-dropbox.md#update-file)|這項作業會更新檔案。|
-|[刪除檔案](connectors-create-api-dropbox.md#delete-file)|這項作業會刪除檔案。|
-|[使用路徑來取得檔案中繼資料](connectors-create-api-dropbox.md#get-file-metadata-using-path)|這項作業會使用路徑取得檔案的中繼資料。|
-|[使用路徑來取得檔案內容](connectors-create-api-dropbox.md#get-file-content-using-path)|這項作業會使用路徑取得檔案的內容。|
-|[取得檔案內容](connectors-create-api-dropbox.md#get-file-content)|這項作業會取得檔案的內容。|
-|[建立檔案](connectors-create-api-dropbox.md#create-file)|這項作業會建立檔案。|
-|[複製檔案](connectors-create-api-dropbox.md#copy-file)|這項作業會將檔案複製到 Dropbox。|
-|[列出資料夾中的檔案](connectors-create-api-dropbox.md#list-files-in-folder)|這項作業會取得資料夾中的檔案和子資料夾清單。|
-|[列出根資料夾中的檔案](connectors-create-api-dropbox.md#list-files-in-root-folder)|這項作業會取得根資料夾中的檔案和子資料夾清單。|
-|[將封存檔案解壓縮到資料夾](connectors-create-api-dropbox.md#extract-archive-to-folder)|這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。|
+|[Get file metadata](connectors-create-api-dropbox.md#get-file-metadata)|This operation gets the metadata for a file.|
+|[Update file](connectors-create-api-dropbox.md#update-file)|This operation updates a file.|
+|[Delete file](connectors-create-api-dropbox.md#delete-file)|This operation deletes a file.|
+|[Get file metadata using path](connectors-create-api-dropbox.md#get-file-metadata-using-path)|This operation gets the metadata of a file using the path.|
+|[Get file content using path](connectors-create-api-dropbox.md#get-file-content-using-path)|This operation gets the content of a file using the path.|
+|[Get file content](connectors-create-api-dropbox.md#get-file-content)|This operation gets the content of a file.|
+|[Create file](connectors-create-api-dropbox.md#create-file)|This operation creates a file.|
+|[Copy file](connectors-create-api-dropbox.md#copy-file)|This operation copies a file to Dropbox.|
+|[List files in folder](connectors-create-api-dropbox.md#list-files-in-folder)|This operation gets the list of files and subfolders in a folder.|
+|[List files in root folder](connectors-create-api-dropbox.md#list-files-in-root-folder)|This operation gets the list of files and subfolders in the root folder.|
+|[Extract archive to folder](connectors-create-api-dropbox.md#extract-archive-to-folder)|This operation extracts an archive file into a folder (example: .zip).|
 
-### 動作詳細資料
+### <a name="action-details"></a>Action details
 
-以下是此連接器動作和觸發程序以及其回應的詳細資料︰
+Here are the details for the actions and triggers for this connector, along with their responses:
 
 
-### 取得檔案中繼資料
-這項作業會取得檔案的中繼資料。
+### <a name="get-file-metadata"></a>Get file metadata
+This operation gets the metadata for a file. 
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|檔案|選取檔案|
+|id*|File|Select a file|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
 
-### 更新檔案
-這項作業會更新檔案。
+### <a name="update-file"></a>Update file
+This operation updates a file. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|檔案|選取檔案|
-|body*|檔案內容|檔案的內容|
+|id*|File|Select a file|
+|body*|File content|Content of the file|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
 
-### 刪除檔案
-這項作業會刪除檔案。
+### <a name="delete-file"></a>Delete file
+This operation deletes a file. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|檔案|選取檔案|
+|id*|File|Select a file|
 
-* 表示這是必要屬性
-
-
+An * indicates that a property is required
 
 
-### 使用路徑來取得檔案中繼資料
-這項作業會使用路徑取得檔案的中繼資料。
 
 
-|屬性名稱| 顯示名稱|說明|
+### <a name="get-file-metadata-using-path"></a>Get file metadata using path
+This operation gets the metadata of a file using the path. 
+
+
+|Property Name| Display Name|Description|
 | ---|---|---|
-|path*|檔案路徑|選取檔案|
+|path*|File path|Select a file|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
 
-### 使用路徑來取得檔案內容
-這項作業會使用路徑取得檔案的內容。
+### <a name="get-file-content-using-path"></a>Get file content using path
+This operation gets the content of a file using the path. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|path*|檔案路徑|選取檔案|
+|path*|File path|Select a file|
 
-* 表示這是必要屬性
-
-
+An * indicates that a property is required
 
 
-### 取得檔案內容
-這項作業會取得檔案的內容。
 
 
-|屬性名稱| 顯示名稱|說明|
+### <a name="get-file-content"></a>Get file content
+This operation gets the content of a file. 
+
+
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|檔案|選取檔案|
+|id*|File|Select a file|
 
-* 表示這是必要屬性
-
-
+An * indicates that a property is required
 
 
-### 建立檔案
-這項作業會建立檔案。
 
 
-|屬性名稱| 顯示名稱|說明|
+### <a name="create-file"></a>Create file
+This operation creates a file. 
+
+
+|Property Name| Display Name|Description|
 | ---|---|---|
-|folderPath*|資料夾路徑|選取資料夾|
-|name*|檔案名稱|檔案名稱|
-|body*|檔案內容|檔案的內容|
+|folderPath*|Folder path|Select a folder|
+|name*|File name|Name of the file|
+|body*|File content|Content of the file|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
 
-### 複製檔案
-這項作業會將檔案複製到 Dropbox。
+### <a name="copy-file"></a>Copy file
+This operation copies a file to Dropbox. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|source*|來源 URL|來源檔案的 URL|
-|destination*|目的地檔案路徑|目的地檔案路徑，包括目標檔案名稱|
-|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
+|source*|Source url|Url to source file|
+|destination*|Destination file path|Destination file path, including target filename|
+|overwrite|Overwrite?|Overwrites the destination file if set to 'true'|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
 
-### 當檔案建立時
-當資料夾中有新檔案建立時，此作業就會觸發流程。
+### <a name="when-a-file-is-created"></a>When a file is created
+This operation triggers a flow when a new file is created in a folder. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|folderId*|資料夾|選取資料夾|
+|folderId*|Folder|Select a folder|
 
-* 表示這是必要屬性
-
-
+An * indicates that a property is required
 
 
-### 當檔案遭到修改時
-當資料夾中有檔案遭到修改時，此作業就會觸發流程。
 
 
-|屬性名稱| 顯示名稱|說明|
+### <a name="when-a-file-is-modified"></a>When a file is modified
+This operation triggers a flow when a file is modified in a folder. 
+
+
+|Property Name| Display Name|Description|
 | ---|---|---|
-|folderId*|資料夾|選取資料夾|
+|folderId*|Folder|Select a folder|
 
-* 表示這是必要屬性
-
-
+An * indicates that a property is required
 
 
-### 列出資料夾中的檔案
-這項作業會取得資料夾中的檔案和子資料夾清單。
 
 
-|屬性名稱| 顯示名稱|說明|
+### <a name="list-files-in-folder"></a>List files in folder
+This operation gets the list of files and subfolders in a folder. 
+
+
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|資料夾|選取資料夾|
+|id*|Folder|Select a folder|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
 
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
 
-### 列出根資料夾中的檔案
-這項作業會取得根資料夾中的檔案和子資料夾清單。
+### <a name="list-files-in-root-folder"></a>List files in root folder
+This operation gets the list of files and subfolders in the root folder. 
 
 
-這個呼叫沒有參數
+There are no parameters for this call
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
 
-### 將封存檔案解壓縮到資料夾
-這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。
+### <a name="extract-archive-to-folder"></a>Extract archive to folder
+This operation extracts an archive file into a folder (example: .zip). 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|source*|來源封存檔案路徑|封存檔案的路徑|
-|destination*|目的地資料夾路徑|用來解壓縮封存檔案內容的路徑|
-|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
+|source*|Source archive file path|Path to the archive file|
+|destination*|Destination folder path|Path to extract the archive contents|
+|overwrite|Overwrite?|Overwrites the destination files if set to 'true'|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
 
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 BlobMetadata
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
 
-## HTTP 回應
+## <a name="http-responses"></a>HTTP responses
 
-上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
+The actions and triggers above can return one or more of the following HTTP status codes: 
 
-| 名稱 | 說明 |
+| Name | Description |
 |---|---|
 |200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤。|
-|預設值|作業失敗。|
+|202|Accepted|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occurred.|
+|default|Operation Failed.|
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

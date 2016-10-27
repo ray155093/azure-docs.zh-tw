@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure 網路安全性最佳作法 |Microsoft Azure"
-   description="本文提供使用內建 Azure 功能的一些網路安全性最佳作法。"
+   pageTitle="Azure Network Security Best Practices | Microsoft Azure"
+   description="This article provides a set of best practices for network security using built in Azure capabilities."
    services="security"
    documentationCenter="na"
    authors="TomShinder"
@@ -16,219 +16,228 @@
    ms.date="05/25/2016"
    ms.author="TomSh"/>
 
-# Azure 網路安全性最佳作法
 
-Microsoft Azure 可讓您將虛擬機器和應用裝置放在 Azure 虛擬網路上，進而將它們連接到其他網路裝置。Azure 虛擬網路是一種虛擬網路建構，可讓您將虛擬網路介面卡連接至虛擬網路，允許有網路功能的裝置之間進行以 TCP/IP 為基礎的通訊。連接到 Azure 虛擬網路的 Azure 虛擬機器能夠連接到相同 Azure 虛擬網路、不同 Azure 虛擬網路、網際網路或甚至您自己的內部部署網路上的裝置。
+# <a name="azure-network-security-best-practices"></a>Azure Network Security Best Practices
 
-本文將討論 Azure 網路安全性最佳作法的集合。這些最佳作法衍生自我們的 Azure 網路經驗和客戶的經驗。
+Microsoft Azure enables you to connect virtual machines and appliances to other networked devices by placing them on Azure Virtual Networks. An Azure Virtual Network is a virtual network construct that allows you to connect virtual network interface cards to a virtual network to allow TCP/IP-based communications between network enabled devices. Azure Virtual Machines connected to an Azure Virtual Network are able to connect to devices on the same Azure Virtual Network, different Azure Virtual Networks, on the Internet or even on your own on-premises networks.
 
-針對每個最佳作法，我們會說明︰
+In this article we will discuss a collection of Azure network security best practices. These best practices are derived from our experience with Azure networking and the experiences of customers like yourself.
 
-- 最佳作法是什麼
-- 您為何想要啟用該最佳作法
-- 如果無法啟用最佳作法，結果可能為何
-- 最佳作法的可能替代方案
-- 如何學習啟用最佳作法
+For each best practice, we’ll explain:
 
-這篇「Azure 網路安全性最佳作法」是以共識意見以及 Azure 平台功能和特性集 (因為在撰寫本文時已存在) 為基礎。意見和技術會隨著時間改變，這篇文章將會定期進行更新以反映這些變更。
+- What the best practice is
+- Why you want to enable that best practice
+- What might be the result if you fail to enable the best practice
+- Possible alternatives to the best practice
+- How you can learn to enable the best practice
 
-本文討論的 Azure 網路安全性最佳作法包括︰
+This Azure Network Security Best Practices article is based on a consensus opinion, and Azure platform capabilities and feature sets, as they exist at the time this article was written. Opinions and technologies change over time and this article will be updated on a regular basis to reflect those changes.
 
-- 以邏輯方式分割子網路
-- 控制路由行為
-- 啟用強制通道
-- 使用虛擬網路應用裝置
-- 部署 DMZ 進行安全性分區
-- 避免暴露於具有專用 WAN 連結的網際網路
-- 將執行時間和效能最佳化
-- 使用全域負載平衡
-- 停用 Azure 虛擬機器的 RDP 存取
-- 啟用 Azure 資訊安全中心
-- 將資料中心擴充至 Azure
+Azure Network security best practices discussed in this article include:
+
+- Logically segment subnets
+- Control routing behavior
+- Enable Forced Tunneling
+- Use Virtual network appliances
+- Deploy DMZs for security zoning
+- Avoid exposure to the Internet with dedicated WAN links
+- Optimize uptime and performance
+- Use global load balancing
+- Disable RDP Access to Azure Virtual Machines
+- Enable Azure Security Center
+- Extend your datacenter into Azure
 
 
-## 以邏輯方式分割子網路
+## <a name="logically-segment-subnets"></a>Logically segment subnets
 
-[Azure 虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)類似於內部部署網路上的 LAN。Azure 虛擬網路背後的構想是您建立單一私人 IP 位址空間型網路，以將所有 [Azure 虛擬機器](https://azure.microsoft.com/services/virtual-machines/)置於其上。可用的私人 IP 位址空間位於類別 A (10.0.0.0/8)、類別 B (172.16.0.0/12) 和類別 C (192.168.0.0/16) 範圍中。
+[Azure Virtual Networks](https://azure.microsoft.com/documentation/services/virtual-network/) are similar to a LAN on your on-premises network. The idea behind an Azure Virtual Network is that you create a single private IP address space-based network on which you can place all your [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/). The private IP address spaces available are in the Class A (10.0.0.0/8), Class B (172.16.0.0/12) and Class C (192.168.0.0/16) ranges.
 
-類似於您在內部部署執行的作業，您會想要將較大的位址空間分成子網路。您可以使用 [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) 型子網路原則來建立子網路。
+Similar to what you do on-premises, you’ll want to segment the larger address space into subnets. You can use [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) based subnetting principles to create your subnets.
 
-子網路之間的路由傳送會自動發生，您不需要手動設定路由表。不過，預設設定是您在 Azure 虛擬網路上建立的子網路之間沒有任何網路存取控制。若要建立子網路之間的網路存取控制，您必須在子網路之間放置一些項目。
+Routing between subnets will happen automatically and you do not need to manually configure routing tables. However, the default setting is that there are no network access controls between the subnets you create on the Azure Virtual Network. In order to create network access controls between subnets, you’ll need to put something between the subnets.
 
-其中一項可用來完成這項工作的是[網路安全性群組](../virtual-network/virtual-networks-nsg.md) (NSG)。NSG 會簡單具狀態封包檢查裝置，其使用 5 個 Tuple (來源 IP、來源連接埠、目的地 IP、目的地連接埠和第 4 層通訊協定) 的方法來建立網路流量的允許/拒絕規則。您可以允許或拒絕單一 IP 位址、多個 IP 位址或甚至整個子網路的流量。
+One of the things you can use to accomplish this task is a [Network Security Group](../virtual-network/virtual-networks-nsg.md) (NSG). NSGs are simple stateful packet inspection devices that use the 5-tuple (the source IP, source port, destination IP, destination port, and layer 4 protocol) approach to create allow/deny rules for network traffic. You can allow or deny traffic to and from single IP address, to and from multiple IP addresses or even to and from entire subnets.
 
-將 NSG 用於子網路之間的網路存取控制，可讓您將屬於相同安全性區域或角色的資源置於其本身的子網路中。例如，簡單的 3 層式應用程式具有 Web 層、應用程式邏輯層和資料庫層。您可將屬於上述各層的虛擬機器置於其自己的子網路中。然後您可使用 NSG 來控制子網路之間的流量︰
+Using NSGs for network access control between subnets enables you to put resources that belong to the same security zone or role in their own subnets. For example, think of a simple 3-tier application that has a web tier, an application logic tier and a database tier. You put virtual machines that belong to each of these tiers into their own subnets. Then you use NSGs to control traffic between the subnets:
 
-- Web 層虛擬機器只可以起始對應用程式邏輯機器的連線，而且只可以接受來自網際網路的連線
-- 應用程式邏輯虛擬機器只可以起始與資料庫層的連線，而且只可以接受來自 Web 層的連線
-- 資料庫層虛擬機器只可以起始與其本身子網路外部項目的連線，而且只可以接受來自應用程式邏輯層的連線
+- Web tier virtual machines can only initiate connections to the application logic machines and can only accept connections from the Internet
+- Application logic virtual machines can only initiate connections with database tier and can only accept connections from the web tier
+- Database tier virtual machines cannot initiate connection with anything outside of their own subnet and can only accept connections from the application logic tier
 
-若要深入了解網路安全性群組以及如何使用它們以邏輯方式分割您的 Azure 虛擬網路的詳細資訊，請參閱文章[什麼是網路安全性群組](../virtual-network/virtual-networks-nsg.md) (NSG)。
+To learn more about Network Security Groups and how you can use them to logically segment your Azure Virtual Networks, please read the article [What is a Network Security Group](../virtual-network/virtual-networks-nsg.md) (NSG).
 
-## 控制路由行為
+## <a name="control-routing-behavior"></a>Control routing behavior
 
-當您將虛擬機器置於 Azure 虛擬網路時，您會注意到虛擬機器可以連接到相同 Azure 虛擬網路上的任何其他虛擬機器，即使其他虛擬機器位於不同的子網路。這種情況的可能原因是預設會啟用一些允許這種通訊類型的系統路由。這些預設路由可讓相同 Azure 虛擬網路上的虛擬機器彼此起始連線，以及與網際網路連線 (僅適用於網際網路的輸出通訊)。
+When you put a virtual machine on an Azure Virtual Network, you’ll notice that the virtual machine can connect to any other virtual machine on the same Azure Virtual Network, even if the other virtual machines are on different subnets. The reason why this is possible is that there is a collection of system routes that are enabled by default that allow this type of communication. These default routes allow virtual machines on the same Azure Virtual Network to initiate connections with each other, and with the Internet (for outbound communications to the Internet only).
 
-當預設系統路由適用於許多部署案例時，您有時會想為您的部署自訂路由組態。這些自訂項目可讓您設定下一個躍點位址以連到特定的目的地。
+While the default system routes are useful for many deployment scenarios, there are times when you want to customize the routing configuration for your deployments. These customizations will allow you to configure the next hop address to reach specific destinations.
 
-建議您在部署虛擬網路安全性應用裝置時設定「使用者定義的路由」，我們將在更新版的最佳作法中進行討論。
+We recommend that you configure User Defined Routes when you deploy a virtual network security appliance, which we’ll talk about in a later best practice.
 
-> [AZURE.NOTE] 不需要使用者定義的路由，而預設系統路由將適用於大部分的情況。
+> [AZURE.NOTE] user Defined Routes are not required and the default system routes will work in most instances.
 
-閱讀[什麼是使用者定義的路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)，可讓您進一步了解使用者定義的路由及其設定方式。
+You can learn more about User Defined Routes and how to configure them by reading the article [What are User Defined Routes and IP Forwarding](../virtual-network/virtual-networks-udr-overview.md).
 
-## 啟用強制通道
+## <a name="enable-forced-tunneling"></a>Enable Forced Tunneling
 
-若要進一步了解強制通道，最好能了解「分割通道」是什麼。最常見的分割通道範例出現於 VPN 連線。想像一下您從旅館房間建立對公司網路的 VPN 連線。此連線可讓您連接到公司網路上的資源，而公司網路上的資源的所有通訊都會經過 VPN 通道。
+To better understand forced tunneling, it’s useful to understand what “split tunneling” is.
+The most common example of split tunneling is seen with VPN connections. Imagine that you establish a VPN connection from your hotel room to your corporate network. This connection allows you to connect to resources on your corporate network and all communications to resources on your corporate network go through the VPN tunnel.
 
-當您要連接到網際網路上的資源時，會發生什麼事？ 啟用分割通道時，這些連線會直接連接到網際網路，而不會經過 VPN 通道。某些安全性專家將此視為潛在的風險，因此建議停用分割通道，而以網際網路為目標和以公司資源為目標的所有連線都經過 VPN 通道。這麼做的好處是對網際網路的連線會被迫通過公司網路安全性裝置，而如果 VPN 用戶端連接到 VPN 通道之外的網際網路，將不會發生這種情況。
+What happens when you want to connect to resources on the Internet? When split tunneling is enabled, those connections go directly to the Internet and not through the VPN tunnel. Some security experts consider this to be a potential risk and therefore recommend that split tunneling be disabled and all connections, those destined for the Internet and those destined for corporate resources, go through the VPN tunnel. The advantage of doing this is that connections to the Internet are then forced through the corporate network security devices, which wouldn’t be the case if the VPN client connected to the Internet outside of the VPN tunnel.
 
-現在讓我們回到 Azure 虛擬網路上的虛擬機器。Azure 虛擬網路的預設路由可讓虛擬機器起始對網際網路的流量。這也可以代表安全性風險，這些輸出連線可能會增加虛擬機器的受攻擊面並遭到攻擊者利用。基於這個理由，當您的 Azure 虛擬網路與內部部署網路之間有跨單位連線時，建議您在虛擬機器上啟用強制通道。我們稍後會在這份 Azure 網路最佳作法文件中討論跨單位的連線能力。
+Now let’s bring this back to virtual machines on an Azure Virtual Network. The default routes for an Azure Virtual Network allow virtual machines to initiate traffic to the Internet. This too can represent a security risk, as these outbound connections could increase the attack surface of a virtual machine and be leveraged by attackers.
+For this reason, we recommend that you enable forced tunneling on your virtual machines when you have cross-premises connectivity between your Azure Virtual Network and your on-premises network. We will talk about cross premises connectivity later in this Azure networking best practices document.
 
-如果沒有跨單位連線，請務必利用網路安全性群組 (稍早討論) 或 Azure 虛擬網路安全性應用裝置 (接下來討論) 來防止從 Azure 虛擬機器對網際網路的輸出連線。
+If you do not have a cross premises connection, make sure you take advantage of Network Security Groups (discussed earlier) or Azure virtual network security appliances (discussed next) to prevent outbound connections to the Internet from your Azure Virtual Machines.
 
-若要深入了解強制通道及其啟用方式，請參閱[使用 PowerShell 和 Azure Resource Manager 設定強制通道](../vpn-gateway/vpn-gateway-forced-tunneling-rm.md)一文。
+To learn more about forced tunneling and how to enable it, please read the article [Configure Forced Tunneling using PowerShell and Azure Resource Manager](../vpn-gateway/vpn-gateway-forced-tunneling-rm.md).
 
-## 使用虛擬網路應用裝置
+## <a name="use-virtual-network-appliances"></a>Use virtual network appliances
 
-雖然網路安全性群組和使用者定義路由可以在 [OSI 模型](https://en.wikipedia.org/wiki/OSI_model)的網路和傳輸層提供特定網路安全性測量，但在某些情況下，您會想要或需要啟用高堆疊層級的安全性。在這類情況下，建議您部署 Azure 合作夥伴所提供的虛擬網路安全性應用裝置。
+While Network Security Groups and User Defined Routing can provide a certain measure of network security at the network and transport layers of the [OSI model](https://en.wikipedia.org/wiki/OSI_model), there are going to be situations where you’ll want or need to enable security at high levels of the stack. In such situations, we recommend that you deploy virtual network security appliances provided by Azure partners.
 
-Azure 網路安全性應用裝置可透過網路層級控制項所提供的內容來提供大幅增強的安全性層級。虛擬網路安全性應用裝置所提供的網路安全性功能包括︰
+Azure network security appliances can deliver significantly enhanced levels of security over what is provided by network level controls. Some of the network security capabilities provided by virtual network security appliances include:
 
-- 防火牆
-- 入侵偵測/入侵預防
-- 弱點管理
-- 應用程式控制
-- 以網路為基礎的異常偵測
-- Web 篩選
-- 防毒
-- 殭屍網路防護
+- Firewalling
+- Intrusion detection/Intrusion Prevention
+- Vulnerability management
+- Application control
+- Network-based anomaly detection
+- Web filtering
+- Antivirus
+- Botnet protection
 
-如果您需要的網路安全性層級高於您可以利用網路層級存取控制項取得的層級，則建議您調查並部署 Azure 虛擬網路安全性應用裝置。
+If you require a higher level of network security than you can obtain with network level access controls, then we recommend that you investigate and deploy Azure virtual network security appliances.
 
-若要了解有哪些可用的 Azure 虛擬網路安全性應用裝置及其相關功能，請造訪 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 並搜尋「安全性」和「網路安全性」。
+To learn about what Azure virtual network security appliances are available, and about their capabilities, please visit the [Azure Marketplace](https://azure.microsoft.com/marketplace/) and search for “security” and “network security”.
 
-##部署 DMZ 進行安全性分區
-DMZ 或「周邊網路」是實體或邏輯網路區段，主要用來在您的資產與網際網路之間提供額外的安全性層級。DMZ 的目的是要將特殊化網路存取控制裝置放在 DMZ 網路的邊緣，只允許所需的流量通過網路安全性裝置而進入您的 Azure 虛擬網路。
+##<a name="deploy-dmzs-for-security-zoning"></a>Deploy DMZs for security zoning
+A DMZ or “perimeter network” is a physical or logical network segment that is designed to provide an additional layer of security between your assets and the Internet. The intent of the DMZ is to place specialized network access control devices on the edge of the DMZ network so that only desired traffic is allowed past the network security device and into your Azure Virtual Network.
 
-DMZ 非常實用，因為您可以將網路存取控制管理、監視、記錄和報告的重點放在位於 Azure 虛擬網路邊緣的裝置。在此您通常會啟用 DDoS 預防、入侵偵測/入侵預防系統 (IDS/IPS)、防火牆規則和原則、Web 篩選、網路反惡意程式碼等。網路安全性裝置位於網際網路與您的 Azure 虛擬網路之間，具有兩個網路均適用的介面。
+DMZs are useful because you can focus your network access control management, monitoring, logging and reporting on the devices at the edge of your Azure Virtual Network. Here you would typically enable DDoS prevention, Intrusion Detection/Intrusion Prevention systems (IDS/IPS), firewall rules and policies, web filtering, network antimalware and more. The network security devices sit between the Internet and your Azure Virtual Network and have an interface on both networks.
 
-雖然這是 DMZ 的基本設計，但有許多不同的 DMZ 設計，例如背對背式、三閘式、多閘式等等。
+While this is the basic design of a DMZ, there are many different DMZ designs, such as back-to-back, tri-homed, multi-homed, and others.
 
-建議對所有的高安全性部署，考慮部署 DMZ 以增強您的 Azure 資源的網路安全性層級。
+We recommend for all high security deployments that you consider deploying a DMZ to enhance the level of network security for your Azure resources.
 
-若要深入了解 DMZ 及其在 Azure 中的部署方式，請參閱 [Microsoft Cloud 服務和網路安全性](../best-practices-network-security.md)一文。
+To learn more about DMZs and how to deploy them in Azure, please read the article [Microsoft Cloud Services and Network Security](../best-practices-network-security.md).
 
-## 避免暴露於具有專用 WAN 連結的網際網路
-許多組織已選擇混合式 IT 路由。在混合式 IT 中，有些公司的資訊資產是在 Azure 中，而有些公司則維持在內部部署上。在許多情況下，服務的某些元件會在 Azure 中執行，而其他元件則維持在內部部署上。
+## <a name="avoid-exposure-to-the-internet-with-dedicated-wan-links"></a>Avoid exposure to the Internet with dedicated WAN links
+Many organizations have chosen the Hybrid IT route. In hybrid IT, some of the company’s information assets are in Azure, while others remain on-premises. In many cases some components of a service will be running in Azure while other components remain on-premises.
 
-在混合式 IT 案例中，通常會有某種類型的跨單位連線。此種跨單位連線可讓公司將其內部部署網路連接到 Azure 虛擬網路。可用的跨單位連線解決方案有兩個︰
+In the hybrid IT scenario, there is usually some type of cross-premises connectivity. This cross-premises connectivity allows the company to connect their on-premises networks to Azure Virtual Networks. There are two cross-premises connectivity solutions available:
 
-- 站對站 VPN
+- Site-to-site VPN
 - ExpressRoute
 
-[站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) 代表您的內部部署網路和 Azure 虛擬網路之間的虛擬私人連線。此連線透過網際網路進行，可讓您在您的網路與 Azure 之間的加密連結內的「輸送」資訊。站對站 VPN 是安全成熟的技術，各種規模的企業已部署數十年。使用 [IPsec 通道模式](https://technet.microsoft.com/library/cc786385.aspx)可執行通道加密。
+[Site-to-site VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) represents a virtual private connection between your on-premises network and an Azure Virtual Network. This connection takes place over the Internet and allows you to “tunnel” information inside an encrypted link between your network and Azure. Site-to-site VPN is a secure, mature technology that has been deployed by enterprises of all sizes for decades. Tunnel encryption is performed using [IPsec tunnel mode](https://technet.microsoft.com/library/cc786385.aspx).
 
-雖然站對站 VPN 是受信任、可靠且已確立的技術，通道中的流量會周遊網際網路。此外，最大頻寬相對受限於大約 200Mbps。
+While site-to-site VPN is a trusted, reliable, and established technology, traffic within the tunnel does traverse the Internet. In addition, bandwidth is relatively constrained to a maximum of about 200Mbps.
 
-如果您需要跨單位連線的例外安全性或效能層級，建議您對跨單位連線使用 Azure ExpressRoute。ExpressRoute 是內部部署位置或 Exchange 主機服務提供者之間專用的 WAN 連結。因為這是電信公司連線，所以您的資料不會透過網際網路傳輸，因此不會暴露於網際網路通訊固有的潛在風險。
+If you require an exceptional level of security or performance for your cross-premises connections, we recommend that you use Azure ExpressRoute for your cross-premises connectivity. ExpressRoute is a dedicated WAN link between your on-premises location or an Exchange hosting provider. Because this is a telco connection, your data doesn’t travel over the Internet and therefore is not exposed to the potential risks inherent in Internet communications.
 
-若要深入了解 Azure ExpressRoute 的運作方式和部署方式，請閱讀 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)一文。
+To learn more about how Azure ExpressRoute works and how to deploy, please read the article [ExpressRoute Technical Overview](../expressroute/expressroute-introduction.md).
 
-## 將執行時間和效能最佳化
-機密性、完整性和可用性 (CIA) 三者構成現今最具影響力的安全性模型。機密性有關於加密隱私權，完整性有關於確保資料不會遭到未經授權的人員變更，而可用性有關於確保經過授權的個人可以存取他們有權存取的資訊。上述任何一個區域失敗都代表可能破壞安全性。
+## <a name="optimize-uptime-and-performance"></a>Optimize uptime and performance
+Confidentiality, integrity and availability (CIA) comprise the triad of today’s most influential security model. Confidentiality is about encryption and privacy, integrity is about making sure that data is not changed by unauthorized personnel, and availability is about making sure that authorized individuals are able to access the information they are authorized to access. Failure in any one of these areas represents a potential breach in security.
 
-可用性可被視為與執行時間和效能有關。如果服務已關閉，便無法存取資訊。如果效能不佳，以致資料無法使用，我們可將此資料視為無法存取。因此，從安全性角度來看，我們需要儘可能確保我們的服務有最佳的執行時間和效能。用來增強可用性和效能的常用且有效的方法是使用負載平衡。負載平衡是將網路流量分散於服務中各伺服器的方法。比方說，如果您的服務中有前端 Web 伺服器，您可以使用負載平衡將流量分散於多部前端 Web 伺服器。
+Availability can be thought of as being about uptime and performance. If a service is down, information can’t be accessed. If performance is so poor as to make the data unusable, then we can consider the data to be inaccessible. Therefore, from a security perspective, we need to do whatever we can to make sure our services have optimal uptime and performance.
+A popular and effective method used to enhance availability and performance is to use load balancing. Load balancing is a method of distributing network traffic across servers that are part of a service. For example, if you have front-end web servers as part of your service, you can use load balancing to distribute the traffic across your multiple front-end web servers.
 
-此流量分散會提高可用性，因為如果其中一部 Web 伺服器無法使用，負載平衡器將會停止將流量傳送到該伺服器，並將流量重新導向至仍在運作的伺服器。負載平衡也有助於效能，因為服務要求的處理器、網路和記憶體額外負荷會分散於所有負載平衡的伺服器。
+This distribution of traffic increases availability because if one of the web servers becomes unavailable, the load balancer will stop sending traffic to that server and redirect traffic to the servers that are still online. Load balancing also helps performance, because the processor, network and memory overhead for serving requests is distributed across all the load balanced servers.
 
-建議您儘可能為您的服務採用適當的負載平衡。我們將在下列各節中探討適當性。在 Azure 虛擬網路層級，Azure 會提供三個主要的負載平衡選項︰
+We recommend that you employ load balancing whenever you can, and as appropriate for your services. We’ll address appropriateness in the following sections.
+At the Azure Virtual Network level, Azure provides you with three primary load balancing options:
 
-- 以 HTTP 為基礎的負載平衡
-- 外部負載平衡
-- 內部負載平衡
+- HTTP-based load balancing
+- External load balancing
+- Internal load balancing
 
-## 以 HTTP 為基礎的負載平衡
-以 HTTP 為基礎的負載平衡會利用 HTTP 通訊協定的特性決定哪一部伺服器傳送連線。Azure 有以應用程式閘道名稱為名的 HTTP 負載平衡器。
+## <a name="http-based-load-balancing"></a>HTTP-based Load Balancing
+HTTP-based load balancing bases decisions about what server to send connections using characteristics of the HTTP protocol. Azure has an HTTP load balancer that goes by the name of Application Gateway.
 
-建議您在下列情況使用 Azure 應用程式閘道︰
+We recommend that you us Azure Application Gateway when:
 
-- 需要要求來自相同使用者/用戶端工作階段，才能到達相同後端虛擬機器的應用程式。此情況的範例為：購物車應用程式和網頁郵件伺服器。
-- 想要利用應用程式閘道的 [SSL 卸載](https://f5.com/glossary/ssl-offloading)功能，從 SSL 終止負荷釋出 Web 伺服器陣列的應用程式。
-- 內容傳遞網路之類的應用程式，需要將在相同的長時間執行 TCP 連接上的多個 HTTP 要求路由/負載平衡到不同的後端伺服器。
+- Applications that require requests from the same user/client session to reach the same back-end virtual machine. Examples of this would be shopping cart apps and web mail servers.
+- Applications that want to free web server farms from SSL termination overhead by taking advantage of Application Gateway’s [SSL offload](https://f5.com/glossary/ssl-offloading) feature.
+- Applications, such as a content delivery network, that require multiple HTTP requests on the same long-running TCP connection to be routed or load balanced to different back-end servers.
 
-若要深入了解 Azure 應用程式閘道的運作方式及其在您的部署中的使用方式，請閱讀[應用程式閘道概觀](../application-gateway/application-gateway-introduction.md)一文。
+To learn more about how Azure Application Gateway works and how you can use it in your deployments, please read the article [Application Gateway Overview](../application-gateway/application-gateway-introduction.md).
 
-## 外部負載平衡
-來自網際網路的連入連線在位於 Azure 虛擬網路中的伺服器之間達到平衡負載時，就會進行外部負載平衡。Azure 外部負載平衡器可以提供這項功能，建議您在不需要黏性工作階段或 SSL 卸載時使用。
+## <a name="external-load-balancing"></a>External Load Balancing
+External load balancing takes place when incoming connections from the Internet are load balanced among your servers located in an Azure Virtual Network. The Azure External Load balancer can provide you this capability and we recommend that you use it when you don’t require the sticky sessions or SSL offload.
 
-相對於以 HTTP 為基礎的負載平衡，外部負載平衡器會使用 OSI 網路模型的網路和傳輸層資訊來決定哪一部伺服器可平衡連線負載。
+In contrast to HTTP-based load balancing, the External Load Balancer uses information at the network and transport layers of the OSI networking model to make decisions on what server to load balance connection to.
 
-只要有[無狀態應用程式](http://whatis.techtarget.com/definition/stateless-app)接受來自網際網路的連入要求時，建議您使用外部負載平衡。
+We recommend that you use External Load Balancing whenever you have [stateless applications](http://whatis.techtarget.com/definition/stateless-app) accepting incoming requests from the Internet.
 
-若要深入了解 Azure 外部負載平衡器的運作方式和部署方式，請閱讀[開始使用 PowerShell 在 Resource Manager 中建立網際網路面向的負載平衡器](../load-balancer/load-balancer-get-started-internet-arm-ps.md)。
+To learn more about how the Azure External Load Balancer works and how you can deploy it, please read the article [Get Started Creating an Internet Facing Load Balancer in Resource Manager using PowerShell](../load-balancer/load-balancer-get-started-internet-arm-ps.md).
 
-## 內部負載平衡
-內部負載平衡類似於外部負載平衡，使用相同的機制對其背後伺服器的連線進行負載平衡。唯一的差別在於，在此情況下的負載平衡器會接受來自不在網際網路上的虛擬機器的連線。在大部分情況下，Azure 虛擬網路上的裝置會起始負載平衡可接受的連線。
+## <a name="internal-load-balancing"></a>Internal Load Balancing
+Internal load balancing is similar to external load balancing and uses the same mechanism to load balance connections to the servers behind them. The only difference is that the load balancer in this case is accepting connections from virtual machines that are not on the Internet. In most cases, the connections that are accepted for load balancing are initiated by devices on an Azure Virtual Network.
 
-建議您將內部負載平衡用於將受益於這項功能的案例，例如當您需要對 SQL 伺服器或內部 Web 伺服器的連線進行負載平衡時。
+We recommend that you use internal load balancing for scenarios that will benefit from this capability, such as when you need to load balance connections to SQL Servers or internal web servers.
 
-若要深入了解 Azure 內部負載平衡的運作方式和部署方式，請閱讀[開始使用 PowerShell 在 Resource Manager 中建立網際網路面向的負載平衡器](../load-balancer/load-balancer-get-started-internet-arm-ps.md#update-an-existing-load-balancer)。
+To learn more about how Azure Internal Load Balancing works and how you can deploy it, please read the article [Get Started Creating an Internal Load Balancer using PowerShell](../load-balancer/load-balancer-get-started-internet-arm-ps.md#update-an-existing-load-balancer).
 
-## 使用全域負載平衡
-公用雲端運算可部署遍布全球的應用程式，而其元件位於世界各地的資料中心。因為 Azure 有全域資料中心，在 Microsoft Azure 上才可行。相對於先前所提的負載平衡技術，全域負載平衡可讓服務即使在整個資料中心可能無法使用時也能使用。
+## <a name="use-global-load-balancing"></a>Use global load balancing
+Public cloud computing makes it possible to deploy globally distributed applications that have components located in datacenters all over the world. This is possible on Microsoft Azure due to Azure’s global datacenter presence. In contrast to the load balancing technologies mentioned earlier, global load balancing makes it possible to make services available even when entire datacenters might become unavailable.
 
-您可以利用 [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)在 Azure 中取得這種類型的全域負載平衡。流量管理員可以根據使用者的位置，對您服務的連線進行負載平衡。
+You can get this type of global load balancing in Azure by taking advantage of [Azure Traffic Manager](https://azure.microsoft.com/documentation/services/traffic-manager/). Traffic Manager makes is possible to load balance connections to your services based on the location of the user.
 
-比方說，如果使用者從 EU 對您的服務提出要求，此連線則會被導向到您位於 EU 資料中心的服務。這部分的流量管理員全域負載平衡有助於改善效能，因為連接到最近的資料中心比連接到遠處的資料中心還要快。
+For example, if the user is making a request to your service from the EU, the connection is directed to your services located in an EU datacenter. This part of Traffic Manager global load balancing helps to improve performance because connecting to the nearest datacenter is faster than connecting to datacenters that are far away.
 
-在可用性方面，全域負載平衡可確保即使整個資料中心變得無法使用，您的服務仍可使用。
+On the availability side, global load balancing makes sure that your service is available even if an entire datacenter should become available.
 
-比方說，如果 Azure 資料中心因為環境原因或服務中斷 (例如區域網路失敗) 而無法使用，對您的服務的連線會被重新路由傳送至最近的線上資料中心。運用您可以在流量管理員中建立的 DNS 原則來完成此全域負載平衡。
+For example, if an Azure datacenter should become unavailable due to environmental reasons or due to outages (such as regional network failures), connections to your service would be rerouted to the nearest online datacenter. This global load balancing is accomplished by taking advantage of DNS policies that you can create in Traffic Manager.
 
-如果您所開發的雲端解決方案廣泛分散於多個區域且需要最高層級的執行時間，則建議使用流量管理員。
+We recommend that you use Traffic Manager for any cloud solution you develop that has a widely distributed scope across multiple regions and requires the highest level of uptime possible.
 
-若要了解 Azure 流量管理員及其部署方式的詳細資訊，請參閱[什麼是流量管理員](../traffic-manager/traffic-manager-overview.md)一文。
+To learn more about Azure Traffic Manager and how to deploy it, please read the article [What is Traffic Manager](../traffic-manager/traffic-manager-overview.md).
 
-## 停用 Azure 虛擬機器的 RDP/SSH 存取
-使用[遠端桌面通訊協定](https://en.wikipedia.org/wiki/Remote_Desktop_Protocol) (RDP) 和[安全殼層](https://en.wikipedia.org/wiki/Secure_Shell) (SSH) 通訊協定可以連到 Azure 虛擬機器。這些通訊協定可供從遠端位置管理虛擬機器，而且是資料中心運算的標準。
+## <a name="disable-rdp/ssh-access-to-azure-virtual-machines"></a>Disable RDP/SSH Access to Azure Virtual Machines
+It is possible to reach Azure Virtual Machines using the [Remote Desktop Protocol](https://en.wikipedia.org/wiki/Remote_Desktop_Protocol) (RDP)and the [Secure Shell](https://en.wikipedia.org/wiki/Secure_Shell) (SSH) protocols. These protocols make it possible to manage virtual machines from remote locations and are standard in datacenter computing.
 
-在網際網路上使用這些通訊協定的潛在安全性問題是，攻擊者可以使用各種[暴力密碼破解](https://en.wikipedia.org/wiki/Brute-force_attack)技術來存取 Azure 虛擬機器。攻擊者一旦取得存取權，就可以使用您的虛擬機器做為破壞您的 Azure 虛擬網路上其他電腦的啟動點，或甚至攻擊 Azure 之外的網路裝置。
+The potential security problem with using these protocols over the Internet is that attackers can use various [brute force](https://en.wikipedia.org/wiki/Brute-force_attack) techniques to gain access to Azure Virtual Machines. Once the attackers gain access, they can use your virtual machine as a launch point for compromising other machines on your Azure Virtual Network or even attack networked devices outside of Azure.
 
-因為這個緣故，建議停用從網際網路對您的 Azure 虛擬機器的直接 RDP 和 SSH 存取。停用從網際網路的直接 RDP 和 SSH 存取之後，您有其他選項可用來存取這些虛擬機器以便遠端管理︰
+Because of this, we recommend that you disable direct RDP and SSH access to your Azure Virtual Machines from the Internet. After direct RDP and SSH access from the Internet is disabled, you have other options you can use to access these virtual machines for remote management:
 
-- 點對站 VPN
-- 站對站 VPN
+- Point-to-site VPN
+- Site-to-site VPN
 - ExpressRoute
 
-[點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) 是遠端存取 VPN 用戶端/伺服器連線的另一種說法。點對站 VPN 可讓單一使用者透過網際網路連接到 Azure 虛擬網路。點對站連線之後，使用者就能夠使用 RDP 或 SSH 連接到位於使用者透過點對站 VPN 連接之 Azure 虛擬網路上的所有虛擬機器。這是假設使用者已獲得授權存取這些虛擬機器。
+[Point-to-site VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) is another term for a remote access VPN client/server connection. A point-to-site VPN enables a single user to connect to an Azure Virtual Network over the Internet. After the point-to-site connection is established, the user will be able to use RDP or SSH to connect to any virtual machines located on the Azure Virtual Network that the user connected to via point-to-site VPN. This assumes that the user is authorized to reach those virtual machines.
 
-點對站 VPN 比直接 RDP 或 SSH 連線更安全，因為使用者必須先經過兩次驗證，才會連接到虛擬機器。第一次，使用者必須經過驗證 (並獲得授權) 以建立點對站 VPN 連線；第二次，使用者必須經過驗證 (並獲得授權) 以建立 RDP 或 SSH 工作階段。
+Point-to-site VPN is more secure than direct RDP or SSH connections because the user has to authenticate twice before connecting to a virtual machine. First, the user needs to authenticate (and be authorized) to establish the point-to-site VPN connection; second, the user needs to authenticate (and be authorized) to establish the RDP or SSH session.
 
-[站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) 透過網際網路將整個網路連接到另一個網路。您可以使用站台對站 VPN 將內部部署網路連接到 Azure 虛擬網路。如果您部署站對站 VPN，您的內部部署網路上的使用者就能夠透過站對站 VPN 連線、使用 RDP 或 SSH 通訊協定來連接到您的 Azure 虛擬網路上的虛擬機器，而您不需要允許透過網際網路的直接 RDP 或 SSH 存取。
+A [site-to-site VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) connects an entire network to another network over the Internet. You can use a site-to-site VPN to connect your on-premises network to an Azure Virtual Network. If you deploy a site-to-site VPN, users on your on-premises network will be able to connect to virtual machines on your Azure Virtual Network by using the RDP or SSH protocol over the site-to-site VPN connection and does not require you to allow direct RDP or SSH access over the Internet.
 
-您也可以使用專用的 WAN 連結，提供類似站對站 VPN 的功能。主要差異在於：1. 專用的 WAN 連結不會周遊網際網路，2. 專用的 WAN 連結通常更加穩定且效能更好。Azure 會提供給您 [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/) 形式的專用 WAN 連結解決方案。
+You can also use a dedicated WAN link to provide functionality similar to the site-to-site VPN. The main differences are 1. the dedicated WAN link doesn’t traverse the Internet, and 2. dedicated WAN links are typically more stable and performant. Azure provides you a dedicated WAN link solution in the form of [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/).
 
-## 啟用 Azure 資訊安全中心
-Azure 資訊安全中心可協助您預防、偵測和回應威脅，並加強提供對 Azure 資源安全性的能見度及控制權。它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
+## <a name="enable-azure-security-center"></a>Enable Azure Security Center
+Azure Security Center helps you prevent, detect, and respond to threats, and provides you increased visibility into, and control over, the security of your Azure resources. It provides integrated security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with a broad ecosystem of security solutions.
 
-Azure 資訊安全中心藉由下列方式來協助您最佳化和監視網路安全性︰
+Azure Security Center helps you optimize and monitor network security by:
 
-- 提供網路安全性建議
-- 監視您的網路安全性組態的狀態
-- 對端點和網路層級的網路型威脅發出警示。
+- Providing network security recommendations
+- Monitoring the state of your network security configuration
+- Alerting you to network based threats both at the endpoint and network levels
 
-強烈建議您在所有的 Azure 部署上啟用 Azure 資訊安全中心。
+We highly recommend that you enable Azure Security Center for all of your Azure deployments.
 
-若要深入了解 Azure 資訊安全中心以及如何為您的部署進行啟用，請閱讀 [ Azure 資訊安全中心簡介](../security-center/security-center-intro.md)一文。
+To learn more about Azure Security Center and how to enable it for your deployments, please read the article [Introduction to Azure Security Center](../security-center/security-center-intro.md).
 
-## 安全地將資料中心擴充至 Azure
-許多企業 IT 組織都希望擴充到雲端，而不是增加其內部部署資料中心。此擴充代表將現有的 IT 基礎結構延伸至公用雲端。利用跨單位連線選項，可將您的 Azure 虛擬網路視為內部部署網路基礎結構上的另一個子網路。
+## <a name="securely-extend-your-datacenter-into-azure"></a>Securely extend your datacenter into Azure
+Many enterprise IT organizations are looking to expand into the cloud instead of growing their on-premises datacenters. This expansion represents an extension of existing IT infrastructure into the public cloud. By taking advantage of cross-premises connectivity options it’s possible to treat your Azure Virtual Networks as just another subnet on your on-premises network infrastructure.
 
-不過，必須先解決許多規劃和設計問題。這點在網路安全性方面格外重要。查看範例是了解如何著手處理此種設計的最佳方式之一。
+However, there is a lot of planning and design issues that need to be addressed first. This is especially important in the area of network security. One of the best ways to understand how you approach such a design is to see an example.
 
-Microsoft 已建立[資料中心延伸參考架構圖表](https://gallery.technet.microsoft.com/Datacenter-extension-687b1d84#content)和支援相關資料，協助您了解這類資料中心延伸模組的外觀。其中的提供範例參考實作，可用來規劃和設計安全的企業資料中心延伸至雲端。我們建議您檢閱這份文件，以了解安全解決方案的重要元件。
+Microsoft has created the [Datacenter Extension Reference Architecture Diagram](https://gallery.technet.microsoft.com/Datacenter-extension-687b1d84#content) and supporting collateral to help you understand what such a datacenter extension would look like. This provides an example reference implementation that you can use to plan and design a secure enterprise datacenter extension to the cloud. We recommend that you review this document to get an idea of the key components of a secure solution.
 
-若要深入了解如何安全地將資料中心擴充至 Azure，請檢視[將資料中心擴充至 Microsoft Azure](https://www.youtube.com/watch?v=Th1oQQCb2KA) 影片。
+To learn more about how to securely extend your datacenter into Azure, please view the video [Extending Your Datacenter to Microsoft Azure](https://www.youtube.com/watch?v=Th1oQQCb2KA).
 
-<!---HONumber=AcomDC_0601_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,82 +1,88 @@
 <properties
-	pageTitle="在 Logic Apps 中使用檔案連接器 | Microsoft Azure App Service"
-	description="如何建立並設定檔案連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-	authors="rajeshramabathiran"
-	manager="erikre"
-	editor=""
-	services="logic-apps"
-	documentationCenter=""/>
+    pageTitle="Using the File connector in Logic apps | Microsoft Azure App Service"
+    description="How to create and configure the file connector or API app and use it in a Logic app in Azure App Service"
+    authors="rajeshramabathiran"
+    manager="erikre"
+    editor=""
+    services="logic-apps"
+    documentationCenter=""/>
 
 <tags
-	ms.service="logic-apps"
-	ms.workload="integration"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/01/2016"
-	ms.author="rajram"/>
+    ms.service="logic-apps"
+    ms.workload="integration"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/01/2016"
+    ms.author="rajram"/>
 
-# 開始使用檔案連接器並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
-連線至檔案系統以對主機電腦上的檔案執行上傳、下載等其他操作。邏輯應用程式可以根據各種資料來源觸發，並提供連接器以取得及處理資料。您可以將檔案連接器加入您的商務工作流程，就能在邏輯應用程式的該工作流程中處理資料。
+# <a name="get-started-with-the-file-connector-and-add-it-to-your-logic-app"></a>Get started with the file connector and add it to your Logic app
+>[AZURE.NOTE] This version of the article applies to Logic apps 2014-12-01-preview schema version.
 
-檔案連接器使用混合式連線管理員對主機檔案系統建立混合式連線。
+Connect to a file system to upload, download, and more to your files on a host machine. Logic apps can trigger based on a variety of data sources and offer connectors to get and process data. You can add the file connector to your business workflow and process data as part of this workflow within a Logic app. 
 
-## 建立邏輯應用程式的檔案連接器 ##
-若要使用檔案連接器，您必須先建立檔案連接器 API 應用程式的執行個體。以下步驟可以達到此目的：
+The file connector uses the Hybrid Connection Manager for hybrid connectivity to the host file system.
 
-1.	使用 Azure 入口網站左邊的 [+新增] 選項開啟 Azure Marketplace。
-2.	搜尋「檔案連接器」。
-3.	從搜尋結果選取 [檔案連接器 (預覽版)]。
-4.	選取 [建立] 按鈕
-5.	設定檔案連接器，如下所示：![][1]
+## <a name="creating-a-file-connector-for-your-logic-app"></a>Creating a file connector for your Logic app ##
+To use the file connector, you need to first create an instance of the file connector API app. This can be done as follows:
 
-	- **名稱** - 提供檔案連接器的名稱
-	- **封裝設定**
-		- **根資料夾** - 指定主機電腦上的根資料夾路徑。例如，D:\\FileConnectorTest
-		- **服務匯流排連接字串** - 提供服務匯流排連接字串。請確認服務匯流排命名空間是「標準」類型而「不是」「基本」，如此才能使用服務匯流排轉送。服務匯流排轉送用來連接至混合式連線管理員。
-	- **App Service 方案** - 選取或建立 App Service 方案
-	- **定價層** - 選擇連接器的定價層
-	- **資源群組** - 選取或建立連接器所在的資源群組
-	- **訂用帳戶** - 選擇您要建立此連接器的訂用帳戶
-	- **位置** - 選擇您要部署連接器的地理位置
+1.  Open the Azure Marketplace using the + NEW option on the left side of the Azure Portal.
+2.  Search for “file connector”.
+3.  Select **File Connector (preview)** from the search results.
+4.  Select the **Create** button
+5.  Configure the file connector as follows:  
+![][1]
 
-4. 按一下 [建立]。將建立新的檔案連接器
+    - **Name** - give a name for your file connector
+    - **Package Settings**
+        - **Root Folder** - Specify the root folder path on your host machine. Eg. D:\FileConnectorTest
+        - **Service Bus Connection String** - Provide a Service Bus Connection String. Make sure that the service bus namespace is of type Standard and NOT Basic to allow for use of Service Bus Relays.  Service Bus Relay is used to connect to the Hybrid Connection Manager.
+    - **App Service plan** - select or create a App Service plan
+    - **Pricing tier** - choose a pricing tier for the connector
+    - **Resource group** - select or create a resource group where the connector should reside
+    - **Subscription** - choose a subscription you want this connector to be created in
+    - **Location** - choose the geographic location where you would like the connector to be deployed
 
-## 設定混合式連線管理員 ##
-API 應用程式執行個體建立之後，瀏覽至其儀表板。作法是按一下 [瀏覽] > [API Apps] > 選取您的檔案連接器 API Apps。需要在這裡設定混合式連線管理員。如需有關設定和疑難排解混合式連線管理員的詳細資訊，請參閱[使用混合式連線管理員]。
+4. Click on Create. A new file connector will be created
 
-## 在邏輯應用程式中使用檔案連接器 ##
-建立 API 應用程式之後，您現在可以使用檔案連接器做為邏輯應用程式的動作。若要這樣做，您需要：
+## <a name="configure-hybrid-connection-manager"></a>Configure Hybrid Connection Manager ##
+Once the API App instance is created, browse to its dashboard.  This can be done by clicking on Browse > API Apps > select your file connector API App.  From here the Hybrid Connection Manager needs to be configured.
+For more information on configuring and trouble shooting the Hybrid Connection Manager see [Using the Hybrid Connection Manager].
 
-1.	建立新的邏輯應用程式，並選擇具有檔案連接器的相同資源群組。依照指示[建立新的邏輯應用程式]。
+## <a name="using-the-file-connector-in-your-logic-app"></a>Using the file connector in your Logic app ##
+Once your API app is created, you can now use the file connector as an action for your Logic app. To do this, you need to:
 
-2.	在建立的 Logic Apps 中開啟 [觸發程序和動作] 以開啟 Logic Apps 設計工具，並設定您的流程。
+1.  Create a new Logic app and choose the same resource group which has the file connector. Follow instructions to [Create a new Logic app].
 
-3.	檔案連接器就會出現在右側資源庫中的 [此資源群組中的 API Apps] 區段。
+2.  Open “Triggers and Actions” within the created Logic app to open the Logic apps Designer and configure your flow.
 
-4.	您可以在 [檔案連接器] 上按一下來將檔案連接器 API 應用程式置入編輯器。檔案連接器公開一個觸發程序和 4 個動作：![][5]
+3.  The file connector would appear in the “API Apps in this resource group” section in the gallery on the right hand side.
 
-6.	其中每個都公開特定的屬性。下圖列出觸發程序和「取得檔案」動作的屬性︰![][6]
+4.  You can drop the file connector API app into the editor by clicking on the “file connector”. file connector exposes one trigger and 4 Actions:  
+![][5]
 
-7. 設定這些之後，就可以在流程中使用觸發程序和動作。同樣地，您也可以設定其他動作。
+6.  Each one of these exposes certain properties. The image below lists the properties for the trigger and Get file Action:  
+![][6]
 
-> [AZURE.NOTE] 成功從資料夾讀取檔案之後，檔案觸發程序會刪除檔案。
+7. Once these are configured, the Trigger and Action can be used in your flow. Similarly, other actions can be configured as well.
 
-## 檔案連接器 REST API ##
-若要在邏輯應用程式外使用連接器，可以利用連接器公開的 REST API。您可以使用 [瀏覽] -> [API 應用程式] -> [檔案連接器] 檢視這個「API 定義」。在 [摘要] 區段下的 [API 定義] 透鏡上按一下，來檢視此連接器公開的 API︰![][7]
+> [AZURE.NOTE] The file trigger will delete the file after it is successfully read from the folder.
 
-如需 API 的詳細資訊，請參閱[檔案連接器 API 定義]。
+## <a name="file-connector-rest-apis"></a>File connector REST APIs ##
+To use the connector outside of a Logic app, the REST APIs exposed by the connector can be leveraged. You can view this API Definitions using Browse->Api App->file connector. Now click on the API Definition lens under the Summary Section to view all the APIs exposed by this connector:  
+![][7]
 
-## 進一步運用您的連接器
-現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
+Details of the APIs can be found at [file connector API definition].
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡；沒有承諾。
+## <a name="do-more-with-your-connector"></a>Do more with your connector
+Now that the connector is created, you can add it to a business workflow using a Logic app. See [What are Logic apps?](app-service-logic-what-are-logic-apps.md).
 
-檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
+>[AZURE.NOTE] If you want to get started with Azure Logic apps before signing up for an Azure account, go to [Try Logic app](https://tryappservice.azure.com/?appservice=logic), where you can immediately create a short-lived starter Logic app in App Service. No credit cards required; no commitments.
 
-您也可以檢閱連接器的效能統計資料及控制安全性。請參閱[管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)。
+View the Swagger REST API reference at [Connectors and API Apps Reference](http://go.microsoft.com/fwlink/p/?LinkId=529766).
+
+You can also review performance statistics and control security to the connector. See [Manage and Monitor your built-in API Apps and connector](app-service-logic-monitor-your-connectors.md).
 
 <!-- Image reference -->
 [1]: ./media/app-service-logic-connector-file/img1.PNG
@@ -85,8 +91,12 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。作法是按�
 [7]: ./media/app-service-logic-connector-file/img7.PNG
 
 <!-- Links -->
-[建立新的邏輯應用程式]: app-service-logic-create-a-logic-app.md
-[檔案連接器 API 定義]: https://msdn.microsoft.com/library/dn936296.aspx
-[使用混合式連線管理員]: app-service-logic-hybrid-connection-manager.md
+[Create a new Logic app]: app-service-logic-create-a-logic-app.md
+[File connector API definition]: https://msdn.microsoft.com/library/dn936296.aspx
+[Using the Hybrid Connection Manager]: app-service-logic-hybrid-connection-manager.md
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

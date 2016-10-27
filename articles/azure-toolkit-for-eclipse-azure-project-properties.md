@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Azure 專案屬性"
-    description="說明適用於 Eclipse 的 Azure 工具組中的 Azure 專案屬性設定。"
+    pageTitle="Azure Project Properties"
+    description="Describes the Azure Project Properties settings in the Azure Toolkit for Eclipse."
     services=""
     documentationCenter="java"
     authors="rmcmurray"
@@ -16,49 +16,54 @@
     ms.date="08/11/2016" 
     ms.author="robmcm"/>
 
+
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/jj835232.aspx -->
 
-# Azure 專案屬性 #
+# <a name="azure-project-properties"></a>Azure Project Properties #
 
-您可以在適用於 Eclipse 的 Azure 工具組內設定 Azure 專案的各種設定。
+Various settings for your Azure project can be set within the Azure Toolkit for Eclipse.
 
-## 設定 Azure 專案屬性 ##
+## <a name="configuring-azure-project-properties"></a>Configuring Azure Project Properties ##
 
-透過 Azure 專案的屬性對話方塊，即可完成設定 Azure 專案的屬性。在 Eclipse 的 [專案總管] 窗格中的專案上按一下滑鼠右鍵，按一下 [**屬性**] ，然後選取 [**Azure**] 子功能表。
+Configuring your Azure Project Properties is accomplished through the property dialogs for your Azure project. Right-click the project in Eclipse's Project Explorer pane, click **Properties**, and then select the **Azure** sub-menu.
 
 ![][ic719480]
 
-在此屬性頁面中，您可以變更下列項目：
+Within this property page, you can change the following items: 
 
-* **服務名稱：**您的 Azure 專案的名稱。
-* **建置目的：**該專案是為了計算模擬器或部署至 Azure而建置。
-* **目標 OS：** 專案部署至 Azure 後，要使用的作業系統。
+* **Service name:** The name for your Azure project.
+* **Build for:** Whether the project is set for building to the compute emulator or deployment to Azure.
+* **Target OS:** The operating system to use when your project is deployed to Azure.
 
-## 另請參閱 ##
+## <a name="see-also"></a>See Also ##
 
-[適用於 Eclipse 的 Azure 工具組][]
+[Azure Toolkit for Eclipse][]
 
-[安裝 Azure Toolkit for Eclipse][]
+[Installing the Azure Toolkit for Eclipse][] 
 
-[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式][]
+[Creating a Hello World Application for Azure in Eclipse][]
 
-[Azure 角色屬性][]
+[Azure Role Properties][]
 
-[Azure 儲存體帳戶清單][]
+[Azure Storage Account List][]
 
-如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][]。
+For more information about using Azure with Java, see the [Azure Java Developer Center][].
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[Azure 角色屬性]: http://go.microsoft.com/fwlink/?LinkID=699525
-[Azure 儲存體帳戶清單]: http://go.microsoft.com/fwlink/?LinkID=699528
-[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Azure Role Properties]: http://go.microsoft.com/fwlink/?LinkID=699525
+[Azure Storage Account List]: http://go.microsoft.com/fwlink/?LinkID=699528
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 
 [ic719480]: ./media/azure-toolkit-for-eclipse-azure-project-properties/ic719480.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

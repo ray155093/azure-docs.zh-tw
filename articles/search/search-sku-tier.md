@@ -1,104 +1,110 @@
 <properties
-	pageTitle="選擇 Azure 搜尋服務的 SKU 或定價層 | Microsoft Azure"
-	description="「Azure 搜尋服務」可以在這些 SKU 佈建︰「免費」、「基本」及「標準」，其中「標準」在各種資源組態和容量層級都有提供。"
-	services="search"
-	documentationCenter=""
-	authors="HeidiSteen"
-	manager="jhubbard"
-	editor=""
+    pageTitle="Choose a SKU or pricing tier for Azure Search | Microsoft Azure"
+    description="Azure Search can be provisioned at these SKUs: Free, Basic, and Standard, where Standard is available in various resource configurations and capacity levels."
+    services="search"
+    documentationCenter=""
+    authors="HeidiSteen"
+    manager="jhubbard"
+    editor=""
     tags="azure-portal"/>
 
 <tags
-	ms.service="search"
-	ms.devlang="NA"
-	ms.workload="search"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.date="08/08/2016"
-	ms.author="heidist"/>
+    ms.service="search"
+    ms.devlang="NA"
+    ms.workload="search"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.date="10/17/2016"
+    ms.author="heidist"/>
 
-# 選擇 Azure 搜尋服務的 SKU 或定價層
 
-在[服務佈建](search-create-service-portal.md)期間，您必須指定 SKU 或定價層。選項包括「免費」、「基本」或「標準」，其中「標準」在多個組態和容量都有提供。
+# <a name="choose-a-sku-or-pricing-tier-for-azure-search"></a>Choose a SKU or pricing tier for Azure Search
 
-我們建議您一律佈建「免費」服務 (每個訂用帳戶一個，沒有到期日)，以便隨時可供輕量專案使用。使用「免費」服務進行測試與評估；針對生產或更大的測試工作負載，於「基本」或「標準」層建立第二個計費服務。
+During [service provisioning](search-create-service-portal.md), you'll need to specify a SKU or pricing tier. Choices include **Free**, **Basic**, or **Standard**, where **Standard** is available in multiple configurations and capacities.
 
-在 Azure 搜尋服務中，SKU 決定容量，而不是功能可用性。所有功能都可在每個定價層使用，其中包括預覽功能。
+We recommend that you always provision a **Free** service (one per subscription, with no expiration) so that its readily available for light-weight projects. Use the **Free** service for testing and evaluation; create a second billable service at the **Basic** or **Standard** tier for production or larger test workloads.
 
-## 如何進行定價層決策
+In Azure Search, the SKU determines capacity, not feature availability. All features are available at every pricing tier, including preview features.
 
-容量與執行服務的費用密切相關。本文中的資訊可協助您判斷哪個 SKU 可提供適當的平衡，但若要讓任何資訊發揮作用，您將至少需要下列項目的粗略預估：
+## <a name="how-to-approach-a-pricing-tier-decision"></a>How to approach a pricing tier decision
 
-- 您打算建立的索引的數目和大小
-- 要上傳的文件的數目和大小
-- 查詢量的一些概念，也就是每秒查詢次數 (QPS)
+Capacity and costs of running the service go hand-in-hand. Information in this article can help you decide which SKU delivers the right balance, but for any of it to be useful, you will need at least rough estimates on the following:
 
-大小和數目很重要，因為會透過服務中索引或文件的計數固定限制，或服務所使用的資源 (儲存體或複本) 上索引或文件的計數固定限制，達到最大值限制。您的服務的實際限制將會是首先耗盡的項目：資源或物件。
+- Number and size of indexes you plan to create
+- Number and size of documents to upload
+- Some idea of query volume, in terms of Queries Per Second (QPS)
 
-有了預估值之後，下列步驟應該能簡化程序：
+Number and size are important because maximum limits are reached through a hard limit on the count of indexes or documents in a service, or on resources (storage or replicas) used by the service. The actual limit for your service will be whichever is used up first: resources or objects.
 
-- **步驟 1** 檢閱下面的 SKU 描述來了解可用的選項。
-- **步驟 2** 檢閱問題以縮小您的選擇範圍。
-- **步驟 3** 檢閱對儲存體的固定限制和價格來驗證您的決定。
+With estimates in hand, the following steps should simplify the process:
 
-> [AZURE.NOTE] 如果您低估容量，您必須在更高的層佈建新的服務，然後重新載入您的索引。無法從某個 SKU 就地升級到另一個 SKU 的相同服務。
+- **Step 1** Review the SKU descriptions below to learn about available options.
+- **Step 2** Review the questions to narrow down your choice.
+- **Step 3** Validate your decision by reviewing hard limits on storage and pricing.
 
-## SKU 描述
+> [AZURE.NOTE] If you underestimate capacity, you will need to provision a new service at the higher tier, and then reload your indexes. There is no in-place upgrade of the same service from one SKU to another.
 
-下表提供每個層的描述。
+## <a name="sku-descriptions"></a>SKU descriptions
 
-層|主要案例
+The following table provides descriptions of each tier. 
+
+Tier|Primary scenarios
 ----|-----------------
-**免費**|共用服務 (不收費)，用於評估、調查或小量工作負載。由於是與其他訂閱者共用，因此查詢輸送量和索引將會因還有誰在使用該服務而異。容量很小 (50 MB 或各具有最多 10000 份文件的 3 個索引)。
-**基本**|專用硬體上的小量生產環境工作負載。具有高可用性。容量最多 3 個複本和 1 個分割區 (2 GB)。
-**S1**|標準 1 支援彈性的分割區 (12 個) 和複本 (12 個) 組合，用於專用硬體上的中量生產環境工作負載。您可以根據計費搜尋單位數目上限 (36 個) 所支援的組合來配置分割區和複本。在此層級，分割區各為 25 GB，而 QPS 是大約每秒 15 個查詢。
-**S2**|標準 2 使用與 S1 相同的 36 個搜尋單位來執行較大的生產環境工作負載，但搭配較大的分割區和複本。在此層級，分割區各為 100 GB，而 QPS 是大約每秒 60 個查詢。
-**S3** (預覽)|標準 3 以 36 個搜尋單位底下最高可達 12 個分割區或 12 個複本的組態，在較高階的系統上執行相應較大的生產環境工作負載。在此層級，分割區各為 200 GB，而 QPS 是每秒 60 個查詢以上。S3 在預覽中，可在介紹費率下使用。
-**S3 HD** (預覽)|標準 3 高密度是設計用於大量的較小型索引。只有一個 200 GB 的分割區。QPS 超過每秒 60 個查詢。S3 在預覽中，可在介紹費率下使用。
+**Free**|A shared service, at no charge, used for evaluation, investigation, or small workloads. Because it's shared with other subscribers, query throughput and indexing will vary based on who else is using the service. Capacity is small (50 MB or 3 indexes with up 10,000 documents each).
+**Basic**|Small production workloads on dedicated hardware. Highly available. Capacity is up to 3 replicas and 1 partition (2 GB).
+**S1**|Standard 1 supports flexible combinations of partitions (12) and replicas (12), used for medium production workloads on dedicated hardware. You can allocate partitions and replicas in combinations supported by a maximum number of 36 billable search units. At this level, partitions are 25 GB each and QPS is approximately 15 queries per second.
+**S2**|Standard 2 runs larger production workloads using the same 36 search units as S1 but with larger sized partitions and replicas. At this level, partitions are 100 GB each and QPS is about 60 queries per second.
+**S3** (Preview)|Standard 3 runs proportionally larger production workloads on higher end systems, in configurations of up to 12 partitions or 12 replicas under 36 search units. At this level, partitions are 200 GB each and QPS is more than 60 queries per second. S3 is in preview and available at an introductory rate.
+**S3 HD** (Preview)|Standard 3 High Density is designed for a large number of smaller indexes. There is one partition only, at 200 GB. QPS is more than 60 queries per second. S3 is in preview and available at  an introductory rate.
 
-> [AZURE.NOTE] 複本和分割區的最大值會以搜尋單位計費 (每個服務最多 36 個單位)，這會強制施行比上限面值所暗示之限制還低的有效限制。例如，若要使用上限 12 個複本，您最多可以有 3 個分割區 (12 * 3 = 36 個單位)。同樣地，若要使用分割區數目上限，則須將複本數目降低成 3 個。如需有關所允許之組合的圖表，請參閱[在 Azure 搜尋服務中調整查詢和索引工作負載的資源等級](search-capacity-planning.md)。
+> [AZURE.NOTE] Replica and partition maximums are billed out as search units (36 unit maximum per service), which imposes a lower effective limit than what the maximum implies at face value. For example, to use the maximum of 12 replicas, you could have at most 3 partitions (12 * 3 = 36 units). Similarly, to use maximum partitions, reduce replicas to 3. See [Scale resource levels for query and indexing workloads in Azure Search](search-capacity-planning.md) for a chart on allowable combinations.
 
-## 檢閱每一層的限制
+## <a name="review-limits-per-tier"></a>Review limits per tier
 
-下列圖表是來自 [Azure 搜尋服務中的服務限制](search-limits-quotas-capacity.md)的限制子集。它會列出最有可能會影響 SKU 決策的因素。您可以在檢閱下列問題時參考這個圖表。
+The following chart is a subset of the limits from [Service Limits in Azure Search](search-limits-quotas-capacity.md). It lists the factors most likely to impact a SKU decision. You can refer to this chart when reviewing the questions below.
 
-資源|免費|基本|S1|S2|S3 <br/>(預覽) |S3 HD <br/>(預覽) 
+Resource|Free|Basic|S1|S2|S3 <br/>(Preview) |S3 HD <br/>(Preview) 
 ---|---|---|---|----|---|----
-服務等級協定 (SLA)|否 <sup>1</sup> |是 |是 |是 |否 <sup>1</sup> |否 <sup>1</sup> 
-每個 SKU 允許的索引數目|3|5|50|200|200|1000
-文件數目限制|總計 10,000|每項服務 100 萬|每個分割區 1500 萬 |每個分割區 6000 萬|每個分割區 1 億 2000 萬 |每個索引 100 萬
-分割區上限|N/A |1 |12 |12 |12|1
-分割區大小|總計 50 MB|每項服務 2 GB|每個分割區 25 GB |每個分割區 100 GB (每項服務最多 1.2 TB)|每個分割區 200 GB (每項服務最多 2.4 TB)|200 GB (1 個分割區)
-複本上限|N/A |3 |12 |12 |12|12
-每秒查詢數目|N/A|~3/每個複本|~15/每個複本|~60/每個複本|>60/每個複本|>60/每個複本
+Service Level Agreement (SLA)|No <sup>1</sup> |Yes |Yes  |Yes |No <sup>1</sup> |No <sup>1</sup> 
+Indexes allowed per SKU|3|5|50|200|200|1000
+Documents limits|10,000 total|1 million per service|15 million per partition |60 million per partition|120 million per partition |1 million per index
+Maximum partitions|N/A |1 |12  |12 |12|1
+Partition size|50 MB total|2 GB per service|25 GB per partition |100 GB per partition (up to a maximum of 1.2 TB per service)|200 GB per partition (up to a maximum of 2.4 TB per service)|200 GB (for the 1 partition)
+Maximum replicas|N/A |3 |12 |12 |12|12
+Queries per second|N/A|~3 per replica|~15 per replica|~60 per replica|>60 per replica|>60 per replica
 
-<sup>1</sup>「免費」和「預覽」SKU 並未隨附 SLA。在 SKU 正式推出之後，才會強制執行 SLA。
+<sup>1</sup> Free and Preview SKUs do not come with SLAs. SLAs are enforced once a SKU becomes generally available.
 
 
-## 排除不符合需求的 SKU 
+## <a name="eliminate-skus-that-don't-meet-requirements"></a>Eliminate SKUs that don't meet requirements 
 
-下列問題可協助您決定適合您工作負載的正確 SKU。
+The following questions can help you arrive at the right SKU decision for your workload.
 
-1. 您是否有**服務等級協定 (SLA)** 需求？ 請將 SKU 決策限縮至「基本」或非預覽版的「標準」。
-2. 您需要**多少索引**？ 其中一個會納入 SKU 決策因素的最大變數就是每個 SKU 所支援的索引數目。索引支援在較低的定價層中明顯屬於不同層級。索引數目需求可能會是 SKU 決策的主要因素。
-3. 將有**多少文件**載入每個索引？ 文件的數目和大小將決定索引的最終大小。假設您可以估算出預計的索引大小，您可以將該數字與每個 SKU 的分割區大小做比較，再依存放該大小的索引所需的分割區數目加以擴充。
-4. **什麼是預期的查詢負載**？ 了解儲存體需求之後，請考量查詢工作負載。S2 及兩個 S3 SKU 提供幾乎相等的輸送量，但 SLA 需求會排除任何預覽版 SKU。
+1. Do you have **Service Level Agreement (SLA)** requirements? Narrow the SKU decision to Basic or non-preview Standard.
+2. **How many indexes** do you require? One of the biggest variables that will factor into a SKU decision is the number of indexes supported by each SKU. Index support is at markedly different levels in the lower pricing tiers. Requirements on number of indexes could be a primary determinant of a SKU decision.
+3. **How many documents** will be loaded into each index? The number and size of documents will determine the eventual size of the index. Assuming you can estimate the projected size of the index, you can compare that number against the partition size per SKU, extended by the number of partitions required to store an index of that size. 
+4. **What is the expected query load**? Once storage requirements are understood, consider query workloads. S2 and both S3 SKUs offer near-equivalent throughput, but SLA requirements will rule out any preview SKUs. 
 
-大多數客戶可以根據他們這對四個問題的答案來納入或排除特定的 SKU。如果您仍然不確定要使用哪一個 SKU，請連絡「Azure 支援」以尋求進一步的指導。
+Most customers can rule a specific SKU in or out based on their answers to these four questions. If you still aren't sure which SKU to go with, contact Azure Support for further guidance.
 
-## 決策驗證︰SKU 是否提供足夠的儲存體和 QPS？
+## <a name="decision-validation:-does-the-sku-offer-sufficient-storage-and-qps?"></a>Decision validation: does the SKU offer sufficient storage and QPS?
 
-最後一個步驟是再次瀏覽[定價頁面](https://azure.microsoft.com/pricing/details/search/)和[服務限制中的每一服務和每一索引小節](search-limits-quotas-capacity.md)，以仔細確認您對訂用帳戶與服務限制的預估值。
+As a last step, revisit the [pricing page](https://azure.microsoft.com/pricing/details/search/) and the [per-service and per-index sections in Service Limits](search-limits-quotas-capacity.md) to double-check your estimates against subscription and service limits. 
 
-如果價格或儲存體需求超出範圍，您可能會想要將多個較小服務之間的工作負載重構 (舉例來說)。在更細微的層級上，您可以將索引重新設計成更小，或使用篩選來讓查詢更有效率。
+If either the price or storage requirements are out of bounds, you might want to refactor the workloads among multiple smaller services (for example). On more granular level, you could redesign indexes to be smaller, or use filters to make queries more efficient.
 
-> [AZURE.NOTE] 如果文件包含無關的資料，儲存體需求可能會過度膨脹。在理想情況下，文件只包含可搜尋的資料或中繼資料。二進位資料不可搜尋，應該分開存放 (或許存放在 Azure 資料表或 Blob 儲存體中)，並且在索引中要有一個欄位用來保存外部資料的 URL 參考。個別文件的大小上限是 16 MB (如果您在單一要求中大量上傳多個文件，則會小於 16 MB)。如需詳細資訊，請參閱 [Azure 搜尋服務中的服務限制](search-limits-quotas-capacity.md)。
+> [AZURE.NOTE] Storage requirements can be over-inflated if documents contain extraneous data. Ideally, documents contain only searchable data or metadata. Binary data is non-searchable and should be stored separately (perhaps in an Azure table or blob storage) with a field in the index to hold a URL reference to the external data. The maximum size of an individual document is 16 MB (or less if you are bulk uploading multiple documents in one request). See [Service limits in Azure Search](search-limits-quotas-capacity.md) for more information.
 
-## 後續步驟
+## <a name="next-step"></a>Next step
 
-在您了解哪個 SKU 是正確選擇之後，請繼續進行下列步驟：
+Once you know which SKU is the right fit, continue on with these steps:
 
-- [在入口網站中建立搜尋服務](search-create-service-portal.md)
-- [變更分割區和複本的配置以調整您的服務](search-capacity-planning.md)
+- [Create a search service in the portal](search-create-service-portal.md)
+- [Change the allocation of partitions and replicas to scale your service](search-capacity-planning.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

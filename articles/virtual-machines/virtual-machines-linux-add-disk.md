@@ -1,44 +1,45 @@
 <properties
-	pageTitle="在 Linux VM 中新增磁碟 | Microsoft Azure"
-	description="了解如何在 Linux VM 中新增永續性磁碟"
-	keywords="linux 虛擬機器,新增資源磁碟"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="rickstercdn"
-	manager="timlt"
-	editor="tysonn"
-	tags="azure-resource-manager" />
+    pageTitle="Add a disk to Linux VM | Microsoft Azure"
+    description="Learn to add a persistent disk to your Linux VM"
+    keywords="linux virtual machine,add resource disk"
+    services="virtual-machines-linux"
+    documentationCenter=""
+    authors="rickstercdn"
+    manager="timlt"
+    editor="tysonn"
+    tags="azure-resource-manager" />
 
 <tags
-	ms.service="virtual-machines-linux"
-	ms.topic="article"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="na"
-	ms.date="09/06/2016"
-	ms.author="rclaus"/>
+    ms.service="virtual-machines-linux"
+    ms.topic="article"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-linux"
+    ms.devlang="na"
+    ms.date="09/06/2016"
+    ms.author="rclaus"/>
 
-# 在 Linux VM 中新增磁碟
 
-本文說明如何將持續性磁碟連接到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。若要新增磁碟，您需要在 Resource Manager 模式中設定的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。
+# <a name="add-a-disk-to-a-linux-vm"></a>Add a disk to a Linux VM
 
-## 快速命令
+This article shows how to attach a persistent disk to your VM so that you can preserve your data - even if your VM is reprovisioned due to maintenance or resizing. To add a disk, you need [the Azure CLI](../xplat-cli-install.md) configured in Resource Manager mode (`azure config mode arm`).  
 
-在下列命令範例中，請將 &lt; 和 &gt; 之間的值取代為您自己環境中的值。
+## <a name="quick-commands"></a>Quick Commands
+
+In the following command examples, replace the values between &lt; and &gt; with the values from your own environment.
 
 ```bash
 azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size-in-GB>
 ```
 
-## 連接磁碟
+## <a name="attach-a-disk"></a>Attach a disk
 
-連接新磁碟很快。輸入 `azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size-in-GB>`，就能為 VM 建立並連接新的 GB 磁碟。如果您未明確識別儲存體帳戶，則您所建立的任何磁碟都會放在作業系統磁碟所在的相同儲存體帳戶中。您應該會看到如下的內容：
+Attaching a new disk is quick. Type `azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size-in-GB>` to create and attach a new GB disk for your VM. If you do not explicitly identify a storage account, any disk you create is placed in the same storage account where your OS disk resides.  It should look something like the following:
 
 ```bash
 azure vm disk attach-new myuniquegroupname myuniquevmname 5
 ```
 
-輸出
+Output
 
 ```bash
 info:    Executing command vm disk attach-new
@@ -48,17 +49,17 @@ info:    New data disk location: https://cliexxx.blob.core.windows.net/vhds/myun
 info:    vm disk attach-new command OK
 ```
 
-## 連接到 Linux VM 以掛接新磁碟
+## <a name="connect-to-the-linux-vm-to-mount-the-new-disk"></a>Connect to the Linux VM to mount the new disk
 
-> [AZURE.NOTE] 本主題會利用使用者名稱和密碼連線到 VM。若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱[如何搭配使用 SSH 與 Azure 上的 Linux](virtual-machines-linux-mac-create-ssh-keys.md)。您可以修改利用 `azure vm quick-create` 命令建立之 VM 的 **SSH** 連線能力，方法為使用 `azure vm reset-access` 命令來完全地重設 **SSH** 存取、新增或移除使用者，或新增公開金鑰檔案來保護存取安全。
+> [AZURE.NOTE] This topic connects to a VM using usernames and passwords. To use public and private key pairs to communicate with your VM, see [How to Use SSH with Linux on Azure](virtual-machines-linux-mac-create-ssh-keys.md). You can modify the **SSH** connectivity of VMs created with the `azure vm quick-create` command by using the `azure vm reset-access` command to reset **SSH** access completely, add or remove users, or add public key files to secure access.
 
-您必須使用 SSH 登入 Azure VM 來分割、格式化和掛接新磁碟，以供 Linux VM 使用。如果您不熟悉使用 **ssh** 進行連接，此命令會採用 `ssh <username>@<FQDNofAzureVM> -p <the ssh port>` 形式，如下所示：
+You need to SSH into your Azure VM to partition, format, and mount your new disk so your Linux VM can use it. If you're not familiar with connecting with **ssh**, the command takes the form `ssh <username>@<FQDNofAzureVM> -p <the ssh port>`, and looks like the following:
 
 ```bash
 ssh ops@myuni-westu-1432328437727-pip.westus.cloudapp.azure.com -p 22
 ```
 
-輸出
+Output
 
 ```bash
 The authenticity of host 'myuni-westu-1432328437727-pip.westus.cloudapp.azure.com (191.239.51.1)' can't be established.
@@ -94,13 +95,13 @@ applicable law.
 ops@myuniquevmname:~$
 ```
 
-現在已連線到 VM，您已準備好連接磁碟。請先使用 `dmesg | grep SCSI` (您用來探索新磁碟的方法可能有所不同) 尋找該磁碟。在此案例中，它看起來如下：
+Now that you're connected to your VM, you're ready to attach a disk.  First find the disk, using `dmesg | grep SCSI` (the method you use to discover your new disk may vary). In this case, it looks something like:
 
 ```bash
 dmesg | grep SCSI
 ```
 
-輸出
+Output
 
 ```bash
 [    0.294784] SCSI subsystem initialized
@@ -110,13 +111,13 @@ dmesg | grep SCSI
 [ 1828.162306] sd 5:0:0:0: [sdc] Attached SCSI disk
 ```
 
-而且，在本主題的案例中，`sdc` 磁碟是我們想要的磁碟。現在使用 `sudo fdisk /dev/sdc` 來分割磁碟 -- 假設在您的案例中，磁碟為 `sdc`，使它成為磁碟分割 1 上的主要磁碟，並接受其他預設值。
+and in the case of this topic, the `sdc` disk is the one that we want. Now partition the disk with `sudo fdisk /dev/sdc` -- assuming that in your case the disk was `sdc`, and make it a primary disk on partition 1, and accept the other defaults.
 
 ```bash
 sudo fdisk /dev/sdc
 ```
 
-輸出
+Output
 
 ```bash
 Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
@@ -138,7 +139,7 @@ Last sector, +sectors or +size{K,M,G} (2048-10485759, default 10485759):
 Using default value 10485759
 ```
 
-在命令提示字元中，輸入 `p` 來建立磁碟分割：
+Create the partition by typing `p` at the prompt:
 
 ```bash
 Command (m for help): p
@@ -160,13 +161,13 @@ Calling ioctl() to re-read partition table.
 Syncing disks.
 ```
 
-同時，使用 **mkfs** 命令來指定檔案系統類型和裝置名稱，將檔案系統寫入磁碟分割。在本主題中，我們將使用先前內容中的 `ext4` 和 `/dev/sdc1`：
+And write a file system to the partition by using the **mkfs** command, specifying your filesystem type and the device name. In this topic, we're using `ext4` and `/dev/sdc1` from above:
 
 ```bash
 sudo mkfs -t ext4 /dev/sdc1
 ```
 
-輸出
+Output
 
 ```bash
 mke2fs 1.42.9 (4-Feb-2014)
@@ -184,45 +185,45 @@ Maximum filesystem blocks=1342177280
 32768 blocks per group, 32768 fragments per group
 8192 inodes per group
 Superblock backups stored on blocks:
-	32768, 98304, 163840, 229376, 294912, 819200, 884736
+    32768, 98304, 163840, 229376, 294912, 819200, 884736
 Allocating group tables: done
 Writing inode tables: done
 Creating journal (32768 blocks): done
 Writing superblocks and filesystem accounting information: done
 ```
 
-現在我們會使用 `mkdir`，建立目錄來掛接檔案系統：
+Now we create a directory to mount the file system using `mkdir`:
 
 ```bash
 sudo mkdir /datadrive
 ```
 
-而您可以使用 `mount` 來掛接目錄：
+And you mount the directory using `mount`:
 
 ```bash
 sudo mount /dev/sdc1 /datadrive
 ```
 
-資料磁碟現在可以當做 `/datadrive` 來使用。
+The data disk is now ready to use as `/datadrive`.
 
 ```bash
 ls
 ```
 
-輸出
+Output
 
 ```bash
 bin   datadrive  etc   initrd.img  lib64       media  opt   root  sbin  sys  usr  vmlinuz
 boot  dev        home  lib         lost+found  mnt    proc  run   srv   tmp  var
 ```
 
-為了確保重新開機之後自動重新掛接磁碟機，必須將磁碟機新增至 /etc/fstab 檔案。此外，強烈建議在 /et/fstab 中使用全域唯一識別碼 (Universally Unique IDentifier, UUID) 來參考磁碟機，而不只是裝置名稱 (例如，`/dev/sdc1`)。如果作業系統在開機期間偵測到磁碟錯誤，使用 UUID 可避免將不正確的磁碟掛接到指定的位置。其餘的資料磁碟則會被指派這些相同的裝置識別碼。若要尋找新磁碟機的 UUID，請使用 **blkid** 公用程式：
+To ensure the drive is remounted automatically after a reboot it must be added to the /etc/fstab file. In addition, it is highly recommended that the UUID (Universally Unique IDentifier) is used in /etc/fstab to refer to the drive rather than just the device name (such as, `/dev/sdc1`). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the **blkid** utility:
 
 ```bash
 sudo -i blkid
 ```
 
-輸出大致如下：
+The output looks similar to the following:
 
 ```bash
 /dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
@@ -230,51 +231,55 @@ sudo -i blkid
 /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
 ```
 
->[AZURE.NOTE] 不當編輯 **/etc/fstab** 檔案會導致系統無法開機。如果不確定，請參閱散發套件的文件，以取得如何適當編輯此檔案的相關資訊。在編輯之前，也建議先備份 /etc/fstab 檔案。
+>[AZURE.NOTE] Improperly editing the **/etc/fstab** file could result in an unbootable system. If unsure, refer to the distribution's documentation for information on how to properly edit this file. It is also recommended that a backup of the /etc/fstab file is created before editing.
 
-接下來，在文字編輯器中開啟 **/etc/fstab** 檔案：
+Next, open the **/etc/fstab** file in a text editor:
 
 ```bash
 sudo vi /etc/fstab
 ```
 
-在此範例中，我們會使用先前步驟所建立之新的 **/dev/sdc1** 裝置的 UUID 值，並使用掛接點 **/datadrive**。在 **/etc/fstab** 檔案的結尾加入以下程式碼：
+In this example, we use the UUID value for the new **/dev/sdc1** device that was created in the previous steps, and the mountpoint **/datadrive**. Add the following line to the end of the **/etc/fstab** file:
 
 ```bash
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
 ```
 
->[AZURE.NOTE] 稍後移除資料磁碟而不編輯 fstab，可能會造成 VM 無法開機。大多數的散發套件會提供 `nofail` 和/或 `nobootwait` fstab 選項。即使磁碟在開機時無法掛接，這些選項也能讓系統開機。請查閱散發套件的文件，以取得這些參數的相關資訊。
+>[AZURE.NOTE] Later removing a data disk without editing fstab could cause the VM to fail to boot. Most distributions provide either the `nofail` and/or `nobootwait` fstab options. These options allow a system to boot even if the disk fails to mount at boot time. Consult your distribution's documentation for more information on these parameters.
 
 
-### Azure 中 Linux 的 TRIM/UNMAP 支援
-有些 Linux 核心會支援 TRIM/UNMAP 作業以捨棄磁碟上未使用的區塊。這主要是在標準儲存體中相當實用，可用來通知 Azure 已刪除的頁面已不再有效而可予以捨棄。如果您建立大型檔案，然後再將它們刪除，這便可節省成本。
+### <a name="trim/unmap-support-for-linux-in-azure"></a>TRIM/UNMAP support for Linux in Azure
+Some Linux kernels support TRIM/UNMAP operations to discard unused blocks on the disk. This is primarily useful in standard storage to inform Azure that deleted pages are no longer valid and can be discarded. This can save cost if you create large files and then delete them.
 
-有兩種方式可在 Linux VM 中啟用 TRIM 支援。像往常一樣，請參閱您的散發套件以了解建議的方法︰
+There are two ways to enable TRIM support in your Linux VM. As usual, consult your distribution for the recommended approach:
 
-- 在 `/etc/fstab` 中使用 `discard` 掛接選項，例如：
+- Use the `discard` mount option in `/etc/fstab`, for example:
 
-		UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
+        UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
 
-- 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
+- Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
 
-	**Ubuntu**
+    **Ubuntu**
 
-		# sudo apt-get install util-linux
-		# sudo fstrim /datadrive
+        # sudo apt-get install util-linux
+        # sudo fstrim /datadrive
 
-	**RHEL/CentOS**
+    **RHEL/CentOS**
 
-		# sudo yum install util-linux
-		# sudo fstrim /datadrive
+        # sudo yum install util-linux
+        # sudo fstrim /datadrive
 
-## 疑難排解
+## <a name="troubleshooting"></a>Troubleshooting
 [AZURE.INCLUDE [virtual-machines-linux-lunzero](../../includes/virtual-machines-linux-lunzero.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-- 請記住，如果將新磁碟重新開機，除非您將該資訊寫入 [/etc/fstab](http://en.wikipedia.org/wiki/Fstab) 檔案，否則該磁碟無法供 VM 使用。
-- 若要確保您的 Linux VM 已正確設定，請檢閱[最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md)建議。
-- 新增其他磁碟以擴充儲存體容量，並[設定 RAID](virtual-machines-linux-configure-raid.md) 以提升效能。
+- Remember, that your new disk is not available to the VM if it reboots unless you write that information to your [fstab](http://en.wikipedia.org/wiki/Fstab) file.
+- To ensure your Linux VM is configured correctly, review the [Optimize your Linux machine performance](virtual-machines-linux-optimization.md) recommendations.
+- Expand your storage capacity by adding additional disks and [configure RAID](virtual-machines-linux-configure-raid.md) for additional performance.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

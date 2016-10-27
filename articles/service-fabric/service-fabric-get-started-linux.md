@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Linux 上設定開發環境 | Microsoft Azure"
-   description="在 Linux 上安裝執行階段和 SDK，並建立本機開發叢集。完成此設定之後，您就可以開始建置應用程式。"
+   pageTitle="Set up your development environment on Linux | Microsoft Azure"
+   description="Install the runtime and SDK and create a local development cluster on Linux. After completing this setup, you will be ready to build applications."
    services="service-fabric"
    documentationCenter=".net"
    authors="seanmck"
@@ -16,7 +16,8 @@
    ms.date="09/26/2016"
    ms.author="seanmck"/>
 
-# 在 Linux 上準備您的開發環境
+
+# <a name="prepare-your-development-environment-on-linux"></a>Prepare your development environment on Linux
 
 
 > [AZURE.SELECTOR]
@@ -24,77 +25,77 @@
 - [Linux](service-fabric-get-started-linux.md)
 - [OSX](service-fabric-get-started-mac.md)
 
- 若要在 Linux 開發機器上部署和執行 [Azure Service Fabric 應用程式](service-fabric-application-model.md)，請安裝執行階段和通用 SDK。您也可以安裝 Java 和 .NET Core 的選擇性 SDK。
+ To deploy and run [Azure Service Fabric applications](service-fabric-application-model.md) on your Linux development machine, install the runtime and common SDK. You can also install optional SDKs for Java and .NET Core.
 
-## 必要條件
-### 支援的作業系統版本
-下列為支援開發的作業系統版本：
+## <a name="prerequisites"></a>Prerequisites
+### <a name="supported-operating-system-versions"></a>Supported operating system versions
+The following operating system versions are supported for development:
 
 - Ubuntu 16.04 (Xenial Xerus)
 
-## 更新 apt 來源
+## <a name="update-your-apt-sources"></a>Update your apt sources
 
-若要透過 apt-get 安裝 SDK 和相關聯的執行階段套件，您必須先更新 apt 來源。
+To install the SDK and the associated runtime package via apt-get, you must first update your apt sources.
 
-1. 開啟終端機。
-2. 將 Service Fabric 儲存機制新增至來源清單。
+1. Open a terminal.
+2. Add the Service Fabric repo to your sources list.
 
     ```bash
     sudo sh -c 'echo "deb [arch=amd64] http://apt-mo.trafficmanager.net/repos/servicefabric/ trusty main" > /etc/apt/sources.list.d/servicefabric.list'
     ```
 
-3. 將新的 GPG 金鑰新增至 apt keyring。
+3. Add the new GPG key to your apt keyring.
 
     ```bash
     sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
     ```
 
-4. 根據新增的儲存機制重新整理套件清單。
+4. Refresh your package lists based on the newly added repositories.
 
     ```bash
     sudo apt-get update
     ```
 
-## 安裝和設定 SDK
+## <a name="install-and-set-up-the-sdk"></a>Install and set up the SDK
 
-更新來源後，您可以安裝 SDK。
+Once your sources are updated, you can install the SDK.
 
-1. 安裝 Service Fabric SDK 套件。系統會要求確認安裝並同意授權合約。
+1. Install the Service Fabric SDK package. You will be asked to confirm the installation and to agree to a license agreement.
 
     ```bash
     sudo apt-get install servicefabricsdkcommon
     ```
 
-2. 執行 SDK 安裝指令碼。
+2. Run the SDK setup script.
 
     ```bash
     sudo /opt/microsoft/sdk/servicefabric/common/sdkcommonsetup.sh
     ```
 
-## 設定 Azure 跨平台 CLI
+## <a name="set-up-the-azure-cross-platform-cli"></a>Set up the Azure cross-platform CLI
 
-[Azure 跨平台 CLI][azure-xplat-cli-github] 包含與 Service Fabric 實體 (包括叢集和應用程式) 進行互動的命令。它是以 Node.js 為基礎，所以先[確認您已安裝 Node][install-node]，再繼續執行下面的指示。
+The [Azure cross-platform CLI][azure-xplat-cli-github] includes commands for interacting with Service Fabric entities, including clusters and applications. It is based on Node.js so [ensure that you have installed Node][install-node] before proceeding with the instructions below.
 
-1. 將 github 儲存機制複製到您的開發電腦。
+1. Clone the github repo to your development machine.
 
     ```bash
     git clone https://github.com/Azure/azure-xplat-cli.git
     ```
 
-2. 切換至所複製的儲存機制，並使用 Node Package Manager (npm) 安裝 CLI 的相依項目。
+2. Switch into the cloned repo and install the CLI's dependencies using the Node Package Manager (npm).
 
     ```bash
     cd azure-xplat-cli
     npm install
     ```
 
-3. 建立從所複製儲存機制的 bin/azure 資料夾至 /usr/bin/azure 的符號連結，以便將它新增至您的路徑並從任何目錄取得命令。
+3. Create a symlink from the bin/azure folder of the cloned repo to /usr/bin/azure so that it's added to your path and commands are available from any directory.
 
     ```bash
     sudo ln -s $(pwd)/bin/azure /usr/bin/azure
     ```
 
-4. 最後，啟用自動完成 Service Fabric 命令。
+4. Finally, enable auto-completion Service Fabric commands.
 
     ```bash
     azure --completion >> ~/azure.completion.sh
@@ -102,75 +103,75 @@
     source ~/azure.completion.sh
     ```
 
-## 設定本機叢集
+## <a name="set-up-a-local-cluster"></a>Set up a local cluster
 
-如果一切都已順利安裝，您應該能夠啟動本機叢集。
+If everything has installed successfully, you should be able to start a local cluster.
 
-1. 執行叢集安裝指令碼。
+1. Run the cluster setup script.
 
     ```bash
     sudo /opt/microsoft/sdk/servicefabric/common/clustersetup/devclustersetup.sh
     ```
 
-2. 開啟瀏覽器並瀏覽至 http://localhost:19080/Explorer。如果叢集已經啟動，您應會看見 Service Fabric Explorer 儀表板。
+2. Open a web browser and navigate to http://localhost:19080/Explorer. If the cluster has started, you should see the Service Fabric Explorer dashboard.
 
-    ![Linux 上的 Service Fabric Explorer][sfx-linux]
+    ![Service Fabric Explorer on Linux][sfx-linux]
 
-此時，您可以根據客體容器或來賓可執行檔，部署預先建置的 Service Fabric 應用程式套件或新的套件。若要使用 Java 或 .NET Core SDK 建置新的服務，請遵循下列選擇性設定步驟。
+At this point, you are able to deploy pre-built Service Fabric application packages or new ones based on guest containers or guest executables. To build new services using the Java or .NET Core SDKs, follow the optional setup steps below.
 
-## 安裝 Java SDK 和 Eclipse Neon 外掛程式 (選擇性)
+## <a name="install-the-java-sdk-and-eclipse-neon-plugin-(optional)"></a>Install the Java SDK and Eclipse Neon plugin (optional)
 
-Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和範本。
+The Java SDK provides the libraries and templates required to build Service Fabric services using Java.
 
-1. 安裝 Java SDK 套件。
+1. Install the Java SDK package.
 
     ```bash
     sudo apt-get install servicefabricsdkjava
     ```
 
-2. 執行 SDK 安裝指令碼。
+2. Run the SDK setup script.
 
     ```bash
     sudo /opt/microsoft/sdk/servicefabric/java/sdkjavasetup.sh
     ```
 
-您可以從 Eclipse Neon IDE 安裝適用於 Service Fabric 的 Eclipse 外掛程式。
+You can install the Eclipse plugin for Service Fabric from within the Eclipse Neon IDE.
 
-1. 在 Eclipse 中，請確定已安裝 Buildship 1.0.17 版或更新版本。您可以選擇 [說明] > [安裝詳細資料]，檢查已安裝的元件版本。您可以使用[這裡][buildship-update]的指示更新 Buildship。
+1. In Eclipse, ensure that you have Buildship version 1.0.17 or later installed. You can check the versions of installed components by choosing **Help > Installation Details**. You can update Buildship using the instructions [here][buildship-update].
 
-2. 若要安裝 Service Fabric 外掛程式，請選擇 [說明] > [安裝新軟體...]
+2. To install the Service Fabric plugin, choose **Help > Install New Software...**
 
-3. 在 [使用] 文字方塊中，輸入︰http://dl.windowsazure.com/eclipse/servicefabric
+3. In the "Work with" textbox, enter: http://dl.windowsazure.com/eclipse/servicefabric
 
-4. 按一下 [新增]。
+4. Click Add.
 
-    ![Eclipse 外掛程式][sf-eclipse-plugin]
+    ![Eclipse plugin][sf-eclipse-plugin]
 
-5. 選擇 Service Fabric 外掛程式，然後按 [下一步]。
+5. Choose the Service Fabric plugin and click next.
 
-6. 繼續進行安裝並接受使用者授權合約。
+6. Proceed through the installation and accept the end-user license agreement.
 
-## 安裝 .NET Core SDK (選擇性)
+## <a name="install-the-.net-core-sdk-(optional)"></a>Install the .NET Core SDK (optional)
 
-.NET Core SDK 提供了使用跨平台 .NET Core 建置 Service Fabric 服務所需的程式庫和範本。
+The .NET Core SDK provides the libraries and templates required to build Service Fabric services using cross-platform .NET Core.
 
-1. 安裝 .NET Core SDK 套件。
+1. Install the .NET Core SDK package.
 
     ```bash
     sudo apt-get install servicefabricsdkcsharp
     ```
 
-2. 執行 SDK 安裝指令碼。
+2. Run the SDK setup script.
 
     ```bash
     sudo /opt/microsoft/sdk/servicefabric/csharp/sdkcsharpsetup.sh
     ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [在 Linux 上建立第一個 Java 應用程式](service-fabric-create-your-first-linux-application-with-java.md)
+- [Create your first Java application on Linux](service-fabric-create-your-first-linux-application-with-java.md)
 
-- [在 OSX 上準備您的開發環境](service-fabric-get-started-mac.md)
+- [Prepare your development environment on OSX](service-fabric-get-started-mac.md)
 
 
 <!-- Links -->
@@ -184,4 +185,8 @@ Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和�
 [sf-eclipse-plugin]: ./media/service-fabric-get-started-linux/service-fabric-eclipse-plugin.png
 [sfx-linux]: ./media/service-fabric-get-started-linux/sfx-linux.png
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

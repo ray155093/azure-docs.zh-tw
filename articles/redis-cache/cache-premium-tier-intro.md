@@ -1,93 +1,99 @@
 <properties 
-	pageTitle="Azure Redis Cache 高階層簡介 | Microsoft Azure" 
-	description="了解如何建立和管理高階層 Azure Redis Cache 執行個體的 Redis 永續性、Redis 叢集和 VNET 支援" 
-	services="redis-cache" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="douge" 
-	editor=""/>
+    pageTitle="Introduction to the Azure Redis Cache Premium tier | Microsoft Azure" 
+    description="Learn how to create and manage Redis Persistence, Redis clustering, and VNET support for your Premium tier Azure Redis Cache instances" 
+    services="redis-cache" 
+    documentationCenter="" 
+    authors="steved0x" 
+    manager="douge" 
+    editor=""/>
 
 <tags 
-	ms.service="cache" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="cache-redis" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/15/2016" 
-	ms.author="sdanie"/>
+    ms.service="cache" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="cache-redis" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/15/2016" 
+    ms.author="sdanie"/>
 
-# Azure Redis Cache 高階層簡介
-Azure Redis Cache 是一種分散式受管理快取，可提供超快速的資料存取，藉此協助您建置具高度延展性且快速回應的應用程式。
 
-新的高階層是可供企業立即使用的層，其中包括所有標準層功能及其他優點，例如更佳的效能、更大的工作負載、災害復原、匯入/匯出和增強的安全性。請繼續閱讀，以深入了解高階快取層的其他功能。
+# <a name="introduction-to-the-azure-redis-cache-premium-tier"></a>Introduction to the Azure Redis Cache Premium tier
+Azure Redis Cache is a distributed, managed cache that helps you build highly scalable and responsive applications by providing super-fast access to your data. 
 
-## 效能優於標準或基本層。
-**效能優於標準或基本層。** 高階層中的快取是部署在擁有較快處理器的硬體上，因此效能優於基本或標準層。高階層快取的輸送量較高，延遲較低。
+The new Premium-tier is an Enterprise ready tier, which includes all the Standard-tier features and more, such as better performance, bigger workloads, disaster recovery, import/export, and enhanced security. Continue reading to learn more about the additional features of the Premium cache tier.
 
-**相較於標準層，高階層中相同大小的快取，其輸送量較高。** 例如：53 GB P4 (高階層) 快取的輸送量是每秒 250K 個要求，相較之下，C6 (標準層) 則只有 150K 個。
+## <a name="better-performance-compared-to-standard-or-basic-tier"></a>Better performance compared to Standard or Basic tier
+**Better performance over Standard or Basic tier.** Caches in the Premium tier are deployed on hardware which has faster processors and gives better performance compared to the Basic or Standard Tier. Premium tier Caches have higher throughput and lower latencies. 
 
-如需高階快取的大小、輸送量和頻寬的詳細資訊，請參閱 [Azure Redis 快取常見問題集](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
+**Throughput for the same sized Cache is higher in Premium as compared to Standard tier.** For example, the throughput of a 53 GB P4 (Premium) cache is 250K requests per second as compared to 150K for C6 (Standard).
 
-## Redis 資料永續性
-高階層可讓您將快取資料保存在 Azure 儲存體帳戶中。在基本/標準快取中，所有資料都只儲存在記憶體中。如果基礎結構發生問題，資料可能會遺失。建議您使用高階層中的 Redis 資料永續性功能，以提高資料遺失時的復原能力。Azure Redis Cache 在 [Redis 永續性](http://redis.io/topics/persistence)中提供 RDB 和 AOF (即將推出) 選項。
+For more information about size, throughput, and bandwidth with premium caches, see [Azure Redis Cache FAQ](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
 
-如需設定永續性的相關指示，請參閱[如何設定高階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)。
+## <a name="redis-data-persistence"></a>Redis data persistence
+The Premium tier allows you to persist the cache data in an Azure Storage account. In a Basic/Standard cache all the data is stored only in memory. In case of underlying infrastructure issues there can be potential data loss. We recommend using the Redis data persistence feature in the Premium tier to increase resiliency against data loss. Azure Redis Cache offers RDB and AOF (coming soon) options in [Redis persistence](http://redis.io/topics/persistence). 
 
-##Redis 叢集
-如果您想要建立大於 53 GB 的快取，或想跨多個 Redis 節點共用資料，可以使用高階層中的 Redis 叢集。每個節點均包含一個 Azure 所管理的主要/複本快取組，可提供高可用性。
+For instructions on configuring persistence, see [How to configure persistence for a Premium Azure Redis Cache](cache-how-to-premium-persistence.md).
 
-**Redis 叢集可提供最大的擴充能力和輸送量。** 當您增加叢集中的分區 (節點) 數目時，輸送量會呈線性增加。例如：如果建立具有 10 個分區的 P4 叢集，則可用的輸送量為 250K *10 = 每秒 250 萬個要求。如需高階快取的大小、輸送量和頻寬等方面的詳細資訊，請參閱 [Azure Redis Cache 常見問題集](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
+##<a name="redis-cluster"></a>Redis cluster
+If you want to create caches larger than 53 GB or want to shard data across multiple Redis nodes, you can use Redis clustering which is available in the Premium tier. Each node consists of a primary/replica cache pair managed by Azure for high availability. 
 
-若要開始使用叢集，請參閱[如何設定高階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)。
+**Redis clustering gives you maximum scale and throughput.** Throughput increases linearly as you increase the number of shards (nodes) in the cluster. Eg. If you create a P4 cluster of 10 shards, then the available throughput is 250K *10 = 2.5 Million requests per second. Please see the [Azure Redis Cache FAQ](cache-faq.md#what-redis-cache-offering-and-size-should-i-use) for more details about size, throughput, and bandwidth with premium caches.
 
-##增強的安全性和隔離
+To get started with clustering, see [How to configure clustering for a Premium Azure Redis Cache](cache-how-to-premium-clustering.md).
 
-您可透過公用網際網路存取基本或標準層中建立的快取。對快取的存取權會受到存取金鑰的限制。若使用高階層，您可以進一步確保只有指定網路中的用戶端可以存取快取。您可以在 [Azure 虛擬網路 (VNet)](https://azure.microsoft.com/services/virtual-network/) 中部署 Redis Cache。您可以使用 VNet 的所有功能，例如子網路、存取控制原則和其他功能，進一步限制對 Redis 的存取權。
+##<a name="enhanced-security-and-isolation"></a>Enhanced security and isolation
 
-如需詳細資訊，請參閱[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)。
+Caches created in the Basic or Standard tier are accessible on the public internet. Access to the Cache is restricted based on the access key. With the Premium tier you can further ensure that only clients within a specified network can access the Cache. You can deploy Redis Cache in an [Azure Virtual Network (VNet)](https://azure.microsoft.com/services/virtual-network/). You can use all the features of VNet such as subnets, access control policies, and other features to further restrict access to Redis.
 
-## 匯入/匯出
+For more information, see [How to configure Virtual Network support for a Premium Azure Redis Cache](cache-how-to-premium-vnet.md).
 
-匯入/匯出是 Azure Redis 快取資料管理作業，可讓您將資料匯入 Azure Redis 快取或將資料從 Azure Redis 快取匯出，方法是從進階快取將 Redis 快取資料庫 (RDB) 快照匯入和匯出至 Azure 儲存體帳戶中的分頁 blob。這可讓您在不同的 Azure Redis 快取執行個體之間移轉，或在使用前將資料填入快取。
+## <a name="import/export"></a>Import/Export
 
-匯入可以用來從執行雲端或環境的任何 Redis 伺服器 (包含在 Linux、Windows 上執行的 Redis，或任何雲端提供者，例如 Amazon Web Services 等) 引入 Redis 相容 RDB 檔案。匯入資料是使用預先填入資料建立快取的輕鬆方式。在匯入程序期間，Azure Redis 快取會從 Azure 儲存體將 RDB 檔案載入記憶體，然後將金鑰插入快取。
+Import/Export is an Azure Redis Cache data management operation which allows you to import data into Azure Redis Cache or export data from Azure Redis Cache by importing and exporting a Redis Cache Database (RDB) snapshot from a premium cache to a page blob in an Azure Storage Account. This enables you to migrate between different Azure Redis Cache instances or populate the cache with data before use.
 
-匯出可讓您將儲存在 Azure Redis 快取中的資料匯出至 Redis 相容 RDB 檔案。您可以使用這項功能，將資料從一個 Azure Redis 快取執行個體移到另一個或其他 Redis 伺服器。在匯出程序期間，會在裝載 Azure Redis 快取伺服器執行個體的 VM 上建立站存檔案，並將檔案上傳至指定的儲存體帳戶。當匯出作業完成時的狀態為成功或失敗時，都會刪除暫存檔案。
+Import can be used to bring Redis compatible RDB file(s) from any Redis server running in any cloud or environment, including Redis running on Linux, Windows, or any cloud provider such as Amazon Web Services and others. Importing data is an easy way to create a cache with pre-populated data. During the import process, Azure Redis Cache loads the RDB files from Azure storage into memory and then inserts the keys into the cache.
 
-如需詳細資訊，請參閱[如何將資料匯入 Azure Redis 快取與從其中匯出資料](cache-how-to-import-export-data.md)。
+Export allows you to export the data stored in Azure Redis Cache to Redis compatible RDB file(s). You can use this feature to move data from one Azure Redis Cache instance to another or to another Redis server. During the export process, a temporary file is created on the VM that hosts the Azure Redis Cache server instance, and the file is uploaded to the designated storage account. When the export operation completes with either a status of success or failure, the temporary file is deleted.
 
-## 重新啟動
+For more information, see [How to import data into and export data from Azure Redis Cache](cache-how-to-import-export-data.md).
 
-進階層可讓您依需求重新啟動快取的一或多個節點。這可讓您測試應用程式，以便在發生失敗時加以復原。您可以重新啟動下列節點。
+## <a name="reboot"></a>Reboot
 
--	快取的主要節點
--	快取的從屬節點
--	快取的主要和從屬節點
--	使用進階快取搭配叢集時，您可以針對快取中的個別分區重新啟動主要、從屬或這兩個節點
+The premium tier allows you to reboot one or more nodes of your cache on-demand. This allows you to test your application for resiliency in the event of a failure. You can reboot the following nodes.
 
-如需詳細資訊，請參閱[重新啟動](cache-administration.md#reboot)和[重新啟動常見問題集](cache-administration.md#reboot-faq)。
+-   Master node of your cache
+-   Slave node of your cache
+-   Both master and slave nodes of your cache
+-   When using a premium cache with clustering, you can reboot the master, slave, or both nodes for individual shards in the cache
 
-## 排程更新
+For more information, see [Reboot](cache-administration.md#reboot) and [Reboot FAQ](cache-administration.md#reboot-faq).
 
-排程更新功能可讓您指定適用於快取的維護期間。若指定了維護期間，即會在此期間進行任何 Redis 伺服器更新。若要指定維護期間，請選取所需的天數，並指定每一天的維護期間開始小時。請注意，維護期間時間是 UTC。
+## <a name="schedule-updates"></a>Schedule updates
 
-如需詳細資訊，請參閱[排程更新](cache-administration.md#schedule-updates)和[排程更新常見問題集](cache-administration.md#schedule-updates-faq)。
+The scheduled updates feature allows you to designate a maintenance window for your cache. When the maintenance window is specified, any Redis server updates are made during this window. To designate a maintenance window, select the desired days and specify the maintenance window start hour for each day. Note that the maintenance window time is in UTC. 
 
->[AZURE.NOTE] 在排程維護期間，只會進行 Redis 伺服器更新。維護期間不適用於 Azure 更新或 VM 作業系統的更新。
+For more information, see [Schedule updates](cache-administration.md#schedule-updates) and [Schedule updates FAQ](cache-administration.md#schedule-updates-faq).
 
-## 調整為進階層
+>[AZURE.NOTE] Only Redis server updates are made during the scheduled maintenance window. The maintenance window does not apply to Azure updates or updates to the VM operating system.
 
-若要調整為進階層，只需選擇 [變更定價層] 刀鋒視窗中的其中一個進階層。您也可以使用 PowerShell 和 CLI 來將快取調整為進階層。如需逐步指示，請參閱[如何調整 Azure Redis 快取](cache-how-to-scale.md)和[如何自動化調整作業](cache-how-to-scale.md#how-to-automate-a-scaling-operation)。
+## <a name="to-scale-to-the-premium-tier"></a>To scale to the premium tier
 
-## 後續步驟
+To scale to the premium tier, simply choose one of the premium tiers in the **Change pricing tier** blade. You can also scale your cache to the premium tier using PowerShell and CLI. For step-by-step instructions, see [How to Scale Azure Redis Cache](cache-how-to-scale.md) and [How to automate a scaling operation](cache-how-to-scale.md#how-to-automate-a-scaling-operation).
 
-建立快取並探索高階層的新功能。
+## <a name="next-steps"></a>Next steps
 
--	[如何設定高階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)
--	[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
--	[如何設定高階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)
--	[如何將資料匯入 Azure Redis 快取與從其中匯出資料](cache-how-to-import-export-data.md)
--	[如何管理 Azure Redis 快取](cache-administration.md)
+Create a cache and explore the new premium tier features.
+
+-   [How to configure persistence for a Premium Azure Redis Cache](cache-how-to-premium-persistence.md)
+-   [How to configure Virtual Network support for a Premium Azure Redis Cache](cache-how-to-premium-vnet.md)
+-   [How to configure clustering for a Premium Azure Redis Cache](cache-how-to-premium-clustering.md)
+-   [How to import data into and export data from Azure Redis Cache](cache-how-to-import-export-data.md)
+-   [How to administer Azure Redis Cache](cache-administration.md)
   
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

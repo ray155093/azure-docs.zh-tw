@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple 8000 Update 0.2 版本資訊 | Microsoft Azure"
-   description="說明 2015 年 1 月 Microsoft Azure StorSimple 版本 (Update 0.2) 的新功能與修正、未解決問題及可用的因應措施。"
+   pageTitle="StorSimple 8000 Update 0.2 release notes | Microsoft Azure"
+   description="Describes the new features and fixes, open issues, and available workarounds for the January 2015 Microsoft Azure StorSimple release (Update 0.2)."
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -16,66 +16,71 @@
    ms.author="v-sharos" />
 
 
-# StorSimple 8000 系列 Update 0.2 版本資訊 - 2015 年 1 月
 
-## 概觀
+# <a name="storsimple-8000-series-update-0.2-release-notes---january-2015"></a>StorSimple 8000 Series Update 0.2 release notes - January 2015
 
-下列版本資訊指出 2015 年 1 月發行的 Microsoft Azure StorSimple 仍待解決的重要議題。當中也包含此版本中隨附之 StorSimple 軟體與韌體更新的清單。這是 StorSimple 8000 系列發行版本於 2014 年 7 月公開上市之後的第二個正式版本。
+## <a name="overview"></a>Overview
+
+The following release notes identify the critical open issues for the January 2015 release of Microsoft Azure StorSimple. They also contain a list of the StorSimple software and firmware updates included in this release. This is the second release after the StorSimple 8000 Series Release version was made generally available in July 2014.
   
-此更新並未變更 10 月更新的實體裝置軟體版本。其依然是 6.3.9600.17312 版。這個版本中由虛擬裝置影像使用的影像已經變更。因此，2015/1/20 之後建立的所有新虛擬裝置都將顯示為 6.3.9600.17361 版。
+This update does not change the physical device software version from the October update. It continues to be version 6.3.9600.17312. The image used by the virtual device image has changed in this release. Therefore, all the new virtual devices created after 1/20/2015 will show the version as 6.3.9600.17361.  
 
-請檢閱版本資訊中包含的下列資訊，以取得 2015 年 1 月的更新。
+Please review the following information contained in the release notes for the January 2015 update.
 
 > [AZURE.IMPORTANT]  
 >
->- 此更新無法透過 Windows Update 取得，安裝方式也和其他更新不一樣。即使您透過 Azure 傳統入口網站套用此更新，您的裝置也不會收到更新。此更新只會適用於 2015 年 1 月 20 日之後建立的虛擬裝置。 
+>- This update is not available through Windows Update and cannot be installed like other updates. Your device will not receive this update even if you have applied the updates by using the Azure classic portal. This update will only apply to virtual devices created after January 20, 2015. 
 > 
->- 1 月發行的 StorSimple 不包含任何 StorSimple 實體裝置的更新。您仍然可以將任何可用的 Windows 更新套用至虛擬裝置，包括近來的安全性修正程式，但不會改變 StorSimple 實體裝置的版本。
+>- The January release of StorSimple does not contain any updates to the StorSimple physical device. You can still apply any available Windows updates to the virtual device, including recent security fixes, but you will not see a change in version for the StorSimple physical device.
 
-## 1 月發行的新功能
+## <a name="what's-new-in-the-january-release"></a>What's new in the January release
 
-此更新包含有關使虛擬裝置上的磁碟區離線的修正程式。(請參閱[此版本修正的問題](#issues-fixed-in-the-january-release))。
+This update contains a fix related to the volumes going offline on the virtual device. (See [Issues fixed in this release](#issues-fixed-in-the-january-release).)  
 
-此更新不包含新功能。
+The update does not contain new features or functionality.  
 
-## 1 月版修正的問題
+## <a name="issues-fixed-in-the-january-release"></a>Issues fixed in the January release
 
-下表說明此更新已修正的問題。
+The following table describes the issue that was fixed in this update.
 
-|編號|功能|問題|適用於實體裝置|適用於虛擬裝置 
+|No.|Feature|Issue|Applies to physical device|Applies to virtual device 
 |---|-------|-----|--------------------------|-------------------------
-|1|磁碟區離線|當雲端延遲情況嚴重且長達數分鐘時，主機上的 StorSimple 虛擬裝置磁碟區就會離線。此修正程式會增加雲端延遲的臨界值，如此可讓主機上的磁碟區變成離線的情況降至最低。|否|是  
+|1|Volumes going offline|When high cloud latencies persist for several minutes, the StorSimple virtual device volumes go offline on the hosts. This fix increases the threshold for cloud latencies, thereby minimizing the situations that would cause the volumes to go offline on hosts.|No|Yes  
 
-## 1 月版已知的問題
+## <a name="known-issues-in-the-january-release"></a>Known issues in the January release
 
-下表提供此版本的已知問題摘要。
+The following table provides a summary of known issues in this release.
  
-|編號|功能|問題|註解/因應措施|適用於實體裝置|適用於虛擬裝置 
+|No.|Feature|Issue|Comments/workaround|Applies to physical device|Applies to virtual device 
 |---|-------|-----|-------------------|--------------------------|-------------------------
-|1|	恢復出廠預設值|	在某些情況下，當您要恢復出廠預設值，StorSimple 裝置可能會卡住，並顯示此訊息：「正在重設為原廠預設值 (階段 8)」。 如果正在進行 Cmdlet 時，按 CTRL+C，就會發生這種情況。|	起始恢復出廠預設值後，請不要按 CTRL+C。如果您已處於此狀態，請連絡 Microsoft 支援以進行後續步驟。|是|否|
-|2|磁碟仲裁|	在罕見情況下，如果 8600 裝置的 EBOD 機箱中大部分的磁碟都已中斷連線，而導致沒有磁碟仲裁，那麼將會使存放集區離線。即使已重新連接磁碟時，它依然會保持離線。|您必須重新啟動裝置。如果問題持續發生， 請連絡 Microsoft 支援以進行後續步驟。|是 |否
-|3|雲端快照失敗|在罕見情況下，雲端快照可能會失敗，發生「已達備份上限」錯誤。如果您在同一個裝置上已被刪除的同一個原始磁碟區有超過 255 個線上複本，就會發生這種情況。||是|是
-|4|不正確的控制器識別碼|進行控制器更換時，控制器 0 可能顯示為控制器 1。在控制器更換期間從對等節點載入影像時，控制器識別碼一開始可能會顯示為對等控制器的識別碼。在罕見情況下，可能會在系統重新開機後出現這種行為。|因此，使用者不需要採取任何動作。控制器更換完成之後，會自行解決這種情況。|是|否 
-|5|	裝置監控圖表|在 StorSimple Manager 服務中，當裝置的 Proxy 伺服器組態中已啟用基本或 NTLM 驗證時，裝置監控圖表會沒有作用。|請針對向 StorSimple Manager 服務註冊的裝置修改其 Web Proxy 組態設定，以便將驗證設定為 [無]。若要這樣做，請執行 Windows PowerShell for StorSimple Set-HcsWebProxy Cmdlet。|是|是
-|6|	儲存體帳戶|不支援使用儲存體服務刪除儲存體帳戶的案例。這會導致無法擷取使用者資料的情況。|| 是 |	是
-|7|裝置容錯移轉|	不支援從相同來源裝置將某個磁碟區容器多次容錯移轉至不同的目標裝置。|	從單一失效裝置容錯移轉到多個裝置，會讓第一個容錯移轉裝置上的磁碟區容器失去資料擁有權。進行這類容錯移轉之後，當您在 Azure 傳統入口網站中檢視這些磁碟區容器時，會發現它們的外觀或行為有所不同。|是|否
-|8|	安裝|在 StorSimple Adapter for SharePoint 安裝其間，您必須提供裝置 IP，才能順利完成安裝。||是|否
-|9|	Web Proxy|如果您的 Web Proxy 組態設定將 HTTPS 做為指定的通訊協定，您的裝置對服務通訊將會受到影響並使裝置離線。同時會在程序中產生支援封裝，耗用裝置上的大量資源。|請確定 Web Proxy URL 指定的通訊協定為 HTTP。如需詳細資訊，請參閱如何[設定裝置的 Web Proxy](storsimple-configure-web-proxy.md)。|是 |否
-|10|Web Proxy|	如果您在註冊的裝置上設定並啟用 Web Proxy，將需要重新啟動裝置上的主動控制器。||	是 |否
-|11|雲端高延遲與高 I/O 工作負載|當 StorSimple 裝置同時出現雲端延遲情況嚴重 (大約數秒) 和 I/O 工作負載高的情況時，裝置磁碟區會進入降級的狀態，而且 I/O 可能會失敗，發生「裝置未就緒」錯誤。|您必須以手動方式將裝置控制器重新開機，或或執行裝置容錯移轉，才能從這種情況下復原。|是|否
+|1| Factory reset|  In some instances, when you perform a factory reset, the StorSimple device may be stuck and display this message: **Reset to factory is in progress (phase 8).** This happens if you press CTRL+C while the cmdlet is in progress.| Do not press CTRL+C after initiating a factory reset. If you are already in this state, please contact Microsoft Support for next steps.|Yes|No|
+|2|Disk quorum| In rare instances, if the majority of disks in the EBOD enclosure of an 8600 device are disconnected resulting in no disk quorum, then the storage pool will be offline. It will stay offline even if the disks are reconnected.|You will need to reboot the device. If the issue persists, please contact Microsoft Support for next steps.|Yes |No
+|3|Cloud snapshot failures|In rare instances, a cloud snapshot may fail with the error **Maximum backup limit reached**. This occurs if you exceed 255 online clones on the same device, from the same original volume which has been deleted.||Yes|Yes
+|4|Incorrect controller ID|When a controller replacement is performed, controller 0 may show up as controller 1. During controller replacement, when the image is loaded from the peer node, the controller ID can show up initially as the peer controller’s ID.  In rare instances, this behavior may also be seen after a system reboot.|No user action is required. This situation will resolve itself after the controller replacement is complete.|Yes|No 
+|5| Device monitoring charts|In the StorSimple Manager service, the device monitoring charts do not work when Basic or NTLM authentication is enabled in the proxy server configuration for the device.|Modify the web proxy configuration for the device registered with your StorSimple Manager service so that authentication is set to NONE. To do this, run the the Windows PowerShell for StorSimple Set-HcsWebProxy cmdlet.|Yes|Yes
+|6| Storage accounts|Using the Storage service to delete the storage account is an unsupported scenario. This will lead to a situation in which user data cannot be retrieved.|| Yes |  Yes
+|7|Device failover| Multiple failovers of a volume container from the same source device to different target devices is not supported.| Failover from a single dead device to multiple devices will make the volume containers on the first failed over device lose data ownership. After such a failover, these volume containers will appear or behave differently when you view them in the Azure classic portal.|Yes|No
+|8| Installation|During StorSimple Adapter for SharePoint installation, you need to provide a device IP in order for the install to finish successfully.||Yes|No
+|9| Web proxy|If your web proxy configuration has HTTPS as the specified protocol, then your device-to-service communication will be affected and the device will go offline. Support packages will also be generated in the process, consuming significant resources on your device.|Make sure that the web proxy URL has HTTP as the specified protocol. See more information on how to [Configure web proxy for your device](storsimple-configure-web-proxy.md).|Yes |No
+|10|Web proxy|  If you configure and enable web proxy on a registered device, then you will need to restart the active controller on your device.|| Yes |No
+|11|High cloud latency and high I/O workload|When your StorSimple device encounters a combination of very high cloud latencies (order of seconds) and high I/O workload, the device volumes go into a degraded state and the I/Os may fail with a "device not ready" error.|You will need to manually reboot the device controllers or perform a device failover to recover from this situation.|Yes|No
 
-## 1 月發行的實體裝置更新
+## <a name="physical-device-updates-in-the-january-release"></a>Physical device updates in the January release
 
-此更新不包含任何其他 StorSimple 裝置的變更。
+This update does not contain any other changes to the StorSimple device.
 
-## 1 月發行的序列連接 SCSI (SAS) 控制器與韌體更新
+## <a name="serial-attached-scsi-(sas)-controller-and-firmware-updates-in-the-january-release"></a>Serial-attached SCSI (SAS) controller and firmware updates in the January release
 
-這個版本不包含任何序列連接 SCSI (SAS) 控制器或韌體的更新。驅動程式更新已在 2014年 10 月發行。
+This release does not contain any updates to the serial-attached SCSI (SAS) controller or the firmware. The driver update was in the October, 2014 release. 
 
-## 1 月發行的虛擬裝置更新
+## <a name="virtual-device-updates-in-the-january-release"></a>Virtual device updates in the January release
 
-此版本包含更新的虛擬裝置影像。2015 年 1 月 20 日之後建立之所有虛擬裝置的軟體都將顯示為 6.3.9600.17361 版。
+This release contains an updated image for the virtual device. All the virtual devices created after January 20, 2015 will show the software version as 6.3.9600.17361.
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

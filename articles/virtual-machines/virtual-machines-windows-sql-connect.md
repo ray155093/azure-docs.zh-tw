@@ -1,105 +1,110 @@
 <properties
-	pageTitle="連線到 SQL Server 虛擬機器 (資源管理員) | Microsoft Azure"
-	description="了解如何連接在 Azure 虛擬機器上執行的 SQL Server。本主題使用傳統部署模型。案例會視網路組態和用戶端的位置而有所不同。"
-	services="virtual-machines-windows"
-	documentationCenter="na"
-	authors="rothja"
-	manager="jhubbard"    
-	tags="azure-resource-manager"/>
+    pageTitle="Connect to a SQL Server Virtual Machine (Resource Manager) | Microsoft Azure"
+    description="Learn how to connect to SQL Server running on a Virtual Machine in Azure. This topic uses the classic deployment model. The scenarios differ depending on the networking configuration and the location of the client."
+    services="virtual-machines-windows"
+    documentationCenter="na"
+    authors="rothja"
+    manager="jhubbard"    
+    tags="azure-resource-manager"/>
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="09/21/2016"
-	ms.author="jroth" />
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="09/21/2016"
+    ms.author="jroth" />
 
-# 連線到 Azure 上的 SQL Server 虛擬機器 (資源管理員)
+
+# <a name="connect-to-a-sql-server-virtual-machine-on-azure-(resource-manager)"></a>Connect to a SQL Server Virtual Machine on Azure (Resource Manager)
 
 > [AZURE.SELECTOR]
-- [資源管理員](virtual-machines-windows-sql-connect.md)
-- [傳統](virtual-machines-windows-classic-sql-connect.md)
+- [Resource Manager](virtual-machines-windows-sql-connect.md)
+- [Classic](virtual-machines-windows-classic-sql-connect.md)
 
-## 概觀
+## <a name="overview"></a>Overview
 
-本主題說明如何連線到在 Azure 虛擬機器上執行的 SQL Server 執行個體。其中涵蓋一些[一般連線案例](#connection-scenarios)並提供[在 Azure VM 中設定 SQL Server 連線的詳細步驟](#steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm)。
+This topic describes how to connect to your SQL Server instance running on an Azure virtual machine. It covers some [general connectivity scenarios](#connection-scenarios) and then provides [detailed steps for configuring SQL Server connectivity in an Azure VM](#steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm).
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。如需本文的傳統部署版本，請參閱[連線到 Azure 傳統部署上的 SQL Server 虛擬機器](virtual-machines-windows-classic-sql-connect.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] classic deployment model. To view the classic version of this article, see [Connect to a SQL Server Virtual Machine on Azure Classic](virtual-machines-windows-classic-sql-connect.md).
 
-如需有關佈建和連線能力的完整逐步解說，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
+If you would rather have a full walk-through of both provisioning and connectivity, see [Provisioning a SQL Server Virtual Machine on Azure](virtual-machines-windows-portal-sql-server-provision.md).
 
-## 連接案例
+## <a name="connection-scenarios"></a>Connection scenarios
 
-用戶端連接在虛擬機器上執行的 SQL Server 方式，取決於用戶端的位置與電腦/網路組態。這些案例包括：
+The way a client connects to SQL Server running on a Virtual Machine differs depending on the location of the client and the machine/networking configuration. These scenarios include:
 
-- [連接網際網路中的 SQL Server](#connect-to-sql-server-over-the-internet)
-- [連接相同虛擬網路中的 SQL Server](#connect-to-sql-server-in-the-same-virtual-network)
+- [Connect to SQL Server over the internet](#connect-to-sql-server-over-the-internet)
+- [Connect to SQL Server in the same virtual network](#connect-to-sql-server-in-the-same-virtual-network)
 
-### 透過網際網路連接 SQL Server
+### <a name="connect-to-sql-server-over-the-internet"></a>Connect to SQL Server over the Internet
 
-如果您想要從網際網路連線到您的 SQL Server 資料庫引擎，將需要執行數個步驟，例如設定防火牆、啟用「SQL 驗證」，以及設定您的網路安全性群組。您必須要有一個「網路安全性群組」規則來允許連接埠 1433 上的 TCP 流量。
+If you want to connect to your SQL Server database engine from the Internet, there are several steps required, such as configuring the firewall, enabling SQL Authentication, and configuring your network security group you must have a Network Security Group rule to allow TCP traffic on port 1433.
 
-如果您使用入口網站以資源管理員佈建 SQL Server 虛擬機器映像，當您在 SQL 連線選項選取 [公用] 時，系統就會為您完成這些步驟：
+If you use the portal to provision a SQL Server virtual machine image with the resource manager, these steps are done for you when you select **Public** for the SQL connectivity option:
 
-![佈建期間的公用 SQL 連線能力選項](./media/virtual-machines-windows-sql-connect/sql-vm-portal-connectivity.png)
+![Public SQL connectivity option during provisioning](./media/virtual-machines-windows-sql-connect/sql-vm-portal-connectivity.png)
 
-如果在佈建期間未完成此準備工作，您可以依照[本文中手動設定連線的步驟](#steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm)來手動設定 SQL Server 和虛擬機器。
+If this was not one during provisioning, then you can manually configure SQL Server and your virtual machines by following the [steps in this article to manually configure connectivity](#steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm).
 
->[AZURE.NOTE] SQL Server Express 版本的虛擬機器映像不會自動啟用 TCP/IP 通訊協定。在 Express 版本中，您必須在建立 VM 之後，使用「SQL Server 組態管理員」來[手動啟用 TCP/IP 通訊協定](#configure-sql-server-to-listen-on-the-tcp-protocol)。
+>[AZURE.NOTE] The virtual machine image for SQL Server Express edition does not automatically enable the TCP/IP protocol. For Express edition, you must use SQL Server Configuration Manager to [manually enable the TCP/IP protocol](#configure-sql-server-to-listen-on-the-tcp-protocol) after creating the VM.
 
-完成此準備工作之後，任何能夠存取網際網路的用戶端便都能藉由指定虛擬機器的公用 IP 位址或指派給該 IP 位址的 DNS 標籤，連線到 SQL Server 執行個體。如果 SQL Server 連接埠是 1433，則不需要在連接字串中指定它。
+Once this is done, any client with internet access can connect to the SQL Server instance by specifying either the public IP address of the virtual machine or the DNS label assigned to that IP address. If the SQL Server port is 1433, you do not need to specify it in the connection string.
 
-	"Server=sqlvmlabel.eastus.cloudapp.azure.com;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
+    "Server=sqlvmlabel.eastus.cloudapp.azure.com;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
 
-用戶端雖然可透過網際網路連線，但這不表示任何人都可以連接您的 SQL Server。外部用戶端必須要有正確的使用者名稱和密碼。為了增加安全性，您可以避免使用眾所周知的通訊埠 1433。舉例來說，如果您將 SQL Server 設定為在連接埠 1500 進行接聽，並建立適當的防火牆和網路安全性群組規則，則您可以在伺服器名稱附加連接埠號碼來進行連線，如下列範例所示：
+Although this enables connectivity for clients over the internet, this does not imply that anyone can connect to your SQL Server. Outside clients have to the correct username and password. For additional security, you can avoid the well-known port 1433. For example, if you configured SQL Server to listen on port 1500 and established proper firewall and network security group rules, you could connect by appending the port number to the Server name as in the following example:
 
-	"Server=sqlvmlabel.eastus.cloudapp.azure.com,1500;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
+    "Server=sqlvmlabel.eastus.cloudapp.azure.com,1500;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
 
->[AZURE.NOTE] 請務必注意，當您使用這項技術與 SQL Server 進行通訊時，所有從 Azure 資料中心傳出的資料都會以一般[輸出資料傳輸價格](https://azure.microsoft.com/pricing/details/data-transfers/)計費。
+>[AZURE.NOTE] It is important to note that when you use this technique to communicate with SQL Server, all outgoing data from the Azure datacenter is subject to normal [pricing on outbound data transfers](https://azure.microsoft.com/pricing/details/data-transfers/).
 
-### 連接相同虛擬網路中的 SQL Server
+### <a name="connect-to-sql-server-in-the-same-virtual-network"></a>Connect to SQL Server in the same virtual network
 
-[虛擬網路](../virtual-network/virtual-networks-overview.md)讓其他案例變得可行。您可以連接在相同虛擬網路中的 VM，即使這些 VM 位於不同的資源群組也可以。[站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) 可讓您建立能將 VM 連接至內部部署網路和電腦的混合式架構。
+[Virtual Network](../virtual-network/virtual-networks-overview.md) enables additional scenarios. You can connect VMs in the same virtual network, even if those VMs exist in different resource groups. And with a [site-to-site VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md), you can create a hybrid architecture that connects VMs with on-premises networks and machines.
 
-虛擬網路也可讓您將 Azure VM 加入網域。這是在 SQL Server 使用的 Windows 驗證的唯一方式。其他連接案例則需要使用者名稱和密碼進行 SQL 驗證。
+Virtual networks also enables you to join your Azure VMs to a domain. This is the only way to use Windows Authentication to SQL Server. The other connection scenarios require SQL Authentication with user names and passwords.
 
-如果您使用入口網站透過資源管理員佈建 SQL Server 虛擬機器映像，當您在 SQL 連線選項選取 [私人] 時，系統就會為虛擬網路上的通訊設定適當的防火牆規則。如果在佈建期間未完成此準備工作，您可以依照[本文中手動設定連線的步驟](#steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm)來手動設定 SQL Server 和虛擬機器。但是，如果您打算設定網域環境和「Windows 驗證」，就不需要使用本文中的步驟來設定「SQL 驗證」和登入。您也不需要針對透過網際網路進行存取設定「網路安全性群組」規則。
+If you use the portal to provision a SQL Server virtual machine image with the resource manager, the proper firewall rules for communication on the virtual network are setup when you select **Private** for the SQL connectivity option. If this was not one during provisioning, then you can manually configure SQL Server and your virtual machines by following the [steps in this article to manually configure connectivity](#steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm). But if you are planning to configure a domain environment and Windows Authentication, you do not need to use the steps in this article to configure SQL Authentication and logins. You also do not need to configure Network Security Group rules for access over the internet.
 
->[AZURE.NOTE] SQL Server Express 版本的虛擬機器映像不會自動啟用 TCP/IP 通訊協定。在 Express 版本中，您必須在建立 VM 之後，使用「SQL Server 組態管理員」來[手動啟用 TCP/IP 通訊協定](#configure-sql-server-to-listen-on-the-tcp-protocol)。
+>[AZURE.NOTE] The virtual machine image for SQL Server Express edition does not automatically enable the TCP/IP protocol. For Express edition, you must use SQL Server Configuration Manager to [manually enable the TCP/IP protocol](#configure-sql-server-to-listen-on-the-tcp-protocol) after creating the VM.
 
-假設您已在虛擬網路中設定 DNS，您便可以在連接字串中指定 SQL Server VM 電腦名稱來連線到 SQL Server 執行個體。下列範例假設「Windows 驗證」也已設定妥當，且使用者已獲得存取 SQL Server 執行個體的權限。
+Assuming that you have configured DNS in your virtual network, you can connect to your SQL Server instance by specifying the SQL Server VM computer name in the connection string. The following example also assumes that Windows Authentication has also been configured and that the user has been granted access to the SQL Server instance.
 
-	"Server=mysqlvm;Integrated Security=true"
+    "Server=mysqlvm;Integrated Security=true"
 
-請注意，在此案例中您也可以指定 VM 的 IP 位址。
+Note that in this scenario, you could also specify the IP address of the VM.
 
-## 手動設定 Azure VM 中 SQL Server 連線的步驟
+## <a name="steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm"></a>Steps for manually configuring SQL Server connectivity in an Azure VM
 
-下列步驟示範如何使用 SQL Server Management Studio (SSMS) 來手動設定對 SQL Server 執行個體的連線，以及視需要透過網際網路進行連線。請注意，當您在入口網站中選取適當的 SQL Server 連線選項時，就會為您完成這當中的許多步驟。
+The following steps demonstrate how to manually setup connectivity to the SQL Server instance and then optionally connect over the internet using SQL Server Management Studio (SSMS). Note that many of these steps are done for you when you select the appropriate SQL Server connectivity options in the portal.
 
-您必須先完成後續各小節描述的下列工作，才能從其他 VM 或網際網路連接 SQL Server 的執行個體：
+Before you can connect to the instance of SQL Server from another VM or the internet, you must complete the following tasks as described in the sections that follow:
 
-- [在 Windows 防火牆中開啟 TCP 連接埠](#open-tcp-ports-in-the-windows-firewall-for-the-default-instance-of-the-database-engine)
-- [設定 SQL Server 以接聽 TCP 通訊協定](#configure-sql-server-to-listen-on-the-tcp-protocol)
-- [設定 SQL Server 以進行混合模式驗證](#configure-sql-server-for-mixed-mode-authentication)
-- [建立 SQL Server 驗證登入](#create-sql-server-authentication-logins)
-- [設定網路安全性群組輸入規則](#configure-a-network-security-group-inbound-rule-for-the-vm)
-- [設定公用 IP 位址的 DNS 標籤](#configure-a-dns-label-for-the-public-ip-address)
-- [從另一部電腦連接到 Database Engine](#connect-to-the-database-engine-from-another-computer)
+- [Open TCP ports in the Windows firewall](#open-tcp-ports-in-the-windows-firewall-for-the-default-instance-of-the-database-engine)
+- [Configure SQL Server to listen on the TCP protocol](#configure-sql-server-to-listen-on-the-tcp-protocol)
+- [Configure SQL Server for mixed mode authentication](#configure-sql-server-for-mixed-mode-authentication)
+- [Create SQL Server authentication logins](#create-sql-server-authentication-logins)
+- [Configure a Network Security Group inbound rule](#configure-a-network-security-group-inbound-rule-for-the-vm)
+- [Configure a DNS Label for the public IP address](#configure-a-dns-label-for-the-public-ip-address)
+- [Connect to the Database Engine from another computer](#connect-to-the-database-engine-from-another-computer)
 
-[AZURE.INCLUDE [連接至 VM 中的 SQL Server](../../includes/virtual-machines-sql-server-connection-steps.md)]
+[AZURE.INCLUDE [Connect to SQL Server in a VM](../../includes/virtual-machines-sql-server-connection-steps.md)]
 
-[AZURE.INCLUDE [在 VM 資源管理員中連線到 SQL Server](../../includes/virtual-machines-sql-server-connection-steps-resource-manager-nsg-rule.md)]
+[AZURE.INCLUDE [Connect to SQL Server in a VM Resource Manager](../../includes/virtual-machines-sql-server-connection-steps-resource-manager-nsg-rule.md)]
 
-[AZURE.INCLUDE [在 VM 資源管理員中連線到 SQL Server](../../includes/virtual-machines-sql-server-connection-steps-resource-manager.md)]
+[AZURE.INCLUDE [Connect to SQL Server in a VM Resource Manager](../../includes/virtual-machines-sql-server-connection-steps-resource-manager.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-若要查看佈建指示以及連線步驟，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
+To see provisioning instructions along with these connectivity steps, see [Provisioning a SQL Server Virtual Machine on Azure](virtual-machines-windows-portal-sql-server-provision.md).
 
-[探索學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)：Azure 虛擬機器上的 SQL Server。
+[Explore the Learning Path](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/) for SQL Server on Azure virtual machines.
 
-如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
+For other topics related to running SQL Server in Azure VMs, see [SQL Server on Azure Virtual Machines](virtual-machines-windows-sql-server-iaas-overview.md).
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

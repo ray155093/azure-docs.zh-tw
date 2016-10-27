@@ -1,84 +1,85 @@
 <properties
-	pageTitle="Azure Active Directory B2C：使用協力廠商程式庫從 iOS 應用程式呼叫 Web API | Microsoft Azure"
-	description="本文將示範如何使用協力廠商程式庫建立 iOS「待辦事項清單」應用程式，以使用 OAuth 2.0 持有人權杖呼叫 Node.js Web API。"
-	services="active-directory-b2c"
-	documentationCenter="ios"
-	authors="brandwe"
-	manager="mbaldwin"
-	editor=""/>
+    pageTitle="Azure Active Directory B2C: Call a web API from an iOS application using third party libraries| Microsoft Azure"
+    description="This article will show you how to create an iOS 'to-do list' app that calls a Node.js web API by using OAuth 2.0 bearer tokens using a third party library"
+    services="active-directory-b2c"
+    documentationCenter="ios"
+    authors="brandwe"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags ms.service="active-directory-b2c" ms.workload="identity" ms.tgt_pltfrm="na" ms.devlang="objectivec" ms.topic="hero-article"
 
-	ms.date="07/26/2016"
-	ms.author="brandwe"/>
+    ms.date="07/26/2016"
+    ms.author="brandwe"/>
 
-# Azure AD B2C：使用協力廠商程式庫從 iOS 應用程式呼叫 Web API
+
+# <a name="azure-ad-b2c-:-call-a-web-api-from-an-ios-application-using-a-third-party-library"></a>Azure AD B2C : Call a web API from an iOS application using a third party library
 
 <!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-web-switcher](../../includes/active-directory-b2c-devquickstarts-web-switcher.md)]-->
 
-Microsoft 身分識別平台會使用開放式標準，例如 OAuth2 和 OpenID Connect。這可讓開發人員運用他們想要與我們的服務整合的任何程式庫。為了協助開發人員使用我們的平台搭配其他程式庫，我們撰寫了幾個逐步解說，示範如何設定協力廠商程式庫以連接到 Microsoft 身分識別平台。大部分實作 [RFC6749 OAuth2 規格](https://tools.ietf.org/html/rfc6749)的程式庫都能連接到 Microsoft 身分識別平台。
+The Microsoft identity platform uses open standards such as OAuth2 and OpenID Connect. This allows developers to leverage any library they wish to integrate with our services. To aid developers in using our platform with other libraries we've written a few walkthroughs like this one to demonstate how to configure third party libraries to connect to the Microsoft identity platform. Most libraries that implement [the RFC6749 OAuth2 spec](https://tools.ietf.org/html/rfc6749) will be able to connect to the Microsoft Identity platform.
 
 
-如果您是 OAuth2 或 OpenID Connect 新手，此範例組態可能諸多不太適合您。建議您查看[我們在此記載的通訊協定簡短概觀](active-directory-b2c-reference-protocols.md)。
+If you're new to OAuth2 or OpenID Connect much of this sample configuration may not make much sense to you. We recommend you look at a brief [overview of the protocol we've documented here](active-directory-b2c-reference-protocols.md).
 
 > [AZURE.NOTE]
-    我們的平台中有些功能沒有採用這些標準的運算式 (例如條件式存取和 Intune 原則管理)，所以會要求您使用開放原始碼 Microsoft Azure 身分識別程式庫。
+    Some features of our platform that do have an expression in these standards, such as Conditional Access and Intune policy management, require you to use our open source Microsoft Azure Identity Libraries. 
    
-B2C 平台並未支援 Azure Active Directory 的所有案例和功能。如果要判斷是否應該使用 B2C 平台，請閱讀 [B2C 限制](active-directory-b2c-limitations.md)。
+Not all Azure Active Directory scenarios & features are supported by the B2C platform.  To determine if you should use the B2C platform, read about [B2C limitations](active-directory-b2c-limitations.md).
 
 
-## 取得 Azure AD B2C 目錄
+## <a name="get-an-azure-ad-b2c-directory"></a>Get an Azure AD B2C directory
 
-您必須先建立目錄或租用戶，才可使用 Azure AD B2C。目錄為所有使用者、應用程式、群組等項目的容器。如果您還沒有此資源，請先[建立 B2C 目錄](active-directory-b2c-get-started.md)再繼續進行。
+Before you can use Azure AD B2C, you must create a directory, or tenant. A directory is a container for all of your users, apps, groups, and more. If you don't have one already, [create a B2C directory](active-directory-b2c-get-started.md) before you continue.
 
-## 建立應用程式
+## <a name="create-an-application"></a>Create an application
 
-接著，您必須在 B2C 目錄中建立應用程式。這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。在此案例中，因為應用程式與 Web API 會組成一個邏輯應用程式，所以將由單一**應用程式識別碼**代表。如果要建立應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。請務必：
+Next, you need to create an app in your B2C directory. This gives Azure AD information that it needs to communicate securely with your app. Both the app and the web API are represented by a single **Application ID** in this case, because they comprise one logical app. To create an app, follow [these instructions](active-directory-b2c-app-registration.md). Be sure to:
 
-- 在應用程式中加入**行動裝置**。
-- 複製指派給您的應用程式的**應用程式識別碼**。稍後您也會需要此資訊。
+- Include a **mobile device** in the application.
+- Copy the **Application ID** that is assigned to your app. You will also need this later.
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
-## 建立您的原則
+## <a name="create-your-policies"></a>Create your policies
 
-在 Azure AD B2C 中，每個使用者經驗皆由[原則](active-directory-b2c-reference-policies.md)所定義。此應用程式包含一個身分識別體驗：合併登入和註冊。您必須為每個類型建立此原則，如[原則參考文章](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy)所述。建立此原則時，請務必：
+In Azure AD B2C, every user experience is defined by a [policy](active-directory-b2c-reference-policies.md). This app contains one identity experience: a combined sign in and sign-up. You need to create this policy of each type, as described in the [policy reference article](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy). When you create the policy, be sure to:
 
-- 在原則中選擇 [顯示名稱] 和註冊屬性。
-- 在每個原則中，選擇 [顯示名稱] 和 [物件識別碼] 應用程式宣告。您也可以選擇其他宣告。
-- 在您建立每個原則之後，請複製原則的 [名稱]。其前置詞應該為 `b2c_1_`。您稍後需要用到此原則名稱。
+- Choose the **Display name** and sign-up attributes in your policy.
+- Choose the **Display name** and **Object ID** application claims in every policy. You can choose other claims as well.
+- Copy the **Name** of each policy after you create it. It should have the prefix `b2c_1_`.  You'll need the policy name later.
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-建立您的原則後，就可以開始建置您的應用程式。
+After you have created your policies, you're ready to build your app.
 
 
-## 下載程式碼
+## <a name="download-the-code"></a>Download the code
 
-本教學課程的程式碼保留在 [GitHub](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-b2c)。若要遵循執行，您可以[用 .zip 格式下載應用程式構](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-b2c)或加以複製：
+The code for this tutorial is maintained [on GitHub](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-b2c).  To follow along, you can [download the app as a .zip](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-b2c)/archive/master.zip) or clone it:
 
 ```
 git clone git@github.com:Azure-Samples/active-directory-ios-native-nxoauth2-b2c.git
 ```
 
-或者只要下載完整的程式碼並立即開始著手使用︰
+Or just download the completed code and get started right away: 
 
 ```
 git clone --branch complete git@github.com:Azure-Samples/active-directory-ios-native-nxoauth2-b2c.git
 ```
 
-## 下載協力廠商程式庫 nxoauth2 並啟動工作區
+## <a name="download-the-third-party-library-nxoauth2-and-launch-a-workspace"></a>Download the third party library nxoauth2 and launch a workspace
 
-在此逐步解說中，我們將使用 GitHub 提供的 OAuth2Client，這是適用於 Mac OS X & iOS 的 OAuth2 程式庫 (Cocoa & Cocoa Touch)。此程式庫是以 OAuth2 規格的第 10 版草稿為基礎。它會實作原生應用程式設定檔，並支援使用者授權端點。我們需要上述一切，才能與 Microsoft 身分識別平台整合。
+For this walkthrough we will use the OAuth2Client from GitHub, an OAuth2 library for Mac OS X & iOS (Cocoa & Cocoa touch). This library is based on draft 10 of the OAuth2 spec. It implements the native application profile and supports the end-user authorization endpoint. These are all the things we'll need in order to integrat with The Microsoft identity platform.
 
-### 使用 CocoaPods 將程式庫新增至您的專案
+### <a name="adding-the-library-to-your-project-using-cocoapods"></a>Adding the library to your project using CocoaPods
 
-CocoaPods 是 Xcode 專案的相依性管理員。它會自動管理上述安裝步驟。
+CocoaPods is a dependency manager for Xcode projects. It manages the above installation steps automatically.
 
 ```
 $ vi Podfile
 ```
-將下列內容新增至此 Podfile：
+Add the following to this podfile:
 
 ```
  platform :ios, '8.0'
@@ -90,7 +91,7 @@ $ vi Podfile
  end
 ```
 
-現在使用 Cocoapods 載入該 Podfile。這會建立您將載入的新 XCode Workspace。
+Now load the podfile using cocoapods. This will create a new XCode Workspace you will load.
 
 ```
 $ pod install
@@ -99,75 +100,75 @@ $ open SampleforB2C.xcworkspace
 
 ```
 
-## 專案結構
+## <a name="the-structure-of-the-project"></a>The structure of the project
 
-我們在基本架構中為專案設定下列結構︰
+We have the following structure set up for our project in the skeleton:
 
-* 具有工作窗格的 [主要檢視]
-* 所選工作相關資料的 [新增工作檢視]
-* 可讓使用者登入應用程式的 [登入檢視。
+* A **Master View** with a task pane
+* A **Add Task View** for the data about the selected task
+* A **Login View** that allows a user to sign-in to the app.
 
-我們會跳入專案中的各種檔案，以新增驗證。程式碼的其他部分 (如視覺化程式碼) 與身分識別無關，所以不會提供給您。
+We will jump in to various files in the project to add authentication. Other parts of the code such as the visual code is not germane to identity and are provided for you.
 
-## 建立您的應用程式的 `settings.plist` 檔案
+## <a name="create-the-`settings.plist`-file-for-your-application"></a>Create the `settings.plist` file for your application
 
-如果我們有集中位置可放置我們的組態值，就比較容易設定應用程式。也可協助您了解每項設定在您的應用程式中的作用。我們將會利用「屬性清單」將這些值提供給應用程式。
+It's easier to configure the application if we have a centralized location to put our configuration values. It also helps you understand what each setting does in your application. We will leverage the *Property List* as a way to provide these values to the application.
 
-* 在您的應用程式工作區中建立/開啟 `Supporting Files` 之下的 `settings.plist` 檔案
+* Create/Open the `settings.plist` file under `Supporting Files` in your application workspace
 
-* 輸入下列值 (我們很快會逐一詳細說明)
+* Enter in the following values (we'll go through them in detail soon)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>accountIdentifier</key>
-	<string>B2C_Acccount</string>
-	<key>clientID</key>
-	<string><client ID></string>
-	<key>clientSecret</key>
-	<string></string>
-	<key>authURL</key>
-	<string>https://login.microsoftonline.com/<tenant name>/oauth2/v2.0/authorize?p=<policy name></string>
-	<key>loginURL</key>
-	<string>https://login.microsoftonline.com/<tenant name>/login</string>
-	<key>bhh</key>
-	<string>urn:ietf:wg:oauth:2.0:oob</string>
-	<key>tokenURL</key>
-	<string>https://login.microsoftonline.com/<tenant name>/oauth2/v2.0/token?p=<policy name></string>
-	<key>keychain</key>
-	<string>com.microsoft.azureactivedirectory.samples.graph.QuickStart</string>
-	<key>contentType</key>
-	<string>application/x-www-form-urlencoded</string>
-	<key>taskAPI</key>
-	<string>https://aadb2cplayground.azurewebsites.net</string>
+    <key>accountIdentifier</key>
+    <string>B2C_Acccount</string>
+    <key>clientID</key>
+    <string><client ID></string>
+    <key>clientSecret</key>
+    <string></string>
+    <key>authURL</key>
+    <string>https://login.microsoftonline.com/<tenant name>/oauth2/v2.0/authorize?p=<policy name></string>
+    <key>loginURL</key>
+    <string>https://login.microsoftonline.com/<tenant name>/login</string>
+    <key>bhh</key>
+    <string>urn:ietf:wg:oauth:2.0:oob</string>
+    <key>tokenURL</key>
+    <string>https://login.microsoftonline.com/<tenant name>/oauth2/v2.0/token?p=<policy name></string>
+    <key>keychain</key>
+    <string>com.microsoft.azureactivedirectory.samples.graph.QuickStart</string>
+    <key>contentType</key>
+    <string>application/x-www-form-urlencoded</string>
+    <key>taskAPI</key>
+    <string>https://aadb2cplayground.azurewebsites.net</string>
 </dict>
 </plist>
 ```
 
-讓我們詳細了解這些值。
+Let's go in to these in detail.
 
 
-對於 `authURL`、`loginURL`、`bhh`、`tokenURL`，您會發現您需要填入您的租用戶名稱。這是已指派給您的 B2C 租用戶的租用戶名稱。例如，`kidventusb2c.onmicrosoft.com`。如果您使用開放原始碼 Microsoft Azure 身分識別程式庫，我們會使用中繼資料端點為您提取此資料。我們已努力完成為您擷取這些值的工作。
+For `authURL`, `loginURL`, `bhh`, `tokenURL` you'll notice you need to fill in your tenant name. This is the tenant name of your B2C tenant that was assigned to you. For instance, `kidventusb2c.onmicrosoft.com`.If you use our open source Microsoft Azure Identity Libraries we would pull this data down for you using our metadata endpoint. We've done the hard work of extracting these values for you.
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
-`keychain` 值是一個容器，NXOAuth2Client 程式庫將用來建立金鑰鏈來儲存您的權杖。如果您想要取得跨多個應用程式的 SSO，可以在每個應用程式中指定相同的金鑰鏈，以及要求在您的 XCode 權利中使用該金鑰鏈。這涵蓋於 Apple 文件中。
+The `keychain` value is the container that the NXOAuth2Client library will use to create a keychain to store your tokens. If you'd like to get SSO across numerous apps you can specify the same keychain in each of your applications as well as request the use of that keychain in your XCode entitements. This is covered in the Apple documentation.
 
-在每個 URL 結尾的 `<policy name>` 是您放置先前建立之原則的地方。應用程式會根據流程呼叫這些原則。
+The `<policy name>`  at the end of each URL are the places where you'd put the policy you created above. The app will call these policies depending on the flow.
 
-`taskAPI` 是我們將使用 B2C 權杖呼叫的 REST 端點，以便新增工作或查詢現有的工作。這已特別針對此範例進行設定。您不需要加以變更，範例即可運作。
+The `taskAPI` is the REST Endpoint we will call with your B2C token to either add tasks or query existing tasks. This has been set up specifically for this sample. You don't need to change it for the sample to work.
 
-這些值的其餘部分都必須使用此程式庫，並且只要為您建立位置，即可將這些值送至內容。
+The rest of these values are required to use the library and simply create places for you to carry values to the context.
 
-我們現已建立 `settings.plist` 檔案，我們需要程式碼來讀取它。
+Now that we have the `settings.plist` file created, we need code to read it.
 
-## 設定 AppData 類別以讀取我們的設定
+## <a name="set-up-a-appdata-class-to-read-our-settings"></a>Set up a AppData class to read our settings
 
-讓我們製作簡單的檔案，其只會剖析我們先前所建立的 `settngs.plist` 檔案，並且讓這些設定可在未來用於任何類別。因為我們不想在每次類別要求時建立一份新資料，所以我們將使用「單例」模式，而且只傳回每次對設定提出要求時建立的相同執行個體
+Let's make a simple file that just parses our `settngs.plist` file we created above and make those settings avaialble in the future to any class. Since we don't want to create a new copy of the data every time a class asks for it, we will use a Singleton pattern and only return the same instance created each time a request is made for the settings
 
-* 建立 `AppData.h` 檔案︰
+* Create an `AppData.h` file:
 
 ```objc
 #import <Foundation/Foundation.h>
@@ -190,7 +191,7 @@ $ open SampleforB2C.xcworkspace
 @end
 ```
 
-* 建立 `AppData.m` 檔案︰
+* Create an `AppData.m` file:
 
 ```objc
 #import "AppData.h"
@@ -226,32 +227,32 @@ $ open SampleforB2C.xcworkspace
 @end
 ```
 
-我們現在只要在任何類別中呼叫 `  AppData *data = [AppData getInstance];` (如下所示)，即可輕鬆地取得我們的資料。
+Now we can easily get at our data by simply calling `  AppData *data = [AppData getInstance];` in any of our classes as you'll see below.
 
 
 
-## 在 AppDelegate 中設定 NXOAuth2Client 程式庫
+## <a name="set-up-the-nxoauth2client-library-in-your-appdelegate"></a>Set up the NXOAuth2Client library in your AppDelegate
 
-NXOAuthClient 程式庫要求設定一些值。完成後，您可以使用所取得的權杖來呼叫 REST API。因為我們知道會在載入應用程式時隨時呼叫 `AppDelegate`，所以將我們的組態值放入該檔案是很合理的。
-* 開啟 `AppDelegate.m` 檔案
+The NXOAuthClient library requires some values to get set up. Once that is complete you can use the token that is aquired to call the REST API. Since we know that the `AppDelegate` will be called any time we load the application it makes sense that we put our configuration values in to that file.
+* Open `AppDelegate.m` file
 
-* 匯入我們稍後將使用的一些標頭檔。
+* Import some header files we will use later.
 
 ```objc
 #import "NXOAuth2.h" // the Identity library we are using
 #import "AppData.h" // the class we just created we will use to load the settings of our application
 ```
 
-* 在 AppDelegate 中新增 `setupOAuth2AccountStore` 方法
+* Add the `setupOAuth2AccountStore` method in the AppDelegate
 
-我們需要建立 AccountStore，然後將我們剛從 `settings.plist` 檔案讀入的資料饋送給它。
+We need to create an AccountStore and then feed it the data we just read in from the `settings.plist` file.
 
-此時您應注意一些有關 B2C 服務的事務，讓此程式碼更容易了解︰
+There are some things you should be aware of regarding the B2C service at this point that will make this code more understandable:
 
 
-1. Azure AD B2C 使用查詢參數所提供的「原則」來為您的要求提供服務。這可讓 Azure Active Directory 做為僅供您的應用程式使用的獨立服務。為了提供這些額外的查詢參數，我們必須提供 `kNXOAuth2AccountStoreConfigurationAdditionalAuthenticationParameters:` 方法與我們的自訂原則參數。
+1. Azure AD B2C uses the *policy* as provided by the query parameters to service your request. This allows Azure Active Directory to act as an independent service just for your application. In order to provide these extra query parameters we need to provide the `kNXOAuth2AccountStoreConfigurationAdditionalAuthenticationParameters:` method with our custom policy parameters. 
 
-2. Azure AD B2C 使用範圍的方式非常類似於其他 OAuth2 伺服器。不過，由於使用 B2C 的關鍵主要在於驗證使用者與存取資源，所以絕對需要某些範圍才能讓流程正確運作。這是 `openid` 範圍。我們的 Microsoft 身份識別 SDK 會自動為您提供 `openid` 範圍，所以您不會在我們的 SDK 組態中看到該範圍。不過，由於我們使用協力廠商程式庫，所以需要指定此範圍。
+2. Azure AD B2C uses scopes in much the same way as other OAuth2 servers. However since the use of B2C is as much about authenticating a user as accessing resources some scopes are absolutely required in order for the flow to work correctly. This is the `openid` scope. Our Microsoft identity SDKs automatically provide the `openid` scope for you so you won't see that in our SDK configuration. Since we are using a third party library, however, we need to specify this scope.
 
 ```objc
 - (void)setupOAuth2AccountStore {
@@ -284,18 +285,18 @@ NXOAuthClient 程式庫要求設定一些值。完成後，您可以使用所取
                                         forAccountType:data.accountIdentifier];
 }
 ```
-接下來，務必在 AppDelegate 中的 `didFinishLaunchingWithOptions:` 方法之下呼叫該範圍。
+Next, make sure you call it in the AppDelegate under `didFinishLaunchingWithOptions:` method. 
 
 ```
 [self setupOAuth2AccountStore];
 ```
 
 
-## 建立 `LoginViewController` 我們將用來處理驗證要求的類別
+## <a name="create-a-`loginviewcontroller`-class-that-we-will-use-to-handle-authentication-requests"></a>Create a `LoginViewController` class that we will use to handle authentication requests
 
-我們會使用 Web 檢視進行帳戶登入。這可讓我們提示使用者提供其他因素 (例如已設定的簡訊) 或將錯誤訊息傳回給使用者。我們會設定 Web 檢視，然後撰寫程式碼，以從 Microsoft 身分識別服務處理將會在 Web 檢視中發生的回呼。
+We use a webview for account sign-in. This allows us to prompt the user for additional factors like SMS text message (if configured) or give error messages back to the user. Here we'll set up the webview and then later write the code to handle the callbacks that will happen in the WebView from the Microsoft Identity Service.
 
-* 建立 `LoginViewController.h` 類別
+* Create a `LoginViewController.h` class
 
 ```objc
 @interface LoginViewController : UIViewController <UIWebViewDelegate>
@@ -306,14 +307,14 @@ NXOAuthClient 程式庫要求設定一些值。完成後，您可以使用所取
 - (void)requestOAuth2Access; // This is where we invoke our webview.
 ```
 
-我們將建立下列每個方法。
+We will create each of these methods below.
 
 > [AZURE.NOTE] 
-    務必將 `loginView` 繫結至您的腳本內的實際 Web 檢視。否則，您就不會有在開始驗證時快顯的 Web 檢視。
+    Make sure that you bind the `loginView` to the actual webview that is inside your storyboard. Otherwise you won't have a webview that can pop up when it's time to authenticate.
 
-* 建立 `LoginViewController.m` 類別
+* Create a `LoginViewController.m` class
 
-* 新增一些變數，以在我們進行驗證時傳遞狀態
+* Add some variables to carry state as we authenticate
 
 ```objc
 NSURL *myRequestedUrl; \\ The URL request to Azure Active Directory 
@@ -323,9 +324,9 @@ bool isRequestBusy; \\ A way to give status to the thread that the request is st
 NSURL *authcode; \\ A placeholder for our auth code.
 ```
 
-* 覆寫 Web 檢視方法來處理驗證
+* Override the WebView methods to handle authentication
 
-當使用者需要如上所述進行登入時，我們必須告訴 Web 檢視我們所要的行為。您可以只剪下並貼上下列程式碼。
+We need to tell the webview the behavior we want when a user needs to login as discussed above. You can simply cut and paste the code below.
 
 ```objc
 - (void)resolveUsingUIWebView:(NSURL *)URL {
@@ -395,9 +396,9 @@ NSURL *authcode; \\ A placeholder for our auth code.
 
 ```
 
-* 撰寫程式碼來處理 OAuth2 要求的結果
+* Write code to handle the result of the OAuth2 request
 
-我們需要程式碼來處理 Web 檢視傳回的重新導向 URL。如果不成功，我們會再試一次。同時，文件庫會提供您可在主控台中看到或以非同步方式處理的錯誤。
+We'll need code that will handle the redirectURL that comes back from the WebView. If it wasn't successful, we will try again. Meanwhile the library will provide the error that you can see in the console or handle asyncronously. 
 
 ```objc
 - (void)handleOAuth2AccessResult:(NSURL *)accessResult {
@@ -414,9 +415,9 @@ NSURL *authcode; \\ A placeholder for our auth code.
 }
 ```
 
-* 設定通知處理站。
+* Set up the Notification factories.
 
-我們會如同在上述 `AppDelegate` 中建立相同的方法，但這次我們將新增一些 `NSNotification` 來告知我們服務發生什麼狀況。我們會設定觀察者，以在權杖發生任何變更時告訴我們。取得權杖後，我們會讓使用者回到 `masterView`。
+We create the same method we did in the `AppDelegate` above, but this time we will add some `NSNotification`s to tell us what is happening in our service. We set up an observer that will tell us when anything changes with the token. Once we get the token we return the user back to the `masterView`.
 
 
 
@@ -457,9 +458,9 @@ NSURL *authcode; \\ A placeholder for our auth code.
 }
 
 ```
-* 新增程式碼，以便在針對 sign-native 起始要求時處理使用者
+* Add code that handles the user whenever a request is initiated for sign-native
 
-讓我們建立每當我們提出驗證要求時所要呼叫的方法。這會是實際建立 Web 檢視的方法
+Let's create a method that will be called whenever we have a request for authentication. This will be the method that actually creates a webview
 
 ```objc
 - (void)requestOAuth2Access {
@@ -478,7 +479,7 @@ NSURL *authcode; \\ A placeholder for our auth code.
 }
 ```
 
-* 最後，讓我們在每次 `LoginViewController` 載入時，呼叫我們上面撰寫的所有方法。我們的做法是將這些方法新增至 Apple 提供給我們的 `viewDidLoad` 方法
+* Finally, let's call all these methods we've written above every time the `LoginViewController` loads. We do this by adding these methods to our `viewDidLoad` method Apple gives us
 
 ```objc
   [super viewDidLoad];
@@ -496,14 +497,14 @@ NSURL *authcode; \\ A placeholder for our auth code.
   [NSURLCache setSharedURLCache:URLCache];
 ```
 
-您現在已建立起我們與應用程式互動以便登入的主要方式。我們必須在登入之後，使用我們所收到的權杖。於是，我們將建立一些會呼叫 REST API 的協助程式碼，以便我們使用此程式庫。
+You are now done with creating the main way we'll interact with our application for sign in. After we've signed in, we'll need to use our tokens we've received. For that we'll create some helper code that will call REST APIs for us using this library.
 
 
-## 建立 `GraphAPICaller` 類別以處理我們對 REST API 的要求
+## <a name="create-a-`graphapicaller`-class-to-handle-our-requests-to-a-rest-api"></a>Create a `GraphAPICaller` class to handle our requests to a REST API
 
-我們每次載入我們的應用程式時會載入一個組態。一旦擁有權杖後，我們現在需要進行一些處理動作。
+We have a configuration loaded every time we load our app. Now we need to do something with it once we have a token. 
 
-* 建立 `GraphAPICaller.h` 檔案
+* Create a `GraphAPICaller.h`  file
 
 ```objc
 @interface GraphAPICaller : NSObject <NSURLConnectionDataDelegate>
@@ -516,11 +517,11 @@ completionBlock:(void (^)(bool, NSError *error))completionBlock;
 @end
 ```
 
-您可從此程式碼看到，我們將建立兩個方法︰一個會從 API 取得工作，另一個會將工作新增至 API。
+You see from this code that we will be creating two methods: one to get the tasks from an API and another to add tasks to the API.
 
-我們現已設定好我們的介面，讓我們新增實際的實作︰
+Now that we've set up our interface, let's add the actual implementation:
 
-* 建立 `GraphAPICaller.m file`
+* Create a `GraphAPICaller.m file`
 
 ```objc
 @implementation GraphAPICaller
@@ -631,19 +632,23 @@ completionBlock:(void (^)(bool, NSError *error))completionBlock {
 @end
 ```
 
-## 執行範例應用程式
+## <a name="run-the-sample-app"></a>Run the sample app
 
-最後，在 Xcode 中建置並執行應用程式。註冊或登入應用程式，並為登入的使用者建立工作。登出後，再以不同使用者身分重新登入，然後為該使用者建立工作。
+Finally, build and run the app in Xcode. Sign up or sign in to the app, and create tasks for a signed-in user. Sign out and sign back in as a different user, and create tasks for that user.
 
-請注意，這些工作會依每位使用者儲存於 API，因為 API 會從它收到的存取權杖中擷取使用者的身分識別。
+Notice that the tasks are stored per-user on the API, because the API extracts the user's identity from the access token that it receives.
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-您現在可以進入更進階的 B2C 主題。您可以嘗試：
+You can now move onto more advanced B2C topics. You might try:
 
-[從 Node.js Web 應用程式呼叫 Node.js Web API]()
+[Call a Node.js web API from a Node.js web app]()
 
-[自訂 B2C 應用程式的 UX]()
+[Customize the UX for a B2C app]()
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO4-->
+
+

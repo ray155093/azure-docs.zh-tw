@@ -1,140 +1,145 @@
 <properties
-	pageTitle="SQL Server VM 的儲存體組態 | Microsoft Azure"
-	description="本主題說明 Azure 如何在佈建期間針對 SQL Server VM 設定儲存體 (Resource Manager 部署模型)。它也會說明如何針對現有的 SQL Server VM 設定儲存體。"
-	services="virtual-machines-windows"
-	documentationCenter="na"
-	authors="ninarn"
-	manager="jhubbard"    
-	tags="azure-resource-manager"/>
+    pageTitle="Storage configuration for SQL Server VMs | Microsoft Azure"
+    description="This topic describes how Azure configures storage for SQL Server VMs during provisioning (Resource Manager deployment model). It also explains how you can configure storage for your existing SQL Server VMs."
+    services="virtual-machines-windows"
+    documentationCenter="na"
+    authors="ninarn"
+    manager="jhubbard"    
+    tags="azure-resource-manager"/>
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="08/04/2016"
-	ms.author="ninarn" />
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="08/04/2016"
+    ms.author="ninarn" />
 
-# SQL Server VM 的儲存體組態
 
-當您在 Azure 中設定 SQL Server 虛擬機器映像時，入口網站有協助自動進行儲存體設定。這包括將儲存體附加至 VM、讓該儲存體可供 SQL Server 存取，並加以設定以針對特定的效能需求最佳化。
+# <a name="storage-configuration-for-sql-server-vms"></a>Storage configuration for SQL Server VMs
 
-本主題說明 Azure 如何在佈建期間針對 SQL Server VM 及針對現有的 VM 設定儲存體。此設定是以執行 SQL Server 之 Azure VM 的[效能最佳作法](virtual-machines-windows-sql-performance.md)為基礎。
+When you configure a SQL Server virtual machine image in Azure, the Portal helps to automate your storage configuration. This includes attaching storage to the VM, making that storage accessible to SQL Server, and configuring it to optimize for your specific performance requirements.
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
+This topic explains how Azure configures storage for your SQL Server VMs both during provisioning and for existing VMs. This configuration is based on the [performance best practices](virtual-machines-windows-sql-performance.md) for Azure VMs running SQL Server.
 
-## 必要條件
-若要使用自動儲存體組態設定，您的虛擬機器需具備下列特性︰
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] classic deployment model.
 
-- 使用 [SQL Server 資源庫映像](virtual-machines-windows-sql-server-iaas-overview.md#option-1-deploy-a-sql-vm-per-minute-licensing)佈建。
-- 使用 [Resource Manager 部署模型](../resource-manager-deployment-model.md)。
-- 使用[進階儲存體](../storage/storage-premium-storage.md)。
+## <a name="prerequisites"></a>Prerequisites
+To use the automated storage configuration settings, your virtual machine requires the following characteristics:
 
-## 新的 VM
-下列各節說明如何為新的 SQL Server 虛擬機器設定儲存體。
+- Provisioned with a [SQL Server gallery image](virtual-machines-windows-sql-server-iaas-overview.md#option-1-deploy-a-sql-vm-per-minute-licensing).
+- Uses the [Resource Manager deployment model](../resource-manager-deployment-model.md).
+- Uses [Premium Storage](../storage/storage-premium-storage.md).
 
-### Azure 入口網站
-使用 SQL Server 資源庫映像佈建 Azure VM 時，您可以選擇自動為新的 VM 設定儲存體。您可指定儲存體大小、效能限制，以及工作負載類型。下列螢幕擷取畫面顯示在 SQL VM 佈建期間使用的儲存體設定刀鋒視窗。
+## <a name="new-vms"></a>New VMs
+The following sections describe how to configure storage for new SQL Server virtual machines.
 
-![佈建期間的 SQL Server VM 儲存體設定](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-configuration-provisioning.png)
+### <a name="azure-portal"></a>Azure Portal
+When provisioning an Azure VM using a SQL Server gallery image, you can choose to automatically configure the storage for your new VM. You specify the storage size, performance limits, and workload type. The following screenshot shows the Storage configuration blade used during SQL VM provisioning.
 
-根據您的選擇，Azure 會在建立 VM 後執行下列儲存體設定工作︰
+![SQL Server VM Storage Configuration During Provisioning](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-configuration-provisioning.png)
 
-- 建立進階儲存體資料磁碟並將其連接到虛擬機器。
-- 設定 SQL Server 可存取的資料磁碟。
-- 根據指定的大小和效能 (IOPS 和輸送量) 需求，設定存放集區中的資料磁碟。
-- 建立存放集區與虛擬機器上新磁碟機的關聯。
-- 根據您指定的工作負載類型 (資料倉儲、交易式處理或一般)，最佳化這個新的磁碟機。
+Based on your choices, Azure performs the following storage configuration tasks after creating the VM:
 
-如需 Azure 如何進行儲存體設定的詳細資訊，請參閱[儲存體設定章節](#storage-configuration)。如需如何在 Azure 入口網站中建立 SQL Server VM 的完整逐步解說，請參閱[佈建教學課程](virtual-machines-windows-portal-sql-server-provision.md)。
+- Creates and attaches premium storage data disks to the virtual machine.
+- Configures the data disks to be accessible to SQL Server.
+- Configures the data disks into a storage pool based on the specified size and performance (IOPS and throughput) requirements.
+- Associates the storage pool with a new drive on the virtual machine.
+- Optimizes this new drive based on your specified workload type (Data warehousing, Transactional processing, or General).
 
-### Resource Manager 範本
-如果您使用下列 Resource Manager 範本，則預設會連接兩個進階資料磁碟，但不會設定存放集區。不過，您可以自訂這些範本，以變更連接到虛擬機器的進階資料磁碟數目。
+For further details on how Azure configures storage settings, see the [Storage configuration section](#storage-configuration). For a full walkthrough of how to create a SQL Server VM in the Azure Portal, see [the provisioning tutorial](virtual-machines-windows-portal-sql-server-provision.md).
 
-- [使用自動備份建立 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-sql-full-autobackup)
-- [使用自動修補建立 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-sql-full-autopatching)
-- [使用自 AKV 整合建立 VM](https://github.com\Azure\azure-quickstart-templates\tree\master\201-vm-sql-full-keyvault)
+### <a name="resource-manage-templates"></a>Resource Manage templates
+If you use the following Resource Manager templates, two premium data disks are attached by default, with no storage pool configuration. However, you can customize these templates to change the number of premium data disks that are attached to the virtual machine.
 
-## 現有的 VM
-對於現有的 SQL Server VM，您可以在 Azure 入口網站中修改某些儲存體設定。選取您的 VM，移至 [設定] 區域，然後選取 [SQL Server 組態]。[SQL Server 組態] 刀鋒視窗會顯示您 VM 目前的儲存體使用情況。下圖顯示您的 VM 上存在的所有磁碟機。對於每個磁碟機，儲存空間會顯示於四個區段中︰
+- [Create VM with Automated Backup](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-sql-full-autobackup)
+- [Create VM with Automated Patching](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-sql-full-autopatching)
+- [Create VM with AKV Integration](https://github.com\Azure\azure-quickstart-templates\tree\master\201-vm-sql-full-keyvault)
 
-- SQL 資料
-- SQL 記錄檔
-- 其他 (非 SQL 儲存體)
-- 可用
+## <a name="existing-vms"></a>Existing VMs
+For existing SQL Server VMs, you can modify some storage settings in the Azure portal. Select your VM, go to the Settings area, and then select SQL Server Configuration. The SQL Server Configuration blade shows the current storage usage of your VM. All drives that exist on your VM are displayed in this chart. For each drive, the storage space displays in four sections:
 
-![設定現有 SQL Server VM 的儲存體](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-configuration-existing.png)
+- SQL data
+- SQL log
+- Other (non-SQL storage)
+- Available
 
-若要設定此儲存體以加入新的磁碟機或擴充現有的磁碟機，請按一下圖表上方的 [編輯] 連結。
+![Configure Storage for Existing SQL Server VM](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-configuration-existing.png)
 
-視您之前是否用過這項功能而定，您看到的設定選項會有所不同。第一次使用時，您可以指定新磁碟機的儲存體需求。如果您先前使用這項功能來建立磁碟機，您可以選擇擴充該磁碟機的儲存體。
+To configure the storage to add a new drive or extend an existing drive, click the Edit link above the chart.
 
-### 第一次使用
-如果這是您第一次使用這項功能，您可以指定新磁碟機的儲存體大小和效能限制。這種經驗類似於您在佈建時所會看到的情形。主要差別在於您不得指定工作負載類型。這項限制可防止中斷虛擬機器上任何現有的 SQL Server 設定。
+The configuration options that you see varies depending on whether you have used this feature before. When using for the first time, you can specify your storage requirements for a new drive. If you previously used this feature to create a drive, you can choose to extend that drive’s storage.
 
-![設定 SQL Server 儲存體滑桿](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-usage-sliders.png)
+### <a name="use-for-the-first-time"></a>Use for the first time
+If it is your first time using this feature, you can specify the storage size and performance limits for a new drive. This experience is similar to what you would see at provisioning time. The main difference is that you are not permitted to specify the workload type. This restriction prevents disrupting any existing SQL Server configurations on the virtual machine.
 
-Azure 會根據您的規格建立新的磁碟機。在此案例中，Azure 會執行下列儲存體設定工作︰
+![Configure SQL Server Storage Sliders](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-usage-sliders.png)
 
-- 建立進階儲存體資料磁碟並將其連接到虛擬機器。
-- 設定 SQL Server 可存取的資料磁碟。
-- 根據指定的大小和效能 (IOPS 和輸送量) 需求，設定存放集區中的資料磁碟。
-- 建立存放集區與虛擬機器上新磁碟機的關聯。
+Azure creates a new drive based on your specifications. In this scenario, Azure performs the following storage configuration tasks:
 
-如需 Azure 如何進行儲存體設定的詳細資訊，請參閱[儲存體設定章節](#storage-configuration)。
+- Creates and attaches premium storage data disks to the virtual machine.
+- Configures the data disks to be accessible to SQL Server.
+- Configures the data disks into a storage pool based on the specified size and performance (IOPS and throughput) requirements.
+- Associates the storage pool with a new drive on the virtual machine.
 
-### 加入新的磁碟機
-如果您已在 SQL Server VM 上設定儲存體，展開儲存體會顯示兩個新選項。第一個選項是加入新的磁碟機，以提升您的 VM 的效能層級。
+For further details on how Azure configures storage settings, see the [Storage configuration section](#storage-configuration).
 
-![將新的磁碟機新增至 SQL VM](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-configuration-add-new-drive.png)
+### <a name="add-a-new-drive"></a>Add a new drive
+If you have already configured storage on your SQL Server VM, expanding storage brings up two new options. The first option is to add a new drive, which can increase the performance level of your VM.
 
-不過，新增磁碟機之後，您必須執行一些額外的手動設定，才能達成效能提升。
+![Add a new drive to a SQL VM](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-configuration-add-new-drive.png)
 
-### 擴充磁碟機
-擴充儲存體的另一個選項是擴充現有的磁碟機。此選項會增加您的磁碟機的可用儲存體，但不會提升效能。使用存放集區，您無法在建立存放集區後改變資料行數目。資料行數目會決定可以等量分散於資料磁碟的平行寫入數目。因此，任何加入的資料磁碟均無法提升效能。它們只能為寫入的資料提供更多的儲存空間。這項限制也表示，在擴充磁碟機時，資料行數目會決定您可以新增的資料磁碟數目下限。因此，如果您建立的存放集區包含四個資料磁碟，則資料行數目也是四個。每當您擴充儲存體時，您就必須新增至少四個資料磁碟。
+However, after adding the drive, you must perform some extra manual configuration to achieve the performance increase.
 
-![延伸 SQL VM 的磁碟機](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-extend-a-drive.png)
+### <a name="extend-the-drive"></a>Extend the drive
+The other option for expanding storage is to extend the existing drive. This option increases the available storage for your drive, but it does not increase performance. With storage pools, you cannot alter the number of columns after the storage pool is created. The number of columns determines the number of parallel writes, which can be striped across the data disks. Therefore, any added data disks cannot increase performance. They can only provide more storage for the data being written. This limitation also means that, when extending the drive, the number of columns determines the minimum number of data disks that you can add. So if you create a storage pool with four data disks, the number of columns is also four. Any time you extend the storage, you must add at least four data disks.
 
-## 儲存體組態
-本節提供參考，佈建的 SQL VM 或 Azure 入口網站中的組態期間會自動執行 Azure 的儲存體組態變更。
+![Extend a drive for a SQL VM](./media/virtual-machines-windows-sql-storage-configuration/sql-vm-storage-extend-a-drive.png)
 
-- 如果您為 VM 選取了小於兩個 TB 的儲存體，則 Azure 不會建立存放集區。
-- 如果您為 VM 選取了至少兩個 TB 的儲存體，則 Azure 會設定存放集區。本主題的下一節提供存放集區設定的詳細資料。
-- 自動儲存體設定一律使用[儲存體](../storage/storage-premium-storage.md) P30 資料磁碟。因此，您選取的 TB 數目與連接到您 VM 的資料磁碟數目會有 1:1 的對應。
+## <a name="storage-configuration"></a>Storage configuration
+This section provides a reference for the storage configuration changes that Azure automatically performs during SQL VM provisioning or configuration in the Azure Portal.
 
-如需價格資訊，請參閱 [磁碟儲存體] 索引標籤上的[儲存體價格](https://azure.microsoft.com/pricing/details/storage)頁面。
+- If you have selected fewer than two TBs of storage for your VM, Azure does not create a storage pool.
+- If you have selected at least two TBs of storage for your VM, Azure configures a storage pool. The next section of this topic provides the details of the storage pool configuration.
+- Automatic storage configuration always uses [premium storage](../storage/storage-premium-storage.md) P30 data disks. Consequently, there is a 1:1 mapping between your selected number of Terabytes and the number of data disks attached to your VM.
 
-### 建立存放集區
-Azure 會使用下列設定在 SQL Server VM 上建立存放集區。
+For pricing information, see the [Storage pricing](https://azure.microsoft.com/pricing/details/storage) page on the **Disk Storage** tab.
 
-| 設定 | 值 |
+### <a name="creation-of-the-storage-pool"></a>Creation of the storage pool
+Azure uses the following settings to create the storage pool on SQL Server VMs.
+
+| Setting | Value |
 |-----|-----|
-| 等量大小 | 256 KB (資料倉儲)；64 KB (交易式) |
-| 磁碟大小 | 每個磁碟 1 TB |
-| 快取 | 讀取 |
-| 配置大小 | 64 KB NTFS 配置單位大小 |
-| 立即檔案初始化 | 已啟用 |
-| 在記憶體中鎖定頁面 | 已啟用 |
-| 復原 | 簡單復原 (無恢復功能) |
-| 資料行數目 | 資料磁碟數量<sup>1</sup> |
-| TempDB 位置 | 儲存在資料磁碟上<sup>2</sup> |
+| Stripe size  | 256 KB (Data warehousing); 64 KB (Transactional) |
+| Disk sizes | 1 TB each |
+| Cache | Read |
+| Allocation size | 64 KB NTFS allocation unit size |
+| Instant file initialization | Enabled |
+| Lock pages in memory | Enabled |
+| Recovery | Simple recovery (no resiliency) |
+| Number of columns | Number of data disks<sup>1</sup> |
+| TempDB location | Stored on data disks<sup>2</sup> |
 
-<sup>1</sup> 建立存放集區之後，您就無法改變存放集區中的資料行數目。
+<sup>1</sup> After the storage pool is created, you cannot alter the number of columns in the storage pool.
 
-<sup>2</sup> 這項設定只適用於您使用儲存體組態功能所建立的第一個磁碟機。
+<sup>2</sup> This setting only applies to the first drive you create using the storage configuration feature.
 
-## 工作負載最佳化設定
-下表描述三個可用的工作負載類型選項以及其對應的最佳化︰
+## <a name="workload-optimization-settings"></a>Workload optimization settings
+The following table describes the three workload type options available and their corresponding optimizations:
 
-| 工作負載類型 | 說明 | 最佳化 |
+| Workload type | Description | Optimizations |
 |-----|-----|-----|
-| **一般** | 支援大多數工作負載的預設設定 | None |
-| **交易式處理** | 可將儲存體最佳化來處理傳統資料庫 OLTP 工作負載。 | 追蹤旗標 1117<br/>追蹤旗標 1118 |
-| **資料倉儲** | 可將儲存體最佳化來處理分析和報告工作負載。 | 追蹤旗標 610<br/>追蹤旗標 1117 |
+| **General** | Default setting that supports most workloads | None |
+| **Transactional processing** | Optimizes the storage for traditional database OLTP workloads | Trace Flag 1117<br/>Trace Flag 1118 |
+| **Data warehousing** | Optimizes the storage for analytic and reporting workloads | Trace Flag 610<br/>Trace Flag 1117 |
 
->[AZURE.NOTE] 當您在儲存體設定步驟中選取 SQL 虛擬機器來進行佈建時，您只能指定此工作負載類型。
+>[AZURE.NOTE] You can only specify the workload type when you provision a SQL virtual machine by selecting it in the storage configuration step.
 
-## 後續步驟
-如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
+## <a name="next-steps"></a>Next steps
+For other topics related to running SQL Server in Azure VMs, see [SQL Server on Azure Virtual Machines](virtual-machines-windows-sql-server-iaas-overview.md).
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

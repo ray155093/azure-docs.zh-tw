@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Service Fabric 術語概觀 | Microsoft Azure"
-   description="Service Fabric 的術語概觀討論重要術語概念和文件其餘部分中使用的詞彙。"
+   pageTitle="Service Fabric terminology overview | Microsoft Azure"
+   description="A terminology overview of Service Fabric. Discusses key terminology concepts and terms used in the rest of the documentation."
    services="service-fabric"
    documentationCenter=".net"
    authors="rwike77"
@@ -16,78 +16,83 @@
    ms.date="08/25/2016"
    ms.author="ryanwi"/>
 
-# Service Fabric 術語概觀
 
-Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務。本主題詳細說明 Service Fabric 中所使用的術語，以利您了解文件中使用的詞彙。
+# <a name="service-fabric-terminology-overview"></a>Service Fabric terminology overview
 
-## 基礎結構概念
-**叢集**：由虛擬或實體機器連結組成的網路，微服務可於其中部署和管理。叢集可擴充至數千部機器。
+Service Fabric is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices. This topic details the terminology used by Service Fabric in order to understand the terms used in the documentation.
 
-**節點**：屬於叢集一部分的電腦或 VM 都稱為節點。需為每個節點指派節點名稱 (字串)。節點具有各種特性，如 placement 屬性。每個電腦或 VM 皆有自動啟動的 Windows 服務 `FabricHost.exe`，該服務會在開機時開始執行，然後啟動兩個執行檔：`Fabric.exe` 和 `FabricGateway.exe`。這兩個執行檔構成節點。在測試案例中，您可以藉由執行 `Fabric.exe` 和 `FabricGateway.exe` 的多個執行個體，在單一電腦或 VM 上裝載多個節點。
+## <a name="infrastructure-concepts"></a>Infrastructure concepts
+**Cluster**: A network-connected set of virtual or physical machines into which your microservices are deployed and managed.  Clusters can scale to thousands of machines.
 
-## 應用程式概念
-**應用程式類型**：指派給服務類型的集合名稱/版本。定義在 `ApplicationManifest.xml` 檔中，內嵌在應用程式封裝目錄，之後會複製到 Service Fabric 叢集的映像存放區中。然後，您可以從這個應用程式類型，在叢集內建立具名的應用程式。
+**Node**: A machine or VM that is part of a cluster is called a node. Each node is assigned a node name (a string). Nodes have characteristics such as placement properties. Each machine or VM has an auto-start Windows service, `FabricHost.exe`, which starts running upon boot and then starts two executables: `Fabric.exe` and `FabricGateway.exe`. These two executables make up the node. For testing scenarios, you can host multiple nodes on a single machine or VM by running multiple instances of `Fabric.exe` and `FabricGateway.exe`.
 
-如需詳細資訊，請參閱[應用程式模型](service-fabric-application-model.md)一文。
+## <a name="application-concepts"></a>Application concepts
+**Application Type**: The name/version assigned to a collection of service types. Defined in an `ApplicationManifest.xml` file, embedded in an application package directory, which is then copied to the Service Fabric cluster's image store. You can then create a named application from this application type within the cluster.
 
-**應用程式封裝**：磁碟目錄，包含此應用程式類型的 `ApplicationManifest.xml` 檔案。參考組成此應用程式類型的每個服務類型的服務封裝。應用程式封裝目錄中的檔案會複製到 Service Fabric 叢集的映像存放區。例如，電子郵件應用程式類型的應用程式封裝可能包含指向佇列服務封裝、前端服務封裝、資料庫服務封裝的參考。
+Read the [Application Model](service-fabric-application-model.md) article for more information.
 
-**具名應用程式**：應用程式封裝複製到映像存放區之後，您可以指定應用程式封裝的應用程式類型 (使用其名稱/版本)，建立應用程式在叢集內的執行個體。每個應用程式類型的執行個體會被指派一個看起來像這樣的 URI 名稱：`"fabric:/MyNamedApp"`。在叢集中，您可以從單一應用程式類型建立多個具名應用程式。也可以從不同的應用程式類型建立具名應用程式。每個具名應用程式都是獨立管理和控制版本。
+**Application Package**: A disk directory containing the application type's `ApplicationManifest.xml` file. References the service packages for each service type that makes up the application type. The files in the application package directory are copied to Service Fabric cluster's image store. For example, an application package for an email application type could contain references to a queue service package, a frontend service package, and a database service package.
 
-**服務類型**：指派給服務的程式碼封裝、資料封裝、組態封裝的名稱/版本。定義在 `ServiceManifest.xml` 檔中，內嵌在服務封裝目錄中，之後應用程式封裝的 `ApplicationManifest.xml` 檔會參考此服務封裝目錄。在叢集內，建立具名應用程式之後，可以從應用程式類型的其中一個服務類型建立具名服務。服務類型的 `ServiceManifest.xml` 檔描述該服務。
+**Named Application**: After an application package is copied to the image store, you create an instance of the application within the cluster by specifying the application package's application type (using its name/version). Each application type instance is assigned a URI name that looks like this: `"fabric:/MyNamedApp"`. Within a cluster, you can create multiple named applications from a single application type. You can also create named applications from different application types. Each named application is managed and versioned independently.      
 
-如需詳細資訊，請參閱[應用程式模型](service-fabric-application-model.md)一文。
+**Service Type**: The name/version assigned to a service's code packages, data packages, and configuration packages. Defined in a `ServiceManifest.xml` file, embedded in a service package directory and the service package directory is then referenced by an application package's `ApplicationManifest.xml` file. Within the cluster, after creating a named application, you can create a named service from one of the application type's service types. The service type's `ServiceManifest.xml` file describes the service.
 
-服務分為兩種：
+Read the [Application Model](service-fabric-application-model.md) article for more information.
 
-- **無狀態：**當服務的持續狀態是儲存在 Azure 儲存體、Azure SQL Database、Azure DocumentDB 等外部儲存服務時，使用無狀態服務。當服務完全沒有持續性儲存體時，請使用無狀態服務。以計算機服務為例，首先要傳遞值給服務，然後服務用這些值執行計算並傳回結果。
+There are two types of services:
 
-- **具狀態：**當您要讓 Service Fabric 透過其 Reliable Collections 或 Reliable Actors 程式設計模型管理您的服務狀態，則使用具狀態服務。請指定您在建立具名服務時，想要讓狀態分散到多少個資料分割 (提供延展性)。也請指定跨節點覆寫狀態的次數 (提供可靠性)。每個具名服務都有一個主要複本和多個次要複本。您可以透過寫入主要複本來修改具名服務的狀態。然後，Service Fabric 會將此狀態複寫至所有次要複本以保持狀態同步。當主要複本失敗時，Service Fabric 會自動偵測到此狀況，並將現有的次要複本升級為主要複本。然後 Service Fabric 會建立新的次要複本。
+- **Stateless:** Use a stateless service when the service's persistent state is stored in an external storage service such as Azure Storage, Azure SQL Database, or Azure DocumentDB. Use a stateless service when the service has no persistent storage at all. For example, a calculator service where values are passed to the service, a computation is performed using these values, and a result is returned.
 
-**服務封裝**：磁碟目錄，包含此服務類型的 `ServiceManifest.xml` 檔案。這個檔案會參考此服務類型的程式碼、靜態資料和組態封裝。此應用程式類型的 `ApplicationManifest.xml` 檔會參考此服務封裝目錄中的檔案。例如，服務套件可能會參考構成資料庫服務的程式碼、靜態資料和組態封裝。
+- **Stateful:** Use a stateful service when you want Service Fabric to manage your service's state via its Reliable Collections or Reliable Actors programming models. Specify how many partitions you want to spread your state over (for scalability) when creating a named service. Also specify how many times to replicate your state across nodes (for reliability). Each named service has a single primary replica and multiple secondary replicas. You modify your named service's state by writing to the primary replica. Service Fabric then replicates this state to all the secondary replicas keeping your state in sync. Service Fabric automatically detects when a primary replica fails and promotes an existing secondary replica to a primary replica. Service Fabric then creates a new secondary replica.  
 
-**具名服務**：建立具名應用程式之後，可以指定服務類型 (使用其名稱/版本)，在叢集內建立應用程式其中一種服務類型的執行個體。需為每個服務類型執行個體指派一個 URI (名稱範圍需在其具名應用程式的 URI 之下)。例如，如果您在具名應用程式 MyNamedApp 內建立 MyDatabase 具名服務，URI 看起來就像這樣：`"fabric:/MyNamedApp/MyDatabase"`。在具名應用程式中，可以建立數個具名服務。每個具名服務可以有自己的分割配置和執行個體/複本計數。
+**Service Package**: A disk directory containing the service type's `ServiceManifest.xml` file. This file references the code, static data, and configuration packages for the service type. The files in the service package directory are referenced by the application type's `ApplicationManifest.xml` file. For example, a service package could refer to the code, static data, and configuration packages that make up a database service.
 
-**程式碼封裝**：磁碟目錄，包含此服務類型的執行檔 (通常是 EXE/DLL 檔)。此服務類型的 `ServiceManifest.xml` 檔會參考此程式碼封裝目錄中的檔案。建立具名服務時，程式碼封裝會複製到一或多個選取用來執行具名服務的節點。然後程式碼會開始執行。程式碼封裝執行檔分成兩種：
+**Named Service**: After creating a named application, you can create an instance of one of its service types within the cluster by specifying the service type (using its name/version). Each service type instance is assigned a URI name scoped under its named application's URI. For example, if you create a "MyDatabase" named service within a "MyNamedApp" named application, the URI looks like: `"fabric:/MyNamedApp/MyDatabase"`. Within a named application, you can create several named services. Each named service can have its own partition scheme and instance/replica counts.
 
-- **來賓執行檔**：在主機作業系統 (Windows 或 Linux) 上以原樣執行的執行檔。也就是說，這些執行檔未連結至或參考任何 Service Fabric 執行階段檔案作業，因此不會使用任何 Service Fabric 程式設計模型。這些可執行檔無法使用某些 Service Fabric 功能，例如端點探索的命名服務。來賓可執行檔無法報告每個服務執行個體特定的負載度量。
+**Code Package**: A disk directory containing the service type's executable files (typically EXE/DLL files). The files in the code package directory are referenced by the service type's `ServiceManifest.xml` file. When a named service is created, the code package is copied to the one or more nodes selected to run the named service. Then the code starts running. There are two types of code package executables:
 
-- **服務主機執行檔**：藉由連結至 Service Fabric 執行階段檔案的方式使用 Service Fabric 程式設計模型，以支援 Service Fabric 功能的執行檔。例如，具名服務執行個體可以在 Service Fabric 命名服務註冊端點，也可以報告負載度量。
+- **Guest executables**: Executables that run as-is on the host operating system (Windows or Linux). That is, these executables do not link to or reference any Service Fabric runtime files and therefore do not use any Service Fabric programming models. These executables are unable to use some Service Fabric features such as the naming service for endpoint discovery. Guest executables cannot report load metrics specific to each service instance.
 
-**資料封裝**：磁碟目錄，包含此服務類型的靜態唯讀資料檔 (通常是相片、音訊和視訊檔)。此服務類型的 `ServiceManifest.xml` 檔會參考此資料封裝目錄中的檔案。建立具名服務時，資料封裝會複製到一或多個選取用來執行具名服務的節點。程式碼會開始執行，此時即可存取資料檔案。
+- **Service Host Executables**: Executables that use Service Fabric programming models by linking to Service Fabric runtime files, enabling Service Fabric features. For example, a named service instance can register endpoints with Service Fabric's Naming Service and can also report load metrics.      
 
-**組態封裝**：磁碟目錄，包含此服務類型的靜態唯讀組態檔 (通常是文字檔)。此服務類型的 `ServiceManifest.xml` 檔會參考此組態封裝目錄中的檔案。建立具名服務時，系統會將組態封裝中的檔案，複製到一或多個選取用來執行具名服務的節點。接著會開始執行程式碼，此時即可存取組態檔案。
+**Data Package**: A disk directory containing the service type's static, read-only data files (typically photo, sound, and video files). The files in the data package directory are referenced by the service type's `ServiceManifest.xml` file. When a named service is created, the data package is copied to the one or more nodes selected to run the named service.  The code starts running and can now access the data files.
 
-**分割配置**：建立具名的服務時，要指定分割配置。含有大量狀態的服務會跨分割切割其資料，所以服務是分散在叢集的節點上。這使得具名服務的狀態可以擴充。在分割內，無狀態的具名服務會有執行個體，而具狀態的具名服務則有複本。通常，無狀態具名服務只會有 1 個分割，因為它們有沒有內部狀態。分割執行個體提供可用性；如果一個執行個體失敗，其他執行個體會繼續正常運作，接著 Service Fabric 會建立新的執行個體。具狀態的具名服務會在複本中維持其狀態，且每個分割都有自己的複本集，其中包含保持同步的所有狀態。複本失敗失敗時，Service Fabric 會從現有複本建立新的複本。
+**Configuration Package**: A disk directory containing the service type's static, read-only configuration files (typically text files). The files in the configuration package directory are referenced by the service type's `ServiceManifest.xml` file. When a named service is created, the files in the configuration package are copied to the one or more nodes selected to run the named service. Then the code starts running and can now access the configuration files.
 
-如需詳細資訊，請閱讀[分割 Service Fabric Reliable Services](service-fabric-concepts-partitioning.md)。
+**Partition Scheme**: When creating a named service, you specify a partition scheme. Services with large amounts of state split the data across partitions which spreads it across the cluster's nodes. This allows your named service's state to scale. Within a partition, stateless named services have instances while stateful named services have replicas. Usually, stateless named services only ever have one partition since they have no internal state. The partition instances provide for availability; if one instance fails, other instances continue to operate normally and then Service Fabric will create a new instance. Stateful named services maintain their state within replicas and each partition has its own replica set with all the state being kept in sync. Should a replica fail, Service Fabric builds a new replica from the existing replicas.
 
-## 系統服務
-有在每個叢集中建立的系統服務，用來提供 Service fabric 的平台功能。
+Read the [Partition Service Fabric reliable services](service-fabric-concepts-partitioning.md) article for more information.
 
-**命名服務**：每個 Service Fabric 叢集有一個命名服務，此服務會將服務名稱解析至叢集中的位置。您可以管理服務名稱與屬性，類似叢集的網際網路網域名稱服務 (DNS)。用戶端可以使用命名服務，與叢集中的任何節點安全地進行通訊，以便解析服務名稱及其位置。用戶端會取得實際的電腦 IP 位址，以及目前執行所在的連接埠。儘管應用程式會在叢集內移動 (例如因為失敗、資源平衡或重新調整叢集大小)，您也可以開發能夠解析目前網路位置的服務和用戶端。
+## <a name="system-services"></a>System services
+There are system services that are created in every cluster that provide the platform capabilities of Service Fabric.
 
-如需使用搭配命名服務運作的用戶端與服務通訊 API 詳細資訊，請閱讀[與服務通訊](service-fabric-connect-and-communicate-with-services.md)一文。
+**Naming Service**: Each Service Fabric cluster has a Naming service, which resolves service names to a location in the cluster. You manage the service names and properties, similar to an internet Domain Name Service (DNS) for the cluster. Clients securely communicate with any node in the cluster using the Naming Service to resolve a service name and its location.  Clients obtain the actual machine IP address and port where it is currently running. You can develop services and clients capable of resolving the current network location despite applications being moved within the cluster for example due to failures, resource balancing, or the resizing of the cluster.
 
-**映像儲存區服務**︰每個 Service Fabric 叢集都有一個映像儲存區服務，其中保存已部署且版本化的應用程式封裝。將應用程式封裝複製到映像存放區，然後註冊該應用程式封裝內包含的應用程式類型。佈建應用程式類型後，您可以從中建立具名應用程式。在刪除應用程式類型的所有具名應用程式之後，可以從映像存放區服務取消註冊該應用程式類型。
+Read [Communicate with services](service-fabric-connect-and-communicate-with-services.md) for more information on the client and service communication APIs that work with the Naming service.
 
-如需有關將應用程式部署至映像存放區服務的詳細資訊，請閱讀[部署應用程式](service-fabric-deploy-remove-applications.md)一文。
+**Image Store Service**: Each Service Fabric cluster has an Image Store service where deployed, versioned application packages are kept. Copy an application package to the Image Store and then register the application type contained within that application package. After the application type is provisioned, you create a named applications from it. You can unregister an application type from the Image Store service after all its named applications have been deleted.
 
-## 內建的程式設計模型
-有一些 .NET Framework 程式設計模型可讓您建置 Service Fabric 服務：
+Read the [Deploy an application](service-fabric-deploy-remove-applications.md) article for more information on deploying applications to the Image store service.
 
-**Reliable Services**：用於建置無狀態和具狀態服務的 API。具狀態服務將其狀態儲存在 Reliable Collections 中 (例如字典或佇列)。您也可以插入各種不同的通訊堆疊，例如 Web API、Windows Communication Foundation (WCF)。
+## <a name="built-in-programming-models"></a>Built-in programming models
+There are .NET Framework programming models available for you to build Service Fabric services:
 
-**Reliable Actors**：可透過虛擬的 Actor 程式設計模型，建置無狀態和具狀態物件的 API。當您有多個獨立的計算/狀態單位時，此模型相當實用。由於此模型使用回合式執行緒模型，因此最好避免向外呼叫其他動作項目或服務的程式碼，因為直到個別動作項目的所有輸出要求完成，動作項目才能處理其他連入要求。
+**Reliable Services**: An API to build stateless and stateful services. Stateful service store their state in Reliable Collections (such as a dictionary or a queue). You also get to plug in a variety of communication stacks such as Web API and Windows Communication Foundation (WCF).
 
-如需詳細資訊，請閱讀[為服務選擇程式設計模型](service-fabric-choose-framework.md)一文。
+**Reliable Actors**: An API to build stateless and stateful objects through the virtual Actor programming model. This model can be useful when you have lots of independent units of computation/state. Because this model uses a turn-based threading model, it is best to avoid code that calls out to other actors or services since an individual actor cannot process other incoming requests until all its outbound requests have completed.
+
+Read the [Choose a Programming Model for your service](service-fabric-choose-framework.md) article for more information.
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
-## 後續步驟
-若要深入了解 Service Fabric：
+## <a name="next-steps"></a>Next steps
+To learn more about Service Fabric:
 
-- [Service Fabric 概觀](service-fabric-overview.md)
-- [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
-- [應用程式案例](service-fabric-application-scenarios.md)
+- [Overview of Service Fabric](service-fabric-overview.md)
+- [Why a microservices approach to building applications?](service-fabric-overview-microservices.md)
+- [Application scenarios](service-fabric-application-scenarios.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,31 +1,34 @@
-## 定義備份原則
+## <a name="defining-a-backup-policy"></a>Defining a backup policy
 
-備份原則會定義由資料快照擷取時間和這些快照的保留時間長度所構成的矩陣。在定義 VM 的備份原則時，您可以「一天一次」地觸發備份作業。當您建立新原則時，該原則將會套用至保存庫。備份原則介面的外觀如下︰
+A backup policy defines a matrix of when the data snapshots are taken, and how long those snapshots are retained. When defining a policy for backing up a VM, you can trigger a backup job *once a day*. When you create a new policy, it is applied to the vault. The backup policy interface looks like this:
 
-![備份原則](./media/backup-create-policy-for-vms/backup-policy.png)
+![Backup policy](./media/backup-create-policy-for-vms/backup-policy.png)
 
-若要建立原則︰
+To create a policy:
 
-1. 在 [原則名稱] 中輸入名稱。
+1. Enter a name for the **Policy name**.
 
-2. 資料快照可依 [每日] 或 [每週] 間隔來擷取。使用 [備份頻率] 下拉式功能表來選擇要 [每日] 或 [每週] 擷取資料快照。
+2. Snapshots of your data can be taken at Daily or Weekly intervals. Use the **Backup Frequency** drop-down menu to choose whether data snapshots are taken Daily or Weekly.
 
-    - 如果您選擇 [每日] 間隔，可使用醒目提示的控制項來選取要在一天當中的什麼時間擷取快照。若要變更小時，請取消選取小時，然後選取新的小時。
+    - If you choose a Daily interval, use the highlighted control to select the time of the day for the snapshot. To change the hour, de-select the hour, and select the new hour.
 
-    ![每日備份原則](./media/backup-create-policy-for-vms/backup-policy-daily.png) <br/>
+    ![Daily backup policy](./media/backup-create-policy-for-vms/backup-policy-daily.png) <br/>
 
-    - 如果您選擇 [每週] 間隔，可使用醒目提示的控制項來選取要在星期幾的什麼時間擷取快照。在 [天] 功能表中選取某天或多天。在 [小時] 功能表中選取某個小時。若要變更小時，請取消選取所選的小時，然後選取新的小時。
+    - If you choose a Weekly interval, use the highlighted controls to select the day(s) of the week, and the time of day to take the snapshot. In the day menu, select one or multiple days. In the hour menu, select one hour. To change the hour, de-select the selected hour, and select the new hour.
 
-    ![每週備份原則](./media/backup-create-policy-for-vms/backup-policy-weekly.png)
+    ![Weekly backup policy](./media/backup-create-policy-for-vms/backup-policy-weekly.png)
 
-3. 根據預設，會選取所有 [保留範圍] 選項。請取消勾選任何您不想使用的保留範圍限制。然後，指定要使用的間隔。
+3. By default, all **Retention Range** options are selected. Uncheck any retention range limit you do not want to use. Then, specify the interval(s) to use.
 
-    [每月] 和 [每年] 保留範圍可讓您根據每週或每日增量指定快照。
+    Monthly and Yearly retention ranges allow you to specify the snapshots based on a weekly or daily increment.
 
-    >[AZURE.NOTE] 在保護 VM 時，備份作業會每天執行一次。每個保留範圍的備份執行時間都相同。
+    >[AZURE.NOTE] When protecting a VM, a backup job runs once a day. The time when the backup runs is the same for each retention range.
 
-4. 設定原則的所有選項後，在刀鋒視窗頂端按一下 [儲存]。
+4. After setting all options for the policy, at the top of the blade click **Save**.
 
-    新原則時會立即套用至保存庫。
+    The new policy is immediately applied to the vault.
 
-<!---HONumber=AcomDC_0608_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

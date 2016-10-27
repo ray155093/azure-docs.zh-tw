@@ -1,44 +1,49 @@
 <properties
-	pageTitle="Azure Active Directory 條件式存取常見問題集 | Microsoft Azure"
-	description="關於條件式存取的常見問題集 "
-	services="active-directory"
-	documentationCenter=""
-	authors="markusvi"
-	manager="swadhwa"
-	editor=""/>
+    pageTitle="Azure Active Directory Conditional Access FAQ | Microsoft Azure"
+    description="Frequently asked questions about conditional access "
+    services="active-directory"
+    documentationCenter=""
+    authors="MarkusVi"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/26/2016"
-	ms.author="markvi"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/20/2016"
+    ms.author="markvi"/>
 
-# Azure Active Directory 條件式存取常見問題集
 
-## 哪些應用程式會使用條件式存取原則？
+# <a name="azure-active-directory-conditional-access-faq"></a>Azure Active Directory Conditional Access FAQ
 
-**答：**請參閱主題[條件式存取 - 支援哪些應用程式](active-directory-conditional-access-supported-apps.md)。
+## <a name="which-applications-work-with-conditional-access-policies?"></a>Which applications work with conditional access policies?
 
-## 是否會針對 B2B 共同作業與來賓使用者強制套用條件式存取原則？
+**A:** Please see the topic, [Conditional access- What applications are supported](active-directory-conditional-access-supported-apps.md).
 
-**答：**系統會針對 B2B 共同作業使用者強制套用原則。不過，在某些情況下，使用者可能無法滿足原則需求，例如，如果組織不支援 Multi-Factor Authentication。
+## <a name="are-conditional-access-policies-enforced-for-b2b-collaboration-and-guest-users?"></a>Are conditional access policies enforced for B2B collaboration and guest users?
 
-目前不會針對 SharePoint 來賓使用者強制套用原則。來賓關聯性是在 SharePoint 內進行維護。驗證伺服器上的來賓使用者帳戶不會受限於存取原則。您可以在 SharePoint 上管理來賓存取。
+**A:** Policies are enforced for B2B collaboration users. However, in some cases, a user might not be able to satisfy the policy requirement if, for example, an organization does not support multi-factor authentication. 
 
-## SharePoint Online 原則也適用於商務用 OneDrive 嗎？
+The policy is currently not enforced for SharePoint guest users. The guest relationship is maintained within SharePoint. Guest users accounts are not subject to access polices at the authentication server. Guest access can be managed at SharePoint.
 
-**答：**是。
+## <a name="does-a-sharepoint-online-policy-also-apply-to-onedrive-for-business?"></a>Does a SharePoint Online policy also apply to OneDrive for Business?
+
+**A:** Yes.
  
-## 為什麼我無法在用戶端應用程式 (例如 Word 或 Outlook) 上設定原則？
+## <a name="why-can’t-i-set-a-policy-on-client-apps,-like-word-or-outlook?"></a>Why can’t I set a policy on client apps, like Word or Outlook?
 
-**答：**條件式存取原則會設定存取服務的需求，並在該服務發生驗證時強制套用。原則不是直接設定於用戶端應用程式上，而是在它呼叫服務時加以套用。例如，在 SharePoint 上設定的原則會套用至呼叫 SharePoint 的用戶端，而 Exchange 上設定的原則會套用至 Outlook。
+**A:** A conditional access policy sets requirements for accessing a service and is enforced when authentication happens to that service. The policy is not set directly on a client application; instead, it is applied when it calls into a service. For example, a policy set on SharePoint applies to clients calling SharePoint and a policy set on Exchange applies to Outlook.
 
 
-## 是否會對服務帳戶套用條件式存取原則？
+## <a name="does-a-conditional-access-policy-apply-to-service-accounts?"></a>Does a conditional access policy apply to service accounts?
 
-**答：**所有使用者帳戶都會套用條件式存取原則。這包括做為服務帳戶的使用者帳戶。在許多情況下，自動執行的服務帳戶無法符合原則。例如，在需要 MFA 時即是如此。在這些情況下，可以使用條件式存取原則管理設定，將服務帳戶排除在原則套用範圍之外。在此深入了解如何對使用者套用原則。
+**A:** Conditional access policies apply to all user accounts. This includes user accounts used as service accounts. In many cases, a service account that runs unattended is not able to satisfy a policy. This is, for example the case, when MFA is required. In these cases, services accounts can be excluded from a policy, using conditional access policy management settings. Learn more about applying a policy to users here.
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

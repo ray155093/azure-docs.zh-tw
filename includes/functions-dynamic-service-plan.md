@@ -1,17 +1,22 @@
-## 動態服務方案
+## <a name="dynamic-service-plan"></a>Dynamic Service Plan
 
-在動態服務方案中，您的函式應用程式會指派給函式應用程式執行個體。如有需要，會動態加入更多執行個體。這些執行個體可以跨越多個計算資源，充分運用 Azure 基礎結構。此外，您的函式會以平行方式執行，將處理要求所需的總時間降至最低。每個函式的執行時間會以秒數加總，最後由包含函式的應用程式彙總。成本隨執行個體數量、記憶體大小及以 GB 秒計算的總執行時間而變化。如果您的計算需求是間歇性的，或作業時間通常很短，這會是您的最佳選擇，因為它可讓您只支付實際使用的計算資源。
+In the Dynamic Service Plan, your function apps will be assigned to a function app instance. If needed more instances will be added dynamically.
+Those instances can span across multiple computing resources, making the most out of the available Azure infrastructure. Moreover, your functions will run in parallel minimizing the total time needed to process requests. Execution time for each function is added up, in seconds, and aggregated by the containing function app. With cost driven by the number of instances, their memory size, and total execution time as measured in Gigabyte seconds. This is an excellent option if your compute needs are intermittent or your job times tend to be very short as it allows you to only pay for compute resources when they are actually in use.   
 
-### 記憶體層
+### <a name="memory-tier"></a>Memory tier
 
-根據您的函式需求，您可以在函式應用程式 (函式的容器) 中選取執行函式所需要的記憶體數量。記憶體大小的選項從 **128MB 到 1536MB** 不等。所選記憶體大小會與從屬於函式應用程式之所有函式需要的工作集相對應。如果程式碼需要的記憶體超過選取的大小，函式應用程式執行個體會因為可用記憶體不足而關閉。
+Depending on your function needs you can select the amount of memory required to run them in the Function App (container of functions).
+The memory size options vary from **128MB to 1536MB**. The selected memory size corresponds to the Working Set needed by all the functions that are part of your function app. If your code requires more memory than the selected size, the function app instance will be shut down due to lack of available memory.
 
-### 調整大小
+### <a name="scaling"></a>Scaling
 
-Azure 函式平台會根據設定的觸發程序評估流量需求，決定何時相應增加或減少。調整的細緻度是函式應用程式。本例中，相應增加表示加入更多的函式應用程式執行個體。反之，當流量下降時，函式應用程式執行個體就停用，最後沒有執行個體執行時即相應減少至零。
+The Azure Functions platform will evaluate the traffic needs, based on the configured triggers, to decide when to scale up or down. The granularity of scaling is the function app. Scaling up in this case means adding more instances of a function app. Inversely as traffic goes down, function app instances are disabled- eventually scaling down to zero when none are running.  
 
-### 資源耗用量和計費
+### <a name="resource-consumption-and-billing"></a>Resource consumption and billing
 
-在動態模式中，資源配置和標準的 App Service 方案不同，因此耗用量模型也不同，所以使用「按使用次數付費」模型。耗用量只會在程式碼執行的時間，依每個函式應用程式來報告。它的計算方式是記憶體大小 (GB) 乘以該函式應用程式內執行的所有函式執行時間 (秒) 的總金額。耗用量單位是 **GB-s (GB 秒)**。
+In the Dynamic mode resource allocation is done differently than the standard App Service plan, therefore the consumption model is also different, allowing for a "pay-per-use" model. Consumption will be reported per function app, only for time when code is being executed.  
+It is computed by multiplying the memory size (in GB) by the total amount of execution time (in seconds) for all functions running inside that function app. The unit of consumption will be **GB-s (Gigabyte Seconds)**.
 
-<!---HONumber=AcomDC_0406_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

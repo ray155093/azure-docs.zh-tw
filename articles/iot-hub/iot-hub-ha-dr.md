@@ -1,6 +1,6 @@
 <properties
- pageTitle="IoT 中樞 HA 和 DR | Microsoft Azure"
- description="描述可使用災害復原功能協助建立高可用性 IoT 解決方案的功能。"
+ pageTitle="IoT Hub HA and DR | Microsoft Azure"
+ description="Describes features that help to build highly available IoT solutions with disaster recovery capabilities."
  services="iot-hub"
  documentationCenter=""
  authors="fsautomata"
@@ -16,48 +16,52 @@
  ms.date="02/03/2016"
  ms.author="elioda"/>
 
-# IoT 中樞高可用性和災害復原
 
-作為 Azure 服務，IoT 中心提供高可用性 (HA)，在 Azure 區域層級使用備援，且解決方案不需任何額外的工作。此外，Azure 會提供一些可協助建立解決方案的功能，必要時也提供災害復原 (DR) 功能或跨區域的可用性。若要提供全域、跨區域的高可用性給裝置或使用者，必須設計及準備解決方案以善用這些 DR 功能。[Azure 業務持續性技術指引](../resiliency/resiliency-technical-guidance.md)一文描述業務持續性和 DR 的 Azure 內建功能。[Azure 應用程式的災害復原與高可用性][]一文針對 Azure 應用程式的策略提供架構指引以達到 HA 和 DR。
+# <a name="iot-hub-high-availability-and-disaster-recovery"></a>IoT Hub high availability and disaster recovery
 
-## Azure IoT 中樞 DR
-除了內部區域 HA，IoT 中樞會實作不需要使用者介入的災害復原容錯移轉機制。IoT 中樞 DR 會自行起動，其復原時間目標 (RTO) 為 2 到 26 小時，以及下列復原點目標 (RPO)。
+As an Azure service, IoT Hub provides high availability (HA) using redundancies at the Azure region level, without any additional work required by the solution. In addition, Azure offers a number of features that help to build solutions with disaster recovery (DR) capabilities or cross-region availability if required. You must design and prepare your solutions to take advantage of these DR features if you want to provide global, cross-region high availability for devices or users. The article [Azure Business Continuity Technical Guidance](../resiliency/resiliency-technical-guidance.md) describes the built-in features in Azure for business continuity and DR. The [Disaster recovery and high availability for Azure applications][] paper provides architecture guidance on strategies for Azure applications to achieve HA and DR.
 
-| 功能 | RPO |
+## <a name="azure-iot-hub-dr"></a>Azure IoT Hub DR
+In addition to intra-region HA, IoT Hub implements failover mechanisms for disaster recovery that require no intervention from the user. IoT Hub DR is self-initiated and has a recovery time objective (RTO) of 2-26 hours, and the following recovery point objectives (RPOs).
+
+| Functionality | RPO |
 | ------------- | --- |
-| 登錄和通訊作業的服務可用性 | 可能的 CName 遺失 |
-| 裝置身分識別登錄中的身分識別資料 | 0 到 5 分鐘的資料遺失 |
-| 裝置到雲端的訊息 | 所有未讀取的訊息都會遺失 |
-| 作業監視訊息 | 所有未讀取的訊息都會遺失 |
-| 雲端到裝置的訊息 | 0 到 5 分鐘的資料遺失 |
-| 雲端到裝置的意見反應佇列 | 所有未讀取的訊息都會遺失 |
+| Service availability for registry and communication operations | Possible CName loss |
+| Identity data in device identity registry | 0-5 mins data loss |
+| Device-to-cloud messages | All unread messages are lost |
+| Operations monitoring messages | All unread messages are lost |
+| Cloud-to-device messages | 0-5 mins data loss |
+| Cloud-to-device feedback queue | All unread messages are lost |
 
-## 使用 IoT 中心的區域容錯移轉
+## <a name="regional-failover-with-iot-hub"></a>Regional failover with IoT Hub
 
-IoT 解決方案中部署拓撲的完整處理已超出本文的範圍，但是為了高可用性和災害復原，我們要考慮*區域容錯移轉*部署模型。
+A complete treatment of deployment topologies in IoT solutions is outside the scope of this article, but for the purpose of high availability and disaster recovery we will consider the *regional failover* deployment model.
 
-在區域容錯移轉模型中，解決方案後端主要是在一個資料中心位置執行，但其他 IoT 中樞和後端將會部署在其他資料中心位置以進行容錯移轉，以防主要資料中心中的 IoT 中樞發生中斷，或者從裝置到主要資料中心的網路連線因某種理由而中斷。每當無法連接主要閘道器時，裝置會使用次要服務端點。使用跨區域容錯移轉功能時，可改善解決方案的可用性，勝過單一區域的高可用性。
+In a regional failover model, the solution back end is running primarily in one datacenter location, but an additional IoT hub and back end are deployed in another datacenter location for failover purposes, in case the IoT hub in the primary datacenter suffers an outage or the network connectivity from the device to the primary datacenter is somehow interrupted. Devices use a secondary service endpoint whenever the primary gateway cannot be reached. With a cross-region failover capability, the solution availability can be improved beyond the high availability of a single region.
 
-在較高層級，為了使用 IoT 中樞實作區域容錯移轉模型，您需要下列內容。
+At a high level, to implement a regional failover model with IoT Hub, you will need the following.
 
-* **次要 IoT 中樞和裝置路由邏輯**：萬一主要區域的服務中斷，裝置必須開始與您的次要地區連接。由於大部分服務狀態感知的本質，解決方案的系統管理員通常會觸發區域間的容錯移轉程序。要讓新端點與裝置通訊，同時保有程序的控制權，最佳方式是讓它們定期檢查*指引*服務是否有目前作用中的端點。這裡的指引服務可以是簡單的 Web 應用程式，其可藉由使用 DNS 重新導向技術複寫並保持連接 (例如使用 [Azure 流量管理員][])。
-* **身分識別登錄複寫** - 為了成為可用狀態，次要 IoT 中樞必須包含能夠連接到解決方案的所有裝置身分識別。解決方案應該保留裝置身分識別的異地複寫備份，並在切換裝置的作用中端點之前將其上傳至次要 IoT 中樞。IoT 中樞的裝置身分識別匯出功能在此內容中非常有用。如需詳細資訊，請參閱 [IoT 中樞開發人員指南 - 身分識別登錄][]。
-* **合併邏輯** - 當主要區域再次可供使用時，所有在次要站台中建立的狀態和資料都必須移轉回主要區域。這大多與裝置身分識別和應用程式中繼資料相關，必須與主要 IoT 中樞合併，也可能要與主要區域中的其他應用程式專屬存放區合併。若要簡化這個步驟，通常建議使用等冪作業。這樣可以將副作用降到最低，不只包括來自最終一致的事件分佈的副作用，也包括來自事件的重複項目或失序傳遞的副作用。此外，應用程式邏輯應該設計為能夠容忍潛在的不一致或「稍微」過期的狀態。這是因為系統需要額外的時間來根據復原點目標 (RPO)「療癒」。
+* **A secondary IoT hub and device routing logic**: In the case of a service disruption in your primary region, devices must start connecting to your secondary region. Given the state-aware nature of most services involved, it is common for solution administrators to trigger the inter-region failover process. The best way to communicate the new endpoint to devices, while maintaining control of the process, is have them regularly check a *concierge* service for the current active endpoint. The concierge service can be a simple web application that is replicated and kept reachable using DNS-redirection techniques (for example, using [Azure Traffic Manager][]).
+* **Identity registry replication** - In order to be usable, the secondary IoT hub must contain all device identities that can connect to the solution. The solution should keep geo-replicated backups of device identities, and upload them to the secondary IoT hub before switching the active endpoint for the devices. The device identity export functionality of IoT Hub is very useful in this context. For more information, see [IoT Hub Developer Guide - identity registry][].
+* **Merging logic** - When the primary region becomes available again, all the state and data that have been created in the secondary site must be migrated back to the primary region. This mostly relates to device identities and application meta-data, which must be merged with the primary IoT hub and any other application-specific stores in the primary region. To simplify this step, it is usually recommended that you use idempotent operations. This minimizes side-effects not only from eventual consistent distribution of events, but also from duplicates or out-of-order delivery of events. In addition, the application logic should be designed to tolerate potential inconsistencies or "slightly" out of date-state. This is due to the additional time it takes for the system to "heal" based on recovery point objectives (RPO).
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-遵循下列連結以深入了解 Azure IoT 中樞：
+Follow these links to learn more about Azure IoT Hub:
 
-- [開始使用 IoT 中心 (教學課程)][lnk-get-started]
-- [何謂 Azure IoT 中心？][]
+- [Get started with IoT Hubs (Tutorial)][lnk-get-started]
+- [What is Azure IoT Hub?][]
 
-[Azure resiliency technical guidance]: ../resiliency/resiliency-technical-guidance.md
-[Azure 應用程式的災害復原與高可用性]: ../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md
-[Failsafe: Guidance for Resilient Cloud Architectures]: https://msdn.microsoft.com/library/azure/jj853352.aspx
-[Azure 流量管理員]: https://azure.microsoft.com/documentation/services/traffic-manager/
-[IoT 中樞開發人員指南 - 身分識別登錄]: iot-hub-devguide.md#identityregistry
+[Disaster recovery and high availability for Azure applications]: ../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md
+[Azure Business Continuity Technical Guidance]: https://azure.microsoft.com/documentation/articles/resiliency-technical-guidance/
+[Azure Traffic Manager]: https://azure.microsoft.com/documentation/services/traffic-manager/
+[IoT Hub Developer Guide - identity registry]: iot-hub-devguide-identity-registry.md
 
 [lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[何謂 Azure IoT 中心？]: iot-hub-what-is-iot-hub.md
+[What is Azure IoT Hub?]: iot-hub-what-is-iot-hub.md
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

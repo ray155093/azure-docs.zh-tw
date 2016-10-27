@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Reliable Actors 生命週期 | Microsoft Azure"
-   description="說明 Service Fabric Reliable Actor 生命週期、記憶體回收，以及手動刪除動作項目與其狀態"
+   pageTitle="Reliable Actors lifecycle | Microsoft Azure"
+   description="Explains Service Fabric Reliable Actor lifecycle, garbage collection, and manually deleting actors and their state"
    services="service-fabric"
    documentationCenter=".net"
    authors="amanbha"
@@ -17,43 +17,44 @@
    ms.author="amanbha"/>
 
 
-# 動作項目生命週期、自動記憶體回收，以及手動刪除
-第一次呼叫動作項目的方法時就會啟動動作項目。如果有一段可設定的時間未使用動作項目，動作項目就會停用 (由動作項目執行階段進行記憶體回收)。動作項目與其狀態也可以隨時進行手動刪除。
 
-## 啟用動作項目
+# <a name="actor-lifecycle,-automatic-garbage-collection,-and-manual-delete"></a>Actor lifecycle, automatic garbage collection, and manual delete
+An actor is activated the first time a call is made to any of its methods. An actor is deactivated (garbage collected by the Actors runtime) if it is not used for a configurable period of time. An actor and its state can also be deleted manually at any time.
 
-啟用動作項目後，會發生下列情況︰
+## <a name="actor-activation"></a>Actor activation
 
-- 當動作項目有呼叫卻尚未為使用中時，會建立新的動作項目。
-- 載入動作項目狀態 (如果正在維護狀態)
-- 呼叫 `OnActivateAsync` 方法 (在動作項目實作中會被覆寫)。
-- 動作項目現在被視為作用中。
+When an actor is activated, the following occurs:
 
-## 停用動作項目
+- When a call comes for an actor and one is not already active, a new actor is created.
+- The actor's state is loaded if it's maintaining state.
+- The `OnActivateAsync` method (which can be overridden in the actor implementation) is called.
+- The actor is now considered active.
 
-停用動作項目後，會發生下列情況︰
+## <a name="actor-deactivation"></a>Actor deactivation
 
-- 動作項目若一段時間未使用，便會從使用中動作項目資料表移除。
-- 呼叫 `OnDeactivateAsync` 方法 (在動作項目實作中會被覆寫)。這會清除動作項目的所有計時器。您不應該從此方法呼叫動作項目作業 (例如狀態變更)。
+When an actor is deactivated, the following occurs:
 
-> [AZURE.TIP] Fabric Actor 執行階段會發出某些[與動作項目啟用和停用相關的事件](service-fabric-reliable-actors-diagnostics.md#actor-activation-and-deactivation-events)。這些項目對於診斷與效能監視很有幫助。
+- When an actor is not used for some period of time, it is removed from the Active Actors table.
+- The `OnDeactivateAsync` method (which can be overridden in the actor implementation) is called. This clears all the timers for the actor. Actor operations like state changes should not be called from this method.
 
-### 動作項目記憶體回收
-停用動作項目後，動作項目物件的參考會釋出，而且通常由 Common Language Runtime (CLR) 記憶體回收行程進行記憶體回收。記憶體回收只會清除動作項目物件；它**不會**移除動作項目的狀態管理員中儲存的狀態。下次啟用動作項目時，會建立新的動作項目物件並還原其狀態。
+> [AZURE.TIP] The Fabric Actors runtime emits some [events related to actor activation and deactivation](service-fabric-reliable-actors-diagnostics.md#actor-activation-and-deactivation-events). They are useful in diagnostics and performance monitoring.
 
-就停用和記憶體回收的用途而言，什麼算是「一直在使用中」？
+### <a name="actor-garbage-collection"></a>Actor garbage collection
+When an actor is deactivated, references to the actor object are released and it can be garbage collected normally by the common language runtime (CLR) garbage collector. Garbage collection only cleans up the actor object; it does **not** remove state stored in the actor's State Manager. The next time the actor is activated, a new actor object is created and its state is restored.
 
-- 一直收到呼叫
-- 一直叫用 `IRemindable.ReceiveReminderAsync` 方法 (僅適用於動作項目使用提醒時)。
+What counts as “being used” for the purpose of deactivation and garbage collection?
 
-> [AZURE.NOTE] 如果動作項目使用計時器，且已叫用其計時器回撥，則**不**算是「一直使用中」。
+- Receiving a call
+- `IRemindable.ReceiveReminderAsync` method being invoked (applicable only if the actor uses reminders)
 
-在進入停用的細節前，最重要的是定義下列詞彙：
+> [AZURE.NOTE] if the actor uses timers and its timer callback is invoked, it does **not** count as "being used".
 
-- *掃描間隔*。這是動作項目執行階段掃描其作用中動作項目資料表中，是否有動作項目可予以停用和進行記憶體回收的間隔。預設值為 1 分鐘。
-- *閒置逾時*。這是動作項目維持未使用 (閒置) 所需的時間長度，過此時間後即可停用和進行記憶體回收。預設值為 60 分鐘。
+Before we go into the details of deactivation, it is important to define the following terms:
 
-通常不需要變更這些預設值。不過，如有必要，可以在註冊[動作項目服務](service-fabric-reliable-actors-platform.md)時透過 `ActorServiceSettings` 變更這些間隔：
+- *Scan interval*. This is the interval at which the Actors runtime scans its Active Actors table for actors that can be deactivated and garbage collected. The default value for this is 1 minute.
+- *Idle timeout*. This is the amount of time that an actor needs to remain unused (idle) before it can be deactivated and garbage collected. The default value for this is 60 minutes.
+
+Typically, you do not need to change these defaults. However, if necessary, these intervals can be changed through `ActorServiceSettings` when registering your [Actor Service](service-fabric-reliable-actors-platform.md):
 
 ```csharp
 public class Program
@@ -74,30 +75,30 @@ public class Program
 }
 ```
 
-對於每個作用中動作項目，動作項目執行階段會持續追蹤動作項目已閒置 (亦即未使用) 的時間。動作項目執行階段每隔 `ScanIntervalInSeconds` 就會檢查每個動作項目，查看其是否可進行記憶體回收，如果已閒置 `IdleTimeoutInSeconds`，就會將其回收。
+For each active actor, the actor runtime keeps track of the amount of time that it has been idle (i.e. not used). The actor runtime checks each of the actors every `ScanIntervalInSeconds` to see if it can be garbage collected and collects it if it has been idle for `IdleTimeoutInSeconds`.
 
-只要使用動作項目，其閒置時間就會重設為 0。在此之後，只有當動作項目再次閒置達 `IdleTimeoutInSeconds` 時，才會將動作項目作為記憶體回收。請回想一下，當動作項目介面方法或動作項目提醒回撥執行時，動作項目會視為已使用。如果動作項目的計時器回撥執行時，**不會**將動作項目視為已使用。
+Anytime an actor is used, its idle time is reset to 0. After this, the actor can be garbage collected only if it again remains idle for `IdleTimeoutInSeconds`. Recall that an actor is considered to have been used if either an actor interface method an actor reminder callback is executed. An actor is **not** considered to have been used if its timer callback is executed.
 
-下圖顯示單一動作項目的生命週期來說明下列概念。
+The following diagram shows the lifecycle of a single actor to illustrate these concepts.
 
-![閒置時間的範例][1]
+![Example of idle time][1]
 
-範例將說明動作項目方法呼叫、提醒，以及此動作項目存留期之計時器的影響。範例中有幾下幾點值得注意：
+The example shows the impact of actor method calls, reminders, and timers on the lifetime of this actor. The following points about the example are worth mentioning:
 
-- ScanInterval 及 IdleTimeout 分別設為 5 和 10。(單位並不重要，因為我們的目的只為了說明概念)。
-- 系統會依照掃描間隔為 5 的定義，在 T=0、5、10、15、20、25 時掃描是否有可作為記憶體回收的動作項目。
-- 定期計時器會在 T=4、8、12、16、20、24 時引發，並執行其回呼。這不會影響動作項目的閒置時間。
-- 在 T=7 的動作項目方法呼叫會將閒置時間重設為 0，並延遲動作項目的記憶體回收。
-- 動作項目提醒回撥會在 T=14 執行，並進一步延遲動作項目的廢棄項目收集。
-- 在 T=25 的記憶體回收期間，動作項目的閒置時間最後會超過為 10 的閒置逾時，並會將動作項目作為記憶體回收。
+- ScanInterval and IdleTimeout are set to 5 and 10 respectively. (Units do not matter here, since our purpose is only to illustrate the concept.)
+- The scan for actors to be garbage collected happens at T=0,5,10,15,20,25, as defined by the scan interval of 5.
+- A periodic timer fires at T=4,8,12,16,20,24, and its callback executes. It does not impact the idle time of the actor.
+- An actor method call at T=7 resets the idle time to 0 and delays the garbage collection of the actor.
+- An actor reminder callback executes at T=14 and further delays the garbage collection of the actor.
+- During the garbage collection scan at T=25, the actor's idle time finally exceeds the idle timeout of 10, and the actor is garbage collected.
 
-動作項目正在執行其中一個方法時，無論在執行該方法時花費了多久的時間，動作項目絕對不會進行記憶體回收。如先前所述，執行動作項目介面方法和提醒回撥會將動作項目的閒置時間重設為 0，來防止廢棄項目收集。執行計時器回撥不會將閒置時間重設為 0。不過，計時器回撥完成執行之前，會延遲動作項目的廢棄項目收集。
+An actor will never be garbage collected while it is executing one of its methods, no matter how much time is spent in executing that method. As mentioned earlier, the execution of actor interface methods and reminder callbacks prevents garbage collection by resetting the actor's idle time to 0. The execution of timer callbacks does not reset the idle time to 0. However, the garbage collection of the actor is deferred until the timer callback has completed execution.
 
-## 刪除動作項目與其狀態
+## <a name="deleting-actors-and-their-state"></a>Deleting actors and their state
 
-已停用動作項目的記憶體回收只會清除動作項目物件；但不會移除動作項目的狀態管理員中儲存的資料。重新啟用動作項目後，會再次透過狀態管理員提供其資料。在動作項目將資料儲存於狀態管理員後停用，而永遠不會重新啟用的情況下，可能需要清除其資料。
+Gabrage collection of deactivated actors only cleans up the actor object, but it does not remove data that is stored in an actor's State Manager. When an actor is re-activated, its data is again made available to it through the State Manager. In cases where actors store data in State Manager and are deactivated but never re-activated, it may be necessary to clean up their data.
 
-[動作項目服務](service-fabric-reliable-actors-platform.md)提供了從遠端呼叫端刪除動作項目的函式︰
+The [Actor Service](service-fabric-reliable-actors-platform.md) provides a function for deleting actors from a remote caller:
 
 ```csharp
 ActorId actorToDelete = new ActorId(id);
@@ -108,25 +109,29 @@ IActorService myActorServiceProxy = ActorServiceProxy.Create(
 await myActorServiceProxy.DeleteActorAsync(actorToDelete, cancellationToken)
 ```
 
-根據動作項目目前是否作用中而定，刪除動作項目具有下列效果︰
-- **作用中動作項目**
- - 動作項目會從作用中動作項目清單中移除並且停用。
- - 其狀態會永久刪除。
-- **非作用中動作項目**
- - 其狀態會永久刪除。
+Deleting an actor has the following effects depending on whether or not the actor is currently active:
+- **Active Actor**
+ - Actor is removed from active actors list and is deactivated.
+ - Its state is deleted permanently.
+- **Inactive Actor**
+ - Its state is deleted permanently.
 
-請注意，動作項目無法從其中一個動作項目方法呼叫刪除本身，因為在動作項目呼叫內容中執行動作項目時無法刪除該動作項目，而執行階段已取得動作項目呼叫的鎖定以強制執行單一執行緒存取。
+Note that an actor cannot call delete on itself from one of its actor methods because the actor cannot be deleted while executing within an actor call context, in which the runtime has obtained a lock around the actor call to enforce single-threaded access.
 
-## 後續步驟
- - [動作項目計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
- - [動作項目事件](service-fabric-reliable-actors-events.md)
- - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
- - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
- - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
- - [範例程式碼](https://github.com/Azure/servicefabric-samples)
+## <a name="next-steps"></a>Next steps
+ - [Actor timers and reminders](service-fabric-reliable-actors-timers-reminders.md)
+ - [Actor events](service-fabric-reliable-actors-events.md)
+ - [Actor reentrancy](service-fabric-reliable-actors-reentrancy.md)
+ - [Actor diagnostics and performance monitoring](service-fabric-reliable-actors-diagnostics.md)
+ - [Actor API reference documentation](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+ - [Sample code](https://github.com/Azure/servicefabric-samples)
 
 
 <!--Image references-->
 [1]: ./media/service-fabric-reliable-actors-lifecycle/garbage-collection.png
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

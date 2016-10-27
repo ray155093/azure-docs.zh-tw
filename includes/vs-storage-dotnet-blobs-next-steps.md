@@ -1,11 +1,14 @@
 
-了解 Azure Blob 儲存體的基礎概念之後，請參考下列連結以了解有關更複雜的儲存工作。
+Now that you've learned the basics of Azure Blob storage, follow these links to learn about more complex storage tasks.
 
-- 如需可用 API 的完整詳細資料，請檢視 [.NET 的 Azure 儲存體用戶端文件庫](http://go.microsoft.com/fwlink/?LinkID=390731)中的 Blob 服務參考文件。
-- 若要了解如何簡化您撰寫以使用 Azure 儲存體的程式碼，請參閱[什麼是 Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)
-- 如需了解 Azure 中的其他資料儲存選項，請檢視更多功能指南。
-  - 若要使用 Azure 儲存體資料表，請參閱[以 .NET 開始使用 Azure 資料表儲存體](../articles/storage/storage-dotnet-how-to-use-tables.md)。
-  - 若要使用 Azure 儲存體佇列，請參閱[以 .NET 開始使用 Azure 佇列儲存體](../articles/storage/storage-dotnet-how-to-use-queues.md)。
-  - 若要儲存關聯式資料，請參閱[使用 .NET (C#) 連接到 SQL Database](../articles/sql-database/sql-database-develop-dotnet-simple.md)。
+- View the Blob service reference documentation in the [Azure Storage Client Library for .NET](http://go.microsoft.com/fwlink/?LinkID=390731) reference for complete details about available APIs.
+- To learn how to simplify the code you write to work with Azure Storage, check out [What is the Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)
+- View more feature guides to learn about additional options for storing data in Azure.
+  - To work with Azure Storage Tables, see [Get Started with Azure Table storage using .NET](../articles/storage/storage-dotnet-how-to-use-tables.md).
+  - To work with Azure Storage Queues, [Get started with Azure Queue storage using .NET](../articles/storage/storage-dotnet-how-to-use-queues.md).
+  - To store relational data, see [Connect to SQL Database by using .NET (C#)](../articles/sql-database/sql-database-develop-dotnet-simple.md).
 
-<!---HONumber=AcomDC_0525_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Azure SQL Database 彈性資料庫查詢概觀 | Microsoft Azure"
-    description="彈性查詢功能的概觀"    
+    pageTitle="Azure SQL Database elastic database query overview | Microsoft Azure"
+    description="Overview of the elastic query feature"    
     services="sql-database"
     documentationCenter=""  
     manager="jhubbard"
@@ -15,149 +15,153 @@
     ms.date="04/27/2016"
     ms.author="torsteng" />
 
-# Azure SQL Database 彈性資料庫查詢概觀 (預覽)
 
-彈性資料庫查詢功能 (預覽) 可讓您跨越 Azure SQL Database 中的多個資料庫執行 Transact-SQL 查詢 (SQLDB)。它可讓您執行跨資料庫查詢以存取遠端資料表，以及將 Microsoft 和協力廠商工具 (Excel、PowerBI、Tableau 等) 連接到具有多個資料庫的資料層。這項功能可讓您將查詢相應放大到 SQL Database 中的大型資料層，並將結果透過商務智慧 (BI) 報告視覺化。
+# <a name="azure-sql-database-elastic-database-query-overview-(preview)"></a>Azure SQL Database elastic database query overview (preview)
 
-## 文件
+The elastic database query feature (in preview) enables you to run a Transact-SQL query that spans multiple databases in Azure SQL Database (SQLDB). It allows you to perform cross-database queries to access remote tables, and to connect Microsoft and third party tools (Excel, PowerBI, Tableau, etc.) to query across data tiers with multiple databases. Using this feature, you can scale out queries to large data tiers in SQL Database and visualize the results in business intelligence (BI) reports.
 
-* [開始使用跨資料庫查詢](sql-database-elastic-query-getting-started-vertical.md)
-* [所有相應放大之雲端資料庫的報告](sql-database-elastic-query-getting-started.md)
-* [跨分區化的雲端資料庫執行查詢 (垂直分割)](sql-database-elastic-query-horizontal-partitioning.md)
-* [對不同結構描述的雲端資料庫執行查詢 (垂直分割)](sql-database-elastic-query-vertical-partitioning.md)
-* [sp\_execute\_remote](https://msdn.microsoft.com/library/mt703714)
+## <a name="documentation"></a>Documentation
+
+* [Get started with cross-database queries](sql-database-elastic-query-getting-started-vertical.md)
+* [Report across scaled-out cloud databases](sql-database-elastic-query-getting-started.md)
+* [Query across sharded cloud databases (horizontally partitioned)](sql-database-elastic-query-horizontal-partitioning.md)
+* [Query across cloud databases with different schemas (vertically partitioned)](sql-database-elastic-query-vertical-partitioning.md)
+* [sp\_execute \_remote](https://msdn.microsoft.com/library/mt703714)
 
 
-## 為何使用彈性的查詢？
+## <a name="why-use-elastic-queries?"></a>Why use elastic queries?
 
 **Azure SQL Database**
 
-完全在 T-SQL 中跨 Azure SQL Database 執行查詢。如此即可進行遠端資料庫的唯讀查詢。目前內部部署 SQL Server 客戶可選擇使用三和四部分的名稱或 SQL DB 的連結伺服器來移轉應用程式。
+Query across Azure SQL databases completely in T-SQL. This allows for read-only querying of remote databases. This provides an option for current on-premises SQL Server customers to migrate applications using three- and four-part names or linked server to SQL DB.
 
-**在標準層上提供**：除了進階效能層以外，標準效能層現在也支援彈性查詢。請參閱下面「預覽限制」一節中較低效能層級的效能限制。
+**Available on standard tier** Elastic query is supported on the Standard performance tier in addition to the Premium performance tier. See the section on Preview Limitations below on performance limitations for lower performance tiers.
 
-**推送到遠端資料庫**
+**Push to remote databases**
 
-彈性查詢現在可以將 SQL 參數發送至遠端資料庫以供執行。
+Elastic queries can now push SQL parameters to the remote databases for execution.
 
-**預存程序執行**
+**Stored procedure execution**
 
-使用 [sp\_execute\_remote](https://msdn.microsoft.com/library/mt703714) 執行遠端預存程序呼叫或遠端函式。
+Execute remote stored procedure calls or remote functions using [sp\_execute \_remote](https://msdn.microsoft.com/library/mt703714).
 
-**彈性**
+**Flexibility**
 
-具有彈性查詢的外部資料表現在可以參考具有不同結構描述或資料表名稱的遠端資料表。
+External tables with elastic query can now refer to remote tables with a different schema or table name.
 
-## 彈性資料庫查詢案例
+## <a name="elastic-database-query-scenarios"></a>Elastic database query scenarios
 
-目標是協助查詢案例便利進行，其中由多個資料庫提供資料列給單一整體結果。查詢可以由使用者或應用程式直接撰寫，或透過連接到資料庫的工具來間接撰寫。使用商業 BI 或資料整合工具 (或無法變更的任何應用程式) 建立報告時，這特別有用。透過彈性查詢，您可以在 Excel、PowerBI、Tableau 或 Cognos 等工具中使用熟悉的 SQL Server 連線體驗，進而查詢多個資料庫。彈性查詢可讓您透過 SQL Server Management Studio 或 Visual Studio 所發出的查詢，輕鬆存取整個資料庫集合，並協助更方便從 Entity Framework 或其他 ORM 環境執行跨資料庫查詢。圖 1 顯示的案例中，現有的雲端應用程式 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)) 根據相應放大的資料層建置，而彈性查詢用於跨資料庫報告。
+The goal is to facilitate querying scenarios where multiple databases contribute rows into a single overall result. The query can either be composed by the user or application directly, or indirectly through tools that are connected to the database. This is especially useful when creating reports, using commercial BI or data integration tools—or any application that cannot be changed. With an elastic query, you can query across several databases using the familiar SQL Server connectivity experience in tools such as Excel, PowerBI, Tableau, or Cognos.
+An elastic query allows easy access to an entire collection of databases through queries issued by SQL Server Management Studio or Visual Studio, and facilitates cross-database querying from Entity Framework or other ORM environments. Figure 1 shows a scenario where an existing cloud application (which uses the [elastic database client library](sql-database-elastic-database-client-library.md)) builds on a scaled-out data tier, and an elastic query is used for cross-database reporting.
 
-**圖 1** 相應放大的資料層上使用的彈性資料庫查詢
+**Figure 1** Elastic database query used on scaled-out data tier
 
-![向相應放大資料層上使用的彈性資料庫查詢][1]
+![Elastic database query used on scaled-out data tier][1]
 
-彈性查詢的客戶案例可依下列拓撲區分特性：
+Customer scenarios for elastic query are characterized by the following topologies:
 
-* **垂直資料分割 - 跨資料庫查詢** (拓撲 1)：資料會垂直分割於資料層中的數個資料庫。一般而言，不同的資料表集位於不同的資料庫。這表示不同資料庫的結構描述不同。比方說，庫存的所有資料表都位於一個資料庫上，而所有會計相關資料表則位於另一個資料庫上。此拓撲的常見使用案例會要求使用者跨多個資料庫中的資料表進行查詢或編譯報表。
-* **水平資料分割 - 分區化** (拓撲 2)：資料會進行水平分割，以將資料列分散於相應放大的資料層。使用此方法時，所有參與資料庫的結構描述都相同。這個方法也稱為「分區化」。使用 (1) 彈性資料庫工具程式庫或 (2) 自行分區化可以執行和管理分區化。彈性查詢用於查詢或編譯跨多個分區的報表。
+* **Vertical partitioning – Cross-database queries** (Topology 1): The data is partitioned vertically between a number of databases in a data tier. Typically, different sets of tables reside on different databases. That means that the schema is different on different databases. For instance, all tables for inventory are on one database while all accounting-related tables are on a second database. Common use cases with this topology require one to query across or to compile reports across tables in several databases.
+* **Horizontal Partitioning – Sharding** (Topology 2): Data is partitioned horizontally to distribute rows across a scaled out data tier. With this approach, the schema is identical on all participating databases. This approach is also called “sharding”. Sharding can be performed and managed using (1) the elastic database tools libraries or (2) self-sharding. An elastic query is used to query or compile reports across many shards.
 
-> [AZURE.NOTE] 彈性資料庫查詢最適合可在資料層執行大部分處理的非經常性報告案例。對於繁重的報告工作負載或有更多複雜查詢的資料倉儲案例，也請考慮使用 [Azure SQL 資料倉儲](https://azure.microsoft.com/services/sql-data-warehouse/)。
+> [AZURE.NOTE] Elastic database query works best for occasional reporting scenarios where most of the processing can be performed on the data tier. For heavy reporting workloads or data warehousing scenarios with more complex queries, also consider using [Azure SQL Data Warehouse](https://azure.microsoft.com/services/sql-data-warehouse/).
 
 
-## 彈性資料庫查詢案例
+## <a name="elastic-database-query-topologies"></a>Elastic Database query topologies
 
-### 拓撲 1：垂直資料分割 - 跨資料庫查詢
+### <a name="topology-1:-vertical-partitioning-–-cross-database-queries"></a>Topology 1: Vertical partitioning – cross-database queries
 
-若要開始撰寫程式碼，請參閱[開始使用跨資料庫查詢 (垂直資料分割)](sql-database-elastic-query-getting-started-vertical.md)。
+To begin coding, see [Getting started with cross-database query (vertical partitioning)](sql-database-elastic-query-getting-started-vertical.md).
 
-彈性查詢可讓位於 SQLDB 資料庫中的資料可供其他 SQLDB 資料庫使用。如此一來，來自一個資料庫的查詢即可參考任何其他遠端 SQLDB 資料庫中的資料表。第一個步驟是定義每個遠端資料庫的外部資料來源。外部資料來源已定義於本機資料庫中，您想要從中取得遠端資料庫上資料表的存取權。遠端資料庫不需要進行任何變更。在不同資料庫有不同結構描述的典型垂直資料分割案例中，彈性查詢可用來實作常見使用案例，例如存取參考資料和跨資料庫查詢。
+An elastic query can be used to make data located in a SQLDB database available to other SQLDB databases. This allows queries from one database to refer to tables in any other remote SQLDB database. The first step is to define an external data source for each remote database. The external data source is defined in the local database from which you want to gain access to tables located on the remote database. No changes are necessary on the remote database. For typical vertical partitioning scenarios where different databases have different schemas, elastic queries can be used to implement common use cases such as access to reference data and cross-database querying.
 
-**參考資料**：拓撲 1 用於參考資料管理。在下圖中，包含參考資料的兩個資料表 (T1 和 T2) 會保留在專用的資料庫上。利用彈性查詢，您現在可以在遠端從其他資料庫存取資料表 T1 和 T2，如圖所示。如果參考資料表很小或參考資料表的遠端查詢有選擇性述詞，則使用拓撲 1。
+**Reference data**: Topology 1 is used for reference data management. In the figure below, two tables (T1 and T2) with reference data are kept on a dedicated database. Using an elastic query, you can now access tables T1 and T2 remotely from other databases, as shown in the figure. Use topology 1 if reference tables are small or remote queries into reference table have selective predicates.
 
-**圖 2** 垂直資料分割 - 使用彈性查詢來查詢參考資料
+**Figure 2** Vertical partitioning - Using elastic query to query reference data
 
-![垂直資料分割 - 使用彈性查詢來查詢參考資料][3]
+![Vertical partitioning - Using elastic query to query reference data][3]
 
-**跨資料庫查詢**：彈性查詢能夠達成需要進行跨多個 SQLDB 資料庫查詢的使用案例。圖 3 顯示四個不同的資料庫：CRM、庫存、HR 和產品。在其中一個資料庫中執行的查詢也需要存取另一個或其他所有資料庫。利用彈性查詢，您可以在上述每個資料庫上執行一些簡單的 DDL 陳述式，針對此案例設定您的資料庫。進行此一次性設定之後，存取遠端資料表就像從 T-SQL 查詢或從 BI 工具參考本機資料表一樣簡單。如果遠端查詢未傳回大量結果，則建議使用這個方法。
+**Cross-database querying**: Elastic queries enable use cases that require querying across several SQLDB databases. Figure 3 shows four different databases: CRM, Inventory, HR and Products. Queries performed in one of the databases also need access to one or all the other databases. Using an elastic query, you can configure your database for this case by running a few simple DDL statements on each of the four databases. After this one-time configuration, access to a remote table is as simple as referring to a local table from your T-SQL queries or from your BI tools. This approach is recommended if the remote queries do not return large results.
 
-**圖 3** 垂直資料分割 - 使用彈性查詢來查詢各種資料庫
+**Figure 3** Vertical partitioning - Using elastic query to query across various databases
 
-![垂直資料分割 - 使用彈性查詢來查詢各種資料庫][4]
+![Vertical partitioning - Using elastic query to query across various databases][4]
 
-### 拓撲 2：水平資料分割 - 分區化
+### <a name="topology-2:-horizontal-partitioning-–-sharding"></a>Topology 2: Horizontal partitioning – sharding
 
-使用彈性查詢在分區化 (即水平分割) 的資料層執行報告工作時，需要[彈性資料庫分區對應](sql-database-elastic-scale-shard-map-management.md)來代表資料層的資料庫。一般而言，這種案例中只會使用單一分區對應，並以具有彈性查詢功能的專用資料庫做為報告查詢的進入點。只有這個專用的資料庫需要存取分區對應。圖 4 說明此拓撲及其彈性查詢資料庫和分區對應的組態。資料層中的資料庫可以是任何 Azure SQL Database 版本。如需有關彈性資料庫用戶端程式庫和建立分區對應的詳細資訊，請參閱[分區對應管理](sql-database-elastic-scale-shard-map-management.md)。
+Using elastic query to perform reporting tasks over a sharded, i.e., horizontally partitioned, data tier requires an [elastic database shard map](sql-database-elastic-scale-shard-map-management.md) to represent the databases of the data tier . Typically, only a single shard map is used in this scenario and a dedicated database with elastic query capabilities serves as the entry point for reporting queries. Only this dedicated database needs access to the shard map. Figure 4 illustrates this topology and its configuration with the elastic query database and shard map. The databases in the data tier can be of any Azure SQL Database version or edition. For more information about the elastic database client library and creating shard maps, see [Shard map management](sql-database-elastic-scale-shard-map-management.md).
 
-**圖 4** 水平資料分割 - 使用彈性查詢來報告分區化資料層
+**Figure 4** Horizontal partitioning - Using elastic query for reporting over sharded data tiers
 
-![水平資料分割 - 使用彈性查詢來報告分區化資料層][5]
+![Horizontal partitioning - Using elastic query for reporting over sharded data tiers][5]
 
-> [AZURE.NOTE] 專用彈性資料庫查詢資料庫必須是 SQL DB v12 資料庫。分區本身沒有任何限制。
+> [AZURE.NOTE] The dedicated elastic database query database must be a SQL DB v12 database. There are no restrictions on the shards themselves.
 
-若要開始撰寫程式碼，請參閱[開始使用彈性資料庫查詢進行水平資料分割 (分區化)](sql-database-elastic-query-getting-started.md)。
+To begin coding, see [Getting started with elastic database query for horizontal partitioning (sharding)](sql-database-elastic-query-getting-started.md).
 
-## 實作彈性資料庫查詢
+## <a name="implementing-elastic-database-queries"></a>Implementing elastic database queries
 
-下列各節討論對垂直和水平資料分割案例實作彈性查詢的步驟。這些章節也會參考更詳細的文件，以取得不同的資料分割案例。
+The steps to implement elastic query for the vertical and horizontal partitioning scenarios are discussed in the following sections. They also refer to more detailed documentation for the different partitioning scenarios.
 
-### 垂直資料分割 - 跨資料庫查詢
+### <a name="vertical-partitioning---cross-database-queries"></a>Vertical partitioning - cross-database queries
 
-下列步驟可針對需要存取位於某個遠端 SQLDB 資料庫上具有相同結構描述的某個資料表的垂直資料分割案例，設定彈性資料庫查詢：
-
-*    [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx) mymasterkey
-*    [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx) mycredential
-*    [CREATE/DROP EXTERNAL DATA SOURCE](https://msdn.microsoft.com/library/dn935022.aspx) mydatasource (類型為 **RDBMS**)
-*    [CREATE/DROP EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) mytable
-
-執行 DDL 陳述式之後，您可以存取遠端資料表 "mytable"，就像存取本機資料表一樣。Azure SQL Database 會自動開啟遠端資料庫的連線、處理您對遠端資料庫的要求，以及傳回結果。如需垂直資料分割案例所需步驟的詳細資訊，請參閱[垂直資料分割的彈性查詢](sql-database-elastic-query-vertical-partitioning.md)。
-
-### 水平資料分割 - 分區化
-
-下列步驟可針對需要存取 (通常) 位於數個遠端 SQLDB 資料庫上的一組資料表的水平資料分割案例，設定彈性資料庫查詢：
+The following steps configure elastic database queries for vertical partitioning scenarios that require access to a table located on remote SQLDB databases with the same schema:
 
 *    [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx) mymasterkey
 *    [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx) mycredential
-*    使用彈性資料庫用戶端程式庫，建立代表您的資料層的[分區對應](sql-database-elastic-scale-shard-map-management.md)。
-*    [CREATE/DROP EXTERNAL DATA SOURCE](https://msdn.microsoft.com/library/dn935022.aspx) mydatasource (類型為 **SHARD\_MAP\_MANAGER**)
+*    [CREATE/DROP EXTERNAL DATA SOURCE](https://msdn.microsoft.com/library/dn935022.aspx) mydatasource of type **RDBMS**
 *    [CREATE/DROP EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) mytable
 
-執行這些步驟後，您即可存取水平分割的資料表 "mytable"，就像存取本機資料表一樣。Azure SQL Database 會自動開啟遠端資料庫 (實際儲存資料表的位置) 的多個平行連線、處理對於遠端資料庫的要求，以及傳回結果。如需水平資料分割案例所需步驟的詳細資訊，請參閱[水平資料分割的彈性查詢](sql-database-elastic-query-horizontal-partitioning.md)。
+After running the DDL statements, you can access the remote table “mytable” as though it were a local table. Azure SQL Database automatically opens a connection to the remote database, processes your request on the remote database, and returns the results.
+More information on the steps required for the vertical partitioning scenario can be found in [elastic query for vertical partitioning](sql-database-elastic-query-vertical-partitioning.md).  
 
-## T-SQL 查詢
-一旦您已定義外部資料來源和外部資料表，您可以使用一般 SQL Server 連接字串來連接到您定義外部資料表的資料庫。您可以接著對該連線上的外部資料表執行 T-SQL 陳述式，其限制如下所述。您可以在[水平資料分割](sql-database-elastic-query-horizontal-partitioning.md)和[垂直資料分割](sql-database-elastic-query-vertical-partitioning.md)的文件主題中找到 T-SQL 查詢的詳細資訊和範例。
+### <a name="horizontal-partitioning---sharding"></a>Horizontal partitioning - sharding
 
-## 工具的連線能力
-您可以使用一般 SQL Server 連接字串，將您的應用程式、BI 或資料整合工具連接到具有外部資料表的資料庫。請確定 SQL Server 可支援做為您的工具的資料來源。連線之後，請參考彈性查詢資料庫和該資料庫中的外部資料表，就如同您會使用您的工具連接的任何其他 SQL Server 資料庫一樣。
+The following steps configure elastic database queries for horizontal partitioning scenarios that require access to a set of table that are located on (typically) several remote SQLDB databases:
 
-> [AZURE.IMPORTANT] 目前不支援使用 Azure Active Directory 與彈性查詢進行驗證。
+*    [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx) mymasterkey
+*    [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx) mycredential
+*    Create a [shard map](sql-database-elastic-scale-shard-map-management.md) representing your data tier using the elastic database client library.   
+*    [CREATE/DROP EXTERNAL DATA SOURCE](https://msdn.microsoft.com/library/dn935022.aspx) mydatasource of type **SHARD_MAP_MANAGER**
+*    [CREATE/DROP EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) mytable
 
-## 成本
+Once you have performed these steps, you can access the horizontally partitioned table “mytable” as though it were a local table. Azure SQL Database automatically opens multiple parallel connections to the remote databases where the tables are physically stored, processes the requests on the remote databases, and returns the results.
+More information on the steps required for the horizontal partitioning scenario can be found in [elastic query for horizontal partitioning](sql-database-elastic-query-horizontal-partitioning.md).
 
-彈性查詢算在 Azure SQL Database 資料庫的成本內。請注意，支援遠端資料庫與彈性查詢端點位於不同資料中心的拓撲，但從遠端資料庫輸出的資料以一般 [Azure 費率](https://azure.microsoft.com/pricing/details/data-transfers/)收費。
+## <a name="t-sql-querying"></a>T-SQL querying
+Once you have defined your external data sources and your external tables, you can use regular SQL Server connection strings to connect to the databases where you defined your external tables. You can then run T-SQL statements over your external tables on that connection with the limitations outlined below. You can find more information and examples of T-SQL queries in the documentation topics for [horizontal partitioning](sql-database-elastic-query-horizontal-partitioning.md) and [vertical partitioning](sql-database-elastic-query-vertical-partitioning.md).
 
-## 預覽限制
-* 在標準效能層上執行第一個彈性查詢最多可能需要幾分鐘的時間。需要這些時間才能載入彈性查詢功能；較高效能層級改善了載入效能。
-* 尚未支援來自 SSMS 或 SSDT 的外部資料來源或外部資料表的指令碼。
-* SQL DB 匯入/匯出還不支援外部資料來源和外部資料表。如果您需要使用匯入/匯出，請在匯出前卸除這些物件，然後在匯入後予以重新建立。
-* 彈性資料庫查詢目前僅支援外部資料表的唯讀存取。不過，您可以在定義外部資料表的資料庫上使用完整的 T-SQL 功能。這很有用，例如，使用 SELECT <column\_list> INTO <local\_table> 保存暫存結果，或在彈性查詢資料庫上定義預存程序來參考外部資料表。
-* 除了 nvarchar (max) 以外，外部資料表定義不支援 LOB 類型。若要解決此問題，您可以在將 LOB 類型轉型成 nvarchar (max) 的遠端資料庫上建立檢視表、透過此檢視表而非基底資料表定義外部資料表，然後在查詢中將它轉換回原始的 LOB 類型。
-* 目前不支援外部資料表的資料行統計資料。支援資料表統計資料，但必須以手動方式建立。
+## <a name="connectivity-for-tools"></a>Connectivity for tools
+You can use regular SQL Server connection strings to connect your applications and BI or data integration tools to databases that have external tables. Make sure that SQL Server is supported as a data source for your tool. Once connected, refer to the elastic query database and the external tables in that database just like you would do with any other SQL Server database that you connect to with your tool.
 
-## 意見反應
-請在下面 Disqus、MSDN 論壇或 Stackoverflow 上，與我們分享您的彈性查詢體驗意見。我們很樂意接受關於服務的各種意見 (缺失、不完善、功能落差)。
+> [AZURE.IMPORTANT] Authentication using Azure Active Directory with elastic queries is not currently supported.
 
-## 詳細資訊
+## <a name="cost"></a>Cost
 
-您可以在下列文件中找到有關跨資料庫查詢和垂直資料分割案例的詳細資訊：
+Elastic query is included into the cost of Azure SQL Database databases. Note that topologies where your remote databases are in a different data center than the elastic query endpoint are supported, but data egress from remote databases are charged regular [Azure rates](https://azure.microsoft.com/pricing/details/data-transfers/).
 
-* [跨資料庫查詢和垂直資料分割概觀](sql-database-elastic-query-vertical-partitioning.md)
-* 請嘗試我們的逐步教學課程，立即體驗完整的實用範例：[開始使用跨資料庫查詢 (垂直資料分割)](sql-database-elastic-query-getting-started-vertical.md)。
+## <a name="preview-limitations"></a>Preview limitations
+* Running your first elastic query can take up to a few minutes on the Standard performance tier. This time is necessary to load the elastic query functionality; loading performance improves with higher performance tiers.
+* Scripting of external data sources or external tables from SSMS or SSDT is not yet supported.
+* Import/Export for SQL DB does not yet support external data sources and external tables. If you need to use Import/Export, drop these objects before exporting and then re-create them after importing.
+* Elastic database query currently only supports read-only access to external tables. You can, however, use full T-SQL functionality on the database where the external table is defined. This can be useful to, e.g., persist temporary results using, e.g., SELECT <column_list> INTO <local_table>, or to define stored procedures on the elastic query database which refer to external tables.
+* Except for nvarchar(max), LOB types are not supported in external table definitions. As a workaround, you can create a view on the remote database that casts the LOB type into nvarchar(max), define your external table over the view instead of the base table and then cast it back into the original LOB type in your queries.
+* Column statistics over external tables are currently not supported. Tables statistics are supported, but need to be created manually.
+
+## <a name="feedback"></a>Feedback
+Please share feedback on your experience with elastic queries with us on Disqus below, the MSDN forums, or on Stackoverflow. We are interested in all kinds of feedback about the service (defects, rough edges, feature gaps).
+
+## <a name="more-information"></a>More information
+
+You can find more information on the cross-database querying and vertical partitioning scenarios in the following documents:
+
+* [Cross-database querying and vertical partitioning overview](sql-database-elastic-query-vertical-partitioning.md)
+* Try our step-by-step tutorial to have a full working example running in minutes: [Getting started with cross-database query (vertical partitioning)](sql-database-elastic-query-getting-started-vertical.md).
 
 
-以下可取得更多有關水平資料分割和分區化案例的資訊：
+More information on horizontal partitioning and sharding scenarios is available here:
 
-* [水平資料分割和分區化概觀](sql-database-elastic-query-horizontal-partitioning.md)
-* 請嘗試我們的逐步教學課程，立即體驗完整的實用範例：[開始使用彈性資料庫查詢進行垂直資料分割 (分區化)](sql-database-elastic-query-getting-started.md)。
+* [Horizontal partitioning and sharding overview](sql-database-elastic-query-horizontal-partitioning.md)
+* Try our step-by-step tutorial to have a full working example running in minutes: [Getting started with elastic database query for horizontal partitioning (sharding)](sql-database-elastic-query-getting-started.md).
 
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
@@ -171,4 +175,8 @@
 
 <!--anchors-->
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

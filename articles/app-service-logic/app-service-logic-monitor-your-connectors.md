@@ -1,130 +1,131 @@
 <properties
-	pageTitle="在 App Service 中管理和監視連接器和 API Apps | Microsoft Azure"
-	description="在 Logic Apps 中檢視連接器和 API Apps 的效能；microservices 架構"
-	services="app-service\logic"
-	documentationCenter=".net,nodejs,java"
-	authors="MandiOhlinger"
-	manager="dwrede"
-	editor="cgronlun"/>
+    pageTitle="Manage and Monitor your Connectors and API Apps in App Service | Microsoft Azure"
+    description="View performance of your Connectors and API Apps in Logic Apps; microservices architecture"
+    services="app-service\logic"
+    documentationCenter=".net,nodejs,java"
+    authors="MandiOhlinger"
+    manager="anneta"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="logic-apps"
-	ms.workload="integration"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/28/2016"
-	ms.author="mandia"/>
+    ms.service="logic-apps"
+    ms.workload="integration"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/18/2016"
+    ms.author="mandia"/>
 
-# 管理和監視內建 API 應用程式和連接器
 
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+# <a name="manage-and-monitor-your-built-in-api-apps-and-connectors"></a>Manage and Monitor your built-in API Apps and Connectors
 
-您已建立一個內建 API 應用程式。接下來呢？
+>[AZURE.NOTE] This version of the article applies to logic apps 2014-12-01-preview schema version.
 
-在 Azure 中，每個 API 應用程式都是裝載在 Azure 上的個別網站。因此，您可以輕鬆地查看提出多少要求，以及查看連接器使用多少資料。您也可以備份 API 應用程式、建立警示、啟用 Tinfoil 安全性，以及加入使用者和角色。
+You created a built-in API App. Now what?
 
-本主題說明一些管理 API 應用程式的不同選項。
+In Azure, every API App is a separate web site hosted on Azure. As a result, you can easily see how many requests are made, and see how much data is being used by the connector. You can also backup your API App, create alerts, enable Tinfoil Security, and add users and roles.
 
-若要查看這些內建功能，請在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中開啟 API 應用程式。如果 API 應用程式是在儀表板上，則請選取它以開啟屬性。您也可以依序選取 [瀏覽]、[API Apps] 和您的 API 應用程式：
+This topic describes some of the different options to manage your API App.
+
+To see these built-in features, open your API App in the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040). If the API App is on your startboard, select it to open the properties. You can also select **Browse**, select **API Apps**, and then select your API App:
 
 ![][browse]
 
-## 查看您所輸入的內容
+## <a name="see-the-properties-you-entered"></a>See the properties you entered
 
-當您開啟 API 應用程式時，有幾個功能和工作可用：
+When you open the API App, there are several features and tasks available:
 
 ![][settings]
 
-您可以：
+You can:
 
-- **設定**：顯示 API 應用程式的特定資訊 (包括您的訂用帳戶詳細資料)，並列出可存取您 API 應用程式的使用者。您也可以使用其他功能中的 [調整規模] 功能來增加或減少 API 應用程式執行個體數目。
-- 使用 [開始] 和 [停止] 按鈕控制 API 應用程式。
-- 對 API 應用程式所使用的基礎檔案進行產品更新時，您可以按一下 [更新] 取得最新版本。例如，如果有 Microsoft 所發行的修正程式或安全性更新，則按一下 [更新] 會自動更新 API 應用程式以納入此修正程式。
-- 根據 API 應用程式的資料使用狀況，選取 [變更方案] 進行升級或降級。您也可以使用這項功能查看資料使用狀況。
-- 當您建立具有資料表的連接器 (例如 SQL 連接器) 時，可以選擇性地輸入要連接的資料表名稱。會自動建立以資料表為基礎的結構描述，按一下 [下載結構描述] 即可使用。您之後可以使用這個下載的結構描述來建立轉換或對應。
+- **Settings** shows specific information on the API App, including your subscription details, and lists the users who have access to your API app. You can also increase or decrease the number of instances of your API App using the Scale feature; among other features.
+- Use the **Start** and **Stop** buttons to control the API App.
+- When product updates are made to the underlying files used by your API App, you can click **Update** to get the latest versions. For example, if there is a fix or a security update released by Microsoft, clicking **Update** automatically updates your API App to include this fix.
+- Select **Change Plan** to upgrade or downgrade based on the data usage of the API App. You can also use this feature to see your data usage.
+- When you create a connector that has tables, like the SQL connector, you can optionally enter a table name to connect to. A schema based on the table is automatically created and available when you click **Download Schemas**. You can then use this downloaded schema to create a transform or a map.
 
-## 變更連接器或您所輸入的 API 組態值
+## <a name="change-your-connector-or-api-configuration-values-you-entered"></a>Change your connector or API configuration values you entered
 
-設定或建立您所建置的連接器之後，即可變更您輸入的值。例如，如果您已設定 SQL 連接器，並且想要變更 SQL Server 名稱或資料表名稱，則可以在您連接器的 API 應用程式刀鋒視窗中進行。
+After you configured or created your built-connector, you can change the values you entered. For example, if you configured the SQL Connector and you want to change the SQL Server name or table name, you can do this in the API App blade for your connector.
 
-步驟包括：
+Steps include:
 
-1. 開啟連接器或 API 應用程式。這麼做之後，[API 應用程式] 刀鋒視窗隨即開啟。
-2. 在 [程式集] 中，按一下主機屬性下的超連結。超連結的命名類似 *slackconnector* 或 *microsoftsqlconnector123*：
+1. Open your connector or API App. When you do, the API App blade opens.
+2. In **Essentials**, click the hyperlink under the Host property. The hyperlink is named something like *slackconnector* or *microsoftsqlconnector123*:
 
-	![][apiapphost]
+    ![][apiapphost]
 
-3. 在 [API 應用程式主機] 刀鋒視窗中，選取 [設定]。在 [設定] 刀鋒視窗中，選取 [應用程式設定]。您的組態值會列在 [應用程式設定] 下：
+3. In the API App Host blade, select **Settings**. In the Settings blade, select **Application Settings**. Your configuration values are listed under **App Settings**:
 
-	![][hostsettings]
+    ![][hostsettings]
 
-4. 按一下您要變更的設定，並輸入新值，然後 [儲存] 您的變更。
+4. Click the setting you want to change, enter the new value, and **Save** your changes.
 
 
-## 安裝混合式連線管理員 - 選擇性
+## <a name="install-the-hybrid-connection-manager---optional"></a>Install the Hybrid Connection Manager - Optional
 
 ![][hcsetup]
 
-Hybrid Connection Manager 可讓您連線至內部部署系統 (例如 SQL Server 或 SAP)。此混合式連線使用 Azure 服務匯流排連線，並控制 Azure 資源與內部部署資源之間的安全性。
+The Hybrid Connection Manager gives you the ability to connect to an on-premises system, like SQL Server or SAP. This hybrid connectivity uses Azure Service Bus to connect and to control the security between your Azure resources and your on-premises resources.
 
-請參閱[在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)。
+See [Using the Hybrid Connection Manager in Azure App Service](app-service-logic-hybrid-connection-manager.md).
 
-> [AZURE.NOTE] 只有當您連接到防火牆後方的內部部署資源時，才需要混合式連線管理員。如果您未連接至內部部署系統，則混合連線管理員可能不會列在連接器刀鋒視窗中。
+> [AZURE.NOTE] Hybrid Connection Manager is required only if you are connecting to an on-premises resource behind your firewall. If you are not connecting to an on-premises system,  the Hybrid Connection Manager may not be listed in your connector blade.
 
-## 監視效能
-效能度量是內建功能，並隨附於您所建立的每個 API 應用程式。這些度量專屬於 Azure 中所裝載的 API 應用程式。範例度量：
+## <a name="monitor-the-performance"></a>Monitor the performance
+Performance metrics are built-in features and included with every API App you create. These metrics are specific to your API App hosted in Azure. Sample metrics:
 
 ![][monitoring]
 
-您可以：
+You can:
 
-- 選取 [**要求和錯誤**]，加入包括已知 HTTP 錯誤代碼的不同效能度量 (例如 200、400 或 500 HTTP 狀態碼)。您也可以查看回應時間、對 API 應用程式提出多少要求，以及有多少輸入資料和輸出資料。根據效能度量，如果度量超出您選擇的臨界值，則可以建立電子郵件警示。
-- 在 [使用情況] 中，您可以查看 API 應用程式使用多少 [CPU]、檢閱目前 \[使用量配額] \(MB)，以及查看根據成本層而定的最大資料使用量。[預估的花費] 可協助您判斷執行 API 應用程式的潛在成本。
-- 選取 [**程序**] 開啟程序總管。這會顯示 Web 執行個體和其屬性 (包括執行緒計數和記憶體使用量)。
+- Select **Requests and errors** to add different performance metrics including commonly-known HTTP error codes, like 200, 400, or 500 HTTP status codes. You can also see response times,  see how many requests are made to the API App, and see how much data comes in and how much data goes out. Based on the performance metrics, you can create email Alerts if a metric exceeds a threshold of your choosing.
+- In **Usage**, you can see how much **CPU** is used by the API App, review the current **Usage Quota** in MB, and see your maximum data usage based on your cost tier. **Estimated spend**  can help you determine the potential costs of running your API App.
+- Select **Processes** to open Process Explorer. This shows your web instances and their properties, including thread count and memory usage.
 
-使用這些工具，您可以根據業務需求來判斷應該調升或調降 App Service 方案的規模。這些都是入口網站的內建功能，並不需要額外工具。
+Using these tools, you can determine if the App Service Plan should be scaled up or scaled down, based on your business needs. These features are built-in to the portal with no additional tools required.
 
-## 控制安全性
+## <a name="control-the-security"></a>Control the security
 
-API 應用程式使用以角色為基礎的安全性。這些角色會套用至整個 Azure 經驗 (包括 API 應用程式和其他 Azure 資源)。角色包括：
+API Apps use role-based security. These roles apply to the entire Azure experience, including API Apps and other Azure resources. The roles include:
 
-角色 | 說明
+Role | Description
 --- | ---
-擁有者 | 可以完整存取管理經驗，也可以將存取權授與其他使用者或群組。
-參與者 | 可以完整存取管理經驗。無法將存取權授與其他使用者或群組。
-讀取者 | 可以檢視密碼以外的所有資源。
-使用者存取系統管理員 | 可以檢視所有資源、建立/管理角色，以及建立/管理支援票證。
+Owner | Have full access to the management experience and can give access to other users or groups.
+Contributor | Have full access to the management experience. Cannot give access to other users or groups.
+Reader | Can view all resources except secrets.
+User Access Administrator | Can view all resources, create/manage roles, and create/manage support tickets.
 
-請參閱 [Microsoft Azure 入口網站中以角色為基礎的存取控制](../active-directory/role-based-access-control-configure.md)。
+See [Role-based access control in the Microsoft Azure portal](../active-directory/role-based-access-control-configure.md).
 
-您可以輕鬆地加入使用者，並將 API 應用程式的特定角色指派給他們。入口網站會顯示具有存取權的使用者和其獲指派角色：
+You can easily add users and assign them specific roles to your API App. The portal shows you the users that have access and their assigned role:
 
-![][access]
+![][access]  
 
-- 選取 [使用者] 加入使用者、指派角色，以及移除使用者。
-- 選取 [角色] 以查看特定角色的所有使用者、將使用者加入角色，以及從角色中移除使用者。
+- Select **Users** to add a user, assign a role, and remove a user.
+- Select **Roles** to see all the users in a specific role, add a user to a role, and remove a user from a role.
 
 
-## 其他不錯的工具
-- 選取 [API 定義]，開啟針對特定 API 應用程式自動建立的 Swagger 檔案。
-- 選取 [相依性] 以檢視您 API 應用程式所需的檔案。例如，如果您使用 SAP 連接器，則會在內部部署混合式連線管理員上安裝一些額外檔案。這些相依性顯示於 [API 應用程式] 刀鋒視窗中。
+## <a name="more-good-stuff"></a>More Good Stuff
+- Select **API definition** to open the automatically-created Swagger file for your specific API app.
+- Select **Dependencies** to view the files required by your API App. For example, if you're using the SAP connector, you install some additional files on the on-premises Hybrid Connection Manager. These dependencies are shown in your API app blade.
 
->[AZURE.IMPORTANT] 如果您開啟 API 應用程式屬性，並查看 [程式集] 下方，則會有可開啟新刀鋒視窗的 [主機] 和 [閘道] 連結：
+>[AZURE.IMPORTANT] When you open your API app properties and look under **Essentials**, there are **Host** and **Gateway** links that open new blades:
 >
 > ![][host]
 >
->這些屬性專屬於裝載您 API 應用程式的網站。使用內建 API 應用程式或連接器時，這些屬性大部分並未實際套用，因此建議您不要更新這些屬性。如果您已在 Visual Studio 中建立專屬 API 應用程式，並將其部署至 Azure 訂用帳戶，則可以使用 [主機] 和 [閘道] 刀鋒視窗。<br/><br/>
+>These properties are specific to the website that hosts your API App. When using a built-in API App or connector, most of these properties don't really apply and we recommend that you  don't update these properties. If you created your own API App in Visual Studio and deployed it to your Azure subscription, then you can use the Host and Gateway blades. <br/><br/>
 
 
->[AZURE.NOTE] 若要在註冊 Azure 帳戶之前開始使用 Logic Apps，請移至[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。您可以建立短期的入門邏輯應用程式。不需要信用卡，無需承諾。
+>[AZURE.NOTE] To get started with Logic Apps before signing up for an Azure account, go to [Try Logic App](https://tryappservice.azure.com/?appservice=logic). You can create a short-lived starter logic app. No credit cards required and no commitments.
 
-## 閱讀更多資訊
+## <a name="read-more"></a>Read More
 
-[監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)<br/> 
-[App Service 中的連接器和 API 應用程式清單](app-service-logic-connectors-list.md)<br/> 
-[Microsoft Azure 入口網站中以角色為基礎的存取控制](../active-directory/role-based-access-control-configure.md)<br/>
-[在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)
+[Monitor your Logic Apps](app-service-logic-monitor-your-logic-apps.md)<br/>
+[Connectors and API Apps List in App Service](app-service-logic-connectors-list.md)<br/>
+[Role-based access control in the Microsoft Azure portal](../active-directory/role-based-access-control-configure.md)<br/>
+[Using the Hybrid Connection Manager in Azure App Service](app-service-logic-hybrid-connection-manager.md)
 
 
 <!--Image references-->
@@ -137,4 +138,8 @@ API 應用程式使用以角色為基礎的安全性。這些角色會套用至�
 [hostsettings]: ./media/app-service-logic-monitor-your-connectors/hostsettings.png
 [apiapphost]: ./media/app-service-logic-monitor-your-connectors/apiapphost.png
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

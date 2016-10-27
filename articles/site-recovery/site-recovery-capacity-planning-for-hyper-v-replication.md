@@ -1,148 +1,152 @@
 <properties
-	pageTitle="執行 Site Recovery 的 Hyper-V 容量規劃工具 | Microsoft Azure"
-	description="本文包含有關使用 Azure Site Recovery 的 Hyper-V 容量規劃工具的指示"
-	services="site-recovery"
-	documentationCenter="na"
-	authors="rayne-wiselman"
-	manager="jwhit"
-	editor="" />
+    pageTitle="Run the Hyper-V capacity planner tool for Site Recovery | Microsoft Azure"
+    description="This article contains instructions for using the Hyper-V capacity planner tool for Azure Site Recovery"
+    services="site-recovery"
+    documentationCenter="na"
+    authors="rayne-wiselman"
+    manager="jwhit"
+    editor="" />
 <tags
-	ms.service="site-recovery"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="storage-backup-recovery"
-	ms.date="07/12/2016"
-	ms.author="raynew" />
-
-# 執行 Site Recovery 的 Hyper-V 容量規劃工具
-
-在 Azure Site Recovery 部署的過程中，您需要找出複寫和頻寬需求。Site Recovery 的 Hyper-V 容量規劃工具可協助您找出 Hyper-V 虛擬機器複寫的複寫和頻寬需求。
+    ms.service="site-recovery"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="storage-backup-recovery"
+    ms.date="07/12/2016"
+    ms.author="raynew" />
 
 
-本文說明如何執行 Hyper-V 容量規劃工具。此工具應該搭配其他容量規劃工具及 [Site Recovery 的容量規劃](site-recovery-capacity-planner.md)中說明的相關資訊一起使用。
+# <a name="run-the-hyper-v-capacity-planner-tool-for-site-recovery"></a>Run the Hyper-V capacity planner tool for Site Recovery
+
+As part of your Azure Site Recovery deployment you'll need to figure out your replication and bandwidth requirements. The Hyper-V capacity planner tool for Site Recovery helps you to figure out your replication and bandwidth requirements for Hyper-V virtual machine replication.
 
 
-## 開始之前
-
-您會在主要網站中的 Hyper-V 伺服器或叢集節點上執行工具。若要執行 Hyper-V 主機伺服器需要的工具：
-
-- 作業系統：Windows Server® 2012 或 Windows Server® 2012 R2
-- 記憶體：20 MB (最低要求)
-- CPU：5% 額外負荷 (最低要求)
-- 磁碟空間：5 MB (最低要求)
-
-執行工具之前，您必須準備主要網站。如果您在兩個內部部署網站之間複寫，且想要檢查頻寬，您也必須準備複本伺服器。
+This article describes how to run the Hyper-V capacity planner tool. This tool should be used together with the other capacity planning tools and information described in [capacity planning for Site Recovery](site-recovery-capacity-planner.md).
 
 
-## 步驟 1：準備主要網站
-1. 在主要網站上製作您要複寫的所有 Hyper-V 虛擬機器，和它們所在的 Hyper-V 主機/叢集清單。此工具每次可針對多個獨立主機或單一叢集執行，但是不能同時執行。也必須針對每個作業系統分別執行，因此您應該收集並記下 Hyper-V 伺服器，如下所示：
+## <a name="before-you-start"></a>Before you start
 
-  - Windows Server ® 2012 獨立伺服器
-  - Windows Server ® 2012 叢集
-  - Windows Server ® 2012 R2 獨立伺服器
-  - Windows Server ® 2012 R2 叢集
+You run the tool on a Hyper-V server or cluster node in your primary site. To run the tool the Hyper-V host servers needs:
 
-3. 在所有 Hyper-V 主機和叢集上啟用 WMI 遠端存取。在每個伺服器/叢集上執行此命令，確定已設定防火牆規則和使用者權限：
+- Operating system: Windows Server® 2012 or Windows Server® 2012 R2
+- Memory: 20 MB (minimum)
+- CPU: 5 percent overhead (minimum)
+- Disk space: 5 MB (minimum)
+
+Before you run the tool you'll need to prepare the primary site. If you're replicating between two on-premises sites and you want to check bandwidth, you'll need to prepare a replica server as well.
+
+
+## <a name="step-1:-prepare-the-primary-site"></a>Step 1: Prepare the primary site
+1. On the primary site make a list of all of the Hyper-V virtual machines you want to replicate and the Hyper-V hosts/clusters on which they're located. The tool can run each time for multiple standalone hosts, or for a single cluster but not both together. It also needs to run separately for each operating system, so you should gather and note your Hyper-V servers as follows:
+
+  - Windows Server® 2012 standalone servers
+  - Windows Server® 2012 clusters
+  - Windows Server® 2012 R2 standalone servers
+  - Windows Server® 2012 R2 clusters
+
+3. Enable remote access to WMI on all the Hyper-V hosts and clusters. Run this command on each server/cluster to make sure firewall rules and user permissions are set:
 
         netsh firewall set service RemoteAdmin enable
 
-5. 在伺服器和叢集上啟用效能監視，如下所示：
+5. Enable performance monitoring on servers and clusters, as follows:
 
-  - 開啟 [Windows 防火牆] 與 [進階安全性] 嵌入式管理單元，然後啟用下列輸入規則：**COM+ 網路存取 (DCOM-IN)**，以及「遠端事件記錄檔管理」群組中的所有規則。
+  - Open the Windows Firewall with the **Advanced Security** snapin, and then enable the following inbound rules: **COM+ Network Access (DCOM-IN)** and all rules in the **Remote Event Log Management group**.
 
-## 步驟 2：準備複本伺服器 (內部部署至內部部署複寫)
+## <a name="step-2:-prepare-a-replica-server-(on-premises-to-on-premises-replication)"></a>Step 2: Prepare a replica server (on-premises to on-premises replication)
 
-如果您要複寫至 Azure，就不需要執行這項操作。
+You don't need to do this if you're replicating to Azure.
 
-我們建議您設定一部 Hyper-V 主機做為復原伺服器，以便虛擬 VM 可以複寫到這部主機以檢查頻寬。您可以略過這個步驟，但是如果不執行這項作業，就法測量頻寬。
+We recommend you set up a single Hyper-V host as a recovery server so that a dummy VM can be replicated to it to check bandwidth.  You can skip this but you won't be able to measure bandwidth unless you do it.
 
-1. 如果您想要使用叢集節點做為複本，請設定 Hyper-V 複本代理人：
+1. If you want to use a cluster node as the replica configure Hyper-V Replica broker:
 
-	- 在 [**伺服器管理員**] 中，開啟 [**容錯移轉叢集管理員**]。
-	- 連接到叢集，反白顯示叢集名稱，然後按一下 [動作] > [設定角色] 以開啟 [高可用性] 精靈。
-	- 在 [選取角色] 中，選取 [Hyper-V 複本代理人]。在精靈中提供 [NetBIOS 名稱] 和 [IP 位址] 做為叢集的連接點 (稱為用戶端存取點)。會設定 [Hyper-V 複本代理人]，產生您應該記下的用戶端存取點名稱。
-	- 確認 Hyper-V 複本代理人角色順利連線，而且可以進行叢集所有節點之間的容錯移轉。若要這樣做，請以滑鼠右鍵按一下角色，指向 [**移動**]，然後按一下 [**選取節點**]。選取節點 > [**確定**]。
-	- 如果您使用憑證型驗證，請確定每個叢集節點與用戶端存取點都有安裝憑證。
-2.  啟用複本伺服器：
+    - In **Server Manager**, open **Failover Cluster Manager**.
+    - Connect to the cluster, highlight the cluster name and click **Actions** > **Configure Role** to open the High Availability wizard.
+    - In **Select Role** click **Hyper-V Replica Broker**. In the wizard provide a **NetBIOS name** and **IP address** to be used as the connection point to the cluster (called a client access point). The **Hyper-V Replica Broker** will be configured, resulting in a client access point name that you should note.
+    - Verify that the Hyper-V Replica Broker role comes online successfully and can fail over between all nodes of the cluster. To do this, right click the role, point to **Move**, and then click **Select Node**. Select a node > **OK**.
+    - If you're using certificate-based authentication, make sure each cluster node and the client access point all have the certificate installed.
+2.  Enable a replica server:
 
-	- 對於叢集開啟 [失敗叢集管理員]，連線到叢集，然後按一下 [角色] > 選取角色 > [複寫設定] > [啟用此叢集做為複本伺服器]。請注意，如果使用叢集做為複本，您也必須在主要網站的叢集上顯示 Hyper-V 複本代理人角色。
-	- 若是獨立伺服器，請開啟 [Hyper-V 管理員]。在 [動作] 窗格中，按一下您想要啟用的伺服器的 [Hyper-V 設定]，然後在 [複寫組態] 中按一下 [啟用這台電腦做為複本伺服器]。
-3. 設定驗證：
+    - For a cluster open Failure Cluster Manager, connect to the cluster and click **Roles** > select role > **Replication Setting**s > **Enable this cluster as a Replica server**. Note that if you're using a cluster as the replica you'll need to have the Hyper-V Replica Broker role present on the cluster in the primary site as well.
+    - For a standalone server open Hyper-V Manager. In the **Actions** pane, click **Hyper-V Settings** for the server you want to enable, and in **Replication Configuration** click **Enable this computer as a Replica server**.
+3. Set up authentication:
 
-	- 在 [驗證和連接埠] 中選取如何驗證主要伺服器及驗證連接埠。如果您使用憑證，按一下 [選取憑證] 以選取其中一個。如果主要和復原 Hyper-V 主機都位於相同網域或信任的網域，則使用 Kerberos。針對不同的網域或工作群組部署使用憑證。
-	- 在 [授權與存放裝置] 區段中，允許**任何**驗證 (主要) 伺服器將複寫資料傳送到這個複本伺服器。按一下 [**確定**] 或 [**套用**]。
+    - In **Authentication and ports** select how to authenticate the primary server and the authentication ports. If you're using certificate click **Select Certificate** to select one. Use Kerberos if the primary and recovery Hyper-V hosts are in the same domain, or trusted domains. Use certificates for different domains or a workgroup deployment.
+    - In **Authorization and Storage** section, allow **any** authenticated (primary) server to send replication data to this replica server. Click **OK** or **Apply**.
 
-	![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image1.png)
+    ![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image1.png)
 
-	- 執行 **netsh http show servicestate** 來檢查接聽程式是否針對您指定的通訊協定/連接埠執行：
-4. 設定防火牆：Hyper-V 安裝期間會建立防火牆規則，以允許預設連接埠的流量 (443 上的 HTTPS，80 上的 Kerberos)。啟用這些規則，如下所示：
+    - Run **netsh http show servicestate** to check that the listener is running for the protocol/port you specified:  
+4. Set up firewalls. During Hyper-V installation firewall rules are created to allow traffic on the default ports (HTTPS on 443, Kerberos on 80). Enable these rules as follows:
 
-		- Certificate authentication on cluster (443): **Get-ClusterNode | ForEach-Object {Invoke-command -computername \$\_.name -scriptblock {Enable-Netfirewallrule -displayname "Hyper-V Replica HTTPS Listener (TCP-In)"}}**
-		- Kerberos authentication on cluster (80): **Get-ClusterNode | ForEach-Object {Invoke-command -computername \$\_.name -scriptblock {Enable-Netfirewallrule -displayname "Hyper-V Replica HTTP Listener (TCP-In)"}}**
-		- Certificate authentication on standalone server: **Enable-Netfirewallrule -displayname "Hyper-V Replica HTTPS Listener (TCP-In)"**
-		- Kerberos authentication on standalone server: **Enable-Netfirewallrule -displayname "Hyper-V Replica HTTP Listener (TCP-In)"**
+        - Certificate authentication on cluster (443): **Get-ClusterNode | ForEach-Object {Invoke-command -computername \$\_.name -scriptblock {Enable-Netfirewallrule -displayname "Hyper-V Replica HTTPS Listener (TCP-In)"}}**
+        - Kerberos authentication on cluster (80): **Get-ClusterNode | ForEach-Object {Invoke-command -computername \$\_.name -scriptblock {Enable-Netfirewallrule -displayname "Hyper-V Replica HTTP Listener (TCP-In)"}}**
+        - Certificate authentication on standalone server: **Enable-Netfirewallrule -displayname "Hyper-V Replica HTTPS Listener (TCP-In)"**
+        - Kerberos authentication on standalone server: **Enable-Netfirewallrule -displayname "Hyper-V Replica HTTP Listener (TCP-In)"**
 
-## 步驟 3：執行容量規劃工具
+## <a name="step-3:-run-the-capacity-planner-tool"></a>Step 3: Run the capacity planner tool
 
-在準備好您的主要網站並設定復原伺服器之後，就可以執行此工具。
+After you've prepared your primary site and set up a recovery server you can run the tool.
 
-1. 從 Microsoft 下載中心[下載](https://www.microsoft.com/download/details.aspx?id=39057)工具。
-2. 從其中一個主要伺服器 (或主要叢集的其中一個節點) 執行工具。以滑鼠右鍵按一下 .exe 檔案，然後選擇 [ **以系統管理員身分執行**]。
-3. 在 [開始之前] 指定您要收集資料的時間長度。建議在實際執行期間執行工具，以確保資料具有代表性。如果您只想要驗證網路連線，可以只收集一分鐘的資料。
+1. [Download](https://www.microsoft.com/download/details.aspx?id=39057) the tool from the Microsoft Download Center.
+2. Run the tool from one of the primary servers (or one of the nodes from the primary cluster). Right-click the .exe file, and then choose **Run as administrator**.
+3. In **Before you begin** specify for how long you want to collect data. We recommend you run the tool during production hours to ensure that data is representative. If you're only trying to validate network connectivity, you can collect for a minute only.
 
-	![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image2.png)
+    ![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image2.png)
 
-4. 在 [主要網站詳細資料] 中，針對獨立主機指定伺服器名稱或 FQDN，或針對叢集指定用戶端接受點的 FQDN、叢集名稱或叢集中的任何節點，然後按 [下一步]。此工具會自動偵測它執行的伺服器名稱。此工具會挑選可以監視指定伺服器的 VM。
+4. In  **Primary site details** specify the server name or FQDN for a standalone host, or for a cluster specify the FQDN of the client accept point, cluster name, or any node in the cluster and then click **Next**. The tool automatically detects the name of the server it's running on. The tool picks up VMs that can be monitored for the specified servers.
 
-	![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image3.png)
+    ![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image3.png)
 
-5. 在 [複本網站詳細資料] 中，如果您要複寫至 Azure 或次要資料中心，且尚未設定複本伺服器，請選取 [略過複本網站的相關測試]。如果您要複寫到次要資料中心，而且已經設定好複本，在 [伺服器名稱 (或) Hyper-V 複本代理人 CAP] 中輸入獨立伺服器的 FQDN，或叢集的用戶端存取點。
+5. In **Replica Site Details** if you're replicating to Azure or if you're replicating to a secondary datacenter and haven't set up a replica server, select **Skip tests involving replica site**. If you are replicating to a secondary datacenter and you've set up a replica type in the FQDN of the standalone server or the client access point for the cluster in **Server name (or) Hyper-V Replica Broker CAP**.
 
-	![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image4.png)
+    ![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image4.png)
 
-6. 在 [擴充複本詳細資料] 中啟用 [略過擴充複本網站的相關測試]。它們不受 Site Recovery 支援。
-7. 在 [選擇要複寫的 VM] 中，工具會根據您在 [主要網站詳細資料] 頁面上指定的設定，連接到伺服器或叢集，並且顯示主要伺服器上執行的 VM 和磁碟。請注意，已針對複寫啟用 VM，不會顯示未執行的項目。選取您想要收集度量的 VM。選取 VHD 也會自動收集 VM 的資料。
-9. 如果您已設定複本伺服器或叢集，請在 [網路資訊] 中指定您認為將會用於主要和複本網站之間的近似 WAN 頻寬，如果您已設定憑證驗證，則選取憑證。
+6. In In **Extended Replica Details** enable **Skip the tests involving Extended Replica site**. They aren't supported by Site Recovery.
+7. In **Choose VMs to Replicate** the tools connects to the server or cluster and displays VMs and disks running on the primary server, in accordance with the settings you specified on the **Primary Site Details** page. Note that VMs that are already enabled for replication or that aren't running won't be displayed. Select the VMs for which you want to collect metrics. Selecting the VHDs automatically collects data for the VMs too.
+9. If you've configured a replica server or cluster, in **Network information** specify the approximate WAN bandwidth you think will be used between the primary and replica sites and select the certificates if you've configured certificate authentication.
 
-	![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image5.png)
+    ![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image5.png)
 
-10. 在 [摘要] 中檢查設定，然後按 [下一步] 以開始收集度量。工具的進度和狀態會顯示在 [計算容量] 頁面。此工具完成執行時，請按一下 [檢視報告] 以檢閱輸出。根據預設，報告和記錄檔會儲存在 **%systemdrive%\\Users\\Public\\Documents\\Capacity Planner**。
+10. In **Summary** check settings, and click **Next** to begin collecting metrics. Tool progress and status is displayed on the **Calculate Capacity** page. When the tool finishes running click **View Report** to go over the output. By default reports and logs are stored in **%systemdrive%\Users\Public\Documents\Capacity Planner**.
 
-	![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image6.png)
-
-
-## 步驟 4：解譯結果
-以下是重要度量。您可以忽略未列在這裡的度量。它們與 Site Recovery 不相關。
-
-### 內部部署至內部部署複寫
-  - 主要主機計算、記憶體上複寫的影響
-  - 主要、復原主機儲存體磁碟空間、IOPS 上複寫的影響
-  - 差異複寫所需的總頻寬 (Mbps)
-  - 主要主機和復原主機之間觀察到的網路頻寬 (Mbps)
-  - 兩個主機/叢集之間作用中平行傳輸理想數目的建議
-
-### 內部部署至 Azure 複寫
-  - 主要主機計算、記憶體上複寫的影響
-  - 主要主機儲存體磁碟空間、IOPS 上複寫的影響
-  - 差異複寫所需的總頻寬 (Mbps)
-
-## 其他資源
-
-- 如需工具的詳細資訊，請參閱隨工具下載的文件。
-- 觀看 Keith Mayer 的 [TechNet 部落格](http://blogs.technet.com/b/keithmayer/archive/2014/02/27/guided-hands-on-lab-capacity-planner-for-windows-server-2012-hyper-v-replica.aspx)上的工具的逐步解說。
-- 取得內部部署至內部部署 Hyper-V 複寫的效能測試[結果](site-recovery-performance-and-scaling-testing-on-premises-to-on-premises.md)
+    ![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image6.png)
 
 
+## <a name="step-4:-interpret-the-results"></a>Step 4: Interpret the results
+Here are the important metrics. You can ignore metrics which aren't listed here. They're not relevant for Site Recovery.
 
-## 後續步驟
+### <a name="on-premises-to-on-premises-replication"></a>On-premises to on-premises replication
+  - Impact of replication on the primary host's compute, memory
+  - Impact of replication on the primary, recovery hosts's storage disk space, IOPS
+  - Total bandwidth required for delta replication (Mbps)
+  - Observed network bandwidth between the primary host and the recovery host (Mbps)
+  - Suggestion for the ideal number of active parallel transfers between the two hosts/clusters
 
-容量規劃完成之後，您就可以開始部署 Site Recovery：
+### <a name="on-premises-to-azure-replication"></a>On-premises to Azure replication
+  - Impact of replication on the primary host's compute, memory
+  - Impact of replication on the primary host's storage disk space, IOPS
+  - Total bandwidth required for delta replication (Mbps)
 
-- [將 VMM 雲端中的 Hyper-V VM 複寫至 Azure](site-recovery-vmm-to-azure.md)
-- [將 Hyper-V VM (不使用 VMM) 複寫至 Azure](site-recovery-hyper-v-site-to-azure.md)
-- [在 VMM 站台間複寫 Hyper-V VM](site-recovery-vmm-to-vmm.md)
-- [使用 SAN 在 VMM 站台間複寫 Hyper-V VM](site-recovery-vmm-san.md)
-- [複寫單一 VMM 伺服器上的 Hyper-V VM](site-recovery-single-vmm.md)
+## <a name="more-resources"></a>More resources
 
-<!---HONumber=AcomDC_0720_2016-->
+- For detailed information about the tool read the document that accompanies the tool download.
+- Watch a walkthrough of the tool on Keith Mayer’s [TechNet blog](http://blogs.technet.com/b/keithmayer/archive/2014/02/27/guided-hands-on-lab-capacity-planner-for-windows-server-2012-hyper-v-replica.aspx).
+- [Get the results](site-recovery-performance-and-scaling-testing-on-premises-to-on-premises.md) of our performance testing for on-premises to on-premises Hyper-V replication
+
+
+
+## <a name="next-steps"></a>Next steps
+
+After you've finished capacity planning you can start deploying Site Recovery:
+
+- [Replicate Hyper-V VMs in VMM clouds to Azure](site-recovery-vmm-to-azure.md)
+- [Replicate Hyper-V VMs (without VMM) to Azure](site-recovery-hyper-v-site-to-azure.md)
+- [Replicate Hyper-V VMs between VMM sites](site-recovery-vmm-to-vmm.md)
+- [Replicate Hyper-V VMs between VMM sites with SAN](site-recovery-vmm-san.md)
+- [Replicate hyper-V VMs on single VMM server](site-recovery-single-vmm.md)
+
+
+<!--HONumber=Oct16_HO2-->
+
+

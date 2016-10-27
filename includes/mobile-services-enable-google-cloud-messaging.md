@@ -1,31 +1,35 @@
 
-1. 瀏覽至 [Google 雲端主控台](https://console.developers.google.com/project)，並使用您的 Google 帳戶認證登入。 
+1. Navigate to the [Google Cloud Console](https://console.developers.google.com/project), sign in with your Google account credentials. 
  
-2. 按一下 [建立專案]，輸入專案名稱，接著按 [建立]。如果有要求，請執行簡訊驗證，再重新按一下 [建立]。
+2. Click **Create Project**, type a project name, then click **Create**. If requested, carry out the SMS Verification, and click **Create** again.
 
-   	![](./media/mobile-services-enable-google-cloud-messaging/mobile-services-google-new-project.png)
+    ![](./media/mobile-services-enable-google-cloud-messaging/mobile-services-google-new-project.png)   
 
-	 輸入新的**專案名稱**並按一下 [建立專案]。
+     Type in your new **Project name** and click **Create project**.
 
-3. 按一下 [公用程式與其他] 按鈕，然後按一下 [專案資訊]。請記下 [專案編號]。您必須設定這個值做為用戶端應用程式中的 `SenderId` 變數。
+3. Click the **Utilities and More** button and then click **Project Information**. Make a note of the **Project Number**. You will need to set this value as the `SenderId` variable in the client app.
 
-   	![](./media/mobile-services-enable-google-cloud-messaging/notification-hubs-utilities-and-more.png)
+    ![](./media/mobile-services-enable-google-cloud-messaging/notification-hubs-utilities-and-more.png)
 
 
-4. 在專案儀表板中，按一下 [行動 API] 之下的 [Google 雲端通訊]，接著在下一頁按一下 [啟用 API] 並接受服務條款。
+4. In the project dashboard, under **Mobile APIs**, click **Google Cloud Messaging**, then on the next page click **Enable API** and accept the terms of service. 
 
-	![啟用 GCM](./media/mobile-services-enable-google-cloud-messaging/enable-GCM.png)
+    ![Enabling GCM](./media/mobile-services-enable-google-cloud-messaging/enable-GCM.png)
 
-	![啟用 GCM](./media/mobile-services-enable-google-cloud-messaging/enable-gcm-2.png)
+    ![Enabling GCM](./media/mobile-services-enable-google-cloud-messaging/enable-gcm-2.png) 
 
-5. 在專案儀表板中，按一下 [憑證] > [建立憑證] > [API 金鑰]。
+5. In the project dashboard, Click **Credentials** > **Create Credential** > **API Key**. 
 
-   	![](./media/mobile-services-enable-google-cloud-messaging/mobile-services-google-create-server-key.png)
+    ![](./media/mobile-services-enable-google-cloud-messaging/mobile-services-google-create-server-key.png)
 
-6. 在 [建立新的金鑰] 中，按一下 [伺服器金鑰]，輸入金鑰的名稱，然後按一下 [建立]。
+6. In **Create a new key**, click **Server key**, type a name for your key, then click **Create**.
 
-7. 記下 [API 金鑰] 的值。
+7. Make a note of the **API KEY** value.
 
-	您將使用此 API 金鑰值，讓 Azure 能夠使用 GCM 進行驗證，並代表您的應用程式傳送推播通知。
+    You will use this API key value to enable Azure to authenticate with GCM and send push notifications on behalf of your app.
 
-<!---HONumber=AcomDC_0608_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

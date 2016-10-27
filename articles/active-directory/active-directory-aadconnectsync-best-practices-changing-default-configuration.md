@@ -1,67 +1,74 @@
 <properties
-	pageTitle="Azure AD Connect 同步處理：變更預設組態的最佳作法 | Microsoft Azure"
-	description="提供變更 Azure AD Connect 同步處理預設組態的最佳作法。"
-	services="active-directory"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor=""/>
+    pageTitle="Azure AD Connect sync: Best practices for changing the default configuration | Microsoft Azure"
+    description="Provides best practices for changing the default configuration of Azure AD Connect sync."
+    services="active-directory"
+    documentationCenter=""
+    authors="andkjell"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/22/2016"
-	ms.author="markvi;andkjell"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/22/2016"
+    ms.author="markvi;andkjell"/>
 
 
-# Azure AD Connect 同步處理：變更預設組態的最佳作法
-本主題的目的旨在說明支援及不支援的 Azure AD Connect 同步處理變更。
 
-Azure AD Connect 所建立的組態適用於大部分同步內部部署 Active Directory 與 Azure AD 的「現狀」環境。不過，在某些情況下，組態必須套用某些變更以滿足特定需要或需求。
+# <a name="azure-ad-connect-sync:-best-practices-for-changing-the-default-configuration"></a>Azure AD Connect sync: Best practices for changing the default configuration
+The purpose of this topic is to describe supported and unsupported changes to Azure AD Connect sync.
 
-## 服務帳戶的變更
-Azure AD Connect 同步處理會使用安裝精靈所建立的服務帳戶執行。這個服務帳戶會存放同步處理所使用的資料庫加密金鑰。它是使用 127 個字元長的密碼所建立的，而且密碼已設定為永不到期。
+The configuration created by Azure AD Connect works “as is” for most environments that synchronize on-premises Active Directory with Azure AD. However, in some cases, it is necessary to apply some changes to a configuration to satisfy a particular need or requirement.
 
-- 它**不支援**變更或重設服務帳戶的密碼。這麼做會損毀加密金鑰，而服務無法存取資料庫且無法啟動。
+## <a name="changes-to-the-service-account"></a>Changes to the service account
+Azure AD Connect sync is running under a service account created by the installation wizard. This service account holds the encryption keys to the database used by sync. It is created with a 127 characters long password and the password is set to not expire.
 
-## 排程器的變更
-從組建 1.1 (2016 年 2 月) 的版本開始，您可以將[排程器](active-directory-aadconnectsync-feature-scheduler.md)的同步處理週期設定為預設值 30 分鐘以外的值。
+- It is **unsupported** to change or reset the password of the service account. Doing so destroys the encryption keys and the service is not able to access the database and is not able to start.
 
-## 同步處理規則的變更
-安裝精靈所提供的組態應該適用於最常見的案例。萬一您需要對組態進行變更，則您必須遵循這些規則，以便仍能具備支援的組態。
+## <a name="changes-to-the-scheduler"></a>Changes to the scheduler
+Starting with the releases from build 1.1 (February 2016) you can configure the [scheduler](active-directory-aadconnectsync-feature-scheduler.md) to have a different sync cycle than the default 30 minutes.
 
-- 如果預設的直接屬性流程不適合您的組織使用，您可以[變更屬性流程](active-directory-aadconnectsync-change-the-configuration.md#other-common-attribute-flow-changes)。
-- 如果您想要[不傳送屬性](active-directory-aadconnectsync-change-the-configuration.md#do-not-flow-an-attribute)並移除 Azure AD 中任何現有的屬性值，則必須為此案例建立規則。
-- [停用不必要的同步處理規則](#disable-an-unwanted-sync-rule)而非加以刪除。升級期間會重新建立已刪除的規則。
-- 若要[變更現成可用的規則](#change-an-out-of-box-rule)，您應該複製原始規則並停用現成可用的規則。同步處理規則編輯器會提示並協助您。
-- 使用同步處理規則編輯器，匯出您的自訂同步處理規則。此編輯器會提供可用來在災害復原情況下輕鬆重建它們的 PowerShell 指令碼。
+## <a name="changes-to-synchronization-rules"></a>Changes to Synchronization Rules
+The installation wizard provides a configuration that is supposed to work for the most common scenarios. In case you need to make changes to the configuration, then you must follow these rules to still have a supported configuration.
 
->[AZURE.WARNING] 現成可用的同步處理規則具有憑證指紋。如果您變更這些規則，將不再符合憑證指紋。未來當您嘗試套用新版的 Azure AD Connect 時可能會遇到問題。僅利用本文所述的方式進行變更。
+- You can [change attribute flows](active-directory-aadconnectsync-change-the-configuration.md#other-common-attribute-flow-changes) if the default direct attribute flows are not suitable for your organization.
+- If you want to [not flow an attribute](active-directory-aadconnectsync-change-the-configuration.md#do-not-flow-an-attribute) and remove any existing attribute values in Azure AD, then you need to create a rule for this scenario.
+- [Disable an unwanted Sync Rule](#disable-an-unwanted-sync-rule) rather than deleting it. A deleted rule is recreated during an upgrade.
+- To [change an out-of-box rule](#change-an-out-of-box-rule), you should make a copy of the original rule and disable the out-of-box rule. The Sync Rule Editor prompts and helps you.
+- Export your custom synchronization rules using the Synchronization Rules Editor. The editor provides you with a PowerShell script you can use to easily recreate them in a disaster recovery scenario.
 
-### 停用不必要的同步處理規則
-請勿刪除現成可用的同步處理規則。升級期間會重新建立此規則。
+>[AZURE.WARNING] The out-of-box sync rules have a thumbprint. If you make a change to these rules, the thumbprint is no longer matching. You might have problems in the future when you try to apply a new release of Azure AD Connect. Only make changes the way it is described in this article.
 
-在某些情況下，安裝精靈所產生的組態不適用於您的拓撲。例如，如果您具備帳戶與資源樹系拓撲，但已在具備 Exchange 結構描述的帳戶樹系中擴充該結構描述，則系統會針對帳戶樹系和資源樹系建立適用於 Exchange 的規則。在此情況下，您需要停用適用於 Exchange 的同步處理規則。
+### <a name="disable-an-unwanted-sync-rule"></a>Disable an unwanted Sync Rule
+Do not delete an out-of-box sync rule. It is recreated during next upgrade.
 
-![已停用同步處理規則](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/exchangedisabledrule.png)
+In some cases, the installation wizard has produced a configuration that is not working for your topology. For example, if you have an account-resource forest topology but you have extended the schema in the account forest with the Exchange schema, then rules for Exchange are created for the account forest and the resource forest. In this case, you need to disable the Sync Rule for Exchange.
 
-在上圖中，安裝精靈已在帳戶樹系中找到舊的 Exchange 2003 結構描述。此結構描述擴充是在 Fabrikam 的環境中引進資源樹系之前新增的。若要確保不會同步處理任何來自舊的 Exchange 實作的屬性，就必須以所述的方式停用同步處理規則。
+![Disabled sync rule](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/exchangedisabledrule.png)
 
-### 變更現成可用的規則
-如果您需要對現成可用的規則進行變更，則您應該複製該現成可用的規則，然後停用原始的規則。接著對複製的規則進行變更。同步處理規則編輯器會協助您完成這些步驟。當您開啟現成可用的規則時，即會顯示此對話方塊：![對現成可用的規則發出警告](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/warningoutofboxrule.png)
+In the picture above, the installation wizard has found an old Exchange 2003 schema in the account forest. This schema extension was added before the resource forest was introduced in Fabrikam's environment. To ensure no attributes from the old Exchange implementation are synchronized, the sync rule should be disabled as shown.
 
-選取 [是] 來建立規則的複本。隨即會開啟複製的規則。![複製的規則](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/clonedrule.png)
+### <a name="change-an-out-of-box-rule"></a>Change an out-of-box rule
+If you need to make changes to an out-of-box rule, then you should make a copy of the out-of-box rule and disable the original rule. Then make the changes to the cloned rule. The Sync Rule Editor is helping you with those steps. When you open an out-of-box rule, you are presented with this dialog box:  
+![Warning out of box rule](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/warningoutofboxrule.png)
 
-在這個複製的規則上，對範圍、聯結和轉換進行任何必要變更。
+Select **Yes** to create a copy of the rule. The cloned rule is then opened.  
+![Cloned rule](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/clonedrule.png)
 
-## 後續步驟
+On this cloned rule, make any necessary changes to scope, join, and transformations.
 
-**概觀主題**
+## <a name="next-steps"></a>Next steps
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+**Overview topics**
 
-<!----HONumber=AcomDC_0907_2016-->
+- [Azure AD Connect sync: Understand and customize synchronization](active-directory-aadconnectsync-whatis.md)
+- [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

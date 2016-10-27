@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Linux VM 上設定多個 NIC |Microsoft Azure"
-   description="了解如何使用 Azure CLI 或 Resource Manager 範本，來建立連接多個 NIC 的 VM。"
+   pageTitle="Configure multiple NICs on a Linux VM | Microsoft Azure"
+   description="Learn how to create a VM with multiple NICs attached to it using the Azure CLI or Resource Manager templates."
    services="virtual-machines-linux"
    documentationCenter=""
    authors="iainfoulds"
@@ -16,35 +16,36 @@
    ms.date="08/02/2016"
    ms.author="iainfou"/>
 
-# 建立具有多個 NIC 的 VM
-您可以在 Azure 中，建立連接多個虛擬網路介面 (NIC) 的虛擬機器 (VM)。常見案例是有不同的子網路可用於前端和後端連線，或者專門用來監視或備份解決方案的網路。本文提供快速命令來建立連接多個 NIC 的 VM。如需詳細資訊，包括如何在自己的 Bash 指令碼內建立多個 NIC，請深入了解[部署多個 NIC 的 VM](../virtual-network/virtual-network-deploy-multinic-arm-cli.md)。不同的 [VM 大小](virtual-machines-linux-sizes.md)支援不同數量的 NIC，因此可據以調整您的 VM。
 
->[AZURE.WARNING] 當您建立 VM 時，必須連接多個 NIC - 您無法在現有的 VM 中新增 NIC。您可以[根據原始虛擬磁碟建立新的 VM](virtual-machines-linux-copy-vm.md)，並且在部署 VM 時建立多個 NIC。
+# <a name="creating-a-vm-with-multiple-nics"></a>Creating a VM with multiple NICs
+You can create a virtual machine (VM) in Azure that has multiple virtual network interfaces (NICs) attached to it. A common scenario would be to have different subnets for front-end and back-end connectivity, or a network dedicated to a monitoring or backup solution. This article provides quick commands to create a VM with multiple NICs attached to it. For detailed information, including how to create multiple NICs within your own Bash scripts, read more about [deploying multi-NIC VMs](../virtual-network/virtual-network-deploy-multinic-arm-cli.md). Different [VM sizes](virtual-machines-linux-sizes.md) support a varying number of NICs, so size your VM accordingly.
 
-## 快速命令
-確定您已登入 [Azure CLI](../xplat-cli-install.md)，並且使用的是 Resource Manager 模式 (`azure config mode arm`)。
+>[AZURE.WARNING] You must attach multiple NICs when you create a VM - you cannot add NICs to an existing VM. You can [create a new VM based on the original virtual disk(s)](virtual-machines-linux-copy-vm.md) and create multiple NICs as you deploy the VM.
 
-首先，建立資源群組：
+## <a name="quick-commands"></a>Quick commands
+Make sure that you have the [Azure CLI](../xplat-cli-install.md) logged in and using Resource Manager mode (`azure config mode arm`).
+
+First, create a resource group:
 
 ```bash
 azure group create TestRG --location WestUS
 ```
 
-建立儲存體帳戶以放置您的 VM：
+Create a storage account to hold your VMs:
 
 ```bash
 azure storage account create teststorage --resource-group TestRG \
     --location WestUS --kind Storage --sku-name PLRS
 ```
 
-建立要與 VM 連線的虛擬網路：
+Create a virtual network to connect your VMs to:
 
 ```bash
 azure network vnet create --resource-group TestRG --location WestUS \
     --name TestVNet --address-prefixes 192.168.0.0/16 
 ```
 
-建立兩個虛擬網路子網路 - 一個用於前端流量，另一個用於後端流量：
+Create two virtual network subnets - one for front-end traffic and one for back-end traffic:
 
 ```bash
 azure network vnet subnet create --resource-group TestRG --vnet-name TestVNet \
@@ -53,7 +54,7 @@ azure network vnet subnet create --resource-group TestRG --vnet-name TestVNet \
     --name BackEnd --address-prefix 192.168.2.0/24
 ```
 
-建立兩個 NIC，將一個 NIC 連接到前端子網路，並將另一個 NIC 連接到後端子網路：
+Create two NICs, attaching one NIC to the front-end subnet and one NIC to the back-end subnet:
 
 ```bash
 azure network nic create --resource-group TestRG --location WestUS \
@@ -62,7 +63,7 @@ azure network nic create --resource-group TestRG --location WestUS \
     -n NIC2 --subnet-vnet-name TestVNet --subnet-name BackEnd
 ```
 
-最後，建立您的 VM，並連接您先前建立的兩個 NIC：
+Finally create your VM, attaching the two NICs you previously created:
 
 ```bash
 azure vm create \            
@@ -78,10 +79,10 @@ azure vm create \
     --ssh-publickey-file ~/.ssh/id_rsa.pub
 ```
 
-## 使用 Azure CLI 建立多個 NIC
-如果您先前已使用 Azure CLI 建立 VM，應該會很熟悉快速命令。此程序與建立一個 NIC 或多個 NIC 相同。您可以深入了解更多有關[使用 Azure CLI 部署多個 NIC](../virtual-network/virtual-network-deploy-multinic-arm-cli.md) 的詳細資訊，包括撰寫可進行迴圈程序的指令碼來建立所有的 NIC。
+## <a name="creating-multiple-nics-using-azure-cli"></a>Creating multiple NICs using Azure CLI
+If you have previously created a VM using the Azure CLI, the quick commands should be familiar. The process is the same to create one NIC or multiple NICs. You can read more details about [deploying multiple NICs using the Azure CLI](../virtual-network/virtual-network-deploy-multinic-arm-cli.md), including scripting the process of looping through to create all the NICs.
 
-下列範例會建立兩個 NIC，以及一個連線到各個子網路的 NIC：
+The following example creates two NICs, with one NIC connecting to each subnet:
 
 ```bash
 azure network nic create --resource-group TestRG --location WestUS \
@@ -90,14 +91,14 @@ azure network nic create --resource-group TestRG --location WestUS \
     -n NIC2 --subnet-vnet-name TestVNet --subnet-name BackEnd
 ```
 
-通常您也可以建立[網路安全性群組](../virtual-network/virtual-networks-nsg.md)或[負載平衡器](../load-balancer/load-balancer-overview.md)來協助管理，以及將流量分散到您的 VM。同樣地，命令與使用多個 NIC 時所使用的相同。您所建立的 NIC 會使用 `azure network nic set` 繫結至網路安全性群組或負載平衡器，如下列範例所示：
+Typically you would also create a [network security group](../virtual-network/virtual-networks-nsg.md) or [load balancer](../load-balancer/load-balancer-overview.md) to help manage and distribute traffic across your VMs. Again, the commands are the same when working with multiple NICs. The NICs you create get bound to a network security group or load balancer using `azure network nic set`, such as in the following example:
 
 ```bash
 azure network nic set --resource-group TestRG --name NIC1 \
     --network-security-group-name TestNSG
 ```
 
-建立 VM 時，您現在可以指定多個 NIC。不使用 `--nic-name` 提供單一 NIC，而改用 `--nic-names`，並提供以逗號分隔的 NIC 清單。當您選取 VM 大小時也需多加注意。您可以新增至 VM 的 NIC 總數是有限制的。深入了解 [Linux VM 大小](virtual-machines-linux-sizes.md)。下列範例示範如何指定多個 NIC，然後是使用多個 NIC 支援的 VM 大小 (`Standard_DS2_v2`)：
+When creating the VM, you now specify multiple NICs. Rather using `--nic-name` to provide a single NIC, instead you use `--nic-names` and provide a comma-separated list of NICs. You also need to take care when you select the VM size. There are limits for the total number of NICs that you can add to a VM. Read more about [Linux VM sizes](virtual-machines-linux-sizes.md). The following example shows how to specify multiple NICs and then a VM size that supports using multiple NICs (`Standard_DS2_v2`):
 
 ```bash
 azure vm create \            
@@ -113,8 +114,8 @@ azure vm create \
     --ssh-publickey-file ~/.ssh/id_rsa.pub
 ```
 
-## 使用 Resource Manager 範本建立多個 NIC
-Azure Resource Manager 範本會使用宣告式 JSON 檔案來定義您的環境。您可以閱讀 [Azure Resource Manager 概觀](../resource-group-overview.md)。Resource Manager 範本提供一種方式，可在部署期間建立資源的多個執行個體，例如建立多個 NIC。您使用 *copy* 來指定要建立的執行個體數目：
+## <a name="creating-multiple-nics-using-resource-manager-templates"></a>Creating multiple NICs using Resource Manager templates
+Azure Resource Manager templates use declarative JSON files to define your environment. You can read an [overview of Azure Resource Manager](../resource-group-overview.md). Resource Manager templates provide a way to create multiple instances of a resource during deployment, such as creating multiple NICs. You use *copy* to specify the number of instances to create:
 
 ```bash
 "copy": {
@@ -123,19 +124,22 @@ Azure Resource Manager 範本會使用宣告式 JSON 檔案來定義您的環境
 }
 ```
 
-深入了解[使用 *copy* 建立多個執行個體](../resource-group-create-multiple.md)。
+Read more about [creating multiple instances using *copy*](../resource-group-create-multiple.md). 
 
-您也可以使用 `copyIndex()`，然後在資源名稱後面附加一個數字，讓您能夠建立 `NIC1`、`NIC2`，依此類推。以下顯示附加索引值的範例：
+You can also use a `copyIndex()` to then append a number to a resource name, which allows you to create `NIC1`, `NIC2`, etc. The following shows an example of appending the index value:
 
 ```bash
 "name": "[concat('NIC-', copyIndex())]", 
 ```
 
-您可以閱讀[使用 Resource Manager 範本建立多個 NIC](../virtual-network/virtual-network-deploy-multinic-arm-template.md) 的完整範例。
+You can read a complete example of [creating multiple NICs using Resource Manager templates](../virtual-network/virtual-network-deploy-multinic-arm-template.md).
 
-## 後續步驟
-嘗試建立具有多個 NIC 的 VM 時，請務必檢閱 [Linux VM 大小](virtual-machines-linux-sizes.md)。注意每個 VM 大小所支援的 NIC 數目上限。
+## <a name="next-steps"></a>Next steps
+Make sure to review [Linux VM sizes](virtual-machines-linux-sizes.md) when trying to creating a VM with multiple NICs. Pay attention to the maximum number of NICs each VM size supports. 
 
-請記住，您無法在現有 VM 中新增其他 NIC，您必須在部署 VM 時建立所有 NIC。小心規劃您的部署，以確定您一開始就會有所有需要的網路連線。
+Remember that you cannot add additional NICs to an existing VM, you must create all the NICs when you deploy the VM. Take care when planning your deployments to make sure that you have all the required network connectivity from the outset.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

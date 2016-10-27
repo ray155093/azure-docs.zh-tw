@@ -1,102 +1,108 @@
 <properties
-	pageTitle="Azure Active Directory B2C︰頁面 UI 自訂協助程式工具 | Microsoft Azure"
-	description="用來示範 Azure Active Directory B2C 中頁面 UI 自訂功能的協助程式工具"
-	services="active-directory-b2c"
-	documentationCenter=""
-	authors="swkrish"
-	manager="msmbaldwin"
-	editor="bryanla"/>
+    pageTitle="Azure Active Directory B2C: Page UI customization helper tool | Microsoft Azure"
+    description="A helper tool used to demonstrate the page UI customization feature in Azure Active Directory B2C"
+    services="active-directory-b2c"
+    documentationCenter=""
+    authors="swkrish"
+    manager="mbaldwin"
+    editor="bryanla"/>
 
 <tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/22/2016"
-	ms.author="swkrish"/>
+    ms.service="active-directory-b2c"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/22/2016"
+    ms.author="swkrish"/>
 
-# Azure Active Directory B2C︰用來示範頁面使用者介面 (UI) 自訂功能的協助程式工具
 
-本文可搭配 Azure Active Directory (Azure AD) B2C 中的[主要 UI 自訂文章](active-directory-b2c-reference-ui-customization.md)一起閱讀。以下步驟說明如何使用我們提供的範例 HTML 和 CSS 內容，來練習頁面 UI 自訂功能。
+# <a name="azure-active-directory-b2c:-a-helper-tool-used-to-demonstrate-the-page-user-interface-(ui)-customization-feature"></a>Azure Active Directory B2C: A helper tool used to demonstrate the page user interface (UI) customization feature
 
-## 取得 Azure AD B2C 租用戶
+This article is a companion to the [main UI customization article](active-directory-b2c-reference-ui-customization.md) in Azure Active Directory (Azure AD) B2C. The following steps describe how to exercise the page UI customization feature by using sample HTML and CSS content that we've provided.
 
-您需要[取得 Azure AD B2C 租用戶](active-directory-b2c-get-started.md) (如果沒有的話)，才能自訂任何項目。
+## <a name="get-an-azure-ad-b2c-tenant"></a>Get an Azure AD B2C tenant
 
-## 建立註冊或登入原則
+Before you can customize anything, you will need to [get an Azure AD B2C tenant](active-directory-b2c-get-started.md) if you don't already have one.
 
-我們提供的範例內容可用來在[註冊或登入原則](active-directory-b2c-reference-policies.md)自訂兩個頁面：[統一的登入頁面](active-directory-b2c-reference-ui-customization.md)和[自我判斷提示的屬性頁面](active-directory-b2c-reference-ui-customization.md)。[建立註冊或登入原則](active-directory-b2c-reference-policies.md#create-a-sign-up-or-sign-in-policy)時，新增本機帳戶 (電子郵件地址)、Facebook、Google 和 Microsoft 做為**身分識別提供者**。我們的範例 HTML 內容只接受這些 IDP。如果您想要的話，也可以新增這些 IDP 的子集。
+## <a name="create-a-sign-up-or-sign-in-policy"></a>Create a sign-up or sign-in policy
 
-## 註冊應用程式
+The sample content we've provided can be used to customze two pages in a [sign-up or sign-in policy](active-directory-b2c-reference-policies.md): the [unified sign-in page](active-directory-b2c-reference-ui-customization.md) and the [self-asserted attributes page](active-directory-b2c-reference-ui-customization.md). When [creating your sign-up or sign-in policy](active-directory-b2c-reference-policies.md#create-a-sign-up-or-sign-in-policy), add Local Account (email address), Facebook, Google, and Microsoft as **Identity providers**. These are the only IDPs that our sample HTML content will accept.  You can also add a subset of these IDPs if you wish.
 
-您需要在 B2C 租用戶中[註冊應用程式](active-directory-b2c-app-registration.md)，此應用程式可用於執行原則。註冊應用程式之後，有幾個選項可用來實際執行註冊原則：
+## <a name="register-an-application"></a>Register an application
 
-- 建置[在您的應用程式中註冊與登入取用者](active-directory-b2c-overview.md#getting-started)的＜開始使用＞一節中所列的其中一個 Azure AD B2C 快速啟動應用程式。
-- 使用預先建置的 [Azure AD B2C 遊樂場](https://aadb2cplayground.azurewebsites.net)應用程式。如果您選擇使用遊樂場，您必須在 B2C 租用戶中使用**重新導向 URI** `https://aadb2cplayground.azurewebsites.net/` 註冊應用程式。
-- 在 [Azure 入口網站](https://portal.azure.com/)中，使用原則的 [立即執行] 按鈕。
+You will need to [register an application](active-directory-b2c-app-registration.md) in your B2C tenant that can be used to execute your policy. After registering your application, you have a few options that you can use to actually run your sign-up policy:
 
-## 自訂您的原則
+- Build one of the Azure AD B2C quick-start applications listed in the "Get started" section of [Sign up and sign in consumers in your applications](active-directory-b2c-overview.md#getting-started).
+- Use the pre-built [Azure AD B2C Playground](https://aadb2cplayground.azurewebsites.net) application. If you choose to use the playground, you must register an application in your B2C tenant using the **redirect URI** `https://aadb2cplayground.azurewebsites.net/`.
+- Use the **Run Now** button on your policy in the [Azure portal](https://portal.azure.com/).
 
-若要自訂原則的外觀和風格，您必須先使用 Azure AD B2C 的特定慣例來建立 HTML 和 CSS 檔案。接著可以將靜態內容上載至公開可用的位置，供 Azure AD B2C 存取。這可以是您自己專屬的 Web 伺服器、Azure Blob 儲存體、Azure 內容傳遞網路，或任何其他的靜態資源裝載提供者。唯一的條件是您的內容必須可透過 HTTPS 取得，且可使用 CORS 來存取。一旦將靜態內容公開在 Web 上，您就可以編輯原則來指向這個位置，讓客戶看到此內容。[主要 UI 自訂文件](active-directory-b2c-reference-ui-customization.md)詳細說明 Azure AD B2C 自訂功能的運作方式。
+## <a name="customize-your-policy"></a>Customize your policy
 
-基於本教學課程的目的，我們已經建立一些範例內容並裝載於 Azure Blob 儲存體。範例內容會以虛構的公司 "Wingtip Toys" 為例，示範如何以非常基本的方式自訂佈景主題。若要在您自己的原則中試用一下，請遵循下列步驟：
+To customize the look and feel of your policy, you need to first create HTML and CSS files using the specific conventions of Azure AD B2C. You can then upload your static content to a publicly available location so that Azure AD B2C can access it. This could be your own dedicated web server, Azure Blob Storage, Azure Content Delivery Network, or any other static resource-hosting provider. The only requirements are that your content is available over HTTPS and can be accessed by using CORS. Once you've exposed your static content on the web, you can edit your policy to point to this location and present that content to your customers. The [main UI customization article](active-directory-b2c-reference-ui-customization.md) describes in detail how the Azure AD B2C customization feature works.
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)上登入您的租用戶並瀏覽至 B2C 功能刀鋒視窗。
-2. 按一下 [註冊或登入原則]，然後按一下您的原則 (例如 "b2c\_1\_sign\_up\_sign\_in")。
-3. 依序按一下 [頁面 UI 自訂] 和 [統一的註冊或登入頁面]。
-4. 將 [使用自訂頁面] 開關切換到 [是]。在 [自訂頁面 URI] 欄位中輸入 `https://wingtiptoysb2c.blob.core.windows.net/b2c/wingtip/unified.html`。按一下 [確定]。
-5. 按一下 [本機帳戶註冊頁面]。將 [使用自訂範本] 開關切換到 [是]。在 [自訂頁面 URI] 欄位中輸入 `https://wingtiptoysb2c.blob.core.windows.net/b2c/wingtip/selfasserted.html`。
-5. 針對 [社交帳戶註冊頁面] 重複相同步驟。按兩次 [確定]，關閉 UI 自訂刀鋒視窗。
-6. 按一下 [儲存]。
+For the purposes of this tutorial, we've already created some sample content and hosted it on Azure Blob Storage. The sample content is a very basic customization in the theme of our fictional company, "Wingtip Toys". To try it out in your own policy, follow these steps:
 
-現在可以試試您自訂的原則。您可以視需要使用自己的應用程式或 Azure AD B2C 遊樂場，也可以直接按一下原則刀鋒視窗中的 [立即執行] 命令。在下拉式清單方塊中選取您的應用程式，並選擇適當的重新導向 URI。按一下 [立即執行] 按鈕。新的瀏覽器索引標籤隨即開啟，您可以使用已備妥的新內容，在您的應用程式中體驗一次使用者註冊過程！
+1. Sign in to your tenant on the [Azure portal](https://portal.azure.com/) and navigate to the B2C features blade.
+2. Click **Sign-up or sign-in policies** and then click your policy (for example, "b2c\_1\_sign\_up\_sign\_in").
+3. Click **Page UI customization** and then **Unified sign-up or sign-in page**.
+4. Toggle the **Use custom page** switch to **Yes**. In the **Custom page URI** field, enter `https://wingtiptoysb2c.blob.core.windows.net/b2c/wingtip/unified.html`. Click **OK**.
+5. Click **Local account sign-up page**. Toggle the **Use custom template** switch to **Yes**. In the **Custom page URI** field, enter `https://wingtiptoysb2c.blob.core.windows.net/b2c/wingtip/selfasserted.html`.
+5. Repeat the same step for the **Social account sign-up page**.
+ Click **OK** twice to close the UI customization blades.
+6. Click **Save**.
 
-## 將範例內容上傳至 Azure Blob 儲存體
+Now you can try out your customized policy. You can use your own application or the Azure AD B2C playground if you want to, but you can also simply click the **Run Now** command in the policy blade. Select your application in the drop-down box and choose the appropriate redirect URI. Click the **Run now** button. A new browser tab will open and you can run through the user experience of signing up for your application with the new content in place!
 
-如果想要使用 Azure Blob 儲存體來裝載您的網頁內容，您可以建立自己的儲存體帳戶，並使用我們的 B2C 協助程式工具來上傳檔案。
+## <a name="upload-the-sample-content-to-azure-blob-storage"></a>Upload the sample content to Azure Blob Storage
 
-### 建立儲存體帳戶
+If you would like to use Azure Blob Storage to host your page content, you can create your own storage account and use our B2C helper tool to upload your files.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 [+新增] > [資料 + 儲存體] > [儲存體帳戶]。您需要有 Azure 訂用帳戶才能建立 Azure Blob 儲存體帳戶。您可以在 [Azure 網站](https://azure.microsoft.com/pricing/free-trial/)上註冊免費試用版。
-3. 提供儲存體帳戶的 [名稱]\(例如 "contoso")，並為 [定價層]、[資源群組] 和 [訂用帳戶] 挑選適當的選項。確定您已核取 [釘選到「開始面板」] 選項。按一下 [建立]。
-4. 回到「開始面板」，然後按一下您剛建立的儲存體帳戶。
-5. 在 [摘要] 區段中，按一下 [容器]，然後按一下 [+新增]。
-6. 提供容器的 [名稱]\(例如 "b2c")，並選取 [Blob] 作為 [存取類型]。按一下 [確定]。
-7. 您建立的容器將會出現在 [Blob] 刀鋒視窗的清單中。記下容器的 URL；例如，其看起來應該類似 `https://contoso.blob.core.windows.net/b2c`。關閉 [Blob] 刀鋒視窗。
-8. 在儲存體帳戶刀鋒視窗中，按一下 [金鑰]，並記下 [儲存體帳戶名稱] 和 [主要存取金鑰] 欄位的值。
+### <a name="create-a-storage-account"></a>Create a storage account
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 [+新增] > [資料 + 儲存體] > [儲存體帳戶]。您需要有 Azure 訂用帳戶才能建立 Azure Blob 儲存體帳戶。您可以在 [Azure 網站](https://azure.microsoft.com/pricing/free-trial/)上註冊免費試用版。
-3. 選取 [帳戶類型] 底下的 [Blob 儲存體]，並將其他值保留為預設值。如果您想要的話，可以編輯 [資源群組] 和 [位置]。按一下 [建立]。
-4. 回到「開始面板」，然後按一下您剛建立的儲存體帳戶。
-5. 在 [摘要] 區段中，按一下 [+容器]。
-6. 提供容器的 [名稱]\(例如 "b2c")，並選取 [Blob] 作為 [存取類型]。按一下 [確定]。
-7. 開啟容器**屬性**，並記下容器的 URL；例如，其看起來應該類似 `https://contoso.blob.core.windows.net/b2c`。關閉 [容器] 刀鋒視窗。
-8. 在儲存體帳戶刀鋒視窗中，按一下 [金鑰] 圖示，並記下 [儲存體帳戶名稱] 和 [主要存取金鑰] 欄位的值。
+1. Sign in to the [Azure portal](https://portal.azure.com/).
+2. Click **+ New** > **Data + Storage** > **Storage account**. You will need an Azure subscription to create an Azure Blob Storage account. You can sign up a free trial at the [Azure website](https://azure.microsoft.com/pricing/free-trial/).
+3. Provide a **Name** for the storage account (for example, "contoso") and pick the appropriate selections for **Pricing tier**, **Resource group** and **Subscription**. Make sure that you have the **Pin to Startboard** option checked. Click **Create**.
+4. Go back to the Startboard and click the storage account that you just created.
+5. In the **Summary** section, click **Containers**, and then click **+ Add**.
+6. Provide a **Name** for the container (for example, "b2c") and select **Blob** as the **Access type**. Click **OK**.
+7. The container that you created will appear in the list on the **Blobs** blade. Write down the URL of the container; for example, it should look similar to `https://contoso.blob.core.windows.net/b2c`. Close the **Blobs** blade.
+8. On the storage account blade, click **Keys** and write down the values of the **Storage Account Name** and **Primary Access Key** fields.
+
+1. Sign in to the [Azure portal](https://portal.azure.com/).
+2. Click **+ New** > **Data + Storage** > **Storage account**. You will need an Azure subscription to create an Azure Blob Storage account. You can sign up a free trial at the [Azure website](https://azure.microsoft.com/pricing/free-trial/).
+3. Select **Blob Storage** under **Account Kind**, and leave the other values as default.  You can edit the Resource Group & Location if you wish.  Click **Create**.
+4. Go back to the Startboard and click the storage account that you just created.
+5. In the **Summary** section, click **+Container**.
+6. Provide a **Name** for the container (for example, "b2c") and select **Blob** as the **Access type**. Click **OK**.
+7. Open the container **properties**, and  Write down the URL of the container; for example, it should look similar to `https://contoso.blob.core.windows.net/b2c`. Close the container blade.
+8. On the storage account blade, click on the **Key Icon** and write down the values of the **Storage Account Name** and **Primary Access Key** fields.
 
 > [AZURE.NOTE]
-	[主要存取金鑰] 是重要的安全性認證。
+    **Primary Access Key** is an important security credential.
 
-### 下載協助程式工具和範例檔案
+### <a name="download-the-helper-tool-and-sample-files"></a>Download the helper tool and sample files
 
-您可以[下載 Azure Blob 儲存體協助程式工具和 .zip 檔案格式的範例檔案](https://github.com/azureadquickstarts/b2c-azureblobstorage-client/archive/master.zip)，或是從 GitHub 加以複製：
+You can download the [Azure Blob Storage helper tool and sample files as a .zip file](https://github.com/azureadquickstarts/b2c-azureblobstorage-client/archive/master.zip) or clone it from GitHub:
 
 ```
 git clone https://github.com/azureadquickstarts/b2c-azureblobstorage-client
 ```
 
-此儲存機制包含 `sample_templates\wingtip` 目錄，其中含有範例 HTML、CSS 和影像。為了讓這些範本參考您自己的 Azure Blob 儲存體帳戶，您必須編輯 HTML 檔案。開啟 `unified.html` 和 `selfasserted.html`，並以您自己容器的 URL (您在上述步驟中記下的 URL) 來取代任何出現的 `https://localhost`。您必須使用 HTML 檔案的絕對路徑，因為在此案例中，HTML 將是由 Azure AD 在 `https://login.microsoftonline.com` 網域下提供。
+This repository contains a `sample_templates\wingtip` directory, which contains example HTML, CSS, and images. For these templates to reference your own Azure Blob Storage account, you will need to edit the HTML files. Open `unified.html` and `selfasserted.html` and replace any instances of `https://localhost` with the URL of your own container that you wrote down in the previous steps. You must use the absolute path of the HTML files because in this case, the HTML will be served by Azure AD, under the domain `https://login.microsoftonline.com`.
 
-### 上傳範例檔案
+### <a name="upload-the-sample-files"></a>Upload the sample files
 
-在相同的儲存機制中，解壓縮 `B2CAzureStorageClient.zip` 並執行其中的 `B2CAzureStorageClient.exe` 檔案。這個程式只會將您指定目錄中的所有檔案上傳至您的儲存體帳戶，並允許 CORS 存取這些檔案。如果您遵循上述步驟操作，HTML 和 CSS 檔案現在會指向您的儲存體帳戶。請注意您的儲存體帳戶名稱是 `blob.core.windows.net` 前面的部分，例如 `contoso`。您可以試著在瀏覽器上存取 `https://{storage-account-name}.blob.core.windows.net/{container-name}/wingtip/unified.html`，確認該內容已正確地上傳。此外，使用 [http://test-cors.org/](http://test-cors.org/) 來確定該內容現在已啟用 CORS。(在結果中尋找 "XHR status: 200")。
+In the same repository, unzip `B2CAzureStorageClient.zip` and run the `B2CAzureStorageClient.exe` file within. This program will simply upload all the files in the directory that you specify to your storage account, and enable CORS access for those files. If you followed the steps above, the HTML and CSS files will now be pointing to your storage account. Note that the name of your storage account is the part that precedes `blob.core.windows.net`; for example, `contoso`. You can verify that the content has been uploaded correctly by trying to access `https://{storage-account-name}.blob.core.windows.net/{container-name}/wingtip/unified.html` on a browser. Also use [http://test-cors.org/](http://test-cors.org/) to make sure that the content is now CORS enabled. (Look for "XHR status: 200" in the result.)
 
-### 再次自訂您的原則
+### <a name="customize-your-policy,-again"></a>Customize your policy, again
 
-既然已經將範例內容上載至您自己的儲存體帳戶，您必須編輯註冊原則來參考它。重複上述[自訂您的原則](#customize-your-policy)一節的步驟，但這次使用您自己的儲存體帳戶 URL。比方說，`unified.html` 檔案的位置是 `<url-of-your-container>/wingtip/unified.html`。
+Now that you've uploaded the sample content to your own storage account, you must edit your sign-up policy to reference it. Repeat the steps from the ["Customize your policy"](#customize-your-policy) section above, this time using your own storage account's URLs. For instance, the location of your `unified.html` file would be `<url-of-your-container>/wingtip/unified.html`.
 
-現在，您可以使用 [立即執行] 按鈕或您自己的應用程式，再次執行您的原則。結果看起來應該幾乎完全相同 -- 您在這兩個案例中都使用相同的範例 HTML 和 CSS。不過，您的原則現在會參考您自己的 Azure Blob 儲存體執行個體，而您可以再次自由編輯和上傳檔案。如需自訂 HTML 和 CSS 的詳細資訊，請參閱[主要 UI 自訂文章](active-directory-b2c-reference-ui-customization.md)。
+Now you can use the **Run Now** button or your own application to execute your policy again. The result should look almost exactly the same--you used the same sample HTML and CSS in both cases. However, your policies are now referencing your own instance of Azure Blob Storage, and you are free to edit and upload the files again as you please. For more information on customizing the HTML and CSS, refer to the [main UI customization article](active-directory-b2c-reference-ui-customization.md).
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

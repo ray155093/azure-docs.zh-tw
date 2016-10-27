@@ -1,299 +1,300 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 Intralinks 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 Intralinks 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+    pageTitle="Tutorial: Azure Active Directory integration with Intralinks | Microsoft Azure"
+    description="Learn how to configure single sign-on between Azure Active Directory and Intralinks."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeevansd"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/11/2016"
-	ms.author="jeedes"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/29/2016"
+    ms.author="jeedes"/>
 
 
-# 教學課程：Azure Active Directory 與 Intralinks 整合
 
-在本教學課程中，您會了解如何整合 Intralinks 與 Azure Active Directory (Azure AD)。
+# <a name="tutorial:-azure-active-directory-integration-with-intralinks"></a>Tutorial: Azure Active Directory integration with Intralinks
 
-Intralinks 與 Azure AD 整合提供下列優點：
+In this tutorial, you learn how to integrate Intralinks with Azure Active Directory (Azure AD).
 
-- 您可以在 Azure AD 中控制可存取 Intralinks 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Intralinks (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+Integrating Intralinks with Azure AD provides you with the following benefits:
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+- You can control in Azure AD who has access to Intralinks
+- You can enable your users to automatically get signed-on to Intralinks (Single Sign-On) with their Azure AD accounts
+- You can manage your accounts in one central location - the Azure classic portal
 
-## 必要條件
+If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-若要設定 Azure AD 與 Intralinks 整合，您需要下列項目：
+## <a name="prerequisites"></a>Prerequisites
 
-- Azure AD 訂用帳戶
-- 啟用 Intralinks 單一登入功能的訂用帳戶
+To configure Azure AD integration with Intralinks, you need the following items:
 
-
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+- An Azure AD subscription
+- A Intralinks single-sign on enabled subscription
 
 
-若要測試本教學課程中的步驟，您應該遵循這些建議：
-
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
 
 
-## 案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。
+To test the steps in this tutorial, you should follow these recommendations:
 
-本教學課程中說明的案例由二個主要建置組塊組成：
-
-1. 從資源庫新增 Intralinks
-2. 設定並測試 Azure AD 單一登入
+- You should not use your production environment, unless this is necessary.
+- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
 
 
-## 從資源庫新增 Intralinks
-若要設定將 Intralinks 整合到 Azure AD 中，您需要從資源庫將 Intralinks 新增到受管理的 SaaS app 清單。
+## <a name="scenario-description"></a>Scenario Description
+In this tutorial, you test Azure AD single sign-on in a test environment.
 
-**若要從資源庫新增 Intralinks，請執行下列步驟：**
+The scenario outlined in this tutorial consists of two main building blocks:
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
-
-	![Active Directory][1]
-
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
-
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
-
-	![應用程式][2]
-
-4. 按一下頁面底部的 [新增]。
-
-	![應用程式][3]
-
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
-
-	![應用程式][4]
-
-6. 在搜尋方塊中，輸入 **Intralinks**。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_01.png)
-
-7. 在結果窗格中，選取 [Intralinks]，然後按一下 [完成] 以加入應用程式。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_02.png)
+1. Adding Intralinks from the gallery
+2. Configuring and testing Azure AD single sign-on
 
 
-##  設定並測試 Azure AD 單一登入
+## <a name="adding-intralinks-from-the-gallery"></a>Adding Intralinks from the gallery
+To configure the integration of Intralinks into Azure AD, you need to add Intralinks from the gallery to your list of managed SaaS apps.
 
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Intralinks 設定及測試 Azure AD 單一登入。
+**To add Intralinks from the gallery, perform the following steps:**
 
-若要讓單一登入運作，Azure AD 必須知道 Intralinks 與 Azure AD 中互相對應的使用者。換句話說，必須建立 Azure AD 使用者和 Intralinks 中相關使用者之間的連結關聯性。
+1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
 
-建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指派為 Intralinks 中 **Username** 的值。
+    ![Active Directory][1]
 
-若要設定及測試與 Intralinks 搭配運作的 Azure AD 單一登入，您需要完成下列建置組塊：
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-4. **[建立 Intralinks 測試使用者](#creating-an-intralinks-test-user)** - 在 Intralinks 中建立 Britta Simon 的對應項目，且該項目必須與 Azure AD 中代表 Britta Simon 的項目連結。
-5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
 
-### 設定 Azure AD 單一登入
+    ![Applications][2]
 
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 Intralinks 應用程式中設定單一登入。
+4. Click **Add** at the bottom of the page.
 
+    ![Applications][3]
 
-**若要設定與 Intralinks 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
+5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-1. 在傳統入口網站的 [Intralinks] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-	 
-	![設定單一登入][6]
+    ![Applications][4]
 
-2. 在 [要如何讓使用者登入 Intralinks] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+6. In the search box, type **Intralinks**.
 
-	![設定單一登入](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_03.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_01.png)
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
+7. In the results pane, select **Intralinks**, and then click **Complete** to add the application.
 
-	![設定單一登入](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_04.png)
-
-    a.在 [登入 URL] 文字方塊中，輸入使用者用來登入 Intralinks 應用程式的 URL，格式為：**https://\<company name>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/<Azure AD Tenant ID>/**。
-
-    b.按 [下一步]。
-	
-4. 在 [設定在 Intralinks 單一登入] 頁面上，執行下列步驟：
-
-	![設定單一登入](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_05.png)
-
-    a.按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-
-    b.按 [下一步]。
+    ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_02.png)
 
 
-5. 若要為您的應用程式設定 SSO，請連絡 Intralinks 支援小組，並在電子郵件中附加所下載的中繼資料檔案。
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
+
+In this section, you configure and test Azure AD single sign-on with Intralinks based on a test user called "Britta Simon".
+
+For single sign-on to work, Azure AD needs to know what the counterpart user in Intralinks is to a user in Azure AD. In other words, a link relationship between an Azure AD user and the related user in Intralinks needs to be established.
+
+This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Intralinks.
+
+To configure and test Azure AD single sign-on with Intralinks, you need to complete the following building blocks:
+
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.
+2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
+4. **[Creating an Intralinks test user](#creating-an-intralinks-test-user)** - to have a counterpart of Britta Simon in Intralinks that is linked to the Azure AD representation of her.
+5. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
+
+### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD Single Sign-On
+
+In this section, you enable Azure AD single sign-on in the classic portal and configure single sign-on in your Intralinks application.
 
 
-6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
-	
-	![Azure AD 單一登入][10]
+**To configure Azure AD single sign-on with Intralinks, perform the following steps:**
 
-7. 在 [單一登入確認] 頁面上，按一下 [完成]。
+1. In the classic portal, on the **Intralinks** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
+     
+    ![Configure Single Sign-On][6] 
+
+2. On the **How would you like users to sign on to Intralinks** page, select **Azure AD Single Sign-On**, and then click **Next**.
+
+    ![Configure Single Sign-On](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_03.png) 
+
+3. On the **Configure App Settings** dialog page, perform the following steps:.
+
+    ![Configure Single Sign-On](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_04.png) 
+
+    a. In the **Sign On URL** textbox, type the URL used by your users to sign-on to your Intralinks application using the following pattern: **https://\<company name\>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/\<Azure AD Tenant ID\>/**.
+
+    b. Click **Next**.
+    
+4. On the **Configure single sign-on at Intralinks** page, perform the following steps:
+
+    ![Configure Single Sign-On](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_05.png)
+
+    a. Click **Download metadata**, and then save the file on your computer.
+
+    b. Click **Next**.
+
+
+5. To get SSO configured for your application, contact Intralinks support team and email the attach downloaded metadata file.
+
+
+6. In the classic portal, select the single sign-on configuration confirmation, and then click **Next**.
+    
+    ![Azure AD Single Sign-On][10]
+
+7. On the **Single sign-on confirmation** page, click **Complete**.  
  
-	![Azure AD 單一登入][11]
+    ![Azure AD Single Sign-On][11]
 
 
-### 建立 Azure AD 測試使用者
-在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
+### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
+In this section, you create a test user in the classic portal called Britta Simon.
 
-在 [使用者] 清單中，選取 [Britta Simon]。
+In the Users list, select **Britta Simon**.
 
-![建立 Azure AD 使用者][20]
+![Create Azure AD User][20]
 
-**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+**To create a test user in Azure AD, perform the following steps:**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_09.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/create_aaduser_09.png) 
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. To display the list of users, in the menu on the top, click **Users**.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_03.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/create_aaduser_03.png) 
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_04.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/create_aaduser_04.png) 
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_05.png)
+5. On the **Tell us about this user** dialog page, perform the following steps:  ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/create_aaduser_05.png) 
 
-    a.針對 [使用者類型]，選取 [您組織中的新使用者]。
+    a. As Type Of User, select New user in your organization.
 
-    b.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    b. In the User Name **textbox**, type **BrittaSimon**.
 
-    c.按 [下一步]。
+    c. Click **Next**.
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_06.png)
+6.  On the **User Profile** dialog page, perform the following steps: ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/create_aaduser_06.png) 
 
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
+    a. In the **First Name** textbox, type **Britta**.  
 
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. In the **Last Name** textbox, type, **Simon**.
 
-    c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. In the **Display Name** textbox, type **Britta Simon**.
 
-    d.在 [角色] 清單中選取 [使用者]。
+    d. In the **Role** list, select **User**.
 
-    e.按 [下一步]。
+    e. Click **Next**.
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
+7. On the **Get temporary password** dialog page, click **create**.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_07.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/create_aaduser_07.png) 
 
-8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
+8. On the **Get temporary password** dialog page, perform the following steps:
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_08.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-intralinks-tutorial/create_aaduser_08.png) 
 
-    a.記下 [新密碼] 的值。
+    a. Write down the value of the **New Password**.
 
-    b.按一下 [完成]。
+    b. Click **Complete**.   
 
 
 
-### 建立 Intralinks 測試使用者
+### <a name="creating-an-intralinks-test-user"></a>Creating an Intralinks test user
 
-在本節中，您要在 Intralinks 中建立名為 Britta Simon 的使用者。請與 Intralinks 支援小組合作，在 Intralinks 平台中新增使用者。
+In this section, you create a user called Britta Simon in Intralinks. Please work with Intralinks support team to add the users in the Intralinks platform.
 
 
-### 指派 Azure AD 測試使用者
+### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
 
-在本節中，您會把 Intralinks 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+In this section, you enable Britta Simon to use Azure single sign-on by granting her access to Intralinks.
 
-![指派使用者][200]
+![Assign User][200] 
 
-**若要將 Britta Simon 指派給 Intralinks，請執行下列步驟：**
+**To assign Britta Simon to Intralinks, perform the following steps:**
 
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+1. On the classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
 
-	![指派使用者][201]
+    ![Assign User][201] 
 
-2. 在應用程式清單中，選取 [Intralinks]。
+2. In the applications list, select **Intralinks**.
 
-	![設定單一登入](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_50.png)
+    ![Configure Single Sign-On](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_50.png) 
 
-3. 在頂端的功能表中，按一下 [使用者]。
+3. In the menu on the top, click **Users**.
 
-	![指派使用者][203]
+    ![Assign User][203]
 
-4. 在 [使用者] 清單中，選取 [Britta Simon]。
+4. In the Users list, select **Britta Simon**.
 
-5. 在底部的工具列中，按一下 [指派]。
+5. In the toolbar on the bottom, click **Assign**.
 
-	![指派使用者][205]
+    ![Assign User][205]
 
-### 新增 Intralinks VIA 或 Elite 應用程式
-Intralinks 針對其他所有 Intralinks 應用程式使用相同的單一登入身分識別平台，但 Deal Nexus 應用程式除外。因此如果您打算使用其他任何 Intralinks 應用程式，首先您必須使用上述程序為一個主要的 Intralinks 應用程式設定單一登入。
+### <a name="adding-intralinks-via-or-elite-application"></a>Adding Intralinks VIA or Elite application
+Intralinks uses the same Single Sign On Identity platform for all other Intralinks applications excluding Deal Nexus application. So if you plan to use any other Intralinks application then first you have to configure the Single Sign On for one Primary Intralinks application using the procedure described above.
 
-設定好之後，您可以遵循以下程序，在您的租用戶中新增另一個可利用這個主要應用程式來進行單一登入的 Intralinks 應用程式。
+After that you can follow the below procedure to add another Intralinks application in your tenant which can leverage this primary application for Single Sign On. 
 
-> [AZURE.NOTE] 請注意，這項功能僅適用於 Azure AD 進階 SKU 客戶，並不適用於免費或基本 SKU 客戶。
+> [AZURE.NOTE] Please note that this feature is available only to Azure AD Premium SKU Customers and not available for Free or Basic SKU customers.
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
 
-	![Active Directory][1]
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+    ![Active Directory][1]
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
 
-	![應用程式][2]
+    ![Applications][2]
 
-4. 按一下頁面底部的 [新增]。
+4. Click **Add** at the bottom of the page.
 
-	![應用程式][3]
+    ![Applications][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-	![應用程式][4]
+    ![Applications][4]
 
-6. 在左側的索引標籤中按一下 [自訂] 索引標籤
+6. From the left tab click on **Custom** tab
 
-	![新增 Intralinks VIA 或 Elite 應用程式](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_51.png)
+    ![Adding Intralinks VIA or Elite application](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_51.png)
 
-7. 為應用程式提供適當名稱 (例如 **Intralinks Elite**)，然後按一下完成按鈕。
+7. Give appropriate name to the application e.g. **Intralinks Elite** and click finish button.
 
-8. 按一下 [設定單一登入] 按鈕
+8. Click on **Configure Single Sign** button
 
-9. 選取 [現有單一登入] 選項
+9. Select the **Existing Single Sign On** option
 
-	![新增 Intralinks VIA 或 Elite 應用程式](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_52.png)
+    ![Adding Intralinks VIA or Elite application](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_52.png)
 
-10. 從 Intralinks 小組取得其他 Intralinks 應用程式之 SP 起始的 SSO URL，並如下所示輸入此 URL。
+10. Get the the SP Initiated SSO URL from Intralinks team for the other Intralinks application and enter it as shown below. 
 
-	![新增 Intralinks VIA 或 Elite 應用程式](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_53.png)
+    ![Adding Intralinks VIA or Elite application](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_53.png)
 
-	a.在 [登入 URL] 文字方塊中，輸入使用者用來登入 Intralinks 應用程式的 URL，格式為：**https://\<CompanyName>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/<AzureADTenantID>/**
+    a. In the Sign On URL textbox, type the URL used by your users to sign-on to your Intralinks application using the following pattern: **https://\<CompanyName\>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/\<AzureADTenantID\>/**
 
 
-11. 按 [下一步]。
+11. Click **Next**.
 
-12. 如**[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)**一節所示，指派應用程式給使用者或群組
+12. Assign the application to user or groups as shown in the section **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)**
 
 
-### 測試單一登入
+### <a name="testing-single-sign-on"></a>Testing Single Sign-On
 
-在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
+In this section, you test your Azure AD single sign-on configuration using the Access Panel.
 
-當您在存取面板中按一下 [Intralinks] 圖格時，應該會自動登入您的 Intralinks 應用程式。
+When you click the Intralinks tile in the Access Panel, you should get automatically signed-on to your Intralinks application.
 
 
-## 其他資源
+## <a name="additional-resources"></a>Additional Resources
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 
 
@@ -315,4 +316,8 @@ Intralinks 針對其他所有 Intralinks 應用程式使用相同的單一登入
 [204]: ./media/active-directory-saas-intralinks-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-intralinks-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,22 +1,22 @@
-#### ExpressRoute 限制
+#### <a name="expressroute-limits"></a>ExpressRoute Limits
 
-下列限制適用於每個訂用帳戶的 ExpressRoute 資源。
+The following limits apply to ExpressRoute resources per subscription.
 
-| 資源 | 預設限制 |
+| Resource | Default Limit |
 |---|---|
-| 每個訂用帳戶的 ExpressRoute 電路 | 10 |
-| ARM 的每個訂用帳戶每個區域的 ExpressRoute 電路 | 10 |
-| 具有 ExpressRoute Standard 的 Azure 私人對等互連的最大路由數目 | 4,000 |
-| 具有 ExpressRoute Premium 附加元件的 Azure 私人對等互連的最大路由數目 | 10,000 |
-| 具有 ExpressRoute Standard 的 Azure 公用對等互連的最大路由數目 | 200 |
-| 具有 ExpressRoute Premium 附加元件的 Azure 公用對等互連的最大路由數目 | 200 |
-| 具有 ExpressRoute Standard 的 Azure Microsoft 對等互連的最大路由數目 | 200 |
-| 具有 ExpressRoute Premium 附加元件的 Azure Microsoft 對等互連的最大路由數目 | 200 |
-| 每個 ExpressRoute 電路允許的虛擬網路連結數目 | 請參閱下表 |
+| ExpressRoute circuits per subscription | 10 |
+| ExpressRoute circuits per region per subscription for ARM | 10 |
+| Maximum number of routes for Azure private peering with ExpressRoute standard | 4,000 |
+| Maximum number of routes for Azure private peering with ExpressRoute premium add-on | 10,000 |
+| Maximum number of routes for Azure public peering with ExpressRoute standard | 200 |
+| Maximum number of routes for Azure public peering with ExpressRoute premium add-on | 200 |
+| Maximum number of routes for Azure Microsoft peering with ExpressRoute standard | 200 |
+| Maximum number of routes for Azure Microsoft peering with ExpressRoute premium add-on | 200 |
+| Number of virtual network links allowed per ExpressRoute circuit | see table below |
 
-#### 每個 ExpressRoute 電路的虛擬網路數目
+#### <a name="number-of-virtual-networks-per-expressroute-circuit"></a>Number of Virtual Networks per ExpressRoute circuit
 
-| **電路大小** | **Standard 的 VNet 連結數目** | **具有 Premium 附加元件的 VNet 連結數目** |
+| **Circuit Size** | **Number of VNet links for standard** | **Number of VNet Links with Premium add-on** |
 |---|---|---|
 | 50 Mbps | 10 | 20 |
 | 100 Mbps | 10 | 25 |
@@ -27,4 +27,8 @@
 | 5 Gbps | 10 | 75 |
 | 10 Gbps | 10 | 100 |
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

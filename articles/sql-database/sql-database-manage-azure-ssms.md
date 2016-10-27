@@ -1,125 +1,126 @@
 <properties 
-	pageTitle="使用 SSMS 管理 SQL Database | Microsoft Azure" 
-	description="了解如何使用 SQL Server Management Studio 管理 SQL Database 伺服器和資料庫。" 
-	services="sql-database" 
-	documentationCenter=".net" 
-	authors="stevestein" 
-	manager="jhubbard" 
-	editor="tysonn"/>
+    pageTitle="Manage a SQL Database with SSMS | Microsoft Azure" 
+    description="Learn how to use SQL Server Management Studio to manage SQL Database servers and databases." 
+    services="sql-database" 
+    documentationCenter=".net" 
+    authors="stevestein" 
+    manager="jhubbard" 
+    editor="tysonn"/>
 
 <tags 
-	ms.service="sql-database" 
-	ms.workload="data-management" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="05/09/2016" 
-	ms.author="sstein"/>
+    ms.service="sql-database" 
+    ms.workload="data-management" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/29/2016" 
+    ms.author="sstein"/>
 
 
-# 使用 SQL Server Management Studio 管理 Azure SQL Database 
+
+# <a name="managing-azure-sql-database-using-sql-server-management-studio"></a>Managing Azure SQL Database using SQL Server Management Studio 
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-manage-portal.md)
+- [Azure portal](sql-database-manage-portal.md)
 - [SSMS](sql-database-manage-azure-ssms.md)
-- [PowerShell](sql-database-command-line-tools.md)
+- [PowerShell](sql-database-manage-powershell.md)
 
-您可以使用 SQL Server Management Studio (SSMS) 來管理 Azure SQL Database 伺服器和資料庫。本主題會引導您完成透過 SSMS 執行的常見工作。在您開始之前，您應該已在 Azure SQL Database 中建立伺服器和資料庫。如需詳細資訊，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started.md)和[使用 SSMS 進行連接和查詢](sql-database-connect-query-ssms.md)。
+You can use SQL Server Management Studio (SSMS) to administer Azure SQL Database servers and databases. This topic walks you through common tasks with SSMS. You should already have a server and database created in Azure SQL Database before you begin. See [Create your first Azure SQL Database](sql-database-get-started.md) and [Connect and Query using SSMS](sql-database-connect-query-ssms.md) for more information.
 
-每當您使用 Azure SQL Database 時，建議您使用最新版本的 SSMS。
+It's recommended that you use the latest version of SSMS whenever you work with Azure SQL Database. 
 
-> [AZURE.IMPORTANT] 請一律使用最新版的 SSMS，因為它會持續改進以與最新的 Azure 和 SQL Database 更新搭配運作。若要取得最新的版本，請參閱[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+> [AZURE.IMPORTANT] Always use the latest version of SSMS because it is continually improved to work with the latest updates to Azure and SQL Database. To get the latest version, see [Download SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 
 
 
-## 建立和管理 Azure SQL 資料庫
+## <a name="create-and-manage-azure-sql-databases"></a>Create and manage Azure SQL databases
 
-在已連線到 **master** 資料庫的情況下，您可以在伺服器上建立資料庫，以及修改或卸除現有的資料庫。下列步驟將說明如何透過 Management Studio 來完成數個常見的資料庫管理工作。若要執行這些工作，請確保您已使用在設定伺服器時所建立的伺服器層級主體登入，來連線到 [master] 資料庫。
+While connected to the **master** database, you can create databases on the server and modify or drop existing databases. The following steps describe how to accomplish several common database management tasks through Management Studio. To perform these tasks, make sure you are connected to the **master** database with the server-level principal login that you created when you set up your server.
 
-若要在 Management Studio 中開啟查詢視窗，您可以開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 [master] 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
+To open a query window in Management Studio, open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
 
--   使用 **CREATE DATABASE** 陳述式來建立資料庫。如需詳細資訊，請參閱 [CREATE DATABASE (SQL Database)](https://msdn.microsoft.com/library/dn268335.aspx)。下列陳述式會建立名為 **myTestDB** 的資料庫，並指定它是預設大小上限為 250 GB 的「標準 S0 版本」資料庫。
+-   Use the **CREATE DATABASE** statement to create a database. For more information, see [CREATE DATABASE (SQL Database)](https://msdn.microsoft.com/library/dn268335.aspx). The following statement creates a database named **myTestDB** and specifies that it is a Standard S0 Edition database with a default maximum size of 250 GB.
 
         CREATE DATABASE myTestDB
         (EDITION='Standard',
          SERVICE_OBJECTIVE='S0');
 
-按一下 [執行] 來執行查詢。
+Click **Execute** to run the query.
 
--   使用 **ALTER DATABASE** 陳述式來修改現有資料庫，例如，如果您要變更資料庫的名稱或版本。如需詳細資訊，請參閱 [ALTER DATABASE (SQL Database)](https://msdn.microsoft.com/library/ms174269.aspx)。下列陳述式會修改您在上一個步驟中建立的資料庫，將版本變更為「標準 S1」。
+-   Use the **ALTER DATABASE** statement to modify an existing database, for example if you want to change the name and edition of the database. For more information, see [ALTER DATABASE (SQL Database)](https://msdn.microsoft.com/library/ms174269.aspx). The following statement modifies the database you created in the previous step to change edition to Standard S1.
 
         ALTER DATABASE myTestDB
         MODIFY
         (SERVICE_OBJECTIVE='S1');
 
--   使用 **the DROP DATABASE** 陳述式來刪除現有的資料庫。如需詳細資訊，請參閱 [DROP DATABASE (SQL Database)](https://msdn.microsoft.com/library/ms178613.aspx)。下列陳述式會刪除 **myTestDB** 資料庫，但不會立即卸除此資料庫，因為您將在下一個步驟中使用它來建立登入。
+-   Use **the DROP DATABASE** Statement to delete an existing database. For more information, see [DROP DATABASE (SQL Database)](https://msdn.microsoft.com/library/ms178613.aspx). The following statement deletes the **myTestDB** database, but don't drop it now because you will use it to create logins in the next step.
 
         DROP DATABASE myTestBase;
 
--   master 資料庫具有 **sys.databases** 檢視，您可用它來檢視有關所有資料庫的詳細資料。若要檢視所有現有的資料庫，請執行下列陳述式：
+-   The master database has the **sys.databases** view that you can use to view details about all databases. To view all existing databases, execute the following statement:
 
         SELECT * FROM sys.databases;
 
--   在 SQL Database 中，**USE** 陳述式不支援資料庫之間的切換。相反地，您需要建立與目標資料庫的直接連線。
+-   In SQL Database, the **USE** statement is not supported for switching between databases. Instead, you need to establish a connection directly to the target database.
 
->[AZURE.NOTE] 許多可建立或修改資料庫的 Transact-SQL 陳述式必須在自己的批次中執行，且無法與其他 Transact-SQL 陳述式群組在一起。如需詳細資訊，請參閱陳述式特定資訊。
+>[AZURE.NOTE] Many of the Transact-SQL statements that create or modify a database must be run within their own batch and cannot be grouped with other Transact-SQL statements. For more information, see the statement-specific information.
 
-## 建立和管理登入
+## <a name="create-and-manage-logins"></a>Create and manage logins
 
-**master** 資料庫包含登入，以及哪些登入具有可建立資料庫或其他登入的權限。使用在設定伺服器時所建立的伺服器層級主體登入，連線到 [master] 資料庫以管理登入。您可以使用 **CREATE LOGIN**、**ALTER LOGIN** 或 **DROP LOGIN** 陳述式，來針對管理整個伺服器登入的 master 資料庫執行查詢。如需詳細資訊，請參閱[管理 SQL Database 中的資料庫和登入](http://msdn.microsoft.com/library/azure/ee336235.aspx)。
+The **master** database contains logins and which logins have permission to create databases or other logins. Manage logins by connecting to the **master** database with the server-level principal login that you created when you set up your server. You can use the **CREATE LOGIN**, **ALTER LOGIN**, or **DROP LOGIN** statements to execute queries against the master database that manages logins across the entire server. For more information, see [Managing Databases and Logins in SQL Database](http://msdn.microsoft.com/library/azure/ee336235.aspx). 
 
 
--   使用 **CREATE LOGIN** 陳述式來建立伺服器層級的登入。如需詳細資訊，請參閱 [CREATE LOGIN (SQL Database)](https://msdn.microsoft.com/library/ms189751.aspx)。下列陳列式會建立一個名為 **login1** 的登入。使用您選擇的密碼來取代 **password1**。
+-   Use the **CREATE LOGIN** statement to create a server-level login. For more information, see [CREATE LOGIN (SQL Database)](https://msdn.microsoft.com/library/ms189751.aspx). The following statement creates a login called **login1**. Replace **password1** with the password of your choice.
 
         CREATE LOGIN login1 WITH password='password1';
 
--   使用 **CREATE USER** 陳述式來授與資料庫層級的權限。所有登入都必須在 **master** 資料庫中建立。若要讓登入能夠連線到不同的資料庫，您必須在該資料庫使用 **CREATE USER** 陳述式來對它授與資料庫層級的權限。如需詳細資訊，請參閱 [CREATE USER (SQL Database)](https://msdn.microsoft.com/library/ms173463.aspx)。
+-   Use the **CREATE USER** statement to grant database-level permissions. All logins must be created in the **master** database. For a login to connect to a different database, you must grant it database-level permissions using the **CREATE USER** statement on that database. For more information, see [CREATE USER (SQL Database)](https://msdn.microsoft.com/library/ms173463.aspx). 
 
--   若要對名為 **myTestDB** 的資料庫提供 login1 權限，請完成下列步驟：
+-   To give login1 permissions to a database called **myTestDB**, complete the following steps:
 
- 1.  若要重新整理「物件總管」以檢視您建立的 **myTestDB** 資料庫，請在「物件總管」中的伺服器名稱上按一下滑鼠右鍵，然後按一下 [重新整理]。
+ 1.  To refresh Object Explorer to view the **myTestDB** database that you created, right-click the server name in Object Explorer and then click **Refresh**.  
 
-     如果連線已關閉，您可以透過在 [檔案] 功能表上選取 [連接物件總管] 來重新連線。
+     If you closed the connection, you can reconnect by selecting **Connect Object Explorer** on the File menu.
 
- 2. 在 **myTestDB** 資料庫上按一下滑鼠右鍵，並選取 [新增查詢]。
+ 2. Right-click **myTestDB** database and select **New Query**.
 
-    3.  針對 myTestDB 資料庫執行下列陳述式，建立名為 **login1User** (對應到伺服器層級登入 **login1**) 的資料庫使用者。
+    3.  Execute the following statement against the myTestDB database to create a database user named **login1User** that corresponds to the server-level login **login1**.
 
             CREATE USER login1User FROM LOGIN login1;
 
--   使用 **sp\_addrolemember** 預存程序，對使用者帳戶提供資料庫上適當層級的權限。如需詳細資訊，請參閱 [sp\_addrolemember (Transact-SQL)](http://msdn.microsoft.com/library/ms187750.aspx)。下列陳述式會將 **login1User** 新增到 **db\_datareader** 角色，以將資料庫唯讀權限提供給 **login1User**。
+-   Use the **sp\_addrolemember** stored procedure to give the user account the appropriate level of permissions on the database. For more information, see [sp_addrolemember (Transact-SQL)](http://msdn.microsoft.com/library/ms187750.aspx). The following statement gives **login1User** read-only permissions to the database by adding **login1User** to the **db\_datareader** role.
 
         exec sp_addrolemember 'db_datareader', 'login1User';    
 
--   使用 **ALTER LOGIN** 陳述式來修改現有的登入，例如，如果您想要變更登入的密碼。如需詳細資訊，請參閱 [ALTER LOGIN (SQL Database)](https://msdn.microsoft.com/library/ms189828.aspx)。**ALTER LOGIN** 陳述式的執行對象應是 [master] 資料庫。切換回連線到該資料庫的查詢視窗。下列陳述式會修改 **login1** 登入來重設密碼。使用您選擇的密碼來取代 **newPassword**，並使用目前的登入密碼來取代 **oldPassword**。
+-   Use the **ALTER LOGIN** statement to modify an existing login, for example if you want to change the password for the login. For more information, see [ALTER LOGIN (SQL Database)](https://msdn.microsoft.com/library/ms189828.aspx). The **ALTER LOGIN** statement should be run against the **master** database. Switch back to the query window that is connected to that database. The following statement modifies the **login1** login to reset the password. Replace **newPassword** with the password of your choice, and **oldPassword** with the current password for the login.
 
         ALTER LOGIN login1
         WITH PASSWORD = 'newPassword'
         OLD_PASSWORD = 'oldPassword';
 
--   使用 **the DROP LOGIN** 陳述式來刪除現有的登入。刪除伺服器層級的登入也會同時刪除任何相關資料庫使用者帳戶。如需詳細資訊，請參閱 [DROP DATABASE (SQL Database)](https://msdn.microsoft.com/library/ms178613.aspx)。**DROP LOGIN** 陳述式的執行對象應是 [master] 資料庫。此陳述式會刪除 **login1** 登入。
+-   Use **the DROP LOGIN** statement to delete an existing login. Deleting a login at the server level also deletes any associated database user accounts. For more information, see [DROP DATABASE (SQL Database)](https://msdn.microsoft.com/library/ms178613.aspx). The **DROP LOGIN** statement should be run against the **master** database. The statement deletes the **login1** login.
 
         DROP LOGIN login1;
 
--   master 資料庫具有 **sys.sql\_logins** 檢視，您可用它來檢視登入。若要檢視所有現有的登入，請執行下列陳述式：
+-   The master database has the **sys.sql\_logins** view that you can use to view logins. To view all existing logins, execute the following statement:
 
         SELECT * FROM sys.sql_logins;
 
-## 使用動態管理檢視監視 SQL Database
+## <a name="monitor-sql-database-using-dynamic-management-views"></a>Monitor SQL Database using Dynamic Management Views
 
-SQL Database 支援數種動態管理檢視，您可用他們來監視個別資料庫。接下來是一些您可以透過這些檢視擷取的監視資料類型範例。如需完整的詳細資料和更多使用方式範例，請參閱[使用動態管理檢視監視 SQL Database](https://msdn.microsoft.com/library/azure/ff394114.aspx)。
+SQL Database supports several dynamic management views that you can use to monitor an individual database. A few examples of the type of monitor data you can retrieve through these views are following. For complete details and more usage examples, see [Monitoring SQL Database using Dynamic Management Views](https://msdn.microsoft.com/library/azure/ff394114.aspx).
 
--   查詢動態管理檢視需要 **VIEW DATABASE STATE** 權限。若要將 **VIEW DATABASE STATE** 權限授與特定的資料庫使用者，請連線到資料庫，然後對資料庫執行下列陳述式：
+-   Querying a dynamic management view requires **VIEW DATABASE STATE** permissions. To grant the **VIEW DATABASE STATE** permission to a specific database user, connect to the database and execute the following statement against the database:
 
         GRANT VIEW DATABASE STATE TO login1User;
 
--   使用 **sys.dm\_db\_partition\_stats** 檢視來計算資料庫大小。**sys.dm\_db\_partition\_stats** 檢視會傳回資料庫中每一個資料分割的頁面和資料列計數資訊，您可用這些資訊來計算資料庫大小。下列查詢會傳回資料庫的大小 (以 MB 為單位)：
+-   Calculate database size using the **sys.dm\_db\_partition\_stats** view. The **sys.dm\_db\_partition\_stats** view returns page and row-count information for every partition in the database, which you can use to calculate the database size. The following query returns the size of your database in megabytes:
 
         SELECT SUM(reserved_page_count)*8.0/1024
         FROM sys.dm_db_partition_stats;   
 
--   使用 **sys.dm\_exec\_connections** 和 **sys.dm\_exec\_sessions** 檢視，來擷取目前使用者連線和資料庫相關內部工作等相關資訊。下列查詢會傳回目前連接的相關資訊：
+-   Use the **sys.dm\_exec\_connections** and **sys.dm\_exec\_sessions** views to retrieve information about current user connections and internal tasks associated with the database. The following query returns information about the current connection:
 
         SELECT
             e.connection_id,
@@ -132,7 +133,7 @@ SQL Database 支援數種動態管理檢視，您可用他們來監視個別資�
             INNER JOIN sys.dm_exec_connections e
               ON s.session_id = e.session_id;
 
--   使用 **sys.dm\_exec\_query\_stats** 檢視，來擷取快取查詢計劃的彙總效能統計資料。下列查詢會傳回平均 CPU 時間排名之前五項查詢的相關資訊。
+-   Use the **sys.dm\_exec\_query\_stats** view to retrieve aggregate performance statistics for cached query plans. The following query returns information about the top five queries ranked by average CPU time.
 
         SELECT TOP 5 query_stats.query_hash AS "Query Hash",
             SUM(query_stats.total_worker_time), SUM(query_stats.execution_count) AS "Avg CPU Time",
@@ -151,4 +152,8 @@ SQL Database 支援數種動態管理檢視，您可用他們來監視個別資�
  
  
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,291 +1,292 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 Hosted Graphite 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 Hosted Graphite 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+    pageTitle="Tutorial: Azure Active Directory integration with Hosted Graphite | Microsoft Azure"
+    description="Learn how to configure single sign-on between Azure Active Directory and Hosted Graphite."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeevansd"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/01/2016"
-	ms.author="jeedes"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/18/2016"
+    ms.author="jeedes"/>
 
 
-# 教學課程：Azure Active Directory 與 Hosted Graphite 整合
 
-本教學課程旨在說明如何將 Hosted Graphite 與 Azure Active Directory (Azure AD) 整合。
+# <a name="tutorial:-azure-active-directory-integration-with-hosted-graphite"></a>Tutorial: Azure Active Directory integration with Hosted Graphite
 
-將 Hosted Graphite 與 Azure AD 整合提供下列優點：
+The objective of this tutorial is to show you how to integrate Hosted Graphite with Azure Active Directory (Azure AD).
 
-- 您可以在 Azure AD 中控制可存取 Hosted Graphite 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Hosted Graphite (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+Integrating Hosted Graphite with Azure AD provides you with the following benefits:
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+- You can control in Azure AD who has access to Hosted Graphite
+- You can enable your users to automatically get signed-on to Hosted Graphite (Single Sign-On) with their Azure AD accounts
+- You can manage your accounts in one central location - the Azure classic portal
 
-## 必要條件
+If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-若要設定 Azure AD 與 Hosted Graphite 整合，您需要下列項目：
+## <a name="prerequisites"></a>Prerequisites
 
-- Azure AD 訂用帳戶
-- 已啟用 Hosted Graphite 單一登入功能的訂用帳戶
+To configure Azure AD integration with Hosted Graphite, you need the following items:
 
-
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+- An Azure AD subscription
+- A Hosted Graphite single-sign on enabled subscription
 
 
-若要測試本教學課程中的步驟，您應該遵循這些建議：
-
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
 
 
-## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。
+To test the steps in this tutorial, you should follow these recommendations:
 
-本教學課程中說明的案例由二個主要建置組塊組成：
-
-1. 從資源庫新增 Hosted Graphite
-2. 設定並測試 Azure AD 單一登入
+- You should not use your production environment, unless this is necessary.
+- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
 
 
-## 從資源庫新增 Hosted Graphite
-若要設定將 Hosted Graphite 整合到 Azure AD 中，您需要從資源庫將 Hosted Graphite 新增到受管理的 SaaS 應用程式清單。
+## <a name="scenario-description"></a>Scenario description
+The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.
 
-**若要從資源庫新增 Hosted Graphite，請執行下列步驟：**
+The scenario outlined in this tutorial consists of two main building blocks:
 
-1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格上的 [Active Directory]。
+1. Adding Hosted Graphite from the gallery
+2. Configuring and testing Azure AD single sign-on
 
-	![Active Directory][1]
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+## <a name="adding-hosted-graphite-from-the-gallery"></a>Adding Hosted Graphite from the gallery
+To configure the integration of Hosted Graphite into Azure AD, you need to add Hosted Graphite from the gallery to your list of managed SaaS apps.
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
-	
-	![應用程式][2]
+**To add Hosted Graphite from the gallery, perform the following steps:**
 
-4. 按一下頁面底部的 [新增]。
-	
-	![應用程式][3]
+1. In the **Azure classic Portal**, on the left navigation pane, click **Active Directory**. 
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+    ![Active Directory][1]
 
-	![應用程式][4]
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-6. 在搜尋方塊中，輸入 **Hosted Graphite**。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_01.png)
-
-7. 在結果窗格中，選取 [Hosted Graphite]，然後按一下 [完成] 來新增應用程式。
-
-	![選取資源庫中的應用程式](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_0001.png)
-
-##  設定並測試 Azure AD 單一登入
-本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Hosted Graphite 搭配運作的 Azure AD 單一登入。
-
-若要讓單一登入能夠運作，Azure AD 必須知道 Hosted Graphite 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Hosted Graphite 中的相關使用者之間建立連結關聯性。
-
-建立此連結關聯性的方法是指派 Azure AD 中 [使用者名稱] 的值做為 Hosted Graphite 中 [Username]\(使用者名稱) 的值。
-
-若要設定及測試與 Hosted Graphite 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
-
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 Hosted Graphite 測試使用者](#creating-a-hosted-graphite-test-user)** - 在 Hosted Graphite 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表 Britta Simon 的項目連結。
-4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
-
-### 設定 Azure AD 單一登入
-
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，然後在您的 Hosted Graphite 應用程式中設定單一登入。
-
-**若要設定與 Hosted Graphite 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
-
-1. 在傳統入口網站的 [Hosted Graphite] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-	 
-	![設定單一登入][6]
-
-2. 在 [要如何讓使用者登入 Hosted Graphite] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
     
-	![設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_03.png)
+    ![Applications][2]
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，如果您想要以 **IDP 起始模式**設定應用程式，請執行下列步驟，然後按一下 [下一步]：
-
-    ![設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_04.png)
-
-	a.在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://www.hostedgraphite.com/metadata/<user id>`
-
-    b.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://www.hostedgraphite.com/complete/saml/<user id>`
-
-	c.按 [下一步]
-
-4. 如果您想要在 [設定應用程式設定] 對話方塊頁面上以「SP 起始模式」設定應用程式，則請按一下 [顯示進階設定 (選擇性)]，然後輸入「登入 URL」並按 [下一步]。
-
-	![設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_10.png)
-
-	a.在 [登入 URL] 文字方塊中，以下列模式輸入 URL︰`https://www.hostedgraphite.com/login/saml/<user id>/`
-
-	b.按 [下一步]
-
-	> [AZURE.NOTE] 請注意這些不是真正的值。您必須使用實際的「單一登入 URL」、「識別碼」及「回覆 URL」來更新這些值。若要取得這些值，您可以移至您應用程式端的 [存取] -> [SAML 設定]，或與 Hosted Graphite 連絡。
-
-5. 在 [設定在 Hosted Graphite 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
-
-	![設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_05.png)
-
-    a.按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
-
-    b.按 [下一步]。
-
-6. 以系統管理員身分登入 Hosted Graphite 租用戶。
-
-7. 移至資訊看板中的「SAML 設定頁面」 ([存取] -> [SAML 設定])。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_000.png)
-
-8. 請確認這些 URI 與您在步驟 3 的設定相符。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_001.png)
-
-9. 從 Azure AD 將 [簽發者 URL] 和 [SAML SSO URL] 複製到 Hosted Graphite 中的 [Entity or Issuer ID]\(實體或簽發者識別碼) 和 [SSO Login URL]\(SSO 登入 URL)。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_002.png)
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_003.png)
-
-9. 選取 [唯獨] 做為 [預設使用者角色]。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_004.png)
-
-10. 複製所下載憑證檔案的內容，然後將它貼至 [X.509 憑證] 文字方塊中。
-
-	 ![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_005.png)
-
-11. 按一下 [儲存] 按鈕。
-
-12. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
+4. Click **Add** at the bottom of the page.
     
-	![Azure AD 單一登入][10]
+    ![Applications][3]
 
-13. 在 [單一登入確認] 頁面上，按一下 [完成]。
+5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
+
+    ![Applications][4]
+
+6. In the search box, type **Hosted Graphite**.
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_01.png)
+
+7. In the results panel, select **Hosted Graphite**, and then click **Complete** to add the application.
+
+    ![Selecting the app in the gallery](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_0001.png)
+
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
+The objective of this section is to show you how to configure and test Azure AD single sign-on with Hosted Graphite based on a test user called "Britta Simon".
+
+For single sign-on to work, Azure AD needs to know what the counterpart user in Hosted Graphite to an user in Azure AD is. In other words, a link relationship between an Azure AD user and the related user in Hosted Graphite needs to be established.
+
+This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Hosted Graphite.
+
+To configure and test Azure AD single sign-on with Hosted Graphite, you need to complete the following building blocks:
+
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.
+2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
+3. **[Creating a Hosted Graphite test user](#creating-a-hosted-graphite-test-user)** - to have a counterpart of Britta Simon in Hosted Graphite that is linked to the Azure AD representation of her.
+4. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
+
+### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD single sign-on
+
+In this section, you enable Azure AD single sign-on in the classic portal and configure single sign-on in your Hosted Graphite application.
+
+**To configure Azure AD single sign-on with Hosted Graphite, perform the following steps:**
+
+1. In the classic portal, on the **Hosted Graphite** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
+     
+    ![Configure Single Sign-On][6] 
+
+2. On the **How would you like users to sign on to Hosted Graphite** page, select **Azure AD Single Sign-On**, and then click **Next**.
     
-	![Azure AD 單一登入][11]
+    ![Configure Single Sign-On](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_03.png)
 
+3. On the **Configure App Settings** dialog page, If you wish to configure the application in **IDP initiated mode**, perform the following steps and click **Next**:
 
+    ![Configure Single Sign-On](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_04.png)
 
-### 建立 Azure AD 測試使用者
-本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
+    a. In the **Identifier** textbox, type a URL using the following pattern: `https://www.hostedgraphite.com/metadata/<user id>`
 
-![建立 Azure AD 使用者][20]
+    b. In the **Reply URL** textbox, type a URL using the following pattern: `https://www.hostedgraphite.com/complete/saml/<user id>`
 
-**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+    c. Click **Next**
 
-1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格上的 [Active Directory]。
+4. If you wish to configure the application in **SP initiated mode** on the **Configure App Settings** dialog page, then click on the **“Show advanced settings (optional)”** and then enter the **Sign On URL** and click **Next**.
 
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_09.png)
+    ![Configure Single Sign-On](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_10.png)
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+    a. In the **Sign On URL** textbox, type a URL using the following pattern: `https://www.hostedgraphite.com/login/saml/<user id>/`
 
-3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
+    b. Click **Next**
+
+    > [AZURE.NOTE] Please note that these are not the real values. You have to update these values with the actual Sign On URL, Identifier and Reply URL. To get these values, you can go to Access->SAML setup on your application side or contact Hosted Graphite.
+
+5. On the **Configure single sign-on at Hosted Graphite** page, perform the following steps and click **Next**:
+
+    ![Configure Single Sign-On](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_05.png)
+
+    a. Click **Download certificate**, and then save the file on your computer.
+
+    b. Click **Next**.
+
+6. Sign-on to your Hosted Graphite tenant as an administrator.
+
+7. Go to the **SAML Setup page** in the sidebar (**Access -> SAML Setup**).
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_000.png)
+
+8. Confirm these URls match your configuration in step 3.
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_001.png)
+
+9. Copy **Issuer URL** and **SAML SSO URL** from Azure AD to **Entity or Issuer ID** and **SSO Login URL** in Hosted Graphite.
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_002.png)
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_003.png)
+
+9. Select "**Read-only**" as **Default User Role**.
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_004.png)
+
+10. Copy the content of the downloaded certificate file, and then paste it into the **X.509 Certificate** textbox.
+
+     ![Configure Single Sign-On On App side](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_005.png)
+
+11. Click **Save** button.
+
+12. In the classic portal, select the single sign-on configuration confirmation, and then click **Next**.
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_03.png)
+    ![Azure AD Single Sign-On][10]
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
-
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_04.png)
-
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
-
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_05.png)
-
-    a.針對 [使用者類型]，選取 [您組織中的新使用者]。
-
-    b.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-
-    c.按 [下一步]。
-
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+13. On the **Single sign-on confirmation** page, click **Complete**.  
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_06.png)
+    ![Azure AD Single Sign-On][11]
 
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
 
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
 
-    c.在 [顯示名稱] 文字方塊中輸入 **Britta Simon**。
+### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
+The objective of this section is to create a test user in the classic portal called Britta Simon.
 
-    d.在 [角色] 清單中選取 [使用者]。
+![Create Azure AD User][20]
 
-    e.按 [下一步]。
+**To create a test user in Azure AD, perform the following steps:**
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
+1. In the **Azure classic Portal**, on the left navigation pane, click **Active Directory**.
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_09.png)
+
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
+
+3. To display the list of users, in the menu on the top, click **Users**.
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_07.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_03.png)
 
-8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
+4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_04.png)
+
+5. On the **Tell us about this user** dialog page, perform the following steps:
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_05.png)
+
+    a. As Type Of User, select New user in your organization.
+
+    b. In the User Name **textbox**, type **BrittaSimon**.
+
+    c. Click **Next**.
+
+6.  On the **User Profile** dialog page, perform the following steps:
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_08.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_06.png)
 
-    a.記下 [新密碼] 的值。
+    a. In the **First Name** textbox, type **Britta**.  
 
-    b.按一下 [完成]。
+    b. In the **Last Name** textbox, type, **Simon**.
 
+    c. In the **Display Name** textbox, type **Britta Simon**.
 
+    d. In the **Role** list, select **User**.
 
-### 建立 Hosted Graphite 測試使用者
+    e. Click **Next**.
 
-本節的目標是要在 Hosted Graphite 中建立一個名為 Britta Simon 的使用者。Hosted Graphite 支援預設啟用的 Just-In-Time 佈建。
-
-在這一節沒有您需要進行的動作項目。嘗試存取 Hosted Graphite 時，如果使用者還不存在，就會建立新使用者。
-
-> [AZURE.NOTE] 如果您需要手動建立使用者，您需要透過 <mailto:help@hostedgraphite.com> 連絡 Hosted Graphite 支援小組。
-
-
-### 指派 Azure AD 測試使用者
-
-本節的目標是要授權 Britta Simon 存取 Hosted Graphite，讓她能夠使用 Azure 單一登入。
-	
-![指派使用者][200]
-
-**若要將 Britta Simon 指派給 Hosted Graphite，請執行下列步驟：**
-
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+7. On the **Get temporary password** dialog page, click **create**.
     
-	![指派使用者][201]
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_07.png)
 
-2. 在應用程式清單中，選取 [Hosted Graphite]。
+8. On the **Get temporary password** dialog page, perform the following steps:
     
-	![設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_50.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-hostedgraphite-tutorial/create_aaduser_08.png)
 
-1. 在頂端的功能表中，按一下 [使用者]。
+    a. Write down the value of the **New Password**.
+
+    b. Click **Complete**.   
+
+
+
+### <a name="creating-a-hosted-graphite-test-user"></a>Creating a Hosted Graphite test user
+
+The objective of this section is to create a user called Britta Simon in Hosted Graphite. Hosted Graphite supports just-in-time provisioning, which is by default enabled.
+
+There is no action item for you in this section. A new user will be created during an attempt to access Hosted Graphite if it doesn't exist yet.
+
+> [AZURE.NOTE] If you need to create an user manually, you need to contact the Hosted Graphite support team via <mailto:help@hostedgraphite.com>.
+
+
+### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
+
+The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to Hosted Graphite.
     
-	![指派使用者][203]
+![Assign User][200]
 
-1. 在 [使用者] 清單中，選取 [Britta Simon]。
+**To assign Britta Simon to Hosted Graphite, perform the following steps:**
 
-2. 在底部的工具列中，按一下 [指派]。
+1. On the classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
     
-	![指派使用者][205]
+    ![Assign User][201]
+
+2. In the applications list, select **Hosted Graphite**.
+    
+    ![Configure Single Sign-On](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_50.png)
+
+1. In the menu on the top, click **Users**.
+    
+    ![Assign User][203]
+
+1. In the Users list, select **Britta Simon**.
+
+2. In the toolbar on the bottom, click **Assign**.
+    
+    ![Assign User][205]
 
 
 
-### 測試單一登入
+### <a name="testing-single-sign-on"></a>Testing single sign-on
 
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
+The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.
  
-當您在「存取面板」中按一下 [Hosted Graphite] 磚時，應該會自動登入您的 Hosted Graphite 應用程式。
+When you click the Hosted Graphite tile in the Access Panel, you should get automatically signed-on to your Hosted Graphite application.
 
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 
 
@@ -307,4 +308,8 @@
 [204]: ./media/active-directory-saas-hostedgraphite-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-hostedgraphite-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

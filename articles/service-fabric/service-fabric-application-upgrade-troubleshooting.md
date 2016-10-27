@@ -1,6 +1,6 @@
 <properties
-   pageTitle="疑難排解應用程式升級 | Microsoft Azure"
-   description="本文涵蓋升級 Service Fabric 應用程式的一些常見問題，以及解決方式。"
+   pageTitle="Troubleshooting application upgrades | Microsoft Azure"
+   description="This article covers some common issues around upgrading a Service Fabric application and how to resolve them."
    services="service-fabric"
    documentationCenter=".net"
    authors="mani-ramaswamy"
@@ -16,33 +16,34 @@
    ms.date="09/14/2016"
    ms.author="subramar"/>
 
-# 疑難排解應用程式升級
 
-本文涵蓋升級 Azure Service Fabric 應用程式的一些常見問題，以及解決方式。
+# <a name="troubleshoot-application-upgrades"></a>Troubleshoot application upgrades
 
-## 疑難排解失敗的應用程式升級
+This article covers some of the common issues around upgrading an Azure Service Fabric application and how to resolve them.
 
-當升級失敗時，**Get-ServiceFabricApplicationUpgrade** 命令的輸出會包含偵錯失敗的其他資訊。下列清單指定如何使用其他資訊︰
+## <a name="troubleshoot-a-failed-application-upgrade"></a>Troubleshoot a failed application upgrade
 
-1. 識別失敗類型。
-2. 識別失敗原因。
-3. 隔離一或多個失敗元件以便進一步調查。
+When an upgrade fails, the output of the **Get-ServiceFabricApplicationUpgrade** command contains additional information for debugging the failure.  The following list specifies how the additional information can be used:
 
-當 Service Fabric 偵測到失敗，就會提供此資訊，不論 **FailureAction** 是回復或暫停升級。
+1. Identify the failure type.
+2. Identify the failure reason.
+3. Isolate one or more failing components for further investigation.
 
-### 識別失敗類型
+This information is available when Service Fabric detects the failure regardless of whether the **FailureAction** is to roll back or suspend the upgrade.
 
-在 **Get-ServiceFabricApplicationUpgrade** 的輸出中，**FailureTimestampUtc** 會識別 Service Fabric 偵測升級失敗以及觸發 **FailureAction** 的時間戳記 (UTC)。**FailureReason** 會識別失敗的三個可能高階原因之一：
+### <a name="identify-the-failure-type"></a>Identify the failure type
 
-1. UpgradeDomainTimeout - 指出特定的升級網域花太多時間完成且 **UpgradeDomainTimeout** 過期。
-2. OverallUpgradeTimeout - 指出整體升級花太多時間完成且 **UpgradeTimeout** 過期。
-3. HealthCheck - 指出升級更新網域之後，根據指定的健康狀態原則，應用程式仍然健康狀態不良，且 **HealthCheckRetryTimeout** 過期。
+In the output of **Get-ServiceFabricApplicationUpgrade**, **FailureTimestampUtc** identifies the timestamp (in UTC) at which an upgrade failure was detected by Service Fabric and **FailureAction** was triggered. **FailureReason** identifies one of three potential high-level causes of the failure:
 
-這些項目只有在升級失敗且啟動回復時，才會出現在輸出中。視失敗的類型而定，會顯示進一步的資訊。
+1. UpgradeDomainTimeout - Indicates that a particular upgrade domain took too long to complete and **UpgradeDomainTimeout** expired.
+2. OverallUpgradeTimeout - Indicates that the overall upgrade took too long to complete and **UpgradeTimeout** expired.
+3. HealthCheck - Indicates that after upgrading an update domain, the application remained unhealthy according to the specified health policies and **HealthCheckRetryTimeout** expired.
 
-### 調查升級逾時
+These entries only show up in the output when the upgrade fails and starts rolling back. Further information is displayed depending on the type of the failure.
 
-升級逾時失敗通常是由服務可用性問題造成的。本段落下面的輸出是典型的升級，其中服務複本或執行個體無法在新的程式碼版本中啟動。**UpgradeDomainProgressAtFailure** 欄位在失敗時擷取任何擱置中升級工作的快照集。
+### <a name="investigate-upgrade-timeouts"></a>Investigate upgrade timeouts
+
+Upgrade timeout failures are most commonly caused by service availability issues. The output following this paragraph is typical of upgrades where service replicas or instances fail to start in the new code version. The **UpgradeDomainProgressAtFailure** field captures a snapshot of any pending upgrade work at the time of failure.
 
 ~~~
 PS D:\temp> Get-ServiceFabricApplicationUpgrade fabric:/DemoApp
@@ -78,17 +79,17 @@ ForceRestart                   : False
 UpgradeReplicaSetCheckTimeout  : 00:00:00
 ~~~
 
-在此範例中，升級網域 *MYUD1* 的升級失敗，且兩個資料分割 (*744c8d9f-1d26-417e-a60e-cd48f5c098f0* 和 *4b43f4d8-b26b-424e-9307-7a7a62e79750*) 已停滯。資料分割因為執行階段無法將主要複本 (*WaitForPrimaryPlacement*) 放在在目標節點 *Node1* 和 *Node4* 上而停滯。
+In this example, the upgrade failed at upgrade domain *MYUD1* and two partitions (*744c8d9f-1d26-417e-a60e-cd48f5c098f0* and *4b43f4d8-b26b-424e-9307-7a7a62e79750*) were stuck. The partitions were stuck because the runtime was unable to place primary replicas (*WaitForPrimaryPlacement*) on target nodes *Node1* and *Node4*.
 
-**Get-ServiceFabricNode** 命令可以用來確認這兩個節點都在升級網域 *MYUD1* 中。*UpgradePhase* 指出 *PostUpgradeSafetyCheck*，表示這些安全檢查是在升級網域中的所有節點完成升級之後發生。這些資訊全都指向應用程式程式碼新版本的潛在問題。最常見的問題是開啟或升級至主要程式碼路徑的服務錯誤。
+The **Get-ServiceFabricNode** command can be used to verify that these two nodes are in upgrade domain *MYUD1*. The *UpgradePhase* says *PostUpgradeSafetyCheck*, which means that these safety checks are occurring after all nodes in the upgrade domain have finished upgrading. All this information points to a potential issue with the new version of the application code. The most common issues are service errors in the open or promotion to primary code paths.
 
-*PreUpgradeSafetyCheck* 的 *UpgradePhase* 表示在執行升級之前準備升級網域有問題。此案例中最常見的問題是關閉主要程式碼路徑或從其中降級的服務錯誤。
+An *UpgradePhase* of *PreUpgradeSafetyCheck* means there were issues preparing the upgrade domain before it was performed. The most common issues in this case are service errors in the close or demotion from primary code paths.
 
-目前的 **UpgradeState** 是 *RollingBackCompleted*，因此原始升級必須以回復 **FailureAction** 執行，這樣會自動在失敗時回復升級。如果原始升級以手動 **FailureAction** 執行，則升級會處於暫止狀態，以允許應用程式的即時偵錯。
+The current **UpgradeState** is *RollingBackCompleted*, so the original upgrade must have been performed with a rollback **FailureAction**, which automatically rolled back the upgrade upon failure. If the original upgrade was performed with a manual **FailureAction**, then the upgrade would instead be in a suspended state to allow live debugging of the application.
 
-### 調查健康狀態檢查失敗
+### <a name="investigate-health-check-failures"></a>Investigate health check failures
 
-升級網域中的所有節點完成升級並通過所有安全檢查之後，各種問題都可能觸發健康狀態檢查失敗。本段落下面的輸出是由於失敗的健康狀態檢查的典型升級失敗。**UnhealthyEvaluations** 欄位會根據指定的[健康狀態原則](service-fabric-health-introduction.md)，擷取升級時失敗的健康狀態檢查的快照集。
+Health check failures can be triggered by various issues that can happen after all nodes in an upgrade domain finish upgrading and passing all safety checks. The output following this paragraph is typical of an upgrade failure due to failed health checks. The **UnhealthyEvaluations** field captures a snapshot of health checks that failed at the time of the upgrade according to the specified [health policy](service-fabric-health-introduction.md).
 
 ~~~
 PS D:\temp> Get-ServiceFabricApplicationUpgrade fabric:/DemoApp
@@ -142,23 +143,23 @@ MaxPercentUnhealthyDeployedApplications :
 ServiceTypeHealthPolicyMap              :
 ~~~
 
-調查健康狀態檢查失敗時，首先需要了解 Service Fabric 健康狀態模型。但是即使沒有這類深入了解，我們可以看到兩個服務的健康狀態不良：*fabric:/DemoApp/Svc3* 和 *fabric:/DemoApp/Svc2*，以及錯誤健康狀態報告 (在本例中為"InjectedFault")。在此範例中，4 個服務中有 2 個服務健康狀態不良，低於預設目標 0% 健康狀態不良 (*MaxPercentUnhealthyServices*)。
+Investigating health check failures first requires an understanding of the Service Fabric health model. But even without such an in-depth understanding, we can see that two services are unhealthy: *fabric:/DemoApp/Svc3* and *fabric:/DemoApp/Svc2*, along with the error health reports ("InjectedFault" in this case). In this example, two out of four services are unhealthy, which is below the default target of 0% unhealthy (*MaxPercentUnhealthyServices*).
 
-升級是因啟動升級時手動指定 **FailureAction** 失敗而暫止。此模式可讓我們在採取任何進一步動作之前，在失敗的狀態下調查即時系統。
+The upgrade was suspended upon failing by specifying a **FailureAction** of manual when starting the upgrade. This mode allows us to investigate the live system in the failed state before taking any further action.
 
-### 從暫止升級復原
+### <a name="recover-from-a-suspended-upgrade"></a>Recover from a suspended upgrade
 
-使用回復的 **FailureAction**，因為升級會自動在失敗時回復，所以不需要復原。使用手動 **FailureAction**，有數個復原選項：
+With a rollback **FailureAction**, there is no recovery needed since the upgrade automatically rolls back upon failing. With a manual **FailureAction**, there are several recovery options:
 
-1. 手動觸發回復
-2. 以手動方式繼續進行升級的其餘部分
-3. 繼續監視的升級
+1. Manually trigger a rollback
+2. Proceed through the remainder of the upgrade manually
+3. Resume the monitored upgrade
 
-**Start-ServiceFabricApplicationRollback** 命令可以在任何時候用來啟動回復應用程式。一旦命令成功傳回，回復要求就已在系統中註冊並隨即啟動。
+The **Start-ServiceFabricApplicationRollback** command can be used at any time to start rolling back the application. Once the command returns successfully, the rollback request has been registered in the system and starts shortly thereafter.
 
-**Resume-ServiceFabricApplicationUpgrade** 命令可以用來以手動方式繼續升級的其餘部分，一次一個升級網域。在此模式中，系統只會執行安全檢查。不會執行其他健康狀態檢查。此命令只能在 *UpgradeState* 顯示 *RollingForwardPending* 時使用，表示目前升級網域已完成升級，但是下一個升級網域尚未啟動 (擱置中)。
+The **Resume-ServiceFabricApplicationUpgrade** command can be used to proceed through the remainder of the upgrade manually, one upgrade domain at a time. In this mode, only safety checks are performed by the system. No more health checks are performed. This command can only be used when the *UpgradeState* shows *RollingForwardPending*, which means that the current upgrade domain has finished upgrading but the next one has not started (pending).
 
-**Update-ServiceFabricApplicationUpgrade** 命令可以用來繼續監視的升級，並且執行安全和健康狀態檢查。
+The **Update-ServiceFabricApplicationUpgrade** command can be used to resume the monitored upgrade with both safety and health checks being performed.
 
 ~~~
 PS D:\temp> Update-ServiceFabricApplicationUpgrade fabric:/DemoApp -UpgradeMode Monitored
@@ -182,55 +183,59 @@ ServiceTypeHealthPolicyMap              :
 PS D:\temp>
 ~~~
 
-升級會從上一次暫止的升級網域繼續，並使用相同的升級參數和健康狀態原則。如有需要，繼續升級時，上述輸出中顯示的任何升級參數和健康狀態原則都可以在相同命令中變更。在此範例中，升級以監視模式繼續，參數和健康狀態原則維持不變。
+The upgrade continues from the upgrade domain where it was last suspended and use the same upgrade parameters and health policies as before. If needed, any of the upgrade parameters and health policies shown in the preceding output can be changed in the same command when the upgrade resumes. In this example, the upgrade was resumed in Monitored mode, with the parameters and the health policies unchanged.
 
-## 進一步疑難排解
+## <a name="further-troubleshooting"></a>Further troubleshooting
 
-### Service Fabric 不遵循指定的健康狀態原則。
+### <a name="service-fabric-is-not-following-the-specified-health-policies"></a>Service Fabric is not following the specified health policies
 
-可能的原因 1：
+Possible Cause 1:
 
-Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複本、資料分割和服務) 實際數目，並且一律無條件進位到實體整數。例如，如果最大值 _MaxPercentUnhealthyReplicasPerPartition_ 是 21%，而有 5 個複本，則 Service Fabric 可允許最多 2 個健康狀態不良的複本 (亦即 `Math.Ceiling (5*0.21))。因此，健康狀態原則應該據此設定。
+Service Fabric translates all percentages into actual numbers of entities (for example, replicas, partitions, and services) for health evaluation and always rounds up to whole entities. For example, if the maximum _MaxPercentUnhealthyReplicasPerPartition_ is 21% and there are five replicas, then Service Fabric allows up to two unhealthy replicas (that is,`Math.Ceiling (5\*0.21)). Thus, health policies should be set accordingly.
 
-可能的原因 2：
+Possible Cause 2:
 
-健康狀態原則是以服務總計的百分比指定，而不是根據特定服務執行個體。例如，在升級之前，如果應用程式有四個服務執行個體 A、B、C 和 D，其中服務 D 健康狀態不良，但是對應用程式沒有顯著影響。我們想要在升級期間略過已知健康狀態不良的服務 D，並將參數 *MaxPercentUnhealthyServices* 設為 25%，假設只有 A、B 和 C 需要是健康狀態良好。
+Health policies are specified in terms of percentages of total services and not specific service instances. For example, before an upgrade, if an application has four service instances A, B, C, and D, where service D is unhealthy but with little impact to the application. We want to ignore the known unhealthy service D during upgrade and set the parameter *MaxPercentUnhealthyServices* to be 25%, assuming only A, B, and C need to be healthy.
 
-不過，在升級期間，D 會在 C 健康狀態不良時變成健康狀態良好。升級仍然會成功，因為只有 25% 的服務是健康狀態不良。但是，由於是 C 意外變成健康狀態不良而不是 D，所以可能會造成非預期的錯誤。在此情況下，D 應該被模式化為與 A、B 和 C 不同的服務類型。因為健康狀態原則是根據每個服務類型指定，所以可以對不同的服務套用不同的健康狀態不良百分比臨界值。
+However, during the upgrade, D may become healthy while C becomes unhealthy. The upgrade would still succeed because only 25% of the services are unhealthy. However, it might result in unanticipated errors due to C being unexpectedly unhealthy instead of D. In this situation, D should be modeled as a different service type from A, B, and C. Since health policies are specified per service type, different unhealthy percentage thresholds can be applied to different services. 
 
-### 我未對應用程式升級指定健康狀態原則，但是升級還是因為我從未指定的逾時而失敗
+### <a name="i-did-not-specify-a-health-policy-for-application-upgrade,-but-the-upgrade-still-fails-for-some-time-outs-that-i-never-specified"></a>I did not specify a health policy for application upgrade, but the upgrade still fails for some time-outs that I never specified
 
-當未對升級要求提供健康狀態原則時，會從目前應用程式版本的 *ApplicationManifest.xml* 取用。例如，如果將應用程式 X 從 1.0 版升級至 2.0 版，則會使用為 1.0 版指定的應用程式健康狀態原則。如果應該對升級使用不同的健康狀態原則，則需要指定原則做為應用程式升級 API 呼叫的一部分。指定為 API 呼叫一部分的原則只適用於升級期間。完成升級後，會使用 *ApplicationManifest.xml* 中指定的原則。
+When health policies aren't provided to the upgrade request, they are taken from the *ApplicationManifest.xml* of the current application version. For example, if you're upgrading Application X from version 1.0 to version 2.0, application health policies specified for in version 1.0 are used. If a different health policy should be used for the upgrade, then the policy needs to be specified as part of the application upgrade API call. The policies specified as part of the API call only apply during the upgrade. Once the upgrade is complete, the policies specified in the *ApplicationManifest.xml* are used.
 
-### 指定了不正確的逾時
+### <a name="incorrect-time-outs-are-specified"></a>Incorrect time-outs are specified
 
-您可能想要知道當逾時設定不一致時會發生什麼情況。例如，您的 *UpgradeTimeout* 小於 *UpgradeDomainTimeout*。答案是會傳回錯誤。如果 *UpgradeDomainTimeout* 小於 *HealthCheckWaitDuration* 和 *HealthCheckRetryTimeout* 的總和，或如果 *UpgradeDomainTimeout* 小於 *HealthCheckWaitDuration* 和 *HealthCheckStableDuration* 的總和，則會傳回錯誤。
+You may have wondered about what happens when time-outs are set inconsistently. For example, you may have an *UpgradeTimeout* that's less than the *UpgradeDomainTimeout*. The answer is that an error is returned. Errors are returned if the *UpgradeDomainTimeout* is less than the sum of *HealthCheckWaitDuration* and *HealthCheckRetryTimeout*, or if *UpgradeDomainTimeout* is less than the sum of *HealthCheckWaitDuration* and *HealthCheckStableDuration*.
 
-### 我的升級耗費太多時間
+### <a name="my-upgrades-are-taking-too-long"></a>My upgrades are taking too long
 
-升級完成的時間取決於健康狀態檢查和指定的逾時。健康狀態檢查和逾時則取決於花多少時間來複製、部署及穩定應用程式。使用逾時太過激烈，可能表示會有更多失敗的升級，因此建議保守地從較長的逾時開始。
+The time for an upgrade to complete depends on the health checks and time-outs specified. Health checks and time-outs depend on how long it takes to copy, deploy, and stabilize the application. Being too aggressive with time-outs might mean more failed upgrades, so we recommend starting conservatively with longer time-outs.
 
-以下是逾時與升級時間之間的互動方式快速複習：
+Here's a quick refresher on how the time-outs interact with the upgrade times:
 
-升級網域的升級完成時間無法快於 *HealthCheckWaitDuration* + *HealthCheckStableDuration*。
+Upgrades for an upgrade domain cannot complete faster than *HealthCheckWaitDuration* + *HealthCheckStableDuration*.
 
-升級失敗發生時間無法快於 *HealthCheckWaitDuration* + *HealthCheckRetryTimeout*。
+Upgrade failure cannot occur faster than *HealthCheckWaitDuration* + *HealthCheckRetryTimeout*.
 
-升級網域的升級時間受到 *UpgradeDomainTimeout* 限制。如果 *HealthCheckRetryTimeout* 和 *HealthCheckStableDuration* 兩者都為非零且應用程式的健康狀態會保持來回切換，則升級最終會在 *UpgradeDomainTimeout* 逾時。目前升級網域的升級開始時，*UpgradeDomainTimeout* 就會開始倒數計時。
+The upgrade time for an upgrade domain is limited by *UpgradeDomainTimeout*.  If *HealthCheckRetryTimeout* and *HealthCheckStableDuration* are both non-zero and the health of the application keeps switching back and forth, then the upgrade eventually times out on *UpgradeDomainTimeout*. *UpgradeDomainTimeout* starts counting down once the upgrade for the current upgrade domain begins.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[使用 Visual Studio 升級您的應用程式](service-fabric-application-upgrade-tutorial.md)將引導您完成使用 Visual Studio 進行應用程式升級的步驟。
+[Upgrading your Application Using Visual Studio](service-fabric-application-upgrade-tutorial.md) walks you through an application upgrade using Visual Studio.
 
-[使用 PowerShell 升級您的應用程式](service-fabric-application-upgrade-tutorial-powershell.md)將引導您完成使用 PowerShell 進行應用程式升級的步驟。
+[Upgrading your Application Using Powershell](service-fabric-application-upgrade-tutorial-powershell.md) walks you through an application upgrade using PowerShell.
 
-使用[升級參數](service-fabric-application-upgrade-parameters.md)來控制您應用程式的升級方式。
+Control how your application upgrades by using [Upgrade Parameters](service-fabric-application-upgrade-parameters.md).
 
-了解如何使用[資料序列化](service-fabric-application-upgrade-data-serialization.md)，以讓您的應用程式升級相容。
+Make your application upgrades compatible by learning how to use [Data Serialization](service-fabric-application-upgrade-data-serialization.md).
 
-參考[進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
+Learn how to use advanced functionality while upgrading your application by referring to [Advanced Topics](service-fabric-application-upgrade-advanced.md).
 
-參考[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
+Fix common problems in application upgrades by referring to the steps in [Troubleshooting Application Upgrades](service-fabric-application-upgrade-troubleshooting.md).
  
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,19 +1,26 @@
 <properties services="virtual-machines" title="How to Log on to a Virtual Machine Running Windows Server" authors="cynthn" solutions="" manager="timlt" editor="tysonn" />
 
-4. 按一下 [連接] 建立並下載 [遠端桌面通訊協定] 檔案 (.rdp file)。按一下 [開啟] 使用這個檔案。
 
-5. 您會收到警告，表示 .rdp 來自未知的發行者。這是正常現象。在 [遠端桌面] 視窗中按一下 [連接] 以繼續。
+4. Clicking **Connect** creates and downloads a Remote Desktop Protocol file (.rdp file). Click **Open** to use this file.
 
-	![未知發行者相關警告的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/rdp-warn.png)
+5. You will get a warning that the .rdp is from an unknown publisher. This is normal. In the Remote Desktop window, click **Connect** to continue.
 
-6. 在 [Windows 安全性] 視窗中，輸入虛擬機器上帳戶的認證，然後按一下 [確定]。
+    ![Screenshot of a warning about an unknown publisher.](./media/virtual-machines-log-on-win-server/rdp-warn.png)
 
- 	**本機帳戶** - 這通常是您在建立虛擬機器時所指定的本機帳戶使用者名稱和密碼。在此案例中，虛擬機器的名稱是網域，而它的輸入格式為 *vmname*&#92;*username*。
-	
-	**已加入網域的 VM** - 如果 VM 屬於網域，請輸入 Domain&#92;Username 格式的使用者名稱。此帳戶也必須屬於系統管理員群組，或者已授與遠端存取 VM 的權限。
-	
-	**網域控制站** - 如果 VM 是網域控制站，請輸入該網域的網域系統管理員帳戶的使用者名稱和密碼。
+6. In the **Windows Security** window, type the credentials for an account on the virtual machine and then click **OK**.
 
-7.	按一下 [是] 來確認虛擬機器的身分識別，並完成登入。
+    **Local account** - this is usually the local account user name and password that you specified when you created the virtual machine. In this case, the domain is the name of the virtual machine and it is entered as *vmname*&#92;*username*.  
+    
+    **Domain joined VM** - if the VM belongs to a domain, enter the user name in the format *Domain*&#92;*Username*. The account also needs to either be in the Administrators group or have been granted remote access privileges to the VM.
+    
+    **Domain controller** - if the VM is a domain controller, type the user name and password of a domain administrator account for that domain.
 
-	![顯示驗證 VM 身分識別相關訊息的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/cert-warning.png)
+7.  Click **Yes** to verify the identity of the virtual machine and finish logging on.
+
+    ![Screenshot showing a message abut verifying the identity of the VM.](./media/virtual-machines-log-on-win-server/cert-warning.png)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

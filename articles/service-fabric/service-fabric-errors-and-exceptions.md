@@ -1,6 +1,6 @@
 <properties
-   pageTitle="擲回的常見 FabricClient 例外狀況 | Microsoft Azure"
-   description="描述 FabricClient API 可在執行應用程式和叢集管理作業時擲回的常見例外狀況和錯誤。"
+   pageTitle="Common FabricClient exceptions thrown | Microsoft Azure"
+   description="Describes the common exceptions and errors which can be thrown by the FabricClient APIs while performing application and cluster management operations."
    services="service-fabric"
    documentationCenter=".net"
    authors="rwike77"
@@ -16,32 +16,37 @@
    ms.date="08/25/2016"
    ms.author="ryanwi"/>
 
-# 使用 FabricClient API 時常見的例外狀況和錯誤
-[FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) API 可讓叢集和應用程式系統管理員對 Service Fabric 應用程式、服務或叢集執行系統管理工作。例如，應用程式部署、升級和移除、檢查叢集的健康狀態，或測試服務。應用程式開發人員和叢集系統管理員可以使用 FabricClient API，來開發用於管理 Service Fabric 叢集和應用程式的工具。
 
-使用 FabricClient 可以執行許多不同類型的作業。每種方法都可能因輸入不正確、執行階段錯誤或暫時性基礎結構問題而擲回錯誤的例外狀況。請參閱 API 參考文件來尋找特定方法所擲回的例外狀況。不過，許多不同的 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) API 可能會擲回一些例外狀況。下表列出常見的 FabricClient API 例外狀況。
+# <a name="common-exceptions-and-errors-when-working-with-the-fabricclient-apis"></a>Common exceptions and errors when working with the FabricClient APIs
+The [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) APIs enable cluster and application administrators to perform administrative tasks on a Service Fabric application, service, or cluster. For example, application deployment, upgrade, and removal, checking the health a cluster, or testing a service. Application developers and cluster administrators can use the FabricClient APIs to develop tools for managing the Service Fabric cluster and applications.
 
-|例外狀況| 擲回時機|
+There are many different types of operations which can be performed using FabricClient.  Each method can throw exceptions for errors due to incorrect input, runtime errors, or transient infrastructure issues.  See the API reference documentation to find which exceptions are thrown by a specific method. There are some exceptions, however, which can be thrown by many different [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) APIs. The following table lists the exceptions that are common across the FabricClient APIs.
+
+|Exception| Thrown when|
 |---------|:-----------|
-|[System.Fabric.FabricObjectClosedException](https://msdn.microsoft.com/library/system.fabric.fabricobjectclosedexception.aspx)|[FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 物件處於已關閉狀態。處置正在使用的 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 物件，並具現化新的 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 物件。 |
-|[System.TimeoutException](https://msdn.microsoft.com/library/system.timeoutexception.aspx)|作業逾時。作業需要 MaxOperationTimeout 以上的時間才能完成時，會傳回 [OperationTimedOut](https://msdn.microsoft.com/library/system.fabric.fabricerrorcode.aspx)。|
-|[System.UnauthorizedAccessException](https://msdn.microsoft.com/zh-TW/library/system.unauthorizedaccessexception.aspx)|作業的存取檢查失敗。傳回 E\_ACCESSDENIED。|
-|[System.Fabric.FabricException](https://msdn.microsoft.com/library/system.fabric.fabricexception.aspx)|執行作業時發生執行階段錯誤。任何 FabricClient 方法都可能擲回 [FabricException](https://msdn.microsoft.com/library/system.fabric.fabricexception.aspx)，[ErrorCode](https://msdn.microsoft.com/library/system.fabric.fabricexception.errorcode.aspx) 屬性表示例外狀況的確切原因。錯誤碼定義於 [FabricErrorCode](https://msdn.microsoft.com/library/system.fabric.fabricerrorcode.aspx) 列舉中。|
-|[System.Fabric.FabricTransientException](https://msdn.microsoft.com/library/system.fabric.fabrictransientexception.aspx)|作業因某種暫時性錯誤狀況而失敗。例如，作業可能因暫時無法到達複本的仲裁而失敗。暫時性例外狀況會對應至可重試的失敗作業。|
+|[System.Fabric.FabricObjectClosedException](https://msdn.microsoft.com/library/system.fabric.fabricobjectclosedexception.aspx)|The [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) object is in a closed state. Dispose of the [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) object you are using and instantiate a new [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) object. |
+|[System.TimeoutException](https://msdn.microsoft.com/library/system.timeoutexception.aspx)|The operation timed out. [OperationTimedOut](https://msdn.microsoft.com/library/system.fabric.fabricerrorcode.aspx) is returned when the operation takes more than MaxOperationTimeout to complete.|
+|[System.UnauthorizedAccessException](https://msdn.microsoft.com/en-us/library/system.unauthorizedaccessexception.aspx)|The access check for the operation failed. E_ACCESSDENIED is returned.|
+|[System.Fabric.FabricException](https://msdn.microsoft.com/library/system.fabric.fabricexception.aspx)|A runtime error occurred while performing the operation. Any of the FabricClient methods can potentially throw [FabricException](https://msdn.microsoft.com/library/system.fabric.fabricexception.aspx), the [ErrorCode](https://msdn.microsoft.com/library/system.fabric.fabricexception.errorcode.aspx) property indicates the exact cause of the exception. Error codes are defined in the [FabricErrorCode](https://msdn.microsoft.com/library/system.fabric.fabricerrorcode.aspx) enumeration.|
+|[System.Fabric.FabricTransientException](https://msdn.microsoft.com/library/system.fabric.fabrictransientexception.aspx)|The operation failed due to a transient error condition of some kind. For example, an operation may fail because a quorum of replicas is temporarily not reachable. Transient exceptions correspond to failed operations that can be retried.|
 
-可在 [FabricException](https://msdn.microsoft.com/library/system.fabric.fabricexception.aspx) 中傳回的一些常見 [FabricErrorCode](https://msdn.microsoft.com/library/system.fabric.fabricerrorcode.aspx) 錯誤：
+Some common [FabricErrorCode](https://msdn.microsoft.com/library/system.fabric.fabricerrorcode.aspx) errors that can be returned in a [FabricException](https://msdn.microsoft.com/library/system.fabric.fabricexception.aspx):
 
-|錯誤| 條件|
+|Error| Condition|
 |---------|:-----------|
-|CommunicationError|通訊錯誤導致作業失敗，請重試作業。|
-|InvalidCredentialType|認證類型無效。|
-|InvalidX509FindType|X509FindType 無效。|
-|InvalidX509StoreLocation|X509 存放區位置無效。|
-|InvalidX509StoreName|X509 存放區名稱無效。|
-|InvalidX509Thumbprint|X509 憑證指紋字串無效。|
-|InvalidProtectionLevel|保護層級無效。|
-|InvalidX509Store|無法開啟 X509 憑證存放區。|
-|InvalidSubjectName|主體名稱無效。|
-|InvalidAllowedCommonNameList|一般名稱清單字串的格式無效。它應該是以逗號分隔的清單。|
+|CommunicationError|A communication error caused the operation to fail, retry the operation.|
+|InvalidCredentialType|The credential type is invalid.|
+|InvalidX509FindType|The X509FindType is invalid.|
+|InvalidX509StoreLocation|The X509 store location is invalid.|
+|InvalidX509StoreName|The X509 store name is invalid.|
+|InvalidX509Thumbprint|The X509 certificate thumbprint string is invalid.|
+|InvalidProtectionLevel|The protection level is invalid.|
+|InvalidX509Store|The X509 certificate store cannot be opened.|
+|InvalidSubjectName|The subject name is invalid.|
+|InvalidAllowedCommonNameList|The format of common name list string is invalid. It should be a comma-separated list.|
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

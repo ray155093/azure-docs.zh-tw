@@ -1,235 +1,240 @@
 <properties
-	pageTitle="什麼是 Azure 的自助式註冊？| Microsoft Azure"
-	description="Azure 的自助式註冊、如何管理註冊程序及如何接管 DNS 網域名稱的概觀。"
-	services="active-directory"
-	documentationCenter=""
-	authors="curtand"
-	manager="femila"
-	editor=""/>
+    pageTitle="What is Self-Service Signup for Azure? | Microsoft Azure"
+    description="An overview self-service signup for Azure, how to manage the signup process, and how to take over a DNS domain name."
+    services="active-directory"
+    documentationCenter=""
+    authors="curtand"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="identity"
-	ms.date="08/23/2016"
-	ms.author="curtand"/>
+    ms.service="active-directory"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="identity"
+    ms.date="08/23/2016"
+    ms.author="curtand"/>
 
 
-# 什麼是 Azure 的自助式註冊？
 
-本主題說明自助式註冊程序及如何接管 DNS 網域名稱。
+# <a name="what-is-self-service-signup-for-azure?"></a>What is Self-Service Signup for Azure?
 
-## 為何使用自助式註冊？
+This topic explains the self-service signup process and how to take over a DNS domain name.  
 
-- 讓客戶更快取得他們想要的服務。
-- 建立服務的電子郵件型供應項目。
-- 建立以電子郵件為基礎的註冊流程，讓使用者使用其易記的工作電子郵件別名快速地建立身分識別。
-- 未受管理的 Azure 目錄後來可以轉換成受管理的目錄，並重複用於其他服務。
+## <a name="why-use-self-service-signup?"></a>Why use self-service signup?
 
-## 詞彙和定義
+- Get customers to services they want faster.
+- Create email-based offers for a service.
+- Create email-based signup flows which quickly allow users to create identities using their easy-to-remember work email aliases.
+- Unmanaged Azure directories can be made into managed directories later and be reused for other services.
 
-+ **自助式註冊**：這是使用者用以註冊雲端服務的方法，系統會根據其電子郵件網域在 Azure Active Directory (Azure AD) 中自動建立身分識別。
-+ **未受管理的 Azure 目錄**：這是建立身分識別的目錄。未受管理的目錄是沒有全域管理員的目錄。
-+ **電子郵件驗證的使用者**：這是 Azure AD 中的使用者帳戶類型。在註冊自助式供應項目後自動建立身分識別的使用者，就是所謂的電子郵件驗證的使用者。電子郵件驗證的使用者是加上 creationmethod=EmailVerified 標記之目錄的一般成員。
+## <a name="terms-and-definitions"></a>Terms and Definitions
 
-## 使用者體驗
++ **Self-service sign up**: This is the method by which a user signs up for a cloud service and has an identity automatically created for them in Azure Active Directory (Azure AD) based on their email domain.
++ **Unmanaged Azure directory**: This is the directory where that identity is created. An unmanaged directory is a directory that has no global administrator.
++ **Email-verified user**: This is a type of user account in Azure AD. A user who has an identity created automatically after signing up for a self-service offer is known as an email-verified user. An email-verified user is a regular member of a directory tagged with creationmethod=EmailVerified.
 
-例如，假設電子郵件為 Dan@BellowsCollege.com 的使用者會透過電子郵件接收機密檔案。檔案已受 Azure 版權管理 (Azure RMS) 保護。但是 Dan 的組織 (Bellows College) 尚未註冊 Azure RMS，也未部署 Active Directory RMS。在此情況下，Dan 可以註冊個人版 RMS 的免費訂閱，以便讀取受保護的檔案。
+## <a name="user-experience"></a>User experience
 
-如果 Dan 是第一個使用 BellowsCollege.com 的電子郵件地址註冊此自助式供應項目的使用者，則 Azure AD 中會針對 BellowsCollege.com 建立未受管理的目錄。如果來自 BellowsCollege.com 網域的其他使用者註冊此供應項目或類似的自助式供應項目，則在 Azure 中相同的未受管理目錄中，也會為他們建立經過電子郵件驗證的使用者帳戶。
+For example, let's say a user whose email is Dan@BellowsCollege.com receives sensitive files via email. The files have been protected by Azure Rights Management (Azure RMS). But Dan's organization, Bellows College, has not signed up for Azure RMS, nor has it deployed Active Directory RMS. In this case, Dan can sign up for a free subscription to RMS for individuals in order to read the protected files.
 
-## 管理員體驗
+If Dan is the first user with an email address from BellowsCollege.com to sign up for this self-service offering, then an unmanaged directory will be created for BellowsCollege.com in Azure AD. If other users from the BellowsCollege.com domain sign up for this offering or a similar self-service offering, they will also have email-verified user accounts created in the same unmanaged directory in Azure.
 
-擁有未受管理 Azure 目錄之 DNS 網域名稱的管理員，可以在證明擁有權後接管或合併目錄。下一節會更詳細地說明管理員體驗，但其摘要如下：
+## <a name="admin-experience"></a>Admin experience
 
-- 當您接管未受管理的 Azure 目錄時，您就直接變成未受管理目錄的全域管理員。這有時候稱為內部接管。
-- 當您合併未受管理的 Azure 目錄時，您會將未受管理目錄的 DNS 網域名稱新增至受管理的 Azure 目錄，而且系統會建立使用者與資源的對應，以便使用者繼續存取服務而不中斷。這有時候稱為外部接管。
+An admin who owns the DNS domain name of an unmanaged Azure directory can take over or merge the directory after proving ownership. The next sections explain the admin experience in more detail, but here's a summary:
 
-## Azure Active Directory 中建立的項目為何？
+- When you take over an unmanaged Azure directory, you simply become the global administrator of the unmanaged directory. This is sometimes called an internal takeover.
+- When you merge an unmanaged Azure directory, you add the DNS domain name of the unmanaged directory to your managed Azure directory and a mapping of users-to-resources is created so users can continue to access services without interruption. This is sometimes called an external takeover.
 
-#### 目錄
+## <a name="what-gets-created-in-azure-active-directory?"></a>What gets created in Azure Active Directory?
 
-- 建立網域的 Azure Active Directory 目錄 (每個網域一個目錄)。
-- Azure AD 目錄沒有全域管理員。
+#### <a name="directory"></a>directory
 
-#### 使用者
+- An Azure Active Directory directory for the domain is created, one directory per domain.
+- The Azure AD directory has no global admin.
 
-- 針對註冊的每位使用者，Azure AD 目錄中會建立使用者物件。
-- 每個使用者物件都標示為外部。
-- 每位使用者都獲權存取他們註冊的服務。
+#### <a name="users"></a>Users
 
-### 如何針對我擁有的網域宣告自助式 Azure AD 目錄？
+- For each user who signs up, a user object is created in the Azure AD directory.
+- Each user object is marked as external.
+- Each user is given access to the service that they signed up for.
 
-您可以執行網域驗證來宣告自助式 Azure AD 目錄。網域驗證會藉由建立 DNS 記錄來證明您擁有該網域。
+### <a name="how-do-i-claim-a-self-service-azure-ad-directory-for-a-domain-i-own?"></a>How do I claim a self-service Azure AD directory for a domain I own?
 
-有兩種方式可進行 Azure AD 目錄的 DNS 接管：
+You can claim a self-service Azure AD directory by performing domain validation. Domain validation proves you own the domain by creating DNS records.
 
-- 內部接管 (管理員會探索未受管理的 Azure 目錄，並且想要轉換成受管理的目錄)
-- 外部接管 (管理員會嘗試將新的網域新增至他們管理的 Azure 目錄)
+There are two ways to do a DNS takeover of an Azure AD directory:
 
-如果您在使用者執行自助式註冊後接管未受管理的目錄，或正在將新網域加入至現有的受管理目錄，您可能會想要驗證您擁有網域。例如，您擁有名為 contoso.com 的網域，而您想要加入名為 contoso.co.uk 或 contoso.uk 的新網域。
+- internal takeover (Admin discovers an unmanaged Azure directory, and wants to turn into a managed directory)
+- external takeover (Admin tries to add a new domain to their managed Azure directory)
 
-## 什麼是網域接管？  
+You might be interested in validating that you own a domain because you are taking over an unmanaged directory after a user performed self-service signup, or you might be adding a new domain to an existing managed directory. For example, you have a domain named contoso.com and you want to add a new domain named contoso.co.uk or contoso.uk.
 
-本節說明如何驗證您擁有的網域。
+## <a name="what-is-domain-takeover?"></a>What is domain takeover?  
 
-### 什麼是網域驗證，以及為何使用？
+This section covers how to validate that you own a domain
 
-為了在目錄上執行作業，Azure AD 會要求您驗證 DNS 網域的擁有權。網域驗證可讓您宣告目錄，並且將自助式目錄提升為受管理的目錄，或將自助式目錄合併到現有的受管理目錄。
+### <a name="what-is-domain-validation-and-why-is-it-used?"></a>What is domain validation and why is it used?
 
-## 網域驗證範例
+In order to perform operations on a directory, Azure AD requires that you validate ownership of the DNS domain.  Validation of the domain allows you to claim the directory and either promote the self-service directory to a managed directory, or merge the self-service directory into an existing managed directory.
 
-有兩種方式可進行目錄的 DNS 接管：
+## <a name="examples-of-domain-validation"></a>Examples of domain validation
 
-+ 內部接管 (例如，管理員會探索未受管理的自助式目錄，並且想要轉換成受管理的目錄)
-+ 外部接管 (例如，管理員會嘗試將新的網域新增至受管理的目錄)
+There are two ways to do a DNS takeover of a directory:
 
-### 內部接管 - 將未受管理的自助式目錄提升為受管理的目錄
++ internal takeover  (For example, an admin discovers a self-service, unmanaged directory, and wants to turn into managed directory)
++ external takeover (For example, a admin tries to add a new domain to a managed directory)
 
-當您執行內部接管時，目錄會從未受管理的目錄轉換為受管理的目錄。您需要完成 DNS 網域名稱驗證，驗證時您會在 DNS 區域中建立 MX 記錄或 TXT 記錄。該動作：
+### <a name="internal-takeover---promote-a-self-service,-unmanaged-directory-to-be-a-managed-directory"></a>Internal Takeover - promote a self-service, unmanaged directory to be a managed directory
 
-+ 驗證您是否擁有此網域
-+ 將目錄變成受管理
-+ 讓您成為目錄的全域管理員
+When you do internal takeover, the directory gets converted from an unmanaged directory to a managed directory. You need to complete DNS domain name validation, where you create an MX record or a TXT record in the DNS zone. That action:
 
-假設 Bellows College 的 IT 管理員發現學校的使用者已註冊自助式供應項目。身為 DNS 名稱 BellowsCollege.com 的註冊擁有者，IT 管理員可以在 Azure 中驗證 DNS 名稱的擁有權，然後接管未受管理的目錄。目錄接著會變成受管理的目錄，而 IT 管理員會被指派 BellowsCollege.com 目錄的全域管理員角色。
++ Validates that you own the domain
++ Makes the directory managed
++ Makes you the global admin of the directory
 
-### 外部接管 - 將自助式目錄合併到現有的受管理目錄
+Let's say an IT administrator from Bellows College discovers that users from the school have signed up for self-service offerings. As the registered owner of the DNS name BellowsCollege.com, the IT administrator can validate ownership of the DNS name in Azure and then take over the unmanaged directory. The directory then becomes a managed directory, and the IT administrator is assigned the global administrator role for the BellowsCollege.com directory.
 
-在外部接管中，您已有受管理的目錄，而您希望來自未受管理目錄的所有使用者和群組都加入該受管理的目錄，而非擁有兩個不同的目錄。
+### <a name="external-takeover---merge-a-self-service-directory-into-an-existing-managed-directory"></a>External Takeover - merge a self-service directory into an existing managed directory
 
-身為受管理目錄的管理員，您新增網域，而該網域剛好有一個相關聯的未受管理目錄。
+In an external takeover, you already have a managed directory and you want all users and groups from an unmanaged directory to join that managed directory, rather than own two separate directories.
 
-例如，假設您是 IT 管理員，而且已有 Contoso.com (您的組織註冊的網域名稱) 的受管理目錄。您會發現貴組織的使用者已使用電子郵件網域名稱 user@contoso.co.uk (這是貴組織擁有的另一個網域名稱) 執行供應項目的自助式服務。這些使用者目前在 contoso.co.uk 的未受管理目錄中有帳戶。
+As an admin of a managed directory, you add a domain, and that domain happens to have an unmanaged directory associated with it.
 
-您不想管理兩個不同的目錄，所以將 contoso.co.uk 的未受管理目錄合併到 contoso.com 的現有 IT 受管理目錄。
+For example, let's say you are an IT administrator and you already have a managed directory for Contoso.com, a domain name that is registered to your organization. You discover that users from your organization have performed self-service sign up for an offering by using email domain name user@contoso.co.uk, which is another domain name that your organization owns. Those users currently have accounts in an unmanaged directory for contoso.co.uk.
 
-外部接管會遵循與內部接管相同的 DNS 驗證程序。差異是：使用者和服務會重新對應至 IT 受管理的目錄。
+You don't want to manage two separate directories, so you merge the unmanaged directory for contoso.co.uk into your existing IT managed directory for contoso.com.
 
-#### 執行外部接管的影響為何？
+External takeover follows the same DNS validation process as internal takeover.  Difference being: users and services are remapped to the IT managed directory.
 
-外部接管時會建立使用者與資源的對應，以便使用者繼續存取服務而不中斷。許多應用程式 (包括個人的 RMS) 會妥善處理使用者與資源的對應，而使用者不需變更即可繼續存取這些服務。如果應用程式未有效地處理使用者與資源的對應，外部接管可能會明確遭到封鎖，以免使用者發生不佳的體驗。
+#### <a name="what's-the-impact-of-performing-an-external-takeover?"></a>What's the impact of performing an external takeover?
 
-#### 服務支援的目錄接管
+With an external takeover, a mapping of users-to-resources is created so users can continue to access services without interruption. Many applications, including RMS for individuals, handle the mapping of users-to-resources well, and users can continue to access those services without change. If an application does not handle the mapping of users-to-resources effectively, external takeover may be explicitly blocked to prevent users from a poor experience.
 
-目前下列服務支援接管：
+#### <a name="directory-takeover-support-by-service"></a>directory takeover support by service
+
+Currently the following services support takeover:
 
 - RMS
 
 
-下列服務很快就會支援接管：
+The following services will soon be supporting takeover:
 
 - PowerBI
 
-在外部接管之後，下列項目不需要管理員採取行動來移轉使用者資料。
+The following do not and require additional admin action to migrate user data after an external takeover.
 
 - SharePoint/OneDrive
 
 
-## 如何執行 DNS 網域名稱接管
+## <a name="how-to-perform-a-dns-domain-name-takeover"></a>How to perform a DNS domain name takeover
 
-您有幾個選項可用來執行網域驗證 (如果您想要，可執行接管)：
+You have a few options for how to perform a domain validation (and do a takeover if you wish):
 
-1.  Azure 管理入口網站
+1.  Azure Management Portal
 
-	接管是由執行網域新增所觸發。如果網域已有目錄，您將可選擇執行外部接管。
+    A takeover is triggered by doing a domain addition.  If a directory already exists for the domain, you'll have the option to perform an external takeover.
 
-	使用您的認證登入 Azure 入口網站。瀏覽至現有的目錄，再瀏覽至 [加入網域]。
+    Sign in to the Azure portal using your credentials.  Navigate to your existing directory and then to **Add domain**.
 
 2.  Office 365
 
-	您可以在 Office 365 中使用[管理網域](https://support.office.com/article/Navigate-to-the-Office-365-Manage-domains-page-026af1f2-0e6d-4f2d-9b33-fd147420fac2/)頁面上的選項來處理您的網域和 DNS 記錄。請參閱[在 Office 365 中驗證您的網域](https://support.office.com/article/Verify-your-domain-in-Office-365-6383f56d-3d09-4dcb-9b41-b5f5a5efd611/)。
+    You can use the options on the [Manage domains](https://support.office.com/article/Navigate-to-the-Office-365-Manage-domains-page-026af1f2-0e6d-4f2d-9b33-fd147420fac2/) page in Office 365 to work with your domains and DNS records. See [Verify your domain in Office 365](https://support.office.com/article/Verify-your-domain-in-Office-365-6383f56d-3d09-4dcb-9b41-b5f5a5efd611/).
 
 3.  Windows PowerShell
 
-	下列步驟是使用 Windows PowerShell 執行驗證的必要步驟。
+    The following steps are required to perform a validation using Windows PowerShell.
 
-	步驟 |	要使用的 Cmdlet
-	-------	| -------------
-	建立認證物件 | Get-Credential
-	連接至 Azure AD | Connect-MsolService
-	取得網域清單 | Get-MsolDomain
-	建立挑戰 | Get-MsolDomainVerificationDns
-	建立 DNS 記錄 | 在您的 DNS 伺服器上執行這項操作
-	驗證挑戰 | Confirm-MsolEmailVerifiedDomain
+    Step    |   Cmdlet to use
+    ------- | -------------
+    Create a credential object | Get-Credential
+    Connect to Azure AD | Connect-MsolService
+    get a list of domains   | Get-MsolDomain
+    Create a challenge  | Get-MsolDomainVerificationDns
+    Create DNS record   | Do this on your DNS server
+    Verify the challenge    | Confirm-MsolEmailVerifiedDomain
 
-例如：
+For example:
 
-1. 使用用來回應自助式供應項目的認證來連接至 Azure AD：import-module MSOnline $msolcred = get-credential connect-msolservice -credential $msolcred
+1. Connect to Azure AD using the credentials that were used to respond to the self-service offering:      import-module MSOnline      $msolcred = get-credential      connect-msolservice -credential $msolcred
 
-2. 取得網域清單：
+2. Get a list of domains:
 
-	Get-MsolDomain
+    Get-MsolDomain
 
-3. 然後執行 Get-MsolDomainVerificationDns Cmdlet 來建立挑戰：
+3. Then run the Get-MsolDomainVerificationDns cmdlet to create a challenge:
 
-	Get-MsolDomainVerificationDns –DomainName *your\_domain\_name* –Mode DnsTxtRecord
+    Get-MsolDomainVerificationDns –DomainName *your_domain_name* –Mode DnsTxtRecord
 
-	例如：
+    For example:
 
-	Get-MsolDomainVerificationDns –DomainName contoso.com –Mode DnsTxtRecord
+    Get-MsolDomainVerificationDns –DomainName contoso.com –Mode DnsTxtRecord
 
-4. 複製從此命令傳回的值 (挑戰)。
+4. Copy the value (the challenge) that is returned from this command.
 
-	例如：
+    For example:
 
-	MS=32DD01B82C05D27151EA9AE93C5890787F0E65D9
+    MS=32DD01B82C05D27151EA9AE93C5890787F0E65D9
 
-5. 在公用 DNS 命名空間中，建立 DNS txt 記錄，其中包含您在上一個步驟中複製的值。
+5. In your public DNS namespace, create a DNS txt record that contains the value that you copied in the previous step.
 
-	此記錄的名稱是父系網域的名稱，所以如果您使用 Windows Server 的 DNS 角色建立此資源記錄，請將記錄名稱空白，只要將此值貼入文字方塊即可。
+    The name for this record is the name of the parent domain, so if you create this resource record by using the DNS role from Windows Server, leave the Record name blank and just paste the value into the Text box
 
-6. 執行 onfirm-MsolDomain Cmdlet 來驗證挑戰：
+6. Run the Confirm-MsolDomain cmdlet to verify the challenge:
 
-	Confirm-MsolEmailVerifiedDomain -DomainName *your\_domain\_name*
+    Confirm-MsolEmailVerifiedDomain -DomainName *your_domain_name*
 
-	例如：
+    for example:
 
-	Confirm-MsolEmailVerifiedDomain -DomainName contoso.com
+    Confirm-MsolEmailVerifiedDomain -DomainName contoso.com
 
-成功挑戰會讓您回到提示，但不會產生錯誤。
+A successful challenge returns you to the prompt without an error.
 
-## 如何控制自助式設定？
+## <a name="how-do-i-control-self-service-settings?"></a>How do I control self-service settings?
 
-系統管理員目前有兩個自助式控制項。可以控制：
+Admins have two self-service controls today. They can control:
 
-- 使用者是否可以透過電子郵件加入目錄。
-- 使用者是否可以自行授權應用程式和服務。
-
-
-### 如何控制這些功能？
-
-系統管理員可以使用下列 Azure AD Cmdlet Set-MsolCompanySettings 參數設定這些功能：
-
-+ **AllowEmailVerifiedUsers** 控制使用者是否可以建立或加入未受管理的目錄。如果您將該參數設定為 $false，則經過電子郵件驗證的使用者都無法加入目錄。
-+ **AllowAdHocSubscriptions** 控制使用者執行自助式註冊的能力。如果您將該參數為 $false，則沒有任何使用者可以執行自助式註冊。
+- Whether or not users can join the directory via email.
+- Whether or not users can license themselves for applications and services.
 
 
-### 這些控制項如何一起運作？
+### <a name="how-can-i-control-these-capabilities?"></a>How can I control these capabilities?
 
-這兩個參數可合併使用，以定義更精確的自助式註冊控制項。例如，下列命令可讓使用者執行自助式註冊，但僅限於在 Azure AD 中已有帳戶的使用者 (換句話說，需要建立電子郵件驗證帳戶的使用者無法執行自助式註冊)：
+An admin can configure these capabilities using these Azure AD cmdlet Set-MsolCompanySettings parameters:
 
-	Set-MsolCompanySettings -AllowEmailVerifiedUsers $false -AllowAdHocSubscriptions $true
++ **AllowEmailVerifiedUsers** controls whether a user can create or join an unmanaged directory. If you set that parameter to $false, no email-verified users can join the directory.
++ **AllowAdHocSubscriptions** controls the ability for users to perform self-service sign up. If you set that parameter to $false, no users can perform self-service signup.
 
-下列流程圖說明這些參數的所有不同組合，以及針對目錄和自助式註冊造成的情況。
+
+### <a name="how-do-the-controls-work-together?"></a>How do the controls work together?
+
+These two parameters can be used in conjunction to define more precise control over self-service sign up. For example, the following command will allow users to perform self-service sign up, but only if those users already have an account in Azure AD (in other words, users who would need an email-verified account to be created cannot perform self-service sign up):
+
+    Set-MsolCompanySettings -AllowEmailVerifiedUsers $false -AllowAdHocSubscriptions $true
+
+The following flowchart explains all the different combinations for these parameters and the resulting conditions for the directory and self-service sign up.
 
 ![][1]
 
-如需如何使用這些參數的詳細資訊和相關範，請參閱 [Set-MsolCompanySettings](https://msdn.microsoft.com/library/azure/dn194127.aspx)。
+For more information and examples of how to use these parameters, see [Set-MsolCompanySettings](https://msdn.microsoft.com/library/azure/dn194127.aspx).
 
-## 另請參閱
+## <a name="see-also"></a>See Also
 
--  [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
+-  [How to install and configure Azure PowerShell](../powershell-install-configure.md)
 
 -  [Azure PowerShell](https://msdn.microsoft.com/library/azure/jj156055.aspx)
 
--  [Azure Cmdlet 參考](https://msdn.microsoft.com/library/azure/jj554330.aspx)
+-  [Azure Cmdlet Reference](https://msdn.microsoft.com/library/azure/jj554330.aspx)
 
 -  [Set-MsolCompanySettings](https://msdn.microsoft.com/library/azure/dn194127.aspx)
 
 <!--Image references-->
 [1]: ./media/active-directory-self-service-signup/SelfServiceSignUpControls.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,133 +1,138 @@
 <properties
-	pageTitle="Azure SQL Database 基準測試概觀"
-	description="本主題說明用來測量 Azure SQL Database 效能的 Azure SQL Database 基準測試。"
-	services="sql-database"
-	documentationCenter="na"
-	authors="CarlRabeler"
-	manager="jhubbard"
-	editor="monicar" />
+    pageTitle="Azure SQL Database benchmark overview"
+    description="This topic describes the Azure SQL Database Benchmark used in measuring the performance of Azure SQL Database."
+    services="sql-database"
+    documentationCenter="na"
+    authors="CarlRabeler"
+    manager="jhubbard"
+    editor="monicar" />
 
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="data-management"
-	ms.date="06/21/2016"
-	ms.author="carlrab" />
+    ms.service="sql-database"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="data-management"
+    ms.date="06/21/2016"
+    ms.author="carlrab" />
 
-# Azure SQL Database 基準測試概觀
 
-## 概觀
-Microsoft Azure SQL Database 提供三個[服務層](sql-database-service-tiers.md)以及多個效能等級。每個效能等級都提供越來越多的資源集或「能力」，旨在提供愈來愈高的輸送量。
+# <a name="azure-sql-database-benchmark-overview"></a>Azure SQL Database benchmark overview
 
-每個效能等級的增加能力會轉譯成提高的資料庫效能，請務必將其量化。為了執行此作業，Microsoft 開發了 Azure SQL Database 基準測試 (ASDB)。基準測試會執行所有 OLTP 工作負載中找到的基本作業的混合。我們會測量在每個效能等級中執行之資料庫所獲得的輸送量。
+## <a name="overview"></a>Overview
+Microsoft Azure SQL Database offers three [service tiers](sql-database-service-tiers.md) with multiple performance levels. Each performance level provides an increasing set of resources, or ‘power’, designed to deliver increasingly higher throughput.
 
-每個服務層和效能等級的資源與能力都會以[資料庫交易單位 (DTU)](sql-database-technical-overview.md#understand-dtus) 的形式表示。DTU 會根據每個效能等級所提供的 CPU、記憶體，以及讀寫率的混合量值，提供一個方式來描述相關的效能等級容量。資料庫的 DTU 評等加倍等同於資料庫能力倍增。基準測試可讓我們評估每個效能等級藉由執行實際資料庫作業，同時根據提供給資料庫的資源比例來調整資料庫大小、使用者數目以及交易速率，所提供之增加能力對資料庫效能產生的影響。
+It is important to be able to quantify how the increasing power of each performance level translates into increased database performance. To do this Microsoft has developed the Azure SQL Database Benchmark (ASDB). The benchmark exercises a mix of basic operations found in all OLTP workloads. We measure the throughput achieved for databases running in each performance level.
 
-藉由表示使用每小時交易的基本服務層、使用每分鐘交易的標準服務層以及使用每秒鐘交易的高階服務層等輸送量，可以更容易地快速建立每個服務層之效能潛力與應用程式需求之間的關聯。
+The resources and power of each service tier and performance level are expressed in terms of [Database Transaction Units (DTUs)](sql-database-technical-overview.md#understand-dtus). DTUs provide a way to describe the relative capacity of a performance level based on a blended measure of CPU, memory, and read and write rates offered by each performance level. Doubling the DTU rating of a database equates to doubling the database power. The benchmark allows us to assess the impact on database performance of the increasing power offered by each performance level by exercising actual database operations, while scaling database size, number of users, and transaction rates in proportion to the resources provided to the database.
 
-## 建立基準測試結果與實際案例資料庫效能之間的關聯
-請務必了解 ASDB 和所有基準測試一樣，都只具備代表性與指標性。利用基準測試應用程式達成的交易速率與利用其他應用程式可能達成的交易速率不同。基準測試是由不同的交易類型集合所組成，這些類型是針對包含某個範圍的資料表和資料類型的結構描述來執行。雖然基準測試會執行所有 OLTP 工作負載常見的相同基本作業，但是它不代表任何特定類別的資料庫或應用程式。基準測試的目標是提供資料庫相對效能的合理指南，在效能等級之間向上或向下調整時可預期此目標。實際上，資料庫的大小和複雜度都不一樣，會遭遇到不同的工作負載混合，並以不同的方式回應。例如，IO 密集的應用程式可能會更快達到 IO 臨界值，或者 CPU 密集應用程式可能會更快達到 CPU 限制。任何特定的資料庫並不保證能夠在增加負載的情況下使用和基準測試相同的方式調整。
+By expressing the throughput of the Basic service tier using transactions per-hour, the Standard service tier using transactions per-minute, and the Premium service tier using transactions per-second, it makes it easier to quickly relate the performance potential of each service tier to the requirements of an application.
 
-基準測試和其方法會在以下詳細描述。
+## <a name="correlating-benchmark-results-to-real-world-database-performance"></a>Correlating benchmark results to real world database performance
+It is important to understand that ASDB, like all benchmarks, is representative and indicative only. The transaction rates achieved with the benchmark application will not be the same as those that might be achieved with other applications. The benchmark comprises a collection of different transaction types run against a schema containing a range of tables and data types. While the benchmark exercises the same basic operations that are common to all OLTP workloads, it does not represent any specific class of database or application. The goal of the benchmark is to provide a reasonable guide to the relative performance of a database that might be expected when scaling up or down between performance levels. In reality, databases are of different sizes and complexity, encounter different mixes of workloads, and will respond in different ways. For example, an IO-intensive application may hit IO thresholds sooner, or a CPU-intensive application may hit CPU limits sooner. There is no guarantee that any particular database will scale in the same way as the benchmark under increasing load.
 
-## 基準測試摘要
-ASDB 可測量基本資料庫作業混合的效能，這些作業最常發生在線上交易處理 (OLTP) 工作負載中。雖然基準測試在設計時考量到雲端運算，但是資料庫結構描述、資料母體和交易的設計都廣泛代表 OLTP 工作負載中最常使用的基本元素。
+The benchmark and its methodology are described in more detail below.
 
-## 結構描述
-結構描述的設計具有足夠的多樣性和複雜性才能支援廣泛的作業。對包含六個資料表的資料庫執行基準測試。資料表分成三個類別：固定大小、調整和成長。有兩個固定大小資料表、三個調整資料表，和一個成長資料表。固定大小資料表有固定數目的資料列。調整資料表有與資料庫效能成正比但不會在基準測試期間變更的基數。成長資料表的大小在初始載入時類似調整資料表，但是在執行基準測試做為資料列的過程中，會插入並刪除基數變更。
+## <a name="benchmark-summary"></a>Benchmark summary
+ASDB measures the performance of a mix of basic database operations which occur most frequently in online transaction processing (OLTP) workloads. Although the benchmark is designed with cloud computing in mind, the database schema, data population, and transactions have been designed to be broadly representative of the basic elements most commonly used in OLTP workloads.
 
-結構描述包含資料類型的混合，包括整數、數值、字元和日期/時間。結構描述包含主要和次要索引鍵，但沒有任何外部索引鍵 – 也就是資料表之間沒有參考完整性條件約束。
+## <a name="schema"></a>Schema
+The schema is designed to have enough variety and complexity to support a broad range of operations. The benchmark runs against a database comprised of six tables. The tables fall into three categories: fixed-size, scaling, and growing. There are two fixed-size tables; three scaling tables; and one growing table. Fixed-size tables have a constant number of rows. Scaling tables have a cardinality that is proportional to database performance, but doesn’t change during the benchmark. The growing table is sized like a scaling table on initial load, but then the cardinality changes in the course of running the benchmark as rows are inserted and deleted.
 
-資料產生程式會產生初始資料庫的資料。運用各種策略產生整數和數值資料。在某些情況下，會在某範圍中隨機分佈值。在其他情況下，會隨機排列一組值以確保維護特定的分佈。從文字的加權清單產生文字欄位以產生實際的查看資料。
+The schema includes a mix of data types, including integer, numeric, character, and date/time. The schema includes primary and secondary keys, but not any foreign keys – that is, there are no referential integrity constraints between tables.
 
-資料庫的大小是根據「縮放比例」來設定。 縮放比例 (簡寫為 SF) 可決定調整和成長資料表的基數。如以下的＜使用者與步調＞一節所述，資料庫大小、使用者數目和最大效能都會根據彼此的比例進行調整。
+A data generation program generates the data for the initial database. Integer and numeric data is generated with various strategies. In some cases, values are distributed randomly over a range. In other cases, a set of values is randomly permuted to ensure that a specific distribution is maintained. Text fields are generated from a weighted list of words to produce realistic looking data.
 
-## 交易
-工作負載包含九種交易類型，如下表所示。每一筆交易都設計為反白顯示資料庫引擎和系統硬體中特定的一組系統特性，與其他交易呈現高度對比。此方法可讓您更容易評估不同元件對整體效能的影響。例如，「頻繁讀取」交易會從磁碟產生大量的讀取作業。
+The database is sized based on a “scale factor.” The scale factor (abbreviated as SF) determines the cardinality of the scaling and growing tables. As described below in the section Users and Pacing, the database size, number of users, and maximum performance all scale in proportion to each other.
 
-| 交易類型 | 說明 |
+## <a name="transactions"></a>Transactions
+The workload consists of nine transaction types, as shown in the table below. Each transaction is designed to highlight a particular set of system characteristics in the database engine and system hardware, with high contrast from the other transactions. This approach makes it easier to assess the impact of different components to overall performance. For example, the transaction “Read Heavy” produces a significant number of read operations from disk.
+
+| Transaction Type | Description |
 |---|---|
-| 輕度讀取 | SELECT；記憶體中；唯讀 |
-| 中度讀取 | SELECT；大部分記憶體中；唯讀 |
-| 重度讀取 | SELECT；大部分非記憶體中；唯讀 |
-| 輕度更新 | UPDATE；記憶體中；讀寫 |
-| 重度更新 | UPDATE；大部分非記憶體中；讀寫 |
-| 輕度插入 | INSERT；記憶體中；讀寫 |
-| 重度插入 | INSERT；大部分非記憶體中；讀寫 |
-| 刪除 | DELETE；記憶體中與非記憶體中的混合；讀寫 |
-| 重度 CPU | SELECT；記憶體中；非常重度的 CPU 負載；唯讀 |
+| Read Lite | SELECT; in-memory; read-only |
+| Read Medium | SELECT; mostly in-memory; read-only |
+| Read Heavy | SELECT; mostly not in-memory; read-only |
+| Update Lite | UPDATE; in-memory; read-write |
+| Update Heavy | UPDATE; mostly not in-memory; read-write |
+| Insert Lite | INSERT; in-memory; read-write |
+| Insert Heavy | INSERT; mostly not in-memory; read-write |
+| Delete | DELETE; mix of in-memory and not in-memory; read-write |
+| CPU Heavy | SELECT; in-memory; relatively heavy CPU load; read-only |
 
-## 工作負載混合
-利用下列整體混合從加權分佈中隨機選取交易。整體混合具有大約 2:1 的讀/寫比率。
+## <a name="workload-mix"></a>Workload mix
+Transactions are selected at random from a weighted distribution with the following overall mix. The overall mix has a read/write ratio of approximately 2:1.
 
-| 交易類型 | 混合 % |
+| Transaction Type | % of Mix |
 |---|---|
-| 輕度讀取 | 35 |
-| 中度讀取 | 20 |
-| 重度讀取 | 5 |
-| 輕度更新 | 20 |
-| 重度更新 | 3 |
-| 輕度插入 | 3 |
-| 重度插入 | 2 |
-| 刪除 | 2 |
-| 重度 CPU | 10 |
+| Read Lite | 35 |
+| Read Medium | 20 |
+| Read Heavy | 5 |
+| Update Lite | 20 |
+| Update Heavy | 3 |
+| Insert Lite | 3 |
+| Insert Heavy | 2 |
+| Delete | 2 |
+| CPU Heavy | 10 |
 
-## 使用者與步調
-基準測試工作負載是由一個工具觸發，它會跨一組連接提交交易，以模擬許多並行使用者的行為。雖然所有的連接和交易都是由電腦產生，為了簡單起見，我們將這些連接視為「使用者」。 雖然每一位使用者都獨立於其他所有使用者操作，但是所有使用者都執行相同的步驟循環，如下所示：
+## <a name="users-and-pacing"></a>Users and pacing
+The benchmark workload is driven from a tool that submits transactions across a set of connections to simulate the behavior of a number of concurrent users. Although all of the connections and transactions are machine generated, for simplicity we refer to these connections as “users.” Although each user operates independently of all other users, all users perform the same cycle of steps shown below:
 
-1. 建立資料庫連接。
-2. 發出結束訊號之前請重複：
-	- 隨機選取交易 (從加權分佈中)。
-	- 執行選取的交易及測量回應時間。
-	- 等候步調延遲。
-3. 關閉資料庫連接。
-4. [結束]。
+1. Establish a database connection.
+2. Repeat until signaled to exit:
+    - Select a transaction at random (from a weighted distribution).
+    - Perform the selected transaction and measure the response time.
+    - Wait for a pacing delay.
+3. Close the database connection.
+4. Exit.
 
-步調延遲 (在步驟 2c) 為隨機選取，但其分佈具有 1.0 秒的平均值。因此每位使用者平均每秒可以產生最多一筆交易。
+The pacing delay (in step 2c) is selected at random, but with a distribution that has an average of 1.0 second. Thus each user can, on average, generate at most one transaction per second.
 
-## 調整規則
-使用者數目取決於資料庫大小 (以縮放比例單位表示)。每五個縮放比例單位有一名使用者。由於步調延遲，一位使用者平均每秒可以產生最多一筆交易。
+## <a name="scaling-rules"></a>Scaling rules
+The number of users is determined by the database size (in scale-factor units). There is one user for every five scale-factor units. Because of the pacing delay, one user can generate at most one transaction per second, on average.
 
-例如，縮放比例為 500 (SF = 500) 的資料庫會有 100 位使用者，並可達到最大速率 100 TPS。若要觸發更高的 TPS 速率，需要更多使用者和更大的資料庫。
+For example, a scale-factor of 500 (SF=500) database will have 100 users and can achieve a maximum rate of 100 TPS. To drive a higher TPS rate requires more users and a larger database.
 
-下表顯示為每個服務層和效能等級實際持續保留的使用者數目。
+The table below shows the number of users actually sustained for each service tier and performance level.
 
-| 服務層 (效能等級) | 使用者 | 資料庫大小 |
+| Service Tier (Performance Level) | Users | Database Size |
 |---|---|---|
-| 基本 | 5 | 720 MB |
-| 標準 (S0) | 10 | 1 GB |
-| 標準 (S1) | 20 | 2\.1 GB |
-| 標準 (S2) | 50 | 7\.1 GB |
-| 高階 (P1) | 100 | 14 GB |
-| 高階 (P2) | 200 | 28 GB |
-| 高階 (P6/P3) | 800 | 114 GB |
+| Basic | 5 | 720 MB |
+| Standard (S0) | 10 | 1 GB |
+| Standard (S1) | 20 | 2.1 GB |
+| Standard (S2) | 50 | 7.1 GB |
+| Premium (P1) | 100 | 14 GB |
+| Premium (P2) | 200 | 28 GB |
+| Premium (P6/P3) | 800 | 114 GB |
 
-## 測量持續時間
-有效的基準測試執行需要至少一個小時的穩定狀態測量持續時間。
+## <a name="measurement-duration"></a>Measurement duration
+A valid benchmark run requires a steady-state measurement duration of at least one hour.
 
-## 度量
-基準測試中的關鍵度量是輸送量和回應時間。
+## <a name="metrics"></a>Metrics
+The key metrics in the benchmark are throughput and response time.
 
-- 輸送量是基準測試中的基礎效能測量。每個單位時間都會在交易中報告輸送量，計算所有交易類型。
-- 回應時間是效能可預測性的測量。回應時間條件約束會隨服務類別而有所不同，較高等級的服務類別有更嚴格的回應時間需求，如下所示。
+- Throughput is the essential performance measure in the benchmark. Throughput is reported in transactions per unit-of-time, counting all transaction types.
+- Response time is a measure of performance predictability. The response time constraint varies with class of service, with higher classes of service having a more stringent response time requirement, as shown below.
 
-| 服務類別 | 輸送量測量 | 回應時間需求 |
+| Class of Service  | Throughput Measure | Response Time Requirement |
 |---|---|---|
-| 高級 | 每秒交易 | 0\.5 秒時第 95 個百分位數 |
-| 標準 | 每分鐘交易 | 1\.0 秒時第 90 個百分位數 |
-| 基本 | 每小時交易 | 2\.0 秒時第 80 個百分位數 |
+| Premium | Transactions per second | 95th percentile at 0.5 seconds |
+| Standard | Transactions per minute | 90th percentile at 1.0 seconds |
+| Basic | Transactions per hour | 80th percentile at 2.0 seconds |
 
-## 結論
-Azure SQL Database 基準測試會測量跨某範圍可用服務層和效能等級執行之 Azure SQL Database 的相對效能。基準測試會執行基本資料庫作業的混合，這些作業最常發生在線上交易處理 (OLTP) 工作負載中。藉由測量實際效能，基準測試會提供變更效能等級對輸送量的影響評估，比僅列出每個等級所提供的 CPU 速度、記憶體大小和 IOPS 等資源更有意義。在未來，我們將持續改良基準測試，以擴大其範圍及擴展提供的資料。
+## <a name="conclusion"></a>Conclusion
+The Azure SQL Database Benchmark measures the relative performance of Azure SQL Database running across the range of available service tiers and performance levels. The benchmark exercises a mix of basic database operations which occur most frequently in online transaction processing (OLTP) workloads. By measuring actual performance, the benchmark provides a more meaningful assessment of the impact on throughput of changing the performance level than is possible by just listing the resources provided by each level such as CPU speed, memory size, and IOPS. In the future, we will continue to evolve the benchmark to broaden its scope and expand the data provided.
 
-## 資源
-[SQL Database 簡介](sql-database-technical-overview.md)
+## <a name="resources"></a>Resources
+[Introduction to SQL Database](sql-database-technical-overview.md)
 
-[服務層和效能層級](sql-database-service-tiers.md)
+[Service tiers and performance levels](sql-database-service-tiers.md)
 
-[單一資料庫的效能指引](sql-database-performance-guidance.md)
+[Performance guidance for single databases](sql-database-performance-guidance.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

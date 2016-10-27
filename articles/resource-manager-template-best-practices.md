@@ -1,62 +1,63 @@
 <properties
-	pageTitle="Resource Manager 範本的最佳做法 | Microsoft Azure"
-	description="簡化 Azure Resource Manager 範本的指導方針。"
-	services="azure-resource-manager"
-	documentationCenter=""
-	authors="tfitzmac"
-	manager="timlt"
-	editor="tysonn"/>
+    pageTitle="Best practices Resource Manager template | Microsoft Azure"
+    description="Guidelines for simplifying your Azure Resource Manager templates."
+    services="azure-resource-manager"
+    documentationCenter=""
+    authors="tfitzmac"
+    manager="timlt"
+    editor="tysonn"/>
 
 <tags
-	ms.service="azure-resource-manager"
-	ms.workload="multiple"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/15/2016"
-	ms.author="tomfitz"/>
+    ms.service="azure-resource-manager"
+    ms.workload="multiple"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/15/2016"
+    ms.author="tomfitz"/>
 
-# 建立 Azure Resource Manager 範本的最佳做法
 
-下列指導方針可協助您建立可靠又容易使用的 Resource Manager 範本。這些指導方針只是提供建議，而不是絕對需求。這些指導方針可能需要根據您的案例稍加變化。
+# <a name="best-practices-for-creating-azure-resource-manager-templates"></a>Best practices for creating Azure Resource Manager templates
 
-## 資源名稱
+The following guidelines will help you create Resource Manager templates that are reliable and easy-to-use. These guidelines are intended only as suggestions, not absolute requirements. Your scenario may require variations from these guidelines.
 
-您通常會使用以下三種資源名稱︰
+## <a name="resource-names"></a>Resource names
 
-1. 必須是唯一的資源名稱。
-2. 不需要是唯一的資源名稱，但是您想要提供以有助於識別內容的名稱。
-3. 可以是一般的資源名稱。
+There are generally three types of resource names you will work with:
 
-如需建立命名慣例的說明，請參閱 [Infrastructure naming guidelines (基礎結構命名指導方針)](./virtual-machines/virtual-machines-windows-infrastructure-naming-guidelines.md)。如需有關資源名稱限制的詳細資訊，請參閱 [Recommended naming conventions for Azure resources (Azure 資源的建議命名慣例)](./guidance/guidance-naming-conventions.md)。
+1. Resource names that must be unique.
+2. Resource names that do not need to be unique but you want to provide a name that helps identify the context.
+3. Resource names that can be generic.
 
-### 唯一的資源名稱
+For help with establishing a naming convention, see [Infrastructure naming guidelines](./virtual-machines/virtual-machines-windows-infrastructure-naming-guidelines.md). For information about resource name restrictions, see [Recommended naming conventions for Azure resources](./guidance/guidance-naming-conventions.md).
 
-您必須為任何有資料存取端點的資源類型，提供唯一的資源名稱。一些需要唯一名稱的常見類型包括︰
+### <a name="unique-resource-names"></a>Unique resource names
 
-- 儲存體帳戶
-- 網站
-- SQL Server
-- 金鑰保存庫
-- Redis 快取
-- 批次帳戶
-- 流量管理員
-- 搜尋服務
-- HDInsight 叢集
+You must provide a unique resource name for any resource type that has a data access endpoint. Some common types that require a unique name include:
 
-此外，儲存體帳戶名稱必須是小寫、長度不超過 24 個字元，而且不包含任何連字號。
+- Storage account
+- Web site
+- SQL server
+- Key vault
+- Redis cache
+- Batch account
+- Traffic manager
+- Search service
+- HDInsight cluster
 
-您可以建立會使用 [uniqueString()](resource-group-template-functions.md#uniquestring) 函式的變數來產生名稱，而不是為這些資源名稱提供參數，並在部署期間試圖猜測其唯一的名稱。通常，您也會想要將前置詞或後置詞加入 **uniqueString** 結果，以便能查看名稱來更輕鬆地判斷其資源類型。例如，您可以為有下列變數的儲存體帳戶，產生唯一的名稱。
+Furthermore, storage account names must be lower-case, 24 characters or less, and not include any hyphens.
+
+Rather than providing a parameter for these resource names and trying to guess a unique name during deployment, you can create a variable that uses the [uniqueString()](resource-group-template-functions.md#uniquestring) function to generate a name. Frequently, you will also want to add a prefix or postfix to the **uniqueString** result so you can more easily determine the resource type by looking at the name. For example, you can generate a unique name for a storage account with the following variable.
 
     "variables": {
         "storageAccountName": "[concat(uniqueString(resourceGroup().id),'storage')]"
     }
 
-有 uniqueString 前置詞的儲存體帳戶，不會在相同的機架上叢集化。
+Storage accounts with a uniqueString prefix will not get clustered on the same racks.
 
-### 用於識別的資源名稱
+### <a name="resource-names-for-identification"></a>Resource names for identification
 
-對於您想要命名但不用保證其唯一性的資源類型，只需提供可識別其內容和資源類型的名稱即可。建議您提供描述性名稱，以協助您從資源名稱清單中辨識該名稱。如果您在部署期間需要不同的資源名稱，請針對該名稱使用參數︰
+For resource types that you want to name but you do not have to guarantee uniqueness, simply provide a name that identifies both its context and resource type. You'll want to provide a descriptive name that helps you recognize it from a list of resource names. If you need to vary the resource name during deployments, use a parameter for the name:
 
     "parameters": {
         "vmName": { 
@@ -68,13 +69,13 @@
         }
     }
 
-如果您不需要在部署期間傳遞名稱，可以使用變數︰
+If you do not need to pass in a name during deployment, use a variable: 
 
     "variables": {
         "vmName": "demoLinuxVM"
     }
 
-或，硬式編碼的值︰
+Or, a hard-coded value:
 
     {
       "type": "Microsoft.Compute/virtualMachines",
@@ -82,9 +83,9 @@
       ...
     }
 
-### 一般資源名稱
+### <a name="generic-resource-names"></a>Generic resource names
 
-若為主要透過另一個資源來存取的資源類型，您可以使用在範本中硬式編碼的一般名稱。例如，您可能不會想對 SQL Server 上的防火牆規則提供可自訂的名稱。
+For resource types that are largely accessed through another resource, you can use a generic name that is hard-coded in the template. For example, you probably do not want to provide a customizable name for firewall rules on a SQL Server.
 
     {
         "type": "firewallrules",
@@ -92,18 +93,18 @@
         ...
     }
 
-## 參數
+## <a name="parameters"></a>Parameters
 
-1. 儘可能減少使用參數。如果您可以使用變數或常值，請這樣做。只針對下列情況提供參數︰
- - 您希望會隨環境改變的設定 (例如，SKU、大小或容量)。
- - 您希望能方便識別而指定的資源名稱。
- - 您經常用來完成其他工作 (例如，系統管理員使用者名稱) 的值。
- - 機密資料 (例如密碼)
- - 建立多個資源類型執行個體時要使用的數字或值陣列。
+1. Minimize parameters whenever possible. If you can use a variable or a literal, do so. Only provide parameters for:
+ - Settings you wish to vary by environment (such as sku, size, or capacity).
+ - Resource names you wish to specify for easy identification.
+ - Values you use often to complete other tasks (such as admin user name).
+ - Secrets (such as passwords)
+ - The number or array of values to use when creating multiple instances of a resource type.
 
-1. 參數名稱應要放在 **camelCasing** 後面。
+1. Parameter names should follow **camelCasing**.
 
-1. 在中繼資料中提供每個參數的描述。
+1. Provide a description in the metadata for every parameter.
 
         "parameters": {
             "storageAccountType": {
@@ -114,7 +115,7 @@
             }
         }
 
-1. 定義參數的預設值 (密碼和 SSH 金鑰除外)。
+1. Define default values for parameters (except for passwords and SSH keys).
 
         "parameters": {
             "storageAccountType": {
@@ -126,7 +127,7 @@
             }
         }
 
-1. 所有密碼都要使用 **securestring**。
+1. Use **securestring** for all passwords and secrets. 
 
         "parameters": {
             "secretValue": {
@@ -137,7 +138,7 @@
             }
         }
  
-1. 儘可能避免使用參數來指定 **location**。請改為使用資源群組的 location 屬性。針對所有資源使用 **resourceGroup().location** 運算式，就會將範本中的資源當成資源群組部署在相同的位置。
+1. When possible, avoid using a parameter to specify the **location**. Instead, use the location property of the resource group. By using the **resourceGroup().location** expression for all your resources, the resources in the template will be deployed in the same location as the resource group.
 
         "resources": [
           {
@@ -149,19 +150,19 @@
           }
         ]
   
-     如果只在有限的位置支援某資源類型，請考慮直接在範本中指定有效的位置。如果您必須使用 location 參數，請儘可能和可能位於相同位置的資源一起共用該參數值。這個方法可以將使用者必須為每種資源類型提供位置的情況減至最少。
+     If a resource type is supported in only a limited number of locations, consider specifying a valid location directly in the template. If you must use a location parameter, share that parameter value as much as possible with resources that are likely to be in the same location. This approach minimizes users having to provide locations for every resource type.
 
-1. 資源類型的 API 版本要避免使用參數或變數。資源屬性和值可能會隨版本號碼而不同。將 API 版本設定為參數或變數時，程式碼編輯器中的 Intellisense 會無法判斷正確的結構描述。請改為將 API 版本硬式編碼在範本中。
+1. Avoid using a parameter or variable for the API version for a resource type. Resource properties and values can vary by version number. Intellisense in code editors will not be able to determine the correct schema when the API version is set to a parameter or variable. Instead, hard-code the API version in the template.
 
-## 變數 
+## <a name="variables"></a>Variables 
 
-1. 您需要在範本中使用一次以上的值，才使用變數。只會使用一次的值，採硬式編碼的值會您的範本較容易閱讀。
+1. Use variables for values that you need to use more than once in a template. If a value is used only once, a hard-coded value will make your template easier to read.
 
-1. 您不能使用 variables 區段中的 [reference](resource-group-template-functions.md#reference) 函式。reference 函式會從資源的執行階段狀態衍生其值，但變數是在初始的範本剖析期間解析。請改為直接在範本的 **resources** 或 **outputs** 區段中，建構需要 **reference** 函式的值。
+1. You cannot use the [reference](resource-group-template-functions.md#reference) function in the variables section. The reference function derives its value from the resource's runtime state, but variables are resolved during the initial parsing of the template. Instead, construct values that need the **reference** function directly in the **resources** or **outputs** section of the template.
 
-1. 如[資源名稱](#resource-names)中所示，包含變數以用於必須是唯一的資源名稱。
+1. Include variables for resource names that need to be unique, as shown in [Resource names](#resource-names).
 
-1. 您可以將變數組成複雜物件。您可以使用 **variable.subentry** 格式，參考來自複雜物件的值。群組變數可協助您追蹤相關的變數，並提升範本的可讀性。
+1. You can group variables into complex objects. You can reference a value from a complex object in the format **variable.subentry**. Grouping variables helps you keep track of related variables and improves readability of the template.
 
         "variables": {
             "storage": {
@@ -182,13 +183,13 @@
           }
         ]
  
-     > [AZURE.NOTE] 複雜物件包含的運算式不可以參考來自複雜物件的值。請針對此目的，定義個別的變數。
+     > [AZURE.NOTE] A complex object cannot contain an expression that references a value from a complex object. Define a separate variable for this purpose.
 
-     如需使用複雜物件做為變數的更進階範例，請參閱 [Azure Resource Manager 範本中的共用狀態](best-practices-resource-manager-state.md)。
+     For more advanced examples of using complex objects as variables, see [Sharing state in Azure Resource Manager templates](best-practices-resource-manager-state.md).
 
-## 資源
+## <a name="resources"></a>Resources
 
-1. 針對範本中的每個資源指定 **comments**，協助其他參與者了解資源的用途。
+1. Specify **comments** for each resource in the template to help other contributors understand the purpose of the resource.
 
         "resources": [
           {
@@ -201,9 +202,9 @@
           }
         ]
 
-1. 使用標記將中繼資料新增至資源，可讓您新增其他有關資源的資訊。例如，您可以將中繼資料加入資源，提供帳單詳細資料。如需詳細資訊，請參閱[使用標記組織您的 Azure 資源](resource-group-using-tags.md)。
+1. Use tags to add metadata to resources that enable you to add additional information about your resources. For example, you can add metadata to a resource for billing detail purposes. For more information, see [Using tags to organize your Azure resources](resource-group-using-tags.md).
 
-1. 如果您使用「公用端點」 (例如 Blob 儲存體公用端點)，範本中的命名空間「請不要採硬式編碼」。使用 **reference** 函式，動態擷取命名空間。這樣做可讓您將範本部署到不同的公用命名空間環境中，而不需要手動變更範本中的端點。將 apiVersion 設定成和您在範本中用於 storageAccount 相同的版本。
+1. If you use a **public endpoint** in your template (such as a blob storage public endpoint), **do not hardcode** the namespace. Use the **reference** function to retrieve the namespace dynamically. This allows you to deploy the template to different public namespace environments, without manually changing the endpoint in the template. Set the apiVersion to the same version you are using for the storageAccount in your template.
 
         "osDisk": {
             "name": "osdisk",
@@ -212,7 +213,7 @@
             }
         }
 
-     如果將該儲存體帳戶部署在相同的範本中，當您參考資源時，即不需要指定提供者命名空間。簡化的語法如下︰
+     If the storage account is deployed in the same template, you do not need to specify the provider namespace when referencing the resource. The simplified syntax is:
      
         "osDisk": {
             "name": "osdisk",
@@ -221,7 +222,7 @@
             }
         }
 
-     如果您使用公用命名空間在範本中設定其他的值，請據以變更以反映相同的 reference 函式。例如，虛擬機器 diagnosticsProfile 的 storageUri 屬性。
+     If you have other values in your template configured with a public namespace, change these to reflect the same reference function. For example, the storageUri property of the virtual machine diagnosticsProfile.
 
         "diagnosticsProfile": {
             "bootDiagnostics": {
@@ -230,7 +231,7 @@
             }
         }
  
-     您也可以「參考」不同的資源群組中現有的儲存體帳戶。
+     You can also **reference** an existing storage account in a different resource group.
 
 
         "osDisk": {
@@ -240,16 +241,16 @@
             }
         }
 
-1. 只有在應用程式要求時，才將 publicIPAddresses 指派給虛擬機器。若要連線以進行偵錯、管理或系統管理目的，請使用 inboundNatRules、virtualNetworkGateways 或 jumpbox。
+1. Assign publicIPAddresses to a virtual machine only when required for an application. To connect for debug, management or administrative purposes, use either inboundNatRules, virtualNetworkGateways or a jumpbox.
 
-     如需有關如何連線至虛擬機器的詳細資訊，請參閱︰
-     - [Running VMs for an N-tier architecture on Azure (在 Azure 上執行多層式架構的 VM)](./guidance/guidance-compute-3-tier-vm.md)
-     - [在 Azure Resource Manager 中設定虛擬機器的 WinRM 存取](./virtual-machines/virtual-machines-windows-winrm.md)
-     - [允許使用 Azure 入口網站從外部存取您的 VM](./virtual-machines/virtual-machines-windows-nsg-quickstart-portal.md)
-     - [允許使用 PowerShell 從外部存取您的 VM](./virtual-machines/virtual-machines-windows-nsg-quickstart-powershell.md)
-     - [開啟連接埠與端點](./virtual-machines/virtual-machines-linux-nsg-quickstart.md)
+     For more information about connecting to virtual machines, see:
+     - [Running VMs for an N-tier architecture on Azure](./guidance/guidance-compute-3-tier-vm.md)
+     - [Setting up WinRM access for Virtual Machines in Azure Resource Manager](./virtual-machines/virtual-machines-windows-winrm.md)
+     - [Allow external access to your VM using the Azure Portal](./virtual-machines/virtual-machines-windows-nsg-quickstart-portal.md)
+     - [Allow external access to your VM using PowerShell](./virtual-machines/virtual-machines-windows-nsg-quickstart-powershell.md)
+     - [Opening ports and endpoints](./virtual-machines/virtual-machines-linux-nsg-quickstart.md)
 
-1. publicIPAddresses 的 **domainNameLabel** 屬性必須是唯一的。domainNameLabel 的長度必須介於 3 到 63 個字元之間，還要遵循 `^[a-z][a-z0-9-]{1,61}[a-z0-9]$` 這個規則運算式指定的規則。由於在下面的範例中，uniqueString 函式會產生長度為 13 個字元的字串，所以假設已經檢查 dnsPrefixString 前置詞字串不超過 50 個字元且符合上述規則。
+1. The **domainNameLabel** property for publicIPAddresses must be unique. domainNameLabel is required to be between 3 and 63 characters long and to follow the rules specified by this regular expression `^[a-z][a-z0-9-]{1,61}[a-z0-9]$`. As the uniqueString function will generate a string that is 13 characters long in the example below it is presumed that the dnsPrefixString prefix string has been checked to be no more than 50 characters long and to conform to those rules.
 
         "parameters": {
             "dnsPrefixString": {
@@ -264,7 +265,7 @@
             "dnsPrefix": "[concat(parameters('dnsPrefixString'),uniquestring(resourceGroup().id))]"
         }
 
-1. 將密碼新增至 **customScriptExtension** 時，在 protectedSettings 中使用 **commandToExecute** 屬性。
+1. When adding a password to a **customScriptExtension**, use the **commandToExecute** property in protectedSettings.
 
         "properties": {
             "publisher": "Microsoft.OSTCExtensions",
@@ -279,11 +280,11 @@
             }
         }
 
-     > [AZURE.NOTE] 為了確保做為參數傳遞至 virtualMachines/擴充功能的密碼會經過加密，您必須使用相關擴充功能的 protectedSettings 屬性。
+     > [AZURE.NOTE] In order to ensure that secrets which are passed as parameters to virtualMachines/extensions are encrypted, the protectedSettings property of the relevant extensions must be used.
 
-## 輸出
+## <a name="outputs"></a>Outputs
 
-如果範本建立會任何的新 **publicIPAddresses**，則應要有一個 **output** 區段，提供所建立 IP 位址和完整網域的詳細資料，以在部署之後輕鬆擷取這些詳細資料。參考資源時，請使用當時用來建立該資源的 API 版本。
+If a template creates any new **publicIPAddresses** then it should have an **output** section that provides details of the IP address and fully qualified domain created to easily retrieve these details after deployment. When referencing the resource, use the API version that was used to create it. 
 
 ```
 "outputs": {
@@ -298,28 +299,28 @@
 }
 ```
 
-## 單一範本或巢狀範本
+## <a name="single-template-or-nested-templates"></a>Single template or nested templates
 
-若要部署解決方案，您可以使用單一範本或有多個巢狀範本的主要範本。巢狀範本常見於更進階的案例。巢狀範本包含下列優點︰
+To deploy your solution, you can use either a single template or a main template with multiple nested templates. Nested templates are common for more advanced scenarios. Nested templates contain the following advantages:
 
-1. 可以將解決方案分解為多個目標元件
-2. 可以搭配不同的主要範本重複使用巢狀範本
+1. Can decompose solution into targeted components
+2. Can re-use nested templates with different main templates
 
-當您決定將範本設計分解成多個巢狀範本時，下列指導方針有助於將設計標準化。這些指導方針是以[設計 Azure Resource Manager 範本模式](best-practices-resource-manager-design-templates.md)文件為基礎。建議的設計包含下列範本。
+When you decide to decompose your template design into multiple nested templates, the following guidelines will help standardize the design. These guidelines are based on the [patterns for designing Azure Resource Manager templates](best-practices-resource-manager-design-templates.md) documentation. The recommended design consists of the following templates.
 
-+ **主要範本** (azuredeploy.json)。用於輸入參數。
-+ **共用的資源範本**。部署所有其他資源可以使用的共用資源 (例如虛擬網路、可用性設定組)。dependsOn 運算式會強制在其他範本之前部署此範本。
-+ **選擇性資源範本**。根據參數 (例如 jumpbox) 有條件地部署資源
-+ **成員資源範本**。應用程式層內的每個執行個體類型都有自己的組態。您可以在層次內定義不同的執行個體類型 (例如，第一個執行個體建立新的叢集，而將其他執行個體加入現有的叢集)。每個執行個體類型會有自己的部署範本。
-+ **指令碼**。廣泛可重複使用的指令碼適用於各種個執行個體類型 (例如，將其他磁碟初始化和格式化)。針對特定自訂用途而建立的自訂指令碼，會隨各種執行個體類型而不同。
++ **Main template** (azuredeploy.json). Used for the input parameters.
++ **Shared resources template**. Deploys the shared resources that all other resources use (e.g. virtual network, availability sets). The expression dependsOn enforces that this template is deployed before the other templates.
++ **Optional resources template**. Conditionally deploys resources based on a parameter (e.g. a jumpbox)
++ **Member resources templates**. Each instance type within an application tier has its own configuration. Within a tier, different instance types can be defined (such as, first instance creates a new cluster, additional instances are added to the existing cluster). Each instance type will have its own deployment template.
++ **Scripts**. Widely reusable scripts are applicable for each instance type (e.g. initialize and format additional disks). Custom scripts are created for specific customization purpose are different per instance type.
 
-![巢狀範本](./media/resource-manager-template-best-practices/nestedTemplateDesign.png)
+![nested template](./media/resource-manager-template-best-practices/nestedTemplateDesign.png)
 
-如需詳細資訊，請參閱[透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)。
+For more information, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).
 
-## 有條件地連結到巢狀範本
+## <a name="conditionally-link-to-nested-template"></a>Conditionally link to nested template
 
-您可以在範本的 URI 當中使用參數，有條件地連結到巢狀範本。
+You can conditionally link to nested templates by using a parameter that becomes part of the URI for the template.
 
     "parameters": {
         "newOrExisting": {
@@ -350,15 +351,19 @@
         }
     ]
 
-## 範本格式
+## <a name="template-format"></a>Template format
 
-1. 最好是透過 JSON 驗證程式來傳遞您的範本，將可能會在部署期間造成錯誤的多餘逗號、括號、括弧移除。請嘗試在您喜愛的編輯環境 (Visual Studio 程式碼、Atom、Sublime Text、Visual Studio 等) 中使用 [JSONlint](http://jsonlint.com/) 或 linter 封裝
-1. 也建議您將 JSON 格式化以更方便閱讀。您可以對本機的編輯器使用 JSON 格式器封裝。在 Visual Studio 中，利用 **Ctrl+K、Ctrl+D** 來格式化文件。在 VS Code 中，使用 **Alt+Shift+F**。如果您的本機編輯器並不會格式化文件，您可以使用[線上格式器](https://www.bing.com/search?q=json+formatter)。
+1. It is a good practice to pass your template through a JSON validator to remove extraneous commas, parenthesis, brackets that may cause an error during deployment. Try [JSONlint](http://jsonlint.com/) or a linter package for your favorite editing environment (Visual Studio Code, Atom, Sublime Text, Visual Studio, etc.)
+1. It's also a good idea to format your JSON for better readability. You can use a JSON formatter package for your local editor. In Visual Studio, format the document with **Ctrl+K, Ctrl+D**. In VS Code, use **Alt+Shift+F**. If your local editor doesn't format the document, you can use an [online formatter](https://www.bing.com/search?q=json+formatter).
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-1. 如需設計虛擬機器解決方案架構的指引，請參閱 [Running a Windows VM on Azure (在 Azure 上執行 Windows VM)](./guidance/guidance-compute-single-vm.md) 和 [Running a Linux VM on Azure (在 Azure 上執行 Linux VM)](./guidance/guidance-compute-single-vm-linux.md)。
-2. 如需有關設定儲存體帳戶的詳細資訊，請參閱 [Microsoft Azure 儲存體效能與延展性檢查清單](./storage/storage-performance-checklist.md)。
-3. 如需虛擬網路的說明，請參閱 [Networking infrastructure guidelines (網路基礎結構指導方針)](./virtual-machines/virtual-machines-windows-infrastructure-networking-guidelines.md)。
+1. For guidance on architecting your solution for virtual machines, see [Running a Windows VM on Azure](./guidance/guidance-compute-single-vm.md) and [Running a Linux VM on Azure](./guidance/guidance-compute-single-vm-linux.md).
+2. For guidance on setting up a storage account, see [Microsoft Azure Storage Performance and Scalability Checklist](./storage/storage-performance-checklist.md).
+3. For help with virtual networks, see [Networking infrastructure guidelines](./virtual-machines/virtual-machines-windows-infrastructure-networking-guidelines.md).
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

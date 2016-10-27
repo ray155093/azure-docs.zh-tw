@@ -1,212 +1,213 @@
 <properties
-	pageTitle="開始使用儲存體 Explorer (預覽) | Microsoft Azure"
-	description="使用儲存體總管管理 Azure 儲存體資源 (預覽)"
-	services="storage"
-	documentationCenter="na"
-	authors="TomArcher"
-	manager="douge"
-	editor="" />
+    pageTitle="Getting started with Storage Explorer (Preview) | Microsoft Azure"
+    description="Manage Azure storage resources with Storage Explorer (Preview)"
+    services="storage"
+    documentationCenter="na"
+    authors="TomArcher"
+    manager="douge"
+    editor="" />
 
  <tags
-	ms.service="storage"
-	ms.devlang="multiple"
-	ms.topic="get-started-article"
-	ms.tgt_pltfrm="na"
-	ms.workload="na"
-	ms.date="08/17/2016"
-	ms.author="tarcher" />
+    ms.service="storage"
+    ms.devlang="multiple"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="08/17/2016"
+    ms.author="tarcher" />
 
-# 開始使用儲存體 Explorer (預覽)
 
-## Overview 
+# <a name="getting-started-with-storage-explorer-(preview)"></a>Getting started with Storage Explorer (Preview)
 
-Microsoft Azure 儲存體總管 (預覽) 是一個獨立應用程式，可讓您在 Windows、OS X 和 Linux 上輕鬆使用 Azure 儲存體資料。在本文中，您將學習連接及管理 Azure 儲存體帳戶的各種方式。
+## <a name="overview"></a>Overview 
 
-![Microsoft Azure 儲存體 Explorer (預覽)][15]
+Microsoft Azure Storage Explorer (Preview) is a standalone app that enables you to easily work with Azure Storage data on Windows, OS X, and Linux. In this article, you'll learn the various ways of connecting to and managing your Azure storage accounts.
 
-## 必要條件
+![Microsoft Azure Storage Explorer (Preview)][15]
 
-- [下載並安裝儲存體 Explorer (預覽)](http://www.storageexplorer.com)
+## <a name="prerequisites"></a>Prerequisites
 
-## 連接到儲存體帳戶或服務
+- [Download and install Storage Explorer (preview)](http://www.storageexplorer.com)
 
-儲存體 Explorer (預覽) 提供無數種方式來連接至儲存體帳戶。其中包括連接到與您的 Azure 訂用帳戶相關聯的儲存體帳戶、連接到從其他 Azure 訂用帳戶共用的儲存體帳戶和服務，甚至是使用 Azure 儲存體模擬器連接及管理本機儲存體：
+## <a name="connect-to-a-storage-account-or-service"></a>Connect to a storage account or service
 
-- [連接到 Azure 訂用帳戶](#connect-to-an-azure-subscription) - 管理屬於您的 Azure 訂用帳戶的儲存體資源。
-- [使用本機開發儲存體](#work-with-local-development-storage) - 使用 Azure 儲存體模擬器管理本機儲存體。
-- [附加到外部儲存體](#attach-or-detach-an-external-storage-account) - 使用儲存體帳戶的帳戶名稱與金鑰，管理屬於另一個 Azure 訂用帳戶的儲存體資源。
-- [使用 SAS 附加儲存體帳戶](#attach-storage-account-using-sas) - 使用 SAS，管理屬於另一個 Azure 訂用帳戶的儲存體資源。
-- [使用 SAS 附加服務](#attach-service-using-sas) - 使用 SAS，管理屬於另一個 Azure 訂用帳戶的特定儲存體服務 (Blob 容器、佇列或資料表)。
+Storage Explorer (Preview) provides a myriad ways to connect to storage accounts. This includes connecting to storage accounts associated with your Azure subscriptions, connecting to storage accounts and services shared from other Azure subscriptions, and even connecting to and managing local storage using the Azure Storage Emulator:
 
-## 連線到 Azure 訂用帳戶
+- [Connect to an Azure subscription](#connect-to-an-azure-subscription) - Manage storage resources belonging to your Azure subscription.
+- [Work with local development storage](#work-with-local-development-storage) - Manage local storage using the Azure Storage Emulator. 
+- [Attach to external storage](#attach-or-detach-an-external-storage-account) - Manage storage resources belonging to another Azure subscription using the storage account's account name and key.
+- [Attach storage account using SAS](#attach-storage-account-using-sas) - Manage storage resources belonging to another Azure subscription using a SAS.
+- [Attach service using SAS](#attach-service-using-sas) - Manage a specific storage service (blob container, queue, or table) belonging to another Azure subscription using a SAS.
 
-> [AZURE.NOTE] 如果您沒有 Azure 帳戶，可以 [申請免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是 [啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+## <a name="connect-to-an-azure-subscription"></a>Connect to an Azure subscription
 
-1. 在儲存體 Explorer (預覽) 中，選取 [Azure 帳戶設定]。
+> [AZURE.NOTE] If you don't have an Azure account, you can [sign up for a free trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) or [activate your Visual Studio subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
 
-	![Azure 帳戶設定][0]
+1. In Storage Explorer (Preview), select **Azure Account settings**. 
 
-1. 左窗格現在會顯示您已登入的所有 Microsoft 帳戶。若要連接到其他帳戶，請選取 [新增帳戶]，並依照對話方塊使用與至少一個作用中 Azure 訂用帳戶相關聯的 Microsoft 帳戶進行登入。
+    ![Azure account settings][0]
 
-	![新增帳戶][1]
+1. The left pane will now display all the Microsoft accounts you've logged into. To connect to another account, select **Add an account**, and follow the dialogs to sign in with a Microsoft account that is associated with at least one active Azure subscription.
 
-1. 成功使用 Microsoft 帳戶登入後，左窗格會填入與該帳戶相關聯的 Azure 訂用帳戶。選取您想要使用的訂用帳戶，然後選取 [套用]。(選取 [所有訂用帳戶] 切換方塊，可選取全部或不選取任何列出的 Azure 訂用帳戶。)
+    ![Add an account][1]
 
-	![選取 Azure 訂用帳戶][3]
+1. Once you successfully sign in with a Microsoft account, the left pane will populate with the Azure subscriptions associated with that account. Select the Azure subscriptions with which you want to work, and then select **Apply**. (Selecting **All subscriptions** toggles selecting all or none of the listed Azure subscriptions.)
 
-1. 左窗格現在會顯示與所選 Azure 訂用帳戶相關聯的儲存體帳戶。
+    ![Select Azure subscriptions][3]
 
-	![已選取的 Azure 訂用帳戶][4]
+1. The left pane will now display the storage accounts associated with the selected Azure subscriptions.
 
-## 使用本機開發儲存體
+    ![Selected Azure subscriptions][4]
 
-儲存體 Explorer (預覽) 可讓您使用 Azure 儲存體模擬器處理本機儲存體。這可讓您撰寫程式碼並測試儲存體，而不需在 Azure 上部署儲存體帳戶 (因為 Azure 儲存體模擬器正在模擬儲存體帳戶)。
+## <a name="work-with-local-development-storage"></a>Work with local development storage
 
->[AZURE.NOTE] Azure 儲存體模擬器目前只適用於 Windows。
+Storage Explorer (Preview) enables you to work against local storage using the Azure Storage Emulator. This allows you to write code against and test storage without necessarily having a storage account deployed on Azure (since the storage account is being emulated by the Azure Storage Emulator).
 
-1. 在儲存體 Explorer (預覽) 的左窗格中，依序展開 [(本機連接)] > [儲存體帳戶] > [(開發)] 節點。
+>[AZURE.NOTE] The Azure Storage Emulator is currently supported only for Windows. 
 
-	![本機開發節點][21]
+1. In the left pane of Storage Explorer (Preview), expand the **(Local and Attached** > **Storage Accounts** > **(Development)** node.
 
-1. 如果您尚未安裝 Azure 儲存體模擬器，系統將透過資訊列提示您這麼做。若已顯示資訊列，請選取 [下載最新版本]，並安裝模擬器。
+    ![Local development node][21]
 
-	![下載 Azure 儲存體模擬器提示字元][22]
+1. If you have not yet installed the Azure Storage Emulator, you'll be prompted to do so via an infobar. If the infobar is displayed, select **Download the latest version**, and install the emulator. 
 
-1. 安裝模擬器後，您就能夠建立並使用本機 Blob、佇列和資料表。若要了解如何使用每個儲存體帳戶類型，請選取以下適當的連結：
+    ![Download Azure Storage Emulator prompt][22]
 
-	- [管理 Azure Blob 儲存體資源](./vs-azure-tools-storage-explorer-blobs.md)
-	- 管理 Azure 檔案共用儲存體資源 - 敬請期待
-	- 管理 Azure 佇列儲存體資源 - 敬請期待
-	- 管理 Azure 表格儲存體資源 - 敬請期待
+1. Once the emulator is installed, you'll have the ability to create and work with local blobs, queues, and tables. To learn how to work with each storage account type, select on the appropriate link below:
 
-## 附加或卸離外部儲存體帳戶
+    - [Manage Azure blob storage resources](./vs-azure-tools-storage-explorer-blobs.md)
+    - Manage Azure file share storage resources - *Coming soon*
+    - Manage Azure queue storage resources - *Coming soon*
+    - Manage Azure table storage resources - *Coming soon*
 
-儲存體 Explorer (預覽) 提供附加到外部儲存體帳戶的能力，因此可以輕鬆地共用儲存體帳戶。本節說明如何附加至 (及卸離) 外部儲存體帳戶。
+## <a name="attach-or-detach-an-external-storage-account"></a>Attach or detach an external storage account
 
-### 取得儲存體帳戶認證
+Storage Explorer (Preview) provides the ability to attach to external storage accounts so that storage accounts can be easily shared. This section explains how to attach to (and detach from) external storage accounts.
 
-若要共用外部儲存體帳戶，該帳戶的擁有者必須先取得帳戶的認證 (帳戶名稱和金鑰)，然後與想要附加至該 (外部) 帳戶的人員分享該資訊。遵循下列步驟，即可透過 Azure 入口網站取得儲存體帳戶認證：
+### <a name="get-the-storage-account-credentials"></a>Get the storage account credentials
 
-1.	登入 [Azure 入口網站](https://portal.azure.com)。
-1.	選取 [瀏覽]。
-1.	選取 [儲存體帳戶]。
-1.	在 [儲存體帳戶] 刀鋒視窗中，選取所需的儲存體帳戶。
-1.	在所選儲存體帳戶的 [設定] 刀鋒視窗中，選取 [存取金鑰]。
+In order to share an external storage account, the owner of that account must first get the credentials - account name and key - for the account and then share that information with the person wanting to attach to that (external) account. Obtaining the storage account credentials can be done via the Azure portal by following these steps: 
 
-	![存取金鑰選項][5]
-	
-1.	在 [存取金鑰] 刀鋒視窗中，複製 [儲存體帳戶名稱] 和 [金鑰 1] 值，以便在附加至儲存體帳戶時使用。
+1.  Sign in to the [Azure portal](https://portal.azure.com).
+1.  Select **Browse**.
+1.  Select **Storage Accounts**.
+1.  In the **Storage Accounts** blade, select the desired storage account.
+1.  In the **Settings** blade for the selected storage account, select **Access keys**.
 
-	![存取金鑰][6]
+    ![Access Keys option][5]
+    
+1.  In the **Access keys** blade, copy the **STORAGE ACCOUNT NAME** and **KEY 1** values for use when attaching to the storage account. 
 
-### 附加至外部儲存體帳戶
-若要附加至外部儲存體帳戶，您會需要帳戶的名稱和金鑰。「取得儲存體帳戶認證」 一節說明如何從 Azure 入口網站取得這些值。不過，請注意在入口網站中，帳戶金鑰稱為「金鑰 1」，因此儲存體總管 (預覽) 會要求帳戶金鑰，您將會輸入 (或貼上)「金鑰 1」的值。
+    ![Access keys][6]
+
+### <a name="attach-to-an-external-storage-account"></a>Attach to an external storage account
+To attach to an external storage account, you'll need the account's name and key. The section *Get the storage account credentials* explains how to obtain these values from the Azure portal. However, note that in the portal, the account key is called "key 1" so where the Storage Explorer (Preview) asks for an account key, you'll enter (or paste) the "key 1" value. 
  
-1.	在儲存體 Explorer (預覽) 中，選取 [連接到 Azure 儲存體]。
+1.  In Storage Explorer (Preview), select **Connect to Azure storage**.
 
-	![連接至 Azure 儲存體選項][23]
+    ![Connect to Azure storage option][23]
 
-1.	在 [連接到 Azure 儲存體] 對話方塊中，指定帳戶金鑰 (Azure 入口網站中的「金鑰 1」值)，然後選取 [下一步]。
+1.  On the **Connect to Azure Storage** dialog, specify the account key ("key 1" value from the Azure portal), and then select **Next**.
 
-	![連接至 Azure 儲存體對話方塊][24]
+    ![Connect to Azure storage dialog][24] 
 
-1.	在 [附加外部儲存體] 對話方塊中，請在 [帳戶名稱] 方塊中輸入儲存體帳戶名稱，指定任何其他所需的設定，然後在完成時選取 [下一步]。
+1.  In the **Attach External Storage** dialog, enter the storage account name in the **Account name** box, specify any other desired settings, and select **Next** when done. 
 
-	![附加外部儲存體對話方塊][8]
+    ![Attach external storage dialog][8]
 
-1.	在 [連線摘要] 對話方塊中，確認資訊。如果您想要變更任何項目，請選取 [上一頁] 並重新輸入所需的設定。完成後，請選取 [連接]。
+1.  In the **Connection Summary** dialog, verify the information. If you want to change anything, select **Back** and re-enter the desired settings. Once finished, select **Connect**.
 
-1.	連接後，外部儲存體帳戶將會與附加至儲存體帳戶名稱的文字 **(外部)** 一起顯示。
+1.  Once connected, the external storage account will be displayed with the text **(External)** appended to the storage account name. 
 
-	![連接至外部儲存體帳戶的結果][9]
+    ![Result of connecting to an external storage account][9]
 
-### 從外部儲存體帳戶卸離
+### <a name="detach-from-an-external-storage-account"></a>Detach from an external storage account
 
-1. 	以滑鼠右鍵按一下您要卸離的外部儲存體帳戶，並從內容功能表中選取 [卸離]。
+1.  Right-click the external storage account you want to detach, and - from the context menu - select **Detach**.
 
-	![中斷與儲存體選項的連結][10]
+    ![Detach from storage option][10]
 
-1.	當確認訊息方塊出現時，請選取 [是] 已確認從外部儲存體帳戶卸離。
+1.  When the confirmation message box appears, select **Yes** to confirm the detachment from the external storage account.
 
-## 使用 SAS 附加儲存體帳戶
+## <a name="attach-storage-account-using-sas"></a>Attach storage account using SAS
 
-[SAS (共用存取簽章)](storage/storage-dotnet-shared-access-signature-part-1.md) 讓 Azure 訂用帳戶的系統管理員能夠暫時授與儲存體帳戶的存取權，而不需提供其 Azure 訂用帳戶認證。
+A [SAS (Shared Access Signature)](storage/storage-dotnet-shared-access-signature-part-1.md) gives the admin of an Azure subscription the ability to grant access to a storage account on a temporary basis without having to provide their Azure subscription credentials. 
 
-為了說明這點，我們假設 UserA 是 Azure 訂用帳戶的系統管理員，而且 UserA 想要允許 UserB 在有限的時間內使用特定權限存取儲存體帳戶：
+To illustrate this, let's say UserA is an admin of an Azure subscription, and UserA wants to allow UserB to access a storage account for a limited time with certain permissions:
 
-1. UserA 可在特定期間內使用所需的權限產生 SAS (由儲存體帳戶的連接字串所組成)。
-1. UserA 可與想要存取儲存體帳戶的人員共用 SAS - 在本例中為 UserB。
-1. UserB 可透過儲存體 Explorer (預覽)，使用所提供的 SAS 來附加至屬於 UserA 的帳戶。
+1. UserA generates a SAS (consisting of the connection string for the storage account) for a specific time period and with the desired permissions.
+1. UserA shares the SAS with the person wanting access to the storage account - UserB, in our example.  
+1. UserB uses Storage Explorer (Preview) to attach to the account belonging to UserA using the supplied SAS. 
 
-### 針對您要共用的帳戶取得 SAS
+### <a name="get-a-sas-for-the-account-you-want-to-share"></a>Get a SAS for the account you want to share
 
-1.	在儲存體 Explorer (預覽) 中，以滑鼠右鍵按一下您要共用的儲存體帳戶，並從內容功能表中選取 [取得共用存取簽章]。
+1.  In Storage Explorer (Preview), right-click the storage account you want share, and - from the context menu - select **Get Shared Access Signature**.
 
-	![取得 SAS 內容功能表選項][13]
+    ![Get SAS context menu option][13]
 
-1. 在 [共用存取簽章] 對話方塊中，指定您要用於此帳戶的時間範圍和權限，再選取 [建立]。
+1. On the **Shared Access Signature** dialog, specify the time frame and permissions you want for the account, and select **Create**.
 
-	![取得 SAS 對話方塊][14]
+    ![Get SAS dialog][14]
  
-1. 第二個 [共用存取簽章] 對話方塊將會顯示，其中顯示 SAS。選取 [連接字串] 旁的 [複製]，將它複製到剪貼簿。選取 [關閉] 以關閉對話方塊。
+1. A second **Shared Access Signature** dialog will appear displaying the SAS. Select **Copy** next to the **Connection String** to copy it to the clipboard. Select **Close** to dismiss the dialog.
 
-### 使用 SAS 附加至共用帳戶
+### <a name="attach-to-the-shared-account-using-the-sas"></a>Attach to the shared account using the SAS
 
-1.	在儲存體 Explorer (預覽) 中，選取 [連接到 Azure 儲存體]。
+1.  In Storage Explorer (Preview), select **Connect to Azure storage**.
 
-	![連接至 Azure 儲存體選項][23]
+    ![Connect to Azure storage option][23]
 
-1.	在 [連接到 Azure 儲存體] 對話方塊中，指定連接字串，然後選取 [下一步]。
+1.  On the **Connect to Azure Storage** dialog, specify the connection string, and then select **Next**.
 
-	![連接至 Azure 儲存體對話方塊][24]
+    ![Connect to Azure storage dialog][24] 
 
-1.	在 [連線摘要] 對話方塊中，確認資訊。如果您想要變更任何項目，請選取 [上一頁] 並重新輸入所需的設定。完成後，請選取 [連接]。
+1.  In the **Connection Summary** dialog, verify the information. If you want to change anything, select **Back** and re-enter the desired settings. Once finished, select **Connect**.
 
-1.	附加後，儲存體帳戶將會與附加至您提供之帳戶名稱的文字 (SAS) 一起顯示。
+1.  Once attached, the storage account will be displayed with the text (SAS) appended to the account name you supplied.
 
-	![使用 SAS 附加至帳戶的結果][17]
+    ![Result of attached to an account using SAS][17]
 
-## 使用 SAS 附加服務
+## <a name="attach-service-using-sas"></a>Attach service using SAS
 
-[使用 SAS 附加儲存體帳戶](#attach-storage-account-using-sas)一節說明 Azure 訂用帳戶系統管理員如何藉由產生 (及共用) 儲存體帳戶的 SAS 來授與儲存體帳戶的暫存存取權。同樣地，可以針對儲存體帳戶內的特定服務 (Blob 容器、佇列或資料表) 產生 SAS。
+The section [Attach storage account using SAS](#attach-storage-account-using-sas) illustrates how an Azure subscription admin can grant temporary access to a storage account by generating (and sharing) a SAS for the storage account. Similarly, a SAS can be generated for a specific service (blob container, queue, or table) within a storage account.  
 
-### 針對您要共用的服務產生 SAS
+### <a name="generate-a-sas-for-the-service-you-want-to-share"></a>Generate a SAS for the service you want to share
 
-在此情況下，服務可以是 Blob 容器、佇列或資料表。下列各節說明如何針對所列的服務產生 SAS：
+In this context, a service can be a blob container, queue, or table. The following sections explain how to generate the SAS for the listed service:
 
-- [取得 Blob 容器的 SAS](./vs-azure-tools-storage-explorer-blobs.md#get-the-sas-for-a-blob-container)
-- 取得檔案共用的 SAS - 敬請期待
-- 取得佇列的 SAS - 敬請期待
-- 取得資料表的 SAS - 敬請期待
+- [Get the SAS for a blob container](./vs-azure-tools-storage-explorer-blobs.md#get-the-sas-for-a-blob-container)
+- Get the SAS for a file share - *Coming soon*
+- Get the SAS for a queue - *Coming soon*
+- Get the SAS for a table - *Coming soon*
 
-### 使用 SAS 附加至共用帳戶服務
+### <a name="attach-to-the-shared-account-service-using-the-sas"></a>Attach to the shared account service using the SAS
 
-1.	在儲存體 Explorer (預覽) 中，選取 [連接到 Azure 儲存體]。
+1.  In Storage Explorer (Preview), select **Connect to Azure storage**.
 
-	![連接至 Azure 儲存體選項][23]
+    ![Connect to Azure storage option][23]
 
-1.	在 [連接到 Azure 儲存體] 對話方塊中，指定 SAS URI，然後選取 [下一步]。
+1.  On the **Connect to Azure Storage** dialog, specify the SAS URI, and then select **Next**.
 
-	![連接至 Azure 儲存體對話方塊][24]
+    ![Connect to Azure storage dialog][24] 
 
-1.	在 [連線摘要] 對話方塊中，確認資訊。如果您想要變更任何項目，請選取 [上一頁] 並重新輸入所需的設定。完成後，請選取 [連接]。
+1.  In the **Connection Summary** dialog, verify the information. If you want to change anything, select **Back** and re-enter the desired settings. Once finished, select **Connect**.
 
-1.	附加後，新附加的服務會顯示在 [(服務 SAS)] 節點之下。
+1.  Once attached, the newly attached service will be displayed under the **(Service SAS)** node.
 
-	![使用 SAS 附加至共用服務的結果][20]
+    ![Result of attaching to a shared service using SAS][20]
 
-## 搜尋儲存體帳戶
+## <a name="search-for-storage-accounts"></a>Search for storage accounts
 
-如果您有一長串的儲存體帳戶，使用左窗格頂端的 [搜尋] 方塊，可讓您快速尋找特定的儲存體帳戶。
+If you have a long list of storage accounts, a quick way to locate a particular storage account is to use the search box at the top of the left pane. 
 
-當您在搜尋方塊中輸入資料時，左窗格只會顯示與您當時輸入的搜尋值相符的儲存體帳戶。以下螢幕擷取畫面說明當我搜尋到儲存體帳戶名稱包含 "tarcher" 文字的所有儲存體帳戶時的範例。
+As you are typing into the search box, the left pane will display only the storage accounts that match the search value you've entered up to that point. The following screen shot illustrates an example where I've searched for all storage accounts where the storage account name contains the text "tarcher".
 
-![儲存體帳戶搜尋][11]
-	
-若要清除搜尋，請在搜尋方塊中選取 **x** 按鈕。
+![Storage account search][11]
+    
+To clear the search, select the **x** button in the search box.
 
-## 後續步驟
-- [使用儲存體 Explorer 來管理 Azure Blob 儲存體資源 (預覽)](./vs-azure-tools-storage-explorer-blobs.md)
+## <a name="next-steps"></a>Next steps
+- [Manage Azure blob storage resources with Storage Explorer (Preview)](./vs-azure-tools-storage-explorer-blobs.md)
 
 [0]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/settings-icon.png
 [1]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/add-account-link.png
@@ -229,4 +230,8 @@ Microsoft Azure 儲存體總管 (預覽) 是一個獨立應用程式，可讓您
 [23]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-icon.png
 [24]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-next.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

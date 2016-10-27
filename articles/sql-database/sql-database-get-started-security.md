@@ -1,53 +1,60 @@
 <properties
-	pageTitle="SQL Database 教學課程︰開始使用安全性"
-	description="了解如何建立使用者帳戶來存取和管理資料庫。"
-	keywords=""
-	services="sql-database"
-	documentationCenter=""
-	authors="CarlRabeler"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="SQL Database tutorial: Getting Started with Security"
+    description="Learn how to create user accounts to access and to manage a database."
+    keywords=""
+    services="sql-database"
+    documentationCenter=""
+    authors="CarlRabeler"
+    manager="jhubbard"
+    editor=""/>
 
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="hero-article"
-	ms.date="08/17/2016"
-	ms.author="carlrab"/>
+    ms.service="sql-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="hero-article"
+    ms.date="08/17/2016"
+    ms.author="carlrab"/>
 
-# SQL Database 教學課程：建立 SQL Database 使用者帳戶來存取和管理資料庫
+
+# <a name="sql-database-tutorial:-create-sql-database-user-accounts-to-access-and-manage-a-database"></a>SQL Database tutorial: Create SQL database user accounts to access and manage a database
 
 
 > [AZURE.SELECTOR]
-- [開始使用教學課程](sql-database-get-started-security.md)
-- [授與存取權](sql-database-manage-logins.md)
+- [Get started tutorial](sql-database-get-started-security.md)
+- [Grant access](sql-database-manage-logins.md)
 
-在本教學課程中，您會了解如何使用 SQL Server Management Studio (SSMS)：
+In this tutorial, you learn how to use SQL Server Management Studio (SSMS) to:
 
-- 使用伺服器層級主體登入來登入 SQL Database。
-- 建立 SQL Database 使用者帳戶。
-- 授與 SQL Database 使用者 [db\_owner 權限](https://msdn.microsoft.com/library/ms189121.aspx#Anchor_0)。
-- 以不是伺服器層級主體的使用者帳戶連接到 SQL Database。
+- Log in to SQL Database using a server-level principal login.
+- Create a SQL Database user account.
+- Grant a SQL Database user [db_owner permissions](https://msdn.microsoft.com/library/ms189121.aspx#Anchor_0).
+- Connect to a SQL database with a user account that is not a server-level principal.
 
-[AZURE.INCLUDE [登入](../../includes/azure-getting-started-portal-login.md)]
-
-
-[AZURE.INCLUDE [建立 SQL Database 邏輯伺服器](../../includes/sql-database-sql-server-management-studio-connect-server-principal.md)]
+[AZURE.INCLUDE [Login](../../includes/azure-getting-started-portal-login.md)]
 
 
-[AZURE.INCLUDE [建立 SQL Database 資料庫](../../includes/sql-database-create-new-database-user.md)]
+[AZURE.INCLUDE [Create SQL Database logical server](../../includes/sql-database-sql-server-management-studio-connect-server-principal.md)]
 
 
-[AZURE.INCLUDE [建立 SQL Database 資料庫](../../includes/sql-database-grant-database-user-dbo-permissions.md)]
+[AZURE.INCLUDE [Create SQL Database database](../../includes/sql-database-create-new-database-user.md)]
 
 
-[AZURE.INCLUDE [建立 SQL Database 資料庫](../../includes/sql-database-sql-server-management-studio-connect-user.md)]
+[AZURE.INCLUDE [Create SQL Database database](../../includes/sql-database-grant-database-user-dbo-permissions.md)]
 
 
-## 後續步驟
-您現在已完成本 SQL Database 教學課程，而且建立使用者帳戶並授予 dbo 權限，即可開始深入了解 [SQL Database 安全性](sql-database-manage-logins.md)。
+[AZURE.INCLUDE [Create SQL Database database](../../includes/sql-database-sql-server-management-studio-connect-user.md)]
 
-<!---HONumber=AcomDC_0824_2016-->
+
+## <a name="next-steps"></a>Next steps
+Now that you've completed this SQL Database tutorial and created a user account and granted the user account dbo permissions, you are ready to learn more about [SQL Database security](sql-database-manage-logins.md).
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

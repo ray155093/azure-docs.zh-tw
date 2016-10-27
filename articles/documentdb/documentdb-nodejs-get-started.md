@@ -1,7 +1,7 @@
 <properties
-  pageTitle="DocumentDB 的 NoSQL Node.js 教學課程 | Microsoft Azure"
-  description="NoSQL Node.js 教學課程，將使用 DocumentDB Node.js SDK 來建立節點資料庫以及主控台應用程式。DocumentDB 是 JSON 的 NoSQL 資料庫。"
-    keywords="node.js 教學課程，節點資料庫"
+  pageTitle="NoSQL Node.js tutorial for DocumentDB | Microsoft Azure"
+  description="A NoSQL Node.js tutorial that creates a node database and console application using the DocumentDB Node.js SDK. DocumentDB is a NoSQL database for JSON."
+    keywords="node.js tutorial, node database"
   services="documentdb"
   documentationCenter="node.js"
   authors="AndrewHoh"
@@ -17,68 +17,69 @@
   ms.date="08/11/2016"
   ms.author="anhoh"/>
 
-# NoSQL Node.js 教學課程：DocumentDB Node.js 主控台應用程式  
+
+# <a name="nosql-node.js-tutorial:-documentdb-node.js-console-application"></a>NoSQL Node.js tutorial: DocumentDB Node.js console application  
 
 > [AZURE.SELECTOR]
 - [.NET](documentdb-get-started.md)
 - [Node.js](documentdb-nodejs-get-started.md)
 
-歡迎使用 Azure DocumentDB Node.js SDK 的 Node.js 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 DocumentDB 資源，包括 Node 資料庫。
+Welcome to the Node.js tutorial for the Azure DocumentDB Node.js SDK! After following this tutorial, you'll have a console application that creates and queries DocumentDB resources, including a Node database.
 
-本文將討論：
+We'll cover:
 
-- 建立和連接到 DocumentDB 帳戶
-- 設定您的應用程式
-- 建立節點資料庫
-- 建立集合
-- 建立 JSON 文件
-- 查詢集合
-- 取代文件
-- 刪除文件
-- 刪除節點資料庫
+- Creating and connecting to a DocumentDB account
+- Setting up your application
+- Creating a node database
+- Creating a collection
+- Creating JSON documents
+- Querying the collection
+- Replacing a document
+- Deleting a document
+- Deleting the node database
 
-沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started) 上找到完整的方案。請參閱[取得完整的解決方案](#GetSolution)，以取得簡要指示。
+Don't have time? Don't worry! The complete solution is available on [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started). See [Get the complete solution](#GetSolution) for quick instructions.
 
-完成 Node.js 教學課程之後，請使用此頁面頂端和底部的投票按鈕來提供意見。如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
+After you've completed the Node.js tutorial, please use the voting buttons at the top and bottom of this page to give us feedback. If you'd like us to contact you directly, feel free to include your email address in your comments.
 
-讓我們開始吧！
+Now let's get started!
 
-## Node.js 教學課程的必要條件
+## <a name="prerequisites-for-the-node.js-tutorial"></a>Prerequisites for the Node.js tutorial
 
-請確定您具有下列項目：
+Please make sure you have the following:
 
-- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費 Azure 試用](https://azure.microsoft.com/pricing/free-trial/)。
-- [Node.js](https://nodejs.org/) v0.10.29 版或更高版本。
+- An active Azure account. If you don't have one, you can sign up for a [Free Azure Trial](https://azure.microsoft.com/pricing/free-trial/).
+- [Node.js](https://nodejs.org/) version v0.10.29 or higher.
 
-## 步驟 1：建立 DocumentDB 帳戶
+## <a name="step-1:-create-a-documentdb-account"></a>Step 1: Create a DocumentDB account
 
-讓我們建立 DocumentDB 帳戶。如果您已經擁有想要使用的帳戶，就可以跳到[設定您的 Node.js 應用程式](#SetupNode)。
+Let's create a DocumentDB account. If you already have an account you want to use, you can skip ahead to [Setup your Node.js application](#SetupNode).
 
 [AZURE.INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-## <a id="SetupNode"></a>步驟 2：設定您的 Node.js 應用程式
+## <a name="<a-id="setupnode"></a>step-2:-setup-your-node.js-application"></a><a id="SetupNode"></a>Step 2: Setup your Node.js application
 
-1. 開啟您偏好的終端機。
-2. 找出您想儲存 Node.js 應用程式的資料夾或目錄位置。
-3. 使用下列命令，建立兩個空白的 JavaScript 檔案：
+1. Open your favorite terminal.
+2. Locate the folder or directory where you'd like to save your Node.js application.
+3. Create two empty JavaScript files with the following commands:
   - Windows:
       * ```fsutil file createnew app.js 0```
         * ```fsutil file createnew config.js 0```
-  - Linux/OS X：
+  - Linux/OS X:
       * ```touch app.js```
         * ```touch config.js```
-4. 透過 npm 安裝 documentdb 模組。使用下列命令：
+4. Install the documentdb module via npm. Use the following command:
     * ```npm install documentdb --save```
 
-太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。
+Great! Now that you've finished setting up, let's start writing some code.
 
-## <a id="Config"></a>步驟 3：設定您的應用程式設定
+## <a name="<a-id="config"></a>step-3:-set-your-app's-configurations"></a><a id="Config"></a>Step 3: Set your app's configurations
 
-在您慣用的文字編輯器中開啟 ```config.js```。
+Open ```config.js``` in your favorite text editor.
 
-然後，複製並貼上以下的程式碼片段，以及將屬性 ```config.endpoint``` 和 ```config.primaryKey``` 設定為您的 DocumentDB 端點 uri 和主要金鑰。您可以在 [Azure 入口網站](https://portal.azure.com)找到這兩個設定。
+Then, copy and paste the code snippet below and set properties ```config.endpoint``` and ```config.primaryKey``` to your DocumentDB endpoint uri and primary key. Both these configurations can be found in the [Azure Portal](https://portal.azure.com).
 
-![node.js 教學課程 - 顯示 DocumentDB 帳戶的 Azure 入口網站螢幕擷取畫面，內含反白顯示的 [主動式] 集線器、[DocumentDB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值 - 節點資料庫][keys]
+![Node.js tutorial - Screen shot of the Azure Portal, showing a DocumentDB account, with the ACTIVE hub highlighted, the KEYS button highlighted on the DocumentDB account blade, and the URI, PRIMARY KEY and SECONDARY KEY values highlighted on the Keys blade - Node database][keys]
 
     // ADD THIS PART TO YOUR CODE
     var config = {}
@@ -86,7 +87,7 @@
     config.endpoint = "~your DocumentDB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
-在您設定 ```config.endpoint``` 和 ```config.authKey``` 屬性的位置下面，複製 ```database id```、```collection id``` 和 ```JSON documents``` 並貼到您的 ```config``` 物件。如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的[資料移轉工具](documentdb-import-data.md)，而不用新增文件定義。
+Copy and paste the ```database id```, ```collection id```, and ```JSON documents``` to your ```config``` object below where you set your ```config.endpoint``` and ```config.authKey``` properties. If you already have data you'd like to store in your database, you can use DocumentDB's [Data Migration tool](documentdb-import-data.md) rather than adding the document definitions.
 
     config.endpoint = "~your DocumentDB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
@@ -158,9 +159,9 @@
     };
 
 
-資料庫、集合和文件定義會作為您 DocumentDB 的 ```database id```、```collection id``` 和文件的資料。
+The database, collection, and document definitions will act as your DocumentDB ```database id```, ```collection id```, and documents' data.
 
-最後，匯出您的 ```config``` 物件，如此就可以在 ```app.js``` 檔案中參考它。
+Finally, export your ```config``` object, so that you can reference it within the ```app.js``` file.
 
             },
             "isRegistered": false
@@ -170,9 +171,9 @@
     // ADD THIS PART TO YOUR CODE
     module.exports = config;
 
-##<a id="Connect"></a> 步驟 4：連接到 DocumentDB 帳戶
+##<a name="<a-id="connect"></a>-step-4:-connect-to-a-documentdb-account"></a><a id="Connect"></a> Step 4: Connect to a DocumentDB account
 
-在文字編輯器中開啟您的空白 ```app.js``` 檔案。複製並貼上以下的程式碼，以匯入 ```documentdb``` 模組和新建的 ```config``` 模組。
+Open your empty ```app.js``` file in the text editor. Copy and paste the code below to import the ```documentdb``` module and your newly created ```config``` module.
 
     // ADD THIS PART TO YOUR CODE
     "use strict";
@@ -181,7 +182,7 @@
     var config = require("./config");
     var url = require('url');
 
-複製並貼上以下的程式碼，以使用先前儲存的 ```config.endpoint``` 和 ```config.primaryKey``` 來建立新的 DocumentClient。
+Copy and paste the code to use the previously saved ```config.endpoint``` and ```config.primaryKey``` to create a new DocumentClient.
 
     var config = require("./config");
     var url = require('url');
@@ -189,10 +190,10 @@
     // ADD THIS PART TO YOUR CODE
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
-您現在有程式碼可初始化 documentdb，讓我們看看如何使用 DocumentDB 資源。
+Now that you have the code to initialize the documentdb client, let's take a look at working with DocumentDB resources.
 
-## 步驟 5：建立節點資料庫
-複製並貼上以下的程式碼，以設定 [找不到] 的HTTP 狀態、資料庫 url 和集合 url。這些 url 可讓 DocumentDB 用戶端尋找正確的資料庫和集合。
+## <a name="step-5:-create-a-node-database"></a>Step 5: Create a Node database
+Copy and paste the code below to set the HTTP status for Not Found, the database url, and the collection url. These urls are how the DocumentDB client will find the right database and collection.
 
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
@@ -201,9 +202,9 @@
     var databaseUrl = `dbs/${config.database.id}`;
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
-可以使用 **DocumentClient** 類別的 [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函數來建立[資料庫](documentdb-resources.md#databases)。資料庫是分割給多個集合之文件儲存體的邏輯容器。
+A [database](documentdb-resources.md#databases) can be created by using the [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html) function of the **DocumentClient** class. A database is the logical container of document storage partitioned across collections.
 
-複製並貼上 **getDatabase** 函數，以 ```config``` 物件中指定的 ```id```，在 app.js 檔案中加入建立新資料庫的函數。此函數會檢查具有相同 ```FamilyRegistry``` 識別碼的資料庫不存在。如果存在，我們會傳回該資料庫，而不會建立新資料庫。
+Copy and paste the **getDatabase** function for creating your new database in the app.js file with the ```id``` specified in the ```config``` object. The function will check if the database with the same ```FamilyRegistry``` id does not already exist. If it does exist, we'll return that database instead of creating a new one.
 
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
@@ -229,7 +230,7 @@
         });
     }
 
-複製並貼上以下的程式碼，以設定 **getDatabase** 函數來加入協助程式函數**exit**，該函數會列印結束訊息和呼叫 **getDatabase** 函數。
+Copy and paste the code below where you set the **getDatabase** function to add the helper function **exit** that will print the exit message and the call to **getDatabase** function.
 
                 } else {
                     resolve(result);
@@ -251,17 +252,17 @@
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+In your terminal, locate your ```app.js``` file and run the command: ```node app.js```
 
-恭喜！ 您已成功建立 DocumentDB 資料庫。
+Congratulations! You have successfully created a DocumentDB database.
 
-##<a id="CreateColl"></a>步驟 6：建立集合  
+##<a name="<a-id="createcoll"></a>step-6:-create-a-collection"></a><a id="CreateColl"></a>Step 6: Create a collection  
 
-> [AZURE.WARNING] **CreateDocumentCollectionAsync** 會建立具有定價含意的新集合。如需詳細資訊，請造訪[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
+> [AZURE.WARNING] **CreateDocumentCollectionAsync** will create a new collection, which has pricing implications. For more details, please visit our [pricing page](https://azure.microsoft.com/pricing/details/documentdb/).
 
-可以使用 **DocumentClient** 類別的 [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函數建立[集合](documentdb-resources.md#collections)。集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
+A [collection](documentdb-resources.md#collections) can be created by using the [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html) function of the **DocumentClient** class. A collection is a container of JSON documents and associated JavaScript application logic.
 
-將 **getCollection** 函數複製並貼到 **getDatabase** 函數之下，以 ```config``` 物件中指定的 ```id``` 建立新的集合。同樣地，我們會檢查確定具有相同 ```FamilyCollection``` 識別碼的集合不存在。如果存在，我們會傳回該集合，而不會建立新集合。
+Copy and paste the **getCollection** function underneath the **getDatabase** function for creating your new collection with the ```id``` specified in the ```config``` object. Again, we'll check to make sure a collection with the same ```FamilyCollection``` id does not already exist. If it does exist, we'll return that collection instead of creating a new one.
 
                 } else {
                     resolve(result);
@@ -292,7 +293,7 @@
         });
     }
 
-將以下的程式碼複製並貼到對 **getDatabase** 的呼叫之下，以執行 **getCollection** 函數。
+Copy and paste the code below the call to **getDatabase** to execute the **getCollection** function.
 
     getDatabase()
 
@@ -303,14 +304,14 @@
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+In your terminal, locate your ```app.js``` file and run the command: ```node app.js```
 
-恭喜！ 您已成功建立 DocumentDB 集合。
+Congratulations! You have successfully created a DocumentDB collection.
 
-##<a id="CreateDoc"></a>步驟 7：建立文件
-可以使用 **DocumentClient** 類別的 [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函數來建立[文件](documentdb-resources.md#documents)。文件會是使用者定義的 (任意) JSON 內容。您現在可以將文件插入至 DocumentDB。
+##<a name="<a-id="createdoc"></a>step-7:-create-a-document"></a><a id="CreateDoc"></a>Step 7: Create a document
+A [document](documentdb-resources.md#documents) can be created by using the [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) function of the **DocumentClient** class. Documents are user defined (arbitrary) JSON content. You can now insert a document into DocumentDB.
 
-將 **getFamilyDocument** 函數複製並貼到 **getCollection** 函數之下，以便建立包含 ```config``` 物件中儲存之 JSON 資料文件。同樣地，我們會檢查以確定具有相同識別碼的文件不存在。
+Copy and paste the **getFamilyDocument** function underneath the **getCollection** function for creating the documents containing the JSON data saved in the ```config``` object. Again, we'll check to make sure a document with the same id does not already exist.
 
                 } else {
                     resolve(result);
@@ -342,7 +343,7 @@
         });
     };
 
-將以下的程式碼複製並貼到對 **getCollection** 的呼叫之下，以執行 **getFamilyDocument** 函數。
+Copy and paste the code below the call to **getCollection** to execute the **getFamilyDocument** function.
 
     getDatabase()
     .then(() => getCollection())
@@ -355,17 +356,17 @@
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+In your terminal, locate your ```app.js``` file and run the command: ```node app.js```
 
-恭喜！ 您已成功建立 DocumentDB 文件。
+Congratulations! You have successfully created a DocumentDB documents.
 
-![node.js 教學課程 - 說明帳戶、資料庫、集合和文件之間階層式關聯性的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-account-database.png)
+![Node.js tutorial - Diagram illustrating the hierarchical relationship between the account, the database, the collection, and the documents - Node database](./media/documentdb-nodejs-get-started/node-js-tutorial-account-database.png)
 
-##<a id="Query"></a>步驟 8：查詢 DocumentDB 資源
+##<a name="<a-id="query"></a>step-8:-query-documentdb-resources"></a><a id="Query"></a>Step 8: Query DocumentDB resources
 
-DocumentDB 支援對儲存於每個集合的 JSON 文件進行[豐富查詢](documentdb-sql-query.md)。下列範例程式碼示範您可以針對集合中之文件執行的查詢。
+DocumentDB supports [rich queries](documentdb-sql-query.md) against JSON documents stored in each collection. The following sample code shows a query that you can run against the documents in your collection.
 
-將 **queryCollection** 函數複製並貼到 **getFamilyDocument** 函數之下。DocumentDB 支援類 SQL 查詢，如下所示。如需建立複雜查詢的詳細資訊，請參閱[查詢遊樂場](https://www.documentdb.com/sql/demo)和[查詢文件](documentdb-sql-query.md)。
+Copy and paste the **queryCollection** function underneath the **getFamilyDocument** function. DocumentDB supports SQL-like queries as shown below. For more information on building complex queries, check out the [Query Playground](https://www.documentdb.com/sql/demo) and the [query documentation](documentdb-sql-query.md).
 
                 } else {
                     resolve(result);
@@ -397,13 +398,13 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行[豐富查詢](doc
     };
 
 
-下圖說明如何針對您所建立的集合呼叫 DocumentDB SQL 查詢語法。
+The following diagram illustrates how the DocumentDB SQL query syntax is called against the collection you created.
 
-![node.js 教學課程 - 說明查詢範圍和意義的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
+![Node.js tutorial - Diagram illustrating the scope and meaning of the query - Node database](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
 
-因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#from-clause) 關鍵字是選擇性的。因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
+The [FROM](documentdb-sql-query.md#from-clause) keyword is optional in the query because DocumentDB queries are already scoped to a single collection. Therefore, "FROM Families f" can be swapped with "FROM root r", or any other variable name you choose. DocumentDB will infer that Families, root, or the variable name you chose, reference the current collection by default.
 
-將以下的程式碼複製並貼到對 **getFamilyDocument** 的呼叫之下，以執行 **queryCollection** 函數。
+Copy and paste the code below the call to **getFamilyDocument** to execute the **queryCollection** function.
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
@@ -415,14 +416,14 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行[豐富查詢](doc
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+In your terminal, locate your ```app.js``` file and run the command: ```node app.js```
 
-恭喜！ 您已成功建立查詢的 DocumentDB 文件。
+Congratulations! You have successfully queried DocumentDB documents.
 
-##<a id="ReplaceDocument"></a>步驟 9：取代文件
-DocumentDB 支援取代 JSON 文件。
+##<a name="<a-id="replacedocument"></a>step-9:-replace-a-document"></a><a id="ReplaceDocument"></a>Step 9: Replace a document
+DocumentDB supports replacing JSON documents.
 
-將 **replaceDocument** 函數複製並貼到 **queryCollection** 函數之下。
+Copy and paste the **replaceDocument** function underneath the **queryCollection** function.
 
                     }
                     console.log();
@@ -448,7 +449,7 @@ DocumentDB 支援取代 JSON 文件。
         });
     };
 
-將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **replaceDocument** 函數。此外，再次將此程式碼加入至 **queryCollection** 呼叫，確認已成功變更文件。
+Copy and paste the code below the call to **queryCollection** to execute the **replaceDocument** function. Also, add the code to call **queryCollection** again to verify that the document had successfully changed.
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
@@ -462,14 +463,14 @@ DocumentDB 支援取代 JSON 文件。
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+In your terminal, locate your ```app.js``` file and run the command: ```node app.js```
 
-恭喜！ 您已成功取代 DocumentDB 文件。
+Congratulations! You have successfully replaced a DocumentDB document.
 
-##<a id="DeleteDocument"></a>步驟 10︰刪除文件
-DocumentDB 支援刪除 JSON 文件。
+##<a name="<a-id="deletedocument"></a>step-10:-delete-a-document"></a><a id="DeleteDocument"></a>Step 10: Delete a document
+DocumentDB supports deleting JSON documents.
 
-將 **deleteDocument** 函數複製並貼到 **replaceDocument** 函數之下。
+Copy and paste the **deleteDocument** function underneath the **replaceDocument** function.
 
                 else {
                     resolve(result);
@@ -493,7 +494,7 @@ DocumentDB 支援刪除 JSON 文件。
         });
     };
 
-將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **deleteDocument** 函數。
+Copy and paste the code below the call to the second **queryCollection** to execute the **deleteDocument** function.
 
     .then(() => queryCollection())
     .then(() => replaceFamilyDocument(config.documents.Andersen))
@@ -506,15 +507,15 @@ DocumentDB 支援刪除 JSON 文件。
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+In your terminal, locate your ```app.js``` file and run the command: ```node app.js```
 
-恭喜！ 您已成功刪除 DocumentDB 文件。
+Congratulations! You have successfully deleted a DocumentDB document.
 
-##<a id="DeleteDatabase"></a>步驟 11：刪除節點資料庫
+##<a name="<a-id="deletedatabase"></a>step-11:-delete-the-node-database"></a><a id="DeleteDatabase"></a>Step 11: Delete the Node database
 
-刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。
+Deleting the created database will remove the database and all children resources (collections, documents, etc.).
 
-複製並貼上下列程式碼片段 (**cleanup** 函數)，以移除資料庫和所有的子系資源。
+Copy and paste the following code snippet (function **cleanup**) to remove the database and all the children resources.
 
                 else {
                     resolve(result);
@@ -535,7 +536,7 @@ DocumentDB 支援刪除 JSON 文件。
         });
     }
 
-將以下的程式碼複製並貼到對 **deleteDocument** 的呼叫之下，以執行 **cleanup** 函數。
+Copy and paste the code below the call to **deleteDocument** to execute the **cleanup** function.
 
     .then(() => deleteFamilyDocument(config.documents.Andersen))
 
@@ -546,9 +547,9 @@ DocumentDB 支援刪除 JSON 文件。
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-##<a id="Run"></a>步驟 12：一起執行您的 Node.js 應用程式！
+##<a name="<a-id="run"></a>step-12:-run-your-node.js-application-all-together!"></a><a id="Run"></a>Step 12: Run your Node.js application all together!
 
-總之，呼叫您的函數的順序應如下所示︰
+Altogether, the sequence for calling your functions should look like this:
 
     getDatabase()
     .then(() => getCollection())
@@ -562,9 +563,9 @@ DocumentDB 支援刪除 JSON 文件。
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+In your terminal, locate your ```app.js``` file and run the command: ```node app.js```
 
-您應該可以看到入門應用程式的輸出。輸出應該會與下列範例文字相符。
+You should see the output of your get started app. The output should match the example text below.
 
     Getting database:
     FamilyDB
@@ -596,29 +597,33 @@ DocumentDB 支援刪除 JSON 文件。
     Completed successfully
     Press any key to exit
 
-恭喜！ 您已完成 Node.js 教學課程，和擁有您的第一個 DocumentDB 主控台應用程式！
+Congratulations! You've created you've completed the Node.js tutorial and have your first DocumentDB console application!
 
-## <a id="GetSolution"></a>取得完整的 Node.js 教學課程方案
-若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
+## <a name="<a-id="getsolution"></a>get-the-complete-node.js-tutorial-solution"></a><a id="GetSolution"></a>Get the complete Node.js tutorial solution
+To build the GetStarted solution that contains all the samples in this article, you will need the following:
 
--   [DocumentDB 帳戶][documentdb-create-account]。
--   您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) 方案。
+-   [DocumentDB account][documentdb-create-account].
+-   The [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) solution available on GitHub.
 
-透過 npm 安裝 **documentdb** 模組。使用下列命令：
+Install the **documentdb** module via npm. Use the following command:
 * ```npm install documentdb --save```
 
-接下來，將 ```config.js``` 檔案中的 config.endpoint 和 config.authKey 的值更新為如[步驟 3：設定您的應用程式組態](#Config)中所述。
+Next, in the ```config.js``` file, update the config.endpoint and config.authKey values as described in [Step 3: Set your app's configurations](#Config).
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
--   需要更複雜的 Node.js 範例嗎？ 請參閱[使用 DocumentDB 建置 Node.js Web 應用程式](documentdb-nodejs-application.md)。
--  了解如何[監視 DocumentDB 帳戶](documentdb-monitor-accounts.md) (英文)。
--  在 [Query Playground](https://www.documentdb.com/sql/demo) 中，針對範例資料集執行查詢。
--  如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
+-   Want a more complex Node.js sample? See [Build a Node.js web application using DocumentDB](documentdb-nodejs-application.md).
+-  Learn how to [monitor a DocumentDB account](documentdb-monitor-accounts.md).
+-  Run queries against our sample dataset in the [Query Playground](https://www.documentdb.com/sql/demo).
+-  Learn more about the programming model in the Develop section of the [DocumentDB documentation page](https://azure.microsoft.com/documentation/services/documentdb/).
 
 [documentdb-create-account]: documentdb-create-account.md
 [documentdb-manage]: documentdb-manage.md
 
 [keys]: media/documentdb-nodejs-get-started/node-js-tutorial-keys.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

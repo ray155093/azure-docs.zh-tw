@@ -1,10 +1,13 @@
-* [將應用程式部署至 Azure App Service](../articles/app-service-web/web-sites-deploy.md)
-* [設定原始檔控制和連續整合](../articles/app-service-web/app-service-continuous-deployment.md)
-* [預備部署的部署位置](../articles/app-service-web/web-sites-staged-publishing.md)
-* [發行與角色型存取控制 (RBAC)](https://azure.microsoft.com/blog/rbac-and-azure-websites-publishing/)
+* [Deploying an app to Azure App Service](../articles/app-service-web/web-sites-deploy.md)
+* [Configuring source control and continuous integration](../articles/app-service-web/app-service-continuous-deployment.md)
+* [Staging deployments with deployment slots](../articles/app-service-web/web-sites-staged-publishing.md)
+* [Publishing and Role Based Access Control (RBAC)](https://azure.microsoft.com/blog/rbac-and-azure-websites-publishing/)
 
-## 影片
+## <a name="videos"></a>Videos
 
-* [自動化發行管理的部署工作流程](/documentation/videos/azurecon-2015-manage-code-changes-to-web-apps-using-the-devops-features-of-azure-app-service-and-visual-studio-release-management/)
+* [Automating the deployment workflow for release management](/documentation/videos/azurecon-2015-manage-code-changes-to-web-apps-using-the-devops-features-of-azure-app-service-and-visual-studio-release-management/)
 
-<!---HONumber=AcomDC_0803_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

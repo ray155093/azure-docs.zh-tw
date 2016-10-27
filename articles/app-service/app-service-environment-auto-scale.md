@@ -1,226 +1,229 @@
 <properties
-	pageTitle="自動調整和 App Service 環境 | Microsoft Azure"
-	description="自動調整和 App Service 環境"
-	services="app-service"
-	documentationCenter=""
-	authors="btardif"
-	manager="wpickett"
-	editor=""
+    pageTitle="Autoscaling and App Service Environment | Microsoft Azure"
+    description="Autoscaling and App Service Environment"
+    services="app-service"
+    documentationCenter=""
+    authors="btardif"
+    manager="wpickett"
+    editor=""
 />
 
 <tags
-	ms.service="app-service"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/07/2016"
-	ms.author="byvinyal"
+    ms.service="app-service"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/07/2016"
+    ms.author="byvinyal"
 />
 
-# 自動調整和 App Service 環境
 
-Azure App Service 環境支援「自動調整」。您可以根據度量或排程自動調整個別的背景工作集區。
+# <a name="autoscaling-and-app-service-environment"></a>Autoscaling and App Service Environment
 
-![背景工作集區的自動調整選項。][intro]
+Azure App Service environments support *autoscaling*. You can autoscale individual worker pools based on metrics or schedule.
 
-自動調整可將您的資源使用量最佳化，方法是透過自動增加或縮減 App Service 環境以符合您的預算和或負載設定檔。
+![Autoscale options for a worker pool.][intro]
 
-## 設定背景工作集區自動調整
+Autoscaling optimizes your resource utilization by automatically growing and shrinking an App Service environment to fit your budget and or load profile.
 
-您可以從 [背景工作集區] 的 [設定] 索引標籤存取自動調整功能。
+## <a name="configure-worker-pool-autoscale"></a>Configure worker pool autoscale
 
-![背景工作集區的 [設定] 索引標籤。][settings-scale]
+You can access the autoscale functionality from the **Settings** tab of the worker pool.
 
-該處的介面應相當熟悉，因為這是和您調整 App Service 方案時所看到的相同的體驗。您將可以手動輸入調整值。
+![Settings tab of the worker pool.][settings-scale]
 
-![手動調整設定。][scale-manual]
+From there, the interface should be fairly familiar because this is the same experience that you see when you scale an App Service plan. You will be able to enter a scale value manually.
 
-您也可以設定自動調整設定檔。
+![Manual scale settings.][scale-manual]
 
-![自動調整設定。][scale-profile]
+You can also configure an autoscale profile.
 
-自動調整設定檔對於設定您的規模的限制很實用。如此一來，您可以同時藉由設定下限調整值 (1) 獲得一致的效能體驗和藉由設定上限 (2) 獲得可預測的資本支出。
+![Autoscale settings.][scale-profile]
 
-![設定檔中的調整設定。][scale-profile2]
+Autoscale profiles are useful to set limits on your scale. This way, you can have a consistent performance experience by setting a lower bound scale value (1) and a predictable spend cap by setting an upper bound (2).
 
-在定義設定檔之後，您可以新增自動調整規則，以相應增加或減少設定檔所定義的範圍內背景工作集區中的執行個體數目。自動調整規則是以度量為基礎。
+![Scale settings in profile.][scale-profile2]
 
-![調整規則。][scale-rule]
+After you define a profile, you can add autoscale rules to scale up or down the number of instances in the worker pool within the bounds defined by the profile. Autoscale rules are based on metrics.
 
- 任何背景工作集區或前端度量均可用來定義自動調整規則。這些是您可以在資源刀鋒視窗圖形中監視或設定警示的相同度量。
+![Scale rule.][scale-rule]
 
-## 自動調整範例
+ Any worker pool or front-end metrics can be used to define autoscale rules. These are the same metrics that you can monitor in the resource blade graphs or set alerts for.
 
-App Service 環境的自動調整可使用逐步解說一個案例來加以說明。
+## <a name="autoscale-example"></a>Autoscale example
 
-本文說明在設定自動調整時的所有必要考量，以及在您納入 App Service 環境所裝載的自動調整 App Service 環境時派上用場的所有互動。
+Autoscale of an App Service environment can best be illustrated by walking through a scenario.
 
-### 案例簡介
+This article explains all the necessary considerations when you set up autoscale and all the interactions that come into play when you factor in autoscaling App Service environments that are hosted in App Service Environment.
 
-Frank 是企業的系統管理員，他已將所負責的部分工作量移轉至 App Service 環境。
+### <a name="scenario-introduction"></a>Scenario introduction
 
-App Service 環境設為以如下方式手動調整：
+Frank is a sysadmin for an enterprise who has migrated a portion of the workloads that he manages to an App Service environment.
 
-* **前端：**3
-* **背景工作集區 1**：10
-* **背景工作集區 2**：5
-* **背景工作集區 3**：5
+The App Service environment is configured to manual scale as follows:
 
-背景工作集區 1 是用於生產工作負載，而背景工作集區 2 和背景工作集區 3 用於品質保證 (QA) 及開發工作負載。
+* **Front ends:** 3
+* **Worker pool 1**: 10
+* **Worker pool 2**: 5
+* **Worker pool 3**: 5
 
-用於 QA 和開發的 App Service 方案都針對手動調整設定，但生產 App Service 方案則設為自動調整以處理負載和流量的變化。
+Worker pool 1 is used for production workloads, while worker pool 2 and worker pool 3 are used for quality assurance (QA) and development workloads.
 
-Frank 非常熟悉應用程式。他知道負載尖峰時間是上午 9:00 到下午 6:00，因為這是員工在辦公室時會使用的企業營運 (LOB) 應用程式。之後當使用者下班時，使用量便會下降。非尖峰時間仍會有一些負載，因為使用者可以使用其行動裝置或家用電腦從遠端存取應用程式。生產 App Service 方案已利用下列規則設定為根據 CPU 使用量自動調整：
+The App Service plans for QA and dev are configured to manual scale, but the production App Service plan is set to autoscale to deal with variations in load and traffic.
 
-![LOB 應用程式的特定設定。][asp-scale]
+Frank is very familiar with the application. He knows that the peak hours for load are between 9:00 AM and 6:00 PM because this is a line-of-business (LOB) application that employees use while they are in the office. Usage drops after that when users are done for that day. Outside peak hours, there is still some load because users can access the app remotely by using their mobile devices or home PCs. The production App Service plan is already configured to autoscale based on CPU usage with the following rules:
 
-|	**自動調整設定檔 - 工作日 - App Service 方案** |	**自動調整設定檔 - 週末 - App Service 方案** |
-|	----------------------------------------------------	|	----------------------------------------------------	|
-|	**名稱：**工作日設定檔 |	**名稱：**週末設定檔 |
-|	**調整規模：**排程和效能規則 |	**調整規模：**排程和效能規則 |
-|	**設定檔：**工作日 |	**設定檔：**週末 |
-|	**類型：**循環 |	**類型：**循環 |
-|	**目標範圍：**5 到 20 個執行個體 |	**目標範圍：**3 到 10 個執行個體 |
-|	**星期幾：**星期一、星期二、星期三、星期四、星期五 |	**星期幾：**星期六、星期日 |
-|	**開始時間︰**上午 9:00 |	**開始時間︰**上午 9:00 |
-|	**時區：**UTC-08 |	**時區：**UTC-08 |
-| | |
-|	**自動調整規則 (相應增加)** |	**自動調整規則 (相應增加)** |
-|	**資源：**生產環境 (App Service 環境) |	**資源：**生產環境 (App Service 環境) |
-|	**度量：**CPU % |	**度量：**CPU % |
-|	**作業：**大於 60% |	**作業：**大於 80% |
-|	**持續時間：**5 分鐘 |	**持續時間：**10 分鐘 |
-|	**時間彙總：**平均 |	**時間彙總：**平均 |
-|	**動作：**計數增加 2 |	**動作：**計數增加 1 |
-|	**冷卻時間 (分鐘)：**15 |	**冷卻時間 (分鐘)：**20 |
-| | |
- |	**自動調整規則 (相應減少)** |	**自動調整規則 (相應減少)** |
-|	**資源：**生產環境 (App Service 環境) |	**資源：**生產環境 (App Service 環境) |
-|	**度量：**CPU % |	**度量：**CPU % |
-|	**作業：**少於 30 % |	**作業：**少於 20 % |
-|	**持續時間：**10 分鐘 |	**持續時間：**15 分鐘 |
-|	**時間彙總：**平均 |	**時間彙總：**平均 |
-|	**動作：**計數減少 1 |	**動作：**計數減少 1 |
-|	**冷卻時間 (分鐘)：**20 |	**冷卻時間 (分鐘)：**10 |
+![Specific settings for LOB app.][asp-scale]
 
-### App Service 方案擴大率
+|   **Autoscale profile – Weekdays – App Service plan**     |   **Autoscale profile – Weekends – App Service plan**     |
+|   ----------------------------------------------------    |   ----------------------------------------------------    |
+|   **Name:** Weekday profile                               |   **Name:** Weekend profile                               |
+|   **Scale by:** Schedule and performance rules            |   **Scale by:** Schedule and performance rules            |
+|   **Profile:** Weekdays                                   |   **Profile:** Weekend                                    |
+|   **Type:** Recurrence                                    |   **Type:** Recurrence                                    |
+|   **Target range:** 5 to 20 instances                     |   **Target range:** 3 to 10 instances                     |
+|   **Days:** Monday, Tuesday, Wednesday, Thursday, Friday  |   **Days:** Saturday, Sunday                              |
+|   **Start time:** 9:00 AM                                 |   **Start time:** 9:00 AM                                 |
+|   **Time zone:** UTC-08                                   |   **Time zone:** UTC-08                                   |
+|                                                           |                                                           |
+|   **Autoscale rule (Scale Up)**                           |   **Autoscale rule (Scale Up)**                           |
+|   **Resource:** Production (App Service Environment)      |   **Resource:** Production (App Service Environment)      |
+|   **Metric:** CPU %                                       |   **Metric:** CPU %                                       |
+|   **Operation:** Greater than 60%                         |   **Operation:** Greater than 80%                         |
+|   **Duration:** 5 Minutes                                 |   **Duration:** 10 Minutes                                |
+|   **Time aggregation:** Average                           |   **Time aggregation:** Average                           |
+|   **Action:** Increase count by 2                         |   **Action:** Increase count by 1                         |
+|   **Cool down (minutes):** 15                             |   **Cool down (minutes):** 20                             |
+|                                                           |                                                           |
+  	|   **Autoscale rule (Scale Down)**                     |   **Autoscale rule (Scale Down)**                         |
+|   **Resource:** Production (App Service Environment)      |   **Resource:** Production (App Service Environment)      |
+|   **Metric:** CPU %                                       |   **Metric:** CPU %                                       |
+|   **Operation:** Less than 30%                            |   **Operation:** Less than 20%                            |
+|   **Duration:** 10 minutes                                |   **Duration:** 15 minutes                                |
+|   **Time aggregation:** Average                           |   **Time aggregation:** Average                           |
+|   **Action:** Decrease count by 1                         |   **Action:** Decrease count by 1                         |
+|   **Cool down (minutes):** 20                             |   **Cool down (minutes):** 10                             |
 
-設定為自動調整的 App Service 方案，就會以每小時最大的速率進行。此速率可以根據自動調整規則上提供的值計算。
+### <a name="app-service-plan-inflation-rate"></a>App Service plan inflation rate
 
-了解及計算「App Service 方案擴大率」對 App Service 環境自動調整來說很重要，因為背景工作集區的調整變更並非瞬間完成。
+App Service plans that are configured to autoscale will do so at a maximum rate per hour. This rate can be calculated based on the values provided on the autoscale rule.
 
-App Service 方案擴大率的計算方式如下：
+Understanding and calculating the *App Service plan inflation rate* is important for App Service environment autoscale because scale changes to a worker pool are not instantaneous.
 
-![App Service 方案擴大率計算。][ASP-Inflation]
+The App Service plan inflation rate is calculated as follows:
 
-根據生產 App Service 方案的工作日設定檔的「自動調整 - 相應增加」規則，這看起來會是如下：
+![App Service plan inflation rate calculation.][ASP-Inflation]
 
-![根據「自動調整 - 相應增加」規則的工作日 App Service 方案擴大率。][Equation1]
+Based on the Autoscale – Scale Up rule for the Weekday profile of the production App Service plan, this would look as follows:
 
-如果是生產 App Service 方案的週末設定檔的「自動調整 - 相應增加」規則，公式會解析為：
+![App Service plan inflation rate for weekdays based on Autoscale – Scale Up rule.][Equation1]
 
-![根據「自動調整 - 相應增加」規則的週末 App Service 方案擴大率。][Equation2]
+In the case of the Autoscale – Scale Up rule for the Weekend profile of the production App Service plan, the formula would resolve to:
 
-此值也可以針對相應減少作業計算。
+![App Service plan inflation rate for weekends based on Autoscale – Scale Up rule.][Equation2]
 
-根據生產 App Service 方案的工作日設定檔的「自動調整 - 相應減少」規則，這看起來會是如下：
+This value can also be calculated for scale-down operations.
 
-![根據「自動調整 - 相應減少」規則的工作日 App Service 方案擴大率。][Equation3]
+Based on the Autoscale – Scale Down rule for the Weekday profile of the production App Service plan, this would look as follows:
 
-如果是生產 App Service 方案的週末設定檔的「自動調整 - 相應減少」規則，公式會解析為：
+![App Service plan inflation rate for weekdays based on Autoscale – Scale Down rule.][Equation3]
 
-![根據「自動調整 - 相應減少」規則的週末 App Service 方案擴大率。][Equation4]
+In the case of the Autoscale – Scale Down rule for the Weekend profile of the production App Service plan, the formula would resolve to:  
 
-這表示生產 App Service 方案能在週間以每小時 8 個執行個體，以及在週末期間以每小時 4 個執行個體的最大速率成長。而它能夠在週間以每小時 4 個執行個體，以及在週末期間以每小時 6 個執行個體的最大速率釋出執行個體。
+![App Service plan inflation rate for weekends based on Autoscale – Scale Down rule.][Equation4]
 
-如果在背景工作集區中裝載多個 App Service 方案，則必須將「總擴大率」計算為裝載在該背景工作集區中的所有 App Service 方案的擴大率總和。
+This means that the production App Service plan can grow at a maximum rate of eight instances per hour during the week and four instances per hour during the weekend. And it can release instances at a maximum rate of four instances per hour during the week and six instances per hour during weekends.
 
-![裝載於背景工作集區中的多個 App Service 方案的總擴大率計算。][ASP-Total-Inflation]
+If multiple App Service plans are being hosted in a worker pool, you have to calculate the *total inflation rate* as the sum of the inflation rate for all the App Service plans that are being hosting in that worker pool.
 
-### 使用 App Service 方案擴大率來定義背景工作集區自動調整規則
+![Total inflation rate calculation for multiple App Service plans hosted in a worker pool.][ASP-Total-Inflation]
 
-裝載 App Service 方案且設定為自動調整的背景工作集區必須配置容量緩衝區。緩衝區可在需要時允許自動調整作業增加和縮減 App Service 方案。最小緩衝區會計算為總計 App Service 方案擴大率。
+### <a name="use-the-app-service-plan-inflation-rate-to-define-worker-pool-autoscale-rules"></a>Use the App Service plan inflation rate to define worker pool autoscale rules
 
-由於 App Service 環境調整作業需要一些時間才能套用，任何變更應該考量當調整正在進行時可能會發生的進一步需求變更。為了因應此延遲，建議您使用計算的總計 App Service 方案擴大率作為對每個自動調整作業加入的執行個體數目下限。
+Worker pools that host App Service plans that are configured to autoscale will need to be allocated a buffer of capacity. The buffer allows for the autoscale operations to grow and shrink the App Service plan as needed. The minimum buffer would be the calculated Total App Service Plan Inflation Rate.
 
-使用此資訊，Frank 可以定義下列的自動調整設定檔和規則：
+Because App Service environment scale operations take some time to apply, any change should account for further demand changes that could happen while a scale operation is in progress. To accommodate this latency, we recommend that you use the calculated Total App Service Plan Inflation Rate as the minimum number of instances that are added for each autoscale operation.
 
-![LOB 範例的自動調整設定檔規則。][Worker-Pool-Scale]
+With this information, Frank can define the following autoscale profile and rules:
 
-|	**自動調整設定檔 - 工作日** |	**自動調整設定檔 - 週末** |
-|	----------------------------------------------------	|	--------------------------------------------	|
-|	**名稱：**工作日設定檔 |	**名稱：**週末設定檔 |
-|	**調整規模：**排程和效能規則 |	**調整規模：**排程和效能規則 |
-|	**設定檔：**工作日 |	**設定檔：**週末 |
-|	**類型：**循環 |	**類型：**循環 |
-|	**目標範圍：**13 到 25 個執行個體 |	**目標範圍：**6 到 15 個執行個體 |
-|	**星期幾：**星期一、星期二、星期三、星期四、星期五 |	**星期幾：**星期六、星期日 |
-|	**開始時間︰**上午 7:00 |	**開始時間︰**上午 9:00 |
-|	**時區：**UTC-08 |	**時區：**UTC-08 |
-| | |
-|	**自動調整規則 (相應增加)** |	**自動調整規則 (相應增加)** |
-|	**資源：**背景工作集區 1 |	**資源：**背景工作集區 1 |
-|	**度量：**WorkersAvailable |	**度量：**WorkersAvailable |
-|	**作業：**少於 8 |	**作業：**少於 3 |
-|	**持續時間：**20 分鐘 |	**持續時間：**30 分鐘 |
-|	**時間彙總：**平均 |	**時間彙總：**平均 |
-|	**動作：**計數增加 8 |	**動作：**計數增加 3 |
-|	**冷卻時間 (分鐘)：**180 |	**冷卻時間 (分鐘)：**180 |
-| | |
-|	**自動調整規則 (相應減少)** |	**自動調整規則 (相應減少)** |
-|	**資源：**背景工作集區 1 |	**資源：**背景工作集區 1 |
-|	**度量：**WorkersAvailable |	**度量：**WorkersAvailable |
-|	**作業：**大於 8 |	**作業：**大於 3 |
-|	**持續時間：**20 分鐘 |	**持續時間：**15 分鐘 |
-|	**時間彙總：**平均 |	**時間彙總：**平均 |
-|	**動作：**計數減少 2 |	**動作：**計數減少 3 |
-|	**冷卻時間 (分鐘)：**120 |	**冷卻時間 (分鐘)：**120 |
+![Autoscale profile rules for LOB example.][Worker-Pool-Scale]
 
-設定檔中定義的目標範圍的計算方式是由設定檔中為 App Service 方案定義的最小執行個體 + 緩衝區。
+|   **Autoscale profile – Weekdays**                        |   **Autoscale profile – Weekends**                |
+|   ----------------------------------------------------    |   --------------------------------------------    |
+|   **Name:** Weekday profile                               |   **Name:** Weekend profile                       |
+|   **Scale by:** Schedule and performance rules            |   **Scale by:** Schedule and performance rules    |
+|   **Profile:** Weekdays                                   |   **Profile:** Weekend                            |
+|   **Type:** Recurrence                                    |   **Type:** Recurrence                            |
+|   **Target range:** 13 to 25 instances                    |   **Target range:** 6 to 15 instances             |
+|   **Days:** Monday, Tuesday, Wednesday, Thursday, Friday  |   **Days:** Saturday, Sunday                      |
+|   **Start time:** 7:00 AM                                 |   **Start time:** 9:00 AM                         |
+|   **Time zone:** UTC-08                                   |   **Time zone:** UTC-08                           |
+|                                                           |                                                   |
+|   **Autoscale rule (Scale Up)**                           |   **Autoscale rule (Scale Up)**                   |
+|   **Resource:** Worker pool 1                             |   **Resource:** Worker pool 1                     |
+|   **Metric:** WorkersAvailable                            |   **Metric:** WorkersAvailable                    |
+|   **Operation:** Less than 8                              |   **Operation:** Less than 3                      |
+|   **Duration:** 20 minutes                                |   **Duration:** 30 minutes                        |
+|   **Time aggregation:** Average                           |   **Time aggregation:** Average                   |
+|   **Action:** Increase count by 8                         |   **Action:** Increase count by 3                 |
+|   **Cool down (minutes):** 180                            |   **Cool down (minutes):** 180                    |
+|                                                           |                                                   |
+|   **Autoscale rule (Scale Down)**                         |   **Autoscale rule (Scale Down)**                 |
+|   **Resource:** Worker pool 1                             |   **Resource:** Worker pool 1                     |
+|   **Metric:** WorkersAvailable                            |   **Metric:** WorkersAvailable                    |
+|   **Operation:** Greater than 8                           |   **Operation:** Greater than 3                   |
+|   **Duration:** 20 minutes                                |   **Duration:** 15 minutes                        |
+|   **Time aggregation:** Average                           |   **Time aggregation:** Average                   |
+|   **Action:** Decrease count by 2                         |   **Action:** Decrease count by 3                 |
+|   **Cool down (minutes):** 120                            |   **Cool down (minutes):** 120                    |
 
-最大值範圍是裝載於背景工作集區的所有 App Service 方案最大範圍的總和。
+The Target range defined in the profile is calculated by the minimum instances defined in the profile for the App Service plan + buffer.
 
-相應增加規則的增加計數應該設定為至少是 App Service 方案擴大率的一倍進行相應增加。
+The Maximum range would be the sum of all the maximum ranges for all App Service plans hosted in the worker pool.
 
-減少計數可以調整成介於 App Service 方案擴大率的一半或一倍之間進行相應減少。
+The Increase count for the scale up rules should be set to at least 1X the App Service Plan Inflation Rate for scale up.
 
-### 前端集區的自動調整
+Decrease count can be adjusted to something between 1/2X or 1X the App Service Plan Inflation Rate for scale down.
 
-前端自動調整規則比背景工作集區規則簡單。您主要應該確定測量的持續時間，而冷卻計時器會將 App Service 方案的調整作業不是瞬間完成的事實納入考量。
+### <a name="autoscale-for-front-end-pool"></a>Autoscale for front-end pool
 
-在此案例中，Frank 知道在前端達到 80 % 的 CPU 使用量之後錯誤率會增加。為了防止此情況，他設定自動調整規則來增加執行個體，如下所示：
+Rules for front-end autoscale are simpler than for worker pools. Primarily, you should  
+make sure that duration of the measurement and the cooldown timers consider that scale operations on an App Service plan are not instantaneous.
 
-![前端集區的自動調整設定。][Front-End-Scale]
+For this scenario, Frank knows that the error rate increases after front ends reach 80% CPU utilization.
+To prevent this, he sets the autoscale rule to increase instances as follows:
 
-|	**自動調整設定檔 - 前端** |
-|	--------------------------------------------	|
-|	**名稱：**自動調整 - 前端 |
-|	**調整規模：**排程和效能規則 |
-|	**設定檔：**每日 |
-|	**類型：**循環 |
-|	**目標範圍：**3 到 10 個執行個體 |
-|	**星期幾：**每日 |
-|	**開始時間︰**上午 9:00 |
-|	**時區：**UTC-08 |
-| |
-|	**自動調整規則 (相應增加)** |
-|	**資源：**前端集區 |
-|	**度量：**CPU % |
-|	**作業：**大於 60% |
-|	**持續時間：**20 分鐘 |
-|	**時間彙總：**平均 |
-|	**動作：**計數增加 3 |
-|	**冷卻時間 (分鐘)：**120 |
-| |
-|	**自動調整規則 (相應減少)** |
-|	**資源：**背景工作集區 1 |
-|	**度量：**CPU % |
-|	**作業：**少於 30 % |
-|	**持續時間：**20 分鐘 |
-|	**時間彙總：**平均 |
-|	**動作：**計數減少 3 |
-|	**冷卻時間 (分鐘)：**120 |
+![Autoscale settings for front-end pool.][Front-End-Scale]
+
+|   **Autoscale profile – Front ends**              |
+|   --------------------------------------------    |
+|   **Name:** Autoscale – Front ends                |
+|   **Scale by:** Schedule and performance rules    |
+|   **Profile:** Everyday                           |
+|   **Type:** Recurrence                            |
+|   **Target range:** 3 to 10 instances             |
+|   **Days:** Everyday                              |
+|   **Start time:** 9:00 AM                         |
+|   **Time zone:** UTC-08                           |
+|                                                   |
+|   **Autoscale rule (Scale Up)**                   |
+|   **Resource:** Front-end pool                    |
+|   **Metric:** CPU %                               |
+|   **Operation:** Greater than 60%                 |
+|   **Duration:** 20 minutes                        |
+|   **Time aggregation:** Average                   |
+|   **Action:** Increase count by 3                 |
+|   **Cool down (minutes):** 120                    |
+|                                                   |
+|   **Autoscale rule (Scale Down)**                 |
+|   **Resource:** Worker pool 1                     |
+|   **Metric:** CPU %                               |
+|   **Operation:** Less than 30%                    |
+|   **Duration:** 20 Minutes                        |
+|   **Time aggregation:** Average                   |
+|   **Action:** Decrease count by 3                 |
+|   **Cool down (minutes):** 120                    |
 
 <!-- IMAGES -->
 [intro]: ./media/app-service-environment-auto-scale/introduction.png
@@ -239,4 +242,8 @@ App Service 方案擴大率的計算方式如下：
 [Worker-Pool-Scale]: ./media/app-service-environment-auto-scale/wp-scale.png
 [Front-End-Scale]: ./media/app-service-environment-auto-scale/fe-scale.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

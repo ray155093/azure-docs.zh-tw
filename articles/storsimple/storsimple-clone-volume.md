@@ -1,6 +1,6 @@
 <properties
-   pageTitle="複製 StorSimple 磁碟區 | Microsoft Azure"
-   description="說明不同的複製類型以及使用時機，並說明如何使用備份組來複製個別磁碟區。"
+   pageTitle="Clone your StorSimple volume | Microsoft Azure"
+   description="Describes the different clone types and when to use them, and explains how you can use a backup set to clone an individual volume."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,85 +15,90 @@
    ms.date="08/17/2016"
    ms.author="alkohli" />
 
-# 使用 StorSimple Manager 服務來複製磁碟區
+
+# <a name="use-the-storsimple-manager-service-to-clone-a-volume"></a>Use the StorSimple Manager service to clone a volume
 
 [AZURE.INCLUDE [storsimple-version-selector-clone-volume](../../includes/storsimple-version-selector-clone-volume.md)]
 
-## Overview
+## <a name="overview"></a>Overview
 
-StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或自動備份時所建立的所有備份組。您可以使用此頁面來列出備份原則或磁碟區的所有備份、選取或刪除備份，或是使用備份來還原或複製磁碟區。
+The StorSimple Manager service **Backup Catalog** page displays all the backup sets that are created when manual or automated backups are taken. You can use this page to list all the backups for a backup policy or a volume, select or delete backups, or use a backup to restore or clone a volume.
 
-![備份類別目錄頁面](./media/storsimple-clone-volume/HCS_BackupCatalog.png)
+![Backup catalog page](./media/storsimple-clone-volume/HCS_BackupCatalog.png)  
 
-本教學課程說明如何使用備份組來複製個別磁碟區。它也會說明「暫時性」與「永久」複製之間的差異。
+This tutorial describes how you can use a backup set to clone an individual volume. It also explains the difference between *transient* and *permanent* clones. 
 
-## 建立磁碟區複製
+## <a name="create-a-clone-of-a-volume"></a>Create a clone of a volume
 
-您可以使用本機或雲端快照，在相同的裝置、 另一個裝置或甚至虛擬機器上建立複製。
+You can create a clone on the same device, another device, or even a virtual machine by using a local or a cloud snapshot.
 
-#### 若要複製磁碟區
+#### <a name="to-clone-a-volume"></a>To clone a volume
 
-1. 在 StorSimple Manager 服務頁面上，按一下 [備份類別目錄] 索引標籤，然後選取備份組。
+1. On the StorSimple Manager service page, click the **Backup catalog** tab and select a backup set.
 
-2. 展開備份組以檢視相關聯的磁碟區。從備份組中按一下並選取磁碟區。
+2. Expand the backup set to view the associated volumes. Click and select a volume from the backup set.
 
-     ![複製磁碟區](./media/storsimple-clone-volume/HCS_Clone.png)
+     ![Clone a volume](./media/storsimple-clone-volume/HCS_Clone.png) 
 
-3. 按一下 [複製]，以開始複製選取的磁碟區。
+3. Click **Clone** to begin cloning the selected volume.
 
-4. 在 [複製磁碟區精靈] 的 [指定名稱和位置] 下：
+4. In the Clone Volume wizard, under **Specify name and location**:
 
-  1. 識別目標裝置。這是即將建立複製的位置。您可以選擇相同的裝置，或指定另一個裝置。如果您選擇與其他雲端服務提供者相關的磁碟區 (非 Azure)，目標裝置的下拉式清單將只會顯示實體裝置。您無法在虛擬裝置上複製與其他雲端服務提供者相關聯的磁碟區。
+  1. Identify a target device. This is the location where the clone will be created. You can choose the same device or specify another device. If you choose a volume associated with other cloud service providers (not Azure), the drop-down list for the target device will only show physical devices. You cannot clone a volume associated with other cloud service providers on a virtual device.
 
-        >  [AZURE.NOTE] 確定要複製的容量小於目標裝置中可用的容量。
-  2. 為複製指定唯一的磁碟區名稱。此名稱必須包含 3 到 127 個字元。
-  3. 按一下箭頭圖示 ![arrow-icon](./media/storsimple-clone-volume/HCS_ArrowIcon.png)，繼續前往下一頁。
+        >  [AZURE.NOTE] Make sure that the capacity required for the clone is lower than the capacity available on the target device.
+  2. Specify a unique volume name for your clone. The name must contain between 3 and 127 characters.
+  3. Click the arrow icon ![arrow-icon](./media/storsimple-clone-volume/HCS_ArrowIcon.png) to proceed to the next page.
 
-5. 在 [指定可以使用此磁碟區的主機] 下：
+5. Under **Specify hosts that can use this volume**:
 
-  1. 指定該複製的存取控制記錄 (ACR)。您可以加入新的 ACR，或從現有清單中選擇。
-  2. 按一下核取圖示 ![核取圖示](./media/storsimple-clone-volume/HCS_CheckIcon.png) 完成操作。
+  1. Specify an access control record (ACR) for the clone. You can add a new ACR or choose from the existing list.
+  2. Click the check icon ![check-icon](./media/storsimple-clone-volume/HCS_CheckIcon.png)to complete the operation.
 
-6. 複製工作隨即起始並在成功建立複製時通知您。按一下 [檢視工作]，在 [工作] 頁面上監視複製工作。
+6. A clone job will be initiated and you will be notified when the clone is successfully created. Click **View Job** to monitor the clone job on the **Jobs** page.
 
-7. 複製工作完成後：
+7. After the clone job is completed:
 
-  1. 移至 [裝置] 頁面，然後選取 [磁碟區容器] 索引標籤。
-  2. 選取與複製的來源磁碟區相關聯的磁碟區容器。您應該會在磁碟區清單中看到剛才建立的複製。
+  1. Go to the **Devices** page, and select the **Volume Containers** tab. 
+  2. Select the volume container that is associated with the source volume that you cloned. In the list of volumes, you should see the clone that was just created.
 
->[AZURE.NOTE] 複製的磁碟區上會自動停用監視和預設備份。
+>[AZURE.NOTE] Monitoring and default backup are automatically disabled on a cloned volume.
 
-以這種方式建立的複製就是暫時性複製。如需複製類型的詳細資訊，請參閱[暫時性與永久複製](#transient-vs.-permanent-clones)。
+A clone that is created this way is a transient clone. For more information about clone types, see [Transient vs. permanent clones](#transient-vs.-permanent-clones).
 
-此複製現在是一般的磁碟區，可在磁碟區進行的任何操作都能在此複製進行。您必須設定此磁碟區以進行任何備份。
+This clone is now a regular volume, and any operation that is possible on a volume will be available for the clone. You will need to configure this volume for any backups.
 
-## 暫時性與永久複製
+## <a name="transient-vs.-permanent-clones"></a>Transient vs. permanent clones
 
-只有在您複製到不同裝置時才會建立暫時性和永久複製。您可以從備份組複製特定磁碟區到不同裝置。以這種方式建立的複製就是「暫時性」複製。暫時性複製會有原始磁碟區的參考，並在本機寫入時使用該磁碟區來讀取。
+Transient and permanent clones are created only when you are cloning on to a different device. You can clone a specific volume from a backup set to a different device. A clone created in this way is a *transient* clone. The transient clone will have references to the original volume and will use that volume to read while writing locally. 
 
-在建立暫時性複製的雲端快照之後，產生的複製就是「永久」複製。永久複製獨立且沒有所複製原始磁碟區的任何參考。
+After you take a cloud snapshot of a transient clone, the resulting clone will be a *permanent* clone. The permanent clone is independent and doesn’t have any references to the original volume that it was cloned from.  
 
-## 暫時性複製與永久複製的案例
+## <a name="scenarios-for-transient-and-permanent-clones"></a>Scenarios for transient and permanent clones
 
-下列各節將說明可使用暫時性複製與永久複製的範例情況。
+The following sections describe example situations in which transient and permanent clones can be used.
 
-### 使用暫時性複製復原項目層級
+### <a name="item-level-recovery-with-a-transient-clone"></a>Item-level recovery with a transient clone
 
-您要復原過去一年的 Microsoft PowerPoint 簡報檔案。IT 系統管理員辨識該時間範圍內的特定備份，然後篩選磁碟區。系統管理員接著再複製磁碟區，找出您要找的檔案再提供給您。在此案例中，使用的是暫時性複製。
+You need to recover a one-year-old Microsoft PowerPoint presentation file. Your IT administrator identifies the specific backup from that time frame, and then filters the volume. The administrator then clones the volume, locates the file that you are looking for, and provides it to you. In this scenario, a transient clone is used. 
  
-![提供的影片](./media/storsimple-clone-volume/Video_icon.png)**提供的影片**
+![Video available](./media/storsimple-clone-volume/Video_icon.png) **Video available**
 
-若要觀看影片示範如何使用 StorSimple 的複製和還原功能來復原已刪除的檔案，請按一下[這裡](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/)。
+To watch a video that demonstrates how you can use the clone and restore features in StorSimple to recover deleted files, click [here](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/).
 
-### 利用永久複製在實際執行環境中進行測試
+### <a name="testing-in-the-production-environment-with-a-permanent-clone"></a>Testing in the production environment with a permanent clone
 
-您需要確認生產環境中的測試錯誤。您要使用複製的雲端快照，在生產環境中建立磁碟區的複製。複製的磁碟區現在是獨立的。在此案例中，使用的是永久複製。
+You need to verify a testing bug in the production environment. You create a clone of the volume in the production environment by taking a cloud snapshot of this clone. The cloned volume is now independent. In this scenario, a permanent clone is used.
 
-## 後續步驟
-- 了解如何[從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
+## <a name="next-steps"></a>Next steps
+- Learn how to [restore a StorSimple volume from a backup set](storsimple-restore-from-backup-set.md).
 
-- 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+- Learn how to [use the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
 
  
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

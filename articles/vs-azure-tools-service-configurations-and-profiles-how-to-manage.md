@@ -1,6 +1,6 @@
 <properties
-   pageTitle="如何管理服務組態和設定檔 | Microsoft Azure"
-   description="了解如何使用服務組態和設定檔組態檔案 | 其儲存部署環境的設定及雲端服務的發佈設定。"
+   pageTitle="How to manage service configurations and profiles | Microsoft Azure"
+   description="Learn how to work with service configurations and profiles configuration files| which store settings for the deployment environments and publish settings for cloud services."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,120 +15,125 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 如何管理服務組態和設定檔
 
-## Overview
+# <a name="how-to-manage-service-configurations-and-profiles"></a>How to manage service configurations and profiles
 
-當您發佈雲端服務時，Visual Studio 會將組態資訊儲存在兩種組態檔中：服務組態和設定檔。服務組態 (.cscfg 檔) 可儲存 Azure 雲端服務的部署環境設定。Azure 會在管理雲端服務時使用這些組態檔。另一方面，設定檔 (.azurePubxml 檔案) 可儲存雲端服務的發佈設定。這些設定是您使用發佈精靈時所選內容的記錄，可由 Visual Studio 在本機使用。本主題說明如何使用這兩種類型的組態檔。
+## <a name="overview"></a>Overview
 
-## 服務組態
+When you publish a cloud service, Visual Studio stores configuration information in two kinds of configuration files: service configurations and profiles. Service configurations (.cscfg files) store settings for the deployment environments for an Azure cloud service. Azure uses these configuration files when it manages your cloud services. On the other hand, profiles (.azurePubxml files) store publish settings for cloud services. These settings are a record of what you choose when you use the publish wizard, and are used locally by Visual Studio. This topic explains how to work with both types of configuration files.
 
-您可以建立多個服務組態，以便用於每個部署環境。例如，您可針對用來執行和測試 Azure 應用程式的本機環境建立一個服務組態，針對實際執行環境建立另一個服務組態。
+## <a name="service-configurations"></a>Service Configurations
 
-您可以根據需求來新增、刪除、重新命名和修改這些服務組態。您可以從 Visual Studio 管理這些服務組態，如下圖所示。
+You can create multiple service configurations to use for each of your deployment environments. For example, you might create a service configuration for the local environment that you use to run and test an Azure application and another service configuration for your production environment.
 
-![管理服務組態](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/manage-service-config.png)
+You can add, delete, rename, and modify these service configurations based on your requirements. You can manage these service configurations from Visual Studio, as shown in the following illustration.
 
-您也可以從角色的屬性頁面開啟 [管理組態] 對話方塊。若要開啟 Azure 專案中角色的屬性，請開啟該角色的捷徑功能表，然後選擇 [屬性]。在 [設定] 索引標籤上，展開 [服務組態] 清單，然後選取 [管理] 以開啟 [管理組態] 對話方塊。
+![Manage Service Configurations](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/manage-service-config.png)
 
-### 新增服務組態
+You can also open the **Manage Configurations** dialog box from the role’s property pages. To open the properties for a role in your Azure project, open the shortcut menu for that role, and then choose **Properties**. On the **Settings** tab, expand the **Service Configuration** list, and then select **Manage** to open the **Manage Configurations** dialog box.
 
-1. 在 [方案總管] 中，開啟 Azure 專案的捷徑功能表，然後選取 [管理組態]。
+### <a name="to-add-a-service-configuration"></a>To add a service configuration
 
-    [管理服務組態] 對話方塊隨即出現。
+1. In Solution Explorer open the shortcut menu for the Azure project and then select **Manage Configurations**.
 
-1. 若要新增服務組態，您必須建立一份現有的組態。若要這樣做，請從 [名稱] 清單中選擇您要複製的組態，然後選取 [建立複本]。
+    The **Manage Service Configurations** dialog box appears.
 
-1. (選擇性) 若要給予服務組態不同的名稱，請從 [名稱] 清單中選擇新的服務組態，然後選取 [重新命名]。在 [名稱] 文字方塊中輸入您要用於此服務組態的名稱，然後按選取 [確定]。
+1. To add a service configuration, you must create a copy of an existing configuration. To do this, choose the configuration that you want to copy from the Name list and then select **Create copy**.
 
-    方案總管中的 Azure 專案已新增了一個叫做 ServiceConfiguration.[New Name].cscfg 的新服務組態檔。
+1. (Optional) To give the service configuration a different name, choose the new service configuration from the Name list and then select **Rename**. In the **Name** text box, type the name that you want to use for this service configuration and then select **OK**.
 
-
-### 刪除服務組態
-
-1. 在 [方案總管] 中，開啟 Azure 專案的捷徑功能表，然後選取 [管理組態]。
-
-    [管理服務組態] 對話方塊會隨即出現。
-
-1. 若要刪除服務組態，請從 [名稱] 清單中選擇您要刪除的組態，然後選取 [移除]。隨即出現一個對話方塊，以確認您要刪除此組態。
-
-1. 選取 [刪除]。
-
-     在 [方案總管] 中，此服務組態檔會從 Azure 專案中移除。
+    A new service configuration file that is named ServiceConfiguration.[New Name].cscfg is added to the Azure project in Solution Explorer.
 
 
-### 重新命名服務組態
+### <a name="to-delete-a-service-configuration"></a>To delete a service configuration
 
-1. 在 [方案總管] 中，開啟 Azure 專案的捷徑功能表，然後選取 [管理組態]。
+1. In Solution Explorer, open the shortcut menu for the Azure project and then select **Manage Configurations**.
 
-    [管理服務組態] 對話方塊會隨即出現。
+    The **Manage Service Configurations** dialog box appears.
 
-1. 若要將服務組態重新命名，請從 [名稱] 清單中選擇新的服務組態，然後選取 [重新命名]。在 [名稱] 文字方塊中輸入您要用於此服務組態的名稱，然後按選取 [確定]。
+1. To delete a service configuration, choose the configuration that you want to delete from the **Name** list and then select **Remove**. A dialog box appears to verify that you want to delete this configuration.
 
-    在 [方案總管] 中，此服務組態檔的名稱會在 Azure 專案中變更。
+1. Select **Delete**.
 
-### 變更服務組態
+     The service configuration file is removed from the Azure project in Solution Explorer.
 
-- 如果您想要變更服務組態，請開啟 Azure 專案中您要變更的特定角色的捷徑功能表，然後按一下 [屬性]。如需詳細資訊，請參閱[如何：使用 Visual Studio 設定 Azure 雲端服務的角色](https://msdn.microsoft.com/library/azure/hh369931.aspx)。
 
-## 使用設定檔製作不同的設定組合
+### <a name="to-rename-a-service-configuration"></a>To rename a service configuration
 
-只要使用設定檔，您就能針對不同用途，以不同的設定組合來自動填滿 [發佈精靈]。例如，您可有一個設定檔用於偵錯，另一個設定檔用於發行組建。在此情況下，[偵錯] 設定檔會啟用 [IntelliTrace] 並選取 [偵錯] 組態，而 [發行] 設定檔會停用 [IntelliTrace] 並選取 [發行] 組態。您也可以使用不同的設定檔，部署使用不同儲存體帳戶的服務。
+1. In Solution Explorer, open the shortcut menu for the Azure project, and then select **Manage Configurations**.
 
-當您第一次執行精靈時，會建立預設設定檔。Visual Studio 會將此設定檔儲存在副檔名為 .azurePubXml 的檔案中，而該檔案會新增至 Azure 專案的 [設定檔] 資料夾之下。如果您在執行精靈時手動指定不同的選擇，此檔案會自動更新。執行下列程序之前，您應該已經發佈您的雲端服務至少一次。
+    The **Manage Service Configurations** dialog box appears.
 
-### 新增設定檔
+1. To rename a service configuration, choose the new service configuration from the **Name** list, and then select **Rename**. In the **Name** text box, type the name that you want to use for this service configuration, and then select **OK**.
 
-1. 開啟 Azure 專案的捷徑功能表，然後選取 [發佈]。
+    The name of the service configuration file is changed in the Azure project in Solution Explorer.
 
-1. 選取 [目標設定檔] 清單旁邊的 [儲存設定檔] 按鈕，如下圖所示。這會為您建立設定檔。
+### <a name="to-change-a-service-configuration"></a>To change a service configuration
 
-    ![建立新的設定檔](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/create-new-profile.png)
+- If you want to change a service configuration, open the shortcut menu for the specific role you want to change in the Azure project, and then select **Properties**. See [How to: Configure the Roles for an Azure Cloud Service with Visual Studio](https://msdn.microsoft.com/library/azure/hh369931.aspx) for more information.
 
-1. 建立設定檔之後，選取 [目標設定檔] 清單中的 [<管理...>]。
+## <a name="make-different-setting-combinations-by-using-profiles"></a>Make different setting combinations by using profiles
 
-    [管理設定檔] 對話方塊會隨即出現，如下圖所示。
+By using a profile, you can automatically fill in the **Publish Wizard** with different combinations of settings for different purposes. For example, you can have one profile for debugging and another for release builds. In that case, your **Debug** profile would have **IntelliTrace** enabled and the **Debug** configuration selected, and your **Release** profile would have **IntelliTrace** disabled and the **Release** configuration selected. You could also use different profiles to deploy a service using a different storage account.
 
-    ![管理設定檔對話方塊](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/manage-profiles.png)
+When you run the wizard for the first time, a default profile is created. Visual Studio stores the profile in a file that has an .azurePubXml extension, which is added to your Azure project under the **Profiles** folder. If you manually specify different choices when you run the wizard later, the file automatically updates. Before you run the following procedure, you should have already published your cloud service at least once.
 
-1. 在 [名稱] 清單中選擇某個設定檔，然後選取 [建立複本]。
+### <a name="to-add-a-profile"></a>To add a profile
 
-1. 選擇 [關閉] 按鈕。
+1. Open the shortcut menu for your Azure project, and then select **Publish**.
 
-    新的設定檔會出現在 [目標設定檔] 清單中。
+1. Next to the **Target profile** list, select the **Save Profile** button, as the following illustration shows. This creates a profile for you.
 
-1. 在 [目標設定檔] 清單中，選取您剛建立的設定檔。[發佈精靈] 設定會填入您所選設定檔中的選項。
+    ![Create an new profile](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/create-new-profile.png)
 
-1. 選取 [上一步] 和 [下一步] 按鈕以顯示「發佈精靈」的每個頁面，然後自訂此設定檔的設定。如需相關資訊，請參閱[發佈 Azure 應用程式精靈](http://go.microsoft.com/fwlink/p/?LinkID=623085)。
+1. After the profile is created, select **<Manage…>** in the **Target profile** list.
 
-1. 自訂完設定之後，選取 [下一步] 以返回「設定」頁面。當您使用這些設定來發佈服務，或是選取設定檔清單旁邊的 [儲存] 時，就會儲存設定檔。
+    The **Manage Profiles** dialog box appears, as the following illustration shows.
 
-### 重新命名或刪除設定檔
+    ![Manage Profiles Dialog](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/manage-profiles.png)
 
-1. 開啟 Azure 專案的捷徑功能表，然後選取 [發佈]。
+1. In the **Name** list, choose a profile, and then select **Create Copy**.
 
-1. 在 [目標設定檔] 清單中，選取 [管理]。
+1. Choose the **Close** button.
 
-1. 在 [管理設定檔] 對話方塊方塊中，選取您要刪除的設定檔，然後選取 [移除]。
+    The new profile appears in the Target profile list.
 
-1. 在出現的確認對話方塊中，選取 [確定]。
+1. In the **Target profile** list, select the profile that you just created. The Publish Wizard settings are filled in with the choices from the profile you selected.
 
-1. 選取 [關閉]。
+1. Select the **Previous** and **Next** buttons to display each page of the Publish Wizard, and then customize the settings for this profile. See [Publish Azure Application Wizard](http://go.microsoft.com/fwlink/p/?LinkID=623085) for information.
 
-### 變更設定檔
+1. After you finish customizing the settings, select **Next** to go back to the Settings page. The profile is saved when you publish the service by using these settings or if you select **Save** next to the list of profiles.
 
-1. 開啟 Azure 專案的捷徑功能表，然後選取 [發佈]。
+### <a name="to-rename-or-delete-a-profile"></a>To rename or delete a profile
 
-1. 在 [目標設定檔] 清單中，選取您要變更的設定檔。
+1. Open the shortcut menu for your Azure project, and then select **Publish**.
 
-1. 選取 [上一步] 和 [下一步] 按鈕以顯示「發佈精靈」的每個頁面，然後變更您想要的設定。如需相關資訊，請參閱[發佈 Azure 應用程式精靈](http://go.microsoft.com/fwlink/p/?LinkID=623085)。
+1. In the **Target profile** list, select **Manage**.
 
-1. 變更完設定之後，選取 [下一步] 以返回「設定」頁面。
+1. In the **Manage Profiles** dialog box, select the profile that you want to delete, and then select **Remove**.
 
-1. (選擇性) 選取 [發佈] 以使用新設定來發佈雲端服務。如果您不想在此時發佈雲端服務，而關閉 [發佈精靈]，Visual Studio 會詢問您是否要將變更儲存至設定檔。
+1. In the confirmation dialog box that appears, select **OK**.
 
-## 後續步驟
+1. Select **Close**.
 
-若要了解如何從 Visual Studio 設定 Azure 專案的其他部分，請參閱[設定 Azure 專案](http://go.microsoft.com/fwlink/p/?LinkID=623075)
+### <a name="to-change-a-profile"></a>To change a profile
 
-<!---HONumber=AcomDC_0817_2016-->
+1. Open the shortcut menu for your Azure project, and then select **Publish**.
+
+1. In the **Target profile** list, select the profile that you want to change.
+
+1. Select the **Previous** and **Next** buttons to display each page of the Publish Wizard, and then change the settings you want. See [Publish Azure Application Wizard](http://go.microsoft.com/fwlink/p/?LinkID=623085) for information.
+
+1. After you finish changing the settings, select **Next** to go back to the **Settings** page.
+
+1. (Optional) select **Publish** to publish the cloud service using the new settings. If you don’t want to publish your cloud service at this time, and you close the Publish Wizard, Visual Studio asks you if you want to save the changes to the profile.
+
+## <a name="next-steps"></a>Next steps
+
+To learn about configuring other parts of your Azure project from Visual Studio, see [Configuring an Azure Project](http://go.microsoft.com/fwlink/p/?LinkID=623075)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,33 +1,35 @@
-## 負載平衡器的差異
+## <a name="load-balancer-differences"></a>Load Balancer differences
 
-有不同的選項可使用 Microsoft Azure 來分散網路流量。這些選項的運作方式彼此間會有差異，其具備不同的功能組合並支援不同的案例。它們每個都可單獨使用，或組合在一起。
+There are different options to distribute network traffic using Microsoft Azure. These options work differently from each other, having a different feature set and support different scenarios. They can each be used in isolation, or combining them.
 
-- **Azure Load Balancer** 是傳輸層級 (OSI 網路參考堆疊中的第 4 層) 上運作。它會在同一個 Azure 資料中心執行的應用程式執行個體之間，提供網路層級的流量分散功能。
+- **Azure Load Balancer** works at the transport layer (Layer 4 in the OSI network reference stack). It provides network-level distribution of traffic across instances of an application running in the same Azure data center.
 
-- **應用程式閘道**是在應用程式層級 (OSI 網路參考堆疊中的第 7 層) 上運作。它會用來當做反向 Proxy 服務，終止用戶端連線，並將要求轉寄到後端端點。
+- **Application Gateway** works at the application layer (Layer 7 in the OSI network reference stack). It acts as a reverse-proxy service, terminating the client connection and forwarding requests to back-end endpoints.
 
-- **流量管理員**是在 DNS 層級上運作。它會使用 DNS 回應，將使用者流量導向全域散佈的端點。接著用戶端會直接連接到這些端點。
+- **Traffic Manager** works at the DNS level.  It uses DNS responses to direct end-user traffic to globally distributed endpoints. Clients then connect to those endpoints directly.
 
-下表摘要說明每個服務所提供的功能︰
+The following table summarizes the features offered by each service:
 
-| 服務 | Azure Load Balancer | 應用程式閘道 | 流量管理員 |
+| Service | Azure Load Balancer | Application Gateway | Traffic Manager |
 |---|---|---|---|
-|Technology| 傳輸層級 (第 4 層) | 應用程式層級 (第 7 層) | DNS 層級 |
-| 支援的應用程式通訊協定 |	任意 | HTTP 和 HTTPS | 	任意 (HTTP 端點是端點監視所需的必要項目) |
-| 端點 | Azure VM 和雲端服務角色執行個體 | 任意的 Azure 內部 IP 位址或公用網際網路 IP 位址 | Azure VM、雲端服務、Azure Web Apps 和外部端點 |
-| Vnet 支援 | 可用於網際網路面向和內部 (Vnet) 應用程式 | 可用於網際網路面向和內部 (Vnet) 應用程式 |	只支援網際網路面向的應用程式 |
-端點監視 | 透過探查支援 | 透過探查支援 | 透過 HTTP/HTTPS GET 支援 | 
+|Technology| Transport level (Layer 4) | Application level (Layer 7) | DNS level |
+| Application protocols supported | Any | HTTP and HTTPS |  Any (An HTTP endpoint is required for endpoint monitoring) |
+| Endpoints | Azure VMs and Cloud Services role instances | Any Azure Internal IP address or public internet IP address | Azure VMs, Cloud Services, Azure Web Apps, and external endpoints |
+| Vnet support | Can be used for both Internet facing and internal (Vnet) applications | Can be used for both Internet facing and internal (Vnet) applications |    Only supports Internet-facing applications |
+Endpoint Monitoring | Supported via probes | Supported via probes | Supported via HTTP/HTTPS GET | 
 
-Azure Load Balancer 和應用程式閘道會將網路流量路由傳送到端點，但是它們有不同的使用案例來處理流量。下表可協助您了解兩個負載平衡器之間的差異︰
+Azure Load Balancer and Application Gateway route network traffic to endpoints but they have different usage scenarios to which traffic to handle. The following table helps understanding the difference between the two load balancers:
 
-| 類型 | Azure Load Balancer | 應用程式閘道 |
+| Type | Azure Load Balancer | Application Gateway |
 |---|---|---|
-| 通訊協定 | UDP/TCP | HTTP/ HTTPS |
-| IP 保留區 | 支援 | 不支援 | 
-| 負載平衡模式 | 5 個 Tuple (來源 IP、來源連接埠、目的地 IP、目的地連接埠、通訊協定類型) | 循環配置資源<br>根據 URL 路由 | 
-| 負載平衡模式 (來源 IP / 相黏工作階段) | 2 個 Tuple (來源 IP 和目的地 IP)、3 個 Tuple (來源 IP、目的地 IP 和連接埠)。可以依據虛擬機器數目進行相應增加或相應減少 | 以 Cookie 為基礎的同質性<br>根據 URL 路由 |
-| 健康狀態探查 | 預設值︰探查間隔 - 15 秒。不進入輪替︰2 個連續的失敗。支援使用者定義的探查 | 閒置探查間隔 30 秒。在 5 個連續的即時流量失敗或處於閒置模式的單一探查失敗之後結束。支援使用者定義的探查 | 
-| SSL 卸載 | 不支援 | 支援 | 
+| Protocols | UDP/TCP | HTTP/ HTTPS |
+| IP reservation | Supported | Not supported | 
+| Load balancing mode | 5-tuple(source IP, source port, destination IP, destination port, protocol type) | Round Robin<br>Routing based on URL | 
+| Load balancing mode (source IP /sticky sessions) |  2-tuple (source IP and destination IP), 3-tuple (source IP, destination IP, and port). Can scale up or down based on the number of virtual machines | Cookie-based affinity<br>Routing based on URL |
+| Health probes | Default: probe interval - 15 secs. Taken out of rotation: 2 Continuous failures. Supports user-defined probes | Idle probe interval 30 secs. Taken out after 5 consecutive live traffic failures or a single probe failure in idle mode. Supports user-defined probes | 
+| SSL offloading | Not supported | Supported | 
   
 
-<!----HONumber=AcomDC_0907_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

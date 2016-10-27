@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="變更 StorSimple 虛擬裝置系統管理員密碼 | Microsoft Azure"
-   description="描述如何使用 Azure 傳統入口網站或 StorSimple Virtual Array 的 Web UI 來變更裝置系統管理員密碼。"
+   pageTitle="Change the StorSimple virtual device admin password | Microsoft Azure"
+   description="Describes how to use either the Azure classic portal or the StorSimple Virtual Array web UI to change the device administrator password."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,58 +15,63 @@
    ms.date="06/17/2016"
    ms.author="alkohli" />
 
-# 變更 StorSimple Virtual Array 裝置系統管理員密碼
 
-## 概觀
+# <a name="change-the-storsimple-virtual-array-device-administrator-password"></a>Change the StorSimple Virtual Array device administrator password
 
-當您使用 Windows PowerShell 介面來存取 StorSimple 虛擬裝置時，需要輸入裝置系統管理員密碼。StorSimple 裝置第一次佈建並啟動時，預設的密碼是 *Password1*。為了資料的安全性，您第一次登入時預設密碼便會過期，且系統會要求您變更密碼。
+## <a name="overview"></a>Overview
 
-裝置部署到生產環境之後，您隨時可以使用本機 Web UI 或 Azure 傳統入口網站變更裝置系統管理員密碼。本文章說明上述各程序。
+When you use the Windows PowerShell interface to access the StorSimple virtual device, you are required to enter a device administrator password. When the StorSimple device is first provisioned and started, the default password is *Password1*. For the security of your data, the default password expires the first time that you sign in and you are required to change this password.
 
-## 使用 Azure 傳統入口網站變更密碼
+You can also use either the local web UI or the Azure classic portal to change the device administrator password at any time after the device is deployed in  your production environment. Each of these procedures is described in this article.
 
-執行下列步驟來透過 Azure 傳統入口網站變更裝置系統管理員密碼。
+## <a name="use-the-azure-classic-portal-to-change-the-password"></a>Use the Azure classic portal to change the password
 
-#### 透過 Azure 傳統入口網站變更裝置系統管理員密碼
+Perform the following steps to change the device administrator password through the Azure classic portal.
 
-1. 在入口網站中，對您的裝置按一下 [裝置] > [組態]。
+#### <a name="to-change-the-device-administrator-password-via-the-azure-classic-portal"></a>To change the device administrator password via the Azure classic portal
 
-2. 向下捲動至 [**裝置系統管理員密碼**] 區段。提供含有 8 到 15 個字元的系統管理員密碼。密碼必須是大寫、小寫、數字和特殊字元的組合。
+1. In the portal, click **Devices** > **Configuration** for your device.
 
-3. 確認密碼。
+2. Scroll down to the **Device Administrator Password** section. Provide an administrator password that contains from 8 to 15 characters. The password must be a combination of uppercase, lowercase, numeric, and special characters.
 
-4. 按一下頁面底部的 [儲存]。
+3. Confirm the password.
 
-現在應該已更新裝置系統管理員密碼。您可以使用修改的密碼在本機存取該裝置。
+4. Click **Save** at the bottom of the page.
 
-## 使用 StorSimple Virtual Array 的 Web UI 變更密碼
+The device administrator password should now be updated. You can use this modified password to access the device locally.
 
-執行下列步驟來透過本機 Web UI 變更裝置系統管理員密碼。
+## <a name="use-the-storsimple-virtual-array-web-ui-to-change-the-password"></a>Use the StorSimple Virtual Array web UI to change the password
 
-#### 透過本機 Web UI 變更裝置系統管理員密碼
+Perform the following steps to change the device administrator password through the local web UI.
 
-1. 在本機 Web UI 中，對您的裝置按一下 [維護] > [變更密碼]。
+#### <a name="to-change-the-device-administrator-password-via-the-local-web-ui"></a>To change the device administrator password via the local web UI
 
-    ![變更 password1](./media/storsimple-ova-change-device-admin-password/image40.png)
+1. In the local web UI, click **Maintenance** > **Password change** for your device.
 
-2. 輸入**目前的密碼**。
+    ![change password1](./media/storsimple-ova-change-device-admin-password/image40.png)
 
-3. 提供**新密碼**。密碼長度必須至少為 8 個字元。密碼必須包含下列 4 項的其中 3 項：大寫、小寫、數字和特殊字元。
+2. Enter the **Current password**.
 
-    請注意，您的密碼不能與最近的 24 個密碼相同。
+3. Provide a **New Password**. The password must be at least 8 characters long. It must contain 3 of 4 of the following: uppercase, lowercase, numeric, and special characters.
 
-3. 請重新輸入密碼來加以確認。
+    Note that your password cannot be the same as the last 24 passwords.
 
-    ![變更 password2](./media/storsimple-ova-change-device-admin-password/image41.png)
+3. Reenter the password to confirm it.
 
-4. 在頁面底部，按一下 [套用]。將會套用新密碼。如果變更密碼未成功，您將看到下列錯誤訊息。
+    ![change password2](./media/storsimple-ova-change-device-admin-password/image41.png)
 
-    ![密碼錯誤](./media/storsimple-ova-change-device-admin-password/image42.png)
+4. At the bottom of the page, click **Apply**. The new password will then be applied. If the password change is not successful, you will see the following error.
 
-    成功變更密碼之後，您將會收到通知。您即可使用修改的密碼在本機存取該裝置。
+    ![password error](./media/storsimple-ova-change-device-admin-password/image42.png)
 
-## 後續步驟
+    After the password is successfully updated, you will be notified. You can then use this modified password to access the device locally.
 
-深入了解 [administering your StorSimple Virtual Array (管理 StorSimple Virtual Array)](storsimple-ova-web-ui-admin.md)。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0622_2016-->
+Learn more about [administering your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

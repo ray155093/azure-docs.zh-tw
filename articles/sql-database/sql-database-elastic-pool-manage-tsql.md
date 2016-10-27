@@ -1,7 +1,7 @@
 <properties 
-    pageTitle="使用 T-SQL 建立 Azure SQL Database 或將它移入彈性集區 | Microsoft Azure" 
-    description="使用 T-SQL 在彈性集區中建立 Azure SQL Database。或使用 T-SQL 將資料庫移入和移出集區。" 
-	services="sql-database" 
+    pageTitle="Create or move an Azure SQL database into an elastic pool using T-SQL | Microsoft Azure" 
+    description="Use T-SQL to create an Azure SQL database in an elastic pool. Or use T-SQL to move the datbase in and out of pools." 
+    services="sql-database" 
     documentationCenter="" 
     authors="srinia" 
     manager="jhubbard" 
@@ -16,70 +16,73 @@
     ms.date="05/27/2016"
     ms.author="srinia"/>
 
-# 使用 Transact-SQL 監視和管理彈性資料庫集區  
+
+# <a name="monitor-and-manage-an-elastic-database-pool-with-transact-sql"></a>Monitor and manage an elastic database pool with Transact-SQL  
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
+- [Azure portal](sql-database-elastic-pool-manage-portal.md)
 - [PowerShell](sql-database-elastic-pool-manage-powershell.md)
 - [C#](sql-database-elastic-pool-manage-csharp.md)
 - [T-SQL](sql-database-elastic-pool-manage-tsql.md)
 
-使用 [Create Database (Azure SQL Database)](https://msdn.microsoft.com/library/dn268335.aspx) 和 [Alter Database(Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) 命令建立資料庫，以及將它移入和移出彈性集區。必須先有彈性集區，您才可以使用這些命令。這些命令只會影響資料庫。無法使用 T-SQL 命令來變更新集區的建立和集區屬性 (例如最小和最大 Edtu) 的設定。
+Use the [Create Database (Azure SQL Database)](https://msdn.microsoft.com/library/dn268335.aspx) and [Alter Database(Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) commands to create and move databases into and out of elastic pools. The elastic pool must exist before you can use these commands. These commands affect only databases. Creation of new pools and the setting of pool properties (such as min and max eDTUs) cannot be changed with T-SQL commands.
 
-> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部和印度西部除外，在這些區域目前是提供預覽版。我們將儘速在這些區域提供彈性集區的 GA。此外，彈性集區目前不支援使用[記憶體內部 OLTP 或記憶體內部分析](sql-database-in-memory.md)的資料庫。
+## <a name="create-a-new-database-in-an-elastic-pool"></a>Create a new database in an elastic pool
+Use the CREATE DATABASE command with the SERVICE_OBJECTIVE option.   
 
-## 在彈性集區中建立新的資料庫
-使用 CREATE DATABASE 命令搭配 SERVICE\_OBJECTIVE 選項。
+    CREATE DATABASE db1 ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [S3M100] ));
+    -- Create a database named db1 in a pool named S3M100.
 
-	CREATE DATABASE db1 ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [S3M100] ));
-	-- Create a database named db1 in a pool named S3M100.
-
-彈性集區中的所有資料庫都會都繼承彈性集區的服務層 (基本、標準、進階)。
+All databases in an elastic pool inherit the service tier of the elastic pool (Basic, Standard, Premium). 
 
 
-## 在彈性集區之間移動資料庫
-使用 ALTER DATABASE 命令搭配 MODIFY，並將 SERVICE\_OBJECTIVE 選項設定為 ELASTIC\_POOL；將名稱設定為目標集區的名稱。
+## <a name="move-a-database-between-elastic-pools"></a>Move a database between elastic pools
+Use the ALTER DATABASE command with the MODIFY and set SERVICE\_OBJECTIVE option as ELASTIC\_POOL; set the name to the name of the target pool.
 
-	ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [PM125] ));
-	-- Move the database named db1 to a pool named P1M125  
+    ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [PM125] ));
+    -- Move the database named db1 to a pool named P1M125  
 
-## 將資料庫移入彈性集區 
-使用 ALTER DATABASE 命令搭配 MODIFY，並將 SERVICE\_OBJECTIVE 選項設定為 ELASTIC\_POOL；將名稱設定為目標集區的名稱。
+## <a name="move-a-database-into-an-elastic-pool"></a>Move a database into an elastic pool 
+Use the ALTER DATABASE command with the MODIFY and set SERVICE\_OBJECTIVE option as ELASTIC_POOL; set the name to the name of the target pool.
 
-	ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [S3100] ));
-	-- Move the database named db1 to a pool named S3100.
+    ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [S3100] ));
+    -- Move the database named db1 to a pool named S3100.
 
-## 將資料庫移出彈性集區
-使用 ALTER DATABASE 命令並將 SERVICE\_OBJECTIVE 設定為其中一個效能層級 (S0、S1 等)。
+## <a name="move-a-database-out-of-an-elastic-pool"></a>Move a database out of an elastic pool
+Use the ALTER DATABASE command and set the SERVICE_OBJECTIVE to one of the performance levels (S0, S1, etc).
 
-	ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = 'S1');
-	-- Changes the database into a stand-alone database with the service objective S1.
+    ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = 'S1');
+    -- Changes the database into a stand-alone database with the service objective S1.
 
-## 列出彈性集區中的資料庫
-使用 [sys.database\_service\_objectives 檢視](https://msdn.microsoft.com/library/mt712619)列出彈性集區中的所有資料庫。登入 master 資料庫來查詢檢視。
+## <a name="list-databases-in-an-elastic-pool"></a>List databases in an elastic pool
+Use the [sys.database\_service \_objectives view](https://msdn.microsoft.com/library/mt712619) to list all the databases in an elastic pool. Log in to the master database to query the view.
 
-	SELECT d.name, slo.*  
-	FROM sys.databases d 
-	JOIN sys.database_service_objectives slo  
-	ON d.database_id = slo.database_id
-	WHERE elastic_pool_name = 'MyElasticPool'; 
+    SELECT d.name, slo.*  
+    FROM sys.databases d 
+    JOIN sys.database_service_objectives slo  
+    ON d.database_id = slo.database_id
+    WHERE elastic_pool_name = 'MyElasticPool'; 
 
-## 取得集區的資源使用量資料
+## <a name="get-resource-usage-data-for-a-pool"></a>Get resource usage data for a pool
 
-使用 [sys.elastic\_pool\_resource\_stats 檢視](https://msdn.microsoft.com/library/mt280062.aspx)來檢查邏輯伺服器上彈性集區的資源使用量統計資料。登入 master 資料庫來查詢檢視。
+Use the [sys.elastic\_pool \_resource \_stats view](https://msdn.microsoft.com/library/mt280062.aspx) to examine the resource usage statistics of an elastic pool on a logical server. Log in to the master database to query the view.
 
-	SELECT * FROM sys.elastic_pool_resource_stats 
-	WHERE elastic_pool_name = 'MyElasticPool'
-	ORDER BY end_time DESC;
+    SELECT * FROM sys.elastic_pool_resource_stats 
+    WHERE elastic_pool_name = 'MyElasticPool'
+    ORDER BY end_time DESC;
 
-## 取得彈性資料庫的資源使用量
+## <a name="get-resource-usage-for-an-elastic-database"></a>Get resource usage for an elastic database
 
-使用 [sys.dm\_ db\_ resource\_stats view](https://msdn.microsoft.com/library/dn800981.aspx) 或 [sys.resource \_stats view](https://msdn.microsoft.com/library/dn269979.aspx) 來檢查彈性集區中資料庫的資源使用量統計資料。此程序類似於查詢任何單一資料庫的資源使用量。
+Use the [sys.dm\_ db\_ resource\_stats view](https://msdn.microsoft.com/library/dn800981.aspx) or [sys.resource \_stats view](https://msdn.microsoft.com/library/dn269979.aspx) to examine the resource usage statistics of a database in an elastic pool. This process is similar to querying resource usage for any single database.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-建立彈性資料庫集區後，可以藉由建立彈性工作來管理集區中的彈性資料庫。彈性工作有助於對集區中任意數目的資料庫執行 T-SQL 指令碼。如需詳細資訊，請參閱[彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。
+After creating an elastic database pool, you can manage elastic databases in the pool by creating elastic jobs. Elastic jobs facilitate running T-SQL scripts against any number of databases in the pool. For more information, see [Elastic database jobs overview](sql-database-elastic-jobs-overview.md). 
 
-請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
+See [Scaling out with Azure SQL Database](sql-database-elastic-scale-introduction.md): use elastic database tools to scale-out, move data, query, or create transactions.
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

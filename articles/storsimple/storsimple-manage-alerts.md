@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="檢視和管理 StorSimple 警示 | Microsoft Azure"
-   description="描述 StorSimple 警示條件和嚴重性、如何設定警示通知，以及如何使用 StorSimple Manager 服務管理警示。"
+   pageTitle="View and manage StorSimple alerts | Microsoft Azure"
+   description="Describes StorSimple alert conditions and severity, how to configure alert notifications, and how to use the StorSimple Manager service to manage alerts."
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -12,246 +12,252 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/09/2016"
+   ms.date="10/18/2016"
    ms.author="anbacker" />
 
-# 使用 StorSimple Manager 服務來檢視和管理 StorSimple 警示
 
-## 概觀
+# <a name="use-the-storsimple-manager-service-to-view-and-manage-storsimple-alerts"></a>Use the StorSimple Manager service to view and manage StorSimple alerts
 
-StorSimple Manager 服務的 [**警示**] 索引標籤可讓您即時檢閱並清除 StorSimple 裝置的相關警示。從這個索引標籤中，您可以集中監視 StorSimple 裝置和整個 Microsoft Azure StorSimple 解決方案的健康問題。
+## <a name="overview"></a>Overview
 
-本教學課程說明常見的警示狀況、警示嚴重性層級及如何設定警示通知。此外，也包含警示快速參考表，可讓您快速找出特定的警示並適當地回應。
+The **Alerts** tab in the StorSimple Manager service provides a way for you to review and clear StorSimple device–related alerts on a real-time basis. From this tab, you can centrally monitor the health issues of your StorSimple devices and the overall Microsoft Azure StorSimple solution.
 
-![警示頁面](./media/storsimple-manage-alerts/HCS_AlertsPage.png)
+This tutorial describes common alert conditions, alert severity levels, and how to configure alert notifications. Additionally, it includes alert quick reference tables, which enable you to quickly locate a specific alert and respond appropriately.
 
-## 常見的警示狀況
+![Alerts page](./media/storsimple-manage-alerts/HCS_AlertsPage.png)
 
-StorSimple 裝置會產生警示以回應各種不同的狀況。以下是最常見的警示狀況類型：
+## <a name="common-alert-conditions"></a>Common alert conditions
 
-- **硬體問題** – 這些警示指出硬體的健全狀況。它們讓您知道是否需要升級韌體、網路介面是否有問題，或您的其中一個資料磁碟機是否有問題。
+Your StorSimple device generates alerts in response to a variety of conditions. The following are the most common types of alert conditions:
 
-- **連線問題** – 當傳送資料有困難時會發生這些警示。在往返於 Azure 儲存體帳戶傳輸資料期間，或因為裝置與 StorSimple Manager 服務之間沒有連線時，可能會發生通訊問題。通訊問題最難解決，因為失敗點實在太多。在繼續進行更進階的疑難排解之前，您一定要先確認有網路連線和網際網路存取可用。如需疑難排解的說明，請移至 [Test-Connection Cmdlet 的疑難排解](storsimple-troubleshoot-deployment.md)。
+- **Hardware issues** – These alerts tell you about the health of your hardware. They let you know if firmware upgrades are needed, if a network interface has issues, or if there is a problem with one of your data drives.
 
-- **效能問題** – 當系統未以最佳方式運作時，例如負荷過重，就會造成這些警示。
+- **Connectivity issues** – These alerts occur when there is difficulty in transferring data. Communication issues can occur during transfer of data to and from the Azure storage account or due to lack of connectivity between the devices and the StorSimple Manager service. Communication issues are some of the hardest to fix because there are so many points of failure. You should always first verify that network connectivity and Internet access are available before continuing on to more advanced troubleshooting. For help with troubleshooting, go to [Troubleshoot with the Test-Connection cmdlet](storsimple-troubleshoot-deployment.md).
 
-此外，您也可能會看到有關安全性、更新或作業失敗的警示。
+- **Performance issues** – These alerts are caused when your system isn’t performing optimally, such as when it is under a heavy load.
 
-## 警示嚴重性層級
+In addition, you might see alerts related to security, updates, or job failures.
 
-視警示狀況造成的影響和是否需要回應警示而定，警示有不同的嚴重性層級。嚴重性層級如下：
+## <a name="alert-severity-levels"></a>Alert severity levels
 
-- **重大** – 這個警示是回應會影響系統成功運作的狀況。需要採取動作以確保 StorSimple 服務不中斷。
+Alerts have different severity levels, depending on the impact that the alert situation will have and the need for a response to the alert. The severity levels are:
 
-- **警告** – 此狀況如果不解決，可能會演變成重大狀況。您應該調查這種情況，並採取任何必要的動作來解決問題。
+- **Critical** – This alert is in response to a condition that is affecting the successful performance of your system. Action is required to ensure that the StorSimple service is not interrupted.
 
-- **資訊** – 此警示包含適用於追蹤和管理系統的資訊。
+- **Warning** – This condition could become critical if not resolved. You should investigate the situation and take any action required to clear the issue.
 
-## 設定警示設定
+- **Information** – This alert contains information that can be useful in tracking and managing your system.
 
-您可以選擇是否要透過電子郵件收到每個 StorSimple 裝置的警示狀況通知。此外，您可以在 [其他電子郵件收件者] 方塊中輸入電子郵件地址 (以分號隔開)，以識別其他警示通知收件者。
+## <a name="configure-alert-settings"></a>Configure alert settings
 
->[AZURE.NOTE] 您可以對每一裝置輸入最多 20 個電子郵件地址。
+You can choose whether you want to be notified by email of alert conditions for each of your StorSimple devices. Additionally, you can identify other alert notification recipients by entering their email addresses in the **Other email recipients** box, separated by semicolons.
 
-啟用裝置的電子郵件通知之後，每當發生重大警示時，通知清單的成員將會收到電子郵件訊息。訊息將會從 **storsimple-alerts-noreply@mail.windowsazure.com* 送出，並說明警示狀況。收件者可以按一下 [取消訂閱]，將自己從電子郵件通知清單中移除
+>[AZURE.NOTE] You can enter a maximum of 20 email addresses per device.
 
-#### 啟用裝置的警示電子郵件通知
+After you enable email notification for a device, members of the notification list will receive an email message each time a critical alert occurs. The messages will be sent from *storsimple-alerts-noreply@mail.windowsazure.com* and will describe the alert condition. Recipients can click **Unsubscribe** to remove themselves from the email notification list.
 
-1. 移至 [裝置] > [設定]，以設定此裝置。
+#### <a name="to-enable-email-notification-of-alerts-for-a-device"></a>To enable email notification of alerts for a device
 
-2. 在 [警示設定] 下，設定下列項目：
+1. Go to **Devices** > **Configure** for the device.
 
-    1. 在 [傳送電子郵件通知] 欄位中，選取 [是]。
+2. Under **Alert Settings**, set the following:
 
-    2. 如果您想要讓服務管理員和所有共同管理員收到警示通知，請在 [電子郵件服務管理員] 欄位中選取 [是]。
+    1. In the **Send email notification** field, select **YES**.
 
-    3. 在 [其他電子郵件收件者] 欄位中，輸入應該收到警示通知的其他所有收件者的電子郵件地址。以 **someone@somewhere.com* 格式輸入名稱。使用分號來分隔電子郵件地址。您可以對每一裝置設定最多 20 個電子郵件地址。
+    2. In the **Email service administrators** field, select **YES** if you wish to have the service administrator and all co-administrators receive the alert notifications.
 
-        ![警示通知設定](./media/storsimple-manage-alerts/AlertNotify.png)
+    3. In the **Other email recipients** field, enter the email addresses of all other recipients who should receive the alert notifications. Enter names in the format *someone@somewhere.com*. Use semicolons to separate the email addresses. You can configure a maximum of 20 email addresses per device. 
 
-3. 若要傳送測試電子郵件通知，請按一下 [傳送測試電子郵件] 旁的箭號圖示。StorSimple Manager 服務轉寄測試通知時會顯示狀態訊息。
+        ![Alerts notification configuration](./media/storsimple-manage-alerts/AlertNotify.png)
 
-4. 下列訊息出現時，按一下 [**確定**]。
+3. To send a test email notification, click the arrow icon next to **Send test email**. The StorSimple Manager service will display status messages as it forwards the test notification. 
 
-    ![已傳送警示測試通知電子郵件](./media/storsimple-manage-alerts/HCS_AlertNotificationConfig3.png)
+4. When the following message appears, click **OK**. 
 
-    >[AZURE.NOTE] 如果無法傳送測試通知訊息，StorSimple Manager 服務會顯示適當的訊息。按一下 [**確定**]，等候幾分鐘，然後嘗試再次傳送測試通知訊息。
+    ![Alerts test notification email sent](./media/storsimple-manage-alerts/HCS_AlertNotificationConfig3.png)
 
-## 檢視和追蹤警示
+    >[AZURE.NOTE] If the test notification message can't be sent, the StorSimple Manager service will display an appropriate message. Click **OK**, wait a few minutes, and then try to send your test notification message again. 
 
-StorSimple Manager 服務儀表板可讓您快速概覽裝置上的警示數目 (依嚴重性層級排列)。
+## <a name="view-and-track-alerts"></a>View and track alerts
 
-![警示儀表板](./media/storsimple-manage-alerts/admin_alerts_dashboard.png)
+The StorSimple Manager service dashboard provides you with a quick glance at the number of alerts on your devices, arranged by severity level.
 
-按一下嚴重性層級會開啟 [**警示**] 索引標籤。結果只包含符合該嚴重性層級的警示。
+![Alerts dashboard](./media/storsimple-manage-alerts/admin_alerts_dashboard.png)
 
-![限定警示類型的警示報告](./media/storsimple-manage-alerts/admin_alerts_scoped.png)
+Clicking the severity level opens the **Alerts** tab. The results include only the alerts that match that severity level.
 
-按一下清單中的警示會提供警示的其他詳細資料，包括上次報告警示的時間、裝置上發生該警示的次數，以及建議採取來解決警示的動作。如果是硬體警示，則也會識別硬體元件。
+![Alerts report scoped to alert type](./media/storsimple-manage-alerts/admin_alerts_scoped.png)
 
-![硬體警示範例](./media/storsimple-manage-alerts/admin_alerts_hardware.png)
+Clicking an alert in the list provides you with additional details for the alert, including the last time the alert was reported, the number of occurrences of the alert on the device, and the recommended action to resolve the alert. If it is a hardware alert, it will also identify the hardware component.
 
-如果您需要將資訊傳送給 Microsoft 支援服務，您可以將警示詳細資料複製到文字檔案。依照建議解決內部部署警示狀況之後，您應該在 [警示] 索引標籤中選取警示，並按一下 [清除]，從裝置中清除警示。若要清除多個警示，請選取每個警示，按一下除了 [警示] 資料行以外的任何資料行，然後在選取要清除的所有警示之後按一下 [清除]。請注意，當問題解決時或系統以新資訊更新警示時，會自動清除某些警示。
+![Hardware alert example](./media/storsimple-manage-alerts/admin_alerts_hardware.png)
 
-當您按一下 [**清除**] 時，您有機會提供警示的相關註解，以及您用來解決問題的步驟。如果新的資訊觸發另一個事件，系統會清除某些事件。在此情況下，您會看到下列訊息。
+You can copy the alert details to a text file if you need to send the information to Microsoft Support. After you have followed the recommendation and resolved the alert condition on-premises, you should clear the alert from the device by selecting the alert in the **Alerts** tab and clicking **Clear**. To clear multiple alerts, select each alert, click any column except the **Alert** column, and then click **Clear** after you have selected all the alerts to be cleared. Note that some alerts are automatically cleared when the issue is resolved or when the system updates the alert with new information.
 
-![清除警示訊息](./media/storsimple-manage-alerts/admin_alerts_system_clear.png)
+When you click **Clear**, you will have the opportunity to provide comments about the alert and the steps that you took to resolve the issue. Some events will be cleared by the system if another event is triggered with new information. In that case, you will see the following message.
 
-## 排序和檢閱警示
+![Clear alert message](./media/storsimple-manage-alerts/admin_alerts_system_clear.png)
 
-執行警示報告以分組檢閱和清除警示可能更有效率。此外，[**警示**] 索引標籤最多可顯示 250 個警示。如果超過該警示數目，則並非所有警示都會出現在預設檢視中。您可以結合下列欄位來自訂要顯示的通知：
+## <a name="sort-and-review-alerts"></a>Sort and review alerts
 
-- **狀態** – 您可以顯示 [**作用中**] 或 [**已清除**] 警示。作用中警示仍在系統上觸發，而已清除的警示已由系統管理員手動清除，或因為系統以新資訊更新警示狀況而以程式設計方式清除。
+You may find it more efficient to run reports on alerts so that you can review and clear them in groups. Additionally, the **Alerts** tab can display up to 250 alerts. If you have exceeded that number of alerts, not all alerts will be displayed in the default view. You can combine the following fields to customize which alerts are displayed:
 
-- **嚴重性** – 您可以顯示所有嚴重性層級 (重大、警告、資訊) 的警示，或只顯示特定嚴重性的警示，例如只有重大警示。
+- **Status** – You can display either **Active** or **Cleared** alerts. Active alerts are still being triggered on your system, while cleared alerts have been either manually cleared by an administrator or programmatically cleared because the system updated the alert condition with new information.
 
-- **來源** – 您可以顯示所有來源的警示，或只顯示來自服務或其中一個或所有裝置的警示。
+- **Severity** – You can display alerts of all severity levels (critical, warning, information), or just a certain severity, such as only critical alerts.
 
-- **時間範圍** – 您可以指定 [**從**] 和 [**到**] 日期和時間戳記，以查看您感興趣的期間內的警示。
+- **Source** – You can display alerts from all sources, or limit the alerts to those that come from either the service or one or all of the devices.
 
-## 警示快速參考
+- **Time range** – By specifying the **From** and **To** dates and time stamps, you can look at alerts during the time period that you are interested in.
 
-下表列出一些您可能會遇到的 Microsoft Azure StorSimple 警示，以及其他資訊和適用的建議。StorSimple 裝置警示分為下列類別：
+## <a name="alerts-quick-reference"></a>Alerts quick reference
 
-- [雲端連線能力警示](#cloud-connectivity-alerts)
+The following tables list some of the Microsoft Azure StorSimple alerts that you might encounter, as well as additional information and recommendations where available. StorSimple device alerts fall into one of the following categories:
 
-- [叢集警示](#cluster-alerts)
+- [Cloud connectivity alerts](#cloud-connectivity-alerts)
 
-- [災害復原警示](#disaster-recovery-alerts)
+- [Cluster alerts](#cluster-alerts)
 
-- [硬體警示](#hardware-alerts)
+- [Disaster recovery alerts](#disaster-recovery-alerts)
 
-- [作業失敗警示](#job-failure-alerts)
+- [Hardware alerts](#hardware-alerts)
 
-- [固定在本機的磁碟區警示](#locally-pinned-volume-alerts)
+- [Job failure alerts](#job-failure-alerts)
 
-- [網路警示](#networking-alerts)
+- [Locally pinned volume alerts](#locally-pinned-volume-alerts)
 
-- [效能警示](#performance-alerts)
+- [Networking alerts](#networking-alerts)
 
-- [安全性警示](#security-alerts)
+- [Performance alerts](#performance-alerts)
 
-- [支援封裝警示](#support-package-alerts)
+- [Security alerts](#security-alerts)
 
-- [更新警示](#update-alerts)
+- [Support package alerts](#support-package-alerts)
 
-### 雲端連線能力警示
+- [Update alerts](#update-alerts)
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+### <a name="cloud-connectivity-alerts"></a>Cloud connectivity alerts
+
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|無法建立 <*雲端認證名稱*> 的連線。|無法連接到儲存體帳戶。|您的裝置似乎有連線問題。請在您的裝置上從 Windows PowerShell Interface for StorSimple 執行 `Test-HcsmConnection` Cmdlet，以識別並修正問題。如果設定正確無誤，則問題可能在於引發警示的儲存體帳戶的認證。在此情況下，請使用 `Test-HcsStorageAccountCredential` Cmdlet 判斷是否有您可以解決的問題。<ul><li>檢查網路設定。</li><li>檢查儲存體帳戶認證。</li></ul>|
-|在過去 <*數目*> 分鐘內，我們未收到您的裝置有任何活動訊號。|無法連接到裝置。|您的裝置似乎有連線問題。請在您的裝置上從 Windows PowerShell Interface for StorSimple 使用 `Test-HcsmConnection` Cmdlet，以識別並修正問題，或連絡網路管理員。|
+|Connectivity to <*cloud credential name*> cannot be established.|Cannot connect to the storage account.|It looks like there might be a connectivity issue with your device. Please run the `Test-HcsmConnection` cmdlet from the Windows PowerShell Interface for StorSimple on your device to identify and fix the issue. If the settings are correct, the issue might be with the credentials of the storage account for which the alert was raised. In this case, use the `Test-HcsStorageAccountCredential` cmdlet to determine if there are issues that you can resolve.<ul><li>Check your network settings.</li><li>Check your storage account credentials.</li></ul>|
+|We have not received a heartbeat from your device for the last <*number*> minutes.|Cannot connect to device.|It looks like there is a connectivity issue with your device. Please use the `Test-HcsmConnection` cmdlet from the Windows PowerShell Interface for StorSimple on your device to identify and fix the issue or contact your network administrator.|
 
-### 雲端連線失敗時的 StorSimple 行為
+### <a name="storsimple-behavior-when-cloud-connectivity-fails"></a>StorSimple behavior when cloud connectivity fails
 
-若雲端連線失敗時，在生產環境中執行的 StorSimple 裝置會發生什麼情況？
+What happens if cloud connectivity fails for my StorSimple device running in production?
 
-如果 StorSimple 生產裝置的雲端連線失敗，視您的裝置狀態，可能會發生下列狀況：
+If cloud connectivity fails on your StorSimple production device, then depending on the state of your device, the following can occur: 
 
-- **裝置上的本機資料**：不會中斷，將繼續提供讀取。不過，當未完成的 IO 數量增加並超過限制時，讀取可能就會失敗。 
+- **For the local data on your device**: For some time, there will be no disruption and reads will continue to be served. However, as the number of outstanding IOs increases and exceeds a limit, the reads could start to fail. 
 
-	視裝置上的資料量，雲端連線中斷後的數小時內仍會持續寫入。寫入速度會逐漸緩慢，最終會於雲端連線中斷數小時後失敗。(裝置上有即將推送至雲端之資料的暫存儲存體。傳送資料時，這個區域會排清。如果連線失敗，此儲存區域中的資料不會推送到雲端，而且 IO 會失敗。)
+    Depending on the amount of data on your device, the writes will also continue to occur for the first few hours after the disruption in the cloud connectivity. The writes will then slow down and eventually start to fail if the cloud connectivity is disrupted for several hours. (There is temporary storage on the device for data that is to be pushed to the cloud. This area is flushed when the data is sent. If connectivity fails, data in this storage area will not be pushed to the cloud, and IO will fail.)   
 
  
-- **雲端中的資料**：大部份的雲端連線錯誤會傳回錯誤。只要連線還原時，IO 就會繼續進行，使用者無需自行連線磁碟區。但在罕見情況下，有可能會需要使用者介入，透過 Azure 傳統入口網站連線磁碟區。
+- **For the data in the cloud**: For most cloud connectivity errors, an error is returned. Once the connectivity is restored, the IOs are resumed without the user having to bring the volume online. In rare instances, user intervention may be required to bring back the volume online from the Azure classic portal. 
  
-- **進行中的雲端快照**：會在 4、5 個小時內多次重新嘗試作業，若連線未還原，雲端快照將會失敗。
+- **For cloud snapshots in progress**: The operation is retried a few times within 4-5 hours and if the connectivity is not restored, the cloud snapshots will fail.
 
 
-### 叢集警示
+### <a name="cluster-alerts"></a>Cluster alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|裝置容錯移轉至 <*裝置名稱*>。|裝置處於維護模式。|裝置由於進入或結束維護模式而容錯移轉。這很正常，不需要採取任何動作。收到此警示之後，請從警示頁面清除它。|
-|裝置容錯移轉至 <*裝置名稱*>。|剛更新裝置的韌體或軟體。|由於更新而發生叢集容錯移轉。這很正常，不需要採取任何動作。收到此警示之後，請從警示頁面清除它。|
-|裝置容錯移轉至 <*裝置名稱*>。|控制器已關閉或重新啟動。|因為系統管理員關閉或重新啟動主動控制器，裝置已容錯移轉。不需要採取任何動作。收到此警示之後，請從警示頁面清除它。|
-|裝置容錯移轉至 <*裝置名稱*>。|規劃的容錯移轉。|確認這是規劃的容錯移轉。採取適當的動作之後，請從警示頁面清除此警示。|
-|裝置容錯移轉至 <*裝置名稱*>。|未計劃的容錯移轉。|StorSimple 設計成能夠從未規劃的容錯移轉自動復原。如果您看到大量的這些警示，請連絡 Microsoft 支援服務。|
-|裝置容錯移轉至 <*裝置名稱*>。|其他/未知的原因。|如果您看到大量的這些警示，請連絡 Microsoft 支援服務。問題解決之後，請從警示頁面清除此警示。|
-|重大裝置服務會回報故障狀態。|資料路徑服務失敗。 |連絡 Microsoft 支援服務尋求協助。|
-|網路介面 <*DATA #*> 的虛擬 IP 位址會回報故障狀態。 |其他/未知的原因。 |有時候暫時性狀況可能會導致這些警示。如果情況如此，一段時間之後會自動清除這個警示。如果問題持續發生，請連絡 Microsoft 支援服務。|
-|網路介面 <*DATA #*> 的虛擬 IP 位址會回報故障狀態。|介面名稱：<*Data #*> IP 位址 <IP address> 無法連線，因為在網路上偵測到重複的 IP 位址。 |確定已移除網路中重複的 IP 位址或以不同的 IP 位址重新設定介面。|
+|Device failed over to <*device name*>.|Device is in maintenance mode.|Device failed over due to entering or exiting maintenance mode. This is normal and no action is needed. After you have acknowledged this alert, clear it from the alerts page.|
+|Device failed over to <*device name*>.|Device firmware or software was just updated.|There was a cluster failover due to an update. This is normal and no action is needed. After you have acknowledged this alert, clear it from the alerts page.|
+|Device failed over to <*device name*>.|Controller was shut down or restarted.|Device failed over because the active controller was shut down or restarted by an administrator. No action is needed. After you have acknowledged this alert, clear it from the alerts page.|
+|Device failed over to <*device name*>.|Planned failover.|Verify that this was a planned failover. After you have taken appropriate action, clear this alert from the alerts page.|
+|Device failed over to <*device name*>.|Unplanned failover.|StorSimple is built to automatically recover from unplanned failovers. If you see a large number of these alerts, contact Microsoft Support.|
+|Device failed over to <*device name*>.|Other/unknown cause.|If you see a large number of these alerts, contact Microsoft Support. After the issue is resolved, clear this alert from the alerts page.|
+|A critical device service reports status as failed.|Datapath service failure. |Contact Microsoft Support for assistance.|
+|Virtual IP address for network interface <*DATA #*> reports status as failed. |Other/unknown cause. |Sometimes temporary conditions can cause these alerts. If this is the case, then this alert will be automatically cleared after some time. If the issue persists, contact Microsoft Support.|
+|Virtual IP address for network interface <*DATA #*> reports status as failed.|Interface name: <*DATA #*> IP address <IP address> cannot be brought online because a duplicate IP address was detected on the network. |Ensure that the duplicate IP address is removed from the network or reconfigure the interface with a different IP address.|
 
 
-### 災害復原警示
+### <a name="disaster-recovery-alerts"></a>Disaster recovery alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|復原作業無法還原此服務的所有設定。部分裝置的裝置設定資料處於不一致的狀態。|災害復原之後偵測到資料不一致。|服務上與裝置上加密的資料不同步。從 StorSimple Manager 授權裝置 <*裝置名稱*> 以啟動同步處理程序。使用 Windows PowerShell Interface for StorSimple 在裝置 <*裝置名稱*> Cmdlet 上執行 `Restore-HcsmEncryptedServiceData`，並提供舊密碼作為此 Cmdlet 的輸入，以還原安全性設定檔。接著執行 `Invoke-HcsmServiceDataEncryptionKeyChange` Cmdlet 以更新服務資料加密金鑰。採取適當的動作之後，請從警示頁面清除此警示。|
+|Recovery operations could not restore all of the settings for this service. Device configuration data is in an inconsistent state for some devices.|Data inconsistency detected after disaster recovery.|Encrypted data on the service is not synchronized with that on the device. Authorize the device <*device name*> from StorSimple Manager to start the synchronization process. Use the Windows PowerShell Interface for StorSimple to run the `Restore-HcsmEncryptedServiceData` on device <*device name*> cmdlet, providing the old password as an input to this cmdlet to restore the security profile. Then run the `Invoke-HcsmServiceDataEncryptionKeyChange` cmdlet to update the service data encryption key. After you have taken appropriate action, clear this alert from the alerts page.|
 
 
-### 硬體警示
+### <a name="hardware-alerts"></a>Hardware alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|硬體元件 <*元件識別碼*> 報告狀態為 <*狀態*>。||有時候暫時性狀況可能會導致這些警示。如果是的話，一段時間之後會自動清除這個警示。如果問題持續發生，請連絡 Microsoft 支援服務。|
-|被動控制器不正常。|被動 (次要) 控制器無法正常運作。|您的裝置正常運作，但其中一個控制器不正常。請嘗試重新啟動該控制器。如果無法解決問題，請連絡 Microsoft 支援服務。|
+|Hardware component <*component ID*> reports status as <*status*>.||Sometimes temporary conditions can cause these alerts. If so, this alert will be automatically cleared after some time. If the issue persists, contact Microsoft Support.|
+|Passive controller malfunctioning.|The passive (secondary) controller is not functioning.|Your device is operational, but one of your controllers is malfunctioning. Try restarting that controller. If the issue is not resolved, contact Microsoft Support.|
 
-### 工作失敗警示
+### <a name="job-failure-alerts"></a>Job failure alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|備份 <*來源磁碟區群組識別碼*> 失敗。|備份工作失敗。|連線問題可能導致備份作業無法順利完成。如果連線沒有問題，則可能是您已達到備份數目上限。刪除任何不再需要的備份，然後重試作業。採取適當的動作之後，請從警示頁面清除此警示。|
-|將 <*來源備份項目識別碼*> 複製到 <*目的地磁碟區序號*> 失敗。|複製工作失敗。|重新整理備份清單，以確認備份仍然有效。如果備份有效，則可能是雲端連線問題導致複製作業無法順利完成。如果連線沒有問題，則可能是您已達到儲存限制。刪除任何不再需要的備份，然後重試作業。採取適當的動作來解決問題之後，請從警示頁面清除此警示。|
-|還原 <*來源備份項目識別碼*> 失敗。|還原工作失敗。|重新整理備份清單，以確認備份仍然有效。如果備份有效，則可能是雲端連線問題導致還原作業無法順利完成。如果連線沒有問題，則可能是您已達到儲存限制。刪除任何不再需要的備份，然後重試作業。採取適當的動作來解決問題之後，請從警示頁面清除此警示。|
+|Backup of <*source volume group ID*> failed.|Backup job failed.|Connectivity issues could be preventing the backup operation from successfully completing. If there are no connectivity issues, you may have reached the maximum number of backups. Delete any backups that are no longer needed and retry the operation. After you have taken appropriate action, clear this alert from the alerts page.|
+|Clone of <*source backup element IDs*> to <*destination volume serial numbers*> failed.|Clone job failed.|Refresh the backup list to verify that the backup is still valid. If the backup is valid, it is possible that cloud connectivity issues are preventing the clone operation from successfully completing. If there are no connectivity issues, you may have reached the storage limit. Delete any backups that are no longer needed and retry the operation. After you have taken appropriate action to resolve the issue, clear this alert from the alerts page.|
+|Restore of <*source backup element IDs*> failed.|Restore job failed.|Refresh the backup list to verify that the backup is still valid. If the backup is valid, it is possible that cloud connectivity issues are preventing the restore operation from successfully completing. If there are no connectivity issues, you may have reached the storage limit. Delete any backups that are no longer needed and retry the operation. After you have taken appropriate action to resolve the issue, clear this alert from the alerts page.|
 
-### 固定在本機的磁碟區警示
+### <a name="locally-pinned-volume-alerts"></a>Locally pinned volume alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|建立本機磁碟區 <*磁碟區名稱*> 失敗。| 磁碟區建立作業已失敗。<*對應到失敗錯誤碼的錯誤訊息*>。|連線問題可能導致空間建立作業無法順利完成。已密集佈建固定在本機的磁碟區，而建立空間的程序牽涉到將分層式磁碟區溢出至雲端。如果連線沒有問題，則可能是您已用完裝置上的本機空間。重試此作業前，請判斷裝置上是否有空間存在。|
-|擴充本機磁碟區 <*磁碟區名稱*> 失敗。|磁碟區修改作業已失敗，原因是 <*對應到失敗錯誤碼的錯誤訊息*>。|連線問題可能導致磁碟區擴充作業無法順利完成。已密集佈建固定在本機的磁碟區，而擴充現有空間的程序牽涉到將分層式磁碟區溢出至雲端。如果連線沒有問題，則可能是您已用完裝置上的本機空間。重試此作業前，請判斷裝置上是否有空間存在。|
-|轉換磁碟區 <*磁碟區名稱*> 失敗。|將磁碟區類型從固定在本機轉換為分層式的磁碟區轉換作業失敗。|無法完成將類型從固定在本機轉換為分層式的磁碟區轉換工作。確定沒有會導致作業無法順利完成的連線問題。如需疑難排解連線問題，請移至 [Test-HcsmConnection Cmdlet 疑難排解](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-test-hcsmconnection-cmdlet)。<br>原始固定在本機的磁碟區現在已標示為分層式磁碟區，因為固定在本機的磁碟區中的某些資料已在轉換期間溢出至雲端。結果產生的分層式磁碟區仍佔用裝置上無法回收以供未來本機磁碟區使用的本機空間。<br>解決所有連線問題、清除警示並將此磁碟區轉換回原始固定在本機的磁碟區類型，以確保所有資料都可再度使用於本機。|
-|轉換磁碟區 <*磁碟區名稱*> 失敗。|將磁碟區類型從分層式轉換為固定在本機的磁碟區轉換作業失敗。|無法完成將類型從分層式轉換為固定在本機的磁碟區轉換工作。確定沒有會導致作業無法順利完成的連線問題。若要疑難排解連線問題，請移至 [Test-HcsmConnection Cmdlet 疑難排解](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-test-hcsmconnection-cmdlet)。<br>現已在轉換過程中標示為固定在本機磁碟區的原始分層式磁碟區，會繼續讓資料留在雲端，雖然裝置上為此磁碟區密集佈建的空間不再回收以供未來本機磁碟區使用。<br>解決所有連線問題、清除警示並將此磁碟區還原回原始分層式磁碟區類型，以確保可回收裝置上密集佈建的本機空間。|
-|接近 <*磁碟區群組名稱*> 的本機快照的本機空間使用量|備份原則的本機快照可能很快就會用完空間並且失效，以避免主機寫入失敗。|在與此備份原則群組相關聯的磁碟區中，隨著高度資料變換頻繁地製作本機快照，會導致裝置上的本機空間快速地耗用。刪除任何不再需要的本機快照。此外，將此備份原則的本機快照排程更新為較不常製作本機快照，並確保定期製作雲端快照。如果未採用這些動作，這些快照的本機空間可能很快就會耗盡，系統會自動刪除它們，以確保繼續順利處理主機寫入。|
-|<*磁碟區群組名稱*> 的本機快照已經無效。|<*磁碟區群組名稱*> 的本機快照已經無效並已刪除，因為其超出裝置上的本機空間。|若要確保未來不會重複發生這種情形，請檢閱此備份原則的本機快照排程並刪除任何不再需要的本機快照。在與此備份原則群組相關聯的磁碟區中，隨著高度資料變換頻繁地製作本機快照，可能會導致裝置上的本機空間快速地耗用。|
-|還原 <*來源備份項目識別碼*> 失敗。|還原作業失敗。|如果此備份原則中有固定在本機或固定在本機與分層式磁碟機的混合，請重新整理備份清單，以確認備份仍然有效。如果備份有效，則可能是雲端連線問題導致還原作業無法順利完成。已還原為此快照群組的一部分之固定在本機的磁碟區，不需要將其所有資料下載到裝置，而如果此快照群組中有分層式和固定在本機磁碟區的混合，則兩者不會彼此同步。若要順利完成還原作業，讓主機上此群組中的磁碟區離線，然後重試還原作業。請注意，在還原程序期間所執行的磁碟區資料修改將會遺失。|
+|Creation of local volume <*volume name*> failed.| The volume creation job has failed. <*Error message corresponding to the failed error code*>.|Connectivity issues could be preventing the space creation operation from successfully completing. Locally pinned volumes are thickly provisioned and the process of creating space involves spilling tiered volumes to the cloud. If there are no connectivity issues, you may have exhausted the local space on the device. Determine if space exists on the device before retrying this operation.|
+|Expansion of local volume <*volume name*> failed.|The volume modification job has failed due to <*error message corresponding to the failed error code*>.|Connectivity issues could be preventing the volume expansion operation from successfully completing. Locally pinned volumes are thickly provisioned and the process of extending the existing space involves spilling tiered volumes to the cloud. If there are no connectivity issues, you may have exhausted the local space on the device. Determine if space exists on the device before retrying this operation.|
+|Conversion of volume <*volume name*> failed.|The volume conversion job to convert the volume type from locally pinned to tiered failed.|Conversion of the volume from type locally pinned to tiered could not be completed. Ensure that there are no connectivity issues preventing the operation from completing successfully. For troubleshooting connectivity issues go to [Troubleshoot with the Test-HcsmConnection cmdlet](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-test-hcsmconnection-cmdlet).<br>The original locally pinned volume has now been marked as a tiered volume since some of the data from the locally pinned volume has spilled to the cloud during the conversion. The resultant tiered volume is still occupying local space on the device that cannot be reclaimed for future local volumes.<br>Resolve any connectivity issues, clear the alert and convert this volume back to the original locally pinned volume type to ensure all the data is made available locally again.|
+|Conversion of volume <*volume name*> failed.|The volume conversion job to convert the volume type from tiered to locally pinned failed.|Conversion of the volume from type tiered to locally pinned could not be completed. Ensure that there are no connectivity issues preventing the operation from completing successfully. For troubleshooting connectivity issues go to [Troubleshoot with the Test-HcsmConnection cmdlet](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-test-hcsmconnection-cmdlet).<br>The original tiered volume now marked as a locally pinned volume as part of the conversion process continues to have data residing in the cloud, while the thickly provisioned space on the device for this volume can no longer reclaimed for future local volumes.<br>Resolve any connectivity issues, clear the alert and convert this volume back to the original tiered volume type to ensure local space thickly provisioned on the device can be reclaimed.|
+|Nearing local space consumption for local snapshots of <*volume group name*>|Local snapshots for the backup policy might soon run out of space and be invalidated to avoid host write failures.|Frequent local snapshots alongside a high data churn in the volumes associated with this backup policy group are causing local space on the device to be consumed quickly. Delete any local snapshots that are no longer needed. Also, update your local snapshot schedules for this backup policy to take less frequent local snapshots, and ensure that cloud snapshots are taken regularly. If these actions are not taken, local space for these snapshots might soon be exhausted and the system will automatically delete them to ensure that host writes continue to be processed successfully.|
+|Local snapshots for <*volume group name*> have been invalidated.|The local snapshots for <*volume group name*> have been invalidated and then deleted because they were exceeding the local space on the device.|To ensure this does not recur in the future, review the local snapshot schedules for this backup policy and delete any local snapshots that are no longer needed. Frequent local snapshots alongside a high data churn in the volumes associated with this backup policy group might cause local space on the device to be consumed quickly.|
+|Restore of <*source backup element IDs*> failed.|The restore job has failed.|If you have locally pinned or a mix of locally pinned and tiered volumes in this backup policy, refresh the backup list to verify that the backup is still valid. If the backup is valid, it is possible that cloud connectivity issues are preventing the restore operation from successfully completing. The locally pinned volumes that were being restored as part of this snapshot group do not have all of their data downloaded to the device, and, if you have a mix of tiered and locally pinned volumes in this snapshot group, they will not be in sync with each other. To successfully complete the restore operation, take the volumes in this group offline on the host and retry the restore operation. Note that any modifications to the volume data that were performed during the restore process will be lost.|
 
-### 網路警示
+### <a name="networking-alerts"></a>Networking alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|無法啟動 StorSimple 服務。|資料路徑錯誤 |如果問題持續發生，請連絡 Microsoft 支援服務。|
-|偵測到 'Data0' 的 IP 位址重複。| |系統已偵測到 IP 位址 '10.0.0.1' 衝突。在裝置上的網路資源 'Data0' *<device1>* 已離線。確定此網路中的其他任何實體並未使用此 IP 位址。若要疑難排解網路問題，請移至 [Get-NetAdapter Cmdlet 疑難排解](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-get-netadapter-cmdlet)。請連絡網路系統管理員協助解決此問題。如果問題持續發生，請連絡 Microsoft 支援服務。 |
-|'Data0' 的 IPv4 (或 IPv6) 位址已離線。| |在裝置上具有 IP 位址 '10.0.0.1.' 且首碼長度為 '22' 的網路資源 'Data0' *<device1>* 已離線。請確定此介面所連接的交換器連接埠運作正常。若要疑難排解網路問題，請移至 [Get-NetAdapter Cmdlet 疑難排解](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-get-netadapter-cmdlet)。 |
+|Could not start StorSimple service(s).|Datapath error |If the problem persists, contact Microsoft Support.|
+|Duplicate IP address detected for 'Data0'.| |The system has detected a conflict for IP address '10.0.0.1'. The network resource 'Data0' on the device *<device1>* is offline. Ensure that this IP address is not used by any other entity in this network. To troubleshoot network issues, go to [Troubleshoot with the Get-NetAdapter cmdlet](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-get-netadapter-cmdlet). Contact your network administrator for help resolving this issue. If the problem persists, contact Microsoft Support. |
+|IPv4 (or IPv6) address for 'Data0' is offline.| |The network resource 'Data0' with IP address '10.0.0.1.' and prefix length '22' on the device *<device1>* is offline. Ensure that the switch ports to which this interface is connected are operational. To troubleshoot network issues, go to [Troubleshoot with the Get-NetAdapter cmdlet](storsimple-troubleshoot-deployment.md#troubleshoot-with-the-get-netadapter-cmdlet). |
  
 
-### 效能警示
+### <a name="performance-alerts"></a>Performance alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|裝置負載超過 <*閾值*>。|比預期的回應時間慢。|您的裝置報告使用率處於輸入/輸出負荷過重的情況。這可能會造成您的裝置無法如預期般正常運作。請檢閱您已指派給裝置的工作負載，並判斷是否有任何可移至其他裝置或已不再需要的工作負載。<br>若要了解目前狀態，請移至[使用 StorSimple Manager 服務監視您的服務](storsimple-monitor-device.md)|
+|The device load has exceeded <*threshold*>.|Slower than expected response times.|Your device reports utilization under a heavy input/output load. This could cause your device to not work as well as it should. Review the workloads that you have attached to the device, and determine if there are any that could be moved to another device or that are no longer necessary.<br>To understand the current status, go to [Use the StorSimple Manager service to monitor your device](storsimple-monitor-device.md)|
 
-### 安全性警示
+### <a name="security-alerts"></a>Security alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|Microsoft 支援服務工作階段已開始。|協力廠商已存取支援工作階段。|請確認已授權此存取。採取適當的動作之後，請從警示頁面清除此警示。|
-|<*項目*> 密碼將在 <*時間長度*> 後過期。|密碼即將過期。|請在密碼過期之前變更密碼。|
-|<*項目識別碼*> 遺漏安全性組態資訊。||這個磁碟區容器相關聯的磁碟區無法用來複寫您的 StorSimple 組態。若要確保您的資料安全地儲存，建議您刪除該磁碟區容器，以及任何與該磁碟區容器相關聯的磁碟區。採取適當的動作之後，請從警示頁面清除此警示。|
-|嘗試登入 <*項目 ID*> 失敗 <*數字*> 次。|多次嘗試登入失敗。|您的裝置可能遭受攻擊，或授權的使用者嘗試使用不正確的密碼連線。<ul><li>請連絡授權的使用者，確認這些嘗試來自合法來源。如果您持續看到大量的登入嘗試失敗，請考慮停用遠端管理，並連絡網路管理員。採取適當的動作之後，請從警示頁面清除此警示。</li><li>請檢查 Snapshot Manager 執行個體已設定正確的密碼。採取適當的動作之後，請從警示頁面清除此警示。</li></ul>如需詳細資訊，請移至[變更已過期的裝置密碼](storsimple-snapshot-manager-manage-devices.md#change-an-expired-device-password)。|
-|變更服務資料加密金鑰時發生一個或多個失敗。||變更服務資料加密金鑰時發生錯誤。解決錯誤狀況之後，請在裝置上從 Windows PowerShell Interface for StorSimple 執行 `Invoke-HcsmServiceDataEncryptionKeyChange` Cmdlet，以更新服務。如果此問題持續發生， 請連絡 Microsoft 支援服務。解決問題之後，請從警示頁面清除此警示。|
+|Microsoft Support session has begun.|Third-party accessed support session.|Please confirm this access is authorized. After you have taken appropriate action, clear this alert from the alerts page.|
+|Password for <*element*> will expire in <*length of time*>.|Password expiration is approaching.|Change your password before it expires.|
+|Security configuration information missing for <*element ID*>.||The volumes associated with this volume container cannot be used to replicate your StorSimple configuration. To ensure that your data is safely stored, we recommend that you delete the volume container and any volumes associated with the volume container. After you have taken appropriate action, clear this alert from the alerts page.|
+|<*number*> login attempts failed for <*element ID*>.|Multiple failed logon attempts.|Your device might be under attack or an authorized user is attempting to connect with an incorrect password.<ul><li>Contact your authorized users and verify that these attempts were from a legitimate source. If you continue to see large numbers of failed login attempts, consider disabling remote management and contacting your network administrator. After you have taken appropriate action, clear this alert from the alerts page.</li><li>Check that your Snapshot Manager instances are configured with the correct password. After you have taken appropriate action, clear this alert from the alerts page.</li></ul>For more information, go to [Change an expired device password](storsimple-snapshot-manager-manage-devices.md#change-an-expired-device-password).|
+|One or more failures occurred while changing the service data encryption key.||There were errors encountered while changing the service data encryption key. After you have addressed the error conditions, run the `Invoke-HcsmServiceDataEncryptionKeyChange` cmdlet from the Windows PowerShell Interface for StorSimple on your device to update the service. If this issue persists, contact Microsoft support. After you resolve the issue, clear this alert from the alerts page.|
 
-### 支援封裝警示
+### <a name="support-package-alerts"></a>Support package alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|建立支援封裝失敗。|StorSimple 無法產生封裝。|重試此作業。如果問題持續發生，請連絡 Microsoft 支援服務。解決問題之後，請從警示頁面清除此警示。|
+|Creation of support package failed.|StorSimple couldn't generate the package.|Retry this operation. If the issue persists, contact Microsoft Support. After you have resolved the issue, clear this alert from the alerts page.|
 
-### 更新警示
+### <a name="update-alerts"></a>Update alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|已安裝 Hotfix。|軟體/韌體更新完成。|已成功將此 Hotfix 安裝在您的裝置上。|
-|有可用的手動更新。|可用更新的通知。|在裝置上使用 Windows PowerShell Interface for StorSimple 安裝這些更新。<br>如需詳細資訊，請移至[更新您的 StorSimple 8000 服務裝置](storsimple-update-device.md)。|
-|有新的更新可用。|可用更新的通知。|您可以從 [維護] 頁面，或在裝置上使用 Windows PowerShell Interface for StorSimple，以安裝這些更新。<br>如需詳細資訊，請移至[更新您的 StorSimple 8000 服務裝置](storsimple-update-device.md)。|
-|無法安裝更新。|未成功安裝更新。|您的系統無法安裝更新。您可以從 [維護] 頁面，或在裝置上使用 Windows PowerShell Interface for StorSimple，以安裝這些更新。如果問題持續發生，請連絡 Microsoft 支援服務。<br>如需詳細資訊，請移至[更新您的 StorSimple 8000 服務裝置](storsimple-update-device.md)。|
-|無法自動檢查是否有新的更新。|自動檢查失敗。|您可以從 [**維護**] 頁面手動檢查是否有新的更新。|
-|有新的 WUA 代理程式可用。|可用更新的通知。|下載最新的 Windows Update 代理程式，並從 Windows PowerShell 介面安裝它。|
-|韌體元件 <*元件識別碼*> 的版本與硬體不相符。|未成功安裝韌體更新。|連絡 Microsoft 支援服務。|
+|Hotfix installed.|Software/firmware update completed.|The hotfix has been successfully installed on your device.|
+|Manual updates available.|Notification of available updates.|Use the Windows PowerShell Interface for StorSimple on your device to install these updates. <br>For more information, go to [Update your StorSimple 8000 Series device](storsimple-update-device.md).|
+|New updates available.|Notification of available updates.|You can install these updates either from the **Maintenance** page or by using the Windows PowerShell Interface for StorSimple on your device. <br>For more information, go to [Update your StorSimple 8000 Series device](storsimple-update-device.md).|
+|Failed to install updates.|Updates were not successfully installed.|Your system was not able to install the updates. You can install these updates either from the **Maintenance** page or by using the Windows PowerShell Interface for StorSimple on your device. If the issue persists, contact Microsoft Support. <br>For more information, go to [Update your StorSimple 8000 Series device](storsimple-update-device.md).|
+|Unable to automatically check for new updates.|Automatic check failed.|You can manually check for new updates from the **Maintenance** page.|
+|New WUA agent available.|Notification of available update.|Download the latest Windows Update Agent and install it from the Windows PowerShell interface.|
+|Version of firmware component <*component ID*> does not match with hardware.|Firmware update(s) were not successfully installed.|Contact Microsoft Support.|
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-深入了解 [StorSimple 錯誤和疑難排解可運作的裝置](storsimple-troubleshoot-operational-device.md)。
+Learn more about [StorSimple errors and troubleshooting an operational device](storsimple-troubleshoot-operational-device.md).
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

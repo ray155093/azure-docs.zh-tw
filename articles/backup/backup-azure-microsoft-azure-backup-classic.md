@@ -1,12 +1,12 @@
 <properties
-  pageTitle="準備環境以使用 Azure 備份伺服器來備份工作負載 | Microsoft Azure"
-  description="確定已適當地準備您的環境，以使用 Azure 備份伺服器來備份工作負載"
+  pageTitle="Preparing your environment to back up workloads using Azure Backup Server | Microsoft Azure"
+  description="Make sure your environment is properly prepared to back up workloads using Azure Backup Server"
   services="backup"
   documentationCenter=""
   authors="pvrk"
   manager="shivamg"
   editor=""
-  keywords="Azure 備份伺服器；備份保存庫"/>
+  keywords="azure backup server; backup vault"/>
 
 <tags
   ms.service="backup"
@@ -17,201 +17,209 @@
   ms.date="08/22/2016"
   ms.author="jimpark;trinadhk;pullabhk; markgal"/>
 
-# 準備使用 Azure 備份伺服器來備份工作負載
+
+# <a name="preparing-to-back-up-workloads-using-azure-backup-server"></a>Preparing to back up workloads using Azure Backup Server
 
 > [AZURE.SELECTOR]
-- [Azure 備份伺服器](backup-azure-microsoft-azure-backup.md)
+- [Azure Backup Server](backup-azure-microsoft-azure-backup.md)
 - [SCDPM](backup-azure-dpm-introduction.md)
-- [Azure 備份伺服器 (傳統)](backup-azure-microsoft-azure-backup-classic.md)
-- [SCDPM (傳統)](backup-azure-dpm-introduction-classic.md)
+- [Azure Backup Server (Classic)](backup-azure-microsoft-azure-backup-classic.md)
+- [SCDPM (Classic)](backup-azure-dpm-introduction-classic.md)
 
 
-本文說明如何準備環境，以使用 Azure 備份伺服器來備份工作負載。透過 Azure 備份伺服器，您將可從單一主控台保護 Hyper-V VM、Microsoft SQL Server、SharePoint Server、Microsoft Exchange 和 Windows 用戶端等應用程式工作負載。
+This article is about preparing your environment to back up workloads using Azure Backup Server. With Azure Backup Server, you can protect application workloads such as Hyper-V VMs, Microsoft SQL Server, SharePoint Server, Microsoft Exchange and Windows clients from a single console.
 
->[AZURE.WARNING] Azure 備份伺服器承襲了 Data Protection Manager (DPM) 的工作負載備份功能。您將發現其中某些功能指向 DPM 文件的指標。不過，Azure 備份伺服器不會保護磁帶，也不會與 System Center 整合。
+>[AZURE.WARNING] Azure Backup Server inherits the functionality of Data Protection Manager (DPM) for workload backup. You will find pointers to DPM documentation for some of these capabilities. However Azure Backup Server does not provide protection on tape or integrate with System Center.
 
-## 1\.Windows Server 機器
+## <a name="1.-windows-server-machine"></a>1. Windows Server machine
 
-![步驟 1](./media/backup-azure-microsoft-azure-backup/step1.png)
+![step1](./media/backup-azure-microsoft-azure-backup/step1.png)
 
-要啟動並執行 Azure 備份伺服器，第一個步驟是具備 Windows Server 機器。
+The first step towards getting the Azure Backup Server up and running is to have a Windows Server machine.
 
-| 位置 | 最低需求 | 其他指示 |
+| Location | Minimum requirements | Additional instructions |
 | -------- | -------------------- | ----------------------- |
-| Azure | Azure IaaS 虛擬機器 <br><br>A2 標準：雙核心、3.5GB 的 RAM | 您可以先從 Windows Server 2012 R2 Datacenter 的簡單資源庫映像開始著手。[使用 Azure 備份伺服器 (DPM) 保護 IaaS 工作負載](https://technet.microsoft.com/library/jj852163.aspx)有許多細節需要注意。部署機器之前，請先確實閱讀相關文章。 |
-| 內部部署 | Hyper-V VM、<br> VMWare VM <br> 或實體主機<br><br>雙核心和 4GB 的 RAM | 您可以使用 Windows Server Deduplication 為 DPM 儲存體刪除重複資料。深入了解在 Hyper-V VM 中部署時，[DPM 和重複資料刪除](https://technet.microsoft.com/library/dn891438.aspx)如何搭配運作。 |
+| Azure | Azure IaaS virtual machine<br><br>A2 Standard: 2 cores, 3.5GB RAM | You can start with a simple gallery image of Windows Server 2012 R2 Datacenter. [Protecting IaaS workloads using Azure Backup Server (DPM)](https://technet.microsoft.com/library/jj852163.aspx) has many nuances. Ensure that you read the article completely before deploying the machine. |
+| On-premises | Hyper-V VM,<br> VMWare VM,<br> or a physical host<br><br>2 cores and 4GB RAM | You can deduplicate the DPM storage using Windows Server Deduplication. Learn more about how [DPM and deduplication](https://technet.microsoft.com/library/dn891438.aspx) work together when deployed in Hyper-V VMs. |
 
-> [AZURE.NOTE] 建議您在具有 Windows Server 2012 R2 Datacenter 的機器上安裝 Azure 備份伺服器。最新版的 Windows 作業系統會自動涵蓋許多必要條件。
+> [AZURE.NOTE] It is recommended that Azure Backup Server be installed on a machine with Windows Server 2012 R2 Datacenter. A lot of the prerequisites are automatically covered with the latest version of the Windows operating system.
 
-如果您打算在個時間點將此伺服器加入網域中，建議您在安裝 Azure 備份伺服器之前完成網域加入活動。若在部署後將現有的 Azure 備份伺服器機器移至新網域，該動作將「不受支援」。
+If you plan to join this server to a domain at some point, it is recommended that the domain-joining activity be done before the Azure Backup Server installation. Moving an existing Azure Backup Server machine to a new domain after deployment is *not supported*.
 
-## 2\.備份保存庫
+## <a name="2.-backup-vault"></a>2. Backup vault
 
-![步驟 2](./media/backup-azure-microsoft-azure-backup/step2.png)
+![step2](./media/backup-azure-microsoft-azure-backup/step2.png)
 
-無論您要將備份資料傳送至 Azure，還是將其保存在本機上，軟體都必須連接到 Azure。明確而言，Azure 備份伺服器機器必須向備份保存庫註冊。
+Whether you send backup data to Azure or keep it locally, the software needs to be connected to Azure. To be more specific, the Azure Backup Server machine needs to be registered with a backup vault.
 
-若要建立備份保存庫：
+To create a backup vault:
 
-1. 登入[管理入口網站](http://manage.windowsazure.com/)。
+1. Sign in to the [Management Portal](http://manage.windowsazure.com/).
 
-2. 按一下 [**新增**] > [**資料服務**] > [**復原服務**] > [**備份保存庫**] > [**快速建立**]。如果您有多個與組織帳戶相關聯的訂用帳戶，請選擇與備份保存庫相關聯的正確訂用帳戶。
+2. Click **New** > **Data Services** > **Recovery Services** > **Backup Vault** > **Quick Create**. If you have multiple subscriptions associated with your organizational account, choose the correct subscription to associate with the backup vault.
 
-3. 在 [名稱] 中，輸入保存庫的易記識別名稱。每個訂用帳戶皆需為唯一名稱。
+3. In **Name**, enter a friendly name to identify the vault. This needs to be unique for each subscription.
 
-4. 在 [**區域**] 中，選取保存庫的地理區域。在一般情況下，會根據資料主權或網路延遲條件約束來選擇保存庫的區域。
+4. In **Region**, select the geographic region for the vault. Typically, the vault's region is picked based on data sovereignty or network latency constraints.
 
-    ![建立備份保存庫](./media/backup-azure-microsoft-azure-backup/backup_vaultcreate.png)
+    ![Create backup vault](./media/backup-azure-microsoft-azure-backup/backup_vaultcreate.png)
 
-5. 按一下 [建立保存庫]。要等備份保存庫建立好，可能需要一些時間。監視位於入口網站底部的狀態通知。
+5. Click **Create Vault**. It can take a while for the backup vault to be created. Monitor the status notifications at the bottom of the portal.
 
-    ![建立保存庫快顯通知](./media/backup-azure-microsoft-azure-backup/creating-vault.png)
+    ![Create vault toast notification](./media/backup-azure-microsoft-azure-backup/creating-vault.png)
 
-6. 將有一則訊息確認保存庫已成功建立，並且該保存庫會在「復原服務」頁面中列為 [使用中] 狀態。![備份保存庫的清單](./media/backup-azure-microsoft-azure-backup/backup_vaultslist.png)
+6. A message confirms that the vault has been successfully created and it will be listed in the Recovery Services page as Active.
+    ![List of backup vaults](./media/backup-azure-microsoft-azure-backup/backup_vaultslist.png)
 
-  > [AZURE.IMPORTANT] 保存庫建立之後，請立即確認是否選擇了適當的儲存體備援選項。在此[概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本機備援](../storage/storage-redundancy.md#locally-redundant-storage)選項。
+  > [AZURE.IMPORTANT] Make sure that the appropriate storage redundancy option is chosen right after the vault has been created. Read more about [geo-redundant](../storage/storage-redundancy.md#geo-redundant-storage) and [locally redundant](../storage/storage-redundancy.md#locally-redundant-storage) options in this [overview](../storage/storage-redundancy.md).
 
 
-## 3\.軟體封裝
+## <a name="3.-software-package"></a>3. Software package
 
-![步驟 3](./media/backup-azure-microsoft-azure-backup/step3.png)
+![step3](./media/backup-azure-microsoft-azure-backup/step3.png)
 
-### 下載軟體封裝
+### <a name="downloading-the-software-package"></a>Downloading the software package
 
-類似於保存庫認證，您可以從備份保存庫的 [快速啟動頁面]，下載適用於應用程式工作負載的 Microsoft Azure 備份伺服器。
+Similar to vault credentials, you can download Microsoft Azure Backup for application workloads from the **Quick Start Page** of the backup vault.
 
-1. 按一下 [應用程式工作負載 (磁碟到磁碟到雲端)]。這會使您進入可下載軟體封裝的 [下載中心] 頁面。
+1. Click **For Application Workloads (Disk to Disk to Cloud)**. This will take you to the Download Center page from where the software package can be downloaded.
 
-    ![Microsoft Azure 備份歡迎使用畫面](./media/backup-azure-microsoft-azure-backup/dpm-venus1.png)
+    ![Microsoft Azure Backup Welcome Screen](./media/backup-azure-microsoft-azure-backup/dpm-venus1.png)
 
-2. 按一下 [下載]。
+2. Click **Download**.
 
-    ![下載中心 1](./media/backup-azure-microsoft-azure-backup/downloadcenter1.png)
+    ![Download center 1](./media/backup-azure-microsoft-azure-backup/downloadcenter1.png)
 
-3. 選取所有檔案，然後按 [下一步]。下載「Microsoft Azure 備份」下載頁面中的所有檔案，並將所有檔案放在相同的資料夾中。![下載中心 1](./media/backup-azure-microsoft-azure-backup/downloadcenter.png)
+3. Select all the files and click **Next**. Download all the files coming in from the Microsoft Azure Backup download page, and place all the files in the same folder.
+![Download center 1](./media/backup-azure-microsoft-azure-backup/downloadcenter.png)
 
-    因為所有檔案的下載大小合計 > 3G，在 10Mbps 下載連結上可能需要 60 分鐘才能完成下載。
+    Since the download size of all the files together is > 3G, on a 10Mbps download link it may take up to 60 minutes for the download to complete.
 
 
-### 將軟體封裝解壓縮
+### <a name="extracting-the-software-package"></a>Extracting the software package
 
-下載所有檔案之後，按一下 [MicrosoftAzureBackupInstaller.exe]。這會啟動 [Microsoft Azure 備份安裝精靈]，並將安裝程式檔案解壓縮至您所指定的位置。繼續執行精靈，然後按一下 [解壓縮] 按鈕，以開始解壓縮程序。
+After you've downloaded all the files, click **MicrosoftAzureBackupInstaller.exe**. This will start the **Microsoft Azure Backup Setup Wizard** to extract the setup files to a location specified by you. Continue through the wizard and click on the **Extract** button to begin the extraction process.
 
-> [AZURE.WARNING] 至少 4 GB 的可用空間，才能將安裝程式檔案解壓縮。
+> [AZURE.WARNING] At least 4GB of free space is required to extract the setup files.
 
 
-![Microsoft Azure 備份安裝精靈](./media/backup-azure-microsoft-azure-backup/extract/03.png)
+![Microsoft Azure Backup Setup Wizard](./media/backup-azure-microsoft-azure-backup/extract/03.png)
 
-解壓縮程序完成之後，請選取可啟動剛解壓縮 *setup.exe* 的方塊，以開始安裝「Microsoft Azure 備份伺服器」，然後按一下 [完成] 按鈕。
+Once the extraction process complete, check the box to launch the freshly extracted *setup.exe* to begin installing Microsoft Azure Backup Server and click on the **Finish** button.
 
-### 安裝軟體封裝
+### <a name="installing-the-software-package"></a>Installing the software package
 
-1. 按一下 [Microsoft Azure 備份] 啟動安裝精靈。
+1. Click **Microsoft Azure Backup** to launch the setup wizard.
 
-    ![Microsoft Azure 備份安裝精靈](./media/backup-azure-microsoft-azure-backup/launch-screen2.png)
+    ![Microsoft Azure Backup Setup Wizard](./media/backup-azure-microsoft-azure-backup/launch-screen2.png)
 
-2. 在 [歡迎使用] 畫面上按 [下一步] 按鈕。這會讓您進入 [必要條件檢查] 區段。在此畫面上按一下 [檢查] 按鈕，以判斷是否符合「Azure 備份伺服器」的硬體和軟體必要條件。如果完全符合所有必要條件，您會看到訊息指出機器符合需求。按 [下一步] 按鈕。
+2. On the Welcome screen click the **Next** button. This takes you to the *Prerequisite Checks* section. On this screen, click on the **Check** button to determine if the hardware and software prerequisites for Azure Backup Server have been met. If all of the prerequisites are have been met successfully, you will see a message indicating that the machine meets the requirements. Click on the **Next** button.
 
-    ![Azure 備份伺服器 - 歡迎使用和必要條件檢查](./media/backup-azure-microsoft-azure-backup/prereq/prereq-screen2.png)
+    ![Azure Backup Server - Welcome and Prerequisites check](./media/backup-azure-microsoft-azure-backup/prereq/prereq-screen2.png)
 
-3. Microsoft Azure 備份伺服器需要 SQL Server 標準，而 Azure 備份伺服器安裝封裝在必要時會隨附適當的 SQL Server 二進位檔。在進行新的「Azure 備份伺服器」安裝時，您應該選擇 [在此安裝中安裝新的 SQL Server 執行個體]，然後按一下 [檢查並安裝] 按鈕。成功安裝必要條件後，按 [下一步]。
+3. Microsoft Azure Backup Server requires SQL Server Standard, and the Azure Backup Server installation package comes bundled with the appropriate SQL Server binaries needed. When starting with a new Azure Backup Server installation, you should pick the option **Install new Instance of SQL Server with this Setup** and click the **Check and Install** button. Once the prerequisites are successfully installed, click **Next**.
 
-    ![Azure 備份伺服器 - SQL 檢查](./media/backup-azure-microsoft-azure-backup/sql/01.png)
+    ![Azure Backup Server - SQL check](./media/backup-azure-microsoft-azure-backup/sql/01.png)
 
-    如果發生失敗且建議您重新啟動電腦，請依指示進行，然後按一下 [再檢查一次]。
+    If a failure occurs with a recommendation to restart the machine, do so and click **Check Again**.
 
-    > [AZURE.NOTE] Azure 備份伺服器不會使用遠端 SQL Server 執行個體。Azure 備份伺服器所使用的執行個體必須是本機的。
+    > [AZURE.NOTE] Azure Backup Server will not work with a remote SQL Server instance. The instance being used by Azure Backup Server needs to be local.
 
-4. 提供 Microsoft Azure 備份伺服器檔案的安裝位置，按 [下一步]。
+4. Provide a location for the installation of Microsoft Azure Backup server files and click **Next**.
 
-    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/space-screen.png)
+    ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/space-screen.png)
 
-    備份至 Azure 需要暫存位置。請確保暫存位置至少為打算備份至雲端的資料的 5%。在磁碟保護方面，安裝完成之後必須設定獨立的磁碟。如需有關存放集區的詳細資訊，請參閱[設定存放集區和磁碟儲存體](https://technet.microsoft.com/library/hh758075.aspx)。
+    The scratch location is a requirement for back up to Azure. Ensure the scratch location is at least 5% of the data planned to be backed up to the cloud. For disk protection, separate disks need to be configured once the installation completes. For more information regarding storage pools, see [Configure storage pools and disk storage](https://technet.microsoft.com/library/hh758075.aspx).
 
-5. 為受限的本機使用者帳戶提供強式密碼，按 [下一步]。
+5. Provide a strong password for restricted local user accounts and click **Next**.
 
-    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/security-screen.png)
+    ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/security-screen.png)
 
-6. 選取是否要使用 *Microsoft Update* 檢查更新，按 [下一步]。
+6. Select whether you want to use *Microsoft Update* to check for updates and click **Next**.
 
-    >[AZURE.NOTE] 建議讓 Windows Update 重新導向至 Microsoft Update，此網站為 Windows 和 Microsoft Azure 備份伺服器等其他產品提供安全性和重要更新。
+    >[AZURE.NOTE] We recommend having Windows Update redirect to Microsoft Update, which offers security and important updates for Windows and other products like Microsoft Azure Backup Server.
 
-    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
+    ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
 
-7. 檢閱 [設定值摘要]，按一下 [安裝]。
+7. Review the *Summary of Settings* and click **Install**.
 
-    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
+    ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
 
-8. 安裝分階段執行。在第一個階段中，會將 Microsoft Azure 復原服務代理程式安裝在伺服器上。精靈也會檢查網際網路連線。如果可連線至網際網路，您可以繼續安裝，否則必須提供 Proxy 詳細資料來連線到網際網路。
+8. The installation happens in phases. In the first phase the Microsoft Azure Recovery Services Agent is installed on the server. The wizard also checks for Internet connectivity. If Internet connectivity is available you can proceed with installation, if not, you need to provide proxy details to connect to the Internet.
 
-    下一個步驟是設定 Microsoft Azure 復原服務代理程式。在設定的過程中，您將必須提供保存庫認證，以向備份保存庫註冊機器。您也須提供複雜密碼來加密/解密 Azure 與您的內部部署之間所傳送的資料。您可以自動產生複雜密碼，或提供您自己的複雜密碼，最少 16 個字元。繼續執行精靈，直到代理程式完成設定。
+    The next step is to configure the Microsoft Azure Recovery Services Agent. As a part of the configuration, you will have to provide your the vault credentials to register the machine to the backup vault. You will also provide a passphrase to encrypt/decrypt the data sent between Azure and your premises. You can automatically generate a passphrase or provide your own minimum 16-character passphrase. Continue with the wizard until the agent has been configured.
 
-    ![Azure 備份伺服器必要條件 2](./media/backup-azure-microsoft-azure-backup/mars/04.png)
+    ![Azure Backup Serer PreReq2](./media/backup-azure-microsoft-azure-backup/mars/04.png)
 
-9. Microsoft Azure 備份伺服器順利完成註冊後，整體安裝精靈會繼續安裝及設定 SQL Server 和 Azure 備份伺服器的元件。SQL Server 元件安裝完成後，會安裝 Azure 備份伺服器元件。
+9. Once registration of the Microsoft Azure Backup server successfully completes, the overall setup wizard proceeds to the installation and configuration of SQL Server and the Azure Backup Server components. Once the SQL Server component installation completes, the Azure Backup Server components are installed.
 
-    ![Azure 備份伺服器](./media/backup-azure-microsoft-azure-backup/final-install/venus-installation-screen.png)
+    ![Azure Backup Server](./media/backup-azure-microsoft-azure-backup/final-install/venus-installation-screen.png)
 
 
-當安裝步驟完成時，產品的桌面圖示也將一併建立完成。只要按兩下該圖示，即可啟動產品。
+When the installation step has completed, the product's desktop icons will have been created as well. Just double-click the icon to launch the product.
 
-### 新增備份儲存體
+### <a name="add-backup-storage"></a>Add backup storage
 
-第一個備份複本會保存在連接至 Azure 備份伺服器機器的儲存體上。如需有關新增磁碟的詳細資訊，請參閱[設定存放集區和磁碟儲存體](https://technet.microsoft.com/library/hh758075.aspx)。
+The first backup copy is kept on storage attached to the Azure Backup Server machine. For more information about adding disks, see [Configure storage pools and disk storage](https://technet.microsoft.com/library/hh758075.aspx).
 
-> [AZURE.NOTE] 即使您打算將資料傳送至 Azure，也必須新增備份儲存體。在目前的「Azure 備份伺服器」架構中，「Azure 備份」保存庫會保存資料的「第二個」複本，而本機儲存體則是保存第一個 (必要的) 備份複本。
+> [AZURE.NOTE] You need to add backup storage even if you plan to send data to Azure. In the current architecture of Azure Backup Server, the Azure Backup vault holds the *second* copy of the data while the local storage holds the first (and mandatory) backup copy.  
 
-## 4\.網路連線
+## <a name="4.-network-connectivity"></a>4. Network connectivity
 
-![步驟 4](./media/backup-azure-microsoft-azure-backup/step4.png)
+![step4](./media/backup-azure-microsoft-azure-backup/step4.png)
 
-Azure 備份伺服器需要連線至 Azure 備份服務，產品才能順利運作。若要驗證機器是否連接至 Azure，請在Azure 備份伺服器 PowerShell 主控台中使用 ```Get-DPMCloudConnection``` Commandlet。如果 commandlet 的輸出為 TRUE，表示連線存在，否則沒有連線。
+Azure Backup Server requires connectivity to the Azure Backup service for the product to work successfully. To validate whether the machine has the connectivity to Azure, use the ```Get-DPMCloudConnection``` commandlet in the Azure Backup Server PowerShell console. If the output of the commandlet is TRUE then connectivity exists, else there is no connectivity.
 
-同時，Azure 訂用帳戶也必須處於狀況良好狀態。若您想了解訂用帳戶狀態並加以管理，請登入[訂用帳戶入口網站](https://account.windowsazure.com/Subscriptions)。
+At the same time, the Azure subscription needs to be in a healthy state. To find out the state of your subscription and to manage it, log in to the [subscription portal]( https://account.windowsazure.com/Subscriptions).
 
-在您了解 Azure 連線和 Azure 訂用帳戶的狀態後，您可以使用下表來確認提供的備份/還原功能會受到哪些影響。
+Once you know the state of the Azure connectivity and of the Azure subscription, you can use the table below to find out the impact on the backup/restore functionality offered.
 
-| 連線狀態 | Azure 訂閱 | 備份至 Azure| 備份至磁碟 | 從 Azure 還原 | 從磁碟還原 |
+| Connectivity State | Azure Subscription | Backup to Azure| Backup to disk | Restore from Azure | Restore from disk |
 | -------- | ------- | --------------------- | ------------------- | --------------------------- | ----------------------- |
-| 連線 | Active | 允許 | 允許 | 允許 | 允許 |
-| 連線 | 已過期 | 已停止 | 已停止 | 允許 | 允許 |
-| 連線 | 已取消佈建 | 已停止 | 已停止 | 已停止且已刪除 Azure 復原點 | 已停止 |
-| 連線中斷 > 15 天 | Active | 已停止 | 已停止 | 允許 | 允許 |
-| 連線中斷 > 15 天 | 已過期 | 已停止 | 已停止 | 允許 | 允許 |
-| 連線中斷 > 15 天 | 已取消佈建 | 已停止 | 已停止 | 已停止且已刪除 Azure 復原點 | 已停止 |
+| Connected | Active | Allowed | Allowed | Allowed | Allowed |
+| Connected | Expired | Stopped | Stopped | Allowed | Allowed |
+| Connected | Deprovisioned | Stopped | Stopped | Stopped and Azure recovery points deleted | Stopped |
+| Lost connectivity > 15 days | Active | Stopped | Stopped | Allowed | Allowed |
+| Lost connectivity > 15 days | Expired | Stopped | Stopped | Allowed | Allowed |
+| Lost connectivity > 15 days | Deprovisioned | Stopped | Stopped |  Stopped and Azure recovery points deleted | Stopped |
 
-### 從連線中斷的情況復原
-如果您有防火牆或 Proxy 以致無法存取 Azure，您必須將防火牆/Proxy 設定檔中的下列網域位址列入白名單中：
+### <a name="recovering-from-loss-of-connectivity"></a>Recovering from loss of connectivity
+If you have a firewall or a proxy that is preventing access to Azure, you need to whitelist the following domain addresses in the firewall/proxy profile:
 
 - www.msftncsi.com
-- *.Microsoft.com
-- *.WindowsAzure.com
-- *.microsoftonline.com
-- *.windows.net
+- \*.Microsoft.com
+- \*.WindowsAzure.com
+- \*.microsoftonline.com
+- \*.windows.net
 
-在 Azure 的連線已還原至 Azure 備份伺服器機器之後，可執行的作業將取決於 Azure 訂用帳戶狀態。上表詳細列出機器「已連接」之後所允許之作業的相關資訊。
+Once connectivity to Azure has been restored to the Azure Backup Server machine, the operations that can be performed are determined by the Azure subscription state. The table above has details about the operations allowed once the machine is "Connected".
 
-### 處理訂用帳戶狀態
+### <a name="handling-subscription-states"></a>Handling subscription states
 
-您可以將 Azure 訂用帳戶從「已過期」或「已取消佈建」狀態變更為「作用中」狀態。不過，當狀態不是「作用中」時，此動作會對產品的行為造成某些影響：
+It is possible to take an Azure subscription from an *Expired* or *Deprovisioned* state to the *Active* state. However this has some implications on the product behavior while the state is not *Active*:
 
-- 「已取消佈建」的訂用帳戶在取消佈建的這段期間會失去功能。切換為「作用中」時，就會恢復產品的備份/還原功能。此外，只要以夠大的保留期間來保存，也可以擷取本機磁碟上的備份資料。不過，一旦訂用帳戶進入「已取消佈建」狀態，Azure 中的備份資料便會遺失而無法復原。
-- 「已過期」的訂用帳戶只有在恢復「作用中」狀態之前會失去功能。任何針對訂用帳戶處於「已過期」期間所排定的備份，都不會執行。
-
-
-## 疑難排解
-
-如果 Microsoft Azure 備份伺服器在安裝階段 (或是備份或還原) 失敗且出現錯誤，請參閱這份[錯誤碼文件](https://support.microsoft.com/kb/3041338)，以取得詳細資訊。您也可以參考 [Azure 備份相關的常見問題集](backup-azure-backup-faq.md)
+- A *Deprovisioned* subscription loses functionality for the period that it is deprovisioned. On turning *Active*, the product functionality of backup/restore is revived. The backup data on the local disk also can be retrieved if it was kept with a sufficiently large retention period. However, the backup data in Azure is irretrievably lost once the subscription enters the *Deprovisioned* state.
+- An *Expired* subscription only loses functionality for until it has been made *Active* again. Any backups scheduled for the period that the subscription was *Expired* will not run.
 
 
-## 後續步驟
+## <a name="troubleshooting"></a>Troubleshooting
 
-您可以在 Microsoft TechNet 網站上取得有關[準備 DPM 的環境](https://technet.microsoft.com/library/hh758176.aspx)的詳細資訊。其中也包含可據以部署和使用 Azure 備份伺服器之支援組態的相關資訊。
+If Microsoft Azure Backup server fails with errors during the setup phase (or backup or restore), refer to this [error codes document](https://support.microsoft.com/kb/3041338)  for more information.
+You can also refer to [Azure Backup related FAQs](backup-azure-backup-faq.md)
 
-請參閱這些文章，以深入了解使用 Microsoft Azure 備份伺服器來保護工作負載。
 
-- [SQL Server 備份](backup-azure-backup-sql.md)
-- [SharePoint 伺服器備份](backup-azure-backup-sharepoint.md)
-- [替代伺服器備份](backup-azure-alternate-dpm-server.md)
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0831_2016-->
+You can get detailed information about [preparing your environment for DPM](https://technet.microsoft.com/library/hh758176.aspx) on the Microsoft TechNet site. It also contains information about supported configurations on which Azure Backup Server can be deployed and used.
+
+You can use these articles to gain a deeper understanding of workload protection using Microsoft Azure Backup server.
+
+- [SQL Server backup](backup-azure-backup-sql.md)
+- [SharePoint server backup](backup-azure-backup-sharepoint.md)
+- [Alternate server backup](backup-azure-alternate-dpm-server.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

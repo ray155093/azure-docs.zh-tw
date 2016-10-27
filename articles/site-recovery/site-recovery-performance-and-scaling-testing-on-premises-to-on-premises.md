@@ -1,211 +1,216 @@
 <properties
-	pageTitle="使用 Site Recovery 進行內部部署對內部部署 Hyper-V 複寫的效能測試和調整結果 | Microsoft Azure"
-	description="本文提供使用 Azure Site Recovery 針對內部部署對內部部署複寫進行效能測試的相關資訊。"
-	services="site-recovery"
-	documentationCenter=""
-	authors="rayne-wiselman"
-	manager="jwhit"
-	editor="tysonn"/>
+    pageTitle="Performance test and scale results for on-premises to on-premises Hyper-V replication with Site Recovery | Microsoft Azure"
+    description="This article provides information about performance testing for on-premises to on-premises replication using Azure Site Recovery."
+    services="site-recovery"
+    documentationCenter=""
+    authors="rayne-wiselman"
+    manager="jwhit"
+    editor="tysonn"/>
 
 <tags
-	ms.service="site-recovery"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="storage-backup-recovery"
-	ms.date="07/06/2016"
-	ms.author="raynew"/>
-
-# 使用 Site Recovery 進行內部部署對內部部署 Hyper-V 複寫的效能測試和調整結果
-
-您可以使用 Microsoft Azure Site Recovery 來協調和管理將虛擬機器與實體伺服器複寫至 Azure 或次要資料中心的複寫作業。本文提供我們在兩個內部部署資料中心之間複寫 Hyper-V 虛擬機器時所執行之效能測試的結果。
+    ms.service="site-recovery"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="storage-backup-recovery"
+    ms.date="07/06/2016"
+    ms.author="raynew"/>
 
 
+# <a name="performance-test-and-scale-results-for-on-premises-to-on-premises-hyper-v-replication-with-site-recovery"></a>Performance test and scale results for on-premises to on-premises Hyper-V replication with Site Recovery
 
-## 概觀
-
-測試目標是檢查 Azure Site Recovery 在穩定狀態複寫期間的執行情況。當虛擬機器已完成初始複寫，且正在同步處理差異變更時，就會發生穩定狀態複寫。請務必使用穩定狀態測量效能，因為除非發生非預期的中斷，否則它是大多數虛擬機器維持的狀態。
+You can use Microsoft Azure Site Recovery to orchestrate and manage replication of virtual machines and physical servers to Azure, or to a secondary datacenter. This article provides the results of performance testing we did when replicating Hyper-V virtual machines between two on-premises datacenters.
 
 
-測試部署是由兩個內部部署網站所組成，且每個網站都有一個 VMM 伺服器。此測試部署通常屬於總公司/分公司部署，以總公司做為主要站台，而分公司做為次要或復原站台。
 
-### 我們執行的動作
+## <a name="overview"></a>Overview
 
-以下是我們在測試階段中所執行的動作：
+The goal of testing was to examine how Azure Site Recovery performs during steady state replication. Steady state replication occurs when virtual machines have completed initial replication and are synchronizing delta changes. It’s important to measure performance using steady state because it’s the state in which most virtual machines remain unless unexpected outages occur.
 
-1. 使用 VMM 範本建立虛擬機器。
 
-1. 啟動虛擬機器，並擷取 12 小時內的基準效能度量。
+The test deployment consisted of two on-premises sites with a VMM server in each site. This test deployment is typical of a head office/branch office deployment, with head office acting as the primary site and the branch office as the secondary or recovery site.
 
-1. 在主要和復原 VMM 伺服器上建立雲端。
+### <a name="what-we-did"></a>What we did
 
-1. 在 Azure Site Recovery 中設定雲端保護，包括來源和復原雲端的對應。
+Here's what we did in the test pass:
 
-1. 啟用虛擬機器的保護，並允許它們完成初始複寫。
+1. Created virtual machines using VMM templates.
 
-1. 等待幾個小時讓系統趨於穩定。
+1. Started virtual machines and capture baseline performance metrics over 12 hours.
 
-1. 擷取 12 小時內的效能度量，以確保所有虛擬機器在這 12 小時內都維持在預期的複寫狀態。
+1. Created clouds on primary and recovery VMM servers.
 
-1. 測量基準效能度量和複寫效能度量之間的差異。
+1. Configured cloud protection in Azure Site Recovery, including mapping of source and recovery clouds.
 
-## 測試部署結果
+1. Enabled protection for virtual machines and allow them to complete initial replication.
 
-### 主要伺服器效能
+1. Waited a couple of hours for system stabilization.
 
-- Hyper-V 複本會使用主要伺服器上最小的儲存負荷，以非同步方式追蹤記錄檔的變更。
+1. Captured performance metrics over 12 hours, ensuring that all virtual machines remained in an expected replication state for those 12 hours.
 
-- Hyper-V 複本會利用自我維護的記憶體快取，以減少 IOPS 的追蹤負荷。它會在記憶體中儲存對 VHDX 的寫入，並在記錄傳送至復原站台之前，將這些寫入排清到記錄檔中。如果寫入達到預先決定的限制，也會發生磁碟排清。
+1. Measure the delta between the baseline performance metrics and the replication performance metrics.
 
-- 下圖顯示複寫的穩定狀態 IOPS 負荷。我們可以看到複寫的 IOPS 負荷大約是 5%，這相當低。
+## <a name="test-deployment-results"></a>Test deployment results
 
-![主要結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744913.png)
+### <a name="primary-server-performance"></a>Primary server performance
 
-Hyper-V 複本會利用主要伺服器上的記憶體來最佳化磁碟效能。如下圖所示，主要叢集中所有伺服器上的記憶體負荷都很低。所顯示的記憶體負荷是複寫所使用的記憶體相較於 Hyper-V 伺服器上已安裝的記憶體總數的百分比。
+- Hyper-V Replica asynchronously tracks changes to a log file with minimum storage overhead on the primary server.
 
-![主要結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744914.png)
+- Hyper-V Replica utilizes self-maintained memory cache to minimize IOPS overhead for tracking. It stores writes to the VHDX in memory and flushes them into the log file before the time that the log is sent to the recovery site. A disk flush also happens if the writes hit a predetermined limit.
 
-Hyper-V 複本的 CPU 負荷最低。如圖所示，複寫負荷位於 2-3% 的範圍內。
+- The graph below shows the steady state IOPS overhead for replication. We can see that the IOPS overhead due to replication is around 5% which is quite low.
 
-![主要結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744915.png)
+![Primary results](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744913.png)
 
-### 次要 (復原) 伺服器效能
+Hyper-V Replica utilizes memory on the primary server to optimize disk performance. As shown in the following graph, memory overhead on all servers in the primary cluster is marginal. The memory overhead shown is the percentage of memory used by replication compared to the total installed memory on the Hyper-V server.
 
-Hyper-V 複本會使用復原伺服器上的少量記憶體來最佳化儲存作業數目。此圖形會摘要說明復原伺服器上的記憶體使用量。所顯示的記憶體負荷是複寫所使用的記憶體相較於 Hyper-V 伺服器上已安裝的記憶體總數的百分比。
+![Primary results](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744914.png)
 
-![次要結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744916.png)
+Hyper-V Replica has minimum CPU overhead. As shown in the graph, replication overhead is in the range of 2-3%.
 
-復原站台上的 I/O 作業量為主要站台上寫入作業數目的函數。讓我們看看復原站台上的 I/O 作業總數與主要站台上的 I/O 作業和與寫入作業的總數的比較。此圖顯示復原站台上的 IOPS 總數
+![Primary results](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744915.png)
 
-- 大約是主要站台上寫入 IOPS 的 1.5 倍。
+### <a name="secondary-(recovery)-server-performance"></a>Secondary (recovery) server performance
 
-- 大約是主要站台上 IOPS 總數的 37%。
+Hyper-V Replica uses a small amount of memory on the recovery server to optimize the number of storage operations. The graph summarizes the memory usage on the recovery server. The memory overhead shown is the percentage of memory used by replication compared to the total installed memory on the Hyper-V server.
 
-![次要結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744917.png)
+![Secondary results](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744916.png)
 
-![次要結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744918.png)
+The amount of I/O operations on the recovery site is a function of the number of write operations on the primary site. Let’s look at the total I/O operations on the recovery site in comparison with the total I/O operations and write operations on the primary site. The graphs show that the total IOPS on the recovery site is
 
-### 複寫對網路使用率的影響
+- Around 1.5 times the write IOPS on the primary.
 
-針對每秒 5 GB 的現有頻寬，在主要和復原節點 (已啟用壓縮) 之間使用平均每秒 275 MB 的網路頻寬。
+- Around 37% of the total IOPS on the primary site.
 
-![結果網路使用率](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744919.png)
+![Secondary results](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744917.png)
 
-### 複寫對虛擬機器效能的影響
+![Secondary results](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744918.png)
 
-複寫對虛擬機器上執行的生產環境工作負載的影響是其中一個重要的考量。如果主要站台已針對複寫適當地佈建，對工作負載應該不會有任何影響。Hyper-V 複本的輕量型追蹤機制可確保虛擬機器中執行的工作負載在穩定狀態複寫期間不會受到影響。下圖將就此說明。
+### <a name="effect-of-replication-on-network-utilization"></a>Effect of replication on network utilization
 
-此圖顯示啟用複寫之前和之後，執行不同工作負載的虛擬機器執行的 IOPS。您可以觀察到兩者之間沒有差異。
+An average of 275 MB per second of network bandwidth was used between the primary and recovery nodes (with compression enabled) against an existing bandwidth of 5 GB per second.
 
-![複本效果結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744920.png)
+![Results network utilization](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744919.png)
 
-下圖顯示啟用複寫之前和之後，執行不同工作負載的虛擬機器的輸送量。您可以觀察到複寫沒有顯著的影響。
+### <a name="effect-of-replication-on-virtual-machine-performance"></a>Effect of replication on virtual machine performance
 
-![結果複本效果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744921.png)
+An important consideration is the impact of replication on production workloads running on the virtual machines. If the primary site is adequately provisioned for replication, there shouldn’t be any impact on the workloads. Hyper-V Replica’s lightweight tracking mechanism ensures that workloads running in the virtual machines are not impacted during steady-state replication. This is illustrated in the following graphs.
 
-### 結論
+This graph shows IOPS performed by virtual machines running different workloads before and after replication was enabled. You can observe that there is no difference between the two.
 
-結果會清楚地顯示搭配 Hyper-V 複本的 Azure Site Recovery 透過最小的負荷，就可以為大型叢集妥善調整。Azure Site Recovery 提供簡單的部署、複寫、管理和監視功能。Hyper-V 複本提供成功調整複寫所需的基礎結構。為規劃最佳的部署，建議您下載 [Hyper-V Replica Capacity Planner](https://www.microsoft.com/download/details.aspx?id=39057)。
+![Replica effect results](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744920.png)
 
-## 測試環境詳細資料
+The following graph shows the throughput of virtual machines running different workloads before and after replication was enabled. You can observe that replication has no significant impact.
 
-### 主要站台
+![Results replica effects](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744921.png)
 
-- 主要站台所具備的叢集內含五部執行 470 個虛擬機器的 Hyper-V 伺服器。
+### <a name="conclusion"></a>Conclusion
 
-- 虛擬機器執行不同的工作負載，而且全都有啟用 Azure Site Recovery 保護。
+The results clearly show that Azure Site Recovery, coupled with Hyper-V Replica, scales well with minimum overhead for a large cluster.  Azure Site Recovery provides simple deployment, replication, management and monitoring. Hyper-V Replica provides the necessary infrastructure for successful replication scaling. For planning an optimum deployment we suggest you download the [Hyper-V Replica Capacity Planner](https://www.microsoft.com/download/details.aspx?id=39057).
 
-- 叢集節點的儲存體是由 iSCSI SAN 提供。機型 – Hitachi HUS130。
+## <a name="test-environment-details"></a>Test environment details
 
-- 每部叢集伺服器都有四張網路卡 (NIC)，每張網路卡各為 1 Gbps。
+### <a name="primary-site"></a>Primary site
 
-- 其中兩張網路卡會連線到 iSCSI 私人網路，另外兩張會連線到外部企業網路。其中一個外部網路會保留為供叢集通訊專用。
+- The primary site has a cluster containing five Hyper-V servers running 470 virtual machines.
 
-![主要硬體需求](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744922.png)
+- The virtual machines run different workloads, and all have Azure Site Recovery protection enabled.
 
-|伺服器|RAM|模型|處理器|處理器數目|NIC|軟體|
+- Storage for the cluster node is provided by an iSCSI SAN. Model – Hitachi HUS130.
+
+- Each cluster server has four network cards (NICs) of one Gbps each.
+
+- Two of the network cards are connected to an iSCSI private network and two are connected to an external enterprise network. One of the external networks is reserved for cluster communications only.
+
+![Primary hardware requirements](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744922.png)
+
+|Server|RAM|Model|Processor|Number of processors|NIC|Software|
 |---|---|---|---|---|---|---|
-|叢集中的 Hyper-V 伺服器：<br />ESTLAB-HOST11<br />ESTLAB-HOST12<br />ESTLAB-HOST13<br />ESTLAB-HOST14<br />ESTLAB-HOST25|128ESTLAB-HOST25 具備 256|Dell ™ PowerEdge ™ R820|Intel(R) Xeon(R) CPU E5-4620 0 @ 2.20GHz|4|I Gbps x 4|Windows Server Datacenter 2012 R2 (x64) + Hyper-V 角色|
-|VMM 伺服器|2|||2|1 Gbps|Windows Server Database 2012 R2 (x64) + VMM 2012 R2|
+|Hyper-V servers in cluster: <br />ESTLAB-HOST11<br />ESTLAB-HOST12<br />ESTLAB-HOST13<br />ESTLAB-HOST14<br />ESTLAB-HOST25|128ESTLAB-HOST25 has 256|Dell ™ PowerEdge ™ R820|Intel(R) Xeon(R) CPU E5-4620 0 @ 2.20GHz|4|I Gbps x 4|Windows Server Datacenter 2012 R2 (x64) + Hyper-V role|
+|VMM Server|2|||2|1 Gbps|Windows Server Database 2012 R2 (x64) + VMM 2012 R2|
 
-### 次要 (復原) 站台
+### <a name="secondary-(recovery)-site"></a>Secondary (recovery) site
 
-- 次要站台有六個節點的容錯移轉叢集。
+- The secondary site has a six-node failover cluster.
 
-- 叢集節點的儲存體是由 iSCSI SAN 提供。機型 – Hitachi HUS130。
+- Storage for the cluster node is provided by an iSCSI SAN. Model – Hitachi HUS130.
 
-![主要硬體規格](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744923.png)
+![Primary hardware specification](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744923.png)
 
-|伺服器|RAM|模型|處理器|處理器數目|NIC|軟體|
+|Server|RAM|Model|Processor|Number of processors|NIC|Software|
 |---|---|---|---|---|---|---|
-|叢集中的 Hyper-V 伺服器：<br />ESTLAB-HOST07<br />ESTLAB-HOST08<br />ESTLAB-HOST09<br />ESTLAB-HOST10|96|Dell ™ PowerEdge ™ R720|Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz|2|I Gbps x 4|Windows Server Datacenter 2012 R2 (x64) + Hyper-V 角色|
-|ESTLAB-HOST17|128|Dell ™ PowerEdge ™ R820|Intel(R) Xeon(R) CPU E5-4620 0 @ 2.20GHz|4||Windows Server Datacenter 2012 R2 (x64) + Hyper-V 角色|
-|ESTLAB-HOST24|256|Dell ™ PowerEdge ™ R820|Intel(R) Xeon(R) CPU E5-4620 0 @ 2.20GHz|2||Windows Server Datacenter 2012 R2 (x64) + Hyper-V 角色|
-|VMM 伺服器|2|||2|1 Gbps|Windows Server Database 2012 R2 (x64) + VMM 2012 R2|
+|Hyper-V servers in cluster: <br />ESTLAB-HOST07<br />ESTLAB-HOST08<br />ESTLAB-HOST09<br />ESTLAB-HOST10|96|Dell ™ PowerEdge ™ R720|Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz|2|I Gbps x 4|Windows Server Datacenter 2012 R2 (x64) + Hyper-V role|
+|ESTLAB-HOST17|128|Dell ™ PowerEdge ™ R820|Intel(R) Xeon(R) CPU E5-4620 0 @ 2.20GHz|4||Windows Server Datacenter 2012 R2 (x64) + Hyper-V role|
+|ESTLAB-HOST24|256|Dell ™ PowerEdge ™ R820|Intel(R) Xeon(R) CPU E5-4620 0 @ 2.20GHz|2||Windows Server Datacenter 2012 R2 (x64) + Hyper-V role|
+|VMM Server|2|||2|1 Gbps|Windows Server Database 2012 R2 (x64) + VMM 2012 R2|
 
-### 伺服器工作負載
+### <a name="server-workloads"></a>Server workloads
 
-- 基於測試目的，我們挑選了常用於企業客戶案例中的工作負載。
+- For test purposes we picked workloads commonly used in enterprise customer scenarios.
 
-- 我們使用 [IOMeter](http://www.iometer.org) 搭配資料表中摘要說明的工作負載特性進行模擬。
+- We use [IOMeter](http://www.iometer.org) with the workload characteristic summarized in the table for simulation.
 
-- 所有 IOMeter 設定檔都設為寫入隨機位元組，以模擬最壞情況的工作負載寫入模式。
+- All IOMeter profiles are set to write random bytes to simulate worst-case write patterns for workloads.
 
-|工作負載|I/O 大小 (KB)|存取百分比|讀取百分比|未完成的 I/O|I/O 模式|
+|Workload|I/O size (KB)|% Access|%Read|Outstanding I/Os|I/O pattern|
 |---|---|---|---|---|---|
-|檔案伺服器|48163264|60%20%5%5%10%|80%80%80%80%80%|88888|全部 100% 隨機|
-|SQL Server (磁碟區 1) SQL Server (磁碟區 2)|864|100%100%|70%0%|88|100% 隨機 100% 循序|
-|Exchange|32|100%|67%|8|100% 隨機|
-|工作站/VDI|464|66%34%|70%95%|11|兩者都 100% 隨機|
-|Web 檔案伺服器|4864|33%34%33%|95%95%95%|888|全部 75% 隨機|
+|File Server|48163264|60%20%5%5%10%|80%80%80%80%80%|88888|All 100% random|
+|SQL Server (volume 1)SQL Server (volume 2)|864|100%100%|70%0%|88|100% random100% sequential|
+|Exchange|32|100%|67%|8|100% random|
+|Workstation/VDI|464|66%34%|70%95%|11|Both 100% random|
+|Web File Server|4864|33%34%33%|95%95%95%|888|All 75% random|
 
-### 虛擬機器組態
+### <a name="virtual-machine-configuration"></a>Virtual machine configuration
 
-- 主要叢集上 470 個虛擬機器。
+- 470 virtual machines on the primary cluster.
 
-- 所有虛擬機器都搭配 VHDX 磁碟。
+- All virtual machines with VHDX disk.
 
-- 虛擬機器執行資料表中摘要說明的工作負載。全部都使用 VMM 範本建立。
+- Virtual machines running workloads summarized in the table. All were created with VMM templates.
 
-|工作負載|VM 數|RAM 下限 (GB)|RAM 上限 (GB)|每個 VM 的邏輯磁碟大小 (GB)|IOPS 上限|
+|Workload|# VMs|Minimum RAM (GB)|Maximum RAM (GB)|Logical disk size (GB) per VM|Maximum IOPS|
 |---|---|---|---|---|---|
 |SQL Server|51|1|4|167|10|
 |Exchange Server|71|1|4|552|10|
-|檔案伺服器|50|1|2|552|22|
+|File Server|50|1|2|552|22|
 |VDI|149|.5|1|80|6|
-|Web 伺服器|149|.5|1|80|6|
-|總計|470|||96\.83 TB|4108|
+|Web server|149|.5|1|80|6|
+|TOTAL|470|||96.83 TB|4108|
 
-### Azure Site Recovery 設定
+### <a name="azure-site-recovery-settings"></a>Azure Site Recovery settings
 
-- Azure Site Recovery 設有內部部署至內部部署的保護
+- Azure Site Recovery was configured for on-premises to on-premises protection
 
-- VMM 伺服器已設定四個雲端，其中包含 Hyper-V 叢集伺服器及其虛擬機器。
+- The VMM server has four clouds configured, containing the Hyper-V cluster servers and their virtual machines.
 
-|主要 VMM 雲端|雲端中受保護的虛擬機器|複寫頻率|其他復原點|
+|Primary VMM cloud|Protected virtual machines in the cloud|Replication frequency|Additional recovery points|
 |---|---|---|---|
-|PrimaryCloudRpo15m|142|15 分鐘|None|
-|PrimaryCloudRpo30s|47|30 秒|None|
-|PrimaryCloudRpo30sArp1|47|30 秒|1|
-|PrimaryCloudRpo5m|235|5 分鐘|None|
+|PrimaryCloudRpo15m|142|15 mins|None|
+|PrimaryCloudRpo30s|47|30 secs|None|
+|PrimaryCloudRpo30sArp1|47|30 secs|1|
+|PrimaryCloudRpo5m|235|5 mins|None|
 
-### 效能度量
+### <a name="performance-metrics"></a>Performance metrics
 
-資料表摘要說明在部署中測量的效能度量和計數器。
+The table summarizes the performance metrics and counters that were measured in the deployment.
 
-|度量|計數器|
+|Metric|Counter|
 |---|---|
-|CPU|\\Processor(\_Total)\\% 處理器時間|
-|可用的記憶體|\\記憶體\\可用的 MB|
-|IOPS|\\PhysicalDisk(\_Total)\\每秒的磁碟傳輸數|
-|每秒的 VM 讀取 (IOPS) 作業數|\\Hyper-V 虛擬存放裝置(<VHD>) \\每秒的讀取作業數|
-|每秒的 VM 寫入 (IOPS) 作業數|\\Hyper-V 虛擬存放裝置(<VHD>) \\每秒的寫入作業數|
-|VM 讀取輸送量|\\Hyper-V 虛擬存放裝置(<VHD>) \\每秒的讀取位元組數|
-|VM 寫入輸送量|\\Hyper-V 虛擬存放裝置(<VHD>) \\每秒的寫入位元組數|
+|CPU|\Processor(_Total)\% Processor Time|
+|Available memory|\Memory\Available MBytes|
+|IOPS|\PhysicalDisk(_Total)\Disk Transfers/sec|
+|VM read (IOPS) operations/sec|\Hyper-V Virtual Storage Device(<VHD>)\Read Operations/Sec|
+|VM write (IOPS) operations/sec|\Hyper-V Virtual Storage Device(<VHD>)\Write Operations/S|
+|VM read throughput|\Hyper-V Virtual Storage Device(<VHD>)\Read Bytes/sec|
+|VM write throughput|\Hyper-V Virtual Storage Device(<VHD>)\Write Bytes/sec|
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [設定兩個內部部署 VMM 網站之間的保護](site-recovery-vmm-to-vmm.md)
+- [Set up protection between two on-premises VMM sites](site-recovery-vmm-to-vmm.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

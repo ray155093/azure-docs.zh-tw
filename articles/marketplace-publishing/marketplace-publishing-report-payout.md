@@ -1,6 +1,6 @@
 <properties
-   pageTitle="了解 Azure Marketplace 支出報告 | Microsoft Azure"
-   description="了解如何檢閱和擷取 Azure Marketplace 支出報告。"
+   pageTitle="Understand the Azure Marketplace payout reporting | Microsoft Azure"
+   description="Learn how to review and ingest the Azure Marketplace payout report."
    services="marketplace-publishing"
    documentationCenter="na"
    authors="v-jeana"
@@ -16,95 +16,97 @@
    ms.date="09/19/2016"
    ms.author="v-jeana; hascipio; v-dabosl"/>
 
-# 了解您的 Azure Marketplace 支出報告
 
-## 存取及檢視您的支出報告
+# <a name="understand-your-azure-marketplace-payout-reports"></a>Understand your Azure Marketplace payout reports
 
-雖然我們轉換到開發人員中心，一些支出報告可能可以在開發人員中心的 https://dev.windows.com/zh-TW 中取得，而其他報告可能仍然會在發佈入口網站 https://publish.windowsazure.com 中找到。
+## <a name="access-and-view-your-payout-reports"></a>Access and view your payout reports
 
-對於與現代化支出相關聯的任何 Marketplace 供應項目，支出報告可以在 [開發人員中心] 中取得；目前包括
-- VM
-- B+C 供應項目
-- 在 EA 下提供的資料和開發人員服務
+While we transition to Dev Center some of your payout reports may be available in the Dev Center at https://dev.windows.com/en-us while others may still be found in Publishing Portal at https://publish.windowsazure.com.
 
-下列項目的支出報告仍然會在**發佈入口網站**提供：
-- Web Direct 下提供的資料和開發人員服務 (仍然使用舊版支出系統)。
+Payout reporting will now be available in **Dev Center** for any Marketplace offerings that are associated with modern payouts; this currently includes:
+- VMs
+- B+C offers
+- Data and Dev Services offered under EA
 
-在每季結束後 45 天即可取得報告，而報告會在任何退款之後進行計算。
+Payout reporting will still be in **Publishing Portal** for:
+- Data and Dev Services offered under Web Direct (which still uses the legacy payout system).
 
-### 存取開發人員中心的支出報告
+Reports are available 45 days after the close of the quarter and are calculated after any refunds.
 
-1. 瀏覽至位於 https://dev.windows.com/zh-TW 的開發人員中心。
-2. 按一下 [儀表板]。
+### <a name="access-payout-reports-in-dev-center"></a>Access payout reports in Dev Center
+
+1. Navigate to Dev Center at https://dev.windows.com/en-us.
+2. Click **Dashboard**.
 
     ![LandingPageDashboardHighlight][1]
 
-3. 按一下 [支出摘要]。
+3. Click **Payout Summary**.
 
     ![DashboardPayoutSummary][2]
 
 
-## 檢視開發人員中心的支出報告
+## <a name="view-your-payout-reports-in-dev-center"></a>View your payout reports in Dev Center
 
-每季支出報告會記錄當季發生的所有交易。
+The payout report for each quarter records all transactions that occurred within that quarter.
 
-- 保留的數量表示在近期付款週期外產生的任何付款 (例如，此金額會移到下個月的近期付款)。這個金額通常是 $0 (除非客戶已提前付款)。
-- 按一下 [預定付款] 或 [最近的付款] 的 [檢視詳細資料] 連結，查看這些支出的相關注意事項。
-- 按一下 [付款結算] 來檢視應用程式/產品收益的詳細資料。
-- 按一下 [檢視] 連結來查看個別的結算。
+- The Reserved amount indicates any payments that are accruing outside of the upcoming payment cycle (e.g. this amount will move to upcoming payment the following month).  This amount will typically be $0 (unless a customer pays well in advance).
+- Click on the Upcoming payment or Most recent payment **View details** links to see a note about those payouts.
+- Click on **Payment Statements** to view the details under proceeds by app/product.
+- Click on the **View** link to see individual statements.
 
     ![PayoutSummaryUpcomingMostRecentLinksStatement][3]
 
-- 使用個別結算底部的 [收益明細] 篩選器，檢視多個應用程式/產品 (如果存在的話)。
+- Use the **Proceeds Breakdown** filter at the bottom of the individual statement to view multiple apps/products if they exist.
 
     ![PayoutSummaryPaymentStatementsFilterControl][4]
 
 
 
-## 檢視發佈入口網站的支出報告
-每季支出報告會記錄當季發生的所有交易。
+## <a name="view-your-payout-reports-in-publishing-portal"></a>View your payout reports in Publishing Portal
+The payout report for each quarter records all transactions that occurred within that quarter.
 
-1. 瀏覽至發佈入口網站 (https://publish.windowsazure.com)。
-2. 從 [發行者] 區段，按一下 [支出報告]。
-3. 按一下下拉式清單，以顯示所有可用的每季支出報告。
+1. Navigate to the publishing portal at https://publish.windowsazure.com.
+2. From the **Publishers** section, click **Payout Reports**.
+3. Click the drop-down to display all available quarterly payout reports.
 
     ![accessingpayoutreport][5]
 
 
-### 讀取您的支出報告
+### <a name="read-your-payout-reports"></a>Read your payout reports
 
-每季支出報告會記錄當季發生的所有交易。
+The payout report for each quarter records all transactions that occurred within that quarter.
 
-- 如果您要尋找與特定一季相關的分類帳目，請從下拉式清單中選取該季的支出報告。例如，如果您對 2015 年 4 月到 6 月的分類帳目有興趣，請從下拉式清單中選取該日期範圍。
-- 如果您要尋找與特定一季相關的支出詳細資料，請從下拉式清單中選取該季的支出報告。例如，如果您對 2015 年 4 月到 6 月的支出有興趣，這些金額會顯示在隨後的 2015 年 7 月到 9 月支出報告中。![readingpayoutreport][6]
+- If you are looking for ledger entries that relate to a particular quarter, select the payout report for that quarter from the drop-down. For example, if you are interested in ledger entries for April to June 2015, select that date range from the drop-down.
+- If you are looking for details of payouts that relate to a particular quarter, select the payout report for the subsequent quarter. For example, if you are interested in the payouts for April to June 2015, these amounts will appear in the subsequent payout report for July to September 2015.
+![readingpayoutreport][6]
 
-- [財務摘要面板] 會依類別顯示餘額、貸方和借方。
-- [分類帳目] 會顯示個別的交易。
+- The financial summary panel shows balances, credits, and debits by category.
+- Ledger entries show individual transactions.
 
-## 定義
+## <a name="definitions"></a>Definitions
 
-**財務摘要面板：**
+**Financial summary panel:**
 
 ![financialdefinitions][7]
 
-**分類帳目：**
+**Ledger entries:**
 
 ![ledgerdefinitions][8]
 
-## 支出問題
+## <a name="payout-questions"></a>Payout questions
 
-如果您對您的支出有任何問題，請連絡我們的支援團隊。
+If you have a question related to your payouts, contact our support team.
 
 ![payoutquestions][9]
 
-1. 瀏覽至 [支援] 頁面。
-2. 選取 [支出]。
-3. 選取 [支出相關查詢]。
-4. 按一下 [提出要求]。
+1. Navigate to the support pages.
+2. Select **Payouts**.
+3. Select **Payout related inquiries**.
+4. Click **Start request**.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若是其他支援查詢，請至 <https://portal.azure.com> 記錄問題。
+For other support queries, please log an issue at <https://portal.azure.com>.
 
 [1]: ./media/marketplace-publishing-report-payout/LandingPage-DashboardHighlight.png
 [2]: ./media/marketplace-publishing-report-payout/Dashboard-PayoutSummary.png
@@ -116,4 +118,8 @@
 [8]: ./media/marketplace-publishing-report-payout/ledgerdefinitions.png
 [9]: ./media/marketplace-publishing-report-payout/payoutquestions.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

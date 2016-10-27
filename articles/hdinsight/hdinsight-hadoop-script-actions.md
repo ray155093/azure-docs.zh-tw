@@ -1,315 +1,318 @@
 <properties
-	pageTitle="使用 HDInsight 開發指令碼動作| Microsoft Azure"
-	description="了解如何使用指令碼動作來自訂 Hadoop 叢集。"
-	services="hdinsight"
-	documentationCenter=""
-	tags="azure-portal"
-	authors="mumian"
-	manager="jhubbard"
-	editor="cgronlun"/>
+    pageTitle="Script Action development with HDInsight | Microsoft Azure"
+    description="Learn how to customize Hadoop clusters with Script Action."
+    services="hdinsight"
+    documentationCenter=""
+    tags="azure-portal"
+    authors="mumian"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="hdinsight"
-	ms.workload="big-data"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/25/2016"
-	ms.author="jgao"/>
+    ms.service="hdinsight"
+    ms.workload="big-data"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/25/2016"
+    ms.author="jgao"/>
 
-# 開發 HDInsight 的指令碼動作指令碼
 
-了解如何寫入 HDInsight 的指令碼動作指令碼如需使用指令碼動作指令碼的資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md)。如需針對 Linux 型 HDInsight 叢集撰寫的相同文章，請參閱 [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions-linux.md)。
+# <a name="develop-script-action-scripts-for-hdinsight"></a>Develop Script Action scripts for HDInsight
 
-指令碼動作可用來安裝其他在 Hadoop 叢集上執行的軟體，或變更叢集上所安裝應用程式的組態。指令碼動作是在部署 HDInsight 叢集時，在叢集節點上執行的指令碼，一旦叢集中的節點完成 HDInsight 組態之後，就會執行這些指令碼動作。指令碼動作是依據系統管理員帳戶的權限來執行，並具有叢集節點的完整存取權限。您可對每個叢集提供一份依其指定順序來執行的指令碼動作清單。
+Learn how to write Script Action scripts for HDInsight. For information on using Script Action scripts, see [Customize HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster.md). For the same article written for Linux-based HDInsight clusters, see [Develop Script Action scripts for HDInsight](hdinsight-hadoop-script-actions-linux.md).
 
-> [AZURE.NOTE] 如果看見下列錯誤訊息：
+Script Action can be used to install additional software running on a Hadoop cluster or to change the configuration of applications installed on a cluster. Script actions are scripts that run on the cluster nodes when HDInsight clusters are deployed, and they are executed once nodes in the cluster complete HDInsight configuration. A script action is executed under system admin account privileges and provides full access rights to the cluster nodes. Each cluster can be provided with a list of script actions to be executed in the order in which they are specified. 
+
+> [AZURE.NOTE] If you experience the following error message: 
 > 
 >     System.Management.Automation.CommandNotFoundException; ExceptionMessage : The term 'Save-HDIFile' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
-> 這是因為您沒有包括協助程式方法。請參閱[自訂指令碼的協助程式方法](hdinsight-hadoop-script-actions.md#helper-methods-for-custom-scripts)。
+> It is because you didn't include the helper methods.  See [Helper methods for custom scripts](hdinsight-hadoop-script-actions.md#helper-methods-for-custom-scripts).
 
-## 範例指令碼
+## <a name="sample-scripts"></a>Sample scripts
 
-針對在 Windows 作業系統上建立 HDInsight 叢集，指令碼動作是 Azure PowerShell 指令碼。以下是設定網站組態檔的範例指令碼：
+For creating HDInsight clusters on Windows operating system, the Script Action is Azure PowerShell script.The following is a sample script for configure the site configuration files:
 
 [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-	param (
-	    [parameter(Mandatory)][string] $ConfigFileName,
-	    [parameter(Mandatory)][string] $Name,
-	    [parameter(Mandatory)][string] $Value,
-	    [parameter()][string] $Description
-	)
+    param (
+        [parameter(Mandatory)][string] $ConfigFileName,
+        [parameter(Mandatory)][string] $Name,
+        [parameter(Mandatory)][string] $Value,
+        [parameter()][string] $Description
+    )
 
-	if (!$Description) {
-	    $Description = ""
-	}
+    if (!$Description) {
+        $Description = ""
+    }
 
-	$hdiConfigFiles = @{
-	    "hive-site.xml" = "$env:HIVE_HOME\conf\hive-site.xml";
-	    "core-site.xml" = "$env:HADOOP_HOME\etc\hadoop\core-site.xml";
-	    "hdfs-site.xml" = "$env:HADOOP_HOME\etc\hadoop\hdfs-site.xml";
-	    "mapred-site.xml" = "$env:HADOOP_HOME\etc\hadoop\mapred-site.xml";
-	    "yarn-site.xml" = "$env:HADOOP_HOME\etc\hadoop\yarn-site.xml"
-	}
+    $hdiConfigFiles = @{
+        "hive-site.xml" = "$env:HIVE_HOME\conf\hive-site.xml";
+        "core-site.xml" = "$env:HADOOP_HOME\etc\hadoop\core-site.xml";
+        "hdfs-site.xml" = "$env:HADOOP_HOME\etc\hadoop\hdfs-site.xml";
+        "mapred-site.xml" = "$env:HADOOP_HOME\etc\hadoop\mapred-site.xml";
+        "yarn-site.xml" = "$env:HADOOP_HOME\etc\hadoop\yarn-site.xml"
+    }
 
-	if (!($hdiConfigFiles[$ConfigFileName])) {
-	    Write-HDILog "Unable to configure $ConfigFileName because it is not part of the HDI configuration files."
-	    return
-	}
+    if (!($hdiConfigFiles[$ConfigFileName])) {
+        Write-HDILog "Unable to configure $ConfigFileName because it is not part of the HDI configuration files."
+        return
+    }
 
-	[xml]$configFile = Get-Content $hdiConfigFiles[$ConfigFileName]
+    [xml]$configFile = Get-Content $hdiConfigFiles[$ConfigFileName]
 
-	$existingproperty = $configFile.configuration.property | where {$_.Name -eq $Name}
+    $existingproperty = $configFile.configuration.property | where {$_.Name -eq $Name}
 
-	if ($existingproperty) {
-	    $existingproperty.Value = $Value
-	    $existingproperty.Description = $Description
-	} else {
-	    $newproperty = @($configFile.configuration.property)[0].Clone()
-	    $newproperty.Name = $Name
-	    $newproperty.Value = $Value
-	    $newproperty.Description = $Description
-	    $configFile.configuration.AppendChild($newproperty)
-	}
+    if ($existingproperty) {
+        $existingproperty.Value = $Value
+        $existingproperty.Description = $Description
+    } else {
+        $newproperty = @($configFile.configuration.property)[0].Clone()
+        $newproperty.Name = $Name
+        $newproperty.Value = $Value
+        $newproperty.Description = $Description
+        $configFile.configuration.AppendChild($newproperty)
+    }
 
-	$configFile.Save($hdiConfigFiles[$ConfigFileName])
+    $configFile.Save($hdiConfigFiles[$ConfigFileName])
 
-	Write-HDILog "$configFileName has been configured."
+    Write-HDILog "$configFileName has been configured."
 
-此指令碼採用四個參數，組態檔名稱、您想要修改的屬性、您要設定的值以及描述。例如：
+The script takes four parameters, the configuration file name, the property you want to modify, the value you want to set, and a description. For example:
 
-	hive-site.xml hive.metastore.client.socket.timeout 90 
+    hive-site.xml hive.metastore.client.socket.timeout 90 
 
-這些參數會在 hive-site.xml 檔案中將 hive.metastore.client.socket.timeout 值設定為 90。預設值為 60 秒。
+These parameters will set the hive.metastore.client.socket.timeout value to 90 in the hive-site.xml file.  The default value is 60 seconds.
 
-此範例指令碼位於 [https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1](https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1)。
+This sample script can also be found at [https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1](https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1). 
 
-HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
+HDInsight provides several scripts to install additional components on HDInsight clusters:
 
-名稱 | 指令碼
+Name | Script
 ----- | -----
-**安裝 Spark** | https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1。請參閱[在 HDInsight 叢集上安裝及使用 Spark][hdinsight-install-spark]。
-**安裝 R** | https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1。請參閱[在 HDInsight 叢集上安裝及使用 R][hdinsight-r-scripts]。
-**安裝 Solr** | https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1。請參閱[在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install.md)。
-- **安裝 Giraph** | https://hdiconfigactions.blob.core.windows.net/giraphconfigactionv01/giraph-installer-v01.ps1。請參閱[在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install.md)。
+**Install Spark** | https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1. See [Install and use Spark on HDInsight clusters][hdinsight-install-spark].
+**Install R** | https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1. See [Install and use R on HDInsight clusters][hdinsight-r-scripts].
+**Install Solr** | https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1. See [Install and use Solr on HDInsight clusters](hdinsight-hadoop-solr-install.md).
+- **Install Giraph** | https://hdiconfigactions.blob.core.windows.net/giraphconfigactionv01/giraph-installer-v01.ps1. See [Install and use Giraph on HDInsight clusters](hdinsight-hadoop-giraph-install.md).
 
-您可以從 Azure 入口網站、Azure PowerShell 或使用 HDInsight .NET SDK 來部署「指令碼動作」。如需詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]。
+Script Action can be deployed from the Azure Portal, Azure PowerShell or by using the HDInsight .NET SDK.  For more information, see [Customize HDInsight clusters using Script Action][hdinsight-cluster-customize].
 
-> [AZURE.NOTE] 範例指令碼只能與 HDInsight 叢集版本 3.1 或更高版本搭配使用。如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
-
-
+> [AZURE.NOTE] The sample scripts work only with HDInsight cluster version 3.1 or above. For more information on HDInsight cluster versions, see [HDInsight cluster versions](hdinsight-component-versioning.md).
 
 
 
-## 自訂指令碼的協助程式方法
 
-指令碼動作協助程式方法是您在撰寫字訂指令碼時可以使用的公用程式。這些協助程式方法是在 [https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1](https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1) 中定義，並且可以使用以下指令碼包含至您的指令碼中：
+
+## <a name="helper-methods-for-custom-scripts"></a>Helper methods for custom scripts
+
+Script Action helper methods are utilities that you can use while writing custom scripts. These are defined in [https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1](https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1), and can be included in your scripts using the following:
 
     # Download config action module from a well-known directory.
-	$CONFIGACTIONURI = "https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1";
-	$CONFIGACTIONMODULE = "C:\apps\dist\HDInsightUtilities.psm1";
-	$webclient = New-Object System.Net.WebClient;
-	$webclient.DownloadFile($CONFIGACTIONURI, $CONFIGACTIONMODULE);
-	
-	# (TIP) Import config action helper method module to make writing config action easy.
-	if (Test-Path ($CONFIGACTIONMODULE))
-	{ 
-		Import-Module $CONFIGACTIONMODULE;
-	} 
-	else
-	{
-		Write-Output "Failed to load HDInsightUtilities module, exiting ...";
-		exit;
-	}
+    $CONFIGACTIONURI = "https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1";
+    $CONFIGACTIONMODULE = "C:\apps\dist\HDInsightUtilities.psm1";
+    $webclient = New-Object System.Net.WebClient;
+    $webclient.DownloadFile($CONFIGACTIONURI, $CONFIGACTIONMODULE);
+    
+    # (TIP) Import config action helper method module to make writing config action easy.
+    if (Test-Path ($CONFIGACTIONMODULE))
+    { 
+        Import-Module $CONFIGACTIONMODULE;
+    } 
+    else
+    {
+        Write-Output "Failed to load HDInsightUtilities module, exiting ...";
+        exit;
+    }
 
-以下是這個指令碼提供的協助程式方法：
+Here are the helper methods that are provided by this script:
 
-協助程式方法 | 說明
+Helper method | Description
 -------------- | -----------
-**Save-HDIFile** | 從指定的統一資源識別項 (URI) 將檔案下載到與指派給叢集的 Azure VM 節點相關聯的本機磁碟位置。
-**Expand-HDIZippedFile** | 將壓縮檔解壓縮。
-**Invoke-HDICmdScript** | 從 cmd.exe 執行指令碼。
-**Write-HDILog** | 撰寫用於指令碼動作之自訂指令碼的輸出。
-**Get-Services** | 取得執行指令碼的機器上所執行之服務的清單。
-**Get-Service** | 輸入特定服務名稱，來取得執行指令碼的機器上特定服務的詳細資訊 (服務名稱、處理序識別碼、狀態等)。
-**Get-HDIServices** | 取得執行指令碼的電腦上所執行之 HDInsight 服務的清單。
-**Get-HDIService** | 輸入特定 HDInsight 服務名稱，來取得執行指令碼的機器上特定服務的詳細資訊 (服務名稱、處理序識別碼、狀態等)。
-**Get-ServicesRunning** | 取得執行指令碼的電腦上所執行之服務的清單。
-**Get-ServiceRunning** | 檢查執行指令碼的電腦上是否在執行特定服務 (依名稱)。
-**Get-HDIServicesRunning** | 取得執行指令碼的電腦上所執行之 HDInsight 服務的清單。
-**Get-HDIServiceRunning** | 檢查執行指令碼的電腦上是否在執行特定 HDInsight 服務 (依名稱)。
-**Get-HDIHadoopVersion** | 取得執行指令碼的電腦上所安裝的 Hadoop 版本。
-**Test-IsHDIHeadNode** | 檢查執行指令碼的電腦是否為前端節點。
-**Test-IsActiveHDIHeadNode** | 檢查執行指令碼的電腦是否為作用中前端節點。
-**Test-IsHDIDataNode** | 檢查執行指令碼的電腦是否為資料節點。
-**Edit-HDIConfigFile** | 編輯組態檔 hive-site.xml、core-site.xml、hdfs-site.xml、mapred-site.xml 或 yarn-site.xml。
+**Save-HDIFile** | Download a file from the specified Uniform Resource Identifier (URI) to a location on the local disk that is associated with the Azure VM node assigned to the cluster.
+**Expand-HDIZippedFile** | Unzip a zipped file.
+**Invoke-HDICmdScript** | Run a script from cmd.exe.
+**Write-HDILog** | Write output from the custom script used for a script action.
+**Get-Services** | Get a list of services running on the machine where the script executes.
+**Get-Service** | With the specific service name as input, get detailed information for a specific service (service name, process ID, state, etc.) on the machine where the script executes.
+**Get-HDIServices** | Get a list of HDInsight services running on the computer where the script executes.
+**Get-HDIService** | With the specific HDInsight service name as input, get detailed information for a specific service (service name, process ID, state, etc.) on the machine where the script executes.
+**Get-ServicesRunning** | Get a list of services that are running on the computer where the script executes.
+**Get-ServiceRunning** | Check if a specific service (by name) is running on the computer where the script executes.
+**Get-HDIServicesRunning** | Get a list of HDInsight services running on the computer where the script executes.
+**Get-HDIServiceRunning** | Check if a specific HDInsight service (by name) is running on the computer where the script executes.
+**Get-HDIHadoopVersion** | Get the version of Hadoop installed on the computer where the script executes.
+**Test-IsHDIHeadNode** | Check if the computer where the script executes is a head node.
+**Test-IsActiveHDIHeadNode** | Check if the computer where the script executes is an active head node.
+**Test-IsHDIDataNode** | Check if the computer where the script executes is a data node.
+**Edit-HDIConfigFile** | Edit the config files hive-site.xml, core-site.xml, hdfs-site.xml, mapred-site.xml, or yarn-site.xml.
 
 
-## 指令碼開發的最佳做法
+## <a name="best-practices-for-script-development"></a>Best practices for script development
 
-為 HDInsight 叢集開發自訂的指令碼時，有數個最佳做法需要牢記在心：
+When you develop a custom script for an HDInsight cluster, there are several best practices to keep in mind:
 
-- 檢查 Hadoop 版本
+- Check for the Hadoop version
 
-	只有 HDInsight 3.1 版 (Hadoop 2.4) 和以上版本才支援使用指令碼動作在叢集上安裝自訂元件。在自訂指令碼中，您必須使用 **Get-HDIHadoopVersion** 協助程式方法，先檢查 Hadoop 的版本，再繼續執行指令碼中的其他工作。
-
-
-- 提供穩定的指令碼資源連結
-
-	使用者應該確定在叢集的整個存留期間，於叢集自訂中使用的所有指令碼及其他構件都保持可用，並且這些檔案的版本在此持續時間內不會變更。如需為叢集中的節點重新製作映像，就必須有這些資源。最佳做法是下載並封存使用者所控制之儲存體帳戶中的所有項目。這可以是預設的儲存體帳戶，或是在部署時為自訂叢集指定的任何其他儲存體帳戶。例如，在文件中所提供的 Spark 和 R 自訂叢集範例中，我們已經在本機複製一份此儲存體帳戶中的資源：https://hdiconfigactions.blob.core.windows.net/。
+    Only HDInsight version 3.1 (Hadoop 2.4) and above support using Script Action to install custom components on a cluster. In your custom script, you must use the **Get-HDIHadoopVersion** helper method to check the Hadoop version before proceeding with performing other tasks in the script.
 
 
-- 確保叢集自訂指令碼具有等冪性
+- Provide stable links to script resources
 
-	您必須預期在叢集存留期間將會為 HDInsight 叢集的節點重新製作映像。每當重新製作叢集映像時，都會執行叢集自訂指令碼。此指令碼必須設計成具有等冪性，意思就是在重新製作映像時，此指令碼應該確保叢集會回到與當初建立叢集時，指令碼剛剛第一次執行後相同的自訂狀態。例如，如果自訂指令碼在第一次執行時，在 D:\\AppLocation 中安裝了某個應用程式，則在後續每次的執行中，當重新製作映像時，此指令碼應該先檢查 D:\\AppLocation 位置中是否有該應用程式，再繼續執行指令碼中的其他步驟。
-
-
-- 在最佳位置安裝自訂元件
-
-	重新製作叢集節點映像時，C:\\ 資源磁碟機和 D:\\ 系統磁碟機可能被重新格式化，而導致資料及安裝在這些磁碟機上的應用程式遺失。如果隸屬於叢集的 Azure 虛擬機器 (VM) 節點故障，而被新節點取代時，也可能發生這種情況。您可以將元件安裝在 D:\\ 磁碟機上，或叢集上的 C:\\apps 位置中。C:\\ 磁碟機上的所有其他位置則已預留他用。請在叢集自訂指令碼中指定要用來安裝應用程式或程式庫的位置。
+    Users should make sure that all of the scripts and other artifacts used in the customization of a cluster remain available throughout the lifetime of the cluster and that the versions of these files do not change for the duration. These resources are required if the re-imaging of nodes in the cluster is required. The best practice is to download and archive everything in a Storage account that the user controls. This can be the default Storage account or any of the additional Storage accounts specified at the time of deployment for a customized cluster.
+    In the Spark and R customized cluster samples provided in the documentation, for example, we have made a local copy of the resources in this Storage account: https://hdiconfigactions.blob.core.windows.net/.
 
 
-- 確保叢集架構具有高可用性
+- Ensure that the cluster customization script is idempotent
 
-	為了獲得高可用性，HDInsight 具備主動/被動架構，在此架構中，有一個處於使用中模式的前端節點 (此節點正在執行 HDInsight 服務)，以及另一個處於待命模式的前端節點 (此節點未執行 HDInsight 服務)。如果 HDInsight 服務中斷，這兩個節點就會切換主動和被動模式。如果為了獲得高可用性，而使用指令碼動作在這兩個前端節點安裝服務，請注意 HDInsight 的容錯移轉機制並無法自動容錯移轉這些由使用者所安裝的服務。因此使用者在 HDInsight 前端節點上所安裝的服務若想要有高可用性，則必須有自己的主動/被動模式時的容錯移轉機制，或是處於主動/被動模式。
-
-	已在 *ClusterRoleCollection* 參數中以指定前端節點角色做為值時，HDInsight 指令碼動作命令會同時在這兩個前端節點上執行。因此，當您設計自訂指令碼時，請確定您的指令碼知道這項設定。您不應該發生在這兩個前端節點上安裝並啟動相同的服務，而最終導致彼此競爭的問題。此外也請注意，重新製作映像時，資料將會遺失，因此透過指令碼動作所安裝的軟體必須要能夠從這類事件復原。應用程式在設計上應該要能夠與分散在眾多節點上的高可用性資料搭配運作。請注意，最多可同時為叢集中 1/5 的節點重新製作映像。
+    You must expect that the nodes of an HDInsight cluster will be re-imaged during the cluster lifetime. The cluster customization script is run whenever a cluster is re-imaged. This script must be designed to be idempotent in the sense that upon re-imaging, the script should ensure that the cluster is returned to the same customized state that it was in just after the script ran for the first time when the cluster was initially created. For example, if a custom script installed an application at D:\AppLocation on its first run, then on each subsequent run, upon re-imaging, the script should check whether the application exists at the D:\AppLocation location before proceeding with other steps in the script.
 
 
-- 設定自訂元件來使用 Azure Blob 儲存體
+- Install custom components in the optimal location
 
-	您安裝在叢集節點上的自訂元件可能有使用 Hadoop 分散式檔案系統 (HDFS) 儲存體的預設組態。您應該變更此組態，使其改為使用 Azure Blob 儲存體。在重新製作叢集映像時，會格式化 HDFS 檔案系統，因此您會遺失儲存在其中的所有資料。改用 Azure Blob 儲存體可確保資料保留下來。
+    When cluster nodes are re-imaged, the C:\ resource drive and D:\ system drive can be re-formatted, resulting in the loss of data and applications that had been installed on those drives. This could also happen if an Azure virtual machine (VM) node that is part of the cluster goes down and is replaced by a new node. You can install components on the D:\ drive or in the C:\apps location on the cluster. All other locations on the C:\ drive are reserved. Specify the location where applications or libraries are to be installed in the cluster customization script.
 
-## 常見使用模式
 
-本節指引您如何實作某些撰寫自訂指令碼時可能遇到的常見使用模式。
+- Ensure high availability of the cluster architecture
 
-### 設定環境變數
+    HDInsight has an active-passive architecture for high availability, in which one head node is in active mode (where the HDInsight services are running) and the other head node is in standby mode (in which HDInsight services are not running). The nodes switch active and passive modes if HDInsight services are interrupted. If a script action is used to install services on both head nodes for high availability, note that the HDInsight failover mechanism will not be able to automatically fail over these user-installed services. So user-installed services on HDInsight head nodes that are expected to be highly available must either have their own failover mechanism if in active-passive mode or be in active-active mode.
 
-在開發指令碼動作時，您往往會感到需要設定環境變數。例如，最可能的案例是當您從外部網站下載二進位檔，將它安裝在叢集上，然後將其安裝位置加入 ‘PATH’ 環境變數中。下列程式碼片段顯示如何在自訂指令碼中設定環境變數。
+    An HDInsight Script Action command runs on both head nodes when the head-node role is specified as a value in the *ClusterRoleCollection* parameter. So when you design a custom script, make sure that your script is aware of this setup. You should not run into problems where the same services are installed and started on both of the head nodes and they end up competing with each other. Also, be aware that data will be lost during re-imaging, so software installed via Script Action has to be resilient to such events. Applications should be designed to work with highly available data that is distributed across many nodes. Note that as many as 1/5 of the nodes in a cluster can be re-imaged at the same time.
 
-	Write-HDILog "Starting environment variable setting at: $(Get-Date)";
-	[Environment]::SetEnvironmentVariable('MDS_RUNNER_CUSTOM_CLUSTER', 'true', 'Machine');
 
-此陳述式將環境變數 **MDS\_RUNNER\_CUSTOM\_CLUSTER** 設為 'true' 值，並將此變數的範圍設為整個機器。有時候您必須將環境變數設定在適當範圍 – 機器或使用者。如需設定環境變數的詳細資訊，請參閱[這裡][1]。
+- Configure the custom components to use Azure Blob storage
 
-### 存取自訂指令碼儲存所在位置
+    The custom components that you install on the cluster nodes might have a default configuration to use Hadoop Distributed File System (HDFS) storage. You should change the configuration to use Azure Blob storage instead. On a cluster re-image, the HDFS file system gets formatted and you would lose any data that is stored there. Using Azure Blob storage instead ensures that your data will be retained.
 
-用來自訂叢集的指令碼必須位於叢集的預設儲存體帳戶，或是位於其他任何儲存體帳戶上的公用唯讀容器。如果指令碼存取位於他處的資源，則這些資源必須是可公開存取的資源 (至少是公用唯讀狀態)。例如，您可能會想要用 SaveFile-HDI 命令存取檔案並加以儲存。
+## <a name="common-usage-patterns"></a>Common usage patterns
 
-	Save-HDIFile -SrcUri 'https://somestorageaccount.blob.core.windows.net/somecontainer/some-file.jar' -DestFile 'C:\apps\dist\hadoop-2.4.0.2.1.9.0-2196\share\hadoop\mapreduce\some-file.jar'
+This section provides guidance on implementing some of the common usage patterns that you might run into while writing your own custom script.
 
-在此範例中，您必須確定儲存體帳戶 'somestorageaccount' 中的容器 'somecontainer' 可公開存取。否則，指令碼將會擲回「找不到」例外狀況而且失敗。
+### <a name="configure-environment-variables"></a>Configure environment variables
 
-### 傳遞參數到 Add-AzureRmHDInsightScriptAction Cmdlet
+Often in script action development, you will feel the need to set environment variables. For instance, a most likely scenario is when you download a binary from an external site, install it on the cluster, and add the location of where it is installed to your ‘PATH’ environment variable. The following snippet shows you how to set environment variables in the custom script.
 
-若要將多個參數傳遞至 Add-AzureRmHDInsightScriptAction cmdlet，您必須先格式化字串值以包含指令碼的所有參數。例如：
+    Write-HDILog "Starting environment variable setting at: $(Get-Date)";
+    [Environment]::SetEnvironmentVariable('MDS_RUNNER_CUSTOM_CLUSTER', 'true', 'Machine');
 
-	"-CertifcateUri wasbs:///abc.pfx -CertificatePassword 123456 -InstallFolderName MyFolder"
+This statement sets the environment variable **MDS_RUNNER_CUSTOM_CLUSTER** to the value 'true' and also sets the scope of this variable to be machine-wide. At times it is important that environment variables are set at the appropriate scope – machine or user. Refer [here][1] for more information on setting environment variables.
+
+### <a name="access-to-locations-where-the-custom-scripts-are-stored"></a>Access to locations where the custom scripts are stored
+
+Scripts used to customize a cluster needs to either be in the default storage account for the cluster or in a public read-only container on any other storage account. If your script accesses resources located elsewhere these need to be in a publicly accessible (at least public read-only). For instance you might want to access a file and save it using the SaveFile-HDI command.
+
+    Save-HDIFile -SrcUri 'https://somestorageaccount.blob.core.windows.net/somecontainer/some-file.jar' -DestFile 'C:\apps\dist\hadoop-2.4.0.2.1.9.0-2196\share\hadoop\mapreduce\some-file.jar'
+
+In this example, you must ensure that the container 'somecontainer' in storage account 'somestorageaccount' is publicly accessible. Otherwise, the script will throw a ‘Not Found’ exception and fail.
+
+### <a name="pass-parameters-to-the-add-azurermhdinsightscriptaction-cmdlet"></a>Pass parameters to the Add-AzureRmHDInsightScriptAction cmdlet
+
+To pass multiple parameters to the Add-AzureRmHDInsightScriptAction cmdlet, you need to format the string value to contain all parameters for the script. For example:
+
+    "-CertifcateUri wasbs:///abc.pfx -CertificatePassword 123456 -InstallFolderName MyFolder"
  
-或
+or
 
-	$parameters = '-Parameters "{0};{1};{2}"' -f $CertificateName,$certUriWithSasToken,$CertificatePassword
-
-
-### 對於失敗的叢集部署擲回例外狀況
-
-如果您想要在叢集自訂程序未如預料般成功時準確收到通知，請務必擲回例外狀況並將叢集建立作業判定為失敗。例如，您可能會想要在檔案存在時予以進行處理，並處理檔案不存在時的錯誤狀況。此做法可確保指令碼正常結束，並正確得知叢集的狀態。下列程式碼片段示範如何實現此一目的：
-
-	If(Test-Path($SomePath)) {
-		#Process file in some way
-	} else {
-		# File does not exist; handle error case
-		# Print error message
-	exit
-	}
-
-在此程式碼片段中，如果檔案不存在，則會導致指令碼在列印錯誤訊息後確實正常結束的狀態，而叢集會達到執行中狀態 (前提是它「成功」完成叢集自訂程序)。如果您要精確地獲知叢集自訂作業因為遺漏檔案而未如預期般成功的事實，就更適合擲回例外狀況並使叢集自訂步驟失敗。若要達到這個目的，您必須改用下列範例程式碼片段。
-
-	If(Test-Path($SomePath)) {
-		#Process file in some way
-	} else {
-		# File does not exist; handle error case
-		# Print error message
-	throw
-	}
+    $parameters = '-Parameters "{0};{1};{2}"' -f $CertificateName,$certUriWithSasToken,$CertificatePassword
 
 
-## 指令碼動作的部署檢查清單
-以下是我們在準備部署這些指令碼時所採取的步驟：
+### <a name="throw-exception-for-failed-cluster-deployment"></a>Throw exception for failed cluster deployment
 
-1. 將包含自訂指令碼的檔案放在叢集節點可於部署期間存取的位置。此位置可以是部署叢集時所指定的預設或其他儲存體帳戶，或是其他任何可公開存取的儲存體容器。
-2. 在指令碼中加入檢查以確定它們以等冪方式執行，使得指令碼可以在相同的節點上執行多次。
-3. 使用 **Write-Output** Azure PowerShell Cmdlet 來列印至 STDOUT 以及 STDERR。請勿使用 **Write-Host**。
-4. 使用暫存檔案資料夾 (例如 $env:TEMP) 來存放指令碼所使用的下載檔案，然後在執行完指令碼之後將這些檔案清除。
-5. 安裝自訂軟體，位置只能是 D:\\ 或 C:\\apps。不應該使用 C: 磁碟機上的其他位置，因為它們已預留他用。請注意，如果將檔案安裝在 C: 磁碟機上 C:\\apps 資料夾以外的位置，可能會導致在重新製作節點映像期間設定失敗。
-6. 如果作業系統層級設定或 Hadoop 服務組態檔已變更，您可能會想要重新啟動 HDInsight 服務，讓它們可以載入任何作業系統層級設定，例如指令碼中設定的環境變數。
+If you want to get accurately notified of the fact that cluster customization did not succeed as expected, it is important to throw an exception and fail the cluster creation. For instance, you might want to process a file if it exists and handle the error case where the file does not exist. This would ensure that the script exits gracefully and the state of the cluster is correctly known. The following snippet gives an example of how to achieve this:
 
-## 偵錯自訂指令碼
+    If(Test-Path($SomePath)) {
+        #Process file in some way
+    } else {
+        # File does not exist; handle error case
+        # Print error message
+    exit
+    }
 
-指令碼錯誤記錄檔會與其他輸出一起儲存在您建立叢集時為其指定的預設儲存體帳戶中。記錄檔是以 *u<\\cluster-name-fragment><\\time-stamp>setuplog* 的名稱儲存在資料表中。這些是彙總的記錄檔，包含來自指令碼執行所在之所有叢集節點 (前端節點和背景工作節點) 的記錄。檢查記錄檔的簡單方法是使用 HDInsight Tools for Visual Studio。如需安裝工具，請參閱[開始使用 Visual Studio Hadoop tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md#install-hdinsight-tools-for-visual-studio)
+In this snippet, if the file did not exist, it would lead to a state where the script actually exits gracefully after printing the error message, and the cluster reaches running state assuming it "successfully" completed cluster customization process. If you want to be accurately notified of the fact that cluster customization essentially did not succeed as expected because of a missing file, it is more appropriate to throw an exception and fail the cluster customization step. To achieve this you must use the following sample code snippet instead.
 
-**使用 Visual Studio 檢查記錄檔**
-
-1. 開啟 Visual Studio。
-2. 按一下 [檢視]，然後按一下 [伺服器總管]。
-3. 以滑鼠右鍵按一下 [Azure]、按一下 [連接到 Microsoft Azure 訂用帳戶]，然後輸入您的認證。
-4. 依序展開**儲存體**、做為預設檔案系統的 Azure 儲存體帳戶及**資料表**，然後按兩下資料表名稱。
-
-
-您也可以遠端登入到叢集節點以查看 STDOUT 和 STDERR 中的自訂指令碼。每個節點上的記錄檔都只與該節點有關，並且會記錄到 **C:\\HDInsightLogs\\DeploymentAgent.log**。這些記錄檔會記錄自訂指令碼的所有輸出。Spark 指令碼動作的範例記錄程式碼片段看起來像這樣：
-
-	Microsoft.Hadoop.Deployment.Engine.CustomPowershellScriptCommand; Details : BEGIN: Invoking powershell script https://configactions.blob.core.windows.net/sparkconfigactions/spark-installer.ps1.;
-	Version : 2.1.0.0;
-	ActivityId : 739e61f5-aa22-4254-aafc-9faf56fc2692;
-	AzureVMName : HEADNODE0;
-	IsException : False;
-	ExceptionType : ;
-	ExceptionMessage : ;
-	InnerExceptionType : ;
-	InnerExceptionMessage : ;
-	Exception : ;
-	...
-
-	Starting Spark installation at: 09/04/2014 21:46:02 Done with Spark installation at: 09/04/2014 21:46:38;
-
-	Version : 2.1.0.0;
-	ActivityId : 739e61f5-aa22-4254-aafc-9faf56fc2692;
-	AzureVMName : HEADNODE0;
-	IsException : False;
-	ExceptionType : ;
-	ExceptionMessage : ;
-	InnerExceptionType : ;
-	InnerExceptionMessage : ;
-	Exception : ;
-	...
-
-	Microsoft.Hadoop.Deployment.Engine.CustomPowershellScriptCommand;
-	Details : END: Invoking powershell script https://configactions.blob.core.windows.net/sparkconfigactions/spark-installer.ps1.;
-	Version : 2.1.0.0;
-	ActivityId : 739e61f5-aa22-4254-aafc-9faf56fc2692;
-	AzureVMName : HEADNODE0;
-	IsException : False;
-	ExceptionType : ;
-	ExceptionMessage : ;
-	InnerExceptionType : ;
-	InnerExceptionMessage : ;
-	Exception : ;
+    If(Test-Path($SomePath)) {
+        #Process file in some way
+    } else {
+        # File does not exist; handle error case
+        # Print error message
+    throw
+    }
 
 
-在此記錄中，清楚指出已經在名為 HEADNODE0 的 VM 上執行 Spark 指令碼動作，並且在執行期間沒有擲回任何例外狀況。
+## <a name="checklist-for-deploying-a-script-action"></a>Checklist for deploying a script action
+Here are the steps we took when preparing to deploy these scripts:
 
-如果發生執行失敗的情況，描述它的輸出也會包含在這個記錄檔中。對可能發生的指令碼問題進行偵錯時，這些記錄檔中提供的資訊應該很有幫助。
+1. Put the files that contain the custom scripts in a place that is accessible by the cluster nodes during deployment. This can be any of the default or additional Storage accounts specified at the time of cluster deployment, or any other publicly accessible storage container.
+2. Add checks into scripts to make sure that they execute idempotently, so that the script can be executed multiple times on the same node.
+3. Use the **Write-Output** Azure PowerShell cmdlet to print to STDOUT as well as STDERR. Do not use **Write-Host**.
+4. Use a temporary file folder, such as $env:TEMP, to keep the downloaded file used by the scripts and then clean them up after scripts have executed.
+5. Install custom software only at D:\ or C:\apps. Other locations on the C: drive should not be used as they are reserved. Note that installing files on the C: drive outside of the C:\apps folder may result in setup failures during re-images of the node.
+6. In the event that OS-level settings or Hadoop service configuration files were changed, you may want to restart HDInsight services so that they can pick up any OS-level settings, such as the environment variables set in the scripts.
+
+## <a name="debug-custom-scripts"></a>Debug custom scripts
+
+The script error logs are stored, along with other output, in the default Storage account that you specified for the cluster at its creation. The logs are stored in a table with the name *u<\cluster-name-fragment><\time-stamp>setuplog*. These are aggregated logs that have records from all of the nodes (head node and worker nodes) on which the script runs in the cluster.
+An easy way to check the logs is to use HDInsight Tools for Visual Studio. For installing the tools, see [Get started using Visual Studio Hadoop tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md#install-hdinsight-tools-for-visual-studio)
+
+**To check the log using Visual Studio**
+
+1. Open Visual Studio.
+2. Click **View**, and then click **Server Explorer**.
+3. Right-click "Azure", click Connect to **Microsoft Azure Subscriptions**, and then enter your credentials.
+4. Expand **Storage**, expand the Azure storage account used as the default file system, expand **Tables**, and then double-click the table name.
 
 
-## 另請參閱
+You can also remote into the cluster nodes to see the both STDOUT and STDERR for custom scripts. The logs on each node are specific only to that node and are logged into **C:\HDInsightLogs\DeploymentAgent.log**. These log files record all outputs from the custom script. An example log snippet for a Spark script action looks like this:
 
-- [使用指令碼動作來自訂 HDInsight 叢集][hdinsight-cluster-customize]
-- [在 HDInsight 叢集上安裝及使用 Spark][hdinsight-install-spark]
-- [在 HDInsight 叢集上安裝及使用 R][hdinsight-r-scripts]
-- [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install.md)。
-- [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install.md)。
+    Microsoft.Hadoop.Deployment.Engine.CustomPowershellScriptCommand; Details : BEGIN: Invoking powershell script https://configactions.blob.core.windows.net/sparkconfigactions/spark-installer.ps1.;
+    Version : 2.1.0.0;
+    ActivityId : 739e61f5-aa22-4254-aafc-9faf56fc2692;
+    AzureVMName : HEADNODE0;
+    IsException : False;
+    ExceptionType : ;
+    ExceptionMessage : ;
+    InnerExceptionType : ;
+    InnerExceptionMessage : ;
+    Exception : ;
+    ...
+
+    Starting Spark installation at: 09/04/2014 21:46:02 Done with Spark installation at: 09/04/2014 21:46:38;
+
+    Version : 2.1.0.0;
+    ActivityId : 739e61f5-aa22-4254-aafc-9faf56fc2692;
+    AzureVMName : HEADNODE0;
+    IsException : False;
+    ExceptionType : ;
+    ExceptionMessage : ;
+    InnerExceptionType : ;
+    InnerExceptionMessage : ;
+    Exception : ;
+    ...
+
+    Microsoft.Hadoop.Deployment.Engine.CustomPowershellScriptCommand;
+    Details : END: Invoking powershell script https://configactions.blob.core.windows.net/sparkconfigactions/spark-installer.ps1.;
+    Version : 2.1.0.0;
+    ActivityId : 739e61f5-aa22-4254-aafc-9faf56fc2692;
+    AzureVMName : HEADNODE0;
+    IsException : False;
+    ExceptionType : ;
+    ExceptionMessage : ;
+    InnerExceptionType : ;
+    InnerExceptionMessage : ;
+    Exception : ;
+
+
+In this log, it is clear that the Spark script action has been executed on the VM named HEADNODE0 and that no exceptions were thrown during the execution.
+
+In the event that an execution failure occurs, the output describing it will also be contained in this log file. The information provided in these logs should be helpful in debugging script problems that may arise.
+
+
+## <a name="see-also"></a>See also
+
+- [Customize HDInsight clusters using Script Action][hdinsight-cluster-customize]
+- [Install and use Spark on HDInsight clusters][hdinsight-install-spark]
+- [Install and use R on HDInsight clusters][hdinsight-r-scripts]
+- [Install and use Solr on HDInsight clusters](hdinsight-hadoop-solr-install.md).
+- [Install and use Giraph on HDInsight clusters](hdinsight-hadoop-giraph-install.md).
 
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
@@ -320,4 +323,8 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 <!--Reference links in article-->
 [1]: https://msdn.microsoft.com/library/96xafkes(v=vs.110).aspx
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

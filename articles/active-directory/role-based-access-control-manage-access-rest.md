@@ -1,61 +1,62 @@
 <properties
-	pageTitle="使用 REST API 管理角色型存取控制"
-	description="使用 REST API 管理角色型存取控制"
-	services="active-directory"
-	documentationCenter="na"
-	authors="kgremban"
-	manager="femila"
-	editor=""/>
+    pageTitle="Managing Role-Based Access Control with the REST API"
+    description="Managing role-based access control with the REST API"
+    services="active-directory"
+    documentationCenter="na"
+    authors="kgremban"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="multiple"
-	ms.tgt_pltfrm="rest-api"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
+    ms.service="active-directory"
+    ms.workload="multiple"
+    ms.tgt_pltfrm="rest-api"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/04/2016"
+    ms.author="kgremban"/>
 
-# 使用 REST API 管理角色型存取控制
+
+# <a name="managing-role-based-access-control-with-the-rest-api"></a>Managing Role-Based Access Control with the REST API
 
 > [AZURE.SELECTOR]
 - [PowerShell](role-based-access-control-manage-access-powershell.md)
 - [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 - [REST API](role-based-access-control-manage-access-rest.md)
 
-Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制」(RBAC) 可協助您精確管理對您訂用帳戶與資源的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
+Role-Based Access Control (RBAC) in the Azure Portal and Azure Resource Manager API helps you manage access to your subscription and resources at a fine-grained level. With this feature, you can grant access for Active Directory users, groups, or service principals by assigning some roles to them at a particular scope.
 
-## 列出所有角色指派
+## <a name="list-all-role-assignments"></a>List all role assignments
 
-列出在指定的範圍和子範圍內的所有角色指派。
+Lists all the role assignments at the specified scope and subscopes.
 
-若要列出角色指派，您必須具有範圍內的 `Microsoft.Authorization/roleAssignments/read` 作業存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+To list role assignments, you must have access to `Microsoft.Authorization/roleAssignments/read` operation at the scope. All the built-in roles are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-### 要求
+### <a name="request"></a>Request
 
-搭配下列 URI 使用 **GET** 方法：
+Use the **GET** method with the following URI:
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&$filter={filter}
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&$filter={filter}
 
-在 URI 內進行下列替代動作以自訂要求：
+Within the URI, make the following substitutions to customize your request:
 
-1. 將 *{scope}* 取代為您要列出角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
+1. Replace *{scope}* with the scope for which you wish to list the role assignments. The following examples show how to specify the scope for different levels:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-2. 將 *{api-version}* 取代為 2015-07-01。
+2. Replace *{api-version}* with 2015-07-01.
 
-3. 將 *{filter}* 取代為要針對角色指派清單篩選套用的條件：
+3. Replace *{filter}* with the condition that you wish to apply to filter the role assignment list:
 
-  - 僅列出指定範圍的角色指派，不包括子範圍內的角色指派：`atScope()`
-  - 僅列出特定使用者、群組或應用程式的角色指派：`principalId%20eq%20'{objectId of user, group, or service principal}'`
-  - 僅列出特定使用者的角色指派，包括從群組繼承的角色指派 | `assignedTo('{objectId of user}')`
+  - List role assignments for only the specified scope, not including the role assignments at subscopes: `atScope()`    
+  - List role assignments for a specific user, group, or application: `principalId%20eq%20'{objectId of user, group, or service principal}'`  
+  - List role assignments for a specific user, including ones inherited from groups | `assignedTo('{objectId of user}')`
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：200
+Status code: 200
 
 ```
 {
@@ -80,33 +81,33 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-## 取得角色指派的相關資訊
+## <a name="get-information-about-a-role-assignment"></a>Get information about a role assignment
 
-取得由角色指派識別碼所指定的單一角色指派相關資訊。
+Gets information about a single role assignment specified by the role assignment identifier.
 
-若要取得角色指派的相關資訊，您必須具有 `Microsoft.Authorization/roleAssignments/read` 作業的存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+To get information about a role assignment, you must have access to `Microsoft.Authorization/roleAssignments/read` operation. All the built-in roles are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-### 要求
+### <a name="request"></a>Request
 
-搭配下列 URI 使用 **GET** 方法：
+Use the **GET** method with the following URI:
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-在 URI 內進行下列替代動作以自訂要求：
+Within the URI, make the following substitutions to customize your request:
 
-1. 將 *{scope}* 取代為您要列出角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
+1. Replace *{scope}* with the scope for which you wish to list the role assignments. The following examples show how to specify the scope for different levels:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-2. 將 *{role-assignment-id}* 取代為角色指派的 GUID 識別碼。
+2. Replace *{role-assignment-id}* with the GUID identifier of the role assignment.
 
-3. 將 *{api-version}* 取代為 2015-07-01。
+3. Replace *{api-version}* with 2015-07-01.
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：200
+Status code: 200
 
 ```
 {
@@ -126,31 +127,31 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-## 建立角色指派
+## <a name="create-a-role-assignment"></a>Create a Role Assignment
 
-在指定範圍中建立指定主體授與指定角色的角色指派。
+Create a role assignment at the specified scope for the specified principal granting the specified role.
 
-若要建立角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/write` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+To create a role assignment, you must have access to `Microsoft.Authorization/roleAssignments/write` operation. Of the built-in roles, only *Owner* and *User Access Administrator* are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-### 要求
+### <a name="request"></a>Request
 
-搭配下列 URI 使用 **PUT** 方法：
+Use the **PUT** method with the following URI:
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-在 URI 內進行下列替代動作以自訂要求：
+Within the URI, make the following substitutions to customize your request:
 
-1. 將 *{scope}* 取代為您要建立角色指派的範圍。當您在父範圍內建立角色指派時，所有的子範圍會繼承相同的角色指派。下列範例顯示如何指定不同層級的範圍：
+1. Replace *{scope}* with the scope at which you wish to create the role assignments. When you create a role assignment at a parent scope, all child scopes inherit the same role assignment. The following examples show how to specify the scope for different levels:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1   
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-2. 將 *{role-assignment-id}* 取代為新的 GUID，此 GUID 將成為新角色指派的 GUID 識別碼。
+2. Replace *{role-assignment-id}* with a new GUID, which becomes the GUID identifier of the new role assignment.
 
-3. 將 *{api-version}* 取代為 2015-07-01。
+3. Replace *{api-version}* with 2015-07-01.
 
-對於要求本文，提供下列格式的值：
+For the request body, provide the values in the following format:
 
 ```
 {
@@ -162,14 +163,14 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-| 元素名稱 | 必要 | 類型 | 說明 |
+| Element Name     | Required | Type   | Description |
 |------------------|----------|--------|-------------|
-| roleDefinitionId | 是 | String | 角色的識別碼。此識別碼的格式是：`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
-| principalId | 是 | String | 做為角色指派對象之 Azure AD 主體的 objectId (使用者、群組或服務主體)。 |
+| roleDefinitionId | Yes      | String | The identifier of the role. The format of the identifier is: `{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
+| principalId      | Yes      | String | objectId of the Azure AD principal (user, group, or service principal) to which the role is assigned. |
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：201
+Status code: 201
 
 ```
 {
@@ -189,33 +190,33 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-## 刪除角色指派
+## <a name="delete-a-role-assignment"></a>Delete a Role Assignment
 
-刪除指定範圍內的角色指派。
+Delete a role assignment at the specified scope.
 
-若要刪除角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/delete` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+To delete a role assignment, you must have access to the `Microsoft.Authorization/roleAssignments/delete` operation. Of the built-in roles, only *Owner* and *User Access Administrator* are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-### 要求
+### <a name="request"></a>Request
 
-搭配下列 URI 使用 **DELETE** 方法：
+Use the **DELETE** method with the following URI:
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-在 URI 內進行下列替代動作以自訂要求：
+Within the URI, make the following substitutions to customize your request:
 
-1. 將 *{scope}* 取代為您要建立角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
+1. Replace *{scope}* with the scope at which you wish to create the role assignments. The following examples show how to specify the scope for different levels:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-2. 將 *{role-assignment-id}* 取代為角色指派識別碼 GUID。
+2. Replace *{role-assignment-id}* with the role assignment id GUID.
 
-3. 將 *{api-version}* 取代為 2015-07-01。
+3. Replace *{api-version}* with 2015-07-01.
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：200
+Status code: 200
 
 ```
 {
@@ -235,121 +236,36 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-## 列出所有角色
+## <a name="list-all-roles"></a>List all Roles
 
-列出在指定的範圍內可供指派的所有角色。
+Lists all the roles that are available for assignment at the specified scope.
 
-若要列出角色，您必須具有該範圍內 `Microsoft.Authorization/roleDefinitions/read` 作業的存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+To list roles, you must have access to `Microsoft.Authorization/roleDefinitions/read` operation at the scope. All the built-in roles are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-### 要求
+### <a name="request"></a>Request
 
-搭配下列 URI 使用 **GET** 方法：
+Use the **GET** method with the following URI:
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&$filter={filter}
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&$filter={filter}
 
-在 URI 內進行下列替代動作以自訂要求：
+Within the URI, make the following substitutions to customize your request:
 
-1. 將 *{scope}* 取代為您要列出角色的範圍。下列範例顯示如何指定不同層級的範圍：
+1. Replace *{scope}* with the scope for which you wish to list the roles. The following examples show how to specify the scope for different levels:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-2. 將 *{api-version}* 取代為 2015-07-01。
+2. Replace *{api-version}* with 2015-07-01.
 
-3. 將 *{filter}* 取代為要針對角色清單篩選套用的條件：
+3. Replace *{filter}* with the condition that you wish to apply to filter the list of roles:
 
-  - 列出在指定的範圍及其任何子範圍內可供指派的角色：`atScopeAndBelow()`
-  - 使用確切的顯示名稱來搜尋角色：`roleName%20eq%20'{role-display-name}'`。使用角色確切顯示名稱的 URL 編碼型式。例如，`$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
+  - List roles available for assignment at the specified scope and any of its child scopes: `atScopeAndBelow()`
+  - Search for a role using exact display name: `roleName%20eq%20'{role-display-name}'`. Use the URL encoded form of the exact display name of the role. For instance, `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：200
-
-```
-{
-  "value": [
-    {
-      "properties": {
-        "roleName": "Virtual Machine Contributor",
-        "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
-        "assignableScopes": [
-          "/"
-        ],
-        "permissions": [
-          {
-            "actions": [
-              "Microsoft.Authorization/*/read",
-              "Microsoft.Compute/availabilitySets/*",
-              "Microsoft.Compute/locations/*",
-              "Microsoft.Compute/virtualMachines/*",
-              "Microsoft.Compute/virtualMachineScaleSets/*",
-              "Microsoft.Insights/alertRules/*",
-              "Microsoft.Network/applicationGateways/backendAddressPools/join/action",
-              "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
-              "Microsoft.Network/loadBalancers/inboundNatPools/join/action",
-              "Microsoft.Network/loadBalancers/inboundNatRules/join/action",
-              "Microsoft.Network/loadBalancers/read",
-              "Microsoft.Network/locations/*",
-              "Microsoft.Network/networkInterfaces/*",
-              "Microsoft.Network/networkSecurityGroups/join/action",
-              "Microsoft.Network/networkSecurityGroups/read",
-              "Microsoft.Network/publicIPAddresses/join/action",
-              "Microsoft.Network/publicIPAddresses/read",
-              "Microsoft.Network/virtualNetworks/read",
-              "Microsoft.Network/virtualNetworks/subnets/join/action",
-              "Microsoft.Resources/deployments/*",
-              "Microsoft.Resources/subscriptions/resourceGroups/read",
-              "Microsoft.Storage/storageAccounts/listKeys/action",
-              "Microsoft.Storage/storageAccounts/read",
-              "Microsoft.Support/*"
-            ],
-            "notActions": []
-          }
-        ],
-        "createdOn": "2015-06-02T00:18:27.3542698Z",
-        "updatedOn": "2015-12-08T03:16:55.6170255Z",
-        "createdBy": null,
-        "updatedBy": null
-      },
-      "id": "/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
-      "type": "Microsoft.Authorization/roleDefinitions",
-      "name": "9980e02c-c2be-4d73-94e8-173b1dc7cf3c"
-    }
-  ],
-  "nextLink": null
-}
-
-```
-
-## 取得角色的相關資訊
-
-取得由角色定義識別碼所指定的單一角色相關資訊。若要使用角色的顯示名稱來取得單一角色的相關資訊，請參閱[列出所有角色](role-based-access-control-manage-access-rest.md#list-all-roles)。
-
-若要取得角色的相關資訊，您必須具有 `Microsoft.Authorization/roleDefinitions/read` 作業的存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
-
-### 要求
-
-搭配下列 URI 使用 **GET** 方法：
-
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
-
-在 URI 內進行下列替代動作以自訂要求：
-
-1. 將 *{scope}* 取代為您要列出角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
-
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
-
-2. 將 *{role-definition-id}* 取代為角色定義的 GUID 識別碼。
-
-3. 將 *{api-version}* 取代為 2015-07-01。
-
-### Response
-
-狀態碼：200
+Status code: 200
 
 ```
 {
@@ -408,30 +324,115 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-## 建立自訂角色
-建立自訂角色。
+## <a name="get-information-about-a-role"></a>Get information about a Role
 
-若要建立自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/write` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+Gets information about a single role specified by the role definition identifier. To get information about a single role using its display name, see [List all roles](role-based-access-control-manage-access-rest.md#list-all-roles).
 
-### 要求
+To get information about a role, you must have access to `Microsoft.Authorization/roleDefinitions/read` operation. All the built-in roles are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-搭配下列 URI 使用 **PUT** 方法：
+### <a name="request"></a>Request
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
+Use the **GET** method with the following URI:
 
-在 URI 內進行下列替代動作以自訂要求：
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。下列範例顯示如何指定不同層級的範圍。
+Within the URI, make the following substitutions to customize your request:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+1. Replace *{scope}* with the scope for which you wish to list the role assignments. The following examples show how to specify the scope for different levels:
 
-2. 將 *{role-definition-id}* 取代為新的 GUID，此 GUID 將成為新自訂角色的 GUID 識別碼。
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-3. 使用 2015-07-01 取代 *{api-version}*。
+2. Replace *{role-definition-id}* with the GUID identifier of the role definition.
 
-對於要求本文，提供下列格式的值：
+3. Replace *{api-version}* with 2015-07-01.
+
+### <a name="response"></a>Response
+
+Status code: 200
+
+```
+{
+  "value": [
+    {
+      "properties": {
+        "roleName": "Virtual Machine Contributor",
+        "type": "BuiltInRole",
+        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
+        "assignableScopes": [
+          "/"
+        ],
+        "permissions": [
+          {
+            "actions": [
+              "Microsoft.Authorization/*/read",
+              "Microsoft.Compute/availabilitySets/*",
+              "Microsoft.Compute/locations/*",
+              "Microsoft.Compute/virtualMachines/*",
+              "Microsoft.Compute/virtualMachineScaleSets/*",
+              "Microsoft.Insights/alertRules/*",
+              "Microsoft.Network/applicationGateways/backendAddressPools/join/action",
+              "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
+              "Microsoft.Network/loadBalancers/inboundNatPools/join/action",
+              "Microsoft.Network/loadBalancers/inboundNatRules/join/action",
+              "Microsoft.Network/loadBalancers/read",
+              "Microsoft.Network/locations/*",
+              "Microsoft.Network/networkInterfaces/*",
+              "Microsoft.Network/networkSecurityGroups/join/action",
+              "Microsoft.Network/networkSecurityGroups/read",
+              "Microsoft.Network/publicIPAddresses/join/action",
+              "Microsoft.Network/publicIPAddresses/read",
+              "Microsoft.Network/virtualNetworks/read",
+              "Microsoft.Network/virtualNetworks/subnets/join/action",
+              "Microsoft.Resources/deployments/*",
+              "Microsoft.Resources/subscriptions/resourceGroups/read",
+              "Microsoft.Storage/storageAccounts/listKeys/action",
+              "Microsoft.Storage/storageAccounts/read",
+              "Microsoft.Support/*"
+            ],
+            "notActions": []
+          }
+        ],
+        "createdOn": "2015-06-02T00:18:27.3542698Z",
+        "updatedOn": "2015-12-08T03:16:55.6170255Z",
+        "createdBy": null,
+        "updatedBy": null
+      },
+      "id": "/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
+      "type": "Microsoft.Authorization/roleDefinitions",
+      "name": "9980e02c-c2be-4d73-94e8-173b1dc7cf3c"
+    }
+  ],
+  "nextLink": null
+}
+
+```
+
+## <a name="create-a-custom-role"></a>Create a Custom Role
+Create a custom role.
+
+To create a custom role, you must have access to `Microsoft.Authorization/roleDefinitions/write` operation on all the `AssignableScopes`. Of the built-in roles, only *Owner* and *User Access Administrator* are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
+
+### <a name="request"></a>Request
+
+Use the **PUT** method with the following URI:
+
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
+
+Within the URI, make the following substitutions to customize your request:
+
+1. Replace *{scope}* with the first *AssignableScope* of the custom role. The following examples show how to specify the scope for different levels.
+
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
+
+2. Replace *{role-definition-id}* with a new GUID, which becomes the GUID identifier of the new custom role.
+
+3. Replace *{api-version}* with 2015-07-01.
+
+For the request body, provide the values in the following format:
 
 ```
 {
@@ -464,19 +465,19 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-| 元素名稱 | 必要 | 類型 | 說明 |
+| Element Name | Required | Type | Description |
 |--------------|----------|------|-------------|
-| 名稱 | 是 | String | 自訂角色的 GUID 識別碼。 |
-| properties.roleName | 是 | String | 自訂角色的顯示名稱。大小上限為 128 個字元。 |
-| properties.description | 否 | String | 自訂角色的說明。大小上限為 1024 個字元。 |
-| properties.type | 是 | String | 設定為 "CustomRole"。 |
-| properties.permissions.actions | 是 | String | 動作字串陣列，此陣列指定自訂角色所授權的作業。 |
-| properties.permissions.notActions | 否 | String | 動作字串陣列，此陣列指定要從自訂角色所授權的作業中排除的作業。 |
-| properties.assignableScopes | 是 | String | 範圍陣列，此陣列指定可在其中使用自訂角色的範圍。 |
+| name         | Yes | String   | GUID identifier of the custom role.    |
+| properties.roleName               | Yes | String   | Display name of the custom role. Maximum size 128 characters.                        |
+| properties.description            | No  | String   | Description of the custom role. Maximum size 1024 characters.                                               |
+| properties.type                   | Yes | String   | Set to "CustomRole."                                         |
+| properties.permissions.actions    | Yes | String[] | An array of action strings specifying the operations granted by the custom role.             |
+| properties.permissions.notActions | No  | String[] | An array of action strings specifying the operations to exclude from the operations granted by the custom role. |
+| properties.assignableScopes       | Yes | String[] | An array of scopes in which the custom role can be used.   |
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：201
+Status code: 201
 
 ```
 {
@@ -515,31 +516,31 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-## 更新自訂角色
+## <a name="update-a-custom-role"></a>Update a Custom Role
 
-修改自訂角色。
+Modify a custom role.
 
-若要修改自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/write` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+To modify a custom role, you must have access to `Microsoft.Authorization/roleDefinitions/write` operation on all the `AssignableScopes`. Of the built-in roles, only *Owner* and *User Access Administrator* are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-### 要求
+### <a name="request"></a>Request
 
-搭配下列 URI 使用 **PUT** 方法：
+Use the **PUT** method with the following URI:
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-在 URI 內進行下列替代動作以自訂要求：
+Within the URI, make the following substitutions to customize your request:
 
-1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。下列範例顯示如何指定不同層級的範圍：
+1. Replace *{scope}* with the first *AssignableScope* of the custom role. The following examples show how to specify the scope for different levels:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-2. 將 *{role-definition-id}* 取代為自訂角色的 GUID 識別碼。
+2. Replace *{role-definition-id}* with the GUID identifier of the custom role.
 
-3. 將 *{api-version}* 取代為 2015-07-01。
+3. Replace *{api-version}* with 2015-07-01.
 
-對於要求本文，提供下列格式的值：
+For the request body, provide the values in the following format:
 
 ```
 {
@@ -572,19 +573,19 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-| 元素名稱 | 必要 | 類型 | 說明 |
+| Element Name | Required | Type | Description |
 |--------------|----------|------|-------------|
-| 名稱 | 是 | String | 自訂角色的 GUID 識別碼。 |
-| properties.roleName | 是 | String | 已更新的自訂角色顯示名稱。 |
-| properties.description | 否 | String | 已更新的自訂角色說明。 |
-| properties.type | 是 | String | 設定為 "CustomRole"。 |
-| properties.permissions.actions | 是 | String | 動作字串的陣列會指定已更新自訂角色授與存取權的作業。 |
-| properties.permissions.notActions | 否 | String | 動作字串陣列，此陣列指定要從已更新之自訂角色所授權的作業中排除的作業。 |
-| properties.assignableScopes | 是 | String | 範圍陣列，此陣列指定可在其中使用已更新之自訂角色的範圍。 |
+| name         | Yes      | String | GUID identifier of the custom role. |
+| properties.roleName | Yes | String | Display name of the updated custom role. |
+| properties.description | No | String | Description of the updated custom role. |
+| properties.type | Yes | String | Set to "CustomRole." |
+| properties.permissions.actions | Yes | String[] | An array of action strings specifying the operations to which the updated custom role grants access. |
+| properties.permissions.notActions | No | String[] | An array of action strings specifying the operations to exclude from the operations which the updated custom role grants. |
+| properties.assignableScopes | Yes | String[] | An array of scopes in which the updated custom role can be used. |
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：201
+Status code: 201
 
 ```
 {
@@ -623,33 +624,33 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
-## 刪除自訂角色
+## <a name="delete-a-custom-role"></a>Delete a Custom Role
 
-刪除自訂角色。
+Delete a custom role.
 
-若要刪除自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/delete` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+To delete a custom role, you must have access to `Microsoft.Authorization/roleDefinitions/delete` operation on all the `AssignableScopes`. Of the built-in roles, only *Owner* and *User Access Administrator* are granted access to this operation. For more information about role assignments and managing access for Azure resources, see [Azure Role-Based Access Control](role-based-access-control-configure.md).
 
-### 要求
+### <a name="request"></a>Request
 
-搭配下列 URI 使用 **DELETE** 方法：
+Use the **DELETE** method with the following URI:
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
+    https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-在 URI 內進行下列替代動作以自訂要求：
+Within the URI, make the following substitutions to customize your request:
 
-1. 將 *{scope}* 取代為您要刪除角色定義的範圍。下列範例顯示如何指定不同層級的範圍：
+1. Replace *{scope}* with the scope at which you wish to delete the role definition. The following examples show how to specify the scope for different levels:
 
-  - 訂用帳戶：/subscriptions/{subscription-id}
-  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
-  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
+  - Subscription: /subscriptions/{subscription-id}  
+  - Resource Group: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
+  - Resource: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 
-2. 將 *{role-definition-id}* 取代為自訂角色的 GUID 角色定義識別碼。
+2. Replace *{role-definition-id}* with the GUID role definition id of the custom role.
 
-3. 將 *{api-version}* 取代為 2015-07-01。
+3. Replace *{api-version}* with 2015-07-01.
 
-### Response
+### <a name="response"></a>Response
 
-狀態碼：200
+Status code: 200
 
 ```
 {
@@ -691,4 +692,8 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,89 +1,90 @@
 <properties 
-	pageTitle="佈建使用 SQL Database 的 Web 應用程式" 
-	description="使用 Azure 資源管理員範本來部署 Web 應用程式，其中包含 SQL Database。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="cephalin" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Provision a web app that uses a SQL Database" 
+    description="Use an Azure Resource Manager template to deploy a web app that includes a SQL Database." 
+    services="app-service" 
+    documentationCenter="" 
+    authors="cephalin" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="04/27/2016" 
-	ms.author="cephalin"/>
+    ms.service="app-service" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="04/27/2016" 
+    ms.author="cephalin"/>
 
-# 佈建 Web 應用程式與 SQL Database
 
-在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Web 應用程式與 SQL Database。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+# <a name="provision-a-web-app-with-a-sql-database"></a>Provision a web app with a SQL Database
 
-如需關於建立範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
+In this topic, you will learn how to create an Azure Resource Manager template that deploys a web app and SQL Database. You will learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed. You can use this template for your own deployments, or customize it to meet your requirements.
 
-如需有關部署應用程式的詳細資訊，請參閱[透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。
+For more information about creating templates, see [Authoring Azure Resource Manager Templates](../resource-group-authoring-templates.md).
 
-如需完整的範本，請參閱 [Web 應用程式與 SQL Database 範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)。
+For more information about deploying apps, see [Deploy a complex application predictably in Azure](app-service-deploy-complex-application-predictably.md).
 
-[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
+For the complete template, see [Web App With SQL Database template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json).
 
-## 部署內容
+[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)] 
 
-在此範本中，您將部署：
+## <a name="what-you-will-deploy"></a>What you will deploy
 
-- Web 應用程式
-- SQL Database 伺服器
+In this template, you will deploy:
+
+- a web app
+- SQL Database server
 - SQL Database
-- 自動調整設定
-- 警示規則
-- 應用程式情資
+- AutoScale settings
+- Alert rules
+- App Insights
 
-若要自動執行部署，請按一下下列按鈕：
+To run the deployment automatically, click the following button:
 
-[![部署至 Azure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
+[![Deploy to Azure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
 
-## 要指定的參數
+## <a name="parameters-to-specify"></a>Parameters to specify
 
 [AZURE.INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
-### administratorLogin
+### <a name="administratorlogin"></a>administratorLogin
 
-資料庫伺服器系統管理員要使用的帳戶名稱。
+The account name to use for the database server administrator.
 
     "administratorLogin": {
       "type": "string"
     }
 
-### administratorLoginPassword
+### <a name="administratorloginpassword"></a>administratorLoginPassword
 
-資料庫伺服器系統管理員要使用的密碼。
+The password to use for the database server administrator.
 
     "administratorLoginPassword": {
       "type": "securestring"
     }
 
-### databaseName
+### <a name="databasename"></a>databaseName
 
-要建立之新資料庫的名稱。
+The name of the new database to create.
 
     "databaseName": {
       "type": "string",
       "defaultValue": "sampledb"
     }
 
-### collation
+### <a name="collation"></a>collation
 
-用來管理字元適當用法的資料庫定序。
+The database collation to use for governing the proper use of characters.
 
     "collation": {
       "type": "string",
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
     }
 
-### edition
+### <a name="edition"></a>edition
 
-要建立的資料庫類型。
+The type of database to create.
 
     "edition": {
       "type": "string",
@@ -98,18 +99,18 @@
       }
     }
 
-### maxSizeBytes
+### <a name="maxsizebytes"></a>maxSizeBytes
 
-資料庫的大小上限 (位元組)。
+The maximum size, in bytes, for the database.
 
     "maxSizeBytes": {
       "type": "string",
       "defaultValue": "1073741824"
     }
 
-### requestedServiceObjectiveName
+### <a name="requestedserviceobjectivename"></a>requestedServiceObjectiveName
 
-與版本的效能等級對應的名稱。
+The name corresponding to the performance level for edition. 
 
     "requestedServiceObjectiveName": {
       "type": "string",
@@ -128,9 +129,9 @@
       }
     }
 
-## 名稱的變數
+## <a name="variables-for-names"></a>Variables for names
 
-這個範本包括建構範本所用名稱的變數。變數值會使用 **uniqueString** 函式從資源群組識別碼產生名稱。
+This template includes variables that construct names used in the template. The variable values use the **uniqueString** function to generate a name from the resource group id.
 
     "variables": {
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -139,11 +140,11 @@
     },
 
 
-## 要部署的資源
+## <a name="resources-to-deploy"></a>Resources to deploy
 
-### SQL Server 和資料庫
+### <a name="sql-server-and-database"></a>SQL Server and Database
 
-建立新的 SQL Server 和資料庫。伺服器名稱指定於 **serverName** 參數，位置指定於 **serverLocation** 參數。在建立新的伺服器時，您必須提供資料庫伺服器系統管理員的登入名稱和密碼。
+Creates a new SQL Server and database. The name of the server is specified in the **serverName** parameter and the location specified in the **serverLocation** parameter. When creating the new server, you must provide a login name and password for the database server administrator. 
 
     {
       "name": "[variables('sqlserverName')]",
@@ -195,7 +196,7 @@
 [AZURE.INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
 
-### Web 應用程式
+### <a name="web-app"></a>Web app
 
     {
       "apiVersion": "2015-08-01",
@@ -232,7 +233,7 @@
     },
 
 
-### 自動調整
+### <a name="autoscale"></a>AutoScale
 
     {
       "apiVersion": "2014-04-01",
@@ -302,7 +303,7 @@
     },
 
 
-### 狀態碼 403、狀態碼 500、高 CPU 和 HTTP 佇列長度的警示規則 
+### <a name="alert-rules-for-status-codes-403-and-500's,-high-cpu,-and-http-queue-length"></a>Alert rules for status codes 403 and 500's, High CPU, and HTTP Queue Length 
 
     {
       "apiVersion": "2014-04-01",
@@ -441,7 +442,7 @@
       }
     },
     
-### 應用程式情資
+### <a name="app-insights"></a>App Insights
 
     {
       "apiVersion": "2014-04-01",
@@ -460,19 +461,23 @@
       }
     }
 
-## 執行部署的命令
+## <a name="commands-to-run-deployment"></a>Commands to run deployment
 
 [AZURE.INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### PowerShell
+### <a name="powershell"></a>PowerShell
 
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
 
-### Azure CLI
+### <a name="azure-cli"></a>Azure CLI
 
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
 
 
  
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-pageTitle="在 HDInsight 叢集建立期間新增 Hive 程式庫 | Azure"
-description="了解如何在叢集建立期間將 Hive 程式庫 (jar 檔案) 新增至 HDInsight 叢集。"
+pageTitle="Add Hive libraries during HDInsight cluster creation | Azure"
+description="Learn how to add Hive libraries (jar files,) to an HDInsight cluster during cluster creation."
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
@@ -16,76 +16,81 @@ ms.workload="big-data"
 ms.date="09/20/2016"
 ms.author="larryfr"/>
 
-#在 HDInsight 叢集建立期間新增 Hive 程式庫
 
-如果您有與 HDInsight 上的 Hive 經常一起使用的程式庫，本文件包含在叢集建立期間使用指令碼動作來預先載入程式庫的詳細資訊。這樣可讓程式庫供整個 Hive 使用 (不需要使用 [ADD JAR](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli) 來載入它們。)
+#<a name="add-hive-libraries-during-hdinsight-cluster-creation"></a>Add Hive libraries during HDInsight cluster creation
 
-##運作方式
+If you have libraries that you use frequently with Hive on HDInsight, this document contains information on using a Script Action to pre-load the libraries during cluster creation. This makes the libraries globally available in Hive (no need to use [ADD JAR](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli) to load them.)
 
-建立叢集時，您可以選擇性地指定指令碼動作，以便在建立叢集節點時在節點上執行指令碼。這份文件中的指令碼接受單一參數，也就是將預先載入的程式庫 (儲存為 jar 檔案) 所在的 WASB 位置。
+##<a name="how-it-works"></a>How it works
 
-叢集建立期間，指令碼會列舉檔案、將它們複製到前端和背景工作節點上的 `/usr/lib/customhivelibs/` 目錄，然後將它們加入至 `core-site.xml` 檔案中的 `hive.aux.jars.path` 屬性。在以 Linux 為基礎的叢集上，它也會以檔案的位置來更新 `hive-env.sh` 檔案。
+When creating a cluster, you can optionally specify a Script Action that runs a script on the cluster nodes while they are being created. The script in this document accepts a single parameter, which is a WASB location that contains the libraries (stored as jar files,) that will be pre-loaded.
 
-> [AZURE.NOTE] 使用本文中的指令碼動作可讓程式庫在下列案例中可供使用：
+During cluster creation, the script enumerates the files, copies them to the `/usr/lib/customhivelibs/` directory on head and worker nodes, then adds them to the `hive.aux.jars.path` property in the `core-site.xml` file. On Linux-based clusters, it also updates the `hive-env.sh` file with the location of the files.
+
+> [AZURE.NOTE] Using the script actions in this article makes the libraries available in the following scenarios:
 >
-> * __以 Linux 為基礎的 HDInsight__ - 使用 __Hive 命令列__、__WebHCat__ (Templeton) 和 __HiveServer2__ 時。
-> * __以 Windows 為基礎的 HDInsight__ - 使用 __Hive 命令列__和 __WebHCat__ (Templeton) 時。
+> * __Linux-based HDInsight__ - when using the __Hive command-line__, __WebHCat__ (Templeton,) and __HiveServer2__.
+> * __Windows-based HDInsight__ - when using the __Hive command-line__ and __WebHCat__ (Templeton).
 
-##指令碼
+##<a name="the-script"></a>The script
 
-__指令碼位置__
+__Script location__
 
-__以 Linux 為基礎的叢集__：[https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh)
+For __Linux-based clusters__: [https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh)
 
-__以 Windows 為基礎的叢集__：[https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1](https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1)
+For __Windows-based clusters__: [https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1](https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1)
 
-__需求__
+__Requirements__
 
-* 指令碼必須同時套用至__前端節點__和__背景工作節點__。
+* The scripts must be applied to both the __Head nodes__ and __Worker nodes__.
 
-* 您想要安裝的 jar 必須儲存在__單一容器__中的 Azure Blob 儲存體。
+* The jars you wish to install must be stored in Azure Blob Storage in a __single container__. 
 
-* 包含 jar 檔案程式庫的儲存體帳戶__必須__在建立期間連結至 HDInsight 叢集。有兩種方式可以完成這項作業：
+* The storage account containing the library of jar files __must__ be linked to the HDInsight cluster during creation. This can be accomplished in one of two ways:
 
-    * 放在叢集的預設儲存體帳戶上的容器中。
+    * By being in a container on the default storage account for the cluster.
     
-    * 放在連結儲存體容器上的容器中。例如，在入口網站中，您可以使用 [選擇性組態]、[連結的儲存體帳戶] 新增額外的儲存體。
+    * By being in a container on an linked storage container. For example, in the portal you can use __Optional Configuration__, __Linked storage accounts__ to add additional storage.
 
-* 必須指定容器的 WASB 路徑做為指令碼動作的參數。例如，如果 jar 儲存在名為 __mystorage__ 的儲存體帳戶上稱為 __libs__ 的容器中，則這個參數會是 \_\_wasbs://libs@mystorage.blob.core.windows.net/__。
+* The WASB path to the container must be specified as a parameter to the Script Action. For example, if the jars are stored in a container named __libs__ on a storage account named __mystorage__, the parameter would be __wasbs://libs@mystorage.blob.core.windows.net/__.
 
-    > [AZURE.NOTE] 本文件假設您已建立儲存體帳戶、blob 容器，也已將檔案上傳給它。
+    > [AZURE.NOTE] This document assumes that you have already create a storage account, blob container, and uploaded the files to it. 
     >
-    > 如果您尚未建立儲存體帳戶，您可以透過 [Azure 入口網站](https://portal.azure.com)這樣做。接著，您可以使用 [Azure 儲存體總管](http://storageexplorer.com/)之類的公用程式，在帳戶中建立新的容器，並將檔案上傳給它。
+    > If you have not created a storage account, you can do this through the [Azure portal](https://portal.azure.com). You can then use a utility such as [Azure Storage Explorer](http://storageexplorer.com/) to create a new container in the account and upload files to it.
 
-##使用指令碼建立叢集
+##<a name="create-a-cluster-using-the-script"></a>Create a cluster using the script
 
-> [AZURE.NOTE] 下列步驟會建立以 Linux 為基礎的 HDInsight 新叢集。若要建立以 Windows 為基礎的新叢集，請在建立叢集時選取 __Windows__ 作為叢集作業系統，並使用 Windows (PowerShell) 指令碼，而不是 bash 指令碼。
+> [AZURE.NOTE] The following steps create a new Linux-based HDInsight cluster. To create a new Windows-based cluster, select __Windows__ as the cluster OS when creating the cluster, and use the Windows (PowerShell) script instead of the bash script.
 > 
-> 您也可以使用 Azure PowerShell 或 HDInsight .NET SDK，以使用此指令碼建立叢集。如需使用這些方法的詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+> You can also use Azure PowerShell or the HDInsight .NET SDK to create a cluster using this script. For more information on using these methods, see [Customize HDInsight clusters with Script Actions](hdinsight-hadoop-customize-cluster-linux.md).
 
-1. 使用[在 Linux 上佈建 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md#portal)中的步驟開始佈建叢集，但是不完成佈建。
+1. Start provisioning a cluster by using the steps in [Provision HDInsight clusters on Linux](hdinsight-hadoop-provision-linux-clusters.md#portal), but do not complete provisioning.
 
-2. 在 [選用組態] 刀鋒視窗中，選取 [指令碼動作]，並提供如下所示的資訊：
+2. On the **Optional Configuration** blade, select **Script Actions**, and provide the information as shown below:
 
-    * __名稱__：輸入指令碼動作的易記名稱。
-    * __指令碼 URI__：https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh
-    * __HEAD__：勾選此選項
-    * __背景工作角色__：勾選此選項。
-    * __ZOOKEEPER__：將此選項保留空白。
-    * __參數__：輸入包含 jar 的容器和儲存體帳戶的 WASB 位址。例如，\_\_wasbs://libs@mystorage.blob.core.windows.net/__。
+    * __NAME__: Enter a friendly name for the script action.
+    * __SCRIPT URI__: https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh
+    * __HEAD__: Check this option
+    * __WORKER__: Check this option.
+    * __ZOOKEEPER__: Leave this blank.
+    * __PARAMETERS__: Enter the WASB address to the container and storage account that contains the jars. For example, __wasbs://libs@mystorage.blob.core.windows.net/__.
 
-3. 在 [指令碼動作] 底部，使用 [選取] 按鈕以儲存組態。
+3. At the bottom of the **Script Actions**, use the **Select** button to save the configuration.
 
-4. 在 [選擇性組態] 刀鋒視窗中，選取 [連結的儲存體帳戶]，然後選取 [新增儲存體金鑰] 連結。選取包含 jar 的儲存體帳戶，然後使用 [選取] 按鈕來儲存設定，並回到 [選擇性組態] 刀鋒視窗。
+4. On the **Optional Configuration** blade, select __Linked Storage Accounts__ and select the __Add a storage key__ link. Select the storage account that contains the jars, and then use the __select__ buttons to save settings and return the __Optional Configuration__ blade.
 
-5. 使用 [選擇性組態] 刀鋒視窗底部的 [選取] 按鈕，儲存選擇性組態資訊。
+5. Use the **Select** button at the bottom of the **Optional Configuration** blade to save the optional configuration information.
 
-6. 繼續如[在 Linux 上佈建 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md#portal)中所述佈建叢集。
+6. Continue provisioning the cluster as described in [Provision HDInsight clusters on Linux](hdinsight-hadoop-provision-linux-clusters.md#portal).
 
-完成建立叢集時，您將能夠從 Hive 使用透過此指令碼加入的 jar，而不需要使用 `ADD JAR` 陳述式。
+Once cluster creation finishes, you will be able to use the jars added through this script from Hive without having to use the `ADD JAR` statement.
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-在這份文件中，您已經學會如何在叢集建立期間將 jar 檔案包含的 Hive 程式庫新增至 HDInsight 叢集。如需有關使用 Hive 的詳細資訊，請參閱[搭配使用 Hive 與 HDInsight](hdinsight-use-hive.md)
+In this document you have learned how to add Hive libraries contained in jar files to a HDInsight cluster during cluster creation. For more information on working with Hive, see [Use Hive with HDInsight](hdinsight-use-hive.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查 | Microsoft Azure"
-   description="了解如何在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查"
+   pageTitle="Create a custom probe for Application Gateway by using PowerShell in the classic deployment model | Microsoft Azure"
+   description="Learn how to create a custom probe for Application Gateway by using PowerShell in the classic deployment model"
    services="application-gateway"
    documentationCenter="na"
    authors="georgewallace"
@@ -17,66 +17,67 @@
    ms.date="08/09/2016"
    ms.author="gwallace" />
 
-# 使用 PowerShell 建立 Azure 應用程式閘道 (傳統) 的自訂探查
+
+# <a name="create-a-custom-probe-for-azure-application-gateway-(classic)-by-using-powershell"></a>Create a custom probe for Azure Application Gateway (classic) by using PowerShell
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](application-gateway-create-probe-portal.md)
+- [Azure portal](application-gateway-create-probe-portal.md)
 - [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
-- [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
+- [Azure Classic PowerShell](application-gateway-create-probe-classic-ps.md)
 
 <BR>
 
 [AZURE.INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](application-gateway-create-probe-ps.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] Learn how to [perform these steps using the Resource Manager model](application-gateway-create-probe-ps.md).
 
 [AZURE.INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
 
-## 建立應用程式閘道
+## <a name="create-a-application-gateway"></a>Create a application gateway
 
-建立應用程式閘道：
+To create an application gateway:
 
-1. 建立應用程式閘道資源。
-2. 建立設定 XML 檔案或設定物件。
-3. 認可新建立應用程式閘道資源的設定。
+1. Create an application gateway resource.
+2. Create a configuration XML file or a configuration object.
+3. Commit the configuration to the newly created application gateway resource.
 
-### 建立應用程式閘道資源
+### <a name="create-an-application-gateway-resource"></a>Create an application gateway resource
 
-若要建立閘道，請使用 **New-AzureApplicationGateway** Cmdlet，並將值取代為您自己的值。此時還不會開始對閘道計費。會在稍後的步驟中於成功啟動閘道之後開始計費。
+To create the gateway, use the **New-AzureApplicationGateway** cmdlet, replacing the values with your own. Billing for the gateway does not start at this point. Billing begins in a later step, when the gateway is successfully started.
 
-下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
+The following example creates an application gateway by using a virtual network called "testvnet1" and a subnet called "subnet-1".
 
-	New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
+    New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 
-若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
+To validate that the gateway was created, you can use the **Get-AzureApplicationGateway** cmdlet.
 
-	Get-AzureApplicationGateway AppGwTest
+    Get-AzureApplicationGateway AppGwTest
 
->[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
+>[AZURE.NOTE]  The default value for *InstanceCount* is 2, with a maximum value of 10. The default value for *GatewaySize* is Medium. You can choose between Small, Medium, and Large.
 
- 因為尚未啟動閘道，所以 *VirtualIPs* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，就會建立這些項目。
+ *VirtualIPs* and *DnsName* are shown as blank because the gateway has not started yet. These are created once the gateway is in the running state.
 
-## 設定應用程式閘道
+## <a name="configure-an-application-gateway"></a>Configure an application gateway
 
-您可以使用 XML 或設定物件來設定應用程式閘道。
+You can configure the application gateway by using XML or a configuration object.
 
-## 使用 XML 設定應用程式閘道
+## <a name="configure-an-application-gateway-by-using-xml"></a>Configure an application gateway by using XML
 
-在下列範例中，您將使用 XML 檔案來設定所有應用程式閘道設定，並將它們認可到應用程式閘道資源。
+In the following example, you use an XML file to configure all application gateway settings and commit them to the application gateway resource.  
 
-### 步驟 1
+### <a name="step-1"></a>Step 1
 
-將下列文字複製到 [記事本]。
+Copy the following text to Notepad.
 
-	<ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
+    <ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
     <FrontendIPConfigurations>
         <FrontendIPConfiguration>
             <Name>fip1</Name>
             <Type>Private</Type>
         </FrontendIPConfiguration>
     </FrontendIPConfigurations>    
-	<FrontendPorts>
+    <FrontendPorts>
         <FrontendPort>
             <Name>port1</Name>
             <Port>80</Port>
@@ -98,7 +99,7 @@
             <Name>pool1</Name>
             <IPAddresses>
                 <IPAddress>1.1.1.1</IPAddress>
-				<IPAddress>2.2.2.2</IPAddress>
+                <IPAddress>2.2.2.2</IPAddress>
             </IPAddresses>
         </BackendAddressPool>
     </BackendAddressPools>
@@ -116,7 +117,7 @@
         <HttpListener>
             <Name>listener1</Name>
             <FrontendIP>fip1</FrontendIP>
-	    <FrontendPort>port1</FrontendPort>
+        <FrontendPort>port1</FrontendPort>
             <Protocol>Http</Protocol>
         </HttpListener>
     </HttpListeners>
@@ -129,44 +130,44 @@
             <BackendAddressPool>pool1</BackendAddressPool>
         </HttpLoadBalancingRule>
     </HttpLoadBalancingRules>
-	</ApplicationGatewayConfiguration>
+    </ApplicationGatewayConfiguration>
 
 
-編輯設定項目括號間的值。以 .xml 副檔名儲存檔案。
+Edit the values between the parentheses for the configuration items. Save the file with extension .xml.
 
-下列範例示範如何使用組態檔來設定應用程式閘道、使公用連接埠 80 上的 HTTP 流量達到負載平衡，以及使用自訂探查將網路流量傳送到兩個 IP 位址之間的後端連接埠 80。
+The following example shows how to use a configuration file to set up the application gateway, to load balance HTTP traffic on public port 80 and send network traffic to back-end port 80 between two IP addresses by using a custom probe.
 
->[AZURE.IMPORTANT] 通訊協定項目 Http 或 Https 會區分大小寫。
+>[AZURE.IMPORTANT] The protocol item Http or Https is case-sensitive.
 
-已新增用來設定自訂探查的新組態項目 <Probe>。
+A new configuration item <Probe> is added to configure custom probes.
 
-組態參數如下：
+The configuration parameters are:
 
-- **Name** - 自訂探查的參考名稱。
-- **Protocol** - 所使用的通訊協定 (可能的值為 HTTP 或 HTTPS)。
-- **Host** 和 **Path** - 應用程式閘道所叫用以判斷執行個體健康狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
-- **Interval** - 以秒為單位設定探查間隔檢查。
-- **Timeout** - 定義 HTTP 回應檢查的探查逾時。
-- **UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
+- **Name** - Reference name for custom probe.
+- **Protocol** - Protocol used (possible values are HTTP or HTTPS).
+- **Host** and **Path** - Complete URL path that is invoked by the application gateway to determine the health of the instance. For example, if you have a website http://contoso.com/, then the custom probe can be configured for "http://contoso.com/path/custompath.htm" for probe checks to have a successful HTTP response.
+- **Interval** - Configures the probe interval checks in seconds.
+- **Timeout** - Defines the probe time-out for an HTTP response check.
+- **UnhealthyThreshold** - The number of failed HTTP responses needed to flag the back-end instance as *unhealthy*.
 
-<BackendHttpSettings> 組態中會參考探查名稱，以指派哪個後端集區會使用自訂探查設定。
+The probe name is referenced in the <BackendHttpSettings> configuration to assign which back-end pool uses custom probe settings.
 
-## 將自訂探查組態新增至現有應用程式閘道
+## <a name="add-a-custom-probe-configuration-to-an-existing-application-gateway"></a>Add a custom probe configuration to an existing application gateway
 
-變更目前的應用程式閘道組態需要三個步驟：取得目前的 XML 組態檔、進行修改使其具有自訂探查，並以新的 XML 設定來設定應用程式閘道。
+Changing the current configuration of an application gateway requires three steps: Get the current XML configuration file, modify to have a custom probe, and configure the application gateway with the new XML settings.
 
-### 步驟 1
+### <a name="step-1"></a>Step 1
 
-使用 get-AzureApplicationGatewayConfig 取得 XML 檔案。這會匯出要修改的組態 XML 以新增探查設定。
+Get the XML file by using get-AzureApplicationGatewayConfig. This exports the configuration XML to be modified to add a probe setting.
 
-	Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
+    Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
 
 
-### 步驟 2
+### <a name="step-2"></a>Step 2
 
-在文字編輯器中開啟 XML 檔案。在 `<frontendport>` 之後新增 `<probe>` 區段。
+Open the XML file in a text editor. Add a `<probe>` section after `<frontendport>`.
 
-	<Probes>
+    <Probes>
         <Probe>
             <Name>Probe01</Name>
             <Protocol>Http</Protocol>
@@ -178,7 +179,7 @@
         </Probe>
     </Probes>
 
-在 XML 的 backendHttpSettings 區段中，如下列範例所示，新增探查名稱：
+In the backendHttpSettings section of the XML, add the probe name as shown in the following example:
 
         <BackendHttpSettings>
             <Name>setting1</Name>
@@ -189,19 +190,23 @@
             <Probe>Probe01</Probe>
         </BackendHttpSettings>
 
-儲存 XML 檔案。
+Save the XML file.
 
-### 步驟 3
+### <a name="step-3"></a>Step 3
 
-使用 **Set-AzureApplicationGatewayConfig** 以新的 XML 檔案更新應用程式閘道組態。這會以新組態更新您的應用程式閘道。
+Update the application gateway configuration with the new XML file by using **Set-AzureApplicationGatewayConfig**. This updates your application gateway with the new configuration.
 
-	Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
+    Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如果您想要設定「安全通訊端層」(SSL) 卸載，請參閱[設定適用於 SSL 卸載的應用程式閘道](application-gateway-ssl.md)。
+If you want to configure Secure Sockets Layer (SSL) offload, see [Configure an application gateway for SSL offload](application-gateway-ssl.md).
 
-如果您想要設定要與內部負載平衡器搭配使用的應用程式閘道，請參閱[建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
+If you want to configure an application gateway to use with an internal load balancer, see [Create an application gateway with an internal load balancer (ILB)](application-gateway-ilb.md).
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

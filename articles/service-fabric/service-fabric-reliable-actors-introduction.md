@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Service Fabric Reliable Actors 概觀 | Microsoft Azure"
-   description="Service Fabric Reliable Actors 程式設計模型簡介。"
+   pageTitle="Service Fabric Reliable Actors Overview | Microsoft Azure"
+   description="Introduction to the Service Fabric Reliable Actors programming model."
    services="service-fabric"
    documentationCenter=".net"
    authors="vturecek"
@@ -13,79 +13,80 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="07/06/2016"
+   ms.date="10/19/2016"
    ms.author="vturecek"/>
 
-# Service Fabric Reliable Actor 簡介
 
-Reliable Actors 是以 [Virtual Actor](http://research.microsoft.com/zh-TW/projects/orleans/) 模式為基礎的 Service Fabric 應用程式架構。Reliable Actors API 提供單一執行緒的程式設計模型，此模型立基於 Service Fabric 所提供的延展性和可靠性保證上。
+# <a name="introduction-to-service-fabric-reliable-actors"></a>Introduction to Service Fabric Reliable Actors
 
-## 什麼是動作項目？
-動作項目是隔離且獨立的計算與狀態單位，且具備單一執行緒執行。[動作項目模式](https://en.wikipedia.org/wiki/Actor_model)是適用於並行或分散式系統的運算模型，其中有大量的這類動作項目可以同時且各自獨立的方式來執行。動作項目可以彼此通訊，而且可以建立多個動作項目。
+Reliable Actors is a Service Fabric application framework based on the [Virtual Actor](http://research.microsoft.com/en-us/projects/orleans/) pattern. The Reliable Actors API provides a single-threaded programming model built on the scalability and reliability guarantees provided by Service Fabric.
 
-### 使用 Reliable Actors 的時機
+## <a name="what-are-actors?"></a>What are Actors?
+An actor is an isolated, independent unit of compute and state with single-threaded execution. The [actor pattern](https://en.wikipedia.org/wiki/Actor_model) is a computational model for concurrent or distributed systems in which a large number of these actors can execute simultaneously and independently of each other. Actors can communicate with each other and they can create more actors.
 
-Service Fabric Reliable Actors 是動作項目設計模式的實作。如同任何軟體設計模式，是否要使用特定模式的決策是根據軟體設計問題是否符合模式來決定。
+### <a name="when-to-use-reliable-actors"></a>When to use Reliable Actors
 
-雖然動作項目設計模式適用於許多分散式系統問題和案例，但還是必須謹慎考量實作它的模式與架構的限制。做為一般指導方針，請在符合下列情況時，考慮使用動作項目模式來建立您的問題或案例模型︰
+Service Fabric Reliable Actors is an implementation of the actor design pattern. As with any software design pattern, the decision whether to use a specific pattern is made based on whether or not a software design problem fits the pattern.
 
- - 您的問題領域涉及大量 (數千個或更多) 小型、獨立且隔離的狀態和邏輯單位。
+Although the actor design pattern can be a good fit to a number of distributed systems problems and scenarios, careful consideration of the constraints of the pattern and the framework implementing it must be made. As general guidance, consider the actor pattern to model your problem or scenario if:
 
- - 您想要使用單一執行緒的物件，這類物件不需要與外部元件進行顯著的互動，包括跨一組動作項目查詢狀態。
+ - Your problem space involves a large number (thousands or more) of small, independent, and isolated units of state and logic.
 
- - 您的動作項目執行個體將不會藉由發出 I/O 作業，使用無法預期的延遲來封鎖呼叫端。
+ - You want to work with single-threaded objects that do not require significant interaction from external components, including querying state across a set of actors.
 
-## Service Fabric 中的動作項目
+ - Your actor instances won't block callers with unpredictable delays by issuing I/O operations.
 
-在 Service Fabric 中，動作項目是在 Reliable Actors 架構中實作的︰以動作項目模式為基礎的應用程式架構是建置於 [Service Fabric Reliable Services](service-fabric-reliable-services-introduction.md) 的頂端。您撰寫的每個 Reliable Actor 服務實際上都是已資料分割的具狀態可靠服務。
+## <a name="actors-in-service-fabric"></a>Actors in Service Fabric
 
-每個動作項目都會定義為動作項目類型的執行個體，與 .NET 物件是 .NET 類型的執行個體的方式完全相同。例如，有的動作項目類型會實作計算機的功能，而該類型會有許多動作項目分散到叢集的各種節點上。每一個這類的動作項目都有唯一的動作項目識別碼識別。
+In Service Fabric, actors are implemented in the Reliable Actors framework: An actor-pattern-based application framework built on top of [Service Fabric Reliable Services](service-fabric-reliable-services-introduction.md). Each Reliable Actor service you write is actually a partitioned, stateful Reliable Service.
 
-### 動作項目生命週期
+Every actor is defined as an instance of an actor type, identical to the way a .NET object is an instance of a .NET type. For example, there may be an actor type that implements the functionality of a calculator and there could be many actors of that type that are distributed on various nodes across a cluster. Each such actor is uniquely identified by an actor ID.
 
-Service Fabric 動作項目是虛擬的，也就是說，其生命週期不會繫結至其記憶體內部表示法。因此，不需要明確地進行建立或終結。Reliable Actors 執行階段會在第一次接收到動作項目識別碼的要求時自動啟動該動作項目。如果動作項目有一段時間未使用，則 Reliable Actors 執行階段會對記憶體內部物件進行記憶體回收。它也會維護稍後重新啟動動作項目所需的存在知識。如需詳細資訊，請參閱[動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)。
+### <a name="actor-lifetime"></a>Actor Lifetime
 
-此虛擬動作項目存留期抽象概念會傳達一些警告做為虛擬動作項目模型的結果，而事實上，Reliable Actors 有時會偏離此模型。
+Service Fabric actors are virtual, meaning that their lifetime is not tied to their in-memory representation. As a result, they do not need to be explicitly created or destroyed. The Reliable Actors runtime automatically activates an actor the first time it receives a request for that actor ID. If an actor is not used for a period of time, the Reliable Actors runtime garbage-collects the in-memory object. It will also maintain knowledge of the actor's existence should it need to be reactivated later. For more details, see [Actor lifecycle and garbage collection](service-fabric-reliable-actors-lifecycle.md).
 
- - 動作項目會在訊息第一次傳送到它的動作項目識別碼時自動啟動 (因而造成動作項目物件的建構)。在一段時間之後，就會對該動作項目物件進行記憶體回收。未來再次使用動作項目識別碼時，就會導致建構新的動作項目物件。將動作項目的狀態儲存於狀態管理員時，其存留時間會超過物件的存留期。
+This virtual actor lifetime abstraction carries some caveats as a result of the virtual actor model, and in fact the Reliable Actors implementation deviates at times from this model.
+
+ - An actor is automatically activated (causing an actor object to be constructed) the first time a message is sent to its actor ID. After some period of time, the actor object is garbage collected. In the future, using the actor ID again, causes a new actor object to be constructed. An actor's state outlives the object's lifetime when stored in the state manager.
  
- - 針對動作項目識別碼呼叫任何動作項目方法都會啟動該動作項目。基於這個理由，動作項目類型會透過執行階段隱含地呼叫其建構函式。因此，用戶端程式碼無法將參數傳遞給動作項目類型的建構函式，雖然可能會由服務本身將參數傳遞給動作項目的建構函式。結果就是，如果動作項目需要來自用戶端的初始化參數，動作項目可能就會依照在其上呼叫其他方法的時間，以部分初始化的狀態來建構。沒有任何單一進入點可從用戶端啟動動作項目。
+ - Calling any actor method for an actor ID activates that actor. For this reason, actor types have their constructor called implicitly by the runtime. Therefore, client code cannot pass parameters to the actor type's constructor, although parameters may be passed to the actor's constructor by the service itself. The result is that actors may be constructed in a partially-initialized state by the time other methods are called on it, if the actor requires initialization parameters from the client. There is no single entry point for the activation of an actor from the client.
 
- - 雖然 Reliable Actors 會以隱含方式建立動作項目物件，但您還是無法明確地刪除動作項目及其狀態。
+ - Although Reliable Actors implicitly create actor objects; you do have the ability to explicitly delete an actor and its state. 
 
-### 散佈和容錯移轉
+### <a name="distribution-and-failover"></a>Distribution and failover
 
-為了提供延展性和可靠性，Service Fabric 將動作項目散佈於整個叢集，並視需要讓動作項目從失敗的節點自動移轉到狀況良好的節點。這是[已資料分割的具狀態可靠服務](./service-fabric-concepts-partitioning.md)上的一個抽象概念。散佈、延展性、可靠性及自動容錯移轉全都是憑藉動作項目正在名為「動作項目服務」的具狀態可靠服務內執行的事實來提供。
+To provide scalability and reliability, Service Fabric distributes actors throughout the cluster and automatically migrates them from failed nodes to healthy ones as required. This is an abstraction over a [partitioned, stateful Reliable Service](./service-fabric-concepts-partitioning.md). Distribution, scalability, reliability, and automatic failover are all provided by virtue of the fact that actors are running inside a stateful Reliable Service called the *Actor Service*. 
 
-動作項目會散佈在動作項目服務的分割區上，而這些分割區會散佈到 Service Fabric 叢集中的節點上。每個服務分割區都會包含一組動作項目。Service Fabric 會管理服務分割區的散佈和容錯移轉。
+Actors are distributed across the partitions of the Actor Service, and those partitions are distributed across the nodes in a Service Fabric cluster. Each service partition contains a set of actors. Service Fabric manages distribution and failover of the service partitions. 
 
-例如，若動作項目服務具備九個使用預設動作項目分割區配置部署到三個節點的分割區，則會據此進行散佈：
+For example, an actor service with nine partitions deployed to three nodes using the default actor partition placement would be distributed thusly:
 
-![Reliable Actors 散佈][2]
+![Reliable Actors distribution][2]
 
-動作項目架構會為您管理分割區配置和索引鍵範圍設定。這會簡化一些選項，但也會帶來一些考量︰
+The Actor Framework manages partition scheme and key range settings for you. This simplifies some choices but also carries some consideration:
 
- - Reliable Services 可讓您選擇資料分割配置、索引鍵範圍 (使用定界分割配置)，以及分割區計數。Reliable Actors 會限制為定界分割配置 (平均的 Int64 配置)，而且要求您使用完整的 Int64 索引鍵範圍。
+ - Reliable Services allows you to choose a partitioning scheme, key range (when using a range partitioning scheme), and partition count. Reliable Actors is restricted to the range partitioning scheme (the uniform Int64 scheme) and requires you use the full Int64 key range.
  
- - 根據預設，動作項目會隨機放入分割區，形成平均散佈的結果。
+ - By default, actors are randomly placed into partitions resulting in uniform distribution. 
  
- - 由於動作項目是隨機放置的，所以應該預期動作項目作業一律需要網路通訊，包括方法呼叫資料的序列化和還原序列化，因而導致延遲和額外負荷。
+ - Because actors are randomly placed, it should be expected that actor operations will always require network communication, including serialization and deserialization of method call data, incurring latency and overhead.
  
- - 在進階案例中，使用對應到特定分割區的 Int64 動作項目識別碼，就能控制動作項目分割區放置。不過，這樣做會導致動作項目以不對稱方式散佈於分割區上。
+ - In advanced scenarios, it is possible to control actor partition placement by using Int64 actor IDs that map to specific partitions. However, doing so can result in an unbalanced distribution of actors across partitions. 
 
-如需如何分割動作項目服務的詳細資訊，請參閱[動作項目的分割概念](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors)。
+For more information on how actor services are partitioned, refer to [partitioning concepts for actors](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors). 
 
-### 動作項目通訊
-定義動作項目互動的介面是實作該介面的動作項目所共用的介面，而用戶端會透過同一個介面取得動作項目的 Proxy。因為此介面是用來以非同步方式叫用動作項目方法，所以介面上的每個方法都必須傳回工作。
+### <a name="actor-communication"></a>Actor communication
+Actor interactions are defined in an interface that is shared by the actor that implements the interface, and the client that gets a proxy to an actor via the same interface. Because this interface is used to invoke actor methods asynchronously, every method on the interface must be Task-returning.
 
-方法引動過程及其回應最終會導致叢集中的網路要求，如此一來，引數與其所傳回之工作的結果類型必須可由平台序列化。特別是，它們必須是[資料合約序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)。
+Method invocations and their responses ultimately result in network requests across the cluster, so the arguments and the result types of the tasks that they return must be serializable by the platform. In particular, they must be [data contract serializable](service-fabric-reliable-actors-notes-on-actor-type-serialization.md).
 
-#### 動作項目 Proxy
-Reliable Actors 用戶端 API 能夠在動作項目執行個體與動作項目用戶端之間提供通訊。為了與動作項目通訊，用戶端會建立一個動作項目 Proxy 物件來實作動作項目介面。用戶端會叫用 Proxy 物件上的方法來與動作項目互動。動作項目 Proxy 可用於用戶端對動作項目以及動作項目對動作項目的通訊。
+#### <a name="the-actor-proxy"></a>The actor proxy
+The Reliable Actors client API provides communication between an actor instance and an actor client. To communicate with an actor, a client creates an actor proxy object that implements the actor interface. The client interacts with the actor by invoking methods on the proxy object. The actor proxy can be used for client-to-actor and actor-to-actor communication. 
 
 ```csharp
 // Create a randomly distributed actor ID
-ActorId actorId = ActorId.NewId();
+ActorId actorId = ActorId.CreateRandom();
 
 // This only creates a proxy object, it does not activate an actor or invoke any methods yet.
 IMyActor myActor = ActorProxy.Create<IMyActor>(actorId, new Uri("fabric:/MyApp/MyActorService"));
@@ -94,68 +95,72 @@ IMyActor myActor = ActorProxy.Create<IMyActor>(actorId, new Uri("fabric:/MyApp/M
 await myActor.DoWorkAsync();
 ```
 
-請注意，有兩段資訊用於建立動作項目 Proxy 物件：動作項目 ID 與應用程式名稱。動作項目識別碼可唯一識別動作項目，而應用程式名稱可識別動作項目部署所在的 [Service Fabric 應用程式](service-fabric-reliable-actors-platform.md#service-fabric-application-model-concepts-for-actors)。
+Note that the two pieces of information used to create the actor proxy object are the actor ID and the application name. The actor ID uniquely identifies the actor, while the application name identifies the [Service Fabric application](service-fabric-reliable-actors-platform.md#service-fabric-application-model-concepts-for-actors) where the actor is deployed.
 
-用戶端上的 `ActorProxy` 類别會執行必要的解決方案，以便依識別碼找到動作項目並開啟與該動作項目通訊的管道。`ActorProxy` 也會在通訊失敗和容錯移轉的情況下重新試著尋找動作項目。因此，訊息傳遞具有下列特性︰
+The `ActorProxy` class on the client side performs the necessary resolution to locate the actor by ID and open a communication channel with it. The `ActorProxy` also retries to locate the actor in the cases of communication failures and failovers. As a result, message delivery has the following characteristics:
 
- - 最好進行訊息傳遞。
- - 動作項目可能收到來自相同用戶端的重複訊息。
+ - Message delivery is best effort.
+ - Actors may receive duplicate messages from the same client.
 
-### 並行
+### <a name="concurrency"></a>Concurrency
 
-Reliable Actors 執行階段會提供簡單的回合式存取模型來存取動作項目方法。這表示動作項目物件代碼內永遠只能有一個執行緒為使用中。回合式存取會大幅簡化並行系統，因為不需要使用同步機制來進行資料存取。這也表示系統必須針對每個動作項目執行個體的單一執行緒存取本質的特殊考量來設計。
+The Reliable Actors runtime provides a simple turn-based access model for accessing actor methods. This means that no more than one thread can be active inside an actor object's code at any time. Turn-based access greatly simplifies concurrent systems as there is no need for synchronization mechanisms for data access. It also means systems must be designed with special considerations for the single-threaded access nature of each actor instance.
 
- - 單一動作項目執行個體無法一次處理一個以上的要求。如果預期動作項目執行個體要處理並行要求，可能就會遇到輸送量瓶頸。
- - 如果兩個動作項目之間有一個循環要求，同時還會對其中一個動作項目提出外部要求，則動作項目會在彼此間產生死結。動作項目執行階段將會在動作項目呼叫時自動逾時，並將例外狀況擲回呼叫端，以中斷可能發生的死結狀況。
+ - A single actor instance cannot process more than one request at a time. An actor instance can cause a throughput bottleneck if it is expected to handle concurrent requests. 
+ - Actors can deadlock on each other if there is a circular request between two actors while an external request is made to one of the actors simultaneously. The actor runtime will automatically time out on actor calls and throw an exception to the caller to interrupt possible deadlock situations.
 
-![Reliable Actors 通訊][3]
+![Reliable Actors communication][3]
 
-#### 回合式存取
+#### <a name="turn-based-access"></a>Turn-based access
 
-一個回合包含完整執行動作項目方法以回應其他動作項目或用戶端的要求，或完整執行[計時器/提醒](service-fabric-reliable-actors-timers-reminders.md)回呼。即使這些方法和回呼非同步，但動作項目執行階段並不使其交錯。必須完整完成一個回合，才能允許進行下一回合。換句話說，計時器/提醒回呼目前正在執行的動作項目方法或計時器/提醒回呼必須完整完成，才能對方法或回呼進行新的呼叫。如果已從方法或回呼傳回執行，且方法或回呼傳回的工作已完成，則會將方法或回呼視為已完成。值得強調的是，即使是在不同的方法、計時器與回呼之間，仍會遵守回合式並行。
+A turn consists of the complete execution of an actor method in response to a request from other actors or clients, or the complete execution of a [timer/reminder](service-fabric-reliable-actors-timers-reminders.md) callback. Even though these methods and callbacks are asynchronous, the Actors runtime does not interleave them. A turn must be fully finished before a new turn is allowed. In other words, an actor method or timer/reminder callback that is currently executing must be fully finished before a new call to a method or callback is allowed. A method or callback is considered to have finished if the execution has returned from the method or callback and the task returned by the method or callback has finished. It is worth emphasizing that turn-based concurrency is respected even across different methods, timers, and callbacks.
 
-動作項目執行階段會藉由在某回合的開頭取得一個各動作項目鎖定，然後在回合結束時釋放該鎖定，來強制回合式並行。因此，回合式並行會依各個動作項目強制執行，不會在動作項目之間強制執行。動作項目方法和計時器/提醒回撥可代表不同的動作項目同時執行。
+The Actors runtime enforces turn-based concurrency by acquiring a per-actor lock at the beginning of a turn and releasing the lock at the end of the turn. Thus, turn-based concurrency is enforced on a per-actor basis and not across actors. Actor methods and timer/reminder callbacks can execute simultaneously on behalf of different actors.
 
-以下範例說明上述概念。如果有一個動作項目類型實作兩個非同步方法 (假設為 *Method1* 與 *Method2*)，也就是計時器與提醒。下圖顯示代表這兩個屬於此動作項目類型的動作項目 (*ActorId1* 與 *ActorId2*) 執行這些方法與回呼的時間軸範例。
+The following example illustrates the above concepts. Consider an actor type that implements two asynchronous methods (say, *Method1* and *Method2*), a timer, and a reminder. The diagram below shows an example of a timeline for the execution of these methods and callbacks on behalf of two actors (*ActorId1* and *ActorId2*) that belong to this actor type.
 
-![Reliable Actors 執行階段回合式並行和存取][1]
+![Reliable Actors runtime turn-based concurrency and access][1]
 
-此圖遵循下列慣例：
+This diagram follows these conventions:
 
-- 每一個垂直線顯示代表特定動作項目執行方法或回撥時的邏輯流程。
-- 每個垂直線上標示的事件依時間順序發生，新發生的事件排在舊事件下方。
-- 時間軸使用不同的顏色來對應不同的動作項目。
-- 反白顯示用於指出代表方法或回撥保留各動作項目鎖定的持續期間。
+- Each vertical line shows the logical flow of execution of a method or a callback on behalf of a particular actor.
+- The events marked on each vertical line occur in chronological order, with newer events occurring below older ones.
+- Different colors are used for timelines corresponding to different actors.
+- Highlighting is used to indicate the duration for which the per-actor lock is held on behalf of a method or callback.
 
-有一些需要考慮的重要事項︰
+Some important points to consider:
 
-- 當 *Method1* 代表 *ActorId2* 執行以回應用戶端要求 *xyz789* 時，另一個抵達的用戶端要求 (*abc123*) 也需要 *Method1* 由 *ActorId2* 執行。不過，*Method1* 的第二次執行會在前一次執行完成後才開始。同樣的，由 *ActorId2* 註冊的提醒會在 *Method1* 正在執行時引發，以回應用戶端要求 *xyz789*。提醒回撥只會在 *Method1* 的這兩個執行都完成後才執行。所有的一切都是因為對 *ActorId2* 強制執行回合式並行。
-- 同樣地，也會對 *ActorId1* 強制執行回合式並行，如代表依序發生的 *ActorId1* 執行 *Method1*、*Method2* 和計時器回呼所示。
-- 代表*ActorId1* 執行 *Method1* 與代表 *ActorId2* 執行重疊。這是因為回合式並行只會在動作項目內強制執行，不會在動作項目間強制執行。
-- 在某些方法/回呼執行中，方法/回呼傳回的 `Task` 會在方法傳回後完成。在某些其他執行中，已在方法/回呼傳回的時間前完成 `Task`。在這兩種情況下，只有在方法/回呼傳回且 `Task` 完成後，才會釋放各個動作項目鎖定。
+- While *Method1* is executing on behalf of *ActorId2* in response to client request *xyz789*, another client request (*abc123*) arrives that also requires *Method1* to be executed by *ActorId2*. However, the second execution of *Method1* does not begin until the prior execution has finished. Similarly, a reminder registered by *ActorId2* fires while *Method1* is being executed in response to client request *xyz789*. The reminder callback is executed only after both executions of *Method1* are complete. All of this is due to turn-based concurrency being enforced for *ActorId2*.
+- Similarly, turn-based concurrency is also enforced for *ActorId1*, as demonstrated by the execution of *Method1*, *Method2*, and the timer callback on behalf of *ActorId1* happening in a serial fashion.
+- Execution of *Method1* on behalf of *ActorId1* overlaps with its execution on behalf of *ActorId2*. This is because turn-based concurrency is enforced only within an actor and not across actors.
+- In some of the method/callback executions, the `Task` returned by the method/callback finishes after the method returns. In some others, the `Task` has already finished by the time the method/callback returns. In both cases, the per-actor lock is released only after both the method/callback returns and the `Task` finishes.
 
-#### 重新進入
+#### <a name="reentrancy"></a>Reentrancy
 
-動作項目執行階段依預設允許重新進入。這表示如果 *Actor A* 的動作項目方法在 *Actor B* 上呼叫某一個方法，然後反過來在 *Actor A* 上呼叫另一個方法，則允許執行該方法。這是因為該方法是同一個邏輯呼叫鏈結內容的一部分。所有的計時器與提醒呼叫的開頭都是新的邏輯呼叫內容。如需詳細資訊，請參閱 [Reliable Actors 重新進入](service-fabric-reliable-actors-reentrancy.md)。
+The Actors runtime allows reentrancy by default. This means that if an actor method of *Actor A* calls a method on *Actor B*, which in turn calls another method on *Actor A*, that method is allowed to run. This is because it is part of the same logical call-chain context. All timer and reminder calls start with the new logical call context. See the [Reliable Actors reentrancy](service-fabric-reliable-actors-reentrancy.md) for more details.
 
-#### 並行保證的範圍
+#### <a name="scope-of-concurrency-guarantees"></a>Scope of concurrency guarantees
 
-動作項目執行階段在控制叫用這些方法的狀況下，提供這些並行保證。例如，動作項目執行階段會對為回應用戶端要求而進行的方法叫用，以及對計時器與提醒回呼提供這些保證。然而，如果動作項目程式碼在動作項目執行階段提供的機制之外直接叫用這些方法，則執行階段無法提供任何並行保證。例如，如果在某個與動作項目方法所傳回的工作不相關聯的工作內容中叫用方法，則執行階段無法提供並行保證。如果從動作項目自行建立的執行緒叫用方法，則執行階段也無法提供並行保證。因此，若要執行背景作業，動作項目應使用遵守回合式並行的[動作項目計時器和動作項目提醒](service-fabric-reliable-actors-timers-reminders.md)。
+The Actors runtime provides these concurrency guarantees in situations where it controls the invocation of these methods. For example, it provides these guarantees for the method invocations that are done in response to a client request, as well as for timer and reminder callbacks. However, if the actor code directly invokes these methods outside of the mechanisms provided by the Actors runtime, then the runtime cannot provide any concurrency guarantees. For example, if the method is invoked in the context of some task that is not associated with the task returned by the actor methods, then the runtime cannot provide concurrency guarantees. If the method is invoked from a thread that the actor creates on its own, then the runtime also cannot provide concurrency guarantees. Therefore, to perform background operations, actors should use [actor timers and actor reminders](service-fabric-reliable-actors-timers-reminders.md) that respect turn-based concurrency.
 
-## 後續步驟
- - [開始使用 Reliable Actors](service-fabric-reliable-actors-get-started.md)
- - [Reliable Acto 如何使用 Service Fabric 平台](service-fabric-reliable-actors-platform.md)
- - [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)
- - [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
- - [動作項目計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
- - [動作項目事件](service-fabric-reliable-actors-events.md)
- - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
- - [動作項目多型和物件導向的設計模式](service-fabric-reliable-actors-polymorphism.md)
- - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
+## <a name="next-steps"></a>Next steps
+ - [Getting started with Reliable Actors](service-fabric-reliable-actors-get-started.md)
+ - [How Reliable Actors use the Service Fabric platform](service-fabric-reliable-actors-platform.md)
+ - [Actor state management](service-fabric-reliable-actors-state-management.md)
+ - [Actor lifecycle and garbage collection](service-fabric-reliable-actors-lifecycle.md)
+ - [Actor timers and reminders](service-fabric-reliable-actors-timers-reminders.md)
+ - [Actor events](service-fabric-reliable-actors-events.md)
+ - [Actor reentrancy](service-fabric-reliable-actors-reentrancy.md)
+ - [Actor polymorphism and object-oriented design patterns](service-fabric-reliable-actors-polymorphism.md)
+ - [Actor diagnostics and performance monitoring](service-fabric-reliable-actors-diagnostics.md)
 
 <!--Image references-->
 [1]: ./media/service-fabric-reliable-actors-introduction/concurrency.png
 [2]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 [3]: ./media/service-fabric-reliable-actors-introduction/actor-communication.png
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

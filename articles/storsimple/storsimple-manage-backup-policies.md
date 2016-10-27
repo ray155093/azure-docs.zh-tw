@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="管理您的 StorSimple 備份原則 | Microsoft Azure"
-   description="說明如何使用 StorSimple Manager 服務建立並管理手動備份、備份排程與備份保留。"
+   pageTitle="Manage your StorSimple backup policies | Microsoft Azure"
+   description="Explains how you can use the StorSimple Manager service to create and manage manual backups, backup schedules, and backup retention."
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -15,79 +15,84 @@
    ms.date="05/10/2016"
    ms.author="v-sharos"/>
 
-# 使用 StorSimple Manager 服務管理備份原則
+
+# <a name="use-the-storsimple-manager-service-to-manage-backup-policies"></a>Use the StorSimple Manager service to manage backup policies
 
 [AZURE.INCLUDE [storsimple-version-selector-manage-backup-policies](../../includes/storsimple-version-selector-manage-backup-policies.md)]
 
-## 概觀
+## <a name="overview"></a>Overview
 
-本教學課程說明如何使用 StorSimple Manager 服務的 [備份原則] 頁面控制 StorSimple 磁碟區的備份程序和備份保留。它也會說明如何完成手動備份。
+This tutorial explains how to use the StorSimple Manager service **Backup Policies** page to control backup processes and backup retention for your StorSimple volumes. It also describes how to complete a manual backup.
 
-[備份原則] 頁面可讓您管理備份原則並排程本機和雲端快照 (備份原則用來設定磁碟區集合的備份排程和備份保留)。 備份原則可讓您同時建立多個磁碟區的快照。這表示備份原則所建立的備份將會是與當機時一致的複本。此頁面會列出備份原則、其類型、相關聯的磁碟區、保留的備份數目，以及啟用這些原則的選項。
+The **Backup Policies** page allows you to manage backup policies and schedule local and cloud snapshots. (Backup policies are used to configure backup schedules and backup retention for a collection of volumes.) Backup policies enable you to take a snapshot of multiple volumes simultaneously. This means that the backups created by a backup policy will be crash-consistent copies. This page lists the backup policies, their types, the associated volumes, the number of backups retained, and the option to enable these policies.
 
-[備份原則] 頁面也可讓您依下列一個或多個欄位，篩選現有的備份原則：
+The **Backup Policies** page also allows you to filter the existing backup policies by one or more of the following fields:
 
-- **原則名稱** – 與原則相關聯的名稱。不同類型的原則包括：
+- **Policy name** – The name associated with the policy. The different types of policies include:
 
-   - 已排程的原則 (由使用者明確建立)。
-   - 自動原則 (建立磁碟區時啟用此磁碟區選項的預設備份時所建立)。這些原則會被命名為 VolumeName\_Default，其中磁碟區名稱指的是傳統入口網站使用者所設定之 StorSimple 磁碟區的名稱。自動原則會導致每日雲端快照於 22:30 裝置時間開始。
-   - 匯入的原則 (原先是在 StorSimple Snapshot Manager 中所建立)。這些包含說明從中匯入原則之 StorSimple Snapshot Manager 主機的標記。
+   - Scheduled policies, which are explicitly created by the user.
+   - Automatic policies, which are created when the default backup for this volume option was enabled at the time of volume creation. These policies are named as VolumeName_Default where Volume name refers to the name of the StorSimple volume configured by the user in the Azure classic portal. The automatic policies result in daily cloud snapshots beginning at 22:30 device time.
+   - Imported policies, which were originally created in the StorSimple Snapshot Manager. These have a tag that describes the StorSimple Snapshot Manager host that the policies were imported from.
 
-- **磁碟區** – 與原則相關聯的磁碟區。建立備份時，會將與備份原則相關聯的所有磁碟區群組在一起。
+- **Volumes** – The volumes associated with the policy. All the volumes associated with a backup policy are grouped together when backups are created.
 
-- **上一次成功的備份** – 使用此原則所進行的上一次成功備份的日期和時間。
+- **Last successful backup** – The date and time of the last successful backup that was taken with this policy.
 
-- **下一次備份** – 此原則將起始的下一次排定的備份的日期和時間。
+- **Next backup** – The date and time of the next scheduled backup that will be initiated by this policy.
 
-- **排程** – 與備份原則相關聯的排程數目。
+- **Schedules** – The number of schedules associated with the backup policy.
 
-您可以從這個頁面執行的常用作業包括：
+The frequently used operations that you can perform from this page are:
 
-- 新增備份原則 
-- 新增或修改排程 
-- 刪除備份原則 
-- 進行手動備份 
-- 建立具有多個磁碟區和排程的自訂備份原則 
+- Add a backup policy 
+- Add or modify a schedule 
+- Delete a backup policy 
+- Take a manual backup 
+- Create a custom backup policy with multiple volumes and schedules 
 
-## 新增備份原則
+## <a name="add-a-backup-policy"></a>Add a backup policy
 
-新增備份原則，以自動排程備份。在 Azure 傳統入口網站中執行下列步驟，以便為 StorSimple 裝置新增備份原則。新增原則之後，您可以定義排程 (請參閱[新增或修改排程](#add-or-modify-a-schedule))。
+Add a backup policy to automatically schedule your backups. Perform the following steps in the Azure classic portal to add a backup policy for your StorSimple device. After you add the policy, you can define a schedule (see [Add or modify a schedule](#add-or-modify-a-schedule)).
 
 [AZURE.INCLUDE [storsimple-add-backup-policy](../../includes/storsimple-add-backup-policy.md)]
 
-![提供的影片](./media/storsimple-manage-backup-policies/Video_icon.png) **提供的影片**
+![Video available](./media/storsimple-manage-backup-policies/Video_icon.png) **Video available**
 
-若要觀看影片示範如何建立本機或雲端備份原則，請按一下[這裡](https://azure.microsoft.com/documentation/videos/create-storsimple-backup-policies/)。
+To watch a video that demonstrates how to create a local or cloud backup policy, click [here](https://azure.microsoft.com/documentation/videos/create-storsimple-backup-policies/).
 
 
-## 新增或修改排程
+## <a name="add-or-modify-a-schedule"></a>Add or modify a schedule
 
-您可以在 StorSimple 裝置上新增或修改附加到現有備份原則的排程。在 Azure 傳統入口網站中執行下列步驟，以新增或修改排程。
+You can add or modify a schedule that is attached to an existing backup policy on your StorSimple device. Perform the following steps in the Azure classic portal to add or modify a schedule.
 
 [AZURE.INCLUDE [storsimple-add-modify-backup-schedule](../../includes/storsimple-add-modify-backup-schedule.md)]
 
-## 刪除備份原則
+## <a name="delete-a-backup-policy"></a>Delete a backup policy
 
-在 Azure 傳統入口網站中執行下列步驟，以便刪除 StorSimple 裝置上的備份原則。
+Perform the following steps in the Azure classic portal to delete a backup policy on your StorSimple device.
 
 [AZURE.INCLUDE [storsimple-delete-backup-policy](../../includes/storsimple-delete-backup-policy.md)]
 
 
-## 進行手動備份
+## <a name="take-a-manual-backup"></a>Take a manual backup
 
-在 Azure 傳統入口網站中執行下列步驟，以針對單一磁碟區建立隨選 (手動) 備份。
+Perform the following steps in the Azure classic portal to create an on-demand (manual) backup for a single volume.
 
 [AZURE.INCLUDE [storsimple-create-manual-backup](../../includes/storsimple-create-manual-backup.md)]
 
-## 建立具有多個磁碟區和排程的自訂備份原則
+## <a name="create-a-custom-backup-policy-with-multiple-volumes-and-schedules"></a>Create a custom backup policy with multiple volumes and schedules
 
-在 Azure 傳統入口網站中執行下列步驟，以建立具有多個磁碟區和排程的自訂備份原則。
+Perform the following steps in the Azure classic portal to create a custom backup policy that has multiple volumes and schedules.
 
 [AZURE.INCLUDE [storsimple-create-custom-backup-policy](../../includes/storsimple-create-custom-backup-policy.md)]
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+Learn more about [using the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
 
-<!---HONumber=AcomDC_0511_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

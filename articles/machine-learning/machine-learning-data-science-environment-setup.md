@@ -1,32 +1,38 @@
 <properties 
-	pageTitle="設定用於 Team Data Science Process 中的資料科學環境 | Azure" 
-	description="設定用於 Team Data Science Process 中的資料科學環境" 
-	services="machine-learning" 
-	documentationCenter="" 
-	authors="bradsev" 
-	manager="jhubbard" 
-	editor="cgronlun"/>
+    pageTitle="Set up data science environments for use in the Team Data Science Process | Azure" 
+    description="Set up data science environments for use in the Team Data Science Process" 
+    services="machine-learning" 
+    documentationCenter="" 
+    authors="bradsev" 
+    manager="jhubbard" 
+    editor="cgronlun"/>
 
 <tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="06/23/2016" 
-	ms.author="bradsev" />
+    ms.service="machine-learning" 
+    ms.workload="data-services" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/03/2016" 
+    ms.author="bradsev" /> 
 
-# 設定用於 Team Data Science Process 中的資料科學環境
 
-Team Data Science Process 使用各種資料科學環境來儲存、處理和分析資料。他們包含 Azure Blob 儲存體、數種類型的 Azure 虛擬機器、HDInsight (Hadoop) 叢集，以及 Azure Machine Learning 工作區。要使用哪一個環境，取決於要使用機器學習服務進行模型化的資料類型和數量，以及該資料在雲端中的目標目的地。
+# <a name="set-up-data-science-environments-for-use-in-the-team-data-science-process"></a>Set up data science environments for use in the Team Data Science Process
 
-* 如需進行這項決策時要考量之問題的指引，請參閱[規劃您的 Azure Machine Learning 資料科學環境](machine-learning-data-science-plan-your-environment.md)。
-* 如需在進行進階分析時可能會遇到的部分案例目錄，請參閱[適用於 Team Data Science Process 的案例](machine-learning-data-science-plan-sample-scenarios.md)
+The Team Data Science Process uses various data science environments for the storage, processing, and analysis of data. They include Azure Blob Storage, several types of Azure virtual machines, HDInsight (Hadoop) clusters, and Azure Machine Learning workspaces. The decision about which environment to use depends on the type and quantity of data to be modeled and the target destination for that data in the cloud. 
 
-此功能表所連結的主題會說明如何設定 Team Data Science Process 所用的各種資料科學環境。
+* For guidance on questions to consider when making this decision, see [Plan Your Azure Machine Learning Data Science Environment](machine-learning-data-science-plan-your-environment.md). 
+* For a catalog of some of the scenarios you might encounter when doing advanced analytics, see [Scenarios for the Team Data Science Process](machine-learning-data-science-plan-sample-scenarios.md)
+
+This menu links to topics that describe how to set up the various data science environments used by the Team Data Science Process.
 
 [AZURE.INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
-**Microsoft 資料科學虛擬機器**也可做為預先安裝並設定數個常用於資料分析和機器學習之熱門工具的 Azure 虛擬機器 (VM) 映像。請參閱[佈建 Microsoft 資料科學虛擬機器](machine-learning-data-science-provision-vm.md)，以了解如何使用此 VM。
+The **Microsoft Data Science Virtual Machine** is also available as an Azure virtual machine (VM) image. This VM is pre-installed and configured with several popular tools that are commonly used for data analytics and machine learning. See [Provision the Microsoft Data Science Virtual Machine](machine-learning-data-science-provision-vm.md) for how to use this VM.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,106 +1,108 @@
 <properties
-	pageTitle="Azure App Service 中的試驗部署 (beta 測試)"
-	description="了解如何在此端對端教學課程中試驗應用程式中的新功能，或對您的更新進行 beta 測試。它整合了 App Service 功能，例如持續性發佈、位置、流量路由及 Application Insights 整合。"
-	services="app-service\web"
-	documentationCenter=""
-	authors="cephalin"
-	manager="wpickett"
-	editor=""/>
+    pageTitle="Flighting deployment (beta testing) in Azure App Service"
+    description="Learn how to flight new features in your app or beta test your updates in this end-to-end tutorial. It brings together App Service features like continuous publishing, slots, traffic routing, and Application Insights integration."
+    services="app-service\web"
+    documentationCenter=""
+    authors="cephalin"
+    manager="wpickett"
+    editor=""/>
 
 <tags
-	ms.service="app-service-web"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="02/02/2016"
-	ms.author="cephalin"/>
-# Azure App Service 中的試驗部署 (beta 測試)
+    ms.service="app-service-web"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="02/02/2016"
+    ms.author="cephalin"/>
 
-本教學課程說明如何藉由整合 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 和 [Azure Application Insights](/services/application-insights/) 的各種功能進行*試驗部署*。
+# <a name="flighting-deployment-(beta-testing)-in-azure-app-service"></a>Flighting deployment (beta testing) in Azure App Service
 
-*試驗*是以有限數量的實際客戶驗證新功能或變更的部署程序，同時也是生產案例中的主要測試。它類似於 beta 測試，有時也稱為「受控試驗」。許多具有網站空間的大型企業在執行[靈活開發](https://en.wikipedia.org/wiki/Agile_software_development)時，都採用此方法及早驗證其應用程式更新。Azure App Service 可讓您透過持續性發佈和 Application Insights 整合生產環境中的測試，以實作相同的營運開發案例。此方法的優點包括：
+This tutorial shows you how to do *flighting deployments* by integrating the various capabilities of [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) and [Azure Application Insights](/services/application-insights/). 
 
-- **在更新發行至生產環境_之前_獲得真正的意見反應** - 在發行之前獲得意見反應的效果，僅次於在發行期間即時獲得的反應。您可以在產品生命週期中，依需求及早以實際的使用者流量和行為來測試更新。
-- **增強[持續性測試導向開發 (CTDD)](https://en.wikipedia.org/wiki/Continuous_test-driven_development)** - 透過 Application Insights 的持續性整合和工具整合生產環境中的測試，使用者驗證將可在您的產品生命週期內及早進行。這有助於減少在手動測試執行上投入的時間。
-- **最佳化測試工作流程** - 透過持續性監視工具將生產環境中的測試自動化，可讓您在單一程序中達成不同測試類型的目標，例如[整合](https://en.wikipedia.org/wiki/Integration_testing)、[迴歸](https://en.wikipedia.org/wiki/Regression_testing)、[可用性](https://en.wikipedia.org/wiki/Usability_testing)、協助工具、當地語系化、[效能](https://en.wikipedia.org/wiki/Software_performance_testing)、[安全性](https://en.wikipedia.org/wiki/Security_testing)和[接受度](https://en.wikipedia.org/wiki/Acceptance_testing)。
+*Flighting* is a deployment process that validates a new feature or change with a limited number of real customers, and is a major testing in production scenario. It is akin to beta testing and is sometimes known as "controlled test flight". Many large enterprises with a web presence use this approach to get early validation on their app updates in their practice of [agile development](https://en.wikipedia.org/wiki/Agile_software_development). Azure App Service enables you to integrate test in production with continous publishing and Application Insights to implement the same DevOps scenario. Benefits of this approach include:
 
-試驗部署牽涉到的不只是路由傳送即時流量而已。在這類部署中，您會想要盡快取得深入資訊，無論是非預期的錯誤、效能下降還是使用者經驗問題。切記，您面對的是實際的客戶。因此，若要正確因應，您必須確實設定試驗部署，以收集為下一步做出明智決策所需的所有資料。本教學課程說明如何使用 Application Insights 收集資料，但您也可以使用 New Relic 或您的案例所適用的其他技術。
+- **Gain real feedback _before_ updates are released to production** - The only thing better than gaining feedback as soon as you release is gaining feedback before you release. You can test updates with real user traffic and behaviors as early as you desire in the product life cycle.
+- **Enhance [continuous test-driven development (CTDD)](https://en.wikipedia.org/wiki/Continuous_test-driven_development)** - By integrating test in production with continuous integration and instrumentation with Application Insights, user validation happens early and automatically in your product life cycle. This helps reduce time investments in manual test execution.
+- **Optimize test workflow** - By automating test in production with continuous monitoring instrumentation, you can potentially accomplish the goals of various kinds of tests in a single process, such as [integration](https://en.wikipedia.org/wiki/Integration_testing), [regression](https://en.wikipedia.org/wiki/Regression_testing), [usability](https://en.wikipedia.org/wiki/Usability_testing), accessibility, localization, [performance](https://en.wikipedia.org/wiki/Software_performance_testing), [security](https://en.wikipedia.org/wiki/Security_testing), and [acceptance](https://en.wikipedia.org/wiki/Acceptance_testing).
 
-## 將執行的作業
+A flighting deployment is not just about routing live traffic. In such a deployment you want to gain insight as quickly as possible, whether it be an unexpected bug, performance degradation, user experience issues. Remember, you are dealing with real customers. So to do it right, you must make sure that you have set up your flighting deployment to gather all the data you need in order to make an informed decision for your next step. This tutorial shows you how to collect data with Application Insights, but you can use New Relic or other technologies that suits your scenario. 
 
-在本教學課程中，您將了解如何整合下列案例，以在生產環境中測試您的 App Service 應用程式：
+## <a name="what-you-will-do"></a>What you will do
 
-- [路由傳送生產流量](app-service-web-test-in-production-get-start.md)至 beta 應用程式
-- [檢測您的應用程式](../application-insights/app-insights-web-track-usage.md)以取得實用的計量
-- 持續部署 beta 應用程式並追蹤即時應用程式計量
-- 比較生產應用程式和 beta 應用程式之間的計量，以觀察程式碼變更的結果為何
+In this tutorial, you will learn how to bring the following scenarios together to test your App Service app in production:
 
-## 必要元件
+- [Route production traffic](app-service-web-test-in-production-get-start.md) to your beta app
+- [Instrument your app](../application-insights/app-insights-web-track-usage.md) to obtain useful metrics
+- Continuously deploy your beta app and track live app metrics
+- Compare metrics between the production app and the beta app to see how code changes translate to results
 
--	一個 Azure 帳戶
--	一個 [GitHub](https://github.com/) 帳戶
-- Visual Studio 2015 - 您可以下載 [Community edition](https://www.visualstudio.com/zh-TW/products/visual-studio-express-vs.aspx)。
--	Git Shell (與 [GitHub for Windows](https://windows.github.com/) 一起安裝) - 這可讓您在相同的工作階段中執行 Git 和 PowerShell 命令
--	最新 [Azure PowerShell](https://github.com/Azure/azure-powershell/releases/download/v0.9.8-September2015/azure-powershell.0.9.8.msi) 位元
--	下列項目的基本了解：
-	-	[Azure 資源管理員](../resource-group-overview.md)範本部署 (請參閱[透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md))
-	-	[Git](http://git-scm.com/documentation)
-	-	[PowerShell](https://technet.microsoft.com/library/bb978526.aspx)
+## <a name="what-you-will-need"></a>What you will need
 
-> [AZURE.NOTE] 要完成此教學課程，您必須要有 Azure 帳戶：
-> + 您可以[免費申請 Azure 帳戶](/pricing/free-trial/)：您將取得可試用 Azure 付費服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如 Web Apps。
-> + 您可以[啟用 Visual Studio 訂戶權益](/pricing/member-offers/msdn-benefits-details/)：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
+-   An Azure account
+-   A [GitHub](https://github.com/) account
+- Visual Studio 2015 - you can download the [Community edition](https://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx).
+-   Git Shell (installed with [GitHub for Windows](https://windows.github.com/)) - this enables you to run both the Git and PowerShell commands in the same session
+-   Latest [Azure PowerShell](https://github.com/Azure/azure-powershell/releases/download/v0.9.8-September2015/azure-powershell.0.9.8.msi) bits
+-   Basic understanding of the following:
+    -   [Azure Resource Manager](../resource-group-overview.md) template deployment (see [Deploy a complex application predictably in Azure](app-service-deploy-complex-application-predictably.md))
+    -   [Git](http://git-scm.com/documentation)
+    -   [PowerShell](https://technet.microsoft.com/library/bb978526.aspx)
+
+> [AZURE.NOTE] You need an Azure account to complete this tutorial:
+> + You can [open an Azure account for free](/pricing/free-trial/) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services, such as Web Apps.
+> + You can [activate Visual Studio subscriber benefits](/pricing/member-offers/msdn-benefits-details/) - Your Visual Studio subscription gives you credits every month that you can use for paid Azure services.
 >
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
+> If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751), where you can immediately create a short-lived starter web app in App Service. No credit cards required; no commitments.
 
-## 設定生產 Web 應用程式
+## <a name="set-up-your-production-web-app"></a>Set up your production web app
 
->[AZURE.NOTE] 本教學課程中使用的指令碼會自動從 GitHub 儲存機制設定連續發行。這需要您的 GitHub 認證已儲存在 Azure 中，否則，嘗試設定 Web 應用程式的原始檔控制設定時，指令碼部署會失敗。
+>[AZURE.NOTE] The script used in this tutorial will automatically configure continuous publishing from your GitHub repository. This requires that your GitHub credentials are already stored in Azure, otherwise the scripted deployment will fail when attempting to configure source control settings for the web apps.
 >
->若要在 Azure 中儲存您的 GitHub 認證，請在 [Azure 入口網站](https://portal.azure.com/)中建立 Web 應用程式，並[設定 GitHub 部署](app-service-continuous-deployment.md#Step7)。您只需要做一次這個動作。
+>To store your GitHub credentials in Azure, create a web app in the [Azure Portal](https://portal.azure.com/) and [configure GitHub deployment](app-service-continuous-deployment.md#Step7). You only need to do this once.
 
-在一般 DevOps 案例中，應用程式是在 Azure 中即時執行，而且您想要透過連續發行對它進行變更。在此案例中，您會將已開發及測試的範本部署至生產環境。
+In a typical DevOps scenario, you have an application that’s running live in Azure, and you want to make changes to it through continuous publishing. In this scenario, you will deploy to production a template that you have developed and tested.
 
-1.	建立 [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) 儲存機制的專屬分叉。如需建立分叉的相關資訊，請參閱[分岔儲存機制](https://help.github.com/articles/fork-a-repo/)。建立分叉之後，即可在瀏覽器中進行查看。
+1.  Create your own fork of the [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) repository. For information on creating your fork, see [Fork a Repo](https://help.github.com/articles/fork-a-repo/). Once your fork is created, you can see it in your browser.
 
-	![](./media/app-service-agile-software-development/production-1-private-repo.png)
+    ![](./media/app-service-agile-software-development/production-1-private-repo.png)
 
-2.	開啟 Git Shell 工作階段。若您尚無 Git Shell，請立即安裝 [GitHub for Windows](https://windows.github.com/)。
-3.	執行下列命令，以建立分叉的本機複製品：
+2.  Open a Git Shell session. If you don't have Git Shell yet, install [GitHub for Windows](https://windows.github.com/) now.
+3.  Create a local clone of your fork by executing the following command:
 
         git clone https://github.com/<your_fork>/ToDoApp.git
 
-4.	具有本機複製品後，瀏覽至 *&lt;repository\_root>*\\ARMTemplates，然後執行具有唯一後置詞的 deploy.ps1 指令碼，如下所示：
+4.  Once you have your local clone, navigate to *&lt;repository_root>*\ARMTemplates, and run the deploy.ps1 script with a unique suffix, as shown below:
 
         .\deploy.ps1 –RepoUrl https://github.com/<your_fork>/todoapp.git -ResourceGroupSuffix <your_suffix>
 
-4.	系統提示時，請輸入所需的使用者名稱和密碼來存取資料庫。請記住您的資料庫認證，因為在更新資源群組時將必須再次加以指定。
+4.  When prompted, type in the desired username and password for database access. Remember your database credentials because you will need to specify them again when updating the resource group.
 
-	您應該會看到各種 Azure 資源的佈建進度。部署完成時，指令碼會在瀏覽器中啟動應用程式，並提供合適的嗶聲。![](./media/app-service-web-test-in-production-controlled-test-flight/00.1-app-in-browser.png)
+    You should see the provisioning progress of various Azure resources. When deployment completes, the script will launch the application in the browser and give you a friendly beep.
+    ![](./media/app-service-web-test-in-production-controlled-test-flight/00.1-app-in-browser.png)
 
-6.	回到 Git Shell 工作階段，並執行：
+6.  Back in your Git Shell session, run:
 
         .\swap –Name ToDoApp<your_suffix>
 
-	![](./media/app-service-web-test-in-production-controlled-test-flight/00.2-swap-to-production.png)
+    ![](./media/app-service-web-test-in-production-controlled-test-flight/00.2-swap-to-production.png)
 
-7.	指令碼完成時，請返回瀏覽至前端的位址 (http://ToDoApp*&lt;your_suffix>*.azurewebsites.net/)，以查看在生產環境中執行的應用程式。
-5.	登入 [Azure 入口網站](https://portal.azure.com/)，並查看建立的內容。
+7.  When the script finishes, go back to browse to the frontend’s address (http://ToDoApp*&lt;your_suffix>*.azurewebsites.net/) to see the application running in production.
+5.  Log into the [Azure Portal](https://portal.azure.com/) and take a look at what’s created.
 
-	您應可在相同的資源群組中看到兩個 Web 應用程式，其中一個的名稱具有 `Api` 後置詞。如果您查看資源群組檢視，則也會看到 SQL Database 和伺服器、App Service 方案以及 Web 應用程式的預備位置。瀏覽不同的資源，並將其與 *&lt;repository\_root>*\\ARMTemplates\\ProdAndStage.json 比較以查看其在範本中的設定方式。
+    You should be able to see two web apps in the same resource group, one with the `Api` suffix in the name. If you look at the resource group view, you will also see the SQL Database and server, the App Service plan, and the staging slots for the web apps. Browse through the different resources and compare them with *&lt;repository_root>*\ARMTemplates\ProdAndStage.json to see how they are configured in the template.
 
-	![](./media/app-service-web-test-in-production-controlled-test-flight/00.3-resource-group-view.png)
+    ![](./media/app-service-web-test-in-production-controlled-test-flight/00.3-resource-group-view.png)
 
-您已設定生產應用程式。現在，我們假設您收到應用程式可用性不佳的意見反應。因此，您決定加以調查。你要檢測應用程式，以做出回應。
+You have set up the production app.  Now, let's imagine that you receive feedback that usability is poor for the app. So you decide to investigate. You're going to instrument your app to give you feedback.
 
-## 調查：檢測用戶端應用程式的監視/計量
+## <a name="investigate:-instrument-your-client-app-for-monitoring/metrics"></a>Investigate: Instrument your client app for monitoring/metrics
 
-5. 在 Visual Studio 中開啟 *&lt;repository\_root>*\\src\\MultiChannelToDo.sln。
-6. 以滑鼠右鍵按一下解決方案 > [管理解決方案的 NuGet 套件] > [還原]，以還原所有的 Nuget 套件。
-6. 以滑鼠右鍵按一下 [MultiChannelToDo.Web] > [新增 Application Insights 遙測] > [設定設定值] > [將資源群組變更為 ToDoApp&lt;your\_suffix>] > [將 Application Insights 新增至專案]。
-7. 在 Azure 入口網站中，開啟 **MultiChannelToDo.Web** Application Insight 資源的刀鋒視窗。接著，在 [應用程式健全狀況] 部分中，按一下 [了解如何收集瀏覽器頁面載入資料] > [複製程式碼]。
-7. 將複製的 JS 檢測程式碼新增至 *&lt;repository\_root>*\\src\\MultiChannelToDo.Web\\app\\Index.cshtml，放在右 `<heading>` 標記前面。它應包含您的 Application Insight 資源的唯一檢測金鑰。
+5. Open *&lt;repository_root>*\src\MultiChannelToDo.sln in Visual Studio.
+6. Restore all Nuget packages by right-clicking solution > **Manage NuGet Packages for Solution** > **Restore**.
+6. Right-click **MultiChannelToDo.Web** > **Add Application Insights Telemetry** > **Configure Settings** > Change resource group to ToDoApp*&lt;your_suffix>* > **Add Application Insights to Project**.
+7. In the Azure Portal, open the blade for the **MultiChannelToDo.Web** Application Insight resource. Then in the **Application health** part, click **Learn how to collect browser page load data** > copy code.
+7. Add the copied JS instrumentation code to *&lt;repository_root>*\src\MultiChannelToDo.Web\app\Index.cshtml, just before the closing `<heading>` tag. It should contain the unique instrumentation key of your Application Insight resource.
 
         <script type="text/javascript">
         var appInsights=window.appInsights||function(config){
@@ -113,7 +115,7 @@
         appInsights.trackPageView();
         </script>
 
-11. 將下列程式碼新增至本文底部，以將點按滑鼠的自訂事件傳送至 Application Insights：
+11. Send custom events to Application Insights for mouse clicks by adding the following code to the bottom of body:
 
         <script>
             $(document.body).find("*").click(function(event) {
@@ -122,63 +124,63 @@
             });
         </script>
 
-    此 JavaScript 程式碼片段會在每次使用者按一下 Web 應用程式中的任何位置時，將自訂事件傳送至 Application Insights。
+    This JavaScript snippet sends a custom event to Application Insights every time a user clicks anywhere in the web app.
 
-12. 在 Git Shell 中，認可您的變更並將其發送至您在 GitHub 中的分岔。然後，等待用戶端重新整理瀏覽器。
+12. In Git Shell, commit and push your changes to your fork in GitHub. Then, wait for clients to refresh browser.
 
         git add -A :/
         git commit -m "add AI configuration for client app"
         git push origin master
 
-6.	將已部署的應用程式變更交換至生產環境：
+6.  Swap the deployed app changes to production:
 
         .\swap –Name ToDoApp<your_suffix>
 
-13. 瀏覽至您所設定的 Application Insights 資源。按一下 [自訂事件]。
+13. Browse to the Application Insights resource that you configured. Click Custom events.
 
     ![](./media/app-service-web-test-in-production-controlled-test-flight/01-custom-events.png)
 
-    如果您未看見自訂事件的計量，請等候數分鐘，然後按一下 [重新整理]。
+    If you don't see metrics for custom events, wait a few minutes and click **Refresh**.
 
-假設您看見如下的圖表：
+Suppose you see a chart like below:
 
 ![](./media/app-service-web-test-in-production-controlled-test-flight/02-custom-events-chart-view.png)
 
-以及其下的事件方格：
+And the event grid below it:
 
 ![](./media/app-service-web-test-in-production-controlled-test-flight/03-custom-event-grid-view.png)
 
-根據您的 ToDoApp 應用程式程式碼，**BUTTON** 事件會對應至提交按鈕，而 **INPUT** 事件會對應至文字方塊。到目前為止都沒什麼問題。不過，點按次數似乎很多，但點按待辦事項 (**LI** 事件) 的次數卻很少。
+According to your ToDoApp application code, the **BUTTON** event corresponds to the submit button, and the **INPUT** event corresponds to the textbox. So far, things make sense. However, it looks like there's a good amount of clicks and very few clicks on the to-do items (the **LI** events).
 
-根據這一點，您假設有部分使用者搞不清楚 UI 的哪個部分是可點按的，其原因是游標停留在清單項目及其圖示上時，會呈現為文字選取的樣式。
+Based on this, you form your hypothesis that some users are confused which part of the UI is clickable and it is because the cursor is styled for text selection when it hovers on the list items and their icons.
 
 ![](./media/app-service-web-test-in-production-controlled-test-flight/04-to-do-list-item-ui.png)
 
-您可能會認為此範例是人為的。不過，您可以藉此改進應用程式，並執行試驗部署，以取得實際客戶提供的使用意見。
+This might be a contrived example. Nevertheless, you're going to make an improvement to your app, and then perform a flighting deployment to get usability feedback from live customers.
 
-### 檢測伺服器應用程式的監視/計量
-這有一點離題，因為本教學課程中示範的案例只處理用戶端應用程式。不過，基於完整性，您會設定伺服器端應用程式。
+### <a name="instrument-your-server-app-for-monitoring/metrics"></a>Instrument your server app for monitoring/metrics
+This is a tangent since the scenario demonstrated in this tutorial only deals with the client app. However, for completeness you will set up the server-side app.
 
-6. 以滑鼠右鍵按一下 [MultiChannelToDo] > [新增 Application Insights 遙測] > [設定設定值] > [將資源群組變更為 ToDoApp&lt;your\_suffix>] > [將 Application Insights 新增至專案]。
-12. 在 Git Shell 中，認可您的變更並將其發送至您在 GitHub 中的分岔。然後，等待用戶端重新整理瀏覽器。
+6. Right-click **MultiChannelToDo** > **Add Application Insights Telemetry** > **Configure Settings** > Change resource group to ToDoApp*&lt;your_suffix>* > **Add Application Insights to Project**.
+12. In Git Shell, commit and push your changes to your fork in GitHub. Then, wait for clients to refresh browser.
 
         git add -A :/
         git commit -m "add AI configuration for server app"
         git push origin master
 
-6.	將已部署的應用程式變更交換至生產環境：
+6.  Swap the deployed app changes to production:
 
         .\swap –Name ToDoApp<your_suffix>
 
-就這麼簡單！
+That's it!
 
-## 調查：將位置特定標記新增至您的用戶端應用程式計量
+## <a name="investigate:-add-slot-specific-tags-to-your-client-app-metrics"></a>Investigate: Add slot-specific tags to your client app metrics
 
-在本節中，您會設定不同的部署位置，將位置特定遙測傳送至相同的 Application Insights 資源。如此，您即可比較來自不同位置 (部署環境) 的流量之間的遙測資料，輕鬆地檢視應用程式變更的影響。相時，您可以區隔生產流量與其他流量，以便在必要時繼續監視您的生產應用程式。
+In this section, you will configure the different deployment slots to send slot-specific telemetry to the same Application Insights resource. This way, you can compare telemetry data between traffic from different slots (deployment environments) to easily see the effect of your app changes. At the same time, you can separate the production traffic from the rest so you can continue to monitor your production app as needed.
 
-由於您要收集用戶端行為的相關資料，因此會在 index.cshtml 中[將遙測初始設定式新增至 JavaScript 程式碼](../application-insights/app-insights-api-custom-events-metrics.md#js-initializer)。舉例來說，如果您想要測試伺服器端效能，您也可以在伺服器程式碼中執行類似的動作 (請參閱[自訂事件和計量的 Application Insights API](../application-insights/app-insights-api-custom-events-metrics.md))。
+Since you're gathering data on client behavior, you will [add a telemetry initializer to your JavaScript code](../application-insights/app-insights-api-custom-events-metrics.md#js-initializer) in index.cshtml. If you want to test server-side performance, for example, you can also do similarly in your server code (see [Application Insights API for custom events and metrics](../application-insights/app-insights-api-custom-events-metrics.md).
 
-1. 首先，在您先前新增至 `<heading>` 標記的 JavaScript 區塊中，在下列兩個 `//` 註解之間新增程式碼。
+1. First, add the code bewteen the two `//` comments below in the JavaScript block that you added to the `<heading>` tag earlier.
 
         window.appInsights = appInsights;
 
@@ -194,128 +196,128 @@
 
         appInsights.trackPageView();
 
-    此初始設定式程式碼會使 `appInsights` 物件將名為 `Environment` 的自訂屬性新增至它所傳送的每個遙測片段。
+    This initializer code causes the `appInsights` object to add the a custom property called `Environment` to every piece of telemetry it sends.
 
-2. 接著，在 Azure 中將此自訂屬性新增為 Web 應用程式的[位置設定](web-sites-staged-publishing.md#AboutConfiguration)。若要這樣做，請在 Git Shell 工作階段中執行下列命令。
+2. Next, add this custom property as a [slot setting](web-sites-staged-publishing.md#AboutConfiguration) for your web app in Azure. To do this, run the following commands in your Git Shell session.
 
         $app = Get-AzureWebsite -Name todoapp<your_suffix> -Slot production
         $app.AppSettings.Add("environment", "Production")
         $app.SlotStickyAppSettingNames.Add("environment")
         $app | Set-AzureWebsite -Name todoapp<your_suffix> -Slot production
 
-    在您專案中的 Web.config 已定義 `environment` 應用程式設定。透過此設定，當您在本機測試應用程式時，計量將會加上 `VS Debugger` 標記。不過，當您將變更發送至 Azure 時，Azure 會尋找並使用 Web 應用程式組態中的 `environment` 應用程式設定，因此您的計量會加上 `Production` 標記。
+    The Web.config in your project already defines the `environment` app setting. With this setting, when you test the app locally, your metrics will be tagged with `VS Debugger`. However, when you push your changes to Azure, Azure will find and use the `environment` app setting in the web app's configuration instead, and your metrics will be tagged with `Production`.
 
-3. 認可您的程式碼變更，並將其發送至 GitHub 上的分岔，然後等候使用者使用新的應用程式 (需要重新整理瀏覽器)。新屬性大約需要 15 分鐘才會出現在您的 Application Insights `MultiChannelToDo.Web` 資源中。
+3. Commit and push your code changes to your fork on GitHub, and then wait for your users to use the new app (need to refresh the browser). It takes about 15 minutes for the new property to show up in your Application Insights `MultiChannelToDo.Web` resource.
 
         git add -A :/
         git commit -m "add environment property to AI events for client app"
         git push origin master
 
-4. 現在，再次移至 [自訂事件] 刀鋒視窗，並篩選 `Environment=Production` 的計量。透過此篩選，現在您應可看見生產位置中所有新的自訂事件。
+4. Now, go to the **Custom events** blade again and filter the metrics on `Environment=Production`. You should now be able to see all the new custom events in the production slot with this filter.
 
     ![](./media/app-service-web-test-in-production-controlled-test-flight/05-filter-on-production-environment.png)
 
-5. 按一下 [我的最愛] 按鈕，將目前的 [計量瀏覽器] 設定儲存至 [自訂事件：生產] 之類的項目。後續您可以在此檢視與部署位置檢視之間輕鬆切換。
+5. Click the **Favorites** button to save the current Metrics Explorer settings to something like **Custom events: Production**. You can easily switch between this view and a deployment slot view later.
 
-    > [AZURE.TIP] 若要有更強大的分析能力，請考慮[將 Application Insights 資源與 Power BI 整合](../application-insights/app-insights-export-power-bi.md)。
+    > [AZURE.TIP] For even more powerful analytics, consider [integrating your Application Insights resource with Power BI](../application-insights/app-insights-export-power-bi.md).
 
-### 將位置特定標記新增至您的伺服器應用程式計量
-同樣地，基於完整性，您會設定伺服器端應用程式。不同於以 JavaScript 進行檢測的用戶端應用程式，伺服器應用程式的位置特定標記會以 .NET 程式碼進行檢測。
+### <a name="add-slot-specific-tags-to-your-server-app-metrics"></a>Add slot-specific tags to your server app metrics
+Again, for completeness you will set up the server-side app. Unlike the client app which is instrumented in JavaScript, slot-specific tags for the server app is instrumented with .NET code.
 
-1. 開啟 *&lt;repository\_root>*\\src\\MultiChannelToDo\\Global.asax.cs。將下列程式碼區塊新增至命名空間右括號前面。
+1. Open *&lt;repository_root>*\src\MultiChannelToDo\Global.asax.cs. Add the code block below, just before the closing namespace curly brace.
 
-		namespace MultiChannelToDo
-		{
-				...
+        namespace MultiChannelToDo
+        {
+                ...
 
-				// Begin new code
-		    public class ConfigInitializer
-		    : ITelemetryInitializer
-		    {
-		        void ITelemetryInitializer.Initialize(ITelemetry telemetry)
-		        {
-		            telemetry.Context.Properties["Environment"] = System.Configuration.ConfigurationManager.AppSettings["environment"];
-		        }
-		    }
-				// End new code
-		}
+                // Begin new code
+            public class ConfigInitializer
+            : ITelemetryInitializer
+            {
+                void ITelemetryInitializer.Initialize(ITelemetry telemetry)
+                {
+                    telemetry.Context.Properties["Environment"] = System.Configuration.ConfigurationManager.AppSettings["environment"];
+                }
+            }
+                // End new code
+        }
 
-2. 將下方的 `using` 陳述式新增至檔案開頭處，以更正名稱解析錯誤：
+2. Correct the name resolution errors by adding the `using` statements below to the beginning of the file:
 
-		using Microsoft.ApplicationInsights.Channel;
-		using Microsoft.ApplicationInsights.Extensibility;
+        using Microsoft.ApplicationInsights.Channel;
+        using Microsoft.ApplicationInsights.Extensibility;
 
-3. 將下列程式碼新增至 `Application_Start()` 方法的開頭處：
+3. Add the code below to the beginning of the `Application_Start()` method:
 
-		TelemetryConfiguration.Active.TelemetryInitializers.Add(new ConfigInitializer());
+        TelemetryConfiguration.Active.TelemetryInitializers.Add(new ConfigInitializer());
 
-3. 認可您的程式碼變更，並將其發送至 GitHub 上的分岔，然後等候使用者使用新的應用程式 (需要重新整理瀏覽器)。新屬性大約需要 15 分鐘才會出現在您的 Application Insights `MultiChannelToDo` 資源中。
+3. Commit and push your code changes to your fork on GitHub, and then wait for your users to use the new app (need to refresh the browser). It takes about 15 minutes for the new property to show up in your Application Insights `MultiChannelToDo` resource.
 
         git add -A :/
         git commit -m "add environment property to AI events for server app"
         git push origin master
 
-## 更新：設定您的 Beta 分支：
+## <a name="update:-set-up-your-beta-branch"></a>Update: Set up your beta branch
 
-2. 開啟 *&lt;repository\_root>*\\ARMTemplates\\ProdAndStagetest.json，並尋找 `appsettings` 資源 (搜尋 `"name": "appsettings"`)。資源共有 4 項，分別用於各個位置。
+2. Open *&lt;repository_root>*\ARMTemplates\ProdAndStagetest.json and find the `appsettings` resources (search for `"name": "appsettings"`). There are 4 of them, one for each slot. 
 
-2. 針對每項 `appsettings` 資源，將 `"environment": "[parameters('slotName')]"` 應用程式設定新增至 `properties` 陣列結尾處。別忘了在上一行結尾處使用逗號。
+2. For each `appsettings` resource, add an  `"environment": "[parameters('slotName')]"` app setting to the end of the `properties` array. Don't forget to end the previous line with a comma.
 
     ![](./media/app-service-web-test-in-production-controlled-test-flight/06-arm-app-setting-with-slot-name.png)
     
-    您剛剛將 `environment` 應用程式設定新增至範本中的所有位置。
+    You have just added the `environment` app setting to all the slots in the template.
     
-2. 在相同檔案中，尋找 `slotconfignames` 資源 (搜尋 `"name": "slotconfignames"`)。資源共有 2 項，分別用於各個應用程式。
+2. In the same file, find the `slotconfignames` resources (search for `"name": "slotconfignames"`). There are 2 of them, one for each app.
 
-2. 針對每項 `slotconfignames` 資源，將 `"environment"` 新增至 `appSettingNames` 陣列結尾處。別忘了在上一行結尾處使用逗號。
+2. For each `slotconfignames` resource, add `"environment"` to the end of the `appSettingNames` array. Don't forget to end the previous line with a comma.
 
-    您剛剛將 `environment` 應用程式設定連結至其各自用於兩個應用程式的部署位置。
+    You have just made the `environment` app setting stick to its respective deployment slot for both apps.  
 
-3. 在您的 Git Shell 工作階段中執行下列命令，其中具有您先前使用的相同資源群組後置詞。
+3. In your Git Shell session, run the following commands with the same resource group suffix that you used before.
 
         git checkout -b beta
         git push origin beta
         .\deploy.ps1 -RepoUrl https://github.com/<your_fork>/ToDoApp.git -ResourceGroupSuffix <your_suffix> -SlotName beta -Branch beta
 
-4. 出現提示時，請指定與先前相同的 SQL 資料庫認證。然後，在系統要求更新資源群組時輸入 `Y`，然後按 `ENTER` 鍵。
+4. When prompted, specify the same SQL database credentials as before. Then, when asked to update the resource group, type `Y`, then `ENTER`.
 
-    指令碼完成後，原始資源群組中的所有資源都會保留下來，但會在其中建立名為 "beta" 的新位置，且其組態會與一開始建立的「預備」位置相同。
+    Once the script finishes, all your resources in the original resource group are retained, but a new slot named "beta" is created in it with the same configuration as the "Staging" slot that was created in the beginning.
 
-    >[AZURE.NOTE] 這種建立不同部署環境的方法，與[敏捷式軟體開發與 Azure App Service](app-service-agile-software-development.md) 中的方法不同。使用此方法時，您會建立具有部署位置的部署環境，而使用該方法時，則建立具有資源群組的部署環境。使用資源群組來管理部署環境，可讓您將開發人員排除在生產環境以外，但不易在生產環境中進行測試，而這一點卻可以透過位置輕易辦到。
+    >[AZURE.NOTE] This method of creating different deployment environments is different from the method in [Agile software development with Azure App Service](app-service-agile-software-development.md). Here, you create deployment environments with deployment slots, where as there you create deployment environments with resource groups. Managing deployment environments with resource groups enables you to keep the production environment off-limits to developers, but it's not easy to do testing in production, which you can do easily with slots.
 
-如果需要，也可以藉由下列程式碼建立 alpha 應用程式
+If you wish, you can also create an alpha app by running
 
     git checkout -b alpha
     git push origin alpha
     .\deploy.ps1 -RepoUrl https://github.com/<your_fork>/ToDoApp.git -ResourceGroupSuffix <your_suffix> -SlotName beta -Branch alpha
 
-在本教學課程，只要繼續使用 beta 應用程式即可。
+For this tutorial, you will just keep using your beta app.
 
-## 更新：將您的更新發送至 beta 應用程式
+## <a name="update:-push-your-updates-to-the-beta-app"></a>Update: Push your updates to the beta app
 
-回到您想要改善的應用程式。
+Back to your app that you want to improve.
 
-1. 確定您此時位於 beta 分支中
+1. Make sure you're now in your beta branch
 
         git checkout beta
 
-2. 在 *&lt;repository\_root>*\\src\\MultiChannelToDo.Web\\app\\Index.cshtml 中尋找 `<li>` 標記，並新增 `style="cursor:pointer"` 屬性，如下所示。
+2. In *&lt;repository_root>*\src\MultiChannelToDo.Web\app\Index.cshtml, find the `<li>` tag and add the `style="cursor:pointer"` attribute, as shown below.
 
     ![](./media/app-service-web-test-in-production-controlled-test-flight/07-change-cursor-style-on-li.png)
 
-3. 認可並發送至 Azure。
+3. commit and push to Azure.
 
-4. 瀏覽至 http://todoapp*&lt;your_suffix>*-beta.azurewebsites.net/，確認變更此時反映在 beta 位置中。如果未看見變更，請重新整理瀏覽器以取得新的 javascript 程式碼。
+4. Verify that the change is now reflected in the beta slot by navigating to http://todoapp*&lt;your_suffix>*-beta.azurewebsites.net/. If you don't see the change yet, refresh your browser to get the new javascript code.
 
     ![](./media/app-service-web-test-in-production-controlled-test-flight/08-verify-change-in-beta-site.png)
 
-現在，您的變更已在 beta 位置中執行，因此已可執行試驗部署。
+Now that you have your change running in the beta slot, you are ready to perform a flighting deployment.
 
-## 驗證：將流量路由傳送至 beta 應用程式
+## <a name="validate:-route-traffic-to-the-beta-app"></a>Validate: Route traffic to the beta app
 
-在本節中，您要將流量路由傳送至 beta 應用程式。為了能夠清楚示範，請您將使用者流量的重要部分路由傳送至該應用程式。實際上，您將路由傳送的流量會取決於您的特定情況。例如，如果您的網站屬於 microsoft.com 層級，則您可能只需要不到 1% 總流量即可取得有用的資料。
+In this section, you will route traffic to the beta app. For sake of clarity of demonstration, you're going to route a significant portion of the user traffic to it. In reality, the amount of traffic you want to route will depend on your specific situation. For example, if your site is at the scale of microsoft.com, then you may need less than one percent of your total traffic in order to gain useful data.
 
-1. 在 Git Shell 工作階段中執行下列命令，將半數的生產流量路由傳送至 beta 位置：
+1. In your Git Shell session, run the following commands to route half of the production traffic to the beta slot:
 
         $siteName = "ToDoApp<your suffix>"
         $rule = New-Object Microsoft.WindowsAzure.Commands.Utilities.Websites.Services.WebEntities.RampUpRule
@@ -324,57 +326,61 @@
         $rule.Name = "beta"
         Set-AzureWebsite $siteName -Slot Production -RoutingRules $rule
 
-  `ReroutePercentage=50` 屬性會指定要將 50% 的生產流量路由傳送至 beta 應用程式的 URL (由 `ActionHostName` 屬性指定)。
+  The `ReroutePercentage=50` property specifies that 50% of the production traffic will be routed to the beta app's URL (specified by the `ActionHostName` property).
 
-2. 現在，瀏覽至 http://ToDoApp*&lt;your_suffix>*.azurewebsites.net。50% 的流量現在應該會重新導向至 beta 位置。
+2. Now navigate to http://ToDoApp*&lt;your_suffix>*.azurewebsites.net. 50% of the traffic should now be redirected to the beta slot.
 
-3. 在您的 Application Insights 資源中，以 environment="beta" 來篩選計量。
+3. In your Application Insights resource, filter the metrics by environment="beta".
 
-    > [AZURE.NOTE] 如果您將這個篩選的檢視另存為我的最愛，您將可在生產與 beta 檢視之間輕鬆切換計量總管檢視。
+    > [AZURE.NOTE] If you save this filtered view as another favorite, then you can easily flip the metric explorer views between production and beta views.
 
-假設您在 Application Insights 中看見如下的內容：
+Suppose in Application Insights you see something similar to the following:
 
 ![](./media/app-service-web-test-in-production-controlled-test-flight/09-test-beta-site-in-production.png)
 
-這不僅顯示 `<li>` 標記的點按次數遠多於一般，`<li>` 標記的點按次數似乎也有激增的現象。藉此您可以推斷，人們發現了新的 `<li>` 標記是可點按的，因此紛紛清除先前在應用程式中完成的所有工作。
+Not only is this showing that there are many more clicks on the `<li>` tags, but there seems to be a surge of clicks on `<li>` tags. You can then conclude that people have discovered the new `<li>` tags are clickable and are now clearing all their previously-completed tasks in the app.
 
-根據您試驗部署的資料，您認定新的 UI 已可用於生產環境。
+Based on the data of your flighting deployment, you decide that your new UI is ready for production.
 
-## 實作：將新的程式碼移至生產環境
+## <a name="go-live:-move-your-new-code-into-production"></a>Go live: Move your new code into production
 
-您現在已可將更新移至生產環境。最棒的是，現在您知道您的更新在發送至生產環境_之前_已經過驗證。因此，現在您可以安心地加以部署。由於您是對 AngularJS 用戶端應用程式進行更新，因此只有用戶端程式碼受到驗證。如果您要對後端 Web API 應用程式進行變更，您可以用同樣的方式輕鬆驗證變更。
+You're now ready to move your update to production. What's great is that now you know that your update has already been validated _before_ it is pushed to production. So now you can confidently deploy it. Since you made an update to the AngularJS client app, you only validated the client-side code. If you were to make changes to the back-end Web API app, you could validate your changes similarly and easily.
 
-1. 在 Git Shell 中執行下列命令，以移除流量路由規則：
+1. In Git Shell, remove the traffic routing rule by running the following command:
 
         Set-AzureWebsite $siteName -Slot Production -RoutingRules @()
 
-2. 執行 Git 命令：
+2. Run the Git commands:
 
         git checkout master
         git pull origin master
         git merge beta
         git push origin master
 
-2. 等候幾分鐘，讓新的程式碼部署至預備位置，然後啟動 http://ToDoApp*&lt;your_suffix>*-staging.azurewebsites.net，以確認新的更新已在預備位置中準備就緒。請記住，分叉的主要分支會連結至應用程式的預備位置。
+2. Wait for a few minutes for the new code to be deployed to the staging slot, then launch http://ToDoApp*&lt;your_suffix>*-staging.azurewebsites.net to verify that the new update is warmed up in the staging slot. Remember that the your fork's master branch is linked to the staging slot of your app.
 
-3. 現在，將預備位置交換到生產環境中
+3. Now, swap the staging slot into production
 
         cd <ROOT>\ToDoApp\ARMTemplates
         .\swap.ps1 -Name todoapp<your_suffix>
 
-## 摘要 ##
+## <a name="summary"></a>Summary ##
 
-Azure App Service 可讓中小型企業輕鬆地在生產環境中測試其客戶端應用程式，這在過去只能在大型企業中執行。希望本教學課程所提供的資訊可協助您結合 App Service 和 Application Insights 以順利進行試驗部署，甚或您在營運開發領域中的其他生產測試。
+Azure App Service makes it easy for small- to medium-sized businesses to test their customer-facing apps in production, something that has been traditionally done in big enterprises. Hopefully, this tutorial has given you the knowledge you need to bring together App Service and Application Insights to make possible flighting deployment, and even other test-in-production scenarios, in your DevOps world. 
 
-## 其他資源 ##
+## <a name="more-resources"></a>More resources ##
 
--   [敏捷式軟體開發 (Agile Software Development) 與 Azure App Service](app-service-agile-software-development.md)
--   [針對 Azure App Service 中的 Web 應用程式設定預備環境](web-sites-staged-publishing.md)
--	[透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)
--	[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)
--	[JSONLint - JSON 驗證程式](http://jsonlint.com/)
--	[Git 分支 - 基本分支和合併](http://www.git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
--	[Azure PowerShell](../powershell-install-configure.md)
--	[專案 Kudu Wiki](https://github.com/projectkudu/kudu/wiki)
+-   [Agile software development with Azure App Service](app-service-agile-software-development.md)
+-   [Set up staging environments for web apps in Azure App Service](web-sites-staged-publishing.md)
+-   [Deploy a complex application predictably in Azure](app-service-deploy-complex-application-predictably.md)
+-   [Authoring Azure Resource Manager Templates](../resource-group-authoring-templates.md)
+-   [JSONLint - The JSON Validator](http://jsonlint.com/)
+-   [Git Branching – Basic Branching and Merging](http://www.git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+-   [Azure PowerShell](../powershell-install-configure.md)
+-   [Project Kudu Wiki](https://github.com/projectkudu/kudu/wiki)
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

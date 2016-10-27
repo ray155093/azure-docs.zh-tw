@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure 資訊安全中心新增新一代防火牆 | Microsoft Azure"
-   description="本文件說明如何實作 Azure 資訊安全中心建議的「新增新一代防火牆」與「僅透過 NGFW 路由傳送流量」。"
+   pageTitle="Add a next generation firewall in Azure Security Center | Microsoft Azure"
+   description="This document shows you how to implement the Azure Security Center recommendations **Add a Next Generation Firewall** and **Route traffice through NGFW only**."
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,52 +16,63 @@
    ms.date="07/26/2016"
    ms.author="terrylan"/>
 
-# 在 Azure 資訊安全中心新增新一代防火牆
 
-Azure 資訊安全中心可能會建議您新增由 Microsoft 合作夥伴提供的新一代防火牆 (NGFW)，以提升您的安全防護。本文件逐步解說如何進行這項操作的範例。
+# <a name="add-a-next-generation-firewall-in-azure-security-center"></a>Add a Next Generation Firewall in Azure Security Center
 
-> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
+Azure Security Center may recommend that you add a next generation firewall (NGFW) from a Microsoft partner in order to increase your security protections. This document walks you through an example of how to do this.
 
-## 實作建議
+> [AZURE.NOTE] This document introduces the service by using an example deployment.  This is not a step-by-step guide.
 
-1. 在 [建議] 刀鋒視窗中，選取 [新增新一代防火牆]。![新增新一代防火牆][1]
+## <a name="implement-the-recommendation"></a>Implement the recommendation
 
-2. 在 [新增新一代防火牆] 刀鋒視窗中，選取一個端點。![選取端點][2]
+1. In the **Recommendations** blade, select **Add a Next Generation Firewall**.
+![Add a Next Generation Firewall][1]
 
-3. 第二個 [新增新一代防火牆] 刀鋒視窗隨即開啟。您可以選擇使用現有的解決方案 (如果有的話)，或是建立新的解決方案。此範例中沒有任何可用的現有解決方案，因此我們將建立一個新的 NGFW。![新建新一代防火牆][3]
+2. In the **Add a Next Generation Firewall** blade, select an endpoint.
+![Select an endpoint][2]
 
-4. 若要建立新的 NGFW，請從整合式合作夥伴的清單中選取一個解決方案。在此範例中，我們將會選取 **檢查點**。![選取新一代防火牆解決方案][4]
+3. A second **Add a Next Generation Firewall** blade opens. You can choose to use an existing solution if available or you can create a new one. In this example there are no existing solutions available so we'll create a new NGFW.
+![Create new Next Generation Firewall][3]
 
-5. [檢查點] 刀鋒視窗隨即開啟，為您提供合作夥伴解決方案的相關資訊。選取資訊刀鋒視窗中的 [建立]。![防火牆資訊刀鋒視窗][5]
+4. To create a new NGFW, select a solution from the list of integrated partners. In this example we will select **Check Point**.
+![Select Next Generation Firewall solution][4]
 
-6. [建立虛擬機器] 刀鋒視窗就會開啟。您可在此輸入啟動將執行 NGFW 的虛擬機器 (VM) 所需的資訊。依照下列步驟執行，並提供所需的 NGFW 資訊。選取 [確定] 以套用。![建立虛擬機器以執行 NGFW][6]
+5. The **Check Point** blade opens providing you information about the partner solution. Select **Create** in the information blade.
+![Firewall information blade][5]
 
-## 僅透過 NGFW 路由傳送流量
+6. The **Create virtual machine** blade opens. Here you can enter information required to spin up a virtual machine (VM) that will run the NGFW. Follow the steps and provide the NGFW information required. Select OK to apply.
+![Create virtual machine to run NGFW][6]
 
-返回 [建議] 刀鋒視窗。在您透過資訊安全中心加入 NGFW 後會產生新的項目，稱為「僅透過 NGFW 路由傳送流量」。只有當您透過資訊安全中心安裝了 NGFW，才會建立這項建議。如果您有網際網路面向端點，資訊安全中心會建議您設定網路安全性群組規則，強制透過 NGFW 將輸入流量傳送到 VM。
+## <a name="route-traffic-through-ngfw-only"></a>Route traffic through NGFW only
 
-1. 在 [建議] 刀鋒視窗中，選取 [僅透過 NGFW 路由傳送流量]。![僅透過 NGFW 路由傳送流量][7]
+Return to the **Recommendations** blade. A new entry was generated after you added a NGFW via Security Center, called **Route traffic through NGFW only**. This recommendation is created only if you installed your NGFW through Security Center. If you have Internet-facing endpoints, Security Center will recommend that you configure Network Security Group rules that force inbound traffic to your VM through your NGFW.
 
-2. 這樣會開啟 [僅透過 NGFW 路由傳送流量] 刀鋒視窗，其中列出您可以路由傳送流量的 VM。從清單中選取 VM。![選取 VM][8]
+1. In the **Recommendations blade**, select **Route traffic through NGFW only**.
+![Route traffic through NGFW only][7]
 
-3. 所選 VM 的刀鋒視窗隨即開啟，其中顯示相關的輸入規則。說明提供後續可能步驟的詳細資訊。選取 [編輯輸入規則] 繼續編輯輸入規則。預期的情況是與 NGFW 連結的網際網路面向端點其 [來源] 不設定為 [任何]。若要深入了解輸入規則的內容，請參閱 [NSG 規則](../virtual-network/virtual-networks-nsg.md#nsg-rules)。![設定規則以限制存取][9] ![編輯輸入規則][10]
+2. This opens the blade **Route traffic through NGFW only** which lists VMs that you can route traffic to. Select a VM from the list.
+![Select a VM][8]
 
-## 另請參閱
+3. A blade for the selected VM opens, displaying related inbound rules. A description provides you with more information on possible next steps. Select **Edit inbound rules** to proceed with editing an inbound rule. The expectation is that **Source** is not set to **Any** for the Internet-facing endpoints linked with the NGFW. To learn more about the properties of the inbound rule, see [NSG rules](../virtual-network/virtual-networks-nsg.md#nsg-rules).
+![Configure rules to limit access][9]
+![Edit inbound rule][10]
 
-本文件說明如何實作資訊安全中心建議的「新增新一代防火牆」。 若要了解 NGFW 與檢查點合作夥伴解決方案的詳細資訊，請參閱：
+## <a name="see-also"></a>See also
 
-- [新一代防火牆](https://en.wikipedia.org/wiki/Next-Generation_Firewall)
-- [檢查點 vSEC](https://azure.microsoft.com/marketplace/partners/checkpoint/check-point-r77-10/)
+This document showed you how to implement the Security Center recommendation "Add a Next Generation Firewall." To learn more about NGFWs and the Check Point partner solution, see the following:
 
-如要深入了解資訊安全中心，請參閱下列主題：
+- [Next-Generation Firewall](https://en.wikipedia.org/wiki/Next-Generation_Firewall)
+- [Check Point vSEC](https://azure.microsoft.com/marketplace/partners/checkpoint/check-point-r77-10/)
 
-- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) -- 了解如何設定安全性原則。
-- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助您保護您的 Azure 資源。
-- [Azure 資訊安全中心的安全性健康情況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康情況。
-- [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理及回應安全性警示。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康情況。
-- [Azure 資訊安全中心常見問題集 (FAQ)](security-center-faq.md) -- 尋找有關使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與法規遵循的部落格文章。
+To learn more about Security Center, see the following:
+
+- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies.
+- [Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.
+- [Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.
+- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
+- [Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how to monitor the health status of your partner solutions.
+- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
+- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Find blog posts about Azure security and compliance.
 
 <!--Image references-->
 [1]: ./media/security-center-add-next-gen-firewall/add-next-gen-firewall.png
@@ -75,4 +86,8 @@ Azure 資訊安全中心可能會建議您新增由 Microsoft 合作夥伴提供
 [9]: ./media/security-center-add-next-gen-firewall/configure-rules-to-limit-access.png
 [10]: ./media/security-center-add-next-gen-firewall/edit-inbound-rule.png
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

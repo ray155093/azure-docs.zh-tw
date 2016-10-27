@@ -1,68 +1,68 @@
 > [AZURE.SELECTOR]
-- [Windows 上的 C](../articles/iot-suite/iot-suite-connecting-devices.md)
-- [Linux 上的 C](../articles/iot-suite/iot-suite-connecting-devices-linux.md)
-- [mbed 上的 C](../articles/iot-suite/iot-suite-connecting-devices-mbed.md)
+- [C on Windows](../articles/iot-suite/iot-suite-connecting-devices.md)
+- [C on Linux](../articles/iot-suite/iot-suite-connecting-devices-linux.md)
+- [C on mbed](../articles/iot-suite/iot-suite-connecting-devices-mbed.md)
 - [Node.js](../articles/iot-suite/iot-suite-connecting-devices-node.md)
 
-## 案例概觀
+## <a name="scenario-overview"></a>Scenario overview
 
-在此案例中，您會建立傳送下列遙測資料到遠端監視[預設解決方案][lnk-what-are-preconfig-solutions]的裝置：
+In this scenario, you create a device that sends the following telemetry to the remote monitoring [preconfigured solution][lnk-what-are-preconfig-solutions]:
 
-- 外部溫度
-- 內部溫度
-- 溼度
+- External temperature
+- Internal temperature
+- Humidity
 
-為了簡化起見，在裝置上的程式碼會產生範例值，但我們鼓勵您將實際的感應器連接到您的裝置並傳送實際的遙測資料來擴充此範例。
+For simplicity, the code on the device generates sample values, but we encourage you to extend the sample by connecting real sensors to your device and sending real telemetry.
 
-若要完成此教學課程，您需要一個有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
+To complete this tutorial, you need an active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial][lnk-free-trial].
 
-## 開始之前
+## <a name="before-you-start"></a>Before you start
 
-在您為裝置撰寫任何程式碼之前，您必須先佈建遠端監視預先設定解決方案，然後在該解決方案中佈建新的自訂裝置。
+Before you write any code for your device, you must provision your remote monitoring preconfigured solution and then provision a new custom device in that solution.
 
-### 佈建遠端監視預先設定解決方案
+### <a name="provision-your-remote-monitoring-preconfigured-solution"></a>Provision your remote monitoring preconfigured solution
 
-您在本教學課程中建立的裝置將會傳送資料到[遠端監視][lnk-remote-monitoring]預先設定解決方案的執行個體。如果您尚未在您的 Azure 帳戶佈建遠端監視預先設定解決方案，請依照下列步驟執行：
+The device you create in this tutorial sends data to an instance of the [remote monitoring][lnk-remote-monitoring] preconfigured solution. If you haven't already provisioned the remote monitoring preconfigured solution in your Azure account, follow the steps below:
 
-1. 在 <https://www.azureiotsuite.com/> 頁面上，按一下 [+] 以建立新解決方案。
+1. On the <https://www.azureiotsuite.com/> page, click **+** to create a new solution.
 
-2. 按一下 [遠端監視] 面板上的 [選取] 以建立新解決方案。
+2. Click **Select** on the **Remote monitoring** panel to create your new solution.
 
-3. 在 [建立遠端監視解決方案] 頁面上，輸入您選擇的 [解決方案名稱]，選取您要在其中進行部署的 [區域]，然後選取您想要使用的 Azure 訂用帳戶。按一下 [建立解決方案]。
+3. On the **Create Remote monitoring solution** page, enter a **Solution name** of your choice, select the **Region** you want to deploy to, and select the Azure subscription to want to use. Then click **Create solution**.
 
-4. 等候佈建程序完成。
+4. Wait until the provisioning process completes.
 
-> [AZURE.WARNING] 預先設定的解決方案使用可計費的 Azure 服務。當您使用完預先設定的解決方案之後，請務必將它從您的訂用帳戶中移除，以避免任何不必要的費用。只要到 <https://www.azureiotsuite.com/> 頁面，即可將預先設定的解決方案從您的訂用帳戶中完全移除。
+> [AZURE.WARNING] The preconfigured solutions use billable Azure services. Be sure to remove the preconfigured solution from your subscription when you are done with it to avoid any unnecessary charges. You can completely remove a preconfigured solution from your subscription by visiting the <https://www.azureiotsuite.com/> page.
 
-當遠端監視解決方案的佈建程序完成之後，請按一下 [啟動]，以在瀏覽器中開啟解決方案儀表板。
+When the provisioning process for the remote monitoring solution finishes, click **Launch** to open the solution dashboard in your browser.
 
 ![][img-dashboard]
 
-### 在遠端監視方案中佈建您的裝置
+### <a name="provision-your-device-in-the-remote-monitoring-solution"></a>Provision your device in the remote monitoring solution
 
-> [AZURE.NOTE] 如果您已經有在解決方案中佈建裝置，則可以略過此步驟。建立用戶端應用程式時您需要知道裝置認證。
+> [AZURE.NOTE] If you have already provisioned a device in your solution, you can skip this step. You will need to know the device credentials when you create the client application.
 
-對於連線到預先設定解決方案的裝置，該裝置必須使用有效的認證向 IoT 中樞識別自己。您會從解決方案儀表板收到裝置認證。稍後在本教學課程中，您會將您的裝置認證包含在您的用戶端應用程式中。
+For a device to connect to the preconfigured solution, it must identify itself to IoT Hub using valid credentials. You can retrieve the device credentials from the solution dashboard. You include the device credentials in your client application later in this tutorial. 
 
-若要在遠端監視解決方案中新增裝置，請在解決方案儀表板中完成下列步驟：
+To add a new device to your remote monitoring solution, complete the following steps in the solution dashboard:
 
-1.  在儀表板左下角，按一下 [新增裝置]。
+1.  In the lower left-hand corner of the dashboard, click **Add a device**.
 
     ![][1]
 
-2.  在 [自訂裝置] 面板中按一下 [新增]。
+2.  In the **Custom Device** panel, click on **Add new**.
 
     ![][2]
 
-3.  選擇 [自行定義裝置識別碼]，輸入裝置識別碼，例如 **mydevice**，按一下 [檢查 ID] 驗證沒有其他裝置正在使用該名稱，然後按一下 [建立] 來佈建裝置。
+3.  Choose **Let me define my own Device ID**, enter a Device ID such as **mydevice**, click **Check ID** to verify that name isn't already in use, and then click **Create** to provision the device.
 
     ![][3]
 
-5. 記下裝置的認證 (裝置識別碼、IoT 中樞主機名稱和裝置機碼)，用戶端應用程式需要這些資訊才能將裝置連線至遠端監視解決方案。然後按一下 [**完成**]。
+5. Make a note the device credentials (Device ID, IoT Hub Hostname, and Device Key), your client application needs them to connect to the remote monitoring solution. Then click **Done**.
 
     ![][4]
 
-6. 確定您的裝置顯示在裝置區段上。裝置狀態會是 [暫止] 直到裝置與遠端監視解決方案建立連線。
+6. Make sure your device displays in the devices section. The device status is **Pending** until the device establishes a connection to the remote monitoring solution.
 
     ![][5]
 
@@ -77,4 +77,6 @@
 [lnk-remote-monitoring]: ../articles/iot-suite/iot-suite-remote-monitoring-sample-walkthrough.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

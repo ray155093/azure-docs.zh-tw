@@ -1,10 +1,10 @@
 <properties
 pageTitle="Trello | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。Trello 讓您無論在辦公室及在家都能管理所有專案。您可以用簡單、免費、具彈性且以視覺的方式來管理專案並組織所有項目。連線到 Trello 以管理面板、清單和卡片"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create Logic apps with Azure App service. Trello gives you perspective over all your projects, at work and at home.  It is an easy, free, flexible, and visual way to manage your projects and organize anything.  Connect to Trello to manage your boards, lists and cards"
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,591 +17,595 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Trello 連接器
 
-Trello 讓您無論在辦公室及在家都能管理所有專案。您可以用簡單、免費、具彈性且以視覺的方式來管理專案並組織所有項目。連線到 Trello 以管理面板、清單和卡片。
+# <a name="get-started-with-the-trello-connector"></a>Get started with the Trello connector
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+Trello gives you perspective over all your projects, at work and at home.  It is an easy, free, flexible, and visual way to manage your projects and organize anything.  Connect to Trello to manage your boards, lists and cards.
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. 
 
-## 觸發程序及動作
+You can get started by creating a Logic app now, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-Trello 連接器可當成動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+## <a name="triggers-and-actions"></a>Triggers and actions
 
- Trello 連接器提供下列動作及/或觸發程序：
+The Trello connector can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
 
-### Trello 動作
-您可以採取下列動作：
+ The Trello connector has the following action(s) and/or trigger(s) available:
 
-|動作|說明|
+### <a name="trello-actions"></a>Trello actions
+You can take these action(s):
+
+|Action|Description|
 |--- | ---|
-|[ListCards](connectors-create-api-trello.md#listcards)|列出面板中的卡片|
-|[GetCard](connectors-create-api-trello.md#getcard)|依識別碼取得卡片|
-|[UpdateCard](connectors-create-api-trello.md#updatecard)|更新卡片|
-|[DeleteCard](connectors-create-api-trello.md#deletecard)|刪除卡片|
-|[CreateCard](connectors-create-api-trello.md#createcard)|在 Trello 帳戶中建立新的卡片|
-|[ListBoards](connectors-create-api-trello.md#listboards)|列出面板|
-|[GetBoard](connectors-create-api-trello.md#getboard)|依識別碼取得面板|
-|[ListLists](connectors-create-api-trello.md#listlists)|列出面板中的卡片清單|
-|[GetList](connectors-create-api-trello.md#getlist)|依識別碼取得清單|
-### Trello 觸發程序
-您可以接聽下列事件：
+|[ListCards](connectors-create-api-trello.md#listcards)|List cards in board|
+|[GetCard](connectors-create-api-trello.md#getcard)|Get card by id|
+|[UpdateCard](connectors-create-api-trello.md#updatecard)|Update card|
+|[DeleteCard](connectors-create-api-trello.md#deletecard)|Delete card|
+|[CreateCard](connectors-create-api-trello.md#createcard)|Creates a new card in your trello account|
+|[ListBoards](connectors-create-api-trello.md#listboards)|List boards|
+|[GetBoard](connectors-create-api-trello.md#getboard)|Gets board by Id|
+|[ListLists](connectors-create-api-trello.md#listlists)|List card lists in board|
+|[GetList](connectors-create-api-trello.md#getlist)|Gets list by Id|
+### <a name="trello-triggers"></a>Trello triggers
+You can listen for these event(s):
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|當新的卡片加入面板時|當新的卡片加入面板時，觸發流程|
-|當新的卡片加入清單時|當新的卡片加入清單時，觸發流程|
+|When a new card is added to a board|Triggers a flow when a new card is added to a board|
+|When a new card is added to a list|Triggers a flow when a new card is added to a list|
 
 
-## 建立至 Trello 的連線
-若要使用 Trello 建立邏輯應用程式，您必須先建立**連線**，然後提供下列屬性的詳細資料︰
+## <a name="create-a-connection-to-trello"></a>Create a connection to Trello
+To create Logic apps with Trello, you must first create a **connection** then provide the details for the following properties: 
 
-|屬性| 必要|說明|
+|Property| Required|Description|
 | ---|---|---|
-|權杖|是|提供 Trello 認證|
-建立連線後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+|Token|Yes|Provide Trello Credentials|
+After you create the connection, you can use it to execute the actions and listen for the triggers described in this article. 
 
->[AZURE.INCLUDE [建立至 Trello 連線的步驟](../../includes/connectors-create-api-trello.md)]
+>[AZURE.INCLUDE [Steps to create a connection to Trello](../../includes/connectors-create-api-trello.md)]
 
->[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
+>[AZURE.TIP] You can use this connection in other logic apps.
 
-## Trello 的參考
-適用的版本：1.0
+## <a name="reference-for-trello"></a>Reference for Trello
+Applies to version: 1.0
 
-## OnNewCardInBoard
-當新的卡片加入面板時︰當新的卡片加入面板時，觸發流程
+## <a name="onnewcardinboard"></a>OnNewCardInBoard
+When a new card is added to a board: Triggers a flow when a new card is added to a board 
 
-```GET: /trigger/boards/{board_id}/cards```
+```GET: /trigger/boards/{board_id}/cards``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|路徑|無|要在其中擷取卡片的面板唯一識別碼|
+|board_id|string|yes|path|none|Unique id of the board to fetch cards in|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## OnNewCardInList
-當新的卡片加入清單時︰當新的卡片加入清單時，觸發流程
+## <a name="onnewcardinlist"></a>OnNewCardInList
+When a new card is added to a list: Triggers a flow when a new card is added to a list 
 
-```GET: /trigger/lists/{list_id}/cards```
+```GET: /trigger/lists/{list_id}/cards``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|query|無|要在其中擷取卡片的面板唯一識別碼|
-|list\_id|string|yes|路徑|無|要在其中擷取卡片的清單唯一識別碼|
+|board_id|string|yes|query|none|Unique id of the board to fetch cards in|
+|list_id|string|yes|path|none|Unique id of the list to fetch cards in|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## ListCards
-列出面板中的卡片︰列出面板中的卡片
+## <a name="listcards"></a>ListCards
+List cards in board: List cards in board 
 
-```GET: /boards/{board_id}/cards```
+```GET: /boards/{board_id}/cards``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|路徑|無|要擷取所有卡片的面板識別碼|
-|actions|string|no|query|無|列出要傳回的動作。指定 'All' 或有效值的逗號分隔清單|
-|附件|布林值|no|query|無|顯示附件|
-|attachment\_fields|string|no|query|無|列出要傳回的附件欄位。指定 'All' 或有效值的逗號分隔清單|
-|貼紙|布林值|no|query|無|顯示貼紙|
-|members|布林值|no|query|無|顯示成員|
-|memeber\_fields|string|no|query|無|列出要傳回的成員欄位。指定 'All' 或有效值的逗號分隔清單|
-|CheckItemStates|布林值|no|query|無|傳回卡片的狀態|
-|檢查清單|string|no|query|無|顯示檢查清單|
-|limit|integer|no|query|無|要傳回的結果數目上限，介於 1 到 1000 之間。|
-|自|string|no|query|無|擷取此日期之後的所有卡片|
-|之前|string|no|query|無|擷取此日期之前的所有卡片|
-|filter|string|no|query|無|篩選回應|
-|fields|string|no|query|無|列出要傳回的卡片欄位。指定 'All' 或有效值的逗號分隔清單|
+|board_id|string|yes|path|none|Id of the board to fetch all the cards|
+|actions|string|no|query|none|List the actions to return. Specify 'all' or a comma seperated list of valid values|
+|attachments|boolean|no|query|none|Show attachments|
+|attachment_fields|string|no|query|none|List the attachment fields to return. Specify 'all' or a comma seperated list of valid values|
+|stickers|boolean|no|query|none|Show stickers|
+|members|boolean|no|query|none|Show members|
+|memeber_fields|string|no|query|none|List the member fields to return. Specify 'all' or a comma seperated list of valid values|
+|CheckItemStates|boolean|no|query|none|Return the card states|
+|Checklists|string|no|query|none|Show checklists|
+|limit|integer|no|query|none|The max number of results to return, between 1 and 1000|
+|since|string|no|query|none|Fetch all cards after this date|
+|before|string|no|query|none|Fetch all cards before this date|
+|filter|string|no|query|none|Filter the response|
+|fields|string|no|query|none|List the card fields to return. Specify 'all' or a comma seperated list of valid values|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## GetCard
-依識別碼取得卡片︰依識別碼取得卡片
+## <a name="getcard"></a>GetCard
+Get card by id: Get card by id 
 
-```GET: /cards/{card_id}```
+```GET: /cards/{card_id}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|query|無|要在其中擷取卡片的面板識別碼|
-|card\_id|string|yes|路徑|無|要擷取卡片的識別碼|
-|actions|string|no|query|無|列出要傳回的動作。指定 'All' 或有效值的逗號分隔清單|
-|actions\_entities|布林值|no|query|無|傳回動作的實體|
-|actions\_display|布林值|no|query|無|傳回動作會顯示|
-|actions\_limit|integer|no|query|無|要傳回之動作的最大數目|
-|action\_fields|string|no|query|無|每個動作要傳回的動作欄位清單。指定 'All' 或有效值的逗號分隔清單|
-|action\_memberCreator\_fields|string|no|query|無|要傳回的動作成員建立者欄位清單。指定 'All' 或有效值的逗號分隔清單|
-|附件|布林值|no|query|無|傳回附件|
-|attachement\_fields|string|no|query|無|每個附件要傳回的附件欄位清單。指定 'All' 或有效值的逗號分隔清單|
-|members|布林值|no|query|無|傳回成員|
-|member\_fields|string|no|query|無|每個成員要傳回的成員欄位清單。指定 'All' 或有效值的逗號分隔清單|
-|membersVoted|布林值|no|query|無|傳回投票的成員|
-|memberVoted\_fields|string|no|query|無|每個投票成員要傳回的投票成員欄位清單。指定 'All' 或有效值的逗號分隔清單|
-|checkItemStates|布林值|no|query|無|傳回卡片的狀態|
-|checkItemState\_fields|string|no|query|無|每個卡片項目狀態要傳回的狀態欄位清單。指定 'All' 或有效值的逗號分隔清單|
-|檢查清單|string|no|query|無|傳回檢查清單|
-|checklist\_fields|string|no|query|無|每個檢查清單要傳回的檢查清單欄位清單。指定 'All' 或有效值的逗號分隔清單|
-|面板|布林值|no|query|無|傳回卡片所屬的面板|
-|board\_fields|string|no|query|無|列出要傳回的面板欄位。指定 'All' 或有效值的逗號分隔清單|
-|list|布林值|no|query|無|傳回卡片所屬的清單|
-|list\_fields|string|no|query|無|列出要傳回的清單欄位。指定 'All' 或有效值的逗號分隔清單|
-|貼紙|布林值|no|query|無|傳回貼紙|
-|sticker\_fields|string|no|query|無|列出每個貼紙要傳回的貼紙欄位。指定 'All' 或有效值的逗號分隔清單|
-|fields|string|no|query|無|列出要傳回的卡片欄位。指定 'All' 或有效值的逗號分隔清單|
+|board_id|string|yes|query|none|Id of the board to fetch cards in|
+|card_id|string|yes|path|none|Id of the card to fetch|
+|actions|string|no|query|none|List the actions to return. Specify 'all' or a comma seperated list of valid values|
+|actions_entities|boolean|no|query|none|Return action entities|
+|actions_display|boolean|no|query|none|Return action displays|
+|actions_limit|integer|no|query|none|Max number of actions to return|
+|action_fields|string|no|query|none|List of action fields to return for each action. Specify 'all' or a comma seperated list of valid values|
+|action_memberCreator_fields|string|no|query|none|List of action member creator fields to return. Specify 'all' or a comma seperated list of valid values|
+|attachments|boolean|no|query|none|Return attachments|
+|attachement_fields|string|no|query|none|List of attachment fields to return for each attachment. Specify 'all' or a comma seperated list of valid values|
+|members|boolean|no|query|none|Return members|
+|member_fields|string|no|query|none|List of member fields to return for each member. Specify 'all' or a comma seperated list of valid values|
+|membersVoted|boolean|no|query|none|Return voted members|
+|memberVoted_fields|string|no|query|none|List of voted member fields to return for each voted member. Specify 'all' or a comma seperated list of valid values|
+|checkItemStates|boolean|no|query|none|Return card states|
+|checkItemState_fields|string|no|query|none|List of state fields to return for each of the card item state. Specify 'all' or a comma seperated list of valid values|
+|checklists|string|no|query|none|Return checklists|
+|checklist_fields|string|no|query|none|List of checklist fields to return for each checklist. Specify 'all' or a comma seperated list of valid values|
+|board|boolean|no|query|none|Return the board which the card belongs to|
+|board_fields|string|no|query|none|List the board fields to return. Specify 'all' or a comma seperated list of valid values|
+|list|boolean|no|query|none|Return the list which the card belongs to|
+|list_fields|string|no|query|none|List the list fields to return. Specify 'all' or a comma seperated list of valid values|
+|stickers|boolean|no|query|none|Return stickers|
+|sticker_fields|string|no|query|none|List the sticker fields to return for each sticker. Specify 'all' or a comma seperated list of valid values|
+|fields|string|no|query|none|List the card fields to return. Specify 'all' or a comma seperated list of valid values|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## UpdateCard
-更新卡片︰更新卡片
+## <a name="updatecard"></a>UpdateCard
+Update card: Update card 
 
-```PUT: /cards/{card_id}```
+```PUT: /cards/{card_id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|query|無|要自其中擷取卡片的面板識別碼|
-|card\_id|string|yes|路徑|無|要更新卡片的識別碼|
-|updateCard| |yes|body|無|已更新的卡片值|
+|board_id|string|yes|query|none|Id of the board to fetch cards from|
+|card_id|string|yes|path|none|Id of the card to update|
+|updateCard| |yes|body|none|Updated card values|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## DeleteCard
-刪除卡片：刪除卡片
+## <a name="deletecard"></a>DeleteCard
+Delete card: Delete card 
 
-```DELETE: /cards/{card_id}```
+```DELETE: /cards/{card_id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|query|無|要自其中擷取卡片的面板識別碼|
-|card\_id|string|yes|路徑|無|要刪除卡片的識別碼|
+|board_id|string|yes|query|none|Id of the board to fetch cards from|
+|card_id|string|yes|path|none|Id of the card to delete|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## CreateCard
-建立卡片：在 Trello 帳戶中建立新的卡片
+## <a name="createcard"></a>CreateCard
+Create card: Creates a new card in your trello account 
 
-```POST: /cards```
+```POST: /cards``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|query|無|要在其中建立卡片的面板唯一識別碼|
-|newCard| |yes|body|無|要加入至 Trello 面板的新卡片|
+|board_id|string|yes|query|none|Unique id of the board to create cards in|
+|newCard| |yes|body|none|New card to add to the trello board|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## ListBoards
-列出面版︰列出面板
+## <a name="listboards"></a>ListBoards
+List boards: List boards 
 
-```GET: /member/me/boards```
+```GET: /member/me/boards``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|filter|string|no|query|無|列出套用至面板結果的篩選。指定 'All' 或有效值的逗號分隔清單|
-|fields|string|no|query|無|列出要傳回的面板欄位。指定 'All' 或有效值的逗號分隔清單|
-|actions|string|no|query|無|列出要傳回的動作欄位。指定 'All' 或有效值的逗號分隔清單|
-|actions\_entities|布林值|no|query|無|傳回動作的實體|
-|actions\_limit|integer|no|query|無|要傳回之動作的最大數目|
-|actions\_format|string|no|query|無|指定要傳回的動作格式|
-|actions\_since|string|no|query|無|傳回指定日期之後的動作|
-|action\_fields|string|no|query|無|列出要傳回的動作欄位。指定 'All' 或有效值的逗號分隔清單|
-|成員資格|string|no|query|無|指定要傳回的成員資格資訊。指定 'All' 或有效值的逗號分隔清單|
-|組織|布林值|no|query|無|指定要傳回的組織資訊|
-|organization\_fields|string|no|query|無|列出要傳回的組織欄位。指定 'All' 或有效值的逗號分隔清單|
-|清單|string|no|query|無|指定是否要傳回所屬面板的清單|
+|filter|string|no|query|none|List filters to apply to board results. Specify 'all' or a comma seperated list of valid values|
+|fields|string|no|query|none|List the board fields to return. Specify 'all' or a comma seperated list of valid values|
+|actions|string|no|query|none|List the action fields to return. Specify 'all' or a comma seperated list of valid values|
+|actions_entities|boolean|no|query|none|Return action entities|
+|actions_limit|integer|no|query|none|Max number of actions to return|
+|actions_format|string|no|query|none|Specify the format of the actions to return|
+|actions_since|string|no|query|none|Return actions after the specified date|
+|action_fields|string|no|query|none|List the fields of the action to return. Specify 'all' or a comma seperated list of valid values|
+|memberships|string|no|query|none|Specify membership information to return. Specify 'all' or a comma seperated list of valid values|
+|organization|boolean|no|query|none|Specify to return organization information|
+|organization_fields|string|no|query|none|List the organization fields to return. Specify 'all' or a comma seperated list of valid values|
+|lists|string|no|query|none|Specify whether to return lists which belong to the board|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## GetBoard
-依識別碼取得面板︰依識別碼取得面板
+## <a name="getboard"></a>GetBoard
+Gets board by Id: Gets board by Id 
 
-```GET: /boards/{board_id}```
+```GET: /boards/{board_id}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|路徑|無|要取得的面板唯一識別碼|
-|actions|string|no|query|無|列出要傳回的動作。指定 'All' 或有效值的逗號分隔清單|
-|action\_entities|布林值|no|query|無|指定是否要傳回動作實體|
-|actions\_display|布林值|no|query|無|指定是否要傳回所顯示的動作|
-|actions\_format|string|no|query|無|指定要傳回的動作格式|
-|actions\_since|string|no|query|無|只會傳回在此日期之後的動作|
-|actions\_limit|integer|no|query|無|要傳回之動作的最大數目|
-|action\_fields|string|no|query|無|列出每個欄位要傳回的欄位。指定 'All' 或有效值的逗號分隔清單|
-|action\_memeber|布林值|no|query|無|指定是否要傳回動作成員|
-|action\_member\_fields|string|no|query|無|列出每個動作成員要傳回的成員欄位。指定 'All' 或有效值的逗號分隔清單|
-|action\_memberCreator|布林值|no|query|無|指定是否要傳回動作成員的建立者|
-|action\_memberCreator\_fields|string|no|query|無|列出要傳回的動作成員建立者欄位。指定 'All' 或有效值的逗號分隔清單|
-|卡片|string|no|query|無|指定要傳回的卡片|
-|card\_fields|string|no|query|無|列出每個卡片要傳回的欄位。指定 'All' 或有效值的逗號分隔清單|
-|card\_attachments|布林值|yes|query|無|指定是否要在卡片上傳回附件|
-|card\_attachment\_fields|string|no|query|無|列出每個附件要傳回的附件欄位。指定 'All' 或有效值的逗號分隔清單|
-|card\_checklists|string|no|query|無|指定每張卡片要傳回的檢查清單|
-|card\_stickers|布林值|no|query|無|指定是否要傳回卡片貼紙|
-|boardStarts|string|no|query|無|指定要傳回的面板顆星|
-|標籤|string|no|query|無|指定要傳回的標籤|
-|label\_fields|string|no|query|無|列出每個標籤要傳回的標籤欄位。指定 'All' 或有效值的逗號分隔清單|
-|labels\_limits|integer|no|query|無|要傳回之標籤的最大數目|
-|清單|string|no|query|無|指定要傳回的清單|
-|list\_fields|string|no|query|無|列出每個清單要傳回的清單欄位。指定 'All' 或有效值的逗號分隔清單|
-|成員資格|string|no|query|無|列出要傳回的成員資格。指定 'All' 或有效值的逗號分隔清單|
-|memberships\_member|布林值|no|query|無|指定是否要傳回成員資格的成員|
-|memberships\_member\_fields|string|no|query|無|列出每個成員資格的成員要傳回的成員欄位。指定 'All' 或有效值的逗號分隔清單|
-|members|string|no|query|無|列出要傳回的成員。|
-|member\_fields|string|no|query|無|列出每個成員要傳回的成員欄位。指定 'All' 或有效值的逗號分隔清單|
-|membersInvited|string|no|query|無|指定要傳回的受邀成員|
-|membersInvited\_fields|string|no|query|無|列出每個要傳回的欄位。指定 'All' 或有效值的逗號分隔清單|
-|檢查清單|string|no|query|無|指定要傳回的檢查清單|
-|checklist\_fields|string|no|query|無|列出每個檢查清單要傳回的檢查清單欄位。指定 'All' 或有效值的逗號分隔清單|
-|組織|布林值|no|query|無|指定是否要傳回組織資訊|
-|organization\_fields|string|no|query|無|列出每個組織要傳回的組織欄位。指定 'All' 或有效值的逗號分隔清單|
-|organization\_memberships|string|no|query|無|列出要傳回的組織成員資格。指定 'All' 或有效值的逗號分隔清單|
-|myPerfs|布林值|no|query|無|指定是否要傳回我的 Perfs|
-|fields|string|no|query|無|列出要傳回的欄位。指定 'All' 或有效值的逗號分隔清單|
+|board_id|string|yes|path|none|Unique id of the board to get|
+|actions|string|no|query|none|List the actions to return. Specify 'all' or a comma seperated list of valid values|
+|action_entities|boolean|no|query|none|Specify whether to return action entities|
+|actions_display|boolean|no|query|none|Specify whether to return actions display|
+|actions_format|string|no|query|none|Specify the format of the actions to return|
+|actions_since|string|no|query|none|Only return the actions after this date|
+|actions_limit|integer|no|query|none|Max number of actions to return|
+|action_fields|string|no|query|none|List the fields to return with each field. Specify 'all' or a comma seperated list of valid values|
+|action_memeber|boolean|no|query|none|Specify whether to return action members|
+|action_member_fields|string|no|query|none|List the member fields to return with each action member. Specify 'all' or a comma seperated list of valid values|
+|action_memberCreator|boolean|no|query|none|Specify whether to return action member creator|
+|action_memberCreator_fields|string|no|query|none|List the action member creator fields to return. Specify 'all' or a comma seperated list of valid values|
+|cards|string|no|query|none|Specify the cards to return|
+|card_fields|string|no|query|none|List the fields to return for each card. Specify 'all' or a comma seperated list of valid values|
+|card_attachments|boolean|yes|query|none|Specify whether to return attachments on cards|
+|card_attachment_fields|string|no|query|none|List the attachment fields to return for each attachment. Specify 'all' or a comma seperated list of valid values|
+|card_checklists|string|no|query|none|Specify the checklists to return for each card|
+|card_stickers|boolean|no|query|none|Specify whether to return card stickers|
+|boardStarts|string|no|query|none|Specify the board stars to return|
+|labels|string|no|query|none|Specify the labels to return|
+|label_fields|string|no|query|none|List the label fields to return for each label. Specify 'all' or a comma seperated list of valid values|
+|labels_limits|integer|no|query|none|Max number of labels to return|
+|lists|string|no|query|none|Specify the lists to return|
+|list_fields|string|no|query|none|List the list fields to return for each list. Specify 'all' or a comma seperated list of valid values|
+|memberships|string|no|query|none|List the memberships to return. Specify 'all' or a comma seperated list of valid values|
+|memberships_member|boolean|no|query|none|Specify whether to return membership members|
+|memberships_member_fields|string|no|query|none|List the member fields to return for each membership member. Specify 'all' or a comma seperated list of valid values|
+|members|string|no|query|none|List the members to return|
+|member_fields|string|no|query|none|List the member fields to return for each member. Specify 'all' or a comma seperated list of valid values|
+|membersInvited|string|no|query|none|Specify the invited members to return|
+|membersInvited_fields|string|no|query|none|List the fields to return for each. Specify 'all' or a comma seperated list of valid values|
+|checklists|string|no|query|none|Specify the checklists to return|
+|checklist_fields|string|no|query|none|List the checklist fields to return for each checklist. Specify 'all' or a comma seperated list of valid values|
+|organization|boolean|no|query|none|Specify whether to return the organization information|
+|organization_fields|string|no|query|none|List the organization fields to return for each organization. Specify 'all' or a comma seperated list of valid values|
+|organization_memberships|string|no|query|none|List the organization memberships to return. Specify 'all' or a comma seperated list of valid values|
+|myPerfs|boolean|no|query|none|Specify whether to return my perfs|
+|fields|string|no|query|none|List the fields to return. Specify 'all' or a comma seperated list of valid values|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## ListLists
-列出面板中的卡片清單︰列出在面板中的卡片清單
+## <a name="listlists"></a>ListLists
+List card lists in board: List card lists in board 
 
-```GET: /boards/{board_id}/lists```
+```GET: /boards/{board_id}/lists``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|路徑|無|要擷取清單的面板唯一識別碼|
-|卡片|string|no|query|無|指定要傳回的卡片|
-|card\_fields|string|no|query|無|列出要自其中傳回的卡片欄位。指定 'All' 或有效值的逗號分隔清單|
-|filter|string|no|query|無|指定清單的篩選屬性|
-|fields|string|no|query|無|列出要傳回的欄位。指定 'All' 或有效值的逗號分隔清單|
+|board_id|string|yes|path|none|Unique id of the board to fetch lists|
+|cards|string|no|query|none|Specify the cards to return|
+|card_fields|string|no|query|none|List the card fields to return from. Specify 'all' or a comma seperated list of valid values|
+|filter|string|no|query|none|Specify the filter property for lists|
+|fields|string|no|query|none|List the fields to return. Specify 'all' or a comma seperated list of valid values|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## GetList
-依識別碼取得清單︰依識別碼取得清單
+## <a name="getlist"></a>GetList
+Gets list by Id: Gets list by Id 
 
-```GET: /lists/{list_id}```
+```GET: /lists/{list_id}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|board\_id|string|yes|query|無|要自其中擷取清單的面板唯一識別碼|
-|list\_id|string|yes|路徑|無|要擷取的清單唯一識別碼|
-|卡片|string|no|query|無|指定要傳回的卡片|
-|card\_fields|string|no|query|無|列出每個卡片要傳回的卡片欄位。指定 'All' 或有效值的逗號分隔清單|
-|面板|布林值|no|query|無|指定是否要傳回面板資訊|
-|board\_fields|string|no|query|無|列出要傳回的面板欄位。指定 'All' 或有效值的逗號分隔清單|
-|fields|string|no|query|無|列出要傳回的清單欄位。指定 'All' 或有效值的逗號分隔清單|
+|board_id|string|yes|query|none|Unique id of the board to fetch the lists from|
+|list_id|string|yes|path|none|Unique id of the list to fetch|
+|cards|string|no|query|none|Specify the cards to return|
+|card_fields|string|no|query|none|List the card fields to return for each card. Specify 'all' or a comma seperated list of valid values|
+|board|boolean|no|query|none|Specify whether to return board information|
+|board_fields|string|no|query|none|List the board fields to return. Specify 'all' or a comma seperated list of valid values|
+|fields|string|no|query|none|List the list fields to return. Specify 'all' or a comma seperated list of valid values|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed|
 
 
-## 物件定義 
+## <a name="object-definitions"></a>Object definitions 
 
-### 卡片
+### <a name="card"></a>Card
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|否 |
-|checkItemStates|array|否 |
-|關閉|布林值|否 |
-|dateLastActivity|string|否 |
-|desc|string|否 |
-|idBoard|string|否 |
-|idList|string|否 |
-|idMembersVoted|array|否 |
-|idShort|integer|否 |
-|idAttachmentCover|string|否 |
-|manualCoverAttachment|布林值|否 |
-|idLabels|array|否 |
-|名稱|string|否 |
-|pos|integer|否 |
-|shortLink|string|否 |
-|徽章|沒有定義|否 |
-|due|string|否 |
-|電子郵件|string|否 |
-|shortUrl|string|否 |
-|已訂閱|布林值|否 |
-|url|string|否 |
+|id|string|No |
+|checkItemStates|array|No |
+|closed|boolean|No |
+|dateLastActivity|string|No |
+|desc|string|No |
+|idBoard|string|No |
+|idList|string|No |
+|idMembersVoted|array|No |
+|idShort|integer|No |
+|idAttachmentCover|string|No |
+|manualCoverAttachment|boolean|No |
+|idLabels|array|No |
+|name|string|No |
+|pos|integer|No |
+|shortLink|string|No |
+|badges|not defined|No |
+|due|string|No |
+|email|string|No |
+|shortUrl|string|No |
+|subscribed|boolean|No |
+|url|string|No |
 
 
 
-### 徽章
+### <a name="badges"></a>Badges
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|(0 人投票)|integer|否 |
-|ViewingMemberVoted|布林值|否 |
-|已訂閱|布林值|否 |
-|Fogbugz|string|否 |
-|CheckItems|integer|否 |
-|CheckItemsChecked|integer|否 |
-|註解|integer|否 |
-|附件|integer|否 |
-|說明|布林值|否 |
-|到期|string|否 |
+|Votes|integer|No |
+|ViewingMemberVoted|boolean|No |
+|Subscribed|boolean|No |
+|Fogbugz|string|No |
+|CheckItems|integer|No |
+|CheckItemsChecked|integer|No |
+|Comments|integer|No |
+|Attachments|integer|No |
+|Description|boolean|No |
+|Due|string|No |
 
 
 
-### Object
+### <a name="object"></a>Object
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
 
 
 
-### CreateCard
+### <a name="createcard"></a>CreateCard
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|idList|string|是 |
-|名稱|string|是 |
-|desc|string|否 |
-|pos|string|否 |
-|idMembers|string|否 |
-|idLabels|string|否 |
-|urlSource|string|否 |
-|fileSource|string|否 |
-|idCardSource|string|否 |
-|keepFromSource|string|否 |
+|idList|string|Yes |
+|name|string|Yes |
+|desc|string|No |
+|pos|string|No |
+|idMembers|string|No |
+|idLabels|string|No |
+|urlSource|string|No |
+|fileSource|string|No |
+|idCardSource|string|No |
+|keepFromSource|string|No |
 
 
 
-### UpdateCard
+### <a name="updatecard"></a>UpdateCard
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|名稱|string|否 |
-|desc|string|否 |
-|關閉|布林值|否 |
-|idMembers|string|否 |
-|idAttachmentCover|string|否 |
-|idList|string|否 |
-|idBoard|string|否 |
-|pos|string|否 |
-|due|string|否 |
-|已訂閱|布林值|否 |
+|name|string|No |
+|desc|string|No |
+|closed|boolean|No |
+|idMembers|string|No |
+|idAttachmentCover|string|No |
+|idList|string|No |
+|idBoard|string|No |
+|pos|string|No |
+|due|string|No |
+|subscribed|boolean|No |
 
 
 
-### 面板
+### <a name="board"></a>Board
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|否 |
-|關閉|布林值|否 |
-|dateLastActivity|string|否 |
-|dateLastView|string|否 |
-|desc|string|否 |
-|idOrganization|string|否 |
-|邀請|array|否 |
-|受邀|布林值|否 |
-|labelNames|沒有定義|否 |
-|成員資格|array|否 |
-|名稱|string|否 |
-|已釘選|布林值|否 |
-|powerUps|array|否 |
-|perfs|沒有定義|否 |
-|shortLink|string|否 |
-|shortUrl|string|否 |
-|已加星號|string|否 |
-|已訂閱|string|否 |
-|url|string|否 |
+|id|string|No |
+|closed|boolean|No |
+|dateLastActivity|string|No |
+|dateLastView|string|No |
+|desc|string|No |
+|idOrganization|string|No |
+|invitations|array|No |
+|invited|boolean|No |
+|labelNames|not defined|No |
+|memberships|array|No |
+|name|string|No |
+|pinned|boolean|No |
+|powerUps|array|No |
+|perfs|not defined|No |
+|shortLink|string|No |
+|shortUrl|string|No |
+|starred|string|No |
+|subscribed|string|No |
+|url|string|No |
 
 
 
-### 標籤
+### <a name="label"></a>Label
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|綠色|string|否 |
-|黃色|string|否 |
-|橙色|string|否 |
-|紅色|string|否 |
-|紫色|string|否 |
-|藍色|string|否 |
-|淡藍色|string|否 |
-|淺綠色|string|否 |
-|粉紅色|string|否 |
-|黑色|string|否 |
+|green|string|No |
+|yellow|string|No |
+|orange|string|No |
+|red|string|No |
+|purple|string|No |
+|blue|string|No |
+|sky|string|No |
+|lime|string|No |
+|pink|string|No |
+|black|string|No |
 
 
 
-### 成員資格
+### <a name="membership"></a>Membership
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|否 |
-|idMember|string|否 |
-|memberType|string|否 |
-|未確認|布林值|否 |
+|id|string|No |
+|idMember|string|No |
+|memberType|string|No |
+|unconfirmed|boolean|No |
 
 
 
-### Perfs
+### <a name="perfs"></a>Perfs
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|permissionLevel|string|否 |
-|投票|string|否 |
-|註解|string|否 |
-|邀請|string|否 |
-|selfJoin|布林值|否 |
-|cardCovers|布林值|否 |
-|calendarFeedEnabled|布林值|否 |
-|背景資訊|string|否 |
-|backgroundColor|string|否 |
-|backgroundImage|string|否 |
-|backgroundImageScaled|string|否 |
-|backgroundTile|布林值|否 |
-|backgroundBrightness|string|否 |
-|canBePublic|布林值|否 |
-|canBeOrg|布林值|否 |
-|canBePrivate|布林值|否 |
-|canInvite|布林值|否 |
+|permissionLevel|string|No |
+|voting|string|No |
+|comments|string|No |
+|invitations|string|No |
+|selfJoin|boolean|No |
+|cardCovers|boolean|No |
+|calendarFeedEnabled|boolean|No |
+|background|string|No |
+|backgroundColor|string|No |
+|backgroundImage|string|No |
+|backgroundImageScaled|string|No |
+|backgroundTile|boolean|No |
+|backgroundBrightness|string|No |
+|canBePublic|boolean|No |
+|canBeOrg|boolean|No |
+|canBePrivate|boolean|No |
+|canInvite|boolean|No |
 
 
 
-### 列出
+### <a name="list"></a>List
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|否 |
-|名稱|string|否 |
-|關閉|布林值|否 |
-|idBoard|string|否 |
-|pos|number|否 |
-|已訂閱|布林值|否 |
-|卡片|array|否 |
-|面板|沒有定義|否 |
+|id|string|No |
+|name|string|No |
+|closed|boolean|No |
+|idBoard|string|No |
+|pos|number|No |
+|subscribed|boolean|No |
+|cards|array|No |
+|board|not defined|No |
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

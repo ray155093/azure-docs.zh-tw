@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Manager 服務儀表板 - Virtual Array | Microsoft Azure"
-   description="描述 StorSimple Manager 服務儀表板，以及如何使用它來監視 StorSimple Virtual Array 解決方案的健全狀況。"
+   pageTitle="StorSimple Manager service dashboard - Virtual Array | Microsoft Azure"
+   description="Describes the StorSimple Manager service dashboard and explains how to use it to monitor the health of your StorSimple Virtual Array."
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,51 +15,55 @@
    ms.date="04/07/2016"
    ms.author="alkohli" />
 
-# 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務儀表板
 
-## 概觀
+# <a name="use-the-storsimple-manager-service-dashboard-for-the-storsimple-virtual-array"></a>Use the StorSimple Manager service dashboard for the StorSimple Virtual Array
 
-StorSimple Manager 服務儀表板頁面提供連線至 StorSimple Manager 服務的 StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置) 的摘要檢視，並強調顯示需要系統管理員注意的裝置。本教學課程介紹儀表板頁面、說明儀表板內容和功能，並說明您可以從這個頁面執行的工作。
+## <a name="overview"></a>Overview
 
-![服務儀表板](./media/storsimple-ova-service-dashboard/dashboard1.png)
+The StorSimple Manager service dashboard page provides a summary view of the StorSimple Virtual Arrays (also known as StorSimple on-premises virtual devices or virtual devices) that are connected to the StorSimple Manager service, highlighting those that need a system administrator's attention. This tutorial introduces the dashboard page, explains the dashboard content and function, and describes the tasks that you can perform from this page.
 
-StorSimple Manager 服務儀表板會顯示下列資訊：
+![Service dashboard](./media/storsimple-ova-service-dashboard/dashboard1.png)
 
-- 在頁面頂端的 [圖表] 區域中，您可以查看虛擬裝置的相關度量。您可以檢視所有虛擬裝置上使用的主要儲存體，以及經過一段時間虛擬裝置已耗用的雲端儲存體。使用圖表右上角的控制項，指定相關或絕對使用量，以查看 1 週、1 個月、3 個月或 1 年的時間範圍。使用重新整理控制項 ![重新整理控制項](./media/storsimple-ova-service-dashboard/refresh-control.png) 重新整理圖表。
+The StorSimple Manager service dashboard displays the following information:
 
-- [使用量概觀] 相對於所有虛擬裝置可用的總儲存體，顯示所有虛擬裝置已佈建和使用的主要儲存體。[已佈建] 是指已準備和配置來使用的儲存體數量，[已使用] 是指連接至虛擬裝置的啟動器檢視的共用或磁碟區使用量，[最大容量] 會顯示所有虛擬機器的最大容量。
+- In the **chart** area at the top of the page, you can see the relevant metrics for your virtual devices. You can view the primary storage used across all virtual devices, as well as the cloud storage consumed by virtual devices over a period of time. Use the controls in the top-right corner of the chart to specify relative or absolute usage and to see a 1-week, 1-month, 3-month, or 1-year time scale. Use the refresh control ![refresh-control](./media/storsimple-ova-service-dashboard/refresh-control.png) to refresh the chart.
 
-- [警示] 區域提供所有虛擬裝置上的所有作用中警示的快照集，依警示嚴重性分組。按一下嚴重性層級會開啟 [**警示**] 頁面，只顯示那些警示。在 [**警示**] 頁面上，您可以按一下個別警示來檢視該警示的其他詳細資料，包括任何建議的動作。如果已解決問題，您也可以清除警示。
+- The **usage overview** shows the primary storage that is provisioned and consumed by all virtual devices relative to the total storage available across all virtual devices. **Provisioned** refers to the amount of storage that is prepared and allocated for use, **Used** refers to usage of shares or volumes as viewed by the initiators that are connected to the virtual devices, and **Max. capacity** shows the maximum capacity of all virtual devices.
 
-- [作業] 區域提供連線到服務的所有虛擬裝置上的最近工作的快照集。您可以利用連結查看目前正在進行的作業，以及在過去 24 小時內成功或失敗的作業。
+- The **alerts** area provides a snapshot of all the active alerts across all virtual devices, grouped by alert severity. Clicking the severity level opens the **Alerts** page, scoped to show those alerts. On the **Alerts** page, you can click an individual alert to view additional details about that alert, including any recommended actions. You can also clear the alert if the issue has been resolved.
 
-- 頁面右側的 [快速概覽] 區域提供有用的資訊，例如服務狀態、連接到服務的虛擬裝置總數、服務的位置，以及與服務相關聯的訂用帳戶的詳細資料。另外還有作業記錄檔的連結。按一下連結即可查看所有已完成的 StorSimple Manager 服務作業的清單。
+- The **jobs** area provides a snapshot of recent jobs across all virtual devices that are connected to your service. There are links that you can use to look at jobs that are currently in progress and those that succeeded or failed in the last 24 hours. 
 
-您可以使用 StorSimple Manager 服務儀表板頁面來起始下列工作：
+- The **quick glance** area on the right of the page provides useful information such as service status, total number of virtual devices connected to the service, location of the service, and details of the subscription that is associated with the service. There is also a link to the operations log. Click the link to see a list of all completed StorSimple Manager service operations. 
 
-- 取得服務註冊金鑰。
-- 檢視作業記錄檔。
+You can use the StorSimple Manager service dashboard page to initiate the following tasks:
 
-## 取得服務註冊金鑰。
+- Get the service registration key.
+- View the operation logs.
 
-服務註冊金鑰用於向 StorSimple Manager 服務註冊 StorSimple 虛擬裝置，之後裝置就會出現在Azure 傳統入口網站中，讓您採取進一步的管理動作。金鑰是在第一個虛擬裝置上建立，然後與其餘虛擬裝置共用。
+## <a name="get-the-service-registration-key"></a>Get the service registration key
 
-按一下 [**註冊金鑰**] \(在頁面底部) 會開啟 [**服務註冊金鑰**] 對話方塊，您可以在此處將目前的服務註冊金鑰複製到剪貼簿，或重新產生服務註冊金鑰。
+The service registration key is used to register a StorSimple virtual device with the StorSimple Manager service, so that the device appears in the Azure classic portal for further management actions. The key is created on the first virtual device and shared with the remaining virtual devices. 
 
-![註冊金鑰](./media/storsimple-ova-service-dashboard/service-dashboard3.png)
+Clicking **Registration Key** (at the bottom of the page) opens the **Service Registration Key** dialog box, where you can either copy the current service registration key to the clipboard or regenerate the service registration key.
 
-重新產生金鑰並不會影響先前註冊的虛擬裝置：只會影響重新產生金鑰之後，才向服務註冊的虛擬裝置。
+![registration key](./media/storsimple-ova-service-dashboard/service-dashboard3.png)
 
-如需有關取得服務註冊金鑰的詳細資訊，請移至[取得服務註冊金鑰](storsimple-ova-manage-service.md#get-the-service-registration-key)。
+Regenerating the key does not affect previously registered virtual devices: it affects only the virtual devices that are registered with the service after the key is regenerated.
 
-## 檢視作業記錄檔
+For more information about getting the service registration key, go to [Get the service registration key](storsimple-ova-manage-service.md#get-the-service-registration-key).
 
-您可以在儀表板的 [**快速概覽**] 窗格中按一下可用的作業記錄檔連結，以檢視作業記錄檔。這樣會移至管理服務頁面，讓您篩選並查看 StorSimple Manager 服務特定的記錄檔。
+## <a name="view-the-operations-logs"></a>View the operations logs
 
-![作業記錄](./media/storsimple-ova-service-dashboard/ops-log.png)
+You can view the operation logs by clicking the operation logs link available in the **quick glance** pane of the dashboard. This will take you to the management services page, where you can filter and see the logs specific to your StorSimple Manager service.
 
-## 後續步驟
+![Operations log](./media/storsimple-ova-service-dashboard/ops-log.png)
 
-了解如何[使用本機 Web UI 來管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0413_2016-->
+Learn how to [use the local web UI to administer your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
+
+
+<!--HONumber=Oct16_HO2-->
+
+

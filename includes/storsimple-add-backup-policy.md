@@ -1,19 +1,25 @@
 
 <!--author=alkohli last changed: 9/11/15-->
 
-#### 若要新增 StorSimple 備份原則
+#### <a name="to-add-a-storsimple-backup-policy"></a>To add a StorSimple backup policy
 
-1. 在裝置的 [**快速入門**] 頁面上，按一下 [**備份原則**] 索引標籤。這會將您帶到 [**備份原則**] 頁面。
+1. On the device **Quick Start** page, click the **Backup Policies** tab. This will take you to the **Backup Policies** page.
 
-2. 在頁面底部，按一下 [**新增**]。
+2. At the bottom of the page, click **Add**.
 
-3. 在 [**新增備份原則**] 對話方塊中，執行下列動作：
+3. In the **Add Backup Policy** dialog box, do the following:
 
-    1. 指定包含 3 到 150 個字元的備份原則名稱。
-    2. 將一或多個磁碟區指派給此備份原則。如果您使用其他雲端服務提供者，根據您選擇的第一個選項，下拉式清單會顯示屬於只有該雲端服務提供者的磁碟區。這可讓您群組屬於單一雲端服務提供者的磁碟區，以建立快照集。
-    3. 按一下核取圖示 ![核取圖示](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png) 以儲存原則。
+    1. Specify a backup policy name that contains between 3 and 150 characters.
+    2. Assign one or more volumes to this backup policy. If you are using other cloud service providers, based on your first selection, the drop-down list will show volumes belonging to only that cloud service provider. This will allow you to group volumes belonging to a single cloud service provider for taking a snapshot.
+    3. Click the check icon ![check icon](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png) to save the policy.
 
-新加入的原則將會以表格式檢視顯示在 [**備份原則**] 頁面。
+The newly added policy will be displayed in the tabular view on the **Backup Policies** page.
  
 
-<!---HONumber=Oct15_HO3-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

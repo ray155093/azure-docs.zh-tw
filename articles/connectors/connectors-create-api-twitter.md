@@ -1,12 +1,12 @@
 <properties
-	pageTitle="了解如何在邏輯應用程式中使用 Twitter 連接器 | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Twitter 連接器的概觀"
-	services=""
-	documentationCenter="" 
-	authors="msftman"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="Learn how to use the Twitter connector in logic apps | Microsoft Azure"
+    description="Overview of Twitter connector with REST API parameters"
+    services=""
+    documentationCenter="" 
+    authors="msftman"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -18,446 +18,449 @@
    ms.author="deonhe"/>
 
 
-# 開始使用 Twitter 連接器
 
-使用 Twitter 連接器，您可以：
+# <a name="get-started-with-the-twitter-connector"></a>Get started with the Twitter connector
 
-- 張貼推文並取得推文
-- 存取時間軸、好友和追隨者
-- 執行以下所述的任何其他動作和觸發程序
+With the Twitter connector you can:
 
-若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
+- Post tweets and get tweets
+- Access timelines, friends and followers
+- Perform any of the other actions and triggers described below  
 
-## 連接到 Twitter
+To use [any connector](./apis-list.md), you first need to create a logic app. You can get started by [creating a logic app now](../app-service-logic/app-service-logic-create-a-logic-app.md).  
 
-您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。[連線](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。
+## <a name="connect-to-twitter"></a>Connect to Twitter
 
-### 建立 Twitter 連線
+Before your logic app can access any service, you first need to create a *connection* to the service. A [connection](./connectors-overview.md) provides connectivity between a logic app and another service.  
 
->[AZURE.INCLUDE [建立 Twitter 連線的步驟](../../includes/connectors-create-api-twitter.md)]
+### <a name="create-a-connection-to-twitter"></a>Create a connection to Twitter
 
-## 使用 Twitter 觸發程序
+>[AZURE.INCLUDE [Steps to create a connection to Twitter](../../includes/connectors-create-api-twitter.md)]
 
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+## <a name="use-a-twitter-trigger"></a>Use a Twitter trigger
 
-在此範例中，我將示範如何使用 [當有新推文張貼時] 觸發程序來搜尋 #Seattle，而如果找到 #Seattle，使用推文中的文字更新 Dropbox 中的檔案。在企業範例中，您可以搜尋您的公司名稱，並以推文中的文字更新 SQL Database。
+A trigger is an event that can be used to start the workflow defined in a logic app. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
 
-1. 在 Logic Apps 設計工具的搜尋方塊中輸入 twitter，然後選取 [Twitter - 當有新推文張貼時] 觸發程序。  
-![Twitter 觸發程序影像 1](./media/connectors-create-api-twitter/trigger-1.png)  
-- 在 [搜尋文字] 控制項中輸入 #Seattle  
-![Twitter 觸發程序影像 2](./media/connectors-create-api-twitter/trigger-2.png)  
+In this example, I will show you how to use the **When a new tweet is posted**  trigger to search for #Seattle and, if #Seattle is found, update a file in Dropbox with the text from the tweet. In an enterprise example, you could search for the name of your company and update a SQL database with the text from the tweet.
 
-此時，邏輯應用程式已設有觸發程序，該觸發程序會開始執行工作流程中的其他觸發程序和動作。
+1. Enter *twitter* in the search box on the logic apps designer then select the **Twitter - When a new tweet is posted**  trigger   
+![Twitter trigger image 1](./media/connectors-create-api-twitter/trigger-1.png)  
+- Enter *#Seattle* in the **Search Text** control  
+![Twitter trigger image 2](./media/connectors-create-api-twitter/trigger-2.png) 
 
->[AZURE.NOTE]為了讓邏輯應用程式能正常運作，它必須包含至少一個觸發程序和一個動作。請依照下一節中的步驟新增動作。
+At this point, your logic app has been configured with a trigger that will begin a run of the other triggers and actions in the workflow. 
 
-## 新增條件
-因為我們只對於有 50 個以上跟隨者的使用者的推文有興趣，所以必須先將確認追隨者數目的條件新增至邏輯應用程式。
+>[AZURE.NOTE]For a logic app to be functional, it must contain at least one trigger and one action. Follow the steps in the next section to add an action.  
 
-1. 選取 [+ 新的步驟] 來新增您想要在新推文中找到 #Seattle 時採取的動作。  
-![Twitter 動作影像 1](../../includes/media/connectors-create-api-twitter/action-1.png)  
-- 選取 [新增條件] 連結。  
-![Twitter 條件影像 1](../../includes/media/connectors-create-api-twitter/condition-1.png)  
-這會開啟可供您檢查條件的 [條件] 控制項，例如「等於」、「小於」、「大於」、「包含」等等。   
-![Twitter 條件影像 2](../../includes/media/connectors-create-api-twitter/condition-2.png)  
-- 選取 [選擇值] 控制項。在此控制項中，您可以從任何先前的動作或觸發程序選取一或多個屬性，做為其條件會評估為 true 或 false 的值。  
-![Twitter 條件影像 3](../../includes/media/connectors-create-api-twitter/condition-3.png)  
-- 選取 [...] 展開屬性清單，以便查看所有的可用屬性。  
-![Twitter 條件影像 4](../../includes/media/connectors-create-api-twitter/condition-4.png)  
-- 選取 [追隨者計數] 屬性。  
-![Twitter 條件影像 5](../../includes/media/connectors-create-api-twitter/condition-5.png)  
-- 請注意，[追隨者計數] 屬性現在位於值控制項。  
-![Twitter 條件影像 6](../../includes/media/connectors-create-api-twitter/condition-6.png)  
-- 從運算子清單選取 [大於]。  
-![Twitter 條件影像 7](../../includes/media/connectors-create-api-twitter/condition-7.png)  
-- 輸入 50 做為「大於」運算子的運算元。現已新增此條件。使用上方功能表上的 [儲存] 連結來儲存您的工作。  
-![Twitter 條件影像 8](../../includes/media/connectors-create-api-twitter/condition-8.png)  
+## <a name="add-a-condition"></a>Add a condition
+Since we are only interested in tweets from users with more than 50 users, a condition that confirms the number of followers must first be added to the logic app.  
 
-## 使用 Twitter 動作
+1. Select **+ New step** to add the action you would like to take when #Seattle is found in a new tweet  
+![Twitter action image 1](../../includes/media/connectors-create-api-twitter/action-1.png)  
+- Select the **Add a condition** link.  
+![Twitter condition image 1](../../includes/media/connectors-create-api-twitter/condition-1.png)   
+This opens the **Condition** control where you can check conditions such as *is equal to*, *is less than*, *is greater than*, *contains*, etc.  
+![Twitter condition image 2](../../includes/media/connectors-create-api-twitter/condition-2.png)   
+- Select the **Choose a value** control.  
+In this control, you can select one or more of the properties from any previous actions or triggers as the value whose condition will be evaluated to true or false.
+![Twitter condition image 3](../../includes/media/connectors-create-api-twitter/condition-3.png)   
+- Select the **...** to expand the list of properties so you can see all the properties that are available.        
+![Twitter condition image 4](../../includes/media/connectors-create-api-twitter/condition-4.png)   
+- Select the **Followers count** property.    
+![Twitter condition image 5](../../includes/media/connectors-create-api-twitter/condition-5.png)   
+- Notice the Followers count property is now in the value control.    
+![Twitter condition image 6](../../includes/media/connectors-create-api-twitter/condition-6.png)   
+- Select **is greater than** from the operators list.    
+![Twitter condition image 7](../../includes/media/connectors-create-api-twitter/condition-7.png)   
+- Enter 50 as the operand for the *is greater than* operator.  
+The condition is now added. Save your work using the **Save** link on the menu above.    
+![Twitter condition image 8](../../includes/media/connectors-create-api-twitter/condition-8.png)   
 
-動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+## <a name="use-a-twitter-action"></a>Use a Twitter action
 
-您現已新增觸發程序，請遵循下列步驟來新增動作，該動作將會張貼包含觸發程序所找到之推文內容的新推文。基於本逐步解說的目的，只會張貼有 50 個以上跟隨者的使用者的推文。
+An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).  
 
-在下一個步驟中，您將新增 Twitter 動作，該動作將使用有 50 個以上跟隨者的使用者所張貼的每則推文的某些屬性來張貼推文。
+Now that you have added a trigger, follow these steps to add an action that will post a new tweet with the contents of the tweets found by the trigger. For the purposes of this walk-through only tweets from users with more than 50 followers will be posted.  
 
-1. 選取 [新增動作]。這會開啟搜尋控制項，您可以在其中搜尋其他動作和觸發程序。  
-![Twitter 條件影像 9](../../includes/media/connectors-create-api-twitter/condition-9.png)  
-- 在搜尋方塊中輸入 twitter，然後選取 [Twitter - 張貼推文] 動作。這會開啟 [張貼推文] 控制項，您將在其中輸入所張貼推文的所有詳細資料。  
-![Twitter 動作影像 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)  
-- 選取 [推文文字] 控制項。前述動作和觸發程序的所有輸出現在可顯示在邏輯應用程式中。您可以選取上述任何輸出並使用它們做為新推文的部分推文文字。  
-![Twitter 動作影像 2](../../includes/media/connectors-create-api-twitter/action-2.png)  
-- 選取 [使用者名稱]
-- 在推文文字控制項中輸入「說：」。在使用者名稱之後執行此動作。
-- 選取「推文文字」。  
-![Twitter 動作影像 3](../../includes/media/connectors-create-api-twitter/action-3.png)  
-- 儲存您的工作並傳送具有 #Seattle 雜湊標籤的推文，以啟動您的工作流程。
+In the next step, you will add a Twitter action that will post a tweet using some of the properties of each tweet that has been posted by a user who has more than 50 followers.  
 
-## 技術詳細資料
+1. Select **Add an action**. This opens the search control where you can search for other actions and triggers.  
+![Twitter condition image 9](../../includes/media/connectors-create-api-twitter/condition-9.png)   
+- Enter *twitter* into the search box then select the **Twitter - Post a tweet** action. This opens the **Post a tweet** control where you will enter all details for the tweet being posted.      
+![Twitter action image 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)   
+- Select the **Tweet text** control. All outputs from previous actions and triggers in the logic app are now visible. You can select any of these and use them as part of the tweet text of the new tweet.     
+![Twitter action image 2](../../includes/media/connectors-create-api-twitter/action-2.png)   
+- Select **User name**   
+- Enter *says:* in the tweet text control. Do this just after User name.  
+- Select *Tweet text*.       
+![Twitter action image 3](../../includes/media/connectors-create-api-twitter/action-3.png)   
+- Save your work and send a tweet with the #Seattle hashtag to activate your workflow.  
 
-以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+## <a name="technical-details"></a>Technical Details
 
-## Twitter 觸發程序
+Here are the details about the triggers, actions and responses that this connection supports:
 
-Twitter 連接器具有下列觸發程序︰
+## <a name="twitter-triggers"></a>Twitter triggers
 
-|觸發程序 | 說明|
+The Twitter connector has the following trigger(s):  
+
+|Trigger | Description|
 |--- | ---|
-|[當有新推文張貼時](connectors-create-api-twitter.md#when-a-new-tweet-is-posted)|當有符合指定搜尋查詢的新推文張貼時，此作業就會觸發流程。|
+|[When a new tweet is posted](connectors-create-api-twitter.md#when-a-new-tweet-is-posted)|This operation triggers a flow when a new tweet that matches a given search query is posted.|
 
 
-## Twitter 動作
+## <a name="twitter-actions"></a>Twitter actions
 
-Twitter 連接器具有下列動作︰
+The Twitter connector has the following actions:
 
 
-|動作|說明|
+|Action|Description|
 |--- | ---|
-|[取得使用者的時間軸](connectors-create-api-twitter.md#get-user-timeline)|這項作業會取得指定使用者所張貼的最新推文清單。|
-|[取得首頁時間軸](connectors-create-api-twitter.md#get-home-timeline)|這項作業會取得我和我的跟隨者最新的推文及轉推推文。|
-|[搜尋推文](connectors-create-api-twitter.md#search-tweets)|這項作業會取得符合搜尋查詢的相關推文清單。|
-|[取得跟隨者](connectors-create-api-twitter.md#get-followers)|這項作業會取得關注指定使用者的使用者清單。|
-|[取得我的跟隨者](connectors-create-api-twitter.md#get-my-followers)|這項作業會取得正在關注我的使用者清單。|
-|[取得正在關注的對象](connectors-create-api-twitter.md#get-following)|這項作業會取得指定使用者所關注的人員清單。|
-|[取得我正在關注的對象](connectors-create-api-twitter.md#get-my-following)|這項作業會取得我正在關注的使用者清單。|
-|[取得使用者](connectors-create-api-twitter.md#get-user)|這項作業會取得指定使用者的設定檔詳細資料，例如使用者名稱、描述、追隨者計數等等。|
-|[張貼推文](connectors-create-api-twitter.md#post-a-tweet)|這項作業會張貼新推文。|
-## 動作詳細資料
+|[Get user timeline](connectors-create-api-twitter.md#get-user-timeline)|This operation gets a list of the most recent tweets posted by a given user.|
+|[Get home timeline](connectors-create-api-twitter.md#get-home-timeline)|This operation gets the most recent tweets and re-tweets posted by me and my followers.|
+|[Search tweets](connectors-create-api-twitter.md#search-tweets)|This operation gets a list of relevant tweets matching the search query.|
+|[Get followers](connectors-create-api-twitter.md#get-followers)|This operation gets the list of users that follow a given user.|
+|[Get my followers](connectors-create-api-twitter.md#get-my-followers)|This operation gets the list of users who are following me.|
+|[Get following](connectors-create-api-twitter.md#get-following)|The operation gets the list of people the given user follows.|
+|[Get my following](connectors-create-api-twitter.md#get-my-following)|This operation gets the list of users that I am following.|
+|[Get user](connectors-create-api-twitter.md#get-user)|This operation gets the profile details for a given user, such as user name, description, followers count, and more.|
+|[Post a tweet](connectors-create-api-twitter.md#post-a-tweet)|This operation posts a new tweet.|
+## <a name="action-details"></a>Action details
 
-以下是此連接器動作和觸發程序以及其回應的詳細資料︰
-
-
-
-### 取得使用者的時間軸
-這項作業會取得指定使用者所張貼的最新推文清單。
+Here are the details for the actions and triggers for this connector, along with their responses:
 
 
-|屬性名稱| 顯示名稱|說明|
+
+### <a name="get-user-timeline"></a>Get user timeline
+This operation gets a list of the most recent tweets posted by a given user. 
+
+
+|Property Name| Display Name|Description|
 | ---|---|---|
-|userName*|使用者名稱|使用者的 Twitter 控制代碼|
-|maxResults|結果數目上限|要傳回的推文數目上限|
+|userName*|User name|Twitter handle for the user|
+|maxResults|Maximum results|Maximum number of tweets to return|
 
-* 表示這是必要屬性
-
-
-
-#### 輸出詳細資料
-
-TweetModel：推文物件的表示方式
+An * indicates that a property is required
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+
+#### <a name="output-details"></a>Output Details
+
+TweetModel: Representation of Tweet Object
+
+
+| Property Name | Data Type | Description |
 |---|---|---|
-|TweetText|字串|推文的文字內容|
-|TweetId|字串|推文的識別碼|
-|CreatedAt|字串|張貼推文的時間|
-|RetweetCount|integer|推文的轉推總次數|
-|TweetedBy|字串|張貼推文的使用者名稱|
-|MediaUrls|array|與推文一起張貼的媒體 Url|
-|TweetLanguageCode|字串|推文的語言代碼|
-|TweetInReplyToUserId|字串|目前回覆推文的推文作者使用者識別碼|
-|Favorited|布林值|指出推文是否標示為喜歡|
-|UserMentions|array|推文中提及的使用者清單|
-|OriginalTweet|未定義|從中轉推目前推文的原始推文|
-|UserDetails|未定義|推文的使用者詳細資料|
+|TweetText|string|Text content of the tweet|
+|TweetId|string|Id of the tweet|
+|CreatedAt|string|Time at which the tweet was posted|
+|RetweetCount|integer|Total number of re-tweets for the tweet|
+|TweetedBy|string|Name of the user who has posted the tweet|
+|MediaUrls|array|Url of the media posted along with the tweet|
+|TweetLanguageCode|string|Language code of the tweet|
+|TweetInReplyToUserId|string|User Id of the author of the tweet that the current tweet is a reply to|
+|Favorited|boolean|Indicates whether the tweet is marked as favorited or not|
+|UserMentions|array|List of users mentioned in the tweet|
+|OriginalTweet|not defined|Original tweet from which the current tweet is re-tweeted|
+|UserDetails|not defined|Details of the user who tweeted|
 
 
 
 
-### 取得首頁時間軸
-這項作業會取得我和我的跟隨者最新的推文及轉推推文。
+### <a name="get-home-timeline"></a>Get home timeline
+This operation gets the most recent tweets and re-tweets posted by me and my followers. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|maxResults|結果數目上限|要傳回的推文數目上限|
+|maxResults|Maximum results|Maximum number of tweets to return|
 
-* 表示這是必要屬性
-
-
-
-#### 輸出詳細資料
-
-TweetModel：推文物件的表示方式
+An * indicates that a property is required
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+
+#### <a name="output-details"></a>Output Details
+
+TweetModel: Representation of Tweet Object
+
+
+| Property Name | Data Type | Description |
 |---|---|---|
-|TweetText|字串|推文的文字內容|
-|TweetId|字串|推文的識別碼|
-|CreatedAt|字串|張貼推文的時間|
-|RetweetCount|integer|推文的轉推總次數|
-|TweetedBy|字串|張貼推文的使用者名稱|
-|MediaUrls|array|與推文一起張貼的媒體 Url|
-|TweetLanguageCode|字串|推文的語言代碼|
-|TweetInReplyToUserId|字串|目前回覆推文的推文作者使用者識別碼|
-|Favorited|布林值|指出推文是否標示為喜歡|
-|UserMentions|array|推文中提及的使用者清單|
-|OriginalTweet|未定義|從中轉推目前推文的原始推文|
-|UserDetails|未定義|推文的使用者詳細資料|
+|TweetText|string|Text content of the tweet|
+|TweetId|string|Id of the tweet|
+|CreatedAt|string|Time at which the tweet was posted|
+|RetweetCount|integer|Total number of re-tweets for the tweet|
+|TweetedBy|string|Name of the user who has posted the tweet|
+|MediaUrls|array|Url of the media posted along with the tweet|
+|TweetLanguageCode|string|Language code of the tweet|
+|TweetInReplyToUserId|string|User Id of the author of the tweet that the current tweet is a reply to|
+|Favorited|boolean|Indicates whether the tweet is marked as favorited or not|
+|UserMentions|array|List of users mentioned in the tweet|
+|OriginalTweet|not defined|Original tweet from which the current tweet is re-tweeted|
+|UserDetails|not defined|Details of the user who tweeted|
 
 
 
 
-### 搜尋推文
-這項作業會取得符合搜尋查詢的相關推文清單。
+### <a name="search-tweets"></a>Search tweets
+This operation gets a list of relevant tweets matching the search query. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|searchQuery*|搜尋文字|搜尋「快樂時光」、#haiku、愛或恨等詞彙|
-|maxResults|結果數目上限|要傳回的推文數目上限|
+|searchQuery*|Search text|Search term like "happy hour", #haiku, love OR hate|
+|maxResults|Maximum results|Maximum number of tweets to return|
 
-* 表示這是必要屬性
-
-
-
-#### 輸出詳細資料
-
-TweetModel：推文物件的表示方式
+An * indicates that a property is required
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+
+#### <a name="output-details"></a>Output Details
+
+TweetModel: Representation of Tweet Object
+
+
+| Property Name | Data Type | Description |
 |---|---|---|
-|TweetText|字串|推文的文字內容|
-|TweetId|字串|推文的識別碼|
-|CreatedAt|字串|張貼推文的時間|
-|RetweetCount|integer|推文的轉推總次數|
-|TweetedBy|字串|張貼推文的使用者名稱|
-|MediaUrls|array|與推文一起張貼的媒體 Url|
-|TweetLanguageCode|字串|推文的語言代碼|
-|TweetInReplyToUserId|字串|目前回覆推文的推文作者使用者識別碼|
-|Favorited|布林值|指出推文是否標示為喜歡|
-|UserMentions|array|推文中提及的使用者清單|
-|OriginalTweet|未定義|從中轉推目前推文的原始推文|
-|UserDetails|未定義|推文的使用者詳細資料|
+|TweetText|string|Text content of the tweet|
+|TweetId|string|Id of the tweet|
+|CreatedAt|string|Time at which the tweet was posted|
+|RetweetCount|integer|Total number of re-tweets for the tweet|
+|TweetedBy|string|Name of the user who has posted the tweet|
+|MediaUrls|array|Url of the media posted along with the tweet|
+|TweetLanguageCode|string|Language code of the tweet|
+|TweetInReplyToUserId|string|User Id of the author of the tweet that the current tweet is a reply to|
+|Favorited|boolean|Indicates whether the tweet is marked as favorited or not|
+|UserMentions|array|List of users mentioned in the tweet|
+|OriginalTweet|not defined|Original tweet from which the current tweet is re-tweeted|
+|UserDetails|not defined|Details of the user who tweeted|
 
 
 
 
-### 取得跟隨者
-這項作業會取得關注指定使用者的使用者清單。
+### <a name="get-followers"></a>Get followers
+This operation gets the list of users that follow a given user. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|userName*|使用者名稱|使用者的 Twitter 控制代碼|
-|maxResults|結果數目上限|要傳回的使用者數目上限|
+|userName*|User name|Twitter handle for the user|
+|maxResults|Maximum results|Maximum number of users to return|
 
-* 表示這是必要屬性
-
-
-
-#### 輸出詳細資料
-
-UserDetailsModel：Twitter 使用者詳細資料
+An * indicates that a property is required
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+
+#### <a name="output-details"></a>Output Details
+
+UserDetailsModel: Twitter user details
+
+
+| Property Name | Data Type | Description |
 |---|---|---|
-|FullName|字串|使用者名稱|
-|位置|字串|使用者的位置|
-|識別碼|integer|使用者的 Twitter 識別碼|
-|UserName|字串|使用者的畫面名稱|
-|FollowersCount|integer|跟隨者數目|
-|說明|字串|使用者描述|
-|StatusesCount|integer|使用者狀態計數|
-|FriendsCount|integer|好友數目|
-|FavouritesCount|integer|使用者喜歡的推文數目|
-|ProfileImageUrl|字串|設定檔影像的 Url|
+|FullName|string|Name of the user|
+|Location|string|Location of the user|
+|Id|integer|Twitter Id of the user|
+|UserName|string|Screen name of the user|
+|FollowersCount|integer|Number of followers|
+|Description|string|User description|
+|StatusesCount|integer|User status count|
+|FriendsCount|integer|Number of friends|
+|FavouritesCount|integer|Number of tweets that the user has favorited|
+|ProfileImageUrl|string|Url of the profile image|
 
 
 
 
-### 取得我的跟隨者
-這項作業會取得正在關注我的使用者清單。
+### <a name="get-my-followers"></a>Get my followers
+This operation gets the list of users who are following me. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|maxResults|結果數目上限|要取得的使用者數目上限|
+|maxResults|Maximum results|Maximum number of users to get|
 
-* 表示這是必要屬性
-
-
-
-#### 輸出詳細資料
-
-UserDetailsModel：Twitter 使用者詳細資料
+An * indicates that a property is required
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+
+#### <a name="output-details"></a>Output Details
+
+UserDetailsModel: Twitter user details
+
+
+| Property Name | Data Type | Description |
 |---|---|---|
-|FullName|字串|使用者名稱|
-|位置|字串|使用者的位置|
-|識別碼|integer|使用者的 Twitter 識別碼|
-|UserName|字串|使用者的畫面名稱|
-|FollowersCount|integer|跟隨者數目|
-|說明|字串|使用者描述|
-|StatusesCount|integer|使用者狀態計數|
-|FriendsCount|integer|好友數目|
-|FavouritesCount|integer|使用者喜歡的推文數目|
-|ProfileImageUrl|字串|設定檔影像的 Url|
+|FullName|string|Name of the user|
+|Location|string|Location of the user|
+|Id|integer|Twitter Id of the user|
+|UserName|string|Screen name of the user|
+|FollowersCount|integer|Number of followers|
+|Description|string|User description|
+|StatusesCount|integer|User status count|
+|FriendsCount|integer|Number of friends|
+|FavouritesCount|integer|Number of tweets that the user has favorited|
+|ProfileImageUrl|string|Url of the profile image|
 
 
 
 
-### 取得正在關注的對象
-這項作業會取得指定使用者所關注的人員清單。
+### <a name="get-following"></a>Get following
+The operation gets the list of people the given user follows. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|userName*|使用者名稱|使用者的 Twitter 控制代碼|
-|maxResults|結果數目上限|要傳回的使用者數目上限|
+|userName*|User name|Twitter handle for the user|
+|maxResults|Maximum results|Maximum number of users to return|
 
-* 表示這是必要屬性
-
-
-
-#### 輸出詳細資料
-
-UserDetailsModel：Twitter 使用者詳細資料
+An * indicates that a property is required
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+
+#### <a name="output-details"></a>Output Details
+
+UserDetailsModel: Twitter user details
+
+
+| Property Name | Data Type | Description |
 |---|---|---|
-|FullName|字串|使用者名稱|
-|位置|字串|使用者的位置|
-|識別碼|integer|使用者的 Twitter 識別碼|
-|UserName|字串|使用者的畫面名稱|
-|FollowersCount|integer|跟隨者數目|
-|說明|字串|使用者描述|
-|StatusesCount|integer|使用者狀態計數|
-|FriendsCount|integer|好友數目|
-|FavouritesCount|integer|使用者喜歡的推文數目|
-|ProfileImageUrl|字串|設定檔影像的 Url|
+|FullName|string|Name of the user|
+|Location|string|Location of the user|
+|Id|integer|Twitter Id of the user|
+|UserName|string|Screen name of the user|
+|FollowersCount|integer|Number of followers|
+|Description|string|User description|
+|StatusesCount|integer|User status count|
+|FriendsCount|integer|Number of friends|
+|FavouritesCount|integer|Number of tweets that the user has favorited|
+|ProfileImageUrl|string|Url of the profile image|
 
 
 
 
-### 取得我正在關注的對象
-這項作業會取得我正在關注的使用者清單。
+### <a name="get-my-following"></a>Get my following
+This operation gets the list of users that I am following. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|maxResults|結果數目上限|要傳回的使用者數目上限|
+|maxResults|Maximum results|Maximum number of users to return|
 
-* 表示這是必要屬性
-
-
-
-#### 輸出詳細資料
-
-UserDetailsModel：Twitter 使用者詳細資料
+An * indicates that a property is required
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+
+#### <a name="output-details"></a>Output Details
+
+UserDetailsModel: Twitter user details
+
+
+| Property Name | Data Type | Description |
 |---|---|---|
-|FullName|字串|使用者名稱|
-|位置|字串|使用者的位置|
-|識別碼|integer|使用者的 Twitter 識別碼|
-|UserName|字串|使用者的畫面名稱|
-|FollowersCount|integer|跟隨者數目|
-|說明|字串|使用者描述|
-|StatusesCount|integer|使用者狀態計數|
-|FriendsCount|integer|好友數目|
-|FavouritesCount|integer|使用者喜歡的推文數目|
-|ProfileImageUrl|字串|設定檔影像的 Url|
+|FullName|string|Name of the user|
+|Location|string|Location of the user|
+|Id|integer|Twitter Id of the user|
+|UserName|string|Screen name of the user|
+|FollowersCount|integer|Number of followers|
+|Description|string|User description|
+|StatusesCount|integer|User status count|
+|FriendsCount|integer|Number of friends|
+|FavouritesCount|integer|Number of tweets that the user has favorited|
+|ProfileImageUrl|string|Url of the profile image|
 
 
 
 
-### 取得使用者
-這項作業會取得指定使用者的設定檔詳細資料，例如使用者名稱、描述、追隨者計數等等。
+### <a name="get-user"></a>Get user
+This operation gets the profile details for a given user, such as user name, description, followers count, and more. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|userName*|使用者名稱|使用者的 Twitter 控制代碼|
+|userName*|User name|Twitter handle for the user|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
-UserDetailsModel：Twitter 使用者詳細資料
+UserDetailsModel: Twitter user details
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+| Property Name | Data Type | Description |
 |---|---|---|
-|FullName|字串|使用者名稱|
-|位置|字串|使用者的位置|
-|識別碼|integer|使用者的 Twitter 識別碼|
-|UserName|字串|使用者的畫面名稱|
-|FollowersCount|integer|跟隨者數目|
-|說明|字串|使用者描述|
-|StatusesCount|integer|使用者狀態計數|
-|FriendsCount|integer|好友數目|
-|FavouritesCount|integer|使用者喜歡的推文數目|
-|ProfileImageUrl|字串|設定檔影像的 Url|
+|FullName|string|Name of the user|
+|Location|string|Location of the user|
+|Id|integer|Twitter Id of the user|
+|UserName|string|Screen name of the user|
+|FollowersCount|integer|Number of followers|
+|Description|string|User description|
+|StatusesCount|integer|User status count|
+|FriendsCount|integer|Number of friends|
+|FavouritesCount|integer|Number of tweets that the user has favorited|
+|ProfileImageUrl|string|Url of the profile image|
 
 
 
 
-### 張貼推文
-這項作業會張貼新推文。
+### <a name="post-a-tweet"></a>Post a tweet
+This operation posts a new tweet. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|tweetText|推文文字|要張貼的文字|
-|body|媒體|要張貼的媒體|
+|tweetText|Tweet text|Text to be posted|
+|body|Media|Media to be posted|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
-TweetResponseModel：代表已張貼推文的模型
+TweetResponseModel: Model representing Posted Tweet
 
 
-| 屬性名稱 | 資料類型 | 說明 |
+| Property Name | Data Type | Description |
 |---|---|---|
-|TweetId|字串|所擷取推文的識別碼|
+|TweetId|string|ID of the retrieved tweet|
 
 
 
 
-### 當有新推文張貼時
-當有符合指定搜尋查詢的新推文張貼時，此作業就會觸發流程。
+### <a name="when-a-new-tweet-is-posted"></a>When a new tweet is posted
+This operation triggers a flow when a new tweet that matches a given search query is posted. 
 
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|searchQuery*|搜尋文字|搜尋「快樂時光」、#haiku、愛或恨等詞彙|
+|searchQuery*|Search text|Search term like "happy hour", #haiku, love OR hate|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output Details
 
 TriggerBatchResponse[TweetModel]
 
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
 |value|array|
 
 
 
-## HTTP 回應
+## <a name="http-responses"></a>HTTP responses
 
-上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
+The actions and triggers above can return one or more of the following HTTP status codes: 
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤。|
-|預設值|作業失敗。|
+|202|Accepted|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occurred.|
+|default|Operation Failed.|
 
 
 
@@ -467,7 +470,10 @@ TriggerBatchResponse[TweetModel]
 
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

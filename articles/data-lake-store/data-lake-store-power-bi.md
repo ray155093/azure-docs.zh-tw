@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Power BI 分析 Data Lake Store 中的資料 | Azure"
-   description="使用 Power BI 分析 Azure Data Lake Store 中所儲存的資料"
+   pageTitle="Analyze data in Data Lake Store by using Power BI | Microsoft Azure"
+   description="Use Power BI to analyze data stored in Azure Data Lake Store"
    services="data-lake-store" 
    documentationCenter=""
    authors="nitinme"
@@ -13,116 +13,119 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="07/18/2016"
+   ms.date="10/05/2016"
    ms.author="nitinme"/>
 
-# 使用 Power BI 分析 Data Lake Store 中的資料
 
-在本文中，您將了解如何使用 Power BI Desktop 分析 Azure Data Lake Store 中所儲存的資料並加以視覺化。
+# <a name="analyze-data-in-data-lake-store-by-using-power-bi"></a>Analyze data in Data Lake Store by using Power BI
 
-## 必要條件
+In this article you will learn how to use Power BI Desktop to analyze and visualize data stored in Azure Data Lake Store.
 
-開始進行本教學課程之前，您必須具備下列條件：
+## <a name="prerequisites"></a>Prerequisites
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+Before you begin this tutorial, you must have the following:
 
-- **啟用您的 Azure 訂用帳戶**以使用「Data Lake Store 公開預覽版」。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
 
-- **Azure Data Lake Store 帳戶**。遵循[使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。本文假設您已經建立稱為 **mybidatalakestore** 的 Data Lake Store 帳戶，並將範例資料檔案 (**Drivers.txt**) 上傳到其中。此範例檔案可從 [Azure Data Lake Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)進行下載。
+- **Azure Data Lake Store account**. Follow the instructions at [Get started with Azure Data Lake Store using the Azure Portal](data-lake-store-get-started-portal.md). This article assumes that you have already created a Data Lake Store account, called **mybidatalakestore**, and uploaded a sample data file (**Drivers.txt**) to it. This sample file is available for download from [Azure Data Lake Git Repository](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt).
 
-- **Power BI Desktop**。您可以從 [Microsoft 下載中心](https://www.microsoft.com/zh-TW/download/details.aspx?id=45331)下載此項目。
+- **Power BI Desktop**. You can download this from [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=45331). 
 
 
-## 在 Power BI Desktop 中建立報表
+## <a name="create-a-report-in-power-bi-desktop"></a>Create a report in Power BI Desktop
 
-1. 在您的電腦上啟動 Power BI Desktop。
+1. Launch Power BI Desktop on your computer.
 
-2. 從 [首頁] 功能區中，按一下 [取得資料]，然後按一下 [其他]。在 [取得資料] 對話方塊中，依序按一下 [Azure]、[Azure Data Lake Store] 和 [連線]。
+2. From the **Home** ribbon, click **Get Data**, and then click More. In the **Get Data** dialog box, click **Azure**, click **Azure Data Lake Store**, and then click **Connect**.
 
-	![連線至 Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account.png "連線至 Data Lake Store")
+    ![Connect to Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account.png "Connect to Data Lake Store")
 
-3. 如果您看到連接器處於開發階段的對話方塊，請選擇繼續。
+3. If you see a dialog box about the connector being in a development phase, opt to continue.
 
-4. 在 [Microsoft Azure Data Lake Store] 對話方塊中，提供 Data Lake Store 帳戶的 URL，然後按 [確定]。
+4. In the **Microsoft Azure Data Lake Store** dialog box, provide the URL to your Data Lake Store account, and then click **OK**.
 
-	![Data Lake Store 的 URL](./media/data-lake-store-power-bi/get-data-lake-store-account-url.png "Data Lake Store 的 URL")
+    ![URL for Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-url.png "URL for Data Lake Store")
 
-5. 在下一個對話方塊中，按一下 [登入] 登入 Data Lake Store 帳戶。您將會被重新導向至組織的登入頁面。遵循提示登入此帳戶。
+5. In the next dialog box, click **Sign in** to sign into Data Lake Store account. You will be redirected to your organization's sign in page. Follow the prompts to sign into the account.
 
-	![登入 Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-signin.png "登入 Data Lake Store")
+    ![Sign into Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-signin.png "Sign into Data Lake Store")
 
-6. 順利登入之後，請按一下 [連線]。
+6. After you have successfully signed in, click **Connect**.
 
-	![連線至 Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "連線至 Data Lake Store")
+    ![Connect to Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "Connect to Data Lake Store")
 
-7. 下一個對話方塊會顯示您已上傳至 Data Lake Store 帳戶的檔案。驗證資訊，然後按一下 [載入]。
+7. The next dialog box shows the file that you uploaded to your Data Lake Store account. Verify the info and then click **Load**.
 
-	![從 Data Lake Store 載入資料](./media/data-lake-store-power-bi/get-data-lake-store-account-load.png "從 Data Lake Store 載入資料")
+    ![Load data from Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-load.png "Load data from Data Lake Store")
 
-8. 順利將資料載入至 Power BI 之後，即會在 [欄位] 索引標籤中看到下列欄位。
+8. After the data has been successfully loaded into Power BI, you will see the following fields in the **Fields** tab.
 
-	![匯入的欄位](./media/data-lake-store-power-bi/imported-fields.png "匯入的欄位")
+    ![Imported fields](./media/data-lake-store-power-bi/imported-fields.png "Imported fields")
 
-	不過，若要分析資料及加以視覺化，請使用下列欄位中的資料：
+    However, to visualize and analyze the data, we prefer the data to be available per the following fields
 
-	![所需的欄位](./media/data-lake-store-power-bi/desired-fields.png "所需的欄位")
+    ![Desired fields](./media/data-lake-store-power-bi/desired-fields.png "Desired fields")
 
-	在後續步驟中，我們將更新查詢，以轉換所需格式的已匯入資料。
+    In the next steps, we will update the query to convert the imported data in the desired format.
 
-9. 從 [首頁] 功能區中，按一下 [編輯查詢]。
+9. From the **Home** ribbon, click **Edit Queries**.
 
-	![編輯查詢](./media/data-lake-store-power-bi/edit-queries.png "編輯查詢")
+    ![Edit queries](./media/data-lake-store-power-bi/edit-queries.png "Edit queries")
 
-10. 在 [查詢編輯器] 的 [內容] 資料行下，按一下 [二進位]。
+10. In the Query Editor, under the **Content** column, click **Binary**.
 
-	![編輯查詢](./media/data-lake-store-power-bi/convert-query1.png "編輯查詢")
+    ![Edit queries](./media/data-lake-store-power-bi/convert-query1.png "Edit queries")
 
-11. 您將會看到檔案圖示，其代表您已上傳的 **Drivers.txt** 檔案。在檔案上按一下滑鼠右鍵，然後按一下 [CSV]。
+11. You will see a file icon, that represents the **Drivers.txt** file that you uploaded. Right-click the file, and click **CSV**.  
 
-	![編輯查詢](./media/data-lake-store-power-bi/convert-query2.png "編輯查詢")
+    ![Edit queries](./media/data-lake-store-power-bi/convert-query2.png "Edit queries")
 
-12. 您應該會看到如下的輸出。您的資料現在為可用來建立視覺效果的格式。
+12. You should see an output as shown below. Your data is now available in a format that you can use to create visualizations.
 
-	![編輯查詢](./media/data-lake-store-power-bi/convert-query3.png "編輯查詢")
+    ![Edit queries](./media/data-lake-store-power-bi/convert-query3.png "Edit queries")
 
-13. 從 [首頁] 功能區中，按一下 [關閉並套用]，然後按一下 [關閉並套用]。
+13. From the **Home** ribbon, click **Close and Apply**, and then click **Close and Apply**.
 
-	![編輯查詢](./media/data-lake-store-power-bi/load-edited-query.png "編輯查詢")
+    ![Edit queries](./media/data-lake-store-power-bi/load-edited-query.png "Edit queries")
 
-14. 更新查詢之後，[欄位] 索引標籤將會顯示可用於視覺效果的新欄位。
+14. Once the query is updated, the **Fields** tab will show the new fields available for visualization.
 
-	![更新的欄位](./media/data-lake-store-power-bi/updated-query-fields.png "更新的欄位")
+    ![Updated fields](./media/data-lake-store-power-bi/updated-query-fields.png "Updated fields")
 
-15. 讓我們建立圓形圖，以代表指定國家/地區的每個城市中的驅動程式。若要這麼做，請進行下列選擇。
+15. Let us create a pie chart to represent the drivers in each city for a given country. To do so, make the following selections.
 
-	1. 從 [視覺效果] 索引標籤中，按一下圓形圖的符號。
+    1. From the Visualizations tab, click the symbol for a pie chart.
 
-		![建立圓形圖](./media/data-lake-store-power-bi/create-pie-chart.png "建立圓形圖")
+        ![Create pie chart](./media/data-lake-store-power-bi/create-pie-chart.png "Create pie chart")
 
-	2. 我們將使用的資料行是 [資料行 4] \(城市名稱) 和 [資料行 7] \(國家/地區名稱)。將這些資料行從 [欄位] 索引標籤拖曳到 [視覺效果] 索引標籤 (如下所示)。
+    2. The columns that we are going to use are **Column 4** (name of the city) and **Column 7** (name of the country). Drag these columns from **Fields** tab to **Visualizations** tab as shown below.
 
-		![建立視覺效果](./media/data-lake-store-power-bi/create-visualizations.png "建立視覺效果")
+        ![Create visualizations](./media/data-lake-store-power-bi/create-visualizations.png "Create visualizations")
 
-	3. 圓形圖現在應該與下面類似。
+    3. The pie chart should now resemble like the one shown below.
 
-		![圓形圖](./media/data-lake-store-power-bi/pie-chart.png "建立視覺效果")
+        ![Pie chart](./media/data-lake-store-power-bi/pie-chart.png "Create visualizations")
 
-16. 透過從頁面層級篩選中選取特定國家/地區，您現在可以看到所選國家/地區的每個城市中的驅動程式數目。例如，在 [視覺效果] 索引標籤的 [頁面層級篩選] 下，選取 [巴西]。
+16. By selecting a specific country from the page level filters, you can now see the number of drivers in each city of the selected country. For example, under the **Visualizations** tab, under **Page level filters**, select **Brazil**.
 
-	![選取國家/地區](./media/data-lake-store-power-bi/select-country.png "選取國家/地區")
+    ![Select a country](./media/data-lake-store-power-bi/select-country.png "Select a country")
 
-17. 圓形圖會自動更新以顯示巴西城市中的驅動程式。
+17. The pie chart is automatically updated to display the drivers in the cities of Brazil.
 
-	![國家/地區中的驅動程式](./media/data-lake-store-power-bi/driver-per-country.png "每個國家/地區的驅動程式")
+    ![Drivers in a country](./media/data-lake-store-power-bi/driver-per-country.png "Drivers per country")
 
-18. 從 [檔案] 功能表中，按一下 [儲存] 將視覺效果儲存為 Power BI Desktop 檔案。
+18. From the **File** menu, click **Save** to save the visualization as a Power BI Desktop file.
 
-## 將報表發佈到 Power BI 服務
+## <a name="publish-report-to-power-bi-service"></a>Publish report to Power BI service
 
-在 Power BI Desktop 中建立視覺效果之後，即可將其發佈到 Power BI 服務，與其他人共用。如需如何執行的指示，請參閱[從 Power BI Desktop 發佈](https://powerbi.microsoft.com/documentation/powerbi-desktop-upload-desktop-files/)。
+Once you have created the visualizations in Power BI Desktop, you can share it with others by publishing it to the Power BI service. For instructions on how to do that, see [Publish from Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-upload-desktop-files/).
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-* [使用 Data Lake Analytics 分析 Data Lake Store 中的資料](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+* [Analyze data in Data Lake Store using Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

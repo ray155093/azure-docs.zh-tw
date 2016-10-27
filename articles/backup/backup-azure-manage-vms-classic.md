@@ -1,245 +1,250 @@
 
 <properties
-	pageTitle="管理和監視 Azure 虛擬機器備份 | Microsoft Azure"
-	description="了解如何管理和監視 Azure 虛擬機器備份"
-	services="backup"
-	documentationCenter=""
-	authors="trinadhk"
-	manager="shreeshd"
-	editor=""/>
+    pageTitle="Manage and monitor Azure virtual machine backups | Microsoft Azure"
+    description="Learn how to manage and monitor an Azure virtual machine backups"
+    services="backup"
+    documentationCenter=""
+    authors="trinadhk"
+    manager="shreeshd"
+    editor=""/>
 
 <tags
-	ms.service="backup"
-	ms.workload="storage-backup-recovery"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/31/2016"
-	ms.author="trinadhk; jimpark; markgal;"/>
+    ms.service="backup"
+    ms.workload="storage-backup-recovery"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/31/2016"
+    ms.author="trinadhk; jimpark; markgal;"/>
 
-# 管理和監視 Azure 虛擬機器備份
+
+# <a name="manage-and-monitor-azure-virtual-machine-backups"></a>Manage and monitor Azure virtual machine backups
 
 > [AZURE.SELECTOR]
-- [管理 Azure VM 備份](backup-azure-manage-vms.md)
-- [管理傳統 VM 備份](backup-azure-manage-vms-classic.md)
+- [Manage Azure VM backups](backup-azure-manage-vms.md)
+- [Manage Classic VM backups](backup-azure-manage-vms-classic.md)
 
-本文針對 Azure 中受保護的傳統模型虛擬機器，提供一般管理和監視工作的相關資訊。
+This article provides information about common management and monitoring tasks for Classic-model virtual machines protected in Azure.  
 
->[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。如需使用傳統部署模型 VM 的詳細資料，請參閱[準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md)。
+>[AZURE.NOTE] Azure has two deployment models for creating and working with resources: [Resource Manager and Classic](../resource-manager-deployment-model.md). See [Prepare your environment to back up Azure virtual machines](backup-azure-vms-prepare.md) for details on working with Classic deployment model VMs.
 
-## 管理受保護的虛擬機器
+## <a name="manage-protected-virtual-machines"></a>Manage protected virtual machines
 
-管理受保護的虛擬機器：
+To manage protected virtual machines:
 
-1. 若要檢視和管理虛擬機器的備份設定，按一下 [**受保護項目**] 索引標籤。
+1. To view and manage backup settings for a virtual machine click the **Protected Items** tab.
 
-2. 按一下受保護項目的名稱以查看 [**備份詳細資料**] 索引標籤，上面會顯示上次備份的相關資訊。
+2. Click on the name of a protected item to see the **Backup Details** tab, which shows you information about the last backup.
 
-    ![虛擬機器備份](./media/backup-azure-manage-vms/backup-vmdetails.png)
+    ![Virtual machine backup](./media/backup-azure-manage-vms/backup-vmdetails.png)
 
-3. 若要檢視和管理虛擬機器的備份原則設定，按一下 [**原則**] 索引標籤。
+3. To view and manage backup policy settings for a virtual machine click the **Policies** tab.
 
-    ![虛擬機器原則](./media/backup-azure-manage-vms/manage-policy-settings.png)
+    ![Virtual machine policy](./media/backup-azure-manage-vms/manage-policy-settings.png)
 
-    [**備份原則**] 索引標籤將顯示現有的原則。您可以視需要修改。如果您需要建立新的原則，按一下 [**原則**] 頁面中的 [**建立**]。請注意，如果您想要移除一個原則，該原則就不能與任何虛擬機器相關聯。
+    The **Backup Policies** tab shows you the existing policy. You can modify as needed. If you need to create a new policy click **Create** on the **Policies** page. Note that if you want to remove a policy it shouldn't have any virtual machines associated with it.
 
-    ![虛擬機器原則](./media/backup-azure-manage-vms/backup-vmpolicy.png)
+    ![Virtual machine policy](./media/backup-azure-manage-vms/backup-vmpolicy.png)
 
-4. 您可以在 [**工作**] 頁面取得更多虛擬機器動作或狀態的相關資訊。按一下清單中的工作以取得詳細資訊，或為特定虛擬機器篩選工作。
+4. You can get more information about actions or status for a virtual machine on the **Jobs** page. Click a job in the list to get more details, or filter jobs for a specific virtual machine.
 
-    ![作業](./media/backup-azure-manage-vms/backup-job.png)
+    ![Jobs](./media/backup-azure-manage-vms/backup-job.png)
 
-## 虛擬機器的隨選備份
-設定保護後，您可以執行虛擬機器的隨選備份。如果虛擬機器的初始備份已暫止，則隨選備份會在 Azure 備份保存庫中建立虛擬機器的完整複本。如果已完成第一個備份，隨選備份只會將先前備份的變更傳送到 Azure 備份保存庫 (亦即一律是增量備份)。
+## <a name="on-demand-backup-of-a-virtual-machine"></a>On-demand backup of a virtual machine
+You can take an on-demand backup of a virtual machine once it is configured for protection. If the initial backup is pending for the virtual machine, on-demand backup will create a full copy of the virtual machine in Azure backup vault. If first backup is completed, on-demand backup will only send changes from previous backup to Azure backup vault i.e. it is always incremental.
 
->[AZURE.NOTE] 隨選備份的保留範圍，已設定為在與 VM 對應之備份原則中針對每日保留指定的保留值。
+>[AZURE.NOTE] Retention range of an on-demand backup is set to retention value specified for Daily retention in backup policy corresponding to the VM.  
 
-若要進行虛擬機器的隨選備份：
+To take an on-demand backup of a virtual machine:
 
-1. 瀏覽至 [受保護項目] 頁面，並選取 [Azure 虛擬機器] 做為 [類型]\(若尚未選取)，然後按一下 [選取] 按鈕。
+1. Navigate to the **Protected Items** page and select **Azure Virtual Machine** as **Type** (if not already selected) and click on **Select** button.
 
-    ![VM 類型](./media/backup-azure-manage-vms/vm-type.png)
+    ![VM Type](./media/backup-azure-manage-vms/vm-type.png)
 
-2. 選取您要進行隨選備份的虛擬機器，然後按一下頁面底部的 [**立即備份**] 按鈕。
+2. Select the virtual machine on which you want to take an on-demand backup and click on **Backup Now** button at the bottom of the page.
 
-    ![立即備份](./media/backup-azure-manage-vms/backup-now.png)
+    ![Back up now](./media/backup-azure-manage-vms/backup-now.png)
 
-    這會在所選的虛擬機器上建立備份作業。透過這項作業建立的復原點保留範圍，將會與在虛擬機器相關原則中指定的保留範圍相同。
+    This will create a backup job on the selected virtual machine. Retention range of recovery point created through this job will be same as that specified in the policy associated with the virtual machine.
 
-    ![建立備份作業](./media/backup-azure-manage-vms/creating-job.png)
+    ![Creating backup job](./media/backup-azure-manage-vms/creating-job.png)
 
-    >[AZURE.NOTE] 若要檢視與虛擬機器相關聯的原則，請向下切入到 [**受保護項目**] 頁面中的虛擬機器，並移至 [備份原則] 索引標籤。
+    >[AZURE.NOTE] To view the policy associated with a virtual machine, drill down into virtual machine in the **Protected Items** page and go to backup policy tab.
 
-3. 建立作業之後，您可以按一下快顯通知列中的 [**檢視作業**]，以在 [作業] 頁面中查看對應的作業。
+3. Once the job is created, you can click on **View job** button in the toast bar to see the corresponding job in the jobs page.
 
-    ![建立的備份作業](./media/backup-azure-manage-vms/created-job.png)
+    ![Backup job created](./media/backup-azure-manage-vms/created-job.png)
 
-4. 順利完成作業之後，將會建立可供您還原虛擬機器的復原點。這也會使 [**受保護項目**] 頁面中 的復原點資料行值遞增 1。
+4. After successful completion of the job, a recovery point will be created which you can use to restore the virtual machine. This will also increment the recovery point column value by 1 in **Protected Items** page.
 
-## 停止保護虛擬機器
-您可以透過下列選項，選擇停止虛擬機器的未來備份：
+## <a name="stop-protecting-virtual-machines"></a>Stop protecting virtual machines
+You can choose to stop the future backups of a virtual machine with the following options:
 
-- 保留 Azure 備份保存庫中與虛擬機器相關聯的備份資料
-- 刪除與虛擬機器相關聯的備份資料
+- Retain backup data associated with virtual machine in Azure Backup vault
+- Delete backup data associated with virtual machine
 
-如果您選取保留與虛擬機器相關聯的備份資料，您可以使用備份資料還原虛擬機器。如需這類虛擬機器的定價詳細資訊，請按一下[這裡](https://azure.microsoft.com/pricing/details/backup/)。
+If you have selected to retain backup data associated with virtual machine, you can use the backup data to restore the virtual machine. For pricing details for such virtual machines, click [here](https://azure.microsoft.com/pricing/details/backup/).
 
-若要停止虛擬機器的保護：
+To Stop protection for a virtual machine:
 
-1. 瀏瀏覽至 [受保護項目] 頁面，並選取 [Azure 虛擬機器] 作為篩選類型 (若尚未選取)，然後按一下 [選取] 按鈕。
+1. Navigate to **Protected Items** page and select **Azure virtual machine** as the filter type (if not already selected) and click on **Select** button.
 
-    ![VM 類型](./media/backup-azure-manage-vms/vm-type.png)
+    ![VM Type](./media/backup-azure-manage-vms/vm-type.png)
 
-2. 選取虛擬機器，然後按一下頁面底部的 [**停止保護**]。
+2. Select the virtual machine and click on **Stop Protection** at the bottom of the page.
 
-    ![停止保護](./media/backup-azure-manage-vms/stop-protection.png)
+    ![Stop protection](./media/backup-azure-manage-vms/stop-protection.png)
 
-3. 根據預設，Azure 備份不會刪除與虛擬機器相關聯的備份資料。
+3. By default, Azure Backup doesn’t delete the backup data associated with the virtual machine.
 
-    ![確認停止保護](./media/backup-azure-manage-vms/confirm-stop-protection.png)
+    ![Confirm stop protection](./media/backup-azure-manage-vms/confirm-stop-protection.png)
 
-    如果您要刪除備份資料，請選取此核取方塊。
+    If you want to delete backup data, select the check box.
 
-    ![核取方塊](./media/backup-azure-manage-vms/checkbox.png)
+    ![Checkbox](./media/backup-azure-manage-vms/checkbox.png)
 
-    請選取停止備份的原因。雖然這是選擇性動作，但提供原因可幫助 Azure 備份處理意見反應，並設定客戶案例的優先順序。
+    Please select a reason for stopping the backup. While this is optional, providing a reason will help Azure Backup to work on the feedback and prioritize the customer scenarios.
 
-4. 按一下 [**提交**] 按鈕以提交 [**停止保護**] 作業。按一下 **檢視作業**] 以在 [**作業**] 頁面中查看對應作業。
+4. Click on **Submit** button to submit the **Stop protection** job. Click on **View Job** to see the corresponding the job in **Jobs** page.
 
-    ![停止保護](./media/backup-azure-manage-vms/stop-protect-success.png)
+    ![Stop protection](./media/backup-azure-manage-vms/stop-protect-success.png)
 
-    如果您未在 [**停止保護**] 精靈中選取 [**刪除相關聯的備份資料**] 選項，然後在作業完成後，保護狀態會變更為 [**已停止保護**]。資料將會使用 Azure 備份保留，直到被明確刪除為止。您隨時都可藉由在 [受保護的項目] 頁面中選取虛擬機器，然後按一下 [刪除] 來刪除資料。
+    If you have not selected **Delete associated backup data** option during **Stop Protection** wizard, then post job completion, protection status changes to **Protection Stopped**. The data remains with Azure Backup until it is explicitly deleted. You can always delete the data by selecting the virtual machine in the **Protected Items** page and clicking **Delete**.
 
-    ![已停止保護](./media/backup-azure-manage-vms/protection-stopped-status.png)
+    ![Stopped protection](./media/backup-azure-manage-vms/protection-stopped-status.png)
 
-    若您已選取 [刪除相關聯的備份資料] 選項，則虛擬機器將不會出現在 [受保護項目] 頁面中。
+    If you have selected the **Delete associated backup data** option, the virtual machine won’t be part of the **Protected Items** page.
 
-## 重新保護虛擬機器
-如果您未選取 [**停止保護**] 中的 [**刪除相關聯的備份資料**] 選項，您可以遵循類似於備份已註冊虛擬機器的步驟，重新保護虛擬機器。一旦受保護，此虛擬機器會在停止保護之前保留備份資料，而在重新保護之後建立復原點。
+## <a name="re-protect-virtual-machine"></a>Re-protect Virtual machine
+If you have not selected the **Delete associate backup data** option in **Stop Protection**, you can re-protect the virtual machine by following the steps similar to backing up registered virtual machines. Once protected, this virtual machine will have backup data retained prior to stop protection and recovery points created after re-protect.
 
-重新保護之後，如果有 [**停止保護**] 之前的復原點，則虛擬機器的保護狀態會變更為 [**受保護**]。
+After re-protect, the virtual machine’s protection status will be changed to **Protected** if there are recovery points prior to **Stop Protection**.
 
-  ![重新保護的 VM](./media/backup-azure-manage-vms/reprotected-status.png)
+  ![Reprotected VM](./media/backup-azure-manage-vms/reprotected-status.png)
 
->[AZURE.NOTE] 重新保護虛擬機器時，您可以選擇與最初用於保護虛擬機器不同的原則。
+>[AZURE.NOTE] When re-protecting the virtual machine, you can choose a different policy than the policy with which virtual machine was protected initially.
 
-## 取消註冊虛擬機器
+## <a name="unregister-virtual-machines"></a>Unregister virtual machines
 
-如果您想要從備份保存庫移除虛擬機器：
+If you want to remove the virtual machine from the backup vault:
 
-1. 按一下頁面底部的 [**取消註冊**] 按鈕。
+1. Click on the **UNREGISTER** button at the bottom of the page.
 
-    ![停用保護](./media/backup-azure-manage-vms/unregister-button.png)
+    ![Disable protection](./media/backup-azure-manage-vms/unregister-button.png)
 
-    快顯通知會出現在畫面底部要求確認。按一下 [**是**] 以繼續。
+    A toast notification will appear at the bottom of the screen requesting confirmation. Click **YES** to continue.
 
-    ![停用保護](./media/backup-azure-manage-vms/confirm-unregister.png)
+    ![Disable protection](./media/backup-azure-manage-vms/confirm-unregister.png)
 
-## 刪除備份資料
-您可以刪除與虛擬機器相關聯的備份資料：
+## <a name="delete-backup-data"></a>Delete Backup data
+You can delete the backup data associated with a virtual machine, either:
 
-- 在停止保護作業期間
-- 在虛擬機器上完成停止保護作業之後
+- During Stop Protection Job
+- After a stop protection job is completed on a virtual machine
 
-針對在順利完成 [停止備份] 作業後處於 [已停止保護] 狀態的虛擬機器，若要刪除其中的備份資料：
+To delete backup data on a virtual machine, which is in the *Protection Stopped* state post successful completion of a **Stop Backup** job:
 
-1. 瀏覽至 [受保護項目] 頁面，並選取 [Azure 虛擬機器] 做為*類型*，然後按一下 [選取] 按鈕。
+1. Navigate to the **Protected Items** page and select **Azure Virtual Machine** as *type* and click the **Select** button.
 
-    ![VM 類型](./media/backup-azure-manage-vms/vm-type.png)
+    ![VM Type](./media/backup-azure-manage-vms/vm-type.png)
 
-2. 選取虛擬機器。虛擬機器會處於 [**已停止保護**] 狀態。
+2. Select the virtual machine. The virtual machine will be in **Protection Stopped** state.
 
-    ![已停止保護](./media/backup-azure-manage-vms/protection-stopped-b.png)
+    ![Protection stopped](./media/backup-azure-manage-vms/protection-stopped-b.png)
 
-3. 按一下頁面底部的 [刪除] 按鈕。
+3. Click the **DELETE** button at the bottom of the page.
 
-    ![刪除備份](./media/backup-azure-manage-vms/delete-backup.png)
+    ![Delete backup](./media/backup-azure-manage-vms/delete-backup.png)
 
-4. 在 [刪除備份資料] 精靈中，選取刪除備份資料的原因 (強烈建議)，然後按一下 [提交]。
+4. In the **Delete backup data** wizard, select a reason for deleting backup data (highly recommended) and click **Submit**.
 
-    ![刪除備份資料](./media/backup-azure-manage-vms/delete-backup-data.png)
+    ![Delete backup data](./media/backup-azure-manage-vms/delete-backup-data.png)
 
-5. 這會建立一項作業以刪除所選虛擬機器的備份資料。按一下 [檢視作業] 以在 [作業] 頁面中查看對應作業。
+5. This will create a job to delete backup data of selected virtual machine. Click **View job** to see corresponding job in Jobs page.
 
-    ![成功刪除資料](./media/backup-azure-manage-vms/delete-data-success.png)
+    ![Data deletion successful](./media/backup-azure-manage-vms/delete-data-success.png)
 
-    完成此作業後，將從 [受保護項目] 頁面中移除虛擬機器的對應項目。
+    Once the job is completed, the entry corresponding to the virtual machine will be removed from **Protected items** page.
 
-## 儀表板
-在 [**儀表板**] 頁面中，您可以檢閱有關 Azure 虛擬機器、其儲存體和過去 24 小時內相關聯作業的資訊。您可以檢視備份狀態和任何相關聯的備份錯誤。
+## <a name="dashboard"></a>Dashboard
+On the **Dashboard** page you can review information about Azure virtual machines, their storage, and jobs associated with them in the last 24 hours. You can view backup status and any associated backup errors.
 
-![儀表板](./media/backup-azure-manage-vms/dashboard-protectedvms.png)
+![Dashboard](./media/backup-azure-manage-vms/dashboard-protectedvms.png)
 
->[AZURE.NOTE] 儀表板中的值會每隔 24 小時重新整理一次。
+>[AZURE.NOTE] Values in the dashboard are refreshed once every 24 hours.
 
-## 稽核作業
-Azure 備份提供由客戶觸發之備份作業的「作業記錄檔」檢閱，可輕鬆查看備份保存庫上執行了哪些管理作業。作業記錄檔會啟用備份作業的絕佳事後剖析和稽核支援。
+## <a name="auditing-operations"></a>Auditing Operations
+Azure backup provides review of the "operation logs" of backup operations triggered by the customer making it easy to see exactly what management operations were performed on the backup vault. Operations logs enable great post-mortem and audit support for the backup operations.
 
-作業記錄檔中會記錄下列作業：
+The following operations are logged in Operation logs:
 
-- 註冊
-- 取消註冊
-- 設定保護
-- 備份 (同時透過 BackupNow 進行排程以及隨選備份)
-- 還原
-- 停止保護
-- 刪除備份資料
+- Register
+- Unregister
+- Configure protection
+- Backup ( Both scheduled as well as on-demand backup through BackupNow)
+- Restore
+- Stop protection
+- Delete backup data
 - Add policy
-- 刪除原則
-- 更新原則
-- 取消工作
+- Delete policy
+- Update policy
+- Cancel job
 
-檢視對應到備份保存庫的作業記錄檔：
+To view operation logs corresponding to a backup vault:
 
-1. 瀏覽至 Azure 入口網站中的 [管理服務]，然後按一下 [作業記錄檔] 索引標籤。
+1. Navigate to **Management services** in Azure portal, and then click the **Operation Logs** tab.
 
-    ![作業記錄](./media/backup-azure-manage-vms/ops-logs.png)
+    ![Operation Logs](./media/backup-azure-manage-vms/ops-logs.png)
 
-2. 在篩選器中，選取 [備份] 做為*類型*，指定*服務名稱*中的備份保存庫名稱，然後按一下 [提交]。
+2. In the filters, select **Backup** as *Type* and specify the backup vault name in *service name* and click on **Submit**.
 
-    ![作業記錄檔篩選器](./media/backup-azure-manage-vms/ops-logs-filter.png)
+    ![Operation Logs Filter](./media/backup-azure-manage-vms/ops-logs-filter.png)
 
-3. 在作業記錄檔中選取任一作業，然後按一下 [詳細資料] 以查看對應至作業的詳細資料。
+3. In the operations logs, select any operation and click  **Details** to see details corresponding to an operation.
 
-    ![作業記錄檔擷取詳細資料](./media/backup-azure-manage-vms/ops-logs-details.png)
+    ![Operation Logs-Fetching details](./media/backup-azure-manage-vms/ops-logs-details.png)
 
-    **詳細資料精靈**包含觸發的作業、工作識別碼、觸發作業所在的資源，以及作業的開始時間等相關資訊。
+    The **Details wizard** contains information about the operation triggered, job Id, resource on which this operation is triggered, and start time of the operation.
 
     ![Operation Details](./media/backup-azure-manage-vms/ops-logs-details-window.png)
 
-## 警示通知
-您可以在入口網站取得工作的自訂警示通知。這是藉由在作業記錄檔事件中定義以 PowerShell 為基礎的警示規則來達成。我們建議使用「PowerShell 1.3.0 版或更新版本」。
+## <a name="alert-notifications"></a>Alert notifications
+You can get custom alert notifications for the jobs in portal. This is achieved by defining PowerShell-based alert rules on operational logs events. We recommend using *PowerShell version 1.3.0 or above*.
 
-若要定義自訂通知以警示備份失敗，範例命令看起來像：
+To define a custom notification to alert for backup failures, a sample command will look like:
 
 ```
 PS C:\> $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail contoso@microsoft.com
 PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -ResourceGroup RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US -OperationName Microsoft.Backup/backupVault/Backup -Status Failed -TargetResourceId /subscriptions/86eeac34-eth9a-4de3-84db-7a27d121967e/resourceGroups/RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US/providers/microsoft.backupbvtd2/BackupVault/trinadhVault -Actions $actionEmail
 ```
 
-**ResourceId**：您可從以上章節所述的 [作業記錄檔] 快顯視窗中取得。作業之詳細資料快顯視窗中的 ResourceUri 是要提供給此 Cmdlet 的 ResourceId。
+**ResourceId**: You can get this from Operations Logs popup as described in above section. ResourceUri in details popup window of an operation is the ResourceId to be supplied for this cmdlet.
 
-**OperationName**：其格式將會是 "Microsoft.Backup/backupvault/<EventName>"，其中 EventName 為以下任一值：Register、Unregister、ConfigureProtection、Backup、Restore、StopProtection、DeleteBackupData、CreateProtectionPolicy、DeleteProtectionPolicy、UpdateProtectionPolicy
+**OperationName**: This will be of the format "Microsoft.Backup/backupvault/<EventName>" where EventName is one of Register,Unregister,ConfigureProtection,Backup,Restore,StopProtection,DeleteBackupData,CreateProtectionPolicy,DeleteProtectionPolicy,UpdateProtectionPolicy
 
-**狀態**：支援的值為 - 已開始、成功和失敗。
+**Status**: Supported values are- Started, Succeeded and Failed.
 
-**ResourceGroup**：觸發作業所在的資源 ResourceGroup。您可以從 ResourceId 值加以取得。在 ResourceId 值中，介於欄位 */resourceGroups/* 和 */providers/* 之間的值即為 ResourceGroup 的值。
+**ResourceGroup**:ResourceGroup of the resource on which operation is triggered. You can obtain this from ResourceId value. Value between fields */resourceGroups/* and */providers/* in ResourceId value is the value for ResourceGroup.
 
-**名稱**：警示規則的名稱。
+**Name**: Name of the Alert Rule.
 
-**CustomEmail**：指定您要傳送警示通知的自訂電子郵件地址
+**CustomEmail**: Specify the custom email address to which you want to send alert notification
 
-**SendToServiceOwners**：此選項會將警示通知傳送給訂用帳戶的所有系統管理員和共同管理員。它可以用於 **New-AzureRmAlertRuleEmail** Cmdlet 中
+**SendToServiceOwners**: This option sends alert notification to all administrators and co-administrators of the subscription. It can be used in **New-AzureRmAlertRuleEmail** cmdlet
 
-### 警示的限制
-以事件為基礎的警示受到下列限制：
+### <a name="limitations-on-alerts"></a>Limitations on Alerts
+Event-based alerts are subjected to the following limitations:
 
-1. 在備份保存庫中的所有虛擬機器上觸發警示。您無法自訂它以取得備份保存庫中特定一組虛擬機器的警示。
-2. 這項功能處於預覽狀態。[深入了解](../azure-portal/insights-powershell-samples.md#create-alert-rules)
-3. 您會收到 "alerts-noreply@mail.windowsazure.com" 傳送的警示。目前您無法修改電子郵件寄件者。
+1. Alerts are triggered on all virtual machines in the backup vault. You cannot customize it to get alerts for specific set of virtual machines in a backup vault.
+2. This feature is in Preview. [Learn more](../azure-portal/insights-powershell-samples.md#create-alert-rules)
+3. You will receive alerts from "alerts-noreply@mail.windowsazure.com". Currently you can't modify the email sender.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [還原 Azure VM](backup-azure-restore-vms.md)
+- [Restore Azure VMs](backup-azure-restore-vms.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

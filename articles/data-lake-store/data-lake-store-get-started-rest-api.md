@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="使用 REST API 開始使用Data Lake Store | Microsoft Azure" 
-   description="使用 WebHDFS REST API 執行 Data Lake Store 上的作業" 
+   pageTitle="Get started with Data Lake Store using REST API| Microsoft Azure" 
+   description="Use WebHDFS REST APIs to perform operations on Data Lake Store" 
    services="data-lake-store" 
    documentationCenter="" 
    authors="nitinme" 
@@ -16,10 +16,11 @@
    ms.date="09/27/2016"
    ms.author="nitinme"/>
 
-# 使用 REST API 開始使用 Azure Data Lake Store
+
+# <a name="get-started-with-azure-data-lake-store-using-rest-apis"></a>Get started with Azure Data Lake Store using REST APIs
 
 > [AZURE.SELECTOR]
-- [入口網站](data-lake-store-get-started-portal.md)
+- [Portal](data-lake-store-get-started-portal.md)
 - [PowerShell](data-lake-store-get-started-powershell.md)
 - [.NET SDK](data-lake-store-get-started-net-sdk.md)
 - [Java SDK](data-lake-store-get-started-java-sdk.md)
@@ -27,243 +28,247 @@
 - [Azure CLI](data-lake-store-get-started-cli.md)
 - [Node.js](data-lake-store-manage-use-nodejs.md)
 
-在本文中，您將了解如何使用 WebHDFS REST API 和 Data Lake Store REST API 執行帳戶管理，以及 Azure Data Lake Store 上的檔案系統作業。Azure Data Lake Store 會公開自己的 REST API 以進行帳戶管理作業。不過，因為 Data Lake Store 與 HDFS 和 Hadoop 生態系統相容，所以它支援使用 WebHDFS REST API 進行檔案系統作業。
+In this article, you will learn how to use WebHDFS REST APIs and Data Lake Store REST APIs to perform account management as well as filesystem operations on Azure Data Lake Store. Azure Data Lake Store exposes its own REST APIs for account management operations. However, because Data Lake Store is compatible with HDFS and Hadoop ecosystem, it supports using WebHDFS REST APIs for filesystem operations.
 
->[AZURE.NOTE] 如需 Data Lake Store 之 REST API 支援的詳細資訊，請參閱 [Data Lake Store REST API 參考](https://msdn.microsoft.com/library/mt693424.aspx)。
+>[AZURE.NOTE] For detailed information on the REST API support for Data Lake Store, see [Azure Data Lake Store REST API Reference](https://msdn.microsoft.com/library/mt693424.aspx).
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+- **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
 
-- **建立 Azure Active Directory 應用程式**。您必須使用 Azure AD 應用程式來向 Azure AD 驗證 Data Lake Store 應用程式。有不同的方法可向 Azure AD 進行驗證：**使用者驗證**或**服務對服務驗證**。如需如何驗證的指示和詳細資訊，請參閱[使用 Azure Active Directory 向 Data Lake Store 進行驗證](data-lake-store-authenticate-using-active-directory.md)。
+- **Create an Azure Active Directory Application**. You use the Azure AD application to authenticate the Data Lake Store application with Azure AD. There are different approaches to authenticate with Azure AD, which are **end-user authentication** or **service-to-service authentication**. For instructions and more information on how to authenticate, see [Authenticate with Data Lake Store using Azure Active Directory](data-lake-store-authenticate-using-active-directory.md).
 
-- [cURL](http://curl.haxx.se/)。本文使用 cURL 示範如何對 Data Lake Store 帳戶進行 REST API 呼叫。
+- [cURL](http://curl.haxx.se/). This article uses cURL to demonstrate how to make REST API calls against a Data Lake Store account.
 
-## 如何使用 Azure Active Directory 驗證？
+## <a name="how-do-i-authenticate-using-azure-active-directory?"></a>How do I authenticate using Azure Active Directory?
 
-您可以使用兩種方法來使用 Azure Active Directory 進行驗證。
+You can use two approaches to authenticate using Azure Active Directory.
 
-### 使用者驗證 (互動式)
+### <a name="end-user-authentication-(interactive)"></a>End-user authentication (interactive)
 
-在此案例中，應用程式會提示使用者登入，且會在使用者的內容中執行所有作業。執行下列步驟以進行互動式驗證。
+In this scenario, the application prompts the user to log in and all the operations are performed in the context of the user. Perform the following steps for interactive authentication.
 
-1. 透過您的應用程式，將使用者重新導向至下列 URL：
+1. Through your application, redirect the user to the following URL:
 
-		https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<CLIENT-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
+        https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<CLIENT-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
 
-	>[AZURE.NOTE] \<REDIRECT-URI> 需要編碼才能在 URL 中使用。因此，請對 https://localhost 使用 `https%3A%2F%2Flocalhost`)
+    >[AZURE.NOTE] \<REDIRECT-URI> needs to be encoded for use in a URL. So, for https://localhost, use `https%3A%2F%2Flocalhost`)
 
-	本教學課程的目的是讓您取代以上 URL 中的預留位置值，並將此值貼在網路瀏覽器網址列中。系統會將您重新導向，以使用 Azure 登入資料來進行驗證。一旦成功登入，回應會顯示在瀏覽器網址列中。回應格式如下：
-		
-		http://localhost/?code=<AUTHORIZATION-CODE>&session_state=<GUID>
+    For the purpose of this tutorial, you can replace the placeholder values in the URL above and paste it in a web browser's address bar. You will be redirected to authenticate using your Azure login. Once you succesfully log in, the response is displayed in the browser's address bar. The response will be in the following format:
+        
+        http://localhost/?code=<AUTHORIZATION-CODE>&session_state=<GUID>
 
-2. 擷取回應中的授權碼。在本教學課程中，您可以從網路瀏覽器的網址列中複製授權碼，並在 POST 要求中傳遞至權杖端點，如下所示：
+2. Capture the authorization code from the response. For this tutorial, you can copy the authorization code from the address bar of the web browser and pass it in the POST request to the token endpoint, as shown below:
 
-		curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token \
+        curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token \
         -F redirect_uri=<REDIRECT-URI> \
         -F grant_type=authorization_code \
         -F resource=https://management.core.windows.net/ \
         -F client_id=<CLIENT-ID> \
         -F code=<AUTHORIZATION-CODE>
 
-	>[AZURE.NOTE] 在此情況下，不需要編碼 \<REDIRECT-URI>。
+    >[AZURE.NOTE] In this case, the \<REDIRECT-URI> need not be encoded.
 
-3. 回應為 JSON 物件，包含存取權杖 (例如 `"access_token": "<ACCESS_TOKEN>"`) 重新整理權杖 (例如：`"refresh_token": "<REFRESH_TOKEN>"`)。您的應用程式會在存取 Azure Data Lake Store 時使用存取權杖，並會在存取權杖過期時重新整理以取得另一個存取權杖。
+3. The response is a JSON object that contains an access token (e.g., `"access_token": "<ACCESS_TOKEN>"`) and a refresh token (e.g., `"refresh_token": "<REFRESH_TOKEN>"`). Your application uses the access token when accessing Azure Data Lake Store and the refresh token to get another access token when an access token expires.
 
-		{"token_type":"Bearer","scope":"user_impersonation","expires_in":"3599","expires_on":"1461865782","not_before":	"1461861882","resource":"https://management.core.windows.net/","access_token":"<REDACTED>","refresh_token":"<REDACTED>","id_token":"<REDACTED>"}
+        {"token_type":"Bearer","scope":"user_impersonation","expires_in":"3599","expires_on":"1461865782","not_before": "1461861882","resource":"https://management.core.windows.net/","access_token":"<REDACTED>","refresh_token":"<REDACTED>","id_token":"<REDACTED>"}
 
-4.  存取權杖過期時，您可以使用重新整理權杖要求新的存取權杖，如下所示：
+4.  When the access token expires, you can request a new access token using the refresh token, as shown below:
 
-		 curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
-      		-F grant_type=refresh_token \
-      		-F resource=https://management.core.windows.net/ \
-      		-F client_id=<CLIENT-ID> \
-      		-F refresh_token=<REFRESH-TOKEN>
+         curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
+            -F grant_type=refresh_token \
+            -F resource=https://management.core.windows.net/ \
+            -F client_id=<CLIENT-ID> \
+            -F refresh_token=<REFRESH-TOKEN>
  
-如需互動使用者驗證的詳細資料，請參閱[授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)。
+For more information on interactive user authentication, see [Authorization code grant flow](https://msdn.microsoft.com/library/azure/dn645542.aspx).
 
-### 服務對服務驗證 (非互動式)
+### <a name="service-to-service-authentication-(non-interactive)"></a>Service-to-service authentication (non-interactive)
 
-在此案例中，應用程式提供自己的認證來執行作業。為此，您必須發出 POST 要求，如下列所示要求。
+In this scenario, the the application provides its own credentials to perform the operations. For this, you must issue a POST request like the one shown below. 
 
-	curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
+    curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
       -F grant_type=client_credentials \
       -F resource=https://management.core.windows.net/ \
       -F client_id=<CLIENT-ID> \
       -F client_secret=<AUTH-KEY>
 
-這項要求的輸出將包含授權權杖 (在以下的輸出中以 `access-token` 表示)，您接下來將會利用 REST API 呼叫將其傳遞。將此驗證權杖儲存在文字檔中；您將在本文稍後需要此權杖。
+The output of this request will include an authorization token (denoted by `access-token` in the output below) that you will subsequently pass with your REST API calls. Save this authentication token in a text file; you will need this later in this article.
 
-	{"token_type":"Bearer","expires_in":"3599","expires_on":"1458245447","not_before":"1458241547","resource":"https://management.core.windows.net/","access_token":"<REDACTED>"}
+    {"token_type":"Bearer","expires_in":"3599","expires_on":"1458245447","not_before":"1458241547","resource":"https://management.core.windows.net/","access_token":"<REDACTED>"}
 
-本文使用**非互動式**方法。如需有關非互動式 (服務對服務呼叫) 的詳細資訊，請參閱[使用認證進行服務對服務呼叫](https://msdn.microsoft.com/library/azure/dn645543.aspx)。
+This article uses the **non-interactive** approach. For more information on non-interactive (service-to-service calls), see [Service to service calls using credentials](https://msdn.microsoft.com/library/azure/dn645543.aspx).
 
-## 建立 Data Lake Store 帳戶
+## <a name="create-a-data-lake-store-account"></a>Create a Data Lake Store account
 
-這項作業以在[這裡](https://msdn.microsoft.com/library/mt694078.aspx)定義的 REST API 呼叫為基礎。
+This operation is based on the REST API call defined [here](https://msdn.microsoft.com/library/mt694078.aspx).
 
-使用下列 cURL 命令。以 Data Lake Store 名稱取代 **<yourstorename>**。
+Use the following cURL command. Replace **\<yourstorename>** with your Data Lake Store name.
 
-	curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -H "Content-Type: application/json" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview -d@"C:\temp\input.json"
+    curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -H "Content-Type: application/json" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview -d@"C:\temp\input.json"
 
-在上述命令中，以您稍早擷取的授權權杖取代 <`REDACTED`>。此命令的要求承載包含在提供給上方 `-d` 參數的 **input.json** 檔案中。Input.json 檔案的內容如下所示︰
+In the above command, replace \<`REDACTED`\> with the authorization token you retrieved earlier. The request payload for this command is contained in the **input.json** file that is provided for the `-d` parameter above. The contents of the input.json file resemble the following:
 
-	{
-	"location": "eastus2",
-	"tags": {
-		"department": "finance"
-		},
-	"properties": {}
-	}	
+    {
+    "location": "eastus2",
+    "tags": {
+        "department": "finance"
+        },
+    "properties": {}
+    }   
 
-## 在 Data Lake Store 帳戶中建立資料夾
+## <a name="create-folders-in-a-data-lake-store-account"></a>Create folders in a Data Lake Store account
 
-這項作業以[這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Make_a_Directory)定義的 WebHDFS REST API 呼叫為基礎。
+This operation is based on the WebHDFS REST API call defined [here](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Make_a_Directory).
 
-使用下列 cURL 命令。以 Data Lake Store 名稱取代 **<yourstorename>**。
+Use the following cURL command. Replace **\<yourstorename>** with your Data Lake Store name.
 
-	curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=MKDIRS
+    curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=MKDIRS
 
-在上述命令中，以您稍早擷取的授權權杖取代 <`REDACTED`>。此命令會在 Data Lake Store 帳戶的根資料夾下建立名為 **mytempdir** 的目錄。
+In the above command, replace \<`REDACTED`\> with the authorization token you retrieved earlier. This command creates a directory called **mytempdir** under the root folder of your Data Lake Store account.
 
-如果作業順利完成，您應該會看到像這樣的回應︰
+You should see a response like this if the operation completes successfully:
 
-	{"boolean":true}
+    {"boolean":true}
 
-## 在 Data Lake Store 帳戶中列入資料夾
+## <a name="list-folders-in-a-data-lake-store-account"></a>List folders in a Data Lake Store account
 
-這項作業以[這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#List_a_Directory)定義的 WebHDFS REST API 呼叫為基礎。
+This operation is based on the WebHDFS REST API call defined [here](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#List_a_Directory).
 
-使用下列 cURL 命令。以 Data Lake Store 名稱取代 **<yourstorename>**。
+Use the following cURL command. Replace **\<yourstorename>** with your Data Lake Store name.
 
-	curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/?op=LISTSTATUS
+    curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/?op=LISTSTATUS
 
-在上述命令中，以您稍早擷取的授權權杖取代 <`REDACTED`>。
+In the above command, replace \<`REDACTED`\> with the authorization token you retrieved earlier.
 
-如果作業順利完成，您應該會看到像這樣的回應︰
+You should see a response like this if the operation completes successfully:
 
-	{
-	"FileStatuses": {
-		"FileStatus": [{
-			"length": 0,
-			"pathSuffix": "mytempdir",
-			"type": "DIRECTORY",
-			"blockSize": 268435456,
-			"accessTime": 1458324719512,
-			"modificationTime": 1458324719512,
-			"replication": 0,
-			"permission": "777",
-			"owner": "NotSupportYet",
-			"group": "NotSupportYet"
-		}]
-	}
-	}
+    {
+    "FileStatuses": {
+        "FileStatus": [{
+            "length": 0,
+            "pathSuffix": "mytempdir",
+            "type": "DIRECTORY",
+            "blockSize": 268435456,
+            "accessTime": 1458324719512,
+            "modificationTime": 1458324719512,
+            "replication": 0,
+            "permission": "777",
+            "owner": "NotSupportYet",
+            "group": "NotSupportYet"
+        }]
+    }
+    }
 
-## 將資料上傳至 Data Lake Store 帳戶
+## <a name="upload-data-into-a-data-lake-store-account"></a>Upload data into a Data Lake Store account
 
-這項作業以[這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Create_and_Write_to_a_File)定義的 WebHDFS REST API 呼叫為基礎。
+This operation is based on the WebHDFS REST API call defined [here](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Create_and_Write_to_a_File).
 
-使用 WebHDFS REST API 上傳資料是兩個步驟的程序，如下所述。
+Uploading data using the WebHDFS REST API is a two-step process, as explained below.
 
-1. 提交 HTTP PUT 要求，而不傳送要上傳的檔案資料。在下列命令中，以 Data Lake Store 名稱取代 **<yourstorename>**。
+1. Submit a HTTP PUT request without sending the file data to be uploaded. In the following command, replace **\<yourstorename>** with your Data Lake Store name.
 
-		curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=CREATE
+        curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=CREATE
 
-	此命令的輸出將會包含暫時重新導向 URL，如下所示。
+    The output for this command will be contain a temporary redirect URL, like the one shown below.
 
-		HTTP/1.1 100 Continue
+        HTTP/1.1 100 Continue
 
-		HTTP/1.1 307 Temporary Redirect
-		...
-		...
-		Location: https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/somerandomfile.txt?op=CREATE&write=true
-		...
-		...
+        HTTP/1.1 307 Temporary Redirect
+        ...
+        ...
+        Location: https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/somerandomfile.txt?op=CREATE&write=true
+        ...
+        ...
 
-2. 您現在必須針對為回應中 **Location** 屬性所列出的 URL 提交另一個 HTTP PUT 要求。以 Data Lake Store 名稱取代 **<yourstorename>**。
+2. You must now submit another HTTP PUT request against the URL listed for the **Location** property in the response. Replace **\<yourstorename>** with your Data Lake Store name.
 
-		curl -i -X PUT -T myinputfile.txt -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=CREATE&write=true
+        curl -i -X PUT -T myinputfile.txt -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=CREATE&write=true
 
-	輸出將類似於：
+    The output will be similar to the following:
 
-		HTTP/1.1 100 Continue
+        HTTP/1.1 100 Continue
 
-		HTTP/1.1 201 Created
-		...
-		...
+        HTTP/1.1 201 Created
+        ...
+        ...
 
-## 從 Data Lake Store 帳戶讀取資料
+## <a name="read-data-from-a-data-lake-store-account"></a>Read data from a Data Lake Store account
 
-這項作業以[這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Open_and_Read_a_File)定義的 WebHDFS REST API 呼叫為基礎。
+This operation is based on the WebHDFS REST API call defined [here](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Open_and_Read_a_File).
 
-從 Data Lake Store 帳戶讀取資料是兩個步驟的程序。
+Reading data from a Data Lake Store account is a two-step process.
 
-* 您要先針對端點 `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN` 提交 GET 要求。這樣會傳回要提交下一個 GET 要求的目標位置。
-* 接下來您要針對端點 `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN&read=true` 提交 GET 要求。這樣會顯示檔案的內容。
+* You first submit a GET request against the endpoint `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN`. This will return a location to submit the next GET request to.
+* You then submit the GET request against the endpoint `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN&read=true`. This will display the contents of the file.
 
-不過，由於第一和第二個步驟之間的輸入參數沒有任何差異，您可以使用 `-L` 參數來提交第一個要求。`-L` 選項基本上會將兩個要求結合為一個，並且讓 cURL 在新的位置重做要求。最後會顯示所有要求呼叫的輸出，如下所示。以 Data Lake Store 名稱取代 **<yourstorename>**。
+However, because there is no difference in the input parameters between the first and the second step, you can use the `-L` parameter to submit the first request. `-L` option essentially combines two requests into one and will make cURL redo the request on the new location. Finally, the output from all the request calls is displayed, like shown below. Replace **\<yourstorename>** with your Data Lake Store name.
 
-	curl -i -L GET -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN
+    curl -i -L GET -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN
 
-您應該會看到如下所示的輸出：
+You should see an output similar to the following:
 
-	HTTP/1.1 307 Temporary Redirect
-	...
-	Location: https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/somerandomfile.txt?op=OPEN&read=true
-	...
-	
-	HTTP/1.1 200 OK
-	...
-	
-	Hello, Data Lake Store user!
+    HTTP/1.1 307 Temporary Redirect
+    ...
+    Location: https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/somerandomfile.txt?op=OPEN&read=true
+    ...
+    
+    HTTP/1.1 200 OK
+    ...
+    
+    Hello, Data Lake Store user!
 
-## 在 Data Lake Store 帳戶中重新命名檔案
+## <a name="rename-a-file-in-a-data-lake-store-account"></a>Rename a file in a Data Lake Store account
 
-這項作業以[這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Rename_a_FileDirectory)定義的 WebHDFS REST API 呼叫為基礎。
+This operation is based on the WebHDFS REST API call defined [here](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Rename_a_FileDirectory).
 
-請使用下列 cURL 命令重新命名檔案。以 Data Lake Store 名稱取代 **<yourstorename>**。
+Use the following cURL command to rename a file. Replace **\<yourstorename>** with your Data Lake Store name.
 
-	curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=RENAME&destination=/mytempdir/myinputfile1.txt
+    curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=RENAME&destination=/mytempdir/myinputfile1.txt
 
-您應該會看到如下所示的輸出：
+You should see an output similar to the following:
 
-	HTTP/1.1 200 OK
-	...
-	
-	{"boolean":true}
+    HTTP/1.1 200 OK
+    ...
+    
+    {"boolean":true}
 
-## 從 Data Lake Store 帳戶刪除檔案
+## <a name="delete-a-file-from-a-data-lake-store-account"></a>Delete a file from a Data Lake Store account
 
-這項作業以[這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Delete_a_FileDirectory)定義的 WebHDFS REST API 呼叫為基礎。
+This operation is based on the WebHDFS REST API call defined [here](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Delete_a_FileDirectory).
 
-請使用下列 cURL 命令刪除檔案。以 Data Lake Store 名稱取代 **<yourstorename>**。
+Use the following cURL command to delete a file. Replace **\<yourstorename>** with your Data Lake Store name.
 
-	curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile1.txt?op=DELETE
+    curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile1.txt?op=DELETE
 
-您應該會看到如下的輸出：
+You should see an output like the following:
 
-	HTTP/1.1 200 OK
-	...
-	
-	{"boolean":true}
+    HTTP/1.1 200 OK
+    ...
+    
+    {"boolean":true}
 
-## 刪除 Data Lake Store 帳戶
+## <a name="delete-a-data-lake-store-account"></a>Delete a Data Lake Store account
 
-這項作業以在[這裡](https://msdn.microsoft.com/library/mt694075.aspx)定義的 REST API 呼叫為基礎。
+This operation is based on the REST API call defined [here](https://msdn.microsoft.com/library/mt694075.aspx).
 
-使用下列 cURL 命令刪除 Data Lake Store 帳戶。以 Data Lake Store 名稱取代 **<yourstorename>**。
+Use the following cURL command to delete a Data Lake Store account. Replace **\<yourstorename>** with your Data Lake Store name.
 
-	curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview
+    curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview
 
-您應該會看到如下的輸出：
+You should see an output like the following:
 
-	HTTP/1.1 200 OK
-	...
-	...
+    HTTP/1.1 200 OK
+    ...
+    ...
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-- [與 Azure Data Lake Store 相容的開放原始碼巨量資料應用程式](data-lake-store-compatible-oss-other-applications.md)
+- [Open Source Big Data applications compatible with Azure Data Lake Store](data-lake-store-compatible-oss-other-applications.md)
  
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

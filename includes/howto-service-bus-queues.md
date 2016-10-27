@@ -1,63 +1,68 @@
-## 什麼是服務匯流排佇列？
+## <a name="what-are-service-bus-queues?"></a>What are Service Bus queues?
 
-服務匯流排佇列支援**代理傳訊**通訊模型。使用佇列時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色 (代理人) 的佇列來交換訊息。訊息產生者 (傳送者) 會將訊息遞交給佇列，然後繼續其處理工作。訊息取用者 (接收者) 非同步地從佇列中提取訊息並處理。產生者不必等待取用者的回覆，即可繼續處理及傳送其他訊息。如果有一或多個競爭取用者，佇列會採取**先進先出 (FIFO)** 訊息傳遞機制。亦即，通常由接收者依訊息加入佇列的順序來接收和處理訊息，而且每則訊息只能由一個訊息取用者接收和處理。
+Service Bus queues support a **brokered messaging** communication model. When using queues, components of a distributed application do not communicate directly with each other; instead they exchange messages via a queue, which acts as an intermediary (broker). A message producer (sender) hands off a message to the queue and then continues its processing. Asynchronously, a message consumer (receiver) pulls the message from the queue and processes it. The producer does not have to wait for a reply from the consumer in order to continue to process and send further messages. Queues offer **First In, First Out (FIFO)** message delivery to one or more competing consumers. That is, messages are typically received and processed by the receivers in the order in which they were added to the queue, and each message is received and processed by only one message consumer.
 
-![佇列概念](./media/howto-service-bus-queues/sb-queues-08.png)
+![QueueConcepts](./media/howto-service-bus-queues/sb-queues-08.png)
 
-服務匯流排佇列為適用於各種情況的通用技術：
+Service Bus queues are a general-purpose technology that can be used for a wide variety of scenarios:
 
--   多層式 Azure 應用程式中 Web 角色和背景工作角色之間的通訊。
--   混合式解決方案中的內部部署應用程式和 Azure 代管應用程式之間的通訊。
--   在不同組織或同一組織的不同部門中，在內部部署執行之分散式應用程式的各元件之間的通訊。
+-   Communication between web and worker roles in a multi-tier Azure application.
+-   Communication between on-premises apps and Azure-hosted apps in a hybrid solution.
+-   Communication between components of a distributed application running on-premises in different organizations or departments of an organization.
 
-使用佇列可讓應用程式更容易地進一步延展，提高架構的備援能力。
+Using queues enables you to scale your applications more easily, and enable more resiliency to your architecture.
 
-## 建立服務命名空間
+## <a name="create-a-service-namespace"></a>Create a service namespace
 
-若要開始在 Azure 中使用服務匯流排佇列，首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+To begin using Service Bus queues in Azure, you must first create a service namespace. A namespace provides a scoping container for addressing Service Bus resources within your application.
 
-若要建立命名空間：
+To create a namespace:
 
-1.  登入 [Azure 傳統入口網站][]。
+1.  Log on to the [Azure classic portal][].
 
-2.  在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
+2.  In the left navigation pane of the portal, click **Service Bus**.
 
-3.  在入口網站的下方窗格中，按一下 [建立]。
-	![](./media/howto-service-bus-queues/sb-queues-03.png)
+3.  In the lower pane of the portal, click **Create**.
+    ![](./media/howto-service-bus-queues/sb-queues-03.png)
 
-4.  在 [Add a new namespace] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。
-	![](./media/howto-service-bus-queues/sb-queues-04.png)
+4.  In the **Add a new namespace** dialog, enter a namespace name. The system immediately checks to see if the name is available.   
+    ![](./media/howto-service-bus-queues/sb-queues-04.png)
 
-5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。
+5.  After making sure the namespace name is available, choose the country or region in which your namespace should be hosted (make sure you use the same country/region in which you are deploying your compute resources).
 
-	 > [AZURE.IMPORTANT] 請挑選您想要選擇來部署應用程式的**相同區域**。這樣可以獲得最佳效能。
+     > [AZURE.IMPORTANT] Pick the **same region** that you intend to choose for deploying your application. This will give you the best performance.
 
-6. 	讓對話方塊中的其他欄位保留其預設值 ([傳訊] 和 [標準層])，然後按一下 [確定] 核取記號。此時系統會建立並啟用命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
+6.  Leave the other fields in the dialog with their default values (**Messaging** and **Standard Tier**), then click the OK check mark. The system now creates your namespace and enables it. You might have to wait several minutes as the system provisions resources for your account.
 
-	![](./media/howto-service-bus-queues/getting-started-multi-tier-27.png)
+    ![](./media/howto-service-bus-queues/getting-started-multi-tier-27.png)
 
-然後，您建立的命名空間稍待片刻就會生效，然後就會出現在入口網站中。等到命名空間狀態變成 [**作用中**] 之後再繼續。
+The namespace you created takes a moment to activate, and will then appear in the portal. Wait until the namespace status is **Active** before continuing.
 
-## 取得命名空間的預設管理認證
+## <a name="obtain-the-default-management-credentials-for-the-namespace"></a>Obtain the default management credentials for the namespace
 
-若要在新的命名空間上執行管理作業，例如建立佇列，您必須取得命名空間的管理認證。您可以從 [Azure 傳統入口網站][]取得這些認證。
+In order to perform management operations, such as creating a queue on the new namespace, you must obtain the management credentials for the namespace. You can obtain these credentials from the [Azure classic portal][].
 
-###從入口網站取得管理認證
+###<a name="to-obtain-management-credentials-from-the-portal"></a>To obtain management credentials from the portal
 
-1.  在左方瀏覽窗格中，按一下 [**服務匯流排**] 節點，以顯示可用的命名空間清單：
-	![](./media/howto-service-bus-queues/sb-queues-13.png)
+1.  In the left navigation pane, click the **Service Bus** node, to display the list of available namespaces:   
+    ![](./media/howto-service-bus-queues/sb-queues-13.png)
 
-2.  從顯示的清單中，選取您剛建立的命名空間：
-	![](./media/howto-service-bus-queues/sb-queues-09.png)
+2.  Select the namespace you just created from the list shown:   
+    ![](./media/howto-service-bus-queues/sb-queues-09.png)
 
-3.  按一下 [**連線資訊**]。
-	![](./media/howto-service-bus-queues/sb-queues-06.png)
+3.  Click **Connection Information**.   
+    ![](./media/howto-service-bus-queues/sb-queues-06.png)
 
-4.  在 [**存取連線資訊**] 窗格中，尋找包含 SAS 金鑰和金鑰名稱的連接字串。
+4.  In the **Access connection information** pane, find the connection string that contains the SAS key and key name.   
 
-	![](./media/howto-service-bus-queues/multi-web-45.png)
+    ![](./media/howto-service-bus-queues/multi-web-45.png)
     
-5.  記下金鑰，或將它複製到剪貼簿。
+5.  Make a note of the key, or copy it to the clipboard.
 
-  [Azure 傳統入口網站]: http://manage.windowsazure.com
+  [Azure classic portal]: http://manage.windowsazure.com
+
+
+
+<!--HONumber=Oct16_HO2-->
+
 

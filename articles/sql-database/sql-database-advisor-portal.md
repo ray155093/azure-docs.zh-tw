@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="使用 Azure 入口網站的 Azure SQL Database 建議程式 | Microsoft Azure" 
-   description="您可以在 Azure 入口網站中，使用 Azure SQL Database 建議程式來檢閱和實作適用於您現有 SQL Database 的建議，這些建議可以改善現有的查詢效能。" 
+   pageTitle="Azure SQL Database Advisor using the Azure portal | Microsoft Azure" 
+   description="You can use the Azure SQL Database Advisor in the Azure portal to review and implement recommendations for your existing SQL Databases that can improve current query performance." 
    services="sql-database" 
    documentationCenter="" 
    authors="stevestein" 
@@ -13,164 +13,175 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management" 
-   ms.date="06/22/2016"
+   ms.date="09/30/2016"
    ms.author="sstein"/>
 
-# SQL Database 建議程式
+
+# <a name="sql-database-advisor-using-the-azure-portal"></a>SQL Database Advisor using the Azure portal
 
 > [AZURE.SELECTOR]
-- [SQL Database 建議程式概觀](sql-database-advisor.md)
-- [入口網站](sql-database-advisor-portal.md)
+- [SQL Database Advisor Overview](sql-database-advisor.md)
+- [Portal](sql-database-advisor-portal.md)
 
-您可以在 Azure 入口網站中，使用 Azure SQL Database 建議程式來檢閱和實作適用於您現有 SQL Database 的建議，這些建議可以改善現有的查詢效能。
+You can use the Azure SQL Database Advisor in the Azure portal to review and implement recommendations for your existing SQL Databases that can improve current query performance.
 
-## 檢視建議
+## <a name="viewing-recommendations"></a>Viewing recommendations
 
-您可以在 [建議] 頁面檢視排名最前面的建議，順序是根據其在改進效能上可能產生的影響而定。您也可以檢視歷程記錄作業的狀態。選取建議或狀態來查看其詳細資料。
+The recommendations page is where you view the top recommendations based on their potential impact to improve performance. You can also view the status of the historical operations. Select a recommendation or status to see  more details.
 
-若要檢視和套用建議，您在 Azure 中必須有正確的[角色型存取控制](../active-directory/role-based-access-control-configure.md)權限。需要**讀取者**、**SQL DB 參與者**權限，才能檢視建議，以及需要**擁有者**、**SQL DB 參與者**權限，才能執行任何動作；建立或卸除索引並取消建立索引。
+To view and apply recommendations, you need the correct [role-based access control](../active-directory/role-based-access-control-configure.md) permissions in Azure. **Reader**, **SQL DB Contributor** permissions are required to view recommendations, and **Owner**, **SQL DB Contributor** permissions are required to execute any actions; create or drop indexes and cancel index creation.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 [瀏覽] > [SQL 資料庫]，並選取您的資料庫。
-5. 按一下 [所有設定] > [建議] 來檢視適用於所選資料庫的可用**建議**。
+1. Sign in to the [Azure portal](https://portal.azure.com/).
+2. Click **More services** > **SQL databases**, and select your database.
+5. Click **Performance recommendation** to view available recommendations for the selected database.
 
-> [AZURE.NOTE] 若要取得建議，資料庫必須持續使用一週，而且那一週之內需要有一些活動。也需要有一些一致的活動。相較於隨機蹦出的零星活動，一致的查詢模式更有利於 SQL Database 建議程式最佳化。如果 [建議] 頁面中沒有可用的建議，該頁面應會提供訊息說明原因。
+> [AZURE.NOTE] To get recommendations a database needs to have about a day of usage, and there needs to be some activity. There also needs to be some consistent activity. The SQL Database Advisor can more easily optimize for consistent query patterns than it can for random spotty bursts of activity. If recommendations are not available, the **Performance recommendation** page should provide a message explaining why.
 
-![建議](./media/sql-database-advisor-portal/recommendations.png)
+![Recommendations](./media/sql-database-advisor-portal/recommendations.png)
 
-以下是 Azure 入口網站中「修正結構描述問題」建議的範例。
+Here is an example of "Fix schema issue" recommendation in the Azure portal.
 
-![修正結構描述問題](./media/sql-database-advisor-portal/sql-database-advisor-schema-issue.png)
+![Fix Schema Issue](./media/sql-database-advisor-portal/sql-database-advisor-schema-issue.png)
 
-依照可能帶來的效能影響排序，建議分成下列 4 個類別：
+Recommendations are sorted by their potential impact on performance into the following four categories:
 
-| 影響 | 說明 |
+| Impact | Description |
 | :--- | :--- |
-| 高 | 高影響建議提供最明顯的效能影響。 |
-| 中型 | 中度影響建議會改善效能，但不顯著。 |
-| 低 | 低影響建議比沒有建議時提供更好的效能，但改善可能不顯著。 
+| High | High impact recommendations should provide the most significant performance impact. |
+| Medium | Medium impact recommendations should improve performance, but not substantially. |
+| Low | Low impact recommendations should provide better performance than without, but improvements might not be significant. 
 
 
-### 從清單中移除建議
+### <a name="removing-recommendations-from-the-list"></a>Removing recommendations from the list
 
-如果建議的清單中包含您想從清單中移除的項目，您可以捨棄該建議：
+If your list of recommendations contains items that you want to remove from the list, you can discard the recommendation:
 
-1. 在 [建議] 清單中選取建議。
-2. 在 [詳細資料] 刀鋒視窗上按一下 [捨棄]。
-
-
-如有需要，您可以將捨棄的項目加回到**建議**清單：
-
-1. 在 [建議] 刀鋒視窗上按一下 [檢視已捨棄]。
-1. 從清單中選取捨棄的項目以檢視其詳細資料。
-1. (選擇性) 按一下 [復原捨棄]，將索引加回到**建議**的主要清單。
+1. Select a recommendation in the list of **Recommendations**.
+2. Click **Discard** on the **Details** blade.
 
 
+If desired, you can add discarded items back to the **Recommendations** list:
 
-## 套用建議
-
-SQL Database 建議程式可讓您使用下列 3 個選項的其中任一選項來控制建議的啟用方式。
-
-- 一次套用一個個別的建議。
-- 讓建議程式自動套用建議 (目前僅適用索引建議)。
-- 針對您的資料庫手動執行建議的 T-SQL 指令碼來實作建議。
-
-選取任何建議來檢視其詳細資料，然後按一下 [檢視指令碼] 來檢閱將如何建立建議的確切詳細資料。
-
-當建議程式套用建議時，資料庫會保持上線 - 使用 SQL Database 建議程式不會使資料庫離線。
-
-### 套用個別的建議
-
-您可以一次檢閱並接受一個建議。
-
-1. 在 [建議] 刀鋒視窗上按一下某個建議。
-2. 在 [詳細資料] 刀鋒視窗上按一下 [套用]。
-
-    ![套用建議](./media/sql-database-advisor-portal/apply.png)
-
-### 啟用自動索引管理
-
-您可以將 SQL Database 建議程式設為自動實作建議。當建議可供使用時將會自動套用。因為所有的索引作業都由服務管理，所以若對效能產生負面影響，就會還原該建議。
-
-1. 在 [建議] 刀鋒視窗上按一下 [自動化]：
-
-    ![建議程式設定](./media/sql-database-advisor-portal/settings.png)
-
-2. 將建議程式設為自動**建立**或**卸除**索引：
-
-    ![建議的索引](./media/sql-database-advisor-portal/automation.png)
-
-
-### 手動執行建議的 T-SQL 指令碼
-
-選取任何建議，然後按一下 [檢視指令碼]。對資料庫執行這個指令碼，以手動套用建議。
-
-對於手動執行的索引，服務並不會監視和驗證其效能影響，因此建議您在建立這些索引之後監視索引，以確認它們能夠提高效能，且於必要時調整或刪除它們。如需有關建立索引的詳細資訊，請參閱 [CREATE INDEX (Transact-SQL)](https://msdn.microsoft.com/library/ms188783.aspx)。
-
-
-### 取消建議
-
-可以取消處於**擱置中**、**確認中**或**成功**狀態的建議。狀態為**執行中**的建議無法取消。
-
-1. 在 [調整歷程記錄] 區域中選取建議，以開啟 [建議詳細資料] 刀鋒視窗。
-2. 按一下 [取消] 以中止套用建議的程序。
+1. On the **Recommendations** blade click **View discarded**.
+1. Select a discarded item from the list to view its details.
+1. Optionally, click **Undo Discard** to add the index back to the main list of **Recommendations**.
 
 
 
-## 監視作業
+## <a name="applying-recommendations"></a>Applying recommendations
 
-套用建議時可能不會立即執行。入口網站會提供有關建議作業狀態的詳細資料。索引有下列可能的狀態：
+SQL Database Advisor gives you full control over how recommendations are enabled using any of the following three options: 
 
-| 狀態 | 說明 |
+- Apply individual recommendations one at a time.
+- Enable the advisor to automatically apply recommendations (currently applies to index recommendations only).
+- To implement a recommendation manually, run the recommended T-SQL script against your database .
+
+Select any recommendation to view its details and then click **View script** to review the exact details of how the recommendation is created.
+
+The database remains online while the advisor applies the recommendation -- using SQL Database Advisor never takes a database offline.
+
+### <a name="apply-an-individual-recommendation"></a>Apply an individual recommendation
+
+You can review and accept recommendations one at a time.
+
+1. On the **Recommendations** blade, click a recommendation.
+2. On the **Details** blade click **Apply**.
+
+    ![Apply recommendation](./media/sql-database-advisor-portal/apply.png)
+
+### <a name="enable-automatic-index-management"></a>Enable automatic index management
+
+You can set the SQL Database Advisor to implement recommendations automatically. As recommendations become available they will automatically be applied. As with all index operations managed by the service if the performance impact is negative the recommendation will be reverted.
+
+1. On the **Recommendations** blade, click **Automate**:
+
+    ![Advisor settings](./media/sql-database-advisor-portal/settings.png)
+
+2. Set the advisor to automatically **Create** or **Drop** indexes:
+
+    ![Recommended Indexes](./media/sql-database-advisor-portal/automation.png)
+
+
+### <a name="manually-run-the-recommended-t-sql-script"></a>Manually run the recommended T-SQL script
+
+Select any recommendation and then click **View script**. Run this script against your database to manually apply the recommendation.
+
+*Indexes that are manually executed are not monitored and validated for performance impact by the service* so it is suggested that you monitor these indexes after creation to verify they provide performance gains and adjust or delete them if necessary. For details about creating indexes, see [CREATE INDEX (Transact-SQL)](https://msdn.microsoft.com/library/ms188783.aspx).
+
+
+### <a name="canceling-recommendations"></a>Canceling recommendations
+
+Recommendations that are in a **Pending**, **Verifying**, or **Success** status can be canceled. Recommendations with a status of **Executing** cannot be canceled.
+
+1. Select a recommendation in the **Tuning History** area to open the **recommendations details** blade.
+2. Click **Cancel** to abort the process of applying the recommendation.
+
+
+
+## <a name="monitoring-operations"></a>Monitoring operations
+
+Applying a recommendation might not happen instantaneously. The portal provides details regarding the status of recommendation operations. The following are possible states that an index can be in:
+
+| Status | Description |
 | :--- | :--- |
-| Pending | 已收到套用建議命令，且已排程執行。 |
-| Executing | 正在套用建議。 |
-| 成功 | 已成功套用建議。 |
-| 錯誤 | 套用建議程序期間發生錯誤。這可能是暫時性問題，也可能是資料表的結構描述變更，造成指令碼不再有效。 |
-| 還原 | 已套用建立但被認為無助於效能，正在自動還原。 |
-| 已還原 | 已還原建議。 |
+| Pending | Apply recommendation command has been received and is scheduled for execution. |
+| Executing | The recommendation is being applied. |
+| Success | Recommendation was successfully applied. |
+| Error | An error occurred during the process of applying the recommendation. This can be a transient issue, or possibly a schema change to the table and the script is no longer valid. |
+| Reverting | The recommendation was applied, but has been deemed non-performant and is being automatically reverted. |
+| Reverted | The recommendation was reverted. |
 
-按一下清單中正在處理的建議以查看其詳細資料：
+Click an in-process recommendation from the list to see more details:
 
-![建議的索引](./media/sql-database-advisor-portal/operations.png)
-
-
-### 還原建議
-
-如果您使用建議程式來套用建議 (表示您未手動執行 T-SQL 指令碼)，如果建議程式發現會對效能造成負面影響，它將會自動還原建議。如果您因為任何原因想要還原建議，您可以執行以下步驟：
+![Recommended Indexes](./media/sql-database-advisor-portal/operations.png)
 
 
-1. 在 [調整歷程記錄] 區域中選取已成功套用的建議。
-2. 在 [建議詳細資料] 刀鋒視窗上按一下 [還原]。
+### <a name="reverting-a-recommendation"></a>Reverting a recommendation
 
-![建議的索引](./media/sql-database-advisor-portal/details.png)
-
-
-## 監視索引建議的效能影響
-
-成功實作建議之後 (目前僅提供索引作業和參數化查詢建議)，您可以按一下 [建議詳細資料] 刀鋒視窗上的 [Query Insights] 來開啟 [[查詢效能深入解析](sql-database-query-performance.md)]，並查看排名最前面查詢對效能的影響。
-
-![監視效能影響](./media/sql-database-advisor-portal/query-insights.png)
+If you used the advisor to apply the recommendation (meaning you did not manually run the T-SQL script) it will automatically revert it if it finds the performance impact to be negative. If for any reason you simply want to revert a recommendation you can do the following:
 
 
+1. Select a successfully applied recommendation in the **Tuning history** area.
+2. Click **Revert** on the **recommendation details** blade.
 
-## 摘要
+![Recommended Indexes](./media/sql-database-advisor-portal/details.png)
 
-SQL Database 建議程式會提供可改善 SQL Database 效能的建議。藉由提供 T-SQL 指令碼，以及獨立且全自動的 (僅適用目前的索引)，建議程式會提供協助以最佳化資料庫，並最終改善查詢效能。
+
+## <a name="monitoring-performance-impact-of-index-recommendations"></a>Monitoring performance impact of index recommendations
+
+After recommendations are successfully implemented (currently, index operations and parameterize queries recommendations only) you can click **Query Insights** on the recommendation details blade to open [Query Performance Insights](sql-database-query-performance.md) and see the performance impact of your top queries.
+
+![Monitor performance impact](./media/sql-database-advisor-portal/query-insights.png)
 
 
 
-## 後續步驟
+## <a name="summary"></a>Summary
 
-監視建議，並繼續套用建議以改善效能。資料庫工作負載會動態地持續變更。SQL Database 建議程式會繼續監視並提供可能改善資料庫效能的建議。
+SQL Database Advisor provides recommendations for improving SQL database performance. By providing T-SQL scripts, as well as individual and fully-automatic (currently index only), the advisor provides helpful assistance in optimizing your database and ultimately improving query performance.
 
- - 如需了解 SQL Database 建議程式的概觀，請參閱 [SQL Database 建議程式](sql-database-advisor.md)。
- - 請參閱[查詢效能深入解析](sql-database-query-performance.md)，以了解如何檢視排名最前面查詢的效能影響。
 
-## 其他資源
 
-- [查詢存放區](https://msdn.microsoft.com/library/dn817826.aspx)
+## <a name="next-steps"></a>Next steps
+
+Monitor your recommendations and continue to apply them to refine performance. Database workloads are dynamic and change continuously. SQL Database advisor will continue to monitor and provide recommendations that can potentially improve your database's performance. 
+
+ - See [SQL Database Advisor](sql-database-advisor.md) for an overview of SQL Database Advisor.
+ - See [Query Performance Insights](sql-database-query-performance.md) to learn about viewing the performance impact of your top queries.
+
+## <a name="additional-resources"></a>Additional resources
+
+- [Query Store](https://msdn.microsoft.com/library/dn817826.aspx)
 - [CREATE INDEX](https://msdn.microsoft.com/library/ms188783.aspx)
-- [角色型存取控制](../active-directory/role-based-access-control-configure.md)
+- [Role-based access control](../active-directory/role-based-access-control-configure.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

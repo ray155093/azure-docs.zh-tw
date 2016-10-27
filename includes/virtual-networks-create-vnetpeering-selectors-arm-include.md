@@ -1,6 +1,8 @@
 > [AZURE.SELECTOR]
-- [Azure 入口網站](../articles/virtual-network/virtual-networks-create-vnetpeering-arm-portal.md)
+- [Azure Portal](../articles/virtual-network/virtual-networks-create-vnetpeering-arm-portal.md)
 - [PowerShell](../articles/virtual-network/virtual-networks-create-vnetpeering-arm-ps.md)
-- [ARM 範本](../articles/virtual-network/virtual-networks-create-vnetpeering-arm-template-click.md)
+- [ARM template](../articles/virtual-network/virtual-networks-create-vnetpeering-arm-template-click.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

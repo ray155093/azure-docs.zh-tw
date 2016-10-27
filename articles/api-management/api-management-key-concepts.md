@@ -1,102 +1,103 @@
 <properties 
-	pageTitle="API 管理主要概念" 
-	description="了解 API、產品、角色、群組及其他 API 管理的主要概念。" 
-	services="api-management" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+    pageTitle="API Management key concepts" 
+    description="Learn about APIs, products, roles, groups, and other API Management key concepts." 
+    services="api-management" 
+    documentationCenter="" 
+    authors="steved0x" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="hero-article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+    ms.service="api-management" 
+    ms.workload="mobile" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="hero-article" 
+    ms.date="10/25/2016" 
+    ms.author="sdanie"/>
 
-#什麼是 API 管理？
 
-「API 管理」可協助組織將 API 發佈給外部、合作夥伴及內部開發人員，以發揮其資料與服務的潛力。各地的公司都想要將其作業延伸為數位平台、建立新的管道、尋找新客戶並對現有客戶促進更深入的參與。「API 管理」提供的核心專長認證，透過開發人員參與、商務洞察力、分析、安全性和保護，可確保 API 程式獲致成功。
+#<a name="what-is-api-management?"></a>What is API Management?
 
-觀看下列影片以取得 Azure API 管理的概觀，並了解如何使用 API 管理，以最少量的工作將許多功能新增至您的 API，包括存取控制、速率限制、監視、事件記錄及回應快取。
+API Management helps organizations publish APIs to external, partner and internal developers to unlock the potential of their data and services. Businesses everywhere are looking to extend their operations as a digital platform, creating new channels, finding new customers and driving deeper engagement with existing ones. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security and protection.
+
+Watch the following video for an overview of Azure API Management and learn how to use API Management to add many features to your API, including access control, rate limiting, monitoring, event logging, and response caching, with minimal work on your part.
 
 > [AZURE.VIDEO azure-api-management-overview]
 
-為了使用 API 管理，管理員會建立 API。每個 API 都包含一或多個作業，而每個 API 則可加入至一或多個產品。為了使用 API，開發人員會訂閱包含該 API 的產品，而且他們之後可呼叫 API 的作業，但需受限於可能生效的任何使用原則。
+To use API Management, administrators create APIs. Each API consists of one or more operations, and each API can be added to one or more products. To use an API, developers subscribe to a product that contains that API, and then they can call the API's operation, subject to any usage policies that may be in effect.
 
-本主題說明 API 管理的主要概念。
+This topic provides an overview of API Management key concepts.
 
->[AZURE.NOTE] 如需詳細資訊，請參閱[雲端式 API 管理：如何運用 API 的威力](http://j.mp/ms-apim-whitepaper) PDF 白皮書 (英文)。這份 CITO Research 發表的簡介白皮書涵蓋：
+>[AZURE.NOTE] For more information, see the [Cloud-based API Management: Harnessing the Power of APIs](http://j.mp/ms-apim-whitepaper) PDF whitepaper. This introductory whitepaper on API Management by CITO Research covers: 
 >
-> - 常見的 API 需求與挑戰
->     - 解構 API 並呈現其外貌
->     - 讓開發人員快速上手
->     - 保護存取
->     - 分析與度量
-> - 藉由 API 管理平台獲得控制權和深層資訊
-> - 比較使用雲端與內部部署解決方案
-> - Azure API 管理
+> - Common API requirements and challenges
+>     - Decoupling APIs and presenting facades
+>     - Getting developers up and running quickly
+>     - Securing access
+>     - Analytics and metrics
+> - Gaining control and insight with an API Management platform
+> - Using cloud vs on-premise solutions
+> - Azure API Management
 
-## <a name="apis"> </a>API 和作業
+## <a name="<a-name="apis">-</a>apis-and-operations"></a><a name="apis"> </a>APIs and operations
 
-API 是 API 管理服務執行個體的基礎。每個 API 都代表可供開發人員使用的一組作業。每個 API 都包含會實作 API 之後端服務的參考，而其作業會與後端服務實作的作業相對應。API 管理中的作業可設定度相當高，並可控制 URL 對應、查詢和路徑參數、要求和回應內容，以及作業回應快取。費率限制、配額和 IP 限制原則亦可在 API 或個別作業層級實作。
+APIs are the foundation of an API Management service instance. Each API represents  a set of operations available to developers. Each API contains a reference to the back-end service that implements the API, and its operations map to the operations implemented by the back-end service. Operations in API Management are highly configurable, with control over URL mapping, query and path parameters, request and response content, and operation response caching. Rate limit, quotas, and IP restriction policies can also be implemented at the API or individual operation level.
 
-如需詳細資訊，請參閱[如何建立 API][] 和[如何將作業加入至 API][]。
+For more information, see [How to create APIs][] and [How to add operations to an API][].
 
 
-## <a name="products"> </a> 產品
+## <a name="<a-name="products">-</a>-products"></a><a name="products"> </a> Products
 
-產品是將 API 呈現給開發人員的方式。在 API 管理中的產品包含一或多個 API，並且設定了標題、說明與使用規定。產品可以是 [**開放**] 或 [**受保護**]。受保護產品必須先擁有訂用帳戶才能使用，開放產品則可以使用而不需訂用帳戶。當產品可供開發人員使用時，即可將產品發佈。發佈產品之後，開發人員即可檢視產品 (以及受保護產品訂閱時)。訂用帳戶核准是在產品層級設定，可能需要管理員核准，或是可自動核准。
+Products are how APIs are surfaced to developers. Products in API Management have one or more APIs, and are configured with a title, description, and terms of use. Products can be **Open** or **Protected**. Protected products must be subscribed to before they can be used, while open products can be used without a subscription. When a product is ready for use by developers it can be published. Once it is published, it can be viewed (and in the case of protected products subscribed to) by developers. Subscription approval is configured at the product level and can either require administrator approval, or be auto-approved.
 
-群組的作用是管理產品對於開發人員的可見度。產品會將可見度授與群組，而開發人員可檢視並訂閱其所屬群組可見的產品。
+Groups are used to manage the visibility of products to developers. Products grant visibility to groups, and developers can view and subscribe to the products that are visible to the groups in which they belong. 
 
-如需詳細資訊，請參閱[如何建立和發佈產品][]及下列影片。
+For more information, see [How to create and publish a product][] and the following video.
 
 > [AZURE.VIDEO using-products]
 
-## <a name="groups"> </a> 群組
+## <a name="<a-name="groups">-</a>-groups"></a><a name="groups"> </a> Groups
 
-群組的作用是管理產品對於開發人員的可見度。API 管理具有下列不可變的系統群組。
+Groups are used to manage the visibility of products to developers. API Management has the following immutable system groups.
 
--	**管理員** - Azure 訂用帳戶管理員是此群組的成員。管理員可管理 API 管理服務執行個體、建立開發人員所使用的 API、作業和產品。
--	**開發人員** - 已驗證開發人員入口網站使用者屬於此群組。開發人員是使用您的 API 建置應用程式的客戶。開發人員獲授與開發人員入口網站的存取權，並建置呼叫 API 作業的應用程式。
--	**來賓** - 未經驗證的開發人員入口網站使用者 (例如，造訪 API 管理執行個體之開發人員入口網站的潛在客戶) 屬於此群組。他們可獲得特定唯讀存取權限，例如他們可檢視 API 但無法進行呼叫。
+-   **Administrators** - Azure subscription administrators are members of this group. Administrators manage API Management service instances, creating the APIs, operations, and products that are used by developers.
+-   **Developers** - Authenticated developer portal users fall into this group. Developers are the customers that build applications using your APIs. Developers are granted access to the developer portal and build applications that call the operations of an API.
+-   **Guests** - Unauthenticated developer portal users, such as prospective customers visiting the developer portal of an API Management instance fall into this group. They can be granted certain read-only access, such as the ability to view APIs but not call them.
 
-除了這些系統群組以外，管理員還可以建立自訂群組，或使用[使用 Azure Active Directory 相關租用戶中的外部群組](api-management-howto-aad.md#how-to-add-an-external-azure-active-directory-group)。自訂群組和外部群組可以與系統群組一起使用，提供開發人員 API 產品的能見度及存取權。例如，您可以為與特定夥伴組織有關的開發人員建立一個自訂群組，並只允許他們存取來自含相關 API 之產品的 API。使用者可以是多個群組的成員。
+In addition to these system groups, administrators can create custom groups or [leverage external groups in associated Azure Active Directory tenants](api-management-howto-aad.md#how-to-add-an-external-azure-active-directory-group). Custom and external groups can be used alongside system groups in giving developers visibility and access to API products. For example, you could create one custom group for developers affiliated with a specific partner organization and allow them access to the APIs from a product containing relevant APIs only. A user can be a member of more than one group.
 
-如需詳細資訊，請參閱[如何建立和使用群組][]。
+For more information, see  [How to create and use groups][].
 
-## <a name="developers"> </a> 開發人員
+## <a name="<a-name="developers">-</a>-developers"></a><a name="developers"> </a> Developers
 
-開發人員代表 API 管理服務執行個體中的使用者帳戶。開發人員可由管理員建立或邀請加入，也可以透過[開發人員入口網站][]註冊。每個開發人員都是一或多個群組的成員，而且可訂閱對那些群組授與可見度的產品。
+Developers represent the user accounts in an API Management service instance. Developers can be created or invited to join by administrators, or they can sign up from the [Developer portal][]. Each developer is a member of one or more groups, and can be subscribe to the products that grant visibility to those groups.
 
-當開發人員訂閱產品時，將可獲得產品的主要和次要金鑰。在對產品的 API 進行呼叫時會使用該金鑰。
+When developers subscribe to a product they are granted the primary and secondary key for the product. This key is used when making calls into the product's APIs.
 
-如需詳細資訊，請參閱[如何建立或邀請開發人員][]和[如何將群組與開發人員建立關聯][]。
+For more information, see [How to create or invite developers][] and [How to associate groups with developers][].
 
-## <a name="policies"> </a> 原則
+## <a name="<a-name="policies">-</a>-policies"></a><a name="policies"> </a> Policies
 
-原則是 API 管理的強大功能，可讓發行者透過組態變更 API 的行為。原則是陳述式的集合，會因 API 的要求或回應循序執行。常見陳述式包括從 XML 對 JSON 的格式轉換，以及可限制來自開發人員的傳入呼叫數量的呼叫費率限制，而且還有許多原則可供使用。
+Policies are a powerful capability of API Management that allow the publisher to change the behavior of the API through configuration. Policies are a collection of statements that are executed sequentially on the request or response of an API. Popular statements include format conversion from XML to JSON and call rate limiting to restrict the amount of incoming calls from a developer, and many other policies are available.
 
-如果原則不另行指定，則可以在任何 API 管理原則中，使用原則運算式做為屬性值或文字值。某些原則是以原則運算式為基礎，例如[控制流程](https://msdn.microsoft.com/library/azure/dn894085.aspx#choose)和[設定變數](https://msdn.microsoft.com/library/azure/dn894085.aspx#set-variable)原則。如需詳細資訊，請參閱[進階原則](https://msdn.microsoft.com/library/azure/dn894085.aspx#AdvancedPolicies)和[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)，並觀看以下影片。
+Policy expressions can be used as attribute values or text values in any of the API Management policies, unless the policy specifies otherwise. Some policies such as the [Control flow](https://msdn.microsoft.com/library/azure/dn894085.aspx#choose) and [Set variable](https://msdn.microsoft.com/library/azure/dn894085.aspx#set-variable) policies are based on policy expressions. For more information, see [Advanced policies](https://msdn.microsoft.com/library/azure/dn894085.aspx#AdvancedPolicies), [Policy expressions](https://msdn.microsoft.com/library/azure/dn910913.aspx), and watch the following video.
 
 > [AZURE.VIDEO policy-expressions-in-azure-api-management]
 
-如需 API 管理原則的完整清單，請參閱[原則參考文件][]。如需使用和設定原則的詳細資訊，請參閱 [API 管理原則][]。如需建立產品並加上費率限制和配額原則的教學課程，請參閱[如何建立和設定進階產品設定][]。如需示範，請參閱下列影片。
+For a complete list of API Management policies, see [Policy reference][]. For more information on using and configuring policies, see [API Management policies][]. For a tutorial on creating a product with rate limit and quota policies, see [How create and configure advanced product settings][]. For a demo, see the following video.
 
 > [AZURE.VIDEO rate-limits-and-quotas]
 
-## <a name="developer-portal"> </a> 開發人員入口網站
+## <a name="<a-name="developer-portal">-</a>-developer-portal"></a><a name="developer-portal"> </a> Developer portal
 
-開發人員入口網站是開發人員可了解您的 API、檢視和呼叫作業，以及訂閱產品的地方。潛在客戶可以造訪開發人員入口網站、檢視 API 和作業，以及註冊。開發人員入口網站的 URL 位於 Azure 傳統入口網站中 API 管理服務執行個體的儀表板上。
+The developer portal is where developers can learn about your APIs, view and call operations, and subscribe to products. Prospective customers can visit the developer portal, view APIs and operations, and sign up. The URL for your developer portal is located on the dashboard in the Azure Classic Portal for your API Management service instance.
 
-透過加入自訂內容、自訂樣式和加入自己的品牌，即可自訂開發人員入口網站的外觀及操作。
+You can customize the look and feel of your developer portal by adding custom content, customizing styles, and adding your branding.
 
-## API 管理和 API 經濟效益
+## <a name="api-management-and-the-api-economy"></a>API Management and the API economy
 
-若要深入了解 API 管理，請觀看 Microsoft Ignite 2015 會議的以下簡報。
+To learn more about API Management, watch the following presentation from the Microsoft Ignite 2015 conference.
 
 > [AZURE.VIDEO microsoft-ignite-2015-azure-api-management-and-the-api-economy]
 
@@ -105,21 +106,25 @@ API 是 API 管理服務執行個體的基礎。每個 API 都代表可供開發
 [Groups]: #groups
 [Developers]: #developers
 [Policies]: #policies
-[開發人員入口網站]: #developer-portal
+[Developer portal]: #developer-portal
 
-[如何建立 API]: api-management-howto-create-apis.md
-[如何將作業加入至 API]: api-management-howto-add-operations.md
-[如何建立和發佈產品]: api-management-howto-add-products.md
-[如何建立和使用群組]: api-management-howto-create-groups.md
-[如何將群組與開發人員建立關聯]: api-management-howto-create-groups.md#associate-group-developer
-[如何建立和設定進階產品設定]: api-management-howto-product-with-rules.md
-[如何建立或邀請開發人員]: api-management-howto-create-or-invite-developers.md
-[原則參考文件]: api-management-policy-reference.md
-[API 管理原則]: api-management-howto-policies.md
+[How to create APIs]: api-management-howto-create-apis.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to create and publish a product]: api-management-howto-add-products.md
+[How to create and use groups]: api-management-howto-create-groups.md
+[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How create and configure advanced product settings]: api-management-howto-product-with-rules.md
+[How to create or invite developers]: api-management-howto-create-or-invite-developers.md
+[Policy reference]: api-management-policy-reference.md
+[API Management policies]: api-management-howto-policies.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 
 
  
 
-<!---HONumber=AcomDC_0810_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

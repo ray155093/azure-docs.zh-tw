@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure 自動化 Runbook 類型"
-   description="描述您在 Azure 自動化中可使用的各種 Runbook，以及您在決定使用何種類型時應該納入的考量。"
+   pageTitle="Azure Automation Runbook Types"
+   description="Describes the different types of runbooks that you can use in Azure Automation and considerations that you should take into account when determining which type to use. "
    services="automation"
    documentationCenter=""
    authors="mgoedtel"
@@ -15,93 +15,101 @@
    ms.date="09/12/2016"
    ms.author="bwren" />
 
-# Azure 自動化 Runbook 類型
 
-Azure 自動化支援下表簡短描述的四種 Runbook。下列各節提供各種類型的進一步資訊，包括每種類別何時使用的考量。
+# <a name="azure-automation-runbook-types"></a>Azure Automation runbook types
+
+Azure Automation supports four types of runbooks that are  briefly described in the following table.  The sections below provide further information about each type including considerations on when to use each.
 
 
-| 類型 | 說明 |
+| Type |  Description |
 |:---|:---|
-| [圖形化](#graphical-runbooks) | 以 Windows PowerShell 為基礎，而且完全在 Azure 入口網站的圖形化編輯器中建立和編輯。 | 
-| [圖形化 PowerShell 工作流程](#graphical-runbooks) | 以 Windows PowerShell 工作流程為基礎，而且完全在 Azure 入口網站的圖形化編輯器中建立和編輯。 
-| [PowerShell](#powershell-runbooks) | 以 Windows PowerShell 指令碼為基礎的文字 Runbook。
-| [PowerShell 工作流程](#powershell-workflow-runbooks) | 以 Windows PowerShell 工作流程為基礎的文字 Runbook。 |
+| [Graphical](#graphical-runbooks) | Based on Windows PowerShell and created and edited completely in graphical editor in Azure portal. | 
+| [Graphical PowerShell Workflow](#graphical-runbooks) | Based on Windows PowerShell Workflow and created and edited completely in the graphical editor in Azure portal. 
+| [PowerShell](#powershell-runbooks) | Text runbook based on Windows PowerShell script.
+| [PowerShell Workflow](#powershell-workflow-runbooks) | Text runbook based on Windows PowerShell Workflow. |
 
 
-## 圖形化 Runbook
+## <a name="graphical-runbooks"></a>Graphical runbooks
 
-[圖形化](automation-runbook-types.md#graphical-runbooks)和圖形化 PowerShell 工作流程 Runbook 是以 Azure 入口網站中的圖形化編輯器來建立和編輯。您可以將它們匯出至檔案，再匯入到另一個自動化帳戶，但無法使用另一種工具來建立或編輯。圖形化 Runbook 會產生 PowerShell 程式碼，但您無法直接檢視或修改此程式碼。圖形化 Runbook 無法轉換成其中一種[文字格式](automation-runbook-types.md)，而文字 Runbook 也無法轉換成圖形化格式。圖形化 Runbook 可以在匯入期間轉換為圖形化 PowerShell 工作流程 Runbook，反之亦然。
+[Graphical](automation-runbook-types.md#graphical-runbooks) and Graphical PowerShell Workflow runbooks are created and edited with the graphical editor in the Azure portal.  You can export them to a file and then import them into another automation account, but you cannot create or edit them with another tool.  Graphical runbooks generate PowerShell code, but you can't directly view or modify the code. Graphical runbooks cannot be converted to one of the [text formats](automation-runbook-types.md), nor can a text runbook be converted to graphical format. Graphical runbooks can be converted to Graphical PowerShell Workflow runbooks during import and vice-versa.
 
-### 優點
+### <a name="advantages"></a>Advantages
 
-- 只要具備基本的 [PowerShell](automation-powershell-workflow.md) 知識就能建立 Runbook。
-- 以視覺方式呈現管理程序。
-- 包含其他 Runbook 做為子 Runbook 來建立高階工作流程。
-
-
-### 限制
-
-- 無法在 Azure 入口網站之外編輯 Runbook。
-- 可能需要包含 PowerShell 程式碼的程式碼活動來執行複雜邏輯。
-- 無法檢視或直接編輯圖形化工作流程所建立的 PowerShell 程式碼。請注意，您可以檢視您在任何程式碼活動中所建立的程式碼。
+- Create runbooks with minimal knowledge of [PowerShell](automation-powershell-workflow.md).
+- Visually represent management processes.
+- Include other runbooks as child runbooks to create high level workflows.
 
 
-## PowerShell Runbook
+### <a name="limitations"></a>Limitations
 
-PowerShell Runbook 以 Windows PowerShell 為基礎。您可以直接使用 Azure 入口網站的文字編輯器來編輯 Runbook 的程式碼。您也可以使用任何離線文字編輯器，並[匯入 Runbook](http://msdn.microsoft.com/library/azure/dn643637.aspx) 到 Azure 自動化。
-
-### 優點
-
-- 使用 PowerShell 程式碼實作所有複雜的邏輯，不必處理 PowerShell 工作流程的其他複雜性。
-- Runbook 的啟動速度比圖形化或 PowerShell 工作流程 Runbook 更快，因為它在執行之前不需要編譯。
-
-### 限制
-
-- 必須熟悉 PowerShell 指令碼處理。
-- 無法使用[平行處理](automation-powershell-workflow.md#parallel-processing)來平行執行多個動作。
-- 發生錯誤時無法使用[檢查點](automation-powershell-workflow.md#checkpoints)繼續執行 Runbook。
-- 只有使用 Start-AzureAutomationRunbook Cmdlet 才能併入 PowerShell 工作流程 Runbook 和圖形化 Runbook 做為子 Runbook，此 Cmdlet 會建立新的工作。
-
-### 已知問題
-以下是 PowerShell Runbook 目前已知的問題。
-
-- PowerShell Runbook 無法擷取具有 Null 值的未加密[變數資產](automation-variables.md)。
-- PowerShell Runbook 無法擷取名稱中含有 *~* 的[變數資產](automation-variables.md)。
-- PowerShell Runbook 中落入迴圈的 Get-Process 大約在 80 次反覆運算之後就會損毀。
-- 如果 PowerShell Runbook 嘗試一次將非常大量的資料寫入輸出資料流，可能會失敗。在處理大型物件時，只輸出您所需的資訊，通常就可以解決這個問題。比方說，不要輸出類似 *Get-Process* 之類的資訊，您可以使用 *Get-Process | Select ProcessName, CPU*，只輸出需要的欄位。
-
-## PowerShell 工作流程 Runbook
-
-PowerShell Workflow Runbook 是以 [Windows PowerShell 工作流程](automation-powershell-workflow.md)為基礎的文字 Runbook。您可以直接使用 Azure 入口網站的文字編輯器來編輯 Runbook 的程式碼。您也可以使用任何離線文字編輯器，並[匯入 Runbook](http://msdn.microsoft.com/library/azure/dn643637.aspx) 到 Azure 自動化。
-
-### 優點
-
-- 使用 PowerShell 工作流程程式碼實作所有複雜的邏輯。
-- 發生錯誤時使用[檢查點](automation-powershell-workflow.md#checkpoints)繼續執行 Runbook。
-- 使用[平行處理](automation-powershell-workflow.md#parallel-processing)以平行執行多個動作。
-- 可併入其他圖形化 Runbook 和 PowerShell 工作流程 Runbook 成為子 Runbook，以建立高階工作流程。
+- Can't edit runbook outside of Azure portal.
+- May require a Code activity containing PowerShell code to perform complex logic.
+- Can't view or directly edit the PowerShell code that is created by the graphical workflow. Note that you can view the code you create in any Code activities.
 
 
-### 限制
+## <a name="powershell-runbooks"></a>PowerShell runbooks
 
-- 作者必須熟悉 PowerShell 工作流程。
-- Runbook 必須處理 PowerShell 工作流程額外的複雜性，例如[已還原序列化的物件](automation-powershell-workflow.md#code-changes)。
-- Runbook 所需的啟動時間比 PowerShell Runbook 更久，因為它在執行之前需要編譯。
-- 只有使用 Start-AzureAutomationRunbook Cmdlet 才能併入 PowerShell Runbook 做為子 Runbook，此 Cmdlet 會建立新的工作。
+PowerShell runbooks are based on Windows PowerShell.  You directly edit the code of the runbook using the text editor in the Azure portal.  You can also use any offline text editor and [import the runbook](http://msdn.microsoft.com/library/azure/dn643637.aspx) into Azure Automation.
+
+### <a name="advantages"></a>Advantages
+
+- Implement all complex logic with PowerShell code without the additional complexities of PowerShell Workflow. 
+- Runbook starts faster than Graphical or PowerShell Workflow runbooks since it doesn't need to be compiled before running.
+
+### <a name="limitations"></a>Limitations
+
+- Must be familiar with PowerShell scripting.
+- Can't use [parallel processing](automation-powershell-workflow.md#parallel-processing) to perform multiple actions in parallel.
+- Can't use [checkpoints](automation-powershell-workflow.md#checkpoints) to resume runbook in case of error.
+- PowerShell Workflow runbooks and Graphical runbooks can only be included as child runbooks by using the Start-AzureAutomationRunbook cmdlet which creates a new job.
+
+### <a name="known-issues"></a>Known Issues
+Following are current known issues with PowerShell runbooks.
+
+- PowerShell runbooks cannot cannot retrieve an unencrypted [variable asset](automation-variables.md) with a null value.
+- PowerShell runbooks cannot retrieve a [variable asset](automation-variables.md) with *~* in the name.
+- Get-Process in a loop in a PowerShell runbook may crash after about 80 iterations. 
+- A PowerShell runbook may fail if it attempts to write a very large amount of data to the output stream at once.   You can typically work around this issue by outputting just the information you need when working with large objects.  For example, instead of outputting something like *Get-Process*, you can output just the required fields with *Get-Process | Select ProcessName, CPU*.
+
+## <a name="powershell-workflow-runbooks"></a>PowerShell Workflow runbooks
+
+PowerShell Workflow runbooks are text runbooks based on [Windows PowerShell Workflow](automation-powershell-workflow.md).  You directly edit the code of the runbook using the text editor in the Azure portal.  You can also use any offline text editor and [import the runbook](http://msdn.microsoft.com/library/azure/dn643637.aspx) into Azure Automation.
+
+### <a name="advantages"></a>Advantages
+
+- Implement all complex logic with PowerShell Workflow code.
+- Use [checkpoints](automation-powershell-workflow.md#checkpoints) to resume runbook in case of error.
+- Use [parallel processing](automation-powershell-workflow.md#parallel-processing) to perform multiple actions in parallel.
+- Can include other Graphical runbooks and PowerShell Workflow runbooks as child runbooks to create high level workflows.
 
 
-## 考量
+### <a name="limitations"></a>Limitations
 
-在決定特定 Runbook 要使用何種類型時，您應該考慮下列其他事項。
+- Author must be familiar with PowerShell Workflow.
+- Runbook must deal with the additional complexity of PowerShell Workflow such as [deserialized objects](automation-powershell-workflow.md#code-changes).
+- Runbook takes longer to start than PowerShell runbooks since it needs to be compiled before running.
+- PowerShell runbooks can only be included as child runbooks by using the Start-AzureAutomationRunbook cmdlet which creates a new job.
 
-- 您無法將 Runbook 從圖形化轉換為文字類型，反之亦然。
-- 使用不同類型的 Runbook 作為子 Runbook 時有所限制。如需詳細資訊，請參閱 [Azure 自動化中的子 Runbook](automation-child-runbooks.md)。
+
+## <a name="considerations"></a>Considerations
+
+You should take into account the following additional considerations when determining which type to use for a particular runbook.
+
+- You can't convert runbooks from graphical to textual type or vice-versa.
+- There are limitations using runbooks of different types as a child runbook.  See [Child runbooks in Azure Automation](automation-child-runbooks.md) for more information.
 
   
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 若要深入了解如何編寫圖形化 Runbook，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
-- 若要了解適用於 Runbook 的 PowerShell 和 PowerShell 工作流程之間的差異，請參閱[了解 Windows PowerShell 工作流程](automation-powershell-workflow.md)
-- 如需如何建立或匯入 Runbook 的詳細資訊，請參閱[建立或匯入 Runbook](automation-creating-importing-runbook.md)
+- To learn more about Graphical runbook authoring, see [Graphical authoring in Azure Automation](automation-graphical-authoring-intro.md)
+- To understand the differences between PowerShell and PowerShell workflows for runbooks, see [Learning Windows PowerShell Workflow](automation-powershell-workflow.md)
+- For more information on how to create or import a Runbook, see [Creating or Importing a Runbook](automation-creating-importing-runbook.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

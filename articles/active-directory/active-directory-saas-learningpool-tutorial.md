@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Learningpool 整合 | Microsoft Azure" 
-    description="了解如何使用 Learningpool 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Learningpool | Microsoft Azure" 
+    description="Learn how to use Learningpool with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,140 +11,147 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/08/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Learningpool 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-learningpool"></a>Tutorial: Azure Active Directory integration with Learningpool
   
-本教學課程的目的是要示範 Azure 與 Learningpool 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Learningpool.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   啟用 Learningpool 單一登入的訂用帳戶
+-   A valid Azure subscription
+-   A Learningpool single sign-on enabled subscription
   
-完成本教學課程之後，您指派給 Learningpool 的 Azure AD 使用者就能夠單一登入您 Learningpool 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+After completing this tutorial, the Azure AD users you have assigned to Learningpool will be able to single sign into the application at your Learningpool company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Learningpool 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Learningpool
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-learningpool-tutorial/IC791166.png "案例")
-##啟用 Learningpool 的應用程式整合
+![Scenario](./media/active-directory-saas-learningpool-tutorial/IC791166.png "Scenario")
+##<a name="enabling-the-application-integration-for-learningpool"></a>Enabling the application integration for Learningpool
   
-本節的目的是要說明如何啟用 Learningpool 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Learningpool.
 
-###若要啟用 Learningpool 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-learningpool,-perform-the-following-steps:"></a>To enable the application integration for Learningpool, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-learningpool-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-learningpool-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-learningpool-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-learningpool-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-learningpool-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-learningpool-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-learningpool-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在搜尋方塊中，輸入 **Learningpool**。
+6.  In the **search box**, type **Learningpool**.
 
-    ![應用程式庫](./media/active-directory-saas-learningpool-tutorial/IC795073.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-learningpool-tutorial/IC795073.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Learningpool]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Learningpool**, and then click **Complete** to add the application.
 
     ![Learningpool](./media/active-directory-saas-learningpool-tutorial/IC809577.png "Learningpool")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Learningpool 中進行驗證。
+The objective of this section is to outline how to enable users to authenticate to Learningpool with their account in Azure AD using federation based on the SAML protocol.
   
-Learningpool 應用程式需要特定格式的 SAML 判斷提示，需要您將自訂屬性對應加入到您的 **saml token 屬性**設定。以下螢幕擷取畫面顯示上述的範例。
+Your Learningpool application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your **saml token attributes** configuration.  
+The following screenshot shows an example for this.
 
-![SAML Token 屬性](./media/active-directory-saas-learningpool-tutorial/IC795074.png "SAML Token 屬性")
+![SAML Token Attributes](./media/active-directory-saas-learningpool-tutorial/IC795074.png "SAML Token Attributes")
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Learningpool] 應用程式整合頁面中，按一下最上面功能表中的 [屬性] 來開啟 [SAML Token 屬性] 對話方塊。
+1.  In the Azure classic portal, on the **Learningpool** application integration page, in the menu on the top, click **Attributes** to open the **SAML Token Attributes** dialog.
 
-    ![屬性](./media/active-directory-saas-learningpool-tutorial/IC795075.png "屬性")
+    ![Attributes](./media/active-directory-saas-learningpool-tutorial/IC795075.png "Attributes")
 
-2.  若要加入必要的屬性對應，請執行下列步驟：
+2.  To add the required attribute mappings, perform the following steps:
 
-    ###
+    ###  
 
-    |屬性名稱 |屬性值 |
-	|------------------------------|---------------------------|
+  	|Attribute Name                |Attribute Value            |
+  	|------------------------------|---------------------------|
 
      urn:oid:1.2.840.113556.1.4.221 | User.userprincipalname
-	|-------------------------------|--------------------------|  
-	 urn:oid:2.5.4.42|(user.givenName -eq "value")   
-    |urn:oid:0.9.2342.19200300.100.1.3|User.mail
-    |urn:oid:2.5.4.4|User.surname
+  	|-------------------------------|--------------------------|  
+     urn:oid:2.5.4.42|User.givenname   
+  	|urn:oid:0.9.2342.19200300.100.1.3|User.mail
+  	|urn:oid:2.5.4.4|User.surname
 
-    1.  針對上表中的每個資料列，按一下 [加入使用者屬性]。
-    2.  在 [屬性名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
-    3.  在 [屬性值] 清單中，選取該資料列所顯示的屬性名稱。
-    4.  按一下 [完成]。
+    1.  For each data row in the table above, click **add user attribute**.
+    2.  In the **Attribute Name** textbox, type the attribute name shown for that row.
+    3.  From the **Attribute Value** list, select the attribute value shown for that row.
+    4.  Click **Complete**.
 
-3.  按一下 [套用變更]。
+3.  Click **Apply Changes**.
 
-4.  在您的瀏覽器中，按一下 [返回] 以再次開啟 [快速啟動] 對話方塊。
+4.  In your browser, click **Back** to open the **Quick Start** dialog again.
 
-5.  按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+5.  Click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-learningpool-tutorial/IC795076.png "設定單一登入")
+    ![Configure Singel Sign-On](./media/active-directory-saas-learningpool-tutorial/IC795076.png "Configure Singel Sign-On")
 
-6.  在 [您希望使用者如何登入 Learningpool] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+6.  On the **How would you like users to sign on to Learningpool** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-learningpool-tutorial/IC795077.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-learningpool-tutorial/IC795077.png "Configure Single Sign-On")
 
-7.  在 [設定應用程式 URL] 頁面的 [Learningpool 單一登入 URL] 文字方塊中，輸入使用者用來登入 Learningpool 應用程式的 URL (如：https://parliament.preview.learningpool.com/auth/shibboleth/index.php)，然後按一下 [下一步]。
+7.  On the **Configure App URL** page, in the **Learningpool Sign On URL** textbox, type the URL used by your users to sign on to your Learningpool application ( e.g.: https://parliament.preview.learningpool.com/auth/shibboleth/index.php), and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-learningpool-tutorial/IC795078.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-learningpool-tutorial/IC795078.png "Configure App URL")
 
-8.  在 [設定在 Learningpool 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後將憑證檔儲存在您的本機電腦中。
+8.  On the **Configure single sign-on at Learningpool** page, to download your metadata, click **Download metadata**, and then save the certificate file locally on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-learningpool-tutorial/IC795079.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-learningpool-tutorial/IC795079.png "Configure Single Sign-On")
 
-9.  將該中繼資料檔轉寄給 Learningpool 支援小組。
+9.  Forward that Metadata file to your Learningpool Support team.
 
-    >[AZURE.NOTE]單一登入必須由 Learningpool 支援小組啟用。
+    >[AZURE.NOTE]Single sign-on has to be enabled by the Learningpool support team.
 
-10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-learningpool-tutorial/IC795080.png "設定單一登入")
-##設定使用者佈建
+    ![Configure Single Sign-On](./media/active-directory-saas-learningpool-tutorial/IC795080.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 Azure AD 使用者能夠登入 Learningpool，則必須將他們佈建到 Learningpool。
+In order to enable Azure AD users to log into Learningpool, they must be provisioned into Learningpool.
   
-沒有動作項目可讓您設定 Learningpool 使用者佈建。使用者必須由您的 Learningpool 支援小組建立。
+There is no action item for you to configure user provisioning to Learningpool.  
+Users need to be created by your Learningpool support team.
 
->[AZURE.NOTE]您可以使用任何其他的 Learningpool 使用者帳戶建立工具或 Learningpool 提供的 API，佈建 AAD 使用者帳戶。
+>[AZURE.NOTE]You can use any other Learningpool user account creation tools or APIs provided by Learningpool to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Learningpool，請執行下列步驟：
+###<a name="to-assign-users-to-learningpool,-perform-the-following-steps:"></a>To assign users to Learningpool, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Learningpool] 應用程式整合頁面中，按一下 [指派使用者]。
+2.  On the **Learningpool **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-learningpool-tutorial/IC795081.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-learningpool-tutorial/IC795081.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-learningpool-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-learningpool-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

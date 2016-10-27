@@ -1,829 +1,834 @@
 <properties
-	pageTitle="使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure (舊版) | Microsoft Azure" 
-	description="描述在 Azure 入口網站中，如何在舊版部署中使用 Azure Site Recovery，將內部部署 VM 和 Windows/Linux 實體伺服器複寫至 Azure。" 
-	services="site-recovery"
-	documentationCenter=""
-	authors="rayne-wiselman"
-	manager="jwhit"
-	editor=""/>
+    pageTitle="Replicate VMware virtual machines and physical servers to Azure with Azure Site Recovery (legacy) | Microsoft Azure" 
+    description="Describes how to replicate on-premises VMs and Windows/Linux physical servers to Azure using Azure Site Recovery in a legacy deployment in the classic portal." 
+    services="site-recovery"
+    documentationCenter=""
+    authors="rayne-wiselman"
+    manager="jwhit"
+    editor=""/>
 
 <tags
-	ms.service="site-recovery"
-	ms.workload="backup-recovery"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="05/22/2016"
-	ms.author="raynew"/>
+    ms.service="site-recovery"
+    ms.workload="backup-recovery"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/29/2016"
+    ms.author="raynew"/>
 
-# 在傳統入口網站 (舊版) 中使用 Azure Site Recovery 將 VMware 虛擬機器和實體伺服器複寫至 Azure
+
+# <a name="replicate-vmware-virtual-machines-and-physical-servers-to-azure-with-azure-site-recovery-using-the-classic-portal-(legacy)"></a>Replicate VMware virtual machines and physical servers to Azure with Azure Site Recovery using the classic portal (legacy)
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](site-recovery-vmware-to-azure.md)
-- [傳統入口網站](site-recovery-vmware-to-azure-classic.md)
-- [傳統入口網站 (舊版)](site-recovery-vmware-to-azure-classic-legacy.md)
+- [Azure Portal](site-recovery-vmware-to-azure.md)
+- [Classic Portal](site-recovery-vmware-to-azure-classic.md)
+- [Classic Portal (legacy)](site-recovery-vmware-to-azure-classic-legacy.md)
 
 
-歡迎使用 Azure Site Recovery！ 本文針對舊版部署，描述在 Azure 入口網站中使用 Azure Site Recovery，將內部部署 VMware 虛擬機器或 Windows/Linux 實體伺服器複寫至 Azure。
+Welcome to Azure Site Recovery! This article describes a legacy deployment for replicating on-premises VMware virtual machines or Windows/Linux physical servers to Azure using Azure Site Recovery in the classic portal.
 
-## 概觀
+## <a name="overview"></a>Overview
 
-組織需要 BCDR 策略，以決定應用程式、工作負載和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。BCDR 策略應保護商務資料安全且可復原，並確保發生災害時工作負載仍持續可用。
+Organizations need a BCDR strategy that determines how apps, workloads, and data stay running and available during planned and unplanned downtime, and recover to normal working conditions as soon as possible. Your BCDR strategy should keep business data safe and recoverable, and ensure that workloads remain continuously available when disaster occurs.
 
-Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器和虛擬機器的複寫協調至雲端 (Azure) 或次要資料中心，協助您的 BCDR 策略。當您的主要位置發生故障時，您容錯移轉至次要位置，讓應用程式和工作負載保持可用。當它恢復正常作業時，容錯回復至您的主要位置。如需深入了解，請參閱[什麼是 Azure Site Recovery？](site-recovery-overview.md)
-
-
->[AZURE.WARNING] 本文包含**舊版指示**。請勿用於新的部署。相反地，請[遵循這些指示](site-recovery-vmware-to-azure.md)在 Azure 入口網站中部署 Site Recovery，或[使用這些指示](site-recovery-vmware-to-azure-classic.md)在傳統入口網站中設定增強的部署。如果您已經使用本文所述的方法部署，建議您移轉到傳統入口網站中增強的部署。
+Site Recovery is an Azure service that contributes to your BCDR strategy by orchestrating replication of on-premises physical servers and virtual machines to the cloud (Azure) or to a secondary datacenter. When outages occur in your primary location, you fail over to the secondary location to keep apps and workloads available. You fail back to your primary location when it returns to normal operations. Learn more in [What is Azure Site Recovery?](site-recovery-overview.md)
 
 
-## 移轉至增強部署
-
-只有在您已使用本文中的指示部署 Site Recovery 時，本節才有關。
-
-若要移轉現有的部署，您必須：
-
-1. 在內部部署網站部署新的 Site Recovery 元件。
-2. 設定認證以自動探索新組態伺服器上的 VMware VM。
-3. 使用新的組態伺服器探索 VMware 伺服器。
-3. 使用新的組態伺服器建立新的保護群組。
+>[AZURE.WARNING] This article contains **legacy instructions**. Don't use it for new deployments. Instead, [follow these instructions](site-recovery-vmware-to-azure.md) to deploy Site Recovery in the Azure portal, or [use these instructions](site-recovery-vmware-to-azure-classic.md) to configure the enhanced deployment in the classic portal. If you've already deployed using the method described in this article, we recommend that you migrate to the enhanced deployment in the classic portal.
 
 
-開始之前：
+## <a name="migrate-to-the-enhanced-deployment"></a>Migrate to the enhanced deployment
 
-- 建議您設計維護時段進行移轉。
-- 只有在您具有舊版部署期間建立的現有保護群組時，[移轉機器] 選項才可用。
-- 完成移轉步驟之後，可能需要 15 分鐘或更長的時間來重新整理認證，並探索及重新整理虛擬機器，以便您可以將它們加入至保護群組。您可以手動重新整理而不用等待。
+This section is only relevant if you've already deployed Site Recovery using the instructions in this article.
 
-移轉如下所示：
+To migrate your existing deployment you'll need to:
 
-1. 閱讀[傳統入口網站中的增強部署](site-recovery-vmware-to-azure-classic.md#enhanced-deployment)的相關資訊。檢閱[增強架構](site-recovery-vmware-to-azure-classic.md#scenario-architecture)和[必要條件](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment)。
-2. 從您目前複寫的機器解除安裝行動服務。當您將機器加入至新的保護群組時，機器上將安裝新版本的服務。
-3. 下載[保存庫註冊金鑰](site-recovery-vmware-to-azure-classic.md#step-4-download-a-vault-registration-key)，並[執行整合安裝精靈](site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)，以安裝組態伺服器、處理序伺服器和主要目標伺服器元件。深入了解[容量規劃](site-recovery-vmware-to-azure-classic.md#capacity-planning)。
-4. [設定認證](site-recovery-vmware-to-azure-classic.md#step-6-set-up-credentials-for-the-vcenter-server)供 Site Recovery 用來存取 VMware 伺服器，以自動探索 VMware VM。閱讀[需要的權限](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)的相關資訊。
-5. 加入 [vCenter 伺服器或 vSphere 主機](site-recovery-vmware-to-azure-classic.md#step-7-add-vcenter-servers-and-esxi-hosts)。可能需要 15 分鐘以上，伺服器才會出現在 Site Recovery 入口網站中。
-6. 建立[新的保護群組](site-recovery-vmware-to-azure-classic.md#step-8-create-a-protection-group)。可能需要 15 分鐘讓入口網站重新整理，以便探索和顯示虛擬機器。如果您不想等待，可以反白顯示管理伺服器名稱 (不要按它) > [重新整理]。
-7. 在新的保護群組底下按一下 [移轉機器]。
-
-	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration1.png)
-
-8. 在 [選取機器] 中選取您想要從中移轉的保護群組，以及您想要移轉的機器。
-
-	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration2.png)
-
-9. 在 [設定目標設定] 中指定您是否要針對所有機器使用相同設定，然後選取處理序伺服器和 Azure 儲存體帳戶。如果您沒有個別的處理序伺服器，則這是組態伺服器的 IP 位址。
+1. Deploy new Site Recovery components in your on-premises site.
+2. Configure credentials for automatic discovery of VMware VMs on the new configuration server.
+3. Discover the VMware servers with the new configuration server.
+3. Create a new protection group with the new configuration server.
 
 
-	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration3.png)
+Before you start:
 
-	> [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
+- We recommend that you set up a maintenance window for migration.
+- The **Migrate Machines** option is available only if you have existing protection groups that were created during a legacy deployment.
+- After you've completed the migration steps it can take 15 minutes or longer to refresh the credentials, and to discover and refresh virtual machines so that you can add them to a protection group. You can refresh manually instead of waiting. 
 
-10. 在 [指定帳戶] 中，選取您為處理伺服器建立來存取機器以推送新行動服務版本的帳戶。
+Migrate as follows:
 
-	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration4.png)
+1. Read about [enhanced deployment in the classic portal](site-recovery-vmware-to-azure-classic.md#enhanced-deployment). Review the enhanced [architecture](site-recovery-vmware-to-azure-classic.md#scenario-architecture), and [prerequisites](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment).
+2. Uninstall the Mobility service from machines you're currently replicating. A new version of the service will be installed on the machines when you add them to the new protection group.
+3. Download a [vault registration key](site-recovery-vmware-to-azure-classic.md#step-4-download-a-vault-registration-key) and [run the unified setup wizard](site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server) to install the configuration server, process server, and master target server components. Read more about [capacity planning](site-recovery-vmware-to-azure-classic.md#capacity-planning).
+4. [Set up credentials](site-recovery-vmware-to-azure-classic.md#step-6-set-up-credentials-for-the-vcenter-server) that Site Recovery can use to access VMware server to automatically discover VMware VMs. Learn about [required permissions](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access).
+5. Add [vCenter servers or vSphere hosts](site-recovery-vmware-to-azure-classic.md#step-7-add-vcenter-servers-and-esxi-hosts). It can take 15 minutes for more for servers to appear in the Site Recovery portal.
+6. Create a [new protection group](site-recovery-vmware-to-azure-classic.md#step-8-create-a-protection-group). It can take up to 15 minutes for the portal to refresh so that the virtual machines are discovered and appear. If you don't want to wait you can highlight the management server name (don't click it) > **Refresh**.
+7. Under the new protection group click **Migrate Machines**.
 
-11. Site Recovery 會將複寫的資料移轉至您所提供的 Azure 儲存體帳戶中。您可以選擇性地重複使用您在舊版部署中使用的儲存體帳戶。
-12. 在作業完成之後會自動同步處理虛擬機器。同步處理完成之後，您可以從舊版保護群組中刪除虛擬機器。
-13. 所有機器都移轉之後，您可以刪除舊版保護群組。
-14. 請記得在同步處理完成之後指定機器的容錯移轉屬性和 Azure 網路設定。
-15. 如果您有現有的復原方案，您可以使用 [移轉復原方案] 選項將它們移轉到增強型部署。您應該只在已經移轉所有受保護的機器之後執行這項操作。
+    ![Add account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration1.png)
 
-	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration5.png)
+8. In **Select Machines** select the protection group you want to migrate from, and the machines you want to migrate.
 
->[AZURE.NOTE] 完成移轉之後，請繼續閱讀[增強的文章](site-recovery-vmware-to-azure-classic.md)。此舊版文章的其餘部分將不再有關，您不需要再依照文章中說明的任何其他步驟**。
+    ![Add account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration2.png)
+
+9. In **Configure Target Settings** specify whether you want to use the same settings for all machines and select the process server and Azure storage account. If you don't have a separate process server this will be the the IP address of the configuration server server.
 
 
+    ![Add account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration3.png)
+
+    > [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) across resource groups within the same subscription or across subscriptions is not supported for storage accounts used for deploying Site Recovery.
+
+10. In **Specify Accounts**, select the account you created for the process server to access the machine to push the new version of the Mobility service.
+
+    ![Add account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration4.png)
+
+11. Site Recovery will migrate your replicated data to the Azure storage account that you provided. Optionally you can reuse the storage account you used in the legacy deployment.
+12. After the job finishes virtual machines will automatically synchronize. After synchronization completes you can delete the virtual machines from the legacy protection group.
+13. After all machines have migrated you can delete the legacy protection group.
+14. Remember to specify the failover properties for machines, and the Azure network settings after synchronization is complete.
+15. If you have existing recovery plans, you can migrate them to the enhanced deployment with the **Migrate Recovery Plan** option. You should only do this after all protected machines have been migrated. 
+
+    ![Add account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration5.png)
+
+>[AZURE.NOTE] After you've finished migration continue with the [enhanced article](site-recovery-vmware-to-azure-classic.md). The rest of this legacy article will no longer be relevant and you don't need to follow any more of the steps described in it**.
 
 
-## 我需要什麼？
 
-此圖表顯示部署元件。
 
-![新增保存庫](./media/site-recovery-vmware-to-azure-classic-legacy/architecture.png)
+## <a name="what-do-i-need?"></a>What do I need?
 
-以下是您需要的內容：
+This diagram shows the deployment components.
 
-**元件** | **部署** | **詳細資料**
+![New vault](./media/site-recovery-vmware-to-azure-classic-legacy/architecture.png)
+
+Here's what you'll need:
+
+**Component** | **Deployment** | **Details**
 --- | --- | ---
-**組態伺服器** | 與 Site Recovery 位於相同訂用帳戶中的 Azure 標準 A3 虛擬機器。 | 組態伺服器可在 Azure 中的受保護機器、處理序伺服器與主要目標伺服器之間協調通訊。它會在容錯移轉發生時在 Azure 中設定複寫並協調復原。
-**主要目標伺服器** | Azure 虛擬機器 - 以 Windows Server 2012 R2 資源庫映像為基礎的 Windows 伺服器 (用以保護 Windows 機器)，或以 OpenLogic CentOS 6.6 資源庫映像為基礎的 Linux 伺服器 (用以保護 Linux 機器)。<br/><br/> 有三種大小選項可供使用 - 標準 A4、標準 D14 和標準 DS4。<br/><br/> 伺服器會連接到與組態伺服器相同的 Azure 網路。<br/><br/> 您在 Site Recovery 入口網站中設定 | 它會使用在您 Azure 儲存體帳戶中 Blob 儲存體上建立之連結的 VHD，從您的受保護機器接收和保留複寫的資料。<br/><br/> 特別針對設定工作負載的保護選取標準 DS4，該工作負載需要使用進階儲存體帳戶的一致高效能和低延遲。
-**處理序伺服器** | 執行 Windows Server 2012 R2 的內部部署虛擬或實體伺服器<br/><br/> 建議您將它放置在與您要保護的機器相同的網路與 LAN 區段上，但它也可以在不同的網路上執行，只要受保護的機器對它而言具有 L3 網路可見性即可。<br/><br/> 您會在 Site Recovery 入口網站中設定它，並向組態伺服器註冊。 | 受保護的機器會傳送複寫資料給內部部署處理序伺服器。它具有磁碟快取功能，可快取本身接收的複寫資料。它會對該資料執行一些動作。<br/><br/> 在將資料傳送至主要目標伺服器之前，它會藉由快取、壓縮及加密資料，將資料最佳化。<br/><br/> 它會處理「行動服務」的推送安裝。<br/><br/> 它會執行 VMware 虛擬機器的自動探索。
-**內部部署機器** | 內部部署 VMware 虛擬機器，或執行 Windows 或 Linux 的實體伺服器。 | 您設定要套用至一或多部機器的複寫設定。您可以將容錯移轉個別機器，或者，更常見的是您聚集到復原方案的多部機器。 
-**行動服務** | 安裝在您想要保護的每個虛擬機器或實體伺服器上<br/><br/> 可手動安裝，或當您為機器啟用複寫時，由處理伺服器自動推送並安裝。 | 行動服務會在初始複寫期間將資料傳送到處理序伺服器。當機器處於受保護的狀態後 (重新同步處理完成之後)，行動服務會擷取記憶體中的磁碟寫入，並傳送到處理序伺服器。Windows 伺服器的應用程式一致性是利用 VSS 來達成。
-**Azure Site Recovery 保存庫** | 您使用 Azure 訂用帳戶來建立 Site Recovery 保存庫，並在保存庫中註冊伺服器。 | 保存庫可在您的內部部署網站與 Azure 之間協調資料複寫、容錯移轉及復原等作業。
-**複寫機制** | **透過網際網路** - 透過網際網路使用安全 SSL/TLS 通道，從受保護的內部部署伺服器到 Azure 進行通訊和資料複寫。這是預設選項。<br/><br/> **VPN/ExpressRoute** - 透過 VPN 連線，在內部部署伺服器與 Azure 之間進行通訊和資料複寫。您將必須在內部部署站台與 Azure 網路之間設定站對站 VPN 或 ExpressRoute 連接。<br/><br/> 您將選擇在 Site Recovery 部署期間想要如何複寫。設定此機制之後，如果變更機制，一定會影響現有機器的複寫。 | 這些選項都不需要在受保護機器上開啟任何輸入網路連接埠。所有的網路通訊是從內部部署站台起始。 
+**Configuration server** | An Azure standard A3 virtual machine in the same subscription as Site Recovery. | The configuration server coordinates communication between protected machines, the process server, and master target servers in Azure. It sets up replication and coordinates recovery in Azure when failover occurs.
+**Master target server** | An Azure virtual machine — Either a Windows server based on a Windows Server 2012 R2 gallery image (to protect Windows machines) or as a Linux server based on a OpenLogic CentOS 6.6 gallery image (to protect Linux machines).<br/><br/> Three sizing options are available – Standard A4, Standard D14 and Standard DS4.<br/><br/> The server is connected to the same Azure network as the configuration server.<br/><br/> You set up in the Site Recovery portal | It receives and retains replicated data from your protected machines using attached VHDs created on blob storage in your Azure storage account.<br/><br/> Select Standard DS4 specifically for configuring protection for workloads requiring consistent high performance and low latency using Premium Storage Account.
+**Process server** | An on-premises virtual or physical server running Windows Server 2012 R2<br/><br/> We recommend it's placed on the same network and LAN segment as the machines that you want to protect, but it can run on a different network as long as protected machines have L3 network visibility to it.<br/><br/> You set it up and register it to the configuration server in the Site Recovery portal. | Protected machines send replication data to the on-premises process server. It has a disk-based cache to cache replication data that it receives. It performs a number of actions on that data.<br/><br/> It optimizes data by caching, compressing, and encrypting it before sending it on to the master target server.<br/><br/> It handles push installation of the Mobility Service.<br/><br/> It performs automatic discovery of VMware virtual machines.
+**On-premises machines** | On-premises VMware virtual machines, or physical servers running Windows or Linux. | You configure replication settings that apply one or more machines. You can fail over an individual machine or more commonly, multiple machines that you gather together into a recovery plan. 
+**Mobility service** | Installed on each virtual machine or physical server you want to protect<br/><br/> Can be installed manually or pushed and installed automatically by the process server when you enable replication for a machine. | The Mobility service sends data to the process server during initial replication (resync). After the machine is in a protected state (after resync finishes) the Mobility service captures writes to disk in-memory and sends them to the process server. Applicationconsistency for Windows servers is achieved using VSS.
+**Azure Site Recovery vault** | You create a Site Recovery  vault with an Azure subscription and register servers in the vault. | The vault coordinates and orchestrates data replication, failover, and recovery between your on-premises site and Azure.
+**Replication mechanism** | **Over the Internet**—Communicates and replicates data from protected on-premises servers to Azure using secure SSL/TLS channel over the internet. This is the default option.<br/><br/> **VPN/ExpressRoute**—Communicates and replicates data between on-premises servers and Azure over a VPN connection. You'll need to set up a site-to-site VPN or an ExpressRoute connection between your on-premises site and Azure network.<br/><br/> You'll select how you want to replicate during Site Recovery deployment. You can't change the mechanism after it's configured without impacting replication of existing machines. | Neither option requires you to open any inbound network ports on protected machines. All network communication is initiated from the on-premises site. 
 
-## 容量規劃
+## <a name="capacity-planning"></a>Capacity planning
 
-您需要考量的主要方面︰
+The main areas you'll need to consider:
 
-- **來源環境**—VMware 基礎結構、來源機器設定和需求。
-- **元件伺服器**—處理序伺服器、設定伺服器和主要目標伺服器
+- **Source environment**—The VMware infrastructure, source machine settings and requirements.
+- **Component servers**—The process server, configuration server, and master target server 
 
-### 來源環境的考量
+### <a name="considerations-for-the-source-environment"></a>Considerations for the source environment
 
-- **磁碟最大大小**—可以連接至虛擬機器的磁碟的目前大小上限為 1 TB。因此，可以複寫的來源磁碟的最大大小也是限制為 1 TB。
-- **每一來源的最大大小**—單一來源機器的最大大小是 31 TB (含 31 個磁碟)，以及對主要目標伺服器佈建一個 D14 執行個體。
-- **每一主要目標伺服器的來源數目**—可以使用單一主要目標伺服器保護的多個來源機器。不過，無法跨多個主要目標伺服器保護單一來源機器，因為在磁碟複寫時，會在 Azure Blob 儲存體上建立可反映磁碟大小的 VHD，並將其附加至主要目標伺服器做為資料磁碟。
-- **每一來源每日變更率上限**—考慮每一來源建議的變更率時，有三個需要考量的因素。針對目標式考量，來源上每個作業的目標磁碟需要兩個 IOP。這是因為目標磁碟上將會發生舊資料的讀取和新資料的寫入。
-	- **處理序伺服器支援的每日變更率**—來源機器不能跨越多個處理序伺服器。單一處理序伺服器可以支援多達 1 TB 的每日變更率。因此 1 TB 是來源機器支援的每日資料變更率上限。
-	- **目標磁碟支援的最大輸送量**—每一來源磁碟的最大變換不能超過 144 GB/天 (以 8K 寫入大小)。請參閱主要目標小節中的資料表，以取得各種寫入大小的目標的輸送量和 IOP。必須將此數字除以 2，因為每個來源 IOP 會在目標磁碟上產生 2 個 IOP。設定進階儲存體帳戶的目標時，請參閱 [Azure 延展性和效能目標](../storage/storage-scalability-targets.md#scalability-targets-for-premium-storage-accounts)。
-	- **儲存體帳戶支援的最大輸送量**—來源不能跨越多個儲存體帳戶。假設某個儲存體帳戶每秒可接受最多 20,000 個要求，並且每個來源 IOP 會在主要目標伺服器上產生 2 個 IOP，建議您將來源的 IOP 數目保留為 10,000。設定進階儲存體帳戶的來源時，請參閱 [Azure 延展性和效能目標](../storage/storage-scalability-targets.md#scalability-targets-for-premium-storage-accounts)。
+- **Maximum disk size**—The current maximum size of the disk that can be attached to a virtual machine is 1 TB. Thus the maximum size of a source disk that can be replicated is also limited to 1 TB.
+- **Maximum size per source**—The maximum size of a single source machine is 31 TB (with 31 disks) and with a D14 instance provisioned for the master target server. 
+- **Number of sources per master target server**—Multiple source machines can be protected with a single master target server. However, a single source machine can’t be protected across multiple master target servers, because as disks replicate, a VHD that mirrors the size of the disk is created on Azure blob storage and attached as a data disk to the master target server.  
+- **Maximum daily change rate per source**—There are three factors that need to be considered when considering the recommended change rate per source. For the target based considerations two IOPS are required on the target disk for each operation on the source. This is because a read of old data and a write of the new data will happen on the target disk. 
+    - **Daily change rate supported by the process server**—A source machine can't span multiple process servers. A single process server can support up to 1 TB of daily change rate. Hence 1 TB is the maximum daily data change rate supported for a source machine. 
+    - **Maximum throughput supported by the target disk**—Maximum churn per source disk can't be more than 144 GB/day (with 8K write size). See the table in the master target section for the throughput and IOPs of the target for various write sizes. This number must be divided by two because each source IOP generates 2 IOPS on the target disk. Read about [Azure scalability and performance targets](../storage/storage-scalability-targets.md#scalability-targets-for-premium-storage-accounts) when configuring the target for premium storage accounts.
+    - **Maximum throughput supported by the storage account**—A source can't span multiple storage accounts. Given that a storage account takes a maximum of 20,000 requests per second and that each source IOP generates 2 IOPS at the master target server, we recommend you keep the number of IOPS across the source to 10,000. Read about [Azure scalability and performance targets](../storage/storage-scalability-targets.md#scalability-targets-for-premium-storage-accounts) when configuring the source for premium storage accounts.
 
-### 元件伺服器的考量
+### <a name="considerations-for-component-servers"></a>Considerations for component servers
 
-表 1 摘要說明設定和主要目標伺服器的虛擬機器大小。
+Table 1 summarizes the virtual machine sizes for the configuration and master target servers.
 
-**元件** | **部署的 Azure 執行個體** | **核心** | **記憶體** | **最大磁碟** | **磁碟大小**
+**Component** | **Deployed Azure instances** | **Cores** | **Memory** | **Max disks** | **Disk size**
 --- | --- | --- | --- | --- | ---
-設定伺服器 | 標準 A3 | 4 | 7 GB | 8 | 1023 GB
-主要目標伺服器 | 標準 A4 | 8 | 14 GB | 16 | 1023 GB
- | 標準 D14 | 16 | 112 GB | 32 | 1023 GB
- | 標準 DS4 | 8 | 28 GB | 16 | 1023 GB
+Configuration server | Standard A3 | 4 | 7 GB | 8 | 1023 GB
+Master target server | Standard A4 | 8 | 14 GB | 16 | 1023 GB
+ | Standard D14 | 16 | 112 GB | 32 | 1023 GB
+ | Standard DS4 | 8 | 28 GB | 16 | 1023 GB
 
-**表 1**
+**Table 1**
 
-#### 處理序伺服器考量
+#### <a name="process-server-considerations"></a>Process server considerations
 
-通常處理序伺服器的大小取決於跨所有受保護的工作負載的每日變更率。
+Generally process server sizing depends on the daily change rate across all protected workloads.
 
 
-- 您需要足夠的計算才能執行內嵌壓縮和加密之類的工作。
-- 處理序伺服器使用磁碟快取。確定建議的快取空間和磁碟輸送量可供使用，以在加速網路瓶頸或中斷時促進儲存的資料變更。
-- 確保有足夠的頻寬，使得處理序伺服器可以將資料上傳到主要目標伺服器，以提供持續的資料保護。
+- You need sufficient compute to perform tasks such as inline compression and encryption.
+- The process server uses disk based cache. Make sure the recommended cache space and disk throughput is available to facilitate the data changes stored in the event of network bottleneck or outage. 
+- Ensure sufficient bandwidth  so that the process server can upload the data to the master target server to provide continuous data protection. 
 
-表 2 提供處理序伺服器指導方針的摘要。
+Table 2 provides a summary of the process server guidelines.
 
-**資料變更率** | **CPU** | **記憶體** | **快取磁碟大小**| **快取磁碟輸送量** | **輸入/輸出頻寬**
+**Data change rate** | **CPU** | **Memory** | **Cache disk size**| **Cache disk throughput** | **Bandwidth ingress/egress**
 --- | --- | --- | --- | --- | ---
-< 300 GB | 4 個 vCPU (2 個通訊端 * 雙核心 @ 2.5GHz) | 4 GB | 600 GB | 每秒 7 至 10 MB | 30 Mbps/21 Mbps
-300 至 600 GB | 8 個 vCPU (2 個通訊端 * 四核心 @ 2.5GHz) | 6 GB | 600 GB | 每秒 11 至 15 MB | 60 Mbps/42 Mbps
-600 GB 至 1 TB | 12 個 vCPU (2 個通訊端 * 六核心 @ 2.5GHz) | 8 GB | 600 GB | 每秒 16 至 20 MB | 100 Mbps/70 Mbps
-> 1 TB | 部署另一個處理序伺服器 | | | | 
+< 300 GB | 4 vCPUs (2 sockets * 2 cores @ 2.5GHz) | 4 GB | 600 GB | 7 to 10 MB per second | 30 Mbps/21 Mbps
+300 to 600 GB | 8 vCPUs (2 sockets * 4 cores @ 2.5GHz) | 6 GB | 600 GB | 11 to 15 MB per second | 60 Mbps/42 Mbps
+600 GB to 1 TB | 12 vCPUs (2 sockets * 6 cores @ 2.5GHz) | 8 GB | 600 GB | 16 to 20 MB per second | 100 Mbps/70 Mbps
+> 1 TB | Deploy another process server | | | | 
 
-**資料表 2**
+**Table 2**
 
-其中：
+Where: 
 
-- 輸入是下載頻寬 (來源與處理序伺服器之間的內部網路)。
-- 輸出是上傳頻寬 (處理序伺服器與主要目標伺服器之間的網際網路)。輸出數目假設平均 30% 的處理序伺服器壓縮。
-- 針對快取磁碟，建議所有的處理序伺服器的個別作業系統磁碟最少有 128 GB。
-- 針對快取磁碟輸送量，使用了下列儲存體進行基準測試：採用 RAID 10 配置的 8 個 10000 轉 RPM 的 SAS 磁碟機。
+- Ingress is download bandwidth (intranet between the source and process server).
+- Egress is upload bandwidth (internet between the process server and master target server). Egress numbers presume average 30% process server compression.
+- For cache disk a separate OS disk of minimum 128 GB is recommended for all process servers.
+- For cache disk throughput the following storage was used for benchmarking: 8 SAS drives of 10 K RPM with RAID 10 configuration.
 
-#### 設定伺服器考量
+#### <a name="configuration-server-considerations"></a>Configuration server considerations
 
-每個設定伺服器可以利用 3 到 4 個磁碟區支援多達 100 個來源機器。如果部署較大，建議您部署另一個組態伺服器。請參閱表 1 以取得設定伺服器的預設虛擬機器屬性。
+Each configuration server can support up to 100 source machines with 3-4 volumes. If your deployment is larger we recommend you deploy another configuration server. See Table 1 for the default virtual machine properties of the configuration server. 
 
-#### 主要目標伺服器與儲存體帳戶的考量
+#### <a name="master-target-server-and-storage-account-considerations"></a>Master target server and storage account considerations
 
-每個主要目標伺服器的儲存體包括作業系統磁碟、保留磁碟區和資料磁碟。在 Site Recovery 入口網站中所定義的保留時段持續時間中，保留磁碟機會維護磁碟變更的日誌。如需虛擬機器伺服器屬性的主要目標，請參閱表 1。表 3 顯示如何使用 A4 的磁碟。
+The storage for each master target server includes an OS disk, a retention volume, and data disks. The retention drive maintains the journal of disk changes for the duration of the retention window defined in the Site Recovery portal.  Refer to Table 1 for the virtual machine properties of the master target server. Table 3 shows how the disks of A4 are used.
 
-**執行個體** | **作業系統磁碟** | **保留** | **資料磁碟**
+**Instance** | **OS disk** | **Retention** | **Data disks**
 --- | --- | --- | ---
- | | **保留** | **資料磁碟**
-標準 A4 | 1 個磁碟 (1 * 1023 GB) | 1 個磁碟 (1 * 1023 GB) | 15 個磁碟 (15 * 1023 GB)
-標準 D14 | 1 個磁碟 (1 * 1023 GB) | 1 個磁碟 (1 * 1023 GB) | 31 個磁碟 (15 * 1023 GB)
-標準 DS4 | 1 個磁碟 (1 * 1023 GB) | 1 個磁碟 (1 * 1023 GB) | 15 個磁碟 (15 * 1023 GB)
+ | | **Retention** | **Data disks**
+Standard A4 | 1 disk (1 * 1023 GB) | 1 disk ( 1 * 1023 GB) | 15 disks (15 * 1023 GB)
+Standard D14 |  1 disk (1 * 1023 GB) | 1 disk ( 1 * 1023 GB) | 31 disks (15 * 1023 GB)
+Standard DS4 |  1 disk (1 * 1023 GB) | 1 disk ( 1 * 1023 GB) | 15 disks (15 * 1023 GB)
 
-**資料表 3**
+**Table 3**
 
-主要目標伺服器的容量計劃仰賴於：
+Capacity planning for the master target server depends on:
 
-- Azure 儲存體效能和限制
-	- 單一儲存體帳戶中標準層 VM 的高度使用的磁碟數目上限約為 40 (每一磁碟 20,000/500 IOPS)。請參閱[標準儲存體的延展性目標](../storage/storage-scalability-targets.md#scalability-targets-for-standard-storage-accounts)和[進階儲存體帳戶的延展性目標](../storage/storage-scalability-targets.md#scalability-targets-for-premium-storage-accounts)。
--	每日變更率
--	保留磁碟區儲存體。
+- Azure storage performance and limitations
+    - The maximum number of highly utilized disks for a Standard Tier VM, is about 40 (20,000/500 IOPS per disk) in a single storage account. Read about [scalability targets for standard storage sccounts](../storage/storage-scalability-targets.md#scalability-targets-for-standard-storage-accounts) and for [premium storage sccounts](../storage/storage-scalability-targets.md#scalability-targets-for-premium-storage-accounts).
+-   Daily change rate 
+-   Retention volume storage.
 
-請注意：
+Note that:
 
-- 一個來源不能跨越多個儲存體帳戶。這會套用到屬於您設定保護時選取的儲存體帳戶的資料磁碟。作業系統和保留磁碟通常屬於自動部署的儲存體帳戶。
-- 需要的保留儲存體磁碟區取決於每日變更率和保留的天數。每個主要目標伺服器需要的保留儲存體 = 每日來自來源的變換總計 * 保留天數。
-- 每個主要目標伺服器只有一個保留磁碟區。保留磁碟區會在連接到主要目標伺服器的磁碟之間共用。例如：
-	- 如果有一部具備 5 個磁碟的來源機器，並且在來源上的每個磁碟會產生 120 個 IOP (8K 大小)，則這可轉譯為每一磁碟 240 個 IOP (每一來源 IO 目標磁碟上 2 個作業)。每一磁碟的 IOP 限制 500，在 Azure 內是 240 個 IOP。
-	- 在保留磁碟區上，這會變成 120 * 5 = 600 個 IOP，而這可能會變成瓶頸。在此案例中，加入更多磁碟到保留的磁碟區，並跨越以做為 RAID 等量磁碟區設定是不錯的策略。因為 IOP 會分散到多個磁碟機，這將可改進效能。要加入至保留磁碟區的磁碟機數目如下所示：
-		- 來自來源環境的 IOP 總計 / 500
-		- 每日來自來源環境的變換總計 (未壓縮) / 287 GB。287 GB 是每日的目標磁碟支援的最大輸送量。此度量會隨著寫入大小 8K 的因數而異，因為在此情況下，8K 是假設的寫入大小。例如，如果寫入大小是 4K，則輸送量會是 287/2。而且如果寫入大小為 16K，那麼輸送量會是 287*2。
-- 儲存體帳戶所需的數目 = 來源 IOP 總計 / 10000。
+- One source can't span multiple storage accounts. This applies to the data disk that go to the storage accounts selected when you configure protection. The OS and the retention disks usually go to the automatically deployed storage account.
+- The retention storage volume required depends on the daily change rate and the number of retention days. The retention storage required per master target server = total churn from source per day * number of retention days. 
+- Each master target server has only one retention volume. The retention volume is shared across the disks attached to the master target server. For example:
+    - If there's a source machine with 5 disks and each disk generates 120 IOPS (8K size) on the source, this translates to 240 IOPS per disk (2 operations on the target disk per source IO). 240 IOPS is within the Azure per disk IOPS limit of 500.
+    - On the retention volume, this becomes 120 * 5 = 600 IOPS and this can become a bottle neck. In this scenario, a good strategy would be to add more disks to the retention volume and span it across, as a RAID stripe configuration. This will improve performance because the IOPS are distributed across multiple drives. The number of drives to be added to the retention volume will be as follows:
+        - Total IOPS from source environment / 500
+        - Total churn per day from source environment (uncompressed) / 287 GB. 287 GB is the maximum throughput supported by a target disk per day. This metric will vary based on the write size with a factor of 8K, because in this case 8K is thee assumed write size. For example, if the write size is 4K then throughput will be 287/2. And if the write size is 16K then throughput will be 287*2.
+- The number of storage accounts required = total source IOPs/10000.
 
 
-## 開始之前
+## <a name="before-you-start"></a>Before you start
 
-**元件** | **需求** | **詳細資料**
+**Component** | **Requirements** | **Details**
 --- | --- | --- 
-**Azure 帳戶** | 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。
-**Azure 儲存體** | 您將需要 Azure 儲存體帳戶來儲存複寫的資料<br/><br/> 帳戶應該是[標準異地備援儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)或[進階儲存體帳戶](../storage/storage-premium-storage.md)。<br/><br/> 此帳戶應與 Azure 站台復原服務位於相同的區域，且與相同的訂閱相關聯。我們不支援使用[新的 Azure 入口網站](../storage/storage-create-storage-account.md)來跨資源群組移動所建立的儲存體帳戶。<br/><br/> 若要深入了解，請參閱 [Microsoft Azure 儲存體簡介](../storage/storage-introduction.md)
-**Azure 虛擬網路** | 您需要一部 Azure 虛擬網路來部署組態伺服器與主要目標伺服器。它應該與 Azure Site Recovery 保存庫位於相同的訂用帳戶和區域中。如果您想要透過 ExpressRoute 或 VPN 連接來複寫資料，Azure 虛擬網路必須透過 ExpressRoute 連線或站對站 VPN 連接到內部部署網路。
-**Azure 資源** | 請確認您有足夠的 Azure 資源以部署所有元件。如需深入了解，請參閱[Azure 訂用帳戶限制](../azure-subscription-service-limits.md)。
-**Azure 虛擬機器** | 您想要保護的虛擬機器應該要符合 [Azure 必要條件](site-recovery-best-practices.md)。<br/><br/> **磁碟計數** - 單一受保護伺服器上最多可支援 31 個磁碟<br/><br/> **磁碟大小** - 個別磁碟容量應該在 1023 GB 以內<br/><br/> **叢集** - 不支援叢集伺服器<br/><br/> **開機** - 不支援「整合可延伸韌體介面」(UEFI)/「可延伸韌體介面」(EFI) 開機<br/><br/> **磁碟區** - 不支援 Bitlocker 加密的磁碟區<br/><br/> **伺服器名稱** - 名稱應包含 1 到 63 個字元 (字母、數字和連字號)。名稱必須以字母或數字開頭，並以字母或數字結尾。機器受到保護之後，您可以修改 Azure 的名稱。
-**設定伺服器** | 將在您的訂用帳戶中，為組態伺服器建立以 Azure Site Recovery Windows Server 2012 R2 資源庫映像為基礎的標準 A3 虛擬機器。它會建立為新的雲端服務中的第一個執行個體。如果您選取 [公用網際網路] 作為組態伺服器的連線類型，系統將會使用保留的公用 IP 位址來建立雲端服務。<br/><br/> 安裝路徑僅限使用英文字元。
-**主要目標伺服器** | Azure 虛擬機器，標準 A4、D14 或 DS4。<br/><br/> 安裝路徑僅限使用英文字元。例如，執行 Linux 的主要目標伺服器的路徑應該為 **/usr/local/ASR**。
-**處理序伺服器** | 您可以在執行最新版更新之 Windows Server 2012 R2 的實體或虛擬機器上部署處理序伺服器。在 C:/ 上安裝。<br/><br/> 建議您將此伺服器放在與您要保護的機器相同的網路與子網路上。<br/><br/> 在處理序伺服器上安裝 VMware vSphere CLI 5.5.0。處理伺服器上必須要有 VMware vSphere CLI 元件，才能探索由 vCenter 伺服器管理的虛擬機器或在 ESXi 主機上執行的虛擬機器。<br/><br/> 安裝路徑僅限使用英文字元。<br/><br/> 不支援 ReFS 檔案系統。
-**VMware** | VMware vCenter 伺服器，管理您的 VMware vSphere Hypervisor。它應該執行 vCenter 5.1 或 5.5 版 (含最新更新)。<br/><br/> 一或多個 vSphere Hypervisor，包含您要保護的 VMware 虛擬機器。Hypervisor 應該執行 ESX/ESXi 5.1 或 5.5 版 (含最新更新)。<br/><br/> VMware 虛擬機器應該安裝 VMware 工具且在執行中。 
-**Windows 機器** | 執行 Windows 的受保護實體伺服器或 VMware 虛擬機器有一些需求。<br/><br/> 支援的 64 位元作業系統：**Windows Server 2012 R2**、**Windows Server 2012** 或 **Windows Server 2008 R2 (至少為 SP1)**。<br/><br/> 主機名稱、掛接點、裝置名稱、Windows 系統路徑 (例如：C:\\Windows) 僅限使用英文。<br/><br/> 作業系統應該安裝在 C:\\ 磁碟機上。<br/><br/> 僅支援基本磁碟。不支援動態磁碟。<br/><br/> 受保護機器上的防火牆規則應該允許它們連線到 Azure 中的組態伺服器和主要目標伺服器。<p>您必須提供系統管理員帳戶 (必須是 Windows 機器上的本機系統管理員)，才能在 Windows 伺服器上執行「行動服務」推送安裝。如果提供的帳戶是非網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。若要執行此動作，請在 HKEY\_LOCAL\_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System 下加入值為 1 的 LocalAccountTokenFilterPolicy DWORD 登錄項目。若要從 CLI 加入登錄項目，請開啟 cmd 或 powershell 並輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**。[深入了解](https://msdn.microsoft.com/library/aa826699.aspx)存取控制。<br/><br/> 容錯移轉之後，如果您想要使用遠端桌面連線到 Azure 中的 Windows 虛擬機器，請確認內部部署機器的遠端桌面已啟用。如果您不透過 VPN 連線，防火牆規則應該允許透過網際網路的遠端桌面連線。
-**Linux 機器** | 支援的 64 位元作業系統：**Centos 6.4、6.5、6.6**；**Oracle Enterprise Linux 6.4、6.5 (執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3))**、**SUSE Linux Enterprise Server 11 SP3**。<br/><br/> 受保護機器上的防火牆規則應該允許它們連線到 Azure 中的組態伺服器和主要目標伺服器。<br/><br/> 受保護機器上的 /etc/hosts 檔案應該包含項目，用於將本機主機名稱對應到與所有 NIC 關聯的 IP 位址 <br/><br/> 如果您想要在容錯移轉之後，使用「安全殼層」用戶端 (ssh) 來連線到執行 Linux 的 Azure 虛擬機器，請確定受保護機器上的「安全殼層」服務已設定為在系統開機時自動啟動，且防火牆規則允許 ssh 連線。<br/><br/> 主機名稱、掛接點、裝置名稱及 Linux 系統路徑和檔案名稱 (例如 /etc/、/usr) 僅限使用英文。<br/><br/> 針對具有下列儲存體的內部部署機器，可以啟用保護：-<br>檔案系統：EXT3、ETX4、ReiserFS、XFS<br>多重路徑軟體裝置對應工具 (multipath)<br>磁碟區管理員：LVM2<br>不支援使用 HP CCISS 控制器儲存體的實體伺服器。
-**第三方** | 在這個案例中某些部署元件取決於第三方廠商軟體才能正常運作。如需完整清單，請參閱[第三方廠商軟體注意事項和資訊](#third-party)
+**Azure account** | You'll need a [Microsoft Azure](https://azure.microsoft.com/) account. You can start with a [free trial](https://azure.microsoft.com/pricing/free-trial/).
+**Azure storage** | You'll need an Azure storage account to store replicated data<br/><br/> Either the account should be a [Standard Geo-redundant Storage Account](../storage/storage-redundancy.md#geo-redundant-storage) or [Premium Storage Account](../storage/storage-premium-storage.md).<br/><br/> It must in the same region as the Azure Site Recovery service, and be associated with the same subscription. We do not support the move of Storage accounts created using the [new Azure portal](../storage/storage-create-storage-account.md) across resource groups.<br/><br/> To learn more read [Introduction to Microsoft Azure Storage](../storage/storage-introduction.md)
+**Azure virtual network** | You'll need an Azure virtual network on which the configuration server and master target server will be deployed. It should be in the same subscription and region as the Azure Site Recovery vault. If you wish to replicate data over an ExpressRoute or VPN connection the Azure virtual network must be connected to your on-premises network over an ExpressRoute connection or a Site-to-Site VPN.
+**Azure resources** | Make sure you have enough Azure resources to deploy all components. Read more in [Azure Subscription Limits](../azure-subscription-service-limits.md).
+**Azure virtual machines** | Virtual machines you want to protect should conform with [Azure prerequisites](site-recovery-best-practices.md).<br/><br/> **Disk count**—A maximum of 31 disks can be supported on a single protected server<br/><br/> **Disk sizes**—Individual disk capacity shouldn't be more than 1023 GB<br/><br/> **Clustering**—Clustered servers aren't supported<br/><br/> **Boot**—Unified Extensible Firmware Interface(UEFI)/Extensible Firmware Interface(EFI) boot isn't supported<br/><br/> **Volumes**—Bitlocker encrypted volumes aren't supported<br/><br/> **Server names**—Names should contain between 1 and 63 characters (letters, numbers and hyphens). The name must start with a letter or number and end with a letter or number. After a machine is protected you can modify the Azure name.
+**Configuration server** | Standard A3 virtual machine based on an Azure Site Recovery Windows Server 2012 R2 gallery image will be created in your subscription for the configuration server. It's created as the first instance in a new cloud service. If you select Public Internet as the connectivity type for the configuration server the cloud service will be created with a reserved public IP address.<br/><br/> The installation path should be in English characters only.
+**Master target server** | Azure virtual machine, standard A4, D14 or DS4.<br/><br/> The installation path  should be in English characters only. For example the path should be **/usr/local/ASR** for a master target server running Linux.
+**Process server** | You can deploy the process server on physical or virtual machine running Windows Server 2012 R2 with the latest updates. Install on C:/.<br/><br/> We recommend you place the server on the same network and subnet as the machines you want to protect.<br/><br/> Install VMware vSphere CLI 5.5.0 on the process server. The VMware vSphere CLI component is required on the process server in order to discover virtual machines managed by a vCenter server or virtual machines running on an ESXi host.<br/><br/> The installation path should be in English characters only.<br/><br/> ReFS File System is not supported.
+**VMware** | A VMware vCenter server managing your VMware vSphere hypervisors. It should be running vCenter version 5.1 or 5.5 with the latest updates.<br/><br/> One or more vSphere hypervisors containing VMware virtual machines you want to protect. The hypervisor should be running ESX/ESXi version 5.1 or 5.5 with the latest updates.<br/><br/> VMware virtual machines should have VMware tools installed and running. 
+**Windows machines** | Protected physical servers or VMware virtual machines running Windows have a number of requirements.<br/><br/> A supported 64-bit operating system: **Windows Server 2012 R2**, **Windows Server 2012**, or **Windows Server 2008 R2 with at least SP1**.<br/><br/> The host name, mount points, device names, Windows system path (eg: C:\Windows) should be in English only.<br/><br/> The operating system should be installed on C:\ drive.<br/><br/> Only basic disks are supported. Dynamic disks aren't supported.<br/><br/> Firewall rules on protected machines should allow them to reach the configuration and master target servers in Azure.p><p>You'll need to provide an administrator account (must be a local administrator on the Windows machine) to push install the Mobility Service on Windows servers. If the provided account is a non-domain account you'll need to disable Remote User Access control on the local machine. To do this add the LocalAccountTokenFilterPolicy DWORD registry entry with a value of 1 under HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System. To add the registry entry from a CLI open cmd or powershell and enter **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**. [Learn more](https://msdn.microsoft.com/library/aa826699.aspx) about access control.<br/><br/> After failover, if you want connect to Windows virtual machines in Azure with Remote Desktop make sure that Remote Desktop is enabled for the on-premises machine. If you're not connecting over VPN, firewall rules should allow Remote Desktop connections over the internet.
+**Linux machines** | A supported 64 bit operating system: **Centos 6.4, 6.5, 6.6**; **Oracle Enterprise Linux 6.4, 6.5 running either the Red Hat compatible kernel or Unbreakable Enterprise Kernel Release 3 (UEK3)**, **SUSE Linux Enterprise Server 11 SP3**.<br/><br/> Firewall rules on protected machines should allow them to reach the configuration and master target servers in Azure.<br/><br/> /etc/hosts files on protected machines should  contain entries that map the local host name to IP addresses associated with all NICs <br/><br/> If you want to connect to an Azure virtual machine running Linux after failover using a Secure Shell client (ssh), ensure that the Secure Shell service on the protected machine is set to start automatically on system boot, and that firewall rules allow an ssh connection to it.<br/><br/> The host name, mount points, device names, and Linux system paths and file names (eg /etc/; /usr) should be in English only.<br/><br/> Protection can be enabled for on-premises machines with the following storage:-<br>File system: EXT3, ETX4, ReiserFS, XFS<br>Multipath software-Device Mapper (multipath)<br>Volume manager: LVM2<br>Physical servers with HP CCISS controller storage are not supported.
+**Third-party** | Some deployment components in this scenario depend on third-party software to function properly. For a complete list see [Third-party software notices and information](#third-party)
 
 
-### 網路連線
+### <a name="network-connectivity"></a>Network connectivity
 
-有兩個選項可設定您的內部部署網站與部署您的基礎結構元件 (設定伺服器、主要目標伺服器) 所在的 Azure 虛擬網路之間的網路連線。您必須決定要使用的網路連線選項，之後才能部署組態伺服器。您必須在部署時選擇這個設定。稍後無法變更。
+You have two options when configuring network connectivity between your on-premises site and the Azure virtual network on which the infrastructure components (configuration server, master target servers) are deployed. You'll need to decide which network connectivity option to use before you can deploy your configuration server. You'll need to choose this setting at the time of deployment. It can't be changed later.
 
-**網際網路：**內部部署伺服器 (處理伺服器、受保護的機器) 與 Azure 基礎結構元件伺服器 (組態伺服器、主要目標伺服器) 之間的通訊和資料複寫會透過安全 SSL/TLS 連線，以從內部部署環境到組態伺服器及主要目標伺服器上的公用端點方向進行。(唯一的例外狀況是 TCP 連接埠 9080 上處理序伺服器與主要目標伺服器之間的連線未加密。在此連接上只有與用來設定複寫相關的複寫通訊協定相關的控制資訊會加以交換。)
+**Internet :** Communication and replication of data between the on-premises servers (process server, protected machines) and the Azure infrastructure component servers (configuration server, master target server) happens over a secure SSL/TLS connection from on-premises to the public endpoints on the configuration and master target servers. (The only exception is the connection between the process server and the master target server on TCP port 9080 which is unencrypted. Only control information related to the replication protocol for replication setup is exchanged on this connection.)
 
-![部署圖表網際網路](./media/site-recovery-vmware-to-azure-classic-legacy/internet-deployment.png)
+![Deployment diagram internet](./media/site-recovery-vmware-to-azure-classic-legacy/internet-deployment.png)
 
-**VPN**：內部部署伺服器 (處理伺服器、受保護的機器) 與 Azure 基礎結構元件伺服器 (組態伺服器、主要目標伺服器) 之間的通訊和資料複寫會透過 VPN 連線，在內部部署網路與部署了組態伺服器及主要目標伺服器的 Azure 虛擬網路之間進行。確定您的內部部署網路透過 ExpressRoute 連線或站對站 VPN 連線連接到 Azure 虛擬網路。
+**VPN**: Communication and replication of data between the on-premises servers (process server, protected machines) and the Azure infrastructure component servers (configuration server, master target server) happens over a VPN connection between your on-premises network and the Azure virtual network on which the configuration server and master target servers are deployed. Ensure that your on-premises network is connected to the Azure virtual network by an ExpressRoute connection or a site-to-site VPN connection.
 
-![部署圖表 VPN](./media/site-recovery-vmware-to-azure-classic-legacy/vpn-deployment.png)
+![Deployment diagram VPN](./media/site-recovery-vmware-to-azure-classic-legacy/vpn-deployment.png)
 
 
-## 步驟 1：建立保存庫
+## <a name="step-1:-create-a-vault"></a>Step 1: Create a vault
 
-1. 登入[管理入口網站](https://portal.azure.com)。
+1. Sign in to the [Management Portal](https://portal.azure.com).
 
 
-2. 展開 [資料服務] > [復原服務]，然後按一下 [Site Recovery 保存庫]。
+2. Expand **Data Services** > **Recovery Services** and click **Site Recovery Vault**.
 
 
-3. 按一下 [新建] > [快速建立]。
+3. Click **Create New** > **Quick Create**.
 
-4. 在 [**名稱**] 中，輸入保存庫的易記識別名稱。
+4. In **Name**, enter a friendly name to identify the vault.
 
-5. 在 [區域] 中，選取保存庫的地理區域。若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/) (英文) 中的＜各地區上市情況＞。
+5. In **Region**, select the geographic region for the vault. To check supported regions see Geographic Availability in [Azure Site Recovery Pricing Details](https://azure.microsoft.com/pricing/details/site-recovery/)
 
-6. 按一下 [建立保存庫]。
+6. Click **Create vault**.
 
-	![新增保存庫](./media/site-recovery-vmware-to-azure-classic-legacy/quick-start-create-vault.png)
+    ![New vault](./media/site-recovery-vmware-to-azure-classic-legacy/quick-start-create-vault.png)
 
-檢查狀態列，以確認是否順利建立保存庫。保存庫在主要 [復原服務] 頁面上會列為 [使用中]。
+Check the status bar to confirm that the vault was successfully created. The vault will be listed as **Active** on the main **Recovery Services** page.
 
-## 步驟 2：部署設定伺服器
+## <a name="step-2:-deploy-a-configuration-server"></a>Step 2: Deploy a configuration server
 
-### 設定伺服器設定
+### <a name="configure-server-settings"></a>Configure server settings
 
-1. 在 [復原服務] 頁面中，按一下保存庫以開啟 [快速啟動] 頁面。您也可以使用圖示隨時開啟 [快速入門]。
+1. In the **Recovery Services** page, click the vault to open the Quick Start page. Quick Start can also be opened at any time using the icon.
 
-	![快速啟動圖示](./media/site-recovery-vmware-to-azure-classic-legacy/quick-start-icon.png)
+    ![Quick Start Icon](./media/site-recovery-vmware-to-azure-classic-legacy/quick-start-icon.png)
 
-2. 在下拉式清單中，選取 [具有 VMware/實體伺服器的內部部署網站與 Azure 之間]。
-3. 在 [準備目標 (Azure) 資源] 按一下 [部署組態伺服器]。
+2. In the dropdown list, select **Between an on-premises site with VMware/physical servers and Azure**.
+3. In **Prepare Target(Azure) Resources** click **Deploy Configuration Server**.
 
-	![部署設定伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/deploy-cs2.png)
+    ![Deploy configuration server](./media/site-recovery-vmware-to-azure-classic-legacy/deploy-cs2.png)
 
-4. 在 [新的組態伺服器詳細資料] 中指定：
+4. In **New Configuration Server Details** specify:
 
-	- 設定伺服器的名稱和連接到它的認證。
-	- 在 [網路連接類型] 下拉式清單中，選取 [公用網際網路] 或 [VPN]。請注意，套用此設定後，就無法修改此設定。
-	- 選取伺服器所在地方的 Azure 網路。如果您使用 VPN，請確定 Azure 網路如預期般連線到內部部署網路。
-	- 指定要指派給伺服器的內部 IP 位址與子網路。請注意，任何子網路中的前四個 IP 位址是保留給內部 Azure 使用。使用任何其他可用的 IP 位址。
-	
-	![部署設定伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/cs-details.png)
+    - A name for the configuration server and credentials to connect to it.
+    - In the network connectivity type drop down select **Public Internet** or **VPN**. Note that you can't modify this setting after it's applied.
+    - Select the Azure network on which the server should be located. If you're using VPN make sure the Azure network is connected to your on-premises network as expected. 
+    - Specify the internal IP address and subnet that will be assigned to the server. Note that the first four IP addresses in any subnet are reserved for internal Azure usage. Use any other available IP address.
+    
+    ![Deploy configuration server](./media/site-recovery-vmware-to-azure-classic-legacy/cs-details.png)
 
-5. 當您按一下 [確定]，會在您的訂用帳戶中為組態伺服器建立以 Azure Site Recovery Windows Server 2012 R2 資源庫映像為基礎的標準 A3 虛擬機器。它會建立為新的雲端服務中的第一個執行個體。如果您選擇透過網際網路來連線，則會使用保留的公用 IP 位址建立雲端服務。您可以在 [工作] 索引標籤中監視進度。
+5. When you click **OK** a standard A3 virtual machine based on an Azure Site Recovery Windows Server 2012 R2 gallery image will be created in your subscription for the configuration server. It's created as the first instance in a new cloud service. If you selected to connect over the internet the cloud service is created with a reserved public IP address. You can monitor progress in the **Jobs** tab.
 
-	![監視進度](./media/site-recovery-vmware-to-azure-classic-legacy/monitor-cs.png)
+    ![Monitor progress](./media/site-recovery-vmware-to-azure-classic-legacy/monitor-cs.png)
 
-6.  如果您是透過網際網路來連線，在部署組態伺服器之後，請記下 Azure 入口網站的 [虛擬機器] 頁面上指派給此伺服器的公用 IP 位址。然後在 [**端點**] 索引標籤上注意對應至私人連接埠 443 的公用 HTTPS 連接埠。稍後當您在主要目標與處理序伺服器上註冊此設定伺服器的時候，您會需要這個資訊。這個設定伺服器利用這些端點進行部署：
+6.  If you're connecting over the internet, after the configuration server is deployed note the public IP address assigned to it on the **Virtual Machines** page in the Azure portal. Then on the **Endpoints** tab note the public HTTPS port mapped to private port 443. You'll need this information later when you register the master target and process servers with the configuration server. The configuration server is deployed with these endpoints:
 
-	- HTTPS：公用連接埠是用於透過網際網路協調元件伺服器與 Azure 之間的通訊。私用連接埠 443 是用來透過 VPN 協調元件伺服器與 Azure 之間的通訊。
-	- 自訂：公用連接埠用於透過網際網路的容錯回復工具通訊。私人連接埠 9443 是用於透過 VPN 的容錯回復工具通訊。
-	- PowerShell：私人連接埠 5986
-	- 遠端桌面：私人連接埠 3389
-	
-	![VM 端點](./media/site-recovery-vmware-to-azure-classic-legacy/vm-endpoints.png)
+    - HTTPS: A public port is used to coordinate communication between component servers and Azure over the internet. Private port 443 is used to coordinate communication between component servers and Azure over VPN.
+    - Custom: A public port is used for failback tool communication over the internet. Private port 9443 is used for failback tool communication over VPN.
+    - PowerShell: Private port 5986
+    - Remote desktop: Private port 3389
+    
+    ![VM endpoints](./media/site-recovery-vmware-to-azure-classic-legacy/vm-endpoints.png)
 
-    >[AZURE.WARNING] 切勿刪除或變更設定伺服器部署期間建立的任何端點的公用或私用連接埠編號。
+    >[AZURE.WARNING] Don't delete or change the public or private port number of any endpoints created during configuration server deployment.
 
-設定伺服器使用保留的 IP 位址部署在自動建立的 Azure 雲端服務。需要此保留位址，才能確保雲端服務上的虛擬機器 (包括組態伺服器) 重新開機後，組態伺服器雲端服務 IP 位址仍是相同的。當解除委任設定伺服器時，將必須手動將保留的公用 IP 位址取消保留，否貝它仍將維持保留。每一訂用帳戶預設的保留公用 IP 位址數目限制為 20 個。[深入了解](../virtual-network/virtual-networks-reserved-private-ip.md)保留的 IP 位址。
+The configuration server is deployed in an automatically created Azure cloud service with a reserved IP address. The reserved address is needed to ensure that the configuration server cloud service IP address remains the same across reboots of the virtual machines (including the configuration server) on the cloud service. The reserved public IP address will need to be manually unreserved when the configuration server is decommissioned or it'll remain reserved. There's a default limit of 20 reserved public IP addresses per subscription. [Learn more](../virtual-network/virtual-networks-reserved-private-ip.md) about reserved IP addresses. 
 
-### 在保存庫中註冊設定伺服器
+### <a name="register-the-configuration-server-in-the-vault"></a>Register the configuration server in the vault
 
-1. 在 [快速啟動] 頁面中，按一下 [準備目標資源] > [下載註冊金鑰]。金鑰檔案會隨即自動產生。該金鑰在產生後會維持 5 天有效。將它複製到設定伺服器。
-2. 在 [虛擬機器] 中，從虛擬機器清單選取組態伺服器。開啟 [儀表板] 索引標籤，然後按一下 [連接]。[開啟] 下載的 RDP 檔案以使用遠端桌面登入組態伺服器。如果您使用 VPN，請使用內部 IP 位址 (您部署組態伺服器時所指定的位址) 從內部部署網站進行遠端桌面連線。當您第一次登入時，Azure Site Recovery 設定伺服器安裝精靈會自動執行。
+1. In the **Quick Start** page click **Prepare Target Resources** > **Download a registration key**. The key file is generated automatically. It's valid for 5 days after it's generated. Copy it to the configuration server.
+2. In **Virtual Machines** select the configuration server from the virtual machines list. Open the **Dashboard** tab and click **Connect**. **Open** the downloaded RDP file to log onto the configuration server using Remote Desktop. If you're using VPN, use the internal IP address (the address you specified when you deployed the configuration server) for a Remote Desktop connection from the on-premises site. The Azure Site Recovery Configuration Server Setup Wizard runs automatically when you log on for the first time.
 
-	![註冊](./media/site-recovery-vmware-to-azure-classic-legacy/splash.png)
+    ![Registration](./media/site-recovery-vmware-to-azure-classic-legacy/splash.png)
 
-3. 在 [協力廠商軟體安裝] 中，按一下 [我接受] 來下載並安裝 MySQL。
+3. In **Third-Party Software Installation** click **I Accept** to download and install MySQL.
 
-	![MySQL 安裝](./media/site-recovery-vmware-to-azure-classic-legacy/sql-eula.png)
+    ![MySQL install](./media/site-recovery-vmware-to-azure-classic-legacy/sql-eula.png)
 
-4. 在 [MySQL 伺服器詳細資料] 中，建立認證來登入 MySQL 伺服器執行個體。
+4. In **MySQL Server Details** create credentials to log onto the MySQL server instance.
 
-	![MySQL 認證](./media/site-recovery-vmware-to-azure-classic-legacy/sql-password.png)
+    ![MySQL credentials](./media/site-recovery-vmware-to-azure-classic-legacy/sql-password.png)
 
-5. 在 [網際網路設定] 中，指定組態伺服器將連線到網際網路的方式。請注意：
+5. In **Internet Settings** specify how the configuration server will connect to the internet. Note that:
 
-	- 如果您想要使用自訂 proxy，您應該在安裝提供者之前進行設定。
-	- 當您按 [下一步] 時，將會執行測試來檢查 Proxy 連線。
-	- 如果您使用自訂 Proxy，或者您的預設 Proxy 需要驗證，您必須輸入 Proxy 詳細資料，包含位址、連接埠和認證。
-	- 下列 URL 應可透過 Proxy 存取：
-		- *.hypervrecoverymanager.windowsazure.com
-		- *.accesscontrol.windows.net
-		- *.backup.windowsazure.com
-		- *.blob.core.windows.net
-		- *.store.core.windows.net
-	- 如果您有以 IP 位址為基礎的防火牆規則，請確保規則均設定為允許組態伺服器可與 [Azure 資料中心 IP 範圍](https://msdn.microsoft.com/library/azure/dn175718.aspx)和 HTTPS (443) 通訊協定中所述的 IP 位址通訊。您必須具有打算使用以及美國西部之 Azure 區域的白名單 IP 範圍。
+    - If you want to use a custom proxy you should set it up before you install the Provider.
+    - When you click **Next** a test will run to check the proxy connection.
+    - If you do use a custom proxy, or your default proxy requires authentication you'll need to enter the proxy details, including the address, port, and credentials.
+    - The following URLs should be accessible via the proxy:
+        - *.hypervrecoverymanager.windowsazure.com
+        - *.accesscontrol.windows.net
+        - *.backup.windowsazure.com
+        - *.blob.core.windows.net
+        - *.store.core.windows.net
+    - If you have IP address-based firewall rules ensure that the rules are set to allow communication from the configuration server to the IP addresses described in [Azure Datacenter IP Ranges](https://msdn.microsoft.com/library/azure/dn175718.aspx) and HTTPS (443) protocol. You would have to white-list IP ranges of the Azure region that you plan to use, and that of West US.
 
-	![Proxy 註冊](./media/site-recovery-vmware-to-azure-classic-legacy/register-proxy.png)
+    ![Proxy registration](./media/site-recovery-vmware-to-azure-classic-legacy/register-proxy.png)
 
-6. 在 [提供者錯誤訊息當地語系化設定] 中指定顯示錯誤訊息的語言。
+6. In **Provider Error Message Localization Settings** specify in which language you want error messages to appear.
 
-	![錯誤訊息註冊](./media/site-recovery-vmware-to-azure-classic-legacy/register-locale.png)
+    ![Error message registration](./media/site-recovery-vmware-to-azure-classic-legacy/register-locale.png)
 
-7. 在 [Azure Site Recovery 註冊] 中瀏覽並選取複製到伺服器的金鑰檔。
+7. In **Azure Site Recovery Registration** browse and select the key file you copied to the server.
 
-	![金鑰檔註冊](./media/site-recovery-vmware-to-azure-classic-legacy/register-vault.png)
+    ![Key file registration](./media/site-recovery-vmware-to-azure-classic-legacy/register-vault.png)
 
-8. 在精靈的完成頁面上選取這些選項：
+8. On the completion page of the wizard select these options:
 
-	- 選取 [啟動帳戶管理對話方塊]，指定在完成精靈後應該開啟 [管理帳戶] 對話方塊。
-	- 選取 [為 Cspsconfigtool 建立桌面圖示] 以在組態伺服器上加入桌面捷徑，讓您可以在任何時間開啟 [管理帳戶] 對話方塊，而不必重新執行精靈。
+    - Select **Launch Account Management Dialog** to specify that the Manage Accounts dialog should open after you finish the wizard.
+    - Select **Create a desktop icon for Cspsconfigtool** to add a desktop shortcut on the  configuration server so that you can open the **Manage Accounts** dialog at any time without needing to rerun the wizard.
 
-	![完成註冊](./media/site-recovery-vmware-to-azure-classic-legacy/register-final.png)
+    ![Complete registration](./media/site-recovery-vmware-to-azure-classic-legacy/register-final.png)
 
-9. 按一下 [完成] 來完成精靈。隨即產生複雜密碼。將其複製到安全的位置。您在設定伺服器上驗證與註冊處理序與主要目標伺服器時將會需要這個密碼。這個密碼也可以用來確認設定伺服器通訊中的通道完整性。您可以重新產生複雜密碼，但是屆時您也必須以新的複雜密碼再次註冊主要目標與處理序伺服器。
+9. Click **Finish** to complete the wizard. A passphrase is generated. Copy it to a secure location. You'll need it to authenticate and register the process and master target servers with the configuration server. It's also used to ensure channel integrity in configuration server communications. You can regenerate the passphrase but then you'll need to re-register the master target and process servers using the new passphrase.
 
-	![複雜密碼](./media/site-recovery-vmware-to-azure-classic-legacy/passphrase.png)
+    ![Passphrase](./media/site-recovery-vmware-to-azure-classic-legacy/passphrase.png)
 
-註冊完成後，組態伺服器會列在保存庫的 [組態伺服器] 頁面上。
+After registration the configuration server will be listed on the **Configuration Servers** page in the vault.
 
-### 設定和管理帳戶
+### <a name="set-up-and-manage-accounts"></a>Set up and manage accounts
 
-在部署期間，Site Recovery 會對下列動作要求認證：
+During deployment Site Recovery requests credentials for the following actions:
 
-- VMware 帳戶，讓 Site Recovery 可自動探索 vCenter 伺服器或 vSphere 主機上的 VM。
-- 當您加入機器以進行保護時，如此 Site Recovery 即可以在機器上安裝行動服務。
+- A VMware account so thatSite Recovery can automatically discovery VMs on vCenter servers or vSphere hosts. 
+- When you add machines for protection, so that Site Recovery can install the Mobility service on them.
 
-註冊組態伺服器之後，您可以開啟 [管理帳戶] 對話方塊來新增及管理應該用於這些動作的帳戶。有好幾種方法可執行這項操作：
+After you've registered the configuration server you can open the **Manage Accounts** dialog to add and manage accounts that should be used for these actions. There are a couple of ways to do this:
 
-- 針對設定伺服器 (cspsconfigtool) 安裝程式最後一頁上的對話方塊，開啟您選擇建立的捷徑。
-- 開啟完成設定伺服器安裝程式上的對話方塊。
+- Open the shortcut you opted to created for the dialog on the last page of setup for the configuration server (cspsconfigtool).
+- Open the dialog on finish of configuration server setup.
 
-1. 在 [管理帳戶] 中，按一下 [加入帳戶]。您也可以修改並刪除現有的帳戶。
+1. In **Manage Accounts** click **Add Account**. You can also modify and delete existing accounts.
 
-	![管理帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/manage-account.png)
+    ![Manage accounts](./media/site-recovery-vmware-to-azure-classic-legacy/manage-account.png)
 
-2. 在 [帳戶詳細資料] 中，指定要用於 Azure 的帳戶名稱和認證 (網域/使用者名稱)。
+2. In **Account Details** specify an account name to use in Azure and credentials (Domain/user name). 
 
-	![管理帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/account-details.png)
+    ![Manage accounts](./media/site-recovery-vmware-to-azure-classic-legacy/account-details.png)
 
-### 連線到設定伺服器 
+### <a name="connect-to-the-configuration-server"></a>Connect to the configuration server 
 
-有兩種方式可以連線到設定伺服器：
+There are two ways to connect to the configuration server:
 
-- 透過 VPN 站對站或 ExpressRoute 連線
-- 透過網際網路
+- Over a VPN site-to-site or ExpressRoute connection
+- Over the internet 
 
-請注意：
+Note that:
 
-- 網際網路連線使用虛擬機器的端點搭配伺服器的公用虛擬 IP 位址。
-- VPN 連線會使用伺服器的內部 IP 位址與端點私人連接埠。
-- 它是一次性的決策，決定是否要從您的內部部署伺服器透過 VPN 連線或網際網路連接 (控制和複寫資料) 到在 Azure 中執行的各種元件伺服器 (設定伺服器、主要目標伺服器)。您之後無法變更此設定。如果您這樣做，將需要重新部署案例並重新保護您的機器。
+- An internet connection uses the endpoints of the virtual machine in conjunction with the public virtual IP address of the server.
+- A VPN connection uses the internal IP address of the server together with the endpoint private ports.
+- It's a one-time decision to decide whether to connect (control and replication data) from your on-premises servers to the various component servers (configuration server, master target server) running in Azure over a VPN connection or the internet. You can't change this setting afterwards. If you do you'll need to redeploy the scenario and reprotect your machines.  
 
 
-## 步驟 3：部署主要目標伺服器
+## <a name="step-3:-deploy-the-master-target-server"></a>Step 3: Deploy the master target server
 
-1. 按一下 [準備目標 (Azure) 資源] > [部署主要目標伺服器]。
-2. 指定主要目標伺服器的詳細資料和認證。伺服器將部署在與組態伺服器相同的 Azure 網路中。當您按一下以完成動作時，隨即會建立附帶 Windows 或 Linux 資源庫映像的 Azure 虛擬機器。
+1. Click **Prepare Target(Azure) Resources** > **Deploy master target server**.
+2. Specify the master target server details and credentials. The server will be deployed in the same Azure network as the configuration server. When you click to complete an Azure virtual machine will be created with a Windows or Linux gallery image.
 
-	![目標伺服器設定](./media/site-recovery-vmware-to-azure-classic-legacy/target-details.png)
+    ![Target server settings](./media/site-recovery-vmware-to-azure-classic-legacy/target-details.png)
 
-請注意，任何子網路中的前四個 IP 位址是保留給內部 Azure 使用。指定任何其他可用的 IP 位址。
+Note that the first four IP addresses in any subnet are reserved for internal Azure usage. Specify any other available IP address.
 
->[AZURE.NOTE] 針對需要一致的高 I/O 效能和低延遲的工作負載，在為其設定保護時，請選取 [標準 DS4]，以便使用[進階儲存體帳戶](../storage/storage-premium-storage.md)來裝載需要大量 I/O 的工作負載。
+>[AZURE.NOTE] Select Standard DS4 when configuring protection for workloads which require consistent high I/O performance and low latency in order to host I/O intensive workloads using [Premium Storage Account](../storage/storage-premium-storage.md).
 
 
-3. 利用這些端點建立 Windows 主要目標伺服器 VM。請注意，只有當您透過網際網路連線時，才會建立公用端點。
+3. A Windows master target server VM is created with these endpoints. Note that public endpoints are created only if your connecting over the internet.
 
-	- 自訂：處理序伺服器使用公用連接埠，透過網際網路傳送複寫資料。處理序伺服器可使用私人連接埠 9443 透過 VPN 傳送複寫資料給主要目標伺服器。
-	- 自訂1：處理序伺服器使用公用連接埠，透過網際網路傳送中繼資料。處理序伺服器使用私用連接埠 9080，透過 VPN 將中繼資料傳送至主要目標伺服器。
-	- PowerShell：私人連接埠 5986
-	- 遠端桌面：私人連接埠 3389
+    - Custom: Public port used by the process server to send replication data over the internet. Private port 9443 is used by the process server to send replication data to the master target server over VPN.
+    - Custom1: Public port used by the process server to send metadata over the internet. Private port 9080 is used by the process server to send metadata to the master target server over VPN.
+    - PowerShell: Private port 5986
+    - Remote desktop: Private port 3389
 
-4. 利用這些端點建立 Linux 主要目標伺服器 VM。請注意，只有當您透過網際網路連線時，才會建立公用端點。
+4. A Linux master target server VM is created with these endpoints. Note that public endpoints are created only if you're connecting over the internet.
 
-	- 自訂：處理序伺服器使用公用連接埠，透過網際網路傳送複寫資料。處理序伺服器可使用私人連接埠 9443 透過 VPN 傳送複寫資料給主要目標伺服器。
-	- 自訂1：處理序伺服器使用公用連接埠，透過網際網路傳送中繼資料。處理序伺服器使用私用連接埠 9080，透過 VPN 將中繼資料傳送至主要目標伺服器
-	- SSH：私人連接埠 22
+    - Custom: Public port used by process server to send replication data over the internet. Private port 9443 is used by the process server to send replication data to the master target server over VPN.
+    - Custom1: Public port is used by the process server to send metadata over the internet. Private port 9080 is used by the process server to send metadata to the master target server over VPN
+    - SSH: Private port 22
 
-    >[AZURE.WARNING] 切勿刪除或變更主要目標伺服器部署期間建立的任何端點的公用或私用通訊埠編號。
+    >[AZURE.WARNING] Don't delete or change the public or private port number of any of the endpoints created during the master target server deployment.
 
-5. 在 [虛擬機器] 中，等待虛擬機器啟動。
+5. In **Virtual Machines** wait for the virtual machine to start.
 
-	- 如果它是 Windows 伺服器，請記下遠端桌面詳細資料。
-	- 如果它是 Linux 伺服器，而且您透過 VPN 來連線，請記下虛擬機器的內部 IP 位址。如果您透過網際網路連線，請注意公用 IP 位址。
+    - If it's a Windows server note down the remote desktop details.
+    - If it's a Linux server and you're connecting over VPN note the internal IP address of the virtual machine. If you're connecting over the internet note the public IP address.
 
-6.  登入伺服器以完成安裝，並在設定伺服器上註冊該伺服器。
-7.  如果您在執行 Windows：
+6.  Log onto the server to complete installation and register it with the configuration server. 
+7.  If you're running Windows:
 
-	1. 啟動與虛擬機器的遠端桌面連線。第一次登入指令碼會在 PowerShell 視窗中執行。不要關閉它。完成時，主機代理程式設定工具會自動開啟註冊伺服器。
-	2. 在 [主機代理程式設定] 中，指定組態伺服器的內部 IP 位址與連接埠 443。即使您並非透過 VPN 連線，您還是可以使用內部位址與私人連接埠 443，因為虛擬機器附加於和設定伺服器相同的 Azure 網路。讓 [使用 HTTPS] 保持啟用狀態。輸入您先前所記下的設定伺服器複雜密碼。按一下 [確定] 以註冊伺服器。您可以忽略 NAT 選項。它們不會被使用。
-	3. 如果您估計的保留磁碟機需求超過 1 TB，您可以使用虛擬磁碟和[儲存空間](http://blogs.technet.com/b/askpfeplat/archive/2013/10/21/storage-spaces-how-to-configure-storage-tiers-with-windows-server-2012-r2.aspx)來設定保留磁碟機的磁碟區 (R:)。
-	
-	![Windows 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/target-register.png)
+    1. Initiate a remote desktop connection to the virtual machine. The first time you log on a script will run in a PowerShell window. Don't close it. When it finishes the Host Agent Config tool opens automatically to register the server.
+    2. In **Host Agent Config** specify the internal IP address of the configuration server and port 443. You can use the internal address and private port 443 even if you're not connecting over VPN because the virtual machine is attached to the same Azure network as the configuration server. Leave **Use HTTPS** enabled. Enter the passphrase for the configuration server that you noted earlier. Click **OK** to register the server. You can ignore the NAT options. They're not used.
+    3. If your estimated retention drive requirement is more than 1 TB you can configure the retention volume (R:) using a virtual disk and [storage spaces](http://blogs.technet.com/b/askpfeplat/archive/2013/10/21/storage-spaces-how-to-configure-storage-tiers-with-windows-server-2012-r2.aspx)
+    
+    ![Windows master target server](./media/site-recovery-vmware-to-azure-classic-legacy/target-register.png)
 
-8. 如果您在執行 Linux：
-	1. 在安裝主要目標伺服器之前，請確定您已安裝最新的 Linux Integration Services (LIS)。您可以在[這裡](https://www.microsoft.com/download/details.aspx?id=46842)找到最新版本的 LIS 以及安裝指示。LIS 安裝之後重新啟動電腦。
-	2. 在 [準備目標 (Azure) 資源] 中，按一下 [下載及安裝其他軟體 (僅適用於 Linux 主要目標伺服器)]。將下載的 tar 檔案複製到使用 sftp 用戶端的虛擬機器。或者，您也可以登入已部署的 Linux 主要目標伺服器，然後使用 *wget http://go.microsoft.com/fwlink/?LinkID=529757&clcid=0x409* 來下載檔案。
-	2. 使用安全殼層用戶端登入伺服器。如果您已透過 VPN 連線到 Azure 網路，請使用內部 IP 位址。否則請使用外部 IP 位址與 SSH 公用端點。
-	3. 將檔案從 Gzip 安裝程式解壓縮，方法是執行：**tar –xvzf Microsoft-ASR\_UA\_8.4.0.0\_RHEL6-64***  
-	![Linux 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
-	4. 請確認您在解壓縮 tar 檔案內容的目錄中。
-	5. 使用命令 **echo *`<passphrase>`* >passphrase.txt** 將組態伺服器的複雜密碼複製到本機檔案
-	6. 執行 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i *`<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**” 命令。
+8. If you're running Linux:
+    1. Make sure you've installed the latest Linux Integration Services (LIS) installed before you install the master target server. You can find the latest version of LIS along with instructions on how to install [here](https://www.microsoft.com/download/details.aspx?id=46842). Restart the machine after the LIS install.
+    2. In **Prepare Target (Azure) Resources** click **Download and Install additional software (only for Linux Master Target Server)**. Copy the downloaded tar file to the virtual machine using an sftp client. Alternatively you can log on to the deployed linux master target server and use *wget http://go.microsoft.com/fwlink/?LinkID=529757&clcid=0x409* to download the the file.
+    2. Log on to the server using a Secure Shell client. If you're connected to the Azure network over VPN use the internal IP address. Otherwise use the external IP address and the SSH public endpoint.
+    3. Extract the files from the gzipped installer by running: **tar –xvzf Microsoft-ASR_UA_8.4.0.0_RHEL6-64***
+    ![Linux master target server](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
+    4. Make sure you're in the directory to which you extracted the contents of the tar file.
+    5. Copy the configuration server passphrase to a local file using the command **echo *`<passphrase>`* >passphrase.txt**
+    6. Run the command “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i *`<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**”.
 
-	![註冊目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-mt-install.png)
+    ![Register target server](./media/site-recovery-vmware-to-azure-classic-legacy/linux-mt-install.png)
 
-9. 等候幾分鐘 (10-15)，然後在頁面上，檢查主要目標伺服器在 [伺服器] > [組態伺服器] > [伺服器詳細資料] 索引標籤上是否列為已註冊。如果您在執行 Linux 而且伺服器並未註冊，請再次從 /usr/local/ASR/Vx/bin/hostconfigcli 執行主機設定工具。您必須藉由執行 chmod 做為根使用者，以設定存取權限。
+9. Wait for a few minutes (10-15) and on the  page check that the master target server is listed as registered in **Servers** > **Configuration Servers** **Server Details** tab. If you're running Linux and  it didn't register run the host config tool again from /usr/local/ASR/Vx/bin/hostconfigcli. You'll need to set access permissions by running chmod as root.
 
-	![確認目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/target-server-list.png)
+    ![Verify target server](./media/site-recovery-vmware-to-azure-classic-legacy/target-server-list.png)
 
->[AZURE.NOTE] 註冊完成之後，最多需要 15 分鐘，入口網站才會列出主要目標伺服器。若要立刻更新，請在 [組態伺服器] 頁面上按一下 [重新整理]。
+>[AZURE.NOTE] It can take up to 15 minutes after registration is complete for the master target server to be listed in the portal. To update immediately, click **Refresh** on the **Configuration Servers** page.
 
-## 步驟 4：部署內部部署處理序伺服器
+## <a name="step-4:-deploy-the-on-premises-process-server"></a>Step 4: Deploy the on-premises process server
 
-開始之前，建議您在處理序伺服器上設定靜態 IP 位址，以保障在重新開機後可持續使用相同位址。
+Before you start we recommend that you configure a static IP address on the process server so that it's guaranteed to be persistent across reboots.
 
-1. 按一下 [快速啟動] > [安裝處理序伺服器內部部署] > [下載與安裝處理序伺服器]。
+1. Click Quick Start > **Install Process Server on-premises** > **Download and install the process server**.
 
-	![安裝處理序伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/ps-deploy.png)
+    ![Install process server](./media/site-recovery-vmware-to-azure-classic-legacy/ps-deploy.png)
 
-2.  將下載的 zip 檔案複製到您要安裝處理序伺服器的伺服器。zip 檔案包含兩個安裝檔案：
+2.  Copy the downloaded zip file to the server on which you're going to install the process server. The zip file contains two installation files:
 
-	- Microsoft-ASR\_CX\_TP\_8.4.0.0\_Windows*
-	- Microsoft-ASR\_CX\_8.4.0.0\_Windows*
+    - Microsoft-ASR_CX_TP_8.4.0.0_Windows*
+    - Microsoft-ASR_CX_8.4.0.0_Windows*
 
-3. 解壓縮封存，並將安裝檔案複製到伺服器上的位置。
-4. 執行 **Microsoft-ASR\_CX\_TP\_8.4.0.0\_Windows*** 安裝檔案並遵循指示。這樣可以安裝部署所需第三方廠商元件。
-5. 然後執行 **Microsoft-ASR\_CX\_8.4.0.0\_Windows***。
-6. 在 [伺服器模式] 頁面上，選取 [處理序伺服器]。
-7. 在 [環境詳細資料] 頁面執行下列動作：
+3. Unzip the archive and copy the installation files to a location on the server.
+4. Run the **Microsoft-ASR_CX_TP_8.4.0.0_Windows*** installation file and follow the instructions. This installs third-party components needed for the deployment.
+5. Then run **Microsoft-ASR_CX_8.4.0.0_Windows***.
+6. On the **Server Mode** page select **Process Server**.
+7. On the **Environment Details** page do the following:
 
 
-	- 如果您想要保護 VMware 虛擬機器，請按一下 [**是**]
-	- 如果您只想要保護實體伺服器，因此不需要在處理序伺服器上安裝 VMware vCLI。按一下 [否] 並繼續。
+    - If you want to protect VMware virtual machines click **Yes**
+    - If  you only want to protect physical servers and thus don't need VMware vCLI installed on the process server. Click **No** and continue.
 
-8. 安裝 VMware vCLI 時，請注意下列事項：
+8. Note the following when installing VMware vCLI:
 
-	- **僅支援 VMware vSphere CLI 5.5.0**。處理序伺服器無法與 vSphere CLI 的其他版本或更新搭配使用。
-	- 從[這裡](https://my.vmware.com/web/vmware/details?downloadGroup=VCLI550&productId=352)下載 vSphere CLI 5.5.0。
-	- 如果您正好在您開始安裝處理序伺服器之前安裝 vSphere CLI，並且安裝程式未偵測到它，請等候最多五分鐘的時間，再重新嘗試安裝。這可確保 vSphere CLI 偵測需要的所有環境變數已正確初始化。
+    - **Only VMware vSphere CLI 5.5.0 is supported**. The process server doesn't work with other versions or updates of vSphere CLI.
+    - Download vSphere CLI 5.5.0 from [here.](https://my.vmware.com/web/vmware/details?downloadGroup=VCLI550&productId=352)
+    - If you installed vSphere CLI just before you started installing the process server, and setup doesn't detect it, wait up to five minutes before you try setup again. This ensures that all the environment variables needed for vSphere CLI detection have been initialized correctly.
 
-9.	在 [處理序伺服器的 NIC 選取範圍] 中，選取處理序伺服器應該使用的網路介面卡。
+9.  In **NIC Selection for Process Server** select the network adapter that the process server should use.
 
-	![選取配接器](./media/site-recovery-vmware-to-azure-classic-legacy/ps-nic.png)
+    ![Select adapter](./media/site-recovery-vmware-to-azure-classic-legacy/ps-nic.png)
 
-10.	在 [組態伺服器詳細資料] 中：
+10. In **Configuration Server Details**:
 
-	- 針對 IP 位址和連接埠，如果您透過 VPN 連線，請指定設定伺服器的內部 IP 位址以及連接埠 443。否則，請指定公用虛擬 IP 位址和對應的公用 HTTP 端點。
-	- 輸入設定伺服器的複雜密碼。
-	- 如果您想要在使用自動推入安裝服務時停用驗證，請清除 [驗證行動服務軟體簽章]。簽章驗證需要處理序伺服器的網際網路連線能力。
-	- 按 [下一步]。
+    - For the IP address and port, if you're connecting over VPN specify the internal IP address of the configuration server and 443 for the port. Otherwise specify the public virtual IP address and mapped public HTTP endpoint.
+    - Type in the passphrase of the configuration server.
+    - Clear **Verify Mobility service software signature** if you want to disable verification when you use automatic push to install the service. Signature verification needs internet connectivity from the process server.
+    - Click **Next**.
 
-	![註冊設定伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/ps-cs.png)
+    ![Register configuration server](./media/site-recovery-vmware-to-azure-classic-legacy/ps-cs.png)
 
 
-11. 在 [選取安裝磁碟機] 中，選取快取磁碟機。處理序伺服器需要至少有 600 GB 可用空間的快取磁碟機。然後按一下 [安裝]。
+11. In **Select Installation Drive** select a cache drive. The process server needs a cache drive with at least 600 GB of free space. Then click **Install**. 
 
-	![註冊設定伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/ps-cache.png)
+    ![Register configuration server](./media/site-recovery-vmware-to-azure-classic-legacy/ps-cache.png)
 
-12. 請注意，您可能需要重新啟動伺服器才能完成安裝。在 [組態伺服器] > [伺服器詳細資料] 中，檢查已出現處理序伺服器，並在保存庫中成功註冊。
+12. Note that you might need to restart the server to complete the installation. In **Configuration Server** > **Server Details** check that the process server appears and is registered successfully in the vault.
 
->[AZURE.NOTE]註冊完成之後，最多需要 15 分鐘，設定伺服器下才會列出處理伺服器。若要立即更新，請按一下設定伺服器頁面底部的重新整理按鈕，以重新整理設定伺服器
+>[AZURE.NOTE]It can take up to 15 minutes after registration is complete for the process server to appear as listed under the configuration server. To update immediately, refresh the configuration server by clicking on the refresh button at the bottom of the configuration server page
  
-![驗證處理序伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/ps-register.png)
+![Validate process server](./media/site-recovery-vmware-to-azure-classic-legacy/ps-register.png)
 
-如果您在註冊處理序伺服器的時候未停用行動服務簽章驗證，您可以稍後再依下列說明停用簽章：
+If you didn't disable signature verification for the Mobility service when you registered the process server you can do it later as follows:
 
-1. 以系統管理員身分登入處理序伺服器，並開啟 C:\\pushinstallsvc\\pushinstaller.conf 檔案進行編輯。在 **[PushInstaller.transport]** 區段下加入下面這行：**SignatureVerificationChecks ="0"**。儲存並關閉檔案。
-2. 重新啟動 InMage PushInstall 服務。
-
-
-## 步驟 5：更新 Site Recovery 元件
-
-Site Recovery 元件會不定時更新。當有新的更新可用時，您應該依下列順序安裝更新︰
-
-1. 設定伺服器
-2. 處理序伺服器
-3. 主要目標伺服器
-4. 容錯回復工具 (vContinuum)
-
-### 取得並安裝更新
+1. Log onto the process server as an administrator and open the file C:\pushinstallsvc\pushinstaller.conf for editing. Under the section **[PushInstaller.transport]** add this line: **SignatureVerificationChecks=”0”**. Save and close the file.
+2. Restart the InMage PushInstall service.
 
 
-1. 您可以從 Site Recovery [儀表板] 取得組態伺服器、處理伺服器及主要目標伺服器的更新。針對 Linux 安裝，請從 Gzip 安裝程式解壓縮檔案，並執行命令 “sudo ./install” 來安裝更新。
-2. [下載](http://go.microsoft.com/fwlink/?LinkID=533813)容錯回復工具 (vContinuum) 的最新更新。
-3. 如果是執行已安裝行動服務的虛擬機器或實體伺服器，您可以取得服務的更新，如下所示：
+## <a name="step-5:-update-site-recovery-components"></a>Step 5: Update Site Recovery components
 
-	- **選項 1**：下載更新：
-		- [Windows Server (僅限 64 位元)](http://download.microsoft.com/download/8/4/8/8487F25A-E7D9-4810-99E4-6C18DF13A6D3/Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe)
-		- [CentOS 6.4、6.5、6.6 (僅限 64 位元)](http://download.microsoft.com/download/7/E/D/7ED50614-1FE1-41F8-B4D2-25D73F623E9B/Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz)
-		- [Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元)](http://download.microsoft.com/download/5/2/6/526AFE4B-7280-4DC6-B10B-BA3FD18B8091/Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz)
-		- [SUSE Linux Enterprise Server SP3 (僅限 64 位元)](http://download.microsoft.com/download/B/4/2/B4229162-C25C-4DB2-AD40-D0AE90F92305/Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz)
-		- 在更新處理序伺服器之後，處理序伺服器上的 C:\\pushinstallsvc\\repository 資料夾中就有更新版本的行動服務可用。
-	- **選項 2**：如果您有一部安裝了舊版行動服務的機器，則您可以從管理入口網站自動升級該機器上的行動服務。
+Site Recovery components are updated from time to time. When new updates are available you should install them in the following order:
 
-		1. 請確定處理序伺服器已更新。
-		2. 請確定受保護的機器符合自動推送行動服務的[必要條件](#install-the-mobility-service-automatically)，以便可以依預期方式進行更新。
-		2. 選取保護群組、反白顯示受保護的機器，然後按一下 [更新行動服務]。只有在有更新版本的行動服務時，此按鈕才可用。
+1. Configuration server
+2. Process server
+3. Master target server
+4. Failback tool (vContinuum)
 
-			![選取 vCenter 伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/update-mobility.png)
-
-在 [選取帳戶] 中，指定用來更新受保護的伺服器上的行動服務的系統管理員帳戶。按一下 [確定] 並等待觸發的工作完成。
+### <a name="obtain-and-install-the-updates"></a>Obtain and install the updates
 
 
-## 步驟 6：新增 vCenter 伺服器或 vSphere 主機
+1. You can obtain updates for the configuration, process, and master target servers from the Site Recovery **Dashboard**. For Linux installation extract the files from the gzipped installer and run the command “sudo ./install” to install the update.
+2. [Download](http://go.microsoft.com/fwlink/?LinkID=533813) the latest update for the Failback tool(vContinuum).
+3. If you are running virtual machines or physical servers that already have the Mobility service installed, you can get updates for the service as follows:
 
-1. 按一下 [伺服器] > [組態伺服器] > 選取組態伺服器 > [新增 vCenter Server]，以新增 vCenter 伺服器或 vSphere 主機。
+    - **Option 1**: Download updates:
+        - [Windows Server (64 bit only)](http://download.microsoft.com/download/8/4/8/8487F25A-E7D9-4810-99E4-6C18DF13A6D3/Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe)
+        - [CentOS 6.4,6.5,6.6 (64 bit only)](http://download.microsoft.com/download/7/E/D/7ED50614-1FE1-41F8-B4D2-25D73F623E9B/Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz)
+        - [Oracle Enterprise Linux 6.4,6.5 (64 bit only)](http://download.microsoft.com/download/5/2/6/526AFE4B-7280-4DC6-B10B-BA3FD18B8091/Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz)
+        - [SUSE Linux Enterprise Server SP3 (64 bit only)](http://download.microsoft.com/download/B/4/2/B4229162-C25C-4DB2-AD40-D0AE90F92305/Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz)
+        - After updating the process server the updated version of the Mobility service will be available in the C:\pushinstallsvc\repository folder on the process server.
+    - **Option 2**: If you have a machine with an older version of the Mobility service installed, you can automatically upgrade the Mobility service on the machine from the management portal.
 
-	![選取 vCenter 伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter.png)
+        1. Ensure that the process server is updated.
+        2. Make sure that the protected machine complies with the [prerequisites](#install-the-mobility-service-automatically) for automatically pushing the Mobility service, so that the update works as expected.
+        2. Select the protection group, highlight the protected machine and click **Update Mobility service**. This button is only available if there's a newer version of the Mobility service. 
 
-2. 指定伺服器或主機的詳細資料，並選取將用來探索此伺服器或主機的處理序伺服器。
+            ![Select vCenter server](./media/site-recovery-vmware-to-azure-classic-legacy/update-mobility.png)
 
-	- 如果 vCenter 伺服器不在預設連接埠 443 上執行，請指定 vCenter 伺服器執行所在的連接埠號碼。
-	- 處理序伺服器必須與 vCenter 伺服器/vSphere 主機位於相同的網路上，而且應該安裝 VMware vSphere CLI 5.5.0。
-
-	![vCenter 伺服器設定](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter4.png)
-
-
-3. 探索完成之後，vCenter 伺服器將會列在組態伺服器詳細資料之下。
-
-	![vCenter 伺服器設定](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter2.png)
-
-4. 如果您使用非系統管理員帳戶來加入伺服器或主機，請確定帳戶具有下列權限：
-
-	- vCenter 帳戶應該已啟用資料中心、資料存放區、資料夾、主機、網路、資源、儲存體檢視、虛擬機器和 vSphere 分散式切換權限。
-	- vSphere 主機帳戶應該已啟用資料中心、資料存放區、資料夾、主機、網路、資源、虛擬機器和 vSphere 分散式交換器權限
+In Select accounts specify the administrator account to be used to update the mobility service on the protected server. Click OK and wait for the triggered job to complete.
 
 
+## <a name="step-6:-add-vcenter-servers-or-vsphere-hosts"></a>Step 6: Add vCenter servers or vSphere hosts
 
-## 步驟 7：建立保護群組
+1. Click **Servers** > **Configuration Servers** > configuration server >**Add vCenter Server** to add a vCenter server or vSphere host.
 
-1. 開啟 [受保護的項目] > [保護群組] > [建立保護群組]。
+    ![Select vCenter server](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter.png)
 
-	![建立保護群組](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg1.png)
+2. Specify details for the server or host and select the process server that will be used to discover it.
 
-2. 在 [指定保護群組設定] 頁面上，指定群組名稱，並且選取您要建立群組的設定伺服器。
+    - If the vCenter server isn't running on the default 443 port specify the port number on which the vCenter server is running.
+    - The process server must be on the same network as the vCenter server/vSphere host and should have VMware vSphere CLI 5.5.0 installed.
 
-	![保護群組設定](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg2.png)
+    ![vCenter server settings](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter4.png)
 
-3. 在 [指定複寫設定] 頁面上，進行將用於群組中所有機器的複寫設定。
 
-	![保護群組複寫](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg3.png)
+3. After discovery finishes the vCenter server will be listed under the configuration server details.
 
-4. 設定：
-	- **多部 VM 一致性**：如果您開啟這項功能，則會在保護群組中的機器之間，建立共用的應用程式一致復原點。當保護群組中的所有機器都執行相同的工作負載時，這項設定就可以發揮最高的重要性。所有機器都將復原到相同的資料點。僅適用於 Windows 伺服器。
-	- **RPO 臨界值**：當連續資料保護複寫 RPO 超過設定的 RPO 臨界值時，將會產生警示。
-	- **復原點保留期**：指定保留週期。受保護的機器可以復原到這個週期內的任意點。
-	- **應用程式一致的快照頻率**：指定建立包含應用程式一致快照的復原點的頻率。
+    ![vCenter server settings](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter2.png)
 
-您可以監視保護群組，因為它們是建立在 [受保護項目] 頁面上。
+4. If you're using a non-administrator account to add the server or host, make sure the account has the following privileges:
 
-## 步驟 8：設定您想要保護的電腦
+    - vCenter accounts should have Datacenter, Datastore, Folder, Host, Network, Resource, Storage views, Virtual machine and vSphere Distributed Switch privileges enabled.
+    - vSphere host accounts should have the Datacenter, Datastore, Folder, Host, Network, Resource, Virtual machine and vSphere Distributed Switch privileges enabled
 
-您必須在您想要保護的虛擬機器和實體伺服器上安裝行動服務。您可以使用兩種方式執行此動作：
 
-- 從處理序伺服器自動推入並在每一部機器上安裝服務。
-- 手動安裝服務。
 
-### 自動安裝行動服務
+## <a name="step-7:-create-a-protection-group"></a>Step 7: Create a protection group
 
-當您將機器加入保護群組時，行動服務會自動由處理序伺服器推入並安裝於每部機器上。
+1. Open **Protected Items** > **Protection Group** > **Create protection group**.
 
-**自動推入會在 Windows 伺服器上安裝行動服務：**
+    ![Create protection group](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg1.png)
 
-1. 如[步驟 5：安裝最新的更新](#step-5-install-latest-updates)所述，安裝處理序伺服器的最新更新，並確定處理序伺服器可用。
-2. 確保來源機器和處理序伺服器之間具有網路連線，且可從處理序伺服器存取來源機器。
-3. 設定 Windows 防火牆，允許**檔案及印表機共用**和 **Windows Management Instrumentation**。在 Windows 防火牆設定中，選取 [允許應用程式或功能通過防火牆] 選項，並選取應用程式，如下圖所示。針對隸屬於網域中的機器，您可以利用 GPO 設定防火牆原則。
+2. On the **Specify Protection Group Settings** page specify a name for the group and select the configuration server on which you want to create the group.
 
-	![防火牆設定](./media/site-recovery-vmware-to-azure-classic-legacy/push-firewall.png)
+    ![Protection group settings](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg2.png)
 
-4. 用來執行推入安裝的帳戶必須在您要保護之機器的系統管理員群組中。這些認證僅適用於推入行動服務的安裝，並且您會在將電腦加入保護群組時提供它們。
-5. 如果提供的帳戶不是網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。若要執行此動作，請在 HKEY\_LOCAL\_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System 下加入值為 1 的 LocalAccountTokenFilterPolicy DWORD 登錄項目。若要從 CLI 加入登錄項目，請開啟 cmd 或 powershell 並輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**。
+3. On the **Specify Replication Settings** page configure the replication settings that will be used for all the machines in the group.
 
-**自動推入會在 Linux 伺服器上安裝行動服務：**
+    ![Protection group replication](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg3.png)
 
-1. 如[步驟 5：安裝最新的更新](#step-5-install-latest-updates)所述，安裝處理序伺服器的最新更新，並確定處理序伺服器可用。
-2. 確保來源機器和處理序伺服器之間具有網路連線，且可從處理序伺服器存取來源機器。
-3. 確認帳戶是來源 Linux 伺服器上的根使用者。
-4. 確保來源 Linux 伺服器上的 /etc/hosts 檔案包含將本機主機名稱對應到所有 NIC 相關聯之 IP 位址的項目。
-5. 在您想要保護的電腦上安裝最新的 openssh、openssh 伺服器、openssl 套件。
-6. 請確定 SSH 已啟用且正在連接埠 22 上執行。
-7. 在 sshd\_config 檔案中啟用 SFTP 子系統與密碼驗證，如下所示：
+4. Settings:
+    - **Multi VM consistency**: If you turn this on it creates shared application-consistent recovery points across the machines in the protection group. This setting is most relevant when all of the machines in the protection group are running the same workload. All machines will be recovered to the same data point. Only available for Windows servers.
+    - **RPO threshold**: Alerts will be generated when the continuous data protection replication RPO exceeds the configured RPO threshold value.
+    - **Recovery point retention**: Specifies the retention window. Protected machines can be recovered to any point within this window.
+    - **Application-consistent snapshot frequency**: Specifies how frequently recovery points containing application-consistent snapshots will be created.
 
-	- a) 以 root 的身分登入。
-	- b) 在 /etc/ssh/sshd\_config 檔案中，尋找以 **PasswordAuthentication** 開頭的那一行。
-	- c) 取消註解該行，並將值從 “no” 變更為 “yes”。
+You can monitor the protection group as they're created on the **Protected Items** page.
 
-		![Linux 行動性](./media/site-recovery-vmware-to-azure-classic-legacy/linux-push.png)
+## <a name="step-8:-set-up-machines-you-want-to-protect"></a>Step 8: Set up machines you want to protect
 
-	- d) 尋找以 Subsystem 開頭的行並取消註解該行。
-	
-		![Linux 推播行動性](./media/site-recovery-vmware-to-azure-classic-legacy/linux-push2.png)
+You'll need to install the Mobility service on virtual machines and physical servers you want to protect. You can do this in two ways:
 
-8. 確定支援來源機器 Linux 變異。
+- Automatically push and install the service on each machine from the process server.
+- Manually install the service. 
+
+### <a name="install-the-mobility-service-automatically"></a>Install the Mobility service automatically
+
+When you add machines to a protection group the Mobility service is automatically pushed and installed on each machine by the process server. 
+
+**Automatically push install the mobility service on Windows servers:** 
+
+1. Install the latest updates for the process server as described in [Step 5: Install latest updates](#step-5-install-latest-updates), and make sure that the process server is available. 
+2. Ensure there's network connectivity between the source machine and the process server, and that the source machine is accessible from the process server.  
+3. Configure the Windows firewall to allow **File and Printer Sharing** and **Windows Management Instrumentation**. Under Windows Firewall settings, select the option “Allow an app or feature through Firewall” and select the applications as shown in the picture below. For machines that belong to a domain you can configure the firewall policy with a GPO.
+
+    ![Firewall settings](./media/site-recovery-vmware-to-azure-classic-legacy/push-firewall.png)
+
+4. The account used to perform the push installation must be in the Administrators group on the machine you want to protect. These credentials are only used for push installation of the Mobility service and you'll provide them when you add a machine to a protection group.
+5. If the provided account isn't a domain account you'll need to disable Remote User Access control on the local machine. To do this add the LocalAccountTokenFilterPolicy DWORD registry entry with a value of 1 under HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System. To add the registry entry from a CLI open cmd or powershell and enter **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**. 
+
+**Automatically push install the mobility service on Linux servers:**
+
+1. Install the latest updates for the process server as described in [Step 5: Install latest updates](#step-5-install-latest-updates), and make sure that the process server is available.
+2. Ensure there's network connectivity between the source machine and the process server, and that the source machine is accessible from the process server.  
+3. Make sure the account is a root user on the source Linux server.
+4. Ensure that the /etc/hosts file on the source Linux server contains entries that map the local host name to IP addresses associated with all NICs.
+5. Install the latest openssh, openssh-server, openssl packages on the machine you want to protect.
+6. Ensure SSH is enabled and running on port 22. 
+7. Enable SFTP subsystem and password authentication in the sshd_config file as follows: 
+
+    - a) Log in as root.
+    - b) In the file /etc/ssh/sshd_config file, find the line that begins with **PasswordAuthentication**.
+    - c) Uncomment the line and change the value from “no” to “yes”.
+
+        ![Linux mobility](./media/site-recovery-vmware-to-azure-classic-legacy/linux-push.png)
+
+    - d) Find the line that begins with Subsystem and uncomment the line.
+    
+        ![Linux push mobility](./media/site-recovery-vmware-to-azure-classic-legacy/linux-push2.png)    
+
+8. Ensure the source machine Linux variant is supported. 
  
-### 手動安裝行動服務
+### <a name="install-the-mobility-service-manually"></a>Install the Mobility service manually
 
-用來安裝行動服務使用的軟體套件位於處理序伺服器上的 C:\\pushinstallsvc\\repository 中。登入處理序伺服器，並將適當的安裝套件複製到來源電腦，根據下表：
+The software packages used to install the Mobility service are on the process server in C:\pushinstallsvc\repository. Log onto the process server and copy the appropriate installation package to the source machine based on the table below:-
 
-| 來源作業系統 | 處理序伺服器上的行動服務封裝 |
-|---------------------------------------------------	|------------------------------------------------------------------------------------------------------	|
-| Windows Server (僅限 64 位元) | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe` |
-| CentOS 6.4、6.5、6.6 (僅限 64 位元) | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz` |
-| SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz`|
-| Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz` |
+| Source operating system                               | Mobility service package on process server                                                            |
+|---------------------------------------------------    |------------------------------------------------------------------------------------------------------ |
+| Windows Server (64 bit only)                          | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe`         |
+| CentOS 6.4, 6.5, 6.6 (64 bit only)                    | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz`     |
+| SUSE Linux Enterprise Server 11 SP3 (64 bit only)     | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz`|
+| Oracle Enterprise Linux 6.4, 6.5 (64 bit only)        | `C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz`       |
 
 
-**若要在 Windows 伺服器上手動安裝行動服務**，請執行下列動作：
+**To install the Mobility service manually on a Windows server**, do the following:
 
-1. 從上表所列的處理伺服器目錄路徑中，將 **Microsoft-ASR\_UA\_8.4.0.0_Windows\_GA_28Jul2015\_release.exe** 套件複製到來源機器。
-2. 在來源電腦上執行可執行檔來安裝行動服務。
-3. 遵循安裝程式的指示。
-4. 選取 [行動服務] 做為角色，然後按 [下一步]。
-	
-	![安裝行動服務](./media/site-recovery-vmware-to-azure-classic-legacy/ms-install.png)
+1. Copy the **Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe** package from the process server directory path listed in the table above to the source machine.
+2. Install the Mobility service by running the executable on the source machine.
+3. Follow the installer instructions.
+4. Select **Mobility service** as the role and click **Next**.
+    
+    ![Install mobility service](./media/site-recovery-vmware-to-azure-classic-legacy/ms-install.png)
 
-5. 將安裝目錄保留為預設安裝路徑，然後按一下 [安裝]。
-6. 在 [主機代理程式設定] 中，指定組態伺服器的 IP 位址與 HTTPS 連接埠。
+5. Leave the installation directory as the default installation path and click **Install**.
+6. In **Host Agent Config** specify the IP address and HTTPS port of the configuration server.
 
-	- 如果您是透過網際網路連線，請指定公用虛擬 IP 位址和公用 HTTPS 端點做為連接埠。
-	- 如果您是透過 VPN 連接，請指定內部 IP 位址和連接埠 443。讓 [使用 HTTPS] 保持勾選狀態。
+    - If you're connecting over the internet specify the public virtual IP address and public HTTPS endpoint as the port.
+    - If you're connecting over VPN specify the internal IP address and 443 for the port. Leave **Use HTTPS** checked.
 
-	![安裝行動服務](./media/site-recovery-vmware-to-azure-classic-legacy/ms-install2.png)
+    ![Install mobility service](./media/site-recovery-vmware-to-azure-classic-legacy/ms-install2.png)
 
-7. 指定組態伺服器複雜密碼，然後按一下 [確定] 來向組態伺服器註冊行動服務。
+7. Specify the configuration server passphrase and click **OK** to register the Mobility service with the configuration server.
 
-**若要從命令列執行：**
+**To run from the command line:**
 
-1. 將複雜密碼從 CX 複製到伺服器上的 "C:\\connection.passphrase" 檔案，並執行此命令。在我們的範例中，CX 是 104.40.75.37 和 HTTPS 連接埠是 62519：
+1. Copy the passphrase from the CX to the file "C:\connection.passphrase" on the server and run this command. In our example CX i 104.40.75.37 and the HTTPS port is 62519:
 
     `C:\Microsoft-ASR_UA_8.2.0.0_Windows_PREVIEW_20Mar2015_Release.exe" -ip 104.40.75.37 -port 62519 -mode UA /LOG="C:\stdout.txt" /DIR="C:\Program Files (x86)\Microsoft Azure Site Recovery" /VERYSILENT  /SUPPRESSMSGBOXES /norestart  -usesysvolumes  /CommunicationMode https /PassphrasePath "C:\connection.passphrase"`
 
-**在 Linux 伺服器上手動安裝行動服務**：
+**Install the Mobility service manually on a Linux server**:
 
-1. 根據上表，將適當的 tar 封存檔從將處理序伺服器複製到來源機器。
-2. 開啟殼層程式，並藉由執行 `tar -xvzf Microsoft-ASR_UA_8.2.0.0*` 將壓縮的 tar 封存檔解壓縮到本機路徑
-3. 從殼層輸入 *`echo <passphrase> >passphrase.txt`*，在解壓縮 tar 封存檔內容的本機目錄中建立 passphrase.txt 檔案。
-4. 輸入 *`sudo ./install -t both -a host -R Agent -d /usr/local/ASR -i <IP address> -p <port> -s y -c https -P passphrase.txt`* 來安裝行動服務。
-5. 指定 IP 位址和連接埠：
+1. Copy the appropriate tar archive based on the table above, from the process server to the source machine.
+2. Open a shell program and extract the zipped tar archive to a local path by executing `tar -xvzf Microsoft-ASR_UA_8.2.0.0*`
+3. Create a passphrase.txt file in the local directory to which you extracted the contents of the tar archive by entering *`echo <passphrase> >passphrase.txt`* from shell.
+4. Install the Mobility service by entering *`sudo ./install -t both -a host -R Agent -d /usr/local/ASR -i <IP address> -p <port> -s y -c https -P passphrase.txt`*.
+5. Specify the IP address and port:
 
-	- 如果您是透過網際網路連接到設定伺服器，請在 `<IP address>` 和 `<port>` 中指定組態伺服器的虛擬公用 IP 位址和公用 HTTPS 端點。
-	- 如果您要透過 VPN 連線連接，請指定內部 IP 位址和 443。
+    - If you are connecting to the configuration server over the internet specify the configuration server virtual public IP address and public HTTPS endpoint in `<IP address>` and `<port>`.
+    - If you're connecting over a VPN connection specify the internal IP address and 443.
 
-**若要從命令列執行**：
+**To run from the command line**:
 
-1. 將複雜密碼從 CX 複製到伺服器上的 "passphrase.txt"檔案，並執行此命令。在我們的範例中，CX 是 104.40.75.37 和 HTTPS 連接埠是 62519：
+1. Copy the passphrase from the CX to the file "passphrase.txt" on the server and run this commands. In our example CX i 104.40.75.37 and the HTTPS port is 62519:
 
-若要在實際執行伺服器上安裝：
+To install on a production server:
 
     ./install -t both -a host -R Agent -d /usr/local/ASR -i 104.40.75.37 -p 62519 -s y -c https -P passphrase.txt
  
-若要在目標伺服器上安裝：
+To install on the target server:
 
 
     ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i 104.40.75.37 -p 62519 -s y -c https -P passphrase.txt
 
->[AZURE.NOTE] 當您加入機器到已在執行適當版本行動服務的保護群組時，那麼會略過推入安裝。
+>[AZURE.NOTE] When you add machines to a protection group that are already running an appropriate version of the Mobility service then the push installation is skipped.
 
 
-## 步驟 9：啟用保護
+## <a name="step-9:-enable-protection"></a>Step 9: Enable protection
 
-若要啟用保護，您會將虛擬機器和實體伺服器加入至保護群組。開始之前，請注意：
+To enable protection you add virtual machines and physical servers to a protection group. Before you start,note that:
 
-- 系統會每隔 15 分鐘探索虛擬機器一次，而且在探索之後，需要最多 15 分鐘的時間，虛擬機器才會會出現在 Azure Site Recovery 中。
-- 虛擬機器上的環境變更 (例如 VMware 工具安裝) 也可能需要最多 15 分鐘的時間，才能在 Site Recovery 中更新。
-- 您可以在 [組態伺服器] 頁面上 vCenter 伺服器/ESXi 主機的 [上次連絡時間] 欄位中檢查上次探索的時間。
-- 如果您已建立保護群組，並新增 vCenter Server 或 ESXi 主機之後，需要 15 分鐘，Azure Site Recovery 入口網站才會重新整理並且在 [將機器加入至保護群組] 對話方塊中列出虛擬機器。
-- 如果您想要立即繼續將機器加入至保護群組，而不想等候排程的探索，請反白顯示設定伺服器 (不要按它)，然後按一下 [重新整理] 按鈕。
-- 當您將虛擬機器或實體機器加入保護群組時，處理序伺服器會自動推入行動服務並在來源伺服器上安裝 (如果尚未安裝)。
-- 若要讓自動推入機制運作，請確認已將受保護機器如上一個步驟所述進行設定。
+- Virtual machines are discovered every 15 minutes and it can take up to 15 minutes for them to appear in Azure Site Recovery after discovery.
+- Environment changes on the virtual machine (such as VMware tools installation) can also take up to 15 minutes to be updated in Site Recovery.
+- You can check the last discovered time in the **LAST CONTACT AT** field for the vCenter server/ESXi host on the **Configuration Servers** page.
+- If you have a protection group already created and add a vCenter Server or ESXi host after that, it takes fifteen minutes for the Azure Site Recovery portal to refresh and for virtual machines to be listed in the **Add machines to a protection group** dialog.
+- If you would like to proceed immediately with adding machines to protection group without waiting for the scheduled discovery, highlight the configuration server (don’t click it) and click the **Refresh** button.
+- When you add virtual machines or physical machines to a protection group, the process server automatically pushes and installs the Mobility service on the source server if the it isn't already installed.
+- For the automatic push mechanism to work make sure you've set up your protected machines as described in the previous step.
 
-如下所示加入機器：
+Add machines as follows:
 
-1. 按一下 [受保護的項目] > [保護群組] > [機器] > [加入機器]。做為最佳做法，我們建議保護群組應反映您的工作負載，這樣一來您才可以將執行特定應用程式的機器加入相同的群組。
-2. 在 [選取虛擬機器] 中，如果您要保護實體伺服器，在 [加入實體機器] 精靈中，提供 IP 位址和易記名稱。然後選取作業系統系列。
+1. Click **Protected Items** > **Protection Group** > **Machines** > **Add Machines**. As a best practice we recommend that protection groups should mirror your workloads so that you add machines running a specific application to the same group.
+2. In **Select Virtual Machines** if you're protecting physical servers, in the **Add Physical Machines** wizard provide the IP address and friendly name. Then select the operating system family.
 
-	![加入 V-Center 伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/physical-protect.png)
+    ![Add V-Center server](./media/site-recovery-vmware-to-azure-classic-legacy/physical-protect.png)
 
-3. 在 [選取虛擬機器] 中，如果您要保護 VMware 虛擬機器，請選取正在負責管理您的虛擬機器 (或其執行所在的 EXSi 主機) 的 vCenter 伺服器，然後選取機器。
+3. In **Select Virtual Machines** if you're protecting VMware virtual machines, select a vCenter server that's managing your virtual machines (or the EXSi host on which they're running), and then select the machines.
 
-	![加入 V-Center 伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/select-vms.png)
-4. 在 [指定目標資源] 中，選取要用於複寫主要目標伺服器和儲存體，並選取設定是否應該用於所有工作負載。設定工作負載的保護時選取[進階儲存體帳戶](../storage/storage-premium-storage.md)，該工作負載需要一致高 IO 效能和低延遲，以裝載需要大量 IO 的工作負載。如果您希望針對您的工作負載磁碟使用進階儲存體帳戶，您必須使用 DS 系列的主要目標。您無法搭配使用進階儲存體磁碟與非 DS 系列的主要目標。
+    ![Add V-Center server](./media/site-recovery-vmware-to-azure-classic-legacy/select-vms.png) 
+4. In **Specify Target Resources** select the master target servers and storage to use for replication and select whether the settings should be used for all workloads. Select [Premium Storage Account](../storage/storage-premium-storage.md) while configuring protection for workloads which require consistent high IO performance and low latency in order to host IO intensive workloads. If you want to use a Premium Storage account for your workload disks, you need to use the Master Target of DS-series. You cannot use Premium Storage disks with Master Target of non-DS-series.
 
-	>[AZURE.NOTE] 我們不支援使用[新的 Azure 入口網站](../storage/storage-create-storage-account.md)來跨資源群組移動所建立的儲存體帳戶。
+    >[AZURE.NOTE] We do not support the move of Storage accounts created using the [new Azure portal](../storage/storage-create-storage-account.md) across resource groups.
 
-	![vCenter 伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/machine-resources.png)
+    ![vCenter server](./media/site-recovery-vmware-to-azure-classic-legacy/machine-resources.png)
 
-5. 在 [指定帳戶] 中，選取您要於在受保護的機器上安裝行動服務的帳戶。需要帳戶認證，才能自動安裝行動服務。如果您無法選取帳戶，請確定您如步驟 2 中所述設定一個。請注意，Azure 無法存取此帳戶。對於 Windows 伺服器而言，帳戶應該具有來源伺服器上的系統管理員權限。若為 Linux，帳戶必須是 root。
+5. In **Specify Accounts** select the account you want to use for installing the Mobility service on protected machines. The account credentials are needed for automatic installation of the Mobility service. If you can't select an account make sure you set one up as described in Step 2. Note that this account can't be accessed by Azure. For Windows server the account should have administrator privileges on the source server. For Linux the account must be root.
 
-	![Linux 認證](./media/site-recovery-vmware-to-azure-classic-legacy/mobility-account.png)
+    ![Linux credentials](./media/site-recovery-vmware-to-azure-classic-legacy/mobility-account.png)
 
-6. 按一下核取記號，以完成將機器加入保護群組，並啟動每部機器的初始複寫。您可以在 [工作] 頁面上監視狀態。
+6. Click the check mark to finish adding machines to the protection group and to start initial replication for each machine. You can monitor status on the **Jobs** page.
 
-	![加入 V-Center 伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/pg-jobs2.png)
+    ![Add V-Center server](./media/site-recovery-vmware-to-azure-classic-legacy/pg-jobs2.png)
 
-7. 此外，您可以監視保護狀態，方法是按一下 [受保護的項目] > 保護群組名稱 > [虛擬機器]。在初始複寫完成之後且機器在同步處理資料時，仍會顯示**受保護**狀態。
+7. In addition you can monitor protection status by clicking **Protected Items** > protection group name > **Virtual Machines** . After initial replication completes and the machines are synchronizing data they will show **Protected** status.
 
-	![虛擬機器作業](./media/site-recovery-vmware-to-azure-classic-legacy/pg-jobs.png)
-
-
-### 設定受保護機器屬性
-
-1. 在機器具有**受保護**狀態之後，您可以設定其容錯移轉屬性。在保護群組詳細資料中，選取機器並開啟 [設定] 索引標籤。
-2. 在容錯移轉和 Azure 虛擬機器大小調整之後，您可以修改要提供給 Azure 中機器的名稱。您也可以選取機器要在容錯移轉之後要連結的 Azure 網路。
-
-	> [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
-
-	![設定虛擬機器屬性](./media/site-recovery-vmware-to-azure-classic-legacy/vm-props.png)
-
-請注意：
-
-- Azure 機器的名稱必須符合 Azure 需求。
-- 根據預設，Azure 中的複寫虛擬機器不會與 Azure 網路連線。如果您要讓複寫的虛擬機器進行通訊，請務必為其設定相同的 Azure 網路。
-- 如果您調整 VMware 虛擬機器或實體伺服器上磁碟區的大小，它會進入嚴重狀態。如果您需要修改大小，請執行下列動作：
-
-	- a) 變更大小設定。
-	- b) 在 [虛擬機器] 索引標籤上，選取虛擬機器，然後按一下 [移除]。
-	- c) 在 [移除虛擬機器] 中，選取 [停用保護 (用於復原切入和磁碟區調整大小)]。此選項會停用保護，但會在 Azure 中保留復原點。
-
-		![設定虛擬機器屬性](./media/site-recovery-vmware-to-azure-classic-legacy/remove-vm.png)
-
-	- d) 重新啟用虛擬機器的保護。當您重新啟用保護時，重新調整過大小的磁碟區資料會傳輸至 Azure。
-
-	
-
-## 步驟 10：執行容錯移轉
-
-目前您只能為受保護的 VMware 虛擬機器和實體伺服器執行非計劃的容錯移轉。請注意：
+    ![Virtual machine jobs](./media/site-recovery-vmware-to-azure-classic-legacy/pg-jobs.png)
 
 
+### <a name="set-protected-machine-properties"></a>Set protected machine properties
 
-- 起始容錯移轉之前，請確保設定和主要目標伺服器執行中且狀況良好。否則容錯移轉將會失敗。
-- 來源機器未隨著非計劃的容錯移轉關閉。執行非計劃的容錯移轉會停止受保護伺服器的資料複寫。您將必須從保護群組刪除機器並重新加入，然後才能在非計劃的容錯移轉完成之後，再次開始保護機器。
-- 如果您想要容錯移轉而不遺失任何資料，請確定主要網站虛擬機器在您起始容錯移轉之前是關閉的。
+1. After a machine has a **Protected** status you can configure its failover properties. In the protection group details select the machine and open the **Configure** tab.
+2. You can modify the name that will be given to the machine in Azure after failover and the Azure virtual machine size. You can also select the Azure network to which the machine will be connected after failover.
 
-1. 在 [復原計畫] 頁面上，並加入復原計畫。指定計畫的詳細資料並選取 **Azure** 做為目標。
+    > [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) across resource groups within the same subscription or across subscriptions is not supported for networks used for deploying Site Recovery.
 
-	![設定復原計畫](./media/site-recovery-vmware-to-azure-classic-legacy/rplan1.png)
+    ![Set virtual machine properties](./media/site-recovery-vmware-to-azure-classic-legacy/vm-props.png)
 
-2. 在 [選取虛擬機器] 中，選取保護群組，然後在群組中選取要加入復原計畫的機器。[閱讀更多](site-recovery-create-recovery-plans.md)復原方案的相關資訊。
+Note that:
 
-	![新增虛擬機器](./media/site-recovery-vmware-to-azure-classic-legacy/rplan2.png)
+- The name of the Azure machine must comply with Azure requirements.
+- By default replicated virtual machines in Azure aren't connected to an Azure network. If you want replicated virtual machines to communicate make sure to set the same Azure network for them.
+- If you resize a volume on a VMware virtual machine or physical server it goes into a critical state. If you do need to modify the size, do the following:
 
-3. 若需要，您可以自訂計畫以建立群組並決定機器在復原計劃中容錯移轉的順序。您也可以加入進行手動動作和指令碼的提示。復原到 Azure 時，可以使用 [Azure 自動化 Runbook](site-recovery-runbook-automation.md) 加入指令碼。
+    - a) Change the size setting.
+    - b) In the **Virtual Machines** tab, select the virtual machine and click **Remove**.
+    - c) In **Remove Virtual Machine** select the option **Disable protection (use for recovery drill and volume resize)**. This option disables protection but retains the recovery points in Azure.
 
-4. 在 [復原計畫] 頁面中，選取計畫並按一下 [非計劃性容錯移轉]。
-5. 在 [確認容錯移轉] 中，確認容錯移轉方向 (朝向 Azure)，然後選取容錯移轉的目標復原點。
-6. 等候容錯移轉工作完成，然後確認容錯移轉如預期般運作，且複寫的虛擬機器在 Azure 中成功啟動。
+        ![Set virtual machine properties](./media/site-recovery-vmware-to-azure-classic-legacy/remove-vm.png)
+
+    - d) Reenable protection for the virtual machine. When you reenable protection the data for the resized volume will be transferred to Azure.
+
+    
+
+## <a name="step-10:-run-a-failover"></a>Step 10: Run a failover
+
+Currently you can only run unplanned failovers for protected VMware virtual machines and physical servers. Note the following:
 
 
 
+- Before you initiate a failover, ensure that the configuration and master target servers are running and healthy. Otherwise failover will fail.
+- Source machines aren't shut down as part of an unplanned failover. Performing an unplanned failover stops data replication for the protected servers. You'll need to delete the machines from the protection group and add them again in order to start protecting machines again after the unplanned failover completes.
+- If you want to fail over without losing any data, make sure that the primary site virtual machines are turned off before you initiate the failover.
 
-## 步驟 11：來自 Azure 機器的容錯移轉失敗
+1. On the **Recovery Plans** page and add a recovery plan. Specify details for the plan and select **Azure** as the target.
 
-[進一步了解](site-recovery-failback-azure-to-vmware-classic-legacy.md)有關如何在 Azure 中將執行失敗的機器還原到您的內部部署環境。
+    ![Configure recovery plan](./media/site-recovery-vmware-to-azure-classic-legacy/rplan1.png)
 
+2. In **Select Virtual Machine** select a protection group and then select machines in the group to add to the recovery plan. [Read more](site-recovery-create-recovery-plans.md) about recovery plans.
 
-## 管理您的處理序伺服器
+    ![Add virtual machines](./media/site-recovery-vmware-to-azure-classic-legacy/rplan2.png)
 
-處理序伺服器會傳送複寫資料至 Azure 中的主要目標伺服器，並探索加入至 vCenter 伺服器的新 VMware 虛擬機器。在下列情況下，您可能要變更在您的部署中的處理序伺服器：
+3. If needed you can customize the plan to create groups and sequence the order in which machines in the recovery plan are failed over. You can also add prompts for manual actions and scripts. The scripts when recovering to Azure can be added by using [Azure Automation Runbooks](site-recovery-runbook-automation.md).
 
-- 如果目前的處理序伺服器關閉
-- 如果您的復原點目標 (RPO) 上升到您的組織無法接受的程度。
-
-必要時，您可以將內部部署 VMware 虛擬機器和實體伺服器的部分或所有複寫移到另一個處理序伺服器。例如：
-
-- **失敗**—如果處理序伺服器失敗或無法使用，您可以將受保護的機器複寫移至另一個處理序伺服器。來源機器和複本機器的中繼資料將會移至新的處理序伺服器，並重新同步處理資料。新的處理序伺服器將自動連接至 vCenter 伺服器來執行自動探索。您可以在 Site Recovery 儀表板上監視處理序伺服器的狀態。
-- **負載平衡以調整 RPO**—如要獲得改善的負載平衡，您可以在 Site Recovery 入口網站中選取不同的處理序伺服器，並將一或多部機器的複寫移到它，以手動進行負載平衡。在此情況下，選取的來源和複本機器的中繼資料會移至新的處理序伺服器。原始的處理序伺服器仍然連接至 vCenter 伺服器。
-
-### 監視處理序伺服器
-
-如果處理序伺服器處於嚴重狀態，Site Recovery 儀表板上將顯示狀態警告。您可以按一下狀態以開啟 [事件] 索引標籤，然後向下鑽研至 [工作] 索引標籤上的特定工作。
-
-### 修改用於複寫的處理序伺服器
-
-1. 開啟 [伺服器] > [組態伺服器] > 選取組態伺服器 > [伺服器詳細資料]。
-2. 按一下 [處理伺服器]，再按一下您想要修改的伺服器旁邊的 [變更處理伺服器]。
-
-	![變更處理序伺服器 1](./media/site-recovery-vmware-to-azure-classic-legacy/change-ps1.png)
-
-3. 在 [變更處理伺服器] > [目標處理伺服器] 中，選取您要使用的新伺服器，然後選取您要複寫到新伺服器的虛擬機器。按一下伺服器名稱旁的資訊圖示，以查看可用空間和已用記憶體的詳細資料。將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間就會顯示，以協助您進行負載的決策。
-
-	![變更處理序伺服器 2](./media/site-recovery-vmware-to-azure-classic-legacy/change-ps2.png)
-
-4. 按一下核取記號以開始複寫到新處理序伺服器。請注意，如果從重要的處理序伺服器中移除所有虛擬機器，儀表板中應該不會再顯示重大警告。
+4. In the **Recovery Plans** page select the plan and click **Unplanned Failover**.
+5. In **Confirm Failover** verify the failover direction (To Azure) and select the recovery point to fail over to.
+6. Wait for the failover job to complete and then verify that the failover worked as expected and that the replicated virtual machines start successfully in Azure.
 
 
-## 第三方廠商軟體注意事項和資訊
+
+
+## <a name="step-11:-fail-back-failed-over-machines-from-azure"></a>Step 11: Fail back failed over machines from Azure
+
+[Learn more](site-recovery-failback-azure-to-vmware-classic-legacy.md) about how to bring your failed over machines running in Azure back to your on-premises environment.
+
+
+## <a name="manage-your-process-servers"></a>Manage your process servers
+
+The process server sends replication data to the master target server in Azure, and discovers new VMware virtual machines added to a vCenter server. In the following circumstances you might want to change the process server in your deployment:
+
+- If the current process server goes down
+- If your recovery point objective (RPO) rises to an unacceptable level for your organization.
+
+If required you can move the replication of some or all of your on-premises VMware virtual machines and physical servers to a different process server. For example:
+
+- **Failure**—If a process server fails or isn't available you can move protected machine replication to another process server. Metadata of the source machine and replica machine will be moved to the new process server and data is resynchronized. The new process server will automatically connect to the vCenter server to perform automatic discovery. You can monitor the state of process servers on the Site Recovery dashboard.
+- **Load balancing to adjust RPO**—For improved load balancing you can select a different process server in the Site Recovery portal, and move replication of one or more machines to it for manual load balancing. In this case metadata of the selected source and replica machines is moved to the new process server. The original process server remains connected to the vCenter server. 
+
+### <a name="monitor-the-process-server"></a>Monitor the process server
+
+If a process server is in a critical state a status warning will be displayed on the Site Recovery Dashboard. You can click on the status to open the Events tab and then drill down to specific jobs on the Jobs tab. 
+
+### <a name="modify-the-process-server-used-for-replication"></a>Modify the process server used for replication
+
+1. Open **Servers** > **Configuration Servers** > configuration server > **Server Details**.
+2. Click **Process Servers** > **Change Process Server** next to the server you want to modify.
+
+    ![Change Process Server 1](./media/site-recovery-vmware-to-azure-classic-legacy/change-ps1.png)
+
+3. In **Change Process Server** > **Target Process Server** select the new server you want to use and then select the virtual machines that you want to replicate to the new server. Click the information icon next to the server name for details of free space and used memory. The average space that will be required to replicate each selected virtual machine to the new process server is displayed to help you make load decisions.
+
+    ![Change Process Server 2](./media/site-recovery-vmware-to-azure-classic-legacy/change-ps2.png)
+
+4. Click the check mark to begin replicating to the new process server. Note that if you remove all virtual machines from a process server that was critical it should no longer display a critical warning in the dashboard.
+
+
+## <a name="third-party-software-notices-and-information"></a>Third-party software notices and information
 
 Do Not Translate or Localize
 
-The software and firmware running in the Microsoft product or service is based on or incorporates material from the projects listed below (collectively, “Third Party Code”).Microsoft is the not original author of the Third Party Code.The original copyright notice and license, under which Microsoft received such Third Party Code, are set forth below.
+The software and firmware running in the Microsoft product or service is based on or incorporates material from the projects listed below (collectively, “Third Party Code”).  Microsoft is the not original author of the Third Party Code.  The original copyright notice and license, under which Microsoft received such Third Party Code, are set forth below.
 
-The information in Section A is regarding Third Party Code components from the projects listed below.Such licenses and information are provided for informational purposes only.This Third Party Code is being relicensed to you by Microsoft under Microsoft's software licensing terms for the Microsoft product or service.
+The information in Section A is regarding Third Party Code components from the projects listed below. Such licenses and information are provided for informational purposes only.  This Third Party Code is being relicensed to you by Microsoft under Microsoft's software licensing terms for the Microsoft product or service.  
 
 The information in Section B is regarding Third Party Code components that are being made available to you by Microsoft under the original licensing terms.
 
-The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
+The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428). Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!----HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

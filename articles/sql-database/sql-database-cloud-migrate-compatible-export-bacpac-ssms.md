@@ -1,7 +1,7 @@
 
 <properties
-   pageTitle="使用 SQL Server Management Studio 將 SQL Server 資料庫匯出到 BACPAC 檔案 | Microsoft Azure"
-   description="Microsoft Azure SQL Database, 資料庫移轉, 匯出資料庫, 匯出 BACPAC 檔案, 匯出資料層應用程式精靈"
+   pageTitle="Export a SQL Server database to a BACPAC file using SQL Server Management Studio | Microsoft Azure"
+   description="Microsoft Azure SQL Database, database migration, export database, export BACPAC file, Export Data Tier Application wizard"
    services="sql-database"
    documentationCenter=""
    authors="CarlRabeler"
@@ -17,47 +17,52 @@
    ms.date="08/16/2016"
    ms.author="carlrab"/>
 
-# 使用 SQL Server Management Studio 將 SQL Server 資料庫匯出到 BACPAC 檔案
+
+# <a name="export-a-sql-server-database-to-a-bacpac-file-using-sql-server-management-studio"></a>Export a SQL Server database to a BACPAC file using SQL Server Management Studio
 
 > [AZURE.SELECTOR]
 - [SSMS](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
 - [SqlPackage](sql-database-cloud-migrate-compatible-export-bacpac-sqlpackage.md)
 
  
-本文說明如何使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」將 SQL 伺服器資料庫匯出成 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案。
+This article shows how to export a SQL Server database to a [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) file using the Export Data Tier Application Wizard in SQL Server Management Studio. 
 
-1. 請確認您有最新版本的 SQL Server Management Studio。新版的 Management Studio 會每月更新以維持與 Azure 入口網站的更新同步。
+1. Verify that you have the latest version of SQL Server Management Studio. New versions of Management Studio are updated monthly to remain in sync with updates to the Azure portal.
 
-	 > [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+     > [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 
-2. 開啟 Management Studio 並連接到您在 [物件總管] 中的來源資料庫。
+2. Open Management Studio and connect to your source database in Object Explorer.
 
-	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/MigrateUsingBACPAC01.png)
+    ![Export a data-tier application from the Tasks menu](./media/sql-database-cloud-migrate/MigrateUsingBACPAC01.png)
 
-3. 以滑鼠右鍵按一下 [物件總管] 中的來源資料庫，指向 [工作]，並按一下 [匯出資料層應用程式]。
+3. Right-click the source database in the Object Explorer, point to **Tasks**, and click **Export Data-Tier Application…**
 
-	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS01.png)
+    ![Export a data-tier application from the Tasks menu](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS01.png)
 
-4. 在匯出精靈中，將匯出設定為將 BACPAC 檔案儲存到本機磁碟位置或 Azure Blob。匯出的 BACPAC 一律會包含完整的資料庫結構描述，以及預設之所有資料表的資料。如果您想要排除部分或所有資料表的資料，請使用 [進階] 索引標籤。比方說，您可能會選擇只匯出參考資料表的資料，而不是所有資料表的資料。
+4. In the export wizard, configure the export to save the BACPAC file to either a local disk location or to an Azure blob. The exported BACPAC always includes the complete database schema and, by default, data from all the tables. Use the Advanced tab if you want to exclude data from some or all the tables. You might, for example, choose to export only the data for reference tables rather than from all tables.
 
-***重要：*** 將 BACPAC 匯出至 Azure blob 儲存體時，請使用標準儲存體。不支援從進階儲存體匯入 BACPAC。
+***Important*** When exporting a BACPAC to Azure blob storage, use standard storage. Importing a BACPAC from premium storage is not supported.
 
-	![Export settings](./media/sql-database-cloud-migrate/MigrateUsingBACPAC02.png)
+    ![Export settings](./media/sql-database-cloud-migrate/MigrateUsingBACPAC02.png)
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
-- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
-- [使用 SSMS 將 BACPAC 匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
-- [使用 SqlPackage 將 BACPAC 匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
-- [使用 Azure 入口網站將 BACPAC 匯入 Azure SQL Database](sql-database-import.md)
-- [使用 PowerShell 將 BACPAC 匯入 Azure SQL Database](sql-database-import-powershell.md)
+- [Newest version of SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [Newest version of SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+- [Import a BACPAC to Azure SQL Database using SSMS](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
+- [Import a BACPAC to Azure SQL Database SqlPackage](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
+- [Import a BACPAC to Azure SQL Database Azure portal](sql-database-import.md)
+- [Import a BACPAC to Azure SQL Database PowerShell](sql-database-import-powershell.md)
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
 - [SQL Database V12](sql-database-v12-whats-new.md)
-- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
-- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
+- [Transact-SQL partially or unsupported functions](sql-database-transact-sql-information.md)
+- [Migrate non-SQL Server databases using SQL Server Migration Assistant](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

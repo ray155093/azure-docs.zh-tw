@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 CLI 在 Azure 上建立 Linux VM | Microsoft Azure"
-   description="使用 CLI 在 Azure 上建立 Linux VM。"
+   pageTitle="Create a Linux VM on Azure by using the CLI | Microsoft Azure"
+   description="Create a Linux VM on Azure by using the CLI."
    services="virtual-machines-linux"
    documentationCenter=""
    authors="vlivech"
@@ -17,54 +17,55 @@
    ms.author="v-livech"/>
 
 
-# 使用 CLI 在 Azure 上建立 Linux VM
 
-本文示範如何使用 Azure 命令列介面 (CLI) 中的 `azure vm quick-create` 命令，在 Azure 上快速部署 Linux 虛擬機器 (VM)。`quick-create` 命令會將 VM 部署在基本且安全的基礎結構內，可讓您快速地建立原型或測試概念。本文需要：
+# <a name="create-a-linux-vm-on-azure-by-using-the-cli"></a>Create a Linux VM on Azure by using the CLI
 
-- Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
+This article shows how to quickly deploy a Linux virtual machine (VM) on Azure by using the `azure vm quick-create` command in the Azure command-line interface (CLI). The `quick-create` command deploys a VM inside a basic, secure infrastructure that you can use to prototype or test a concept rapidly. The article requires:
 
-- 使用 `azure login` 登入的 [Azure CLI](../xplat-cli-install.md)
+- an Azure account ([get a free trial](https://azure.microsoft.com/pricing/free-trial/)).
 
-- Azure CLI「必須」處於 Azure Resource Manager 模式 `azure config mode arm`
+- the [Azure CLI](../xplat-cli-install.md) logged in with `azure login`
 
-您也可以使用 [Azure 入口網站](virtual-machines-linux-quick-create-portal.md)來快速部署 Linux VM。
+- the Azure CLI _must be in_ Azure Resource Manager mode `azure config mode arm`
 
-## 快速命令
+You can also quickly deploy a Linux VM by using the [Azure portal](virtual-machines-linux-quick-create-portal.md).
 
-以下範例示範如何部署 CoreOS VM，並附加您的安全殼層 (SSH) 金鑰 (您的引數可能會不同)：
+## <a name="quick-commands"></a>Quick commands
+
+The following example shows how to deploy a CoreOS VM and attach your Secure Shell (SSH) key (your arguments might be different):
 
 ```bash
 azure vm quick-create -M ~/.ssh/azure_id_rsa.pub -Q CoreOS
 ```
 
-以下各章節使用 Ubuntu Server 14.04 LTS 當作 Linux 散發版本，說明命令及其需求。
+The following sections explain the command and its requirements using Ubuntu Server 14.04 LTS as the Linux distribution.  
 
-## VM quick-create 別名
+## <a name="vm-quick-create-aliases"></a>VM quick-create aliases
 
-使用對應到常見作業系統散發版本的 Azure CLI 別名，可以快速選擇版本。下表列出別名 (依 Azure CLI 0.10 版)。所有使用 `quick-create` 建立的 VM 預設都是由固態硬碟 (SSD) 儲存空間支援，SSD 提供更快的佈建及高效能磁碟存取。(這些別名代表 Azure 上可用 OS 散發版本的一小部分。[搜尋映像](virtual-machines-linux-cli-ps-findimage.md)以在 Azure Marketplace 中尋找更多映像，或者可以[上傳您自己的自訂映像](virtual-machines-linux-create-upload-generic.md)。)
+A quick way to choose a distribution is to use the Azure CLI aliases mapped to the most common OS distributions. The following table lists the aliases (as of Azure CLI version 0.10). All deployments that use `quick-create` default to VMs that are backed by solid-state drive (SSD) storage, which offers faster provisioning and high-performance disk access. (These aliases represent a tiny portion of the available distributions on Azure. Find more images in the Azure Marketplace by [searching for an image](virtual-machines-linux-cli-ps-findimage.md), or [upload your own custom image](virtual-machines-linux-create-upload-generic.md).)
 
-| Alias | 發佈者 | 提供項目 | SKU | 版本 |
+| Alias     | Publisher | Offer        | SKU         | Version |
 |:----------|:----------|:-------------|:------------|:--------|
-| CentOS | OpenLogic | CentOS | 7\.2 | 最新 |
-| CoreOS | CoreOS | CoreOS | Stable | 最新 |
-| Debian | credativ | Debian | 8 | 最新 |
-| openSUSE | SUSE | openSUSE | 13\.2 | 最新 |
-| RHEL | Red Hat | RHEL | 7\.2 | 最新 |
-| UbuntuLTS | Canonical | Ubuntu Server | 14\.04.4-LTS | 最新 |
+| CentOS    | OpenLogic | CentOS       | 7.2         | latest  |
+| CoreOS    | CoreOS    | CoreOS       | Stable      | latest  |
+| Debian    | credativ  | Debian       | 8           | latest  |
+| openSUSE  | SUSE      | openSUSE     | 13.2        | latest  |
+| RHEL      | Red Hat    | RHEL         | 7.2         | latest  |
+| UbuntuLTS | Canonical | Ubuntu Server | 14.04.4-LTS | latest  |
 
-以下範例使用 **ImageURN** 選項 (`-Q`) 的 `UbuntuLTS` 別名來部署 Ubuntu 14.04.4 LTS Server。
+The following sections use the `UbuntuLTS` alias for the **ImageURN** option (`-Q`) to deploy an Ubuntu 14.04.4 LTS Server.
 
-## 詳細的逐步解說
+## <a name="detailed-walkthrough"></a>Detailed walkthrough
 
-先前的 `quick-create` 範例只呼叫 `-M` 旗標來識別要上傳的 SSH 公開金鑰，且同時停用 SSH 密碼，因此系統會提示您輸入下列引數：
+The previous `quick-create` example only called out the `-M` flag to identify the SSH public key to upload while disabling SSH passwords, so you are prompted for the following arguments:
 
-- 資源群組名稱 (任何字串一般都適用於您的第一個 Azure 資源群組)
-- VM 名稱
-- 位置 (`westus` 或 `westeurope` 都是不錯的預設值)
-- Linux (讓 Azure 知道您要的作業系統)
+- resource group name (any string is typically fine for your first Azure resource group)
+- VM name
+- location (`westus` or `westeurope` are good defaults)
+- linux (to let Azure know which OS you want)
 - username
 
-下列範例會指定所有值，因此不會有進一步的提示。只要您有 ssh-rsa 格式公開金鑰檔案的 `~/.ssh/id_rsa.pub`，它就會如預期運作：
+The following example specifies all the values so that no further prompting is required. So long as you have an `~/.ssh/id_rsa.pub` as a ssh-rsa format public key file, it works as is:
 
 ```bash
 azure vm quick-create \
@@ -77,7 +78,7 @@ azure vm quick-create \
 -Q UbuntuLTS
 ```
 
-輸出應該看起來像下列的輸出區塊：
+The output should look like the following output block:
 
 ```bash
 info:    Executing command vm quick-create
@@ -155,13 +156,13 @@ data:      Diagnostics Instance View:
 info:    vm quick-create command OK
 ```
 
-使用輸出中所列的公用 IP 位址登入您的 VM。您也可以使用其中列出的完整網域名稱 (FQDN)：
+Log in to your VM by using the public IP address listed in the output. You can also use the fully qualified domain name (FQDN) that's listed:
 
 ```bash
 ssh -i ~/.ssh/id_rsa.pub exampleAdminUser@138.91.247.29
 ```
 
-登入程序應該類似下列輸出區塊：
+The login process should look something like the following output block:
 
 ```bash
 Warning: Permanently added '138.91.247.29' (ECDSA) to the list of known hosts.
@@ -195,14 +196,18 @@ applicable law.
 exampleAdminUser@exampleVMName:~$
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-`azure vm quick-create` 命令是快速部署 VM 的方法，讓您可以登入 bash 殼層並開始使用。不過，使用 `vm quick-create` 不會提供您進一步的控制權，也無法讓您能夠建立更複雜的環境。若要部署為您的基礎結構自訂的 Linux VM，您可以依照下列任一篇文章執行：
+The `azure vm quick-create` command is the way to quickly deploy a VM so you can log in to a bash shell and get working. However, using `vm quick-create` does not give you extensive control nor does it enable you to create a more complex environment.  To deploy a Linux VM that's customized for your infrastructure, you can follow any of these articles:
 
-- [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)
-- [直接使用 Azure CLI 命令，建立自訂的 Linux VM 環境](virtual-machines-linux-create-cli-complete.md)
-- [使用範本在 Azure 上建立 SSH 保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md)
+- [Use an Azure Resource Manager template to create a specific deployment](virtual-machines-linux-cli-deploy-templates.md)
+- [Create your own custom environment for a Linux VM using Azure CLI commands directly](virtual-machines-linux-create-cli-complete.md)
+- [Create an SSH Secured Linux VM on Azure using templates](virtual-machines-linux-create-ssh-secured-vm-from-template.md)
 
-您也可以[搭配使用 `docker-machine` Azure 驅動程式與各種命令以快速建立當作 Docker 主機的 Linux VM](virtual-machines-linux-docker-machine.md)。
+You can also [use the `docker-machine` Azure driver with various commands to quickly create a Linux VM as a docker host](virtual-machines-linux-docker-machine.md).
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

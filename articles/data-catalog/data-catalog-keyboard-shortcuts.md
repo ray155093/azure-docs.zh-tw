@@ -1,95 +1,100 @@
 <properties
-	pageTitle="Azure 資料目錄 | Microsoft Azure"
-	description="本文章說明 Azure 資料目錄的鍵盤快速鍵。"
-	services="data-catalog"
-	documentationCenter=""
-	authors="spelluru"
-	manager="NA"
-	editor=""
-	tags=""/>
+    pageTitle="Azure Data Catalog  | Microsoft Azure"
+    description="This article shows the Keyboard shortcuts for Azure Data Catalog."
+    services="data-catalog"
+    documentationCenter=""
+    authors="spelluru"
+    manager="NA"
+    editor=""
+    tags=""/>
 <tags
-	ms.service="data-catalog"
-	ms.devlang="NA"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"
-	ms.workload="data-catalog"
-	ms.date="09/13/2016"
-	ms.author="spelluru"/>
+    ms.service="data-catalog"
+    ms.devlang="NA"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"
+    ms.workload="data-catalog"
+    ms.date="09/13/2016"
+    ms.author="spelluru"/>
 
-# Azure 資料目錄的鍵盤快速鍵
 
-## 資料目錄之資料來源註冊工具的鍵盤快速鍵
+# <a name="keyboard-shortcuts-for-azure-data-catalog"></a>Keyboard shortcuts for Azure Data Catalog
 
-### 一般的鍵盤快速鍵
+## <a name="keyboard-shortcuts-for-the-data-catalog-data-source-registration-tool"></a>Keyboard shortcuts for the Data Catalog data source registration tool
 
-|作業|按
+### <a name="general-keyboard-shortcuts"></a>General keyboard shortcuts
+
+|Operation|Press
 |---|---
-|把焦點依序放在頁面的每個控制選項上|Tab 鍵
-|選擇某個選項|Enter 鍵或空格鍵
-|將頁面最大化。|WIN 鍵 + 向上鍵
-|將頁面還原/最小化 | WIN 鍵 + 向下鍵
-|開啟頁面功能表| ALT 鍵 + 空格鍵
+|Tab to each control on a page|Tab
+|Choose an option|Enter or Spacebar
+|Maximize page|WIN+UP
+|Restore/minimize page | WIN+DOWN
+|Open page menu| ALT+SPACEBAR
 
 
-### 驗證頁面
+### <a name="authentication-page"></a>Authentication page
 
-|作業|按
+|Operation|Press
 |---|---
-|登入服務|ALT 鍵 + S
+|Sign into service|ALT+S
 
-### 資料來源選取頁面
+### <a name="data-source-selection-page"></a>Data source selection page
 
-|作業|按
+|Operation|Press
 |---|---
-|前往下一頁 (如果已啟用)|ALT 鍵 + N
-|當焦點在某個圖格上時，變更已選取的類型|向左鍵、向上鍵、向右鍵、向下鍵
+|Go to next page (if enabled)|ALT+N
+|Change selected type when the focus is on a tile|LEFT, UP, RIGHT, or DOWN ARROW
 
-### 資料來源連線頁面
+### <a name="data-source-connection-page"></a>Data source connection page
 
-|作業|按
+|Operation|Press
 |---|---
-|前往上一頁 (如果已啟用)|ALT 鍵 + P
-|選擇 [連線] 按鈕。| ALT 鍵 + C
+|Go to previous page (if enabled)|ALT+P
+|Choose Connect button.| ALT+C
 
-### 連線內容頁面
+### <a name="connection-context-page"></a>Connection context page
 
-|作業|按
+|Operation|Press
 |---|---
-|[註冊] 按鈕 (如果已啟用)| ALT 鍵 + R
-|包括 [預覽] 核取方塊 (如果有提供)|ALT 鍵 + P
-|包括 [資料設定檔] 核取方塊 (如果有提供)|ALT 鍵 + D
-|瀏覽至每個清單項目|向上鍵或向下鍵
-| 在伺服器階層中展開樹狀檢視的節點 |向右鍵
-| 針對 [可用物件] 或 [要註冊的物件] 來移動已選取項目 | 空格鍵
+|Register button (if enabled)| ALT+R
+|Include Preview checkbox (if available)|ALT+P
+|Include Data Profile checkbox (if available)|ALT+D
+|Navigate to each list item|UP or DOWN ARROW
+| Server Hierarchy, expand a tree view's node |RIGHT ARROW
+| Move selected items for **Available Objects** or **Objects to be registered** | SPACEBAR
 
-### 發佈進度頁面
+### <a name="publish-progress-page"></a>Publish progress page
 
-|作業|按
+|Operation|Press
 |---|---
-|[取消] 按鈕|ALT 鍵 + C
-|[註冊更多物件] 按鈕| ALT 鍵 + R
-|[檢視入口網站] 按鈕 | ALT+V
+|Cancel button|ALT+C
+|Register More Objects button| ALT+R
+|View Portal button  | ALT+V
 
-### 發佈進度頁面
+### <a name="publish-progress-page"></a>Publish progress page
 
-|作業|按
+|Operation|Press
 |---|---
-|[儲存] 按鈕 (如果已啟用)。| ALT 鍵 + S
-|[取消] 按鈕|ALT 鍵 + C
+|Save button (if enabled)| ALT+S
+|Cancel button|ALT+C
 
-## 資料目錄入口網站的鍵盤快速鍵
+## <a name="keyboard-shortcuts-for-the-data-catalog-portal"></a>Keyboard shortcuts for the Data Catalog portal
 
-|作業|按
+|Operation|Press
 |---|---
-|瀏覽| TAB 和 SHIFT+TAB
-|按一下項目| 空格鍵或 ENTER
-|向下鑽研到某個區段| 空格鍵或 ENTER
-|結束區段| ESC
-|釘選/取消釘選資產| ALT 鍵 + P
-|在 [探索] 頁面中，當資產有焦點時，選取資產| 空格鍵或 ENTER
-|新增/移除複選的資產| CTRL+空格鍵或 ENTER
-|切換 [搜尋相符項目] 功能表| ALT 鍵 + S
-|切換 [開啟位置] 功能表 | ALT+O
-|如果資產是容器，請瀏覽容器 | ALT+L
+|Navigate| TAB and SHIFT+TAB
+|Click an item| SPACE or ENTER
+|Drill down into a section| SPACE or ENTER
+|Exit out of a section| ESC
+|Pin/unpin an asset| ALT+P
+|On the discover page, when an asset has focus, select asset| SPACE or ENTER
+|Adds/remove asset from multi-select| CTRL+SPACE or ENTER
+|Toggle the search matches menu| ALT+S
+|Toggle **Open In** menu | ALT+O
+|Explore container, if the asset is a container | ALT+L
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

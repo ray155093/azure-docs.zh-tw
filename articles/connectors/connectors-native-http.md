@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在邏輯應用程式中新增 HTTP 動作 | Microsoft Azure"
-	description="HTTP 動作與屬性的概觀"
-	services=""
-	documentationCenter=""
-	authors="jeffhollan"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="Add the HTTP action in logic apps | Microsoft Azure"
+    description="Overview of the HTTP action with properties"
+    services=""
+    documentationCenter=""
+    authors="jeffhollan"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="logic-apps"
@@ -17,198 +17,205 @@
    ms.date="07/15/2016"
    ms.author="jehollan"/>
 
-# 開始使用 HTTP 動作
 
-您可以利用 HTTP 動作來延伸組織的工作流程，並透過 HTTP 與任何端點通訊。
+# <a name="get-started-with-the-http-action"></a>Get started with the HTTP action
 
-您可以：
+With the HTTP action, you can extend workflows for your organization and communicate to any endpoint over HTTP.
 
-- 建立會在您管理的網站故障時啟動 (觸發程序) 的邏輯應用程式工作流程。
-- 透過 HTTP 與任何端點通訊，將工作流程延伸至其他服務。
+You can:
 
-若要使用邏輯應用程式中的 HTTP 動作來開始作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+- Create logic app workflows that activate (trigger) when a website that you manage goes down.
+- Communicate to any endpoint over HTTP to extend your workflows into other services.
 
-## 使用 HTTP 觸發程序
+To get started using the HTTP action in a logic app, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。[深入了解觸發程序](connectors-overview.md)。
+## <a name="use-the-http-trigger"></a>Use the HTTP trigger
 
-以下是如何在邏輯應用程式設計工具中設定 HTTP 觸發程序的範例順序。
+A trigger is an event that can be used to start the workflow that is defined in a logic app. [Learn more about triggers](connectors-overview.md).
 
-1. 在邏輯應用程式中新增 HTTP 觸發程序。
-2. 為想要輪詢的 HTTP 端點填入參數。
-3. 修改其輪詢頻率的循環間隔。
-4. 邏輯應用程式現在會在每個檢查期間傳回任何內容時引發。
+Here’s an example sequence of how to set up the HTTP trigger in the Logic App Designer.
 
-![HTTP 觸發程序](./media/connectors-native-http/using-trigger.png)
+1. Add the HTTP trigger in your logic app.
+2. Fill in the parameters for the HTTP endpoint that you want to poll.
+3. Modify the recurrence interval on how frequently it should poll.
+4. The logic app now fires with any content that is returned during each check.
 
-### HTTP 觸發程序的運作方式
+![HTTP trigger](./media/connectors-native-http/using-trigger.png)
 
-HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。根據預設，任何小於 300 的 HTTP 回應碼均會導致執行邏輯應用程式。您可以在程式碼檢視中新增條件，讓它在 HTTP 呼叫之後進行評估，以判斷是否應該引發邏輯應用程式。以下是 HTTP 觸發程序的範例，它會在每次傳回的狀態碼大於或等於 `400` 時觸發。
+### <a name="how-the-http-trigger-works"></a>How the HTTP trigger works
+
+The HTTP trigger makes a call to an HTTP endpoint on a recurring interval. By default, any HTTP response code less than 300 results in a logic app run. You can add a condition in code view that will evaluate after the HTTP call to determine if the logic app should fire. Here's an example of an HTTP trigger that fires whenever the status code returned is greater than or equal to `400`.
 
 ```javascript
 "Http":
 {
-	"conditions": [
-		{
-			"expression": "@greaterOrEquals(triggerOutputs()['statusCode'], 400)"
-		}
-	],
-	"inputs": {
-		"method": "GET",
-		"uri": "https://blogs.msdn.microsoft.com/logicapps/",
-		"headers": {
-			"accept-language": "en"
-		}
-	},
-	"recurrence": {
-		"frequency": "Second",
-		"interval": 15
-	},
-	"type": "Http"
+    "conditions": [
+        {
+            "expression": "@greaterOrEquals(triggerOutputs()['statusCode'], 400)"
+        }
+    ],
+    "inputs": {
+        "method": "GET",
+        "uri": "https://blogs.msdn.microsoft.com/logicapps/",
+        "headers": {
+            "accept-language": "en"
+        }
+    },
+    "recurrence": {
+        "frequency": "Second",
+        "interval": 15
+    },
+    "type": "Http"
 }
 ```
 
-如需關於 HTTP 觸發程序參數的詳細資料，可在 [MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger) 取得。
+Full details about the HTTP trigger parameters are available on [MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger).
 
-## 使用 HTTP 動作
+## <a name="use-the-http-action"></a>Use the HTTP action
 
-動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](connectors-overview.md)。
+An action is an operation that is carried out by the workflow that is defined in a logic app. [Learn more about actions](connectors-overview.md).
 
-1. 選取 [新增步驟] 按鈕。
-2. 選擇 [新增動作]。
-3. 在動作搜尋方塊中，輸入 **http** 以列出 HTTP 動作。
+1. Select the **New Step** button.
+2. Choose **Add an action**.
+3. In the action search box, type **http** to list the HTTP action.
 
-	![選取 HTTP 動作](./media/connectors-native-http/using-action-1.png)
+    ![Select the HTTP action](./media/connectors-native-http/using-action-1.png)
 
-4. 新增 HTTP 呼叫所需的任何參數。
+4. Add in any parameters that are required for the HTTP call.
 
-	![完成 HTTP 動作](./media/connectors-native-http/using-action-2.png)
+    ![Complete the HTTP action](./media/connectors-native-http/using-action-2.png)
 
-5. 按一下工具列左上角以儲存。您的邏輯應用程式會儲存並發佈 (啟動)。
+5. Click the top left corner of the toolbar to save. Your logic app will both save and publish (activate).
 
-## HTTP 觸發程序
+## <a name="http-trigger"></a>HTTP trigger
 
-以下是此連接器所支援觸發程序的詳細資料。HTTP 連接器有一個觸發程序。
+Here are the details for the trigger that this connector supports. The HTTP connector has one trigger.
 
-|觸發程序|說明|
+|Trigger|Description|
 |---|---|
-|HTTP|進行 HTTP 呼叫並傳回回應內容。|
+|HTTP|Makes an HTTP call and returns the response content.|
 
-## HTTP 動作
+## <a name="http-action"></a>HTTP action
 
-以下是此連接器所支援動作的詳細資料。HTTP 連接器有一個可能的動作。
+Here are the details for the action that this connector supports. The HTTP connector has one possible action.
 
-|動作|說明|
+|Action|Description|
 |---|---|
-|HTTP|進行 HTTP 呼叫並傳回回應內容。|
+|HTTP|Makes an HTTP call and returns the response content.|
 
-## HTTP 詳細資料
+## <a name="http-details"></a>HTTP details
 
-下表說明動作的必要與選擇性輸入欄位，以及與使用動作相關聯的對應輸出詳細資料。
+The following tables describe the required and optional input fields for the action and the corresponding output details that are associated with using the action.
 
 
-#### HTTP 要求
-以下是動作的輸入欄位，可進行 HTTP 輸出要求。標示 * 代表必要欄位。
+#### <a name="http-request"></a>HTTP request
+The following are input fields for the action, which makes an HTTP outbound request.
+A * means that it is a required field.
 
-|顯示名稱|屬性名稱|說明|
+|Display name|Property name|Description|
 |---|---|---|
-|方法 *|method|要使用的 HTTP 指令動詞|
-|URI*|uri|HTTP 要求的 URI|
-|標頭|headers|要包含的 HTTP 標頭的 JSON 物件|
-|內文|body|HTTP 要求本文|
-|驗證|authentication|詳細資料在[驗證](#authentication)一節中|
+|Method*|method|The HTTP verb to use|
+|URI*|uri|The URI for the HTTP request|
+|Headers|headers|A JSON object of HTTP headers to include|
+|Body|body|The HTTP request body|
+|Authentication|authentication|Details in the [Authentication](#authentication) section|
 <br>
 
-#### 輸出詳細資料
+#### <a name="output-details"></a>Output details
 
-以下是 HTTP 回應的輸出詳細資料。
+The following are output details for the HTTP response.
 
-|屬性名稱|資料類型|說明|
+|Property name|Data type|Description|
 |---|---|---|
-|Headers|物件|回應標頭|
-|Body|物件|回應物件|
-|Status Code|整數|HTTP 狀態碼|
+|Headers|object|Response headers|
+|Body|object|Response object|
+|Status Code|int|HTTP status code|
 
-## 驗證
+## <a name="authentication"></a>Authentication
 
-Azure App Service 的 Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。您可以將此驗證搭配 **HTTP**、**[HTTP + Swagger](./connectors-native-http-swagger.md)** 和 **[HTTP Webhook](./connectors-native-webhook.md)** 連接器使用。下列是可設定的驗證類型︰
+The Logic Apps feature of Azure App Service allows you to use different types of authentication against HTTP endpoints. You can use this authentication with the **HTTP**, **[HTTP + Swagger](./connectors-native-http-swagger.md)**, and **[HTTP Webhook](./connectors-native-webhook.md)** connectors. The following types of authentication are configurable:
 
-* [基本驗證](#basic-authentication)
-* [用戶端憑證驗證](#client-certificate-authentication)
-* [Azure Active Directory (Azure AD) OAuth 驗證](#azure-active-directory-oauth-authentication)
+* [Basic authentication](#basic-authentication)
+* [Client certificate authentication](#client-certificate-authentication)
+* [Azure Active Directory (Azure AD) OAuth authentication](#azure-active-directory-oauth-authentication)
 
-#### 基本驗證
+#### <a name="basic-authentication"></a>Basic authentication
 
-以下是基本驗證所需的驗證物件。標示 * 代表必要欄位。
+The following authentication object is needed for basic authentication.
+A * means that it is a required field.
 
-|屬性名稱|資料類型|說明|
+|Property name|Data type|Description|
 |---|---|---|
-|類型*|type|驗證類型 (若為基本驗證必須是 `Basic`)|
-|使用者名稱*|username|要驗證的使用者名稱|
-|密碼*|password|要驗證的密碼|
+|Type*|type|Type of authentication (must be `Basic` for basic authentication)|
+|Username*|username|User name to authenticate|
+|Password*|password|Password to authenticate|
 
->[AZURE.TIP] 如果您要使用無法從定義中擷取的密碼，請使用 `securestring` 參數和 `@parameters()` [工作流程定義函數](http://aka.ms/logicappdocs)。
+>[AZURE.TIP] If you want to use a password that cannot be retrieved from the definition, use a `securestring` parameter and the `@parameters()` [workflow definition function](http://aka.ms/logicappdocs).
 
-因此，您會在驗證欄位建立一個類似以下的物件︰
+So you would create an object like this in the authentication field:
 
 ```javascript
 {
-	"type": "Basic",
-	"username": "user",
-	"password": "test"
+    "type": "Basic",
+    "username": "user",
+    "password": "test"
 }
 ```
 
-#### 用戶端憑證驗證
+#### <a name="client-certificate-authentication"></a>Client certificate authentication
 
-以下是用戶端憑證驗證需要的驗證物件。標示 * 代表必要欄位。
+The following authentication object is needed for client certificate authentication. A * means that it is a required field.
 
-|屬性名稱|資料類型|說明|
+|Property name|Data type|Description|
 |---|---|---|
-|類型*|type|驗證類型 (若為 SSL 用戶端憑證，必須是 `ClientCertificate`)|
-|PFX*|pfx|Base 64 編碼的個人資訊交換 (PFX) 檔案內容|
-|密碼*|password|存取 PFX 檔案的密碼|
+|Type*|type|The type of authentication (must be `ClientCertificate` for SSL client certificates)|
+|PFX*|pfx|The Base64-encoded contents of the Personal Information Exchange (PFX) file|
+|Password*|password|The password to access the PFX file|
 
->[AZURE.TIP] 使用 `securestring` 參數和 `@parameters()` [工作流程定義函數](http://aka.ms/logicappdocs)，您就能在儲存邏輯應用程式後，使用無法在定義中讀取的參數。
+>[AZURE.TIP] You can use a `securestring` parameter and the `@parameters()` [workflow definition function](http://aka.ms/logicappdocs) to use a parameter that won't be readable in the definition after saving the logic app.
 
-例如：
+For example:
 
 ```javascript
 {
-	"type": "ClientCertificate",
-	"pfx": "aGVsbG8g...d29ybGQ=",
-	"password": "@parameters('myPassword')"
+    "type": "ClientCertificate",
+    "pfx": "aGVsbG8g...d29ybGQ=",
+    "password": "@parameters('myPassword')"
 }
 ```
 
-#### Azure AD OAuth 驗證
+#### <a name="azure-ad-oauth-authentication"></a>Azure AD OAuth authentication
 
-以下是 Azure AD OAuth 驗證所需的驗證物件。標示 * 代表必要欄位。
+The following authentication object is needed for Azure AD OAuth authentication. A * means that it is a required field.
 
-|屬性名稱|資料類型|說明|
+|Property name|Data type|Description|
 |---|---|---|
-|類型*|type|驗證類型 (若為 Azure AD OAuth 必須是 `ActiveDirectoryOAuth`)|
-|租用戶*|tenant|Azure AD 租用戶的租用戶識別碼|
-|對象*|audience|設定為 `https://management.core.windows.net/`|
-|用戶端識別碼*|clientId|Azure AD 應用程式的用戶端識別碼|
-|密碼*|secret|要求權杖之用戶端的密碼|
+|Type*|type|The type of authentication (must be `ActiveDirectoryOAuth` for Azure AD OAuth)|
+|Tenant*|tenant|The tenant identifier for the Azure AD tenant|
+|Audience*|audience|Set to `https://management.core.windows.net/`|
+|Client ID*|clientId|The client identifier for the Azure AD application|
+|Secret*|secret|The secret of the client that is requesting the token|
 
->[AZURE.TIP] 使用 `securestring` 參數和 `@parameters()` [工作流程定義函數](http://aka.ms/logicappdocs)，您就能使用儲存後無法在定義中讀取的參數。
+>[AZURE.TIP] You can use a `securestring` parameter and the `@parameters()` [workflow definition function](http://aka.ms/logicappdocs) to use a parameter that won't be readable in the definition after saving.
 
-例如：
+For example:
 
 ```javascript
 {
-	"type": "ActiveDirectoryOAuth",
-	"tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-	"audience": "https://management.core.windows.net/",
-	"clientId": "34750e0b-72d1-4e4f-bbbe-664f6d04d411",
-	"secret": "hcqgkYc9ebgNLA5c+GDg7xl9ZJMD88TmTJiJBgZ8dFo="
+    "type": "ActiveDirectoryOAuth",
+    "tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+    "audience": "https://management.core.windows.net/",
+    "clientId": "34750e0b-72d1-4e4f-bbbe-664f6d04d411",
+    "secret": "hcqgkYc9ebgNLA5c+GDg7xl9ZJMD88TmTJiJBgZ8dFo="
 }
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索 Logic Apps 中其他可用的連接器。
+Now, try out the platform and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md). You can explore the other available connectors in Logic Apps by looking at our [APIs list](apis-list.md).
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

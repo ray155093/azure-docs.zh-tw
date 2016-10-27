@@ -1,84 +1,90 @@
 <properties
-	pageTitle="搭配 CORS 使用 Azure CDN | Microsoft Azure"
-	description="了解如何使用 Azure 內容傳遞網路 (CDN) 搭配跨來源資源共用 (CORS)。"
-	services="cdn"
-	documentationCenter=""
-	authors="camsoper"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Using Azure CDN with CORS | Microsoft Azure"
+    description="Learn how to use the Azure Content Delivery Network (CDN) to with Cross-Origin Resource Sharing (CORS)."
+    services="cdn"
+    documentationCenter=""
+    authors="camsoper"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="cdn"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/28/2016"
-	ms.author="casoper"/>
+    ms.service="cdn"
+    ms.workload="tbd"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/30/2016"
+    ms.author="casoper"/>
     
-# 搭配 CORS 使用 Azure CDN     
 
-## CORS 是什麼？
+# <a name="using-azure-cdn-with-cors"></a>Using Azure CDN with CORS     
 
-CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功能，可讓在某個網域下執行的 Web 應用程式存取其他網域中的資源。為了減少跨網站指令碼攻擊的可能性，所有現代網頁瀏覽器都實作稱為 [Same-Origin Policy (同源原則)](http://www.w3.org/Security/wiki/Same_Origin_Policy) 的安全性限制。這樣可以防止網頁呼叫其他網域中的 API。CORS 提供安全的方式來允許從一個網域 (來源網域) 呼叫其他網域中的 API。
+## <a name="what-is-cors?"></a>What is CORS?
+
+CORS (Cross Origin Resource Sharing) is an HTTP feature that enables a web application running under one domain to access resources in another domain. In order to reduce the possibility of cross-site scripting attacks, all modern web browsers implement a security restriction known as [same-origin policy](http://www.w3.org/Security/wiki/Same_Origin_Policy).  This prevents a web page from calling APIs in a different domain.  CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain.
  
-## 運作方式
-1.	瀏覽器傳送包含 **Origin** HTTP 標頭的 OPTIONS 要求。這個標頭的值是提供父頁面的網域。當來自 https://www.contoso.com 的頁面嘗試存取位於 fabrikam.com 網域的使用者資料時，會傳送以下要求標頭到 fabrikam.com：
+## <a name="how-it-works"></a>How it works
+1.  The browser sends the OPTIONS request with an **Origin** HTTP header. The value of this header is the domain that served the parent page. When a page from https://www.contoso.com attempts to access a user's data in the fabrikam.com domain, the following request header would be sent to fabrikam.com: 
     
     `Origin: https://www.contoso.com`
  
-2.	該伺服器可能的回應如下：
-    - 回應中的 **Access-Control-Allow-Origin** 標頭指出所允許的來源網站。例如：
+2.  The server may respond with the following:
+    - An **Access-Control-Allow-Origin** header in its response indicating which origin sites are allowed. For example:
         
         `Access-Control-Allow-Origin: https://www.contoso.com`
         
-    - 如果伺服器不允許跨來源的要求，會顯示錯誤頁面。
-    - **Access-Control-Allow-Origin** 標頭包含允許所有網域的萬用字元：
+    - An error page if the server does not allow the cross-origin request
+    - An **Access-Control-Allow-Origin** header with a wildcard that allows all domains:
         
         `Access-Control-Allow-Origin: *`
  
-以 HTTP 要求為例，傳送完整的要求之前，會先傳送「預檢」要求以判斷是否有權限。
+For complex HTTP requests, there's a "preflight" request done first to determine whether it has permission before sending the entire request.
  
-## 萬用字元或單一來源的狀況
+## <a name="wildcard-or-single-origin-scenarios"></a>Wildcard or single origin scenarios
 
-當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
+CORS on Azure CDN will work automatically with no additional configuration when the **Access-Control-Allow-Origin** header is set to wildcard (*) or a single origin.  The CDN will cache the first response and subsequent requests will use the same header.
  
-如果在您的來源上設定 CORS 之前已經向 CDN 發出要求，您必須清除您端點內容上的內容，以重新載入包含 **Access-Control-Allow-Origin** 標頭的內容。
+If requests have already been made to the CDN prior to CORS being set on the your origin, you will need to purge content on your endpoint content to reload the content with the **Access-Control-Allow-Origin** header.
  
-## 多重來源的狀況
+## <a name="multiple-origin-scenarios"></a>Multiple origin scenarios
 
-如果您要針對 CORS 允許使用特定清單中的來源，則會稍微複雜一點。問題會在 CDN 快取第一個 CORS 來源的 **Access-Control-Allow-Origin** 標頭時發生。當其他 CORS 來源發出後續要求時，CDN 會提供已快取的 **Access-Control-Allow-Origin** 標頭，而此標頭會不相符。有幾個方法可以修正此問題。
+If you need to allow a specific list of origins to be allowed for CORS, things get a little more complicated. The problem occurs when the CDN caches the **Access-Control-Allow-Origin** header for the first CORS origin.  When a different CORS origin makes a subsequent request, the CDN will served the cached **Access-Control-Allow-Origin** header, which won't match.  There are several ways to correct this.
  
-### 來自 Verizon 的 Azure CDN 進階
+### <a name="azure-cdn-premium-from-verizon"></a>Azure CDN Premium from Verizon
 
-完成此作業的最佳方法是使用「來自 Verizon 的 Azure CDN 進階」，它會公開一些進階功能。
+The best way to enable this is to use **Azure CDN Premium from Verizon**, which exposes some advanced functionality. 
  
-您必須[建立規則](cdn-rules-engine.md)來檢查要求的 **Origin** 標頭。如果是有效的來源，您的規則將使用要求中提供的來源設定 **Access-Control-Allow-Origin** 標頭。如果 **Origin** 中指定的來源是不允許使用的來源，您的規則會省略 **Access-Control-Allow-Origin** 標頭，這將導致瀏覽器拒絕要求。
+You'll need to [create a rule](cdn-rules-engine.md) to check the **Origin** header on the request.  If it's a valid origin, your rule will set the **Access-Control-Allow-Origin** header with the origin provided in the request.  If the origin specified in the **Origin** header is not allowed, your rule should omit the **Access-Control-Allow-Origin** header which will cause the browser to reject the request. 
  
-使用規則引擎來這樣做的方法有兩種。在這兩種情況下，會完全忽略來自檔案原始伺服器的 **Access-Control-Allow-Origin** 標頭，而允許的 CORS 來源會完全由 CDN 的規則引擎來管理。
+There are two ways to do this with the rules engine.  In both cases, the **Access-Control-Allow-Origin** header from the file's origin server is completely ignored, the CDN's rules engine completely manages the allowed CORS origins.
 
-#### 包含所有有效來源的規則運算式
+#### <a name="one-regular-expression-with-all-valid-origins"></a>One regular expression with all valid origins
  
-在此情況下，您會建立包含您要允許使用之所有來源的規則運算式。
+In this case, you'll create a regular expression that includes all of the origins you want to allow: 
 
-	https?:\/\/(www\.contoso\.com|contoso\.com|www\.microsoft\.com|microsoft.com\.com)$
+    https?:\/\/(www\.contoso\.com|contoso\.com|www\.microsoft\.com|microsoft.com\.com)$
  
-> [AZURE.TIP] 「來自 Verizon 的 Azure CDN」使用 [Perl 相容的規則運算式](http://pcre.org/)做為其規則運算式引擎。您可以使用像 [Regular Expressions 101](https://regex101.com/) 這樣的工具來驗證您的規則運算式。請注意，規則運算式中的「/」字元是有效的，不需要逸出，不過將該字元逸出被視為是最佳做法，且某些規則運算式驗證程式也預期將它逸出。
+> [AZURE.TIP] **Azure CDN from Verizon** uses [Perl Compatible Regular Expressions](http://pcre.org/) as its engine for regular expressions.  You can use a tool like [Regular Expressions 101](https://regex101.com/) to validate your regular expression.  Note that the "/" character is valid in regular expressions and doesn't need to be escaped, however, escaping that character is considered a best practice and is expected by some regex validators.
 
-如果規則運算式相符，您的規則會將來自來源的 **Access-Control-Allow-Origin** 標頭 (如果有) 取代為傳送該要求的來源。您也可以加入額外的 CORS 標頭，例如 **Access-Control-Allow-Methods**。
+If the regular expression matches, your rule will replace the **Access-Control-Allow-Origin** header (if any) from the origin with the origin that sent the request.  You can also add additional CORS headers, such as **Access-Control-Allow-Methods**.
 
-![包含規則運算式的規則範例](./media/cdn-cors/cdn-cors-regex.png)
+![Rules example with regular expression](./media/cdn-cors/cdn-cors-regex.png)
  
-#### 針對每個來源要求標頭規則
+#### <a name="request-header-rule-for-each-origin."></a>Request header rule for each origin.
 
-除了規則運算式之外，您也可以使用「要求標頭萬用字元」[比對條件](cdn-rules-engine-details.md#match-conditions)來針對每個要允許的來源建立個別規則如同規則運算式方法一樣，也是僅由規則引擎設定 CORS 標頭。
+Rather than regular expressions, you can instead create a separate rule for each origin you wish to allow using the **Request Header Wildcard** [match condition](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1). As with the regular expression method, the rules engine alone sets the CORS headers. 
   
-![不含規則運算式的規則範例](./media/cdn-cors/cdn-cors-no-regex.png)
+![Rules example without regular expression](./media/cdn-cors/cdn-cors-no-regex.png)
 
-> [AZURE.TIP] 在上述範例中，萬用字元 (*) 的作用是告訴規則引擎 HTTP 和 HTTPS 兩者都要比對。
+> [AZURE.TIP] In the example above, the use of the wildcard character * tells the rules engine to match both HTTP and HTTPS.
  
-### Azure CDN 標準
+### <a name="azure-cdn-standard"></a>Azure CDN Standard
 
-在 Azure CDN 標準設定檔上，在不使用萬用字元來源情況下允許多重來源的唯一機制是使用[查詢字串快取](cdn-query-string.md)。您需要啟用 CDN 端點的查詢字串設定，然後針對來自每個允許之網域的查詢使用唯一的查詢字串。這樣做將使 CDN 針對每個唯一的查詢字串快取個別物件。但是這不是最理想的方法，因為它會導致在 CDN 上快取同一個檔案的多個複本。
+On Azure CDN Standard profiles, the only mechanism to allow for multiple origins without the use of the wildcard origin is to use [query string caching](cdn-query-string.md).  You need to enable query string setting for the CDN endpoint and then use a unique query string for requests from each allowed domain. Doing this will result in the CDN caching a separate object for each unique query string. This approach is not ideal, however, as it will result in multiple copies of the same file cached on the CDN.  
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

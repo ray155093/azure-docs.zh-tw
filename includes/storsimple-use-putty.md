@@ -1,33 +1,35 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### 透過序列主控台連接
+#### <a name="to-connect-through-the-serial-console"></a>To connect through the serial console
 
-1. 將序列纜線連接到裝置 (直接連接或透過 USB 序列介面卡)。
+1. Connect your serial cable to the device (directly or through a USB-serial adapter).
 
-2. 開啟 [控制台]，然後開啟 [裝置管理員]。
+2. Open the **Control Panel**, and then open the **Device Manager**.
 
-3. 識別 COM 連接埠，如下圖所示。
+3. Identify the COM port as shown in the following illustration.
 
-     ![透過序列主控台連接](./media/storsimple-use-putty/HCS_ConnectingDeviceS-include.png)
+     ![Connecting through serial console](./media/storsimple-use-putty/HCS_ConnectingDeviceS-include.png)
 
-4. 啟動 PuTTY。
+4. Start PuTTY. 
 
-5. 在右窗格中，將 [連接類型] 變更為 [序列]。
+5. In the right pane, change the **Connection type** to **Serial**.
 
-6. 在右窗格中，輸入適當的 COM 連接埠。確定已將序列設定參數設定為如下的內容：
-  - 速度：115200
-  - 資料位元：8
-  - 停止位元：1
-  - 同位檢查：無
-  - 流量控制：無
+6. In the right pane, type the appropriate COM port. Make sure that the serial configuration parameters are set as follows:
+  - Speed: 115,200
+  - Data bits: 8
+  - Stop bits: 1
+  - Parity: None
+  - Flow control: None
 
-    下圖顯示這些設定。
+    These settings are shown in the following illustration.
 
-     ![PuTTY 設定](./media/storsimple-use-putty/HCS_PuttyConfig-include.png)
+     ![PuTTY settings](./media/storsimple-use-putty/HCS_PuttyConfig-include.png) 
 
-    > [AZURE.NOTE]如果預設的流程控制設定無法運作，請嘗試將流程控制設為 XON/XOFF。
+    > [AZURE.NOTE] If the default flow control setting does not work, try setting the flow control to XON/XOFF.
 
-7. 按一下 [開啟] 以啟動序列工作階段。
+7. Click **Open** to start a serial session.
  
 
-<!---HONumber=Oct15_HO3-->
+<!--HONumber=Oct16_HO2-->
+
+

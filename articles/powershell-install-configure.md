@@ -1,44 +1,68 @@
 <properties
-	pageTitle="如何安裝和設定 Azure PowerShell"
-	description="了解如何安裝和設定 Azure PowerShell。"
-	editor="tysonn"
-	manager="dongill"
-	documentationCenter=""
-	services=""
-	authors="coreyp-at-msft"/>
+    pageTitle="How to install and configure Azure PowerShell"
+    description="Learn how to install and configure Azure PowerShell."
+    editor="tysonn"
+    manager="dongill"
+    documentationCenter=""
+    services=""
+    authors="coreyp-at-msft"/>
 
 <tags
-	ms.service="multiple"
-	ms.workload="multiple"
-	ms.tgt_pltfrm="powershell"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="04/22/2016"
-	ms.author="coreyp"/>
+    ms.service="multiple"
+    ms.workload="multiple"
+    ms.tgt_pltfrm="powershell"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/30/2016"
+    ms.author="coreyp"/>
 
-# 如何安裝和設定 Azure PowerShell
 
-<div class="dev-center-tutorial-selector sublanding"><a href="/manage/install-and-configure-windows-powershell/" title="PowerShell" class="current">PowerShell</a><a href="/manage/install-and-configure-cli/" title="Azure CLI">Azure CLI</a></div>
+# <a name="how-to-install-and-configure-azure-powershell"></a>How to install and configure Azure PowerShell
 
-##什麼是 Azure PowerShell？
-Azure PowerShell 是一套模組，提供各種 Cmdlet，讓您透過 Windows PowerShell 管理 Azure。您可以使用 Cmdlet 來建立、測試、部署和管理透過 Azure 平台傳遞的解決方案和服務。在大部分情況下，Cmdlet 可用於與 Azure 管理入口網站中相同的工作，例如建立和設定雲端服務、虛擬機器、虛擬網路和 Web Apps。
+<div class="dev-center-tutorial-selector sublanding"><a href="/manage/install-and-configure-windows-powershell/" title="PowerShell" class="current">PowerShell</a><a href="/manage/install-and-configure-cli/" title="Azure CLI">Azure  CLI</a></div>
+
+##<a name="what-is-azure-powershell?"></a>What is Azure PowerShell?
+Azure PowerShell is a set of modules that provide cmdlets to manage Azure with Windows PowerShell. You can use the cmdlets to create, test, deploy, and manage solutions and services delivered through the Azure platform. In most cases, the cmdlets can be used for the same tasks as the Azure Portal, such as creating and configuring cloud services, virtual machines, virtual networks, and web apps.
+
+## <a name="how-versioning-works"></a>How versioning works
+
+Azure PowerShell uses Semantic Versioning, which means that if version A > version B, then version A has the most up-to-date APIs. Also, it means that changes in the major version mean a breaking change in one or more cmdlets.  So, for example, version 1.7.0 is a hotfix to address a breaking change in the 1.x versions of Azure PowerShell.
+
+For more information about Semantic Versioning practices in Azure PowerShell, see the Semantic Versioning Specification at: http://semver.org
+ 
+To get the latest APIs, you should use version 2.x. But if you have scripts written against version 1.x and you don’t want to absorb the breaking changes in version 2.x described in the 2.x [Release Notes](https://github.com/Azure/azure-powershell/blob/dev/documentation/release-notes/migration-guide.2.0.0.md), then you should install 1.7.0.
+
+A version mismatch can result if the latest version of the profile module is installed, and an earlier version of a module that depends on it is subsequently loaded. The simplest way to resolve this is to install from the latest .msi. The .msi automatically cleans up older versions of the modules.
+ 
+###<a name="installing-module-versions-side-by-side"></a>Installing module versions side-by-side
+
+Version 2.1.0 (and version 1.2.6 for AzureStack) are the first module versions designed to be installed and used side-by-side. Because Azure PowerShell uses binary modules, you must open a new PowerShell window and use **Import-Module** to import a specific version of the AzureRM cmdlets:
+
+**Import-Module AzureRM – RequiredVersion 2.1.0**
+
+Versions before 2.1.0 (other than 1.2.6) do not work well side-by-side with other Azure PowerShell module versions. When loading an earlier version of the Azure PowerShell modules using a command like the one above, incompatible versions of the **AzureRM.Profile** module will be loaded, resulting in the cmdlets asking you to log in whenever you execute a cmdlet, even after you have logged in.
+
+The easiest way to resolve this is to install the latest Azure PowerShell from the WebPI feed or .msi – this removes earlier versions of the modules installed from the gallery. 
+
+Note that both Azure and AzureRM modules have dependencies in common, so if you use both modules, when updating one, you should update both. Earlier versions of the Azure module have the same issue with side-by-side module loading that earlier versions of the AzureRM module have.
+
 
 <a id="Install"></a>
-## 步驟 1：安裝
+## <a name="step-1:-install"></a>Step 1: Install
 
-以下是可以安裝 Azure PowerShell 的兩種方法。您可以從 WebPI 或 PowerShell 資源庫進行安裝：
+Following are the two methods by which you can install Azure PowerShell. You can install it either from WebPI, or the PowerShell Gallery:
 
-###從 WebPI 安裝 Azure PowerShell
+###<a name="installing-azure-powershell-from-webpi"></a>Installing Azure PowerShell from WebPI
 
-從 WebPI 安裝 Azure PowerShell 1.0 或更新版本如同於安裝 0.9.x。下載 [Azure Powershell](http://aka.ms/webpi-azps) 並開始安裝。如果您已安裝 Azure PowerShell 0.9.x，升級將解除安裝 0.9.x 版。如果您是從 PowerShell 資源庫安裝 Azure PowerShell 模組，安裝程式會在安裝前自動移除模組，以確保 Azure PowerShell 環境保持一致。
+Installing Azure PowerShell 1.0 and greater from WebPI is the same as it was for 0.9.x. Download [Azure PowerShell](http://aka.ms/webpi-azps) and start the install. If you have Azure PowerShell 0.9.x installed, version 0.9.x will be uninstalled as part of the upgrade. If you installed Azure PowerShell modules from PowerShell Gallery, the installer automatically removes the modules before installation to ensure a consistent Azure PowerShell environment.
 
-> [AZURE.NOTE] 如果您已從 PowerShell 資源庫安裝 Azure PowerShell 模組，安裝程式會自動移除這些模組。這是為了防止混淆您已安裝的模組版本與其所在的位置。PowerShell 資源庫模組通常會安裝在 **%ProgramFiles%\WindowsPowerShell\Modules**。相反地，WebPI 安裝程式會將 Azure 模組安裝在 **%ProgramFiles(x86)%\Microsoft SDKs\Azure\PowerShell**。如果安裝期間發生錯誤，請手動移除 **%ProgramFiles%\WindowsPowerShell\Modules** 資料來中的 Azure* 資料夾，再重試安裝。
+> [AZURE.NOTE] If you have previously installed Azure modules from the PowerShell Gallery, the installer will automatically remove them. This prevents confusion about which module versions you have installed and where they are located. PowerShell Gallery modules will normally install in **%ProgramFiles%\WindowsPowerShell\Modules**. In contrast, the WebPI installer will install the Azure modules in **%ProgramFiles(x86)%\Microsoft SDKs\Azure\PowerShell\**. If an error occurs during install, you can manually remove the Azure* folders in your **%ProgramFiles%\WindowsPowerShell\Modules** folder, and try the installation again.
 
-一旦完成安裝，您的 ```$env:PSModulePath``` 設定中應會有包含 Azure PowerShell Cmdlet 的目錄。
+Once the installation completes, your ```$env:PSModulePath``` setting should include the directories containing the Azure PowerShell cmdlets.
 
-> [AZURE.NOTE] 從 WebPI 安裝時，PowerShell **$env:PSModulePath** 會發生一個已知的問題。如果您的電腦因為系統更新或其他安裝而需要重新啟動，可能會導致 **$env:PSModulePath** 更新不包含 Azure PowerShell 的安裝路徑。如果發生這種情況，當您在安裝或升級之後嘗試使用 Azure PowerShell Cmdlet 時，您可能會看到「無法辨識 Cmdlet」訊息。如果發生此情況，重新啟動電腦應該可修正問題。
+> [AZURE.NOTE] There is a known issue with PowerShell **$env:PSModulePath** that can occur when installing from WebPI. If your computer requires a restart due to system updates or other installations, it may cause updates **$env:PSModulePath** to not include the path where Azure PowerShell is installed. If this occurs, you may see a 'cmdlet not recognized' message when attempting to use Azure PowerShell cmdlets after the installation or upgrade. If this occurs, restarting the machine should fix the problem.
 
-如果您嘗試載入或執行 Cmdlet，會收到類似下列訊息︰
+If you receive a message like the following when attempting to load or execute cmdlets:
 
 ```
     PS C:\> Get-AzureRmResource
@@ -52,15 +76,15 @@ Azure PowerShell 是一套模組，提供各種 Cmdlet，讓您透過 Windows Po
         + FullyQualifiedErrorId : CommandNotFoundException
 ```
 
-重新啟動機器或從 C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\ 的路徑匯入 Cmdlet (其中 XXXX 是安裝的 PowerShell 版本：
+This can be corrected by restarting the machine or importing the cmdlets from C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\ as following (where XXXX is the version of PowerShell installed:
 ```
 import-module "C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\azure.psd1"
 import-module "C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\expressroute\expressroute.psd1"
 ```
 
-###從 PowerShell 資源庫安裝 Azure PowerShell
+###<a name="installing-azure-powershell-from-the-powershell-gallery"></a>Installing Azure PowerShell from the PowerShell Gallery
 
-以提高權限的 Windows PowerShell 或 PowerShell 整合式指令碼環境 (ISE) 的提示字元，使用下列命令從 PowerShell 資源庫安裝 Azure PowerShell 1.3.0 或更高版本︰
+Install Azure PowerShell 1.3.0 or greater from the PowerShell Gallery using an elevated Windows PowerShell or PowerShell Integrated Scripting Environment (ISE) prompt using the following commands:
 
     # Install the Azure Resource Manager modules from the PowerShell Gallery
     Install-Module AzureRM
@@ -68,29 +92,31 @@ import-module "C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\expressrout
     # Install the Azure Service Management module from the PowerShell Gallery
     Install-Module Azure
 
-####這些命令的詳細資訊
+####<a name="more-about-these-commands"></a>More about these commands
 
-- **Install-Module AzureRM** 會為 Azure Resource Manager Cmdlet 安裝彙總套件模組。AzureRM 模組取決於每個 Azure Resource Manager 模組的特定版本範圍。包含的版本範圍可以確保在安裝同一主要版本的 AzureRM 模組時，不含重大的模組變更。當您安裝 AzureRM 模組時，會從 PowerShell 資源庫下載並安裝先前未安裝的所有 Azure Resource Manager 模組。如需有關 Azure PowerShell 模組使用的語意版本設定的詳細資訊，請參閱 [semver.org](http://semver.org)。 
-- **Install-Module Azure** 會安裝 Azure 模組。此模組為 Azure PowerShell 0.9.x 中的服務管理模組。這應該沒有任何主要變更，而且可與前一版的 Azure 模組互換。
+- **Install-Module AzureRM** installs a rollup module for the Azure Resource Manager cmdlets. The AzureRM module depends on 
+- a particular version range for each Azure Resource Manager module. The included version range assures that no breaking module changes can be included when installing AzureRM modules with the same major version. When you install the AzureRM module, any Azure Resource Manager module that has not previously been installed will be downloaded and installed from the PowerShell Gallery. For more information on the semantic versioning used by Azure PowerShell modules, see [semver.org](http://semver.org). 
+- **Install-Module Azure** installs the Azure module. This module is the Service Management module from Azure PowerShell 0.9.x. This should have no major changes and be interchangeable for the previous version of the Azure module.
 
-## 步驟 2：啟動
-您可以從標準的 Windows PowerShell 主控台，或是從 PowerShell 整合式指令碼環境 (ISE) 執行 Cmdlet。開啟這些主控台的方法視您正在執行的 Windows 版本而定。
+## <a name="step-2:-start"></a>Step 2: Start
+You can run the cmdlets from the standard Windows PowerShell console, or from PowerShell Integrated Scripting Environment (ISE).
+The method you use to open either console depends on the version of Windows you're running:
 
-- 在至少執行 Windows 8 或 Windows Server 2012 的電腦上，可使用內建的 [搜尋]。請在 [開始] 畫面中輸入「power」。這會傳回目標範圍內的應用程式清單，其中包括 Windows PowerShell。若要開啟主控台，請按一下任一應用程式。(如要將應用程式釘選到 [開始] 畫面，請用滑鼠右鍵按一下圖示。)
+- On a computer running at least Windows 8 or Windows Server 2012, you can use the built-in Search. From the **Start** screen, begin typing power. This returns a scoped list of apps that includes Windows PowerShell. To open the console, click either app. (To pin the app to the **Start** screen, right-click the icon.)
 
-- 在 Windows 版本早於 Windows 8 或 Windows Server 2012 的電腦上，請使用 [開始] 功能表。按一下 [開始] 功能表中的 [所有程式]，依序按一下 [附屬應用程式]、[Windows PowerShell] 資料夾，然後按一下 [Windows PowerShell]。
+- On a computer running a version earlier than Windows 8 or Windows Server 2012, use the **Start menu**. From the **Start** menu, click **All Programs**, click  **Accessories**, click the **Windows PowerShell** folder, and then click **Windows PowerShell**.
 
-您也可以執行 [Windows PowerShell ISE] 以使用功能表項目和鍵盤快速鍵，來執行許多您會在 Windows PowerShell 主控台中執行的相同工作。如要使用 ISE，請在 Windows PowerShell 主控台、Cmd.exe 或 [執行] 方塊中輸入 **powershell\_ise.exe**。
+You can also run the **Windows PowerShell ISE** to use menu items and keyboard shortcuts to perform many of the same tasks that you would perform in the Windows PowerShell console. To use the ISE, in the Windows PowerShell console, Cmd.exe, or in the **Run** box, type, **powershell_ise.exe**.
 
-###可協助您開始使用的命令
+###<a name="commands-to-help-you-get-started"></a>Commands to help you get started
 
     # To make sure the Azure PowerShell module is available after you install
     Get-Module –ListAvailable 
-	
-    # To login to Azure Resource Manager
+    
+    # To log in to Azure Resource Manager
     Login-AzureRmAccount
 
-    # You can also use a specific Tenant if you would like a faster login experience
+    # You can also use a specific Tenant if you would like a faster log in experience
     # Login-AzureRmAccount -TenantId xxxx
 
     # To view all subscriptions for your account
@@ -114,69 +140,74 @@ import-module "C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\expressrout
     Get-AzureRmStorageAccount | Get-AzureStorageContainer | Get-AzureStorageBlob
 
 
-## 步驟 3：連線
-Cmdlet 需要有您的訂閱，才能用來管理您的服務。您可以購買 Azure 訂用帳戶 (如果您還沒有的話)。如需指示，請參閱[如何購買 Azure](http://go.microsoft.com/fwlink/p/?LinkId=320795)。
+## <a name="step-3:-connect"></a>Step 3: Connect
+The cmdlets need your subscription so they can manage your services. You can purchase an Azure subscription if you don't already have one. For instructions, see [How to buy Azure](http://go.microsoft.com/fwlink/p/?LinkId=320795).
 
-1. 輸入 **Login-AzureRmAccount**
+1. Type **Login-AzureRmAccount**
 
-2. 輸入與您帳戶相關聯的電子郵件地址和密碼。Azure 會驗證並儲存認證資訊，然後關閉視窗。
+2. Type the email address and password associated with your account. Azure authenticates and saves the credential information, and then closes the window.
 
---或--
+--OR--
 
-登入您的工作或學校帳戶：
+Sign into your work or school account:
 
     $cred = Get-Credential
     Login-AzureRmAccount -Credential $cred
-> [AZURE.NOTE] 如果您的組織帳戶有多個相關聯的租用戶，請指定 TenantId 參數：
+> [AZURE.NOTE] If you have more than one tenant associated with your organizational account, specify the TenantId parameter:
 
     $loadersubscription = Get-AzureRmSubscription -SubscriptionName $YourSubscriptionName -TenantId $YourAssociatedSubscriptionTenantId
 
 
-> [AZURE.NOTE] 此非互動式登入方法僅適用於公司或學校帳戶。公司或學校帳戶是由您的公司或學校所管理的使用者，並為您的公司或學校定義於 Azure Active Directory 執行個體中。如果您目前沒有公司或學校帳戶，而是使用 Microsoft 帳戶登入您的 Azure 訂閱，則您可以透過下列步驟輕鬆地建立帳戶。
+> [AZURE.NOTE] This non-interactive log in method only works with a work or school account. A work or school account is a user that is managed by your work or school, and defined in the Azure Active Directory instance for your work or school. If you do not currently have a work or school account, and are using a Microsoft account to log in to your Azure subscription, you can easily create one using the following steps.
 
-> 1. 登入 [Azure 傳統入口網站][](https://manage.windowsazure.com)，然後按一下 [Active Directory]。
+> 1. Log in to the [Azure classic portal](https://manage.windowsazure.com), and click on **Active Directory**.
 
-> 2. 如果不存在任何目錄，請選取 [Create your directory] 並提供要求的資訊。
+> 2. If no directory exists, select **Create your directory** and provide the requested information.
 
-> 3. 選取您的目錄並新增使用者。這個新的使用者可以使用公司或學校帳戶登入。在建立使用者期間，系統會提供您該使用者的電子郵件地址與臨時密碼。請儲存此資訊，在以下的步驟 5 將會用到。
+> 3. Select your directory and add a new user. This new user can sign in using a work or school account. During the creation of the user, you will be supplied with both an e-mail address for the user and a temporary password. Save this information, as it is used in step 5 below.
 
-> 4. 在 Azure 傳統入口網站中選取 [設定]，然後選取 [管理員]。選取 [新增]，然後將新使用者新增為共同管理員。這麼做可讓公司或學校帳戶管理您的 Azure 訂閱。
+> 4. From the Azure classic portal, select **Settings** and then select **Administrators**. Select **Add**, and add the new user as a co-administrator. This allows the work or school account to manage your Azure subscription.
 
-> 5. 最後，登出 Azure 傳統入口網站，然後使用公司或學校帳戶重新登入。如果這是您第一次使用此帳戶登入，系統會提示您變更密碼。
+> 5. Finally, log out of the Azure classic portal and then log back in using the work or school account. If this is the first time logging in with this account, you will be prompted to change the password.
 
-> 如需使用公司或學校帳戶註冊 Microsoft Azure 的詳細資訊，請參閱[以組織身分註冊 Microsoft Azure](./active-directory/sign-up-organization.md)。
+> For more information on signing up for Microsoft Azure with a work or school account, see [Sign up for Microsoft Azure as an Organization](./active-directory/sign-up-organization.md).
 
-> 如需 Azure 中之驗證與訂閱管理的詳細資訊，請參閱[管理帳戶、訂閱和系統管理角色](http://go.microsoft.com/fwlink/?LinkId=324796)。
+> For more information about authentication and subscription management in Azure, see [Manage Accounts, Subscriptions, and Administrative Roles](http://go.microsoft.com/fwlink/?LinkId=324796).
 
-### 檢視帳戶與訂閱詳細資料
+### <a name="view-account-and-subscription-details"></a>View account and subscription details
 
-您可以有多個帳戶和訂閱供 Azure PowerShell 使用。執行 **Add-AzureRmAccount** 數次就能新增多個帳戶。
+You can have multiple accounts and subscriptions available for use by Azure PowerShell. You can add multiple accounts by running **Add-AzureRmAccount** more than once.
 
-若要顯示可用的 Azure 帳戶，請輸入 **Get-AzureAccount**。
+To display the available Azure accounts, type **Get-AzureAccount**.
 
-如要顯示您的 Azure 訂用帳戶，請輸入 **Get-AzureRmSubscription**。
+To display your Azure subscriptions, type **Get-AzureRmSubscription**.
 
-##<a id="Help"></a>取得說明##
+##<a name="<a-id="help"></a>getting-help##"></a><a id="Help"></a>Getting help##
 
-下列資源提供特定 Cmdlet 的說明：
+These resources provide help for specific cmdlets:
 
 
--   從主控台中，您可以使用內建的說明系統。**Get-Help** Cmdlet 可用來存取此系統。 
+-   From within the console, you can use the built-in Help system. The **Get-Help** cmdlet provides access to this system. 
 
-- 如需從社群獲得說明，請試試下列熱門論壇：
+- For help from the community, try these popular forums:
 
- - [MSDN 上的 Azure 論壇](http://go.microsoft.com/fwlink/p/?LinkId=320212)
+ - [Azure forum on MSDN]( http://go.microsoft.com/fwlink/p/?LinkId=320212)
  - [Stackoverflow](http://go.microsoft.com/fwlink/?LinkId=320213)
 
-##詳細資訊
+##<a name="learn-more"></a>Learn More
 
 
-若要深入了解如何使用 Cmdlet，請參閱下列資源：
+See the following resources to learn more about using the cmdlets:
 
-如需使用 Windows PowerShell 的基本指示，請參閱[使用 Windows PowerShell](http://go.microsoft.com/fwlink/p/?LinkId=321939)。
+For basic instructions about using Windows PowerShell, see [Using Windows PowerShell](http://go.microsoft.com/fwlink/p/?LinkId=321939).
 
-如需有關 Cmdlet 的參考資訊，請參閱 [Azure Cmdlet 參考](https://msdn.microsoft.com/library/windowsazure/jj554330.aspx)。
+For reference information about the cmdlets, see [Azure Cmdlet Reference](https://msdn.microsoft.com/library/windowsazure/jj554330.aspx).
 
-如需可協助您了解如何使用指令碼來管理 Azure 的範例指令碼和指示，請參閱[指令碼中心](http://go.microsoft.com/fwlink/p/?LinkId=321940)。
+For sample scripts and instructions to help you learn to use scripting to manage Azure, see the [Script Center](http://go.microsoft.com/fwlink/p/?LinkId=321940).
 
-<!---HONumber=AcomDC_0518_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

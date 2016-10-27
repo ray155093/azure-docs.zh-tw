@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Onit 整合 | Microsoft Azure" 
-    description="了解如何使用 Onit 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Onit | Microsoft Azure" 
+    description="Learn how to use Onit with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,175 +11,185 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/08/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Onit 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-onit"></a>Tutorial: Azure Active Directory integration with Onit
   
-本教學課程的目的是要示範 Azure 與 Onit 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Onit.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   啟用 Onit 單一登入的訂用帳戶
+-   A valid Azure subscription
+-   An Onit single sign-on enabled subscription
   
-完成本教學課程之後，您指派給 Onit 的 Azure AD 使用者就能夠單一登入 Onit 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+After completing this tutorial, the Azure AD users you have assigned to Onit will be able to single sign into the application at your Onit company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Onit 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Onit
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-onit-tutorial/IC791166.png "案例")
-##啟用 Onit 的應用程式整合
+![Scenario](./media/active-directory-saas-onit-tutorial/IC791166.png "Scenario")
+##<a name="enabling-the-application-integration-for-onit"></a>Enabling the application integration for Onit
   
-本節的目的是要說明如何啟用 Onit 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Onit.
 
-###若要啟用 Onit 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-onit,-perform-the-following-steps:"></a>To enable the application integration for Onit, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-onit-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-onit-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-onit-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-onit-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-onit-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-onit-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-onit-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **Onit**。
+6.  In the **search box**, type **Onit**.
 
-    ![應用程式庫](./media/active-directory-saas-onit-tutorial/IC791167.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-onit-tutorial/IC791167.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Onit]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Onit**, and then click **Complete** to add the application.
 
     ![Onit](./media/active-directory-saas-onit-tutorial/IC795325.png "Onit")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Onit 中進行驗證。設定 Onit 的單一登入需要您從憑證抓取指紋值。如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+The objective of this section is to outline how to enable users to authenticate to Onit with their account in Azure AD using federation based on the SAML protocol.  
+Configuring single sign-on for Onit requires you to retrieve a thumbprint value from a certificate.  
+If you are not familiar with this procedure, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI).
   
-Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂屬性對應到您的 **saml token 屬性**設定。以下螢幕擷取畫面顯示上述的範例。
+Your Onit application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your **saml token attributes** configuration.  
+The following screenshot shows an example for this.
 
-![單一登入](./media/active-directory-saas-onit-tutorial/IC791168.png "單一登入")
+![Single Sign-On](./media/active-directory-saas-onit-tutorial/IC791168.png "Single Sign-On")
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Onit] 應用程式整合頁面中，按一下最上面功能表中的 [屬性] 來開啟 [SAML Token 屬性] 對話方塊。
+1.  In the Azure classic portal, on the **Onit** application integration page, in the menu on the top, click **Attributes** to open the **SAML Token Attributes** dialog.
 
-    ![屬性](./media/active-directory-saas-onit-tutorial/IC791169.png "屬性")
+    ![Attributes](./media/active-directory-saas-onit-tutorial/IC791169.png "Attributes")
 
-2.  若要加入必要的屬性對應，請執行下列步驟：
+2.  To add the required attribute mappings, perform the following steps:
 
     
-    |屬性名稱|屬性值|
-	|---|---|
-	|名稱|User.userprincipalname|
-    |電子郵件|User.mail|
+  	|Attribute Name|Attribute Value|
+  	|---|---|
+  	|name|User.userprincipalname|
+  	|email|User.mail|
 
-    1.  針對上表中的每個資料列，按一下 [新增使用者屬性]。
-    2.  在 [屬性名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
-    3.  在 [屬性值] 清單中，選取該資料列所顯示的屬性名稱。
-    4.  按一下 [完成]。
+    1.  For each data row in the table above, click **add user attribute**.
+    2.  In the **Attribute Name** textbox, type the attribute name shown for that row.
+    3.  From the **Attribute Value** list, select the attribute value shown for that row.
+    4.  Click **Complete**.
 
-3.  按一下 [套用變更]。
+3.  Click **Apply Changes**.
 
-4.  在您的瀏覽器中，按一下 [返回] 以再次開啟 [快速啟動] 對話方塊。
+4.  In your browser, click **Back** to open the **Quick Start** dialog again.
 
-5.  按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+5.  Click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-onit-tutorial/IC791170.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-onit-tutorial/IC791170.png "Configure Single Sign-On")
 
-6.  在 [要如何讓使用者登入 Onit] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+6.  On the **How would you like users to sign on to Onit** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-onit-tutorial/IC791171.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-onit-tutorial/IC791171.png "Configure Single Sign-On")
 
-7.  在 [設定應用程式 URL] 頁面的 [Onit 單一登入 URL] 文字方塊中，輸入使用者用來登入 Onit 應用程式的 URL (如："*https://ms-sso-test.onit.com*”)，然後按一下 *[下一步]*。
+7.  On the **Configure App URL** page, in the **Onit Sign On URL** textbox, type the URL used by your users to sign on to your Onit application (e.g.: "*https://ms-sso-test.onit.com*”), and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-onit-tutorial/IC791172.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-onit-tutorial/IC791172.png "Configure App URL")
 
-8.  在 [設定在 Onit 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在本機電腦上。
+8.  On the **Configure single sign-on at Onit** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-onit-tutorial/IC791173.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-onit-tutorial/IC791173.png "Configure Single Sign-On")
 
-9.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Onit 公司網站。
+9.  In a different web browser window, log into your Onit company site as an administrator.
 
-10. 在頂端的功能表中，按一下 [系統管理]。
+10. In the menu on the top, click **Administration**.
 
-    ![系統管理](./media/active-directory-saas-onit-tutorial/IC791174.png "系統管理")
+    ![Administration](./media/active-directory-saas-onit-tutorial/IC791174.png "Administration")
 
-11. 按一下 [編輯公司]。
+11. Click **Edit Corporation**.
 
-    ![編輯公司](./media/active-directory-saas-onit-tutorial/IC791175.png "編輯公司")
+    ![Edit Corporation](./media/active-directory-saas-onit-tutorial/IC791175.png "Edit Corporation")
 
-12. 按一下 [安全性] 索引標籤。
+12. Click the **Security** tab.
 
-    ![編輯公司資訊](./media/active-directory-saas-onit-tutorial/IC791176.png "編輯公司資訊")
+    ![Edit Company Information](./media/active-directory-saas-onit-tutorial/IC791176.png "Edit Company Information")
 
-13. 在 [安全性] 索引標籤上執行下列步驟：。
+13. On the **Security** tab, perform the following steps:
 
-    ![單一登入](./media/active-directory-saas-onit-tutorial/IC791177.png "單一登入")
+    ![Single Sign-On](./media/active-directory-saas-onit-tutorial/IC791177.png "Single Sign-On")
 
-    1.  對於**驗證策略**，請選取 [單一登入和密碼]。
-    2.  在 Azure 傳統入口網站中的 [設定在 Onit 單一登入] 對話頁面上， 複製 [遠端登入 URL] 值，然後將它貼至 [IDP 目標 URL] 文字方塊中。
-    3.  在 Azure 傳統入口網站中的 [設定在 Onit 單一登入] 對話頁面上， 複製 [遠端登出 URL] 值，然後將它貼至 [IDP 登出 URL] 文字方塊中。
-    4.  從匯出的憑證複製**憑證指紋**值，然後將它貼至 [IDP 憑證指紋 (SHA1)] 文字方塊中。
+    1.  As **Authentication Strategy**, select **Single Sign On and Password**.
+    2.  In the Azure classic portal, on the **Configure single sign-on at Onit** dialog page, copy the **Remote Login URL** value, and then paste it into the **Idp Target URL** textbox.
+    3.  In the Azure classic portal, on the **Configure single sign-on at Onit** dialog page, copy the **Remote Logout URL** value, and then paste it into the **Idp logout URL** textbox.
+    4.  Copy the **Thumbprint** value from the exported certificate, and then paste it into the **Idp Cert Fingerprint (SHA1)** textbox.  
 
-        >[AZURE.TIP] 如需詳細資訊，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)
+        >[AZURE.TIP] For more details, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI)
 
-    5.  **SSO 類型**請選取 **SAML**。
-    6.  在 [SSO 登入按鈕文字] 文字方塊中輸入您想要的按鈕文字。
-    7.  選取 [使用 SSO 登入：針對下列網域/使用者為必要]，將測試使用者的電子郵件地址輸入相關的文字方塊，然後按一下 [更新]。![編輯公司](./media/active-directory-saas-onit-tutorial/IC791178.png "編輯公司")
+    5.  As **SSO Type**, select **SAML**.
+    6.  In the **SSO login button text** textbox, type a button text you like.
+    7.  Select **Login with SSO: Required for the following domains/users**, type the email address of a test user into the related textbox, and then click **Update**.
+        ![Edit Corporation](./media/active-directory-saas-onit-tutorial/IC791178.png "Edit Corporation")
 
-14. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+14. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-onit-tutorial/IC791179.png "設定單一登入")
-##設定使用者佈建
+    ![Configure Single Sign-On](./media/active-directory-saas-onit-tutorial/IC791179.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-為了讓 Azure AD 使用者能夠登入 Onit，必須將他們佈建到 Onit。在 Onit 的情況下，需以手動方式佈建。
+In order to enable Azure AD users to log into Onit, they must be provisioned into Onit.  
+In the case of Onit, provisioning is a manual task.
 
-###若要設定使用者佈建，請執行下列步驟：
+###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
 
-1.  以系統管理員身分登入您的 **Onit** 公司網站。
+1.  Sign on to your **Onit** company site as an administrator.
 
-2.  按一下 [新增使用者]。
+2.  Click **Add User**.
 
-    ![系統管理](./media/active-directory-saas-onit-tutorial/IC791180.png "系統管理")
+    ![Administration](./media/active-directory-saas-onit-tutorial/IC791180.png "Administration")
 
-3.  在 [新增使用者] 對話頁面上，執行下列步驟：
+3.  On the **Add User** dialog page, perform the following steps:
 
-    ![新增使用者](./media/active-directory-saas-onit-tutorial/IC791181.png "新增使用者")
+    ![Add User](./media/active-directory-saas-onit-tutorial/IC791181.png "Add User")
 
-    1.  在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [名稱] 與 [電子郵件地址]。
-    2.  按一下 [建立]。
+    1.  Type the **Name** and the **Email Address** of a valid AAD account you want to provision into the related textboxes.
+    2.  Click **Create**.  
 
-        >[AZURE.NOTE] 帳戶擁有者會收到一封電子郵件，其中中包含在帳戶變成作用中之前確認帳戶的連結。
+        >[AZURE.NOTE] The account owner will get an email including a link to confirm the account before it becomes active.
 
->[AZURE.NOTE] 您可以使用任何其他的 Onit 使用者帳戶建立工具或 Onit 提供的 API，佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Onit user account creation tools or APIs provided by Onit to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Onit，請執行下列步驟：
+###<a name="to-assign-users-to-onit,-perform-the-following-steps:"></a>To assign users to Onit, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Onit] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Onit **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-onit-tutorial/IC791182.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-onit-tutorial/IC791182.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-onit-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-onit-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

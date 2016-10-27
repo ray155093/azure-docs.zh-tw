@@ -1,6 +1,6 @@
 <properties
-   pageTitle="從伺服器總管存取 Azure 虛擬機器 | Microsoft Azure"
-   description="取得如何在 Visual Studio 的 [伺服器總管] 中，檢視建立和管理 Azure 虛擬機器 (VM) 的概觀。"
+   pageTitle="Accessing Azure Virtual Machines from Server Explorer | Microsoft Azure"
+   description="Get an overview of how to view create and manage Azure virtual machines (VMs) in Server Explorer in Visual Studio."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,42 +15,47 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 從伺服器總管存取 Azure 虛擬機器
 
-藉由使用 Visual Studio 中的 [伺服器總管]，您可以顯示 Azure 主控的虛擬機器相關資訊。
+# <a name="accessing-azure-virtual-machines-from-server-explorer"></a>Accessing Azure Virtual Machines from Server Explorer
 
-## 在 [伺服器總管] 中存取 Azure 虛擬機器
+By using Server Explorer in Visual Studio, you can display information about your virtual machines hosted by Azure.
 
-如果您有 Azure 主控的虛擬機器，您可以在 [伺服器總管] 中存取它們。您必須先登入您的 Azure 訂用帳戶，才能檢視您的行動服務。若要登入，請在 [伺服器總管] 中開啟 [Azure] 節點的捷徑功能表，並選擇 [連線到 Microsoft Azure]。
+## <a name="accessing-virtual-machines-in-server-explorer"></a>Accessing virtual machines in Server Explorer
 
-### 取得虛擬機器的相關資訊
+If you have virtual machines hosted by Azure, you can access them in Server Explorer. You must first sign in to your Azure subscription to view your mobile services. To sign in, open the shortcut menu for the Azure node in Server Explorer, and choose **Connect to Microsoft Azure**.
 
-1. 在 [伺服器總管] 中選擇虛擬機器，然後選擇 F4 鍵以顯示其屬性視窗。
+### <a name="to-get-information-about-your-virtual-machines"></a>To get information about your virtual machines
 
-    下表顯示可以使用的屬性，但他們全部都是唯讀。若要加以變更，請使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
+1. In Server Explorer, choose a virtual machine, and then choose the F4 key to show its properties window.
 
-  	|屬性|說明|
+    The following table shows what properties are available, but they are all read-only. To change them, use the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
+
+  	|Property|Description|
   	|---|---|
-  	|DNS 名稱|包含虛擬機器網際網路位址的 URL。|
-  	|Environment|若是虛擬機器，這個屬性的值一定是 [生產]。|
-  	|名稱|虛擬機器的名稱。|
-  	|大小|虛擬機器的大小，此值會反映可用的記憶體和磁碟空間數量。如需詳細資訊，請參閱如何：設定虛擬機器大小。|
-  	|狀態|值包括 [啟動中]、[已啟動]、[停止中]、[已停止] 和 [正在擷取狀態]。如果出現 [正在擷取狀態]，則目前狀態是未知的。這個屬性的值不同於 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)上所使用的值。|
-  	|SubscriptionID|Azure 帳戶的訂用帳戶識別碼。您可以透過檢視訂用帳戶的屬性，在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)上顯示這項資訊。|
+  	|DNS Name|The URL with the Internet address of the virtual machine.|
+  	|Environment|For a virtual machine, the value of this property is always Production.|
+  	|Name|The name of the virtual machine.|
+  	|Size|The size of the virtual machine, which reflects the amount of memory and disk space that’s available. For more information, see How To: Configure Virtual Machine Sizes.|
+  	|Status|Values include Starting, Started, Stopping, Stopped, and Retrieving Status. If Retrieving Status appears, the current status is unknown. The values for this property differ from the values that are used on the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).|
+  	|SubscriptionID|The subscription ID for your Azure account. You can show this information on the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885) by viewing the properties for a subscription.|
 
-1. 選擇端點節點，然後檢視 [屬性] 視窗。
+1. Choose an endpoint node, and then view the **Properties** window.
 
-1. 下表說明可用的端點屬性，但他們全部都是唯讀。若要新增或編輯虛擬機器的端點，請使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
+1. The following table describes the available properties of endpoints, but they are read-only. To add or edit the endpoints for a virtual machine, use the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885). 
 
-  	|屬性|說明|
+  	|Property|Description|
   	|---|---|
-  	|名稱|端點的識別碼|
-  	|私人連接埠|網路內部存取應用程式的連接埠。|
-  	|通訊協定|此端點的傳輸層所使用的通訊協定：TCP 或 UDP。|
-  	|公用連接埠|提供公用存取應用程式使用的通訊埠。|
+  	|Name|An identifier for the endpoint.|
+  	|Private Port|The port for network access internal to your application.|
+  	|Protocol|The protocol that the transport layer for this endpoint uses, either TCP or UDP.|
+  	|Public Port|The port that’s used for public access to your application.|
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要深入了解 Visual Studio 中的 Azure 角色使用方式，請參閱[搭配使用遠端桌面與 Azure 角色](vs-azure-tools-remote-desktop-roles.md)。
+To learn more about using Azure roles in Visual Studio, see [Using Remote Desktop with Azure Roles](vs-azure-tools-remote-desktop-roles.md).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

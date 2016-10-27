@@ -1,9 +1,9 @@
 <properties
-   pageTitle="疑難排解：'Active Directory' 項目遺失或無法使用 | Microsoft Azure "
-   description="若 Active Directory 功能表項目未出現在 Azure 管理入口網站中，該怎麼做。"
+   pageTitle="Troubleshooting: 'Active Directory' item is missing or not available | Microsoft Azure "
+   description="What to do when Active Directory menu item doesn't appear in the Azure Management Portal."
    services="active-directory"
    documentationCenter="na"
-   authors="msmbaldwin"
+   authors="bryanla"
    manager="mbaldwin"
    editor=""/>
 
@@ -16,42 +16,47 @@
    ms.date="09/16/2016"
    ms.author="mbaldwin"/>
 
-# 疑難排解：'Active Directory' 項目遺失或無法使用
 
-許多使用 Azure Active Directory 功能和服務的相關指示都是以「前往 Azure 管理入口網站並按一下 [Active Directory] 」為開頭。 但是，如果 Active Directory 延伸模組或功能表項目未出現，或者標示為 [無法使用]，該怎麼辦？ 本主題旨在提供協助。它將說明 **Active Directory** 未出現或無法使用的情況，並說明如何繼續執行。
+# <a name="troubleshooting:-'active-directory'-item-is-missing-or-not-available"></a>Troubleshooting: 'Active Directory' item is missing or not available
 
-## Active Directory 遺失
+Many of the instructions for using Azure Active Directory features and services begin with "Go to the Azure Management Portal and click **Active Directory**." But what do you do if the Active Directory extension or menu item does not appear or if it is marked **Not Available**? This topic is designed to help. It describes the conditions under which **Active Directory** does not appear or is unavailable and explains how to proceed.
 
-一般而言，**Active Directory** 項目會出現在左側導覽功能表中。Azure Active Directory 程序中的指示假設此項目是在您的檢視中。
+## <a name="active-directory-is-missing"></a>Active Directory is missing
 
-![螢幕擷取畫面：Azure 中的 Active Directory](./media/active-directory-troubleshooting/typical-view.png)
+Typically, an **Active Directory** item appears in the left navigation menu. The instructions in Azure Active Directory procedures assume that this item is in your view.
 
-當下列任一條件成立時，Active Directory 項目就會出現在左側導覽功能表中。否則，該項目便不會出現。
+![Screen shot: Active Directory in Azure](./media/active-directory-troubleshooting/typical-view.png)
 
-* 目前的使用者是使用 Microsoft 帳戶 (之前稱為 Windows Live ID) 登入。
+The Active Directory item appears in the left navigation menu when any of the following conditions is true. Otherwise, the item does not appear.
 
-    或
+* The current user signed on with a Microsoft account (formerly known as a Windows Live ID).
 
-* Azure 租用戶都擁有一個目錄，且目前的帳戶為目錄系統管理員。
+    OR
 
-    或
+* The Azure tenant has a directory and the current account is a directory administrator.
 
-* Azure 租用戶至少具有一個 Azure AD 存取控制 (ACS) 命名空間。如需詳細資訊，請參閱[存取控制命名空間](https://msdn.microsoft.com/library/azure/gg185908.aspx)。
+    OR
 
-    或
+* The Azure tenant has at least one Azure AD Access Control (ACS) namespace. For more information, see [Access Control Namespace](https://msdn.microsoft.com/library/azure/gg185908.aspx).
 
-* Azure 租用戶至少具有一個 Azure Multi-Factor Authentication 提供者。如需詳細資訊，請參閱[管理 Azure Multi-Factor Authentication 提供者](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md)。
+    OR
 
-若要建立存取控制命名空間或 Multi-Factor Authentication 提供者，請按一下 [+新增] > [應用程式服務] > [Active Directory]。
+* The Azure tenant has at least one Azure Multi-Factor Authentication provider. For more information, see [Administering Azure Multi-Factor Authentication Providers](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md).
 
-若要取得目錄的系統管理權限，必須要求系統管理員將系統管理員角色指派給您的帳戶。如需詳細資訊，請參閱[指派系統管理員角色](active-directory-assign-admin-roles.md)。
+To create an Access Control namespace or a Multi-Factor Authentication provider, click **+New** > **App Services** > **Active Directory**.
 
-## Active Directory 無法使用
+To get administrative rights to a directory, have an administrator assign an administrator role to your account. For details, see [Assigning administrator roles](active-directory-assign-admin-roles.md).
 
-當您按一下 [+新增] > [應用程式服務] 時，[Active Directory] 項目即會出現。具體而言，當任何 Active Directory 功能 (例如，目錄、存取控制或 Multi-Factor Auth 提供者) 可供目前使用者使用時，Active Directory 項目即會出現。
+## <a name="active-directory-is-not-available"></a>Active Directory is not available
 
-不過，當網頁正在載入時，該項目會呈暗灰色且標示為 [無法使用]。這是暫時性狀態。如果您稍待片刻，該項目將變成可用狀態。如果延遲太久，重新整理網頁通常就能解決問題。
+When you click **+New** > **App Services**, an **Active Directory** item appears. Specifically, the Active Directory item appears when any of the Active Directory features, such as Directory, Access Control, or Multi-Factor Auth Provider, are available to the current user.
 
-![螢幕擷取畫面：Active Directory 無法使用](./media/active-directory-troubleshooting/not-available.png)
+However, while the page is loading, the item is dimmed and is marked **Not Available**. This is a temporary state. If you wait a few seconds, the item becomes available. If the delay is prolonged, refreshing the web page often resolves the problem.
 
-<!---HONumber=AcomDC_0921_2016-->
+![Screen shot: Active Directory is not available](./media/active-directory-troubleshooting/not-available.png)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

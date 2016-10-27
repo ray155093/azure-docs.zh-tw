@@ -1,55 +1,57 @@
-###授與 Mobile Engagement 的存取權給 GCM API 金鑰
+###<a name="grant-mobile-engagement-access-to-your-gcm-api-key"></a>Grant Mobile Engagement access to your GCM API Key
 
-若要讓 Mobile Engagement 以您的名義傳送推播通知，您必須授與 API 金鑰的存取權。完成此項作業的方法為在 Mobile Engagement 入口網站中設定並輸入您的金鑰。
+To allow Mobile Engagement to send push notifications on your behalf, you need to grant it access to your API Key. This is done by configuring and entering your key into the Mobile Engagement portal.
 
-1. 請從 Azure 傳統入口網站確認您在我們用於此專案的應用程式中，然後按一下底部的 [接洽] 按鈕。
+1. From your Azure Classic Portal, ensure you're in the app we're using for this project, and then click the **Engage** button at the bottom:
 
-	![](./media/mobile-engagement-android-send-push/engage-button.png)
+    ![](./media/mobile-engagement-android-send-push/engage-button.png)
 
-2. 然後按一下 [設定] -> [原生推送] 區段來輸入 GCM 金鑰：
+2. Then click the **Settings** -> **Native Push** section to enter your GCM Key:
 
-	![](./media/mobile-engagement-android-send-push/engagement-portal.png)
+    ![](./media/mobile-engagement-android-send-push/engagement-portal.png)
 
-3. 在 [GCM 設定] 區段中，按一下 [API 金鑰] 前面的**編輯**圖示，如下所示：
+3. Click the **Edit** icon in front of **API Key** in the **GCM Settings** section as shown below:
 
-	![](./media/mobile-engagement-android-send-push/native-push-settings.png)
+    ![](./media/mobile-engagement-android-send-push/native-push-settings.png)
 
-4. 在快顯視窗中，貼上您先前取得的 GCM 伺服器金鑰，然後按一下 [確定]。
+4. In the pop-up, paste the GCM Server Key you obtained before and then click **Ok**.
 
-	![](./media/mobile-engagement-android-send-push/api-key.png)
+    ![](./media/mobile-engagement-android-send-push/api-key.png)
 
-##<a id="send"></a>傳送通知至應用程式
+##<a name="<a-id="send"></a>send-a-notification-to-your-app"></a><a id="send"></a>Send a notification to your app
 
-我們將建立一個簡單的推播通知活動，它會將推播通知傳送至我們的應用程式。
+We will now create a simple push notification campaign that sends a push notification to our app.
 
-1. 瀏覽至您的 Mobile Engagement 入口網站中的 [觸達] 索引標籤
+1. Navigate to the **REACH** tab in your Mobile Engagement portal.
 
-2. 按一下 [新增宣告] 來建立您的推播通知活動。
+2. Click **New announcement** to create your push notification campaign.
 
-	![](./media/mobile-engagement-android-send-push/new-announcement.png)
+    ![](./media/mobile-engagement-android-send-push/new-announcement.png)
 
-3. 透過下列步驟來設定活動的第一個欄位：
+3. Set up the first field of your campaign through the following steps:
 
-	![](./media/mobile-engagement-android-send-push/campaign-first-params.png)
+    ![](./media/mobile-engagement-android-send-push/campaign-first-params.png)
 
-	a.為您的活動命名。
+    a. Name your campaign.
 
-	b.將 [傳遞類型] 選取為 [系統通知 -> 簡易]：這是 Android 的簡易推播通知類型，具備一個標題和一小行文字。
+    b. Select the **Delivery type** as *System notification -> Simple*: This is the simple Android push notification type that features a title and a small line of text.
 
-	c.將 [傳遞時間] 選取為 [任何時候]，讓應用程式無論是否啟動，都會接收通知。
+    c. Select **Delivery time** as *Any time* to allow the app to receive a notification whether the app is started or not.
 
-	d.在通知文字中，輸入**標題**，這在推播中會以粗體顯示。
+    d. In the notification text type the **Title** which will be in bold in the push.
 
-	e.然後輸入您的**訊息**。
+    e. Then type your **Message**
 
-4. 向下捲動，在 [內容] 區段中選取 [僅限通知]。
+4. Scroll down, and in the **Content** section, select **Notification only**.
 
-	![](./media/mobile-engagement-android-send-push/campaign-content.png)
+    ![](./media/mobile-engagement-android-send-push/campaign-content.png)
 
-5. 您已完成能做的最基本活動設定。現在再次向下捲動，然後按一下 [建立] 按鈕來儲存活動。
+5. You're done setting the most basic campaign possible. Now scroll down again and click the **Create** button to save your campaign.
 
-6. 最後一個步驟：按一下 [啟動] 來啟用活動以傳送推播通知。
+6. Last step: click **Activate** to activate your campaign to send push notifications.
 
-	![](./media/mobile-engagement-android-send-push/campaign-activate.png)
+    ![](./media/mobile-engagement-android-send-push/campaign-activate.png)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

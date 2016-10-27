@@ -1,172 +1,177 @@
 <properties
-	pageTitle="Azure Functions Mobile Apps 繫結 | Microsoft Azure"
-	description="了解如何在 Azure Functions 中使用 Azure Mobile Apps 繫結。"
-	services="functions"
-	documentationCenter="na"
-	authors="ggailey777"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"/>
+    pageTitle="Azure Functions Mobile Apps bindings | Microsoft Azure"
+    description="Understand how to use Azure Mobile Apps bindings in Azure Functions."
+    services="functions"
+    documentationCenter="na"
+    authors="ggailey777"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="08/30/2016"
-	ms.author="glenga"/>
+    ms.service="functions"
+    ms.devlang="multiple"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="08/30/2016"
+    ms.author="glenga"/>
 
-# Azure Functions Mobile Apps 繫結
+
+# <a name="azure-functions-mobile-apps-bindings"></a>Azure Functions Mobile Apps bindings
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure Mobile Apps 繫結進行設定及撰寫程式碼。
+This article explains how to configure and code Azure Mobile Apps bindings in Azure Functions. 
 
-[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
 
-Azure App Service Mobile Apps 可讓您將資料表端點資料公開至行動用戶端。此相同的表格式資料可用於 Azure Functions 的輸入和輸出繫結中。因為它支援動態結構描述，因此 Node.js 後端行動應用程式非常適合用來公開表格式資料以用於您的函式。動態結構描述預設會啟用，而且應該在生產行動應用程式中停用。如需有關 Node.js 後端中資料表端點的詳細資訊，請參閱[概觀：資料表作業](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations)。在 Mobile Apps 中，Node.js 後端支援在入口網站內瀏覽和編輯資料表。如需詳細資訊，請參閱 Node.js SDK 主題中的[入口網站內編輯](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#in-portal-editing)。當您搭配使用 .NET 後端行動應用程式與 Azure Functions 時，您必須將資料模型手動更新為函式所要求的形式。如需有關 .NET 後端行動應用程式中資料表端點的詳細資訊，請參閱 .NET 後端 SDK 主題中的[做法：定義資料表控制器](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#define-table-controller)。
+Azure App Service Mobile Apps lets you expose table endpoint data to mobile clients. This same tabular data can be used with both input and output bindings in Azure Functions. Because it supports dynamic schema, a Node.js backend mobile app is ideal for exposing tabular data for use with your functions. Dynamic schema is enabled by default and should be disabled in a production mobile app. For more information about table endpoints in a Node.js backend, see [Overview: table operations](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations). In Mobile Apps, the Node.js backend supports in-portal browsing and editing of tables. For more information, see [in-portal editing](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#in-portal-editing) in the Node.js SDK topic. When you use a .NET backend mobile app with Azure Functions, you must manually update your data model as required by your function. For more information about table endpoints in a .NET backend mobile app, see [How to: Define a table controller](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#define-table-controller) in the .NET backend SDK topic. 
 
-## 針對您的行動應用程式後端 URL 建立環境變數
+## <a name="create-an-environment-variable-for-your-mobile-app-backend-url"></a>Create an environment variable for your mobile app backend URL
 
-Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用程式後端本身的 URL。您可以藉由尋找您的行動應用程式並開啟刀鋒視窗，在 [Azure 入口網站](https://portal.azure.com)中找到這個 URL。
+Mobile Apps bindings currently require you to create an environment variable that returns the URL of the mobile app backend itself. This URL can be found in the [Azure portal](https://portal.azure.com) by locating your mobile app and opening the blade.
 
-![Azure 入口網站中的 Mobile Apps 刀鋒視窗](./media/functions-bindings-mobile-apps/mobile-app-blade.png)
+![Mobile Apps blade in the Azure portal](./media/functions-bindings-mobile-apps/mobile-app-blade.png)
 
-在您的函數應用程式中設定此 URL 做為環境變數：
+To set this URL as an environment variable in your function app:
 
-1. 在 [Azure Functions 入口網站](https://functions.azure.com/signin)的函式應用程式中，按一下 [函式應用程式設定] > [移至 App Service 設定]。
+1. In your function app in the [Azure Functions portal](https://functions.azure.com/signin), click **Function app settings** > **Go to App Service settings**. 
 
-	![函數應用程式設定刀鋒視窗](./media/functions-bindings-mobile-apps/functions-app-service-settings.png)
+    ![Function app settings blade](./media/functions-bindings-mobile-apps/functions-app-service-settings.png)
 
-2. 在函式應用程式中，按一下 [所有設定]、向下捲動至 [應用程式設定]，然後在 [應用程式設定] 下方輸入環境變數的新**名稱**、將 URL 貼至 [值]、確定使用 HTTPS 配置，然後按一下 [儲存] 並關閉函式應用程式刀鋒視窗，以返回 Functions 入口網站。
+2. In your function app, click **All settings**, scroll down to **Application settings**, then under **App settings** type a new **Name** for the environment variable, paste the URL into **Value**, making sure to use the HTTPS scheme, then click **Save** and close the function app blade to return to the Functions portal.   
 
-	![新增應用程式設定環境變數](./media/functions-bindings-mobile-apps/functions-app-add-app-setting.png)
+    ![Add an app setting environment variable](./media/functions-bindings-mobile-apps/functions-app-add-app-setting.png)
 
-您現在可以設定這個新的環境變數，做為您繫結中的「連接」欄位。
+You can now set this new environment variable as the *connection* field in your bindings.
 
-## <a id="mobiletablesapikey"></a>使用 API 金鑰來保護對 Mobile Apps 資料表端點的存取。
+## <a name="<a-id="mobiletablesapikey"></a>-use-an-api-key-to-secure-access-to-your-mobile-apps-table-endpoints."></a><a id="mobiletablesapikey"></a> Use an API key to secure access to your Mobile Apps table endpoints.
 
-在 Azure Functions 中，行動資料表繫結可讓您指定 API 金鑰，也就是可用來防止您的函式以外的應用程式存取共用的密碼。Mobile Apps 並沒有內建支援的 API 金鑰驗證。不過，您可以依照[實作 API 金鑰的 Azure App Service Mobile Apps 後端](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key)中的範例，在 Node.js 後端行動應用程式中實作 API 金鑰。您也可以用同樣的方式，在 [.NET 後端行動應用程式](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key)中實作 API 金鑰。
+In Azure Functions, mobile table bindings let you specify an API key, which is a shared secret that can be used to prevent unwanted access from apps other than your functions. Mobile Apps does not have built-in support for API key authentication. However, you can implement an API key in your Node.js backend mobile app by following the examples in [Azure App Service Mobile Apps backend implementing an API key](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key). You can similarly implement an API key in a [.NET backend mobile app](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).
 
->[AZURE.IMPORTANT] 此 API 金鑰不可與您的行動應用程式用戶端一起散佈，它應該只安全地散佈給服務端用戶端，如 Azure Functions。
+>[AZURE.IMPORTANT] This API key must not be distributed with your mobile app clients, it should only be distributed securely to service-side clients, like Azure Functions. 
 
-## <a id="mobiletablesinput"></a>Azure Mobile Apps 輸入繫結
+## <a name="<a-id="mobiletablesinput"></a>-azure-mobile-apps-input-binding"></a><a id="mobiletablesinput"></a> Azure Mobile Apps input binding
 
-輸入繫結可從行動資料表端點載入記錄，並將它直接傳遞至繫結。您可以根據叫用該函式的觸發程序來判斷記錄識別碼。在 C# 函式中，當函式成功結束時，會將記錄所做的任何變更自動傳回資料表。
+Input bindings can load a record from a mobile table endpoint and pass it directly to your binding. The record ID is determined based on the trigger that invoked the function. In a C# function, any changes made to the record are automatically sent back to the table when the function exits successfully.
 
-#### Mobile Apps 輸入繫結的 function.json
+#### <a name="function.json-for-mobile-apps-input-binding"></a>function.json for Mobile Apps input binding
 
-「function.json」檔案支援下列屬性：
+The *function.json* file supports the following properties:
 
-- `name`︰函式程式碼中用於新記錄的變數名稱。
-- `type`︰繫結類型必須設為「mobileTable」。
-- `tableName`︰其中將建立新記錄的資料表。
-- `id`：要擷取之記錄的識別碼。此屬性支援類似於 `{queueTrigger}` 的繫結，此繫結會使用佇列訊息的字串值做為記錄識別碼。
-- `apiKey`︰字串，此字串是為行動應用程式指定選擇性 API 金鑰的應用程式設定。當您的行動應用程式使用 API 金鑰來限制用戶端存取時，這是必要的選項。
-- `connection`︰應用程式設定中環境變數名稱的字串，可指定行動應用程式後端的 URL。
-- `direction`︰繫結方向，必須設定為「in」。
+- `name` : Variable name used in function code for the new record.
+- `type` : Biding type must be set to *mobileTable*.
+- `tableName` : The table where the new record will be created.
+- `id` : The ID of the record to retrieve. This property supports bindings similar to `{queueTrigger}`, which will use the string value of the queue message as the record Id.
+- `apiKey` : String that is the application setting that specifies the optional API key for the mobile app. This is required when your mobile app uses an API key to restrict client access.
+- `connection` : String that is the name of the environment variable in application settings that specifies the URL of your mobile app backend.
+- `direction` : Binding direction, which must be set to *in*.
 
-範例「function.json」檔案：
+Example *function.json* file:
 
-	{
-	  "bindings": [
-	    {
-	      "name": "record",
-	      "type": "mobileTable",
-	      "tableName": "MyTable",
-	      "id" : "{queueTrigger}",
-	      "connection": "My_MobileApp_Url",
-	      "apiKey": "My_MobileApp_Key",
-	      "direction": "in"
-	    }
-	  ],
-	  "disabled": false
-	}
+    {
+      "bindings": [
+        {
+          "name": "record",
+          "type": "mobileTable",
+          "tableName": "MyTable",
+          "id" : "{queueTrigger}",
+          "connection": "My_MobileApp_Url",
+          "apiKey": "My_MobileApp_Key",
+          "direction": "in"
+        }
+      ],
+      "disabled": false
+    }
 
-#### C# 佇列觸發程序的 Azure Mobile Apps 程式碼範例
+#### <a name="azure-mobile-apps-code-example-for-a-c#-queue-trigger"></a>Azure Mobile Apps code example for a C# queue trigger
 
-根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給「record」參數。找不到記錄時，參數為 null。接著，當函式結束時，會以新的「Text」值更新記錄。
+Based on the example function.json above, the input binding retrieves the record from a Mobile Apps table endpoint with the ID that matches the queue message string and passes it to the *record* parameter. When the record is not found, the parameter is null. The record is then updated with the new *Text* value when the function exits.
 
-	#r "Newtonsoft.Json"	
-	using Newtonsoft.Json.Linq;
-	
-	public static void Run(string myQueueItem, JObject record)
-	{
-	    if (record != null)
-	    {
-	        record["Text"] = "This has changed.";
-	    }    
-	}
+    #r "Newtonsoft.Json"    
+    using Newtonsoft.Json.Linq;
+    
+    public static void Run(string myQueueItem, JObject record)
+    {
+        if (record != null)
+        {
+            record["Text"] = "This has changed.";
+        }    
+    }
 
-#### Node.js 佇列觸發程序的 Azure Mobile Apps 程式碼範例
+#### <a name="azure-mobile-apps-code-example-for-a-node.js-queue-trigger"></a>Azure Mobile Apps code example for a Node.js queue trigger
 
-根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給「record」參數。在 Node.js 函式中，更新的記錄不會傳回至資料表。這個程式碼範例會將擷取的記錄寫入記錄檔。
+Based on the example function.json above, the input binding retrieves the record from a Mobile Apps table endpoint with the ID that matches the queue message string and passes it to the *record* parameter. In Node.js functions, updated records are not sent back to the table. This code example writes the retrieved record to the log.
 
-	module.exports = function (context, input) {    
-	    context.log(context.bindings.record);
-	    context.done();
-	};
+    module.exports = function (context, input) {    
+        context.log(context.bindings.record);
+        context.done();
+    };
 
 
-## <a id="mobiletablesoutput"></a>Azure Mobile Apps 輸出繫結
+## <a name="<a-id="mobiletablesoutput"></a>azure-mobile-apps-output-binding"></a><a id="mobiletablesoutput"></a>Azure Mobile Apps output binding
 
-您的函式可以使用輸出繫結，將記錄寫入 Mobile Apps 資料表端點。
+Your function can write a record to a Mobile Apps table endpoint using an output binding. 
 
-#### Mobile Apps 輸出繫結的 function.json
+#### <a name="function.json-for-mobile-apps-output-binding"></a>function.json for Mobile Apps output binding
 
-function.json 檔案支援下列屬性：
+The function.json file supports the following properties:
 
-- `name`︰函式程式碼中用於新記錄的變數名稱。
-- `type` ︰必須設為「mobileTable」的繫結類型。
-- `tableName`︰其中將建立新記錄的資料表。
-- `apiKey`︰字串，此字串是為行動應用程式指定選擇性 API 金鑰的應用程式設定。當您的行動應用程式使用 API 金鑰來限制用戶端存取時，這是必要的選項。
-- `connection`︰應用程式設定中環境變數名稱的字串，可指定行動應用程式後端的 URL。
-- `direction`︰繫結方向，必須設定為「out」。
+- `name` : Variable name used in function code for the new record.
+- `type` : Binding type that must be set to *mobileTable*.
+- `tableName` : The table where the new record is created.
+- `apiKey` : String that is the application setting that specifies the optional API key for the mobile app. This is required when your mobile app uses an API key to restrict client access.
+- `connection` : String that is the name of the environment variable in application settings that specifies the URL of your mobile app backend.
+- `direction` : Binding direction, which must be set to *out*.
 
-function.json 範例：
+Example function.json:
 
-	{
-	  "bindings": [
-	    {
-	      "name": "record",
-	      "type": "mobileTable",
-	      "tableName": "MyTable",
-	      "connection": "My_MobileApp_Url",
-	      "apiKey": "My_MobileApp_Key",
-	      "direction": "out"
-	    }
-	  ],
-	  "disabled": false
-	}
+    {
+      "bindings": [
+        {
+          "name": "record",
+          "type": "mobileTable",
+          "tableName": "MyTable",
+          "connection": "My_MobileApp_Url",
+          "apiKey": "My_MobileApp_Key",
+          "direction": "out"
+        }
+      ],
+      "disabled": false
+    }
 
-#### C# 佇列觸發程序的 Azure Mobile Apps 程式碼範例
+#### <a name="azure-mobile-apps-code-example-for-a-c#-queue-trigger"></a>Azure Mobile Apps code example for a C# queue trigger
 
-這個 C# 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，並將「Text」屬性插入上述繫結中指定的資料表。
+This C# code example inserts a new record into a Mobile Apps table endpoint with a *Text* property into the table specified in the above binding.
 
-	public static void Run(string myQueueItem, out object record)
-	{
-	    record = new {
-	        Text = $"I'm running in a C# function! {myQueueItem}"
-	    };
-	}
+    public static void Run(string myQueueItem, out object record)
+    {
+        record = new {
+            Text = $"I'm running in a C# function! {myQueueItem}"
+        };
+    }
 
-#### Node.js 佇列觸發程序的 Azure Mobile Apps 程式碼範例
+#### <a name="azure-mobile-apps-code-example-for-a-node.js-queue-trigger"></a>Azure Mobile Apps code example for a Node.js queue trigger
 
-這個 Node.js 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，並將「text」屬性插入上述繫結中指定的資料表。
+This Node.js code example inserts a new record into a Mobile Apps table endpoint with a *text* property into the table specified in the above binding.
 
-	module.exports = function (context, input) {
-	
-	    context.bindings.record = {
-	        text : "I'm running in a Node function! Data: '" + input + "'"
-	    }   
-	
-	    context.done();
-	};
+    module.exports = function (context, input) {
+    
+        context.bindings.record = {
+            text : "I'm running in a Node function! Data: '" + input + "'"
+        }   
+    
+        context.done();
+    };
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
+[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

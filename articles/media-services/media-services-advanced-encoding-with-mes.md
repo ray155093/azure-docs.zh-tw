@@ -1,873 +1,874 @@
 <properties 
-	pageTitle="使用 Media Encoder Standard 進行進階編碼" 
-	description="本主題說明如何透過自訂 Media Encoder Standard 工作預設值執行進階編碼。本主題說明如何使用媒體服務 .NET SDK 建立編碼工作與作業。本主題也會說明如何提供自訂預設值給編碼作業。" 
-	services="media-services" 
-	documentationCenter="" 
-	authors="juliako" 
-	manager="erikre" 
-	editor=""/>
+    pageTitle="Advanced encoding with Media Encoder Standard" 
+    description="This topic shows how to perform advanced encoding by customizing Media Encoder Standard task presets. The topic shows how to use Media Services .NET SDK to create an encoding task and job. It also shows how to supply custom presets to the encoding job." 
+    services="media-services" 
+    documentationCenter="" 
+    authors="juliako" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="media-services" 
-	ms.workload="media" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/30/2016"   
-	ms.author="juliako"/>
+    ms.service="media-services" 
+    ms.workload="media" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/30/2016"   
+    ms.author="juliako"/>
 
 
-#使用 Media Encoder Standard 進行進階編碼
 
-##Overview
+#<a name="advanced-encoding-with-media-encoder-standard"></a>Advanced encoding with Media Encoder Standard
 
-本主題說明如何以 Media Encoder Standard 執行進階編碼工作。本主題說明[如何使用 .NET 建立編碼工作與執行此工作的作業](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet)。本主題也會說明如何提供自訂預設值給編碼工作。如需預設值所用項目的說明，請參閱[這份文件](https://msdn.microsoft.com/library/mt269962.aspx)。
+##<a name="overview"></a>Overview
 
-以下說明執行下列編碼工作的自訂預設值：
+This topic shows how to perform advanced encoding tasks with Media Encoder Standard. The topic shows [how to use .NET to create an encoding task and a job that executes this task](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet). It also shows how to supply custom presets to the encoding task. For description of elements that are used by the presets, see [this document](https://msdn.microsoft.com/library/mt269962.aspx). 
 
-- [產生縮圖](media-services-custom-mes-presets-with-dotnet.md#thumbnails)
-- [修剪視訊 (裁剪)](media-services-custom-mes-presets-with-dotnet.md#trim_video)
-- [建立疊加層](media-services-custom-mes-presets-with-dotnet.md#overlay)
-- [在輸入不含音訊時插入靜音曲目](media-services-custom-mes-presets-with-dotnet.md#silent_audio)
-- [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
-- [純音訊預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
-- [串連兩個以上的視訊檔案](media-services-custom-mes-presets-with-dotnet.md#concatenate)
-- [以 Media Encoder Standard 裁剪影片](media-services-custom-mes-presets-with-dotnet.md#crop)
-- [在輸入不含視訊時插入視訊播放軌](media-services-custom-mes-presets-with-dotnet.md#no_video)
+The custom presets that perform the following encoding tasks are demonstrated:
 
-##<a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
+- [Generate thumbnails](media-services-custom-mes-presets-with-dotnet.md#thumbnails)
+- [Trim a video (clipping)](media-services-custom-mes-presets-with-dotnet.md#trim_video)
+- [Create an overlay](media-services-custom-mes-presets-with-dotnet.md#overlay)
+- [Insert a silent audio track when input has no audio](media-services-custom-mes-presets-with-dotnet.md#silent_audio)
+- [Disable auto de-interlacing](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
+- [Audio-only presets](media-services-custom-mes-presets-with-dotnet.md#audio_only)
+- [Concatenate two or more video files](media-services-custom-mes-presets-with-dotnet.md#concatenate)
+- [Crop videos with Media Encoder Standard](media-services-custom-mes-presets-with-dotnet.md#crop)
+- [Insert a video track when input has no video](media-services-custom-mes-presets-with-dotnet.md#no_video)
 
-下列程式碼範例使用媒體服務 .NET SDK 執行下列工作：
+##<a name="<a-id="encoding_with_dotnet"></a>encoding-with-media-services-.net-sdk"></a><a id="encoding_with_dotnet"></a>Encoding with Media Services .NET SDK
 
-- 建立編碼工作。
-- 取得對 Media Encoder Standard 編碼器的參考
-- 載入自訂 XML 或 JSON 預設值。您可以在檔案中儲存 XML 或 JSON (例如 [XML](media-services-custom-mes-presets-with-dotnet.md#xml) 或 [JSON](media-services-custom-mes-presets-with-dotnet.md#json))，並使用下列程式碼載入檔案。
+The following code example uses Media Services .NET SDK to perform the following tasks:
 
-		// Load the XML (or JSON) from the local file.
-	    string configuration = File.ReadAllText(fileName);  
-- 將編碼工作新增至作業。
-- 指定要編碼的輸入資產。
-- 建立包含已編碼資產的輸出資產。
-- 加入事件處理常式來檢查工作進度。
-- 提交作業。
-	
-		using System;
-		using System.Collections.Generic;
-		using System.Configuration;
-		using System.IO;
-		using System.Linq;
-		using System.Net;
-		using System.Security.Cryptography;
-		using System.Text;
-		using System.Threading.Tasks;
-		using Microsoft.WindowsAzure.MediaServices.Client;
-		using Newtonsoft.Json.Linq;
-		using System.Threading;
-		using Microsoft.WindowsAzure.MediaServices.Client.ContentKeyAuthorization;
-		using Microsoft.WindowsAzure.MediaServices.Client.DynamicEncryption;
-		using System.Web;
-		using System.Globalization;
-		
-		namespace CustomizeMESPresests
-		{
-		    class Program
-		    {
-		        // Read values from the App.config file.
-		        private static readonly string _mediaServicesAccountName =
-		            ConfigurationManager.AppSettings["MediaServicesAccountName"];
-		        private static readonly string _mediaServicesAccountKey =
-		            ConfigurationManager.AppSettings["MediaServicesAccountKey"];
-		
-		        // Field for service context.
-		        private static CloudMediaContext _context = null;
-		        private static MediaServicesCredentials _cachedCredentials = null;
-		
-		        private static readonly string _mediaFiles =
-		            Path.GetFullPath(@"../..\Media");
-		
-		        private static readonly string _singleMP4File =
-		            Path.Combine(_mediaFiles, @"BigBuckBunny.mp4");
-		
-		        static void Main(string[] args)
-		        {
-		            // Create and cache the Media Services credentials in a static class variable.
-		            _cachedCredentials = new MediaServicesCredentials(
-		                            _mediaServicesAccountName,
-		                            _mediaServicesAccountKey);
-		            // Used the chached credentials to create CloudMediaContext.
-		            _context = new CloudMediaContext(_cachedCredentials);
-		
-		            // Get an uploaded asset.
-		            var asset = _context.Assets.FirstOrDefault();
-		
-		            // Encode and generate the output using custom presets.
-		            EncodeToAdaptiveBitrateMP4Set(asset);
-		
-		            Console.ReadLine();
-		        }
-		
-		        static public IAsset EncodeToAdaptiveBitrateMP4Set(IAsset asset)
-				{
-				    // Declare a new job.
-				    IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-				    // Get a media processor reference, and pass to it the name of the 
-				    // processor to use for the specific task.
-				    IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
-				
-		
-				    // Load the XML (or JSON) from the local file.
-				    string configuration = File.ReadAllText("CustomPreset_JSON.json");
-				
-				    // Create a task
-		            ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
-		                processor,
-		                configuration,
-		                TaskOptions.None);
-				
-				    // Specify the input asset to be encoded.
-				    task.InputAssets.Add(asset);
-				    // Add an output asset to contain the results of the job. 
-				    // This output is specified as AssetCreationOptions.None, which 
-				    // means the output asset is not encrypted. 
-				    task.OutputAssets.AddNew("Output asset",
-				        AssetCreationOptions.None);
-				
-				    job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
-				    job.Submit();
-				    job.GetExecutionProgressTask(CancellationToken.None).Wait();
-				
-				    return job.OutputMediaAssets[0];
-				}
-		
-		        static public IAsset UploadMediaFilesFromFolder(string folderPath)
-		        {
-		            IAsset asset = _context.Assets.CreateFromFolder(folderPath, AssetCreationOptions.None);
-		
-		            foreach (var af in asset.AssetFiles)
-		            {
-		                // The following code assumes 
-		                // you have an input folder with one MP4 and one overlay image file.
-		                if (af.Name.Contains(".mp4"))
-		                    af.IsPrimary = true;
-		                else
-		                    af.IsPrimary = false;
-		
-		                af.Update();
-		            }
-		
-		            return asset;
-		        }
-		
-		
-		        static public IAsset EncodeWithOverlay(IAsset assetSource, string customPresetFileName)
-		        {
-		            // Declare a new job.
-		            IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-		            // Get a media processor reference, and pass to it the name of the 
-		            // processor to use for the specific task.
-		            IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
-		
-		            // Load the XML (or JSON) from the local file.
-		            string configuration = File.ReadAllText(customPresetFileName);
-		
-		            // Create a task
-		            ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
-		                processor,
-		                configuration,
-		                TaskOptions.None);
-		
-		            // Specify the input assets to be encoded.
-		            // This asset contains a source file and an overlay file.
-		            task.InputAssets.Add(assetSource);
-		
-		            // Add an output asset to contain the results of the job. 
-		            task.OutputAssets.AddNew("Output asset",
-		                AssetCreationOptions.None);
-		
-		            job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
-		            job.Submit();
-		            job.GetExecutionProgressTask(CancellationToken.None).Wait();
-		
-		            return job.OutputMediaAssets[0];
-		        }
-		
+- Create an encoding job.
+- Get a reference to the Media Encoder Standard encoder.
+- Load the custom XML or JSON preset. You can save the XML or JSON (for example, [XML](media-services-custom-mes-presets-with-dotnet.md#xml) or [JSON](media-services-custom-mes-presets-with-dotnet.md#json) in a file and use the following code to load the file.
 
-		        private static void JobStateChanged(object sender, JobStateChangedEventArgs e)
-		        {
-		            Console.WriteLine("Job state changed event:");
-		            Console.WriteLine("  Previous state: " + e.PreviousState);
-		            Console.WriteLine("  Current state: " + e.CurrentState);
-		            switch (e.CurrentState)
-		            {
-		                case JobState.Finished:
-		                    Console.WriteLine();
-		                    Console.WriteLine("Job is finished. Please wait while local tasks or downloads complete...");
-		                    break;
-		                case JobState.Canceling:
-		                case JobState.Queued:
-		                case JobState.Scheduled:
-		                case JobState.Processing:
-		                    Console.WriteLine("Please wait...\n");
-		                    break;
-		                case JobState.Canceled:
-		                case JobState.Error:
-		
-		                    // Cast sender as a job.
-		                    IJob job = (IJob)sender;
-		
-		                    // Display or log error details as needed.
-		                    break;
-		                default:
-		                    break;
-		            }
-		        }
-		
-		
-		        private static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
-		        {
-		            var processor = _context.MediaProcessors.Where(p => p.Name == mediaProcessorName).
-		            ToList().OrderBy(p => new Version(p.Version)).LastOrDefault();
-		
-		            if (processor == null)
-		                throw new ArgumentException(string.Format("Unknown media processor", mediaProcessorName));
-		
-		            return processor;
-		        }
-		
-		    }
-		}
+        // Load the XML (or JSON) from the local file.
+        string configuration = File.ReadAllText(fileName);  
+- Add an encoding task to the job. 
+- Specify the input asset to be encoded.
+- Create an output asset that contains the encoded asset.
+- Add an event handler to check the job progress.
+- Submit the job.
+    
+        using System;
+        using System.Collections.Generic;
+        using System.Configuration;
+        using System.IO;
+        using System.Linq;
+        using System.Net;
+        using System.Security.Cryptography;
+        using System.Text;
+        using System.Threading.Tasks;
+        using Microsoft.WindowsAzure.MediaServices.Client;
+        using Newtonsoft.Json.Linq;
+        using System.Threading;
+        using Microsoft.WindowsAzure.MediaServices.Client.ContentKeyAuthorization;
+        using Microsoft.WindowsAzure.MediaServices.Client.DynamicEncryption;
+        using System.Web;
+        using System.Globalization;
+        
+        namespace CustomizeMESPresests
+        {
+            class Program
+            {
+                // Read values from the App.config file.
+                private static readonly string _mediaServicesAccountName =
+                    ConfigurationManager.AppSettings["MediaServicesAccountName"];
+                private static readonly string _mediaServicesAccountKey =
+                    ConfigurationManager.AppSettings["MediaServicesAccountKey"];
+        
+                // Field for service context.
+                private static CloudMediaContext _context = null;
+                private static MediaServicesCredentials _cachedCredentials = null;
+        
+                private static readonly string _mediaFiles =
+                    Path.GetFullPath(@"../..\Media");
+        
+                private static readonly string _singleMP4File =
+                    Path.Combine(_mediaFiles, @"BigBuckBunny.mp4");
+        
+                static void Main(string[] args)
+                {
+                    // Create and cache the Media Services credentials in a static class variable.
+                    _cachedCredentials = new MediaServicesCredentials(
+                                    _mediaServicesAccountName,
+                                    _mediaServicesAccountKey);
+                    // Used the chached credentials to create CloudMediaContext.
+                    _context = new CloudMediaContext(_cachedCredentials);
+        
+                    // Get an uploaded asset.
+                    var asset = _context.Assets.FirstOrDefault();
+        
+                    // Encode and generate the output using custom presets.
+                    EncodeToAdaptiveBitrateMP4Set(asset);
+        
+                    Console.ReadLine();
+                }
+        
+                static public IAsset EncodeToAdaptiveBitrateMP4Set(IAsset asset)
+                {
+                    // Declare a new job.
+                    IJob job = _context.Jobs.Create("Media Encoder Standard Job");
+                    // Get a media processor reference, and pass to it the name of the 
+                    // processor to use for the specific task.
+                    IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
+                
+        
+                    // Load the XML (or JSON) from the local file.
+                    string configuration = File.ReadAllText("CustomPreset_JSON.json");
+                
+                    // Create a task
+                    ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
+                        processor,
+                        configuration,
+                        TaskOptions.None);
+                
+                    // Specify the input asset to be encoded.
+                    task.InputAssets.Add(asset);
+                    // Add an output asset to contain the results of the job. 
+                    // This output is specified as AssetCreationOptions.None, which 
+                    // means the output asset is not encrypted. 
+                    task.OutputAssets.AddNew("Output asset",
+                        AssetCreationOptions.None);
+                
+                    job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
+                    job.Submit();
+                    job.GetExecutionProgressTask(CancellationToken.None).Wait();
+                
+                    return job.OutputMediaAssets[0];
+                }
+        
+                static public IAsset UploadMediaFilesFromFolder(string folderPath)
+                {
+                    IAsset asset = _context.Assets.CreateFromFolder(folderPath, AssetCreationOptions.None);
+        
+                    foreach (var af in asset.AssetFiles)
+                    {
+                        // The following code assumes 
+                        // you have an input folder with one MP4 and one overlay image file.
+                        if (af.Name.Contains(".mp4"))
+                            af.IsPrimary = true;
+                        else
+                            af.IsPrimary = false;
+        
+                        af.Update();
+                    }
+        
+                    return asset;
+                }
+        
+        
+                static public IAsset EncodeWithOverlay(IAsset assetSource, string customPresetFileName)
+                {
+                    // Declare a new job.
+                    IJob job = _context.Jobs.Create("Media Encoder Standard Job");
+                    // Get a media processor reference, and pass to it the name of the 
+                    // processor to use for the specific task.
+                    IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
+        
+                    // Load the XML (or JSON) from the local file.
+                    string configuration = File.ReadAllText(customPresetFileName);
+        
+                    // Create a task
+                    ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
+                        processor,
+                        configuration,
+                        TaskOptions.None);
+        
+                    // Specify the input assets to be encoded.
+                    // This asset contains a source file and an overlay file.
+                    task.InputAssets.Add(assetSource);
+        
+                    // Add an output asset to contain the results of the job. 
+                    task.OutputAssets.AddNew("Output asset",
+                        AssetCreationOptions.None);
+        
+                    job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
+                    job.Submit();
+                    job.GetExecutionProgressTask(CancellationToken.None).Wait();
+        
+                    return job.OutputMediaAssets[0];
+                }
+        
 
-
-##支援相對大小
-
-產生它的縮圖時，您不需要永遠以像素單位指定輸出的寬度和高度。您可以以百分比指定它們，範圍為 [1%、…、100%]。
-
-###JSON 預設值 
-	
-	"Width": "100%",
-	"Height": "100%"
-
-###XML 預設值
-	
-	<Width>100%</Width>
-	<Height>100%</Height>
-	
-##<a id="thumbnails"></a>產生縮圖
-
-本節說明如何自訂產生縮圖的預設值。下面定義的預設值包含有關如何將檔案編碼的資訊，以及產生縮圖時所需的資訊。您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並加入可產生縮圖的程式碼。
-
->[AZURE.NOTE]如果您是針對單一位元速率視訊進行編碼，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。如果您是針對多位元速率視訊進行編碼，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。
+                private static void JobStateChanged(object sender, JobStateChangedEventArgs e)
+                {
+                    Console.WriteLine("Job state changed event:");
+                    Console.WriteLine("  Previous state: " + e.PreviousState);
+                    Console.WriteLine("  Current state: " + e.CurrentState);
+                    switch (e.CurrentState)
+                    {
+                        case JobState.Finished:
+                            Console.WriteLine();
+                            Console.WriteLine("Job is finished. Please wait while local tasks or downloads complete...");
+                            break;
+                        case JobState.Canceling:
+                        case JobState.Queued:
+                        case JobState.Scheduled:
+                        case JobState.Processing:
+                            Console.WriteLine("Please wait...\n");
+                            break;
+                        case JobState.Canceled:
+                        case JobState.Error:
+        
+                            // Cast sender as a job.
+                            IJob job = (IJob)sender;
+        
+                            // Display or log error details as needed.
+                            break;
+                        default:
+                            break;
+                    }
+                }
+        
+        
+                private static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
+                {
+                    var processor = _context.MediaProcessors.Where(p => p.Name == mediaProcessorName).
+                    ToList().OrderBy(p => new Version(p.Version)).LastOrDefault();
+        
+                    if (processor == null)
+                        throw new ArgumentException(string.Format("Unknown media processor", mediaProcessorName));
+        
+                    return processor;
+                }
+        
+            }
+        }
 
 
-如需結構描述的資訊，請參閱[這個](https://msdn.microsoft.com/library/mt269962.aspx)主題。
+##<a name="support-for-relative-sizes"></a>Support for relative sizes
 
-請務必閱讀[考量](media-services-custom-mes-presets-with-dotnet.md#considerations)一節。
+When generating thumbnails of it, you do not need to always specify output width and height in pixels. You can specify them in percentages, in the range [1%, …, 100%].
 
-###<a id="json"></a>JSON 預設值
+###<a name="json-preset"></a>JSON preset 
+    
+    "Width": "100%",
+    "Height": "100%"
 
+###<a name="xml-preset"></a>XML preset
+    
+    <Width>100%</Width>
+    <Height>100%</Height>
+    
+##<a name="<a-id="thumbnails"></a>generate-thumbnails"></a><a id="thumbnails"></a>Generate thumbnails
 
-	{
-	  "Version": 1.0,
-	  "Codecs": [
-	    {
-	      "KeyFrameInterval": "00:00:02",
-	      "SceneChangeDetection": "true",
-	      "H264Layers": [
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 4500,
-	          "MaxBitrate": 4500,
-	          "BufferWindow": "00:00:05",
-	          "Width": 1280,
-	          "Height": 720,
-	          "ReferenceFrames": 3,
-	          "EntropyMode": "Cabac",
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "FrameRate": "0/1"
-	   
-	        }
-	      ],
-	      "Type": "H264Video"
-	    },
-	    {
-	      "JpgLayers": [
-	        {
-	          "Quality": 90,
-	          "Type": "JpgLayer",
-	          "Width": 640,
-	          "Height": 360
-	        }
-	      ],
-	      "Start": "{Best}",
-	      "Type": "JpgImage"
-	    },
-	    {
-	      "PngLayers": [
-	        {
-	          "Type": "PngLayer",
-	          "Width": 640,
-	          "Height": 360,
-	        }
-	      ],
-	      "Start": "00:00:01",
-		  "Step": "00:00:10",
-	      "Range": "00:00:58",
-	      "Type": "PngImage"
-	    },
-	    {
-	      "BmpLayers": [
-	        {
-	          "Type": "BmpLayer",
-	          "Width": 640,
-	          "Height": 360
-	        }
-	      ],
-	      "Start": "10%",
-		  "Step": "10%",
-	      "Range": "90%",
-	      "Type": "BmpImage"
-	    },
-	    {
-	      "Channels": 2,
-	      "SamplingRate": 48000,
-	      "Bitrate": 128,
-	      "Type": "AACAudio"
-	    }
-	  ],
-	  "Outputs": [
-	    {
-	      "FileName": "{Basename}_{Index}{Extension}",
-	      "Format": {
-	        "Type": "JpgFormat"
-	      }
-	    },
-	    {
-	      "FileName": "{Basename}_{Index}{Extension}",
-	      "Format": {
-	        "Type": "PngFormat"
-	      }
-	    },
-	    {
-	      "FileName": "{Basename}_{Index}{Extension}",
-	      "Format": {
-	        "Type": "BmpFormat"
-	      }
-	    },
-	    {
-	      "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
-	      "Format": {
-	        "Type": "MP4Format"
-	      }
-	    }
-	  ]
-	}
+This section shows how to customize a preset that generates thumbnails. The preset defined below contains information on how you want to encode your file as well as information needed to generate thumbnails. You can take any of the MES presets documented [here](https://msdn.microsoft.com/library/mt269960.aspx) and add code that generates thumbnails.  
+
+>[AZURE.NOTE]The **SceneChangeDetection** setting in the following preset can only be set to true if you are encoding to a single  bitrate video. If you are encoding to a multi-bitrate video and set **SceneChangeDetection** to true, the encoder returns an error.  
 
 
-###<a id="xml"></a>XML 預設值
+For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.
+
+Make sure to review the [Considerations](media-services-custom-mes-presets-with-dotnet.md#considerations) section.
+
+###<a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON preset
 
 
-	<?xml version="1.0" encoding="utf-16"?>
-	<Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
-	  <Encoding>
-	    <H264Video>
-	      <KeyFrameInterval>00:00:02</KeyFrameInterval>
-	      <SceneChangeDetection>true</SceneChangeDetection>
-	      <H264Layers>
-	        <H264Layer>
-	          <Bitrate>4500</Bitrate>
-	          <Width>1280</Width>
-	          <Height>720</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>3</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cabac</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>4500</MaxBitrate>
-	        </H264Layer>
-	      </H264Layers>
-	    </H264Video>
-	    <AACAudio>
-	      <Profile>AACLC</Profile>
-	      <Channels>2</Channels>
-	      <SamplingRate>48000</SamplingRate>
-	      <Bitrate>128</Bitrate>
-	    </AACAudio>
-	    <JpgImage Start="{Best}">
-	      <JpgLayers>
-	        <JpgLayer>
-	          <Width>640</Width>
-	          <Height>360</Height>
-	          <Quality>90</Quality>
-	        </JpgLayer>
-	      </JpgLayers>
-	    </JpgImage>
-	    <BmpImage Start="10%" Step="10%" Range="90%">
-	      <BmpLayers>
-	        <BmpLayer>
-	          <Width>640</Width>
-	          <Height>360</Height>
-	        </BmpLayer>
-	      </BmpLayers>
-	    </BmpImage>
-	    <PngImage Start="00:00:01" Step="00:00:10" Range="00:00:58">
-	      <PngLayers>
-	        <PngLayer>
-	          <Width>640</Width>
-	          <Height>360</Height>
-	        </PngLayer>
-	      </PngLayers>
-	    </PngImage>
-	  </Encoding>
-	  <Outputs>
-	    <Output FileName="{Basename}_{Width}x{Height}_{VideoBitrate}.mp4">
-	      <MP4Format />
-	    </Output>
-	    <Output FileName="{Basename}_{Index}{Extension}">
-	      <JpgFormat />
-	    </Output>
-	    <Output FileName="{Basename}_{Index}{Extension}">
-	      <BmpFormat />
-	    </Output>
-	    <Output FileName="{Basename}_{Index}{Extension}">
-	      <PngFormat />
-	    </Output>
-	  </Outputs>
-	</Preset>
+    {
+      "Version": 1.0,
+      "Codecs": [
+        {
+          "KeyFrameInterval": "00:00:02",
+          "SceneChangeDetection": "true",
+          "H264Layers": [
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 4500,
+              "MaxBitrate": 4500,
+              "BufferWindow": "00:00:05",
+              "Width": 1280,
+              "Height": 720,
+              "ReferenceFrames": 3,
+              "EntropyMode": "Cabac",
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "FrameRate": "0/1"
+       
+            }
+          ],
+          "Type": "H264Video"
+        },
+        {
+          "JpgLayers": [
+            {
+              "Quality": 90,
+              "Type": "JpgLayer",
+              "Width": 640,
+              "Height": 360
+            }
+          ],
+          "Start": "{Best}",
+          "Type": "JpgImage"
+        },
+        {
+          "PngLayers": [
+            {
+              "Type": "PngLayer",
+              "Width": 640,
+              "Height": 360,
+            }
+          ],
+          "Start": "00:00:01",
+          "Step": "00:00:10",
+          "Range": "00:00:58",
+          "Type": "PngImage"
+        },
+        {
+          "BmpLayers": [
+            {
+              "Type": "BmpLayer",
+              "Width": 640,
+              "Height": 360
+            }
+          ],
+          "Start": "10%",
+          "Step": "10%",
+          "Range": "90%",
+          "Type": "BmpImage"
+        },
+        {
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128,
+          "Type": "AACAudio"
+        }
+      ],
+      "Outputs": [
+        {
+          "FileName": "{Basename}_{Index}{Extension}",
+          "Format": {
+            "Type": "JpgFormat"
+          }
+        },
+        {
+          "FileName": "{Basename}_{Index}{Extension}",
+          "Format": {
+            "Type": "PngFormat"
+          }
+        },
+        {
+          "FileName": "{Basename}_{Index}{Extension}",
+          "Format": {
+            "Type": "BmpFormat"
+          }
+        },
+        {
+          "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
+          "Format": {
+            "Type": "MP4Format"
+          }
+        }
+      ]
+    }
 
-###考量
 
-您必須考量下列事項：
+###<a name="<a-id="xml"></a>xml-preset"></a><a id="xml"></a>XML preset
 
-- 為 Start/Step/Range 使用明確的時間戳記會假設輸入來源至少為 1 分鐘的長度。
-- 具有 Start、Step 和 Range 字串屬性的 Jpg/Png/BmpImage 項目 - 這些可以解譯為：
 
-	- 畫面格數目 (如果是非負整數)，例如 "Start": "120"、
-	- 相對於持續時間 (如果以 % 尾碼表示)，例如 "Start": "15%"，或
-	- 時間戳記 (如果以 HH:MM:SS... 格式表示)，例如 "Start" : "00:01:00"
+    <?xml version="1.0" encoding="utf-16"?>
+    <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
+      <Encoding>
+        <H264Video>
+          <KeyFrameInterval>00:00:02</KeyFrameInterval>
+          <SceneChangeDetection>true</SceneChangeDetection>
+          <H264Layers>
+            <H264Layer>
+              <Bitrate>4500</Bitrate>
+              <Width>1280</Width>
+              <Height>720</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>3</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cabac</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>4500</MaxBitrate>
+            </H264Layer>
+          </H264Layers>
+        </H264Video>
+        <AACAudio>
+          <Profile>AACLC</Profile>
+          <Channels>2</Channels>
+          <SamplingRate>48000</SamplingRate>
+          <Bitrate>128</Bitrate>
+        </AACAudio>
+        <JpgImage Start="{Best}">
+          <JpgLayers>
+            <JpgLayer>
+              <Width>640</Width>
+              <Height>360</Height>
+              <Quality>90</Quality>
+            </JpgLayer>
+          </JpgLayers>
+        </JpgImage>
+        <BmpImage Start="10%" Step="10%" Range="90%">
+          <BmpLayers>
+            <BmpLayer>
+              <Width>640</Width>
+              <Height>360</Height>
+            </BmpLayer>
+          </BmpLayers>
+        </BmpImage>
+        <PngImage Start="00:00:01" Step="00:00:10" Range="00:00:58">
+          <PngLayers>
+            <PngLayer>
+              <Width>640</Width>
+              <Height>360</Height>
+            </PngLayer>
+          </PngLayers>
+        </PngImage>
+      </Encoding>
+      <Outputs>
+        <Output FileName="{Basename}_{Width}x{Height}_{VideoBitrate}.mp4">
+          <MP4Format />
+        </Output>
+        <Output FileName="{Basename}_{Index}{Extension}">
+          <JpgFormat />
+        </Output>
+        <Output FileName="{Basename}_{Index}{Extension}">
+          <BmpFormat />
+        </Output>
+        <Output FileName="{Basename}_{Index}{Extension}">
+          <PngFormat />
+        </Output>
+      </Outputs>
+    </Preset>
 
-	您可以隨意混合使用標記法。
-	
-	此外， Start 也支援特殊的巨集 (即 {Best})，它會嘗試判斷第一個「 有趣 」的內容畫面。附註：(Start 設為 {Best} 時，會忽略 Step 與 Range)
-	
-	- 預設值：Start:{Best}
-- 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。顯示時，MES 會比對 JpgVideo 與 JpgFormat，依此類推。OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
+###<a name="considerations"></a>Considerations
 
-##<a id="trim_video"></a>修剪視訊 (裁剪)
+The following considerations apply:
 
-本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 - [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
+- The use of explicit timestamps for Start/Step/Range assumes that the input source is at least 1 minute long.
+- Jpg/Png/BmpImage elements have Start, Step, and Range string attributes – these can be interpreted as:
 
-若要剪輯您的視訊，可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。**Sources** 應該位於預設值開頭。
+    - Frame Number if they are non-negative integers, for example "Start": "120",
+    - Relative to source duration if expressed as %-suffixed, for example "Start": "15%", OR
+    - Timestamp if expressed as HH:MM:SS… format, for example "Start" : "00:01:00"
+
+    You can mix and match notations as you please.
+    
+    Additionally, Start also supports a special Macro:{Best}, which attempts to determine the first “interesting” frame of the content   NOTE: (Step and Range are ignored when Start is set to {Best})
+    
+    - Defaults: Start:{Best}
+- Output format needs to be explicitly provided for each Image format: Jpg/Png/BmpFormat. When present, MES matches JpgVideo to JpgFormat and so on. OutputFormat introduces a new image-codec specific Macro: {Index}, which needs to be present (once and only once) for image output formats.
+
+##<a name="<a-id="trim_video"></a>trim-a-video-(clipping)"></a><a id="trim_video"></a>Trim a video (clipping)
+
+This section talks about modifying the encoder presets to clip or trim the input video where the input is a so-called mezzanine file or on-demand file. The encoder can also be used to clip or trim an asset, which is captured or archived from a live stream – the details for this are available in [this blog](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/).
+
+To trim your videos, you can take any of the MES presets documented [here](https://msdn.microsoft.com/library/mt269960.aspx) and modify the **Sources** element (as shown below). The value of StartTime needs to match the absolute timestamps of the input video. For example, if the first frame of the input video has a timestamp of 12:00:10.000, then StartTime should be at least 12:00:10.000 and greater. In the example below, we assume that the input video has a starting timestamp of zero. **Sources** should be placed at the beginning of the preset. 
  
-###<a id="json"></a>JSON 預設值
-	
-	{
-	  "Version": 1.0,
-	  "Sources": [
-	    {
-	      "StartTime": "00:00:04",
-	      "Duration": "00:00:16"
-	    }
-	  ],
-	  "Codecs": [
-	    {
-	      "KeyFrameInterval": "00:00:02",
-	      "StretchMode": "AutoSize",
-	      "H264Layers": [
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 3400,
-	          "MaxBitrate": 3400,
-	          "BufferWindow": "00:00:05",
-	          "Width": 1280,
-	          "Height": 720,
-	          "BFrames": 3,
-	          "ReferenceFrames": 3,
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "FrameRate": "0/1"
-	        },
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 2250,
-	          "MaxBitrate": 2250,
-	          "BufferWindow": "00:00:05",
-	          "Width": 960,
-	          "Height": 540,
-	          "BFrames": 3,
-	          "ReferenceFrames": 3,
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "FrameRate": "0/1"
-	        },
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 1500,
-	          "MaxBitrate": 1500,
-	          "BufferWindow": "00:00:05",
-	          "Width": 960,
-	          "Height": 540,
-	          "BFrames": 3,
-	          "ReferenceFrames": 3,
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "FrameRate": "0/1"
-	        },
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 1000,
-	          "MaxBitrate": 1000,
-	          "BufferWindow": "00:00:05",
-	          "Width": 640,
-	          "Height": 360,
-	          "BFrames": 3,
-	          "ReferenceFrames": 3,
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "FrameRate": "0/1"
-	        },
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 650,
-	          "MaxBitrate": 650,
-	          "BufferWindow": "00:00:05",
-	          "Width": 640,
-	          "Height": 360,
-	          "BFrames": 3,
-	          "ReferenceFrames": 3,
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "FrameRate": "0/1"
-	        },
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 400,
-	          "MaxBitrate": 400,
-	          "BufferWindow": "00:00:05",
-	          "Width": 320,
-	          "Height": 180,
-	          "BFrames": 3,
-	          "ReferenceFrames": 3,
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "FrameRate": "0/1"
-	        }
-	      ],
-	      "Type": "H264Video"
-	    },
-	    {
-	      "Profile": "AACLC",
-	      "Channels": 2,
-	      "SamplingRate": 48000,
-	      "Bitrate": 128,
-	      "Type": "AACAudio"
-	    }
-	  ],
-	  "Outputs": [
-	    {
-	      "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
-	      "Format": {
-	        "Type": "MP4Format"
-	      }
-	    }
-	  ]
-	} 
+###<a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON preset
+    
+    {
+      "Version": 1.0,
+      "Sources": [
+        {
+          "StartTime": "00:00:04",
+          "Duration": "00:00:16"
+        }
+      ],
+      "Codecs": [
+        {
+          "KeyFrameInterval": "00:00:02",
+          "StretchMode": "AutoSize",
+          "H264Layers": [
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 3400,
+              "MaxBitrate": 3400,
+              "BufferWindow": "00:00:05",
+              "Width": 1280,
+              "Height": 720,
+              "BFrames": 3,
+              "ReferenceFrames": 3,
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "FrameRate": "0/1"
+            },
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 2250,
+              "MaxBitrate": 2250,
+              "BufferWindow": "00:00:05",
+              "Width": 960,
+              "Height": 540,
+              "BFrames": 3,
+              "ReferenceFrames": 3,
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "FrameRate": "0/1"
+            },
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 1500,
+              "MaxBitrate": 1500,
+              "BufferWindow": "00:00:05",
+              "Width": 960,
+              "Height": 540,
+              "BFrames": 3,
+              "ReferenceFrames": 3,
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "FrameRate": "0/1"
+            },
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 1000,
+              "MaxBitrate": 1000,
+              "BufferWindow": "00:00:05",
+              "Width": 640,
+              "Height": 360,
+              "BFrames": 3,
+              "ReferenceFrames": 3,
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "FrameRate": "0/1"
+            },
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 650,
+              "MaxBitrate": 650,
+              "BufferWindow": "00:00:05",
+              "Width": 640,
+              "Height": 360,
+              "BFrames": 3,
+              "ReferenceFrames": 3,
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "FrameRate": "0/1"
+            },
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 400,
+              "MaxBitrate": 400,
+              "BufferWindow": "00:00:05",
+              "Width": 320,
+              "Height": 180,
+              "BFrames": 3,
+              "ReferenceFrames": 3,
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "FrameRate": "0/1"
+            }
+          ],
+          "Type": "H264Video"
+        },
+        {
+          "Profile": "AACLC",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128,
+          "Type": "AACAudio"
+        }
+      ],
+      "Outputs": [
+        {
+          "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
+          "Format": {
+            "Type": "MP4Format"
+          }
+        }
+      ]
+    } 
 
-###XML 預設值
-	
-若要剪輯您的視訊，可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
+###<a name="xml-preset"></a>XML preset
+    
+To trim your videos, you can take any of the MES presets documented [here](https://msdn.microsoft.com/library/mt269960.aspx) and modify the **Sources** element (as shown below).
 
-	<?xml version="1.0" encoding="utf-16"?>
-	<Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
-	  <Sources>
-	    <Source StartTime="PT4S" Duration="PT14S"/>
-	  </Sources>
-	  <Encoding>
-	    <H264Video>
-	      <KeyFrameInterval>00:00:02</KeyFrameInterval>
-	      <H264Layers>
-	        <H264Layer>
-	          <Bitrate>3400</Bitrate>
-	          <Width>1280</Width>
-	          <Height>720</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>3</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cabac</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>3400</MaxBitrate>
-	        </H264Layer>
-	        <H264Layer>
-	          <Bitrate>2250</Bitrate>
-	          <Width>960</Width>
-	          <Height>540</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>3</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cabac</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>2250</MaxBitrate>
-	        </H264Layer>
-	        <H264Layer>
-	          <Bitrate>1500</Bitrate>
-	          <Width>960</Width>
-	          <Height>540</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>3</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cabac</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>1500</MaxBitrate>
-	        </H264Layer>
-	        <H264Layer>
-	          <Bitrate>1000</Bitrate>
-	          <Width>640</Width>
-	          <Height>360</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>3</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cabac</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>1000</MaxBitrate>
-	        </H264Layer>
-	        <H264Layer>
-	          <Bitrate>650</Bitrate>
-	          <Width>640</Width>
-	          <Height>360</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>3</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cabac</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>650</MaxBitrate>
-	        </H264Layer>
-	        <H264Layer>
-	          <Bitrate>400</Bitrate>
-	          <Width>320</Width>
-	          <Height>180</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>3</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cabac</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>400</MaxBitrate>
-	        </H264Layer>
-	      </H264Layers>
-	    </H264Video>
-	    <AACAudio>
-	      <Profile>AACLC</Profile>
-	      <Channels>2</Channels>
-	      <SamplingRate>48000</SamplingRate>
-	      <Bitrate>128</Bitrate>
-	    </AACAudio>
-	  </Encoding>
-	  <Outputs>
-	    <Output FileName="{Basename}_{Width}x{Height}_{VideoBitrate}.mp4">
-	      <MP4Format />
-	    </Output>
-	  </Outputs>
-	</Preset>
+    <?xml version="1.0" encoding="utf-16"?>
+    <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
+      <Sources>
+        <Source StartTime="PT4S" Duration="PT14S"/>
+      </Sources>
+      <Encoding>
+        <H264Video>
+          <KeyFrameInterval>00:00:02</KeyFrameInterval>
+          <H264Layers>
+            <H264Layer>
+              <Bitrate>3400</Bitrate>
+              <Width>1280</Width>
+              <Height>720</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>3</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cabac</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>3400</MaxBitrate>
+            </H264Layer>
+            <H264Layer>
+              <Bitrate>2250</Bitrate>
+              <Width>960</Width>
+              <Height>540</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>3</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cabac</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>2250</MaxBitrate>
+            </H264Layer>
+            <H264Layer>
+              <Bitrate>1500</Bitrate>
+              <Width>960</Width>
+              <Height>540</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>3</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cabac</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>1500</MaxBitrate>
+            </H264Layer>
+            <H264Layer>
+              <Bitrate>1000</Bitrate>
+              <Width>640</Width>
+              <Height>360</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>3</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cabac</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>1000</MaxBitrate>
+            </H264Layer>
+            <H264Layer>
+              <Bitrate>650</Bitrate>
+              <Width>640</Width>
+              <Height>360</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>3</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cabac</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>650</MaxBitrate>
+            </H264Layer>
+            <H264Layer>
+              <Bitrate>400</Bitrate>
+              <Width>320</Width>
+              <Height>180</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>3</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cabac</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>400</MaxBitrate>
+            </H264Layer>
+          </H264Layers>
+        </H264Video>
+        <AACAudio>
+          <Profile>AACLC</Profile>
+          <Channels>2</Channels>
+          <SamplingRate>48000</SamplingRate>
+          <Bitrate>128</Bitrate>
+        </AACAudio>
+      </Encoding>
+      <Outputs>
+        <Output FileName="{Basename}_{Width}x{Height}_{VideoBitrate}.mp4">
+          <MP4Format />
+        </Output>
+      </Outputs>
+    </Preset>
 
-##<a id="overlay"></a>建立疊加層
+##<a name="<a-id="overlay"></a>create-an-overlay"></a><a id="overlay"></a>Create an overlay
 
-Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下列格式：png、jpg、gif 及 bmp。下面定義的預設值為視訊疊加層的基本範例。
+The Media Encoder Standard allows you to overlay an image onto an existing video. Currently, the following formats are supported: png, jpg, gif, and bmp. The preset defined below is a basic example  of a video overlay.
 
-除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。視訊檔案必須是「主要」檔案。
+In addition to defining a preset file, you also have to let Media Services know which file in the asset is the overlay image and which file is the source video onto which you want to overlay the image. The video file has to be the **primary** file. 
 
-上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函式會使用傳遞給它的自訂預設值檔案 (例如後續的預設值) 建立編碼工作。
+The .NET example above defines two functions: **UploadMediaFilesFromFolder** and **EncodeWithOverlay**. The UploadMediaFilesFromFolder function uploads files from a folder (for example, BigBuckBunny.mp4 and Image001.png) and sets the mp4 file to be the primary file in the asset. The **EncodeWithOverlay** function uses the custom preset file that was passed to it (for example, the preset that follows) to create the encoding task. 
 
->[AZURE.NOTE]目前限制：
+>[AZURE.NOTE]Current limitations:
 >
->不支援疊加不透明度設定。
+>The overlay opacity setting is not supported.
 >
->來源視訊檔案和疊加影像檔案必須位在相同的資產中，而且視訊檔案需要設定為此資產中的主要檔案。
+>Your source video file and the overlay image file have to be in the same asset, and the video file needs to be set as the primary file in this asset.
 
-###JSON 預設值
-	
-	{
-	  "Version": 1.0,
-	  "Sources": [
-	    {
-	      "Streams": [],
-	      "Filters": {
-	        "VideoOverlay": {
-	          "Position": {
-	            "X": 100,
-	            "Y": 100,
-	            "Width": 100,
-	            "Height": 50
-	          },
-	          "AudioGainLevel": 0.0,
-	          "MediaParams": [
-	            {
-	              "OverlayLoopCount": 1
-	            },
-	            {
-	              "IsOverlay": true,
-	              "OverlayLoopCount": 1,
-	              "InputLoop": true
-	            }
-	          ],
-	          "Source": "Image001.png",
-	          "Clip": {
-	            "Duration": "00:00:05"
-	          },
-	          "FadeInDuration": {
-	            "Duration": "00:00:01"
-	          },
-	          "FadeOutDuration": {
-	            "StartTime": "00:00:03",
-	            "Duration": "00:00:04"
-	          }
-	        }
-	      },
-	      "Pad": true
-	    }
-	  ],
-	  "Codecs": [
-	    {
-	      "KeyFrameInterval": "00:00:02",
-	      "H264Layers": [
-	        {
-	          "Profile": "Auto",
-	          "Level": "auto",
-	          "Bitrate": 1045,
-	          "MaxBitrate": 1045,
-	          "BufferWindow": "00:00:05",
-	          "ReferenceFrames": 3,
-	          "EntropyMode": "Cavlc",
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "Width": "640",
-	          "Height": "360",
-	          "FrameRate": "0/1"
-	        }
-	      ],
-	      "Type": "H264Video"
-	    },
-	    {
-	      "Type": "CopyAudio"
-	    }
-	  ],
-	  "Outputs": [
-	    {
-	      "FileName": "{Basename}{Extension}",
-	      "Format": {
-	        "Type": "MP4Format"
-	      }
-	    }
-	  ]
-	}
-
-
-###XML 預設值
-	
-	<?xml version="1.0" encoding="utf-16"?>
-	<Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
-	  <Sources>
-	    <Source>
-	      <Streams />
-	      <Filters>
-	        <VideoOverlay>
-	          <Source>Image001.png</Source>
-	          <Clip Duration="PT5S" />
-	          <FadeInDuration Duration="PT1S" />
-	          <FadeOutDuration StartTime="PT3S" Duration="PT4S" />
-	          <Position X="100" Y="100" Width="100" Height="50" />
-	          <Opacity>0</Opacity>
-	          <AudioGainLevel>0</AudioGainLevel>
-	          <MediaParams>
-	            <MediaParam>
-	              <IsOverlay>false</IsOverlay>
-	              <OverlayLoopCount>1</OverlayLoopCount>
-	              <InputLoop>false</InputLoop>
-	            </MediaParam>
-	            <MediaParam>
-	              <IsOverlay>true</IsOverlay>
-	              <OverlayLoopCount>1</OverlayLoopCount>
-	              <InputLoop>true</InputLoop>
-	            </MediaParam>
-	          </MediaParams>
-	        </VideoOverlay>
-	      </Filters>
-	      <Pad>true</Pad>
-	    </Source>
-	  </Sources>
-	  <Encoding>
-	    <H264Video>
-	      <KeyFrameInterval>00:00:02</KeyFrameInterval>
-	      <H264Layers>
-	        <H264Layer>
-	          <Bitrate>1045</Bitrate>
-	          <Width>640</Width>
-	          <Height>360</Height>
-	          <FrameRate>0/1</FrameRate>
-	          <Profile>Auto</Profile>
-	          <Level>auto</Level>
-	          <BFrames>0</BFrames>
-	          <ReferenceFrames>3</ReferenceFrames>
-	          <Slices>0</Slices>
-	          <AdaptiveBFrame>true</AdaptiveBFrame>
-	          <EntropyMode>Cavlc</EntropyMode>
-	          <BufferWindow>00:00:05</BufferWindow>
-	          <MaxBitrate>1045</MaxBitrate>
-	        </H264Layer>
-	      </H264Layers>
-	    </H264Video>
-	    <CopyAudio />
-	  </Encoding>
-	  <Outputs>
-	    <Output FileName="{Basename}{Extension}">
-	      <MP4Format />
-	    </Output>
-	  </Outputs>
-	</Preset>
+###<a name="json-preset"></a>JSON preset
+    
+    {
+      "Version": 1.0,
+      "Sources": [
+        {
+          "Streams": [],
+          "Filters": {
+            "VideoOverlay": {
+              "Position": {
+                "X": 100,
+                "Y": 100,
+                "Width": 100,
+                "Height": 50
+              },
+              "AudioGainLevel": 0.0,
+              "MediaParams": [
+                {
+                  "OverlayLoopCount": 1
+                },
+                {
+                  "IsOverlay": true,
+                  "OverlayLoopCount": 1,
+                  "InputLoop": true
+                }
+              ],
+              "Source": "Image001.png",
+              "Clip": {
+                "Duration": "00:00:05"
+              },
+              "FadeInDuration": {
+                "Duration": "00:00:01"
+              },
+              "FadeOutDuration": {
+                "StartTime": "00:00:03",
+                "Duration": "00:00:04"
+              }
+            }
+          },
+          "Pad": true
+        }
+      ],
+      "Codecs": [
+        {
+          "KeyFrameInterval": "00:00:02",
+          "H264Layers": [
+            {
+              "Profile": "Auto",
+              "Level": "auto",
+              "Bitrate": 1045,
+              "MaxBitrate": 1045,
+              "BufferWindow": "00:00:05",
+              "ReferenceFrames": 3,
+              "EntropyMode": "Cavlc",
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "Width": "640",
+              "Height": "360",
+              "FrameRate": "0/1"
+            }
+          ],
+          "Type": "H264Video"
+        },
+        {
+          "Type": "CopyAudio"
+        }
+      ],
+      "Outputs": [
+        {
+          "FileName": "{Basename}{Extension}",
+          "Format": {
+            "Type": "MP4Format"
+          }
+        }
+      ]
+    }
 
 
-##<a id="silent_audio"></a>在輸入不含音訊時插入靜音曲目
+###<a name="xml-preset"></a>XML preset
+    
+    <?xml version="1.0" encoding="utf-16"?>
+    <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
+      <Sources>
+        <Source>
+          <Streams />
+          <Filters>
+            <VideoOverlay>
+              <Source>Image001.png</Source>
+              <Clip Duration="PT5S" />
+              <FadeInDuration Duration="PT1S" />
+              <FadeOutDuration StartTime="PT3S" Duration="PT4S" />
+              <Position X="100" Y="100" Width="100" Height="50" />
+              <Opacity>0</Opacity>
+              <AudioGainLevel>0</AudioGainLevel>
+              <MediaParams>
+                <MediaParam>
+                  <IsOverlay>false</IsOverlay>
+                  <OverlayLoopCount>1</OverlayLoopCount>
+                  <InputLoop>false</InputLoop>
+                </MediaParam>
+                <MediaParam>
+                  <IsOverlay>true</IsOverlay>
+                  <OverlayLoopCount>1</OverlayLoopCount>
+                  <InputLoop>true</InputLoop>
+                </MediaParam>
+              </MediaParams>
+            </VideoOverlay>
+          </Filters>
+          <Pad>true</Pad>
+        </Source>
+      </Sources>
+      <Encoding>
+        <H264Video>
+          <KeyFrameInterval>00:00:02</KeyFrameInterval>
+          <H264Layers>
+            <H264Layer>
+              <Bitrate>1045</Bitrate>
+              <Width>640</Width>
+              <Height>360</Height>
+              <FrameRate>0/1</FrameRate>
+              <Profile>Auto</Profile>
+              <Level>auto</Level>
+              <BFrames>0</BFrames>
+              <ReferenceFrames>3</ReferenceFrames>
+              <Slices>0</Slices>
+              <AdaptiveBFrame>true</AdaptiveBFrame>
+              <EntropyMode>Cavlc</EntropyMode>
+              <BufferWindow>00:00:05</BufferWindow>
+              <MaxBitrate>1045</MaxBitrate>
+            </H264Layer>
+          </H264Layers>
+        </H264Video>
+        <CopyAudio />
+      </Encoding>
+      <Outputs>
+        <Output FileName="{Basename}{Extension}">
+          <MP4Format />
+        </Output>
+      </Outputs>
+    </Preset>
 
-依照預設，如果您傳送僅包含視訊不含音訊的輸入到編碼器，輸出資產將包含僅含視訊資料的檔案。某些播放器可能無法處理此類型輸出資料流。您可以在該案例中使用此設定來強制編碼器將靜音曲目新增至輸出。
 
-若要強制編碼器在輸入不含音訊時產生包含靜音曲目的資產，請指定 "InsertSilenceIfNoAudio" 值。
+##<a name="<a-id="silent_audio"></a>insert-a-silent-audio-track-when-input-has-no-audio"></a><a id="silent_audio"></a>Insert a silent audio track when input has no audio
 
-您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
+By default, if you send an input to the encoder that contains only video, and no audio, then the output asset contains files that contain only video data. Some players may not be able to handle such output streams. You can use this setting to force the encoder to add a silent audio track to the output in that scenario.
 
-###JSON 預設值
+To force the encoder to produce an asset that contains a silent audio track when input has no audio, specify the "InsertSilenceIfNoAudio" value.
+
+You can take any of the MES presets documented [here](https://msdn.microsoft.com/library/mt269960.aspx), and make the following modification:
+
+###<a name="json-preset"></a>JSON preset
 
     {
       "Channels": 2,
@@ -877,7 +878,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
       "Condition": "InsertSilenceIfNoAudio"
     }
 
-###XML 預設值
+###<a name="xml-preset"></a>XML preset
 
     <AACAudio Condition="InsertSilenceIfNoAudio">
       <Channels>2</Channels>
@@ -885,262 +886,266 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
       <Bitrate>96</Bitrate>
     </AACAudio>
 
-##<a id="deinterlacing"></a>停用自動去交錯
+##<a name="<a-id="deinterlacing"></a>disable-auto-de-interlacing"></a><a id="deinterlacing"></a>Disable auto de-interlacing
 
-如果客戶想要將交錯內容自動去交錯，就不需要採取任何動作。當自動去交錯開啟 (預設) 時，MES 會自動偵測交錯式畫面，並且只會將標示為交錯式的畫面去交錯。
+Customers don’t need to do anything if they like the interlace contents to be automatically de-interlaced. When the auto de-interlacing is on (default) the MES does the auto detection of interlaced frames and only de-interlaces frames marked as interlaced.
 
-您可以關閉自動去交錯。但不建議您這樣做。
+You can turn the auto de-interlacing off. This option is not recommended.
 
-###JSON 預設值
-	
-	"Sources": [
-	{
-	 "Filters": {
-	    "Deinterlace": {
-	      "Mode": "Off"
-	    }
-	  },
-	}
-	]
+###<a name="json-preset"></a>JSON preset
+    
+    "Sources": [
+    {
+     "Filters": {
+        "Deinterlace": {
+          "Mode": "Off"
+        }
+      },
+    }
+    ]
 
-###XML 預設值
-	
-	<Sources>
-	<Source>
-	  <Filters>
-	    <Deinterlace>
-	      <Mode>Off</Mode>
-	    </Deinterlace>
-	  </Filters>
-	</Source>
-	</Sources>
-
-
-##<a id="audio_only"></a>純音訊預設值
-
-本節示範兩個純音訊的 MES 預設值︰AAC 音訊和 AAC 好品質音訊。
-
-###AAC 音訊 
-
-	{
-	  "Version": 1.0,
-	  "Codecs": [
-	    {
-	      "Profile": "AACLC",
-	      "Channels": 2,
-	      "SamplingRate": 48000,
-	      "Bitrate": 128,
-	      "Type": "AACAudio"
-	    }
-	  ],
-	  "Outputs": [
-	    {
-	      "FileName": "{Basename}_AAC_{AudioBitrate}.mp4",
-	      "Format": {
-	        "Type": "MP4Format"
-	      }
-	    }
-	  ]
-	}
-
-###AAC 好品質音訊
-
-	{
-	  "Version": 1.0,
-	  "Codecs": [
-	    {
-	      "Profile": "AACLC",
-	      "Channels": 2,
-	      "SamplingRate": 48000,
-	      "Bitrate": 192,
-	      "Type": "AACAudio"
-	    }
-	  ],
-	  "Outputs": [
-	    {
-	      "FileName": "{Basename}_AAC_{AudioBitrate}.mp4",
-	      "Format": {
-	        "Type": "MP4Format"
-	      }
-	    }
-	  ]
-	}
-
-##<a id="concatenate"></a>串連兩個以上的視訊檔案
-
-下列範例示範如何產生預設值來串連兩個以上的視訊檔案。最常見的案例是您想要在主要視訊中加入標頭或預告片時。預定的使用時機為同時編輯的視訊檔案具有共用屬性 (視訊解析度、畫面播放速率、曲目數等) 時。您應該注意不要混合使用不同畫面播放速率或不同曲目數的視訊。
-
-###需求和考量
-
-- 輸入視訊應該只有一個曲目。
-- 輸入視訊的畫面播放速率應該都相同。
-- 您必須將視訊上傳至不同的資產，並將視訊設定為每個資產中的主要檔案。
-- 您需要知道您視訊的持續時間。
-- 下列預設值範例假設所有輸入視訊的開頭為零時間戳記。如果視訊具有不同的開始時間戳記 (即時封存時常發生這種情況)，則需要修改 StartTime 值。
-- JSON 預設值會建立輸入資產之 AssetID 值的明確參考。
-- 範例程式碼假設 JSON 預設值已儲存至本機檔案 (例如 "C:\\supportFiles\\preset.json")。其也會假設已透過上傳兩個視訊檔案來建立兩個資產，並假設您知悉產生的 AssetID 值。
-- 程式碼片段和 JSON 預設值顯示串連兩個視訊檔案的範例。您可以將其擴充至兩個以上的視訊，方法是︰
-
-	1. 重複呼叫 task.InputAssets.Add() 依序加入更多視訊。
-	2. 加入更多項目，以依相同順序對 JSON 中的 "Sources" 元素進行對應編輯。
+###<a name="xml-preset"></a>XML preset
+    
+    <Sources>
+    <Source>
+      <Filters>
+        <Deinterlace>
+          <Mode>Off</Mode>
+        </Deinterlace>
+      </Filters>
+    </Source>
+    </Sources>
 
 
-###.NET 程式碼
+##<a name="<a-id="audio_only"></a>audio-only-presets"></a><a id="audio_only"></a>Audio-only presets
 
-	
-	IAsset asset1 = _context.Assets.Where(asset => asset.Id == "nb:cid:UUID:606db602-efd7-4436-97b4-c0b867ba195b").FirstOrDefault();
-	IAsset asset2 = _context.Assets.Where(asset => asset.Id == "nb:cid:UUID:a7e2b90f-0565-4a94-87fe-0a9fa07b9c7e").FirstOrDefault();
-	
-	// Declare a new job.
-	IJob job = _context.Jobs.Create("Media Encoder Standard Job for Concatenating Videos");
-	// Get a media processor reference, and pass to it the name of the 
-	// processor to use for the specific task.
-	IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
-	
-	// Load the XML (or JSON) from the local file.
-	string configuration = File.ReadAllText(@"c:\supportFiles\preset.json");
-	
-	// Create a task
-	ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
-	    processor,
-	    configuration,
-	    TaskOptions.None);
-	
-	// Specify the input videos to be concatenated (in order).
-	task.InputAssets.Add(asset1);
-	task.InputAssets.Add(asset2);
-	// Add an output asset to contain the results of the job. 
-	// This output is specified as AssetCreationOptions.None, which 
-	// means the output asset is not encrypted. 
-	task.OutputAssets.AddNew("Output asset",
-	    AssetCreationOptions.None);
-	
-	job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
-	job.Submit();
-	job.GetExecutionProgressTask(CancellationToken.None).Wait();
+This section demonstrates two audio-only MES presets: AAC Audio and AAC Good Quality Audio.
 
-###JSON 預設值
+###<a name="aac-audio"></a>AAC Audio 
 
-使用您想要串連的資產識別碼以及每個視訊的適當時間區段，進而更新您的自訂預設值。
+    {
+      "Version": 1.0,
+      "Codecs": [
+        {
+          "Profile": "AACLC",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128,
+          "Type": "AACAudio"
+        }
+      ],
+      "Outputs": [
+        {
+          "FileName": "{Basename}_AAC_{AudioBitrate}.mp4",
+          "Format": {
+            "Type": "MP4Format"
+          }
+        }
+      ]
+    }
 
-	{
-	  "Version": 1.0,
-	  "Sources": [
-	    {
-	      "AssetID": "606db602-efd7-4436-97b4-c0b867ba195b",
-	      "StartTime": "00:00:01",
-	      "Duration": "00:00:15"
-	    },
-	    {
-	      "AssetID": "a7e2b90f-0565-4a94-87fe-0a9fa07b9c7e",
-	      "StartTime": "00:00:02",
-	      "Duration": "00:00:05"
-	    }
-	  ],
-	  "Codecs": [
-	    {
-	      "KeyFrameInterval": "00:00:02",
-	      "SceneChangeDetection": true,
-	      "H264Layers": [
-	        {
-	          "Level": "auto",
-	          "Bitrate": 1800,
-	          "MaxBitrate": 1800,
-	          "BufferWindow": "00:00:05",
-	          "BFrames": 3,
-	          "ReferenceFrames": 3,
-	          "AdaptiveBFrame": true,
-	          "Type": "H264Layer",
-	          "Width": "640",
-	          "Height": "360",
-	          "FrameRate": "0/1"
-	        }
-	      ],
-	      "Type": "H264Video"
-	    },
-	    {
-	      "Channels": 2,
-	      "SamplingRate": 48000,
-	      "Bitrate": 128,
-	      "Type": "AACAudio"
-	    }
-	  ],
-	  "Outputs": [
-	    {
-	      "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
-	      "Format": {
-	        "Type": "MP4Format"
-	      }
-	    }
-	  ]
-	}
+###<a name="aac-good-quality-audio"></a>AAC Good Quality Audio
 
-##<a id="crop"></a>以 Media Encoder Standard 裁剪影片
+    {
+      "Version": 1.0,
+      "Codecs": [
+        {
+          "Profile": "AACLC",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 192,
+          "Type": "AACAudio"
+        }
+      ],
+      "Outputs": [
+        {
+          "FileName": "{Basename}_AAC_{AudioBitrate}.mp4",
+          "Format": {
+            "Type": "MP4Format"
+          }
+        }
+      ]
+    }
 
-請參閱[以 Media Encoder Standard 裁剪影片](media-services-crop-video.md)主題。
+##<a name="<a-id="concatenate"></a>concatenate-two-or-more-video-files"></a><a id="concatenate"></a>Concatenate two or more video files
 
-##<a id="no_video"></a>在輸入不含視訊時插入視訊播放軌
+The following example illustrates how you can generate a preset to concatenate two or more video files. The most common scenario is when you want to add a header or a trailer to the main video. The intended use is when the video files being edited together share  properties (video resolution, frame rate, audio track count, etc.). You should take care not to mix videos of different frame rates, or with different number of audio tracks.
 
-依照預設，如果您傳送僅包含音訊訊不含視訊的輸入到編碼器，輸出資產將包含僅含音訊資料的檔案。某些播放器，包括 Azure 媒體播放器 (請參閱[這篇文章](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/8082468-audio-only-scenarios))，可能無法處理這類串流。您可以在該案例中使用此設定來強制編碼器將單色視訊播放軌新增至輸出。
+###<a name="requirements-and-considerations"></a>Requirements and considerations
 
->[AZURE.NOTE]強制編碼器插入輸出視訊播放軌，將會增加輸出資產的大小，並提升編碼工作所產生的成本。您應該執行測試，以確認所導致的成本提升對您的每月費用沒有太大的影響。
+- Input videos should only have one audio track.
+- Input videos should all have the same frame rate.
+- You must upload your videos into separate assets and set the videos as the primary file in each asset.
+- You need to know the duration of your videos.
+- The preset examples below assumes that all the input videos start with a timestamp of zero. You need to modify the StartTime values if the videos have different starting timestamp, as is typically the case with live archives.
+- The JSON preset makes explicit references to the AssetID values of the input assets.
+- The sample code assumes that the JSON preset has been saved to a local file, such as "C:\supportFiles\preset.json". It also assumes that two assets have been created by uploading two video files, and that you know the resultant AssetID values.
+- The code snippet and JSON preset shows an example of concatenating two video files. You can extend it to more than two videos by:
 
-### 於最低位元速率插入視訊
+    1. Calling task.InputAssets.Add() repeatedly to add more videos, in order.
+    2. Making corresponding edits to the "Sources" element in the JSON, by adding more entries, in the same order. 
 
-假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](https://msdn.microsoft.com/library/mt269960.aspx)) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於最低位元速率插入單色視訊播放軌，而非於所有輸出位元速率插入視訊。若要達成此目的，您必須指定 "InsertBlackIfNoVideoBottomLayerOnly" 旗標。
 
-您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
+###<a name=".net-code"></a>.NET code
 
-#### JSON 預設值
+    
+    IAsset asset1 = _context.Assets.Where(asset => asset.Id == "nb:cid:UUID:606db602-efd7-4436-97b4-c0b867ba195b").FirstOrDefault();
+    IAsset asset2 = _context.Assets.Where(asset => asset.Id == "nb:cid:UUID:a7e2b90f-0565-4a94-87fe-0a9fa07b9c7e").FirstOrDefault();
+    
+    // Declare a new job.
+    IJob job = _context.Jobs.Create("Media Encoder Standard Job for Concatenating Videos");
+    // Get a media processor reference, and pass to it the name of the 
+    // processor to use for the specific task.
+    IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
+    
+    // Load the XML (or JSON) from the local file.
+    string configuration = File.ReadAllText(@"c:\supportFiles\preset.json");
+    
+    // Create a task
+    ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
+        processor,
+        configuration,
+        TaskOptions.None);
+    
+    // Specify the input videos to be concatenated (in order).
+    task.InputAssets.Add(asset1);
+    task.InputAssets.Add(asset2);
+    // Add an output asset to contain the results of the job. 
+    // This output is specified as AssetCreationOptions.None, which 
+    // means the output asset is not encrypted. 
+    task.OutputAssets.AddNew("Output asset",
+        AssetCreationOptions.None);
+    
+    job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
+    job.Submit();
+    job.GetExecutionProgressTask(CancellationToken.None).Wait();
 
-	{
-	      "KeyFrameInterval": "00:00:02",
-	      "StretchMode": "AutoSize",
-	      "Condition": "InsertBlackIfNoVideoBottomLayerOnly",
-	      "H264Layers": [
-	      …
-	      ]
-	}
+###<a name="json-preset"></a>JSON preset
 
-#### XML 預設值
+Update your custom preset with ids of the assets that you want to concatenate, and with the appropriate time segment for each video.
 
-	<KeyFrameInterval>00:00:02</KeyFrameInterval>
-	<StretchMode>AutoSize</StretchMode>
-	<Condition>InsertBlackIfNoVideoBottomLayerOnly</Condition>
+    {
+      "Version": 1.0,
+      "Sources": [
+        {
+          "AssetID": "606db602-efd7-4436-97b4-c0b867ba195b",
+          "StartTime": "00:00:01",
+          "Duration": "00:00:15"
+        },
+        {
+          "AssetID": "a7e2b90f-0565-4a94-87fe-0a9fa07b9c7e",
+          "StartTime": "00:00:02",
+          "Duration": "00:00:05"
+        }
+      ],
+      "Codecs": [
+        {
+          "KeyFrameInterval": "00:00:02",
+          "SceneChangeDetection": true,
+          "H264Layers": [
+            {
+              "Level": "auto",
+              "Bitrate": 1800,
+              "MaxBitrate": 1800,
+              "BufferWindow": "00:00:05",
+              "BFrames": 3,
+              "ReferenceFrames": 3,
+              "AdaptiveBFrame": true,
+              "Type": "H264Layer",
+              "Width": "640",
+              "Height": "360",
+              "FrameRate": "0/1"
+            }
+          ],
+          "Type": "H264Video"
+        },
+        {
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128,
+          "Type": "AACAudio"
+        }
+      ],
+      "Outputs": [
+        {
+          "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
+          "Format": {
+            "Type": "MP4Format"
+          }
+        }
+      ]
+    }
 
-### 以所有輸出位元速率插入視訊
+##<a name="<a-id="crop"></a>crop-videos-with-media-encoder-standard"></a><a id="crop"></a>Crop videos with Media Encoder Standard
 
-假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](https://msdn.microsoft.com/library/mt269960.aspx)) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於所有輸出位元速率插入單色視訊播放軌。這能確保您所有的輸出資產與視訊播放軌和音訊播放軌之間的同質性。若要達成此目的，您必須指定 "InsertBlackIfNoVideo" 旗標。
+See the [Crop videos with Media Encoder Standard](media-services-crop-video.md) topic.
 
-您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
+##<a name="<a-id="no_video"></a>insert-a-video-track-when-input-has-no-video"></a><a id="no_video"></a>Insert a video track when input has no video
 
-#### JSON 預設值
+By default, if you send an input to the encoder that contains only audio, and no video, then the output asset contains files that contain only audio data. Some players, including Azure Media Player (see [this](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/8082468-audio-only-scenarios)) may not be able to handle such streams. You can use this setting to force the encoder to add a monochrome video track to the output in that scenario. 
 
-	{
-	      "KeyFrameInterval": "00:00:02",
-	      "StretchMode": "AutoSize",
-	      "Condition": "InsertBlackIfNoVideo",
-	      "H264Layers": [
-	      …
-	      ]
-	}
+>[AZURE.NOTE]Forcing the encoder to insert an output video track increases the size of the output Asset, and thereby the cost incurred for the encoding Task. You should run tests to verify that this resultant increase has only a modest impact on your monthly charges.
 
-#### XML 預設值
-	
-	<KeyFrameInterval>00:00:02</KeyFrameInterval>
-	<StretchMode>AutoSize</StretchMode>
-	<Condition>InsertBlackIfNoVideo</Condition>
+### <a name="inserting-video-at-only-the-lowest-bitrate"></a>Inserting video at only the lowest bitrate
 
-##媒體服務學習路徑
+Suppose you are using a multiple bitrate encoding preset such as ["H264 Multiple Bitrate 720p"](https://msdn.microsoft.com/library/mt269960.aspx) to encode your entire input catalog for streaming, which contains a mix of video files and audio-only files. In this scenario, when the input has no video, you may want to force the encoder to insert a monochrome video track at just the lowest bitrate, as opposed to inserting video at every output bitrate. To achieve this, you need to specify the "InsertBlackIfNoVideoBottomLayerOnly" flag.
+
+You can take any of the MES presets documented [here](https://msdn.microsoft.com/library/mt269960.aspx), and make the following modification:
+
+#### <a name="json-preset"></a>JSON preset
+
+    {
+          "KeyFrameInterval": "00:00:02",
+          "StretchMode": "AutoSize",
+          "Condition": "InsertBlackIfNoVideoBottomLayerOnly",
+          "H264Layers": [
+          …
+          ]
+    }
+
+#### <a name="xml-preset"></a>XML preset
+
+    <KeyFrameInterval>00:00:02</KeyFrameInterval>
+    <StretchMode>AutoSize</StretchMode>
+    <Condition>InsertBlackIfNoVideoBottomLayerOnly</Condition>
+
+### <a name="inserting-video-at-all-output-bitrates"></a>Inserting video at all output bitrates
+
+Suppose you are using a multiple bitrate encoding preset such as ["H264 Multiple Bitrate 720p](https://msdn.microsoft.com/library/mt269960.aspx) to encode your entire input catalog for streaming, which contains a mix of video files and audio-only files. In this scenario, when the input has no video, you may want to force the encoder to insert a monochrome video track at all the output bitrates. This ensures that your output Assets are all homogenous with respect to number of video tracks and audio tracks. To achieve this, you need to specify the "InsertBlackIfNoVideo" flag.
+
+You can take any of the MES presets documented [here](https://msdn.microsoft.com/library/mt269960.aspx), and make the following modification:
+
+#### <a name="json-preset"></a>JSON preset
+
+    {
+          "KeyFrameInterval": "00:00:02",
+          "StretchMode": "AutoSize",
+          "Condition": "InsertBlackIfNoVideo",
+          "H264Layers": [
+          …
+          ]
+    }
+
+#### <a name="xml-preset"></a>XML preset
+    
+    <KeyFrameInterval>00:00:02</KeyFrameInterval>
+    <StretchMode>AutoSize</StretchMode>
+    <Condition>InsertBlackIfNoVideo</Condition>
+
+##<a name="media-services-learning-paths"></a>Media Services learning paths
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##提供意見反應
+##<a name="provide-feedback"></a>Provide feedback
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-##另請參閱 
+##<a name="see-also"></a>See Also 
 
-[媒體服務編碼概觀](media-services-encode-asset.md)
+[Media Services Encoding Overview](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

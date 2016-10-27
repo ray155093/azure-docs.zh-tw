@@ -1,66 +1,67 @@
 <properties 
-	pageTitle="在 Azure Machine Learning 中為模型偵錯 | Microsoft Azure" 
-	description="說明如何在 Azure Machine Learning 中為模型偵錯。" 
-	services="machine-learning"
-	documentationCenter="" 
-	authors="garyericson" 
-	manager="jhubbard" 
-	editor="cgronlun"/>
+    pageTitle="Debug your Model in Azure Machine Learning | Microsoft Azure" 
+    description="Explains how to How to debug your Model in Azure Machine Learning." 
+    services="machine-learning"
+    documentationCenter="" 
+    authors="garyericson" 
+    manager="jhubbard" 
+    editor="cgronlun"/>
 
 <tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/09/2016" 
-	ms.author="bradsev;garye" />
+    ms.service="machine-learning" 
+    ms.workload="data-services" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/09/2016" 
+    ms.author="bradsev;garye" />
 
-# 在 Azure Machine Learning 中為模型偵錯
 
-本文說明如何在 Microsoft Azure Machine Learning 中為模型偵錯。具體來說，它涵蓋了為什麼執行模型時可能會發生以下任一個失敗狀況的潛在原因：
+# <a name="debug-your-model-in-azure-machine-learning"></a>Debug your Model in Azure Machine Learning
 
-* [定型模型][train-model]模組擲回錯誤
-* [計分模型][score-model]模組產生不正確的結果
+This article explains of how to debug your models in Microsoft Azure Machine Learning. Specifically, it covers the potential reasons why either of the following two failure scenarios might be encountered when running a model:
+
+* the [Train Model][train-model] module throws an error 
+* the [Score Model][score-model] module produces incorrect results 
 
 [AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## [訓練模型] 模組擲回錯誤
+## <a name="train-model-module-throws-an-error"></a>Train Model Module throws an error
 
 ![image1](./media/machine-learning-debug-models/train_model-1.png)
 
-[定型模型][train-model]模組預期以下 2 個輸入：
+The [Train Model][train-model] Module expects the following 2 inputs:
 
-1. 來自 Azure Machine Learning 所提供的模型集合的分類/迴歸模型類型
-2. 包含指定之 [標籤] 資料行的訓練資料。[標籤] 資料行會指定要預測的變數。包含的其餘資料行則假設為功能。
+1. The type of Classification/Regression Model from the collection of models provided by Azure Machine Learning
+2. The training data with a specified Label column. The Label column specifies the variable to predict. The rest of the columns included are assumed to be Features.
 
-在以下情況下，此模組會擲回錯誤：
+This module throws an error in the following cases:
 
-1. 由於選取了多個資料行做為 [標籤]，或選取了不正確的資料行索引，因此指定的 [標籤] 資料行不正確。例如，如果使用的資料行索引為 30，但輸入資料集只有 25 個資料行，則適用第二個狀況。
+1. The Label column is specified incorrectly because either more than one column is selected as the Label or an incorrect column index is selected. For example, the second case would apply if a column index of 30 was used with an input dataset which had only 25 columns.
 
-2. 資料集不包含任何 [功能] 資料行。例如，如果輸入資料集只有 1 個標示為 [標籤] 資料行的資料行，則沒有用來建置模型的功能。在這種情況下，[定型模型][train-model]模組會擲回錯誤。
+2. The dataset does not contain any Feature columns. For example, if the input dataset has only 1 column, which is marked as the Label column, there would be no features with which to build the model. In this case, the [Train Model][train-model] module will throw an error.
 
-3. 輸入資料集 ([功能] 或 [標籤]) 當做值時，包含無限大。
+3. The input dataset (Features or Label) contain Infinity as a value.
 
 
-## [評分模型] 模組不會產生正確的結果
+## <a name="score-model-module-does-not-produce-correct-results"></a>Score Model Module does not produce correct results
 
 ![image2](./media/machine-learning-debug-models/train_test-2.png)
 
-在受監督之學習的典型訓練/測試圖形中，[分割資料][split]模組會將原始資料集分成兩個部分：用於定型模型的部分，以及保留來用於計分的部分 (針對定型模型在未定型資料上的表現程度計分)。接著，使用定型模型為測試資料評分，然後再評估結果以判斷模型的準確性。
+In a typical training/testing graph for supervised learning, the [Split Data][split] module divides the original dataset into two parts: the part that is used to train the model and the part that is reserved to score how well the trained model performs on data it did not train on. The trained model is then used to score the test data after which the results are evaluated to determine the accuracy of the model.
 
-[計分模型][score-model]模組需要兩個輸入：
+The [Score Model][score-model] module requires two inputs:
 
-1. 來自[定型模型][train-model]模組的定型模型輸出
-2. 未訓練其模型的評分資料集
+1. A trained model output from [Train Model][train-model] module
+2. A scoring dataset not that the model was not trained on
 
-即使實驗成功，[計分模型][score-model]模組還是可能會產生不正確的結果。有幾個情況可能會導致這個結果：
+It may happen that even though the experiment succeeds, the [Score Model][score-model] module produces incorrect results. Several scenarios may cause this to happen:
 
-1. 如果指定的 [標籤] 經過分類，且迴歸模型的資料已定型，則[計分模型][score-model]模組將會產生不正確的輸出。這是因為迴歸需要持需回應變數。在此情況下，應該更適合使用分類模型。
-2. 同樣地，如果分類模型針對 [標籤] 資料行中包含浮點數的資料集進行訓練，它可能會產生非預期的結果。這是因為分類需要離散回應變數，該變數僅允許涉及一組有限且通常比較小的類別的值。
-3. 如果計分資料集不包含用來定型模型的所有特徵，[計分模型][score-model]將會產生錯誤。
-4. 在其特徵遺漏值或具有無限值的計分資料集中，[計分模型][score-model]將不會產生對應於資料列的任何輸出。
-5. 對於計分資料集中的所有資料列，[計分模型][score-model]可能會產生相同的輸出。例如，使用決策樹系嘗試分類時，如果選擇每個分葉節點範例的最小數目大於可用的訓練範例數目時，可能會發生這個情況。
+1. If the specified Label is categorical and a regression model is trained on the data, an incorrect output would be produced by the [Score Model][score-model] module. This is because regression requires a continuous response variable. In this case it should be more suitable to use a classification model. 
+2. Similarly, if a classification model is trained on a dataset having floating point numbers in the Label column, it may produce undesirable results. This is because classification requires a discrete response variable that only allows values that range over a finite and usually somewhat small set of classes.
+3. If the scoring dataset does not contain all the features used to train the model, the [Score Model][score-model] will produce an error.
+4. The [Score Model][score-model] would not produce any output corresponding to a row in the scoring dataset that contains a missing value or an infinite value for any of its features.
+5. The [Score Model][score-model] may produce identical outputs for all rows in the scoring dataset. This could occur, for example, in the when attempting classification using Decision Forests if the minimum number of samples per leaf node is chosen to be more than the number of training examples available.
 
 
 <!-- Module References -->
@@ -69,4 +70,8 @@
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
  
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

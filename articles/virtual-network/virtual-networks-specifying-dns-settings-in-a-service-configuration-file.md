@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="指定服務組態檔中的 DNS 設定 | Microsoft Azure"
-   description="使用虛擬網路的服務組態檔指定自訂的 DNS 設定"
+   pageTitle="Specifying DNS Settings in a service configuration file | Microsoft Azure"
+   description="specifying custom DNS settings using service configuration file for virtual network"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -15,13 +15,14 @@
    ms.date="02/24/2016"
    ms.author="jdial" />
 
-# 指定服務組態檔中的 DNS 設定
 
-## DNS 項目
+# <a name="specifying-dns-settings-in-a-service-configuration-file"></a>Specifying DNS Settings in a Service Configuration File
 
-服務組態檔可能包含 DnsServers 項目，以及服務會使用的網域名稱系統 (DNS) 伺服器的 IPv4 位址清單。服務組態檔中的設定優先於網路組態檔中的設定。如需詳細資訊，請參閱 [Azure 服務組態結構描述 (.cscfg 檔)](https://msdn.microsoft.com/library/azure/ee758710.aspx)。
+## <a name="dns-elements"></a>DNS elements
 
-**NetworkConfiguration 項目**
+A service configuration file may contain a DnsServers element with a list of IPv4 addresses for the Domain Name System (DNS) servers that the service will use. Settings in the service configuration file take precedence over settings in the network configuration file. For more information, see [Azure Service Configuration Schema (.cscfg File)](https://msdn.microsoft.com/library/azure/ee758710.aspx).
+
+**NetworkConfiguration element**
 
       <DnsServers>
         <DnsServer name="ID1" IPAddress="IPAddress1" />
@@ -29,16 +30,21 @@
         <DnsServer name="ID3" IPAddress="IPAddress3" />
       </DnsServers>
 
->[AZURE.WARNING] **DnsServer** 項目中的 **name** 屬性只做為參考名稱。它不代表 DNS 伺服器的主機名稱。每個 **DnsServer** 屬性值在整個 Microsoft Azure 訂用帳戶中必須是唯一的。
+>[AZURE.WARNING] The **name** attribute in the **DnsServer** element is used only as a reference name. It does not represent the host name for the DNS server. Each **DnsServer** attribute value must be unique across the entire Microsoft Azure subscription.
 
-## 另請參閱
+## <a name="see-also"></a>See Also
 
-[Azure 服務組態結構描述 (.cscfg)](https://msdn.microsoft.com/library/windowsazure/ee758710)
+[Azure Service Configuration Schema (.cscfg)](https://msdn.microsoft.com/library/windowsazure/ee758710)
 
-[Azure 虛擬網路組態結構描述](http://go.microsoft.com/fwlink/?LinkId=248093)
+[Azure Virtual Network Configuration Schema](http://go.microsoft.com/fwlink/?LinkId=248093)
 
-[使用網路組態檔設定虛擬網路](http://go.microsoft.com/fwlink/?LinkId=248094)
+[Configure a Virtual Network Using Network Configuration Files](http://go.microsoft.com/fwlink/?LinkId=248094)
 
-[關於管理入口網站中的虛擬網路設定](http://go.microsoft.com/fwlink/?LinkId=248092)
+[About Virtual Network settings in the Management Portal](http://go.microsoft.com/fwlink/?LinkId=248092)
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 REST API 來檢視部署作業 | Microsoft Azure"
-   description="描述如何使用 Azure Resource Manager REST API 來偵測源自「資源管理員」部署的問題。"
+   pageTitle="View deployment operations with REST API | Microsoft Azure"
+   description="Describes how to use the Azure Resource Manager REST API to detect issues from Resource Manager deployment."
    services="azure-resource-manager,virtual-machines"
    documentationCenter=""
    tags="top-support-issue"
@@ -17,23 +17,24 @@
    ms.date="06/13/2016"
    ms.author="tomfitz"/>
 
-# 使用 Azure Resource Manager REST API 來檢視部署作業
+
+# <a name="view-deployment-operations-with-azure-resource-manager-rest-api"></a>View deployment operations with Azure Resource Manager REST API
 
 > [AZURE.SELECTOR]
-- [入口網站](resource-manager-troubleshoot-deployments-portal.md)
+- [Portal](resource-manager-troubleshoot-deployments-portal.md)
 - [PowerShell](resource-manager-troubleshoot-deployments-powershell.md)
 - [Azure CLI](resource-manager-troubleshoot-deployments-cli.md)
 - [REST API](resource-manager-troubleshoot-deployments-rest.md)
 
-如果您在將資源部署到 Azure 時收到錯誤，您可能會想要查看有關所執行之部署作業的更多詳細資料。REST API 提供作業，可讓您找出錯誤並判斷可能的修正方法。
+If you've received an error when deploying resources to Azure, you may want to see more details about the deployment operations that were executed. The REST API provides operations that enable you to find the errors and determine potential fixes.
 
 [AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
 
-部署之前先驗證您的範本和基礎結構，即可避免發生一些錯誤。您也可以記錄部署期間的要求和回應資訊，這在後續進行疑難排解時可能會有幫助。如需了解驗證，以及記錄要求和回應資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy-rest.md)。
+You can avoid some errors by validating your template and infrastructure prior to deployment. You can also log additional request and response information during deployment that may be helpful later for troubleshooting. To learn about validating, and logging request and response information, see [Deploy a resource group with Azure Resource Manager template](resource-group-template-deploy-rest.md).
 
-## REST API 疑難排解
+## <a name="troubleshoot-with-rest-api"></a>Troubleshoot with REST API
 
-1. 使用[建立範本部署](https://msdn.microsoft.com/library/azure/dn790564.aspx)作業來部署您的資源。若要保留可能有助於偵錯的資訊，請將 JSON 要求中的 **debugSetting** 屬性設定為 **requestContent** 和/或 **responseContent**。 
+1. Deploy your resources with the [Create a template deployment](https://msdn.microsoft.com/library/azure/dn790564.aspx) operation. To retain information that may be helpful for debugging, set the **debugSetting** property in JSON request to **requestContent** and/or **responseContent**. 
 
         PUT https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}?api-version={api-version}
           <common headers>
@@ -54,13 +55,13 @@
             }
           }
 
-    根據預設，**debugSetting** 值會設定為 **none**。指定 **debugSetting** 值時，請仔細考慮您在部署期間傳遞的資訊類型。如果記錄要求或回應的相關資訊，您可能會公開透過部署作業擷取的機密資料。
+    By default, the **debugSetting** value is set to **none**. When specifying the **debugSetting** value, carefully consider the type of information you are passing in during deployment. By logging information about the request or response, you could potentially expose sensitive data that is retrieved through the deployment operations. 
 
-2. 利用[取得範本部署的相關資訊](https://msdn.microsoft.com/library/azure/dn790565.aspx)作業，來取得部署相關資訊。
+2. Get information about a deployment with the [Get information about a template deployment](https://msdn.microsoft.com/library/azure/dn790565.aspx) operation.
 
         GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}?api-version={api-version}
 
-    在回應中，請特別注意 **provisioningState**、**correlationId** 和 **error** 元素。**correlationId** 可用來追蹤相關的事件，並在與技術支援人員合作來疑難排解問題時非常有用。
+    In the response, note in particular the **provisioningState** , **correlationId** and **error** elements. The **correlationId** is used to track related events, and can be helpful when working with technical support to troubleshoot an issue.
     
         { 
           ...
@@ -70,16 +71,16 @@
             ...
             "error":{
               "code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see http://aka.ms/arm-debug for usage details.",
-              "details":[{"code":"Conflict","message":"{\r\n  "error": {\r\n    "message": "Conflict",\r\n    "code": "Conflict"\r\n  }\r\n}"}]
+              "details":[{"code":"Conflict","message":"{\r\n  \"error\": {\r\n    \"message\": \"Conflict\",\r\n    \"code\": \"Conflict\"\r\n  }\r\n}"}]
             }  
           }
         }
 
-3. 使用[列出所有範本部署作業](https://msdn.microsoft.com/library/azure/dn790518.aspx)的作業，來取得部署作業的相關資訊。
+3. Get information about deployment operations with the [List all template deployment operations](https://msdn.microsoft.com/library/azure/dn790518.aspx) operation. 
 
         GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}/operations?$skiptoken={skiptoken}&api-version={api-version}
 
-    回應會根據您在部署期間於 **debugSetting** 屬性中指定的內容，來包含要求和/或回應資訊。
+    The response will include request and/or response information based on what you specified in the **debugSetting** property during deployment.
     
         {
           ...
@@ -104,15 +105,19 @@
           }
         }
 
-4. 利用[列出訂用帳戶中的管理事件](https://msdn.microsoft.com/library/azure/dn931934.aspx)作業，從稽核記錄中取得部署的事件。
+4. Get events from the audit logs for the deployment with the [List the management events in a subscription](https://msdn.microsoft.com/library/azure/dn931934.aspx) operation.
 
         GET https://management.azure.com/subscriptions/{subscription-id}/providers/microsoft.insights/eventtypes/management/values?api-version={api-version}&$filter={filter-expression}&$select={comma-separated-property-names}
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 如需解決特定部署錯誤的說明，請參閱[針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
-- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
-- 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+- For help with resolving particular deployment errors, see [Resolve common errors when deploying resources to Azure with Azure Resource Manager](resource-manager-common-deployment-errors.md).
+- To learn about using the audit logs to monitor other types of actions, see [Audit operations with Resource Manager](resource-group-audit.md).
+- To validate your deployment prior to executing it, see [Deploy a resource group with Azure Resource Manager template](resource-group-template-deploy.md).
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

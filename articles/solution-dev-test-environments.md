@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開發和測試環境 | Microsoft Azure"
-   description="了解如何使用 Azure 資源管理員範本來快速且一致地建立及刪除開發和測試環境。"
+   pageTitle="Development and test environments | Microsoft Azure"
+   description="Learn how to use Azure Resource Manager templates to quickly and consistently create and delete development and test environments."
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,352 +16,362 @@
    ms.date="01/22/2016"
    ms.author="tomfitz"/>
 
-# Microsoft Azure 中的開發和測試環境
 
-自訂應用程式通常會在部署到生產環境前部署到多個開發和測試環境。環境在內部部署建立時，會購買運算資源或配置給每個應用程式的每個環境。環境通常包含數個具有手動方式部署之特定組態或具有複雜自動化指令碼的實體或虛擬機器。部署通常需要數小時，並且在各環境中會導致不一致的組態。
+# <a name="development-and-test-environments-in-microsoft-azure"></a>Development and test environments in Microsoft Azure
 
-## 案例 ##
+Custom applications are typically deployed to multiple development and testing environments before deployment to production. When environments are created on premises, computing resources are either procured or allocated for each environment for each application. The environments often include several physical or virtual machines with specific configurations that are deployed manually or with complex automation scripts. Deployments often take hours and  result in inconsistent configurations across environments.
 
-當您在 Microsoft Azure 中佈建開發和測試環境時，您只需支付使用資源的費用。這篇文章說明如何使用 Azure 資源管理員範本和參數檔案，快速且一致地建立、維護和刪除開發及測試環境，如下所示。
+## <a name="scenario"></a>Scenario ##
 
-![案例](./media/solution-dev-test-environments/scenario.png)
+When you provision development and test environments in Microsoft Azure, you only pay for the resources you use.  This article explains how quickly and consistently you can create, maintain, and delete development and test environments using Azure Resource Manager templates and parameter files, as illustrated below.
 
-上方顯示三個開發和測試環境。每個環境都具備範本檔案中指定的 Web 應用程式及 SQL 資料庫資源。每個環境中的應用程式及資料庫名義均不相同，且會在每個環境中唯一的參數檔案中指定。
+![Scenario](./media/solution-dev-test-environments/scenario.png)
 
-如果您不熟悉 Azure 資源管理員概念，建議您在閱讀本文之前先閱讀 [Azure 資源管理員概觀](resource-group-overview.md)一文。
+Three development and testing environments are shown above.  Each has web application and SQL database resources, which are specified in a template file.  The names of the application and database in each environment are different, and are specified in unique parameter files for each environment.  
 
-您可能會想要先進行這篇文章中所列的步驟，而不閱讀任何參考文章，以快速取得使用 Azure 資源管理員範本的經驗。一旦您完成這些步驟，就可以利用這些步驟實驗並閱讀參考文章，取得大多數第一次使用時會遇到的問題解答。
+If you're not familiar with Azure Resource Manager concepts, it's recommended that you read the [Azure Resource Manager Overview](resource-group-overview.md) article before reading this article.
 
-## 規劃 Azure 資源使用
-一旦您的應用程式具備高階設計，您就可以定義：
+You may want to first go through the steps in this article as listed without reading any of the referenced articles to quickly gain some experience using Azure Resource Manager templates. After you've been through the steps once, you'll be able to get answers to most of the questions that arose your first time through by experimenting further with the steps and by reading the referenced articles.
 
-- 您的應用程式所包含的 Azure 資源。您可能會建置您的應用程式並將它部署為具備 Azure SQL Database 的 Azure Web 應用程式。您可能會在虛擬機器中使用 PHP 和 MySQL 或 IIS 和 SQL Server 或其他元件建置您的應用程式。[Azure App Service、雲端服務與虛擬機器之比較](app-service-web/choose-web-site-cloud-service-vm.md)一文可協助您決定您想要用於應用程式的 Azure 資源。
-- 您的應用程式符合哪些服務層級要求，例如可用性、安全性和級別。
+## <a name="plan-azure-resource-use"></a>Plan Azure resource use
+Once you have a high level design for your application, you can define:
 
-## 下載現有的範本
-Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源。您可以直接在 Azure 入口網站中部署，或在原始檔控制系統中利用應用程式程式碼下載、修改和儲存多個己存在的數個範本。完成下列步驟以下載現有的範本。
+- Which Azure resources your application will include. You might build your application and deploy it as an Azure Web App with an Azure SQL Database.  You might build your application in virtual machines using PHP and MySQL or IIS and SQL Server, or other components. The [Azure App Service, Cloud Services, and Virtual Machines comparison]( app-service-web/choose-web-site-cloud-service-vm.md) article helps you decide which Azure resources you might want to utilize for your application.
+- What service level requirements such as availability, security, and scale that your application will meet.
 
-1. 您可以在 [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/) GitHub 儲存機制中瀏覽現有的的範本。在清單中，您會看到 "[201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-sql-database)" 資料夾。由於許多自訂應用程式包含 web 應用程式和 SQL 資料庫，此範本可做為這篇文章其餘部分的範例，協助您了解如何使用範本。完整說明此範本建立與設定的所有內容已超出本文的範圍，但是如果您打算使用它來建立組織中的實際環境，您會想要藉由閱讀[佈建 Web 應用程式與 SQL Database](app-service-web/app-service-web-arm-with-sql-database-provision.md) 一文來完全了解它。注意︰此文章是針對 2015 年 12 月版本的 [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) 範本。下面連結指向會用於該版本範本的範本和參數檔案。
-2. 按一下 201-web-app-sql-database 資料夾中的 [azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json) 檔案以檢視其中的內容。這是 Azure 資源管理員範本檔案。
-3. 在檢視模式中，按一下 [原始](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json) 按鈕。
-4. 利用您的滑鼠選取此檔案的內容，並將它以 "TestApp1-Template.json" 的檔案名稱儲存到您的電腦。
-5. 檢查範本的內容，並注意下列項目：
- - **資源**區段：此區段會定義由此範本建立的 Azure 資源類型。在其他資源類型中，此範本會建立 [Azure Web 應用程式](app-service-web/app-service-web-overview.md)和 [Azure SQL Database](sql-database/sql-database-technical-overview.md) 資源。如果您偏好在虛擬機器中執行並管理網頁和 SQL 伺服器，可以使用 "[iis-2vm-sql-1vm](https://github.com/Azure/azure-quickstart-templates/tree/master/iis-2vm-sql-1vm)" 或 "[lamp-app](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app)" 範本；但本文中的說明是依 [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) 範本為主。
- - **參數** 區段：此區段定義可用來設定每個資源的參數。在範本中指定的部分參數會有 "defaultValue" 屬性，其他參數則沒有。使用範本部署 Azure 資源時，您必須提供值給範本中所有未指定 defaultValue 屬性的參數。如果您未提供值給具備 defaultValue 屬性的參數，則會使用範本中為 defaultValue 參數指定的值。
+## <a name="download-an-existing-template"></a>Download an existing template
+An Azure Resource Manager template defines all of the Azure resources that your application utilizes. Several templates already exist that you can deploy directly in the Azure portal, or download, modify, and save in a source control system with your application code.  Complete the steps below to download an existing template.
 
-範本可定義建立的 Azure 資源，以及可用來設定每個資源的參數。您可以藉由閱讀[設計 Azure 資源管理員範本的最佳做法](best-practices-resource-manager-design-templates.md)一文，進一步了解範本及如何設計您自己的範本。
+1. Browse existing templates in the [Azure Quickstart Templates](https://github.com/Azure/azure-quickstart-templates/) GitHub repository. In the list you'll see a "[201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-sql-database)" folder. Since many custom applications include a web application and SQL database, this template is used as an example in the remainder of this article to help you understand how to use templates. It's beyond the scope of this article to fully explain everything this template creates and configures, but if you plan to use it to create actual environments in your organization, you'll want to fully understand it by reading the [Provision a web app with a SQL Database](app-service-web/app-service-web-arm-with-sql-database-provision.md) article.
+Note: this article was written for the December 2015 version of the [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) template. The links below that point to template and parameter files are to that version of the template.
+2. Click on the [azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json) file in the 201-web-app-sql-database folder to view its contents. This is the Azure Resource Manager template file. 
+3. In the view mode, click the "[Raw](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json)" button. 
+4. With your mouse, select the contents of this file and save them to your computer as a file named "TestApp1-Template.json." 
+5. Examine the template contents and notice the following:
+ - **Resources** section:  This section defines the types of Azure resources created by this template. Among other resource types, this template creates [Azure Web App](app-service-web/app-service-web-overview.md) and [Azure SQL Database](sql-database/sql-database-technical-overview.md) resources. If you prefer to run and manage web and SQL servers in virtual machines, you can use the "[iis-2vm-sql-1vm](https://github.com/Azure/azure-quickstart-templates/tree/master/iis-2vm-sql-1vm)" or "[lamp-app](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app)" templates, but the instructions in this article are based on the [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) template.
+ - **Parameters** section: This section defines the parameters that each resource can be configured with. Some of the parameters specified in the template have "defaultValue" properties, while others do not. When deploying Azure resources with a template, you must provide values for all parameters that do not have defaultValue properties specified in the template.  If you do not provide values for parameters with defaultValue properties, then the value specified for the defaultValue parameter in the template is used.
 
-## 下載並自訂現有的參數檔案
+A template defines which Azure resources are created and the parameters each resource can be configured with. You can learn more about templates and how to design your own by reading the [Best practices for designing Azure Resource Manager templates](best-practices-resource-manager-design-templates.md) article.
 
-雖然您可能會想在每個環境中建立「相同」的 Azure 資源，但您也可能會想要在每個環境中的資源有「不同」的組態。這是參數檔案的由來。完成以下步驟，在每個環境中建立包含唯一值的參數檔案。
+## <a name="download-and-customize-an-existing-parameter-file"></a>Download and customize an existing parameter file
 
-1. 檢視 201-web-app-sql-database 資料夾中的 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json) 檔案內容。這是您在之前章節中所儲存之範本檔案的參數檔案。
-2. 在檢視模式中，按一下 [原始](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json) 按鈕。
-3. 用滑鼠選取此檔案的全部內容，並將它以下列名稱分別儲存至電腦上的三個檔案：
+Though you'll probably want the *same* Azure resources created in each environment, you'll likely want the configuration of the resources to be *different* in each environment.  This is where parameter files come in. Create parameter files that contain unique values in each environment by completing the steps below.   
+
+1. View the contents of the [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json) file in the 201-web-app-sql-database folder. This is the parameter file for the template file you saved in the previous section. 
+2. In the view mode, click the "[Raw](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json)" button. 
+3. With your mouse, select the contents of this file and save them to three separate files on your computer with the following names:
  - TestApp1-Parameters-Development.json
  - TestApp1-Parameters-Test.json
  - TestApp1-Parameters-Pre-Production.json
 
-3. 使用任何文字或 JSON 編輯器來編輯您在步驟 3 中建立的開發環境參數檔案，以列在下列**參數**右側的「值」來取代列在檔案中參數值右側的值：
- - **siteName**：*TestApp1DevApp*
- - **hostingPlanName**：*TestApp1DevPlan*
- - **siteLocation**：美國中部
- - **serverName**：*testapp1devsrv*
- - **serverLocation**：美國中部
- - **administratorLogin**：*testapp1Admin*
- - **administratorLoginPassword**：以您的密碼取代
- - **databaseName**：*testapp1devdb*
+3. Using any text or JSON editor, edit the Development environment parameter file you created in Step 3, replacing the values listed to the right of the parameter values in the file with the *values* listed to the right of the **parameters** below: 
+ - **siteName**: *TestApp1DevApp*
+ - **hostingPlanName**: *TestApp1DevPlan*
+ - **siteLocation**: *Central US*
+ - **serverName**: *testapp1devsrv*
+ - **serverLocation**: *Central US*
+ - **administratorLogin**: *testapp1Admin*
+ - **administratorLoginPassword**: *replace with your password*
+ - **databaseName**: *testapp1devdb*
 
-4. 使用任何文字或 JSON 編輯器來編輯您在步驟 3 中建立的測試環境參數檔案，以列在下列**參數**右側的「值」來取代列在檔案中參數值右側的值：
- - **siteName**：*TestApp1TestApp*
- - **hostingPlanName**：*TestApp1TestPla*n
- - **siteLocation**：美國中部
- - **serverName**：*testapp1testsrv*
- - **serverLocation**：美國中部
- - **administratorLogin**：*testapp1Admin*
- - **administratorLoginPassword**：以您的密碼取代
- - **databaseName**：*testapp1testdb*
+4. Using any text or JSON editor, edit the Test environment parameter file you created in Step 3, replacing the the values listed to the right of the parameter values in the file with the *values* listed to the right of the **parameters** below:
+ - **siteName**: *TestApp1TestApp*
+ - **hostingPlanName**: *TestApp1TestPla*n
+ - **siteLocation**: *Central US*
+ - **serverName**: *testapp1testsrv*
+ - **serverLocation**: *Central US*
+ - **administratorLogin**: *testapp1Admin*
+ - **administratorLoginPassword**: *replace with your password*
+ - **databaseName**: *testapp1testdb*
 
-5. 使用任何文字或 JSON 編輯器，編輯您在步驟 3 中建立的預先生產參數檔。將檔案的全部內容取代為下列內容：
+5. Using any text or JSON editor, edit the Pre-Production parameter file you created in Step 3.  Replace the entire contents of the file with what's below:
 
-	    {
-    	  "$schema" : "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    	  "contentVersion" : "1.0.0.0",
-    	  "parameters" : {
-    	"administratorLogin" : {
-    	  "value" : "testApp1Admin"
-    	},
-    	"administratorLoginPassword" : {
-    	  "value" : "replace with your password"
-    	},
-    	"databaseName" : {
-    	  "value" : "testapp1preproddb"
-    	},
-    	"hostingPlanName" : {
-    	  "value" : "TestApp1PreProdPlan"
-    	},
-    	"serverLocation" : {
-    	  "value" : "Central US"
-    	},
-    	"serverName" : {
-    	  "value" : "testapp1preprodsrv"
-    	},
-    	"siteLocation" : {
-    	  "value" : "Central US"
-    	},
-    	"siteName" : {
-    	  "value" : "TestApp1PreProdApp"
-    	},
-    	"sku" : {
-    	  "value" : "Standard"
-    	},
-    		"requestedServiceObjectiveName" : {
-    		  "value" : "S1"
-    	}
-    	  }
-    	}
+        {
+          "$schema" : "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+          "contentVersion" : "1.0.0.0",
+          "parameters" : {
+        "administratorLogin" : {
+          "value" : "testApp1Admin"
+        },
+        "administratorLoginPassword" : {
+          "value" : "replace with your password"
+        },
+        "databaseName" : {
+          "value" : "testapp1preproddb"
+        },
+        "hostingPlanName" : {
+          "value" : "TestApp1PreProdPlan"
+        },
+        "serverLocation" : {
+          "value" : "Central US"
+        },
+        "serverName" : {
+          "value" : "testapp1preprodsrv"
+        },
+        "siteLocation" : {
+          "value" : "Central US"
+        },
+        "siteName" : {
+          "value" : "TestApp1PreProdApp"
+        },
+        "sku" : {
+          "value" : "Standard"
+        },
+            "requestedServiceObjectiveName" : {
+              "value" : "S1"
+        }
+          }
+        }
 
-在上述的生產前參數檔案中，**sku** 和 **requestedServiceObjectiveName** 參數為*已新增*，而它們並未新增至開發和測試參數檔案。這是因為範本中有為這些參數指定的預設值，且預設值也用於開發和測試環境中，但在生產前環境中用於這些參數的是非預設值。
+In the Pre-Production parameters file above, the **sku** and **requestedServiceObjectiveName** parameters were *added*, whereas they weren't added in the Development and Test parameters files. This is because there are default values specified for these parameters in the template, and in the Development and Test environments, the default values are used, but in the Pre-Production environment non-default values for these parameters are used.
 
-在生產前環境中將非預設值用於這些參數的原因是，要測試您的生產環境可能會偏好的這些參數值，才能進行測試。這些參數全都和應用程式使用的 Azure [Web 應用程式主控方案](https://azure.microsoft.com/pricing/details/app-service/)，或 **sku** 和 Azure [SQL Database](https://azure.microsoft.com/pricing/details/sql-database/)，或 **requestedServiceObjectiveName** 相關。不同的 sku 和服務目標名稱有不同的成本和功能，並支援不同的服務層級度量。
+The reason non-default values are used for these parameters in the Pre-Production environment is to test values for these parameters that you might prefer for your Production environment so they can also be tested.  These parameters all relate to the Azure [Web App hosting plans](https://azure.microsoft.com/pricing/details/app-service/), or **sku** and Azure [SQL Database](https://azure.microsoft.com/pricing/details/sql-database/), or **requestedServiceObjectiveName** that are used by the application.  Different skus and service objective names have different costs and features and support different service level metrics.
 
-下表列出範本中指定參數的預設值，以及在生產前參數檔案中替代預設值所改用的值。
+The table below lists the default values for these parameters specified in the template and the values that are used instead of the default values in the Pre-Production parameters file.
 
-| 參數 | 預設值 | 參數檔案值 |
+| Parameter | Default value | Parameter file value |
 |---|---|---|
-| **sku** | 免費 | 標準 |
+| **sku** | Free | Standard |
 | **requestedServiceObjectiveName** | S0 | S1 |
 
-## 建立環境
-所有的 Azure 資源必須建立於 [Azure 資源群組](resource-group-overview.md)內。資源群組可讓您將 Azure 資源分組，讓他們可以共同管理。[權限](./active-directory/role-based-access-built-in-roles.md)可以指派給資源群組，讓組織內的特定人員可以建立、修改、刪除或檢視資源群組及其中的資源。可以在 [Azure 入口網站](https://portal.azure.com)中檢視資源群組中資源的警示和計費資訊。會在 Azure [區域](https://azure.microsoft.com/regions/)中建立資源群組。在本文中，所有資源都會在美國中部區域建立。當您開始建立實際環境時，您會選擇最適合您需求的區域。
+## <a name="create-environments"></a>Create environments
+All Azure resources must be created within an [Azure Resource Group](resource-group-overview.md). Resource groups enable you to group Azure resources so they can be managed collectively.  [Permissions](./active-directory/role-based-access-built-in-roles.md) can be assigned to resource groups such that specific people within your organization can create, modify, delete, or view them and the resources within them.  Alerts and billing information for resources in the Resource Group can be viewed in the [Azure Portal](https://portal.azure.com). Resource groups are created in an Azure [region](https://azure.microsoft.com/regions/).  In this article, all resources are created in the Central US region. When you start creating actual environments, you'll choose the region that best meets your requirements. 
 
-使用下列方法之一，為每個環境建立資源群組。 每一種方法都會達到完全相同的結果。
+Create resource groups for each environment using any of the methods below.  All methods will achieve the same outcome.
 
-###Azure 命令列介面 (CLI)
+###<a name="azure-command-line-interface-(cli)"></a>Azure Command Line Interface (CLI)
 
-確定您已在Windows、OS X 或 Linux 電腦上[安裝](xplat-cli-install.md) CLI，且已將 [Azure AD 帳戶](./active-directory/active-directory-how-subscriptions-associated-directory.md) (也稱為工作或學校帳戶) [連接](xplat-cli-connect.md)到 Azure 訂用帳戶。從 CLI 命令列，輸入下列命令來建立開發環境的資源群組。
+Ensure that you have the CLI [installed](xplat-cli-install.md) on either a Windows, OS X, or Linux computer, and that you've [connected](xplat-cli-connect.md) your [Azure AD account](./active-directory/active-directory-how-subscriptions-associated-directory.md) (also called a work or school account) to your Azure subscription. From the CLI command line, type the command below to create the resource group for the Development environment.
 
-	azure group create "TestApp1-Development" "Central US"
+    azure group create "TestApp1-Development" "Central US"
 
-如果命令成功會傳回下列內容：
+The command will return the following if it succeeds:
 
-	info:    Executing command group create
-	+ Getting resource group TestApp1-Development
-	+ Creating resource group TestApp1-Development
-	info:    Created resource group TestApp1-Development
-	data:    Id:                  /subscriptions/uuuuuuuu-vvvv-wwww-xxxx-yyyy-zzzzzzzzzzzz/resourceGroups/TestApp1-Development
-	data:    Name:                TestApp1-Development
-	data:    Location:            centralus
-	data:    Provisioning State:  Succeeded
-	data:    Tags: null
-	data:
-	info:    group create command OK
+    info:    Executing command group create
+    + Getting resource group TestApp1-Development
+    + Creating resource group TestApp1-Development
+    info:    Created resource group TestApp1-Development
+    data:    Id:                  /subscriptions/uuuuuuuu-vvvv-wwww-xxxx-yyyy-zzzzzzzzzzzz/resourceGroups/TestApp1-Development
+    data:    Name:                TestApp1-Development
+    data:    Location:            centralus
+    data:    Provisioning State:  Succeeded
+    data:    Tags: null
+    data:
+    info:    group create command OK
 
-若要建立測試環境的資源群組，請輸入下列命令：
+To create the resource group for the Test environment, type the command below:
 
-	azure group create "TestApp1-Test" "Central US"
+    azure group create "TestApp1-Test" "Central US"
 
-若要建立生產前環境的資源群組，請輸入下列命令：
+To create the resource group for the Pre-Production environment, type the command below:
 
-	azure group create "TestApp1-Pre-Production" "Central US"
+    azure group create "TestApp1-Pre-Production" "Central US"
 
-###PowerShell
+###<a name="powershell"></a>PowerShell
 
-確定您已在 Windows 電腦上安裝 Azure PowerShell 1.01 或更高版本，並已將 [Azure AD 帳戶](./active-directory/active-directory-how-subscriptions-associated-directory.md) (也稱為工作或學校帳戶) 連接到[如何安裝及設定 Azure PowerShell](powershell-install-configure.md) 文章中詳細說明的訂用帳戶。從 PowerShell 命令提示字元，輸入下列命令來建立開發環境的資源群組。
+Ensure that you have Azure PowerShell 1.01 or higher installed on a Windows computer and have connected your [Azure AD account](./active-directory/active-directory-how-subscriptions-associated-directory.md) (also called a work or school account) to your subscription as detailed in the [How to install and configure Azure PowerShell](powershell-install-configure.md) article. From a PowerShell command prompt, type the command below to create the resource group for the Development environment.
 
-	New-AzureRmResourceGroup -Name TestApp1-Development -Location "Central US"
+    New-AzureRmResourceGroup -Name TestApp1-Development -Location "Central US"
 
-如果命令成功會傳回下列內容：
+The command will return the following if it succeeds:
 
-	ResourceGroupName : TestApp1-Development
-	Location          : centralus
-	ProvisioningState : Succeeded
-	Tags              :
-	ResourceId        : /subscriptions/uuuuuuuu-vvvv-wwww-xxxx-yyyy-zzzzzzzzzzzz/resourceGroups/TestApp1-Development
+    ResourceGroupName : TestApp1-Development
+    Location          : centralus
+    ProvisioningState : Succeeded
+    Tags              :
+    ResourceId        : /subscriptions/uuuuuuuu-vvvv-wwww-xxxx-yyyy-zzzzzzzzzzzz/resourceGroups/TestApp1-Development
 
-若要建立測試環境的資源群組，請輸入下列命令：
+To create the resource group for the Test environment, type the command below:
 
-	New-AzureRmResourceGroup -Name TestApp1-Test -Location "Central US"
+    New-AzureRmResourceGroup -Name TestApp1-Test -Location "Central US"
 
-若要建立生產前環境的資源群組，請輸入下列命令：
+To create the resource group for the Pre-Production environment, type the command below:
 
-	New-AzureRmResourceGroup -Name TestApp1-Pre-Production -Location "Central US"
+    New-AzureRmResourceGroup -Name TestApp1-Pre-Production -Location "Central US"
 
-###Azure 入口網站
+###<a name="azure-portal"></a>Azure portal
 
-1. 使用 [Azure AD](./active-directory/active-directory-how-subscriptions-associated-directory.md) (也稱為工作或學校) 帳戶登入 [Azure 入口網站](https://portal.azure.com)。按一下 [新建]--> [管理] --> [資源群組]，並在 [資源群組名稱] 方塊中輸入 "TestApp1-Development"、選取您的訂用帳戶再選取 [資源群組位置] 方塊中的 [美國中部] ，如下圖所示。![入口網站](./media/solution-dev-test-environments/rgcreate.png)
-2. 按一下 [建立] 按鈕以建立資源群組。
-3. 按一下 [瀏覽] 並向下捲動清單到 [資源群組]，接著按一下 [資源群組]，如下所示。![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
-4. 按一下 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及新的資源群組。![入口網站](./media/solution-dev-test-environments/rgview.png)
-5. 用您之前建立 TestApp1-Development 資源群組相同的方式，建立 TestApp1-Test 和 TestApp1-Pre-Production 資源群組。
+1. Sign in to the [Azure portal](https://portal.azure.com) with an [Azure AD](./active-directory/active-directory-how-subscriptions-associated-directory.md) (also called a work or school) account. Click New-->Management-->Resource group and enter "TestApp1-Development" in the Resource group name box, select your subscription, and select "Central US" in the Resource group location box as shown in the picture below.
+   ![Portal](./media/solution-dev-test-environments/rgcreate.png)
+2. Click the Create button to create the resource group.
+3. Click Browse, scroll down the list to Resource groups and click on Resource groups as shown below.
+   ![Portal](./media/solution-dev-test-environments/rgbrowse.png) 
+4. After clicking on Resource groups you'll see the Resource groups blade with your new resource group.
+   ![Portal](./media/solution-dev-test-environments/rgview.png)
+5. Create the TestApp1-Test and TestApp1-Pre-Production resource groups the same way you created the TestApp1-Development resource group above.
 
-##將資源部署至環境
+##<a name="deploy-resources-to-environments"></a>Deploy resources to environments
 
-使用解決方案的範本檔案，將 Azure 資源部署到每個環境的資源群組，並使用下列任何一種方法，將其部署到每個環境的參數檔案。 每一種方法都會達到完全相同的結果。
+Deploy Azure resources to the resource groups for each environment using the template file for the solution and the parameter files for each environment using either of the methods below.  Both methods will achieve the same outcome.
 
-###Azure 命令列介面 (CLI)
+###<a name="azure-command-line-interface-(cli)"></a>Azure Command Line Interface (CLI)
 
-從 CLI 命令列，輸入下列命令將資源部署至您為開發環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
+From the CLI command line, type the command below to deploy resources to the resource group you created for the Development environment, replacing [path] with the path to the files you saved in previous steps.
 
-	azure group deployment create -g TestApp1-Development -n Deployment1 -f [path]TestApp1-Template.json -e [path]TestApp1-Parameters-Development.json 
+    azure group deployment create -g TestApp1-Development -n Deployment1 -f [path]TestApp1-Template.json -e [path]TestApp1-Parameters-Development.json 
 
-看到「等待部署完成」訊息數分鐘之後，若成功部署，命令會傳回下列訊息：
+After seeing a "Waiting for deployment to complete" message for a few minutes, the command will return the following if it succeeds:
 
-	info:    Executing command group deployment create
-	+ Initializing template configurations and parameters
-	+ Creating a deployment
-	info:    Created template deployment "Deployment1"
-	+ Waiting for deployment to complete
-	data:    DeploymentName     : Deployment1
-	data:    ResourceGroupName  : TestApp1-Development
-	data:    ProvisioningState  : Succeeded
-	data:    Timestamp          : XXXX-XX-XXT20:20:23.5202316Z
-	data:    Mode               : Incremental
-	data:    Name                           Type          Value
-	data:    -----------------------------  ------------  ----------------------------
-	data:    siteName                       String        TestApp1DevApp
-	data:    hostingPlanName                String        TestApp1DevPlan
-	data:    siteLocation                   String        Central US
-	data:    sku                            String        Free
-	data:    workerSize                     String        0
-	data:    serverName                     String        testapp1devsrv
-	data:    serverLocation                 String        Central US
-	data:    administratorLogin             String        testapp1Admin
-	data:    administratorLoginPassword     SecureString  undefined
-	data:    databaseName                   String        testapp1devdb
-	data:    collation                      String        SQL_Latin1_General_CP1_CI_AS
-	data:    edition                        String        Standard
-	data:    maxSizeBytes                   String        1073741824
-	data:    requestedServiceObjectiveName  String        S0
-	info:    group deployment create command OKx
+    info:    Executing command group deployment create
+    + Initializing template configurations and parameters
+    + Creating a deployment
+    info:    Created template deployment "Deployment1"
+    + Waiting for deployment to complete
+    data:    DeploymentName     : Deployment1
+    data:    ResourceGroupName  : TestApp1-Development
+    data:    ProvisioningState  : Succeeded
+    data:    Timestamp          : XXXX-XX-XXT20:20:23.5202316Z
+    data:    Mode               : Incremental
+    data:    Name                           Type          Value
+    data:    -----------------------------  ------------  ----------------------------
+    data:    siteName                       String        TestApp1DevApp
+    data:    hostingPlanName                String        TestApp1DevPlan
+    data:    siteLocation                   String        Central US
+    data:    sku                            String        Free
+    data:    workerSize                     String        0
+    data:    serverName                     String        testapp1devsrv
+    data:    serverLocation                 String        Central US
+    data:    administratorLogin             String        testapp1Admin
+    data:    administratorLoginPassword     SecureString  undefined
+    data:    databaseName                   String        testapp1devdb
+    data:    collation                      String        SQL_Latin1_General_CP1_CI_AS
+    data:    edition                        String        Standard
+    data:    maxSizeBytes                   String        1073741824
+    data:    requestedServiceObjectiveName  String        S0
+    info:    group deployment create command OKx
 
-如果命令未成功，請解決任何錯誤訊息並再試一次。常見的問題為使用未遵守 Azure 資源命名限制的參數值。其他疑難排解秘訣可在[在 Azure 中疑難排解資源群組部署](./resource-manager-troubleshoot-deployments-cli.md)一文中找到。
+If the command does not succeed, resolve any error messages and try it again.  Common problems are using parameter values that do not adhere to Azure resource naming constraints. Other troubleshooting tips can be found in the [Troubleshooting resource group deployments in Azure](./resource-manager-troubleshoot-deployments-cli.md) article.
 
-從 CLI 命令列，輸入下列命令將資源部署至您為測試環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
+From the CLI command line, type the command below to deploy resources to the resource group you created for the Test environment, replacing [path] with the path to the files you saved in previous steps.
 
-	azure group deployment create -g TestApp1-Test -n Deployment1 -f [path]TestApp1-Template.json -e [path]TestApp1-Parameters-Test.json
+    azure group deployment create -g TestApp1-Test -n Deployment1 -f [path]TestApp1-Template.json -e [path]TestApp1-Parameters-Test.json
 
-從 CLI 命令列，輸入下列命令將資源部署至您為生產前環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
+From the CLI command line, type the command below to deploy resources to the resource group you created for the Pre-Production environment, replacing [path] with the path to the files you saved in previous steps.
 
-	azure group deployment create -g TestApp1-Pre-Production -n Deployment1 -f [path]TestApp1-Template.json -e [path]TestApp1-Parameters-Pre-Production.json
+    azure group deployment create -g TestApp1-Pre-Production -n Deployment1 -f [path]TestApp1-Template.json -e [path]TestApp1-Parameters-Pre-Production.json
   
-###PowerShell
+###<a name="powershell"></a>PowerShell
 
-在 Azure PowerShell (版本 1.01 或更新版本) 命令提示字元中輸入下列命令，將資源部署至您為開發環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
+From an Azure PowerShell (version 1.01 or higher) command prompt, type the command below to deploy resources to the resource group you created for the Development environment, replacing [path] with the path to the files you saved in previous steps.
 
-	New-AzureRmResourceGroupDeployment -ResourceGroupName TestApp1-Development -TemplateFile [path]TestApp1-Template.json -TemplateParameterFile [path]TestApp1-Parameters-Development.json -Name Deployment1 
+    New-AzureRmResourceGroupDeployment -ResourceGroupName TestApp1-Development -TemplateFile [path]TestApp1-Template.json -TemplateParameterFile [path]TestApp1-Parameters-Development.json -Name Deployment1 
 
-游標閃爍數分鐘之後，若成功部署，命令會傳回下列訊息：
+After seeing a blinking cursor for a few minutes, the command will return the following if it succeeds:
 
-	DeploymentName    : Deployment1
-	ResourceGroupName : TestApp1-Development
-	ProvisioningState : Succeeded
-	Timestamp         : XX/XX/XXXX 2:44:48 PM
-	Mode              : Incremental
-	TemplateLink      : 
-	Parameters        : 
-	                    Name             Type                       Value     
-	                    ===============  =========================  ==========
-	                    siteName         String                     TestApp1DevApp
-	                    hostingPlanName  String                     TestApp1DevPlan
-	                    siteLocation     String                     Central US
-	                    sku              String                     Free      
-	                    workerSize       String                     0         
-	                    serverName       String                     testapp1devsrv
-	                    serverLocation   String                     Central US
-	                    administratorLogin  String                     testapp1Admin
-	                    administratorLoginPassword  SecureString                         
-	                    databaseName     String                     testapp1devdb
-	                    collation        String                     SQL_Latin1_General_CP1_CI_AS
-	                    edition          String                     Standard  
-	                    maxSizeBytes     String                     1073741824
-	                    requestedServiceObjectiveName  String                     S0        
-	                    
-	Outputs           :
+    DeploymentName    : Deployment1
+    ResourceGroupName : TestApp1-Development
+    ProvisioningState : Succeeded
+    Timestamp         : XX/XX/XXXX 2:44:48 PM
+    Mode              : Incremental
+    TemplateLink      : 
+    Parameters        : 
+                        Name             Type                       Value     
+                        ===============  =========================  ==========
+                        siteName         String                     TestApp1DevApp
+                        hostingPlanName  String                     TestApp1DevPlan
+                        siteLocation     String                     Central US
+                        sku              String                     Free      
+                        workerSize       String                     0         
+                        serverName       String                     testapp1devsrv
+                        serverLocation   String                     Central US
+                        administratorLogin  String                     testapp1Admin
+                        administratorLoginPassword  SecureString                         
+                        databaseName     String                     testapp1devdb
+                        collation        String                     SQL_Latin1_General_CP1_CI_AS
+                        edition          String                     Standard  
+                        maxSizeBytes     String                     1073741824
+                        requestedServiceObjectiveName  String                     S0        
+                        
+    Outputs           :
 
-  如果命令未成功，請解決任何錯誤訊息並再試一次。常見的問題為使用未遵守 Azure 資源命名限制的參數值。其他疑難排解秘訣可在[在 Azure 中疑難排解資源群組部署](./resource-manager-troubleshoot-deployments-powershell.md)一文中找到。
+  If the command does not succeed, resolve any error messages and try it again.  Common problems are using parameter values that do not adhere to Azure resource naming constraints. Other troubleshooting tips can be found in the [Troubleshooting resource group deployments in Azure](./resource-manager-troubleshoot-deployments-powershell.md) article.
 
-  從 PowerShell 命令提示字元，輸入下列命令將資源部署至您為測試環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
+  From a PowerShell command prompt, type the command below to deploy resources to the resource group you created for the Test environment, replacing [path] with the path to the files you saved in previous steps.
 
-	New-AzureRmResourceGroupDeployment -ResourceGroupName TestApp1-Test -TemplateFile [path]TestApp1-Template.json -TemplateParameterFile [path]TestApp1-Parameters-Test.json -Name Deployment1
+    New-AzureRmResourceGroupDeployment -ResourceGroupName TestApp1-Test -TemplateFile [path]TestApp1-Template.json -TemplateParameterFile [path]TestApp1-Parameters-Test.json -Name Deployment1
 
-  從 PowerShell 命令提示字元，輸入下列命令將資源部署至您為生產前環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
+  From a PowerShell command prompt, type the command below to deploy resources to the resource group you created for the Pre-Production environment, replacing [path] with the path to the files you saved in previous steps.
 
-	New-AzureRmResourceGroupDeployment -ResourceGroupName TestApp1-Pre-Production -TemplateFile [path]TestApp1-Template.json -TemplateParameterFile [path]TestApp1-Parameters-Pre-Production.json -Name Deployment1
+    New-AzureRmResourceGroupDeployment -ResourceGroupName TestApp1-Pre-Production -TemplateFile [path]TestApp1-Template.json -TemplateParameterFile [path]TestApp1-Parameters-Pre-Production.json -Name Deployment1
 
-在原始檔控制系統中可以使用應用程式程式碼定義範本和參數檔案的版本並加以維護。您也可以將上述命令儲存到指令碼檔案，並將它們和程式碼一起儲存。
+The template and parameter files can be versioned and maintained with your application code in a source control system.  You could also save the commands above to script files and save them with your code as well.
 
-> [AZURE.NOTE] 您可以直接按一下[佈建 Web 應用程式與 SQL Database](https://azure.microsoft.com/documentation/templates/201-web-app-sql-database/) 一文中的 [部署至 Azure] 按鈕以將範本部署至 Azure。您可能會發現這對了解範本很有幫助，但這麼做並不能讓您使用應用程式程式碼編輯、定義版本及儲存您的範本和參數值；因此本文中並未涵蓋關於此方法的進一步詳細資料。
+> [AZURE.NOTE] You can deploy the template to Azure directly by clicking the "Deploy to Azure" button on the [Provision a Web App with a SQL Database](https://azure.microsoft.com/documentation/templates/201-web-app-sql-database/) article.  You might find this helpful to learn about templates, but doing so does not enable you to edit, version, and save your template and parameter values with your application code, so further detail about this method is not covered in this article.
 
-## 維護環境
-在整個開發過程中，不同環境中的 Azure 資源組態可能會出現有意或無意的不一致變更。這會在應用程式開發週期中造成不必要的疑難排解和問題解決。
+## <a name="maintain-environments"></a>Maintain environments
+Throughout development, configuration of the Azure resources in the different environments may be inconsistently changed intentionally or accidentally.  This can cause unnecessary troubleshooting and problem resolution during the application development cycle.
 
-1. 開啟 [Azure 入口網站](https://portal.azure.com)以變更環境。
-2. 以您用來完成上述步驟所使用的相同帳戶登入。
-3. 如下圖所示，按一下 [瀏覽] --> [資源群組] \(您可能需要向下捲動才會看到資源群組)。
-   ![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
-4. 按一下上圖中的 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及您在上一個步驟中建立的三個資源群組，如上圖所示。按一下 [TestApp1-Development 資源群組] 之後，您會看到刀鋒視窗，列出範本在您於上一個步驟完成的 TestApp1-Development 資源群組部署中所建立的資源。按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 TestApp1DevApp，刪除 TestApp1DevApp Web 應用程式資源，再按一下 [TestApp1DevApp Web 應用程式] 刀鋒視窗中的 [刪除]。
-   ![入口網站](./media/solution-dev-test-environments/portal2.png)
-5. 當入口網站提示您是否確定要刪除資源時，按一下 [是]。關閉 [TestApp1-Development 資源群組] 刀鋒視窗並重新開啟，顯示的內容不會出現您剛才刪除的 Web 應用程式。資源群組的內容現在與其應有內容不同。您可以從多個資源群組刪除多個資源來進一步實驗，或甚至變更部分資源的組態設定。如果不使用 Azure 入口網站從資源群組刪除資源，您可以使用 PowerShell [Remove-AzureResource](https://msdn.microsoft.com/library/azure/dn757676.aspx) 命令，或來自 CLI 的 "azure resource delete" 命令來完成相同工作。
-6. 要讓所有應該位於資源群組中的所有資源和設定回到原本狀態，請使用您在[將資源部署至環境](#deploy-resources-to-environments)一節中相同的命令，將環境重新部署至資源群組，但請用 "Deployment2." 取代 "Deployment1"。
-7.  如同步驟 4 中的圖所顯示的 TestApp1-Development 刀鋒視窗中的 [摘要] 區段，您會看到在上一個步驟中刪除的 Web 應用程式以及其他刪除的資源再次出現。如果您變更了任何資源的設定，也可以確認參數檔案中的這些設定是否也回到了原本的值。利用 Azure 資源管理員範本部署環境的優點之一是您可以隨時輕鬆地將環境重新部署回已知狀態。
-8. 如果您按一下圖中 [上次部署] 下的文字，您會看到刀鋒視窗顯示資源群組的部署歷程記錄。因為您將名稱 "Deployment1" 用於第一個部署，將 "Deployment2" 用於第二個部署，所以您將有兩個項目。按一下部署會顯示刀鋒視窗，其顯示每個部署的結果。
-  ![入口網站](./media/solution-dev-test-environments/portal3.png)
+1. Change the environments by opening the [Azure portal](https://portal.azure.com). 
+2. Sign into it with the same account you used to complete the steps above. 
+3. As shown in the picture below, click Browse-->Resource groups (you may need to scroll down to see Resource groups).
+   ![Portal](./media/solution-dev-test-environments/rgbrowse.png)
+4. After clicking on Resource groups in the picture above, you'll see the Resource groups blade and the three resource groups you created in a previous step as shown in the picture below. Click on the TestApp1-Development resource group and you'll see the blade that lists the resources created by the template in the TestApp1-Development resource group deployment you completed in a previous step.  Delete the TestApp1DevApp Web App resource by clicking TestApp1DevApp in the TestApp1-Development Resource group blade, and then clicking Delete in the TestApp1DevApp Web app blade.
+   ![Portal](./media/solution-dev-test-environments/portal2.png)
+5. Click "Yes" when the portal prompts you as to whether you're sure you want to delete the resource. Closing the TestApp1-Development Resource group blade and re-opening it will now show it without the Web app you just deleted.  The contents of the resource group are now different than they should be. You can further experiment by deleting multiple resources from multiple resource groups or even changing configuration settings for some of the resources. Instead of using the Azure portal to delete a resource from a resource group, you could use the PowerShell [Remove-AzureResource](https://msdn.microsoft.com/library/azure/dn757676.aspx) command or the or "azure resource delete" command from the CLI to accomplish the same task.
+6. To get all of the resources and configuration that are supposed to be in the resource groups back to the state they should be in, re-deploy the environments to the resource groups using the same commands you used in the [Deploy resources to environments](#deploy-resources-to-environments) section, but replace "Deployment1" with "Deployment2."
+7.  As shown in the Summary section of the TestApp1-Development blade in the picture shown in step 4, you'll see that the Web app you deleted in the portal in the previous step exists again, as do any other resources you may have chosen to delete. If you changed the configuration of any of the resources, you can also verify that they've been set back to the values in the parameter files too. One of the advantages of deploying your environments with Azure Resource Manager templates is that you can easily re-deploy the environments back to a known state at any time.
+8. If you click on the text under "Last deployment" in the picture below, you'll see a blade that shows the deployment history for the resource group.  Since you used the name "Deployment1" for the first deployment and "Deployment2" for the second deployment, you'll have two entries.  Clicking on a deployment will display a blade that shows the results for each deployment.
+  ![Portal](./media/solution-dev-test-environments/portal3.png)
 
 
 
-## 刪除環境
-您會想刪除已完成的環境，才能不支付不再使用的 Azure 資源費用。刪除環境比建立它們還要容易。在上一個步驟中，已為每個環境分別建立 Azure 資源群組，而且這些資源已部署到資源群組中。
+## <a name="delete-environments"></a>Delete environments
+Once you're finished using an environment, you'll want to delete it so you don't incur usage charges for Azure resources you're no longer using.  Deleting environments is even easier than creating them.  In previous steps, individual Azure Resource Groups were created for each environment and then resources were deployed into the resource groups. 
 
-使用下列任何一種方法刪除環境。 每一種方法都會達到完全相同的結果。
+Delete the environments using any of the methods below.  All methods will achieve the same outcome.
 
-### Azure CLI
+### <a name="azure-cli"></a>Azure CLI
 
-收到 CLI 提示時，輸入下列內容：
+From a CLI prompt, type the following:
 
-	azure group delete "TestApp1-Development"
+    azure group delete "TestApp1-Development"
 
-出現提示時，請輸入 y 並按下 Enter 以移除開發環境和其所有資源。請稍候幾分鐘，命令會傳回下列內容：
+When prompted, enter y and then press enter to remove the Development environment and all of its resources. After a few minutes, the command will return the following:
 
-	info:    group delete command OK
+    info:    group delete command OK
 
-收到 CLI 提示時，輸入下列內容以刪除剩餘的環境：
+From a CLI prompt, type the following to delete the remaining environments:
 
-	azure group delete "TestApp1-Test"
-	azure group delete "TestApp1-Pre-Production"
+    azure group delete "TestApp1-Test"
+    azure group delete "TestApp1-Pre-Production"
   
-### PowerShell
+### <a name="powershell"></a>PowerShell
 
-在 Azure PowerShell (版本 1.01 或更新版本) 命令提示字元中，輸入下列命令以刪除資源群組及其所有內容。
+From an Azure PowerShell (version 1.01 or higher) command prompt, type the command below to delete the resource group and all its contents.    
 
-	Remove-AzureRmResourceGroup -Name TestApp1-Development
+    Remove-AzureRmResourceGroup -Name TestApp1-Development
 
-當系統提示時，如果您確定要移除資源群組，請輸入 y，再按下 Enter 鍵。
+When prompted if you're sure you want to remove the resource group, enter y, followed by the enter key.
 
-輸入下列內容以刪除剩餘的環境：
+Type the following to delete the remaining environments:
 
-	Remove-AzureRmResourceGroup -Name TestApp1-Test
-	Remove-AzureRmResourceGroup -Name TestApp1-Pre-Production
+    Remove-AzureRmResourceGroup -Name TestApp1-Test
+    Remove-AzureRmResourceGroup -Name TestApp1-Pre-Production
 
-### Azure 入口網站
+### <a name="azure-portal"></a>Azure portal
 
-1. 在 Azure 入口網站中，瀏覽到資源群組，如同上一個步驟所述。
-2. 選取 [TestApp1-Development 資源群組]，再按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 [刪除]。隨即顯示新的刀鋒視窗。輸入資源群組名稱，再按一下 [刪除] 按鈕。![入口網站](./media/solution-dev-test-environments/rgdelete.png)
-3. 用您刪除 TestApp1-Development 資源群組相同的方式，刪除 TestApp1-Test 和 TestApp1-Pre-Production 資源群組。
+1. In the Azure portal, browse to Resource groups as you did in previous steps. 
+2. Select the TestApp1-Development resource group and then click Delete in the TestApp1-Development Resource group blade. A new blade will appear. Enter the resource group name and click the Delete button.
+![Portal](./media/solution-dev-test-environments/rgdelete.png)
+3. Delete the TestApp1-Test and TestApp1-Pre-Production resource groups the same way you deleted the TestApp1-Development resource group.
 
-不論您使用哪種方法，資源群組及其包含的所有資源將不再存在，而且您不再需要負擔資源的費用。
+Regardless of the method you use, the resource groups and all of the resources they contained will no longer exist, and you'll no longer incur billing expenses for the resources.  
 
-若要最小化您在應用程式開發期間使用 Azure 資源所負擔的費用，您可以使用 [Azure 自動化](automation/automation-intro.md)排程工作：
+To minimize the Azure resource utilization expenses you incur during application development you can use [Azure Automation](automation/automation-intro.md) to schedule jobs that:
 
-- 在每天結束時停止虛擬機器並在每天開始時重新啟動它們。
-- 在每天結束時刪除整個環境並在每天開始時重新建立它們。
+- Stop virtual machines at the end of each day and restart them at the start of each day.
+- Delete whole environments at the end of each day and re-create them at the start of each day.
  
-既然您已體驗過建立、維護和刪除開發及測試環境有多容易，您可以藉由利用上述步驟進一步實驗並閱讀本文中包含的參考內容，深入了解您剛執行的內容。
+Now that you've experienced how easy it is to create, maintain, and delete development and test environments, you can learn more about what you just did by further experimenting with the steps above and reading the references contained in this article.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 藉由指派 Microsoft Azure AD 群組或使用者至有能力在 Azure 資源上執行作業子集的特定角色，在每個環境中[委派系統管理控制](./active-directory/role-based-access-control-configure.md)到不同的資源。
-- [指派標籤](resource-group-using-tags.md)至每個環境的資源群組及/或個別資源。您可能會將「環境」標籤新增至資源群組並設定其值以對應至您的環境名稱。當您需要組織資源以進行計費或管理時，標記可能特別有用。
-- 在 [Azure 入口網站](https://portal.azure.com)中監視資源群組中資源的警示和計費。
+- [Delegate administrative control](./active-directory/role-based-access-control-configure.md) to different resources in each environment by assigning Microsoft Azure AD groups or users to specific roles that have the ability to perform a subset of operations on Azure resources.
+- [Assign tags](resource-group-using-tags.md) to the resource groups for each environment and/or the individual resources. You might add an "Environment" tag to your resource groups and set its value to correspond to your environment names. Tags can be particularly helpful when you need to organize resources for billing or management.
+- Monitor alerts and billing for resource group resources in the [Azure portal](https://portal.azure.com).
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

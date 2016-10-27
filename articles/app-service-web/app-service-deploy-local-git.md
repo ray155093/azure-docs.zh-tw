@@ -1,183 +1,189 @@
 <properties
-	pageTitle="本機 Git 部署至 Azure App Service"
-	description="了解如何啟用本機 Git 部署至 Azure App Service。"
-	services="app-service"
-	documentationCenter=""
-	authors="dariagrigoriu"
-	manager="wpickett"
-	editor="mollybos"/>
+    pageTitle="Local Git Deployment to Azure App Service"
+    description="Learn how to enable local Git deployment to Azure App Service."
+    services="app-service"
+    documentationCenter=""
+    authors="dariagrigoriu"
+    manager="wpickett"
+    editor="mollybos"/>
 
 <tags
-	ms.service="app-service"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/13/2016"
-	ms.author="dariagrigoriu"/>
+    ms.service="app-service"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="06/13/2016"
+    ms.author="dariagrigoriu"/>
     
-# 本機 Git 部署至 Azure App Service
 
-本教學課程會示範如何將應用程式從本機電腦上的 Git 儲存機制部署到 [Azure App Service]。App Service 支援使用這個方法和 [Azure 入口網站]的 [本機 Git] 部署選項。本文中描述的許多 Git 命令，會在使用[這裡](app-service-web-get-started.md)描述的[Azure 命令列工具介面]來建立 App Service 應用程式時自動執行。
+# <a name="local-git-deployment-to-azure-app-service"></a>Local Git Deployment to Azure App Service
 
-## 必要條件
+This tutorial shows you how to deploy your app to [Azure App Service] from a Git repository on your local computer. App Service supports this approach with the **Local Git** deployment option in the [Azure Portal].  
+Many of the Git commands described in this article are performed automatically when creating an App Service app using the [Azure Command-Line Interface] as described [here](app-service-web-get-started.md).
 
-若要完成本教學課程，您需要：
+## <a name="prerequisites"></a>Prerequisites
 
-- Git。您可以在[這裡](http://www.git-scm.com/downloads)下載安裝二進位檔。
-- Git 基本知識。
-- Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[申請免費試用](https://azure.microsoft.com/pricing/free-trial)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details)。
+To complete this tutorial, you need:
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期的入門應用程式。不需要信用卡；無需承諾。
+- Git. You can download the installation binary [here](http://www.git-scm.com/downloads).  
+- Basic knowledge of Git.
+- A Microsoft Azure account. If you don't have an account, you can [sign up for a free trial](https://azure.microsoft.com/pricing/free-trial) or [activate your Visual Studio subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details).
 
-## <a id="Step1"></a>步驟 1：建立本機儲存機制
+>[AZURE.NOTE] If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751), where you can immediately create a short-lived starter app in App Service. No credit cards required; no commitments.  
 
-請執行下列工作以建立新的 Git 儲存機制。
+## <a name="<a-name="step1"></a>step-1:-create-a-local-repository"></a><a name="Step1"></a>Step 1: Create a local repository
 
-1. 啟動命令列工具，例如 **GitBash** (Windows) 或 **Bash** (Unix Shell)。在 OS X 系統上，您可以透過 **[終端機]** 應用程式來存取命令列。
+Perform the following tasks to create a new Git repository.
 
-2. 瀏覽至部署內容所在的目錄。
+1. Start a command-line tool, such as **GitBash** (Windows) or **Bash** (Unix Shell). On OS X systems you can access the command-line through the **Terminal** application.
 
-3. 使用下列命令來初始化新的 Git 儲存機制：
+2. Navigate to the directory where the content to deploy would be located.
 
-		git init
+3. Use the following command to initialize a new Git repository:
 
-## <a id="Step2"></a>步驟 2︰認可內容
+        git init
 
-App Service 支援以各種程式設計語言建立的應用程式。
+## <a name="<a-name="step2"></a>step-2:-commit-your-content"></a><a name="Step2"></a>Step 2: Commit your content
 
-1. 如果您的儲存機制已經包含內容，請略過這點，並移至下面的第 2 點。如果您的儲存機制尚未包含內容，請只要填入靜態的 .html 檔案，如下所示︰
+App Service supports applications created in a variety of programming languages. 
 
-    - 使用文字編輯器，在 Git 儲存機制的根目錄建立新檔案 **index.html**。
-    - 在 index.html 檔案中加入並儲存下列文字內容：*Hello Git!*
+1. If your repository already includes content skip this point and move to point 2 below. If your repository does not already include content simply populate with a static .html file as follows: 
+
+    - Using a text editor, create a new file named **index.html** at the root of the Git repository
+    - Add the following text as the contents for the index.html file and save it: *Hello Git!*
         
-2. 從命令列，驗證您位在 Git 儲存機制的根目錄下。然後使用下列命令將檔案加入儲存機制中：
+2. From the command-line, verify that you are under the root of your Git repository. Then use the following command to add files to your repository:
 
-		git add -A 
+        git add -A 
 
-4. 接著，使用下列命令來認可對儲存機制的變更：
+4. Next, commit the changes to the repository by using the following command:
 
-		git commit -m "Hello Azure App Service"
+        git commit -m "Hello Azure App Service"
 
-## <a id="Step3"></a>步驟 3︰啟用 App Service 應用程式儲存機制
+## <a name="<a-name="step3"></a>step-3:-enable-the-app-service-app-repository"></a><a name="Step3"></a>Step 3: Enable the App Service app repository
 
-執行下列步驟以啟用 App Service 應用程式的 Git 儲存機制。
+Perform the following steps to enable a Git repository for your App Service app.
 
-1. 登入 [Azure 入口網站]。
+1. Log in to the [Azure Portal].
 
-2. 在 App Service 應用程式的刀鋒視窗中，按一下 [設定] > [部署來源]。依序按一下 [選擇來源]、[本機 Git 儲存機制] 以及 [確定]。
+2. In your App Service app's blade, click **Settings > Deployment source**. Click **Choose source**, then click **Local Git Repository**, and then click **OK**.  
 
-	![本機 Git 儲存機制](./media/app-service-deploy-local-git/local_git_selection.png)
+    ![Local Git Repository](./media/app-service-deploy-local-git/local_git_selection.png)
 
-3. 如果這是您第一次在 Azure 中設定儲存機制，就需要為它建立登入認證。您將使用這些認證來登入 Azure 儲存機制，並推播來自您本機 Git 儲存機制的變更。從應用程式的刀鋒視窗中，按一下 [設定] > [部署認證]，然後設定您的部署使用者名稱和密碼。完成後，按一下 [儲存]。
+3. If this is your first time setting up a repository in Azure, you need to create login credentials for it. You will use them to log into the Azure repository and push changes from your local Git repository. From your app's blade, click **Settings > Deployment credentials**, then configure your deployment username and password. When you're done, click **Save**.
 
-	![](./media/app-service-deploy-local-git/deployment_credentials.png)
+    ![](./media/app-service-deploy-local-git/deployment_credentials.png)
 
-## <a id="Step4"></a>步驟 4：部署專案
+## <a name="<a-name="step4"></a>step-4:-deploy-your-project"></a><a name="Step4"></a>Step 4: Deploy your project
 
-使用下列步驟，使用本機 Git 將應用程式發佈至 App Service。
+Use the following steps to publish your app to App Service using Local Git.
 
-1. 在 Azure 入口網站上的應用程式刀鋒視窗中，按一下 [Git URL] 的 [設定] > [屬性]。
+1. In your app's blade in the Azure Portal, click **Settings > Properties** for the **Git URL**.
 
-	![](./media/app-service-deploy-local-git/git_url.png)
+    ![](./media/app-service-deploy-local-git/git_url.png)
 
-	**Git URL** 是從本機儲存機制部署的遠端參考。在下列步驟中，您將使用此 URL。
+    **Git URL** is the remote reference to deploy to from your local repository. You'll use this URL in the following steps.
 
-2. 使用命令列驗證您位在 Git 儲存機制的根目錄。
+2. Using the command-line, verify that you are in the root of your local Git repository.
 
-3. 使用 `git remote` 加入從步驟 1 的 **Git URL** 中所列的遠端參考。您的命令將類似以下範例：
+3. Use `git remote` to add the remote reference listed in **Git URL** from step 1. Your command will look similar to the following:
 
-		git remote add azure https://<username>@localgitdeployment.scm.azurewebsites.net:443/localgitdeployment.git         
-    > [AZURE.NOTE] **remote** 命令會將指定的參考新增至遠端儲存機制。在此範例中，它會為您 Web 應用程式的儲存機制建立名為 'azure' 的參考。
+        git remote add azure https://<username>@localgitdeployment.scm.azurewebsites.net:443/localgitdeployment.git         
+    > [AZURE.NOTE] The **remote** command adds a named reference to a remote repository. In this example, it creates a reference named 'azure' for your web app's repository.
 
-4. 使用剛建立的新 **zure** 遠端將您的內容推送至 App Service。
+4. Push your content to App Service using the new **azure** remote you just created.
 
-		git push azure master
+        git push azure master
 
-	系統將會提示您輸入在 Azure 入口網站中重設部署認證時所建立的密碼。輸入密碼 (請注意，當您輸入密碼時，Gitbash 不會對主控台回應星號)。
+    You will be prompted for the password you created earlier when you reset your deployment credentials in the Azure Portal. Enter the password (note that Gitbash does not echo asterisks to the console as you type your password). 
        
-5. 回到 Azure 入口網站中的應用程式。最近推送的記錄項目應該會顯示在 [部署] 刀鋒視窗中。
+5. Go back to your app in the Azure Portal. A log entry of your most recent push should be displayed in the **Deployments** blade. 
 
-	![](./media/app-service-deploy-local-git/deployment_history.png)
+    ![](./media/app-service-deploy-local-git/deployment_history.png)
 
-6. 按一下應用程式刀鋒視窗頂端的 [瀏覽] 按鈕確認是否已部署內容。
+6. Click the **Browse** button at the top of the app's blade to verify the content has been deployed. 
     
-## <a id="Step5"></a>疑難排解
+## <a name="<a-name="step5"></a>troubleshooting"></a><a name="Step5"></a>Troubleshooting
 
-使用 Git 發佈至 Azure 的 App Service 應用程式時，下列是經常會遇到的錯誤或問題：
-
-****
-
-**徵兆**：無法存取 '[siteURL]'：無法連接至 [scmAddress]
-
-**原因**：如果應用程式尚未啟動並執行，就會發生這個錯誤。
-
-**解決方式**：在 Azure 入口網站中啟動應用程式。除非應用程式正在執行，否則 Git 部署將無法運作。
-
+The following are errors or problems commonly encountered when using Git to publish to an App Service app in Azure:
 
 ****
 
-**徵兆**：無法解析主機 'hostname'
+**Symptom**: Unable to access '[siteURL]': Failed to connect to [scmAddress]
 
-**原因**：如果建立 'azure' 遠端時所輸入的位址資訊不正確，便有可能發生此錯誤。
+**Cause**: This error can occur if the app is not up and running.
 
-**解決方式**：使用 `git remote -v` 命令，列出所有遠端以及相關聯的 URL。驗證 'azure' 遠端的 URL 是否正確。如有需要，移除此遠端並使用正確的 URL 重新建立。
+**Resolution**: Start the app in the Azure Portal. Git deployment will not work unless the app is running. 
+
 
 ****
 
-**徵兆**：通常沒有參考且沒有指定；不執行任何動作。或許您應該指定分支，例如 'master'。
+**Symptom**: Couldn't resolve host 'hostname'
 
-**原因**：執行 git 推送操作時，如果您沒有指定分支，且沒有設定 Git 所使用的 push.default 值，便有可能發生此錯誤。
+**Cause**: This error can occur if the address information entered when creating the 'azure' remote was incorrect.
 
-**解決方式**：指定主要分支，重新執行推送操作。例如：
-
-	git push azure master
+**Resolution**: Use the `git remote -v` command to list all remotes, along with the associated URL. Verify that the URL for the 'azure' remote is correct. If needed, remove and recreate this remote using the correct URL.
 
 ****
 
-**徵兆**：src refspec [branchname] 沒有任何符合項目。
+**Symptom**: No refs in common and none specified; doing nothing. Perhaps you should specify a branch such as 'master'.
 
-**原因**：如果您嘗試在 'azure' 遠端上推送至除了主要以外的分支，便有可能發生此錯誤。
+**Cause**: This error can occur if you do not specify a branch when performing a git push operation, and have not set the push.default value used by Git.
 
-**解決方式**：指定主要分支，重新執行推送操作。例如：
+**Resolution**: Perform the push operation again, specifying the master branch. For example:
 
-	git push azure master
+    git push azure master
 
 ****
 
-**徵兆**：錯誤 - 對遠端儲存機制認可變更，但您的 Web 應用程式未更新。
+**Symptom**: src refspec [branchname] does not match any.
 
-**原因**：如果您打算部署包含 package.json 檔案的 Node.js 應用程式，但該檔案指出需要額外的模組，便有可能發生此錯誤。
+**Cause**: This error can occur if you attempt to push to a branch other than master on the 'azure' remote.
 
-**解決方式**：在發生此錯誤之前應該會有記錄其他包含 'npm ERR!' 的訊息，這些訊息可提供其他關於此失敗的內容。下列是此錯誤的已知原因及其對應的 'npm ERR!' 訊息：
+**Resolution**: Perform the push operation again, specifying the master branch. For example:
 
-* **格式錯誤的 package.json 檔案**：npm ERR! 無法讀取相依性。
+    git push azure master
 
-* **原生模組沒有適用於 Windows 的二進位檔發佈**：
+****
 
-	* npm ERR! `cmd "/c" "node-gyp rebuild"` failed with 1
+**Symptom**: Error - Changes committed to remote repository but your web app not updated.
 
-		或
+**Cause**: This error can occur if you are deploying a Node.js app containing a package.json file that specifies additional required modules.
 
-	* npm ERR! [modulename@version] preinstall: `make || gmake`
+**Resolution**: Additional messages containing 'npm ERR!' should be logged prior to this error, and can provide additional context on the failure. The following are known causes of this error and the corresponding 'npm ERR!' message:
+
+* **Malformed package.json file**: npm ERR! Couldn't read dependencies.
+
+* **Native module that does not have a binary distribution for Windows**:
+
+    * npm ERR! \`cmd "/c" "node-gyp rebuild"\` failed with 1
+
+        OR
+
+    * npm ERR! [modulename@version] preinstall: \`make || gmake\`
 
 
-## 其他資源
+## <a name="additional-resources"></a>Additional Resources
 
-* [Git 文件](http://git-scm.com/documentation)
-* [專案 Kudu 文件](https://github.com/projectkudu/kudu/wiki)
-* [持續部署至 Azure App Service](app-service-continuous-deployment.md)
-* [如何使用適用於 Azure 的 PowerShell](../powershell-install-configure.md)
-* [如何使用 Azure 命令列介面](../xplat-cli-install.md)
+* [Git documentation](http://git-scm.com/documentation)
+* [Project Kudu documentation](https://github.com/projectkudu/kudu/wiki)
+* [Continous Deployment to Azure App Service](app-service-continuous-deployment.md)
+* [How to use PowerShell for Azure](../powershell-install-configure.md)
+* [How to use the Azure Command-Line Interface](../xplat-cli-install.md)
 
 [Azure App Service]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
-[Azure Developer Center]: http://azure.microsoft.com/develop/overview/
-[Azure 入口網站]: https://portal.azure.com
+[Azure Developer Center]: http://www.windowsazure.com/en-us/develop/overview/
+[Azure Portal]: https://portal.azure.com
 [Git website]: http://git-scm.com
 [Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
-[Azure 命令列工具介面]: https://azure.microsoft.com/documentation/articles/xplat-cli-azure-resource-manager/
+[Azure Command-Line Interface]: https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-azure-resource-manager/
 
 [Using Git with CodePlex]: http://codeplex.codeplex.com/wikipage?title=Using%20Git%20with%20CodePlex&referringTitle=Source%20control%20clients&ProjectName=codeplex
 [Quick Start - Mercurial]: http://mercurial.selenic.com/wiki/QuickStart
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

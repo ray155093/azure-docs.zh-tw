@@ -1,6 +1,6 @@
 <properties
-   pageTitle="StorSimple Virtual Array 系統需求"
-   description="了解 StorSimple Virtual Array 的軟體和網路功能需求"
+   pageTitle="StorSimple Virtual Array system requirements"
+   description="Learn about the software and networking requirements for your StorSimple Virtual Array"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -16,119 +16,124 @@
    ms.date="07/14/2016"
    ms.author="alkohli"/>
 
-# StorSimple Virtual Array 系統需求
 
-## 概觀
+# <a name="storsimple-virtual-array-system-requirements"></a>StorSimple Virtual Array system requirements
 
-本文說明 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置) 和存取陣列的儲存體用戶端重要的系統需求。建議您先仔細檢閱資訊，再部署 StorSimple 系統，然後在部署和後續作業期間，必要時回顧參考。
+## <a name="overview"></a>Overview
 
-系統需求包括：
+This article describes important system requirements for your Microsoft Azure StorSimple Virtual Array (also known as StorSimple on-premises virtual device or StorSimple virtual device) and for the storage clients accessing the array. We recommend that you review the information carefully before you deploy your StorSimple system, and then refer back to it as necessary during deployment and subsequent operation.
 
--   **儲存體用戶端的軟體需求** - 描述支援的虛擬化平台、網頁瀏覽器、iSCSI 啟動器、SMB 用戶端、基本虛擬裝置需求和那些作業系統的任何額外需求。
+The system requirements include:
 
--   **StorSimple 裝置的網路需求** - 提供需要在防火牆中開啟以允許 iSCSI、雲端或管理流量的連接埠相關資訊。
+-   **Software requirements for storage clients** - describes the supported virtualization platforms, web browsers, iSCSI initiators, SMB clients, minimum virtual device requirements, and any additional requirements for those operating systems.
 
-這篇文章中的 StorSimple 系統需求資訊，僅適用於 StorSimple Virtual Array。
+-   **Networking requirements for the StorSimple device** - provides information about the ports that need to be open in your firewall to allow for iSCSI, cloud, or management traffic.
 
-- 針對 8000 系列裝置，請移至 [StorSimple 8000 系列裝置的系統需求](storsimple-system-requirements.md)。
+The StorSimple system requirements information published in this article applies to StorSimple Virtual Arrays only.
+
+- For 8000 series devices, go to [System requirements for your StorSimple 8000 series device](storsimple-system-requirements.md).
  
-- 針對 7000 系列裝置，請移至 [System requirements for your StorSimple 5000-7000 series device (StorSimple 5000-7000 系列裝置的系統需求)](http://onlinehelp.storsimple.com/1_StorSimple_System_Requirements)。
+- For 7000 series devices, go to [System requirements for your StorSimple 5000-7000 series device](http://onlinehelp.storsimple.com/1_StorSimple_System_Requirements).
 
 
-## 軟體需求
+## <a name="software-requirements"></a>Software requirements
 
-軟體需求包括支援的網頁瀏覽器、SMB 版本、虛擬化平台和最低虛擬裝置需求的資訊。
+The software requirements include the information on the supported web browsers, SMB versions, virtualization platforms and the minimum virtual device requirements.
 
-### 支援的虛擬化平台
+### <a name="supported-virtualization-platforms"></a>Supported virtualization platforms
 
 
-| **Hypervisor** | **版本** |
+| **Hypervisor** | **Version**                          |
 |----------------|--------------------------------------|
-| Hyper-V | Windows Server 2008 R2 SP1 和更新版本 |
-| VMware ESXi | 5\.5 和更新版本 |
+| Hyper-V        | Windows Server 2008 R2 SP1 and later |
+| VMware ESXi    | 5.5 and later                        |
 
-### 虛擬裝置需求
+### <a name="virtual-device-requirements"></a>Virtual device requirements
 
-| **元件** | **需求** |
+| **Component**                                | **Requirement**            |
 |----------------------------------------------|----------------------------|
-| 虛擬處理器 (核心) 的最小數目 | 4 |
-| 最小記憶體 (RAM) | 8 GB |
-| 磁碟空間<sup>1</sup> | OS 磁碟 - 80 GB <br></br>資料磁碟 - 500 GB 到 8 TB|
-| 最小網路介面數目 | 1 |
-| 最小網際網路頻寬<sup>2</sup> | 5 Mbps |
+| Minimum number of virtual processors (cores) | 4                          |
+| Minimum memory (RAM)                         | 8 GB                       |
+| Disk space<sup>1</sup>                       | OS disk - 80 GB <br></br>Data disk - 500 GB to 8 TB|
+| Minimum number of network interface(s)       | 1                          |
+| Minimum Internet bandwidth<sup>2</sup>       | 5 Mbps                     |
 
-<sup>1</sup> - 精簡佈建
+<sup>1</sup> - Thin provisioned
 
-<sup>2</sup> - 網路需求可能會依據每日資料變更率而有所不同。例如，如果裝置一天需要備份 10 GB 或更多的變更，則透過 5 Mbps 連線的每日備份最多可能需要 4.25 小時 (如果資料無法壓縮或刪除重複資料)。
+<sup>2</sup> - Network requirements may vary depending on the daily data change rate. For example, if a device needs to back up 10 GB or more changes during a day, then the daily backup over a 5 Mbps connection could take up to 4.25 hours (if the data could not be compressed or deduplicated).
 
-### 支援的網頁瀏覽器
+### <a name="supported-web-browsers"></a>Supported web browsers
 
-| **元件** | **版本** | **其他需求/注意事項** |
+| **Component**     | **Version** | **Additional requirements/notes** |
 |-------------------|-----------------|-----------------------------------|
-| Microsoft Edge | 最新版本 | |
-| Internet Explorer | 最新版本 | 通過 Internet Explorer 11 測試 |
-| Google Chrome | 最新版本 | 通過 Chrome 46 測試 |
+| Microsoft Edge    | Latest version  |                                   |
+| Internet Explorer | Latest version  | Tested with Internet Explorer 11  |
+| Google Chrome     | Latest version  | Tested with Chrome 46             |
 
-### 支援的儲存體用戶端 
+### <a name="supported-storage-clients"></a>Supported storage clients 
 
-下列軟體需求適用於存取 StorSimple Virtual Array (已設定為 iSCSI 伺服器) 的 iSCSI 啟動器。
+The following software requirements are for the iSCSI initiators that access your StorSimple Virtual Array (configured as an iSCSI server).
 
-| **受支援的作業系統** | **必要版本** | **其他需求/注意事項** |
+| **Supported operating systems** | **Version required** | **Additional requirements/notes** |
 | --------------------------- | ---------------- | ------------- |
-| Windows Server | 2008R2 SP1、2012、2012R2 |StorSimple 可以建立精簡佈建和完整佈建的磁碟區。它無法建立部分佈建的磁碟區。只有針對下列對象才支援 StorSimple iSCSI 磁碟區︰<ul><li>Windows 基本磁碟上的簡單磁碟區。</li><li>用於將磁碟區格式化的 Windows NTFS。</li>|
+| Windows Server              | 2008R2 SP1, 2012, 2012R2 |StorSimple can create thinly provisioned and fully provisioned volumes. It cannot create partially provisioned volumes. StorSimple iSCSI volumes are supported for only: <ul><li>Simple volumes on Windows basic disks.</li><li>Windows NTFS for formatting a volume.</li>|
 
-下列軟體需求適用於存取 StorSimple Virtual Array (已設定為檔案伺服器) 的 SMB 用戶端。
+The following software requirements are for the SMB clients that access your StorSimple Virtual Array (configured as a file server).
 
-| **SMB 版本** |
+| **SMB Version** |
 |-------------|
-| SMB 2.x |
-| SMB 3.0 |
-| SMB 3.02 |
+| SMB 2.x     |
+| SMB 3.0     |
+| SMB 3.02    |
  
-## 網路需求 
+## <a name="networking-requirements"></a>Networking requirements 
 
-下表列出必須在您的防火牆中開啟的連接埠，以允許 iSCSI、SMB、雲端或管理流量。在這個資料表中，*in* 或 *inbound* 指的是輸入用戶端要求存取裝置的方向。*Out* 或 *outbound* 指的是 StorSimple 裝置於外部傳送資料至部署之上的方向：例如，輸出到網際網路。
+The following table lists the ports that need to be opened in your firewall to allow for iSCSI, SMB, cloud, or management traffic. In this table, *in* or *inbound* refers to the direction from which incoming client requests access your device. *Out* or *outbound* refers to the direction in which your StorSimple device sends data externally, beyond the deployment: for example, outbound to the Internet.
 
-| **連接埠號碼<sup>1</sup>** | **內或外** | **連接埠範圍** | **必要** | **注意事項** |
+| **Port No.<sup>1</sup>** | **In or out** | **Port scope** | **Required**              | **Notes**                                                                                                            |
 |--------------------------|---------------|----------------|---------------------------|----------------------------------------------------------------------------------------------------------------------|
-| TCP 80 (HTTP) | 外 | WAN | 否 | 輸出連接埠用於網際網路存取以擷取更新。<br></br>輸出 Web Proxy 可由使用者設定。 |
-| TCP 443 (HTTPS) | 外 | WAN | 是 | 輸出連接埠用來存取雲端中的資料。<br></br>輸出 Web Proxy 可由使用者設定。 |
-| UDP 53 (DNS) | 外 | WAN | 在某些情況下，請參閱附註。 | 只有當您使用網際網路 DNS 伺服器時，才需要此連接埠。<br></br> **注意**：如果部署的是檔案伺服器，建議使用本機 DNS 伺服器。|
-| UDP 123 (NTP) | 外 | WAN | 在某些情況下，請參閱附註。 | 只有當您使用以網際網路為基礎的 NTP 伺服器時，才需要此連接埠。<br></br> **注意：**如果部署的是檔案伺服器，建議將時間與您的 Active Directory 網域控制站同步。 |
-| TCP 80 (HTTP) | 在 | LAN | 是 | 這是 StorSimple 裝置上用於本機管理的本機 UI 的輸入連接埠。<br></br> **注意**：透過 HTTP 存取本機 UI 會自動重新導向至 HTTPS。|
-| TCP 443 (HTTPS) | 在 | LAN | 是 | 這是 StorSimple 裝置上用於本機管理的本機 UI 的輸入連接埠。|
-| TCP 3260 (iSCSI) | 在 | LAN | 否 | 此連接埠用來透過 iSCSI 存取資料。|
+| TCP 80 (HTTP)            | Out           | WAN            | No                        | Outbound port is used for Internet access to retrieve updates. <br></br>The outbound web proxy is user configurable. |
+| TCP 443 (HTTPS)          | Out           | WAN            | Yes                       | Outbound port is used for accessing data in the cloud. <br></br>The outbound web proxy is user configurable. |
+| UDP 53 (DNS)             | Out           | WAN            | In some cases; see notes. | This port is required only if you are using an Internet-based DNS server. <br></br> **Note**: If deploying a file server, we recommend using local DNS server.|
+| UDP 123 (NTP)            | Out           | WAN            | In some cases; see notes. | This port is required only if you are using an Internet-based NTP server.<br></br> **Note:** If deploying a file server, we recommend synchronizing time with your Active Directory domain controllers.  |
+| TCP 80 (HTTP)           | In            | LAN            | Yes                       | This is the inbound port for local UI on the StorSimple device for local management. <br></br> **Note**: Accessing the local UI over HTTP will automatically redirect to HTTPS.|
+| TCP 443 (HTTPS)          | In            | LAN            | Yes                       | This is the inbound port for local UI on the StorSimple device for local management.|
+| TCP 3260 (iSCSI)         | In            | LAN            | No                        | This port is used to access data over iSCSI.|
 
-<sup>1</sup> 公用網際網路上沒有必須開啟的輸入連接埠。
+<sup>1</sup> No inbound ports need to be opened on the public Internet.
 
-> [AZURE.IMPORTANT] 請確定防火牆不會修改或解密 StorSimple 裝置和 Azure 之間的任何 SSL 流量。
+> [AZURE.IMPORTANT] Ensure that the firewall does not modify or decrypt any SSL traffic between the StorSimple device and Azure.
 
 
-### 防火牆規則的 URL 模式 
+### <a name="url-patterns-for-firewall-rules"></a>URL patterns for firewall rules 
 
-網路系統管理員通常可以根據 URL 模式設定進階防火牆規則，來篩選輸入和輸出流量。您的虛擬陣列和 StorSimple Manager 服務取決於其他 Microsoft 應用程式，例如 Azure 服務匯流排、Azure Active Directory 存取控制、儲存體帳戶和 Microsoft Update 伺服器。與這些應用程式相關聯的 URL 模式可以用來設定防火牆規則。請務必了解與這些應用程式相關聯的 URL 模式可以變更。接著，您將需要網路系統管理員監控 StorSimple 的防火牆規則，並在需要時更新。
+Network administrators can often configure advanced firewall rules based on the URL patterns to filter the inbound and the outbound traffic. Your virtual array and the StorSimple Manager service depend on other Microsoft applications such as Azure Service Bus, Azure Active Directory Access Control, storage accounts, and Microsoft Update servers. The URL patterns associated with these applications can be used to configure firewall rules. It is important to understand that the URL patterns associated with these applications can change. This in turn will require the network administrator to monitor and update firewall rules for your StorSimple as and when needed. 
 
-我們建議您，在大部分情況下，根據固定 IP 位址為輸出流量設定防火牆規則。不過，您可以使用下列資訊設定建立安全環境所需的進階防火牆規則。
+We recommend that you set your firewall rules for outbound traffic, based on StorSimple fixed IP addresses, liberally in most cases. However, you can use the information below to set advanced firewall rules that are needed to create secure environments.
 
 > [AZURE.NOTE] 
 > 
-> - 裝置 (來源) IP 應該一律設定為所有啟用雲端功能的網路介面。
-> - 目的地 IP 應該設定為 [Azure 資料中心 IP 範圍](https://www.microsoft.com/zh-TW/download/confirmation.aspx?id=41653)。
+> - The device (source) IPs should always be set to all the cloud-enabled network interfaces. 
+> - The destination IPs should be set to [Azure datacenter IP ranges](https://www.microsoft.com/en-us/download/confirmation.aspx?id=41653).
 
 
-| URL 模式 | 元件/功能 |
+| URL pattern                                                      | Component/Functionality                                           |
 |------------------------------------------------------------------|---------------------------------------------------------------|
-| `https://*.storsimple.windowsazure.com/*`<br>`https://*.accesscontrol.windows.net/*`<br>`https://*.servicebus.windows.net/*` | StorSimple Manager 服務<br>存取控制服務<br>Azure 服務匯流排|
-|`http://*.backup.windowsazure.com`|裝置註冊|
-|`http://crl.microsoft.com/pki/*`<br>`http://www.microsoft.com/pki/*`|憑證撤銷 |
-| `https://*.core.windows.net/*`<br>`https://*.data.microsoft.com`<br>`http://*.msftncsi.com` | Azure 儲存體帳戶和監視 |
-| `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update 伺服器<br> |
-| `http://*.deploy.akamaitechnologies.com` |Akamai CDN |
-| `https://*.partners.extranet.microsoft.com/*` | 支援封裝 |
-| `http://*.data.microsoft.com ` | Windows 中的遙測服務，請參閱[客戶經驗和診斷遙測的更新](https://support.microsoft.com/zh-TW/kb/3068708) |
+| `https://*.storsimple.windowsazure.com/*`<br>`https://*.accesscontrol.windows.net/*`<br>`https://*.servicebus.windows.net/*`   | StorSimple Manager service<br>Access Control Service<br>Azure Service Bus|
+|`http://*.backup.windowsazure.com`|Device registration|
+|`http://crl.microsoft.com/pki/*`<br>`http://www.microsoft.com/pki/*`|Certificate revocation |
+| `https://*.core.windows.net/*`<br>`https://*.data.microsoft.com`<br>`http://*.msftncsi.com` | Azure storage accounts and monitoring |
+| `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update servers<br>                        |
+| `http://*.deploy.akamaitechnologies.com`                         |Akamai CDN |
+| `https://*.partners.extranet.microsoft.com/*`                    | Support package                                                  |
+| `http://*.data.microsoft.com `                   | Telemetry service in Windows, see the [update for customer experience and diagnostic telemetry](https://support.microsoft.com/en-us/kb/3068708)                                                  |
 
-## 後續步驟
+## <a name="next-step"></a>Next step
 
--   [Prepare the portal to deploy your StorSimple Virtual Array (準備入口網站以部署 StorSimple Virtual Array)](storsimple-ova-deploy1-portal-prep.md)
+-   [Prepare the portal to deploy your StorSimple Virtual Array](storsimple-ova-deploy1-portal-prep.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

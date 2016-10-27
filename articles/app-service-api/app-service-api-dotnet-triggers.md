@@ -1,65 +1,66 @@
 <properties 
-	pageTitle="App Service API 應用程式觸發程序 | Microsoft Azure" 
-	description="如何在 Azure App Service 的 API 應用程式中實作觸發程序" 
-	services="logic-apps" 
-	documentationCenter=".net" 
-	authors="guangyang"
-	manager="wpickett" 
-	editor="jimbe"/>
+    pageTitle="App Service API app triggers | Microsoft Azure" 
+    description="How to implement triggers in an API App in Azure App Service" 
+    services="logic-apps" 
+    documentationCenter=".net" 
+    authors="guangyang"
+    manager="wpickett" 
+    editor="jimbe"/>
 
 <tags 
-	ms.service="logic-apps" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="dotnet" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/25/2016" 
-	ms.author="rachelap"/>
-
-# Azure App Service API 應用程式觸發程序
-
->[AZURE.NOTE] 這一版的文章適用於 API Apps 2014-12-01-preview 結構描述版本。
+    ms.service="logic-apps" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="dotnet" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/25/2016" 
+    ms.author="rachelap"/>
 
 
-## Overview
+# <a name="azure-app-service-api-app-triggers"></a>Azure App Service API app triggers
 
-本文說明如何實作 API 應用程式觸發程序，並從邏輯應用程式加以使用。
+>[AZURE.NOTE] This version of the article applies to API apps 2014-12-01-preview schema version.
 
-本主題中所有程式碼片段的複製來源為 [FileWatcher API 應用程式的程式碼範例](http://go.microsoft.com/fwlink/?LinkId=534802)。
 
-請注意，您將需要下載下列 nuget 封裝，以取得本文中建置與執行所需的程式碼：[http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/)。
+## <a name="overview"></a>Overview
 
-## 何謂 API 應用程式觸發程序？
+This article explains how to implement API app triggers and consume them from a Logic app.
 
-API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採取適當的動作來回應事件。支援此案例的REST API 型機制稱為 API 應用程式觸發程序。
+All of the code snippets in this topic are copied from the [FileWatcher API App code sample](http://go.microsoft.com/fwlink/?LinkId=534802). 
 
-例如，假設用戶端程式碼使用 [Twitter 連接器 API 應用程式](../app-service-logic/app-service-logic-connector-twitter.md)，且您的程式碼必須根據其中包含特定文字的新推文來執行動作。在此情況下，您可以設定輪詢或推入觸發程序來加速處理這項需求。
+Note that you'll need to download the following nuget package for the code in this article to build and run: [http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/).
 
-## 輪詢觸發程序與推入觸發程序
+## <a name="what-are-api-app-triggers?"></a>What are API app triggers?
 
-目前支援兩種類型的觸發程序：
+It's a common scenario for an API app to fire an event so that clients of the API app can take the appropriate action in response to the event. The REST API based mechanism that supports this scenario is called an API app trigger. 
 
-- 輪詢觸發程序 - 用戶端會輪詢 API 應用程式以取得已引發事件的通知
-- 推入觸發程序 - 當事件引發時，API 應用程式會通知用戶端
+For example, let's say your client code is using the [Twitter Connector API app](../app-service-logic/app-service-logic-connector-twitter.md) and your code needs to perform an action based on new tweets that contain specific words. In this case, you might set up a poll or push trigger to facilitate this need.
 
-### 輪詢觸發程序
+## <a name="poll-trigger-versus-push-trigger"></a>Poll trigger versus push trigger
 
-輪詢觸發程序實作為一般的 REST API，並預期它的用戶端 (例如邏輯應用程式) 輪詢它以取得通知。用戶端可能會維持狀態，而輪詢觸發程序本身是無狀態的。
+Currently, two types of triggers are supported:
 
-有關要求和回應封包的下列資訊，說明輪詢觸發程序合約的一些重要層面：
+- Poll trigger - Client polls the API app for notification of an event having been fired 
+- Push trigger - Client is notified by the API app when an event fires 
 
-- 要求
-    - HTTP 方法：GET
-    - 參數
-        - triggerState - 此選用參數可讓用戶端指定其狀態，以便輪詢觸發程序可以根據指定的狀態，正確決定是否要傳回通知。
-        - API 特有的參數
+### <a name="poll-trigger"></a>Poll trigger
+
+A poll trigger is implemented as a regular REST API and expects its clients (such as a Logic app) to poll it in order to get notification. While the client may maintain state, the poll trigger itself is stateless. 
+
+The following information regarding the request and response packets illustrate some key aspects of the poll trigger contract:
+
+- Request
+    - HTTP method: GET
+    - Parameters
+        - triggerState - This optional parameter allows clients to specify their state so that the poll trigger can properly decide whether to return notification or not based on the specified state.
+        - API-specific parameters
 - Response
-    - 狀態碼 **200** - 要求有效，而且沒有觸發程序的通知。通知的內容成為回應主體。回應中的 "Retry-After" 標頭會指出，必須透過後續要求呼叫擷取其他通知資料。
-    - 狀態碼 **202** - 要求有效，但沒有新的觸發程序通知。
-    - 狀態碼 **4xx** - 要求無效。用戶端不應該重試要求。
-    - 狀態碼 **5xx** - 要求導致內部伺服器錯誤及/或暫時性問題。用戶端應該重試要求。
+    - Status code **200** - Request is valid and there is a notification from the trigger. The content of the notification will be the response body. A "Retry-After" header in the response indicates that additional notification data must be retrieved with a subsequent request call.
+    - Status code **202** - Request is valid, but there is no new notification from the trigger.
+    - Status code **4xx** - Request is not valid. The client should not retry the request.
+    - Status code **5xx** - Request has resulted in an internal server error and/or temporary issue. The client should retry the request.
 
-下列程式碼片段是如何實作輪詢觸發程序的範例。
+The following code snippet is an example of how to implement a poll trigger.
 
     // Implement a poll trigger.
     [HttpGet]
@@ -90,33 +91,35 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
         }
     }
 
-若要測試此輪詢觸發程序，請遵循下列步驟：
+To test this poll trigger, follow these steps:
 
-1. 部署驗證設定為**匿名公用**的 API 應用程式。
-2. 呼叫**接觸**作業以接觸檔案。下圖顯示透過 Postman 的範例要求。![透過 Postman 呼叫接觸作業](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
-3. 以在步驟 2 之前設定為時間戳記的 **triggerState** 參數，呼叫輪詢觸發程序。下圖顯示透過 Postman 的範例要求。![透過 Postman 呼叫輪詢觸發程序](./media/app-service-api-dotnet-triggers/callpolltriggerfrompostman.PNG)
+1. Deploy the API App with an authentication setting of **public anonymous**.
+2. Call the **touch** operation to touch a file. The following image shows a sample request via Postman.
+   ![Call Touch Operation via Postman](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
+3. Call the poll trigger with the **triggerState** parameter set to a time stamp prior to Step #2. The following image shows the sample request via Postman.
+   ![Call Poll Trigger via Postman](./media/app-service-api-dotnet-triggers/callpolltriggerfrompostman.PNG)
 
-### 推入觸發程序
+### <a name="push-trigger"></a>Push trigger
 
-推入觸發程序會實作為一般的 REST API，將通知推入已註冊為希望在引發特定事件時收到通知的用戶端。
+A push trigger is implemented as a regular REST API that pushes notifications to clients who have registered to be notified when specific events fire.
 
-下列資訊關於要求和回應封包，說明推入觸發程序合約的一些重要層面。
+The following information regarding the request and response packets illustrate some key aspects of the push trigger contract.
 
-- 要求
-    - HTTP 方法：PUT
-    - 參數
-        - 觸發程式識別碼：必要項 - 不透明字串 (例如 GUID)，表示推入觸發程序的註冊。
-        - callbackUrl：必要項 - 當事件引發時所叫用回呼的 URL。叫用是一個簡單的 POST HTTP 呼叫。
-        - API 特有的參數
+- Request
+    - HTTP method: PUT
+    - Parameters
+        - triggerId: required - Opaque string (such as a GUID) that represents the registration of a push trigger.
+        - callbackUrl: required - URL of the callback to invoke when the event fires. The invocation is a simple POST HTTP call.
+        - API-specific parameters
 - Response
-    - 狀態碼 **200** - 註冊用戶端的要求成功。
-    - 狀態碼 **4xx** - 要求無效。用戶端不應該重試要求。
-    - 狀態碼 **5xx** - 要求導致內部伺服器錯誤及/或暫時性問題。用戶端應該重試要求。
-- 回呼
-    - HTTP 方法：POST
-    - 要求內文： 通知內容。
+    - Status code **200** - Request to register client successful.
+    - Status code **4xx** - Request is not valid. The client should not retry the request.
+    - Status code **5xx** - Request has resulted in an internal server error and/or temporary issue. The client should retry the request.
+- Callback
+    - HTTP method: POST
+    - Request body: Notification content.
 
-下列程式碼片段是如何實作推入觸發程序的範例：
+The following code snippet is an example of how to implement a push trigger:
 
     // Implement a push trigger.
     [HttpPut]
@@ -193,21 +196,24 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
         }
     }
 
-若要測試此輪詢觸發程序，請遵循下列步驟：
+To test this poll trigger, follow these steps:
 
-1. 部署驗證設定為**匿名公用**的 API 應用程式。
-2. 瀏覽至 [http://requestb.in/](http://requestb.in/) 建立 RequestBin 作為回呼 URL。
-3. 以 GUID 為 **triggerId** 和 RequestBin URL 為 **callbackUrl** 來呼叫推入觸發程序。![透過 Postman 呼叫推入觸發程序](./media/app-service-api-dotnet-triggers/callpushtriggerfrompostman.PNG)
-4. 呼叫**接觸**作業以接觸檔案。下圖顯示透過 Postman 的範例要求。![透過 Postman 呼叫接觸作業](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
-5. 請檢查 RequestBin，以確認屬性輸出會叫用推入觸發程序回呼。![透過 Postman 呼叫輪詢觸發程序](./media/app-service-api-dotnet-triggers/pushtriggercallbackinrequestbin.PNG)
+1. Deploy the API App with an authentication setting of **public anonymous**.
+2. Browse to [http://requestb.in/](http://requestb.in/) to create a RequestBin which will serve as your callback URL.
+3. Call the push trigger with a GUID as **triggerId** and the RequestBin URL as **callbackUrl**.
+   ![Call Push Trigger via Postman](./media/app-service-api-dotnet-triggers/callpushtriggerfrompostman.PNG)
+4. Call the **touch** operation to touch a file. The following image shows a sample request via Postman.
+   ![Call Touch Operation via Postman](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
+5. Check the RequestBin to confirm that the push trigger callback is invoked with property output.
+   ![Call Poll Trigger via Postman](./media/app-service-api-dotnet-triggers/pushtriggercallbackinrequestbin.PNG)
 
-### 在 API 定義中描述觸發程序
+### <a name="describe-triggers-in-api-definition"></a>Describe triggers in API definition
 
-實作觸發程序，並將您的 API 應用程式部署至 Azure 之後，瀏覽至 Azure Preview 入口網站中的 [**API 定義**] 刀鋒視窗，然後您會看到 UI 已自動辨識觸發程序 (這是由 API 應用程式的 Swagger 2.0 API 定義所驅動)。
+After implementing the triggers and deploying your API app to Azure, navigate to the **API Definition** blade in the Azure preview portal and you'll see that triggers are automatically recognized in the UI, which is driven by the Swagger 2.0 API definition of the API app.
 
-![API 定義刀鋒視窗](./media/app-service-api-dotnet-triggers/apidefinitionblade.PNG)
+![API Definition Blade](./media/app-service-api-dotnet-triggers/apidefinitionblade.PNG)
 
-如果您按一下 [**下載 Swagger**] 按鈕並開啟 JSON 檔案，您會看到類似下列的結果：
+If you click the **Download Swagger** button and open the JSON file, you'll see results similar to the following:
 
     "/api/files/poll/TouchedFiles": {
       "get": {
@@ -224,44 +230,44 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
       }
     }
 
-延伸模組屬性 **x-ms-schedular-trigger** 是 API 定義中所描述的觸發程序，而且當您要求透過閘道要求 API 定義時，若要求符合以下其中一個準則時，API 應用程式閘道會自動加入它。(您也可以手動加入這個屬性。)
+The extension property **x-ms-schedular-trigger** is how triggers are described in API definition, and is automatically added by the API app gateway when you request the API definition via the gateway if the request to one of the following criteria. (You can also add this property manually.)
 
-- 輪詢觸發程序
-    - 如果 HTTP 方法為 **GET**。
-    - 如果 **operationId** 屬性包含字串 **trigger**。
-    - 如果 **parameters** 屬性所包含參數的 **name** 屬性設定為 **triggerState**。
-- 推入觸發程序
-    - 如果 HTTP 方法為 **PUT**。
-    - 如果 **operationId** 屬性包含字串 **trigger**。
-    - 如果 **parameters** 屬性所包含參數的 **name** 屬性設定為 **triggerId**。
+- Poll trigger
+    - If the HTTP method is **GET**.
+    - If the **operationId** property contains the string **trigger**.
+    - If the **parameters** property includes a parameter with a **name** property set to **triggerState**.
+- Push trigger
+    - If the HTTP method is **PUT**.
+    - If the **operationId** property contains the string **trigger**.
+    - If the **parameters** property includes a parameter with a **name** property set to **triggerId**.
 
-## 在邏輯應用程式中使用 API 應用程式觸發程序
+## <a name="use-api-app-triggers-in-logic-apps"></a>Use API app triggers in Logic apps
 
-### 在邏輯應用程式設計工具中，列出與設定 API 應用程式觸發程序
+### <a name="list-and-configure-api-app-triggers-in-the-logic-apps-designer"></a>List and configure API app triggers in the Logic apps designer
 
-如果您在 API 應用程式的相同資源群組中建立邏輯應用程式，您只要按一下它，即可將它加入至設計工具的畫布中。請見下圖說明：
+If you create a Logic app in the same resource group as the API app, you will be able to add it to the designer canvas simply by clicking it. The following images illustrate this:
 
-![邏輯應用程式設計工具中的觸發程序](./media/app-service-api-dotnet-triggers/triggersinlogicappdesigner.PNG)
+![Triggers in Logic App Designer](./media/app-service-api-dotnet-triggers/triggersinlogicappdesigner.PNG)
 
-![在邏輯應用程式設計工具中設定輸詢觸發程序](./media/app-service-api-dotnet-triggers/configurepolltriggerinlogicappdesigner.PNG)
+![Configure Poll Trigger in Logic App Designer](./media/app-service-api-dotnet-triggers/configurepolltriggerinlogicappdesigner.PNG)
 
-![在邏輯應用程式設計工具中設定推入觸發程序](./media/app-service-api-dotnet-triggers/configurepushtriggerinlogicappdesigner.PNG)
+![Configure Push Trigger in Logic App Designer](./media/app-service-api-dotnet-triggers/configurepushtriggerinlogicappdesigner.PNG)
 
-## 為邏輯應用程式最佳化 API 應用程式觸發程序
+## <a name="optimize-api-app-triggers-for-logic-apps"></a>Optimize API app triggers for Logic apps
 
-將觸發程序加入至 API 應用程式之後，您可以透過幾種方式來改善在邏輯應用程式中使用 API 應用程式的體驗。
+After you add triggers to an API app, there are a few things you can do to improve the experience when using the API app in a Logic app.
 
-比方說，輪詢觸發程序的 **triggerState** 參數應該在邏輯應用程式中設定為下列運算式。此運算式應該評估邏輯應用程式之觸發程序的最後一個叫用，並傳回該值。
+For instance, the **triggerState** parameter for poll triggers should be set to the following expression in the Logic app. This expression should evaluate the last invocation of the trigger from the Logic app, and return that value.  
 
-	@coalesce(triggers()?.outputs?.body?['triggerState'], '')
+    @coalesce(triggers()?.outputs?.body?['triggerState'], '')
 
-注意：如需上述運算式中所使用函式的說明，請參閱[邏輯應用程式工作流程定義語言](https://msdn.microsoft.com/library/azure/dn948512.aspx)的文件。
+NOTE: For an explanation of the functions used in the expression above, refer to the documentation on [Logic App Workflow Definition Language](https://msdn.microsoft.com/library/azure/dn948512.aspx).
 
-使用觸發程序時，邏輯應用程式使用者需要為 **triggerState** 參數提供上述運算式。邏輯應用程式設計工具可能透過延伸模組屬性 **x-ms-scheduler-recommendation** 預先設定此值。**x-ms-visibility** 延伸模組屬性的值可以設定為 *internal*，如此參數本身不會顯示在設計工具上。請見下列程式碼片段說明。
+Logic app users would need to provide the expression above for the **triggerState** parameter while using the trigger. It is possible to have this value preset by the Logic app designer through the extension property **x-ms-scheduler-recommendation**.  The **x-ms-visibility** extension property can be set to a value of *internal* so that the parameter itself is not shown on the designer.  The following snippet illustrates that.
 
     "/api/Messages/poll": {
       "get": {
-	    "operationId": "Messages_NewMessageTrigger",
+        "operationId": "Messages_NewMessageTrigger",
         "parameters": [
           {
             "name": "triggerState",
@@ -277,11 +283,11 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
       }
     }
 
-推入觸發程序的 **triggerId** 參數必須為邏輯應用程式的唯一識別碼。建議的最佳作法是使用下列運算式，將此屬性設定為工作流程的名稱：
+For push triggers, the **triggerId** parameter must uniquely identify the Logic app. A recommended best practice is to set this property to the name of the workflow by using the following expression:
 
     @workflow().name
 
-在其 API 定義中使用 **x-ms-scheduler-recommendation** 和 **x-ms-visibility** 延伸模組屬性，API 應用程式可以傳達給邏輯應用程式設計工具，來自動為使用者設定此運算式。
+Using the **x-ms-scheduler-recommendation** and **x-ms-visibility** extension properties in its API definiton, the API app can convey to the Logic app designer to automatically set this expression for the user.
 
         "parameters":[  
           {  
@@ -294,13 +300,13 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
           },
 
 
-### 在 API 定義中加入延伸模組屬性
+### <a name="add-extension-properties-in-api-defintion"></a>Add extension properties in API defintion
 
-其他中繼資料資訊 (例如延伸模組屬性 **x-ms-scheduler-recommendation** 和 **x-ms-visibility**) 可以透過以下兩種方式加入 API 定義：靜態或動態。
+Additional metadata information - such as the extension properties **x-ms-scheduler-recommendation** and **x-ms-visibility** - can be added in the API defintion in one of two ways: static or dynamic.
 
-對於靜態的中繼資料，您可以直接編輯專案中的 */metadata/apiDefinition.swagger.json* 檔案，並手動加入屬性。
+For static metadata, you can directly edit the */metadata/apiDefinition.swagger.json* file in your project and add the properties manually.
 
-針對使用動態中繼資料的 API 應用程式，您可以編輯 SwaggerConfig.cs 檔案來加入作業篩選條件，以加入這些延伸模組。
+For API apps using dynamic metadata, you can edit the SwaggerConfig.cs file to add an operation filter which can add these extensions.
 
     GlobalConfiguration.Configuration 
         .EnableSwagger(c =>
@@ -311,7 +317,7 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
             }
 
 
-以下是如何實作這個類別，以協助處理動態中繼資料案例的範例。
+The following is an example of how this class can be implemented to facilitate the dynamic metadata scenario.
 
     // Add extension properties on the triggerState parameter
     public class TriggerStateFilter : IOperationFilter
@@ -342,4 +348,8 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
     }
  
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

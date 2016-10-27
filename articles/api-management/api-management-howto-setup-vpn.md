@@ -1,76 +1,77 @@
 <properties
-	pageTitle="如何在 Azure API 管理中設定 VPN 連線"
-	description="瞭解如何在 API 管理中設定 VPN 連線，並透過它存取 Web 服務。"
-	services="api-management"
-	documentationCenter=""
-	authors="antonba"
-	manager="erikre"
-	editor=""/>
+    pageTitle="How to setup VPN connections in Azure API Management"
+    description="Learn how to setup a VPN connection in Azure API Management and access web services through it."
+    services="api-management"
+    documentationCenter=""
+    authors="antonba"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="api-management"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/09/2016"
-	ms.author="antonba"/>
+    ms.service="api-management"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/25/2016"
+    ms.author="antonba"/>
 
-# 如何在 Azure API 管理中設定 VPN 連線
 
-「API 管理」的 VPN 支援可讓您將「API 管理」閘道連接到「Azure 虛擬網路」(傳統)。這可讓 API 服務客戶安全地連線到其內部部署或公用網際網路無法存取的後端 Web 服務。
+# <a name="how-to-setup-vpn-connections-in-azure-api-management"></a>How to setup VPN connections in Azure API Management
 
->[AZURE.NOTE] 「Azure API 管理」可以與傳統 VNET 搭配使用。如需建立傳統 VNET 的詳細資訊，請參閱[使用 Azure 入口網站建立虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。如需連接傳統 VNET 和 ARM VNET 的相關資訊，請參閱[連接傳統 VNet 和新的 VNet](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md)。
+API Management's VPN support allows you to connect your API Management gateway to an Azure Virtual Network (classic). This allows API Management customers to securely connect to their backend web services that are on-premises or are otherwise inaccessible to the public internet.
 
-## <a name="enable-vpn"> </a>啟用 VPN 連線
+>[AZURE.NOTE] Azure API Management works with classic VNETs. For information on creating a classic VNET, see [Create a virtual network (classic) by using the Azure Portal](../virtual-network/virtual-networks-create-vnet-classic-pportal.md). For information on connecting classic VNETs to ARM VNETS, see [Connecting classic VNets to new VNets](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
 
->VPN 連線僅供**進階**和**開發人員**層使用。若要切換到它，請在 [Azure 傳統入口網站][]中開啟 API 管理服務，然後開啟 [調整] 索引標籤。在 [**一般**] 區段下選取進階層，然後按一下 [儲存]。
+## <a name="<a-name="enable-vpn">-</a>enable-vpn-connections"></a><a name="enable-vpn"> </a>Enable VPN connections
 
-若要啟用 VPN 連線，請在 [Azure 傳統入口網站][]中開啟 API 管理服務，然後切換到 [設定] 索引標籤。
+>VPN connectivity is only available in the **Premium** and **Developer** tiers. To switch to it, open your API Management service in the [Azure Classic Portal][] and then open the **Scale** tab. Under the **General** section select the Premium tier and click Save.
 
-在 VPN 區段中，將 [**VPN 連線**] 切換為 [**開啟**]。
+To enable VPN connectivity, open your API Management service in the [Azure Classic Portal][] and switch to the **Configure** tab. 
 
-![API 管理執行個體的設定索引標籤][api-management-setup-vpn-configure]
+Under the VPN section, switch **VPN connection** to **On**.
 
-您現在會看見佈建 API 管理服務所在的所有區域的清單。
+![Configure tab of API Management instance][api-management-setup-vpn-configure]
 
-為每個區域選取 VPN 和子網路。VPN 的清單是依據您要設定的區域中所設定 Azure 訂用帳戶可用的虛擬網路而填入。
+You will now see a list of all regions where your API Management service is provisioned.
 
-![選取 VPN][api-management-setup-vpn-select]
+Select a VPN and subnet for every region. The list of VPNs is populated based on the virtual networks available in your Azure subscription that are setup in the region you are configuring.
 
-按一下畫面底部的 [**儲存**]。更新時，您將無法透過 Azure 傳統入口網站對 API 管理服務執行其他作業。服務閘道將保持可用，而執行時期呼叫應該不會受到影響。
+![Select VPN][api-management-setup-vpn-select]
 
-請注意，閘道的 VIP 位址將在每次啟用或停用 VPN 時變更。
+Click **Save** at the bottom of the screen. You will not be able to perform other operations on the API Management service from the Azure Classic Portal while it is updating. The service gateway will remain available and runtime calls should not be affected.
 
-## <a name="connect-vpn"> </a>連接至 VPN 的 Web 服務
+Note that the VIP address of the gateway will change each time VPN is enabled or disabled.
 
-在您的 API 管理服務連接至 VPN 之後，於虛擬網路內存取 Web 服務與存取公用服務沒有差別。只需在建立新 API 或編輯現有 API 時，將 Web 服務的本機位址或主機名稱 (如果已設定 Azure 虛擬網路的 DNS 伺服器) 輸入到 [**Web 服務 URL**] 欄位。
+## <a name="<a-name="connect-vpn">-</a>connect-to-a-web-service-behind-vpn"></a><a name="connect-vpn"> </a>Connect to a web service behind VPN
 
-![透過 VPN 加入 API][api-management-setup-vpn-add-api]
+After your API Management service is connected to the VPN, accessing web services within the virtual network is no different than accessing public services. Just type in the local address or the host name (if a DNS server was configured for the Azure Virtual Network) of your web service into the **Web service URL** field when creating a new API or editing an existing one.
 
-## API 管理 VPN 支援所需的連接埠
+![Add API from VPN][api-management-setup-vpn-add-api]
 
-當 API 管理服務執行個體裝載於 VNET 時，會使用下表中的連接埠。如果封鎖這些連接埠，服務可能無法正常運作。搭配 VNET 使用 API 管理時，封鎖這其中一或多個連接埠是最常見的錯誤組態問題。
+## <a name="required-ports-for-api-management-vpn-support"></a>Required ports for API Management VPN support
 
-| 連接埠 | 方向 | 傳輸通訊協定 | 目的 | 來源 / 目的地 |
+When an API Management service instance is hosted in a VNET, the ports in the following table are used. If these ports are blocked, the service may not function correctly. Having one or more of these ports blocked is the most common misconfiguration issue when using API Management with a VNET.
+
+| Port(s)                      | Direction        | Transport Protocol | Purpose                                                          | Source / Destination              |
 |------------------------------|------------------|--------------------|------------------------------------------------------------------|-----------------------------------|
-| 80、443 | 輸入 | TCP | 與 API 管理的用戶端通訊 | INTERNET / VIRTUAL\_NETWORK |
-| 80,443 | 輸出 | TCP | Azure 儲存體和 Azure 服務匯流排上的 API 管理相依性 | VIRTUAL\_NETWORK / INTERNET |
-| 1433 | 輸出 | TCP | SQL 上的 API 管理相依性 | VIRTUAL\_NETWORK / INTERNET |
-| 9350, 9351, 9352, 9353, 9354 | 輸出 | TCP | 服務匯流排上的 API 管理相依性 | VIRTUAL\_NETWORK / INTERNET |
-| 5671 | 輸出 | AMQP | 記錄到事件中樞原則的 API 管理相依性 | VIRTUAL\_NETWORK / INTERNET |
-| 6381, 6382, 6383 | 輸入/輸出 | UDP | Redis 快取上的 API 管理相依性 | VIRTUAL\_NETWORK / VIRTUAL\_NETWORK |
-| 445 | 輸出 | TCP | 適用於 GIT 的 Azure 檔案共用上的 API 管理相依性 | VIRTUAL\_NETWORK / INTERNET |
+| 80, 443                      | Inbound          | TCP                | Client communication to API Management                           | INTERNET / VIRTUAL_NETWORK        |
+| 80,443                       | Outbound         | TCP                | API Management Dependency on Azure Storage and Azure Service Bus | VIRTUAL_NETWORK / INTERNET        |
+| 1433                         | Outbound         | TCP                | API Management dependencies on SQL                               | VIRTUAL_NETWORK / INTERNET        |
+| 9350, 9351, 9352, 9353, 9354 | Outbound         | TCP                | API Management dependencies on Service Bus                       | VIRTUAL_NETWORK / INTERNET        |
+| 5671                         | Outbound         | AMQP               | API Management dependency for Log to event Hub policy            | VIRTUAL_NETWORK / INTERNET        |
+| 6381, 6382, 6383             | Inbound/Outbound | UDP                | API Management dependencies on Redis Cache                       | VIRTUAL_NETWORK / VIRTUAL_NETWORK |
+| 445                          | Outbound         | TCP                | API Management Dependency on Azure File Share for GIT            | VIRTUAL_NETWORK / INTERNET        |
 
-## <a name="custom-dns"> </a>自訂 DNS 伺服器設定
+## <a name="<a-name="custom-dns">-</a>custom-dns-server-setup"></a><a name="custom-dns"> </a>Custom DNS server setup
 
-API 管理取決於多項 Azure 服務。當 API 管理服務執行個體裝載於使用自訂 DNS 伺服器的 VNET 時，它必須能夠解析這些 Azure 服務的主機名稱。請遵循[這份](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server)有關自訂 DNS 設定的指引。
+API Management depends on a number of Azure services. When an API Management service instance is hosted in a VNET where a custom DNS server is used, it needs to be able to resolve hostnames of those Azure services. Please follow [this](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) guidance on custom DNS setup.  
 
-## <a name="related-content"> </a>相關內容
+## <a name="<a-name="related-content">-</a>related-content"></a><a name="related-content"> </a>Related content
 
 
-* [使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路][]
-* [如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫][]
+* [Create a virtual network with a site-to-site VPN connection using the Azure Classic Portal][]
+* [How to use the API Inspector to trace calls in Azure API Management][]
 
 [api-management-setup-vpn-configure]: ./media/api-management-howto-setup-vpn/api-management-setup-vpn-configure.png
 [api-management-setup-vpn-select]: ./media/api-management-howto-setup-vpn/api-management-setup-vpn-select.png
@@ -80,9 +81,13 @@ API 管理取決於多項 Azure 服務。當 API 管理服務執行個體裝載�
 [Connect to a web service behind VPN]: #connect-vpn
 [Related content]: #related-content
 
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[Azure Classic Portal]: https://manage.windowsazure.com/
 
-[使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路]: ../vpn-gateway/vpn-gateway-site-to-site-create.md
-[如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫]: api-management-howto-api-inspector.md
+[Create a virtual network with a site-to-site VPN connection using the Azure Classic Portal]: ../vpn-gateway/vpn-gateway-site-to-site-create.md
+[How to use the API Inspector to trace calls in Azure API Management]: api-management-howto-api-inspector.md
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

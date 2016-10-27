@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用私人範本 |Microsoft Azure"
-   description="使用 Azure 入口網站、Azure CLI 或 PowerShell 新增、管理及共用私人範本。"
+   pageTitle="Get started with private Templates | Microsoft Azure"
+   description="Add, manage and share your private templates using the Azure portal, the Azure CLI, or PowerShell."
    services="marketplace-customer"
    documentationCenter=""
    authors="VybavaRamadoss"
@@ -18,117 +18,125 @@
    ms.date="05/18/2016"
    ms.author="vybavar"/>
 
-# 開始在 Azure 入口網站上使用私人範本
 
-[Azure Resource Manager](../resource-group-authoring-templates.md) 範本是用來定義您的部署的宣告式範本。您可以定義要對解決方案部署的資源，並指定可讓您針對不同環境輸入值的參數和變數。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
+# <a name="get-started-with-private-templates-on-the-azure-portal"></a>Get started with private Templates on the Azure Portal
 
-您可以在 [Azure 入口網站](https://portal.azure.com)中使用的新 [範本] 功能，並以 **Microsoft.Gallery** 資源提供者作為 [Marketplace](https://azure.microsoft.com/marketplace/) 的擴充功能，讓使用者得以從個人程式庫建立、管理和部署私人範本。
+An [Azure Resource Manager](../resource-group-authoring-templates.md) template is a declarative template used to define your deployment. You can define the resources to deploy for a solution, and specify parameters and variables that enable you to input values for different environments. The template consists of JSON and expressions which you can use to construct values for your deployment.
 
-本文將逐步引導您使用 Azure 入口網站來新增、管理及共用私人**範本**。
+You can use the new **Templates** capability in the [Azure Portal](https://portal.azure.com) along with the **Microsoft.Gallery** resource provider as an extension of the [Azure Marketplace](https://azure.microsoft.com/marketplace/) to enable users to create, manage and deploy private templates from a personal library.
 
-## 指引
+This document walks you through adding, managing and sharing a private **Template** using the Azure Portal.
 
-下列建議將協助您在使用您的方案時充分利用**範本**：
+## <a name="guidance"></a>Guidance
 
-- **範本**是一項封裝資源，其中包含 Resource Manager 範本和其他中繼資料。其操作方式非常類似 Marketplace 中的項目。主要差別在於它是私人項目 (相對於公用 Marketplace 項目)。
-- **範本**程式庫適用於需要自訂其部署的使用者。
-- **範本**適用於在 Azure 中需要簡單儲存機制的使用者。
-- 開始使用現有的 Resource Manager 範本。在 [github](https://github.com/Azure/azure-quickstart-templates) 中尋找範本，或現有的資源群組[匯出範本](../resource-manager-export-template.md)。
-- **範本**會繫結至發佈它們的使用者。每個具有範本讀取權限的使用者都可以看到發佈者名稱。
-- **範本**是 Resource Manager 資源，一旦發佈便無法重新命名。
+The following suggestions will help you take full advantage of **Templates** when working with your solutions:
 
-## 新增範本資源
+- A **Template** is an encapsulating resource that contains an Resource Manager template and additional metadata. It behaves very similarly to an item in the Marketplace. The key difference is that it is a private item as opposed to the public Marketplace items.
+- The **Templates** library works well for users who need to customize their deployments.
+- **Templates** work well for users who need a simple repository within Azure.
+- Start with an existing Resource Manager template. Find templates in [github](https://github.com/Azure/azure-quickstart-templates) or [Export template](../resource-manager-export-template.md) from an existing resource group.
+- **Templates** are tied to the user who publishes them. The publisher name is visible to everyone who has read access to it.
+- **Templates** are Resource Manager resources and cannot be renamed once published.
 
-在 Azure 入口網站中建立**範本**資源的方法有兩種。
+## <a name="add-a-template-resource"></a>Add a Template resource
 
-### 方法 1︰從執行中的資源群組建立新的範本資源
+There are two ways to create a **Template** resource in the Azure portal.
 
-1. 瀏覽至 Azure 入口網站上的現有資源群組。在 [設定] 中選取 [匯出範本]。
-2. 匯出 Resource Manager 範本後，使用 [儲存範本] 按鈕將它儲存到**範本**儲存機制。在[這裡](../resource-manager-export-template.md)尋找匯出範本的完整詳細資料。<br /><br /> ![資源群組匯出](media/rg-export-portal1.PNG) <br />
+### <a name="method-1-:-create-a-new-template-resource-from-a-running-resource-group"></a>Method 1 : Create a new Template resource from a running resource group
 
-3. 選取 [儲存至範本] 命令按鈕。<br /><br />
+1. Navigate to an existing resource group on the Azure Portal. Select **Export template** in **Settings**.
+2. Once the Resource Manager template is exported, use the **Save Template** button to save it to the **Templates** repository. Find complete details for Export template [here](../resource-manager-export-template.md).
+<br /><br />
+![Resource group export](media/rg-export-portal1.PNG)  <br />
 
-4. 輸入以下資訊：
+3. Select the **Save to Template** command button.
+<br /><br />
 
-    - 名稱 – 範本物件的名稱 (注意︰這是以 Azure Resource Manager 為基礎的名稱。適用所有命名限制，一旦建立便無法變更)。
-    - 說明 – 關於此範本的簡短摘要。
+4. Enter the following information:
 
-    ![儲存範本](media/save-template-portal1.PNG) <br />
+    - Name – Name of the template object (NOTE: This is an Azure Resource Manager based name. All naming restrictions apply and it cannot be changed once created).
+    - Description – Quick summary about the template.
 
-5. 按一下 [儲存]。
+    ![Save Template](media/save-template-portal1.PNG)  <br />
 
-    > [AZURE.NOTE] [匯出範本] 刀鋒視窗會在匯出的 Resource Manager 範本有誤時顯示通知，但您仍可將此 Resource Manager 範本儲存至 [範本]。請確保在重新部署已匯出的 Resource Manager 範本之前，先檢查並修正所有的 Resource Manager 範本問題。
+5. Click **Save**.
 
-### B.方法 2 ︰從瀏覽加入新的範本資源
+    > [AZURE.NOTE] The Export template blade shows notifications when the exported Resource Manager template has errors, but you will still be able to save this Resource Manager template to the Templates. Ensure that you check and fix any Resource Manager template issues before redeploying the exported Resource Manager template.
 
-您也可以在 [瀏覽] > [範本] 中使用 [+新增] 命令按鈕，從頭加入新的**範本**。您必須提供 [名稱]、[說明] 和 Resource Manager 範本 JSON。
+### <a name="b.-method-2-:-add-a-new-template-resource-from-browse"></a>B. Method 2 : Add a new Template resource from browse
 
-![新增範本](media/add-template-portal1.PNG) <br />
+You can also add a new **Template** from scratch using the +Add command button in **Browse > Templates**. You will need to provide a Name, Description and the Resource Manager template JSON.
 
-> [AZURE.NOTE] Microsoft.Gallery 是以租用戶為基礎的 Azure 資源提供者。[範本] 資源會繫結至建立它的使用者。但不會繫結至任何特定的訂用帳戶。只有在部署範本時才需要選擇訂用帳戶。
+![Add Template](media/add-template-portal1.PNG)  <br />
 
-## 檢視範本資源
+> [AZURE.NOTE] Microsoft.Gallery is a Tenant based Azure resource provider. The Template resource is tied to the user who created it. It is not tied to any specific subscription. A subscription needs to be chosen only when deploying a Template.
 
-在 [瀏覽 > 範本] 可以看見您可用的所有 [範本]。這包括您所建立的**範本**以及利用各種權限層級與您共用的範本。如需詳細資料，請參閱下面的[存取控制](#access-control-for-a-tenant-resource-provider)一節。
+## <a name="view-template-resources"></a>View Template resources
 
-![檢視範本](media/view-template-portal1.PNG) <br />
+All **Templates** available to you can be seen at **Browse > Templates**. This includes **Templates** you have created as well as ones that have been shared with you with varying levels of permissions. More details in the [access control](#access-control-for-a-tenant-resource-provider) section below.
 
-按一下清單中的項目，即可檢視**範本**的詳細資料。
+![View Template](media/view-template-portal1.PNG)  <br />
 
-![檢視範本](media/view-template-portal2c.png) <br />
+You can view the details of a **Template** by clicking into an item in the list.
 
-## 編輯範本資源
+![View Template](media/view-template-portal2c.png)  <br />
 
-以滑鼠右鍵按一下瀏覽清單上的項目，或選擇 [編輯] 命令按鈕，即可起始**範本**的編輯流程。
+## <a name="edit-a-template-resource"></a>Edit a Template resource
 
-![編輯範本](media/edit-template-portal1a.PNG) <br />
+You can initiate the edit flow for a **Template** by right clicking the item on the Browse list or by choosing the Edit command button.
 
-您可以編輯說明或 Resource Manager 範本文字。但無法編輯名稱，因為這是 Resource Manager 資源名稱。當您編輯 Resource Manager 範本 JSON 時，我們會進行驗證以確保它是有效的 JSON。選擇 [確定]，然後選擇 [儲存] 以儲存更新後的範本。
+![Edit Template](media/edit-template-portal1a.PNG)  <br />
 
-![編輯範本](media/edit-template-portal2a.PNG) <br />
+You can edit the description or Resource Manager template text. You cannot edit the name since it is an Resource Manager resource name. When you edit the Resource Manager template JSON we will validate to ensure that it is valid JSON. Choose **OK** and then **Save** to save your updated template.
 
-儲存**範本**後，您就會看到確認通知。
+![Edit Template](media/edit-template-portal2a.PNG)  <br />
 
-![編輯範本](media/edit-template-portal3b.png) <br />
+Once the **Template** is saved you will see a confirmation notification.
 
-## 部署範本資源
+![Edit Template](media/edit-template-portal3b.png)  <br />
 
-您可以部署任何您有**讀取**權限的**範本**。部署流程會啟動標準 Azure 範本部署刀鋒視窗。填妥 Resource Manager 範本參數的值以繼續進行部署。
+## <a name="deploy-a-template-resource"></a>Deploy a Template resource
 
-![部署範本](media/deploy-template-portal1b.png) <br />
+You can deploy any **Template** that you have **Read** permissions on. The deployment flow launches the standard Azure Template deployment blade. Fill out the values for the Resource Manager template parameters to proceed with the deployment.
 
-## 共用範本資源
+![Deploy Template](media/deploy-template-portal1b.png)  <br />
 
-可與您的同事共用**範本**資源。共用行為類似於 [Azure 上任何資源的角色指派](../active-directory/role-based-access-control-configure.md)。**範本**擁有者會提供權限給可與範本資源互動的其他使用者。與您共用**範本**的個人或一群人將可看到 Resource Manager 範本和其資源庫屬性。
+## <a name="share-a-template-resource"></a>Share a Template resource
 
-### Microsoft.Gallery 資源的存取控制
+A **Template** resource can be shared with your peers. Sharing behaves similarly to [role assignment for any resource on Azure](../active-directory/role-based-access-control-configure.md). The **Template** owner provides permissions to other users who can interact with a Template resource. The person or group of people you share the **Template** with will be able to see the Resource Manager template and its gallery properties.
 
-角色 | 權限
+### <a name="access-control-for-the-microsoft.gallery-resources"></a>Access control for the Microsoft.Gallery resources
+
+Role | Permissions
 ---|----
-擁有者 | 允許完整控制範本資源 (包括共用)
-讀取者 | 允許讀取和執行 (部署) 範本資源
-參與者 | 允許範本資源的編輯和刪除權限使用者不能與其他人共用範本
+Owner | Allows full control on the Template resource including Share
+Reader | Allows Read and Execute(Deploy) on the Template resource
+Contributor | Allows Edit and Delete permission on the Template resource. User cannot Share the Template with others
 
-按一下滑鼠右鍵或在特定項目的 [檢視] 刀鋒視窗上選取瀏覽項目上的 [共用]。這會啟動共用經驗。
+Select **Share** on the browse item by right clicking or on the view blade of a specific item. This launches a Share experience.
 
-![共用範本](media/share-template-portal1a.png) <br />
+![Share Template](media/share-template-portal1a.png)  <br />
 
- 您現在可以選擇角色及使用者或群組，以提供特定**範本**的存取權。可用的角色為 [擁有者]、[讀取者] 和 [參與者]。如需詳細資料，請參閱上面的[存取控制](#access-control-for-a-tenant-resource-provider)一節。
+ You can now choose a role and a user or group to provide access to a particular **Template**. The available roles are Owner, Reader and Contributor. More details in the [access control](#access-control-for-a-tenant-resource-provider) section above.
 
-![共用範本](media/share-template-portal2b.png) <br />
+![Share Template](media/share-template-portal2b.png)  <br />
 
-![共用範本](media/share-template-portal3b.png) <br />
+![Share Template](media/share-template-portal3b.png)  <br />
 
-按一下 [選取] 和 [確定]。您現在可以看到您加入至資源的使用者或群組。
+Click **Select** and **Ok**. You can now see the users or groups you added to the resource.
 
-![共用範本](media/share-template-portal4b.png) <br />
+![Share Template](media/share-template-portal4b.png)  <br />
 
-> [AZURE.NOTE] 只能與相同 Azure Active Directory 租用戶中的使用者和群組共用範本。如果您與不在您的租用戶中的電子郵件地址共用範本，將會傳送邀請來要求使用者以來賓身分加入租用戶。
+> [AZURE.NOTE] A Template can only be shared with users and groups in the same Azure Active Directory tenant. If you share a Template with an email address that is not in your tenant, an invitation will be sent asking the user to join the tenant as a guest.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 若要了解如何建立 Resource Manager 範本，請參閱[撰寫範本](../resource-group-authoring-templates.md)。
-- 若要了解您可用於 Resource Manager 範本中的函數，請參閱[範本函式](../resource-group-template-functions.md)
-- 如需設計範本的指引，請參閱[設計 Azure 資源管理員範本的最佳做法](../best-practices-resource-manager-design-templates.md)
+- To learn about creating Resource Manager templates, see [Authoring templates](../resource-group-authoring-templates.md)
+- To understand the functions you can use in an Resource Manager template, see [Template functions](../resource-group-template-functions.md)
+- For guidance on designing your templates, see [Best practices for designing Azure Resource Manager templates](../best-practices-resource-manager-design-templates.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

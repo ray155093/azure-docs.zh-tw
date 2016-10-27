@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure Active Directory 報告：開始使用 | Microsoft Azure"
-   description="在 Azure Active Directory 報告列出各種可用的報告"
+   pageTitle="Azure Active Directory Reporting: Getting started | Microsoft Azure"
+   description="Lists the various available reports in Azure Active Directory reporting"
    services="active-directory"
    documentationCenter=""
    authors="dhanyahk"
@@ -16,144 +16,149 @@
    ms.date="03/07/2016"
    ms.author="dhanyahk"/>
 
-# 開始使用 Azure Active Directory 報告
 
-## 內容
+# <a name="getting-started-with-azure-active-directory-reporting"></a>Getting started with Azure Active Directory Reporting
 
-Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽核報告。以下是包含的報告清單：
+## <a name="what-it-is"></a>What it is
 
-### 安全性報告
+Azure Active Directory (Azure AD) includes security, activity, and audit reports for your directory. Here's a list of the reports included:
 
-- 從不明來源登入
-- 在多次失敗後登入
-- 從多個地理區域登入
-- 從具有可疑活動的 IP 位址登入
-- 異常的登入活動
-- 從可能受感染的裝置登入
-- 具有異常登入活動的使用者
+### <a name="security-reports"></a>Security reports
 
-### 活動報告
+- Sign-ins from unknown sources
+- Sign-ins after multiple failures
+- Sign-ins from multiple geographies
+- Sign-ins from IP addresses with suspicious activity
+- Irregular sign-in activity
+- Sign-ins from possibly infected devices
+- Users with anomalous sign-in activity
 
-- 應用程式使用情況：摘要
-- 應用程式使用情況：詳細
-- 應用程式儀表板
-- 帳戶佈建錯誤
-- 個別使用者裝置
-- 個別使用者活動
-- 群組活動報告
-- 密碼重設登錄活動報告
-- 密碼重設活動
+### <a name="activity-reports"></a>Activity reports
 
-### 稽核報告
+- Application usage: summary
+- Application usage: detailed
+- Application dashboard
+- Account provisioning errors
+- Individual user devices
+- Individual user Activity
+- Groups activity report
+- Password Reset Registration Activity Report
+- Password reset activity
 
-- 目錄稽核報告
+### <a name="audit-reports"></a>Audit reports
 
-> [AZURE.TIP] 如需有關 Azure AD 報告的更多文件，請參閱[檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
+- Directory audit report
 
+> [AZURE.TIP] For more documentation on Azure AD Reporting, check out [View your access and usage reports](active-directory-view-access-usage-reports.md).
 
 
-## 運作方式
 
+## <a name="how-it-works"></a>How it works
 
-### 報告管線
 
-報告管線包含三個主要步驟。每次使用者登入或進行驗證時，就會發生以下狀況：
+### <a name="reporting-pipeline"></a>Reporting pipeline
 
-- 首先，使用者會經過驗證 (成功或失敗)，結果會儲存在 Azure Active Directory 服務資料庫。
-- 每隔一段固定時間，就會處理所有最近的登入。此時，我們的安全性和異常活動演算法會搜尋所有最近的登入找出是否有可疑的活動。
-- 處理之後，就會寫入報告、快取報告，然後在 Azure 傳統入口網站中提供報告。
+The reporting pipeline consists of three main steps. Every time a user signs in, or an authentication is made, the following happens:
 
-### 報告產生時間
+- First, the user is authenticated (successfully or unsuccessfully), and the result is stored in the Azure Active Directory service databases.
+- At regular intervals, all recent sign ins are processed. At this point, our security and anomalous activity algorithms are searching all recent sign ins for suspicious activity.
+- After processing, the reports are written, cached, and served in the Azure classic portal.
 
-由於 Azure AD 平台需處理大量的驗證和登入，所處理的最近登入平均而言為過去一小時。在罕見的情況下，可能需要花費多達 8 小時處理最近的登入。
+### <a name="report-generation-times"></a>Report generation times
 
-您可以查看每個報告頂端的說明文字，找到最近處理的登入。
+Due to the large volume of authentications and sign ins processed by the Azure AD platform, the most recent sign-ins processed are, on average, one hour old. In rare cases, it may take up to 8 hours to process the most recent sign-ins.
 
-![每個報告頂端的說明文字](./media/active-directory-reporting-getting-started/reportingWatermark.PNG)
+You can find the most recent processed sign-in by examining the help text at the top of each report.
 
-> [AZURE.TIP] 如需有關 Azure AD 報告的更多文件，請參閱[檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
+![Help text at the top of each report](./media/active-directory-reporting-getting-started/reportingWatermark.PNG)
 
+> [AZURE.TIP] For more documentation on Azure AD Reporting, check out [View your access and usage reports](active-directory-view-access-usage-reports.md).
 
 
-## 開始使用
 
+## <a name="getting-started"></a>Getting started
 
-### 登入 Azure 傳統入口網站
 
-首先，您必須以全域或相容性管理員身分登入 [Azure 傳統入口網站中提供報告。入口網站](https://manage.windowsazure.com)。您也必須是 Azure 訂用帳戶服務管理員或共同管理員，或使用「存取 Azure AD」的 Azure 訂用帳戶。
+### <a name="sign-into-the-azure-classic-portal"></a>Sign into the Azure classic portal
 
-### 瀏覽至報告
+First, you'll need to sign into the [Azure classic portal](https://manage.windowsazure.com)  as a global or compliance administrator. You must also be an Azure subscription service administrator or co-administrator, or be using the "Access to Azure AD" Azure subscription.
 
-若要檢視報告，請瀏覽至目錄頂端的 [報告] 索引標籤。
+### <a name="navigate-to-reports"></a>Navigate to Reports
 
-如果這是您第一次檢視報告，您必須先同意對話方塊，才能檢視報告。這是為了確保在您的組織中可接受讓管理員檢視這項資料，在某些國家/地區，這些資料可能會被視為隱私資訊。
+To view Reports, navigate to the Reports tab at the top of your directory.
 
-![對話方塊](./media/active-directory-reporting-getting-started/dialogBox.png)
+If this is your first time viewing the reports, you'll need to agree to a dialog box before you can view the reports. This is to ensure that it's acceptable for admins in your organization to view this data, which may be considered private information in some countries.
 
-### 瀏覽每個報告
+![Dialog box](./media/active-directory-reporting-getting-started/dialogBox.png)
 
-瀏覽每個報告以查看收集的資料，以及處理的登入。您可以[在此找到所有報告的清單](active-directory-reporting-guide.md)。
+### <a name="explore-each-report"></a>Explore each report
 
-![所有報告](./media/active-directory-reporting-getting-started/reportsMain.png)
+Navigate into each report to see the data being collected and the sign-ins processed. You can find a [list of all the reports here](active-directory-reporting-guide.md).
 
-### 下載報告為 CSV
+![All reports](./media/active-directory-reporting-getting-started/reportsMain.png)
 
-每個報告可以下載為 CSV (逗號分隔值) 檔案。您可以在 Excel、PowerBI 或協力廠商分析程式中使用這些檔案，進一步分析您的資料。
+### <a name="download-the-reports-as-csv"></a>Download the reports as CSV
 
-若要下載任何報告為 CSV，請瀏覽至報告並按一下底部的 [下載]。
+Each report can be downloaded as a CSV (comma-separated value) file. You can use these files in Excel, PowerBI or third-party analysis programs to further analyze your data.
 
-![[下載] 按鈕](./media/active-directory-reporting-getting-started/downloadButton.png)
+To download any report as a CSV, navigate to the report and click "Download" at the bottom.
 
-> [AZURE.TIP] 如需有關 Azure AD 報告的更多文件，請參閱[檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
+![Download button](./media/active-directory-reporting-getting-started/downloadButton.png)
 
+> [AZURE.TIP] For more documentation on Azure AD Reporting, check out [View your access and usage reports](active-directory-view-access-usage-reports.md).
 
 
 
 
-## 後續步驟
 
-### 自訂異常登入活動的警示
+## <a name="next-steps"></a>Next steps
 
-瀏覽至您目錄的 [設定] 索引標籤。
+### <a name="customize-alerts-for-anomalous-sign-in-activity"></a>Customize alerts for anomalous sign in activity
 
-捲動到 [通知] 區段。
+Navigate to the "Configure" tab of your directory.
 
-啟用或停用 [惡意登入的電子郵件通知] 區段。
+Scroll to the "Notifications" section.
 
-![[通知] 區段](./media/active-directory-reporting-getting-started/notificationsSection.png)
+Enable or disable the "Email Notifications of Anomalous sign-ins" section.
 
-### 與 Azure AD 報告 API 整合
+![The Notifications section](./media/active-directory-reporting-getting-started/notificationsSection.png)
 
-請參閱[開始使用報告 API](active-directory-reporting-api-getting-started.md)。
+### <a name="integrate-with-the-azure-ad-reporting-api"></a>Integrate with the Azure AD Reporting API
 
-### 對使用者採取 Multi-Factor Authentication
+See [Getting started with the Reporting API](active-directory-reporting-api-getting-started.md).
 
-在報告中選取使用者。
+### <a name="engage-multi-factor-authentication-on-users"></a>Engage Multi-Factor Authentication on users
 
-按一下畫面底部的 [啟用 MFA] 按鈕。
+Select a user in a report.
 
-![畫面底部的 [Multi-Factor Authentication] 按鈕](./media/active-directory-reporting-getting-started/mfaButton.png)
+Click the "Enable MFA" button at the bottom of the screen.
 
-> [AZURE.TIP] 如需有關 Azure AD 報告的更多文件，請參閱[檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
+![The Multi-Factor Authentication button at the bottom of the screen](./media/active-directory-reporting-getting-started/mfaButton.png)
 
+> [AZURE.TIP] For more documentation on Azure AD Reporting, check out [View your access and usage reports](active-directory-view-access-usage-reports.md).
 
 
 
-## 詳細資訊
 
+## <a name="learn-more"></a>Learn more
 
-### 稽核事件
 
-如需了解目錄中的哪些事件會進行稽核，請參閱 [Azure Active Directory 報告稽核事件](active-directory-reporting-audit-events.md)。
+### <a name="audit-events"></a>Audit events
 
-### API 整合
+Learn about what events are audited in the directory in [Azure Active Directory Reporting Audit Events](active-directory-reporting-audit-events.md).
 
-請參閱[開始使用報告 API](active-directory-reporting-api-getting-started.md) 和 [API 參考文件](https://msdn.microsoft.com/library/azure/mt126081.aspx)。
+### <a name="api-integration"></a>API Integration
 
-### 取得聯繫
+See [Getting started with the Reporting API](active-directory-reporting-api-getting-started.md) and the [API reference documentation](https://msdn.microsoft.com/library/azure/mt126081.aspx).
 
-如有任何意見回饋、需要說明，或有任何問題，請寄送電子郵件到 [aadreportinghelp@microsoft.com](mailto:aadreportinghelp@microsoft.com)。
+### <a name="get-in-touch"></a>Get in touch
 
-> [AZURE.TIP] 如需有關 Azure AD 報告的更多文件，請參閱[檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
+Email [aadreportinghelp@microsoft.com](mailto:aadreportinghelp@microsoft.com) for feedback, help, or any questions you might have.
 
-<!---HONumber=AcomDC_0928_2016-->
+> [AZURE.TIP] For more documentation on Azure AD Reporting, check out [View your access and usage reports](active-directory-view-access-usage-reports.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,116 +1,117 @@
 <properties 
-	pageTitle="如何在 Azure 搜尋服務中使用評分設定檔 | Microsoft Azure | 雲端託管搜尋服務" 
-	description="在 Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 中透過評分設定檔調整搜尋排名。" 
-	services="search" 
-	documentationCenter="" 
-	authors="HeidiSteen" 
-	manager="mblythe" 
-	editor=""/>
+    pageTitle="How to use scoring profiles in Azure Search | Microsoft Azure | Hosted cloud search service" 
+    description="Tune search ranking through scoring profiles in Azure Search, a hosted cloud search service on Microsoft Azure." 
+    services="search" 
+    documentationCenter="" 
+    authors="HeidiSteen" 
+    manager="mblythe" 
+    editor=""/>
 
 <tags 
-	ms.service="search" 
-	ms.devlang="rest-api" 
-	ms.workload="search" 
-	ms.topic="article" 
-	ms.tgt_pltfrm="na" 
-	ms.date="08/04/2016" 
-	ms.author="heidist"/>
+    ms.service="search" 
+    ms.devlang="rest-api" 
+    ms.workload="search" 
+    ms.topic="article" 
+    ms.tgt_pltfrm="na" 
+    ms.date="10/17/2016" 
+    ms.author="heidist"/>
 
-# 如何使用 Azure Search 中的評分設定檔
 
-評分設定檔是 Microsoft Azure 搜尋服務功能，可自訂搜尋分數的計算，進而影響項目在搜尋結果清單中的排序方式。您可以提升符合預先定義之準則的項目，將評分設定檔視為產生相關性模型的方法。例如，假設您的應用程式是線上旅館預訂網站。藉由提升 `location` 欄位，包含像是西雅圖一詞的搜尋將會導致 `location` 欄位中有西雅圖的項目具有更高的分數。請注意，您可以有多個評分設定檔，而如果預設評分對您的應用程式而言就已足夠，亦可完全沒有。
+# <a name="how-to-use-scoring-profiles-in-azure-search"></a>How to use scoring profiles in Azure Search
 
-為了協助您實驗評分設定檔，您可以下載範例應用程式，以使用評分設定檔來變更搜尋結果的排名順序。此範例是一個主控台應用程式 - 對於真實世界的應用程式開發或許不是非常實際 - 但仍是相當實用的學習工具。
+Scoring profiles are a feature of Microsoft Azure Search that customize the calculation of search scores, influencing how items are ranked in a search results list. You can think of scoring profiles as a way to model relevance, by boosting items that meet predefined criteria. For example, suppose your application is an online hotel reservation site. By boosting the `location` field, searches that include a term like Seattle will result in higher scores for items that have Seattle in the `location` field. Note that you can have more than one scoring profile, or none at all, if the default scoring is sufficient for your application.
 
-範例應用程式會使用虛構資料 (稱為 `musicstoreindex`) 來示範評分行為。簡單的範例應用程式便於修改評分設定檔和查詢，而接著便可查看執行程式後對於排名順序的立即效果。
+To help you experiment with scoring profiles, you can download a sample application that uses scoring profiles to change the rank order of search results. The sample is a console application – perhaps not very realistic for real-world application development – but useful nonetheless as  a learning tool. 
+
+The sample application demonstrates scoring behaviors using fictional data, called the `musicstoreindex`. The simplicity of the sample app makes it easy to modify scoring profiles and queries, and then see the immediate effects on rank order when the program is executed.
 
 <a id="sub-1"></a>
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-範例應用程式是使用 Visual Studio 2013 以 C# 撰寫。如果沒有 Visual Studio 的複本，請試用免費的 [Visual Studio 2013 Express 版本](http://www.visualstudio.com/products/visual-studio-express-vs.aspx)。
+The sample application is written in C# using Visual Studio 2013. Try the free [Visual Studio 2013 Express edition](http://www.visualstudio.com/products/visual-studio-express-vs.aspx) if you don't already have a copy of Visual Studio.
 
-您需要 Azure 訂用帳戶和 Azure 搜尋服務來完成教學課程。如需協助設定服務，請參閱[在入口網站中建立搜尋服務](search-create-service-portal.md)。
+You will need an Azure subscription and an Azure Search service to complete the tutorial. See [Create a Search service in the portal](search-create-service-portal.md) for help with setting up the service.
 
-[AZURE.INCLUDE [您需要有 Azure 帳戶，才能完成本教學課程：](../../includes/free-trial-note.md)]
+[AZURE.INCLUDE [You need an Azure account to complete this tutorial:](../../includes/free-trial-note.md)]
 
 <a id="sub-2"></a>
-## 下載範例應用程式
+## <a name="download-the-sample-application"></a>Download the sample application
 
-移至 Codeplex 上的 [Azure 搜尋服務評分設定檔示範](https://azuresearchscoringprofiles.codeplex.com/)，以下載本教學課程中描述的範例應用程式。
+Go to [Azure Search Scoring Profiles Demo](https://azuresearchscoringprofiles.codeplex.com/) on codeplex to download the sample application described in this tutorial.
 
-在 [原始程式碼] 索引標籤上，按一下 [**下載**] 以取得解決方案的壓縮檔。
+On the Source Code tab, click **Download** to get a zip file of the solution. 
 
  ![][12]
 
 <a id="sub-3"></a>
-## 編輯 app.config
+## <a name="edit-app.config"></a>Edit app.config
 
-1. 將檔案解壓縮之後，請在 Visual Studio 中開啟解決方案以編輯組態檔。
-1. 在 [方案總管] 中，按兩下 **app.config**。此檔案會指定服務端點以及用來驗證要求的 `api-key`。您可以從傳統入口網站取得這些值。
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-1. 移至 Azure Search 的服務儀表板。
-1. 按一下 [**屬性**] 磚來複製服務 URL
-1. 按一下 [**金鑰**] 磚來複製服務 `api-key`。
+1. After you extract the files, open the solution in Visual Studio to edit the configuration file.
+1. In Solution Explorer, double-click **app.config**. This file specifies the service endpoint and an `api-key` used to authenticate the request. You can obtain these values from the Classic Portal.
+1. Sign in to the [Azure Portal](https://portal.azure.com).
+1. Go to the service dashboard for Azure Search.
+1. Click the **Properties** tile to copy the service URL
+1. Click the **Keys** tile to copy the `api-key`.
 
-當您將 URL 和 `api-key` 加入至 app.config 後，應用程式設定應如下所示：
+When you are finished adding the URL and `api-key` to app.config, application settings should look like this:
 
    ![][11]
 
 
 <a id="sub-4"></a>
-## 探索應用程式
+## <a name="explore-the-application"></a>Explore the application
 
-您已經快要可以建置並執行應用程式，但在這麼做之前，請先查看用來建立及擴展索引的 JSON 檔案。
+You're almost ready to build and run the app, but before you do, take a look at the JSON files used to create and populate the index.
 
-**Schema.json** 會定義索引，包括此示範中強調的評分設定檔。請注意，結構描述會定義索引中使用的所有欄位，包括您可用於評分設定檔中不可搜尋的欄位，例如 `margin`。評分設定檔語法記載於[將評分設定檔新增至 Azure 搜尋服務索引](http://msdn.microsoft.com/library/azure/dn798928.aspx)中。
+**Schema.json** defines the index, including the scoring profiles that are emphasized in this demo. Notice that the schema defines all of the fields used in the index, including non-searchable fields, such as `margin`, that you can use in a scoring profile. Scoring profile syntax is documented in [Add a scoring profile to an Azure Search index](http://msdn.microsoft.com/library/azure/dn798928.aspx).
 
-**Data1-3.json** 會提供資料 (跨多種內容類型的 246 張專輯)。此資料是實際專輯和藝術工作者資訊的組合，其中包含用來說明搜尋作業的 `price` 和 `margin` 等虛構欄位。。資料檔案符合索引並且會上傳到 Azure Search 服務。資料上傳並編成索引之後，您即可對其發出查詢。
+**Data1-3.json** provides the data, 246 albums across a handful of genres. The data is a combination of actual album and artist information, with fictional fields like `price` and `margin` used to illustrate search operations. The data files conform to the index and are uploaded to your Azure Search service. After the data is uploaded and indexed, you can issue queries against it.
 
-**Program.cs** 會執行下列作業：
+**Program.cs** performs the following operations:
 
-- 開啟主控台視窗。
+- Opens a console window.
 
-- 使用服務 URL 和 `api-key` 連接到 Azure 搜尋服務。
+- Connects to Azure Search using the service URL and `api-key`.
 
-- 刪除 `musicstoreindex`，如果存在的話。
+- Deletes the `musicstoreindex` if it exists.
 
-- 使用 schema.json 檔案建立新的 `musicstoreindex`。
+- Creates a new `musicstoreindex` using the schema.json file.
 
-- 使用資料檔案擴展索引。
+- Populates the index using the data files.
 
-- 使用四個查詢來查詢索引。請注意，評分設定檔會被指定為查詢參數。所有查詢都會搜尋相同的字詞 'best'。第一個查詢示範預設評分。其餘的三個查詢則使用評分設定檔。
+- Queries the index using four queries. Notice that the scoring profiles are specified as a query parameter. All of the queries search for the same term, 'best'. The first query demonstrates default scoring. The remaining three queries use a scoring profile.
 
 <a id="sub-5"></a>
-## 建置並執行應用程式
+## <a name="build-and-run-the-application"></a>Build and run the application
 
-若要排除連接或組件參考問題，請建置並執行應用程式，以確保沒有需要先處理的問題。您應該會看到在背景中開啟的主控台應用程式。所有四個查詢會依序執行，而不會暫停。在許多系統上，整個程式會在 15 秒內執行。如果主控台應用程式包含以下訊息：「完成。按 Enter 鍵繼續」，則表示程式順利完成。
+To rule out connectivity or assembly reference problems, build and run the application to ensure there are no issues to work out first. You should see a console application open in the background. All four queries execute in sequence without pausing. On many systems, the entire program executes in under 15 seconds. If the console application includes a message stating “Complete. Press enter to continue”, the program completed successfully. 
 
-若要比較查詢執行，您可以從主控台標示和複製查詢結果並貼到 Excel 檔案中。
+To compare query runs, you can mark-copy-paste the query results from the console and paste them into an Excel file. 
 
-下圖並排顯示前三個查詢的結果。所有查詢都使用相同的搜尋字詞 'best'，該字詞會出現在許多專輯標題中。
+The following illustration shows results from the first three queries side-by-side. All of the queries use the same search term, 'best', which appears in numerous album titles.
 
    ![][10]
 
-第一個查詢使用預設評分。因為搜尋字詞只會出現在專輯標題中，且未指定任何其他準則，所以會依找到的順序傳回專輯標題中有 'best' 的項目。
+The first query uses default scoring. Since the search term appears only in album titles, and no other criteria is specified, items having 'best' in the album title are returned in the order in which the search service finds them. 
 
-第二個查詢使用評分設定檔，但請注意，設定檔沒有任何作用。結果與第一個查詢的結果相同。這是因為評分設定檔提升與查詢密無關的欄位 ('genre')。搜尋字詞 'best' 不存在於任何文件的任何 'gene' 欄位中。當評分設定檔沒有任何作用時，結果會與預設評分相同。
+The second query uses a scoring profile, but notice that the profile had no effect. The results are identical to those of the first query. This is because the scoring profile boosts a field ('genre') that is not germane to the query. The search term 'best' does not exist in any 'genre' field of any document. When a scoring profile has no effect, the results are the same as default scoring.  
 
-第三個查詢是評分設定檔影響的第一個證據。搜尋字詞仍是 'best'，所以我們目前是處理同一組專輯，但因為評分設定檔提供了可提升 'rating' 和 'last-updated' 的額外準則，所以清單中有些項目會向上推。
+The third query is the first evidence of scoring profile impact. The search term is still 'best' so we are working with the same set of albums, but because the scoring profile provides additional criteria that boosts 'rating' and 'last-updated', some items are propelled higher in the list.
 
-下圖顯示第四個 (也是最後一個) 查詢 (由 'margin' 提升)。'margin' 欄位不可搜尋且不能在搜尋結果中傳回。'margin' 值會以手動方式加入試算表，協助說明具有較高邊際收益的項目會在搜尋結果清單中顯示於較前面。
+The next illustration shows the fourth and final query, boosted by 'margin'. The 'margin' field is non-searchable and cannot be returned in search results. The 'margin' value was manually added to the spreadsheet to help illustrate the point that items with higher margins show up higher in the search results list. 
 
    ![][9]
 
-您現在已實驗評分設定檔，請嘗試變更程式，以使用不同的查詢語法、評分設定檔或更豐富的資料。下一節中的連結提供詳細資訊。
+Now that you have experimented with scoring profiles, try changing the program to use different query syntax, scoring profiles, or richer data. Links in the next section provide more information.
 
 <a id="next-steps"></a>
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-進一步了解評分設定檔。如需詳細資訊，請參閱[將評分設定檔新增至 Azure 搜尋服務索引](http://msdn.microsoft.com/library/azure/dn798928.aspx)。
+Learn more about scoring profiles. See [Add a scoring profile to an Azure Search index](http://msdn.microsoft.com/library/azure/dn798928.aspx) for details.
 
-深入了解搜尋語法和查詢參數。如需詳細資訊，請參閱[搜尋文件 (Azure 搜尋服務 REST API)](http://msdn.microsoft.com/library/azure/dn798927.aspx)。
+Learn more about search syntax and query parameters. See [Search Documents (Azure Search REST API)](http://msdn.microsoft.com/library/azure/dn798927.aspx) for details.
 
-需要回過頭來深入了解如何建立索引嗎？ [觀看這段影片](http://channel9.msdn.com/Shows/Cloud+Cover/Cloud-Cover-152-Azure-Search-with-Liam-Cavanagh)以了解基本概念。
+Need to step back and learn more about index creation? [Watch this video](http://channel9.msdn.com/Shows/Cloud+Cover/Cloud-Cover-152-Azure-Search-with-Liam-Cavanagh) to understand the basics.
 
 <!--Anchors-->
 [Prerequisites]: #sub-1
@@ -124,6 +125,9 @@
 [12]: ./media/search-get-started-scoring-profiles/AzureSearch_CodeplexDownload.PNG
 [11]: ./media/search-get-started-scoring-profiles/AzureSearch_Scoring_AppConfig.PNG
 [10]: ./media/search-get-started-scoring-profiles/AzureSearch_XLSX1.PNG
-[9]: ./media/search-get-started-scoring-profiles/AzureSearch_XLSX2.PNG
+[9]: ./media/search-get-started-scoring-profiles/AzureSearch_XLSX2.PNG 
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

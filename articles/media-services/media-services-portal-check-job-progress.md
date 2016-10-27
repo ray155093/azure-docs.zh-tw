@@ -1,52 +1,57 @@
 <properties 
-	pageTitle="透過 Azure 入口網站監視編碼作業進度" 
-	description="本教學課程將逐步引導您完成使用 Azure 入口網站監視作業進度的步驟。" 
-	services="media-services" 
-	documentationCenter="" 
-	authors="juliako" 
-	manager="erikre" 
-	editor=""/>
+    pageTitle="Monitor encoding job progress with the Azure portal" 
+    description="This tutorial walks you through the steps of monitoring your job progress using the Azure portal." 
+    services="media-services" 
+    documentationCenter="" 
+    authors="juliako" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="media-services" 
-	ms.workload="media" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/29/2016"  
-	ms.author="juliako"/>
+    ms.service="media-services" 
+    ms.workload="media" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/29/2016"  
+    ms.author="juliako"/>
 
-#透過 Azure 入口網站監視編碼作業進度
+
+#<a name="monitor-encoding-job-progress-with-the-azure-portal"></a>Monitor encoding job progress with the Azure portal
 
 > [AZURE.SELECTOR]
-- [入口網站](media-services-portal-check-job-progress.md)
+- [Portal](media-services-portal-check-job-progress.md)
 - [.NET](media-services-check-job-progress.md)
 - [REST](media-services-rest-check-job-progress.md)
 
-## Overview
+## <a name="overview"></a>Overview
 
-> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+> [AZURE.NOTE] To complete this tutorial, you need an Azure account. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/). 
 
-執行作業時，您通常需要設法追蹤作業進度。
+When you run jobs, you often require a way to track job progress. 
 
-若要監視編碼作業的進度，請按一下 [設定] \(位於頁面頂端)，然後選取 [作業]。
+To monitor the progress of the encoding job, click **Settings** (at the top of the page) and then select **Jobs**.
 
-![作業](./media/media-services-portal-vod-get-started/media-services-jobs.png)
+![Jobs](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
-您可以按一下作業以查看更多詳細資料。
+You can click the job to see more details.
 
-![作業](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
+![Jobs](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-編碼作業完成之後，您可以發佈並播放您的資產，如[這裡](media-services-portal-publish.md)所述。
+After your encoding job is one, you can publish and play your assets, as described [here](media-services-portal-publish.md).
 
-##媒體服務學習路徑
+##<a name="media-services-learning-paths"></a>Media Services learning paths
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##提供意見反應
+##<a name="provide-feedback"></a>Provide feedback
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

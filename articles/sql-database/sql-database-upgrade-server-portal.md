@@ -1,163 +1,165 @@
 <properties
-	pageTitle="使用 Azure 入口網站升級至 Azure SQL Database V12 | Microsoft Azure"
-	description="說明如何使用 Azure 入口網站升級至 Azure SQL Database V12，包括如何升級 Web 和商務資料庫，以及如何將 V11 伺服器的資料庫直接移轉至彈性資料庫集區來升級 V11 伺服器。"
-	services="sql-database"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Upgrade to Azure SQL Database V12 using the Azure portal | Microsoft Azure"
+    description="Explains how to upgrade to Azure SQL Database V12 including how to upgrade Web and Business databases, and how to upgrade a V11 server migrating its databases directly into an elastic database pool using the Azure portal."
+    services="sql-database"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="data-management"
-	ms.date="08/08/2016"
-	ms.author="sstein"/>
+    ms.service="sql-database"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="data-management"
+    ms.date="08/08/2016"
+    ms.author="sstein"/>
 
 
-# 使用 Azure 入口網站升級至 Azure SQL Database V12
+
+# <a name="upgrade-to-azure-sql-database-v12-using-the-azure-portal"></a>Upgrade to Azure SQL Database V12 using the Azure portal
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-upgrade-server-portal.md)
+- [Azure portal](sql-database-upgrade-server-portal.md)
 - [PowerShell](sql-database-upgrade-server-powershell.md)
 
 
-SQL Database V12 是最新的版本，因此建議將現有的伺服器升級至 SQL Database V12。SQL Database V12 具有[舊版所欠缺的許多優點](sql-database-v12-whats-new.md)，包括：
+SQL Database V12 is the latest version so upgrading existing servers to SQL Database V12 is recommended.
+SQL Database V12 has many [advantages over the previous version](sql-database-v12-whats-new.md) including:
 
-- 提升與 SQL Server 的相容性。
-- 提供改進的高階效能和新的效能等級。
-- [彈性資料庫集區](sql-database-elastic-pool.md)。
+- Increased compatibility with SQL Server.
+- Improved premium performance and new performance levels.
+- [Elastic database pools](sql-database-elastic-pool.md).
 
-本文提供將現有的 SQL Database V11 伺服器和資料庫升級至 SQL Database V12 的說明。
+This article provides directions for upgrading existing SQL Database V11 servers and databases to SQL Database V12.
 
-在升級至 V12 的過程中，您將會把所有 Web 和商務資料庫都升級至新的服務層級，因此本文也包含了升級 Web 和商務資料庫的說明。
+During the process of upgrading to V12 you will upgrade any Web and Business databases to a new service tier so directions for upgrading Web and Business databases are included.
 
-此外，與升級至單一資料庫的個別效能等級 (定價層) 相比，移轉至[彈性資料庫集區](sql-database-elastic-pool.md)更符合成本效益。集區也可以簡化資料庫管理，因為您只需要管理集區的效能設定，而不需分開管理個別資料庫的效能等級。如果您的資料庫位於多部伺服器上，請考慮將它們移到相同的伺服器，並利用將它們放入集區所帶來的優點。您可以輕鬆地[使用 PowerShell 自動將資料庫從 V11 伺服器直接移轉至彈性資料庫集區](sql-database-upgrade-server-powershell.md)。您也可以使用入口網站將 V11 資料庫移轉至集區，但在入口網站中，您必須已經備妥 V12 伺服器來建立集區。如果您擁有[可從集區受益的資料庫](sql-database-elastic-pool-guidance.md)，本文稍後有提供在升級伺服器之後建立集區的說明。
+In addition, migrating to an [elastic database pool](sql-database-elastic-pool.md) can be more cost effective than upgrading to individual performance levels (pricing tiers) for single databases. Pools also simplify database management because you only need to manage the performance settings for the pool rather than separately managing the performance levels of individual databases. If you have databases on multiple servers consider moving them into the same server and taking advantage of putting them into a pool. You can easily [auto-migrate databases from V11 servers directly into elastic database pools using PowerShell](sql-database-upgrade-server-powershell.md). You can also use the portal to migrate V11 databases into a pool but in the portal you must already have a V12 server to create a pool. Directions are provided later in this article to create the pool after the server upgrade if you have [databases that can benefit from a pool](sql-database-elastic-pool-guidance.md).
 
-請注意，您的資料庫會維持在線上，並且在整個升級作業中都會繼續保持運作。在實際轉換到新的效能等級時，資料庫連線可能會暫時中斷一段非常短的時間，通常約 90 秒，但最長可達 5 分鐘。如果您的應用程式[對於連線終止有暫時性的錯誤處理方式](sql-database-connectivity-issues.md)，就足以在升級結束時防止連線中斷。
+Note that your databases will remain online and continue to work throughout the upgrade operation. At the time of the actual transition to the new performance level temporary dropping of the connections to the database can happen for a very small duration that is typically around 90 seconds but can be as much as 5 minutes. If your application has [transient fault handling for connection terminations](sql-database-connectivity-issues.md) then it is sufficient to protect against dropped connections at the end of the upgrade.
 
-升級至 SQL Database V12 後即無法復原。在升級之後，即無法將伺服器還原至 V11。
+Upgrading to SQL Database V12 cannot be undone. After an upgrade the server cannot be reverted to V11.
 
-升級至 V12 之後，將不會立即提供[服務層建議](sql-database-service-tier-advisor.md)和[彈性集區效能考量](sql-database-elastic-pool-guidance.md)，必須等到服務有時間評估您在新伺服器上的工作負載之後，才會提供。V11 伺服器建議記錄不適用於 V12 伺服器，因此不會保留。
+After upgrading to V12, [service tier recommendations](sql-database-service-tier-advisor.md) and [elastic pool performance considerations](sql-database-elastic-pool-guidance.md) will not immediately be available until the service has time to evaluate your workloads on the new server. V11 server recommendation history does not apply to V12 servers so it is not retained.
 
-## 準備升級
+## <a name="prepare-to-upgrade"></a>Prepare to upgrade
 
-- **升級所有 Web 和商務資料庫**：請參閱下面的[升級所有 Web 和商務資料庫](sql-database-upgrade-server-portal.md#upgrade-all-web-and-business-databases)一節，或參閱[監視和管理彈性資料庫集區 (PowerShell)](sql-database-elastic-pool-manage-powershell.md)。
-- **檢閱和暫停異地複寫**：如果您的 Azure SQL Database 已針對「異地複寫」做設定，您應該記錄其目前的設定並[停止異地複寫](sql-database-geo-replication-portal.md#remove-secondary-database)。在升級完成後，請針對「異地複寫」重新設定您的資料庫。
-- **如果您的用戶端位於 Azure VM 上，請開啟這些連接埠**：如果在您的用戶端於 Azure 虛擬機器 (VM) 上執行時，用戶端程式連接至 SQL Database V12，您就必須開啟此 VM 上 11000-11999 和 14000-14999 範圍的連接埠。如需詳細資訊，請參閱 [SQL Database V12 的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
-
-
-
-## 開始升級
-
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要升級的伺服器，方法是選取 [瀏覽] > [SQL Server]，然後選取您要升級的 v2.0 伺服器。
-2. 選取 [最新的 SQL Database 更新]，然後選取 [升級此伺服器]。
-
-      ![升級伺服器][1]
-
-3. 將伺服器升級為最新的 SQL Database Update 是永久且無法回復的。若要確認升級，請輸入您的伺服器名稱並按一下 [確定]。
-
-## 升級所有 Web 和商務資料庫
-
-如果您的伺服器內有任何 Web 或 Business 資料庫，就必須將這些資料庫升級。在升級至 SQL Database V12 的過程中，您將會把所有 Web 和商務資料庫更新至新的服務層級。
-
-為了協助您完成升級，SQL Database 服務建議為每個資料庫選擇適當的服務層和效能層級 (定價層)。服務會透過分析您資料庫過去的使用情況，建議最適合用於執行您現有資料庫工作負載的層。
-
-3. 在 [**升級此伺服器**] 刀鋒視窗中，選取每個要檢閱的資料庫，然後選取建議的定價層來進行升級。您隨時都可以瀏覽各種可用的定價層，並選取最符合您環境的選項。
+- **Upgrade all Web and Business databases**: See [Upgrade all Web and Business databases](sql-database-upgrade-server-portal.md#upgrade-all-web-and-business-databases) section below or see [Monitor and manage an elastic database pool (PowerShell)](sql-database-elastic-pool-manage-powershell.md).
+- **Review and suspend Geo-Replication**: If your Azure SQL database is configured for Geo-Replication you should document its current configuration and [stop Geo-Replication](sql-database-geo-replication-portal.md#remove-secondary-database). After the upgrade completes reconfigure your database for Geo-Replication.
+- **Open these ports if you have clients on an Azure VM**: If your client program connects to SQL Database V12 while your client runs on an Azure virtual machine (VM), you must open port ranges 11000-11999 and 14000-14999 on the VM. For details, see [Ports for SQL Database V12](sql-database-develop-direct-route-ports-adonet-v12.md).
 
 
-     ![資料庫][2]
+
+## <a name="start-the-upgrade"></a>Start the upgrade
+
+1. In the [Azure portal](https://portal.azure.com/) browse to the server you want to upgrade by selecting **BROWSE** > **SQL servers**, and selecting the v2.0 server you want to upgrade.
+2. Select **Latest SQL Database Update**, then select **Upgrade this server**.
+
+      ![upgrade server][1]
+
+3. Upgrading a server to the latest SQL Database Update is permanent and irreversible. To confirm the upgrade, type the name of your server and click **OK**.
+
+## <a name="upgrade-all-web-and-business-databases"></a>Upgrade all Web and Business databases
+
+If your server has any Web or Business databases you must upgrade them. During the process of upgrading to SQL Database V12 you will update all Web and Business databases to a new service tier.    
+
+To assist you with upgrading, the SQL Database service recommends an appropriate service tier and performance level (pricing tier) for each database. The service recommends the best tier for running your existing database’s workload by analyzing the historical usage for your database.
+
+3. In the **Upgrade this server** blade select each database to review and select the recommended pricing tier to upgrade to. You can always browse the available pricing tiers and select the one that suits your environment best.
 
 
-7. 按一下建議的層之後，您會看到 [**選擇定價層**] 刀鋒視窗，您可以在此視窗選取一個層，然後按一下 [**選取**] 按鈕來變更為該層。為每個 Web 或商務資料庫選取新的層。
-
-    請特別注意，SQL Database 不會鎖定至任何特定的服務層級或效能等級，因此當您的資料庫需求變更時，您可以在可用的服務層級和效能等級之間輕鬆進行變更。事實上，基本、標準和高階 SQL Database 是以小時計費，您可以在 24 小時內向上或向下調整每個資料庫 4 次。
-
-    ![Mahout][6]
+     ![databases][2]
 
 
-伺服器的所有資料庫都符合資格之後，您就可以準備開始升級
+7. After clicking the suggested tier you will be presented with the **Choose your pricing tier** blade where you can select a tier and then click the **Select** button to change to that tier. Select a new tier for each Web or Business database.
 
-## 確認升級
+    What is important to note is that your SQL database is not locked into any specific service tier or performance level, so as the requirements of your database change you can easily change between the available service tiers and performance levels. In fact, Basic, Standard, and Premium SQL Databases are billed by the hour, and you have the ability to scale each database up or down 4 times within a 24 hour period.
 
-3. 當伺服器上的所有資料庫都符合升級條件之後，您必須 [輸入伺服器名稱] 以確認您想要執行升級，然後按一下 [確定]。
-
-    ![確認升級][3]
+    ![recommendations][6]
 
 
-4. 升級隨即開始，過程中也會顯示進度通知。升級程序即會啟動。視特定資料庫的詳細資料而定，升級至 V12 可能需要一些時間。在這段期間，伺服器上的所有資料庫將維持線上狀態，但伺服器和資料庫的管理動作將受到限制。
+After all databases on the server are eligible you are ready to start the upgrade
 
-    ![升級進行中][4]
+## <a name="confirm-the-upgrade"></a>Confirm the upgrade
 
-    在實際轉換到新的效能層級時，資料庫連線可能會暫時中斷一小段時間 (通常以秒計算)。若應用程式對於連線終止出現暫時性的錯誤處理 (重試邏輯)，在升級結束時連線將不會中斷。
+3. When all the databases on the server are eligible for upgrade you need to **TYPE THE SERVER NAME** to verify that you want to perform the upgrade, and then click **OK**.
 
-5. 升級作業完成之後，[**最新更新**] 刀鋒視窗將會顯示 [**已啟用**]。
-
-    ![已啟用 V12][5]
-
-## 將資料庫移至彈性資料庫集區
-
-在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至 V12 伺服器並按一下 [新增集區]。
-
--或-
-
-如果您看到 [按一下這裡可檢視針對此伺服器所建議的彈性資料庫集區] 訊息，請按一下該處，即可輕鬆地建立已針對您伺服器的資料庫進行最佳化的集區。如需詳細資料，請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
-
-![將集區加入伺服器][7]
-
-請依照[建立彈性資料庫集區](sql-database-elastic-pool.md)一文中的說明來完成集區建立。
-
-## 在升級至 SQL Database V12 後監視資料庫
-
->[AZURE.IMPORTANT] 升級至最新版本的 SQL Server Management Studio (SSMS) 來使用新的 v12 功能。[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
-
-升級之後，主動監視資料庫，以確保應用程式達到所需的執行效能，然後視需要將設定調整到最佳狀態。
-
-除了監視個別的資料庫之外，您也可以透過[使用 Azure 入口網站監視、管理和估算彈性資料庫集區大小](sql-database-elastic-pool-manage-portal.md)或藉由 [PowerShell](sql-database-elastic-pool-powershell.md#monitoring-elastic-databases-and-elastic-database-pools) 監視彈性資料庫集區。
+    ![verify upgrade][3]
 
 
-**資源耗用量資料：**Basic、Standard 及 Premium 資料庫的資源耗用量資料會透過使用者資料庫中的 [sys.dm_ db_ resource\_stats](http://msdn.microsoft.com/library/azure/dn800981.aspx) DMV 提供。此 DMV 以 15 秒的間隔提供幾乎即時的前一小時作業資源耗用量資訊。某一間隔的 DTU 百分比耗用量會以 CPU、IO 及記錄檔方面的最大百分比耗用量來計算。下列是計算前一小時之平均 DTU 百分比耗用量的查詢：
+4. The upgrade starts and displays the in progress notification. The upgrade process is initiated. Depending on the details of your specific databases upgrading to V12 can take some time. During this time all databases on the server will remain online but server and database management actions will be restricted.
+
+    ![upgrade in progress][4]
+
+    At the time of the actual transition to the new performance level temporary dropping of the connections to the database can happen for a very small duration (typically measured in seconds). If an application has transient fault handling (retry logic) for connection terminations then it is sufficient to protect against dropped connections at the end of the upgrade.
+
+5. After the upgrade operation completes the **Latest Update** blade will display **Enabled**.
+
+    ![V12 enabled][5]  
+
+## <a name="move-your-databases-into-an-elastic-database-pool"></a>Move your databases into an elastic database pool
+
+In the [Azure portal](https://portal.azure.com/) browse to the V12 server and click **Add pool**.
+
+-or-
+
+If you see a message saying **Click here to view the recommended elastic database pools for this server**, click it to easily create a pool that is optimized for your server's databases. For details, see [Price and performance considerations for an elastic database pool](sql-database-elastic-pool-guidance.md).
+
+![Add pool to a server][7]
+
+Follow the directions in the [Create an elastic database pool](sql-database-elastic-pool.md) article to finish creating your pool.
+
+## <a name="monitor-databases-after-upgrading-to-sql-database-v12"></a>Monitor databases after upgrading to SQL Database V12
+
+>[AZURE.IMPORTANT] Upgrade to the latest version of SQL Server Management Studio (SSMS) to take advantage of the new v12 capabilities. [Download SQL Server Management Studio] (https://msdn.microsoft.com/library/mt238290.aspx).
+
+After upgrading, actively monitor the database to ensure applications are running at the desired performance, and then optimize settings as required.
+
+In addition to monitoring individual databases, you can monitor elastic database pools [Monitor, manage, and size an elastic database pool with the Azure portal](sql-database-elastic-pool-manage-portal.md) or with [PowerShell](sql-database-elastic-pool-manage-powershell.md).
+
+
+**Resource consumption data:** For Basic, Standard, and Premium databases resource consumption data is available through the [sys.dm_ db_ resource_stats](http://msdn.microsoft.com/library/azure/dn800981.aspx) DMV in the user database. This DMV provides near real time resource consumption information at 15 second granularity for the previous hour of operation. The DTU percentage consumption for an interval is computed as the maximum percentage consumption of the CPU, IO and log dimensions. Here is a query to compute the average DTU percentage consumption over the last hour:
 
     SELECT end_time
-    	 , (SELECT Max(v)
+         , (SELECT Max(v)
              FROM (VALUES (avg_cpu_percent)
                          , (avg_data_io_percent)
                          , (avg_log_write_percent)
-    	   ) AS value(v)) AS [avg_DTU_percent]
+           ) AS value(v)) AS [avg_DTU_percent]
     FROM sys.dm_db_resource_stats
     ORDER BY end_time DESC;
 
-其他監視資訊：
+Additional monitoring information:
 
-- [單一資料庫的 Azure SQL Database 效能指引](http://msdn.microsoft.com/library/azure/dn369873.aspx)。
-- [彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
-- [使用動態管理檢視監視 Azure SQL Database](sql-database-monitoring-with-dmvs.md)
-
-
-
-
-**警示：**在 Azure 入口網站中設定「警示」，即可在已升級之資料庫的 DTU 耗用量接近特定的高層級時通知您。您可以在 Azure 入口網站中為各種效能計量 (例如 DTU、CPU、IO 及記錄檔) 設定資料庫警示。請瀏覽至您的資料庫，然後在 [設定] 刀鋒視窗中，選取 [警示規則]。
-
-例如，您可以設定若過去 5 分鐘的平均 DTU 百分比值超出 75% 則發出「 DTU 百分比 」電子郵件警示。若要深入了解如何設定警示通知，請參閱[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)。
+- [Azure SQL Database performance guidance for single databases](http://msdn.microsoft.com/library/azure/dn369873.aspx).
+- [Price and performance considerations for an elastic database pool](sql-database-elastic-pool-guidance.md).
+- [Monitoring Azure SQL Database using dynamic management views](sql-database-monitoring-with-dmvs.md)
 
 
 
 
+**Alerts:** Set up 'Alerts' in the Azure portal to notify you when the DTU consumption for an upgraded database approaches certain high level. Database alerts can be setup in the Azure portal for various performance metrics like DTU, CPU, IO, and Log. Browse to your database and select **Alert rules** in the **Settings** blade.
 
-## 後續步驟
-
-- [檢查集區建議並建立集區](sql-database-elastic-pool-create-portal.md)。
-- [變更您資料庫的服務層級和效能等級](sql-database-scale-up.md)。
+For example, you can set up an email alert on “DTU Percentage” if the average DTU percentage value exceeds 75% over the last 5 minutes. Refer to [Receive alert notifications](../azure-portal/insights-receive-alert-notifications.md) to learn more about how to configure alert notifications.
 
 
 
-## 相關連結
 
-- [SQL Database V12 新功能](sql-database-v12-whats-new.md)
-- [規劃和準備升級至 SQL Database V12](sql-database-v12-plan-prepare-upgrade.md)
+
+## <a name="next-steps"></a>Next steps
+
+- [Check for pool recommendations and create a pool](sql-database-elastic-pool-create-portal.md).
+- [Change the service tier and performance level of your database](sql-database-scale-up.md).
+
+
+
+## <a name="related-links"></a>Related Links
+
+- [What's new in SQL Database V12](sql-database-v12-whats-new.md)
+- [Plan and prepare to upgrade to SQL Database V12](sql-database-v12-plan-prepare-upgrade.md)
 
 
 <!--Image references-->
@@ -169,4 +171,8 @@ SQL Database V12 是最新的版本，因此建議將現有的伺服器升級至
 [6]: ./media/sql-database-upgrade-server-portal/recommendations.png
 [7]: ./media/sql-database-upgrade-server-portal/new-elastic-pool.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,10 +1,10 @@
 <properties
 pageTitle="ProjectOnline | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。Project Online 是專案組合管理 (PPM) 與 Microsoft 日常工作的彈性線上方案。Project Online 透過 Office 365 傳遞，可讓組織快速開始使用功能強大的專案管理功能，來規劃、設定優先順序以及管理專案和專案組合投資，不受場地和裝置的限制。"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create Logic apps with Azure App service. Project Online is a flexible online solution for project portfolio management (PPM) and everyday work from Microsoft. Delivered through Office 365, Project Online enables organizations to get started quickly with powerful project management capabilities to plan, prioritize, and manage projects and project portfolio investments—from almost anywhere on almost any device."
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,505 +17,509 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 ProjectOnline 連接器
 
-Project Online 是專案組合管理 (PPM) 與 Microsoft 日常工作的彈性線上方案。Project Online 透過 Office 365 傳遞，可讓組織快速開始使用功能強大的專案管理功能，來規劃、設定優先順序以及管理專案和專案組合投資，不受場地和裝置的限制。
+# <a name="get-started-with-the-projectonline-connector"></a>Get started with the ProjectOnline connector
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+Project Online is a flexible online solution for project portfolio management (PPM) and everyday work from Microsoft. Delivered through Office 365, Project Online enables organizations to get started quickly with powerful project management capabilities to plan, prioritize, and manage projects and project portfolio investments—from almost anywhere on almost any device.
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. 
 
-## 觸發程序及動作
+You can get started by creating a Logic app now, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+## <a name="triggers-and-actions"></a>Triggers and actions
 
- ProjectOnline 連接器提供下列動作及/或觸發程序：
+The ProjectOnline connector can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
 
-### ProjectOnline 動作
-您可以採取下列動作：
+ The ProjectOnline connector has the following action(s) and/or trigger(s) available:
 
-|動作|說明|
+### <a name="projectonline-actions"></a>ProjectOnline actions
+You can take these action(s):
+
+|Action|Description|
 |--- | ---|
-|[ListProjects](connectors-create-api-projectonline.md#listprojects)|列出 Project Online 網站中的專案|
-|[CreateProject](connectors-create-api-projectonline.md#createproject)|在 Project Online 網站中建立新專案|
-|[CreateTask](connectors-create-api-projectonline.md#createtask)|在專案中建立新工作|
-|[CreateResource](connectors-create-api-projectonline.md#createresource)|在 Project Online 網站中建立企業資源|
-|[ListTasks](connectors-create-api-projectonline.md#listtasks)|列出專案中已發佈的工作|
-|[CheckoutProject](connectors-create-api-projectonline.md#checkoutproject)|簽出網站中的專案|
-|[PublishProject](connectors-create-api-projectonline.md#publishproject)|簽入和發佈網站中現有的專案|
-### ProjectOnline 觸發程序
-您可以接聽下列事件：
+|[ListProjects](connectors-create-api-projectonline.md#listprojects)|Lists the projects in your project online site|
+|[CreateProject](connectors-create-api-projectonline.md#createproject)|Creates a new project in your project online site|
+|[CreateTask](connectors-create-api-projectonline.md#createtask)|Creates a new task in you project|
+|[CreateResource](connectors-create-api-projectonline.md#createresource)|Creates an Enterprise Resources in your project online site|
+|[ListTasks](connectors-create-api-projectonline.md#listtasks)|Lists the published tasks in a project|
+|[CheckoutProject](connectors-create-api-projectonline.md#checkoutproject)|Checks out a project in your site|
+|[PublishProject](connectors-create-api-projectonline.md#publishproject)|Check in and publish and existing project in your site|
+### <a name="projectonline-triggers"></a>ProjectOnline triggers
+You can listen for these event(s):
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|建立新專案時|每當建立新專案就會觸發流程|
-|建立新資源時|建立新資源時就會觸發新流程|
-|建立新工作時|建立新工作時就會觸發流程|
+|When a new project is created|Triggers a flow whenever a new project is created|
+|When a new resource is created|Triggers a new flow when a new resource is created|
+|When a new task is created|Triggers a flow when a new task is created|
 
 
-## 建立 ProjectOnline 的連線
-若要使用 ProjectOnline 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
+## <a name="create-a-connection-to-projectonline"></a>Create a connection to ProjectOnline
+To create Logic apps with ProjectOnline, you must first create a **connection** then provide the details for the following properties: 
 
-|屬性| 必要|說明|
+|Property| Required|Description|
 | ---|---|---|
-|權杖|是|提供 ProjectOnline 認證|
+|Token|Yes|Provide ProjectOnline Credentials|
 
->[AZURE.INCLUDE [建立至 ProjectOnline 連線的步驟](../../includes/connectors-create-api-projectonline.md)]
+>[AZURE.INCLUDE [Steps to create a connection to ProjectOnline](../../includes/connectors-create-api-projectonline.md)]
 
->[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
+>[AZURE.TIP] You can use this connection in other logic apps.
 
-## ProjectOnline 的參考
-適用的版本：1.0
+## <a name="reference-for-projectonline"></a>Reference for ProjectOnline
+Applies to version: 1.0
 
-## OnNewProject
-建立新專案時：每當建立新專案就會觸發流程
+## <a name="onnewproject"></a>OnNewProject
+When a new project is created: Triggers a flow whenever a new project is created 
 
-```GET: /trigger/_api/ProjectData/Projects```
+```GET: /trigger/_api/ProjectData/Projects``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## OnNewResource
-建立新資源時︰建立新資源時就會觸發新流程
+## <a name="onnewresource"></a>OnNewResource
+When a new resource is created: Triggers a new flow when a new resource is created 
 
-```GET: /trigger/_api/ProjectData/Resources```
+```GET: /trigger/_api/ProjectData/Resources``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## OnNewTask
-建立新工作時︰建立新工作時就會觸發流程
+## <a name="onnewtask"></a>OnNewTask
+When a new task is created: Triggers a flow when a new task is created 
 
-```GET: /trigger/_api/ProjectData/Tasks```
+```GET: /trigger/_api/ProjectData/Tasks``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## ListProjects
-列出專案：列出 Project Online 網站中的專案
+## <a name="listprojects"></a>ListProjects
+List projects: Lists the projects in your project online site 
 
-```GET: /_api/ProjectServer/Projects```
+```GET: /_api/ProjectServer/Projects``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateProject
-建立新專案：在 Project Online 網站中建立新專案
+## <a name="createproject"></a>CreateProject
+Creates new project: Creates a new project in your project online site 
 
-```POST: /_api/ProjectServer/Projects```
+```POST: /_api/ProjectServer/Projects``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|proj| |yes|body|無|要建立的新專案|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
+|proj| |yes|body|none|New project to create|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|ForbIDden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateTask
-建立新工作：在專案中建立新工作
+## <a name="createtask"></a>CreateTask
+Creates new task: Creates a new task in you project 
 
-```POST: /_api/ProjectServer/Projects('{project_id}')/Draft/Tasks/Add```
+```POST: /_api/ProjectServer/Projects('{project_id}')/Draft/Tasks/Add``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|string|yes|路徑|無|要加入工作中的專案唯一識別碼|
-|工作| |yes|body|無|要加入專案中的新工作|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
+|project_id|string|yes|path|none|Unique ID of the project to add the task to|
+|task| |yes|body|none|New task to add to the project|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateResource
-建立新資源：在 Project Online 網站中建立企業資源
+## <a name="createresource"></a>CreateResource
+Create new resource: Creates an Enterprise Resources in your project online site 
 
-```POST: /_api/ProjectServer/EnterpriseResources```
+```POST: /_api/ProjectServer/EnterpriseResources``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|資源| |yes|body|無|要加入專案中的新企業資源|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
+|resource| |yes|body|none|New enterprise resource to add to the project|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## ListTasks
-列出工作：列出專案中已發佈的工作
+## <a name="listtasks"></a>ListTasks
+Lists tasks: Lists the published tasks in a project 
 
-```GET: /_api/ProjectServer/Projects('{project_id}')/Tasks```
+```GET: /_api/ProjectServer/Projects('{project_id}')/Tasks``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|string|yes|路徑|無|擷取工作的專案唯一識別碼|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
+|project_id|string|yes|path|none|Unique ID of the project to fetch tasks|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CheckoutProject
-簽出專案：簽出網站中的專案
+## <a name="checkoutproject"></a>CheckoutProject
+Checkout a project: Checks out a project in your site 
 
-```POST: /_api/ProjectServer/Projects('{project_id}')/checkOut```
+```POST: /_api/ProjectServer/Projects('{project_id}')/checkOut``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|string|yes|路徑|無|要加入工作中的專案唯一識別碼|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
+|project_id|string|yes|path|none|Unique ID of the project to add the task to|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## PublishProject
-簽入和發佈專案：簽入和發佈網站中現有的專案
+## <a name="publishproject"></a>PublishProject
+Checkin and publish project: Check in and publish and existing project in your site 
 
-```POST: /_api/ProjectServer/Projects('{project_id}')/Draft/Publish(true)```
+```POST: /_api/ProjectServer/Projects('{project_id}')/Draft/Publish(true)``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|string|yes|路徑|無|簽入的專案唯一識別碼|
+|siteUrl|string|yes|query|none|Root site url of your project site (Example: https://sampletenant.sharepoint.com/teams/sampleteam )|
+|project_id|string|yes|path|none|Unique ID of the project to checkin|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## 物件定義 
+## <a name="object-definitions"></a>Object definitions 
 
-### TriggerProjectsWrapper
+### <a name="triggerprojectswrapper"></a>TriggerProjectsWrapper
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### TriggerProject
+### <a name="triggerproject"></a>TriggerProject
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|ProjectStartDate|string|否 |
-|ProjectFinishDate|string|否 |
-|ProjectCreatedDate|string|否 |
-|ProjectId|string|否 |
-|ProjectModifiedDate|string|否 |
-|ProjectType|integer|否 |
-|ProjectName|string|否 |
+|ProjectStartDate|string|No |
+|ProjectFinishDate|string|No |
+|ProjectCreatedDate|string|No |
+|ProjectId|string|No |
+|ProjectModifiedDate|string|No |
+|ProjectType|integer|No |
+|ProjectName|string|No |
 
 
 
-### TriggerResourcesWrapper
+### <a name="triggerresourceswrapper"></a>TriggerResourcesWrapper
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### TriggerResource
+### <a name="triggerresource"></a>TriggerResource
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|ResourceId|string|否 |
-|ResourceBaseCalendar|string|否 |
-|ResourceBookingType|integer|否 |
-|ResourceCanLevel|布林值|否 |
-|ResourceCostPerUse|number|否 |
-|ResourceCreatedDate|string|否 |
-|ResourceEarliestAvailableFrom|string|否 |
-|ResourceEmail|string|否 |
-|ResourceInitials|string|否 |
-|ResourceIsActive|布林值|否 |
-|ResourceIsGeneric|布林值|否 |
-|ResourceLatestAvailableTo|string|否 |
-|ResourceModifiedDate|string|否 |
-|ResourceName|string|否 |
-|ResourceStatsuName|string|否 |
-|ResourceType|integer|否 |
-|TypeDescription|string|否 |
-|TypeName|string|否 |
+|ResourceId|string|No |
+|ResourceBaseCalendar|string|No |
+|ResourceBookingType|integer|No |
+|ResourceCanLevel|boolean|No |
+|ResourceCostPerUse|number|No |
+|ResourceCreatedDate|string|No |
+|ResourceEarliestAvailableFrom|string|No |
+|ResourceEmail|string|No |
+|ResourceInitials|string|No |
+|ResourceIsActive|boolean|No |
+|ResourceIsGeneric|boolean|No |
+|ResourceLatestAvailableTo|string|No |
+|ResourceModifiedDate|string|No |
+|ResourceName|string|No |
+|ResourceStatsuName|string|No |
+|ResourceType|integer|No |
+|TypeDescription|string|No |
+|TypeName|string|No |
 
 
 
-### TriggerTasksWrapper
+### <a name="triggertaskswrapper"></a>TriggerTasksWrapper
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### TriggerTask
+### <a name="triggertask"></a>TriggerTask
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|ProjectId|string|否 |
-|TaskId|string|否 |
-|ProjectName|string|否 |
-|TaskName|string|否 |
-|TaskCreatedDate|string|否 |
-|TaskModifieddate|string|否 |
-|TaskStartDate|string|否 |
-|TaskFinishDate|string|否 |
-|TaskPriority|integer|否 |
-|TaskIsActive|布林值|否 |
+|ProjectId|string|No |
+|TaskId|string|No |
+|ProjectName|string|No |
+|TaskName|string|No |
+|TaskCreatedDate|string|No |
+|TaskModifieddate|string|No |
+|TaskStartDate|string|No |
+|TaskFinishDate|string|No |
+|TaskPriority|integer|No |
+|TaskIsActive|boolean|No |
 
 
 
-### NewProject
+### <a name="newproject"></a>NewProject
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|名稱|string|是 |
-|說明|string|否 |
-|啟動|string|否 |
+|Name|string|Yes |
+|Description|string|No |
+|Start|string|No |
 
 
 
-### NewReource
+### <a name="newreource"></a>NewReource
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|名稱|string|是 |
-|IsBudget|布林值|否 |
-|IsGeneric|布林值|否 |
-|IsInactive|布林值|否 |
+|Name|string|Yes |
+|IsBudget|boolean|No |
+|IsGeneric|boolean|No |
+|IsInactive|boolean|No |
 
 
 
-### 隨附此逐步解說的專案
+### <a name="project"></a>Project
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|ApprovedStart|string|否 |
-|ApprovedEnd|string|否 |
-|CheckedOutDate|string|否 |
-|CheckOutDescription|string|否 |
-|CheckOutId|string|否 |
-|CreatedDate|string|否 |
-|識別碼|string|否 |
-|IsCheckedOut|布林值|否 |
-|LastPublishedDate|string|否 |
-|LastSavedDate|string|否 |
-|OptimizerDecision|integer|否 |
-|PlannerDecision|integer|否 |
-|ProjectType|integer|否 |
-|名稱|string|否 |
-|WinprojVersion|string|否 |
+|ApprovedStart|string|No |
+|ApprovedEnd|string|No |
+|CheckedOutDate|string|No |
+|CheckOutDescription|string|No |
+|CheckOutId|string|No |
+|CreatedDate|string|No |
+|Id|string|No |
+|IsCheckedOut|boolean|No |
+|LastPublishedDate|string|No |
+|LastSavedDate|string|No |
+|OptimizerDecision|integer|No |
+|PlannerDecision|integer|No |
+|ProjectType|integer|No |
+|Name|string|No |
+|WinprojVersion|string|No |
 
 
 
-### ProjectsWrapper
+### <a name="projectswrapper"></a>ProjectsWrapper
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### NewTask
+### <a name="newtask"></a>NewTask
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|參數|沒有定義|是 |
+|parameters|not defined|Yes |
 
 
 
-### TaskParameters
+### <a name="taskparameters"></a>TaskParameters
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|名稱|string|是 |
-|注意事項|string|否 |
-|啟動|string|否 |
-|持續時間|string|否 |
+|Name|string|Yes |
+|Notes|string|No |
+|Start|string|No |
+|Duration|string|No |
 
 
 
-### EnterpriseResource
+### <a name="enterpriseresource"></a>EnterpriseResource
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|CanLevel|布林值|否 |
-|代碼|string|否 |
-|CostAccrual|integer|否 |
-|CostCenter|string|否 |
-|建立時間|string|否 |
-|DefaultBookingType|integer|否 |
-|電子郵件|string|否 |
-|ExternalId|string|否 |
-|群組|string|否 |
-|HireDate|string|否 |
-|識別碼|string|否 |
-|Initials|string|否 |
-|IsActive|布林值|否 |
-|IsBudget|布林值|否 |
-|IsCheckedOut|布林值|否 |
-|IsGeneric|布林值|否 |
-|IsTeam|布林值|否 |
-|MaterialLabel|string|否 |
-|修改時間|string|否 |
-|名稱|string|否 |
-|Phonetics|string|否 |
-|ResourceType|integer|否 |
-|TerminationDate|string|否 |
+|CanLevel|boolean|No |
+|Code|string|No |
+|CostAccrual|integer|No |
+|CostCenter|string|No |
+|Created|string|No |
+|DefaultBookingType|integer|No |
+|Email|string|No |
+|ExternalId|string|No |
+|Group|string|No |
+|HireDate|string|No |
+|Id|string|No |
+|Initials|string|No |
+|IsActive|boolean|No |
+|IsBudget|boolean|No |
+|IsCheckedOut|boolean|No |
+|IsGeneric|boolean|No |
+|IsTeam|boolean|No |
+|MaterialLabel|string|No |
+|Modified|string|No |
+|Name|string|No |
+|Phonetics|string|No |
+|ResourceType|integer|No |
+|TerminationDate|string|No |
 
 
 
-### TasksWrapper
+### <a name="taskswrapper"></a>TasksWrapper
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|value|array|否 |
+|value|array|No |
 
 
 
-### 工作
+### <a name="task"></a>Task
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|建立時間|string|否 |
-|修改時間|string|否 |
-|啟動|string|否 |
-|完成|string|否 |
-|Name|string|否 |
-|識別碼|string|否 |
-|優先順序|integer|否 |
-|PercentComplete|integer|否 |
-|注意事項|string|否 |
-|連絡人|string|否 |
+|Created|string|No |
+|Modified|string|No |
+|Start|string|No |
+|Finish|string|No |
+|Name|string|No |
+|Id|string|No |
+|Priority|integer|No |
+|PercentComplete|integer|No |
+|Notes|string|No |
+|Contact|string|No |
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

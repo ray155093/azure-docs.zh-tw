@@ -1,171 +1,179 @@
 <properties 
-	pageTitle="Application Insights 中的接近即時主動式診斷 | Microsoft Azure" 
-	description="警示您應用程式中不尋常的失敗模式，並提供診斷分析。不需要設定。" 
-	services="application-insights" 
+    pageTitle="Near Real Time Proactive Diagnostics in Application Insights | Microsoft Azure" 
+    description="Alerts you to unusual failure patterns in your app, and provides diagnostic analysis. No configuration is needed." 
+    services="application-insights" 
     documentationCenter=""
-	authors="yorac" 
-	manager="douge"/>
+    authors="yorac" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/31/2016" 
-	ms.author="awills"/>
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/31/2016" 
+    ms.author="awills"/>
  
-# 主動式失敗診斷
 
-如果 Web 應用程式的失敗異常增加，[Visual Studio Application Insights](app-insights-overview.md) 會以接近即時通知的方式自動通知您。它偵測到回報為失敗的 HTTP 要求率異常提高。為了協助您分級並診斷問題，通知中會提供失敗要求的特性分析與相關遙測。其中也有 Application Insights 入口網站的連結，以供進一步診斷。不需要設定該功能，因為它是使用機器學習演算法來預測一般失敗率。
+# <a name="proactive-failure-diagnostics"></a>Proactive Failure Diagnostics
 
-這項功能適用於 Java 和 ASP.NET Web 應用程式，其裝載於雲端或您自己的伺服器上。它也適用於產生要求遙測的任何應用程式 - 例如，如果您有呼叫 [trackrequest ()](app-insights-api-custom-events-metrics.md#track-request) 的背景工作角色。
+[Visual Studio Application Insights](app-insights-overview.md) automatically notifies you in near real time if your web app experiences an abnormal rise in failures. It detects an unusual rise in the rate of HTTP requests reported as failed. To help you triage and diagnose the problem, an analysis of the characteristics of failed requests and related telemetry is provided in the notification. There are also links to the Application Insights portal for further diagnosis. The feature needs no set-up or configuration, as it uses machine learning algorithms to predict the normal failure rate.
 
-設定[專案的 Application Insights](app-insights-overview.md) 之後，且假設您的應用程式產生特定最少量的遙測，主動式失敗診斷需要 24 小時來了解您應用程式的正常行為，然後它才會啟動且可以傳送警示。
+This feature works for Java and ASP.NET web apps, hosted in the cloud or on your own servers. It also works for any app that generates request telemetry - for example, if you have a worker role that calls [TrackRequest()](app-insights-api-custom-events-metrics.md#track-request). 
 
-以下是警示範例。
+After setting up [Application Insights for your project](app-insights-overview.md), and provided your app generates a certain minimum amount of telemetry, Proactive failure diagnostics takes 24 hours to learn the normal behavior of your app, before it is switched on and can send alerts.
 
-![顯示失敗之相關叢集分析的智慧警示範例](./media/app-insights-proactive-failure-diagnostics/010.png)
+Here's a sample alert. 
 
-> [AZURE.NOTE] 根據預設，您所取得的郵件格式會比這個範例還簡短。不過，您也可以[切換到這個詳細格式](#configure-alerts)。
+![Sample Intelligent Alert showing cluster analysis around failure](./media/app-insights-proactive-failure-diagnostics/010.png)
 
-請注意，它會告訴您︰
+> [AZURE.NOTE] By default, you get a shorter format mail than this example. But you can [switch to this detailed format](#configure-alerts).
 
-* 相較於一般應用程式行為的失敗率。
-* 受影響的使用者人數 – 讓您知道應處理的數目。
-* 與失敗關聯的特性模式。在此範例中，有特定的回應碼、要求名稱 (操作) 和應用程式版本。可立即告訴您從何處開始了解程式碼。其他可能性則可能是特定的瀏覽器或用戶端作業系統。
-* 看起來似乎與特色失敗要求相關聯的例外狀況、記錄追蹤和相依性失敗 (資料庫或其他外部元件)。
-* 直接連結到 Application Insights 的遙測上相關搜尋。
+Notice that it tells you:
 
-## 主動警示的優點
+* The failure rate compared to normal app behavior.
+* How many users are affected – so you know how much to worry.
+* A characteristic pattern associated with the failures. In this example, there’s a particular response code, request name (operation) and app version. That immediately tells you where to start looking in your code. Other possibilities could be a specific browser or client operating system.
+* The exception, log traces, and dependency failure (databases or other external components) that appear to be associated with the characterized failed requests.
+* Links directly to relevant searches on the telemetry in Application Insights.
 
-一般的[度量警示](app-insights-alerts.md)會告訴您可能有問題。但是主動式失敗診斷會啟動診斷工作，為您執行許多您原本必須自行進行的分析。您達到幾近封裝完成的結果，幫助您快速取得問題的根源。
+## <a name="benefits-of-proactive-alerts"></a>Benefits of proactive alerts
 
-## 運作方式
+Ordinary [metric alerts](app-insights-alerts.md) tell you there might be a problem. But proactive failure diagnostics starts the diagnostic work for you, performing a lot of the analysis you would otherwise have to do yourself. You get the results neatly packaged, helping you to get quickly to the root of the problem.
 
-接近即時主動式診斷會監視從應用程式收到的遙測，特別是要求失敗率的遙測。這個度量會計算 `Successful request` 屬性為 false 的要求數目。根據預設，`Successful request== (resultCode < 400)` (除非您撰寫自訂程式碼來[篩選](app-insights-api-filtering-sampling.md#filtering)或產生自己的 [TrackRequest](app-insights-api-custom-events-metrics.md#track-request) 呼叫)。
+## <a name="how-it-works"></a>How it works
 
-您的應用程式效能具有一般的行為模式。某些要求會比其他要求更容易失敗；且整體失敗率可能會隨著負載增加而上移。主動式失敗診斷會使用機器學習服務來尋找這些異常狀況。
+Near Real Time Proactive Diagnostics monitors the telemetry received from your app, and in particular the failed request rate. This metric counts the number of requests for which the `Successful request` property is false. By default, `Successful request== (resultCode < 400)` (unless you have written custom code to [filter](app-insights-api-filtering-sampling.md#filtering) or generate your own [TrackRequest](app-insights-api-custom-events-metrics.md#track-request) calls). 
 
-當遙測從您的 Web 應用程式進入 Application Insights 時，主動式失敗診斷會比較目前的行為與過去幾天所發現的模式。如果觀察到與先前效能相比，失敗率異常提高，就會觸發分析。
+Your app’s performance has a typical pattern of behavior. Some requests will be more prone to failure than others; and the overall failure rate may go up as load increases. Proactive failure diagnostics uses machine learning to find these anomalies. 
 
-觸發分析時，服務會對失敗的要求執行叢集分析，以嘗試識別描述失敗特徵之值的模式。在上述範例中，分析已發現大部分失敗是關於特定結果碼、要求名稱、伺服器 URL 主機和角色執行個體。相反地，分析發現，用戶端作業系統屬性分散在多個值，因此未列出。
+As telemetry comes into Application Insights from your web app, proactive failure diagnostics compares the current behavior with the patterns seen over the past few days. If an abnormal rise in failure rate is observed by comparison with previous performance, an analysis is triggered.
 
-當您的服務使用這些遙測進行檢測時，分析器發現與已識別之叢集中的要求相關聯的例外狀況及相依性失敗，同時也包含與那些要求相關的任何追蹤記錄檔的範例。
+When an analysis is triggered, the service performs a cluster analysis on the failed request, to try to identify a pattern of values that characterize the failures. In the example above, the analysis has discovered that most failures are about a specific result code, request name, Server URL host, and role instance. By contrast, the analysis has discovered that the client operating system property is distributed over multiple values, and so it is not listed.
 
-產生的分析報告會以警示寄送給您，除非您已設定不接收該報告。
+When your service is instrumented with these telemetry, the analyser finds an exception and a dependency failure that are associated with requests in the cluster it has identified, together with an example of any trace logs associated with those requests.
 
-如同[您手動設定的警示](app-insights-alerts.md)，您可以檢查警示的狀態，並在 Application Insights 資源的 [警示] 刀鋒視窗中進行設定。但不同於其他警示，您不需要設定主動式失敗診斷。若有需要，您可以將它停用或變更其目標電子郵件地址。
+The resulting analysis is sent to you as alert, unless you have configured it not to.
 
+Like the [alerts you set manually](app-insights-alerts.md), you can inspect the state of the alert and configure it in the Alerts blade of your Application Insights resource. But unlike other alerts, you don't need to set up or configure Proactive failure diagnostics. If you want, you can disable it or change its target email addresses.
 
-## 設定警示 
 
-您可以停用主動式診斷、變更電子郵件收件者、建立 Webhook，或選擇更詳細的警示訊息。
+## <a name="configure-alerts"></a>Configure alerts 
 
-開啟 [警示] 頁面。主動式診斷已包含於任何您已手動設定的警示中，且您可以查看其目前是否處於警示狀態。
+You can disable proactive diagnostics, change the email recipients, create a webhook, or opt in to more detailed alert messages.
 
-![在 [概觀] 頁面中，按一下 [警示] 圖格。或在任何 [度量] 頁面上，按一下 [警示] 按鈕。](./media/app-insights-proactive-failure-diagnostics/021.png)
+Open the Alerts page. Proactive Diagnostics is included along with any alerts that you have set manually, and you can see whether it is currently in the alert state.
 
-按一下警示來進行設定。
+![On the Overview page, click Alerts tile. Or on any Metrics page, click Alerts button.](./media/app-insights-proactive-failure-diagnostics/021.png)
 
-![組態](./media/app-insights-proactive-failure-diagnostics/031.png)
+Click the alert to configure it.
 
+![Configuration](./media/app-insights-proactive-failure-diagnostics/031.png)
 
-請注意，您可以停用主動式診斷，但無法將它刪除 (或建立另一個)。
 
-#### 詳細的警示
+Notice that you can disable Proactive Diagnostics, but you can't delete it (or create another one).
 
-如果您選取 [Receive detailed analysis]\(接收詳細分析)，則電子郵件會包含詳細的診斷資訊。有時候您從電子郵件中的資料就能夠診斷問題。
+#### <a name="detailed-alerts"></a>Detailed alerts
 
-因為更詳細的警示包含例外狀況和追蹤訊息，所以不太可能包含機密資訊。不過，只有當您的程式碼允許機密資訊進入這些訊息時，才會發生。
+If you select "Receive detailed analysis" then the email will contain more diagnostic information. Sometimes you'll be able to diagnose the problem just from the data in the email. 
 
+There's a slight risk that the more detailed alert could contain sensitive information, because it includes exception and trace messages. However, this would only happen if your code could allow sensitive information into those messages. 
 
-## 分級和診斷警示
 
-發出警示表示系統偵測到要求失敗率異常上升。原因可能是您的應用程式或其環境有問題。
+## <a name="triaging-and-diagnosing-an-alert"></a>Triaging and diagnosing an alert
 
-您可以根據要求的百分比及受影響的使用者數目來決定此問題的緊急程度。在上述範例中，22.5% 的失敗率與正常比率 1% 相比，表示有問題。從另一方面來看，只有 11 位使用者受到影響。如果是您的應用程式，您可以評估嚴重程度。
+An alert indicates that an abnormal rise in the failed request rate was detected. It's likely that there is some problem with your app or its environment.
 
-在多數情況下，您可以根據要求名稱、例外狀況、相依性失敗及提供的追蹤資料來快速診斷問題。
+From the percentage of requests and number of users affected, you can decide how urgent the issue is. In the example above, the failure rate of 22.5% compares with a normal rate of 1%, indicates that something bad is going on. On the other hand, only 11 users were affected. If it were your app, you'd be able to assess how serious that is.
 
-另有一些線索。例如，此範例中的相依性失敗率與例外狀況率 (89.3%) 相同。這可能表示例外狀況直接從相依性失敗產生，讓您清楚瞭解從何處開始查看程式碼。
+In many cases, you will be able to diagnose the problem quickly from the request name, exception, dependency failure and trace data provided. 
 
-若要進一步調查，每個區段中的連結將直接連結到已針對相關要求、例外狀況、相依性或追蹤篩選的[搜尋頁面](app-insights-diagnostic-search.md)。或者，您可以開啟 [Azure 入口網站](https://portal.azure.com)，瀏覽至應用程式的 Application Insights 資源，並開啟 [失敗] 刀鋒視窗。
+There are some other clues. For example, the dependency failure rate in this example is the same as the exception rate (89.3%). This suggests that the exception arises directly from the dependency failure - giving you a clear idea of where to start looking in your code.
 
-在此範例中，按一下 [檢視相依性失敗詳細資料] 連結會在 Application Insights 搜尋刀鋒視窗中開啟含根本原因的 SQL 陳述式：必要欄位上提供的 NULL，且未在儲存作業期間通過驗證。
+To investigate further, the links in each section will take you straight to a [search page](app-insights-diagnostic-search.md) filtered to the relevant requests, exception, dependency or traces. Or you can open the [Azure portal](https://portal.azure.com), navigate to the Application Insights resource for your app, and open the Failures blade.
 
+In this example, clicking the 'View dependency failures details' link opens Application Insights search blade on the SQL statement with the root cause: NULLs where provided at mandatory fields and did not pass validation during the save operation.
 
-![診斷搜尋](./media/app-insights-proactive-failure-diagnostics/051.png)
 
-## 檢閱最近的警示
+![Diagnostic search](./media/app-insights-proactive-failure-diagnostics/051.png)
 
-若要在入口網站中檢閱警示，請依序開啟 [設定]、[稽核記錄檔]。
+## <a name="review-recent-alerts"></a>Review recent alerts
 
-![警示摘要](./media/app-insights-proactive-failure-diagnostics/041.png)
+To review alerts in the portal, open **Settings, Audit logs**.
 
+![Alerts summary](./media/app-insights-proactive-failure-diagnostics/041.png)
 
-點選任何一個警示來查看其完整詳細資料。
 
-或者，按一下 [主動式偵測]，直接取得最新的警示：
+Click any alert to see its full detail.
 
-![警示摘要](./media/app-insights-proactive-failure-diagnostics/070.png)
+Or click **Proactive detection** to get straight to the most recent alert:
 
+![Alerts summary](./media/app-insights-proactive-failure-diagnostics/070.png)
 
 
 
-## 不同之處在於...
 
-主動式失敗診斷與其他相似但不同的 Application Insights 功能互補。
+## <a name="what's-the-difference-..."></a>What's the difference ...
 
-* 您可以設定[度量警示](app-insights-alerts.md)，且可以檢視各種度量，例如 CPU 使用量、要求率、頁面載入時間等等。您可以使用它們來向自己發出警告，例如，如果您需要增加更多資源時。相較之下，主動式失敗診斷只涵蓋小範圍的重要度量 (目前僅包含要求失敗率)，其作用是一旦 Web 應用程式的要求失敗率增加幅度明顯高於其一般行為時，可以以接近即時通知的方式通知您。
+Proactive failure diagnostics complements other similar but distinct features of Application Insights. 
 
-    主動式失敗診斷會自動調整其臨界值以回應主要條件。
+* [Metric Alerts](app-insights-alerts.md) are set by you and can monitor a wide range of metrics such as CPU occupancy, request rates,  page load times, and so on. You can use them to warn you, for example, if you need to add more resources. By contrast, proactive failure diagnostics cover a small range of critical metrics (currently only failed request rate), designed to notify you in near real time manner once your web app's failed request rate increases significantly compared to web app's normal behavior.
 
-    主動式失敗診斷會為您啟動診斷工作。
-* [主動式異常診斷](app-insights-proactive-anomaly-diagnostics.md)也會使用電腦智慧在您的度量中探索不尋常的模式，且您不需進行設定。但不同於主動式失敗診斷，主動式異常偵測的目的是要尋找各種使用方式中可能無法正常作用的片段，例如特定頁面在特定的瀏覽器上。此分析會每日執行，且如果發現任何結果，它可能不像警示那麼緊急。相較之下，主動式失敗診斷的分析是對傳入的遙測持續執行，且如果伺服器失敗率超出預期，您會在幾分鐘內收到通知。
+    Proactive failure diagnostics automatically adjusts its threshold in response to prevailing conditions.
 
-## 如果您收到主動式失敗診斷警示
+    Proactive failure diagnostics start the diagnostic work for you. 
+* [Proactive anomaly diagnostics](app-insights-proactive-anomaly-diagnostics.md) also uses machine intelligence to discover unusual patterns in your metrics, and no configuration by you is required. But unlike Proactive failure diagnostics, the purpose of proactive anomaly diagnostics is to find segments of your usage manifold that might be badly served - for example, by specific pages on a specific type of browser. The analysis is performed daily, and if any result is found, it's likely to be much less urgent than an alert. By contrast, the analysis for proactive failure diagnostics is performed continuously on incoming telemetry, and you will be notified within minutes if server failure rates are greater than expected.
 
-*為什麼會收到這個警示？*
+## <a name="if-you-receive-an-proactive-failure-diagnostics-alert"></a>If you receive an Proactive failure diagnostics alert
 
-*	我們偵測到要求失敗率相較於前一個期間正常基準異常上升。在分析失敗和關聯的遙測後，我們認為您應該注意發生的問題。
+*Why have I received this alert?*
 
-*收到通知代表一定是有問題嗎？*
+*   We detected an abnormal rise in failed requests rate compared to the normal baseline of the preceding period. After analysis of the failures and associated telemetry, we think that there is a problem that you should look into. 
 
-*	我們嘗試警示應用程式中斷或效能降低，但只有您可以完全了解語意和應用程式或使用者的影響。
+*Does the notification mean I definitely have a problem?*
 
-*所以你們會看到我的資料嗎？*
+*   We try to alert on app disruption, or degradation, although only you can fully understand the semantics and the impact on the app or users.
 
-*	不會。服務完全是自動的。只有您會收到通知。您的資料是[不公開的](app-insights-data-retention-privacy.md)。
+*So, you guys look at my data?*
 
-*我是否必須訂閱此警示？*
+*   No. The service is entirely automatic. Only you get the notifications. Your data is [private](app-insights-data-retention-privacy.md).
 
-*	否。每個傳送要求遙測的應用程式都有此警示規則。
+*Do I have to subscribe to this alert?* 
 
-*我是否可以取消訂閱或改為傳送通知給我的同事？*
+*   No. Every application sending request telemetry has this alert rule.
 
-*	是，在 [警示] 規則中，按一下 [主動式診斷] 規則以設定它。您可以停用警示，或變更警示的收件者。
+*Can I unsubscribe or get the notifications sent to my colleagues instead?*
 
-*我遺失了電子郵件。在入口網站中哪裡可以找到通知？*
+*   Yes, In Alert rules, click Proactive Diagnostics rule to configure it. You can disable the alert, or change recipients for the alert. 
 
-*	在稽核記錄檔中。依序按一下 [設定]、[稽核記錄檔]，然後按一下任何警示以查看其項目，但只能有限制地詳細檢視。
+*I lost the email. Where can I find the notifications in the portal?*
 
-*部分警示為已知問題，我不想接收它們。*
+*   In the Audit logs. Click Settings, Audit logs, then any alert to see its occurrence, but with limited detailed view.
 
-*	我們已在稽核記錄檔中抑制警示。
+*Some of the alerts are of known issues and I do not want to receive them.*
 
+*   We have alert suppression on our backlog.
 
-## 後續步驟
 
-這些診斷工具可協助您檢查來自您的應用程式的遙測︰
+## <a name="next-steps"></a>Next steps
 
-* [計量瀏覽器](app-insights-metrics-explorer.md)
-* [搜尋總管](app-insights-diagnostic-search.md)
-* [分析 - 功能強大的查詢語言](app-insights-analytics-tour.md)
+These diagnostic tools help you inspect the telemetry from your app:
 
-主動式偵測是完全自動的。但是，或許您會想要再設定一些警示？
+* [Metric explorer](app-insights-metrics-explorer.md)
+* [Search explorer](app-insights-diagnostic-search.md)
+* [Analytics - powerful query language](app-insights-analytics-tour.md)
 
-* [手動設定的度量警示](app-insights-alerts.md)
-* [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
+Proactive detections are completely automatic. But maybe you'd like to set up some more alerts?
 
-<!----HONumber=AcomDC_0907_2016-->
+* [Manually configured metric alerts](app-insights-alerts.md)
+* [Availability web tests](app-insights-monitor-web-app-availability.md) 
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

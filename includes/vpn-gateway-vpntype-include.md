@@ -1,9 +1,11 @@
-- **PolicyBased︰**原則式 VPN 先前在傳統部署模型內稱為靜態路由閘道。原則式 VPN 會根據使用內部部署網路與 Azure VNet 之間的位址首碼組合所設定的 IPsec 原則，透過 IPsec 通道加密和導向封包。原則 (或流量選取器) 通常定義為 VPN 裝置組態中的存取清單。原則式 VPN 類型的值是 PolicyBased。使用 PolicyBased VPN，請記住下列限制︰
+- **PolicyBased:** PolicyBased VPNs were previously called static routing gateways in the classic deployment model. Policy-based VPNs encrypt and direct packets through IPsec tunnels based on the IPsec policies configured with the combinations of address prefixes between your on-premises network and the Azure VNet. The policy (or traffic selector) is usually defined as an access list in the VPN device configuration. The value for a PolicyBased VPN type is *PolicyBased*. When using a PolicyBased VPN, keep in mind the following limitations:
 
-	- PolicyBased VPN「只有」在「基本」閘道 SKU 上才能使用。這個 VPN 類型與其他閘道 SKU 不相容。
-	- 使用 PolicyBased VPN 時，您只能有 1 個通道。
-	- 您只能將 PolicyBased VPN 用於 S2S 連線，而且僅限用於特定組態。大多數「VPN 閘道」組態都需要一個 RouteBased VPN。
+    - PolicyBased VPNs can **only** be used on the Basic gateway SKU. This VPN type is not compatible with other gateway SKUs.
+    - You can have only 1 tunnel when using a PolicyBased VPN.
+    - You can only use PolicyBased VPNs for S2S connections, and only for certain configurations. Most VPN Gateway configurations require a RouteBased VPN.
 
-- **RouteBased︰**路由式 VPN 先前在傳統部署模型內稱為動態路由閘道。路由式 Vpn 會使用 IP 轉送或路由表中的「路由」，直接封包至其對應的通道介面。然後，通道介面會加密或解密輸入和輸出通道的封包。路由式 VPN 的原則或流量選取器會設定為任何對任何 (或萬用字元)。路由式 VPN 類型的值是 RouteBased。
+- **RouteBased**: RouteBased VPNs were previously called dynamic routing gateways in the classic deployment model. RouteBased VPNs use "routes" in the IP forwarding or routing table to direct packets into their corresponding tunnel interfaces. The tunnel interfaces then encrypt or decrypt the packets in and out of the tunnels. The policy (or traffic selector) for RouteBased VPNs are configured as any-to-any (or wild cards). The value for a RouteBased VPN type is *RouteBased*.
 
-<!---HONumber=AcomDC_0921_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

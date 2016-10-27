@@ -1,117 +1,118 @@
 <properties
-	pageTitle="開始以 NodeJS 使用 Azure 搜尋服務 | Microsoft Azure | 雲端託管搜尋服務"
-	description="逐步了解如何使用 NodeJS 做為程式設計語言，在 Azure 的雲端託管搜尋服務上建置搜尋應用程式。"
-	services="search"
-	documentationCenter=""
-	authors="EvanBoyle"
-	manager="pablocas"
-	editor="v-lincan"/>
+    pageTitle="Get started with Azure Search in NodeJS | Microsoft Azure | Hosted cloud search service"
+    description="Walk through building a search application on a hosted cloud search service on Azure using NodeJS as your programming language."
+    services="search"
+    documentationCenter=""
+    authors="EvanBoyle"
+    manager="pablocas"
+    editor="v-lincan"/>
 
 <tags
-	ms.service="search"
-	ms.devlang="na"
-	ms.workload="search"
-	ms.topic="hero-article"
-	ms.tgt_pltfrm="na"
-	ms.date="07/14/2016"
-	ms.author="evboyle"/>
+    ms.service="search"
+    ms.devlang="na"
+    ms.workload="search"
+    ms.topic="hero-article"
+    ms.tgt_pltfrm="na"
+    ms.date="07/14/2016"
+    ms.author="evboyle"/>
 
-# 開始在 NodeJS 中使用 Azure 搜尋服務
+
+# <a name="get-started-with-azure-search-in-nodejs"></a>Get started with Azure Search in NodeJS
 > [AZURE.SELECTOR]
-- [入口網站](search-get-started-portal.md)
+- [Portal](search-get-started-portal.md)
 - [.NET](search-howto-dotnet-sdk.md)
 
-瞭解如何建置使用 Azure 搜尋服務提供搜尋體驗的自訂 NodeJS 搜尋應用程式。本教學課程利用 [Azure 搜尋服務 REST API](https://msdn.microsoft.com/library/dn798935.aspx) 來建構在此練習中所使用的物件和作業。
+Learn how to build a custom NodeJS search application that uses Azure Search for its search experience. This tutorial uses the [Azure Search Service REST API](https://msdn.microsoft.com/library/dn798935.aspx) to construct the objects and operations used in this exercise.
 
-我們使用 [NodeJS](https://nodejs.org)、NPM、[Sublime Text 3](http://www.sublimetext.com/3) 及 Windows 8.1 上的 Windows PowerShell 來開發和測試此代碼。
+We used [NodeJS](https://nodejs.org) and NPM, [Sublime Text 3](http://www.sublimetext.com/3), and Windows PowerShell on Windows 8.1 to develop and test this code.
 
-若要執行此範例，必須要有 Azure 搜尋服務，您可以在 [Azure 入口網站](https://portal.azure.com)註冊此服務。如需逐步指示，請參閱[在入口網站中建立 Azure 搜尋服務](search-create-service-portal.md)。
+To run this sample, you must have an Azure Search service, which you can sign up for in the [Azure Portal](https://portal.azure.com). See [Create an Azure Search service in the portal](search-create-service-portal.md) for step-by-step instructions.
 
-## 關於資料
+## <a name="about-the-data"></a>About the data
 
-此範例應用程式使用的[美國地理服務中心 (USGS)](http://geonames.usgs.gov/domestic/download_data.htm) 資料已依據羅德島州進行篩選，藉此減少資料集的大小。我們將使用此資料，建置可傳回地標建築物 (例如醫院和學校) 及地理特徵 (例如河流、湖泊和山峰) 等相關資料的搜尋應用程式。
+This sample application uses data from the [United States Geological Services (USGS)](http://geonames.usgs.gov/domestic/download_data.htm), filtered on the state of Rhode Island to reduce the dataset size. We'll use this data to build a search application that returns landmark buildings such as hospitals and schools, as well as geological features like streams, lakes, and summits.
 
-在此應用程式中，**DataIndexer** 程式會使用[索引子](https://msdn.microsoft.com/library/azure/dn798918.aspx)建構來建置及載入索引，以從公用 Azure SQL Database 擷取篩選過的 USGS 資料集。程式碼中提供線上資料來源的認證和連接資訊。不需要進一步設定。
+In this application, the **DataIndexer** program builds and loads the index using an [Indexer](https://msdn.microsoft.com/library/azure/dn798918.aspx) construct, retrieving the filtered USGS dataset from a public Azure SQL Database. Credentials and connection  information to the online data source is provided in the program code. No further configuration is necessary.
 
-> [AZURE.NOTE] 我們在此資料集套用了一個篩選，以維持不超過免費版定價層的 10,000 個文件的數量上限。如果使用標準版定價層，就不會套用此限制。如需各個定價層的容量詳細資料，請參閱[搜尋服務限制](search-limits-quotas-capacity.md)。
+> [AZURE.NOTE] We applied a filter on this dataset to stay under the 10,000 document limit of the free pricing tier. If you use the standard tier, this limit does not apply. For details about capacity for each pricing tier, see [Search service limits](search-limits-quotas-capacity.md).
 
 
 <a id="sub-2"></a>
-## 尋找 Azure 搜尋服務的服務名稱和 API 金鑰
+## <a name="find-the-service-name-and-api-key-of-your-azure-search-service"></a>Find the service name and api-key of your Azure Search service
 
-建立服務之後，請返回入口網站取得 URL 或 `api-key`。如果想要連接至搜尋服務，您必須同時擁有 URL 和 `api-key` 才能驗證呼叫。
+After you create the service, return to the portal to get the URL or `api-key`. Connections to your Search service require that you have both the URL and an `api-key` to authenticate the call.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在導向列中，按一下 [搜尋服務] 列出為您的訂用帳戶佈建的所有 Azure 搜尋服務。
-3. 選取您要使用的服務。
-4. 您會在服務儀表板上看到基本資訊磚，以及存取系統管理金鑰的鑰匙圖示。
+1. Sign in to the [Azure Portal](https://portal.azure.com).
+2. In the jump bar, click **Search service** to list all of the Azure Search services provisioned for your subscription.
+3. Select the service you want to use.
+4. On the service dashboard, you'll see tiles for essential information, as well as the key icon for accessing the admin keys.
 
-  	![][3]
+    ![][3]
 
-5. 複製服務 URL、系統管理金鑰和查詢金鑰。稍後您會需要將這三個項目加到 config.js 檔案中。
+5. Copy the service URL, an admin key, and a query key. You'll need all three later, when you add them to the config.js file.
 
-## 下載範例檔案
+## <a name="download-the-sample-files"></a>Download the sample files
 
-使用以下其中一種方法下載範例。
+Use either one of the following approaches to download the sample.
 
-1. 移至 [AzureSearchNodeJSIndexerDemo](https://github.com/AzureSearch/AzureSearchNodeJSIndexerDemo)。
-2. 按一下 [下載 ZIP]，儲存 .zip 檔案，然後解壓縮其中所含的所有檔案。
+1. Go to [AzureSearchNodeJSIndexerDemo](https://github.com/AzureSearch/AzureSearchNodeJSIndexerDemo).
+2. Click **Download ZIP**, save the .zip file, and then extract all the files it contains.
 
-所有後續的檔案修改及執行陳述式均會用到此資料夾的檔案。
+All subsequent file modifications and run statements will be made against files in this folder.
 
 
-## 使用您的搜尋服務 URL 及 API 金鑰更新 config.js
+## <a name="update-the-config.js.-with-your-search-service-url-and-api-key"></a>Update the config.js. with your Search service URL and api-key
 
-使用先前複製的 URL 和 API 金鑰，在組態檔案中指定 URL、系統管理金鑰和查詢金鑰。
+Using the URL and api-key that you copied earlier, specify the URL, admin-key, and query-key in configuration file.
 
-系統管理金鑰可將服務作業的完整控制權限授與給您，包括建立或刪除索引，以及載入文件。相較之下，查詢金鑰僅用於唯讀作業，通常由連接到 Azure 搜尋服務的用戶端應用程式所用。
+Admin keys grant full control over service operations, including creating or deleting an index and loading documents. In contrast, query keys are for read-only operations, typically used by client applications that connect to Azure Search.
 
-在此範例中，我們包含查詢金鑰，協助您在客戶端應用程式中確實熟悉使用查詢金鑰的最佳做法。
+In this sample, we include the query key to help reinforce the best practice of using the query key in client applications.
 
-下面的螢幕擷取畫面顯示在文字編輯器中開啟 **config.js** 的畫面，並與相關項目區分，讓您得知哪些位置可以使用對搜尋服務有效的值更新檔案。
+The following screenshot shows **config.js** open in a text editor, with the relevant entries demarcated so that you can see where to update the file with the values that are valid for your search service.
 
 ![][5]
 
 
-## 為範例託管執行階段環境
+## <a name="host-a-runtime-environment-for-the-sample"></a>Host a runtime environment for the sample
 
-此範例需要 HTTP 伺服器，讓您安裝全球使用的 NPM。
+The sample requires an HTTP server, which you can install globally using npm.
 
-使用 PowerShell 視窗以執行以下命令。
+Use a PowerShell window for the following commands.
 
-1. 瀏覽至內含 **package.json** 檔案的資料夾。
-2. 輸入 `npm install`。
-2. 輸入 `npm install -g http-server`。
+1. Navigate to the folder that contains the **package.json** file.
+2. Type `npm install`.
+2. Type `npm install -g http-server`.
 
-## 建置索引並執行應用程式
+## <a name="build-the-index-and-run-the-application"></a>Build the index and run the application
 
-1. 輸入 `npm run indexDocuments`。
-2. 輸入 `npm run build`。
-3. 輸入 `npm run start_server`。
-4. 將您的瀏覽器導向至 `http://localhost:8080/index.html`
+1. Type `npm run indexDocuments`.
+2. Type `npm run build`.
+3. Type `npm run start_server`.
+4. Direct your browser at `http://localhost:8080/index.html`
 
-## 搜尋 USGS 資料
+## <a name="search-on-usgs-data"></a>Search on USGS data
 
-USGS 資料集包含與羅德島州相關的記錄。如果您在空白的搜尋方塊中按一下 [搜尋]，預設會出現前 50 個項目。
+The USGS data set includes records that are relevant to the state of Rhode Island. If you click **Search** on an empty search box, you will get the top 50 entries, which is the default.
 
-輸入搜尋詞彙，讓搜尋引擎運作一下。試著輸入區域名稱。"Roger Williams" 是羅德島州的第一任州長。許多公園、建築物和學校都是以他的姓名命名。
+Entering a search term will give the search engine something to go on. Try entering a regional name. "Roger Williams" was the first governor of Rhode Island. Numerous parks, buildings, and schools are named after him.
 
 ![][9]
 
-此外，您也可以試著使用這些字詞：
+You could also try any of these terms:
 
 - Pawtucket
 - Pembroke
 - goose +cape
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-這是第一個以 NodeJS 和 USGS 資料集為基礎的 Azure 搜尋服務教學課程。我們會漸漸擴充本教學課程，以示範其他您可能會想用在自訂方案中的搜尋功能。
+This is the first Azure Search tutorial based on NodeJS and the USGS dataset. Over time, we'll extend this tutorial to demonstrate additional search features you might want to use in your custom solutions.
 
-如果您已有一些 Azure 搜尋服務的背景知識，可以利用此範例做為試用建議工具 (預先輸入或自動完成查詢)、篩選及多面向導覽的跳板。您也可以新增計數和批次處理文件，讓使用者可以逐頁查看結果，藉此改進搜尋結果頁面。
+If you already have some background in Azure Search, you can use this sample as a springboard for trying suggesters (type-ahead or autocomplete queries), filters, and faceted navigation. You can also improve upon the search results page by adding counts and batching documents so that users can page through the results.
 
-不熟悉 Azure 搜尋服務嗎？ 建議您嘗試學習其他教學課程，深入了解您還可以建立哪些東西。請瀏覽我們的[文件頁面](https://azure.microsoft.com/documentation/services/search/)以尋找更多資源。您也可以查看我們[影片和教學課程清單](search-video-demo-tutorial-list.md)中的連結，以存取更多資訊。
+New to Azure Search? We recommend trying other tutorials to develop an understanding of what you can create. Visit our [documentation page](https://azure.microsoft.com/documentation/services/search/) to find more resources. You can also view the links in our [Video and Tutorial list](search-video-demo-tutorial-list.md) to access more information.
 
 <!--Image references-->
 [1]: ./media/search-get-started-nodejs/create-search-portal-1.PNG
@@ -120,4 +121,8 @@ USGS 資料集包含與羅德島州相關的記錄。如果您在空白的搜尋
 [5]: ./media/search-get-started-nodejs/AzSearch-NodeJS-configjs.png
 [9]: ./media/search-get-started-nodejs/rogerwilliamsschool.png
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="適用於 Windows Server 的 Azure Hybrid Use Benefit | Microsoft Azure"
-   description="了解如何發揮「Windows Server 軟體保證」的最大效益來將內部部署授權帶到 Azure"
+   pageTitle="Azure Hybrid Use Benefit for Window Server | Microsoft Azure"
+   description="Learn how to maximize your Windows Server Software Assurance benefits to bring on-premises licenses to Azure"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="iainfoulds"
@@ -16,46 +16,47 @@
    ms.date="07/13/2016"
    ms.author="georgem"/>
 
-# 適用於 Windows Server 的 Azure Hybrid Use Benefit
 
-若您是搭配軟體保證使用 Windows Server 的客戶，可將內部部署 Windows Server 授權帶到 Azure，並以較少的成本在 Azure 中執行 Windows Server VM。Azure Hybrid Use Benefit 可讓您在 Azure 中執行 Windows Server VM，且只需支付基本計算費率。如需詳細資訊，請瀏覽 [Azure Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/) 授權頁面。本文說明如何在 Azure 中部署 Windows Server VM，以利用此授權的權益。
+# <a name="azure-hybrid-use-benefit-for-windows-server"></a>Azure Hybrid Use Benefit for Windows Server
 
-> [AZURE.NOTE] 如果要採用 Azure Hybrid Use Benefit，您就不能使用 Azure Marketplace 映像來部署 Windows Server VM。您必須使用 PowerShell 或 Resource Manager 範本來部署您的 VM，才能將 VM 正確註冊為符合基本計算費率折扣的資格。
+For customers using Windows Server with Software Assurance, you can bring your on-premises Windows Server licenses to Azure and run Windows Server VMs in Azure at a reduced cost. The Azure Hybrid Use Benefit allows you to run Windows Server VMs in Azure and only get billed for the base compute rate. For more information, please see the [Azure Hybrid Use Benefit licensing page](https://azure.microsoft.com/pricing/hybrid-use-benefit/). This article explains how to deploy Windows Server VMs in Azure to use this licensing benefit.
 
-## 必要條件
-若要將 Azure Hybrid Use Benefit 運用在 Azure 中的 Windows Server VM，有下列幾項必要條件：
+> [AZURE.NOTE] You cannot use Azure Marketplace images to deploy Windows Server VMs utilizing the Azure Hybrid Use Benefit. You must deploy your VMs using either PowerShell or Resource Manager templates to correctly register your VMs as eligible for base compute rate discount.
 
-- 安裝 Azure PowerShell 模組
-- 將 Windows Server VHD 上傳到「Azure 儲存體」
+## <a name="pre-requisites"></a>Pre-requisites
+There are a couple of pre-requisites in order to utilize Azure Hybrid Use Benefit for Windows Server VMs in Azure:
 
-### 安裝 Azure PowerShell
-確定您已[安裝並設定最新的 Azure PowerShell](../powershell-install-configure.md)。即使您要使用 Resource Manager 範本部署 VM，仍需要安裝 Azure PowerShell 才能上傳 Windows Server VHD (請參閱下列步驟)。
+- Have the Azure PowerShell module installed
+- Have your Windows Server VHD uploaded to Azure Storage
 
-### 上傳 Windows Server VHD
+### <a name="install-azure-powershell"></a>Install Azure PowerShell
+Make sure you have [installed and configured the latest Azure PowerShell](../powershell-install-configure.md). Even if you are going to deploy your VMs using Resource Manager templates, you still need Azure PowerShell installed to upload your Windows Server VHD (see the following step).
 
-若要在 Azure 中部署 Windows Server VM，您必須先建立包含基底 Windows Server 組建的 VHD。您必須先透過 Sysprep 妥善準備這個 VHD，再將其上傳至 Azure。您可以深入了解 [VHD 需求和 Sysprep 處理序](./virtual-machines-windows-upload-image.md)及 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。執行 Sysprep 前，請先備份 VM。備妥 VHD 之後，請使用 `Add-AzureRmVhd` Cmdlet，將 VHD 上傳到 Azure 儲存體帳戶，如下所示：
+### <a name="upload-a-windows-server-vhd"></a>Upload a Windows Server VHD
+
+To deploy a Windows Server VM in Azure, you first need to create a VHD that contains your base Windows Server build. This VHD must be appropriately prepared via Sysprep before you upload it to Azure. You can [read more about the VHD requirements and Sysprep process](./virtual-machines-windows-upload-image.md) and [Sysprep Support for Server Roles](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles). Back up the VM before running Sysprep. Once you have prepared your VHD, upload the VHD to your Azure Storage account using the `Add-AzureRmVhd` cmdlet as follows:
 
 ```
 Add-AzureRmVhd -ResourceGroupName MyResourceGroup -Destination "https://mystorageaccount.blob.core.windows.net/vhds/myvhd.vhd" -LocalFilePath 'C:\Path\To\myvhd.vhd'
 ```
 
-> [AZURE.NOTE] Microsoft SQL Server、SharePoint 伺服器、Dynamics 也可以使用您的軟體保證授權。您仍然需要安裝應用程式元件，並提供相應的授權金鑰，然後上傳磁碟映像至 Azure，藉此準備 Windows Server 映像。檢閱以您的應用程式執行 Sysprep 的相關文件，例如[使用 Sysprep 安裝 SQL Server 的考量](https://msdn.microsoft.com/library/ee210754.aspx)或 [Build a SharePoint Server 2016 Reference Image (Sysprep) (建置 SharePoint Server 2016 參照映像 (Sysprep))](http://social.technet.microsoft.com/wiki/contents/articles/33789.build-a-sharepoint-server-2016-reference-image-sysprep.aspx)。
+> [AZURE.NOTE] Microsoft SQL Server, SharePoint Server, and Dynamics can also utilize your Software Assurance licensing. You still need to prepare the Windows Server image by installing your application components and providing license keys accordingly, then uploading the disk image to Azure. Review the appropriate documentation for running Sysprep with your application, such as [Considerations for Installing SQL Server using Sysprep](https://msdn.microsoft.com/library/ee210754.aspx) or [Build a SharePoint Server 2016 Reference Image (Sysprep)](http://social.technet.microsoft.com/wiki/contents/articles/33789.build-a-sharepoint-server-2016-reference-image-sysprep.aspx).
 
-您也可以深入了解[將 VHD 上傳至 Azure 的程序](./virtual-machines-windows-upload-image.md#upload-the-vm-image-to-your-storage-account)。
+You can also read more about [uploading the VHD to Azure process](./virtual-machines-windows-upload-image.md#upload-the-vm-image-to-your-storage-account).
 
-> [AZURE.TIP] 本文著重於部署 Windows Server VM。您也可以相同的方式部署 Windows 用戶端 VM。在下列範例中，將 `Server` 妥善取代為 `Client`。
+> [AZURE.TIP] This article focuses on deploying Windows Server VMs. You can also deploy Windows Client VMs in the same manner. In the following examples, you replace `Server` with `Client` appropriately.
 
-## 透過 PowerShell 快速入門部署 VM
-透過 PowerShell 部署 Windows Server VM 時，您會有 `-LicenseType` 的額外參數。將 VHD 上傳至 Azure 之後，使用 `New-AzureRmVM` 建立新的 VM 並指定授權類型，如下所示：
+## <a name="deploy-a-vm-via-powershell-quick-start"></a>Deploy a VM via PowerShell Quick-Start
+When deploying your Windows Server VM via PowerShell, you have an additional parameter for `-LicenseType`. Once you have your VHD uploaded to Azure, you create a new VM using `New-AzureRmVM` and specify the licensing type as follows:
 
 ```
 New-AzureRmVM -ResourceGroupName MyResourceGroup -Location "West US" -VM $vm -LicenseType Windows_Server
 ```
 
-您可於下方進一步了解[透過 PowerShell 在 Azure 中部署 VM 的詳細逐步解說](./virtual-machines-windows-hybrid-use-benefit-licensing.md#deploy-windows-server-vm-via-powershell-detailed-walkthrough)，或閱讀[使用 Resource Manager 和 PowerShell 建立 Windows VM](./virtual-machines-windows-ps-create.md) 中不同步驟的描述說明。
+You can [read a more detailed walkthrough on deploying a VM in Azure via PowerShell](./virtual-machines-windows-hybrid-use-benefit-licensing.md#deploy-windows-server-vm-via-powershell-detailed-walkthrough) below, or read a more descriptive guide on the different steps to [create a Windows VM using Resource Manager and PowerShell](./virtual-machines-windows-ps-create.md).
 
-## 透過 Resource Manager 部署 VM
-在 Resource Manager 範本內，可以指定 `licenseType` 的額外參數。您可以進一步了解如何[製作 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。將 VHD 上傳至 Azure 之後，請編輯 Resource Manager 範本以將授權類型納入計算提供者，之後再照常部署範本即可：
+## <a name="deploy-a-vm-via-resource-manager"></a>Deploy a VM via Resource Manager
+Within your Resource Manager templates, an additional parameter for `licenseType` can be specified. You can read more about [authoring Azure Resource Manager templates](../resource-group-authoring-templates.md). Once you have your VHD uploaded to Azure, edit you Resource Manager template to include the license type as part of the compute provider and deploy your template as normal:
 
 ```
 "properties": {  
@@ -65,14 +66,14 @@ New-AzureRmVM -ResourceGroupName MyResourceGroup -Location "West US" -VM $vm -Li
    },
 ```
  
-## 確認您的 VM 可享受授權權益
-透過 PowerShell 或 Resource Manager 部署方法部署 VM 之後，請依下列方式使用 `Get-AzureRmVM` 來驗證授權類型：
+## <a name="verify-your-vm-is-utilizing-the-licensing-benefit"></a>Verify your VM is utilizing the licensing benefit
+Once you have deployed your VM through either the PowerShell or Resource Manager deployment method, verify the license type with `Get-AzureRmVM` as follows:
  
 ```
 Get-AzureRmVM -ResourceGroup MyResourceGroup -Name MyVM
 ```
 
-輸出大致如下：
+The output is similar to the following:
 
 ```
 Type                     : Microsoft.Compute/virtualMachines
@@ -80,7 +81,7 @@ Location                 : westus
 LicenseType              : Windows_Server
 ```
 
-下列 VM 在部署時未提供 Azure Hybrid Use Benefit 授權 (例如直接從 Azure 資源庫部署 VM)，您可看出其中的差異：
+This contrasts with the following VM deployed without Azure Hybrid Use Benefit licensing, such as a VM deployed straight from the Azure Gallery:
 
 ```
 Type                     : Microsoft.Compute/virtualMachines
@@ -88,11 +89,11 @@ Location                 : westus
 LicenseType              : 
 ```
  
-## 詳細的 PowerShell 逐步解說
+## <a name="detailed-powershell-walkthrough"></a>Detailed PowerShell Walkthrough
 
-下列是說明完整部署 VM 的詳細 PowerShell 步驟。您可以閱讀[使用 Resource Manager 和 PowerShell 建立 Windows VM](./virtual-machines-windows-ps-create.md) 深入了解更多內容，包括實際的 Cmdlet 和所建立的不同元件。您將逐步進行建立資源群組、儲存體帳戶和虛擬網路，然後定義 VM 並完成建立 VM 的步驟。
+The following detailed PowerShell steps show a full deployment of a VM. You can read more context as to the actual cmdlets and different components being created in [Create a Windows VM using Resource Manager and PowerShell](./virtual-machines-windows-ps-create.md). You step through creating your resource group, storage account, and virtual networking, then define your VM and finally create your VM.
  
-首先，安全地取得認證，並設定位置和資源群組名稱：
+First, securely obtain credentials, set a location, and resource group name:
 
 ```
 $cred = Get-Credential
@@ -100,14 +101,14 @@ $location = "West US"
 $resourceGroupName = "TestLicensing"
 ```
 
-建立公用 IP：
+Create a public IP:
 
 ```
 $publicIPName = "testlicensingpublicip"
 $publicIP = New-AzureRmPublicIpAddress -Name $publicIPName -ResourceGroupName $resourceGroupName -Location $location -AllocationMethod Dynamic
 ```
 
-定義子網路、NIC 和 VNET：
+Define your subnet, NIC, and VNET:
 
 ```
 $subnetName = "testlicensingsubnet"
@@ -118,33 +119,33 @@ $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $resourceGr
 $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $resourceGroupName -Location $location -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $publicIP.Id
 ```
 
-命名 VM，並建立 VM 設定：
+Name your VM and create a VM config:
 
 ```
 $vmName = "testlicensing"
 $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A1"
 ```
 
-定義您的 OS：
+Define your OS:
 
 ```
 $computerName = "testlicensing"
 $vm = Set-AzureRmVMOperatingSystem -VM $vmConfig -Windows -ComputerName $computerName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
 ```
 
-將 NIC 加入 VM：
+Add your NIC to the VM:
 
 ```
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 ```
 
-定義要使用的儲存體帳戶：
+Define the storage account to use:
 
 ```
 $storageAcc = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -AccountName testlicensing
 ```
 
-上傳備妥的 VHD，並附加至 VM 以供使用：
+Upload your VHD, suitably prepared, and attach to your VM for use:
 
 ```
 $osDiskName = "licensing.vhd"
@@ -153,16 +154,20 @@ $urlOfUploadedImageVhd = "https://testlicensing.blob.core.windows.net/vhd/licens
 $vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption FromImage -SourceImageUri $urlOfUploadedImageVhd -Windows
 ```
 
-最後，建立 VM 並定義授權類型，以採用 Azure Hybrid Use Benefit：
+Finally, create your VM and define the licensing type to utilize Azure Hybrid Use Benefit:
 
 ```
 New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm -LicenseType Windows_Server
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-深入了解 [Azure Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/) 授權。
+Read more about [Azure Hybrid Use Benefit licensing](https://azure.microsoft.com/pricing/hybrid-use-benefit/).
 
-深入了解如何[使用 Resource Manager 範本](../resource-group-overview.md)。
+Learn more about [using Resource Manager templates](../resource-group-overview.md).
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

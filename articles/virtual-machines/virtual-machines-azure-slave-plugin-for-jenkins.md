@@ -1,241 +1,242 @@
 <properties
-	pageTitle="如何搭配使用 Azure 從屬外掛程式與 Jenkins 連續整合 | Microsoft Azure"
-	description="說明如何搭配使用 Azure 從屬外掛程式與 Jenkins 連續整合。"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="rmcmurray"
-	manager="wpickett"
-	editor="" />
+    pageTitle="How to use the Azure slave plug-in with Jenkins Continuous Integration | Microsoft Azure"
+    description="Describes how to use the Azure slave plug-in with Jenkins Continuous Integration."
+    services="virtual-machines-linux"
+    documentationCenter=""
+    authors="rmcmurray"
+    manager="wpickett"
+    editor="" />
 
 <tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-multiple"
-	ms.devlang="java"
-	ms.topic="article"
-	ms.date="09/20/2016"
-	ms.author="robmcm"/>
+    ms.service="virtual-machines-linux"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-multiple"
+    ms.devlang="java"
+    ms.topic="article"
+    ms.date="09/20/2016"
+    ms.author="robmcm"/>
 
-# 如何搭配使用 Azure 從屬外掛程式與 Jenkins 連續整合
 
-執行分散式組建時，您可使用適用於 Jenkins 的 Azure 從屬外掛程式，在 Azure 上佈建從屬節點。
+# <a name="how-to-use-the-azure-slave-plug-in-with-jenkins-continuous-integration"></a>How to use the Azure slave plug-in with Jenkins Continuous Integration
 
-## 安裝 Azure 從屬外掛程式
+You can use the Azure slave plug-in for Jenkins to provision slave nodes on Azure when running distributed builds.
 
-1. 在 Jenkins 儀表板中，按一下 [**管理 Jenkins**]。
+## <a name="install-the-azure-slave-plug-in"></a>Install the Azure slave plug-in
 
-1. 在 [管理 Jenkins] 頁面中，按一下 [管理外掛程式]。
+1. In the Jenkins dashboard, click **Manage Jenkins**.
 
-1. 按一下 [Available] 索引標籤。
+1. On the **Manage Jenkins** page, click **Manage Plugins**.
 
-1. 在可用外掛程式清單上方的 [篩選] 欄位中輸入 **Azure**，讓清單只顯示相關外掛程式。
+1. Click the **Available** tab.
 
-    如果您選擇以捲動的方式查看可用的外掛程式清單，您會在 [叢集管理和分散式組建] 區段下找到 Azure 從屬外掛程式。
+1. In the filter field above the list of available plug-ins, type **Azure** to limit the list to relevant plug-ins.
 
-1. 選取 [Azure 從屬外掛程式] 的核取方塊。
+    If you opt to scroll through the list of available plug-ins, you will find the Azure slave plug-in under the **Cluster Management and Distributed Build** section.
 
-1. 按一下 [**直接安裝而不重新啟動**] 或 [**立即下載並於重新啟動後安裝**]。
+1. Select the **Azure Slave Plugin** check box.
 
-現在外掛程式已安裝完畢，接下來的步驟是使用您的 Azure 訂用帳戶設定檔來設定外掛程式，以及建立為從屬節點建立虛擬機器時將使用的範本。
+1. Click **Install without restart** or **Download now and install after restart**.
 
+Now that the plug-in is installed, the next steps are to configure the plug-in with your Azure subscription profile and to create a template that will be used in creating the virtual machine for the slave node.
 
-## 使用您的訂用帳戶設定檔來設定 Azure 從屬外掛程式
 
-訂用帳戶設定檔也稱為發佈設定，它是一個 XML 檔案，內含要與開發環境中的 Azure 搭配運作時所需的安全認證和一些額外資訊。若要設定 Azure 從屬外掛程式，您需要：
+## <a name="configure-the-azure-slave-plug-in-with-your-subscription-profile"></a>Configure the Azure slave plug-in with your subscription profile
 
-* 訂用帳戶 ID
-* 訂用帳戶的管理憑證
+A subscription profile, also referred to as publish settings, is an XML file that contains secure credentials and some additional information you'll need to work with Azure in your development environment. To configure the Azure slave plug-in, you need:
 
-您可以在[訂用帳戶設定檔]中找到這些資訊。以下是訂用帳戶設定檔的範例。
+* Your subscription id
+* A management certificate for your subscription
 
-	<?xml version="1.0" encoding="utf-8"?>
+These can be found in your [subscription profile]. Below is an example of a subscription profile.
 
-		<PublishData>
+    <?xml version="1.0" encoding="utf-8"?>
 
-  		<PublishProfile SchemaVersion="2.0" PublishMethod="AzureServiceManagementAPI">
+        <PublishData>
 
-    	<Subscription
+        <PublishProfile SchemaVersion="2.0" PublishMethod="AzureServiceManagementAPI">
 
-      		ServiceManagementUrl="https://management.core.windows.net"
+        <Subscription
 
-      		Id="<Subscription ID value>"
+            ServiceManagementUrl="https://management.core.windows.net"
 
-      		Name="Pay-As-You-Go"
-			ManagementCertificate="<Management certificate value>" />
+            Id="<Subscription ID value>"
 
-  		</PublishProfile>
+            Name="Pay-As-You-Go"
+            ManagementCertificate="<Management certificate value>" />
 
-	</PublishData>
+        </PublishProfile>
 
-有了訂用帳戶設定檔後，請依照下列步驟來設定 Azure 從屬外掛程式：
+    </PublishData>
 
-1. 在 Jenkins 儀表板中，按一下 [**管理 Jenkins**]。
+After you have your subscription profile, follow these steps to configure the Azure slave plug-in:
 
-1. 按一下 [**設定系統**]。
+1. In the Jenkins dashboard, click **Manage Jenkins**.
 
-1. 向下捲動頁面來找出 [**雲端**] 區段。
+1. Click **Configure System**.
 
-1. 按一下 [**新增雲端 > Microsoft Azure**]。
+1. Scroll down the page to find the **Cloud** section.
 
-    ![雲端區段][cloud section]
+1. Click **Add new cloud > Microsoft Azure**.
 
-    這會顯示一些欄位，您必須在其中輸入訂用帳戶的詳細資料。
+    ![cloud section][cloud section]
 
-    ![訂用帳戶組態][subscription configuration]
+    This will show the fields where you need to enter your subscription details.
 
-1. 從訂用帳戶設定檔中複製訂用帳戶 ID 和管理憑證值，然後貼到適當的欄位。
+    ![subscription configuration][subscription configuration]
 
-    複製訂用帳戶 ID 和管理憑證時，請勿將括住值的引號也包括進來。
+1. Copy the subscription id and management certificate values from your subscription profile and paste them in the appropriate fields.
 
-1. 按一下 [驗證組態]。
+    When copying the subscription id and management certificate, do not include the quotes that enclose the values.
 
-1. 驗證組態正確無誤後，按一下 [**儲存**]。
+1. Click **Verify Configuration**.
 
-## 設定 Azure 從屬外掛程式的虛擬機器範本
+1. When the configuration is verified to be correct, click **Save**.
 
-虛擬機器範本可定義外掛程式用來在 Azure 上建立從屬節點的參數。在下列步驟中，我們將建立 Ubuntu 虛擬機器的範本。
+## <a name="set-up-a-virtual-machine-template-for-the-azure-slave-plug-in"></a>Set up a virtual machine template for the Azure slave plug-in
 
-1. 在 Jenkins 儀表板中，按一下 [**管理 Jenkins**]。
+A virtual machine template defines the parameters that the plug-in will use to create a slave node on Azure. In the following steps, we'll create a template for an Ubuntu virtual machine.
 
-1. 按一下 [**設定系統**]。
+1. In the Jenkins dashboard, click **Manage Jenkins**.
 
-1. 向下捲動頁面來找出 [**雲端**] 區段。
+1. Click **Configure System**.
 
-1. 在 [雲端] 區段內，找到 [新增 Azure 虛擬機器範本]，然後按一下 [新增]。
+1. Scroll down the page to find the **Cloud** section.
 
-    ![新增 VM 範本][add vm template]
+1. In the **Cloud** section, find **Add Azure Virtual Machine Template**, and then click **Add**.
 
-    此動作將會顯示一些欄位，供您輸入所要建立之範本的相關詳細資料。
+    ![add vm template][add vm template]
 
-    ![空白的一般組態][blank general configuration]
+    This will show the fields where you enter details about the template you are creating.
 
-1. 在 [名稱] 方塊中，輸入 Azure 雲端服務名稱。如果您輸入的名稱會參照現有雲端服務，便會在該服務中佈建虛擬機器。否則，Azure 會建立一個新的。
+    ![blank general configuration][blank general configuration]
 
-1. 在 [說明] 方塊中，輸入您要建立之範本的說明文字。此資訊僅供記錄之用，不會用於佈建虛擬機器。
+1. In the **Name** box, enter an Azure cloud service name. If the name you entered refers to an existing cloud service, the virtual machine will be provisioned in that service. Otherwise, Azure will create a new one.
 
-1. [標籤] 方塊可用來識別您要建立的範本，而且後續建立 Jenkins 工作時也會用來參照範本。為了達到我們的目的，請在此方塊中輸入 **linux**。
+1. In the **Description** box, enter text that describes the template you are creating. This is only for your records and is not used in provisioning a virtual machine.
 
-1. 在 [區域] 清單中，按一下即將建立虛擬機器的區域。
+1. The **Labels** box is used to identify the template you are creating and is subsequently used to reference the template when creating a Jenkins job. For our purpose, enter **linux** in this box.
 
-1. 在 [虛擬機器大小] 清單中，按一下適當的大小。
+1. In the **Region** list, click the region where the virtual machine will be created.
 
-1. 在 [儲存體帳戶名稱] 方塊中，指定即將建立虛擬機器的儲存體帳戶。請確定它與您將要使用的雲端服務位在相同的區域中。如果您想要建立新的儲存體，可以將此方塊保留空白。
+1. In the **Virtual Machine Size** list, click the appropriate size.
 
-1. 保留時間會指定 Jenkins 要等待幾分鐘的時間才將閒置的從屬節點刪除。請讓此欄位保持使用預設值 60。您也可以選擇關閉從屬節點，而不是在其閒置時將它刪除。若要關閉節點，請勾選 [在保留時間過後僅關閉 (不要刪除)] 核取方塊。
+1. In the **Storage Account Name** box, specify a storage account where the virtual machine will be created. Make sure that it is in the same region as the cloud service you'll be using. If you want new storage to be created, you can leave this box blank.
 
-1. 在 [使用量] 清單中，按一下將使用此從屬節點的適當條件。現在只先按一下 [盡可能利用此節點] 即可。
+1. Retention time specifies the number of minutes before Jenkins deletes an idle slave. Leave this at the default value of 60. You can also choose to shut down the slave instead of deleting it when it's idle. To do that, select the **Shutdown Only (Do Not Delete) After Retention Time** check box.
 
-    到目前為止，您的表單應該會與下圖類似：
+1. In the **Usage** list, click the appropriate condition when this slave node will be used. For now, click **Utilize this node as much as possible**.
 
-    ![檢查點一般範本組態][checkpoint general template config]
+    At this point, your form should look somewhat similar to this:
 
-    下一步是提供您想要在其中建立從屬節點之作業系統映像的詳細資料。
+    ![checkpoint general template config][checkpoint general template config]
 
-1. 在 [映像系列或識別碼] 方塊中，您必須指定要在虛擬機器上安裝的系統映像。您可以從映像系列清單中進行選取，或指定自訂映像。
+    The next step is to provide details about the operating system image that you want your slave to be created in.
 
-    如果您想從映像系列清單中進行選取，請輸入映像系列名稱的第一個字元 (需區分大小寫)。例如，輸入 **U** 將會顯示 Ubuntu Server 系列的清單。從清單中進行選取後，Jenkins 會在佈建虛擬機器時，使用該系列中該系統映像的最新版本。
+1. In the **Image Family or Id** box, you have to specify what system image will be installed on your virtual machine. You can either select from a list of image families or specify a custom image.
 
-    ![作業系統映像清單範例][OS Image list sample]
+    If you want to select from a list of image families, enter the first character (case-sensitive) of the image family name. For instance, typing **U** will bring up a list of Ubuntu Server families. After you select from the list, Jenkins will use the latest version of that system image from that family when provisioning your virtual machine.
 
-    如果您想要改用自訂映像，請輸入該自訂映像的名稱。清單中不會顯示自訂映像名稱，因此您必須確實輸入正確的名稱。
+    ![OS Image list sample][OS Image list sample]
 
-    在本教學課程中，請輸入 **U** 來顯示 Ubuntu 映像清單，然後按一下 [Ubuntu Server 14.04 LTS]。
+    If you have a custom image that you want to use instead, enter the name of that custom image. Custom image names are not shown in a list, so you have to ensure that the name is entered correctly.
 
-1. 在 [啟動方法] 清單中，按一下 [SSH]。
+    For this tutorial, type **U** to bring up a list of Ubuntu images, and then click **Ubuntu Server 14.04 LTS**.
 
-1. 複製下方的指令碼，並貼到 [Init 指令碼] 方塊。
+1. In the **Launch Method** list, click **SSH**.
 
-		# Install Java
+1. Copy the script below and paste it in the **Init Script** box.
 
-		sudo apt-get -y update
+        # Install Java
 
-		sudo apt-get install -y openjdk-7-jdk
+        sudo apt-get -y update
 
-		sudo apt-get -y update --fix-missing
+        sudo apt-get install -y openjdk-7-jdk
 
-		sudo apt-get install -y openjdk-7-jdk
+        sudo apt-get -y update --fix-missing
 
-		# Install git
+        sudo apt-get install -y openjdk-7-jdk
 
-		sudo apt-get install -y git
+        # Install git
 
-		#Install ant
+        sudo apt-get install -y git
 
-		sudo apt-get install -y ant
+        #Install ant
 
-		sudo apt-get -y update --fix-missing
+        sudo apt-get install -y ant
 
-		sudo apt-get install -y ant
+        sudo apt-get -y update --fix-missing
 
-    Init 指令碼就會在虛擬機器建立完成後執行。在此範例中，指令碼會安裝 Java、Git 和 ant。
+        sudo apt-get install -y ant
 
-1. 在 [使用者名稱] 和 [密碼] 方塊中，請為即將在虛擬機器上建立的系統管理員帳戶輸入偏好使用的值。
+    The init script will be executed after the virtual machine is created. In this example, the script installs Java, Git, and ant.
 
-1. 按一下 [驗證範本] 以檢查指定的參數是否有效。
+1. In the **Username** and **Password** boxes, enter your preferred values for the administrator account that will be created on your virtual machine.
 
-1. 按一下 [儲存]。
+1. Click **Verify Template** to check if the parameters you specified are valid.
 
+1. Click **Save**.
 
-## 建立在 Azure 的從屬節點上執行的 Jenkins 工作
 
-在本節中，您將建立在 Azure 的從屬節點上執行的 Jenkins 工作。您必須在 GitHub 上啟動自己的專案才能繼續。
+## <a name="create-a-jenkins-job-that-runs-on-a-slave-node-on-azure"></a>Create a Jenkins job that runs on a slave node on Azure
 
-1. 在 Jenkins 儀表板中，按一下 [**新增項目**]。
+In this section, you'll be creating a Jenkins task that will run on a slave node on Azure. You'll need to have your own project up on GitHub to follow along.
 
-1. 輸入要建立之工作的名稱。
+1. In the Jenkins dashboard, click **New Item**.
 
-1. 針對專案類型，請按一下 [自由樣式專案]。
+1. Enter a name for the task you are creating.
 
-1. 按一下 [**確定**]。
+1. For the project type, click **Freestyle project**.
 
-1. 在工作組態頁面中，選取 [**限制可以執行這個專案的位置**]。
+1. Click **Ok**.
 
-1. 在 [標籤運算式] 方塊中，輸入 **linux**。上一節我們建立了名為 **linux** 的從屬範本，這就是我們要在這裡指定的項目。
+1. In the task configuration page, select **Restrict where this project can be run**.
 
-1. 在 [**組件**] 區段中，按一下 [**新增組件步驟**]，然後選取 [**執行殼層**]。
+1. In the **Label Expression** box, enter **linux**. In the previous section, we created a slave template that we named **linux**, which is what we're specifying here.
 
-1. 編輯下列指令碼，將 **(GitHub 帳戶名稱)**、**(專案名稱)** 和 **(專案目錄)** 替換為適當值，並在出現的文字區域中貼上編輯過的指令碼。
+1. In the **Build** section, click **Add build step** and select **Execute shell**.
 
-		# Clone from git repo
+1. Edit the following script, replacing **(your GitHub account name)**, **(your project name)**, and **(your project directory)** with appropriate values, and paste the edited script in the text area that appears.
 
-		currentDir="$PWD"
+        # Clone from git repo
 
-		if [ -e (your project directory) ]; then
+        currentDir="$PWD"
 
-  			cd (your project directory)
+        if [ -e (your project directory) ]; then
 
-  			git pull origin master
+            cd (your project directory)
 
-		else
+            git pull origin master
 
-  			git clone https://github.com/(your GitHub account name)/(your project name).git
+        else
 
-		fi
+            git clone https://github.com/(your GitHub account name)/(your project name).git
 
-		# change directory to project
+        fi
 
-		cd $currentDir/(your project directory)
+        # change directory to project
 
-		#Execute build task
+        cd $currentDir/(your project directory)
 
-		ant
+        #Execute build task
 
-1. 按一下 [儲存]。
+        ant
 
-1. 在 Jenkins 儀表板中，將滑鼠指標移到您剛才建立的工作上，然後按一下向下箭頭以顯示工作選項。
+1. Click **Save**.
 
-1. 按一下 [立即建置]。
+1. In the Jenkins dashboard, hover over the task you just created and click the drop-down arrow to display task options.
 
-Jenkins 會隨即使用上一節建立的範本來建立從屬節點，並執行您在建置步驟中為這項工作指定的指令碼。
+1. Click **Build now**.
 
-## 後續步驟
+Jenkins will then create a slave node by using the template created in the previous section and execute the script you specified in the build step for this task.
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+## <a name="next-steps"></a>Next Steps
+
+For more information about using Azure with Java, see the [Azure Java Developer Center].
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
-[訂用帳戶設定檔]: http://go.microsoft.com/fwlink/?LinkID=396395
+[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[subscription profile]: http://go.microsoft.com/fwlink/?LinkID=396395
 
 <!-- IMG List -->
 
@@ -246,4 +247,7 @@ Jenkins 會隨即使用上一節建立的範本來建立從屬節點，並執行
 [checkpoint general template config]: ./media/virtual-machines-azure-slave-plugin-for-jenkins/jenkins-slave-template-general-configuration.png
 [OS Image list sample]: ./media/virtual-machines-azure-slave-plugin-for-jenkins/jenkins-os-family-list-sample.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure 入口網站建立虛擬網路 | Microsoft Azure"
-   description="了解如何使用 Azure 入口網站建立虛擬網路。"
+   pageTitle="Create a virtual network using the Azure portal | Microsoft Azure"
+   description="Learn how to create a virtual network using the Azure portal."
    services="virtual-network"
    documentationCenter=""
    authors="jimdial"
@@ -17,16 +17,20 @@
    ms.date="03/15/2016"
    ms.author="jdial"/>
 
-# 使用 Azure Preview 入口網站建立虛擬網路 (傳統)
+
+# <a name="create-a-virtual-network-(classic)-by-using-the-azure-preview-portal"></a>Create a virtual network (classic) by using the Azure preview portal
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-selectors-classic-include](../../includes/virtual-networks-create-vnet-selectors-classic-include.md)]
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文件說明如何使用傳統部署模型建立 VNet。您也可以[使用 Azure Preview 入口網站在資源管理員部署模型中建立虛擬網路](virtual-networks-create-vnet-arm-pportal.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] This document covers creating a VNet by using the classic deployment model. You can also [create a virtual network in the Resource Manager deployment model by using the Azure preview portal](virtual-networks-create-vnet-arm-pportal.md).
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-classic-pportal-include](../../includes/virtual-networks-create-vnet-classic-pportal-include.md)]
 
-<!---HONumber=AcomDC_0810_2016------>
+
+<!--HONumber=Oct16_HO2-->
+
+

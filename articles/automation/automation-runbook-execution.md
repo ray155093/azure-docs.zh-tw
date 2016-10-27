@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure 自動化中的 Runbook 執行"
-   description="描述如何處理 Azure 自動化中的 Runbook 的詳細資料。"
+   pageTitle="Runbook execution in Azure Automation"
+   description="Describes the details of how a runbook in Azure Automation is processed."
    services="automation"
    documentationCenter=""
    authors="mgoedtel"
@@ -15,100 +15,105 @@
    ms.date="03/21/2016"
    ms.author="bwren" />
 
-# Azure 自動化中的 Runbook 執行
+
+# <a name="runbook-execution-in-azure-automation"></a>Runbook execution in Azure Automation
 
 
-當您在 Azure 自動化中啟動 Runbook 時即會建立一個工作。工作是 Runbook 的單一執行個體。會指派 Azure 自動化背景工作，以執行每項工作。雖然背景工作是由多個 Azure 帳戶共用，來自不同自動化帳戶的工作會彼此隔離。您對將服務您的要求工作的背景工作沒有控制權。單一 Runbook 一次可以執行多個工作。當您在 Azure 入口網站中檢視 Runbook 的清單時，它會列出已針對每一個 Runbook 啟動的上一個工作的狀態。您可以檢視每一個 Runbook工作的清單，以追蹤每個 Runbook 的狀態。如需不同的工作狀態的描述，請參閱[工作狀態](#job-statuses)。
+When you start a runbook in Azure Automation, a job is created. A job is a single execution instance of a runbook. An Azure Automation worker is assigned to run each job. While workers are shared by multiple Azure accounts, jobs from different Automation accounts are isolated from one another. You do not have control over which worker will service the request for your job.  A single runbook can have multiple jobs running at one time. When you view the list of runbooks in the Azure portal, it will list the status of the last job that was started for each runbook. You can view the list of jobs for each runbook in order to track the status of each. For a description of the different job statuses, see [Job Statuses](#job-statuses).
 
-下圖顯示[圖形化 Runbook](automation-runbook-types.md#graphical-runbooks) 和 [PowerShell 工作流程 Runbook](automation-runbook-types.md#powershell-workflow-runbooks) 之 Runbook 工作的生命週期。
+The following diagram shows the lifecycle of a runbook job for [Graphical runbooks](automation-runbook-types.md#graphical-runbooks) and [PowerShell Workflow runbooks](automation-runbook-types.md#powershell-workflow-runbooks).
 
-![工作狀態 -PowerShell 工作流程](./media/automation-runbook-execution/job-statuses.png)
+![Job Statuses - PowerShell Workflow](./media/automation-runbook-execution/job-statuses.png)
 
-下圖顯示 [PowerShell Runbook](automation-runbook-types.md#powershell-runbooks) 之 Runbook 工作的生命週期。
+The following diagram shows the lifecycle of a runbook job for [PowerShell runbooks](automation-runbook-types.md#powershell-runbooks).
 
-![工作狀態 - PowerShell 指令碼](./media/automation-runbook-execution/job-statuses-script.png)
+![Job Statuses - PowerShell Script](./media/automation-runbook-execution/job-statuses-script.png)
 
 
-藉由對您的 Azure 訂用帳戶進行連接，您的工作將可以存取您的 Azure 資源。如果可從公用雲端存取這些資源，他們將只可以存取您的資料中心中的資源。
+Your jobs will have access to your Azure resources by making a connection to your Azure subscription. They will only have access to resources in your data center if those resources are accessible from the public cloud.
 
-## 工作狀態
+## <a name="job-statuses"></a>Job statuses
 
-下表描述工作可能會有不同的狀態。
+The following table describes the different statuses that are possible for a job.
 
-| Status| 說明|
+| Status| Description|
 |:---|:---|
-|Completed|工作已成功完成。|
-|Failed| 針對 [圖形化和 PowerShell 工作流程 Runbook](automation-runbook-types.md)，此 Runbook 無法編譯。針對 [PowerShell 指令碼 Runbook](automation-runbook-types.md)，此 Runbook 無法啟動，或工作中發生例外狀況。 |
-|處理失敗，正在等候資源|工作失敗，因為其達到[公平共用](#fairshare)的三次上限，且每次從相同的檢查點或啟動 Runbook 開始。|
-|已排入佇列|工作正在等候取得自動化背景工作中的資源，以便可啟動。|
-|啟動中|工作已指派給背景工作，並且系統正在進行啟動。|
-|繼續中|工作暫停後，系統正在繼續工作。|
-|執行中|工作正在執行。|
-|執行中，正在等候資源|工作已卸載，因為已達到 [公平共用](#fairshare)上限。工作會很快地從其上一個檢查點繼續。|
-|已停止|工作完成之前已由使用者停止。|
-|停止中|系統正在停止工作。|
-|暫止|工作已由使用者、系統或 Runbook 中的命令暫停。已暫停的工作可以再次啟動，並從其上一個檢查點，或從 Runbook 的開頭繼續 (若無檢查點)。僅在例外狀況時，系統會暫停 Runbook。根據預設，ErrorActionPreference 會設定為 [**繼續**]，代表工作會在發生錯誤時繼續執行。如果此喜好設定變數設定為 [**停止**]，則工作將會在發生錯誤時暫停。只適用於[圖形化和 PowerShell 工作流程 Runbook](automation-runbook-types.md)。|
-|暫停中|因使用者要求，系統正在嘗試暫停工作。Runbook 必須達到其下一個檢查點才能暫停。如果其已通過其上一個檢查點，則在可以暫停之前會先完成工作。只適用於[圖形化和 PowerShell 工作流程 Runbook](automation-runbook-types.md)。|
+|Completed|The job completed successfully.|
+|Failed| For [Graphical and PowerShell Workflow runbooks](automation-runbook-types.md), the runbook failed to compile.  For [PowerShell Script runbooks](automation-runbook-types.md), the runbook failed to start or the job encountered an exception. |
+|Failed, waiting for resources|The job failed because it reached the [fair share](#fairshare) limit three times and started from the same checkpoint or from the start of the runbook each time.|
+|Queued|The job is waiting for resources on an Automation worker to come available so that it can be started.|
+|Starting|The job has been assigned to a worker, and the system is in the process of starting it.|
+|Resuming|The system is in the process of resuming the job after it was suspended.|
+|Running|The job is running.|
+|Running, waiting for resources|The job has been unloaded because it reached the [fair share](#fairshare) limit. It will resume shortly from its last checkpoint.|
+|Stopped|The job was stopped by the user before it was completed.|
+|Stopping|The system is in the process of stopping the job.|
+|Suspended|The job was suspended by the user, by the system, or by a command in the runbook. A job that is suspended can be started again and will resume from its last checkpoint or from the beginning of the runbook if it has no checkpoints. The runbook will only be suspended by the system in the case of an exception. By default, ErrorActionPreference is set to **Continue** meaning that the job will keep running on an error. If this preference variable is set to **Stop** then the job will suspend on an error.  Applies to [Graphical and PowerShell Workflow runbooks](automation-runbook-types.md) only.|
+|Suspending|The system is attempting to suspend the job at the request of the user. The runbook must reach its next checkpoint before it can be suspended. If it has already passed its last checkpoint, then it will complete before it can be suspended.  Applies to [Graphical and PowerShell Workflow runbooks](automation-runbook-types.md) only.|
 
-## 使用 Azure 管理入口網站來檢視工作狀態
+## <a name="viewing-job-status-using-the-azure-management-portal"></a>Viewing job status using the Azure Management Portal
 
-### 自動化儀表板
+### <a name="automation-dashboard"></a>Automation Dashboard
 
-自動化儀表板會針對特定的自動化帳戶顯示所有 Runbook 的摘要。其也包含帳戶的使用量概觀。針對經過指定的天數或小時數輸入每個狀態的所有 Runbook，摘要圖表會顯示其工作總數。您可以在圖表的右上角選取時間範圍。圖表的時間軸會根據您選取的時間範圍類型進行變更。您可以選擇是否要在螢幕頂端按一下以顯示特定狀態的列。
+The Automation Dashboard shows a summary of all of the runbooks for a particular automation account. It also includes a Usage Overview for the account. The summary graph shows the number of total jobs for all runbooks that entered each status over a given number of days or hours. You can select the time range on the top right corner of the graph. The time axis of the chart will change according to the type of time range that you select. You can choose whether to display the line for a particular status by clicking on it at the top of screen.
 
-您可以使用下列步驟來顯示自動化儀表板。
+You can use the following steps to display the Automation Dashboard.
 
-1. 在 Azure 管理入口網站中，選取 [**自動化**]，然後按一下自動化帳戶的名稱。
-1. 選取 [**儀表板**] 索引標籤。
+1. In the Azure Management Portal, select **Automation** and then then click the name of an automation account.
+1. Select the **Dashboard** tab.
 
-### Runbook 儀表板
+### <a name="runbook-dashboard"></a>Runbook Dashboard
 
-Runbook 儀表板會顯示單一 Runbook 的摘要。針對經過指定的天數或小時數輸入每個狀態的 Runbook，摘要圖表會顯示其工作總數。您可以在圖表的右上角選取時間範圍。圖表的時間軸會根據您選取的時間範圍類型進行變更。您可以選擇是否要在螢幕頂端按一下以顯示特定狀態的列。
+The Runbook Dashboard shows a summary for a single runbook. The summary graph shows the number of total jobs for the runbook that entered each status over a given number of days or hours. You can select the time range on the top right corner of the graph. The time axis of the chart will change according to the type of time range that you select. You can choose whether to display the line for a particular status by clicking on it at the top of screen.
 
-您可以使用下列步驟來顯示 Runbook 儀表板。
+You can use the following steps to display the Runbook Dashboard.
 
-1. 在 Azure 管理入口網站中，選取 [**自動化**]，然後按一下自動化帳戶的名稱。
-1. 按一下 Runbook 的名稱。
-1. 選取 [**儀表板**] 索引標籤。
+1. In the Azure Management Portal, select **Automation** and then then click the name of an automation account.
+1. Click the name of a runbook.
+1. Select the **Dashboard** tab.
 
-### 工作摘要
+### <a name="job-summary"></a>Job Summary
 
-您可以針對特定 Runbook 及其最新狀態，檢視所有已建立工作的清單。您可以依工作狀態和上次工作變更的日期範圍來篩選此清單。按一下工作的名稱以檢視其詳細的資訊及其輸出。工作的詳細檢視包含提供給該工作的 Runbook 參數值。
+You can view a list of all of the jobs that have been created for a particular runbook and their most recent status. You can filter this list by job status and the range of dates for the last change to the job. Click on the name of a job to view its detailed information and its output. The detailed view of the job includes the values for the runbook parameters that were provided to that job.
 
-您可以使用下列步驟來檢視 Runbook 工作。
+You can use the following steps to view the jobs for a runbook.
 
-1. 在 Azure 管理入口網站中，選取 [**自動化**]，然後按一下自動化帳戶的名稱。
-1. 按一下 Runbook 的名稱。
-1. 選取 [**工作**] 索引標籤。
-1. 按一下工作的 [**已建立工作**] 資料行以檢視其詳細資料和輸出。
+1. In the Azure Management Portal, select **Automation** and then then click the name of an automation account.
+1. Click the name of a runbook.
+1. Select the **Jobs** tab.
+1. Click on the **Job Created** column for a job to view its detail and output.
 
-## 使用 Windows PowerShell 擷取工作狀態
+## <a name="retrieving-job-status-using-windows-powershell"></a>Retrieving job status using Windows PowerShell
 
-您可以使用 [Get-AzureAutomationJob](http://msdn.microsoft.com/library/azure/dn690263.aspx) 擷取針對 Runbook 建立的工作以及特定工作的詳細資料。如果您使用 [Start-AzureAutomationRunbook](http://msdn.microsoft.com/library/azure/dn690259.aspx) 並透過 Windows PowerShell 來啟動 Runbook，則其會傳回產生的工作。使用 [Get-AzureAutomationJob](http://msdn.microsoft.com/library/azure/dn690263.aspx) 輸出以取得工作的輸出。
+You can use the [Get-AzureAutomationJob](http://msdn.microsoft.com/library/azure/dn690263.aspx) to retrieve the jobs created for a runbook and the details of a particular job. If you start a runbook with Windows PowerShell using [Start-AzureAutomationRunbook](http://msdn.microsoft.com/library/azure/dn690259.aspx), then it will return the resulting job. Use [Get-AzureAutomationJob](http://msdn.microsoft.com/library/azure/dn690263.aspx)Output to get a job’s output.
 
-下列範例命令會針對範例 Runbook 擷取上一個工作並顯示其狀態，該值會提供給 Runbook 參數，以及來自工作的輸出。
+The following sample commands retrieves the last job for a sample runbook and displays it’s status, the values provide for the runbook parameters, and the output from the job.
 
-	$job = (Get-AzureAutomationJob –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook" | sort LastModifiedDate –desc)[0]
-	$job.Status
-	$job.JobParameters
-	Get-AzureAutomationJobOutput –AutomationAccountName "MyAutomationAccount" -Id $job.Id –Stream Output
+    $job = (Get-AzureAutomationJob –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook" | sort LastModifiedDate –desc)[0]
+    $job.Status
+    $job.JobParameters
+    Get-AzureAutomationJobOutput –AutomationAccountName "MyAutomationAccount" -Id $job.Id –Stream Output
 
-## 公平共用
+## <a name="fair-share"></a>Fair share
 
-為了在雲端中的所有 Runbook 之間共用資源，「Azure 自動化」會在任何工作已執行 3 小時之後將其暫時卸載。[圖形化](automation-runbook-types.md#graphical-runbooks)和 [PowerShell 工作流程](automation-runbook-types.md#powershell-workflow-runbooks) Runbook 將會從其最後一個[檢查點](http://technet.microsoft.com/library/dn469257.aspx#bk_Checkpoints)繼續。在此期間，工作的顯示狀態為「執行中，正在等候資源」。如果 Runbook 沒有檢查點，或在卸載工作之前工作未到達第一個檢查點，則會從頭重新啟動。[PowerShell](automation-runbook-types.md#powershell-runbooks) Runbook 一律會從頭重新啟動，因為它們不支援檢查點。
+In order to share resources among all runbooks in the cloud, Azure Automation will temporarily unload any job after it has been running for 3 hours.    [Graphical](automation-runbook-types.md#graphical-runbooks) and [PowerShell Workflow](automation-runbook-types.md#powershell-workflow-runbooks) runbooks will be resumed from their last [checkpoint](http://technet.microsoft.com/library/dn469257.aspx#bk_Checkpoints). During this time, the job will show a status of Running, Waiting for Resources. If the runbook has no checkpoints or the job had not reached the first checkpoint before being unloaded, then it will restart from the beginning.  [PowerShell](automation-runbook-types.md#powershell-runbooks) runbooks are always restarted from the beginning since they don't support checkpoints.
 
->[AZURE.NOTE] 公平分享限制不適用於混合式 Runbook 背景工作角色上執行的 Runbook 工作。
+>[AZURE.NOTE] The fair share limit is not applicable to runbook jobs executing on Hybrid Runbook Workers.
 
-如果 Runbook 從相同檢查點或從 Runbook 的開頭重新啟動連續三次，它將被終止，狀態為「失敗，正在等候資源」。這是為了防止 Runbook 無限期地執行而不會完成，因為它們在未重新卸載的情況下，無法進入下一個檢查點。在此情況下，您會收到下列失敗例外狀況。
+If the runbook restarts from the same checkpoint or from the beginning of the runbook three consecutive times, it will be terminated with a status of Failed, waiting for resources. This is to protect from runbooks running indefinitely without completing, as they are not able to make it to the next checkpoint without being unloaded again. In this case, you will receive the following exception with the failure.
 
-*工作無法繼續執行，因為它被從相同的檢查點重複收回。請確定您的 Runbook 在未保存其狀態的情況下，不會長時間執行作業。*
+*The job cannot continue running because it was repeatedly evicted from the same checkpoint. Please make sure your Runbook does not perform lengthy operations without persisting its state.*
 
-建立 Runbook 時，您應該確定在兩個檢查點之間執行的任何活動的時間不會超過 3 小時。您可能需要在您的 Runbook 中新增檢查點，以確保它不會達到此 3 小時的限制或中斷長時間執行的作業。例如，您的 Runbook 可能在大型 SQL 資料庫上執行重新索引。如果此單一作業未在公平共用的限制內完成，則將會卸載工作並且從頭開始重新啟動。在此情況下，您應該將重新索引作業分成多個步驟，例如一次重新索引一個資料表，然後在每個作業之後插入檢查點，讓工作可以在最後一個作業完成後繼續。
+When you create a runbook, you should ensure that the time to run any activities between two checkpoints will not exceed 3 hours. You may need to add checkpoints to your runbook to ensure that it does not reach this 3 hour limit or break up long running operations. For example, your runbook might perform a reindex on a large SQL database. If this single operation does not complete within the fair share limit, then the job will be unloaded and restarted from the beginning. In this case, you should break up the reindex operation into multiple steps, such as reindexing one table at a time, and then insert a checkpoint after each operation so that the job could resume after the last operation to complete.
 
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-- [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
+- [Starting a runbook in Azure Automation](automation-starting-a-runbook.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,10 +1,10 @@
 <properties
 pageTitle="MailChimp | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。MailChimp 是一項 SaaS 服務，可讓企業管理和自動化電子郵件行銷活動，包括傳送行銷電子郵件、自動化的訊息和有目標的行銷活動。"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create Logic apps with Azure App service. MailChimp is a SaaS service that allows businesses to manage and automate email marketing activities, including sending marketing emails, automated messages and targeted campaigns."
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,726 +17,730 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 MailChimp 連接器
 
-MailChimp 是一項 SaaS 服務，可讓企業管理和自動化電子郵件行銷活動，包括傳送行銷電子郵件、自動化的訊息和有目標的行銷活動。
+# <a name="get-started-with-the-mailchimp-connector"></a>Get started with the MailChimp connector
+
+MailChimp is a SaaS service that allows businesses to manage and automate email marketing activities, including sending marketing emails, automated messages and targeted campaigns.
 
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. 
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+You can get started by creating a Logic app now, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-## 觸發程序及動作
+## <a name="triggers-and-actions"></a>Triggers and actions
 
-MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+The MailChimp connector can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
 
- MailChimp 連接器提供下列動作及/或觸發程序：
+ The MailChimp connector has the following action(s) and/or trigger(s) available:
 
-### MailChimp 動作
-您可以採取下列動作：
+### <a name="mailchimp-actions"></a>MailChimp actions
+You can take these action(s):
 
-|動作|說明|
+|Action|Description|
 |--- | ---|
-|[newcampaign](connectors-create-api-mailchimp.md#newcampaign)|根據活動類型、收件者清單和活動設定 (主旨列、標題、from\_name 和 reply\_to) 建立新的活動|
-|[newlist](connectors-create-api-mailchimp.md#newlist)|在 MailChimp 帳戶中建立新的清單|
-|[addmember](connectors-create-api-mailchimp.md#addmember)|加入或更新清單成員|
-|[removemember](connectors-create-api-mailchimp.md#removemember)|從清單中刪除成員。|
-|[updatemember](connectors-create-api-mailchimp.md#updatemember)|更新特定清單成員的資訊|
-### MailChimp 觸發程序
-您可以接聽下列事件：
+|[newcampaign](connectors-create-api-mailchimp.md#newcampaign)|Create a new campaign based on a Campaign Type, Recipients list and Campaign Settings (subject line, title, from_name and reply_to)|
+|[newlist](connectors-create-api-mailchimp.md#newlist)|Create a new list in your MailChimp account|
+|[addmember](connectors-create-api-mailchimp.md#addmember)|Add or update a list member|
+|[removemember](connectors-create-api-mailchimp.md#removemember)|Delete a member from a list.|
+|[updatemember](connectors-create-api-mailchimp.md#updatemember)|Update information for a specific list member|
+### <a name="mailchimp-triggers"></a>MailChimp triggers
+You can listen for these event(s):
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|成員加入清單後|新成員加入清單後就會觸發工作流程|
-|建立新清單時|建立新清單時就會觸發工作流程|
+|When a Member has been added to a list|Triggers a workflow when a new member has been added to a list|
+|When a new list is created|Triggers a workflow when a new list is created|
 
 
-## 建立 MailChimp 的連線
-若要使用 MailChimp 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
+## <a name="create-a-connection-to-mailchimp"></a>Create a connection to MailChimp
+To create Logic apps with MailChimp, you must first create a **connection** then provide the details for the following properties: 
 
-|屬性| 必要|說明|
+|Property| Required|Description|
 | ---|---|---|
-|權杖|是|提供 MailChimp 認證|
+|Token|Yes|Provide MailChimp Credentials|
 
->[AZURE.INCLUDE [建立 MailChimp 連線的步驟](../../includes/connectors-create-api-mailchimp.md)]
+>[AZURE.INCLUDE [Steps to create a connection to MailChimp](../../includes/connectors-create-api-mailchimp.md)]
 
->[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
+>[AZURE.TIP] You can use this connection in other logic apps.
 
-## MailChimp 的參考
-適用的版本：1.0
+## <a name="reference-for-mailchimp"></a>Reference for MailChimp
+Applies to version: 1.0
 
-## newcampaign
-新活動：根據活動類型、收件者清單和活動設定 (主旨列、標題、from\_name 和 reply\_to) 建立新的活動
+## <a name="newcampaign"></a>newcampaign
+New Campaign: Create a new campaign based on a Campaign Type, Recipients list and Campaign Settings (subject line, title, from_name and reply_to) 
 
-```POST: /campaigns```
+```POST: /campaigns``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|newCampaignRequest| |yes|body|無|隨新活動要求參數在本文中傳送的 JSON 物件|
+|newCampaignRequest| |yes|body|none|Json object to send in the body with the new campaign request parameters|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## newlist
-新清單：在 MailChimp 帳戶中建立新的清單
+## <a name="newlist"></a>newlist
+New List: Create a new list in your MailChimp account 
 
-```POST: /lists```
+```POST: /lists``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|newListRequest| |yes|body|無|隨新活動要求參數在本文中傳送的 JSON 物件|
+|newListRequest| |yes|body|none|Json object to send in the body with the new campaign request parameters|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## addmember
-將成員加入清單中︰加入或更新清單成員
+## <a name="addmember"></a>addmember
+Add member to list: Add or update a list member 
 
-```POST: /lists/{list_id}/members```
+```POST: /lists/{list_id}/members``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|string|yes|路徑|無|清單的唯一識別碼|
-|newMemberInList| |yes|body|無|隨新成員資訊在本文中傳送的 JSON 物件|
+|list_id|string|yes|path|none|The unique id for the list|
+|newMemberInList| |yes|body|none|Json object to send in the body with the new member information|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## removemember
-從清單中移除成員︰從清單中刪除成員。
+## <a name="removemember"></a>removemember
+Remove Member from list: Delete a member from a list. 
 
-```DELETE: /lists/replacemailwithhash/{list_id}/members/{member_email}```
+```DELETE: /lists/replacemailwithhash/{list_id}/members/{member_email}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|string|yes|路徑|無|清單的唯一識別碼|
-|member\_email|string|yes|路徑|無|要刪除的成員電子郵件地址|
+|list_id|string|yes|path|none|The unique id for the list|
+|member_email|string|yes|path|none|The email address of the member to delete|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## updatemember
-更新成員資訊：更新特定清單成員的資訊
+## <a name="updatemember"></a>updatemember
+Update member information: Update information for a specific list member 
 
-```PATCH: /lists/replacemailwithhash/{list_id}/members/{member_email}```
+```PATCH: /lists/replacemailwithhash/{list_id}/members/{member_email}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|string|yes|路徑|無|清單的唯一識別碼|
-|member\_email|string|yes|路徑|無|要更新成員的唯一電子郵件地址|
-|updateMemberInListRequest| |yes|body|無|隨更新的成員資訊在本文中傳送的 JSON 物件|
+|list_id|string|yes|path|none|The unique id for the list|
+|member_email|string|yes|path|none|The unique email address of the member to update|
+|updateMemberInListRequest| |yes|body|none|Json object to send in the body with the updated member information|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## OnMemberSubscribed
-成員加入清單後：新成員加入清單後就會觸發工作流程
+## <a name="onmembersubscribed"></a>OnMemberSubscribed
+When a Member has been added to a list: Triggers a workflow when a new member has been added to a list 
 
-```GET: /trigger/lists/{list_id}/members```
+```GET: /trigger/lists/{list_id}/members``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|string|yes|路徑|無|清單的唯一識別碼|
+|list_id|string|yes|path|none|The unique id for the list|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|202|Accepted|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## OnCreateList
-建立新清單時：建立新清單時就會觸發工作流程
+## <a name="oncreatelist"></a>OnCreateList
+When a new list is created: Triggers a workflow when a new list is created 
 
-```GET: /trigger/lists```
+```GET: /trigger/lists``` 
 
-這個呼叫沒有參數
-#### Response
+There are no parameters for this call
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|202|Accepted|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## 物件定義 
+## <a name="object-definitions"></a>Object definitions 
 
-### NewCampaignRequest
+### <a name="newcampaignrequest"></a>NewCampaignRequest
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|類型|string|是 |
-|收件者|沒有定義|是 |
-|settings|沒有定義|是 |
-|variate\_settings|沒有定義|否 |
-|tracking|沒有定義|否 |
-|rss\_opts|沒有定義|否 |
-|social\_card|沒有定義|否 |
+|type|string|Yes |
+|recipients|not defined|Yes |
+|settings|not defined|Yes |
+|variate_settings|not defined|No |
+|tracking|not defined|No |
+|rss_opts|not defined|No |
+|social_card|not defined|No |
 
 
 
-### 收件者
+### <a name="recipient"></a>Recipient
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|list\_id|string|是 |
-|segment\_opts|沒有定義|否 |
+|list_id|string|Yes |
+|segment_opts|not defined|No |
 
 
 
-### Settings
+### <a name="settings"></a>Settings
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|subject\_line|string|是 |
-|title|string|否 |
-|from\_name|string|是 |
-|reply\_to|string|是 |
-|use\_conversation|布林值|否 |
-|to\_name|string|否 |
-|folder\_id|integer|否 |
-|authenticate|布林值|否 |
-|auto\_footer|布林值|否 |
-|inline\_css|布林值|否 |
-|auto\_tweet|布林值|否 |
-|auto\_fb\_post|array|否 |
-|fb\_comments|布林值|否 |
+|subject_line|string|Yes |
+|title|string|No |
+|from_name|string|Yes |
+|reply_to|string|Yes |
+|use_conversation|boolean|No |
+|to_name|string|No |
+|folder_id|integer|No |
+|authenticate|boolean|No |
+|auto_footer|boolean|No |
+|inline_css|boolean|No |
+|auto_tweet|boolean|No |
+|auto_fb_post|array|No |
+|fb_comments|boolean|No |
 
 
 
-### Variate\_Settings
+### <a name="variate_settings"></a>Variate_Settings
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|winner\_criteria|string|否 |
-|wait\_time|integer|否 |
-|test\_size|integer|否 |
-|subject\_lines|array|否 |
-|send\_times|array|否 |
-|from\_names|array|否 |
-|reply\_to\_addresses|array|否 |
+|winner_criteria|string|No |
+|wait_time|integer|No |
+|test_size|integer|No |
+|subject_lines|array|No |
+|send_times|array|No |
+|from_names|array|No |
+|reply_to_addresses|array|No |
 
 
 
-### 追蹤
+### <a name="tracking"></a>Tracking
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|opens|布林值|否 |
-|html\_clicks|布林值|否 |
-|text\_clicks|布林值|否 |
-|goal\_tracking|布林值|否 |
-|ecomm360|布林值|否 |
-|google\_analytics|string|否 |
-|clicktale|string|否 |
-|salesforce|沒有定義|否 |
-|highrise|沒有定義|否 |
-|capsule|未定義|否 |
+|opens|boolean|No |
+|html_clicks|boolean|No |
+|text_clicks|boolean|No |
+|goal_tracking|boolean|No |
+|ecomm360|boolean|No |
+|google_analytics|string|No |
+|clicktale|string|No |
+|salesforce|not defined|No |
+|highrise|not defined|No |
+|capsule|not defined|No |
 
 
 
-### RSS\_Opts
+### <a name="rss_opts"></a>RSS_Opts
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|feed\_url|string|否 |
-|frequency|string|否 |
-|constrain\_rss\_img|string|否 |
-|schedule|沒有定義|否 |
+|feed_url|string|No |
+|frequency|string|No |
+|constrain_rss_img|string|No |
+|schedule|not defined|No |
 
 
 
-### Social\_Card
+### <a name="social_card"></a>Social_Card
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|image\_url|string|否 |
-|說明|string|否 |
-|title|string|否 |
+|image_url|string|No |
+|description|string|No |
+|title|string|No |
 
 
 
-### Segment\_Opts
+### <a name="segment_opts"></a>Segment_Opts
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|saved\_segment\_id|integer|否 |
-|match|string|否 |
+|saved_segment_id|integer|No |
+|match|string|No |
 
 
 
-### Salesforce
+### <a name="salesforce"></a>Salesforce
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|campaign|布林值|否 |
-|版本|布林值|否 |
+|campaign|boolean|No |
+|notes|boolean|No |
 
 
 
-### Highrise
+### <a name="highrise"></a>Highrise
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|campaign|布林值|否 |
-|版本|布林值|否 |
+|campaign|boolean|No |
+|notes|boolean|No |
 
 
 
-### Capsule
+### <a name="capsule"></a>Capsule
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|版本|布林值|否 |
+|notes|boolean|No |
 
 
 
-### 排程
+### <a name="schedule"></a>Schedule
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|hour|integer|否 |
-|daily\_send|沒有定義|否 |
-|weekly\_send\_day|string|否 |
-|monthly\_send\_date|number|否 |
+|hour|integer|No |
+|daily_send|not defined|No |
+|weekly_send_day|string|No |
+|monthly_send_date|number|No |
 
 
 
-### Daily\_Send
+### <a name="daily_send"></a>Daily_Send
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|星期日|布林值|否 |
-|星期一|布林值|否 |
-|星期二|布林值|否 |
-|星期三|布林值|否 |
-|星期四|布林值|否 |
-|星期五|布林值|否 |
-|星期六|布林值|否 |
+|sunday|boolean|No |
+|monday|boolean|No |
+|tuesday|boolean|No |
+|wednesday|boolean|No |
+|thursday|boolean|No |
+|friday|boolean|No |
+|saturday|boolean|No |
 
 
 
-### CampaignResponseModel
+### <a name="campaignresponsemodel"></a>CampaignResponseModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|否 |
-|類型|string|否 |
-|create\_time|string|否 |
-|archive\_url|string|否 |
-|status|string|否 |
-|emails\_sent|integer|否 |
-|send\_time|string|否 |
-|content\_type|string|否 |
-|收件者|array|否 |
-|settings|沒有定義|否 |
-|variate\_settings|沒有定義|否 |
-|tracking|沒有定義|否 |
-|rss\_opts|沒有定義|否 |
-|ab\_split\_opts|沒有定義|否 |
-|social\_card|沒有定義|否 |
-|report\_summary|沒有定義|否 |
-|delivery\_status|沒有定義|否 |
-|\_links|array|否 |
+|id|string|No |
+|type|string|No |
+|create_time|string|No |
+|archive_url|string|No |
+|status|string|No |
+|emails_sent|integer|No |
+|send_time|string|No |
+|content_type|string|No |
+|recipient|array|No |
+|settings|not defined|No |
+|variate_settings|not defined|No |
+|tracking|not defined|No |
+|rss_opts|not defined|No |
+|ab_split_opts|not defined|No |
+|social_card|not defined|No |
+|report_summary|not defined|No |
+|delivery_status|not defined|No |
+|_links|array|No |
 
 
 
-### AB\_Split\_Opts
+### <a name="ab_split_opts"></a>AB_Split_Opts
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|split\_test|string|否 |
-|pick\_winner|string|否 |
-|wait\_units|string|否 |
-|wait\_time|integer|否 |
-|split\_size|integer|否 |
-|from\_name\_a|string|否 |
-|from\_name\_b|string|否 |
-|reply\_email\_a|string|否 |
-|reply\_email\_b|string|否 |
-|subject\_a|string|否 |
-|subject\_b|string|否 |
-|send\_time\_a|string|否 |
-|send\_time\_b|string|否 |
-|send\_time\_winner|string|否 |
+|split_test|string|No |
+|pick_winner|string|No |
+|wait_units|string|No |
+|wait_time|integer|No |
+|split_size|integer|No |
+|from_name_a|string|No |
+|from_name_b|string|No |
+|reply_email_a|string|No |
+|reply_email_b|string|No |
+|subject_a|string|No |
+|subject_b|string|No |
+|send_time_a|string|No |
+|send_time_b|string|No |
+|send_time_winner|string|No |
 
 
 
-### Report\_Summary
+### <a name="report_summary"></a>Report_Summary
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|opens|integer|否 |
-|unique\_opens|integer|否 |
-|open\_rate|number|否 |
-|clicks|integer|否 |
-|subscriber\_clicks|number|否 |
-|click\_rate|number|否 |
+|opens|integer|No |
+|unique_opens|integer|No |
+|open_rate|number|No |
+|clicks|integer|No |
+|subscriber_clicks|number|No |
+|click_rate|number|No |
 
 
 
-### Delivery\_Status
+### <a name="delivery_status"></a>Delivery_Status
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|啟用|布林值|否 |
-|can\_cancel|布林值|否 |
-|status|string|否 |
-|emails\_sent|integer|否 |
-|emails\_canceled|integer|否 |
+|enabled|boolean|No |
+|can_cancel|boolean|No |
+|status|string|No |
+|emails_sent|integer|No |
+|emails_canceled|integer|No |
 
 
 
-### 連結
+### <a name="link"></a>Link
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|rel|string|否 |
-|href|string|否 |
-|方法|string|否 |
-|targetSchema|string|否 |
-|結構描述|string|否 |
+|rel|string|No |
+|href|string|No |
+|method|string|No |
+|targetSchema|string|No |
+|schema|string|No |
 
 
 
-### NewListRequest
+### <a name="newlistrequest"></a>NewListRequest
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|名稱|string|是 |
-|連絡人|沒有定義|是 |
-|permission\_reminder|string|是 |
-|use\_archive\_bar|布林值|否 |
-|campaign\_defaults|沒有定義|是 |
-|notify\_on\_subscribe|string|否 |
-|notify\_on\_unsubscribe|string|否 |
-|email\_type\_option|布林值|是 |
-|可見性|string|否 |
+|name|string|Yes |
+|contact|not defined|Yes |
+|permission_reminder|string|Yes |
+|use_archive_bar|boolean|No |
+|campaign_defaults|not defined|Yes |
+|notify_on_subscribe|string|No |
+|notify_on_unsubscribe|string|No |
+|email_type_option|boolean|Yes |
+|visibility|string|No |
 
 
 
-### 連絡人
+### <a name="contact"></a>Contact
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|company|string|是 |
-|address1|string|是 |
-|address2|string|否 |
-|city|string|是 |
-|state|string|是 |
-|zip|string|是 |
-|country|string|是 |
-|電話|string|是 |
+|company|string|Yes |
+|address1|string|Yes |
+|address2|string|No |
+|city|string|Yes |
+|state|string|Yes |
+|zip|string|Yes |
+|country|string|Yes |
+|phone|string|Yes |
 
 
 
-### Campaign\_Defaults
+### <a name="campaign_defaults"></a>Campaign_Defaults
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|from\_name|string|是 |
-|from\_email|string|是 |
-|主旨|string|否 |
-|語言|string|是 |
+|from_name|string|Yes |
+|from_email|string|Yes |
+|subject|string|No |
+|language|string|Yes |
 
 
 
-### CreateNewListResponseModel
+### <a name="createnewlistresponsemodel"></a>CreateNewListResponseModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|是 |
-|名稱|string|是 |
-|連絡人|沒有定義|是 |
-|permission\_reminder|string|是 |
-|use\_archive\_bar|布林值|否 |
-|campaign\_defaults|沒有定義|是 |
-|notify\_on\_subscribe|string|否 |
-|notify\_on\_unsubscribe|string|否 |
-|date\_created|string|否 |
-|list\_rating|integer|否 |
-|email\_type\_option|布林值|是 |
-|subscribe\_url\_short|string|否 |
-|subscribe\_url\_long|string|否 |
-|beamer\_address|string|否 |
-|可見性|string|否 |
-|模組|array|否 |
-|stats|沒有定義|否 |
-|\_links|array|否 |
+|id|string|Yes |
+|name|string|Yes |
+|contact|not defined|Yes |
+|permission_reminder|string|Yes |
+|use_archive_bar|boolean|No |
+|campaign_defaults|not defined|Yes |
+|notify_on_subscribe|string|No |
+|notify_on_unsubscribe|string|No |
+|date_created|string|No |
+|list_rating|integer|No |
+|email_type_option|boolean|Yes |
+|subscribe_url_short|string|No |
+|subscribe_url_long|string|No |
+|beamer_address|string|No |
+|visibility|string|No |
+|modules|array|No |
+|stats|not defined|No |
+|_links|array|No |
 
 
 
-### 狀態
+### <a name="stats"></a>Stats
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|member\_count|integer|否 |
-|unsubscribe\_count|integer|否 |
-|cleaned\_count|integer|否 |
-|member\_count\_since\_send|integer|否 |
-|unsubscribe\_count\_since\_send|integer|否 |
-|cleaned\_count\_since\_send|integer|否 |
-|campaign\_count|integer|否 |
-|campaign\_last\_sent|integer|否 |
-|merge\_field\_count|integer|否 |
-|avg\_sub\_rate|number|否 |
-|avg\_unsub\_rate|number|否 |
-|target\_sub\_rate|number|否 |
-|open\_rate|number|否 |
-|click\_rate|number|否 |
-|last\_sub\_date|string|否 |
-|last\_unsub\_date|string|否 |
+|member_count|integer|No |
+|unsubscribe_count|integer|No |
+|cleaned_count|integer|No |
+|member_count_since_send|integer|No |
+|unsubscribe_count_since_send|integer|No |
+|cleaned_count_since_send|integer|No |
+|campaign_count|integer|No |
+|campaign_last_sent|integer|No |
+|merge_field_count|integer|No |
+|avg_sub_rate|number|No |
+|avg_unsub_rate|number|No |
+|target_sub_rate|number|No |
+|open_rate|number|No |
+|click_rate|number|No |
+|last_sub_date|string|No |
+|last_unsub_date|string|No |
 
 
 
-### GetListsResponseModel
+### <a name="getlistsresponsemodel"></a>GetListsResponseModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|清單|array|否 |
-|total\_items|integer|否 |
+|lists|array|No |
+|total_items|integer|No |
 
 
 
-### NewMemberInListRequest
+### <a name="newmemberinlistrequest"></a>NewMemberInListRequest
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|email\_type|string|否 |
-|status|string|是 |
-|merge\_fields|沒有定義|否 |
-|interests|string|否 |
-|語言|string|否 |
-|vip|布林值|否 |
-|location|沒有定義|否 |
-|email\_address|string|是 |
+|email_type|string|No |
+|status|string|Yes |
+|merge_fields|not defined|No |
+|interests|string|No |
+|language|string|No |
+|vip|boolean|No |
+|location|not defined|No |
+|email_address|string|Yes |
 
 
 
-### FirstAndLastName
+### <a name="firstandlastname"></a>FirstAndLastName
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|FNAME|string|否 |
-|LNAME|string|否 |
+|FNAME|string|No |
+|LNAME|string|No |
 
 
 
-### 位置
+### <a name="location"></a>Location
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|緯度|number|否 |
-|經度|number|否 |
+|latitude|number|No |
+|longitude|number|No |
 
 
 
-### MemberResponseModel
+### <a name="memberresponsemodel"></a>MemberResponseModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|否 |
-|email\_address|string|否 |
-|unique\_email\_id|string|否 |
-|email\_type|string|否 |
-|status|string|否 |
-|merge\_fields|沒有定義|否 |
-|interests|string|否 |
-|stats|沒有定義|否 |
-|ip\_signup|string|否 |
-|timestamp\_signup|string|否 |
-|ip\_opt|string|否 |
-|timestamp\_opt|string|否 |
-|member\_rating|integer|否 |
-|last\_changed|string|否 |
-|語言|string|否 |
-|vip|布林值|否 |
-|email\_client|string|否 |
-|location|沒有定義|否 |
-|last\_note|沒有定義|否 |
-|list\_id|string|否 |
-|\_links|array|否 |
+|id|string|No |
+|email_address|string|No |
+|unique_email_id|string|No |
+|email_type|string|No |
+|status|string|No |
+|merge_fields|not defined|No |
+|interests|string|No |
+|stats|not defined|No |
+|ip_signup|string|No |
+|timestamp_signup|string|No |
+|ip_opt|string|No |
+|timestamp_opt|string|No |
+|member_rating|integer|No |
+|last_changed|string|No |
+|language|string|No |
+|vip|boolean|No |
+|email_client|string|No |
+|location|not defined|No |
+|last_note|not defined|No |
+|list_id|string|No |
+|_links|array|No |
 
 
 
-### Last\_Note
+### <a name="last_note"></a>Last_Note
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|note\_id|integer|否 |
-|created\_at|string|否 |
-|created\_by|string|否 |
-|注意|string|否 |
+|note_id|integer|No |
+|created_at|string|No |
+|created_by|string|No |
+|note|string|No |
 
 
 
-### GetAllMembersResponseModel
+### <a name="getallmembersresponsemodel"></a>GetAllMembersResponseModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|members|array|否 |
-|list\_id|string|否 |
-|total\_items|integer|否 |
+|members|array|No |
+|list_id|string|No |
+|total_items|integer|No |
 
 
 
-### Object
+### <a name="object"></a>Object
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
 
 
 
-### UpdateMemberInListRequest
+### <a name="updatememberinlistrequest"></a>UpdateMemberInListRequest
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|email\_address|string|否 |
-|email\_type|string|否 |
-|status|string|是 |
-|merge\_fields|沒有定義|否 |
-|interests|string|否 |
-|語言|string|否 |
-|vip|布林值|否 |
-|location|沒有定義|否 |
+|email_address|string|No |
+|email_type|string|No |
+|status|string|Yes |
+|merge_fields|not defined|No |
+|interests|string|No |
+|language|string|No |
+|vip|boolean|No |
+|location|not defined|No |
 
 
 
-### GetMembersResponseModel
+### <a name="getmembersresponsemodel"></a>GetMembersResponseModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|members|array|否 |
-|list\_id|string|否 |
-|total\_items|integer|否 |
+|members|array|No |
+|list_id|string|No |
+|total_items|integer|No |
 
 
 
-### AddUserResponseModel
+### <a name="adduserresponsemodel"></a>AddUserResponseModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|string|是 |
-|email\_address|string|是 |
-|unique\_email\_id|string|否 |
-|email\_type|string|否 |
-|status|string|否 |
-|merge\_fields|沒有定義|是 |
-|interests|string|否 |
-|stats|沒有定義|否 |
-|ip\_signup|string|否 |
-|timestamp\_signup|string|否 |
-|ip\_opt|string|否 |
-|timestamp\_opt|string|否 |
-|member\_rating|integer|否 |
-|last\_changed|string|否 |
-|語言|string|否 |
-|vip|布林值|否 |
-|email\_client|string|否 |
-|location|沒有定義|否 |
-|last\_note|沒有定義|否 |
-|list\_id|string|否 |
-|\_links|array|否 |
+|id|string|Yes |
+|email_address|string|Yes |
+|unique_email_id|string|No |
+|email_type|string|No |
+|status|string|No |
+|merge_fields|not defined|Yes |
+|interests|string|No |
+|stats|not defined|No |
+|ip_signup|string|No |
+|timestamp_signup|string|No |
+|ip_opt|string|No |
+|timestamp_opt|string|No |
+|member_rating|integer|No |
+|last_changed|string|No |
+|language|string|No |
+|vip|boolean|No |
+|email_client|string|No |
+|location|not defined|No |
+|last_note|not defined|No |
+|list_id|string|No |
+|_links|array|No |
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

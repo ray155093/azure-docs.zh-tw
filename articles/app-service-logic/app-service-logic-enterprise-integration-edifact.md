@@ -1,181 +1,194 @@
 <properties 
-	pageTitle="具備 EDIFACT 的企業整合 | Microsoft Azure" 
-	description="了解如何使用 EDIFACT 合約來建立 Logic Apps" 
-	services="logic-apps" 
-	documentationCenter=".net,nodejs,java"
-	authors="jeffhollan" 
-	manager="erikre" 
-	editor="cgronlun"/>
+    pageTitle="Enterprise integration with EDIFACT | Microsoft Azure" 
+    description="Learn how to use EDIFACT agreements to create Logic apps" 
+    services="logic-apps" 
+    documentationCenter=".net,nodejs,java"
+    authors="jeffhollan" 
+    manager="erikre" 
+    editor="cgronlun"/>
 
 <tags 
-	ms.service="app-service-logic" 
-	ms.workload="integration" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/26/2016" 
-	ms.author="jonfan"/>
-
-# 具備 EDIFACT 的企業整合 
-
-> [AZURE.NOTE] 本頁涵蓋 Logic Apps 的 EDIFACT 功能。如需 X12 的詳細資訊，請按一下[這裡](app-service-logic-enterprise-integration-x12.md)。
-
-## 建立 EDIFACT 合約 
-在您可以交換 EDIFACT 訊息之前，您必須先建立 EDIFACT 合約，並將它儲存在您的整合帳戶中。下列步驟將逐步引導您完成建立 EDIFACT 合約的程序。
-
-### 以下是您在開始之前的必要條件
-- 在 Azure 訂用帳戶中定義一個[整合帳戶](./app-service-logic-enterprise-integration-accounts.md)
-- 至少已經在整合帳戶中定義兩個[夥伴](./app-service-logic-enterprise-integration-partners.md)
-
->[AZURE.NOTE]建立合約時，您將對合作夥伴接收/傳送之訊息中的內容必須與合約類型相符。
+    ms.service="app-service-logic" 
+    ms.workload="integration" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="07/26/2016" 
+    ms.author="jonfan"/>
 
 
-當您[建立整合帳戶](./app-service-logic-enterprise-integration-accounts.md)並[新增夥伴](./app-service-logic-enterprise-integration-partners.md)之後，您可以依照下列步驟來建立 EDIFACT 合約：
+# <a name="enterprise-integration-with-edifact"></a>Enterprise integration with EDIFACT 
 
-### 從 Azure 入口網站首頁
+> [AZURE.NOTE] This page covers the EDIFACT features of Logic Apps. For information on X12 click [here](app-service-logic-enterprise-integration-x12.md).
 
-在您登入 [Azure 入口網站](http://portal.azure.com "Azure 入口網站")之後：
-1. 從左邊功能表選取 [瀏覽]。
+## <a name="create-an-edifact-agreement"></a>Create an EDIFACT agreement 
+Before you can exchange EDIFACT messages, you need to create an EDIFACT agreement and store it in your integration account. The following steps will walk you through the process of creating an EDIFACT agreement.
 
->[AZURE.TIP]如果您沒有看到 [瀏覽] 連結，可能需要先展開功能表。選取摺疊功能表左上方的 [顯示功能表] 連結，來執行此動作。
+### <a name="here's-what-you-need-before-you-get-started"></a>Here's what you need before you get started
+- An [integration account](./app-service-logic-enterprise-integration-accounts.md) defined in your Azure subscription  
+- At least two [partners](./app-service-logic-enterprise-integration-partners.md) already defined in your integration account  
 
-![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-0.png)
-2. 在篩選搜尋方塊中輸入「整合」，然後從結果清單中選取 [整合帳戶]。![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1-3.png)
-3. 在開啟的 [整合帳戶] 刀鋒視窗中，選取您要在其中建立合約的整合帳戶。如果您沒有看到任何整合帳戶清單，請[先建立一個](./app-service-logic-enterprise-integration-accounts.md "所有與整合帳戶相關的資訊")。![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1-4.png)
-4.  選取 [合約] 圖格。如果您沒有看到 [合約] 圖格，請先進行新增。![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1-5.png)
-5. 在開啟的 [合約] 刀鋒視窗中選取 [新增] 按鈕。![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-agreement-2.png)
-6. 在開啟的 [合約] 刀鋒視窗中，輸入合約的[名稱]，然後選取 EDIFACT 的 [合約類型]、[主控夥伴]、[主控身分識別]、[來賓夥伴]、[來賓身分識別]。![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1.png)
-7. 設定合約屬性後，請選取 [接收設定]，來設定處理透過此合約所接收訊息的方式。
-8. [接收設定] 控制項分成下列各區段，包括識別項、通知、結構描述、控制編號、驗證、內部設定和 Batch 處理。根據您的合約，以及您將交換訊息的夥伴，設定這些屬性。以下將檢視這些控制項，請根據您希望此合約如何識別並處理內送訊息進行設定︰![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-2.png)
-9. 選取 [確定] 按鈕以儲存您的設定。
+>[AZURE.NOTE]When creating an agreement, the content in the messages you will receive/send to and from the partner must match the agreement type.    
 
-### 識別項
 
-|屬性|說明 |
+After you've [created an integration account](./app-service-logic-enterprise-integration-accounts.md) and [added partners](./app-service-logic-enterprise-integration-partners.md), you can create an EDIFACT agreement by following these steps:  
+
+### <a name="from-the-azure-portal-home-page"></a>From the Azure portal home page
+
+After you log into the [Azure portal](http://portal.azure.com "Azure portal"):  
+1. Select **Browse** from the menu on the left.  
+
+>[AZURE.TIP]If you don't see the **Browse** link, you may need to expand the menu first. Do this by selecting the **Show menu** link that's located at the top left of the collapsed menu.  
+
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-0.png)    
+2. Type *integration* into the filter search box then select **Integration Accounts** from the list of results.       
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1-3.png)    
+3. In the **Integration Accounts** blade that opens up, select the integration account in which you will create the agreement. If you don't see any integration accounts lists, [create one first](./app-service-logic-enterprise-integration-accounts.md "All about integration accounts").  
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1-4.png)  
+4.  Select the **Agreements** tile. If you don't see the agreements tile, add it first.   
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1-5.png)     
+5. Select the **Add** button in the Agreements blade that opens.  
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-agreement-2.png)  
+6. Enter a **Name** for your agreement then select the **Agreement type** for EDIFACT, **Host Partner**, **Host Identity**,  **Guest Partner**, **Guest Identity**, in the Agreements blade that opens.  
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-1.png)  
+7. After you have set the agreement properties, select **Receive Settings** to configure how messages received via this agreement are to be handled.  
+8. The Receive Settings control is divided into the following sections, including Identifiers, Acknowledgment, Schemas, Control Numbers, Validation, Internal Settings and Batch processing. Configure these properties based on your agreement with the partner you will be exchanging messages with. Here is a view of these controls, configure them based on how you want this agreement to identify and handle incoming messages:  
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-2.png)  
+9. Select the **OK** button to save your settings.  
+
+### <a name="identifiers"></a>Identifiers
+
+|Property|Description |
 |---|---|
-|UNB6.1 (接收者參考密碼)|輸入範圍 1 到 14 個字元的英數字元值。|
-|UNB6.2 (接收者參考辨識符號)|輸入最少 1 個字元，最多 2 個字元的英數字元值。|
+|UNB6.1 (Recipient Reference Password)|Enter an alphanumeric value ranging between 1 and 14 characters.|
+|UNB6.2 (Recipient Reference Qualifier)|Enter an alphanumeric value with a minimum of one character and a maximum of two characters.|
 
-### 通知 
+### <a name="acknowledgments"></a>Acknowledgments 
 
-|屬性|說明 |
+|Property|Description |
 |----|----|
-|訊息回條 (CONTRL)|選取此核取方塊，將技術 (CONTRL) 通知傳回給交換傳送者。此通知會根據合約的傳送設定傳送給交換傳送者。|
-|通知 (CONTRL)|選取此核取方塊，將功能 (CONTRL) 通知傳回給交換傳送者。此通知會根據合約的 [傳送設定] 傳送給交換傳送者。|
+|Receipt of Message (CONTRL)|Select this checkbox to return a technical (CONTRL) acknowledgment to the interchange sender. The acknowledgment is sent to the interchange sender based on the Send Settings for the agreement.|
+|Acknowledgement (CONTRL)|Select this checkbox to return a functional (CONTRL) acknowledgment to the interchange sender The acknowledgment is sent to the interchange sender based on the Send Settings for the agreement.|
 
-### 結構描述
+### <a name="schemas"></a>Schemas
 
-|屬性|說明 |
+|Property|Description |
 |----|----|
-|UNH2.1 (TYPE)|選取交易集類型。|
-|UNH2.2 (VERSION)|輸入訊息版本號碼。(最少 1 個字元；最多 3 個字元)。|
-|UNH2.3 (RELEASE)|輸入訊息版次號碼。(最少 1 個字元；最多 3 個字元)。|
-|UNH2.5 (ASSOCIATED ASSIGNED CODE)|輸入指定的代碼。(最少 6 個字元。必須是英數字元)。|
-|UNG2.1 (APP SENDER ID)|輸入最少 1 個字元，最多 35 個字元的英數字元值。|
-|UNG2.2 (APP SENDER CODE QUALIFIER)|輸入最多 4 個字元的英數字元值。|
-|結構描述|從相關聯的整合帳戶選取您要使用的先前上傳結構描述。|
+|UNH2.1 (TYPE)|Select a transaction set type.|
+|UNH2.2 (VERSION)|Enter the message version number. (Minimum, one character; maximum, three characters).|
+|UNH2.3 (RELEASE)|Enter the message release number. (Minimum, one character; maximum, three characters).|
+|UNH2.5 (ASSOCIATED ASSIGNED CODE)|Enter the assigned code. (Maximum, six characters. Must be alphanumeric).|
+|UNG2.1 (APP SENDER ID)|Enter an alphanumeric value with a minimum of one character and a maximum of 35 characters.|
+|UNG2.2 (APP SENDER CODE QUALIFIER)|Enter an alphanumeric value, with a maximum of four characters.|
+|SCHEMA|Select the previously uploaded schema you want to use from your associated Integration Account.|
 
-### 控制編號
+### <a name="control-numbers"></a>Control Numbers
 
-|屬性|說明 |
+|Property|Description |
 |----|----|
-|不允許交換控制編號重複|選取此核取方塊可封鎖重複的交換。如果選取，EDIFACT 解碼動作會檢查所接收交換的交換控制編號 (UNB5) 是否不符合先前處理的交換控制編號。如果偵測到相符項目，則不會處理交換。
-|每隔下列天數檢查是否有重複的 UNB5|如果您選擇不允許重複的交換控制編號，您可以在 [每隔下列天數檢查是否有重複的 UNB5] 選項提供適當的值，指定執行檢查的天數。|
-|不允許群組控制編號重複|選取此核取方塊可封鎖有重複群組控制編號 (UNG5) 的交換。|
-|不允許交易集控制編號重複|選取此核取方塊可封鎖有重複交易集控制編號 (UNH1) 的交換。|
-|EDIFACT 通知控制編號|若要指定用於通知中的交易集參考編號，請輸入前置詞、參考編號範圍和後置詞的值。|
+|Disallow Interchange Control Number duplicates|Select this checkbox to block duplicate interchanges. If selected, the EDIFACT Decode Action checks that the interchange control number (UNB5) for the received interchange does not match a previously processed interchange control number. If a match is detected, then the the interchange is not processed.
+|Check for duplicate UNB5 every (days)|If you opted to disallow duplicate interchange control numbers, you can specify the number of days at which the check is performed by giving the appropriate value for **Check for duplicate UNB5 every (days)** option.|
+|Disallow Group control number duplicates|Select this checkbox to block interchanges with duplicate group control numbers (UNG5).|
+|Disallow Transaction set control number duplicates|Select this checkbox to block interchanges with duplicate transaction set control numbers (UNH1).|
+|EDIFACT Acknowledgement Control Number|To designate the transaction set reference numbers to be used in an acknowledgment, enter a value for the prefix, a range of reference numbers, and a suffix.|
 
-### 驗證
+### <a name="validations"></a>Validations
 
-|屬性|說明 |
+|Property|Description |
 |----|----|
-|訊息類型|指定訊息類型。隨著每個驗證資料列完成，將會自動加入另一個驗證資料列。如果未指定任何規則，則標示為預設值的資料列會用於驗證。|
-|EDI 驗證|選取此核取方塊，依照結構描述、長度限制、空白資料元素和尾端分隔符號的 EDI 屬性定義，在資料類型上執行 EDI 驗證。|
-|擴充驗證|選取此可核取方塊可讓交換傳送者接收交換的擴充 (XSD) 驗證。除了 XSD 資料類型驗證，還包括驗證欄位長度、選擇性和重複計數。|
-|允許前置/尾端零|選取 [允許] 允許前置/尾端字元為零；選取 [不允許] 則不允許前置/尾端字元為零，或選取 [修剪] 來修剪前置和尾端零。|
-|修剪前置/尾端零|選取此核取方塊可修剪任何前置或尾端零|
-|尾端分隔符號原則|如果不想允許從交換傳送者接收的交換中有尾端分隔符號，選取 [不允許]。如果交換包含尾端分隔符號，則會被宣告為無效。選取 [選擇性] 以接受包含或不含尾端分隔符號的交換。如果收到的交換必須包含尾端分隔符號，選取 [強制性]。|
+|Message Type|Specify the message type. As each validation row is completed, another will be automatically added. If no rules are specified, then the row marked as default is used for validation.|
+|EDI Validation|Select this check box to perform EDI validation on data types as defined by the EDI properties of the schema, length restrictions, empty data elements, and trailing separators.|
+|Extended Validation|Select this check box to enable extended (XSD) validation of interchanges received from the interchange sender. This includes validation of field length, optionality, and repeat count in addition to XSD data type validation.|
+|Allow Leading/Trailing Zeroes|Select **Allow** to allow leading/trailing zeros; **NotAllowed** to not allow leading/trailing zeros, or **Trim** to trim the leading and trailing zeroes.|
+|Trim Leading/Trailing Zeroes|Select this check box to trim any leading or trailing zeroes|
+|Trailing Separator Policy|Select **Not Allowed** if you do not want to allow trailing delimiters and separators in an interchange received from the interchange sender. If the interchange contains trailing delimiters and separators, it is declared invalid. Select **Optional** to accept interchanges with or without trailing delimiters and separators. Select **Mandatory** if the received interchange must contain trailing delimiters and separators.|
 
-### 內部設定
+### <a name="internal-settings"></a>Internal Settings
 
-|屬性|說明 |
+|Property|Description |
 |----|----|
-|如果允許尾端分隔符號，則建立空的 XML 標籤|選取此核取方塊，讓交換傳送者在尾端分隔符號包含空的 XML 標籤。|
-|輸入批次處理|選項包括：</br></br>**將交換分割為交易集 - 暫停發生錯誤的交易集**︰將適當的信封套用至交易集，將交換中每個交易集剖析為個別的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則只會暫停那些交易集。將交換分割為交易集 - 暫停發生錯誤的交換︰套用適當的信封，將交換中每個交易集剖析為個別的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則 BizTalk 服務會暫停整個交換。</br></br>**保留交換 - 暫停發生錯誤的交易集︰**讓交換保持完整，建立整個批次交換的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則只會暫停那些交易集，然而會處理其他所有交易集。</br></br>**保留交換 - 暫停發生錯誤的交換**︰讓交換保持完整，建立整個批次交換的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則會暫停整個交換。|
+|Create empty XML tags if trailing separators are allowed|Select this check box to have the interchange sender include empty XML tags for trailing separators.|
+|Inbound batching processing|Options include:</br></br>**Split Interchange as Transaction Sets - suspend Transaction Sets on Error**: Parses each transaction set in an interchange into a separate XML document by applying the appropriate envelope to the transaction set. With this option, if one or more transaction sets in the interchange fail validation, then only those transaction sets are suspended. Split Interchange as Transaction Sets - suspend Interchange on Error: Parses each transaction set in an interchange into a separate XML document by applying the appropriate envelope. With this option, if one or more transaction sets in the interchange fail validation, then the entire interchange will be suspended.</br></br>**Preserve Interchange - suspend Transaction Sets on Error**: Leaves the interchange intact, creating an XML document for the entire batched interchange. With this option, if one or more transaction sets in the interchange fail validation, then only those transaction sets are suspended, while all other transaction sets are processed.</br></br>**Preserve Interchange - suspend Interchange on Error**: Leaves the interchange intact, creating an XML document for the entire batched interchange. With this option, if one or more transaction sets in the interchange fail validation, then the entire interchange is suspended.|
 
-您的合約已經準備好處理符合您所選設定的內送訊息。
+Your agreement is ready to handle incoming messages that conform to the settings you selected.
 
-設定如何處理傳送給夥伴的訊息︰
-10. 選取 [傳送設定]，以設定如何處理透過此合約傳送的訊息。
+To configure the settings that handle messages you send to partners:  
+10. Select **Send Settings** to configure how messages sent via this agreement are to be handled.  
 
-[傳送設定] 控制項分成下列各區段，包括識別項、通知、結構描述、信封、字元集和分隔符號、控制編號以及驗證。
+The Send Settings control is divided into the following sections, including Identifiers, Acknowledgment, Schemas, Envelopes, Character Sets and Separators, Control Numbers and Validation. 
 
-以下將檢視這些控制項。請根據您要如何處理透過此合約傳送給夥伴的訊息來選取︰![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-3.png)
-11. 選取 [確定] 按鈕以儲存您的設定。
+Here is a view of these controls. Make the selections based on how you want to handle messages you send to partners via this agreement:   
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-3.png)    
+11. Select the **OK** button to save your settings.  
 
-### 識別項
-|屬性|說明 |
+### <a name="identifiers"></a>Identifiers
+|Property|Description |
 |----|----|
-|UNB1.2 (語法版本)|選取介於 **1** 到 **4** 之間的值。|
-|UNB2.3 (傳送者反向路由位址)|輸入最少 1 個字元，最多 14 個字元的英數字元值。|
-|UNB3.3 (接收者反向路由位址)|輸入最少 1 個字元，最多 14 個字元的英數字元值。|
-|UNB6.1 (接收者參考密碼)|輸入最少 1 個字元，最多 14 個字元的英數字元值。|
-|UNB6.2 (接收者參考辨識符號)|輸入最少 1 個字元，最多 2 個字元的英數字元值。|
-|UNB7 (應用程式參考識別碼)|輸入最少 1 個字元，最多 14 個字元的英數字元值。|
+|UNB1.2 (Syntax version)|Select a value between **1** and **4**.|
+|UNB2.3 (Sender Reverse Routing Address)|Enter an alphanumeric value with a minimum of one character and a maximum of 14 characters.|
+|UNB3.3 (Recipient Reverse Routing Address)|Enter an alphanumeric value with a minimum of one character and a maximum of 14 characters.|
+|UNB6.1 (Recipient Reference Password)|Enter an alphanumeric value with a minimum of one and a maximum of 14 characters.|
+|UNB6.2 (Recipient Reference Qualifier)|Enter an alphanumeric value with a minimum of one character and a maximum of two characters.|
+|UNB7 (Application Reference ID)|Enter an alphanumeric value with a minimum of one character and a maximum of 14 characters|
 
-### 通知
-|屬性|說明 |
+### <a name="acknowledgment"></a>Acknowledgment
+|Property|Description |
 |----|----|
-|訊息回條 (CONTRL)|如果主控夥伴預計會收到技術 (CONTRL) 通知，請選取此核取方塊。此設定指定傳送訊息的主控夥伴向來賓夥伴要求通知。|
-|通知 (CONTRL)|如果主控夥伴預計會收到功能 (CONTRL) 通知，請選取此核取方塊。此設定指定傳送訊息的主控夥伴向來賓夥伴要求通知。|
-|針對接受的交易集產生 SG1/SG4 迴圈|如果您選擇要求功能通知，選取此核取方塊，可在已接受交易集的功能 CONTRL 通知中強制產生 SG1/SG4 迴圈。|
+|Receipt of Message (CONTRL)|Select this checkbox if the hosted partner expects to receive to receive a technical (CONTRL) acknowledgment. This setting specifies that the hosted partner, who is sending the message, requests an acknowledgement from the guest partner.|
+|Acknowledgement (CONTRL)|Select this checkbox if the hosted partner expects to receive a functional (CONTRL) acknowledgment. This setting specifies that the hosted partner, who is sending the message, requests an acknowledgement from the guest partner.|
+|Generate SG1/SG4 loop for accepted transaction sets|If you chose to request a functional acknowledgement, select this checkbox to force generation of SG1/SG4 loops in functional CONTRL acknowledgments for accepted transaction sets.|
 
-### 結構描述
-|屬性|說明 |
+### <a name="schemas"></a>Schemas
+|Property|Description |
 |----|----|
-|UNH2.1 (TYPE)|選取交易集類型。|
-|UNH2.2 (VERSION)|輸入訊息版本號碼。|
-|UNH2.3 (RELEASE)|輸入訊息版次號碼。|
-|結構描述|選取要使用的結構描述。結構描述位於您的整合帳戶中。若要存取結構描述，請先將整合帳戶連結至邏輯應用程式。|
+|UNH2.1 (TYPE)|Select a transaction set type.|
+|UNH2.2 (VERSION)|Enter the message version number.|
+|UNH2.3 (RELEASE)|Enter the message release number.|
+|SCHEMA|Select the schema to use. Schemas are located in your integration account. To access your schemas, first link your integration account to your Logic app.|
 
-### 信封
-|屬性|說明 |
+### <a name="envelopes"></a>Envelopes
+|Property|Description |
 |----|----|
-|UNB8 (處理優先順序代碼)|輸入不超過 1 個字元的字母值。|
-|UNB10 (通訊協議)|輸入最少 1 個字元，最多 40 個字元的英數字元值。|
-|UNB11 (測試指示器)|選取此核取方塊，指出產生的交換是測試資料|
-|套用 UNA 區段 (字串服務建議)|選取此核取方塊，以針對要傳送的交換產生 UNA 區段。|
-|套用 UNG 區段 (功能群組標頭)|選取此核取方塊，以在傳送給來賓夥伴之訊息的功能群組標頭中建立群組區段。下列的值用來建立 UNG 區段︰</br></br>的 **UNG1**, ，輸入最少 1 個字元，最多 2 個字元的英數字元值。。</br></br>如 **UNG2.1**, ，輸入最少一個字元，最多 35 個字元的英數字元值。</br></br>如 **UNG2.2**, ，輸入英數值，最多四個字元。</br></br>如 **UNG3.1**, ，輸入最少一個字元，最多 35 個字元的英數字元值。</br></br>如 **UNG3.2**, ，輸入英數值，最多四個字元。</br></br>對於 **UNG6**，輸入最少 1 個，最多3 個字元的英數字元值。</br></br>對於 **UNG7.1**，輸入最少 1 個字元，最多 3 個字元的英數字元值。</br></br>對於 **UNG7.2**，輸入最少 1 個字元，最多 3 個字元的英數字元值。</br></br>對於 **UNG7.3**，輸入最少 1 個字元，最多 6 個字元的英數字元值。</br></br>對於 **UNG8**，輸入最少 1 個字元，最多 14 個字元的英數字元值。|
+|UNB8 (Processing Priority Code)|Enter an alphabetical value which is not more than one character long.|
+|UNB10 (Communication Agreement)|Enter an alphanumeric value with a minimum of one character and a maximum of 40 characters.|
+|UNB11 (Test Indicator)|Select this checkbox to indicate that the interchange generated is test data|
+|Apply UNA Segment (Service String Advice)|Select this checkbox to generate a UNA segment for the interchange to be sent.|
+|Apply UNG Segments (Function Group Header)|Select this checkbox to create grouping segments in the functional group header in the messages sent to the guest partner. The following values are used to create the UNG segments:</br></br>For **UNG1**, enter an alphanumeric value with a minimum of one character and a maximum of six characters.</br></br>For **UNG2.1**, enter an alphanumeric value with a minimum of one character and a maximum of 35 characters.</br></br>For **UNG2.2**, enter an alphanumeric value, with a maximum of four characters.</br></br>For **UNG3.1**, enter an alphanumeric value with a minimum of one character and a maximum of 35 characters.</br></br>For **UNG3.2**, enter an alphanumeric value, with a maximum of four characters.</br></br>For **UNG6**, enter an alphanumeric value with a minimum of one and a maximum of three characters.</br></br>For **UNG7.1**, enter an alphanumeric value with a minimum of one character and a maximum of three characters.</br></br>For **UNG7.2**, enter an alphanumeric value with a minimum of one character and a maximum of three characters.</br></br>For **UNG7.3**, enter an alphanumeric value with a minimum of 1 character and a maximum of 6 characters.</br></br>For **UNG8**, enter an alphanumeric value with a minimum of one character and a maximum of 14 characters.|
 
-### 字元集和分隔符號
-除了字元集，您還可以為每個訊息類型輸入一組不同的分隔符號。如果指定的訊息結構描述未指定字元集，則會使用預設字元集。
+### <a name="character-sets-and-separators"></a>Character Sets and Separators
+Other than the character set, you can enter a different set of delimiters to be used for each message type. If a character set is not specified for a given message schema, then the default character set is used.
 
-|屬性|說明 |
+|Property|Description |
 |----|----|
-|UNB1.1 (系統識別碼)|選取要套用於外送交換的 EDIFACT 字元集。|
-|結構描述|從下拉式清單中選取結構描述。隨著每個資料列完成，將會加入新的資料列。針對選取的結構描述，選取要使用的分隔符號集︰</br></br>**元件元素分隔符號** – 輸入單一字元來分隔複合資料元素。</br></br>**資料元素分隔符號** – 輸入單一字元來分隔複合資料元素內的簡單資料元素。</br></br></br></br>**取代字元** – 如果承載資料包含也用於資料、區段或元件分隔符號的字元，請選取此核取方塊。然後，您可以輸入取代字元。產生輸出 EDIFACT 訊息時，承載資料中的所有分隔字元執行個體會取代為指定的字元。</br></br>**區段結束字元** – 輸入單一字元來指出 EDI 區段的結尾。</br></br>**尾碼** – 選取要搭配區段識別項使用的字元。如果指定尾碼，則區段結束字元資料元素可以空白。如果區段結束字元留空，則必須指定尾碼。|
+|UNB1.1 (System Identifier)|Select the EDIFACT character set to be applied on the outgoing interchange.|
+|Schema|Select a schema from the drop-down list. As each row is completed a new row will be added. For the selected schema, select the separators set to be used:</br></br>**Component element separator** – Enter a single character to separate composite data elements.</br></br>**Data Element Separator** – Enter a single character to separate simple data elements within composite data elements.</br></br></br></br>**Replacement Character** – Select this check box if the payload data contains characters that are also used as data, segment, or component separators. You can then enter a replacement character. When generating the outbound EDIFACT message, all instances of separator characters in the payload data are replaced with the specified character.</br></br>**Segment Terminator** – Enter a single character to indicate the end of an EDI segment.</br></br>**Suffix** – Select the character that is used with the segment identifier. If you designate a suffix, then the segment terminator data element can be empty. If the segment terminator is left empty, then you must designate a suffix.|
 
-### 控制編號
-|屬性|說明 |
+### <a name="control-numbers"></a>Control Numbers
+|Property|Description |
 |----|----|
-|UNB5 (交換控制編號)|輸入前置詞、交換控制編號的值範圍，以及後置詞。這些值用來產生外送交換。前置詞和後置詞均為選擇性；控制編號則為必要。控制編號會隨著每則新訊息遞增；前置詞和後置詞維持不變。|
-|UNG5 (群組控制編號)|輸入前置詞、交換控制編號的值範圍，以及後置詞。這些值用來產生群組控制編號。前置詞和後置詞均為選擇性；控制編號則為必要。控制編號會隨著每則新訊息遞增，直到達到最大值為止；前置詞和後置詞維持不變。|
-|UNH1 (訊息標頭參考編號)|輸入前置詞、交換控制編號的值範圍，以及後置詞。這些值會用來產生訊息標頭參考編號。前置詞和後置詞均為選擇性；參考編號則為必要。參考編號會隨著每則新訊息遞增；前置詞和後置詞維持不變。|
+|UNB5 (Interchange Control Number)|Enter a prefix, a range of values for the interchange control number, and a suffix. These values are used to generate an outgoing interchange. The prefix and suffix are optional; the control number is required. The control number is incremented for each new message; the prefix and suffix remain the same.|
+|UNG5 (Group Control Number)|Enter a prefix, a range of values for the interchange control number, and a suffix. These values are used to generate the group control number. The prefix and suffix are optional; the control number is required. The control number is incremented for each new message until the maximum value is reached; the prefix and suffix remain the same.|
+|UNH1 (Message Header Reference Number)|Enter a prefix, a range of values for the interchange control number, and a suffix. These values are used to generate the message header reference number. The prefix and suffix are optional; the reference number is required. The reference number is incremented for each new message; the prefix and suffix remain the same.|
 
-### 驗證
-|屬性|說明 |
+### <a name="validations"></a>Validations
+|Property|Description |
 |----|----|
-|訊息類型|選取此選項可對交換接收者進行驗證。這項驗證會對交易集資料元素、驗證資料類型、長度限制、空白資料元素和尾端分隔符號執行 EDI 驗證。|
-|EDI 驗證|選取此核取方塊，依照結構描述、長度限制、空白資料元素和尾端分隔符號的 EDI 屬性定義，在資料類型上執行 EDI 驗證。|
-|擴充驗證|選取此選項可讓交換傳送者接收交換的擴充驗證。除了 XSD 資料類型驗證，還包括驗證欄位長度、選擇性和重複計數。您可以啟用擴充驗證而不啟用 EDI 驗證，反之亦然。|
-|允許前置/尾端零|選取此選項指定，如果 EDI 交換中的資料元素因為有尾端空格而不符合其長度要求，但移除後就符合長度要求，則從合作對象接收的 EDI 交換會通過驗證。|
-|修剪前置/尾端零|選取此選項將會修剪前置和尾端零。|
-|尾端分隔符號|選取此選項指定，如果 EDI 交換中的資料元素因為有前置 (或尾端) 零或尾端空格而不符合其長度要求，但移除後就符合長度要求，則從合作對象接收的 EDI 交換會通過驗證。</br></br>如果您不想要在交換傳送者接收的交換中允許尾端分隔符號，請選取 [不允許]。如果交換包含尾端分隔符號，會被宣告為無效。</br></br>選取 [選擇性] 接受交換可以有或沒有尾端分隔符號。</br></br>如果收到的交換必須包含尾端分隔符號，請選取 [必要]。|
+|Message Type|Selecting this option enables validation on the interchange receiver. This validation performs EDI validation on transaction-set data elements, validating data types, length restrictions, and empty data elements and training separators.|
+|EDI Validation|Select this check box to perform EDI validation on data types as defined by the EDI properties of the schema, length restrictions, empty data elements, and trailing separators.|
+|Extended Validation|Selecting this option enables extended validation of interchanges received from the interchange sender. This includes validation of field length, optionality, and repeat count in addition to XSD data type validation. You can enable extension validation without enabling EDI validation, or vice versa.|
+|Allow leading/trailing zeroes|Selecting this option specifies that an EDI interchange received from the party does not fail validation if a data element in an EDI interchange does not conform to its length requirement because of or trailing spaces, but does conform to its length requirement when they are removed.|
+|Trim Leading/Trailing Zeroes|Selecting this option will trim the leading and trailing zeroes.|
+|Trailing separator|Selecting this option specifies an EDI interchange received from the party does not fail validation if a data element in an EDI interchange does not conform to its length requirement because of leading (or trailing) zeroes or trailing spaces, but does conform to its length requirement when they are removed.</br></br>Select **Not Allowed** if you do not want to allow trailing delimiters and separators in an interchange received from the interchange sender. If the interchange contains trailing delimiters and separators, it is declared invalid.</br></br>Select **Optional** to accept interchanges with or without trailing delimiters and separators.</br></br>Select **Mandatory** if the received interchange must contain trailing delimiters and separators.|
 
-在開啟的刀鋒視窗上選取 [確定] 之後︰
-12. 在 [整合帳戶] 刀鋒視窗上選取 [合約] 圖格，而您將會看到已列出新加入的合約。![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-4.png)
+After you select **OK** on the open blade:  
+12. Select the **Agreements** tile on the Integration Account blade and you will see the newly added agreement listed.  
+![](./media/app-service-logic-enterprise-integration-edifact/EDIFACT-4.png)   
 
-## 詳細資訊
-- [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
+## <a name="learn-more"></a>Learn more
+- [Learn more about the Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack")  
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

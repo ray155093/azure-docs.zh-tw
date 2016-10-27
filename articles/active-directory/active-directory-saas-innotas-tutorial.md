@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Innotas 整合 | Microsoft Azure"
-    description="了解如何使用 Innotas 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Innotas | Microsoft Azure"
+    description="Learn how to use Innotas with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,103 +11,110 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/09/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Innotas 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-innotas"></a>Tutorial: Azure Active Directory integration with Innotas
   
-本教學課程的目的是要示範 Azure 與 Innotas 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Innotas.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   Innotas 租用戶
+-   A valid Azure subscription
+-   A Innotas tenant
   
-完成本教學課程之後，您指派給 Innotas 的 Azure AD 使用者就能夠單一登入您 Innotas 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+After completing this tutorial, the Azure AD users you have assigned to Innotas will be able to single sign into the application at your Innotas company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Innotas 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Innotas
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-innotas-tutorial/IC777331.png "案例")
-##啟用 Innotas 的應用程式整合
+![Scenario](./media/active-directory-saas-innotas-tutorial/IC777331.png "Scenario")
+##<a name="enabling-the-application-integration-for-innotas"></a>Enabling the application integration for Innotas
   
-本節的目的是要說明如何啟用 Innotas 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Innotas.
 
-###若要啟用 Innotas 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-innotas,-perform-the-following-steps:"></a>To enable the application integration for Innotas, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-innotas-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-innotas-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-innotas-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-innotas-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-innotas-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-innotas-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-innotas-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在搜尋方塊中，輸入 **Innotas**。
+6.  In the **search box**, type **Innotas**.
 
-    ![應用程式庫](./media/active-directory-saas-innotas-tutorial/IC777332.png "應用程式庫")
+    ![Application gallery](./media/active-directory-saas-innotas-tutorial/IC777332.png "Application gallery")
 
-7.  在結果窗格中，選取 [Innotas]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Innotas**, and then click **Complete** to add the application.
 
     ![Innotas](./media/active-directory-saas-innotas-tutorial/IC777333.png "Innotas")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Innotas 中進行驗證。
+The objective of this section is to outline how to enable users to authenticate to Innotas with their account in Azure AD using federation based on the SAML protocol.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Innotas] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Innotas** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-innotas-tutorial/IC777334.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-innotas-tutorial/IC777334.png "Configure single sign-on")
 
-2.  在 [您希望使用者如何登入 Innotas] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  On the **How would you like users to sign on to Innotas** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-innotas-tutorial/IC777335.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-innotas-tutorial/IC777335.png "Configure single sign-on")
 
-3.  在 [設定應用程式 URL] 頁面的 [Innotas 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<tenant-name>.Innotas.com*"，然後按一下 [下一步]。
+3.  On the **Configure App URL** page, in the **Innotas Sign In URL** textbox, type your URL using the following pattern "*https://\<tenant-name\>.Innotas.com*", and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-innotas-tutorial/IC777336.png "設定應用程式 URL")
+    ![Configure app URL](./media/active-directory-saas-innotas-tutorial/IC777336.png "Configure app URL")
 
-4.  在 [設定在 Innotas 單一登入] 頁面上，按一下 [下載中繼資料] 以下載您的中繼資料，然後在您的本機電腦中將資料檔案儲存為 **c:\\InnotasMetaData.xml**。
+4.  On the **Configure single sign-on at Innotas** page, to download your metadata, click **Download metadata**, and then the data file locally as **c:\\InnotasMetaData.xml**.
 
-    ![設定單一登入](./media/active-directory-saas-innotas-tutorial/IC777337.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-innotas-tutorial/IC777337.png "Configure single sign-on")
 
-5.  將該中繼資料檔案轉寄給 Innotas 支援小組。支援小組需要為您設定單一登入。
+5.  Forward that metadata file to Innotas support team. The support team needs configures single sign-on for you.
 
-6.  選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+6.  Select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-innotas-tutorial/IC777338.png "設定單一登入")
-##設定使用者佈建
+    ![Configure single sign-on](./media/active-directory-saas-innotas-tutorial/IC777338.png "Configure single sign-on")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-沒有動作項目可讓您設定 Innotas 使用者佈建。當已指派的使用者嘗試使用存取面板登入 Innotas 時，Innotas 會檢查使用者是否存在。如果尚無可用的使用者帳戶，Innotas 會自動予以建立。
-##指派使用者
+There is no action item for you to configure user provisioning to Innotas.  
+When an assigned user tries to log into Innotas using the access panel, Innotas checks whether the user exists.  
+If there is no user account available yet, it is automatically created by Innotas.
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要將使用者指派給 Innotas，請執行下列步驟：
+###<a name="to-assign-users-to-innotas,-perform-the-following-steps:"></a>To assign users to Innotas, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Innotas] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Innotas **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-innotas-tutorial/IC777339.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-innotas-tutorial/IC777339.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-innotas-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-innotas-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

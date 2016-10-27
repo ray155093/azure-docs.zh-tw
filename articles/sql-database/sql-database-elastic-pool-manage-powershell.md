@@ -1,7 +1,7 @@
 <properties 
-    pageTitle="管理彈性資料庫集區 (PowerShell) | Microsoft Azure" 
-    description="了解如何使用 PowerShell 管理彈性資料庫集區。"  
-	services="sql-database" 
+    pageTitle="Manage an elastic database pool (PowerShell) | Microsoft Azure" 
+    description="Learn how to use PowerShell to manage an elastic database pool."  
+    services="sql-database" 
     documentationCenter="" 
     authors="srinia" 
     manager="jhubbard" 
@@ -16,100 +16,101 @@
     ms.date="06/22/2016"
     ms.author="srinia"/>
 
-# 透過 PowerShell 監視和管理彈性資料庫集區 
+
+# <a name="monitor-and-manage-an-elastic-database-pool-with-powershell"></a>Monitor and manage an elastic database pool with PowerShell 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
+- [Azure portal](sql-database-elastic-pool-manage-portal.md)
 - [PowerShell](sql-database-elastic-pool-manage-powershell.md)
 - [C#](sql-database-elastic-pool-manage-csharp.md)
 - [T-SQL](sql-database-elastic-pool-manage-tsql.md)
 
-使用 PowerShell Cmdlet 管理[彈性資料庫集區](sql-database-elastic-pool.md)。
+Manage an [elastic database pool](sql-database-elastic-pool.md) using PowerShell cmdlets. 
 
-如需常見的錯誤碼，請參閱 [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md)。
+For common error codes, see [SQL error codes for SQL Database client applications: Database connection error and other issues](sql-database-develop-error-messages.md).
 
-集區值可在 [eDTU 和儲存體限制](sql-database-elastic-pool.md#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases)中找到。
+Values for pools can be found in [eDTU and storage limits](sql-database-elastic-pool.md#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases). 
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-* Azure PowerShell 1.0 或更新版本。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
-* 只有 SQL Database V12 伺服器才可以使用彈性資料庫集區。如果您有 SQL Database V11 伺服器，可以在單一步驟中[使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-portal.md)。
+* Azure PowerShell 1.0 or higher. For detailed information, see [How to install and configure Azure PowerShell](../powershell-install-configure.md).
+* Elastic database pools are only available with SQL Database V12 servers. If you have a SQL Database V11 server, [use PowerShell to upgrade to V12 and create a pool](sql-database-upgrade-server-portal.md) in one step.
 
 
-## 將資料庫移入彈性集區
+## <a name="move-a-database-into-an-elastic-pool"></a>Move a database into an elastic pool
 
-您可以使用 [Set-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619433.aspx)，將資料庫移入或移出集區。
+You can move a database into or out of a pool with the [Set-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619433.aspx). 
 
-	Set-AzureRmSqlDatabase -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
+    Set-AzureRmSqlDatabase -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
 
-## 變更集區的效能設定
+## <a name="change-performance-settings-of-a-pool"></a>Change performance settings of a pool
 
-當犧牲效能時，您可以變更集區的設定，以配合效能成長。使用 [Set-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt603511.aspx) Cmdlet。為每個集區的 eDTU 設定 -Dtu 參數。請參閱 [eDTU 和儲存體限制](sql-database-elastic-pool.md#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases)以了解有哪些可能的值。
+When performance suffers, you can change the settings of the pool to accommodate growth. Use the [Set-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt603511.aspx) cmdlet. Set the -Dtu parameter to the eDTUs per pool. See [eDTU and storage limits](sql-database-elastic-pool.md#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases) for possible values.  
 
     Set-AzureRmSqlElasticPool –ResourceGroupName “resourcegroup1” –ServerName “server1” –ElasticPoolName “elasticpool1” –Dtu 1200 –DatabaseDtuMax 100 –DatabaseDtuMin 50 
 
 
-## 取得集區作業的狀態
+## <a name="get-the-status-of-pool-operations"></a>Get the status of pool operations
 
-建立集區可能會很耗時。要追蹤集區作業的狀態，包括建立及更新作業，請使用 [Get-AzureRmSqlElasticPoolActivity](https://msdn.microsoft.com/library/azure/mt603812.aspx) Cmdlet。
+Creating a pool can take time. To track the status of pool operations including creation and updates, use the [Get-AzureRmSqlElasticPoolActivity](https://msdn.microsoft.com/library/azure/mt603812.aspx) cmdlet.
 
-	Get-AzureRmSqlElasticPoolActivity –ResourceGroupName “resourcegroup1” –ServerName “server1” –ElasticPoolName “elasticpool1” 
-
-
-## 取得將彈性資料庫移入和移出集區的狀態
-
-移動資料庫可能會很耗時。使用 [Get-AzureRmSqlDatabaseActivity](https://msdn.microsoft.com/library/azure/mt603687.aspx) Cmdlet 追蹤移動狀態。
-
-	Get-AzureRmSqlDatabaseActivity -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
-
-## 取得集區的資源使用量資料
-
-可以用資源集區限制的百分比來擷取的度量：
+    Get-AzureRmSqlElasticPoolActivity –ResourceGroupName “resourcegroup1” –ServerName “server1” –ElasticPoolName “elasticpool1” 
 
 
-| 度量名稱 | 說明 |
+## <a name="get-the-status-of-moving-an-elastic-database-into-and-out-of-a-pool"></a>Get the status of moving an elastic database into and out of a pool
+
+Moving a database can take time. Track a move status using the [Get-AzureRmSqlDatabaseActivity](https://msdn.microsoft.com/library/azure/mt603687.aspx) cmdlet.
+
+    Get-AzureRmSqlDatabaseActivity -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
+
+## <a name="get-resource-usage-data-for-a-pool"></a>Get resource usage data for a pool
+
+Metrics that can be retrieved as a percentage of the resource pool limit:   
+
+
+| Metric name | Description |
 | :-- | :-- |
-| cpu\_percent | 集區限制的平均計算使用量百分比。 |
-| physical\_data\_read\_percent | 集區限制的平均 I/O 使用量百分比。 |
-| log\_write\_percent | 集區限制的平均寫入資源使用量百分比。 | 
-| DTU\_consumption\_percent | 集區 eDTU 限制的平均 eDTU 使用量百分比。 | 
-| storage\_percent | 集區儲存體限制的平均儲存體使用量百分比。 |  
-| workers\_percent | 集區限制的並行背景工作角色 (要求) 百分比。 |  
-| sessions\_percent | 集區限制的並行工作階段百分比。 | 
-| eDTU\_limit | 間隔期間此彈性集區目前最大的彈性集區 DTU 設定。 |
-| storage\_limit | 間隔期間此彈性集區目前最大的彈性集區儲存體限制設定 (MB)。 |
-| eDTU\_used | 此間隔期間集區使用的平均 eDTU。 |
-| storage\_used | 此間隔期間集區使用的平均儲存體位元組數。 |
+| cpu\_percent | Average compute utilization in percentage of the limit of the pool. |
+| physical\_data\_read\_percent | Average I/O utilization in percentage based on the limit of the pool. |
+| log\_write\_percent | Average write resource utilization in percentage of the limit of the pool. | 
+| DTU\_consumption\_percent | Average eDTU utilization in percentage of eDTU limit for the pool | 
+| storage\_percent | Average storage utilization in percentage of the storage limit of the pool. |  
+| workers\_percent | Maximum concurrent workers (requests) in percentage based on the limit of the pool. |  
+| sessions\_percent | Maximum concurrent sessions in percentage based on the limit of the pool. | 
+| eDTU_limit | Current max elastic pool DTU setting for this elastic pool during this interval. |
+| storage\_limit | Current max elastic pool storage limit setting for this elastic pool in megabytes during this interval. |
+| eDTU\_used | Average eDTUs used by the pool in this interval. |
+| storage\_used | Average storage used by the pool in this interval in bytes |
 
-**度量資料粒度/保留期限：**
+**Metrics granularity/retention periods:**
 
-* 系統會以 5 分鐘的資料粒度傳回資料。
-* 資料會保留 35 天。
+* Data will be returned at 5 minute granularity.  
+* Data retention is 35 days.  
 
-此 Cmdlet 和 API 會將一次呼叫中可擷取的資料列限制為 1,000 個 (大約是 3 天份且資料粒度為 5 分鐘的資料)。但可以用不同的開始/結束時間間隔來多次呼叫此命令，以擷取更多資料。
+This cmdlet and API limits the number of rows that can be retrieved in one call to 1000 rows (about 3 days of data at 5 minute granularity). But this command can be called multiple times with different start/end time intervals to retrieve more data 
 
-要擷取度量：
+To retrieve the metrics:
 
-	$metrics = (Get-AzureRmMetric -ResourceId /subscriptions/<subscriptionId>/resourceGroups/FabrikamData01/providers/Microsoft.Sql/servers/fabrikamsqldb02/elasticPools/franchisepool -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime "4/18/2015" -EndTime "4/21/2015")  
+    $metrics = (Get-AzureRmMetric -ResourceId /subscriptions/<subscriptionId>/resourceGroups/FabrikamData01/providers/Microsoft.Sql/servers/fabrikamsqldb02/elasticPools/franchisepool -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime "4/18/2015" -EndTime "4/21/2015")  
 
 
-## 取得彈性資料庫的資源使用量資料
+## <a name="get-resource-usage-data-for-an-elastic-database"></a>Get resource usage data for an elastic database
 
-除了以下的語意差異外，這些 API 與目前用於監視獨立資料庫之資源使用率的 (V12) API 相同。
+These APIs are the same as the current (V12) APIs used for monitoring the resource utilization of a standalone database, except for the following semantic difference. 
 
-這個擷取的 API 度量，會以針對該集區所設定之每個eDTU 上限 (或是 CPU、IO 等基礎度量的相等上限) 的百分比來表示。例如，這些度量有其中一項的使用率為 50%，則表示特定資源的消耗量佔該資源在父集區中，每個資料庫上限限制的 50%。
+For this API, metrics retrieved are expressed as a percentage of the per max eDTUs (or equivalent cap for the underlying metric like CPU, IO etc) set for that pool. For example, 50% utilization of any of these metrics indicates that the specific resource consumption is at 50% of the per database cap limit for that resource in the parent pool. 
 
-要擷取度量：
+To retrieve the metrics:
 
     $metrics = (Get-AzureRmMetric -ResourceId /subscriptions/<subscriptionId>/resourceGroups/FabrikamData01/providers/Microsoft.Sql/servers/fabrikamsqldb02/databases/myDB -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime "4/18/2015" -EndTime "4/21/2015") 
 
-## 將警示加入集區資源
+## <a name="add-an-alert-to-a-pool-resource"></a>Add an alert to a pool resource
 
-您可以將警示規則新增到資源中，以在資源達到您設定的使用率臨界值時，將電子郵件通知或警示字串傳送到 [URL 端點](https://msdn.microsoft.com/library/mt718036.aspx)。使用 Add-AzureRmMetricAlertRule Cmdlet。
+You can add alert rules to resources to send email notifications or alert strings to [URL endpoints](https://msdn.microsoft.com/library/mt718036.aspx) when the resource hits a utilization threshold that you set up. Use the Add-AzureRmMetricAlertRule cmdlet. 
 
-> [AZURE.IMPORTANT]監視彈性集區的資源使用率至少有 20 分鐘的延遲。目前不支援將彈性集區的警示設定為小於 30 分鐘。任何針對彈性集區所設定且期間 (PowerShell API 中名為 “-WindowSize” 的參數) 小於 30 分鐘的警示可能都不會觸發。請確定您針對彈性集區定義的任何警示都會使用 30 分鐘以上的期間 (WindowSize)。
+> [AZURE.IMPORTANT]Resource utilization monitoring for Elastic Pools has a lag of at least 20 minutes. Setting alerts of less than 30 minutes for Elastic Pools is not currently supported. Any alerts set for Elastic Pools with a period (parameter called “-WindowSize” in PowerShell API) of less than 30 minutes may not be triggered. Please make sure that any alerts you define for Elastic Pools use a period (WindowSize) of 30 minutes or more.
 
-此範例會新增一個可在集區 eDTU 耗用量超過特定臨界值時接獲通知的警示。
+This example adds an alert for getting notified when a pool’s eDTU consumption goes above certain threshold.
 
     # Set up your resource ID configurations
     $subscriptionId = '<Azure subscription id>'      # Azure subscription ID
@@ -130,13 +131,13 @@
     # Create an alert rule for DTU_consumption_percent
     Add-AzureRMMetricAlertRule -Name $alertName -Location $location -ResourceGroup $resourceGroupName -TargetResourceId $ResourceID -MetricName "DTU_consumption_percent"  -Operator GreaterThan -Threshold 80 -TimeAggregationOperator Average -WindowSize 00:60:00 -Actions $actionEmail 
 
-## 將警示新增到集區中的所有資料庫
+## <a name="add-alerts-to-all-databases-in-a-pool"></a>Add alerts to all databases in a pool
 
-您可以將警示規則新增到彈性集區中的所有資料庫，以在資源達到警示所設定的使用率臨界值時，將電子郵件通知或警示字串傳送到 [URL 端點](https://msdn.microsoft.com/library/mt718036.aspx)。
+You can add alert rules to all database in an elastic pool to send email notifications or alert strings to [URL endpoints](https://msdn.microsoft.com/library/mt718036.aspx) when a resource hits a utilization threshold set up by the alert. 
 
-> [AZURE.IMPORTANT] 監視彈性集區的資源使用率至少有 20 分鐘的延遲。目前不支援將彈性集區的警示設定為小於 30 分鐘。任何針對彈性集區所設定且期間 (PowerShell API 中名為 “-WindowSize” 的參數) 小於 30 分鐘的警示可能都不會觸發。請確定您針對彈性集區定義的任何警示都會使用 30 分鐘以上的期間 (WindowSize)。
+> [AZURE.IMPORTANT] Resource utilization monitoring for Elastic Pools has a lag of at least 20 minutes. Setting alerts of less than 30 minutes for Elastic Pools is not currently supported. Any alerts set for Elastic Pools with a period (parameter called “-WindowSize” in PowerShell API) of less than 30 minutes may not be triggered. Please make sure that any alerts you define for Elastic Pools use a period (WindowSize) of 30 minutes or more.
 
-此範例會將警示新增到集區中的每個資料庫，以在資料庫的 DTU 耗用量超過特定臨界值時接獲通知。
+This example adds an alert to each of the databases in a pool for getting notified when that database’s DTU consumption goes above certain threshold.
 
     # Set up your resource ID configurations
     $subscriptionId = '<Azure subscription id>'      # Azure subscription ID
@@ -168,60 +169,60 @@
 
 
 
-## 收集和監視訂用帳戶中多個集區的資源使用量資料
+## <a name="collect-and-monitor-resource-usage-data-across-multiple-pools-in-a-subscription"></a>Collect and monitor resource usage data across multiple pools in a subscription
 
-當訂用帳戶中有大量資料庫時，難以分開監視每個彈性集區。因此，可以結合 SQL Database PowerShell Cmdlet 和 T-SQL 查詢，從多個集區與其資料庫收集資源使用量資料，以便監視和分析資源使用量。在 GitHub 上的 SQL Server 範例存放庫中，可以找到這樣一組 PowerShell 指令碼的[範例實作](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)，以及其作用和使用方式的相關文件。
+When you have a large number of databases in a subscription, it is cumbersome to monitor each elastic pool separately. Instead, SQL database PowerShell cmdlets and T-SQL queries can be combined to collect resource usage data from multiple pools and their databases for monitoring and analysis of resource usage. A [sample implementation](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools) of such a set of powershell scripts can be found in the GitHub SQL Server samples repository along with documentation on what it does and how to use it.
 
-若要使用此範例實作，請遵循下列步驟執行。
+To use this sample implementation follow these steps listed below.
 
 
-1. 下載[指令碼和文件](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)：
-2. 為您的環境修改指令碼。指定裝載彈性集區的一或多部伺服器。
-3. 指定儲存所收集度量的遙測資料庫。
-4. 自訂指令碼，以指定指令碼的執行持續時間。
+1. Download the [scripts and documentation](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools):
+2. Modify the scripts for your environment. Specify one or more servers on which elastic pools are hosted.
+3. Specify a telemetry database where the collected metrics are to be stored. 
+4. Customize the script to specify the duration of the scripts' execution.
 
-概括而言，指令碼會執行下列作業︰
+At a high level, the scripts do the following:
 
-*	列舉指定的 Azure 訂用帳戶 (或指定的伺服器清單) 中的所有伺服器。
-*	執行每部伺服器的背景作業。作業會在迴圈中定期執行，並收集伺服器中所有集區的遙測資料。然後將所收集的資料載入到指定的遙測資料庫。
-*	列舉每個集區中的資料庫清單，以收集資料庫資源使用量資料。然後將所收集的資料載入到遙測資料庫。
+*   Enumerates all servers in a given Azure subscription (or a specified list of servers).
+*   Runs a background job for each server. The job runs in a loop at regular intervals and collects telemetry data for all the pools in the server. It then loads the collected data into the specified telemetry database.
+*   Enumerates a list of databases in each pool to collect the database resource usage data. It then loads the collected data into the telemetry database.
 
-您可以分析遙測資料庫中收集的度量，以監視彈性集區和資料庫的健康狀態。指令碼也會在遙測資料庫中安裝預先定義的資料表值函式 (TVF)，協助彙總指定時間範圍的度量。例如，TVF 的結果可用來顯示「在指定的時間範圍內具有最大 eDTU 使用率的前 N 個彈性集區」。 或者，使用分析工具 (例如 Excel 或 Power BI) 來查詢和分析所收集的資料。
+The collected metrics in the telemetry database can be analyzed to monitor the health of elastic pools and the databases in it. The script also installs a pre-defined Table-Value function (TVF) in the telemetry database to help aggregate the metrics for a specified time window. For example, results of the TVF can be used to show “top N elastic pools with the maximum eDTU utilization in a given time window.” Optionally, use analytic tools like Excel or Power BI to query and analyze the collected data.
 
-## 範例︰擷取集區和其資料庫的資源消耗度量
+## <a name="example:-retrieve-resource-consumption-metrics-for-a-pool-and-its-databases"></a>Example: retrieve resource consumption metrics for a pool and its databases
 
-此範例會擷取指定彈性集區和其所有資料庫的耗用量度量資訊。收集的資料會格式化並寫入.csv 格式檔案。可以使用 Excel 瀏覽檔案。
+This example retrieves the consumption metrics for a given elastic pool and all its databases. Collected data is formatted and written to a .csv formatted file. The file can be browsed with Excel.
 
-	$subscriptionId = '<Azure subscription id>'	      # Azure subscription ID
-	$resourceGroupName = '<resource group name>'             # Resource Group
-	$serverName = <server name>                              # server name
-	$poolName = <elastic pool name>                          # pool name
-		
-	# Login to Azure account and select the subscription.
-	Login-AzureRmAccount
-	Set-AzureRmContext -SubscriptionId $subscriptionId
-	
-	# Get resource usage metrics for an elastic pool for the specified time interval.
-	$startTime = '4/27/2016 00:00:00'  # start time in UTC
-	$endTime = '4/27/2016 01:00:00'    # end time in UTC
-	
-	# Construct the pool resource ID and retrive pool metrics at 5 minute granularity.
-	$poolResourceId = '/subscriptions/' + $subscriptionId + '/resourceGroups/' + $resourceGroupName + '/providers/Microsoft.Sql/servers/' + $serverName + '/elasticPools/' + $poolName
-	$poolMetrics = (Get-AzureRmMetric -ResourceId $poolResourceId -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime $startTime -EndTime $endTime) 
-	
-	# Get the list of databases in this pool.
-	$dbList = Get-AzureRmSqlElasticPoolDatabase -ResourceGroupName $resourceGroupName -ServerName $serverName -ElasticPoolName $poolName
-	
-	# Get resource usage metrics for a database in an elastic database for the specified time interval.
-	$dbMetrics = @()
-	foreach ($db in $dbList)
-	{
-	    $dbResourceId = '/subscriptions/' + $subscriptionId + '/resourceGroups/' + $resourceGroupName + '/providers/Microsoft.Sql/servers/' + $serverName + '/databases/' + $db.DatabaseName
-	    $dbMetrics = $dbMetrics + (Get-AzureRmMetric -ResourceId $dbResourceId -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime $startTime -EndTime $endTime)
-	}
-	
-	#Optionally you can format the metrics and output as .csv file using the following script block.
-	$command = {
+    $subscriptionId = '<Azure subscription id>'       # Azure subscription ID
+    $resourceGroupName = '<resource group name>'             # Resource Group
+    $serverName = <server name>                              # server name
+    $poolName = <elastic pool name>                          # pool name
+        
+    # Login to Azure account and select the subscription.
+    Login-AzureRmAccount
+    Set-AzureRmContext -SubscriptionId $subscriptionId
+    
+    # Get resource usage metrics for an elastic pool for the specified time interval.
+    $startTime = '4/27/2016 00:00:00'  # start time in UTC
+    $endTime = '4/27/2016 01:00:00'    # end time in UTC
+    
+    # Construct the pool resource ID and retrive pool metrics at 5 minute granularity.
+    $poolResourceId = '/subscriptions/' + $subscriptionId + '/resourceGroups/' + $resourceGroupName + '/providers/Microsoft.Sql/servers/' + $serverName + '/elasticPools/' + $poolName
+    $poolMetrics = (Get-AzureRmMetric -ResourceId $poolResourceId -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime $startTime -EndTime $endTime) 
+    
+    # Get the list of databases in this pool.
+    $dbList = Get-AzureRmSqlElasticPoolDatabase -ResourceGroupName $resourceGroupName -ServerName $serverName -ElasticPoolName $poolName
+    
+    # Get resource usage metrics for a database in an elastic database for the specified time interval.
+    $dbMetrics = @()
+    foreach ($db in $dbList)
+    {
+        $dbResourceId = '/subscriptions/' + $subscriptionId + '/resourceGroups/' + $resourceGroupName + '/providers/Microsoft.Sql/servers/' + $serverName + '/databases/' + $db.DatabaseName
+        $dbMetrics = $dbMetrics + (Get-AzureRmMetric -ResourceId $dbResourceId -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime $startTime -EndTime $endTime)
+    }
+    
+    #Optionally you can format the metrics and output as .csv file using the following script block.
+    $command = {
     param($metricList, $outputFile)
 
     # Format metrics into a table.
@@ -240,28 +241,28 @@
     
     # Output the metrics into a .csv file.
     write-output $table | Export-csv -Path $outputFile -Append -NoTypeInformation
-	}
-	
-	# Format and output pool metrics
-	Invoke-Command -ScriptBlock $command -ArgumentList $poolMetrics,c:\temp\poolmetrics.csv
-	
-	# Format and output database metrics
-	Invoke-Command -ScriptBlock $command -ArgumentList $dbMetrics,c:\temp\dbmetrics.csv
+    }
+    
+    # Format and output pool metrics
+    Invoke-Command -ScriptBlock $command -ArgumentList $poolMetrics,c:\temp\poolmetrics.csv
+    
+    # Format and output database metrics
+    Invoke-Command -ScriptBlock $command -ArgumentList $dbMetrics,c:\temp\dbmetrics.csv
 
 
 
-## 彈性集區的作業延遲
+## <a name="latency-of-elastic-pool-operations"></a>Latency of elastic pool operations
 
-- 每個資料庫的最小 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在 5 分鐘內即可完成。
-- 集區的 eDTU 變更作業，需視集區中所有資料庫使用的總空間量而定。變更作業平均每 100 GB 會在 90 分鐘以內完成。舉例來說，如果集區中所有資料庫使用的總空間為 200 GB，則每集區 eDTU 變更作業的預期延遲時間會少於 3 小時。
+- Changing the min eDTUs per database or max eDTUs per database typically completes in 5 minutes or less.
+- Changing the eDTUs per pool depends on the total amount of space used by all databases in the pool. Changes average 90 minutes or less per 100 GB. For example, if the total space used by all databases in the pool is 200 GB, then the expected latency for changing the pool eDTU per pool is 3 hours or less.
 
-## 從 V11 移轉到 V12 伺服器
+## <a name="migrate-from-v11-to-v12-servers"></a>Migrate from V11 to V12 servers
 
-PowerShell Cmdlet 可用來啟動、停止或監視從 V11 或任何其他 V12 以前版本升級至 Azure SQL Database V12。
+PowerShell cmdlets are available to start, stop, or monitor an upgrade to Azure SQL Database V12 from V11 or any other pre-V12 version.
 
-- [使用 PowerShell 升級至 SQL Database V12](sql-database-upgrade-server-powershell.md)
+- [Upgrade to SQL Database V12 using PowerShell](sql-database-upgrade-server-powershell.md)
 
-如需這些 PowerShell Cmdlet 的參考文件，請參閱：
+For reference documentation about these PowerShell cmdlets, see:
 
 
 - [Get-AzureRMSqlServerUpgrade](https://msdn.microsoft.com/library/azure/mt603582.aspx)
@@ -269,11 +270,15 @@ PowerShell Cmdlet 可用來啟動、停止或監視從 V11 或任何其他 V12 �
 - [Stop-AzureRMSqlServerUpgrade](https://msdn.microsoft.com/library/azure/mt603589.aspx)
 
 
-Stop- Cmdlet 表示取消，不是暫停。升級一旦停止就沒有任何方法可以繼續，只能再次從頭開始。Stop- Cmdlet 會清除並釋放所有適當的資源。
+The Stop- cmdlet means cancel, not pause. There is no way to resume an upgrade, other than starting again from the beginning. The Stop- cmdlet cleans up and releases all appropriate resources.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [建立彈性工作](sql-database-elastic-jobs-overview.md)：彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
-- 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
+- [Create elastic jobs](sql-database-elastic-jobs-overview.md) Elastic jobs let you run T-SQL scripts against any number of databases in the pool.
+- See [Scaling out with Azure SQL Database](sql-database-elastic-scale-introduction.md): use elastic database tools to scale-out, move data, query, or create transactions.
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

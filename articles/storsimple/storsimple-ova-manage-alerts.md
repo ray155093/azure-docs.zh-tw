@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="檢視和管理 StorSimple Virtual Array 警示 | Microsoft Azure"
-   description="描述 StorSimple Virtual Array 警示條件和嚴重性，以及如何使用 StorSimple Manager 服務管理警示。"
+   pageTitle="View and manage StorSimple Virtual Array alerts | Microsoft Azure"
+   description="Describes StorSimple Virtual Array alert conditions and severity, and how to use the StorSimple Manager service to manage alerts."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,171 +15,178 @@
    ms.date="06/07/2016"
    ms.author="alkohli" />
 
-# 使用 StorSimple Manager 服務檢視及管理 StorSimple Virtual Array 的警示
 
-## 概觀
+# <a name="use-the-storsimple-manager-service-to-view-and-manage-alerts-for-the-storsimple-virtual-array"></a>Use the StorSimple Manager service to view and manage alerts for the StorSimple Virtual Array
 
-StorSimple Manager 服務的 [警示] 索引標籤可讓您即時檢閱並清除 StorSimple Virtual Array 的相關警示。從這個索引標籤中，您可以集中監視 StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置) 和整個 Microsoft Azure StorSimple 解決方案的健康問題。
+## <a name="overview"></a>Overview
 
-本教學課程說明如何設定警示通知、常見的警示狀況、警示嚴重性層級及如何檢視和追蹤警示。此外，也包含警示快速參考表，可讓您快速找出特定的警示並適當地回應。
+The **Alerts** tab in the StorSimple Manager service provides a way for you to review and clear StorSimple Virtual Array–related alerts on a real-time basis. From this tab, you can centrally monitor the health issues of your StorSimple  Virtual Arrays (also known as StorSimple on-premises virtual devices) and the overall Microsoft Azure StorSimple solution.
 
-![警示頁面](./media/storsimple-ova-manage-alerts/alerts1.png)
+This tutorial describes how to configure alert notifications, common alert conditions, alert severity levels, and how to view and track alerts. Additionally, it includes alert quick reference tables, which enable you to quickly locate a specific alert and respond appropriately.
 
-## 設定警示設定
+![Alerts page](./media/storsimple-ova-manage-alerts/alerts1.png)
 
-您可以選擇是否要透過電子郵件收到每個 StorSimple 虛擬裝置的警示狀況通知。此外，您可以在 [其他電子郵件收件者] 方塊中輸入電子郵件地址 (以分號隔開)，以識別其他警示通知收件者。
+## <a name="configure-alert-settings"></a>Configure alert settings
 
->[AZURE.NOTE] 您可以對每一個虛擬裝置輸入最多 20 個電子郵件地址。
+You can choose whether you want to be notified by email of alert conditions for each of your StorSimple virtual devices. Additionally, you can identify other alert notification recipients by entering their email addresses in the **Other email recipients** box, separated by semicolons.
 
-啟用虛擬裝置的電子郵件通知之後，每當發生重大警示時，通知清單的成員將會收到電子郵件訊息。訊息將會從 **storsimple-alerts-noreply@mail.windowsazure.com* 送出，並說明警示狀況。收件者可以按一下 [取消訂閱]，將自己從電子郵件通知清單中移除
+>[AZURE.NOTE] You can enter a maximum of 20 email addresses per virtual device.
 
-#### 啟用虛擬裝置的警示電子郵件通知
+After you enable email notification for a virtual device, members of the notification list will receive an email message each time a critical alert occurs. The messages will be sent from *storsimple-alerts-noreply@mail.windowsazure.com* and will describe the alert condition. Recipients can click **Unsubscribe** to remove themselves from the email notification list.
 
-1. 移至虛擬裝置的 [裝置] > [組態]。移至 [警示設定] 區段。
+#### <a name="to-enable-email-notification-of-alerts-for-a-virtual-device"></a>To enable email notification of alerts for a virtual device
 
-    ![警示設定](./media/storsimple-ova-manage-alerts/alerts2.png)
+1. Go to **Devices** > **Configuration** for the virtual device. Go to the **Alert settings** section.
 
-2. 在 [警示設定] 下，設定下列項目：
+    ![alert settings](./media/storsimple-ova-manage-alerts/alerts2.png)
 
-    1. 在 [傳送電子郵件通知] 欄位中，選取 [是]。
+2. Under **Alert settings**, set the following:
 
-    2. 如果您想要讓服務管理員和所有共同管理員收到警示通知，請在 [電子郵件服務管理員] 欄位中選取 [是]。
+    1. In the **Send email notification** field, select **YES**.
 
-    3. 在 [其他電子郵件收件者] 欄位中，輸入應該收到警示通知的其他所有收件者的電子郵件地址。以 **someone@somewhere.com* 格式輸入名稱。使用分號來分隔電子郵件地址。您可以對每一個虛擬裝置設定最多 20 個電子郵件地址。
+    2. In the **Email service administrators** field, select **YES** if you wish to have the service administrator and all co-administrators receive the alert notifications.
 
-        ![警示通知組態](./media/storsimple-ova-manage-alerts/alerts3.png)
+    3. In the **Other email recipients** field, enter the email addresses of all other recipients who should receive the alert notifications. Enter names in the format *someone@somewhere.com*. Use semicolons to separate the email addresses. You can configure a maximum of 20 email addresses per virtual device. 
 
-3. 按一下頁面底部的 [儲存] 來儲存您的組態。
+        ![alerts notification configuration](./media/storsimple-ova-manage-alerts/alerts3.png)
 
-4. 若要傳送測試電子郵件通知，請按一下 [傳送測試電子郵件] 旁的箭號圖示。StorSimple Manager 服務轉寄測試通知時會顯示狀態訊息。
+3. At the bottom of the page, click **Save** to save your configuration.
 
-5. 下列訊息出現時，按一下 [**確定**]。
+4. To send a test email notification, click the arrow icon next to **Send test email**. The StorSimple Manager service will display status messages as it forwards the test notification. 
 
-    ![已傳送警示測試通知電子郵件](./media/storsimple-ova-manage-alerts/alerts4.png)
+5. When the following message appears, click **OK**. 
 
-    >[AZURE.NOTE] 如果無法傳送測試通知訊息，StorSimple Manager 服務會顯示適當的訊息。按一下 [**確定**]，等候幾分鐘，然後嘗試再次傳送測試通知訊息。
+    ![Alerts test notification email sent](./media/storsimple-ova-manage-alerts/alerts4.png)
 
-    測試通知訊息將如下所示。
+    >[AZURE.NOTE] If the test notification message can't be sent, the StorSimple Manager service will display an appropriate message. Click **OK**, wait a few minutes, and then try to send your test notification message again. 
 
-    ![警示測試電子郵件範例](./media/storsimple-ova-manage-alerts/alerts5.png)
+    The test notification message will be similar to the following.
 
-## 常見的警示狀況
+    ![Alerts test email example](./media/storsimple-ova-manage-alerts/alerts5.png)
 
-StorSimple Virtual Array 會產生警示以回應各種不同的狀況。以下是最常見的警示狀況類型：
+## <a name="common-alert-conditions"></a>Common alert conditions
 
-- **連線問題** – 當傳送資料有困難時會發生這些警示。在往返於 Azure 儲存體帳戶傳輸資料期間，或因為虛擬裝置與 StorSimple Manager 服務之間沒有連線時，可能會發生通訊問題。通訊問題最難解決，因為失敗點實在太多。在繼續進行更進階的疑難排解之前，您一定要先確認有網路連線和網際網路存取可用。如需連接埠和防火牆設定的詳細資訊，請參閱 [StorSimple Virtual Array 系統需求](storsimple-ova-system-requirements.md)。如需疑難排解的說明，請移至 [Test-Connection Cmdlet 的疑難排解](storsimple-troubleshoot-deployment.md)。
+Your StorSimple Virtual Array generates alerts in response to a variety of conditions. The following are the most common types of alert conditions:
 
-- **效能問題** – 當系統未以最佳方式運作時，例如負荷過重，就會造成這些警示。
+- **Connectivity issues** – These alerts occur when there is difficulty in transferring data. Communication issues can occur during transfer of data to and from the Azure storage account or due to lack of connectivity between the virtual devices and the StorSimple Manager service. Communication issues are some of the hardest to fix because there are so many points of failure. You should always first verify that network connectivity and Internet access are available before continuing on to more advanced troubleshooting. For information about ports and firewall settings, go to [StorSimple Virtual Array system requirements](storsimple-ova-system-requirements.md). For help with troubleshooting, go to [Troubleshoot with the Test-Connection cmdlet](storsimple-troubleshoot-deployment.md).
 
-此外，您也可能會看到有關安全性、更新或作業失敗的警示。
+- **Performance issues** – These alerts are caused when your system isn’t performing optimally, such as when it is under a heavy load.
 
-## 警示嚴重性層級
+In addition, you might see alerts related to security, updates, or job failures.
 
-視警示狀況造成的影響和是否需要回應警示而定，警示有不同的嚴重性層級。嚴重性層級如下：
+## <a name="alert-severity-levels"></a>Alert severity levels
 
-- **重大** – 這個警示是回應會影響系統成功運作的狀況。需要採取動作以確保 StorSimple 服務不中斷。
+Alerts have different severity levels, depending on the impact that the alert situation will have and the need for a response to the alert. The severity levels are:
 
-- **警告** – 此狀況如果不解決，可能會演變成重大狀況。您應該調查這種情況，並採取任何必要的動作來解決問題。
+- **Critical** – This alert is in response to a condition that is affecting the successful performance of your system. Action is required to ensure that the StorSimple service is not interrupted.
 
-- **資訊** – 此警示包含適用於追蹤和管理系統的資訊。
+- **Warning** – This condition could become critical if not resolved. You should investigate the situation and take any action required to clear the issue.
 
-## 檢視和追蹤警示
+- **Information** – This alert contains information that can be useful in tracking and managing your system.
 
-StorSimple Manager 服務儀表板可讓您快速概覽虛擬裝置上的警示數目 (依嚴重性層級排列)。
+## <a name="view-and-track-alerts"></a>View and track alerts
 
-![警示儀表板](./media/storsimple-ova-manage-alerts/alerts6.png)
+The StorSimple Manager service dashboard provides you with a quick glance at the number of alerts on your virtual devices, arranged by severity level.
 
-按一下嚴重性層級會開啟 [**警示**] 索引標籤。結果只包含符合該嚴重性層級的警示。
+![Alerts dashboard](./media/storsimple-ova-manage-alerts/alerts6.png)
 
-![限定警示類型的警示報告](./media/storsimple-ova-manage-alerts/alerts7.png)
+Clicking the severity level opens the **Alerts** tab. The results include only the alerts that match that severity level.
 
-按一下清單中的警示會提供警示的其他詳細資料，包括上次報告警示的時間、裝置上發生該警示的次數，以及建議採取來解決警示的動作。
+![Alerts report scoped to alert type](./media/storsimple-ova-manage-alerts/alerts7.png)
 
-如果您需要將資訊傳送給 Microsoft 支援服務，您可以將警示詳細資料複製到文字檔案。依照建議解決內部部署警示狀況之後，您應該在 [警示] 索引標籤中選取警示，並按一下 [清除]，清除警示。若要清除多個警示，請選取每個警示，按一下除了 [警示] 資料行以外的任何資料行，然後在選取要清除的所有警示之後按一下 [清除]。請注意，當問題解決時或系統以新資訊更新警示時，會自動清除某些警示。
+Clicking an alert in the list provides you with additional details for the alert, including the last time the alert was reported, the number of occurrences of the alert on the device, and the recommended action to resolve the alert.
 
-當您按一下 [**清除**] 時，您有機會提供警示的相關註解，以及您用來解決問題的步驟。
+You can copy the alert details to a text file if you need to send the information to Microsoft Support. After you have followed the recommendation and resolved the alert condition on-premises, you should clear the alert from by selecting the alert in the **Alerts** tab and clicking **Clear**. To clear multiple alerts, select each alert, click any column except the **Alert** column, and then click **Clear** after you have selected all the alerts to be cleared. Note that some alerts are automatically cleared when the issue is resolved or when the system updates the alert with new information.
 
-![警示註解](./media/storsimple-ova-manage-alerts/clear-alert.png)
+When you click **Clear**, you will have the opportunity to provide comments about the alert and the steps that you took to resolve the issue. 
 
-按一下核取圖示 ![核取圖示](./media/storsimple-ova-manage-alerts/check-icon.png) 以儲存您的註解。
+![alert comments](./media/storsimple-ova-manage-alerts/clear-alert.png)
 
-如果新的資訊觸發另一個事件，系統會清除某些事件。在此情況下，您會看到下列訊息。
+Click the check icon ![check-icon](./media/storsimple-ova-manage-alerts/check-icon.png) to save your comments.
 
-![清除警示訊息](./media/storsimple-ova-manage-alerts/alerts8.png)
+Some events will be cleared by the system if another event is triggered with new information. In that case, you will see the following message.
 
-## 排序和檢閱警示
+![Clear alert message](./media/storsimple-ova-manage-alerts/alerts8.png)
 
-[警示] 索引標籤最多可顯示 250 個警示。如果超過該警示數目，則並非所有警示都會出現在預設檢視中。您可以結合下列欄位來自訂要顯示的通知：
+## <a name="sort-and-review-alerts"></a>Sort and review alerts
 
-- **狀態** – 您可以顯示 [**作用中**] 或 [**已清除**] 警示。作用中警示仍在系統上觸發，而已清除的警示已由系統管理員手動清除，或因為系統以新資訊更新警示狀況而以程式設計方式清除。
+The **Alerts** tab can display up to 250 alerts. If you have exceeded that number of alerts, not all alerts will be displayed in the default view. You can combine the following fields to customize which alerts are displayed:
 
-- **嚴重性** – 您可以顯示所有嚴重性層級 (重大、警告、資訊) 的警示，或只顯示特定嚴重性的警示，例如只有重大警示。
+- **Status** – You can display either **Active** or **Cleared** alerts. Active alerts are still being triggered on your system, while cleared alerts have been either manually cleared by an administrator or programmatically cleared because the system updated the alert condition with new information.
 
-- **來源** – 您可以顯示所有來源的警示，或只顯示來自服務或其中一個或所有虛擬裝置的警示。
+- **Severity** – You can display alerts of all severity levels (critical, warning, information), or just a certain severity, such as only critical alerts.
 
-- **時間範圍** – 您可以指定 [**從**] 和 [**到**] 日期和時間戳記，以查看您感興趣的期間內的警示。
+- **Source** – You can display alerts from all sources, or limit the alerts to those that come from either the service or one or all the virtual devices.
 
-## 警示快速參考
+- **Time range** – By specifying the **From** and **To** dates and time stamps, you can look at alerts during the time period that you are interested in.
 
-下表列出一些您可能會遇到的 Microsoft Azure StorSimple 警示，以及其他資訊和適用的建議。StorSimple 虛擬裝置警示分為下列類別：
+## <a name="alerts-quick-reference"></a>Alerts quick reference
 
-- [雲端連線能力警示](#cloud-connectivity-alerts)
+The following tables list some of the Microsoft Azure StorSimple alerts that you might encounter, as well as additional information and recommendations where available. StorSimple virtual device alerts fall into one of the following categories:
 
-- [組態警示](#configuration-alerts)
+- [Cloud connectivity alerts](#cloud-connectivity-alerts)
 
-- [作業失敗警示](#job-failure-alerts)
+- [Configuration alerts](#configuration-alerts)
 
-- [效能警示](#performance-alerts)
+- [Job failure alerts](#job-failure-alerts)
 
-- [安全性警示](#security-alerts)
+- [Performance alerts](#performance-alerts)
 
-- [更新警示](#update-alerts)
+- [Security alerts](#security-alerts)
 
-### 雲端連線能力警示
+- [Update alerts](#update-alerts)
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+### <a name="cloud-connectivity-alerts"></a>Cloud connectivity alerts
+
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|裝置 *<device name>* 未連接至雲端。|指定的裝置無法連接至雲端。 |無法連接至雲端。這可能是因為下列其中一個原因：<ul><li>您的裝置上的網路設定可能有問題。</li><li>儲存體帳戶認證可能有問題。</li></ul>如需有關疑難排解連線問題的詳細資訊，請移至裝置的[本機 Web UI](storsimple-ova-web-ui-admin.md)。|
+|Device *<device name>* is not connected to the cloud.|The named device cannot connect to the cloud. |Could not connect to the cloud. This could be due to one of the following:<ul><li>There may be a problem with the network settings on your device.</li><li>There may be a problem with the storage account credentials.</li></ul>For more information on troubleshooting connectivity issues, go to the [local web UI](storsimple-ova-web-ui-admin.md) of the device.|
 
 
-### 組態警示
+### <a name="configuration-alerts"></a>Configuration alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|不支援的內部部署虛擬裝置組態。|效能變慢。|目前的組態可能會導致效能降低。請確定您的伺服器符合最低組態需求。如需詳細資訊，請參閱 [StorSimple Virtual Array 需求](storsimple-ova-system-requirements.md)。 
-|<裝置名稱> 上的佈建磁碟空間即將用盡。|磁碟空間警告。|佈建磁碟空間偏低。若要釋放空間，請考慮將工作負載移到另一個磁碟區或共用或刪除資料。
+|On-premises virtual device configuration unsupported.|Slow performance.|The current configuration may result in performance degradation. Ensure that your server meets the minimum configuration requirements. For more information, go to [StorSimple Virtual Array Requirements](storsimple-ova-system-requirements.md). 
+|You are running out of provisioned disk space on <*device name*>.|Disk space warning.|You are running low on provisioned disk space. To free up space, consider moving workloads to another volume or share or deleting data.
 
-### 工作失敗警示
+### <a name="job-failure-alerts"></a>Job failure alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|無法完成 <裝置名稱> 的備份。|備份作業失敗。|無法建立備份。請考慮下列其中一項：<ul><li>連線問題可能會造備份作業無法成功完成。確定沒有連線問題。如需疑難排解連線問題的詳細資訊，請前往虛擬裝置的[本機 Web UI](storsimple-ova-web-ui-admin.md)。</li><li>您已達可用儲存體的限制。若要釋放空間，請考慮刪除任何不再需要的備份。</li></ul> 解決問題、清除警示，然後重試作業。|
-|無法完成 <裝置名稱> 的還原。|還原作業失敗。|無法從備份還原。請考慮下列其中一項：<ul><li>您的備份清單可能無效。請重新整理清單，以確認其有效性。</li><li>連線問題可能會造成還原作業無法成功完成。請確認連線沒有問題。</li><li>您已達可用儲存體的限制。若要釋放空間，請考慮刪除任何不再需要的備份。</li></ul>解決問題、清除警示，然後重試還原作業。|
-|無法完成 <裝置名稱> 的複製。|複製作業失敗。|無法建立複製。請考慮下列其中一項：<ul><li>您的備份清單可能無效。請重新整理清單，以確認其有效性。</li><li>連線問題可能會造成複製作業無法成功完成。請確認連線沒有問題。</li><li>您已達可用儲存體的限制。若要釋放空間，請考慮刪除任何不再需要的備份。</li></ul>解決問題、清除警示，然後重試此作業。|
+|Backup of <*device name*> couldn’t be completed.|Backup job failure.|Could not create a backup. Consider one of the following:<ul><li>Connectivity issues could be preventing the backup operation from successfully completing. Ensure that there are no connectivity issues. For more information on troubleshooting connectivity issues, go to the [local web UI](storsimple-ova-web-ui-admin.md) for your virtual device.</li><li>You have reached the available storage limit. To free up space, consider deleting any backups that are no longer needed.</li></ul> Resolve the issues, clear the alert and retry the operation.|
+|Restore of <*device name*> couldn’t be completed.|Restore job failure.|Could not restore from backup. Consider one of the following:<ul><li>Your backup list may not be valid. Refresh the list to verify it is still valid.</li><li>Connectivity issues could be preventing the restore operation from successfully completing. Ensure that there are no connectivity issues.</li><li>You have reached the available storage limit. To free up space, consider deleting any backups that are no longer needed.</li></ul>Resolve the issues, clear the alert and retry the restore operation.|
+|Clone of <*device name*> couldn’t be completed.|Clone job failure.|Could not create a clone. Consider one of the following:<ul><li>Your backup list may not be valid. Refresh the list to verify it is still valid.</li><li>Connectivity issues could be preventing the clone operation from successfully completing. Ensure that there are no connectivity issues.</li><li>You have reached the available storage limit. To free up space, consider deleting any backups that are no longer needed.</li></ul>Resolve the issues, clear the alert and retry the operation.|
 
-### 效能警示
+### <a name="performance-alerts"></a>Performance alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|您遇到資料傳輸的非預期延遲|慢速資料傳輸。|當超出儲存體服務的延展性目標時，會出現節流錯誤。儲存體服務這麼做是為了確保沒有任何用戶端或是租用戶可犧牲其他服務來使用這項服務。如需疑難排解 Azure 儲存體帳戶問題的詳細資訊，請參閱[監視、診斷及疑難排解 Microsoft Azure 儲存體的問題](storage-monitoring-diagnosing-troubleshooting.md)。
-|<裝置名稱> 上的本機保留磁碟空間即將用盡。|回應時間變慢。|在本機裝置上為 <裝置名稱> 佈建的總大小中，有 10% 為保留空間，而該保留空間即將用盡。<裝置名稱> 的工作負載產生較高的變換率，或您最近可能曾經移轉過大量的資料。這可能會導致效能降低。請考慮採取下列一項動作來解決此問題：<ul><li>增加此裝置的雲端頻寬。</li><li>降低工作負載，或將工作負載移往其他磁碟區或共用。</li></ul>
+|You are experiencing unexpected delays in data transfer.|Slow data transfer.|Throttling errors occur when you exceed the scalability targets of a storage service. The storage service does this to ensure that no single client or tenant can use the service at the expense of others. For more information on troubleshooting your Azure storage account, go to [Monitor, diagnose, and troubleshoot Microsoft Azure Storage](storage-monitoring-diagnosing-troubleshooting.md).
+|You are running low on local reservation disk space on <*device name*>.|Slow response time.|10% of the total provisioned size for <*device name*> is reserved on the local device and you are now running low on the reserved space. The workload on <*device name*> is generating a higher rate of churn or you might have recently migrated a large amount of data. This may result in reduced performance. Consider one of the following actions to resolve this:<ul><li>Increase the cloud bandwidth to this device.</li><li>Reduce or move workloads to another volume or share.</li></ul>
 
-### 安全性警示
+### <a name="security-alerts"></a>Security alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|<裝置名稱> 的密碼即將於 <數字> 天後到期。|密碼警告。| 您的密碼即將於 <數字> 天後到期。請考慮變更您的密碼。如需詳細資訊，請參閱[變更 StorSimple Virtual Array 裝置的系統管理員密碼](storsimple-ova-change-device-admin-password.md)。
+|Password for <*device name*> will expire in <*number*> days.|Password warning.| Your password will expire in <number< days. Consider changing your password. For more information, go to [Change the StorSimple Virtual Array device administrator password](storsimple-ova-change-device-admin-password.md).
 
-### 更新警示
+### <a name="update-alerts"></a>Update alerts
 
-|警示文字|事件|詳細資訊 / 建議的動作|
+|Alert text|Event|More information / recommended actions|
 |:---|:---|:---|
-|您的裝置有新的更新可用。|StorSimple Virtual Array 有更新可用。|您可以從 [維護] 頁面安裝新的更新。|
-|無法掃描 <裝置名稱> 有無新的更新。|更新失敗。 |安裝新的更新時發生錯誤。您可以手動安裝更新。若問題持續發生，請連絡 [Microsoft 支援服務](storsimple-contact-microsoft-support.md)。|
+|New updates are available for your device.|Updates to the StorSimple Virtual Array are available.|You can install new updates from the **Maintenance** page.|
+|Could not scan for new updates on <*device name*>.|Update failure. |An error occurred while installing new updates. You can manually install the updates. If the problem persists, contact [Microsoft Support](storsimple-contact-microsoft-support.md).|
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [深入了解 StorSimple Virtual Array](storsimple-ova-overview.md)。
+- [Learn about the StorSimple Virtual Array](storsimple-ova-overview.md).
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

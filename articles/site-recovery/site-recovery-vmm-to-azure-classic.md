@@ -1,384 +1,391 @@
 <properties
-	pageTitle="將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure | Microsoft Azure"
-	description="本文說明如何將位於 System Center VMM 雲端中 Hyper-V 主機上的 Hyper-V 虛擬機器複寫至 Azure。"
-	services="site-recovery"
-	documentationCenter=""
-	authors="rayne-wiselman"
-	manager="jwhit"
-	editor=""/>
+    pageTitle="Replicate Hyper-V virtual machines in VMM clouds to Azure | Microsoft Azure"
+    description="This article describes how to replicate Hyper-V virtual machines on Hyper-V hosts located in System Center VMM clouds to Azure."
+    services="site-recovery"
+    documentationCenter=""
+    authors="rayne-wiselman"
+    manager="jwhit"
+    editor=""/>
 
 <tags
-	ms.service="site-recovery"
-	ms.workload="backup-recovery"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="hero-article"
-	ms.date="05/06/2016"
-	ms.author="raynew"/>
+    ms.service="site-recovery"
+    ms.workload="backup-recovery"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="hero-article"
+    ms.date="05/06/2016"
+    ms.author="raynew"/>
 
-#  將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
+
+#  <a name="replicate-hyper-v-virtual-machines-in-vmm-clouds-to-azure"></a>Replicate Hyper-V virtual machines in VMM clouds to Azure
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](site-recovery-vmm-to-azure.md)
+- [Azure Portal](site-recovery-vmm-to-azure.md)
 - [PowerShell - ARM](site-recovery-vmm-to-azure-powershell-resource-manager.md)
-- [傳統入口網站](site-recovery-vmm-to-azure-classic.md)
-- [PowerShell - 傳統](site-recovery-deploy-with-powershell.md)
+- [Classic Portal](site-recovery-vmm-to-azure-classic.md)
+- [PowerShell - Classic](site-recovery-deploy-with-powershell.md)
 
 
 
-Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。機器可以複寫至 Azure，或次要的內部部署資料中心。如需快速概觀，請參閱[什麼是 Azure Site Recovery？](site-recovery-overview.md)。
+The Azure Site Recovery service contributes to your business continuity and disaster recovery (BCDR) strategy by orchestrating replication, failover and recovery of virtual machines and physical servers. Machines can be replicated to Azure, or to a secondary on-premises data center. For a quick overview read [What is Azure Site Recovery?](site-recovery-overview.md).
 
-## 概觀
+## <a name="overview"></a>Overview
 
-本文說明如何部署 Site Recovery，將位於 VMM 私人雲端中的 Hyper-V 主機伺服器上的 Hyper-V 虛擬機器複寫至 Azure。
+This article describes how to deploy Site Recovery to replicate Hyper-V virtual machines on Hyper-V host servers that are located in VMM private clouds to Azure.
 
-本文包含案例的必要條件，並示範如何設定 Site Recovery 保存庫、取得安裝於來源 VMM 伺服器上的「Azure Site Recovery 提供者」、在保存庫註冊伺服器、加入 Azure 儲存體帳戶、在 Hyper-V 主機伺服器上安裝 Azure Site Recovery 代理程式、設定將套用到所有受保護虛擬機器之 VMM 雲端的保護設定、然後啟用那些虛擬機器的保護。測試容錯移轉，確認一切如預期般運作以完成動作。
+The article includes prerequisites for the scenario and shows you how to set up a Site Recovery vault, get the Azure Site Recovery Provider installed on the source VMM server, register the server in the vault, add an Azure storage account, install the Azure Recovery Services agent on Hyper-V host servers, configure protection settings for VMM clouds that will be applied to all protected virtual machines, and then enable protection for those virtual machines. Finish up by testing the failover to make sure everything's working as expected.
 
-在這篇文章下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 中張貼意見或問題。
+Post any comments or questions at the bottom of this article, or on the [Azure Recovery Services Forum](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
-## 架構
+## <a name="architecture"></a>Architecture
 
-![架構](./media/site-recovery-vmm-to-azure-classic/topology.png)
+![Architecture](./media/site-recovery-vmm-to-azure-classic/topology.png)
 
-- Azure Site Recovery 提供者是於 Site Recovery 部署期間安裝在 VMM，且在 Site Recovery 保存庫中註冊 VMM 伺服器。提供者會與 Site Recovery 通訊以處理複寫協調流程。
-- Azure Recovery Services 代理程式是於 Site Recovery 部署期間安裝在 Hyper-V 主機伺服器上。它會將資料複寫處理至 Azure 儲存體。
+- The Azure Site Recovery Provider is installed on the VMM during Site Recovery deployment and the VMM server is registered in the Site Recovery vault. The Provider communicates with Site Recovery to handle replication orchestration.
+- The Azure Recovery Services agent is installed on Hyper-V host servers during Site Recovery deployment. It handles data replication to Azure storage.
 
 
-## Azure 必要條件
+## <a name="azure-prerequisites"></a>Azure prerequisites
 
-以下是您在 Azure 中需要的內容。
+Here's what you'll need in Azure.
 
-**必要條件** | **詳細資料**
+**Prerequisite** | **Details**
 --- | ---
-**Azure 帳戶**| 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 價格。
-**Azure 儲存體** | 您需要 Azure 儲存體帳戶來儲存複寫的資料。複寫的資料會儲存在 Azure 儲存體，容錯移轉時會啟動 Azure VM。<br/><br/>您需要[標準異地備援儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)。此帳戶應與 Site Recovery 服務位於相同的區域，且與相同的訂用帳戶相關聯。請注意，複寫到進階儲存體帳戶目前不支援，不應該使用。<br/><br/>[閱讀](../storage/storage-introduction.md) Azure 儲存體。
-**Azure 網路** | 容錯移轉發生時，您需要 Azure VM 會連接的 Azure 虛擬網路。Azure 虛擬網路必須位於與 Site Recovery 保存庫相同的區域中。
+**Azure account**| You'll need a [Microsoft Azure](https://azure.microsoft.com/) account. You can start with a [free trial](https://azure.microsoft.com/pricing/free-trial/). [Learn more](https://azure.microsoft.com/pricing/details/site-recovery/) about Site Recovery pricing.
+**Azure storage** | You'll need an Azure storage account to store replicated data. Replicated data is stored in Azure storage and Azure VMs are spun up when failover occurs. <br/><br/>You need a [standard geo-redundant storage account](../storage/storage-redundancy.md#geo-redundant-storage). The account must in the same region as the Site Recovery service, and be associated with the same subscription. Note that replication to premium storage accounts isn't currently supported and shouldn't be used.<br/><br/>[Read about](../storage/storage-introduction.md) Azure storage.
+**Azure network** | You'll need an Azure virtual network that Azure VMs will connect to when failover occurs. The Azure virtual network must be in the same region as the Site Recovery vault.
 
-## 內部部署必要條件
+## <a name="on-premises-prerequisites"></a>On-premises prerequisites
 
-以下是您在內部部署中需要的內容。
+Here's what you'll need on-premises.
 
-**必要條件** | **詳細資料**
+**Prerequisite** | **Details**
 --- | ---
-**VMM** | 您需要至少一部部署為實體或虛擬獨立伺服器，或是部署為虛擬叢集的 VMM 伺服器。<br/><br/>VMM 伺服器應執行含有最新累積更新的 System Center 2012 R2。<br/><br/>您需要在 VMM 伺服器上至少設定一個雲端。<br/><br/>您要保護的來源雲端必須包含一或多個 VMM 主機群組。<br/><br/>在 Keith Mayer 的部落格上的[逐步說明：使用 System Center 2012 SP1 VMM 建立私人雲端](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx)中，深入了解設定 VMM 雲端。
-**Hyper-V** | 您在 VMM 雲端中需要一或多個 Hyper-V 主機伺服器或叢集。主機伺服器應該有一或多個 VM。<br/><br/>Hyper-V 伺服器必須執行具有 Hyper-V 角色的最新 Windows Server 2012 R2，並安裝最新的更新。<br/><br/>任何含有您要保護之 VM 的 Hyper-V 伺服器都必須位於 VMM 雲端。<br/><br/>如果您是在叢集中執行 Hyper-V，請注意，當您擁有靜態 IP 位址叢集時，並不會自動建立叢集訊息代理程式。您必須手動設定叢集代理。在 Aidan Finn 的部落格項目中[深入了解](https://www.petri.com/use-hyper-v-replica-broker-prepare-host-clusters)。
-**受保護的機器** | 您想要保護的 VM 應該符合 [Azure 需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
+**VMM** | You'll need at least one VMM server deployed as a physical or virtual standalone server, or as a virtual cluster. <br/><br/>The VMM server should be running System Center 2012 R2 with the latest cumulative updates.<br/><br/>You'll need at least one cloud configured on the VMM server.<br/><br/>The source cloud that you want to protect must contain one or more VMM host groups.<br/><br/>Learn more about setting up VMM clouds in [Walkthrough: Creating private clouds with System Center 2012 SP1 VMM](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx) on Keith Mayer's blog.
+**Hyper-V** | You'll need one or more Hyper-V host servers or clusters in the VMM cloud. The host server should have and one or more VMs. <br/><br/>The Hyper-V server must be running on at least Windows Server 2012 R2 with the Hyper-V role and have the latest updates installed.<br/><br/>Any Hyper-V server containing VMs you want to protect must be located in a VMM cloud.<br/><br/>If you're running Hyper-V in a cluster note that cluster broker isn't created automatically if you have a static IP address-based cluster. You'll need to configure the cluster broker manually. [Learn more](https://www.petri.com/use-hyper-v-replica-broker-prepare-host-clusters) in Aidan Finn's blog entry.
+**Protected machines** | VMs you want to protect should comply with [Azure requirements](site-recovery-best-practices.md#azure-virtual-machine-requirements).
 
 
-## 網路對應的必要條件
-當您在 Azure 網路對應中保護虛擬機器，請對應來源 VMM 伺服器上的 VM 網路和目標 Azure 網路，以啟用下列項目：
+## <a name="network-mapping-prerequisites"></a>Network mapping prerequisites
+When you protect virtual machines in Azure network mapping maps between VM networks on the source VMM server and target Azure networks to enable the following:
 
-- 在相同網路上容錯移轉的所有機器都可以彼此連接，無論它們隸屬於哪個復原計畫都一樣。
-- 如果目標 Azure 網路上已設定網路閘道，則虛擬機器可以連接到其他內部部署虛擬機器。
-- 如果您未設定網路對應，則只有在相同復原計畫中容錯移轉的虛擬機器才能在容錯移轉到 Azure 之後彼此連接。
+- All machines which failover on the same network can connect to each other, irrespective of which recovery plan they are in.
+- If a network gateway is setup on the target Azure network, virtual machines can connect to other on-premises virtual machines.
+- If you don’t configure network mapping only virtual machines that fail over in the same recovery plan will be able to connect to each other after failover to Azure.
 
-如果您想要部署網路對應，您需要下列項目：
+If you want to deploy network mapping you'll need the following:
 
-- 您想要在來源 VMM 伺服器上保護的虛擬機器應該連線到 VM 網路。該網路應該連結到與雲端相關聯的邏輯網路。
-- 複寫的虛擬機器可在容錯移轉之後連線的 Azure 網路。您將在容錯移轉時選取此網路。此網路應該和您的 Azure Site Recovery 訂用帳戶在相同的區域中。
+- The virtual machines you want to protect on the source VMM server should be connected to a VM network. That network should be linked to a logical network that is associated with the cloud.
+- An Azure network to which replicated virtual machines can connect after failover. You'll select this network at the time of failover. The network should be in the same region as your Azure Site Recovery subscription.
 
-準備網路對應，如下所示：
+Prepare for network mapping as follows:
 
-1. [閱讀](site-recovery-network-mapping.md)網路對應需求。
-2. 在 VMM 中準備 VM 網路：
+1. [Read about](site-recovery-network-mapping.md) network mapping requirements.
+2. Prepare VM networks in VMM:
 
-	- [設定邏輯網路](https://technet.microsoft.com/library/jj721568.aspx)。
-	- [設定 VM 網路](https://technet.microsoft.com/library/jj721575.aspx)。
+    - [Set up logical networks](https://technet.microsoft.com/library/jj721568.aspx).
+    - [Set up VM networks](https://technet.microsoft.com/library/jj721575.aspx).
 
 
-## 步驟 1：建立 Site Recovery 保存庫
+## <a name="step-1:-create-a-site-recovery-vault"></a>Step 1: Create a Site Recovery vault
 
-1. 從您想要註冊的 VMM 伺服器登入[管理入口網站](https://portal.azure.com)。
-2. 按一下 [資料服務] > [復原服務]，然後按一下 [Site Recovery 保存庫]。
-3. 按一下 [新建] > [快速建立]。
-4. 在 [**名稱**] 中，輸入保存庫的易記識別名稱。
-5. 在 [地區] 中，選取保存庫的地理區域。若要查看支援的區域，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/)中的＜各地區上市情況＞。
-6. 按一下 [建立保存庫]。
+1. Sign in to the [Management Portal](https://portal.azure.com) from the VMM server you want to register.
+2. Click **Data Services** > **Recovery Services** > **Site Recovery Vault**.
+3. Click **Create New** > **Quick Create**.
+4. In **Name**, enter a friendly name to identify the vault.
+5. In **Region**, select the geographic region for the vault. To check supported regions see Geographic Availability in [Azure Site Recovery Pricing Details](https://azure.microsoft.com/pricing/details/site-recovery/).
+6. Click **Create vault**.
 
-	![新增保存庫](./media/site-recovery-vmm-to-azure-classic/create-vault.png)
+    ![New Vault](./media/site-recovery-vmm-to-azure-classic/create-vault.png)
 
-檢查狀態列，以確認是否順利建立保存庫。保存庫在主要復原服務頁面上會列為 [使用中]。
+Check the status bar to confirm that the vault was successfully created. The vault will be listed as **Active** on the main Recovery Services page.
 
-## 步驟 2：產生保存庫註冊金鑰
+## <a name="step-2:-generate-a-vault-registration-key"></a>Step 2: Generate a vault registration key
 
-在保存庫中產生註冊金鑰。下載 Azure Site Recovery 提供者並將其安裝在 VMM 伺服器之後，您將使用此金鑰在保存庫中註冊 VMM 伺服器。
+Generate a registration key in the vault. After you download the Azure Site Recovery Provider and install it on the VMM server, you'll use this key to register the VMM server in the vault.
 
-1. 在 [復原服務] 頁面中，按一下保存庫以開啟 [快速啟動] 頁面。您也可以使用圖示隨時開啟 [快速入門]。
+1. In the **Recovery Services** page, click the vault to open the Quick Start page. Quick Start can also be opened at any time using the icon.
 
-	![快速啟動圖示](./media/site-recovery-vmm-to-azure-classic/qs-icon.png)
+    ![Quick Start Icon](./media/site-recovery-vmm-to-azure-classic/qs-icon.png)
 
-2. 在下拉式清單中，選取 [在內部部署 Hyper-V 站台與 Microsoft Azure 之間]。
-3. 在 [準備 VMM 伺服器] 中，按一下 [產生註冊金鑰檔案]。該金鑰檔案會自動產生，並在產生後會維持 5 天有效。如果您沒有從 VMM 伺服器存取 Azure 入口網站，您必須將這個檔案複製到伺服器。
+2. In the dropdown list, select **Between an on-premises VMM site and Microsoft Azure**.
+3. In **Prepare VMM Servers**, click **Generate registration key** file. The key file is generated automatically and is valid for 5 days after it's generated. If you're not accessing the Azure portal from the VMM server you'll need to copy this file to the server.
 
-	![註冊金鑰](./media/site-recovery-vmm-to-azure-classic/register-key.png)
+    ![Registration key](./media/site-recovery-vmm-to-azure-classic/register-key.png)
 
-## 步驟 3：安裝 Azure Site Recovery 提供者
+## <a name="step-3:-install-the-azure-site-recovery-provider"></a>Step 3: Install the Azure Site Recovery Provider
 
-1. 在 [快速啟動] 中，按一下 [準備 VMM 伺服器] 中的 [下載要在 VMM 伺服器上安裝的 Microsoft Azure Site Recovery 提供者]，以取得最新版的提供者安裝檔案。
-2. 在來源 VMM 伺服器上執行此檔案。
+1. In **Quick Start** > **Prepare VMM servers**, click **Download Microsoft Azure Site Recovery Provider for installation on VMM servers** to obtain the latest version of the Provider installation file.
+2. Run this file on the source VMM server.
 
-	>[AZURE.NOTE] 如果 VMM 部署在叢集中，且您是第一次安裝提供者，請將其安裝在作用中節點上，並完成安裝以在保存庫中註冊 VMM 伺服器。然後在其他節點上安裝提供者。請注意，如果您要升級提供者，您必須在所有節點上升級，因為它們都應該執行相同的提供者版本。
-	
-3. 安裝程式會執行一些先決條件檢查，並要求停止 VMM 服務的權限，以便開始安裝提供者。當安裝完成之後，VMM 服務將會自動重新啟動。如果您安裝在 VMM 叢集上，您會收到停止叢集角色的提示。
+    >[AZURE.NOTE] If VMM is deployed in a cluster and you're installing the Provider for the first time install it on an active node and finish the installation to register the VMM server in the vault. Then install the Provider on the other nodes. Note that if you're upgrading the Provider you'll need to upgrade on all nodes because they should all be running the same Provider version.
+    
+3. The Installer does a prerequirements check and requests permission to stop the VMM service to begin Provider setup. The VMM Service will be restarted automatically when setup finishes. If you're installing on a VMM cluster you'll be prompted to stop the Cluster role.
 
-4. 在 [Microsoft Update] 中，您可以選擇加入以取得更新。啟用這項設定時，會根據您的 Microsoft Update 原則來安裝提供者更新。
+4. In **Microsoft Update** you can opt in for updates. With this setting enabled Provider updates will be installed according to your Microsoft Update policy.
 
-	![Microsoft Update](./media/site-recovery-vmm-to-azure-classic/updates.png)
+    ![Microsoft Updates](./media/site-recovery-vmm-to-azure-classic/updates.png)
 
 
-5.  提供者的安裝位置已設為 **<SystemDrive>\\Program Files\\Microsoft System Center 2012 R2\\Virtual Machine Manager\\bin**。按一下 [Install]。
+5.  The install location for the Provider is set to **<SystemDrive>\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin**. Click **Install**.
 
-	![InstallLocation](./media/site-recovery-vmm-to-azure-classic/install-location.png)
+    ![InstallLocation](./media/site-recovery-vmm-to-azure-classic/install-location.png)
 
-6. 安裝提供者之後，請按一下 [註冊]，在保存庫中註冊伺服器。
+6. After the Provider is installed click **Register** to register the server in the vault.
 
-	![InstallComplete](./media/site-recovery-vmm-to-azure-classic/install-complete.png)
+    ![InstallComplete](./media/site-recovery-vmm-to-azure-classic/install-complete.png)
 
-9. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。按 [下一步]。
+9. In **Vault name**, verify the name of the vault in which the server will be registered. Click *Next*.
 
-	![伺服器註冊](./media/site-recovery-vmm-to-azure-classic/vaultcred.PNG)
+    ![Server registration](./media/site-recovery-vmm-to-azure-classic/vaultcred.PNG)
 
-7. 在 [網際網路連線] 中，指定 VMM 伺服器上執行的提供者連接到網際網路的方式。選取 [使用現有的 Proxy 設定連線]，以使用在伺服器上設定的預設網際網路連線設定。
+7. In **Internet Connection** specify how the Provider running on the VMM server connects to the Internet. Select **Connect with existing proxy settings** to use the default Internet connection settings configured on the server.
 
-	![網際網路設定](./media/site-recovery-vmm-to-azure-classic/proxydetails.PNG)
+    ![Internet Settings](./media/site-recovery-vmm-to-azure-classic/proxydetails.PNG)
 
-	- 如果您想要使用自訂 proxy，您應該在安裝提供者之前進行設定。當您進行自訂 proxy 設定時，會執行一項測試以檢查 proxy 連線。
-	- 如果您使用自訂 proxy，或者您的預設 proxy 需要驗證，您必須輸入 proxy 詳細資料，包含 proxy 位址和連接埠。
-	- 下列 URL 應可從 VMM 伺服器和 Hyper-V 主機存取
-		- *.hypervrecoverymanager.windowsazure.com
-		- *.accesscontrol.windows.net
-		- *.backup.windowsazure.com
-		- *.blob.core.windows.net
-		- *.store.core.windows.net
-	- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的允許清單 IP 範圍
-	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。若要這樣做，請開啟 [設定] 工作區、展開 [安全性]、按一下 [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
+    - If you want to use a custom proxy you should set it up before you install the Provider. When you configure custom proxy settings a test will run to check the proxy connection.
+    - If you do use a custom proxy, or your default proxy requires authentication you'll need to enter the proxy details, including the proxy address and port.
+    - Following urls should be accessible from the VMM Server and the Hyper-v hosts
+        - *.hypervrecoverymanager.windowsazure.com
+        - *.accesscontrol.windows.net
+        - *.backup.windowsazure.com
+        - *.blob.core.windows.net
+        - *.store.core.windows.net
+    - Allow the IP addresses described in [Azure Datacenter IP Ranges](https://www.microsoft.com/download/confirmation.aspx?id=41653) and HTTPS (443) protocol. You would have to white-list IP ranges of the Azure region that you plan to use and that of West US.
+    - If you use a custom proxy a VMM RunAs account (DRAProxyAccount) will be created automatically using the specified proxy credentials. Configure the proxy server so that this account can authenticate successfully. The VMM RunAs account settings can be modified in the VMM console. To do this, open the **Settings** workspace, expand **Security**, click **Run As Accounts**, and then modify the password for DRAProxyAccount. You’ll need to restart the VMM service so that this setting takes effect.
 
 
-8. 在 [註冊金鑰] 中，選取您從 Azure Site Recovery 下載並複製到 VMM 伺服器的金鑰。
+8. In **Registration Key**, select the key that you downloaded from Azure Site Recovery and copied to the VMM server.
 
 
-10.  只有在您正在將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 時，才會使用這項加密設定。如果您是在複寫至次要站台，則不會使用它。
+10.  The encryption setting is only used when you're replicating Hyper-V VMs in VMM clouds to Azure. If you're replicating to a secondary site it's not used.
 
-11.  在 [伺服器名稱] 中，指定保存庫中 VMM 伺服器的易記識別名稱。在叢集設定中，指定 VMM 叢集角色名稱。
-12.  在 [同步處理雲端中繼資料] 中，選取您是否要將 VMM 伺服器上所有雲端的中繼資料與保存庫同步。這個動作只需要在每個伺服器上進行一次。如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。
+11.  In **Server name**, specify a friendly name to identify the VMM server in the vault. In a cluster configuration specify the VMM cluster role name.
+12.  In **Synchronize cloud metadata** select whether you want to synchronize metadata for all clouds on the VMM server with the vault. This action only needs to happen once on each server. If you don't want to synchronize all clouds, you can leave this setting unchecked and synchronize each cloud individually in the cloud properties in the VMM console.
 
-13.  按 [下一步]，完成此程序。註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
- 	
-	![Lastpage](./media/site-recovery-vmm-to-azure-classic/provider13.PNG)
+13.  Click **Next** to complete the process. After registration, metadata from the VMM server is retrieved by Azure Site Recovery. The server is displayed on the  **VMM Servers** tab on the **Servers** page in the vault.
+    
+    ![Lastpage](./media/site-recovery-vmm-to-azure-classic/provider13.PNG)
 
-註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
+After registration, metadata from the VMM server is retrieved by Azure Site Recovery. The server is displayed on the **VMM Servers** tab on the **Servers** page in the vault.
 
-### 命令列安裝
+### <a name="command-line-installation"></a>Command line installation
 
-您也可以使用下列命令列來安裝 Azure Site Recovery 提供者。這個方法可以用來在適用於 Windows Server 2012 R2 的伺服器核心上安裝提供者。
+The Azure Site Recovery Provider can also be installed using the following command line. This method can be used to install the provider on a Server Core for Windows Server 2012 R2.
 
-1. 將提供者安裝檔案和註冊金鑰下載至資料夾。例如：C:\\ASR。
-2. 停止 System Center Virtual Machine Manager 服務
-3. 從提高權限的命令提示字元中，使用下列命令擷取提供者安裝程式：
+1. Download the Provider installation file and registration key to a folder. For example: C:\ASR.
+2. Stop the System Center Virtual Machine Manager service
+3. From an elevated command prompt, extract the Provider installer with these commands:
 
-    	C:\Windows\System32> CD C:\ASR
-    	C:\ASR> AzureSiteRecoveryProvider.exe /x:. /q
+        C:\Windows\System32> CD C:\ASR
+        C:\ASR> AzureSiteRecoveryProvider.exe /x:. /q
 
-4. 安裝提供者，如下所示：
+4. Install the provider as follows:
 
-		C:\ASR> setupdr.exe /i
+        C:\ASR> setupdr.exe /i
 
-5. 註冊提供者，如下所示：
+5. Register the Provider as follows:
 
-    	CD C:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin
-    	C:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin> DRConfigurator.exe /r  /Friendlyname <friendly name of the server> /Credentials <path of the credentials file> /EncryptionEnabled <full file name to save the encryption certificate>       
+        CD C:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin
+        C:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin\> DRConfigurator.exe /r  /Friendlyname <friendly name of the server> /Credentials <path of the credentials file> /EncryptionEnabled <full file name to save the encryption certificate>       
 
-參數如下所示：
+Where parameters are as follows:
 
- - **/Credentials**：必要參數，用來指定註冊金鑰檔案所在的位置
- - **/FriendlyName**：對於 Hyper-V 主機伺服器名稱的必要參數，該伺服器會出現在 Azure Site Recovery 入口網站中。
- - **/EncryptionEnabled**：選擇性參數，指定您是否要在 Azure 中加密您的虛擬機器 (靜態加密)。檔名應該有 **.pfx** 副檔名。
- - **/proxyAddress**：指定 Proxy 伺服器位址的選用參數。
- - **/proxyport**：指定 Proxy 伺服器連接埠的選用參數。
- - **/proxyUsername**：選擇性參數，指定 Proxy 使用者名稱。
- - **/proxyPassword**：選擇性參數，指定 Proxy 密碼。
+ - **/Credentials** : Mandatory parameter that specifies the location in which the registration key file is located  
+ - **/FriendlyName** : Mandatory parameter for the name of the Hyper-V host server that appears in the Azure Site Recovery portal.
+ - **/EncryptionEnabled** : Optional parameter to specify if you want to encryption your virtual machines in Azure (at rest encryption). The file name should have a **.pfx** extension.
+ - **/proxyAddress** : Optional parameter that specifies the address of the proxy server.
+ - **/proxyport** : Optional parameter that specifies the port of the proxy server.
+ - **/proxyUsername** : Optional parameter that specifies the proxy user name.
+ - **/proxyPassword** :Optional parameter that specifies the proxy password.  
 
 
-## 步驟 4：建立 Azure 儲存體帳戶
+## <a name="step-4:-create-an-azure-storage-account"></a>Step 4: Create an Azure storage account
 
-1. 如果您沒有 Azure 儲存體帳戶，請按一下 [新增 Azure 儲存體帳戶] 以建立帳戶。
-2. 建立帳戶並啟用異地複寫。此帳戶應與 Azure 站台復原服務位於相同的區域，且與相同的訂閱相關聯。
+1. If you don't have an Azure storage account click **Add an Azure Storage Account** to create an account.
+2. Create an account with geo-replication enabled. It must in the same region as the Azure Site Recovery service, and be associated with the same subscription.
 
-	![儲存體帳戶](./media/site-recovery-vmm-to-azure-classic/storage.png)
+    ![Storage account](./media/site-recovery-vmm-to-azure-classic/storage.png)
 
-> [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的儲存體帳戶，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組。
+> [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) across resource groups within the same subscription or across subscriptions is not supported for storage accounts used for deploying Site Recovery.
 
-## 步驟 5：安裝 Azure 復原服務代理程式
+## <a name="step-5:-install-the-azure-recovery-services-agent"></a>Step 5: Install the Azure Recovery Services Agent
 
-在 VMM 雲端中的每一個 Hyper-V 主機伺服器上，安裝 Azure 復原服務代理程式。
+Install the Azure Recovery Services agent on each Hyper-V host server in the VMM cloud.
 
-1. 按一下 [快速啟動] > [下載 Azure Site Recovery 服務代理程式並安裝在主機上]，以取得最新版的代理程式安裝檔案。
+1. Click **Quick Start** > **Download Azure Site Recovery Services Agent and install on hosts** to obtain the latest version of the agent installation file.
 
-	![Install Recovery Services Agent](./media/site-recovery-vmm-to-azure-classic/install-agent.png)
+    ![Install Recovery Services Agent](./media/site-recovery-vmm-to-azure-classic/install-agent.png)
 
-2. 在每一個 Hyper-V 主機伺服器上執行安裝檔案。
-3. 在 [檢查先決條件] 頁面上，按 [下一步]。將自動安裝任何缺少的必要元件。
+2. Run the installation file on each Hyper-V host server.
+3. On the **Prerequisites Check** page click **Next**. Any missing prerequisites will be automatically installed.
 
-	![Prerequisites Recovery Services Agent](./media/site-recovery-vmm-to-azure-classic/agent-prereqs.png)
+    ![Prerequisites Recovery Services Agent](./media/site-recovery-vmm-to-azure-classic/agent-prereqs.png)
 
-4. 在 [安裝設定] 頁面上，指定您要安裝代理程式的位置，並選取將在其中安裝備份中繼資料的快取位置。然後按一下 [安裝]。
-5. 安裝完成之後，按一下 [關閉] 來完成精靈。
+4. On the **Installation Settings** page, specify where you want to install the agent and select the cache location in which backup metadata will be installed. Then click **Install**.
+5. After installation finishes click **Close** to complete the wizard.
 
-	![註冊 MARS 代理程式](./media/site-recovery-vmm-to-azure-classic/agent-register.png)
+    ![Register MARS Agent](./media/site-recovery-vmm-to-azure-classic/agent-register.png)
 
-### 命令列安裝
+### <a name="command-line-installation"></a>Command line installation
 
-您也可以使用下列命令，從命令列安裝 Microsoft Azure 復原服務代理程式：
+You can also install the Microsoft Azure Recovery Services Agent from the command line using this command:
 
     marsagentinstaller.exe /q /nu
 
-## 步驟 6：設定雲端保護設定
+## <a name="step-6:-configure-cloud-protection-settings"></a>Step 6: Configure cloud protection settings
 
-註冊 VMM 伺服器之後，您就可以設定雲端保護設定。當您安裝提供者之後，即可啟用 [將雲端資料與保存庫同步] 選項，如此一來，VMM 伺服器上的所有雲端將會出現在保存庫的 [受保護的項目]<b></b> 索引標籤中。
+After the VMM server is registered, you can configure cloud protection settings. You enabled the option **Synchronize cloud data with the vault** when you installed the Provider so all clouds on the VMM server will appear in the <b>Protected Items</b> tab in the vault.
 
-![發佈的雲端](./media/site-recovery-vmm-to-azure-classic/clouds-list.png)
+![Published Cloud](./media/site-recovery-vmm-to-azure-classic/clouds-list.png)
 
-1. 在 [快速啟動] 頁面上，按一下 [設定 VMM 雲端的保護]。
-2. 在 [受保護項目] 索引標籤上，按一下要設定的雲端，並移至 [設定] 索引標籤。
-3. 在 [目標] 中，選取 [Azure]。
-4. 在 [儲存體帳戶] 中，選取您想要用來複寫的 Azure 儲存體帳戶。
-5. 將 [Encrypt stored data] 設為 [關閉]。此設定指定應該將內部部署與 Azure 之間複寫的資料加密。
-6. 在 [複製頻率] 中保留預設設定。這個值指定應在來源與目標位置之間同步處理資料的頻率。
-7. 在 [Retain recovery points for] 中保留預設設定。使用預設值 0 時，只會在複本主機伺服器上儲存主要虛擬機器的最新復原點。
-8. 在 [應用程式一致快照的頻率] 中保留預設設定。這個值指定建立快照的頻率。快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。如果您設定一個值，請確定此值小於您設定的其他復原點數目。
-9. 在 [Replication start time] 中，指定初次將資料複寫至 Azure 的開始時間。將會使用 Hyper-V 主機伺服器的時區。建議您將初次複寫排定在離峰時段進行。
+1. On the Quick Start page, click **Set up protection for VMM clouds**.
+2. On the **Protected Items** tab, click on the cloud you want to configure and go to the **Configuration** tab.
+3. In **Target** select **Azure**.
+4. In **Storage Account** select the Azure storage account you use for replication.
+5. Set **Encrypt stored data** to **Off**. This setting specifies that data should be encrypted replicated between the on-premises site and Azure.
+6. In **Copy frequency** leave the default setting. This value specifies how frequently data should be synchronized between source and target locations.
+7. In **Retain recovery points for**, leave the default setting. With a default value of zero, only the latest recovery point for a primary virtual machine is stored on a replica host server.
+8. In **Frequency of application-consistent snapshots**, leave the default setting. This value specifies how often to create snapshots. Snapshots use Volume Shadow Copy Service (VSS) to ensure that applications are in a consistent state when the snapshot is taken.  If you do set a value, make sure it's less than the number of additional recovery points you configure.
+9. In **Replication start time**, specify when initial replication of data to Azure should start. The timezone on the Hyper-V host server will be used. We recommend that you schedule the initial replication during off-peak hours.
 
-	![Cloud replication settings](./media/site-recovery-vmm-to-azure-classic/cloud-settings.png)
+    ![Cloud replication settings](./media/site-recovery-vmm-to-azure-classic/cloud-settings.png)
 
-儲存設定之後，會建立一個工作，並可在 [工作] 索引標籤上進行監視。將會對 VMM 雲端中的所有 Hyper-V 主機伺服器設定複寫。
+After you save the settings a job will be created and can be monitored on the **Jobs** tab. All Hyper-V host servers in the VMM source cloud will be configured for replication.
 
-儲存之後，可在 [設定] 索引標籤上修改雲端設定。若要修改目標位置或目標儲存體帳戶，您需要移除雲端組態，然後重新設定雲端。請注意，如果您變更儲存體帳戶，則只會對修改儲存體帳戶之後才啟用保護的虛擬機器套用變更。現有的虛擬機器不會移轉至新的儲存體帳戶。
+After saving, cloud settings can be modified on the **Configure** tab. To modify the target location or target storage account you'll need to remove the cloud configuration, and then reconfigure the cloud. Note that if you change the storage account the change is only applied for virtual machines that are enabled for protection after the storage account has been modified. Existing virtual machines are not migrated to the new storage account.
 
-## 步驟 7：設定網路對應
-開始網路對應之前，請確認來源 VMM 伺服器上的虛擬機器已連線到 VM 網路。此外，請建立一或多個 Azure 虛擬網路。請注意，多個 VM 網路可對應至單一 Azure 網路。
+## <a name="step-7:-configure-network-mapping"></a>Step 7: Configure network mapping
+Before you begin network mapping verify that virtual machines on the source VMM server are connected to a VM network. In addition create one or more Azure virtual networks. Note that multiple VM networks can be mapped to a single Azure network.
 
-1. 在 [快速入門] 頁面上，按一下 [對應網路]。
-2. 在 [網路] 索引標籤的 [來源位置] 中，選取來源 VMM 伺服器。在 [目標位置] 中選取 [Azure]。
-3. 在 [來源] 網路中，會顯示與 VMM 伺服器相關聯的 VM 網路清單。在 [目標] 網路中，會顯示與訂用帳戶相關聯的 Azure 網路。
-4. 選取來源 VM 網路，然後按一下 [對應]。
-5. 在 [選取目標網路] 頁面上，選取您要使用的目標 Azure 網路。
-6. 按一下打勾記號完成對應程序。
+1. On the Quick Start page, click **Map networks**.
+2. On the **Networks** tab, in **Source location**, select the source VMM server. In **Target location** select Azure.
+3. In **Source** networks a list of VM networks associated with the VMM server are displayed. In **Target** networks the Azure networks associated with the subscription are displayed.
+4. Select the source VM network and click **Map**.
+5. On the **Select a Target Network** page, select the target Azure network you want to use.
+6. Click the check mark to complete the mapping process.
 
-	![Cloud replication settings](./media/site-recovery-vmm-to-azure-classic/map-networks.png)
+    ![Cloud replication settings](./media/site-recovery-vmm-to-azure-classic/map-networks.png)
 
-儲存設定之後，工作會開始追蹤對應進度，可在 [工作] 索引標籤上進行監視。對應來源 VM 網路的任何現有複本虛擬機器都會連線到目標 Azure 網路。連線到來源 VM 網路的新虛擬機器都會在複寫之後連線到對應的 Azure 網路。如果您修改與新網路的現有對應，複本虛擬機器將使用新設定進行連線。
+After you save the settings a job starts to track the mapping progress and it can be monitored on the Jobs tab. Any existing replica virtual machines that correspond to the source VM network will be connected to the target Azure networks. New virtual machines that are connected to the source VM network will be connected to the mapped Azure network after replication. If you modify an existing mapping with a new network, replica virtual machines will be connected using the new settings.
 
-請注意，如果目標網路具有多個子網路，且其中一個子網路的名稱和來源虛擬機器所在之子網路名稱相同，複本虛擬機器將會在容錯移轉之後連線到該目標子網路。如果沒有目標子網路具有相符的名稱，虛擬機器將會連線到網路中的第一個子網路。
+Note that if the target network has multiple subnets and one of those subnets has the same name as subnet on which the source virtual machine is located, then the replica virtual machine will be connected to that target subnet after failover. If there’s no target subnet with a matching name, the virtual machine will be connected to the first subnet in the network.
 
-> [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的網路，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組。
+> [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) across resource groups within the same subscription or across subscriptions is not supported for networks used for deploying Site Recovery.
 
-## 步驟 8：對虛擬機器啟用保護
+## <a name="step-8:-enable-protection-for-virtual-machines"></a>Step 8: Enable protection for virtual machines
 
-正確設定伺服器、雲端和網路後，您就可以對雲端中的虛擬機器啟用保護。請注意：
+After servers, clouds, and networks are configured correctly, you can enable protection for virtual machines in the cloud. Note the following:
 
-- 虛擬機器必須符合 [Azure 需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
-- 若要啟用保護功能，您必須為虛擬機器設定作業系統和作業系統磁碟屬性。當您使用虛擬機器範本在 VMM 中建立虛擬機器時，您可以設定屬性。您也可以在虛擬機器屬性的 [一般] 及 [硬體設定] 索引標籤上，為現有的虛擬機器設定這些屬性。若未在 VMM 中設定這些屬性，您將可在 Azure 站台復原入口網站中加以設定。
+- Virtual machines must meet [Azure requirements](site-recovery-best-practices.md#azure-virtual-machine-requirements).
+- To enable protection the operating system and operating system disk properties must be set for the virtual machine. When you create a virtual machine in VMM using a virtual machine template you can set the property. You can also set these properties for existing virtual machines on the **General** and **Hardware Configuration** tabs of the virtual machine properties. If you don't set these properties in VMM you'll be able to configure them in the Azure Site Recovery portal.
 
-	![Create virtual machine](./media/site-recovery-vmm-to-azure-classic/enable-new.png)
+    ![Create virtual machine](./media/site-recovery-vmm-to-azure-classic/enable-new.png)
 
-	![Modify virtual machine properties](./media/site-recovery-vmm-to-azure-classic/enable-existing.png)
-
-
-1. 若要啟用保護，請在虛擬機器所在雲端中的 [虛擬機器] 索引標籤上，按一下 [啟用保護] > [加入虛擬機器]。
-2. 從雲端中所有虛擬機器的清單，選取您要保護的虛擬機器。
-
-	![啟用虛擬機器保護](./media/site-recovery-vmm-to-azure-classic/select-vm.png)
-
-	您可以在 [工作] 索引標籤中追蹤 [啟用保護] 動作的進度，包括初始複寫。執行 [完成保護] 作業之後，虛擬機器即準備好進行容錯移轉。啟用保護並複寫虛擬機器之後，您將能夠在 Azure 中檢視這些虛擬機器。
+    ![Modify virtual machine properties](./media/site-recovery-vmm-to-azure-classic/enable-existing.png)
 
 
-	![虛擬機器保護工作](./media/site-recovery-vmm-to-azure-classic/vm-jobs.png)
+1. To enable protection, on the **Virtual Machines** tab in the cloud in which the virtual machine is located, click **Enable protection** > **Add virtual machines**.
+2. From the list of virtual machines in the cloud, select the one you want to protect.
 
-3. 驗證虛擬機器屬性，並視需要加以修改。
+    ![Enable virtual machine protection](./media/site-recovery-vmm-to-azure-classic/select-vm.png)
 
-	![Verify virtual machines](./media/site-recovery-vmm-to-azure-classic/vm-properties.png)
-
-
-4. 在虛擬機器屬性的 [設定] 索引標籤上可以修改下列網路屬性。
+    Track progress of the **Enable Protection** action in the **Jobs** tab, including the initial replication. After the **Finalize Protection** job runs the virtual machine is ready for failover. After protection is enabled and virtual machines are replicated, you’ll be able to view them in Azure.
 
 
+    ![Virtual machine protection job](./media/site-recovery-vmm-to-azure-classic/vm-jobs.png)
+
+3. Verify the virtual machine properties and modify as required.
+
+    ![Verify virtual machines](./media/site-recovery-vmm-to-azure-classic/vm-properties.png)
+
+
+4. On the **Configure** tab of the virtual machine properties following network properties can be modified.
 
 
 
-- 目標虛擬機器的網路介面卡數目 - 網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。查看[虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md#size-tables)，了解虛擬機器大小所支援的介面卡數目。在修改虛擬機器的大小並儲存設定之後，當您下次開啟 [設定] 頁面時，網路介面卡的數量將會改變。目標虛擬機器的網路介面卡數目，是來源虛擬機器上的網路介面卡數目下限，以及所選虛擬機器大小支援的網路介面卡數目上限，如下所示：
-
-	- 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
-	- 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
-	- 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。
-
-- **目標虛擬機器的網路** - 虛擬機器連接的網路取決於來源虛擬機器網路的網路對應。如果來源虛擬機器有一個以上的網路介面卡，且來源網路對應至目標上的不同網路，則您必須選擇其中一個目標網路。
-- **每個網路介面卡的子網路** - 針對每個網路介面卡，您可以選取容錯移轉的虛擬機器會連接的子網路。
-- **目標 IP 位址** - 如果來源虛擬機器的網路介面卡是設定為使用靜態 IP 位址，則您可以提供目標虛擬機器的 IP 位址。使用此功能，在容錯移轉之後保留來源虛擬機器的 IP 位址。如果未提供任何 IP 位址，在容錯移轉時會將任何可用的 IP 位址提供給網路介面卡。如果已指定目標 IP 位址，但是已由在 Azure 中執行的另一個虛擬機器使用，則容錯移轉將會失敗。
-
-	![修改網路屬性](./media/site-recovery-vmm-to-azure-classic/multi-nic.png)
-
->[AZURE.NOTE] 不支援具有靜態 IP 位址的 Linux 虛擬機器。
-
-## 測試部署
-
-若要測試部署，您可以對單一虛擬機器執行測試容錯移轉，或者建立包含多部虛擬機器的復原方案，再對這個方案執行測試容錯移轉。
-
-測試容錯移轉會在隔離的網路中模擬您的容錯移轉與復原機制。請注意：
-
-- 如果您在容錯移轉之後要使用遠端桌面連接到 Azure 中的虛擬機器，請先在虛擬機器上啟用遠端桌面連線，再執行測試容錯移轉。
-- 容錯移轉之後，您將透過遠端桌面使用公用 IP 位址連接到 Azure 中的虛擬機器。如果想要這樣做，請確定沒有任何網域原則禁止您使用公用位址連接到虛擬機器。
-
->[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。您可以在[這裡](https://github.com/Azure/WALinuxAgent)找到 Linux 代理程式，而 Windows 代理程式則可在[這裡](http://go.microsoft.com/fwlink/?LinkID=394789)找到
-
-### 建立復原計畫
-
-1. 在 [復原方案] 索引標籤上，增加一個新方案。指定一個名稱、在 [來源類型] 中指定 [VMM]、在 [來源] 中指定來源 VMM 伺服器，則目標將會是 Azure。
-
-	![建立復原計畫](./media/site-recovery-vmm-to-azure-classic/recovery-plan1.png)
-
-2. 在 [選取虛擬機器] 頁面上，選取要新增到復原方案的虛擬機器。這些虛擬機器將新增到復原計畫的預設群組—群組 1。最多 100 部虛擬機器已在單一復原計畫中經過測試。
-
-- 如果您將虛擬機器屬性加入計畫之前，想要確認這些屬性，請按一下屬性所在之雲端的屬性頁面上的虛擬機器。您也可以在 VMM 主控台中設定虛擬機器屬性。
-- 顯示的所有虛擬機器已啟用保護。此清單包含啟用保護並已完成初始複寫的虛擬機器，以及利用初始複寫擱置啟用保護的虛擬機器。只有已完成初始複寫的虛擬機器可做為復原計畫的一部分進行容錯移轉。
-
-	![建立復原計畫](./media/site-recovery-vmm-to-azure-classic/select-rp.png)
-
-建立復原方案之後，它會出現在 [復原方案] 索引標籤中。您也可以將 [Azure 自動化 Runbook](site-recovery-runbook-automation.md) 加入至復原方案，以自動化容錯移轉期間的動作。
-
-### 執行測試容錯移轉
-
-有兩種方式可以測試容錯移轉至 Azure。
-
-- **在沒有 Azure 網路的情況下測試容錯移轉**—這種測試容錯移轉可以檢查虛擬機器是否正確地出現在 Azure 中。在容錯移轉之後，虛擬機器不會連線到任何 Azure 網路。
-- **利用 Azure 網路測試容錯移轉** - 這種測試容錯移轉可以檢查整個復寫環境是否如預期般出現並進行容錯移轉，虛擬機器會連線到只訂的目標 Azure 網路。針對子網路處理的測試容錯移轉，可根據複本虛擬機器的子網路得知測試虛擬機器的子網路。這和一般的複寫不同，一般複寫的複本虛擬機器子網路是根據來源虛擬機器的子網路得知。
-
-如果您想要針對啟用保護的虛擬機器執行測試容錯轉移至 Azure ，卻不想指定 Azure 目標網路，您不需要作任何準備。若要以目標 Azure 網路執行測試容錯移轉，您必須建立與您的 Azure 正式作業網路 (當您在 Azure 中建立新網路時的預設行為) 分隔的新的 Azure 網路。如需詳細資訊，請參考如何[執行測試容錯移轉](site-recovery-failover.md#run-a-test-failover)。
 
 
-您也必須針對複寫虛擬機器設定基礎結構，以如預期般運作。例如，具有網域控制站和 DNS 的虛擬機器可以使用 Azure Site Recovery 複寫到 Azure，而且可以使用測試容錯移轉，在測試網路中加以建立。如需詳細資訊，請參閱 [Active Directory 測試容錯移轉考量](site-recovery-active-directory.md#considerations-for-test-failover)一節。
+- **Number of network adapters on the target virtual machine** - The number of network adapters is dictated by the size you specify for the target virtual machine. Check [virtual machine size specs](../virtual-machines/virtual-machines-linux-sizes.md#size-tables) for the number of adapters supported by the virtual machine size. When you modify the size for a virtual machine and save the settings, the number of network adapter will change when you open **Configure** page the next time. The number of network adapters of target virtual machines is the minimum number of network adapters on source virtual machine and the maximum number of network adapters supported by the size of the virtual machine chosen, as follows:
 
-如果要執行測試容錯移轉，請執行下列動作：
+    - If the number of network adapters on the source machine is less than or equal to the number of adapters allowed for the target machine size, then the target will have the same number of adapters as the source.
+    - If the number of adapters for the source virtual machine exceeds the number allowed for the target size then the target size maximum will be used.
+    - For example, if a source machine has two network adapters and the target machine size supports four, the target machine will have two adapters. If the source machine has two adapters but the supported target size only supports one then the target machine will have only one adapter.    
 
-1. 在 [復原計畫] 索引標籤上，選取計畫，然後按一下 [測試容錯移轉]。
-2. 在 [確認測試容錯移轉] 頁面上，選取 [無] 或特定的 Azure 網路。請注意，如果您選取 [無]，測試容錯移轉將會檢查虛擬機器是否正確地複寫至 Azure，但並不會檢查您的複寫網路設定。
+- **Network of the target virtual machine** - The network to which the virtual machine connects to is determined by network mapping of the network of source virtual machine. If the source virtual machine has more than one network adapter and source networks are mapped to different networks on target, then you'll need to choose between one of the target networks.
+- **Subnet of each network adapter** - For each network adapter you can select the subnet to which the failed over virtual machine would connect to.
+- **Target IP address** - If the network adapter of source virtual machine is configured to use a static IP address then you can provide the IP address for the target virtual machine. Use this feature retain the IP address of a source virtual machine after a failover. If no IP address is provided then any available IP address is given to the network adapter at the time of failover. If the target IP address is specified but is already used by another virtual machine running in Azure then failover will fail.  
 
-	![沒有網路](./media/site-recovery-vmm-to-azure-classic/test-no-network.png)
+    ![Modify network properties](./media/site-recovery-vmm-to-azure-classic/multi-nic.png)
 
-3. 如果已啟用雲端的資料加密，當您開啟選項以啟用雲端的資料加密時，請在 [**加密金鑰**] 中選取在 VMM 伺服器上安裝提供者時發出的憑證。
-4. 在 [工作] 索引標籤上，您可以追蹤容錯移轉進度。您應該可以在 Azure 入口網站中看到該虛擬機器測試複本。如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。
-5. 當容錯移轉到達 [完成測試] 階段時，請按一下 [完成測試] 以完成測試容錯移轉。您可以向下切入到 [工作] 索引標籤，來追蹤容錯移轉進度和狀態，並執行任何所需的動作。
-6. 在容錯移轉之後，您將可以在 Azure 入口網站中看到該虛擬機器測試複本。如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。執行下列動作：
+>[AZURE.NOTE] Linux virtual machines with static IP address aren't supported.
 
-    1. 確認虛擬機器成功啟動。
-    2. 如果您在容錯移轉之後要使用遠端桌面連接到 Azure 中的虛擬機器，請先在虛擬機器上啟用遠端桌面連線，再執行測試容錯移轉。您也必須在虛擬機器上新增 RDP 端點。您可以利用 [Azure 自動化 Runbook](site-recovery-runbook-automation.md) 來執行這個動作。
-    3. 容錯移轉之後，如果您使用公用 IP 位址，利用 [遠端桌面] 連接到 Azure 中的虛擬機器，請確定您沒有任何網域原則會阻止您使用公用位址連接到虛擬機器。
+## <a name="test-the-deployment"></a>Test the deployment
 
-7.  測試完成之後，請執行下列動作：
-	- 按一下 [測試容錯移轉完成]。清除測試環境，以自動關閉電源及刪除測試虛擬機器。
-	- 按一下 [記事] 記錄並儲存關於測試容錯移轉的任何觀察。
+To test your deployment you can run a test failover for a single virtual machine, or create a recovery plan consisting of multiple virtual machines, and run a test failover for the plan.  
 
-## 後續步驟
+Test failover simulates your failover and recovery mechanism in an isolated network. Note that:
 
-深入了解[設定復原方案](site-recovery-create-recovery-plans.md)和[容錯移轉](site-recovery-failover.md)。
+- If you want to connect to the virtual machine in Azure using Remote Desktop after the failover, enable Remote Desktop Connection on the virtual machine before you run the test failover.
+- After failover you'll use a public IP address to connect to the virtual machine in Azure using Remote Desktop. If you want to do this, ensure you don't have any domain policies that prevent you from connecting to a virtual machine using a public address.
 
-<!---HONumber=AcomDC_0831_2016-->
+>[AZURE.NOTE] To get the best performance when you do a failover to Azure, ensure that you have installed the Azure Agent in the protected machine. This helps in booting faster and also helps in diagnosis in case of issues. Linux agent can be found [here](https://github.com/Azure/WALinuxAgent) - and Windows agent can be found [here](http://go.microsoft.com/fwlink/?LinkID=394789)
+
+### <a name="create-a-recovery-plan"></a>Create a recovery plan
+
+1. On the **Recovery Plans** tab, add a new plan. Specify a name, **VMM** in **Source type**, and the source VMM server in **Source**, The target will be Azure.
+
+    ![Create recovery plan](./media/site-recovery-vmm-to-azure-classic/recovery-plan1.png)
+
+2. In the **Select Virtual Machines** page, select virtual machines to add to the recovery plan. These virtual machines are added to the recovery plan default group—Group 1. A maximum of 100 virtual machines in a single recovery plan have been tested.
+
+- If you want to verify the virtual machine properties before adding them to the plan, click the virtual machine on the properties page of the cloud in which it’s located. You can also configure the virtual machine properties in the VMM console.
+- All of the virtual machines that are displayed have been enabled for protection. The list includes both virtual machines that are enabled for protection and initial replication has completed, and those that are enabled for protection with initial replication pending. Only virtual machines with initial replication completed can fail over as part of a recovery plan.
+
+    ![Create recovery plan](./media/site-recovery-vmm-to-azure-classic/select-rp.png)
+
+After a recovery plan has been created it appears in the **Recovery Plans** tab. You can also add [Azure automation runbooks](site-recovery-runbook-automation.md) to the recovery plan to automate actions during failover.
+
+### <a name="run-a-test-failover"></a>Run a test failover
+
+There are two ways to run a test failover to Azure.
+
+- **Test failover without an Azure network**—This type of test failover checks that the virtual machine comes up correctly in Azure. The virtual machine won’t be connected to any Azure network after failover.
+- **Test failover with an Azure network**—This type of failover checks that the entire replication environment comes up as expected and that failed over the virtual machines will be connected to the specified target Azure network. For subnet handling, for test failover the subnet of the test virtual machine will be figured out based on the subnet of the replica virtual machine. This is different to regular replication when the subnet of a replica virtual machine is based on the subnet of the source virtual machine.
+
+If you want to run a test failover for a virtual machine enabled for protection to Azure without specifying an Azure target network you don’t need to prepare anything. To run a test failover with a target Azure network you’ll need to create a new Azure network that’s isolated from your Azure production network (default behavior when you create a new network in Azure). Look at how to [run a test failover](site-recovery-failover.md#run-a-test-failover) for more details.
+
+
+You'll also need to set up the infrastructure for the replicated virtual machine to work as expected. For example, a virtual machine with Domain Controller and DNS can be replicated to Azure using Azure Site Recovery and can be created in the test network using Test Failover. Look at [test failover considerations for active directory](site-recovery-active-directory.md#considerations-for-test-failover) section for more details.
+
+To run a test failover do the following:
+
+1. On the **Recovery Plans** tab, select the plan and click **Test Failover**.
+2. On the **Confirm Test Failover** page select **None** or a specific Azure network.  Note that if you select None the test failover will check that the virtual machine replicated correctly to Azure but doesn't check your replication network configuration.
+
+    ![No network](./media/site-recovery-vmm-to-azure-classic/test-no-network.png)
+
+3. If data encryption is enabled for the cloud, in **Encryption Key** select the certificate that was issued during installation of the Provider on the VMM server, when you turned on the option to enable data encryption for a cloud.
+4. On the **Jobs** tab you can track failover progress. You should also be able to see the virtual machine test replica in the Azure portal. If you’re set up to access virtual machines from your on-premises network you can initiate a Remote Desktop connection to the virtual machine.
+5. When the failover reaches the **Complete testing** phase , click **Complete Test** to finish up the test failover. You can drill down to the **Job** tab to track failover progress and status, and to perform any actions that are needed.
+6. After  failover you'll be able to see the virtual machine test replica in the Azure portal. If you’re set up to access virtual machines from your on-premises network you can initiate a Remote Desktop connection to the virtual machine. Do the following:
+
+    1. Verify that the virtual machines start successfully.
+    2. If you want to connect to the virtual machine in Azure using Remote Desktop after the failover, enable Remote Desktop Connection on the virtual machine before you run the test failover. You'll  also need to add an RDP endpoint on the virtual machine. You can leverage an [Azure Automation Runbooks](site-recovery-runbook-automation.md) to do that.
+    3. After failover if you use a public IP address to connect to the virtual machine in Azure using Remote Desktop, ensure you don't have any domain policies that prevent you from connecting to a virtual machine using a public address.
+
+7.  After the testing is complete do the following:
+    - Click **The test failover is complete**. Clean up the test environment to automatically power off and delete the test virtual machines.
+    - Click **Notes** to record and save any observations associated with the test failover.
+
+>
+
+## <a name="next-steps"></a>Next steps
+
+Learn about [setting up recovery plans](site-recovery-create-recovery-plans.md) and [failover](site-recovery-failover.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,12 +1,15 @@
 
-| 交易類型 | 每個區域中的每個保存庫在 10 秒內允許的最大交易數
+| Transactions Type | Max transactions allowed in 10 seconds, per vault per region
 --- | ---
-| HSM - 建立金鑰 | 5
-| HSM - 其他交易 | 1000
-| 螢幕按鍵建立金鑰 | 10
-| 螢幕按鍵其他交易 | 1500
-| 所有密碼、保存庫相關交易 | 2000
+| HSM- CREATE KEY | 5
+| HSM- other transactions | 1000
+| Soft-key CREATE KEY | 10
+| Soft-key other transactions | 1500
+| All secrets, vault related transactions | 2000
  
  
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Oct16_HO2-->
+
+

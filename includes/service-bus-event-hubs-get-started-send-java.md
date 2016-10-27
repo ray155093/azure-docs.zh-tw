@@ -1,20 +1,20 @@
-## 將訊息傳送至事件中心
+## <a name="send-messages-to-event-hubs"></a>Send messages to Event Hubs
 
-適用於事件中樞的 Java 用戶端程式庫可以在來自 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)的 Maven 專案中使用，而且可在您的 Maven 專案檔內使用下列相依性宣告來參考：
+The Java client library for Event Hubs is available for use in Maven projects from the [Maven Central Repository](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22), and can be referenced using the following dependency declaration inside your Maven project file:    
 
 ``` XML
 <dependency>
-	<groupId>com.microsoft.azure</groupId>
-	<artifactId>azure-eventhubs</artifactId>
-	<version>{VERSION}</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-eventhubs</artifactId>
+    <version>{VERSION}</version>
 </dependency>
 ```
  
-對於不同類型的組建環境，您可以明確地從 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)或 [GitHub 上的版本發佈點](https://github.com/Azure/azure-event-hubs/releases)取得最新發行的 JAR 檔案。
+For different types of build environments, you can explicitly obtain the latest released JAR files from the [Maven Central Repository](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22) or from [the release distribution point on GitHub](https://github.com/Azure/azure-event-hubs/releases).  
 
-如果是簡單事件發行者，請針對事件中樞用戶端類別匯入 *com.microsoft.azure.eventhubs* 封裝，以及針對公用程式類別匯入 *com.microsoft.azure.servicebus* 封裝，例如，與 Azure 服務匯流排訊息用戶端共用的常見例外狀況。
+For a simple event publisher, import the *com.microsoft.azure.eventhubs* package for the Event Hubs client classes and the *com.microsoft.azure.servicebus* package for utility classes such as common exceptions that are shared with the Azure Service Bus messaging client. 
 
-針對下列範例，在您最喜愛的 Java 開發環境中，先為主控台/殼層應用程式建立新的 Maven 專案。此類別將稱為 ```Send```。
+For the following sample, first create a new Maven project for a console/shell application in your favorite Java development environment. The class will be called ```Send```.     
 
 ``` Java
 
@@ -28,33 +28,36 @@ import com.microsoft.azure.servicebus.*;
 
 public class Send
 {
-	public static void main(String[] args) 
-			throws ServiceBusException, ExecutionException, InterruptedException, IOException
-	{
+    public static void main(String[] args) 
+            throws ServiceBusException, ExecutionException, InterruptedException, IOException
+    {
 ```
 
-使用您建立事件中樞時所使用的值，來取代命名空間和事件中樞名稱。
+Replace the namespace and Event Hub names with the values used when you created the Event Hub.
 
 ``` Java
-	final String namespaceName = "----ServiceBusNamespaceName-----";
-	final String eventHubName = "----EventHubName-----";
-	final String sasKeyName = "-----SharedAccessSignatureKeyName-----";
-	final String sasKey = "---SharedAccessSignatureKey----";
-	ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName, sasKeyName, sasKey);
+    final String namespaceName = "----ServiceBusNamespaceName-----";
+    final String eventHubName = "----EventHubName-----";
+    final String sasKeyName = "-----SharedAccessSignatureKeyName-----";
+    final String sasKey = "---SharedAccessSignatureKey----";
+    ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName, sasKeyName, sasKey);
 ```
 
-接著將字串轉換為它的 utf-8 位元組編碼方式，藉以建立單一事件。然後我們會從連接字串建立新的事件中樞用戶端執行個體，然後傳送訊息。
+Then, create a singular event by turning a string into its UTF-8 byte encoding. We then create a new Event Hubs client instance from the connection string and send the message.   
 
 ``` Java 
-				
-	byte[] payloadBytes = "Test AMQP message from JMS".getBytes("UTF-8");
-	EventData sendEvent = new EventData(payloadBytes);
-	
-	EventHubClient ehClient = EventHubClient.createFromConnectionStringSync(connStr.toString());
-	ehClient.sendSync(sendEvent);
-	}
+                
+    byte[] payloadBytes = "Test AMQP message from JMS".getBytes("UTF-8");
+    EventData sendEvent = new EventData(payloadBytes);
+    
+    EventHubClient ehClient = EventHubClient.createFromConnectionStringSync(connStr.toString());
+    ehClient.sendSync(sendEvent);
+    }
 }
 
 ``` 
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

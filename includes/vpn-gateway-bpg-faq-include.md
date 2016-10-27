@@ -1,82 +1,85 @@
-### 所有的 Azure VPN 閘道 SKU 上是否都支援 BGP？
+### <a name="is-bgp-supported-on-all-azure-vpn-gateway-skus?"></a>Is BGP supported on all Azure VPN Gateway SKUs?
 
-否，在 Azure **標準**和**HighPerformance** VPN 閘道上才支援 BGP。不支援 **基本** SKU。
+No, BGP is supported on Azure **Standard** and **HighPerformance** VPN gateways. **Basic** SKU is NOT supported.
 
-### 可以使用 BGP 與 Azure Policy-Based VPN 閘道嗎？
+### <a name="can-i-use-bgp-with-azure-policy-based-vpn-gateways?"></a>Can I use BGP with Azure Policy-Based VPN gateways?
 
-否，僅路由 VPN 閘道支援 BGP。
+No, BGP is supported on Route-Based VPN gateways only.
 
-### 可以使用私人 ASN (自發系統編號) 嗎？
+### <a name="can-i-use-private-asns-(autonomous-system-numbers)?"></a>Can I use private ASNs (Autonomous System Numbers)?
 
-是，針對您的內部部署網路和 Azure 虛擬網路，您可以使用您自己的公用 ASN 或私人 ASN。
+Yes, you can use your own public ASNs or private ASNs for both your on-premises networks and Azure virtual networks.
 
-#### 是否有 Azure 所保留的 ASN 嗎？
+#### <a name="are-there-asns-reserved-by-azure?"></a>Are there ASNs reserved by Azure?
 
-是，下列是 Azure 針對內部和外部對等互連所保留的 ASN︰
+Yes, the following ASNs are reserved by Azure for both internal and external peerings:
 
-- 公用 ASN：8075、8076、12076
-- 私人 ASN：65515、65517、65518、65519、65520
+- Public ASNs: 8075, 8076, 12076
+- Private ASNs: 65515, 65517, 65518, 65519, 65520
 
-連接到 Azure VPN 閘道時，您無法針對內部部署 VPN 裝置指定這些 ASN。
+You cannot specify these ASNs for your on premises VPN devices when connecting to Azure VPN gateways.
 
-### 內部部署 VPN 網路和 Azure VNet 可以使用相同的 ASN 嗎？
+### <a name="can-i-use-the-same-asn-for-both-on-premises-vpn-networks-and-azure-vnets?"></a>Can I use the same ASN for both on-premises VPN networks and Azure VNets?
 
-否，如果您要將內部部署網路和 Azure VNet 與 BGP 連接，必須在內部部署網路與 Azure VNet 之間指派不同 ASN。Azure VPN 閘道已指派 65515 的預設 ASN，無論是否已針對跨單位連線啟用 BGP。您可以在建立 VPN 閘道時指派不同的 ASN 來覆寫這個預設值，或在建立閘道之後變更 ASN。您必須將內部部署 ASN 指派給對應 Azure 區域網路閘道。
+No, you must assign different ASNs between your on-premises networks and your Azure VNets if you are connecting them together with BGP. Azure VPN Gateways have a default ASN of 65515 assigned, whether BGP is enabled for not for your cross-premises connectivity. You can override this default by assigning a different ASN when creating the VPN gateway, or change the ASN after the gateway is created. You will need to assign your on-premises ASNs to the corresponding Azure Local Network Gateways.
 
-### Azure VPN 閘道會通告我哪些位址首碼？
+### <a name="what-address-prefixes-will-azure-vpn-gateways-advertise-to-me?"></a>What address prefixes will Azure VPN gateways advertise to me?
 
-Azure VPN 閘道會通告下列路由至您的內部部署 BGP 裝置︰
+Azure VPN gateway will advertise the following routes to your on-premises BGP devices:
 
-- 您的 VNet 位址首碼
-- 每個本機網路閘道的位址首碼已連線到 Azure VPN 閘道
-- 從其他 BGP 對等互連工作階段識別的路由已連線到 Azure VPN 閘道，**除了預設路由或與任何 VNet 首碼重疊的路由**。
+- Your VNet address prefixes
+- Address prefixes for each Local Network Gateways connected to the Azure VPN gateway
+- Routes learned from other BGP peering sessions connected to the Azure VPN gateway, **except default route or routes overlapped with any VNet prefix**.
 
-#### 可以公告 Azure VPN 閘道的預設路由 (0.0.0.0/0) 嗎？
+#### <a name="can-i-advertise-default-route-(0.0.0.0/0)-to-azure-vpn-gateways?"></a>Can I advertise default route (0.0.0.0/0) to Azure VPN gateways?
 
-目前沒有。
+Not at this time.
 
-#### 可以公告確切的前置詞做為我的虛擬網路前置詞嗎？
+#### <a name="can-i-advertise-the-exact-prefixes-as-my-virtual-network-prefixes?"></a>Can I advertise the exact prefixes as my Virtual Network prefixes?
 
-是，公告相同的前置詞做為任何一個虛擬網路位址前置詞，將由 Azure 平台進行封鎖或篩選。不過，您可以公告一個前置詞，也就是您在虛擬網路內已有的超集。例如，您的虛擬網路可以使用位址空間 10.10.0.0/16，而您可以公告 10.0.0.0/8。
+No, advertising the same prefixes as any one of your Virtual Network address prefixes will be blocked or filtered by the Azure platform. However you can advertise a prefix that is a superset of what you have inside your Virtual Network. For example, your Virtual Network could use the address space 10.10.0.0/16 and you could advertise 10.0.0.0/8.
 
-### 可以與我的 VNet 對 VNet 連線搭配使用 BGP 嗎？
+### <a name="can-i-use-bgp-with-my-vnet-to-vnet-connections?"></a>Can I use BGP with my VNet-to-VNet connections?
 
-是，您可以針對跨單位連線和 VNet 對 VNet 連線使用 BGP。
+Yes, you can use BGP for both cross-premises connections and VNet-to-VNet connections.
 
-### 可以針對我的 Azure VPN 閘道混合使用 BGP 和非 BGP 連線嗎？
+### <a name="can-i-mix-bgp-with-non-bgp-connections-for-my-azure-vpn-gateways?"></a>Can I mix BGP with non-BGP connections for my Azure VPN gateways?
 
-是，針對相同的 Azure VPN 閘道，您可以混合使用 BGP 和非 BGP 連線。
+Yes, you can mix both BGP and non-BGP connections for the same Azure VPN gateway.
 
-### Azure VPN 閘道是否支援 BGP 傳輸路由？
+### <a name="does-azure-vpn-gateway-support-bgp-transit-routing?"></a>Does Azure VPN gateway support BGP transit routing?
 
-是，可支援 BGP 傳輸路由，但例外狀況為 Azure VPN 閘道**不會**公告其他的 BGP 對等互連的預設路由。若要啟用跨多個 Azure VPN 閘道的路由傳輸，您必須在所有中繼 VNet 對 VNet 連線上啟用 BGP。
+Yes, BGP transit routing is supported, with the exception that Azure VPN gateways will **NOT** advertise default routes to other BGP peers. To enable transit routing across multiple Azure VPN gateways, you must enable BGP on all intermediate VNet-to-VNet connections.
 
-### 是否可在 Azure VPN 閘道與我的內部部署網路之間擁有多個通道？
+### <a name="can-i-have-more-than-one-tunnels-between-azure-vpn-gateway-and-my-on-premises-network?"></a>Can I have more than one tunnels between Azure VPN gateway and my on-premises network?
 
-是，您可在 Azure VPN 閘道與內部部署網路之間建立多個 S2S VPN 通道。請注意，所有這些通道將會計入您 Azure VPN 閘道的通道總數。例如，如果您在 Azure VPN 閘道與其中一個內部部署網路之間有兩個備援通道，它們會在您的 Azure VPN 閘道的總配額 (標準為 10，HighPerformance 為 30) 中耗用 2 個通道。
+Yes, you can establish more than one S2S VPN tunnels between an Azure VPN gateway and your on-premises network. Please note that all these tunnels will be counted against the total number of tunnels for your Azure VPN gateways. For example, if you have two redundant tunnels between your Azure VPN gateway and one of your on-premises network, they will consume 2 tunnels out of the total quota for your Azure VPN gateway (10 for Standard and 30 for HighPerformance).
 
-### 可以在兩個具有 BGP 的 Azure VNet 之間擁有多個通道嗎？
+### <a name="can-i-have-multiple-tunnels-between-two-azure-vnets-with-bgp?"></a>Can I have multiple tunnels between two Azure VNets with BGP?
 
-否，不支援一對虛擬網路之間的備援通道。
+No, redundant tunnels between a pair of virtual networks are not supported.
 
-### 我可以在 ExpressRoute/S2S VPN 共存組態中使用適用於 S2S VPN 的 BGP 嗎？
+### <a name="can-i-use-bgp-for-s2s-vpn-in-an-expressroute/s2s-vpn-co-existence-configuration?"></a>Can I use BGP for S2S VPN in an ExpressRoute/S2S VPN co-existence configuration?
 
-目前沒有。
+Not at this time.
 
-### Azure VPN 閘道會對 BGP 對等互連 IP 使用什麼位址？
+### <a name="what-address-does-azure-vpn-gateway-use-for-bgp-peer-ip?"></a>What address does Azure VPN gateway use for BGP Peer IP?
 
-Azure VPN 閘道會配置針對虛擬網路定義的 GatewaySubnet 範圍的單一 IP 位址。根據預設，它是範圍的最後第二個位址。例如，如果您的 GatewaySubnet 是 10.12.255.0/27，範圍從 10.12.255.0 到 10.12.255.31，則 Azure VPN 閘道上的 BGP 對等互連 IP 位址會是 10.12.255.30。當您列出 Azure VPN 閘道器資訊時，可以找到這項資訊。
+The Azure VPN gateway will allocate a single IP address from the GatewaySubnet range defined for the virtual network. By default, it is the second last address of the range. For example, if your GatewaySubnet is 10.12.255.0/27, ranging from 10.12.255.0 to 10.12.255.31, then the BGP Peer IP address on the Azure VPN gateway will be 10.12.255.30. You can find this information when you list the Azure VPN gateway information.
 
-### 我的 VPN 裝置上的 BGP 對等互連 IP 位址有哪些需求？
+### <a name="what-are-the-requirements-for-the-bgp-peer-ip-addresses-on-my-vpn-device?"></a>What are the requirements for the BGP Peer IP addresses on my VPN device?
 
-您內部部署 BGP 對等互連位址**不得**與您的 VPN 裝置的公用 IP 位址相同。在 VPN 裝置上針對 BGP 對等互連 IP 使用不同的 IP 位址。它可以是指派給裝置上的回送介面的位址。在代表位置的對應本機網路閘道中指定這個位址。
+Your on-premises BGP peer address **MUST NOT** be the same as the public IP address of your VPN device. Use a different IP address on the VPN device for your BGP Peer IP. It can be an address assigned to the loopback interface on the device. Specify this address in the corresponding Local Network Gateway representing the location.
 
-### 使用 BGP 時，應將區域網路閘道的位址首碼指定為什麼？
+### <a name="what-should-i-specify-as-my-address-prefixes-for-the-local-network-gateway-when-i-use-bgp?"></a>What should I specify as my address prefixes for the Local Network Gateway when I use BGP?
 
-Azure 區域網路閘道會指定內部部署網路的起始位址首碼。若具有 BGP，您必須配置 BGP 對等互連 IP 位址的主機首碼 (/32 首碼) 作為該內部部署網路的位址空間。如果 BGP 對等互連 IP 為 10.52.255.254，您應該指定「10.52.255.254/32」作為代表此內部部署網路的區域網路閘道的 localNetworkAddressSpace。這是為了確保 Azure VPN 閘道透過 S2S VPN 通道建立 BGP 工作階段。
+Azure Local Network Gateway specifies the initial address prefixes for the on-premises network. With BGP, you must allocate the host prefix (/32 prefix) of your BGP Peer IP address as the address space for that on-premises network. If your BGP Peer IP is 10.52.255.254, you should specify "10.52.255.254/32" as the localNetworkAddressSpace of the Local Network Gateway representing this on-premises network. This is to ensure that the Azure VPN gateway establishes the BGP session through the S2S VPN tunnel.
 
-### 我應該將什麼加入我的 BGP 對等互連工作階段的內部部署 VPN 裝置？
+### <a name="what-should-i-add-to-my-on-premises-vpn-device-for-the-bgp-peering-session?"></a>What should I add to my on-premises VPN device for the BGP peering session?
 
-您應該在指向 IPsec S2S VPN 通道的 VPN 裝置上加入 Azure BGP 對等互連 IP 位址的主機路由。例如，如果 Azure VPN 對等互連 IP 是「10.12.255.30」，您應該加入 VPN 裝置上具有比對 IPsec 通道介面的躍點介面的「10.12.255.30」主機路由。
+You should add a host route of the Azure BGP Peer IP address on your VPN device pointing to the IPsec S2S VPN tunnel. For example, if the Azure VPN Peer IP is "10.12.255.30", you should add a host route for "10.12.255.30" with a nexthop interface of the matching IPsec tunnel interface on your VPN device.
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

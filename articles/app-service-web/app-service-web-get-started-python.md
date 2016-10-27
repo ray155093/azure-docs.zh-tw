@@ -1,138 +1,145 @@
 <properties 
-	pageTitle="在 5 分鐘內，將您的第一個 Python Web 應用程式部署到 Azure | Microsoft Azure" 
-	description="藉由部署範例 App，了解在 App Service 中執行 Web 應用程式有多麼簡單。快速開始進行真正的開發，並立即查看結果。" 
-	services="app-service\web"
-	documentationCenter=""
-	authors="cephalin"
-	manager="wpickett"
-	editor=""
+    pageTitle="Deploy your first Python web app to Azure in five minutes | Microsoft Azure" 
+    description="Learn how easy it is to run web apps in App Service by deploying a sample app. Start doing real development quickly and see results immediately." 
+    services="app-service\web"
+    documentationCenter=""
+    authors="cephalin"
+    manager="wpickett"
+    editor=""
 />
 
 <tags
-	ms.service="app-service-web"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="hero-article"
-	ms.date="09/16/2016" 
-	ms.author="cephalin"
+    ms.service="app-service-web"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="hero-article"
+    ms.date="09/16/2016" 
+    ms.author="cephalin"
 />
-	
-# 在 5 分鐘內，將您的第一個 Python Web 應用程式部署到 Azure
+    
 
-本教學課程將協助您部署您的第一個 Python Web 應用程式至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。您可以使用 App Service 來建立 Web 應用程式、[行動應用程式後端](/documentation/learning-paths/appservice-mobileapps/)和 [API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
+# <a name="deploy-your-first-python-web-app-to-azure-in-five-minutes"></a>Deploy your first Python web app to Azure in five minutes
 
-您將：
+This tutorial helps you deploy your first Python web app to [Azure App Service](../app-service/app-service-value-prop-what-is.md).
+You can use App Service to create web apps, [mobile app back ends](/documentation/learning-paths/appservice-mobileapps/), and [API apps](../app-service-api/app-service-api-apps-why-best-platform.md).
 
-- 在 Azure App Service 中建立 Web 應用程式。
-- 部署範例 Python 程式碼。
-- 看見您的程式碼在生產環境中即時執行。
-- 以您[推送 Git 認可](https://git-scm.com/docs/git-push)的相同方式，更新 Web 應用程式。
+You will: 
 
-## 必要條件
+- Create a web app in Azure App Service.
+- Deploy sample Python code.
+- See your code running live in production.
+- Update your web app the same way you would [push Git commits](https://git-scm.com/docs/git-push).
 
-- [安裝 Git](http://www.git-scm.com/downloads)。從新的 Windows 命令提示字元、PowerShell 視窗、Linux 殼層或 OS X 終端機執行 `git --version`，確認您的安裝是否成功。
-- 取得 Microsoft Azure 帳戶。如果您沒有帳戶，可以[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+## <a name="prerequisites"></a>Prerequisites
 
->[AZURE.NOTE] 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
+- [Install Git](http://www.git-scm.com/downloads). Verify that your installation is successful by running `git --version` from a new Windows command prompt, PowerShell window, Linux shell, or OS X terminal.
+- Get a Microsoft Azure account. If you don't have an account, you can [sign up for a free trial](/pricing/free-trial/?WT.mc_id=A261C142F) or [activate your Visual Studio subscriber benefits](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
+
+>[AZURE.NOTE] You can [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751) without an Azure account. Create a starter app and play with it for up to an hour--no credit card required, no commitments.
 
 <a name="create"></a>
-## 建立 Web 應用程式
+## <a name="create-a-web-app"></a>Create a web app
 
-1. 使用您的 Azure 帳戶登入 [Azure 入口網站](https://portal.azure.com)。
+1. Sign in to the [Azure portal](https://portal.azure.com) with your Azure account.
 
-2. 按一下左側功能表的 [新增] > [Web + 行動] > [Web 應用程式]。
+2. From the left menu, click **New** > **Web + Mobile** > **Web App**.
 
     ![](./media/app-service-web-get-started-languages/create-web-app-portal.png)
 
-3. 在 App 建立刀鋒視窗中，針對您新的 App 使用下列設定：
+3. In the app creation blade, use the following settings for your new app:
 
-    - **應用程式名稱**：輸入唯一的名稱。
-    - **資源群組**：選取 [新建] 並指定資源群組名稱。
-    - **App Service 方案/位置**：按一下以進行設定，然後按一下 [新建] 來設定 App Service 方案的名稱、位置與定價層。請放心地使用 [免費] 定價層。
+    - **App name**: Type a unique name.
+    - **Resource group**: Select **Create new** and give the resource group a name.
+    - **App Service plan/Location**: Click it to configure, then click **Create New** to set the name, location, and pricing tier of the App Service plan. Feel free to use the **Free** pricing tier.
 
-    完成時，App 建立刀鋒視窗應該如下所示：
+    When you're done, your app creation blade should look like this:
 
     ![](./media/app-service-web-get-started-languages/create-web-app-settings.png)
 
-3. 按一下底部的 [建立]。您可以按一下頂端的通知圖示來查看進度。
+3. Click **Create** at the bottom. You can click the **Notification** icon at the top to see the progress.
 
     ![](./media/app-service-web-get-started-languages/create-web-app-started.png)
 
-4. 部署完成時，您應該會看到此通知訊息。按一下訊息可開啟部署的刀鋒視窗。
+4. When deployment is finished, you should see this notification message. Click the message to open your deployment's blade.
 
     ![](./media/app-service-web-get-started-languages/create-web-app-finished.png)
 
-5. 在 [部署成功] 刀鋒視窗中，按一下 [資源] 連結以開啟新的 Web 應用程式刀鋒視窗。
+5. In the **Deployment succeeded** blade, click the **Resource** link to open your new web app's blade.
 
     ![](./media/app-service-web-get-started-languages/create-web-app-resource.png)
 
-## 將程式碼部署至 Web 應用程式
+## <a name="deploy-code-to-your-web-app"></a>Deploy code to your web app
 
-現在，我們使用 Git 來將程式碼部署到 Azure。
+Now, let's deploy some code to Azure using Git.
 
-5. 在 Web 應用程式刀鋒視窗中，向下捲動至 [部署選項] 或搜尋「部署選項」，然後按一下它。
+5. In the web app blade, scroll down to **Deployment options** or search for it, then click it. 
 
     ![](./media/app-service-web-get-started-languages/deploy-web-app-deployment-options.png)
 
-6. 按一下 [選擇來源] > [本機 Git 儲存機制] > [確定]。
+6. Click **Choose Source** > **Local Git Repository** > **OK**.
 
-7. 回到 Web 應用程式刀鋒視窗，按一下 [部署認證]。
+7. Back in the web app blade, click **Deployment credentials**.
 
-8. 設定您的部署認證，然後按一下 [儲存]。
+8. Set your deployment credentials and click **Save**.
 
-7. 回到 Web 應用程式刀鋒視窗，向下捲動至 [屬性] 或搜尋「屬性」，然後按一下它。按一下 [Git URL] 旁的 [複製] 按鈕。
+7. Back in the web app blade, scroll down to **Properties** or search for it, then click it. Next to **Git URL**, click the **Copy** button.
 
     ![](./media/app-service-web-get-started-languages/deploy-web-app-properties.png)
 
-    您現在可以開始使用 Git 部署程式碼。
+    You're now ready to deploy your code with Git.
 
-1. 在命令列終端機中，變更至工作目錄 (`CD`)，並如下所示複製範例 App︰
+1. In your command-line terminal, change to a working directory (`CD`) and clone the sample app like this:
 
         git clone https://github.com/Azure-Samples/app-service-web-python-get-started.git
 
-    ![複製 App 範例程式碼，用於您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started-languages/python-git-clone.png)
+    ![Clone the app sample code for your first web app in Azure](./media/app-service-web-get-started-languages/python-git-clone.png)
 
-    對於 &lt;github\_sample\_url>，使用下列其中一個 URL (視您所需的架構而定)：
+    For *&lt;github_sample_url>*, use one of the following URLs, depending on the framework that you like:
 
-2. 切換至範例 App 的儲存機制。例如，
+2. Change to the repository of your sample app. For example, 
 
         cd app-service-web-html-get-started
 
-3. 針對您的 Azure App 設定 Git 遠端，其 Git URL 是您在前幾個步驟於入口網站中所複製。
+3. Configure the Git remote for your Azure app its Git URL, which you copied from the Portal a few steps ago.
 
         git remote add azure <giturlfromportal>
 
-4. 將範例程式碼部署至 Azure App，如同使用 Git 推送任何程式碼一般︰
+4. Deploy your sample code to your Azure app like you would push any code with Git:
 
         git push azure master
 
-    ![將程式碼推送至您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started-languages/python-git-push.png)
+    ![Push code to your first web app in Azure](./media/app-service-web-get-started-languages/python-git-push.png)    
 
-    如果您已使用其中一個語言架構，則會看到不同的輸出。這是因為 `git push` 不僅會將程式碼放在 Azure 中，也會在部署引擎中觸發部署工作。如果您的專案 (儲存機制) 根目錄中有 requirements.txt，部署指令碼會為您還原必要的套件。
+    If you used one of the language frameworks, you'll see different output. This is because `git push` not only puts code in Azure, but also triggers deployment tasks in the deployment engine. If you have any requirements.txt in your project (repository) root, the deployment script restores the required packages for you. 
 
-就這麼簡單！ 您的程式碼現在正在 Azure 中即時執行。在瀏覽器中，瀏覽至 http://*&lt;appname>*.azurewebsites.net 來查看其實際運作。
+That's it! Your code is now running live in Azure. In your browser, navigate to http://*&lt;appname>*.azurewebsites.net to see it in action. 
 
-## 更新您的 App
+## <a name="make-updates-to-your-app"></a>Make updates to your app
 
-您現在可以使用 Git 隨時從您的專案 (儲存機制) 根目錄進行推送，以更新即時網站。您可以使用第一次部署程式碼時的相同方式來執行這項作業。例如，每次您想要推送已在本機測試的新變更時，只需從專案 (儲存機制) 根目錄執行下列命令︰
+You can now use Git to push from your project (repository) root anytime to make an update to the live site. You do it the same way as when you deployed your code the first time. For example, every time you want to push a new change that you've tested locally, just run the following commands from your project (repository) root:
 
     git add .
     git commit -m "<your_message>"
     git push azure master
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[在 Visual Studio 中建立、設定及部署 Django Web 應用程式到 Azure](web-sites-python-ptvs-django-mysql.md)。遵循本教學課程，您將學習在 Azure 中執行 Python Web 應用程式的基本技巧，包括：
+[Create, configure, and deploy a Django web app to Azure in Visual Studio](web-sites-python-ptvs-django-mysql.md). By following this tutorial, you will learn the basic skills you need to run a Python web app in Azure, including:
 
-- 使用範本建立及部署 Python 應用程式。
-- 設定 Python 版本。
-- 建立虛擬環境。
-- 連接到資料庫。
+- Create and deploy a Python app using a template.
+- Set Python version.
+- Create virtual environments.
+- Connect to a database.
 
-或者，進一步運用您的第一個 Web 應用程式。例如：
+Or, do more with your first web app. For example:
 
-- 嘗試[將程式碼部署至 Azure 的其他方法](../app-service-web/web-sites-deploy.md)。例如，若要從您的其中一個 GitHub 儲存機制中部署，只需在 [部署選項] 中改為選取 [GitHub] 而不是 [本機 Git 儲存機制] 即可。
-- 加強您 Azure App 的功能。驗證您的使用者。根據需求加以調整。設定一些效能警示。都只要點幾下滑鼠就能完成。請參閱[在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md)。
+- Try out [other ways to deploy your code to Azure](../app-service-web/web-sites-deploy.md). For example, to deploy from one of your GitHub repositories, simply select **GitHub** instead of **Local Git Repository** in **Deployment options**.
+- Take your Azure app to the next level. Authenticate your users. Scale it based on demand. Set up some performance alerts. All with a few clicks. See [Add functionality to your first web app](app-service-web-get-started-2.md).
 
-<!---HONumber=AcomDC_0920_2016--->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

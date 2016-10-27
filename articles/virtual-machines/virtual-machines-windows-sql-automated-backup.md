@@ -1,130 +1,135 @@
- <properties
-	pageTitle="SQL Server 虛擬機器的自動備份 (Resource Manager) | Microsoft Azure"
-	description="說明在使用 Resource Manager 的 Azure 虛擬機器中執行的 SQL Server 自動備份功能。"
-	services="virtual-machines-windows"
-	documentationCenter="na"
-	authors="rothja"
-	manager="jhubbard"
-	editor=""
-	tags="azure-resource-manager"/>
+<properties
+    pageTitle="Automated Backup for SQL Server Virtual Machines (Resource Manager) | Microsoft Azure"
+    description="Explains the Automated Backup feature for SQL Server running in Azure Virtual Machines using Resource Manager. "
+    services="virtual-machines-windows"
+    documentationCenter="na"
+    authors="rothja"
+    manager="jhubbard"
+    editor=""
+    tags="azure-resource-manager"/>
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="07/14/2016"
-	ms.author="jroth" />
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="07/14/2016"
+    ms.author="jroth" />
 
-# Azure 虛擬機器中的 SQL Server 自動備份 (Resource Manager)
+
+# <a name="automated-backup-for-sql-server-in-azure-virtual-machines-(resource-manager)"></a>Automated Backup for SQL Server in Azure Virtual Machines (Resource Manager)
 
 > [AZURE.SELECTOR]
-- [資源管理員](virtual-machines-windows-sql-automated-backup.md)
-- [傳統](virtual-machines-windows-classic-sql-automated-backup.md)
+- [Resource Manager](virtual-machines-windows-sql-automated-backup.md)
+- [Classic](virtual-machines-windows-classic-sql-automated-backup.md)
 
-自動備份會針對執行 SQL Server 2014 Standard 或 Enterprise 之 Azure VM 上所有現存和新的資料庫，自動設定 [Managed Backup 到 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx)。這可讓您設定採用持久性 Azure Blob 儲存體的一般資料庫備份。自動備份相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-sql-server-agent-extension.md)。
+Automated Backup automatically configures [Managed Backup to Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx) for all existing and new databases on an Azure VM running SQL Server 2014 Standard or Enterprise. This enables you to configure regular database backups that utilize durable Azure blob storage. Automated Backup depends on the [SQL Server IaaS Agent Extension](virtual-machines-windows-sql-server-agent-extension.md).
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動備份 傳統]( virtual-machines-windows-classic-sql-automated-backup.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] classic deployment model. To view the classic version of this article, see [Automated Backup for SQL Server in Azure Virtual Machines Classic](virtual-machines-windows-classic-sql-automated-backup.md).
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-若要使用自動備份，請考慮下列必要條件︰
+To use Automated Backup, consider the following prerequisites:
 
-**作業系統**：
+**Operating System**:
 
 - Windows Server 2012
 - Windows Server 2012 R2
 
-**SQL Server 版本**：
+**SQL Server version/edition**:
 
 - SQL Server 2014 Standard
 - SQL Server 2014 Enterprise
 
-**資料庫組態**：
+**Database configuration**:
 
-- 目標資料庫必須使用完整復原模式
+- Target databases must use the full recovery model
 
-**Azure PowerShell**：
+**Azure PowerShell**:
 
-- 如果您打算使用 PowerShell 來設定「自動備份」，請[安裝最新的 Azure PowerShell 命令](../powershell-install-configure.md)。
+- [Install the latest Azure PowerShell commands](../powershell-install-configure.md) if you plan to configure Automated Backup with PowerShell.
 
->[AZURE.NOTE] 自動備份相依於 SQL Server IaaS 代理程式擴充。目前的 SQL 虛擬機器資源庫映像預設會新增這項擴充。如需詳細資訊，請參閱 [SQL Server IaaS Agent 擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
+>[AZURE.NOTE] Automated Backup relies on the SQL Server IaaS Agent Extension. Current SQL virtual machine gallery images add this extension by default. For more information, see [SQL Server IaaS Agent Extension](virtual-machines-windows-sql-server-agent-extension.md).
 
-## Settings
+## <a name="settings"></a>Settings
 
-下表說明可以為自動備份設定的選項。實際的設定步驟會依據您是使用 Azure 入口網站或 Azure Windows PowerShell 命令而有所不同。
+The following table describes the options that can be configured for Automated Backup. The actual configuration steps vary depending on whether you use the Azure portal or Azure Windows PowerShell commands.
 
-|設定|範圍 (預設值)|說明|
+|Setting|Range (Default)|Description|
 |---|---|---|
-|**自動備份**|啟用/停用 (已停用)|針對執行 SQL Server 2014 Standard 或 Enterprise 的 Azure VM，啟用或停用自動備份。|
-|**保留期限**|1-30 天 (30 天)|保留備份的天數。|
-|**儲存體帳戶**|Azure 儲存體帳戶 (針對指定 VM 建立的儲存體帳戶)|將自動備份檔案儲存在 Blob 儲存體中時，所使用的 Azure 儲存體帳戶。這個位置會建立一個容器來儲存所有備份檔案。備份檔案命名慣例包括日期、時間和電腦名稱。|
-|**加密**|啟用/停用 (已停用)|啟用或停用加密。啟用加密時，用來還原備份的憑證會放在與使用相同命名慣例之相同 automaticbackup 容器中的指定儲存體帳戶裡。如果密碼變更，就會以該密碼產生新的憑證，但是舊的憑證還是會保留，以還原先前的備份。|
-|**密碼**|密碼文字 (無)|加密金鑰的密碼。唯有啟用加密時，才需要此密碼。若要還原加密的備份，您必須要有建立備份時所使用的正確密碼和相關憑證。|
+|**Automated Backup**|Enable/Disable (Disabled)|Enables or disables Automated Backup for an Azure VM running SQL Server 2014 Standard or Enterprise.|
+|**Retention Period**|1-30 days (30 days)|The number of days to retain a backup.|
+|**Storage Account**|Azure storage account (the storage account created for the specified VM)|An Azure storage account to use for storing Automated Backup files in blob storage. A container is created at this location to store all backup files. The backup file naming convention includes the date, time, and machine name.|
+|**Encryption**|Enable/Disable (Disabled)|Enables or disables encryption. When encryption is enabled, the certificates used to restore the backup are located in the specified storage account in the same automaticbackup container using the same naming convention. If the password changes, a new certificate is generated with that password, but the old certificate remains to restore prior backups.|
+|**Password**|Password text (None)|A password for encryption keys. This is only required if encryption is enabled. In order to restore an encrypted backup, you must have the correct password and related certificate that was used at the time the backup was taken.|
 
-## 入口網站的組態
-您可以在佈建期間或針對現有的 VM，使用「Azure 入口網站」來設定「自動備份」。
+## <a name="configuration-in-the-portal"></a>Configuration in the Portal
+You can use the Azure Portal to configure Automated Backup during provisioning or for existing VMs.
 
-### 新的 VM
-在 Resource Manager 部署模型中建立新的 SQL Server 2014 虛擬機器時，請使用「Azure 入口網站」來設定「自動備份」。
+### <a name="new-vms"></a>New VMs
+Use the Azure Portal to configure Automated Backup when you create a new SQL Server 2014 Virtual Machine in the Resource Manager deployment model.
 
-在 [SQL Server 設定] 刀鋒視窗中，選取 [自動備份]。下列的 Azure 入口網站螢幕擷取畫面顯示 [SQL 自動備份] 刀鋒視窗。
+In the **SQL Server settings** blade, select **Automated backup**. The following Azure portal screenshot shows the **SQL Automated Backup** blade.
 
-![在 Azure 入口網站中設定 SQL 自動備份](./media/virtual-machines-windows-sql-automated-backup/azure-sql-arm-autobackup.png)
+![SQL Automated Backup configuration in Azure portal](./media/virtual-machines-windows-sql-automated-backup/azure-sql-arm-autobackup.png)
 
-如需相關內容，請參閱[在 Azure 中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)中的完整主題。
+For context, see the complete topic on [provisioning a SQL Server virtual machine in Azure](virtual-machines-windows-portal-sql-server-provision.md).
 
-### 現有的 VM
-如果是現有的 SQL Server 虛擬機器，請選取您的 SQL Server 虛擬機器。然後選取 [設定] 刀鋒視窗的 [SQL Server 組態] 區段。
+### <a name="existing-vms"></a>Existing VMs
+For existing SQL Server virtual machines, select your SQL Server virtual machine. Then select the **SQL Server configuration** section of the **Settings** blade.
 
-![現有 VM 的 SQL 自動備份](./media/virtual-machines-windows-sql-automated-backup/azure-sql-rm-autobackup-existing-vms.png)
+![SQL Automated Backup for existing VMs](./media/virtual-machines-windows-sql-automated-backup/azure-sql-rm-autobackup-existing-vms.png)
 
-在 [SQL Server 組態] 刀鋒視窗中，按一下 [自動備份] 區段中的 [編輯] 按鈕。
+In the **SQL Server configuration** blade, click the **Edit** button in the Automated backup section.
 
-![設定現有 VM 的 SQL 自動備份](./media/virtual-machines-windows-sql-automated-backup/azure-sql-rm-autobackup-configuration.png)
+![Configure SQL Automated Backup for existing VMs](./media/virtual-machines-windows-sql-automated-backup/azure-sql-rm-autobackup-configuration.png)
 
-完成時，按一下 [SQL Server 組態] 刀鋒視窗底部的 [確定] 按鈕，以儲存您的變更。
+When finished, click the **OK** button on the bottom of the **SQL Server configuration** blade to save your changes.
 
-如果這是您第一次啟用「自動備份」，Azure 就會在背景中設定 SQL Server IaaS Agent。在此期間，Azure 入口網站可能不會顯示已設定自動備份。請等候幾分鐘的時間來安裝及設定代理程式。之後，Azure 入口網站將會反映新的設定。
+If you are enabling Automated Backup for the first time, Azure configures the SQL Server IaaS Agent in the background. During this time, the Azure portal might not show that Automated Backup is configured. Wait several minutes for the agent to be installed, configured. After that the Azure portal will reflect the new settings.
 
->[AZURE.NOTE] 您也可以使用範本來設定「自動備份」。如需詳細資訊，請參閱[適用於自動備份的 Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-existing-autobackup-update)。
+>[AZURE.NOTE] You can also configure Automated Backup using a template. For more information, see [Azure quickstart template for Automated Backup](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-existing-autobackup-update).
 
-## 使用 PowerShell 進行設定
+## <a name="configuration-with-powershell"></a>Configuration with PowerShell
 
-佈建 SQL VM 之後，請使用 PowerShell 設定自動備份。
+After provisioning your SQL VM, use PowerShell to configure Automated Backup.
 
-在下列 PowerShell 範例中，是針對現有的 SQL Server 2014 VM 設定自動備份。**AzureRM.Compute\\New-AzureVMSqlServerAutoBackupConfig** 命令會設定「自動備份」設定，以將備份儲存在與虛擬機器關聯的 Azure 儲存體帳戶中。這些備份將會保留 10 天。**Set-AzureRmVMSqlServerExtension** 命令會使用這些設定來更新指定的 Azure VM。
+In the following PowerShell example, Automated Backup is configured for an existing SQL Server 2014 VM. The **AzureRM.Compute\New-AzureVMSqlServerAutoBackupConfig** command configures the Automated Backup settings to store backups in the Azure storage account associated with the virtual machine. These backups will be retained for 10 days. The **Set-AzureRmVMSqlServerExtension** command updates the specified Azure VM with these settings.
 
-	$vmname = "vmname"
-	$resourcegroupname = "resourcegroupname"
+    $vmname = "vmname"
+    $resourcegroupname = "resourcegroupname"
     $autobackupconfig = AzureRM.Compute\New-AzureVMSqlServerAutoBackupConfig -Enable -RetentionPeriodInDays 10 -ResourceGroupName $resourcegroupname
 
     Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig -VMName $vmname -ResourceGroupName $resourcegroupname
 
-可能需要幾分鐘的時間來安裝及設定 SQL Server IaaS 代理程式。
+It could take several minutes to install and configure the SQL Server IaaS Agent.
 
-若要啟用加密，請修改先前的指令碼，以針對 **CertificatePassword** 參數傳遞 **EnableEncryption** 參數及密碼 (安全字串)。下列指令碼會啟用上述範例中的自動備份設定，並新增加密。
+To enable encryption, modify the previous script to pass the **EnableEncryption** parameter along with a password (secure string) for the **CertificatePassword** parameter. The following script enables the Automated Backup settings in the previous example and adds encryption.
 
-	$vmname = "vmname"
-	$resourcegroupname = "resourcegroupname"
-	$password = "P@ssw0rd"
-	$encryptionpassword = $password | ConvertTo-SecureString -AsPlainText -Force  
-	$autobackupconfig = AzureRM.Compute\New-AzureVMSqlServerAutoBackupConfig -Enable -RetentionPeriod 10 -EnableEncryption -CertificatePassword $encryptionpassword -ResourceGroupName $resourcegroupname
+    $vmname = "vmname"
+    $resourcegroupname = "resourcegroupname"
+    $password = "P@ssw0rd"
+    $encryptionpassword = $password | ConvertTo-SecureString -AsPlainText -Force  
+    $autobackupconfig = AzureRM.Compute\New-AzureVMSqlServerAutoBackupConfig -Enable -RetentionPeriod 10 -EnableEncryption -CertificatePassword $encryptionpassword -ResourceGroupName $resourcegroupname
 
-	Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig -VMName $vmname -ResourceGroupName $resourcegroupname
+    Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig -VMName $vmname -ResourceGroupName $resourcegroupname
 
-若要停用自動備份，請執行相同的指令碼，但不要對 **AzureRM.Compute\\New-AzureVMSqlServerAutoBackupConfig** 命令使用 **-Enable** 參數。沒有 **-Enable** 參數時即表示通知命令停用此功能。和安裝一樣，可能需要幾分鐘的時間來停用自動備份。
+To disable automatic backup, run the same script without the **-Enable** parameter to the **AzureRM.Compute\New-AzureVMSqlServerAutoBackupConfig** command. The absence of the **-Enable** parameter signals the command to disable the feature. As with installation, it can take several minutes to disable Automated Backup.
 
->[AZURE.NOTE] 移除 SQL Server IaaS 代理程式不會移除先前設定的自動備份設定。在停用或解除安裝 SQL Server IaaS 代理程式之前，應先停用自動備份。
+>[AZURE.NOTE] Removing the SQL Server IaaS Agent does not remove the previously configured Automated Backup settings. You should disable Automated Backup before disabling or uninstalling the SQL Server IaaS Agent.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-自動備份會在 Azure VM 上設定受管理備份。因此，請務必[檢閱受管理備份的文件](https://msdn.microsoft.com/library/dn449496.aspx)，以了解其行為和隱含意義。
+Automated Backup configures Managed Backup on Azure VMs. So it is important to [review the documentation for Managed Backup](https://msdn.microsoft.com/library/dn449496.aspx) to understand the behavior and implications.
 
-您可以在下列主題中找到 Azure VM 上 SQL Server 的其他備份和還原指引：[Azure 虛擬機器中的 SQL Server 備份和還原](virtual-machines-windows-sql-backup-recovery.md)。
+You can find additional backup and restore guidance for SQL Server on Azure VMs in the following topic: [Backup and Restore for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-backup-recovery.md).
 
-如需其他可用的自動化工作的相關資訊，請參閱 [SQL Server IaaS Agent 擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
+For information about other available automation tasks, see [SQL Server IaaS Agent Extension](virtual-machines-windows-sql-server-agent-extension.md).
 
-如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
+For more information about running SQL Server on Azure VMs, see [SQL Server on Azure Virtual Machines overview](virtual-machines-windows-sql-server-iaas-overview.md).
 
-<!------HONumber=AcomDC_0720_2016---->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

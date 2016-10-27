@@ -1,6 +1,6 @@
 <properties
-   pageTitle="如何保持雲端服務的固定虛擬 IP 位址 | Microsoft Azure"
-   description="了解如何確保 Azure 雲端服務的虛擬 IP 位址 (VIP) 不會變更。"
+   pageTitle="How to retain a constant virtual IP address for a cloud service | Microsoft Azure"
+   description="Learn how to ensure that the virtual IP address (VIP) of your Azure cloud service doesn't change."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,34 +15,39 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 如何保持雲端服務的固定虛擬 IP 位址
 
-當您更新裝載於 Azure 中的雲端服務時，您可能需要確保服務的虛擬 IP 位址 (VIP) 不會變更。許多網域管理服務都使用網域名稱系統 (DNS) 註冊網域名稱。DNS 只有在 VIP 保持不變時才能運作。您可以使用 Azure 工具中的 [發佈精靈] 確保雲端服務的 VIP 不會在您更新它時變更。如需有關如何使用雲端服務的 DNS 網域管理的詳細資訊，請參閱[設定 Azure 雲端服務的自訂網域名稱](./cloud-services/cloud-services-custom-domain-name.md)。
+# <a name="how-to-retain-a-constant-virtual-ip-address-for-a-cloud-service"></a>How to retain a constant virtual IP address for a cloud service
 
-## 發佈雲端服務而不變更其 VIP
+When you update a cloud service that's hosted in Azure, you might need to ensure that the virtual IP address (VIP) of the service doesn't change. Many domain management services use the Domain Name System (DNS) for registering domain names. DNS works only if the VIP remains the same. You can use the **Publish Wizard** in Azure Tools to ensure that the VIP of your cloud service doesn’t change when you update it. For more information about how to use DNS domain management for cloud services, see [Configuring a custom domain name for an Azure cloud service](./cloud-services/cloud-services-custom-domain-name.md).
 
-當您第一次將雲端服務的 VIP 部署至特定環境 (例如生產環境) 的 Azure 中，會配置雲端服務的 VIP。除非您明確刪除部署或由部署更新程序隱含地將其刪除，否則 VIP 不會變更。若要保留 VIP，您不能刪除您的部署，且您必須要確定 Visual Studio 不會自動刪除您的部署。您可以藉由在 [發佈精靈] 中指定部署設定來控制行為，該精靈可支援多種部署選項。您可以指定全新部署或更新部署，可以是累加或同時的，且這兩種更新部署都會保留 VIP。如需這些不同類型部署的定義，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。此外，您可以在發生錯誤時，控制是否要刪除先前的雲端服務部署。如果您沒有正確設定該選項，VIP 可能會意外變更。
+## <a name="publishing-a-cloud-service-without-changing-its-vip"></a>Publishing a cloud service without changing its VIP
 
-### 更新雲端服務而不變更其 VIP
+The VIP of a cloud service is allocated when you first deploy it to Azure in a particular environment, such as the Production environment. The VIP doesn’t change unless you delete the deployment explicitly or it is implicitly deleted by the deployment update process. To retain the VIP, you must not delete your deployment, and you must also make sure that Visual Studio doesn’t delete your deployment automatically. You can control the behavior by specifying deployment settings in the **Publish Wizard**, which supports several deployment options. You can specify a fresh deployment or an update deployment, which can be incremental or simultaneous, and both kinds of update deployments retain the VIP. For definitions of these different types of deployment, see [Publish Azure Application Wizard](vs-azure-tools-publish-azure-application-wizard.md).  In addition, you can control whether the previous deployment of a cloud service is deleted if an error occurs. The VIP might unexpectedly change if you don't set that option correctly.
 
-1. 在您至少部署您的雲端服務一次之後，開啟 Azure 專案節點的捷徑功能表，並按一下 [發佈]。[發佈 Azure 應用程式] 精靈隨即出現。
+### <a name="to-update-a-cloud-service-without-changing-its-vip"></a>To update a cloud service without changing its VIP
 
-1. 在訂用帳戶清單中，選擇您要部署的目標訂用帳戶，然後選擇 [下一步] 按鈕。精靈的 [設定] 頁面隨即出現。
+1. After you deploy your cloud service at least once, open the shortcut menu for the node for your Azure project, and then choose **Publish**. The **Publish Azure Application** wizard appears.
 
-1. 在 [一般設定] 索引標籤上，確認您部署的目標雲端服務名稱、**環境**、**組建組態**和**服務組態**全都正確無誤。
+1. In the list of subscriptions, choose the one to which you want to deploy, and then choose the **Next** button. The **Settings** page of the wizard appears.
 
-1. 在 [進階設定] 索引標籤上，確認儲存體帳戶和部署標籤都正確無誤，已清除 [失敗時刪除部署] 核取方塊，而且已選取 [部署] 更新核取方塊。藉由選取 [部署] 更新核取方塊，您可以確定不會刪除您的部署，且 VIP 不會在重新發佈應用程式時遺失。藉由清除 [失敗時刪除部署] 核取方塊，您可以確定在部署期間發生錯誤時，VIP 不會遺失。
+1. On the **Common Settings** tab, verify that the name of the cloud service to which you’re deploying, the **Environment**, the **Build Configuration**, and the **Service Configuration** are all correct.
 
-1. 若要進一步指定您希望更新角色的方式，請選擇 [部署更新] 方塊旁的**設定**連結，然後再選擇 [部署更新] 設定對話方塊中的累加更新或同時更新選項。如果您選擇累加更新，每個執行個體都會逐一更新，讓應用程式隨時可使用。如果您選擇同時更新，會同時更新所有的執行個體。同時更新較為快速，但是您的服務可能無法在更新過程中使用。
+1. On the **Advanced Settings** tab, verify that the storage account and the deployment label are correct, that the **Delete deployment on failure** check box is cleared, and that the **Deployment** update check box is selected. By selecting the **Deployment** update check box, you ensure that your deployment won't be deleted and your VIP won't be lost when you republish your application. By clearing the **Delete deployment on failure check box**, you ensure that your VIP won't be lost if an error occurs during deployment.
 
-1. 如果您滿意您的設定，請選擇 [下一步] 按鈕。
+1. To further specify how you want the roles to be updated, choose the  **Settings** link next to the **Deployment update** box, and then choose either the incremental update or simultaneous update option in the **Deployment update** settings dialog box. If you choose incremental update, each instance is updated one after another, so that the application is always available. If you choose simultaneous update, all instances are updated at the same time. Simultaneous updating is faster, but your service might not be available during the update process.
 
-1. 在精靈的 [摘要] 頁面上，請確認您的設定，然後選擇 [發佈] 按鈕。
+1. When you’re satisfied with your settings, choose the **Next** button.
 
-  >[AZURE.WARNING] 如果部署失敗，您應該找出失敗原因並立即重新部署，以避免讓您的雲端服務保持在損毀狀態。
+1. On the **Summary** page of the wizard, verify your settings, and then choose the **Publish** button.
 
-## 後續步驟
+  >[AZURE.WARNING] If the deployment fails, you should address why it failed and redeploy promptly, to avoid leaving your cloud service in a corrupted state.
 
-若要了解如何從 Visual Studio 發佈至 Azure，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0817_2016-->
+To learn about publishing to Azure from Visual Studio, see [Publish Azure application wizard](vs-azure-tools-publish-azure-application-wizard.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

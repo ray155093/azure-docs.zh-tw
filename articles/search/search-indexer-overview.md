@@ -1,79 +1,85 @@
 <properties
-	pageTitle="Azure 搜尋服務中的索引子 | Microsoft Azure | 雲端託管搜尋服務"
-	description="耙梳 Azure SQL Database、DocumentDB 或 Azure 儲存體，以擷取可搜尋的資料並填入 Azure 搜尋服務索引。"
-	services="search"
-	documentationCenter=""
-	authors="HeidiSteen"
-	manager="jhubbard"
-	editor=""
+    pageTitle="Indexers in Azure Search | Microsoft Azure | Hosted cloud search service"
+    description="Crawl Azure SQL database, DocumentDB, or Azure storage to extract searchable data and populate an Azure Search index."
+    services="search"
+    documentationCenter=""
+    authors="HeidiSteen"
+    manager="jhubbard"
+    editor=""
     tags="azure-portal"/>
 
 <tags
-	ms.service="search"
-	ms.devlang="na"
-	ms.workload="search"
-	ms.topic="get-started-article"
-	ms.tgt_pltfrm="na"
-	ms.date="08/08/2016"
-	ms.author="heidist"/>
+    ms.service="search"
+    ms.devlang="na"
+    ms.workload="search"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="na"
+    ms.date="10/17/2016"
+    ms.author="heidist"/>
 
-# Azure 搜尋服務中的索引子
+
+# <a name="indexers-in-azure-search"></a>Indexers in Azure Search
 > [AZURE.SELECTOR]
-- [概觀](search-indexer-overview.md)
-- [入口網站](search-import-data-portal.md)
+- [Overview](search-indexer-overview.md)
+- [Portal](search-import-data-portal.md)
 - [Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md)
 - [DocumentDB](../documentdb/documentdb-search-indexer.md)
-- [Blob 儲存體 (預覽)](search-howto-indexing-azure-blob-storage.md)
-- [表格儲存體 (預覽)](search-howto-indexing-azure-tables.md)
+- [Blob Storage (preview)](search-howto-indexing-azure-blob-storage.md)
+- [Table Storage (preview)](search-howto-indexing-azure-tables.md)
 
-Azure 搜尋服務中的**索引子**是一種編目程式，其可從外部資料來源擷取可搜尋的資料和中繼資料，並根據索引和資料來源之間的欄位對欄位對應填入索引。這種方法有時稱為「提取模型」，因為您不需要撰寫任何程式碼來將資料推送至索引，服務就會自行提取資料。
+An **indexer** in Azure Search is a crawler that extracts searchable data and metadata from an external data source and populates an index based on field-to-field mappings between the index and your data source. This approach is sometimes referred to as a 'pull model' because the service pulls data in without you having to write any code that pushes data to an index.
 
-您可以使用索引子做為擷取資料的唯一手段，或結合使用多項技術 (包含使用索引子) 來僅載入索引中的某些欄位。
+You can use an indexer as the sole means for data ingestion, or use a combination of techniques that include the use of an indexer for loading just some of the fields in your index.
 
-您可以依需要執行索引子，也可以依週期性的資料重新整理排程，最多每十五分鐘執行一次。若想更頻繁地進行更新，則 Azure 搜尋服務和外部資料來源中都必須要有可同時更新資料的發送模型。
+You can run indexers on demand or on a recurring data refresh schedule that runs as often as every fifteen minutes. More frequent updates require a push model that simultaneously updates data in both Azure Search and your external data source.
 
-## 建立與管理索引子的方法
+## <a name="approaches-for-creating-and-managing-indexers"></a>Approaches for creating and managing indexers
 
-對於 Azure SQL 或 DocumentDB 等公開上市的索引子，您可以使用下列方法來建立及管理索引子︰
+For generally available indexers like Azure SQL or DocumentDB, you can create and manage indexers using these approaches:
 
-- [入口網站 > 匯入資料精靈](search-get-started-portal.md)
-- [服務 REST API](https://msdn.microsoft.com/library/azure/dn946891.aspx)
+- [Portal > Import Data Wizard ](search-get-started-portal.md)
+- [Service REST API](https://msdn.microsoft.com/library/azure/dn946891.aspx)
 - [.NET SDK](https://msdn.microsoft.com/library/azure/microsoft.azure.search.iindexersoperations.aspx)
 
-預覽索引子 (如 Azure Blob 或資料表儲存體) 需要程式碼和預覽 API，如[適用於索引子的 Azure 搜尋服務預覽 REST API](search-api-indexers-2015-02-28-preview.md)。入口網站工具通常不適用於預覽功能。
+Preview indexers, such as Azure Blob or Table storage, require code and preview APIs such [Azure Search Preview REST API for indexers](search-api-indexers-2015-02-28-preview.md). Portal tooling is typically not available for preview features.
 
-## 基本組態步驟
+## <a name="basic-configuration-steps"></a>Basic configuration steps
 
-索引子可以提供資料來源特有的功能。在這方面，索引子或資料來源組態的某些層面會因索引子類型而所有不同。不過，所有索引子都有共用的的基本組成和需求。下文涵蓋所有的索引子的通用步驟。
+Indexers can offer features that are unique to the data source. In this respect, some aspects of indexer or data source configuration will vary by indexer type. However, all indexers share the same basic composition and requirements. Steps that are common to all indexers are covered below.
 
-### 步驟 1：建立索引
+### <a name="step-1:-create-an-index"></a>Step 1: Create an index
 
-索引子能將有關資料擷取的某些工作自動化，不過不包括建立索引。若要滿足必要條件，您必須擁有預先定義的索引，且欄位必須與外部資料來源中的欄位相符。如需建構索引的詳細資訊，請參閱[建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx)。
+An indexer will automate some tasks related to data ingestion, but creating an index is not one of them. As a prerequisite, you must have a predefined index with fields that match those in your external data source. For more information about structuring an index, see [Create an Index (Azure Search REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx).
 
-### 步驟 2：建立資料來源
+### <a name="step-2:-create-a-data-source"></a>Step 2: Create a data source
 
-索引子會從保有連接字串等資訊的**資料來源**提取資料。目前支援下列資料來源：
+An indexer pulls data from a **data source** which holds information such as a connection string. Currently the following data sources are supported:
 
-- [Azure SQL Database 或 Azure 虛擬機器中的 SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md)
+- [Azure SQL Database or SQL Server on an Azure virtual machine](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md)
 - [DocumentDB](../documentdb/documentdb-search-indexer.md)
-- [Azure Blob 儲存體 (預覽)](search-howto-indexing-azure-blob-storage.md) 可用來擷取 PDF、Office 文件、HTML 或 XML 中的文字
-- [Azure 表格儲存體 (預覽)](search-howto-indexing-azure-tables.md)
+- [Azure Blob storage (Preview)](search-howto-indexing-azure-blob-storage.md), used to extract text from PDF, Office documents, HTML, or XML
+- [Azure Table Storage (Preview)](search-howto-indexing-azure-tables.md)
 
-資料來源和使用資料來源的索引子是各自獨立設定與管理，這表示多個索引子可使用同一個資料來源來一次載入多個索引。
+Data sources are configured and managed independently of the indexers that use them, which means a data source can be used by multiple indexers to load more than one index at a time. 
 
-### 步驟 3：建立和排程索引子
+### <a name="step-3:create-and-schedule-the-indexer"></a>Step 3:Create and schedule the indexer
 
-索引子定義是指定索引、資料來源和排程的結構。索引子可以參考另一個服務的資料來源，只要該資料來源來自相同訂用帳戶即可。如需建構索引的詳細資訊，請參閱[建立索引子 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
+The indexer definition is a construct specifying the index, data source, and a schedule. An indexer can reference a data source from another service, as long as that data source is from the same subscription. For more information about structuring an indexer, see [Create Indexer (Azure Search REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx).
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-既然您已瞭解基本概念，下一個步驟是檢閱需求和每個資料來源類型特有的工作。
+Now that you have the basic idea, the next step is to review requirements and tasks specific to each data source type.
 
-- [Azure SQL Database 或 Azure 虛擬機器中的 SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md)
+- [Azure SQL Database or SQL Server on an Azure virtual machine](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md)
 - [DocumentDB](../documentdb/documentdb-search-indexer.md)
-- [Azure Blob 儲存體 (預覽)](search-howto-indexing-azure-blob-storage.md) 可用來擷取 PDF、Office 文件、HTML 或 XML 中的文字
-- [Azure 表格儲存體 (預覽)](search-howto-indexing-azure-tables.md)
-- [使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob (預覽)](search-howto-index-csv-blobs.md)
-- [使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob (預覽)](search-howto-index-json-blobs.md)
+- [Azure Blob storage (Preview)](search-howto-indexing-azure-blob-storage.md), used to extract text from PDF, Office documents, HTML, or XML
+- [Azure Table Storage (Preview)](search-howto-indexing-azure-tables.md)
+- [Indexing CSV blobs using the Azure Search Blob indexer (Preview)](search-howto-index-csv-blobs.md)
+- [Indexing JSON blobs with Azure Search Blob indexer (Preview)](search-howto-index-json-blobs.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

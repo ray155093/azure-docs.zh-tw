@@ -1,33 +1,33 @@
-## 建立 IoT 中樞
+## <a name="create-an-iot-hub"></a>Create an IoT hub
 
-建立 IoT 中樞以供您的模擬裝置連接。下列步驟顯示如何使用 Azure 入口網站完成這項工作。
+Create an IoT hub for your simulated device to connect to. The following steps show you how to complete this task by using the Azure portal.
 
-1. 登入 [Azure 入口網站][lnk-portal]。
+1. Sign in to the [Azure portal][lnk-portal].
 
-2. 在 Jumpbar 中，按一下 [新增] > [物聯網] > [Azure IoT 中樞]。
+2. In the Jumpbar, click **New** > **Internet of Things** > **Azure IoT Hub**.
 
-    ![Azure 入口網站 Jumpbar][1]
+    ![Azure portal Jumpbar][1]
 
-3. 在 [IoT 中樞] 刀鋒視窗中，選擇 IoT 中樞的組態。
+3. In the **IoT hub** blade, choose the configuration for your IoT hub.
 
-    ![IoT 中樞刀鋒視窗][2]
+    ![IoT hub blade][2]
 
-    * 在 [名稱] 方塊中，輸入 IoT 中樞的名稱。如果**名稱**有效且可用，[名稱] 方塊中會出現綠色的核取記號。
-    * 選取一個[價格和調整層][lnk-pricing]。本教學課程不需要特定層。在本教學課程中，使用免費的 F1 層。
-    * 在**資源群組**中，建立新的資源群組，或選取現有的資源群組。如需詳細資訊，請參閱[使用資源群組來管理您的 Azure 資源][lnk-resource-groups]。
-    * 在 [位置] 中，選取要裝載您的 IoT 中樞的位置。在本教學課程中，選擇最接近您的位置。
+    * In the **Name** box, enter a name for your IoT hub. If the **Name** is valid and available, a green check mark appears in the **Name** box.
+    * Select a [pricing and scale tier][lnk-pricing]. This tutorial does not require a specific tier. For this tutorial, use the free F1 tier.
+    * In **Resource group**, create a new resource group, or select an existing one. For more information, see [Using resource groups to manage your Azure resources][lnk-resource-groups].
+    * In **Location**, select the location to host your IoT hub. For this tutorial, choose your nearest location.
 
-4. 選擇好 IoT 中樞組態選項時，按一下 [建立]。Azure 建立您的 IoT 中樞可能需要幾分鐘的時間。若要檢查狀態，您可以在「開始面板」或 [通知] 面板中監視進度。
+4. When you have chosen your IoT hub configuration options, click **Create**.  It can take a few minutes for Azure to create your IoT hub. To check the status, you can monitor the progress on the Startboard or in the Notifications panel.
 
-    ![新增 IoT 中樞狀態][3]
+    ![New IoT hub status][3]
 
-5. 成功建立 IoT 中樞時，請按一下入口網站中您的 IoT 中樞的新圖格，以開啟新 IoT 中樞的刀鋒視窗。請記下**主機名稱**，然後按一下 [共用存取原則]。
+5. When the IoT hub has been created successfully, click the new tile for your IoT hub in the portal to open the blade for the new IoT hub. Make a note of the **Hostname**, and then click **Shared access policies**.
 
-    ![新增 IoT 中樞刀鋒視窗][4]
+    ![New IoT hub blade][4]
 
-6. 在 [共用存取原則] 刀鋒視窗中，按一下 [iothubowner] 原則，然後複製並記下 [iothubowner] 刀鋒視窗中的連接字串。如需詳細資訊，請參閱〈Azure IoT 中樞開發人員指南〉中的[存取控制][lnk-access-control]。
+6. In the **Shared access policies** blade, click the **iothubowner** policy, and then copy and make note of the connection string in the **iothubowner** blade. For more information, see [Access control][lnk-access-control] in the "Azure IoT Hub developer guide."
 
-    ![共用存取原則刀鋒視窗][5]
+    ![Shared access policies blade][5]
 
 
 <!-- Images. -->
@@ -43,4 +43,7 @@
 [lnk-pricing]: https://azure.microsoft.com/pricing/details/iot-hub/
 [lnk-access-control]: ../articles/iot-hub/iot-hub-devguide-security.md
 
-<!---HONumber=AcomDC_1005_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

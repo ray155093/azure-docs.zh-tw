@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Channel 9 上的 Azure 安全性影片 | Microsoft Azure"
-   description="本文提供 Channel 9 上策劃的 Azure 安全性簡報清單。Channel 9 是一個社群，連繫使用我們產品的人員與我們產品的工作人員。"
+   pageTitle="Azure security videos on Channel 9 | Microsoft Azure"
+   description="The article provides a curated list of Azure security presentations on Channel 9. Channel 9 is a community that connects the people who use our products with the people behind our products."
    services="security"
    documentationCenter="na"
    authors="TomShinder"
@@ -16,64 +16,69 @@
    ms.date="08/09/2016"
    ms.author="terrylan"/>
 
-# Channel 9 上的 Azure 安全性影片
 
-[Channel 9](https://channel9.msdn.com/) 是讓產品幕後功臣露面，並讓他們與客戶保持聯繫的社群。
+# <a name="azure-security-videos-on-channel-9"></a>Azure security videos on Channel 9
 
-他們認為並且高興軟體有不錯的未來。Channel 9 是參與進行中交談的社群。
+[Channel 9](https://channel9.msdn.com/) is a community that brings forward the people behind our products and connects them with customers.
 
-以下是 Channel 9 上策劃的 Azure 安全性簡報清單。請務必每個月檢查這個頁面是否有新影片。
+They think there is a great future in software and they’re excited about it. Channel 9 is a community to participate in the ongoing conversation.
 
-[使用 Barracuda 安全性加速 Azure 使用](https://channel9.msdn.com/events/Microsoft-Azure-Marketplace-ISV-Solutions-Webinar-Series/Webinar-1-Accelerating-Azure-Consumption-with-Barracuda-Security/Webinar-1-Accelerating-Azure-Consumption-with-Barracuda-Security)
+The following is a curated list of Azure security presentations on Channel 9. Make sure to check this page monthly for new videos.
 
-請參閱如何使用 Barracuda 安全性來保護您的 Azure 部署。
+[Accelerating Azure Consumption with Barracuda Security](https://channel9.msdn.com/events/Microsoft-Azure-Marketplace-ISV-Solutions-Webinar-Series/Webinar-1-Accelerating-Azure-Consumption-with-Barracuda-Security/Webinar-1-Accelerating-Azure-Consumption-with-Barracuda-Security)
 
-[Azure 資訊安全中心 - 威脅偵測](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Security-Center-Threat-Detection)
+See how you can use Barracuda security to secure your Azure deployments.
 
-有了 Azure 資訊安全中心，您便可集中檢閱所有 Azure 資源的安全性狀態。只需看一眼，便可確認安全性控制項是否已就緒且正確地設定。Scott 會與 Sarah Fender 討論，而 Sarah Fender 會解釋資訊安全中心如何整合威脅偵測。
+[Azure Security Center - Threat Detection](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Security-Center-Threat-Detection)
 
-[Azure 資訊安全中心概觀](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Security-Center-Overview)
+With Azure Security Center, you get a central view of the security state of all your Azure resources. At a glance, verify that the appropriate security controls are in place and configured correctly. Scott talks to Sarah Fender who explains how Security Center integrates Threat Detection.
 
-有了 Azure 資訊安全中心，您便可集中檢閱所有 Azure 資源的安全性狀態。只需看一眼，便可確認安全性控制項是否已就緒且正確地設定。Scott 會與 Sarah Fender 討論，而 Sarah Fender 會進行所有解釋！
+[Azure Security Center Overview](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Security-Center-Overview)
 
-[即時示範︰保護、偵測和回應威脅](https://channel9.msdn.com/events/Virtual-Security-Summit/Virtual-Security-Summit-2016/Live-Demo-Protecting-against-Detecting-and-Responding-to-Threats)
+With Azure Security Center, you get a central view of the security state of all your Azure resources. At a glance, verify that the appropriate security controls are in place and configured correctly. Scott talks to Sara Fender who explains it all!
 
-加入本課程，以查看 Microsoft 安全性平台如何運作。Julia White 的 General Manager for Cloud & Enterprise 將示範 Windows 10、Azure 和 Office 365 的安全性功能，以協助您保護組織的安全。
+[Live Demo: Protecting against, Detecting and Responding to Threats](https://channel9.msdn.com/events/Virtual-Security-Summit/Virtual-Security-Summit-2016/Live-Demo-Protecting-against-Detecting-and-Responding-to-Threats)
 
-[Azure 中的 SQL Server 虛擬機器加密可取得較佳安全性](https://channel9.msdn.com/Shows/Azure-Friday/Encryption-in-SQL-Azure-for-better-security)
+Join this session to see the Microsoft security platform in action. General Manager for Cloud & Enterprise, Julia White, demonstrates the security features of Windows 10, Azure, and Office 365 that can help you keep your organization secure.
 
-Jack Richins 教導 [Scott](https://channel9.msdn.com/Niners/Glucose) 如何輕鬆地加密他在 Azure 虛擬機器執行個體上的 SQL Server 資料庫。它比您想地還要簡單！
+[Encryption in SQL Server Virtual Machines in Azure for better security](https://channel9.msdn.com/Shows/Azure-Friday/Encryption-in-SQL-Azure-for-better-security)
 
-本影片涵蓋的區域：
+Jack Richins teaches [Scott](https://channel9.msdn.com/Niners/Glucose) how to easily encrypt his SQL Server databases on Virtual Machine Azure instances. It's easier than you'd think!
 
-- 了解加密和 SQL Server
-- 了解 Data Protection API、主要金鑰和憑證
-- 使用 SQL 命令來建立主要金鑰和憑證，並加密資料庫
+Areas covered in this video:
 
-[如何在 DevTest 實驗室中設定安全性](https://channel9.msdn.com/Blogs/Windows-Azure/How-to-set-security-in-your-DevTest-Lab)
+- Understanding encryption and SQL Server
+- Understanding the Data Protection API, master keys, and certificates
+- Using SQL commands to create the master key and certificates, and encrypt the database
 
-身為您實驗室的擁有者，您可以透過兩個實驗室角色來保護實驗室存取︰擁有者和 DevTest 實驗室使用者。擁有者角色中的人員具有實驗室的完整存取權，而 DevTest 實驗室使用者角色中的人員則具有有限存取權。在本影片中，我們會示範如何將上述任一角色的人員新增至實驗室。
+[How to set security in DevTest Labs](https://channel9.msdn.com/Blogs/Windows-Azure/How-to-set-security-in-your-DevTest-Lab)
 
-[管理 Azure 應用程式的密碼](https://channel9.msdn.com/events/Build/2016/P456)
+As an owner of your lab, you can secure lab access by via two lab roles: Owner and DevTest Labs User. A person in the Owner role has complete access in the lab whereas a person in the DevTest Labs User role has limited access. In this video, we show you how to add a person in either of these roles to a lab.
 
-您部署在 Azure 上的每個重大應用程式都具有重要密碼 - 連接字串、憑證、金鑰。在管理這些密碼時若犯下愚蠢錯誤，將會導致嚴重後果 - 遺漏、中斷、法規遵循違規。如多個最近的調查指出，愚蠢的錯誤會造成敵人所致四倍以上的資料漏洞。在本課程中，我們會討論一些管理重要應用程式秘密的最佳作法。這些最佳作法看起來可能就像一般常識，但許多開發人員都忽略它們。我們也會討論如何使用 Azure 金鑰保存庫來實作這些最佳作法。額外的好處在於，遵循這些作法可協助您示範符合標準 (例如 SOC) 的法規遵循。本課程的前 10 分鐘是等級 100，而且適用於您在任何平台開發的任何雲端應用程式。其餘部分是等級 200-300，並著重於您在 Azure 平台上建置的應用程式。
+[Managing Secrets for Azure Apps](https://channel9.msdn.com/events/Build/2016/P456)
 
-[使用網路安全性群組保護 Azure 虛擬網路 (Narayan Annamalai)](https://channel9.msdn.com/Shows/Azure-Friday/Sucruing-your-Azure-Virtual-Network-using-Network-ACLs-with-Narayan-Annamalai)
+Every serious app you deploy on Azure has critical secrets – connection strings, certificates, keys. Silly mistakes in managing these secrets leads to fatal consequences – leaks, outages, compliance violations. As multiple recent surveys point out, silly mistakes cause four times more data breaches than adversaries. In this session, we go over some best practices to manage your important app secrets. These best practices may seem like common sense, yet many developers neglect them. We also go over how to use Azure Key Vault to implement those best practices. As an added benefit, following these practices helps you demonstrate compliance with standards such as SOC. The first 10 minutes of the session are level 100 and they apply to any cloud app you develop on any platform. The remainder is level 200-300 and focuses on apps you build on the Azure platform.
 
-資深專案經理 Narayan Annamalai 教導 Scott 如何在 Azure 虛擬網路內使用網路安全性群組。您可以透過子網路和網路來建立 Azure 內物件的控制存取權！ 您會了解如何控制存取權，以及如何使用 PowerShell 在 Azure 內建立群組。
+[Securing your Azure Virtual Network using Network Security Groups with Narayan Annamalai](https://channel9.msdn.com/Shows/Azure-Friday/Sucruing-your-Azure-Virtual-Network-using-Network-ACLs-with-Narayan-Annamalai)
 
-[Azure AD Privileged Identity Management：安全性精靈、警示、檢閱](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-AD-Privileged-Identity-Management-Security-Wizard-Alerts-Reviews)
+Senior Program Manager Narayan Annamalai teaches Scott how to use Network Security Groups within an Azure Virtual Network. You can create control access to objects within Azure by subnet and network! You learn how to control access and create groups within Azure using PowerShell.
 
-Azure Active Directory (AD) Privileged Identity Management 是高階功能，可讓您探索、限制和監視特殊權限的身分識別和其對資源的存取。此功能也可在需要時強制執行隨選的即時管理存取。了解：
+[Azure AD Privileged Identity Management: Security Wizard, Alerts, Reviews](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-AD-Privileged-Identity-Management-Security-Wizard-Alerts-Reviews)
 
-- 管理 Office 365 工作負載特定系統管理角色的保護
-- 設定 Azure Multi-Factor Authentication (MFA) 以啟用特殊權限的角色
-- 測量和改善您的租用戶安全性狀態
-- 監視和修正安全性調查結果
-- 檢閱誰基於定期重新認證工作流程而需要保留特殊權限角色
+Azure Active Directory (AD) Privileged Identity Management is a premium functionality that allows you to discover, restrict, and monitor privileged identities and their access to resources. It also enforces on-demand, just in time administrative access when needed. Learn about:
 
-[Azure 金鑰保存庫 (Amit Bapat)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Key-Vault-with-Amit-Bapat)
+- Managing protection for Office 365 workload-specific administrative roles
+- Configuring Azure Multi-Factor Authentication(MFA) for privileged role activations
+- Measuring and improving your tenant security posture
+- Monitoring and fixing security findings
+- Reviewing who needs to remain in privileged roles for periodic recertification workflows
 
-Amit Bapat 向 Scott 介紹 Azure 金鑰保存庫。有了 Azure 金鑰保存庫，您即可加密金鑰和小型密碼，例如存放在硬體安全性模組 (HSM) 中且使用金鑰的密碼。它是 Microsoft Azure 的雲端型、硬體型密碼管理！
+[Azure Key Vault with Amit Bapat](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Key-Vault-with-Amit-Bapat)
 
-<!---HONumber=AcomDC_0810_2016------>
+Amit Bapat introduces Scott to Azure Key Vault. With Azure Key Vault, you can encrypt keys and small secrets like passwords using keys stored in hardware security modules (HSMs). It's cloud-based, hardware-based secret management for Microsoft Azure!
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

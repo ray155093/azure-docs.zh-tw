@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Data Lake Store 安全性概觀 | Microsoft Azure"
-   description="了解 Azure Data Lake Store 如何成為更安全的巨量資料存放區"
+   pageTitle="Overview of security in Data Lake Store | Microsoft Azure"
+   description="Understand how Azure Data Lake Store is a more secure big data store"
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
@@ -16,111 +16,116 @@
    ms.date="08/02/2016"
    ms.author="nitinme"/>
 
-# Azure Data Lake Store 安全性
 
-許多企業會運用巨量資料分析來獲得商業見解，以利他們做出明智的決策。但企業的環境可能既複雜又受到規範，並且還有數目日益增加的各類使用者。因此，企業必須確定重要的商業資料有受到更妥善的保存，並授與正確層級的存取權給個別使用者。Azure Data Lake Store 的設計便是要協助企業符合這些安全性需求。請透過本文了解 Data Lake Store 的安全性功能，包括︰
+# <a name="security-in-azure-data-lake-store"></a>Security in Azure Data Lake Store
 
-* 驗證
-* 授權
-* 網路隔離
-* 資料保護
-* 稽核
+Many enterprises are taking advantage of big data analytics for business insights to help them make smart decisions. An organization might have a complex and regulated environment, with an increasing number of diverse users. It is vital for an enterprise to make sure that critical business data is stored more securely, with the correct level of access granted to individual users. Azure Data Lake Store is designed to help meet these security requirements. In this article, learn about the security capabilities of Data Lake Store, including:
 
-## 驗證和識別管理
+* Authentication
+* Authorization
+* Network isolation
+* Data protection
+* Auditing
 
-驗證是在使用者與 Data Lake Store 互動或與連線到 Data Lake Store 的任何服務互動時，用來確認使用者身分識別的程序。為了進行身分識別管理和驗證，Data Lake Store 會使用 [Azure Active Directory](../active-directory/active-directory-whatis.md)，這是一個綜合身分識別和存取管理雲端解決方案，可以簡化使用者和群組的管理。
+## <a name="authentication-and-identity-management"></a>Authentication and identity management
 
-每個 Azure 訂用帳戶都可與 Azure Active Directory 的執行個體相關聯。只有 Azure Active Directory 服務中所定義的使用者和服務身分識別可以存取 Data Lake Store 帳戶，方法是使用 Azure 入口網站、命令列工具，或透過您的組織使用 Azure Data Lake Store SDK 所建立的用戶端應用程式。使用 Azure Active Directory 做為集中式存取控制機制的主要優點如下︰
+Authentication is the process by which a user's identity is verified when the user interacts with Data Lake Store or with any service that connects to Data Lake Store. For identity management and authentication, Data Lake Store uses [Azure Active Directory](../active-directory/active-directory-whatis.md), a comprehensive identity and access management cloud solution that simplifies the management of users and groups.
 
-* 簡化的身分識別生命週期管理。只要刪除或停用目錄中的帳戶，即可快速建立及快速撤銷使用者或服務的身分識別 (服務主體身分識別)。
+Each Azure subscription can be associated with an instance of Azure Active Directory. Only users and service identities that are defined in your Azure Active Directory service can access your Data Lake Store account, by using the Azure portal, command-line tools, or through client applications your organization builds by using the Azure Data Lake Store SDK. Key advantages of using Azure Active Directory as a centralized access control mechanism are:
 
-* 多因素驗證。[Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) 可為使用者登入和交易提供額外的安全性。
+* Simplified identity lifecycle management. The identity of a user or a service (a service principal identity) can be quickly created and quickly revoked by simply deleting or disabling the account in the directory.
 
-* 可透過標準的開放通訊協定 (例如 OAuth 或 OpenID) 從任何用戶端進行驗證。
+* Multi-factor authentication. [Multi-factor authentication](../multi-factor-authentication/multi-factor-authentication.md) provides an additional layer of security for user sign-ins and transactions.
 
-* 可與企業目錄服務和雲端識別提供者同盟。
+* Authentication from any client through a standard open protocol, such as OAuth or OpenID.
 
-## 授權和存取控制
+* Federation with enterprise directory services and cloud identity providers.
 
-在使用者通過 Azure Active Directory 驗證因而可以存取 Azure Data Lake Store 之後，授權便會控制 Data Lake Store 的存取權限。Data Lake Store 會以下列方式分隔授權的帳戶以及資料相關的活動：
+## <a name="authorization-and-access-control"></a>Authorization and access control
 
-* Azure 針對帳戶管理提供的[角色型存取控制](../active-directory/role-based-access-control-what-is.md) (RBAC)
-* 適用於存取存放區資料的 POSIX ACL
+After Azure Active Directory authenticates a user so that the user can access Azure Data Lake Store, authorization controls access permissions for Data Lake Store. Data Lake Store separates authorization for account-related and data-related activities in the following manner:
+
+* [Role-based access control](../active-directory/role-based-access-control-what-is.md) (RBAC) provided by Azure for account management
+* POSIX ACL for accessing data in the store
 
 
-### 用於帳戶管理的 RBAC
+### <a name="rbac-for-account-management"></a>RBAC for account management
 
-預設會為 Data Lake Store 定義四種基本角色。這些角色允許透過 Azure 入口網站、PowerShell Cmdlet 和 REST API，在 Data Lake Store 帳戶上執行不同的作業。[擁有者] 和 [參與者] 角色可在帳戶上執行各種管理功能。您可以對只會與資料互動的使用者指派讀取者角色。
+Four basic roles are defined for Data Lake Store by default. The roles permit different operations on a Data Lake Store account via the Azure portal, PowerShell cmdlets, and REST APIs. The Owner and Contributor roles can perform a variety of administration functions on the account. You can assign the Reader role to users who only interact with data.
 
-![RBAC 角色](./media/data-lake-store-security-overview/rbac-roles.png "RBAC 角色")
+![RBAC roles](./media/data-lake-store-security-overview/rbac-roles.png "RBAC roles")
 
-請注意，雖然指派角色是為了管理帳戶，但某些角色會影響資料的存取權。您必須使用 ACL 來控制使用者可在檔案系統上執行之作業的存取權。下表顯示預設角色的管理權限和資料存取權限摘要。
+Note that although roles are assigned for account management, some roles affect access to data. You need to use ACLs to control access to operations that a user can perform on the file system. The following table shows a summary of management rights and data access rights for the default roles.
 
-| 角色 | 管理權限 | 資料存取權限 | 說明 |
+| Roles                    | Management rights               | Data access rights | Explanation |
 | ------------------------ | ------------------------------- | ------------------ | ----------- |
-| 未指派角色 | None | 由 ACL 控管 | 使用者無法使用 Azure 入口網站或 Azure PowerShell Cmdlet 來瀏覽 Data Lake Store。使用者只能使用命令列工具。
-| 擁有者 | 全部 | 全部 | 擁有者角色是超級使用者。此角色可管理所有事項，且具有資料的完整存取權。
-| 讀取者 | 唯讀 | 由 ACL 控管 | 讀取者角色可以檢視有關帳戶管理的所有事項，例如哪個使用者被指派給哪個角色。讀取者角色無法進行任何變更。 |
-| 參與者 | 除了新增和移除角色以外的一切 | 由 ACL 控管 | 參與者角色可以管理帳戶的某些層面，例如部署以及警示建立和管理。參與者無法新增或移除角色。
-| 使用者存取系統管理員 | 新增和移除角色 | 由 ACL 控管 | 使用者存取管理員角色可管理使用者對帳戶的存取權。 |
+| No role assigned         | None                            | Governed by ACL    | The user cannot use the Azure portal or Azure PowerShell cmdlets to browse Data Lake Store. The user can use command-line tools only.
+| Owner  | All  | All  | The Owner role is a superuser. This role can manage everything and has full access to data.
+| Reader   | Read-only  | Governed by ACL    | The Reader role can view everything regarding account management, such as which user is assigned to which role. The Reader role can't make any changes.   |
+| Contributor              | All except add and remove roles | Governed by ACL    | The Contributor role can manage some aspects of an account, such as deployments and creating and managing alerts. The Contributor role cannot add or remove roles.
+| User Access Administrator | Add and remove roles            | Governed by ACL    | The User Access Administrator role can manage user access to accounts. |
 
-如需相關指示，請參閱[指派使用者或安全性群組給 Data Lake Store 帳戶](data-lake-store-secure-data.md#assign-users-or-security-groups-to-azure-data-lake-store-accounts)。
+For instructions, see [Assign users or security groups to Data Lake Store accounts](data-lake-store-secure-data.md#assign-users-or-security-groups-to-azure-data-lake-store-accounts).
 
-### 在檔案系統上使用 ACL 執行作業
+### <a name="using-acls-for-operations-on-file-systems"></a>Using ACLs for operations on file systems
 
-Data Lake Store 是 Hadoop 分散式檔案系統 (HDFS) 之類的階層式檔案系統，並可支援 [POSIX ACL](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists)。它會控制擁有者角色、擁有者群組以及其他使用者和群組對於資源的讀取 (r)、寫入 (w) 和執行 (x) 權限。在 Data Lake Store 公開預覽 (目前版本) 中，會在根資料夾、子資料夾和個別檔案上啟用 ACL。您套用至根資料夾的 ACL 也會套用至所有子資料夾和檔案。
+Data Lake Store is a hierarchical file system like Hadoop Distributed File System (HDFS), and it supports [POSIX ACLs](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists). It controls read (r), write (w), and execute (x) permissions to resources for the Owner role, for the Owners group, and for other users and groups. In the Data Lake Store Public Preview (the current release), ACLs are enabled on the root folder, on subfolders, and on individual files. The ACLs that you apply to the root folder also apply to all child folders and files.
 
-建議您使用[安全性群組](../active-directory/active-directory-accessmanagement-manage-groups.md)為多個使用者定義 ACL。將使用者新增到安全性群組，然後將檔案或資料夾的 ACL 指派給該安全性群組。當您想要提供自訂存取時這會非常有用，因為您被限制最多只能新增九個自訂存取項目。如需如何使用 Azure Active Directory 安全性群組更加妥善地保護 Data Lake Store 中所儲存之資料的詳細資訊，請參閱[將使用者或安全性群組以 ACL 形式指派給 Azure Data Lake Store 檔案系統](data-lake-store-secure-data.md#filepermissions)。
+We recommend that you define ACLs for multiple users by using [security groups](../active-directory/active-directory-accessmanagement-manage-groups.md). Add users to a security group, and then assign the ACLs for a file or folder to that security group. This is useful when you want to provide custom access, because you are limited to adding a maximum of nine entries for custom access. For more information about how to better secure data stored in Data Lake Store by using Azure Active Directory security groups, see [Assign users or security group as ACLs to the Azure Data Lake Store file system](data-lake-store-secure-data.md#filepermissions).
 
-![列出標準和自訂存取](./media/data-lake-store-security-overview/adl.acl.2.png "列出標準和自訂存取")
+![List standard and custom access](./media/data-lake-store-security-overview/adl.acl.2.png "List standard and custom access")
 
-## 網路隔離
+## <a name="network-isolation"></a>Network isolation
 
-使用 Data Lake Store 以協助在網路層級控制資料存放區的存取。您可以建立防火牆，並且為受信任的用戶端定義 IP 位址範圍。使用 IP 位址範圍時，只有具有定義範圍內 IP 位址的用戶端可以連線到 Data Lake Store。
+Use Data Lake Store to help control access to your data store at the network level. You can establish firewalls and define an IP address range for your trusted clients. With an IP address range, only clients that have an IP address within the defined range can connect to Data Lake Store.
 
-![防火牆設定和 IP 存取](./media/data-lake-store-security-overview/firewall-ip-access.png "防火牆設定和 IP 位址")
+![Firewall settings and IP access](./media/data-lake-store-security-overview/firewall-ip-access.png "Firewall settings and IP address")
 
-## 資料保護
+## <a name="data-protection"></a>Data protection
 
-組織想要確保其業務關鍵資料在整個生命週期中受到保護。對於傳輸中的資料，Data Lake Store 會使用業界標準的傳輸層安全性 (TLS) 通訊協定來保護在用戶端與 Data Lake Security 之間移動的資料。
+Organizations want to ensure that their business-critical data is secure throughout its lifecycle. For data in transit, Data Lake Store uses the industry-standard Transport Layer Security (TLS) protocol to secure data that moves between a client and Data Lake Store.
 
-待用資料的資料保護會在未來的版本中提供。
+Data protection for data at rest will be available in future releases.
 
-## 稽核和診斷記錄檔
+## <a name="auditing-and-diagnostic-logs"></a>Auditing and diagnostic logs
 
-您可以視您要尋找管理相關活動或資料相關活動的記錄檔而定，使用稽核或診斷記錄檔。
+You can use auditing or diagnostic logs, depending on whether you are looking for logs for management-related activities or data-related activities.
 
-*  管理相關活動會使用 Azure Resource Manager API 並透過稽核記錄檔呈現在 Azure 入口網站中。
-*  資料相關活動會使用 WebHDFS REST API 並透過診斷記錄檔呈現在 Azure 入口網站中。
+*  Management-related activities use Azure Resource Manager APIs and are surfaced in the Azure portal via audit logs.
+*  Data-related activities use WebHDFS REST APIs and are surfaced in the Azure portal via diagnostic logs.
 
-### 稽核記錄檔
+### <a name="auditing-logs"></a>Auditing logs
 
-為了符合法規，如果組織需要深入探索特定事件，則可能需要適當的稽核線索。Data Lake Store 有內建的監視和稽核作業，並且會記錄所有的帳戶管理活動。
+To comply with regulations, an organization might require adequate audit trails if it needs to dig into specific incidents. Data Lake Store has built-in monitoring and auditing, and it logs all account management activities.
 
-如需帳戶管理稽核線索，請檢視並選擇您想要記錄的資料行。您也可以將稽核記錄檔匯出至 Azure 儲存體。
+For account management audit trails, view and choose the columns that you want to log. You also can export audit logs to Azure Storage.
 
-![稽核記錄檔](./media/data-lake-store-security-overview/audit-logs.png "稽核記錄檔")
+![Audit logs](./media/data-lake-store-security-overview/audit-logs.png "Audit logs")
 
-### 診斷記錄檔
+### <a name="diagnostic-logs"></a>Diagnostic logs
 
-您可以在 Azure 入口網站 (於診斷設定中) 設定資料存取稽核線索，並建立用來存放記錄檔的 Azure Blob 儲存體帳戶。
+You can set data access audit trails in the Azure portal (in Diagnostic Settings) and create an Azure Blob storage account where the logs are stored.
 
-![診斷記錄檔](./media/data-lake-store-security-overview/diagnostic-logs.png "診斷記錄檔")
+![Diagnostic logs](./media/data-lake-store-security-overview/diagnostic-logs.png "Diagnostic logs")
 
-在設定診斷設定之後，您可以在 [診斷記錄檔] 索引標籤上檢視記錄檔。
+After you configure diagnostic settings, you can view the logs on the **Diagnostic Logs** tab.
 
-如需使用 Azure Data Lake Store 診斷記錄檔的詳細資訊，請參閱[存取 Data Lake Store 的診斷記錄檔](data-lake-store-diagnostic-logs.md)。
+For more information on working with diagnostic logs with Azure Data Lake Store, see [Access diagnostic logs for Data Lake Store](data-lake-store-diagnostic-logs.md).
 
-## 摘要
+## <a name="summary"></a>Summary
 
-企業客戶要求安全且容易使用的資料分析雲端平台。Azure Data Lake Store 的設計目的是要透過 Azure Active Directory 整合、以 ALC 為基礎的授權、網路隔離、傳輸中和待用資料加密 (未來即將提供) 以及稽核，來協助滿足這些需求。
+Enterprise customers demand a data analytics cloud platform that is secure and easy to use. Azure Data Lake Store is designed to help address these requirements through identity management and authentication via Azure Active Directory integration, ACL-based authorization, network isolation, data encryption in transit and at rest (coming in the future), and auditing.
 
-如果您想要在 Data Lake Store 中看到新功能，請在 [Data Lake Store UserVoice 論壇](https://feedback.azure.com/forums/327234-data-lake)將您的意見反應傳給我們。
+If you want to see new features in Data Lake Store, send us your feedback in the [Data Lake Store UserVoice forum](https://feedback.azure.com/forums/327234-data-lake).
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-- [Azure Data Lake Store 概觀](data-lake-store-overview.md)
-- [開始使用 Data Lake Store](data-lake-store-get-started-portal.md)
-- [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+- [Overview of Azure Data Lake Store](data-lake-store-overview.md)
+- [Get started with Data Lake Store](data-lake-store-get-started-portal.md)
+- [Secure data in Data Lake Store](data-lake-store-secure-data.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

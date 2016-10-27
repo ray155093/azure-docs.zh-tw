@@ -1,28 +1,29 @@
 <properties
-	pageTitle="Azure RBAC 中的自訂角色 | Microsoft Azure"
-	description="了解如何使用 Azure 角色型存取控制來定義自訂角色，以在您的 Azure 訂用帳戶中進行更精確的身分識別管理。"
-	services="active-directory"
-	documentationCenter=""
-	authors="kgremban"
-	manager="kgremban"
-	editor=""/>
+    pageTitle="Custom Roles in Azure RBAC | Microsoft Azure"
+    description="Learn how to define custom roles with Azure Role-Based Access Control for more precise identity management in your Azure subscription."
+    services="active-directory"
+    documentationCenter=""
+    authors="kgremban"
+    manager="kgremban"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="identity"
-	ms.date="07/25/2016"
-	ms.author="kgremban"/>
+    ms.service="active-directory"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="identity"
+    ms.date="07/25/2016"
+    ms.author="kgremban"/>
 
 
-# Azure RBAC 中的自訂角色
+
+# <a name="custom-roles-in-azure-rbac"></a>Custom Roles in Azure RBAC
 
 
-如果內建角色都不符合您的特定存取需求，請在 Azure 角色型存取控制 (RBAC) 中建立自訂角色。使用 [Azure PowerShell](role-based-access-control-manage-access-powershell.md)、[Azure 命令列介面](role-based-access-control-manage-access-azure-cli.md) (CLI) 和 [REST API](role-based-access-control-manage-access-rest.md)，可以建立自訂角色。就像內建角色一樣，可以將自訂角色指派給訂用帳戶、資源群組和資源範圍的使用者、群組和應用程式。自訂角色會儲存在 Azure AD 租用戶中，而且可以在所有訂用帳戶之間共用，而這些訂用帳戶使用該租用戶做為訂用帳戶的 Azure AD 目錄。
+Create a custom role in Azure Role-Based Access Control (RBAC) if none of the built-in roles meet your specific access needs. Custom roles can be created using [Azure PowerShell](role-based-access-control-manage-access-powershell.md), [Azure Command-Line Interface](role-based-access-control-manage-access-azure-cli.md) (CLI), and the [REST API](role-based-access-control-manage-access-rest.md). Just like built-in roles, custom roles can be assigned to users, groups, and applications at subscription, resource group, and resource scopes. Custom roles are stored in an Azure AD tenant and can be shared across all subscriptions that use that tenant as the Azure AD directory for the subsciption.
 
-以下是可以監視和重新啟動虛擬機器的自訂角色範例：
+The following is an example of a custom role for monitoring and restarting virtual machines:
 
 ```
 {
@@ -52,15 +53,15 @@
   ]
 }
 ```
-## 動作
-自訂角色的 **Actions** 屬性會指定角色授與存取權的 Azure 作業。它是識別 Azure 資源提供者的安全性實體作業的作業字串集合。包含萬用字元 (*) 的作業字串會授與符合作業字串的所有作業的存取權。例如：
+## <a name="actions"></a>Actions
+The **Actions** property of a custom role specifies the Azure operations to which the role grants access. It is a collection of operation strings that identify securable operations of Azure resource providers. Operation strings that contain wildcards (\*) grant access to all operations that match the operation string. For instance:
 
--	`*/read` 授與所有 Azure 資源提供者的所有資源類型的讀取作業的存取權。
--	`Microsoft.Network/*/read` 授與 Azure 的 Microsoft.Network 資源提供者的所有資源類型的讀取作業的存取權。
--	`Microsoft.Compute/virtualMachines/*` 授與虛擬機器和其子系資源類型的所有作業的存取權。
--	`Microsoft.Web/sites/restart/Action` 授與重新啟動網站的存取權。
+-   `*/read` grants access to read operations for all resource types of all Azure resource providers.
+-   `Microsoft.Network/*/read` grants access to read operations for all resource types in the Microsoft.Network resource provider of Azure.
+-   `Microsoft.Compute/virtualMachines/*` grants access to all operations of virtual machines and its child resource types.
+-   `Microsoft.Web/sites/restart/Action` grants access to restart websites.
 
-使用 `Get-AzureRmProviderOperation` (在 PowerShell 中) 或 `azure provider operations show` (在 Azure CLI 中) 來列出 Azure 資源提供者的作業。您也可以使用這些命令以確認作業字串有效，以及展開萬用字元作業字串。
+Use `Get-AzureRmProviderOperation` (in PowerShell) or `azure provider operations show` (in Azure CLI) to list operations of Azure resource providers. You may also use these commands to verify that an operation string is valid, and to expand wildcard operation strings.
 
 ```
 Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Operation, OperationName
@@ -68,7 +69,7 @@ Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Ope
 Get-AzureRMProviderOperation Microsoft.Network/*
 ```
 
-![PowerShell 螢幕擷取畫面 - Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT 作業, OperationName](./media/role-based-access-control-configure/1-get-azurermprovideroperation-1.png)
+![PowerShell screnshot - Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Operation, OperationName](./media/role-based-access-control-configure/1-get-azurermprovideroperation-1.png)
 
 ```
 azure provider operations show "Microsoft.Compute/virtualMachines/*/action" --js on | jq '.[] | .operation'
@@ -76,39 +77,47 @@ azure provider operations show "Microsoft.Compute/virtualMachines/*/action" --js
 azure provider operations show "Microsoft.Network/*"
 ```
 
-![Azure CLI 螢幕擷取畫面 - azure 提供者作業顯示 "Microsoft.Compute/virtualMachines/*/action"](./media/role-based-access-control-configure/1-azure-provider-operations-show.png)
+![Azure CLI screenshot - azure provider operations show "Microsoft.Compute/virtualMachines/\*/action" ](./media/role-based-access-control-configure/1-azure-provider-operations-show.png)
 
-## NotActions
-如果排除限制的作業可更輕鬆地定義您要允許的作業集合，請使用 **NotActions** 屬性。自訂角色授與的存取權是藉由從 **Actions** 作業中去掉 **NotActions** 作業來計算。
+## <a name="notactions"></a>NotActions
+Use the **NotActions** property if the set of operations that you wish to allow is more easily defined by excluding restricted operations. The access granted by a custom role is computed by subtracting the **NotActions** operations from the **Actions** operations.
 
-> [AZURE.NOTE] 如果使用者獲指派的角色排除 **NotActions** 中的作業，並且指派授與相同作業的存取權的第二個角色，將會允許使用者執行該作業。**NotActions** 不是拒絕規則 – 它只是一個便利的方式，可以在需要排除特定作業時建立允許作業集。
+> [AZURE.NOTE] If a user is assigned a role that excludes an operation in **NotActions**, and is assigned a second role that grants access to the same operation, the user will be allowed to perform that operation. **NotActions** is not a deny rule – it is simply a convenient way to create a set of allowed operations when specific operations need to be excluded.
 
-## AssignableScopes
-自訂角色的 **AssignableScopes** 屬性會指定自訂角色可供指派的範圍 (訂用帳戶、資源群組或資源)。您可以讓自訂角色僅指派給需要它的訂用帳戶或資源群組，不會干擾其餘訂用帳戶或資源群組的使用者體驗。
+## <a name="assignablescopes"></a>AssignableScopes
+The **AssignableScopes** property of the custom role specifies the scopes (subscriptions, resource groups, or resources) within which the custom role is available for assignment. You can make the custom role available for assignment in only the subscriptions or resource groups that require it, and not clutter user experience for the rest of the subscriptions or resource groups.
 
-有效的可指派範圍範例包括：
+Examples of valid assignable scopes include:
 
--	“/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e”, “/subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624” - 讓角色可用於兩個訂用帳戶中的指派。
--	“/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e” - 讓角色可用於單一訂用帳戶中的指派。
--  “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/Network” - 讓角色僅可用於網路資源群組中的指派。
+-   “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e”, “/subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624” - makes the role available for assignment in two subscriptions.
+-   “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e” - makes the role available for assignment in a single subscription.
+-  “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/Network” - makes the role available for assignment only in the Network resource group.
 
-> [AZURE.NOTE] 您至少必須使用一個訂用帳戶、資源群組或資源識別碼。
+> [AZURE.NOTE] You must use at least one subscription, resource group, or resource ID.
 
-## 自訂角色存取控制
-自訂角色的 **AssignableScopes** 屬性也會控制誰可以檢視、修改和刪除角色。
+## <a name="custom-roles-access-control"></a>Custom roles access control
+The **AssignableScopes** property of the custom role also controls who can view, modify, and delete the role.
 
-- 誰可以建立自訂角色？ 訂用帳戶、資源群組和資源的擁有者 (和使用者存取管理員) 可以建立自訂角色以在這些範圍中使用。建立角色的使用者必須能夠對角色的所有 **AssignableScopes** 執行 `Microsoft.Authorization/roleDefinition/write` 作業。
+- Who can create a custom role?
+    Owners (and User Access Administrators) of subscriptions, resource groups, and resources can create custom roles for use in those scopes.
+    The user creating the role needs to be able to perform `Microsoft.Authorization/roleDefinition/write` operation on all the **AssignableScopes** of the role.
 
-- 誰可以修改自訂角色？ 訂用帳戶、資源群組和資源的擁有者 (和使用者存取管理員) 可以在這些範圍中修改自訂角色。使用者必須能夠對自訂角色的所有 **AssignableScopes** 執行 `Microsoft.Authorization/roleDefinition/write` 作業。
+- Who can modify a custom role?
+    Owners (and User Access Administrators) of subscriptions, resource groups, and resources can modify custom roles in those scopes. Users need to be able to perform the `Microsoft.Authorization/roleDefinition/write` operation on all the **AssignableScopes** of a custom role.
 
-- 誰可以檢視自訂角色？ Azure RBAC 中的所有內建角色允許檢視可用於指派的角色。可以在範圍中執行 `Microsoft.Authorization/roleDefinition/read` 作業的使用者，可以檢視可用於在該範圍中指派的 RBAC 角色。
+- Who can view custom roles?
+    All built-in roles in Azure RBAC allow viewing of roles that are available for assignment. Users who can perform the `Microsoft.Authorization/roleDefinition/read` operation at a scope can view the RBAC roles that are available for assignment at that scope.
 
-## 另請參閱
-- [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
-- 了解如何使用下列各項管理存取權：
-	- [PowerShell](role-based-access-control-manage-access-powershell.md)
-	- [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
-	- [REST API](role-based-access-control-manage-access-rest.md)
-- [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資訊。
+## <a name="see-also"></a>See also
+- [Role Based Access Control](role-based-access-control-configure.md): Get started with RBAC in the Azure portal.
+- Learn how to manage access with:
+    - [PowerShell](role-based-access-control-manage-access-powershell.md)
+    - [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
+    - [REST API](role-based-access-control-manage-access-rest.md)
+- [Built-in roles](role-based-access-built-in-roles.md): Get details about the roles that come standard in RBAC.
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

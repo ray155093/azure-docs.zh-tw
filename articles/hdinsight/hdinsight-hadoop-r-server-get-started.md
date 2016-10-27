@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用 HDInsight (預覽) 中的 R 伺服器 | Azure"
-   description="了解如何在包含 R Server (預覽) 的 HDInsight (Hadoop) 叢集上建立 Apache Spark，並在叢集上送出 R 指令碼。"
+   pageTitle="Get started with R Server on HDInsight (preview) | Azure"
+   description="Learn how to create a Apache Spark on HDInsight (Hadoop) cluster that includes R Server (preview), and then submit an R script on the cluster."
    services="HDInsight"
    documentationCenter=""
    authors="jeffstokes72"
@@ -18,152 +18,157 @@
    ms.author="jeffstok"
 />
 
-# 開始使用 HDInsight (預覽) 中的 R 伺服器
 
-HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R 伺服器。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。在本文中，您將了解如何在 HDInsight 上建立新的 R Server，然後執行 R 指令碼，以使用 Spark 進行分散式 R 計算。
+# <a name="get-started-using-r-server-on-hdinsight-(preview)"></a>Get started using R Server on HDInsight (preview)
 
-![這份文件的工作流程圖表](./media/hdinsight-getting-started-with-r/rgettingstarted.png)
+The premium tier offering for HDInsight includes R Server as part of your HDInsight (preview) cluster. This allows R scripts to use MapReduce and Spark to run distributed computations. In this document, you will learn how to create a new R Server on HDInsight, then run an R script that demonstrates using Spark for distributed R computations.
 
-## 必要條件
+![Diagram of the workflow for this document](./media/hdinsight-getting-started-with-r/rgettingstarted.png)
 
-* __Azure 訂用帳戶__：開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)以取得詳細資訊。
+## <a name="prerequisites"></a>Prerequisites
 
-* __安全殼層 (SSH) 用戶端__：SSH 用戶端可用來從遠端連線至 HDInsight 叢集，並直接在叢集上執行命令。Linux、Unix 和 OS X 系統可透過 `ssh` 命令提供 SSH 用戶端。如果是 Windows 系統，我們建議使用 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
+* __An Azure subscription__: Before you begin this tutorial, you must have an Azure subscription. See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/) for more information.
 
-    * __SSH 金鑰 (選擇性)__：您可以使用密碼或公開金鑰，保護用來連線到叢集的 SSH 帳戶。使用密碼比較簡單，因為您不需要建立公開/私密金鑰組即可開始使用。不過，使用金鑰更加安全。
+* __A Secure Shell (SSH) client__: An SSH client is used to remotely connect to the HDInsight cluster and run commands directly on the cluster. Linux, Unix, and OS X systems provide an SSH client through the `ssh` command. For Windows systems, we recommend [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+
+    * __SSH keys (optional)__: You can secure the SSH account used to connect to the cluster using either a password or a public key. Using a password is easier, and allows you to get started without having to create a public/private key pair; however, using a key is more secure.
     
-        本文中的步驟是假設您使用密碼來進行作業。如需如何建立 SSH 金鑰並與 HDInsight 搭配使用的資訊，請參閱下文：
+        The steps in this document assume that you are using a password. For information on how to create and use SSH keys with HDInsight, see the following documents:
         
-        * [從 Linux、Unix 或 OS X 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+        * [Use SSH with HDInsight from Linux, Unix, or OS X clients](hdinsight-hadoop-linux-use-ssh-unix.md)
         
-        * [從 Windows 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+        * [Use SSH with HDInsight from Windows clients](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-## 建立叢集
+### <a name="access-control-requirements"></a>Access control requirements
 
-> [AZURE.NOTE] 本文中的步驟會使用基本設定資訊在 HDInsight 上建立 R Server。如需其他叢集設定設定 (例如，新增其他儲存體帳戶、使用 Azure 虛擬網路或建立 Hive 中繼存放區) 的資訊，請參閱[建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+[AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
+## <a name="create-the-cluster"></a>Create the cluster
 
-2. 依序選取 [新增]、[資料 + 分析] 和 [HDInsight]。
+> [AZURE.NOTE] The steps in this document create an R Server on HDInsight using basic configuration information. For other cluster configuration settings (such as adding additional storage accounts, using an Azure Virtual Network, or creating a metastore for Hive,) see [Create Linux-based HDInsight clusters](hdinsight-hadoop-provision-linux-clusters.md).
 
-    ![建立新叢集的影像](./media/hdinsight-getting-started-with-r/newcluster.png)
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-3. 在 [叢集名稱] 欄位中，輸入叢集的名稱。如果您有多個 Azure 訂用帳戶，請使用 [訂用帳戶] 項目選取要使用的訂用帳戶。
+2. Select __NEW__, __Data + Analytics__, and then __HDInsight__.
 
-    ![叢集名稱和訂用帳戶選取項目](./media/hdinsight-getting-started-with-r/clustername.png)
+    ![Image of creating a new cluster](./media/hdinsight-getting-started-with-r/newcluster.png)
 
-4. 選取 [選取叢集類型]。在 [叢集類型] 刀鋒視窗中，選取下列選項︰
+3. Enter a name for the cluster in the __Cluster Name__ field. If you have multiple Azure subscriptions, use the __Subscription__ entry to select the one you want to use.
 
-    * __叢集類型__：Spark 上的 R Server
+    ![Cluster name and subscription selections](./media/hdinsight-getting-started-with-r/clustername.png)
+
+4. Select __Select Cluster Type__. On the __Cluster Type__ blade, select the following options:
+
+    * __Cluster Type__: R Server on Spark
     
-    * __叢集層__︰進階
+    * __Cluster Tier__: Premium
 
-    其他選項保留為預設值，然後使用 [選取] 按鈕以儲存叢集類型。
+    Leave the other options at the default values, then use the __Select__ button to save the cluster type.
     
-    ![叢集類型刀鋒視窗螢幕擷取畫面](./media/hdinsight-getting-started-with-r/clustertypeconfig.png)
+    ![Cluster type blade screenshot](./media/hdinsight-getting-started-with-r/clustertypeconfig.png)
     
-    > [AZURE.NOTE] 您也可以依序選取叢集類型和 [進階]，將 R Server 加入其他 HDInsight 叢集類型 (例如 Hadoop 或 HBase) 中。
+    > [AZURE.NOTE] You can also add R Server to other HDInsight cluster types (such as Hadoop or HBase,) by selecting the cluster type, and then selecting __Premium__.
 
-5. 選取 [資源群組]，查看現有資源群組清單，然後選取其中一個項目以在其中建立叢集。或者，您可以選取 [建立新群組]，然後輸入新資源群組的名稱。出現綠色核取記號即表示可以使用這個新群組名稱。
+5. Select **Resource Group** to see a list of existing resource groups and then select the one to create the cluster in. Or, you can select **Create New** and then enter the name of the new resource group. A green check will appear to indicate that the new group name is available.
 
-    > [AZURE.NOTE] 如果有可用的資源群組，則此項目會預設為現有資源群組的其中一個群組。
+    > [AZURE.NOTE] This entry will default to one of your existing resource groups, if any are available.
     
-    使用 [選取] 按鈕，儲存資源群組。
+    Use the __Select__ button to save the resource group.
 
-6. 選取 [認證]，然後輸入 [叢集登入使用者名稱] 和 [叢集登入密碼]。
+6. Select **Credentials**, then enter a **Cluster Login Username** and **Cluster Login Password**.
 
-    輸入 [SSH 使用者名稱]。透過安全殼層 (SSH) 用戶端從遠端連線到叢集時，會使用 SSH。您可以在這個對話方塊中指定 SSH 使用者，或是在叢集建立之後指定 (叢集的 [組態] 索引標籤)。R Server 的設定會預期 “remoteuser” 的 SSH 使用者名稱。如果您使用不同的使用者名稱，必須在叢集建立之後執行額外步驟。
+    Enter an __SSH Username__.  SSH is used to remotely connect to the cluster using a __Secure Shell (SSH)__ client. You can either specify the SSH user in this dialog or after the cluster has been created (Configuration tab for the cluster). R Server is configured to expect a __SSH username__ of “remoteuser”.  If you use a different username, you will have to perform an additional step after the cluster is created.
     
-    ![認證刀鋒視窗](./media/hdinsight-getting-started-with-r/clustercredentials.png)
+    ![Credentials blade](./media/hdinsight-getting-started-with-r/clustercredentials.png)
 
-    __SSH 驗證類型__︰除非您偏好使用公開金鑰，否則請選取 [密碼] 驗證類型。如果您想要透過遠端用戶端 (如 RTVS、RStudio 或其他桌面 IDE) 存取叢集上的 R Server，將需要公開/私密金鑰組。
+    __SSH Authentication Type__: Select __PASSWORD__ as the authentication type unless you prefer use of a public key.  You’ll need a public/private key pair if you’d like to access R Server on the cluster via a remote client, e.g. RTVS, RStudio or another desktop IDE.   
 
-	若要建立和使用公開/私密金鑰組，請選取 [公開金鑰]，然後下文所示的步驟進行。這些指示假設您已安裝 Cygwin 和 ssh-keygen 或具同等效力的命令。
+    To create and use a public/private key pair select ‘PUBLIC KEY’ and proceed as follows.  These instructions assume that you have Cygwin with ssh-keygen or equivalent installed.
 
-	-    從膝上型電腦上的命令提示字元產生公開/私密金鑰組︰
-	  
-		    ssh-keygen -t rsa -b 2048 –f <private-key-filename>
+    -    Generate a public/private key pair from the command prompt on your laptop:
       
-    -    這會在 <private-key-filename>.pub 名稱 (如 davec and davec.pub) 下方建立私密金鑰檔案和公開金鑰檔案。接著，在指派 HDI 叢集認證時指定公開金鑰檔案 (*.pub)︰
+            ssh-keygen -t rsa -b 2048 –f <private-key-filename>
       
-		![認證刀鋒視窗](./media/hdinsight-getting-started-with-r/publickeyfile.png)
+    -    This will create a private key file and a public key file under the name <private-key-filename>.pub, e.g.  davec and davec.pub.  Then specify the public key file (*.pub) when assigning HDI cluster credentials:
       
-	-    在膝上型電腦上變更私密金鑰檔案的權限
+        ![Credentials blade](./media/hdinsight-getting-started-with-r/publickeyfile.png)  
       
-			chmod 600 <private-key-filename>
+    -    Change permissions on the private keyfile on your laptop
       
-	-    使用私密金鑰檔案搭配 SSH 以進行遠端登入，例如︰
-	  
-			ssh –i <private-key-filename> remoteuser@<hostname public ip>
+            chmod 600 <private-key-filename>
       
-	  或當做用戶端上 R Server 的 Hadoop Spark 計算內容的部分定義 (請參閱線上 [RevoScaleR Hadoop Spark 快速入門指南](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started) [Creating a Compute Context for Spark (建立計算 Spark 的計算內容)](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark) 一節的＜Using Microsoft R Server as a Hadoop Client (將 Microsoft R Server 當做 Hadoop 用戶端)＞)。
+    -    Use the private key file with SSH for remote login, e.g.
+      
+            ssh –i <private-key-filename> remoteuser@<hostname public ip>
+      
+      or as part the definition of your Hadoop Spark compute context for R Server on the client (see Using Microsoft R Server as a Hadoop Client in the [Creating a Compute Context for Spark](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark) section of the online [RevoScaleR Hadoop Spark Getting Started guide](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started).)
 
-7. 選取 [資料來源] 以選取叢集的資料來源。若要選取現有的儲存體帳戶，您可以選取 [選取儲存體帳戶]，然後選取帳戶，或使用 [選取儲存體帳戶] 區段中的 [新增] 連結，以建立新的帳戶。
+7. Select **Data Source** to select a data source for the cluster. Either select an existing storage account by selecting __Select storage account__ and then selecting the account, or create a new account using the __New__ link in the __Select storage account__ section.
 
-    如果您選取 [新增]，則必須輸入新儲存體帳戶的名稱。如果系統接受該名稱，就會出現綠色核取記號。
+    If you select __New__, you must enter a name for the new storage account. A green check will appear if the name is accepted.
 
-    [預設容器] 的預設值為叢集的名稱。請不要更動此值。
+    The __Default Container__ will default to the name of the cluster. Leave this as the value.
     
-    選取 [位置] 以選取要在其中建立儲存體帳戶的區域。
+    Select __Location__ to select the region to create the storage account in.
     
-    > [AZURE.IMPORTANT] 選取預設資料來源位置的同時，也會設定 HDInsight 叢集位置。叢集和預設資料來源必須位於相同區域中。
+    > [AZURE.IMPORTANT] Selecting the location for the default data source will also set the location of the HDInsight cluster. The cluster and default data source must be located in the same region.
 
-    使用 [選取] 按鈕以儲存資料來源設定。
+    Use the **Select** button to save the data source configuration.
     
-    ![資料來源刀鋒視窗](./media/hdinsight-getting-started-with-r/datastore.png)
+    ![Data source blade](./media/hdinsight-getting-started-with-r/datastore.png)
 
-8. 選取 [節點定價層] 會顯示將針對此叢集建立之節點的相關資訊。除非您確定需要更大的叢集，否則請保留背景工作節點數目的預設值 `4`。該叢集的預估成本將會顯示在此刀鋒視窗內。
+8. Select **Node Pricing Tiers** to display information about the nodes that will be created for this cluster. Unless you know that you'll need a larger cluster, leave the number of worker nodes at the default of `4`. The estimated cost of the cluster will be shown within the blade.
 
-	> [AZURE.NOTE] 如有需要，您可以在稍後透過入口網站重新調整叢集的大小 ([叢集] -> [設定]-> [調整叢集])，以增加或減少背景工作節點的數目。這有助於讓未使用的叢集閒置下來，或增加容量以滿足大型工作的需求。
+    > [AZURE.NOTE] If needed, you can re-size your cluster later through the Portal (Cluster -> Settings -> Scale Cluster) to increase or decrease the number of worker nodes.  This can be useful for idling down the cluster when not in use, or for adding capacity to meet the needs of larger tasks.
 
-	在調整叢集大小、資料節點和邊緣節點時，請將一些因素納入考量，包括︰
+    Some factors to keep in mind when sizing your cluster, the data nodes, and the edge node include:  
    
-    - 資料很大時，Spark 上分散式 R 伺服器分析的效能與背景工作節點數目成正比。
-    - R 伺服器分析的效能與分析的資料大小呈線性關係。例如：
-        - 小型到中型的資料在邊緣節點上的本機計算內容中分析時，效能將會最好。如需有關本機和 Spark 計算內容最適合哪種案例的詳細資訊，請參閱在 HDInsight 上 R 伺服器的計算內容選項。<br>
-        - 如果您登入邊緣節點並執行 R 指令碼，則除了 ScaleR rx 函式，其他所有函式都會在邊緣節點的<strong>本機</strong>執行，所以邊緣節點的記憶體和核心數目應據此調整大小。如果您在 HDI 上將 R Server 當做膝上型電腦的遠端計算內容，也適用相同原則。
+    - The performance of distributed R Server analyses on Spark is proportional to the number of worker nodes when the data is large.  
+    - The performance of R Server analyses is linear in the size of data being analyzed. For example:  
+        - For small to modest data, performance will be best when analyzed in a local compute context on the edge node.  For more information on the scenarios under which the local and Spark compute contexts work best see  Compute context options for R Server on HDInsight.<br>
+        - If you log into the edge node and run your R script there then all but the ScaleR rx-functions will execute <strong>locally</strong> on the edge node so the memory and number of cores of the edge node should be sized accordingly. The same applies if you use R Server on HDI as a remote compute context from your laptop.
     
-    ![節點定價層刀鋒視窗](./media/hdinsight-getting-started-with-r/pricingtier.png)
+    ![Node pricing tiers blade](./media/hdinsight-getting-started-with-r/pricingtier.png)
 
-    使用 [選取] 按鈕以儲存節點定價設定。
+    Use the **Select** button to save the node pricing configuration.
     
-9. 在 [新的 HDInsight 叢集] 刀鋒視窗中，確認已選取 [釘選到「開始面板」]，然後選取 [建立]。這將會建立叢集，並將該叢集磚加入到您 Azure 入口網站的「開始面板」。該圖示會顯示叢集正在建立中，並會在叢集建立完成時變更為 HDInsight 圖示。
+9. On the **New HDInsight Cluster** blade, make sure that **Pin to Startboard** is selected, and then select **Create**. This will create the cluster and add a tile for it to the Startboard of your Azure Portal. The icon will indicate that the cluster is creating, and will change to display the HDInsight icon once creation has completed.
 
-    | 建立時 | 建立完成 |
-    | ------------------ | --------------------- |
-    | ![「開始面板」上的建立指示器](./media/hdinsight-getting-started-with-r/provisioning.png) | ![已建立叢集磚](./media/hdinsight-getting-started-with-r/provisioned.png) |
+  	| While creating | Creation complete |
+  	| ------------------ | --------------------- |
+  	| ![Creating indicator on startboard](./media/hdinsight-getting-started-with-r/provisioning.png) | ![Created cluster tile](./media/hdinsight-getting-started-with-r/provisioned.png) |
 
-    > [AZURE.NOTE] 建立叢集需要一些時間，通常約 15 分鐘左右。請使用「開始面板」上的磚，或頁面左邊的 [通知] 項目來以檢查建立進度。
+    > [AZURE.NOTE] It will take some time for the cluster to be created, usually around 15 minutes. Use the tile on the Startboard, or the **Notifications** entry on the left of the page to check on the creation process.
 
-## 連線到 R Server 邊緣節點
+## <a name="connect-to-the-r-server-edge-node"></a>Connect to the R Server edge node
 
-使用 SSH 連線到 HDInsight 叢集的 R Server 邊緣節點：
+Connect to R Server edge node of the HDInsight cluster using SSH:
 
     ssh USERNAME@r-server.CLUSTERNAME-ssh.azurehdinsight.net
     
-> [AZURE.NOTE] 您也可以依序選取您的叢集、[所有設定]、[應用程式] 和 [RServer]，在 Azure 入口網站中找到 `R-Server.CLUSTERNAME-ssh.azurehdinsight.net` 位址。如此即可顯示邊緣節點的 SSH 端點資訊。
+> [AZURE.NOTE] You can also find the `R-Server.CLUSTERNAME-ssh.azurehdinsight.net` address in the Azure portal by selecting your cluster, then __All Settings__, __Apps__, and __RServer__. This will display the SSH Endpoint information for the edge node.
 >
-> ![邊緣節點 SSH 端點的影像](./media/hdinsight-getting-started-with-r/sshendpoint.png)
+> ![Image of the SSH Endpoint for the edge node](./media/hdinsight-getting-started-with-r/sshendpoint.png)
     
-如果您已經使用密碼保護您 SSH 使用者帳戶的安全，系統會提示您輸入密碼。如果您使用的是公開金鑰，您可能必須使用 `-i` 參數來指定對應的私密金鑰。例如，`ssh -i ~/.ssh/id_rsa USERNAME@R-Server.CLUSTERNAME-ssh.azurehdinsight.net`。
+If you used a password to secure your SSH user account, you will be prompted to enter it. If you used a public key, you may have to use the `-i` parameter to specify the matching private key. For example, `ssh -i ~/.ssh/id_rsa USERNAME@R-Server.CLUSTERNAME-ssh.azurehdinsight.net`.
     
-如需搭配使用 SSH 與以 Linux 為基礎的 HDInsight 的詳細資訊，請參閱下列文章：
+For more information on using SSH with Linux-based HDInsight, see the following articles:
 
-* [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
+* [Use SSH with Linux-based Hadoop on HDInsight from Linux, Unix, or OS X](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-* [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+* [Use SSH with Linux-based Hadoop on HDInsight from Windows](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-連線之後，您將看見類似以下的提示：
+Once connected, you will arrive at a prompt similar to the following.
 
     username@ed00-myrser:~$
 
-## 使用 R 主控台
+## <a name="use-the-r-console"></a>Use the R console
 
-1. 在 SSH 工作階段中，使用以下命令啟動 R 主控台：
+1. From the SSH session, use the following command to start the R console.
 
         R
     
-    您將看到類似以下的輸出：
+    You will see output similar to the following.
     
         R version 3.2.2 (2015-08-14) -- "Fire Safety"
         Copyright (C) 2015 The R Foundation for Statistical Computing
@@ -190,17 +195,17 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
         >
 
-2. 您可以透過 `>` 提示，輸入 R 程式碼。R Server 包含可讓您輕鬆與 Hadoop 互動並執行分散式計算的封裝。例如，若要檢視 HDInsight 叢集的預設檔案系統根目錄，可使用下列命令：
+2. From the `>` prompt, you can enter R code. R server includes packages that allow you to easily interact with Hadoop and run distributed computations. For example, use the following command to view the root of the default file system for the HDInsight cluster.
 
         rxHadoopListFiles("/")
     
-    您也可以使用 WASB 樣式定址。
+    You can also use the WASB style addressing.
     
         rxHadoopListFiles("wasbs:///")
 
-## 從 Microsoft R Server 或 Microsoft R Client 的遠端執行個體使用 HDI 上的 R Server
+## <a name="using-r-server-on-hdi-from-a-remote-instance-of-microsoft-r-server-or-microsoft-r-client"></a>Using R Server on HDI from a remote instance of Microsoft R Server or Microsoft R Client
 
-根據上一節使用公開/私密金鑰組來存取叢集的相關論述，您可以從在桌上型電腦或膝上型電腦上執行的 Microsoft R Server 或 Microsoft R Client 遠端執行個體，設定 HDI Hadoop Spark 計算內容的存取 (請參閱線上 [RevoScaleR Hadoop Spark 快速入門指南](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started)[建立計算 Spark 的計算內容](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark)一節的＜Using Microsoft R Server as a Hadoop Client (將 Microsoft R Server 當做 Hadoop 用戶端)＞)。若要這樣做，在膝上型電腦上定義 RxSpark 計算內容時，您需要指定下列選項︰hdfsShareDir、shareDir、sshUsername、sshHostname、sshSwitches 和 sshProfileScript。例如：
+Per the section above regarding use of public/private key pairs to access the cluster, it is possible to setup access to the HDI Hadoop Spark compute context from a remote instance of Microsoft R Server or Microsoft R Client running on a desktop or laptop (see Using Microsoft R Server as a Hadoop Client in the [Creating a Compute Context for Spark](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark) section of the online [RevoScaleR Hadoop Spark Getting Started guide](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started)).  To do so you will need to specify the following options when defining the RxSpark compute context on your laptop: hdfsShareDir, shareDir, sshUsername, sshHostname, sshSwitches, and sshProfileScript. For example:
 
     
     myNameNode <- "default"
@@ -227,11 +232,11 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
     
  
-## 使用計算內容
+## <a name="use-a-compute-context"></a>Use a compute context
 
-計算內容可讓您控制要在邊緣節點上本機執行計算，或將計算分散到 HDInsight 叢集的節點中。
+A compute context allows you to control whether computation will be performed locally on the edge node, or whether it will be distributed across the nodes in the HDInsight cluster.
         
-1. 在 R 主控台中，使用下列項目將範例資料載入 HDInsight 的預設儲存體。
+1. From the R console, use the following to load example data into the default storage for HDInsight.
 
         # Set the HDFS (WASB) location of example data
         bigDataDirRoot <- "/example/data"
@@ -259,7 +264,7 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
         # Copy the data from source to input
         rxHadoopCopyFromLocal(source, bigDataDirRoot)
 
-2. 接下來，我們要建立一些資料資訊，並定義兩個資料來源，以便使用資料。
+2. Next, let's create some data info and define two data sources so that we can work with the data.
 
         # Define the HDFS (WASB) file system
         hdfsFS <- RxHdfsFileSystem()
@@ -282,7 +287,7 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
         # formula to use
         formula = "ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME + DEST"
 
-3. 現在，我們來使用本機計算內容執行資料的羅吉斯迴歸。
+3. Let's run a logistic regression over the data using the local compute context.
 
         # Set a local compute context
         rxSetComputeContext("local")
@@ -293,7 +298,7 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
         # Display a summary 
         summary(modelLocal)
 
-    您應該會看到結尾類似以下幾行的輸出：
+    You should see output that ends with lines similar to the following.
 
         Data: airOnTimeDataLocal (RxTextData Data Source)
         File name: /tmp/AirOnTimeCSV2012
@@ -319,7 +324,7 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
         Condition number of final variance-covariance matrix: 11904202
         Number of iterations: 7
 
-4. 接著，我們使用 Spark 內容來執行相同的羅吉斯迴歸。Spark 內容會將處理作業分散到 HDInsight 叢集的所有背景工作節點中。
+4. Next, let's run the same logistic regression using the Spark context. The Spark context will distribute the processing over all the worker nodes in the HDInsight cluster.
 
         # Define the Spark compute context 
         mySparkCluster <- RxSpark()
@@ -332,15 +337,15 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
         # Display a summary
         summary(modelSpark)
 
-    > [AZURE.NOTE] 您也可以使用 MapReduce，將計算分散到叢集節點。如需計算內容的詳細資訊，請參閱[適用於 HDInsight (預覽) 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)。
+    > [AZURE.NOTE] You can also use MapReduce to distribute computation across cluster nodes. For more information on compute context, see [Compute context options for R Server on HDInsight premium](hdinsight-hadoop-r-server-compute-contexts.md).
 
-## 將 R 程式碼分散到多個節點
+## <a name="distribute-r-code-to-multiple-nodes"></a>Distribute R code to multiple nodes
 
-使用 R 伺服器時，您可以輕鬆採用現有的 R 程式碼並利用 `rxExec` 跨多個叢集節點執行。執行參數掃掠或模擬時，這非常有用。以下是使用 `rxExec` 的範例。
+With R Server you can easily take existing R code and run it across multiple nodes in the cluster by using `rxExec`. This is useful when doing a parameter sweep or simulations. The following is an example of how to use `rxExec`.
 
     rxExec( function() {Sys.info()["nodename"]}, timesToRun = 4 )
     
-如果您仍在使用 Spark 或 MapReduce 內容，這麼做會針對執行程式碼 (`Sys.info()["nodename"]`) 的背景工作節點傳回 nodename 值。比方說，若是在四個節點叢集上，您可能會收到類似下列的輸出：
+If you are still using the Spark or MapReduce context, this will return the nodename value for the worker nodes that the code (`Sys.info()["nodename"]`) is ran on. For example, on a four node cluster, you may receive output similar to the following.
 
     $rxElem1
         nodename
@@ -358,56 +363,61 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
         nodename
     "wn3-myrser"
 
-## 安裝 R 封裝
+## <a name="install-r-packages"></a>Install R packages
 
-如果您想要在邊緣節點上安裝其他 R 套件，可以在透過 SSH 連線至邊緣節點時，直接從 R 主控台內使用 `install.packages()`。不過，如果您需要在叢集的背景工作節點上安裝 R 封裝，就必須使用指令碼動作。
+If you would like to install additional R packages on the edge node, you can use `install.packages()` directly from within the R console when connected to the edge node through SSH. However, if you need to install R packages on the worker nodes of the cluster, you must use a Script Action.
 
-指令碼動作是一種 Bash 指令碼，可用來變更 HDInsight 叢集的設定或安裝其他軟體。在此案例中，則是用來安裝其他 R 封裝。若要使用指令碼動作安裝其他封裝，請使用下列步驟：
+Script Actions are Bash scripts that are used to make configuration changes to the HDInsight cluster, or to install additional software. In this case, to install additional R packages. To install additional packages using a Script Action, use the following steps.
 
-> [AZURE.IMPORTANT] 僅有在建立叢集之後，才可以使用指令碼動作來安裝其他 R 封裝。您不應在叢集建立期間使用，因為指令碼是相依於已完整安裝與設定的 R Server。
+> [AZURE.IMPORTANT] Using Script Actions to install additional R packages can only be used after the cluster has been created. It should not be used during cluster creation, as the script relies on R Server being completely installed and configured.
 
-1. 從 [Azure 入口網站](https://portal.azure.com)選取您 HDInsight 叢集上的 R Server。
+1. From the [Azure portal](https://portal.azure.com), select your R Server on HDInsight cluster.
 
-2. 在叢集刀鋒視窗中，依序選取 [所有設定] 和 [指令碼動作]。在 [指令碼動作] 刀鋒視窗中，選取 [提交新的] 以送出新的指令碼動作。
+2. From the cluster blade, select __All Settings__, and then __Script Actions__. From the __Script Actions__ blade, select __Submit New__ to submit a new Script Action.
 
-    ![指令碼動作刀鋒視窗的影像](./media/hdinsight-getting-started-with-r/newscriptaction.png)
+    ![Image of script actions blade](./media/hdinsight-getting-started-with-r/newscriptaction.png)
 
-3. 在 [提交指令碼動作] 刀鋒視窗中，提供下列資訊。
+3. From the __Submit script action__ blade, provide the following information.
 
-  - __名稱__︰識別此指令碼的易記名稱
-  - __Bash 指令碼 URI__：`http://mrsactionscripts.blob.core.windows.net/rpackages-v01/InstallRPackages.sh`
-  - __前端__︰這應該是__未核取__狀態
-  - __背景工作__︰這應該是__核取__狀態
-  - __Zookeeper__︰這應該是__未核取__狀態
-  - __參數__︰要安裝的 R 套件。例如，`bitops stringr arules`
-  - __保存此指令碼...__︰這應該是__核取__狀態
+  - __Name__: A friendly name to identify this script
+  - __Bash script URI__: `http://mrsactionscripts.blob.core.windows.net/rpackages-v01/InstallRPackages.sh`
+  - __Head__: This should be __unchecked__
+  - __Worker__: This should be __checked__
+  - __Zookeeper__: This should be __unchecked__
+  - __Parameters__: The R packages to be installed. For example, `bitops stringr arules`
+  - __Persist this script...__: This should be __Checked__  
 
-    > [AZURE.NOTE] 1.根據預設，會從與安裝之 R 伺服器同版本的 Microsoft MRAN 儲存機制的快照安裝所有的 R 封裝。如果您想要安裝更新版的封裝，會有些不相容的風險，不過仍可以辦到，只要指定 `useCRAN` 做為封裝清單的第一個項目，例如 `useCRAN bitops, stringr, arules`。
-    > 2. 有些 R 封裝會需要額外的 Linux 系統程式庫。為了方便起見，我們已預先安裝前 100 個最受歡迎的 R 封裝所需的相依性。然而，如果您安裝的 R 封裝需要的程式庫不在這之中，則必須下載此處所使用的基底指令碼，並加入安裝系統程式庫的步驟。接下來，您必須將修改過的指令碼上傳至 Azure 儲存體中的公用 Blob 容器，並使用修改過的指令碼來安裝封裝。如需開發指令碼動作的詳細資訊，請參閱[指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。
+    > [AZURE.NOTE] 1. By default, all R packages are installed from a snapshot of the Microsoft MRAN repository consistent with the version of R Server that has been installed.  If you would like to install newer versions of packages then there is some risk of incompatibility, however this is possible by specifying `useCRAN` as the first element of the package list, e.g.  `useCRAN bitops, stringr, arules`.  
+    > 2. Some R packages will require additional Linux system libraries. For convenience, we have pre-installed the dependencies needed by the top 100 most popular R packages. However, if the R package(s) you install require libraries beyond these, then you must download the base script used here and add steps to install the system libraries. You must then upload the modified script to a public blob container in Azure storage and use the modified script to install the packages.
+    > For more information on developing Script Actions, see [Script Action development](hdinsight-hadoop-script-actions-linux.md).  
 
-    ![新增指令碼動作](./media/hdinsight-getting-started-with-r/scriptaction.png)
+    ![Adding a script action](./media/hdinsight-getting-started-with-r/scriptaction.png)
 
-4. 按一下 [建立] 執行指令碼。指令碼完成之後，即可在所有的背景工作節點上使用 R 封裝。
+4. Select __Create__ to run the script. Once the script completes, the R packages will be available on all worker nodes.
     
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-現在您已了解如何建立包含 R Server 的新 HDInsight 叢集，以及透過 SSH 工作階段使用 R 主控台的基本概念，請參閱下列內容以探索在 HDInsight 上使用 R Server 的其他方式。
+Now that you understand how to create a new HDInsight cluster that includes R Server, and the basics of using the R console from an SSH session, use the following to discover other ways of working with R Server on HDInsight.
 
-- [將 RStudio 伺服器加入 HDInsight 進階層中](hdinsight-hadoop-r-server-install-r-studio.md)
+- [Add RStudio Server to HDInsight premium](hdinsight-hadoop-r-server-install-r-studio.md)
 
-- [適用於 HDInsight 進階層 R Server 的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
+- [Compute context options for R Server on HDInsight premium](hdinsight-hadoop-r-server-compute-contexts.md)
 
-- [適用於 HDInsight 進階層 R Server 的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
+- [Azure Storage options for R Server on HDInsight premium](hdinsight-hadoop-r-server-storage.md)
 
-### Azure 資源管理員範本
+### <a name="azure-resource-manager-templates"></a>Azure Resource Manager templates
 
-如果您想要使用 Azure Resource Manager 範本，在 HDInsight 上自動建立 R Server，請參閱下列的範例範本：
+If you're interested in automating the creation of R Server on HDInsight using Azure Resource Manager templates, see the following example templates.
 
-* [使用 SSH 公開金鑰，在 HDInsight 叢集上建立 R Server](http://go.microsoft.com/fwlink/p/?LinkID=780809)
-* [使用 SSH 密碼，在 HDInsight 叢集上建立 R Server](http://go.microsoft.com/fwlink/p/?LinkID=780810)
+* [Create an R Server on HDInsight cluster using an SSH public key](http://go.microsoft.com/fwlink/p/?LinkID=780809)
+* [Create an R Server on HDInsight cluster using an SSH password](http://go.microsoft.com/fwlink/p/?LinkID=780810)
 
-這兩種範本皆會建立新的 HDInsight 叢集和已與其建立關聯的儲存體帳戶，您可透過 Azure CLI、Azure PowerShell 或 Azure 入口網站來使用。
+Both templates create a new HDInsight cluster and associated storage account, and can be used from the Azure CLI, Azure PowerShell, or the Azure Portal.
 
-如需使用 Azure Resource Manager 範本的一般資訊，請參閱[使用 Azure Resource Manager 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
+For generic information on using Azure Resource Manager templates, see [Create Linux-based Hadoop clusters in HDInsight using Azure Resource Manager templates](hdinsight-hadoop-create-linux-clusters-arm-templates.md).
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

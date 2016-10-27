@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用 Azure Batch PowerShell | Microsoft Azure"
-   description="取得您可以用來管理 Azure Batch 服務之 Azure PowerShell Cmdlet 的快速簡介"
+   pageTitle="Get started with Azure Batch PowerShell | Microsoft Azure"
+   description="Get a quick introduction to the Azure PowerShell cmdlets you can use to manage the Azure Batch service"
    services="batch"
    documentationCenter=""
    authors="dlepow"
@@ -16,44 +16,45 @@
    ms.date="07/28/2016"
    ms.author="danlep"/>
 
-# 開始使用 Azure Batch PowerShell Cmdlet
-使用 Azure Batch PowerShell Cmdlet，您可以執行與您使用 Batch API、Azure 入口網站和 Azure 命令列介面 (CLI) 執行的許多相同工作並撰寫其指令碼。本文會快速介紹可用來管理 Batch 帳戶和使用批次資源 (例如集區、作業和和工作) 的 Cmdlet。本文是根據 Azure PowerShell 1.6.0 版中的 Cmdlet 所撰寫。
 
-如需批次 Cmdlet 和詳細 Cmdlet 語法的完整清單，請參閱 [Azure 批次 Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/mt125957.aspx)。
+# <a name="get-started-with-azure-batch-powershell-cmdlets"></a>Get started with Azure Batch PowerShell cmdlets
+With the Azure Batch PowerShell cmdlets, you can perform and script many of the same tasks you carry out with the Batch APIs, the Azure portal, and the Azure Command-Line Interface (CLI). This is a quick introduction to the cmdlets you can use to manage your Batch accounts and work with your Batch resources such as pools, jobs, and tasks. This article is based on cmdlets in Azure PowerShell version 1.6.0.
+
+For a complete list of Batch cmdlets and detailed cmdlet syntax, see the [Azure Batch cmdlet reference](https://msdn.microsoft.com/library/azure/mt125957.aspx). 
 
 
-## 先決條件
+## <a name="prerequisites"></a>Prerequisites
 
-* **Azure PowerShell** - 請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 以取得下載和安裝 Azure PowerShell 的指示。
+* **Azure PowerShell** - See [How to install and configure Azure PowerShell](../powershell-install-configure.md) for instructions to download and install Azure PowerShell. 
    
-    * 因為 Azure 批次 Cmdlet 隨附在 Azure Resource Manager 模組中，您必須執行 **Login-AzureRmAccount** Cmdlet 才能連線到訂用帳戶。
+    * Because the Azure Batch cmdlets ship in the Azure Resource Manager module, you'll need to run the **Login-AzureRmAccount** cmdlet to connect to your subscription. 
     
-    * 建議您經常更新您的 Azure PowerShell 以利用服務更新和增強功能。
+    * We recommend that you update your Azure PowerShell frequently to take advantage of service updates and enhancements. 
     
-* **向 Batch 提供者命名空間註冊 (一次性操作)**：在您可以使用 Batch 帳戶之前，必須向 Batch 提供者命名空間註冊。每個訂用帳戶只需要執行這項作業一次。執行下列 Cmdlet：
+* **Register with the Batch provider namespace (one-time operation)** - Before working with your Batch accounts, you have to register with the Batch provider namespace. This operation only needs to be performed once per subscription. Run the following cmdlet:
 
         Register-AzureRMResourceProvider -ProviderNamespace Microsoft.Batch
 
 
-## 管理 Batch 帳戶和金鑰
+## <a name="manage-batch-accounts-and-keys"></a>Manage Batch accounts and keys
 
-### 建立批次帳戶：
+### <a name="create-a-batch-account"></a>Create a Batch account
 
-**New-AzureRmBatchAccount** 將在指定的資源群組中建立新的 Batch 帳戶。如果您還沒有資源群組，請執行 [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/azure/mt603739.aspx) Cmdlet 建立一個，並在 **Location** 參數中指定其中一個 Azure 區域，例如"Central US"。例如：
+**New-AzureRmBatchAccount** creates a new Batch account in a specified resource group. If you don't already have a resource group, create one by running the [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/azure/mt603739.aspx) cmdlet, specifying one of the Azure regions in the **Location** parameter, such as "Central US". For example:
 
 
     New-AzureRmResourceGroup –Name MyBatchResourceGroup –location "Central US"
 
 
-然後，在資源群組中建立新的 Batch 帳戶，為 <account\_name> 中的帳戶指定名稱，以及指定資源群組的位置和名稱。建立 Batch 帳戶可能需要一些時間來完成。例如：
+Then, create a new Batch account account in the resource group, specifying a name for the account in <*account_name*> and the location and name of your resource group. Creating the Batch account can take some time to complete. For example:
 
 
     New-AzureRmBatchAccount –AccountName <account_name> –Location "Central US" –ResourceGroupName MyBatchResourceGroup
 
-> [AZURE.NOTE] Batch 帳戶名稱對資源群組的 Azure 區域必須是唯一的、包含 3 到 24 個字元，並只使用小寫字母和數字。
+> [AZURE.NOTE] The Batch account name must be unique to the Azure region for the resource group, contain between 3 and 24 characters, and use lowercase letters and numbers only.
 
-### 取得帳戶存取金鑰
-**Get-AzureRmBatchAccountKeys** 將顯示與 Azure Batch 帳戶相關聯的存取金鑰。例如，執行下列命令以取得您所建立帳戶的主要和次要金鑰。
+### <a name="get-account-access-keys"></a>Get account access keys
+**Get-AzureRmBatchAccountKeys** shows the access keys associated with an Azure Batch account. For example, run the following to get the primary and secondary keys of the account you created.
 
     $Account = Get-AzureRmBatchAccountKeys –AccountName <accountname>
 
@@ -62,68 +63,68 @@
     $Account.SecondaryAccountKey
 
 
-### 產生新的存取金鑰
-**New-AzureRmBatchAccountKey** 將為 Azure Batch 帳戶產生新的主要或次要帳戶金鑰。例如，若要為您的 Batch 帳戶產生新的主要金鑰，請輸入：
+### <a name="generate-a-new-access-key"></a>Generate a new access key
+**New-AzureRmBatchAccountKey** generates a new primary or secondary account key for an Azure Batch account. For example, to generate a new primary key for your Batch account, type:
 
 
     New-AzureRmBatchAccountKey -AccountName <account_name> -KeyType Primary
 
 
-> [AZURE.NOTE] 若要產生新的次要金鑰，請將 **KeyType** 參數指定為「次要」。您必須個別重新產生主要和次要金鑰。
+> [AZURE.NOTE] To generate a new secondary key, specify "Secondary" for the **KeyType** parameter. You have to regenerate the primary and secondary keys separately.
 
-### 刪除 Batch 帳戶
-**Remove-AzureRmBatchAccount** 將刪除 Batch 帳戶。例如：
+### <a name="delete-a-batch-account"></a>Delete a Batch account
+**Remove-AzureRmBatchAccount** deletes a Batch account. For example:
 
 
     Remove-AzureRmBatchAccount -AccountName <account_name>
 
-出現提示時，請確認您想要移除的帳戶。帳戶移除可能需要一些時間來完成。
+When prompted, confirm you want to remove the account. Account removal can take some time to complete.
 
-## 建立 BatchAccountContext 物件
+## <a name="create-a-batchaccountcontext-object"></a>Create a BatchAccountContext object
 
-若要在建立和管理 Batch 集區、作業、工作和其他資源時使用 Batch PowerShell Cmdlet 來進行驗證，請先建立 BatchAccountContext 物件以儲存帳戶名稱和金鑰：
+To authenticate using the Batch PowerShell cmdlets when you create and manage Batch pools, jobs, tasks, and other resources, first create a BatchAccountContext object to store your account name and keys:
 
     $context = Get-AzureRmBatchAccountKeys -AccountName <account_name>
 
-您必須將 BatchAccountContext 物件傳遞給使用 **BatchContext** 參數的 Cmdlet。
+You pass the BatchAccountContext object into cmdlets that use the **BatchContext** parameter.
 
-> [AZURE.NOTE] 依預設，帳戶的主要金鑰用於驗證，但是您可以透過變更 BatchAccountContext 物件的 **KeyInUse** 屬性，明確地選取要使用的金鑰：`$context.KeyInUse = "Secondary"`。
+> [AZURE.NOTE] By default, the account's primary key is used for authentication, but you can explicitly select the key to use by changing your BatchAccountContext object’s **KeyInUse** property: `$context.KeyInUse = "Secondary"`.
 
 
 
-## 建立和修改批次資源
-請使用 **New-AzureBatchPool**、**New-AzureBatchJob** 和 **New-AzureBatchTask** 之類的 Cmdlet 在 Batch 帳戶下建立資源。要更新現有資源的屬性，有對應的 **Get-** 和 **Set-** Cmdlet ，要移除 Batch 帳戶下的資源，則有 **Remove-** Cmdlet。
+## <a name="create-and-modify-batch-resources"></a>Create and modify Batch resources
+Use cmdlets such as **New-AzureBatchPool**, **New-AzureBatchJob**, and **New-AzureBatchTask** to create resources under a Batch account. There are corresponding **Get-** and **Set-** cmdlets to update the properties of existing resources, and  **Remove-** cmdlets to remove resources under a Batch account. 
 
-使用許多這類 Cmdlet 時，除了傳遞 BatchContext 物件，您還需要建立或傳遞包含詳細資源設定的物件，如下列範例所示。如需其他範例，請參閱每個 Cmdlet 的詳細說明。
+When using many of these cmdlets, in addition to passing a BatchContext object, you need to create or pass objects that contain detailed resource settings, as shown in the following example. See the detailed help for each cmdlet for additional examples.
 
-### 建立 Batch 集區
+### <a name="create-a-batch-pool"></a>Create a Batch pool
 
-建立或更新 Batch 集區時，請選取雲端服務組態或計算節點上作業系統的虛擬機器組態 (請參閱 [Batch 功能概觀](batch-api-basics.md#pool))。您的選擇會決定計算節點是否會以其中一個 [Azure 客體 OS 版本](../cloud-services/cloud-services-guestos-update-matrix.md#releases)或以 Azure Marketplace 中其中一個支援的 Linux 或 Windows VM 映像製作映像。
+When creating or updating a Batch pool, you select a cloud service configuration or a virtual machine configuration for the operating system on the compute nodes (see [Batch feature overview](batch-api-basics.md#pool)). Your choice determines whether your compute nodes are imaged with one of the [Azure Guest OS releases](../cloud-services/cloud-services-guestos-update-matrix.md#releases) or with one of the supported Linux or Windows VM images in the Azure Marketplace. 
 
-當您執行 **New-AzureBatchPool** 時，請在 PSCloudServiceConfiguration 或 PSVirtualMachineConfiguration 物件中傳遞作業系統設定。例如，下列 Cmdlet 會使用雲端服務組態中的小型計算節點建立新的 Batch 集區，並以最新的系列 3 (Windows Server 2012) 作業系統版本製作映像。在此，**CloudServiceConfiguration** 參數會指定 $configuration 變數做為 PSCloudServiceConfiguration 物件。**BatchContext** 參數會將先前定義的變數 $context 指定為 BatchAccountContext 物件。
+When you run **New-AzureBatchPool**, pass the operating system settings in a PSCloudServiceConfiguration or PSVirtualMachineConfiguration object. For example, the following cmdlet creates a new Batch pool with size Small compute nodes in the cloud service configuration, imaged with the latest operating system version of family 3 (Windows Server 2012). Here, the **CloudServiceConfiguration** parameter specifies the *$configuration* variable as the PSCloudServiceConfiguration object. The **BatchContext** parameter specifies a previously defined variable *$context* as the BatchAccountContext object.
 
 
     $configuration = New-Object -TypeName "Microsoft.Azure.Commands.Batch.Models.PSCloudServiceConfiguration" -ArgumentList @(3,"*")
     
     New-AzureBatchPool -Id "AutoScalePool" -VirtualMachineSize "Small" -CloudServiceConfiguration $configuration -AutoScaleFormula '$TargetDedicated=4;' -BatchContext $context
 
-新集區中計算節點的目標數目是由自動調整公式決定。在此案例中，此公式僅僅是 **$TargetDedicated=4**，表示集區中的計算節點數最多為 4 個。
+The target number of compute nodes in the new pool is determined by an autoscaling formula. In this case, the formula is simply **$TargetDedicated=4**, indicating the number of compute nodes in the pool is 4 at most. 
 
-## 查詢集區、作業、工作及其他詳細資料
+## <a name="query-for-pools,-jobs,-tasks,-and-other-details"></a>Query for pools, jobs, tasks, and other details
 
-使用 Cmdelt (例如 **Get-AzureBatchPool**、**Get-AzureBatchJob** 和 **Get-AzureBatchTask**) 查詢在 Batch 帳戶下建立的實體。
+Use cmdlets such as **Get-AzureBatchPool**, **Get-AzureBatchJob**, and **Get-AzureBatchTask** to query for entities created under a Batch account.
 
 
-### 查詢資料
+### <a name="query-for-data"></a>Query for data
 
-例如，使用 **Get-AzureBatchPools** 尋找您的集區。依預設，這將查詢您帳戶下的所有集區，並假設您已經將 BatchAccountContext 物件儲存在 *$context* 中：
+As an example, use **Get-AzureBatchPools** to find your pools. By default this queries for all pools under your account, assuming you already stored the BatchAccountContext object in *$context*:
 
 
     Get-AzureBatchPool -BatchContext $context
 
-### 使用 OData 篩選
+### <a name="use-an-odata-filter"></a>Use an OData filter
 
-您可以提供**篩選**參數給 OData 篩選，只尋找您感興趣的物件。例如，您可以找到識別碼以 “myPool” 開頭的所有集區：
+You can supply an OData filter using the **Filter** parameter to find only the objects you’re interested in. For example, you can find all pools with ids starting with “myPool”:
 
 
     $filter = "startswith(id,'myPool')"
@@ -131,40 +132,44 @@
     Get-AzureBatchPool -Filter $filter -BatchContext $context
 
 
-雖然這個方法比在本機管線中使用 “Where-Object” 較不具有彈性，不過查詢將直接傳送進 Batch 服務，讓所有篩選在伺服器端運作，進而省下網際網路頻寬。
+This method is not as flexible as using “Where-Object” in a local pipeline. However, the query gets sent to the Batch service directly so that all filtering happens on the server side, saving Internet bandwidth.
 
-### 使用識別碼參數
+### <a name="use-the-id-parameter"></a>Use the Id parameter
 
-使用 **Id** 參數可做為 OData 篩選器的替代方式。若要查詢識別碼為 "myPool" 的特定集區：
+An alternative to an OData filter is to use the **Id** parameter. To query for a specific pool with id "myPool":
 
 
     Get-AzureBatchPool -Id "myPool" -BatchContext $context
 
 
-**Id** 參數僅支援完整識別碼的搜尋，不能使用萬用字元或 OData 樣式的篩選器。
+The **Id** parameter supports only full-id search, not wildcards or OData-style filters.
 
 
 
-### 使用 MaxCount 參數
+### <a name="use-the-maxcount-parameter"></a>Use the MaxCount parameter
 
-依預設，每個 Cmdlet 最多傳回 1000 個物件。如果到達此限制，請調整您的篩選器以傳回較少的物件，或使用 **MaxCount** 參數明確地設定最大值。例如：
+By default, each cmdlet returns a maximum of 1000 objects. If you reach this limit, either refine your filter to bring back fewer objects, or explicitly set a maximum using the **MaxCount** parameter. For example:
 
 
     Get-AzureBatchTask -MaxCount 2500 -BatchContext $context
 
-若要移除上限，將 **MaxCount** 設定為 0 或更少。
+To remove the upper bound, set **MaxCount** to 0 or less.
 
-### 使用管線
+### <a name="use-the-pipeline"></a>Use the pipeline
 
-Batch Cmdlet 可以利用 PowerShell 管線在 Cmdlet 之間傳送資料。這和指定參數有相同效果，但讓列出多個實體更容易。例如，下列可找出您帳戶下的所有工作：
+Batch cmdlets can leverage the PowerShell pipeline to send data between cmdlets. This has the same effect as specifying a parameter but makes listing multiple entities easier. For example, the following finds all tasks under your account:
 
 
     Get-AzureBatchJob -BatchContext $context | Get-AzureBatchTask -BatchContext $context
 
 
-## 後續步驟
-* 如需詳細的 Cmdlet 語法和範例，請參閱 [Azure Batch Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/mt125957.aspx)。
+## <a name="next-steps"></a>Next steps
+* For detailed cmdlet syntax and examples, see [Azure Batch cmdlet reference](https://msdn.microsoft.com/library/azure/mt125957.aspx).
 
-* 如需減少項目數和針對 Batch 查詢所傳回之資訊類型的詳細資訊，請參閱[有效率地查詢 Batch 服務](batch-efficient-list-queries.md)。
+* See [Query the Batch service efficiently](batch-efficient-list-queries.md) for more about reducing the number of items and the type of information that is returned for queries to Batch. 
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

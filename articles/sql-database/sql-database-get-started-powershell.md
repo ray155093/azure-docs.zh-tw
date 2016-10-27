@@ -1,8 +1,8 @@
 <properties
-    pageTitle="使用 PowerShell 新增 SQL Database 設定| Microsoft Azure"
-    description="了解如何使用 PowerShell 建立 SQL Database。透過 PowerShell cmdlet 可以管理一般資料庫設定工作。"
-    keywords="建立新的 sql database,資料庫設定"
-	services="sql-database"
+    pageTitle="New SQL Database setup with PowerShell | Microsoft Azure"
+    description="Learn now to create a SQL database with PowerShell. Common database setup tasks can be managed through PowerShell cmdlets."
+    keywords="create new sql database,database setup"
+    services="sql-database"
     documentationCenter=""
     authors="stevestein"
     manager="jhubbard"
@@ -17,68 +17,69 @@
     ms.date="08/19/2016"
     ms.author="sstein"/>
 
-# 建立 SQL Database 並使用 PowerShell Cmdlet 執行一般資料庫設定工作
+
+# <a name="create-a-sql-database-and-perform-common-database-setup-tasks-with-powershell-cmdlets"></a>Create a SQL database and perform common database setup tasks with PowerShell cmdlets
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-get-started.md)
+- [Azure portal](sql-database-get-started.md)
 - [PowerShell](sql-database-get-started-powershell.md)
 - [C#](sql-database-get-started-csharp.md)
 
 
 
-了解如何使用 PowerShell Cmdlet 建立 SQL Database。(如需建立彈性資料庫，請參閱[使用 PowerShell 建立新的彈性資料庫集區](sql-database-elastic-pool-create-powershell.md))。
+Learn how to create a SQL database by using PowerShell cmdlets. (For creating elastic databases, see [Create a new elastic database pool with PowerShell](sql-database-elastic-pool-create-powershell.md).)
 
 
-[AZURE.INCLUDE [啟動 PowerShell 工作階段](../../includes/sql-database-powershell.md)]
+[AZURE.INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
 
-## 資料庫設定：建立資源群組、伺服器和防火牆規則
+## <a name="database-setup:-create-a-resource-group,-server,-and-firewall-rule"></a>Database setup: Create a resource group, server, and firewall rule
 
-您有權在選取的 Azure 訂用帳戶下執行 Cmdlet 後，下一步是建立含有伺服器的資源群組，以在伺服器中建立資料庫。為了使用您選擇的任何有效位置，您可以編輯下一個命令。執行 **(Get-AzureRmLocation | Where-Object { $\_.Providers -eq "Microsoft.Sql" }).Location** 以取得有效位置的清單。
+Once you have access to run cmdlets against your selected Azure subscription, the next step is establishing the resource group that contains the server where the database will be created. You can edit the next command to use whatever valid location you choose. Run **(Get-AzureRmLocation | Where-Object { $_.Providers -eq "Microsoft.Sql" }).Location** to get a list of valid locations.
 
-執行下列命令以建立資源群組：
+Run the following command to create a resource group:
 
-	New-AzureRmResourceGroup -Name "resourcegroupsqlgsps" -Location "westus"
-
-
-### 建立伺服器
-
-SQL Database 會建立在 Azure SQL Database 伺服器內。執行 **New-AzureRmSqlServer** 以建立伺服器。對於所有 Azure SQL Database 伺服器，您的伺服器名稱必須是唯一的。如果該伺服器名稱已被使用，您會收到錯誤訊息。另外值得注意的是，此命令可能需要數分鐘才能完成。您可以編輯此命令以使用您選擇的任何有效位置，但您應該使用您在上一個步驟中建立資源群組時使用的相同位置。
-
-	New-AzureRmSqlServer -ResourceGroupName "resourcegroupsqlgsps" -ServerName "server1" -Location "westus" -ServerVersion "12.0"
-
-執行此命令時，系統將會提示您輸入使用者名稱和密碼。請不要輸入您的 Azure 認證。改為輸入要建立為伺服器系統管理員的使用者名稱和密碼。在本文最後的指令碼會示範如何在程式碼中設定伺服器認證。
-
-成功建立伺服器後，會出現伺服器詳細資料。
-
-### 設定伺服器防火牆規則以允許存取伺服器
-
-若要存取伺服器，您必須建立防火牆規則。執行以下命令，用對您電腦有效的值，取代開頭和結尾 IP 位址。
-
-	New-AzureRmSqlServerFirewallRule -ResourceGroupName "resourcegroupsqlgsps" -ServerName "server1" -FirewallRuleName "rule1" -StartIpAddress "192.168.0.0" -EndIpAddress "192.168.0.0"
-
-成功建立防火牆規則後，會出現規則詳細資料。
-
-若要允許其他 Azure 服務存取伺服器，則新增防火牆規則並且將 tartIpAddress 和 EndIpAddress 都設為 0.0.0.0。此規則可讓來自任何 Azure 訂用帳戶的 Azure 流量存取伺服器。
-
-如需詳細資訊，請參閱 [Azure SQL Database 防火牆](sql-database-firewall-configure.md)。
+    New-AzureRmResourceGroup -Name "resourcegroupsqlgsps" -Location "westus"
 
 
-## 建立 SQL 資料庫
+### <a name="create-a-server"></a>Create a server
 
-現在您已擁有資源群組、伺服器和設定完成的防火牆規則，便可以存取伺服器。
+SQL databases are created inside Azure SQL Database servers. Run **New-AzureRmSqlServer** to create a server. The name for your server must be unique to all Azure SQL Database servers. If the server name is already taken, you get an error. Also worth noting is that this command may take several minutes to complete. You can edit the command to use any valid location you choose, but you should use the same location you used for the resource group created in the previous step.
 
-下列命令會在具有 S1 效能層級的標準服務層建立 (空白) SQL Database︰
+    New-AzureRmSqlServer -ResourceGroupName "resourcegroupsqlgsps" -ServerName "server1" -Location "westus" -ServerVersion "12.0"
+
+When you run this command, you are prompted for your user name and password. Don't enter your Azure credentials. Instead, enter the user name and password to create as the server administrator. The script at the bottom of this article shows how to set the server credentials in code.
+
+The server details appear after the server is successfully created.
+
+### <a name="configure-a-server-firewall-rule-to-allow-access-to-the-server"></a>Configure a server firewall rule to allow access to the server
+
+To access the server, you need to establish a firewall rule. Run the following command, replacing the start and end IP addresses with valid values for your computer.
+
+    New-AzureRmSqlServerFirewallRule -ResourceGroupName "resourcegroupsqlgsps" -ServerName "server1" -FirewallRuleName "rule1" -StartIpAddress "192.168.0.0" -EndIpAddress "192.168.0.0"
+
+The firewall rule details appear after the rule is successfully created.
+
+To allow other Azure services to access the server, add a firewall rule and set both the StartIpAddress and EndIpAddress to 0.0.0.0. This rule allows Azure traffic from any Azure subscription to access the server.
+
+For more information, see [Azure SQL Database Firewall](sql-database-firewall-configure.md).
 
 
-	New-AzureRmSqlDatabase -ResourceGroupName "resourcegroupsqlgsps" -ServerName "server1" -DatabaseName "database1" -Edition "Standard" -RequestedServiceObjectiveName "S1"
+## <a name="create-a-sql-database"></a>Create a SQL database
+
+Now you have a resource group, a server, and a firewall rule configured so you can access the server.
+
+The following command creates a (blank) SQL database at the Standard service tier, with an S1 performance level:
 
 
-成功建立資料庫後，會出現資料庫詳細資料。
+    New-AzureRmSqlDatabase -ResourceGroupName "resourcegroupsqlgsps" -ServerName "server1" -DatabaseName "database1" -Edition "Standard" -RequestedServiceObjectiveName "S1"
 
-## 建立 SQL Database PowerShell 指令碼
 
-下列 PowerShell 指令碼會建立 SQL Database 及其所有相依資源。以您的訂用帳戶與資源特有的值取代所有的 `{variables}` (在設定您的值時移除 **{}**)。
+The database details appear after the database is successfully created.
+
+## <a name="create-a-sql-database-powershell-script"></a>Create a SQL database PowerShell script
+
+The following PowerShell script creates a SQL database and all its dependent resources. Replace all `{variables}` with values specific to your subscription and resources (remove the **{}** when you set your values).
 
     # Sign in to Azure and set the subscription to work with
     $SubscriptionId = "{subscription-id}"
@@ -129,15 +130,19 @@ SQL Database 會建立在 Azure SQL Database 伺服器內。執行 **New-AzureRm
 
 
 
-## 後續步驟
-建立 SQL Database 並執行基本的資料庫設定工作之後，您就可以執行下列作業：
+## <a name="next-steps"></a>Next steps
+After you create a SQL database and perform basic database setup tasks, you're ready for the following:
 
-- [使用 PowerShell 管理 SQL Database](sql-database-manage-powershell.md)
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
+- [Manage SQL Database with PowerShell](sql-database-manage-powershell.md)
+- [Connect to SQL Database with SQL Server Management Studio and perform a sample T-SQL query](sql-database-connect-query-ssms.md)
 
 
-## 其他資源
+## <a name="additional-resources"></a>Additional Resources
 
 - [Azure SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

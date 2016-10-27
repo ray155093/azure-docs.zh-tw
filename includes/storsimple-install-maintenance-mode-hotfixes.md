@@ -1,21 +1,24 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### 透過 Windows PowerShell for StorSimple 安裝維護模式 Hotfix
+#### <a name="to-install-maintenance-mode-hotfixes-via-windows-powershell-for-storsimple"></a>To install Maintenance mode hotfixes via Windows PowerShell for StorSimple
 
-> [AZURE.IMPORTANT]在維護模式中，您需要先在某一個控制站上套用 Hotfix，然後在另一個控制站上套用 Hotfix。
+> [AZURE.IMPORTANT] In Maintenance mode, you need to apply the hotfix first on one controller and then on the other controller.
 
-1. 使裝置處於維護模式。如需如何進入維護模式的相關指示，請參閱[步驟 2：進入維護模式](storsimple-update-device.md#step2)。
+1. Place the device into Maintenance mode. See [Step 2: Enter Maintenance mode](storsimple-update-device.md#step2) for instructions on how to enter Maintenance mode.
 
-2. 若要套用 Hotfix，請輸入：
+2. To apply the hotfix, type:
 
-     `Start-HcsHotfix`
+     `Start-HcsHotfix` 
 
-3. 出現提示時，請提供包含 Hotfix 檔案的網路共用資料夾所在路徑。
+3. When prompted, supply the path to the network shared folder that contains the hotfix files.
 
-4. 系統將提示您進行確認。輸入 **Y** 繼續安裝 Hotfix。
+4. You will be prompted for confirmation. Type **Y** to proceed with the hotfix installation.
 
-5. 在某一個控制站上套用 Hotfix 之後，請登入另一個控制站。使用您為前一個控制站所做的方式來套用 Hotfix。
+5. After you have applied the hotfix on one controller, log on to the other controller. Apply the hotfix as you did for the previous controller.
 
-6. 套用 Hotfix 之後，結束維護模式。如需相關指示，請參閱[步驟 4：結束維護模式](storsimple-update-device.md#step4)。
+6. After the hotfixes are applied, exit Maintenance mode. See [Step 4: Exit Maintenance mode](storsimple-update-device.md#step4) for instructions.
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Oct16_HO2-->
+
+

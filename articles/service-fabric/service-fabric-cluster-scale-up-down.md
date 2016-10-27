@@ -1,6 +1,6 @@
 <properties
-   pageTitle="相應縮小或放大 Service Fabric 叢集 | Microsoft Azure"
-   description="設定每個節點類型/VM 擴展集的自動調整規模規則，以相應縮小或放大 Service Fabric 叢集使其符合需求。新增或移除 Service Fabric 叢集的節點"
+   pageTitle="Scale a Service Fabric cluster in or out | Microsoft Azure"
+   description="Scale a Service Fabric cluster in or out to match demand by setting auto-scale rules for each node type/VM scale set. Add or remove nodes to a Service Fabric cluster"
    services="service-fabric"
    documentationCenter=".net"
    authors="ChackDan"
@@ -17,17 +17,18 @@
    ms.author="chackdan"/>
 
 
-# 使用自動調整規模規則相應縮小或放大 Service Fabric 叢集
 
-虛擬機器擴展集是一個 Azure 計算資源，可以用來將一組虛擬機器當做一個集合加以部署和管理。在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的 VM 擴展集。然後每個節點類型可以獨立相應縮小或放大，可以開啟不同組的連接埠，並可以有不同的容量度量。若要深入了解，請參閱 [Service Fabric 節點類型](service-fabric-cluster-nodetypes.md)文件。因為叢集中的 Service Fabric 節點類型是由後端的 VM 擴展集建立，所以您必須為每個節點類型/VM 擴展集設定自動調整規模規則。
+# <a name="scale-a-service-fabric-cluster-in-or-out-using-auto-scale-rules"></a>Scale a Service Fabric cluster in or out using auto-scale rules
 
->[AZURE.NOTE] 您的訂用帳戶必須要有足夠的核心，來新增構構成此叢集的虛擬機器。目前沒有模型驗證，所以如果達到任一配額限制，就會收到部署時間失敗。
+Virtual machine scale sets are an Azure compute resource that you can use to deploy and manage a collection of virtual machines as a set. Every node type that is defined in a Service Fabric cluster is set up as a separate VM scale set. Each node type can then be scaled in or out independently, have different sets of ports open, and can have different capacity metrics. Read more about it in the [Service Fabric nodetypes](service-fabric-cluster-nodetypes.md) document. Since the Service Fabric node types in your cluster are made of VM scale sets at the backend, you need to set up auto-scale rules for each node type/VM scale set.
 
-## 選擇要調整規模的節點類型/VM 擴展集
+>[AZURE.NOTE] Your subscription must have enough cores to add the new VMs that make up this cluster. There is no model validation currently, so you get a deployment time failure, if any of the quota limits are hit.
 
-目前，您不能使用入口網站指定 VM 擴展集的自動調整規模規則，所以請讓我們使用 Azure PowerShell (1.0+) 列出節點類型，然後將自動調整規模規則加入它們。
+## <a name="choose-the-node-type/vm-scale-set-to-scale"></a>Choose the node type/VM scale set to scale
 
-若要取得建立叢集的 VM 擴展集清單，請執行下列 Cmdlet：
+Currently, you are not able to specify the auto-scale rules for VM scale sets using the portal, so let us use Azure PowerShell (1.0+) to list the node types and then add auto-scale rules to them.
+
+To get the list of VM scale set that make up your cluster, run the following cmdlets:
 
 ```powershell
 Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Compute/VirtualMachineScaleSets
@@ -35,77 +36,82 @@ Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Compute/
 Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <VM Scale Set name>
 ```
 
-## 設定節點類型/VM 擴展集的自動調整規模規則
+## <a name="set-auto-scale-rules-for-the-node-type/vm-scale-set"></a>Set auto-scale rules for the node type/VM scale set
 
-如果您的叢集有多個節點類型，您就需要為每個要相應縮小或放大的節點類型/VM 擴展集重複這項作業。請先考慮一定要有的節點數目，再設定自動調整規模。主要節點類型一定要有的節點數目下限是由您已選擇的可靠性層級決定。深入了解[可靠性層級](service-fabric-cluster-capacity.md)。
+If your cluster has multiple node types, then repeat this for each node types/VM scale sets that you want to scale (in or out). Take into account the number of nodes that you must have before you set up auto-scaling. The minimum number of nodes that you must have for the primary node type is driven by the reliability level you have chosen. Read more about [reliability levels](service-fabric-cluster-capacity.md).
 
->[AZURE.NOTE]  將主要節點類型相應減少到小於最低數目，會造成叢集不穩定或關閉。這可能導致應用程式和系統服務資料遺失。
+>[AZURE.NOTE]  Scaling down the primary node type to less than the minimum number make the cluster unstable or bring it down. This could result in data loss for your applications and for the system services.
 
-自動調整規模功能目前不是由應用程式可能向 Service Fabric 報告的負載所驅動。所以，您現在取得的自動調整規模只由每個 VM 擴展集執行個體所發出的效能計數器驅動。
+Currently the auto-scale feature is not driven by the loads that your applications may be reporting to Service Fabric. So at this time the auto-scale you get is purely driven by the performance counters that are emitted by each of the VM scale set instances.  
 
-請遵循下列指示[設定每個 VM 擴展集的自動調整規模](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md)。
+Follow these instructions [to set up auto-scale for each VM scale set](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md).
 
->[AZURE.NOTE] 在相應減少的案例中，除非節點類型有 Gold 或 Silver 的持久性層級，否則必須以適當的節點名稱呼叫 [Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/azure/mt125993.aspx) Cmdlet。
+>[AZURE.NOTE] In a scale down scenario, unless your node type has a durability level of Gold or Silver you need to call the [Remove-ServiceFabricNodeState cmdlet](https://msdn.microsoft.com/library/azure/mt125993.aspx) with the appropriate node name.
 
-## 手動將 VM 加入節點類型/VM 擴展集
+## <a name="manually-add-vms-to-a-node-type/vm-scale-set"></a>Manually add VMs to a node type/VM scale set
 
-請依照[快速啟動範本庫](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing)的範例/指示變更每個 Nodetype 的 VM 數目。
+Follow the sample/instructions in the [quick start template gallery](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) to change the number of VMs in each Nodetype. 
 
->[AZURE.NOTE] 新增 VM 需要時間，因此請不要期待馬上就會有結果。所以請善加規劃增加容量的時間，在複本/服務執行個體可以使用 VM 容量之前有超過 10 分鐘的時間讓一切就定位。
+>[AZURE.NOTE] Adding of VMs takes time, so do not expect the additions to be instantaneous. So plan to add capacity well in time, to allow for over 10 minutes before the VM capacity is available for the replicas/ service instances to get placed.
 
-## 手動從主要節點類型/VM 擴展集移除 VM
+## <a name="manually-remove-vms-from-the-primary-node-type/vm-scale-set"></a>Manually remove VMs from the primary node type/VM scale set
 
->[AZURE.NOTE] Service Fabric 系統服務在叢集中是以主要節點類型執行。所以請永遠不要關閉該節點類型的執行個體，或將該節點類型的執行個體數目相應減少到少於可靠性層級所需的數目。請參閱[可靠性層級的詳細資料](service-fabric-cluster-capacity.md)。
+>[AZURE.NOTE] The service fabric system services run in the Primary node type in your cluster. So should never shut down or scale down the number of instances in that node types less than what the reliability tier warrants. Refer to [the details on reliability tiers here](service-fabric-cluster-capacity.md). 
 
-您必須一次一個 VM 執行個體執行下列步驟。這可讓系統服務 (以及您的具狀態服務) 在您要移除的 VM 執行個體上正常關閉，並且在其他節點上建立新複本。
+You need to execute the following steps one VM instance at a time. This allows for the system services (and your stateful services) to be shut down gracefully on the VM instance you are removing and new replicas created on other nodes.
 
-1. 執行 [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) 加上 'RemoveNode' 可停用您要移除的節點 (該節點類型的最高執行個體)。
+1. Run [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) with intent ‘RemoveNode’ to disable the node you’re going to remove (the highest instance in that node type).
 
-2. 執行 [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) 可確保節點已確實轉換為停用。如果沒有，請等到節點停用。您無法加快此步驟的速度。
+2. Run [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) to make sure that the node has indeed transitioned to disabled. If not, wait until the node is disabled. You cannot hurry this step.
 
-2. 請依照[快速啟動範本庫](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing)的範例/指示變更該 Nodetype 的一個 VM。移除的執行個體是最高的 VM 執行個體。
+2. Follow the sample/instructions in the [quick start template gallery](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) to change the number of VMs by one in that Nodetype. The instance removed is the highest VM instance. 
 
-3. 視需要重複步驟 1 到 3，但是請永遠不要將主要節點類型的執行個體數目相應減少到少於可靠性層級所需的數目。請參閱[可靠性層級的詳細資料](service-fabric-cluster-capacity.md)。
+3. Repeat steps 1 through 3 as needed, but never scale down the number of instances in the primary node types less than what the reliability tier warrants. Refer to [the details on reliability tiers here](service-fabric-cluster-capacity.md). 
 
-## 手動從非主要節點類型/VM 擴展集移除 VM
+## <a name="manually-remove-vms-from-the-non-primary-node-type/vm-scale-set"></a>Manually remove VMs from the non-primary node type/VM scale set
 
->[AZURE.NOTE] 如果是具狀態服務，您需要一些永遠啟動的節點來維持可用性，以及維持服務的狀態。您至少需要與資料分割/服務的目標複本集計數相等的節點數目。
+>[AZURE.NOTE] For a stateful service, you need a certain number of nodes to be always up to maintain availability and preserve state of your service. At the very minimum, you need the number of nodes equal to the target replica set count of the partition/service. 
 
-您必須一次一個 VM 執行個體執行下列步驟。這可讓系統服務 (以及您的具狀態服務) 在您要移除的 VM 執行個體上正常關閉，並且在其他位置建立新複本。
+You need the execute the following steps one VM instance at a time. This allows for the system services (and your stateful services) to be shut down gracefully on the VM instance you are removing and new replicas created else where.
 
-1. 執行 [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) 加上 'RemoveNode' 可停用您要移除的節點 (該節點類型的最高執行個體)。
+1. Run [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) with intent ‘RemoveNode’ to disable the node you’re going to remove (the highest instance in that node type).
 
-2. 執行 [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) 可確保節點已確實轉換為停用。如果沒有，請等到節點停用。您無法加快此步驟的速度。
+2. Run [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) to make sure that the node has indeed transitioned to disabled. If not wait till the node is disabled. You cannot hurry this step.
 
-2. 請依照[快速啟動範本庫](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing)的範例/指示變更該 Nodetype 的一個 VM。現在會移除最高的 VM 執行個體。
+2. Follow the sample/instructions in the [quick start template gallery](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) to change the number of VMs by one in that Nodetype. This will now remove the highest VM instance. 
 
-3. 視需要重複步驟 1 到 3，但是請永遠不要將主要節點類型的執行個體數目相應減少到少於可靠性層級所需的數目。請參閱[可靠性層級的詳細資料](service-fabric-cluster-capacity.md)。
+3. Repeat steps 1 through 3 as needed, but never scale down the number of instances in the primary node types less than what the reliability tier warrants. Refer to [the details on reliability tiers here](service-fabric-cluster-capacity.md).
 
-## Service Fabric Explorer 可能出現的行為
+## <a name="behaviors-you-may-observe-in-service-fabric-explorer"></a>Behaviors you may observe in Service Fabric Explorer
 
-當您相應增加叢集時，Service Fabric Explorer 會反映屬於叢集的節點數目 (VM 擴展集執行個體)。不過，當您相應減少叢集時，除非您以適當的節點名稱呼叫 [Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/mt125993.aspx) Cmdlet，否則會看到已移除的節點/VM 執行個體顯示為健康狀態不良。
+When you scale up a cluster the Service Fabric Explorer will reflect the number of nodes (VM scale set instances) that are part of the cluster.  However, when you scale a cluster down you will see the removed node/VM instance displayed in an unhealthy state unless you call [Remove-ServiceFabricNodeState cmd](https://msdn.microsoft.com/library/mt125993.aspx) with the appropriate node name.   
 
-以下是這種行為的說明。
+Here is the explanation for this behavior.
 
-Service Fabric Explorer 列出的節點會反映出 Service Fabric 系統服務 (特別是 FM) 所知叢集曾經有過/現有擁有的節點數目。當您相應減少 VM 擴展集時會刪除 VM，但 FM 系統服務仍然認為節點 (也就是已刪除的對應 VM) 會回復。所以 Service Fabric Explorer 會繼續顯示該節點 (雖然健全狀況狀態可能是錯誤或未知)。
+The nodes listed in Service Fabric Explorer are a reflection of what the Service Fabric system services (FM specifically) knows about the number of nodes the cluster had/has. When you scale the VM scale set down, the VM was deleted but FM system service still thinks that the node (that was mapped to the VM that was deleted) will come back. So Service Fabric Explorer continues to display that node (though the health state may be error or unknown).
 
-為確保移除 VM 時也移除節點，您有兩個選項︰
+In order to make sure that a node is removed when a VM is removed, you have two options:
 
-1) 為叢集中的節點類型選擇 Gold 或 Silver 持久性 (即將開放)，提供您基礎結構的整合。它會在您相應減少時，從我們的系統服務 (FM) 狀態自動移除節點。請參閱[持久性層級的詳細資訊](service-fabric-cluster-capacity.md)
+1) Choose a durability level of Gold or Silver (available soon) for the node types in your cluster, which gives you the infrastructure integration. Which will then automatically remove the nodes from our system services (FM) state when you scale down.
+Refer to [the details on durability levels here](service-fabric-cluster-capacity.md)
 
-2) VM 執行個體一旦相應減少，您就必須呼叫 [Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/mt125993.aspx) Cmdlet。
+2) Once the VM instance has been scaled down, you need to call the [Remove-ServiceFabricNodeState cmdlet](https://msdn.microsoft.com/library/mt125993.aspx).
 
->[AZURE.NOTE] Service Fabric 叢集需要有一定數量的節點隨時都處於啟動，以維持可用性並維持狀態 - 稱為「維持仲裁」。 因此，除非您已先執行[狀態的完整備份](service-fabric-reliable-services-backup-restore.md)，否則關閉叢集中的所有電腦通常並不安全。
+>[AZURE.NOTE] Service Fabric clusters require a certain number of nodes to be up at all the time in order to maintain availability and preserve state - referred to as "maintaining quorum." So, it is typically unsafe to shut down all the machines in the cluster unless you have first performed a [full backup of your state](service-fabric-reliable-services-backup-restore.md).
 
-## 後續步驟
-亦請參閱下列文章，了解規劃叢集容量、升級叢集和分割服務︰
+## <a name="next-steps"></a>Next steps
+Read the following to also learn about planning cluster capacity, upgrading a cluster, and partitioning services:
 
-- [規劃叢集容量](service-fabric-cluster-capacity.md)
-- [叢集升級](service-fabric-cluster-upgrade.md)
-- [分割具狀態服務以達最大規模](service-fabric-concepts-partitioning.md)
+- [Plan your cluster capacity](service-fabric-cluster-capacity.md)
+- [Cluster upgrades](service-fabric-cluster-upgrade.md)
+- [Partition stateful services for maximum scale](service-fabric-concepts-partitioning.md)
 
 <!--Image references-->
 [BrowseServiceFabricClusterResource]: ./media/service-fabric-cluster-scale-up-down/BrowseServiceFabricClusterResource.png
 [ClusterResources]: ./media/service-fabric-cluster-scale-up-down/ClusterResources.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

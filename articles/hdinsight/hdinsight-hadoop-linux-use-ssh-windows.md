@@ -1,12 +1,12 @@
 <properties
-   pageTitle="從 Windows 搭配使用 SSH 金鑰與 Linux 架構叢集上的 Hadoop | Microsoft Azure"
-   description="了解如何建立和使用 SSH 金鑰來驗證以 Linux 為基礎的 HDInsight 叢集。使用 PuTTY SSH 用戶端，從 Windows 用戶端連接叢集。"
+   pageTitle="Use SSH keys with Hadoop on Linux-based clusters from Windows | Microsoft Azure"
+   description="Learn how to create and use SSH keys to authenticate to Linux-based HDInsight clusters. Connect clusters from Windows-based clients by using the PuTTY SSH client."
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
    manager="jhubbard"
    editor="cgronlun"
-	tags="azure-portal"/>
+    tags="azure-portal"/>
 
 <tags
    ms.service="hdinsight"
@@ -17,224 +17,229 @@
    ms.date="08/30/2016"
    ms.author="larryfr"/>
 
-#從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop
+
+#<a name="use-ssh-with-linux-based-hadoop-on-hdinsight-from-windows"></a>Use SSH with Linux-based Hadoop on HDInsight from Windows
 
 > [AZURE.SELECTOR]
 - [Windows](hdinsight-hadoop-linux-use-ssh-windows.md)
-- [Linux、Unix、OS X](hdinsight-hadoop-linux-use-ssh-unix.md)
+- [Linux, Unix, OS X](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-[安全殼層 (SSH)](https://en.wikipedia.org/wiki/Secure_Shell) 可讓您使用命令列介面在以 Linux 為基礎的 HDInsight 叢集上遠端執行作業。本文提供從以 Windows 為基礎的用戶端使用 PuTTY SSH 用戶端連接到 HDInsight 的資訊。
+[Secure Shell (SSH)](https://en.wikipedia.org/wiki/Secure_Shell) allows you to remotely perform operations on your Linux-based HDInsight clusters using a command-line interface. This document provides information on connecting to HDInsight from Windows-based clients by using the PuTTY SSH client.
 
-> [AZURE.NOTE] 本文中的步驟假設您是使用以 Windows 為基礎的用戶端。如果您使用 Linux、Unix 或 OS X 用戶端，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
+> [AZURE.NOTE] The steps in this article assume you are using a Windows-based client. If you are using a Linux, Unix, or OS X client, see [Use SSH with Linux-based Hadoop on HDInsight from Linux, Unix, or OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
 >
 > If you have Windows 10 and are using [Bash on Ubuntu on Windows](https://msdn.microsoft.com/commandline/wsl/about), then you can use the steps in the [Use SSH with Linux-based Hadoop on HDInsight from Linux, Unix, or OS X](hdinsight-hadoop-linux-use-ssh-unix.md) document.
 
-##必要條件
+##<a name="prerequisites"></a>Prerequisites
 
-* 適用於以 Windows 為基礎的用戶端的 **PuTTY** 和 **PuTTYGen**您可從下列位置取得這些公用程式：[http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
+* **PuTTY** and **PuTTYGen** for Windows-based clients. These utilities are available from [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
-* 支援 HTML5 的新式網頁瀏覽器。
+* A modern web browser that supports HTML5.
 
-或
+OR
 
-* [Azure CLI](../xplat-cli-install.md)。
+* [Azure CLI](../xplat-cli-install.md).
 
-    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)] 
 
-##什麼是 SSH？
+##<a name="what-is-ssh?"></a>What is SSH?
 
-SSH 是用來登入遠端伺服器並在其中遠端執行命令的公用程式。SSH 會用以 Linux 為基礎的 HDInsight 來與叢集前端節點建立加密的連線，並提供命令列供您輸入命令。然後直接在該伺服器上執行命令。
+SSH is a utility for logging in to, and remotely executing, commands on a remote server. With Linux-based HDInsight, SSH establishes an encrypted connection to the cluster head node and provides a command line that you use to type in commands. Commands are then executed directly on the server.
 
-###SSH 使用者名稱
+###<a name="ssh-user-name"></a>SSH user name
 
-SSH 使用者名稱為您用來向 HDInsight 叢集驗證的名稱。當您在叢集建立期間指定 SSH 使用者名稱時，會在叢集中所有節點上建立此使用者。建立叢集之後，您可以使用此使用者名稱連線至 HDInsight 叢集前端節點。然後您可以從前端節點連線至個別的背景工作節點。
+An SSH user name is the name you use to authenticate to the HDInsight cluster. When you specify an SSH user name during cluster creation, this user is created on all nodes in the cluster. Once the cluster is created, you can use this user name to connect to the HDInsight cluster head nodes. From the head nodes, you can then connect to the individual worker nodes.
 
-###SSH 密碼或公開金鑰
+###<a name="ssh-password-or-public-key"></a>SSH password or Public key
 
-SSH 使用者可以使用密碼或公開金鑰來驗證。密碼是您自己設定的字串，公開金鑰則是為唯一識別您而產生之密碼編譯金鑰組的一部份。
+An SSH user can use either a password or public key for authentication. A password is just a string of text you make up, while a public key is part of a cryptographic key pair generated to uniquely identify you.
 
-金鑰會比密碼更安全，但是需要額外步驟才能產生金鑰，且您必須將含有金鑰的檔案保存在安全位置。如果任何人取得金鑰檔案存取權，他們就可以取得您帳戶的存取權。或者，如果您遺失金鑰檔案，您將無法登入帳戶。
+A key is more secure than a password, however it requires additional steps to generate the key and you must maintain the files containing the key in a secure location. If anyone gains access to the key files, they gain access to your account. Or if you lose the key files, you will not be able to login to your account.
 
-金鑰組包含公開金鑰 (會傳送至 HDInsight 伺服器) 和私密金鑰 (會保留在您的用戶端機器中)。 當您使用 SSH 連線至 HDInsight 伺服器時，SSH 用戶端將會使用您電腦上的私密金鑰向伺服器驗證。
+A key pair consists of a public key (which is sent to the HDInsight server,) and a private key (which is kept on your client machine.) When you connect to the HDInsight server using SSH, the SSH client will use the private key on your machine to authenticate with the server.
 
-##建立 SSH 金鑰
+##<a name="create-an-ssh-key"></a>Create an SSH key
 
-如果您計劃搭配使用 SSH 金鑰與叢集，請使用下列資訊。如果您計畫使用密碼，可以略過此小節。
+Use the following information if you plan on using SSH keys with your cluster. If you plan on using a password, you can skip this section.
 
-1. 開啟 PuTTYGen。
+1. Open PuTTYGen.
 
-2. 在 [**要產生的金鑰類型**] 中選取 [**SSH-2 RSA**]，然後按一下 [**產生**]。
+2. For **Type of key to generate**, select **SSH-2 RSA**, and then click **Generate**.
 
-	![PuTTYGen 介面](./media/hdinsight-hadoop-linux-use-ssh-windows/puttygen.png)
+    ![PuTTYGen interface](./media/hdinsight-hadoop-linux-use-ssh-windows/puttygen.png)
 
-3. 在進度列下方的區域中移動滑鼠直到進度列填滿為止。移動滑鼠時會產生用來產生金鑰的隨機資料。
+3. Move the mouse around in the area below the progress bar, until the bar fills. Moving the mouse generates random data that is used to generate the key.
 
-	![移動滑鼠](./media/hdinsight-hadoop-linux-use-ssh-windows/movingmouse.png)
+    ![moving the mouse around](./media/hdinsight-hadoop-linux-use-ssh-windows/movingmouse.png)
 
-	在產生金鑰後，就會顯示公開金鑰。
+    Once the key has been generated, the public key will be displayed.
 
-4. 若要提高安全性，您可以在 [**金鑰複雜密碼**] 欄位中輸入複雜密碼，然後在 [**確認複雜密碼**] 欄位中輸入相同的值。
+4. For added security, you can enter a passphrase in the **Key passphrase** field, and then type the same value in the **Confirm passphrase** field.
 
-	![複雜密碼](./media/hdinsight-hadoop-linux-use-ssh-windows/key.png)
+    ![passphrase](./media/hdinsight-hadoop-linux-use-ssh-windows/key.png)
 
-	> [AZURE.NOTE] 強烈建議您對此金鑰使用安全的複雜密碼。不過如果您忘記此複雜密碼，將無法加以復原。
+    > [AZURE.NOTE] We strongly recommend that you use a secure passphrase for the key. However, if you forget the passphrase, there is no way to recover it.
 
-5. 按一下 [**儲存私密金鑰**] 將金鑰儲存到 **.ppk** 檔案。此金鑰會用來驗證以 Linux 為基礎的 HDInsight 叢集。
+5. Click **Save private key** to save the key to a **.ppk** file. This key will be used to authenticate to your Linux-based HDInsight cluster.
 
-	> [AZURE.NOTE] 此金鑰可用來存取以 Linux 為基礎的 HDInsight 叢集，因此請將它儲存在安全的位置。
+    > [AZURE.NOTE] You should store this key in a secure location, as it can be used to access your Linux-based HDInsight cluster.
 
-6. 按一下 [**儲存公開金鑰**] 將金鑰儲存為 **.txt** 檔案。這可讓您在日後建立其他以 Linux 為基礎的 HDInsight 叢集時重複使用此公開金鑰。
+6. Click **Save public key** to save the key as a **.txt** file. This allows you to reuse the public key in the future when you create additional Linux-based HDInsight clusters.
 
-	> [AZURE.NOTE] PuTTYGen 的頂端也會顯示此公開金鑰。當您使用 Azure 入口網站建立叢集時，可以用滑鼠右鍵按一下此欄位，複製值並將其貼入表單。
+    > [AZURE.NOTE] The public key is also displayed at the top of PuTTYGen. You can right-click this field, copy the value, and then paste it into a form when creating a cluster using the Azure Portal.
 
-##建立以 Linux 為基礎的 HDInsight 叢集
+##<a name="create-a-linux-based-hdinsight-cluster"></a>Create a Linux-based HDInsight cluster
 
-在建立以 Linux 為基礎的 HDInsight 叢集時，您必須提供先前建立的公開金鑰。從以 Windows 為基礎的用戶端，有兩種方式可以建立以 Linux 為基礎的 HDInsight 叢集：
+When creating a Linux-based HDInsight cluster, you must provide the public key created previously. From Windows-based clients, there are two ways to create a Linux-based HDInsight cluster:
 
-* **Azure 入口網站** - 使用網頁型入口網站來建立叢集。
+* **Azure Portal** - Uses a web-based portal to create the cluster.
 
-* **適用於 Mac、Linux 和 Windows 的 Azure CLI** - 使用命令列命令建立叢集。
+* **Azure CLI for Mac, Linux and Windows** - Uses command-line commands to create the cluster.
 
-這兩種方法都需要公開金鑰。如需建立以 Linux 為基礎的 HDInsight 叢集的完整資訊，請參閱[佈建以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+Each of these methods will require the public key. For complete information on creating a Linux-based HDInsight cluster, see [Provision Linux-based HDInsight clusters](hdinsight-hadoop-provision-linux-clusters.md).
 
-###Azure 入口網站
+###<a name="azure-portal"></a>Azure Portal
 
-使用 [Azure 入口網站][preview-portal]來建立以 Linux 為基礎的 HDInsight 叢集時，您必須輸入 **SSH 使用者名稱**，然後選擇輸入**密碼**或 **SSH 公開金鑰**。
+When using the [Azure Portal][preview-portal] to create a Linux-based HDInsight cluster, you must enter an **SSH Username**, and select to enter a **PASSWORD** or **SSH PUBLIC KEY**.
 
-如果您選取 [**SSH 公開金鑰**]，則可以將公開金鑰 (在 PuttyGen 會顯示於 [__貼到 OpenSSH 授權金鑰檔案的公開金鑰__] 欄位) 貼入 [__SSH 公開金鑰__] 欄位，或選取 [__選取檔案__] 以瀏覽和選取包含公開金鑰的檔案。
+If you select **SSH PUBLIC KEY**, you can either paste the public key (displayed in the __Public key for pasting into OpenSSH authorized\_keys file__ field in PuttyGen,) into the __SSH PublicKey__ field, or select __Select a file__ to browse and select the file that contains the public key.
 
-![要求公開金鑰的表單映像](./media/hdinsight-hadoop-linux-use-ssh-windows/ssh-key.png)
+![Image of form asking for public key](./media/hdinsight-hadoop-linux-use-ssh-windows/ssh-key.png)
 
-這會建立指定使用者的登入資訊，並啟用密碼驗證或 SSH 金鑰驗證。
+This creates a login for the specified user, and enables either password authentication or SSH key authentication.
 
-###適用於 Mac、Linux 和 Windows 的 Azure 命令列介面
+###<a name="azure-command-line-interface-for-mac,-linux,-and-windows"></a>Azure Command-Line Interface for Mac, Linux, and Windows
 
-您可以使用[適用於 Mac、Linux 和 Windows 的 Azure CLI](../xplat-cli-install.md)，使用 `azure hdinsight cluster create` 來建立新叢集。
+You can use the [Azure CLI for Mac, Linux and Windows](../xplat-cli-install.md) to create a new cluster by using the `azure hdinsight cluster create` command.
 
-如需使用這個命令的詳細資訊，請參閱[使用自訂選項在 HDInsight 中佈建 Hadoop Linux 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+For more information on using this command, see [Provision Hadoop Linux clusters in HDInsight using custom options](hdinsight-hadoop-provision-linux-clusters.md).
 
-##連線至以 Linux 為基礎的 HDInsight 叢集
+##<a name="connect-to-a-linux-based-hdinsight-cluster"></a>Connect to a Linux-based HDInsight cluster
 
-1. 開啟 PuTTY。
+1. Open PuTTY.
 
-	![putty 介面](./media/hdinsight-hadoop-linux-use-ssh-windows/putty.png)
+    ![putty interface](./media/hdinsight-hadoop-linux-use-ssh-windows/putty.png)
 
-2. 如果您在建立使用者帳戶時提供 SSH 金鑰，您必須執行下列步驟來選取要在驗證叢集時使用的私密金鑰：
+2. If you provided an SSH key when you created your user account, you must perform the following step to select the private key to use when authenticating to the cluster:
 
-	在 [**類別**] 中，依序展開 [**連接**] 和 [**SSH**]，然後選取 [**驗證**]。最後，按一下 [**瀏覽**]，然後選取內含私密金鑰的 .ppk 檔案。
+    In **Category**, expand **Connection**, expand **SSH**, and select **Auth**. Finally, click **Browse** and select the .ppk file that contains your private key.
 
-	![putty 介面，選取私密金鑰](./media/hdinsight-hadoop-linux-use-ssh-windows/puttykey.png)
+    ![putty interface, select private key](./media/hdinsight-hadoop-linux-use-ssh-windows/puttykey.png)
 
-3. 在 [**類別**] 中，選取 [**工作階段**]。在 [**PuTTY 工作階段的基本選項**] 畫面上，將您的 HDInsight 伺服器的 SSH 位址輸入到 [**主機名稱 (或 IP 位址)**] 欄位。連接至叢集時，您可以使用兩個可能的 SSH 位址：
+3. In **Category**, select **Session**. From the **Basic options for your PuTTY session** screen, enter the SSH address of your HDInsight server in the **Host name (or IP address)** field. There are two possible SSH addresses you may use when connecting to a cluster:
 
-    * __前端節點位址__︰若要連接到叢集的前端節點，請使用您的叢集名稱加上 **-ssh.azurehdinsight.net**。例如，**mycluster-ssh.azurehdinsight.net**。
+    * __Head node address__: To connect to the head node of the cluster, use your cluster name, then **-ssh.azurehdinsight.net**. For example, **mycluster-ssh.azurehdinsight.net**.
     
-    * __邊緣節點位址__︰如果您要連接到 HDInsight 叢集上的 R Server，您可以使用位址 __RServer.CLUSTERNAME.ssh.azurehdinsight.net__ (其中 CLUSTERNAME 是叢集名稱) 連接到 R Server 邊緣節點。例如，__RServer.mycluster.ssh.azurehdinsight.net__。
+    * __Edge node address__: If you are connecting to an R Server on HDInsight cluster, you can connect to the R Server edge node using the address __RServer.CLUSTERNAME.ssh.azurehdinsight.net__, where CLUSTERNAME is the name of your cluster. For example, __RServer.mycluster.ssh.azurehdinsight.net__.
 
-	![已輸入 ssh 位址的 putty 介面](./media/hdinsight-hadoop-linux-use-ssh-windows/puttyaddress.png)
+    ![putty interface with ssh address entered](./media/hdinsight-hadoop-linux-use-ssh-windows/puttyaddress.png)
 
-4. 若要儲存連線資訊供日後使用，請在 [**儲存的工作階段**] 底下輸入此連線的名稱，然後按一下 [**儲存**]。連線便會加入已儲存的工作階段清單。
+4. To save the connection information for future use, enter a name for this connection under **Saved Sessions**, and then click **Save**. The connection will be added to the list of saved sessions.
 
-5. 按一下 [**開啟**] 來連線到叢集。
+5. Click **Open** to connect to the cluster.
 
-	> [AZURE.NOTE] 如果這是您第一次連線到叢集，您會收到安全性警示。這是正常現象。請選取 [**是**] 快取伺服器的 RSA2 金鑰以繼續進行。
+    > [AZURE.NOTE] If this is the first time you have connected to the cluster, you will receive a security alert. This is normal. Select **Yes** to cache the server's RSA2 key to continue.
 
-6. 出現提示時，輸入您建立叢集時所輸入的使用者。如果您對使用者提供密碼，系統會提示您一併輸入密碼。
+6. When prompted, enter the user that you entered when you created the cluster. If you provided a password for the user, you will be prompted to enter it also.
 
-> [AZURE.NOTE] 上述步驟假設您使用連接埠 22，這將會連接到 HDInsight 叢集上的主要前端節點。如果您使用連接埠 23，您將會連接到次要前端節點。如需前端節點的詳細資訊，請參閱 [HDInsight 上 Hadoop 叢集的可用性和可靠性](hdinsight-high-availability-linux.md)。
+> [AZURE.NOTE] The above steps assume you are using port 22, which will connect to the primary headnode on the HDInsight cluster. If you use port 23, you will connect to the secondary. For more information on the head nodes, see [Availability and reliability of Hadoop clusters in HDInsight](hdinsight-high-availability-linux.md).
 
-###連接至背景工作節點
+###<a name="connect-to-worker-nodes"></a>Connect to worker nodes
 
-背景工作節點無法直接從 Azure 資料中心外部存取，但是可以透過 SSH 從叢集前端節點存取。
+The worker nodes are not directly accessible from outside the Azure datacenter, but they can be accessed from the cluster head node via SSH.
 
-如果您在建立使用者帳戶時提供 SSH 金鑰，當您想要連接至背景工作節點時，您必須執行下列步驟來選取要在驗證叢集時使用的私密金鑰。
+If you provided an SSH key when you created your user account, you must perform the following steps to use the private key when authenticating to the cluster if you want to connect to the worker nodes.
 
-1. 從下列位置安裝 Pageant：[http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。此公用程式是用於快取 PuTTY 的 SSH 金鑰。
+1. Install Pageant from [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html). This utility is used to cache SSH keys for PuTTY.
 
-2. 執行 Pageant。它會最小化為狀態列中的圖示。以滑鼠右鍵按一下圖示，然後選取 [**新增金鑰**]。
+2. Run Pageant. It will minimize to an icon in the status tray. Right-click the icon and select **Add Key**.
 
-    ![新增金鑰](./media/hdinsight-hadoop-linux-use-ssh-windows/addkey.png)
+    ![adding key](./media/hdinsight-hadoop-linux-use-ssh-windows/addkey.png)
 
-3. 當瀏覽對話方塊顯示時，請選取包含金鑰的 .ppk 檔案，然後按一下 [**開啟**]。這樣會將金鑰新增至 Pageant，在連接至叢集時將金鑰提供給 PuTTY。
+3. When the browse dialog appears, select the .ppk file that contains the key, and then click **Open**. This adds the key to Pageant, which will provide it to PuTTY when connecting to the cluster.
 
-    > [AZURE.IMPORTANT] 如果您使用 SSH 金鑰來保護您的帳戶的安全，您必須先完成上述步驟，才能連接至背景工作節點。
+    > [AZURE.IMPORTANT] If you used an SSH key to secure your account, you must complete the previous steps before you will be able to connect to worker nodes.
 
-4. 開啟 PuTTY。
+4. Open PuTTY.
 
-5. 如果您使用 SSH 金鑰進行驗證，請在 [**類別**] 區段中，依序展開 [**連接**]、[**SSH**]，然後選取 [**驗證**]。
+5. If you use an SSH key to authenticate, in the **Category** section, expand **Connection**, expand **SSH**, and then select **Auth**.
 
-    在 [**驗證參數**] 區段中，啟用 [**允許代理程式轉送**]。這樣會允許 PuTTY 在連接至背景工作節點時，透過連接至叢集前端節點，自動通過憑證驗證。
+    In the **Authentication parameters** section, enable **Allow agent forwarding**. This allows PuTTY to automatically pass the certificate authentication through the connection to the cluster head node when connecting to worker nodes.
 
-    ![允許代理程式轉送](./media/hdinsight-hadoop-linux-use-ssh-windows/allowforwarding.png)
+    ![allow agent forwarding](./media/hdinsight-hadoop-linux-use-ssh-windows/allowforwarding.png)
 
-6. 如稍早所述連接到叢集。如果您使用 SSH 金鑰進行驗證，不需要選取金鑰 - 會對叢集使用新增至 Pageant 的 SSH 金鑰來進行驗證。
+6. Connect to the cluster as documented earlier. If you use an SSH key for authentication, you do not need to select the key - the SSH key added to Pageant will be used to authenticate to the cluster.
 
-7. 建立連接之後，請使用下列項目以擷取您的叢集中的節點清單。將 *ADMINPASSWORD* 取代為您的叢集系統管理員帳戶的密碼。將 *CLUSTERNAME* 取代為您叢集的名稱。
+7. After the connection has been established, use the following to retrieve a list of the nodes in your cluster. Replace *ADMINPASSWORD* with the password for your cluster admin account. Replace *CLUSTERNAME* with the name of your cluster.
 
         curl --user admin:ADMINPASSWORD https://CLUSTERNAME.azurehdinsight.net/api/v1/hosts
 
-    這樣會以 JSON 格式傳回叢集中節點的資訊，包括 `host_name`，其中包含每個節點的完整網域名稱 (FQDN)。以下是 **curl** 命令傳回之 `host_name` 項目的範例：
+    This will return information in JSON format for the nodes in the cluster, including `host_name`, which contains the fully qualified domain name (FQDN) for each node. The following is an example of a `host_name` entry returned by the **curl** command:
 
         "host_name" : "workernode0.workernode-0-e2f35e63355b4f15a31c460b6d4e1230.j1.internal.cloudapp.net"
 
-8. 當您具有想要連接之背景工作節點的清單之後，請從 PuTTY 工作階段使用下列命令，以開啟與背景工作節點的連線：
+8. Once you have a list of the worker nodes you want to connect to, use the following command from the PuTTY session to open a connection to a worker node:
 
         ssh USERNAME@FQDN
 
-    將 *USERNAME* 取代為您的 SSH 使用者名稱，將 *FQDN* 取代為背景工作節點的 FQDN。例如，`workernode0.workernode-0-e2f35e63355b4f15a31c460b6d4e1230.j1.internal.cloudapp.net`。
+    Replace *USERNAME* with your SSH user name and *FQDN* with the FQDN for the worker node. For example, `workernode0.workernode-0-e2f35e63355b4f15a31c460b6d4e1230.j1.internal.cloudapp.net`.
 
-    > [AZURE.NOTE] 如果您使用密碼以驗證您的 SSH 工作階段，則系統會提示您再次輸入密碼。如果您使用 SSH 金鑰，連線應該沒有任何提示即會完成。
+    > [AZURE.NOTE] If you use a password to authentication your SSH session, you will be prompted to enter the password again. If you use an SSH key, the connection should finish without any prompts.
 
-9. 建立工作階段之後，針對 PuTTY 的提示會從 `username@hn#-clustername` 變更為 `username@wn#-clustername`，以指出您已連接至背景工作節點。目前您執行的任何命令會在背景工作節點上執行。
+9. Once the session has been established, the prompt for your PuTTY session will change from `username@hn#-clustername` to `username@wn#-clustername` to indicate that you are connected to the worker node. Any commands you run at this point will run on the worker node.
 
-10. 完成在背景工作節點上執行動作之後，請使用 `exit` 命令以關閉背景工作節點的工作階段。這樣會帶您返回 `username@hn#-clustername` 提示字元。
+10. Once you have finished performing actions on the worker node, use the `exit` command to close the session to the worker node. This will return you to the `username@hn#-clustername` prompt.
 
-##新增更多帳戶
+##<a name="add-more-accounts"></a>Add more accounts
 
-如果您需要將更多帳戶新增至您的叢集，請執行下列步驟：
+If you need to add more accounts to your cluster, perform the following steps:
 
-1. 如先前所述為新的使用者帳戶產生新的公開金鑰和私密金鑰。
+1. Generate a new public key and private key for the new user account as described previously.
 
-2. 在連往叢集的 SSH 工作階段中，使用下列命令加入新使用者：
+2. From an SSH session to the cluster, add the new user with the following command:
 
-		sudo adduser --disabled-password <username>
+        sudo adduser --disabled-password <username>
 
-	這會建立新的使用者帳戶，但會停用密碼驗證。
+    This will create a new user account, but will disable password authentication.
 
-3. 使用下列命令建立用來保存金鑰的目錄和檔案：
+3. Create the directory and files to hold the key by using the following commands:
 
         sudo mkdir -p /home/<username>/.ssh
         sudo touch /home/<username>/.ssh/authorized_keys
         sudo nano /home/<username>/.ssh/authorized_keys
 
-4. 在 nano 編輯器開啟時，複製並貼上新使用者帳戶的公開金鑰內容。最後，使用 **Ctrl-X** 來儲存檔案並結束編輯器。
+4. When the nano editor opens, copy and paste in the contents of the public key for the new user account. Finally, use **Ctrl-X** to save the file and exit the editor.
 
-	![具有範例金鑰之 nano 編輯器的映像](./media/hdinsight-hadoop-linux-use-ssh-windows/nano.png)
+    ![image of nano editor with example key](./media/hdinsight-hadoop-linux-use-ssh-windows/nano.png)
 
-5. 使用下列命令將 .ssh 資料夾和內容的擁有權變更為新的使用者帳戶：
+5. Use the following command to change ownership of the .ssh folder and contents to the new user account:
 
-		sudo chown -hR <username>:<username> /home/<username>/.ssh
+        sudo chown -hR <username>:<username> /home/<username>/.ssh
 
-6. 您現在應該就能使用新的使用者帳戶和私密金鑰驗證伺服器。
+6. You should now be able to authenticate to the server with the new user account and private key.
 
-##<a id="tunnel"></a>SSH 通道
+##<a name="<a-id="tunnel"></a>ssh-tunneling"></a><a id="tunnel"></a>SSH tunneling
 
-SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsight 叢集。要求便會路由至要求的資源，彷彿要求是在 HDInsight 叢集前端節點上產生。
+SSH can be used to tunnel local requests, such as web requests, to the HDInsight cluster. The request will then be routed to the requested resource as if it had originated on the HDInsight cluster head node.
 
-> [AZURE.IMPORTANT] SSH 通道是存取某些 Hadoop 服務之 Web UI 的必要項目。例如，[作業記錄] UI 或 [資源管理員] UI 都只能使用 SSH 通道存取。
+> [AZURE.IMPORTANT] An SSH tunnel is a requirement for accessing the web UI for some Hadoop services. For example, both the Job History UI or Resource Manager UI can only be accessed using an SSH tunnel.
 
-如需建立及使用 SSH 通道的詳細資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)。
+For more information on creating and using an SSH tunnel, see [Use SSH Tunneling to access Ambari web UI, ResourceManager, JobHistory, NameNode, Oozie, and other web UI's](hdinsight-linux-ambari-ssh-tunnel.md).
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-您已經了解如何使用 SSH 金鑰進行驗證，接著請了解如何在 HDInsight 上搭配使用 MapReduce 和 Hadoop。
+Now that you understand how to authenticate by using an SSH key, learn how to use MapReduce with Hadoop on HDInsight.
 
-* [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
+* [Use Hive with HDInsight](hdinsight-use-hive.md)
 
-* [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
+* [Use Pig with HDInsight](hdinsight-use-pig.md)
 
-* [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
+* [Use MapReduce jobs with HDInsight](hdinsight-use-mapreduce.md)
 
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

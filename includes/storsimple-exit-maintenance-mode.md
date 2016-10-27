@@ -1,13 +1,15 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### 結束維護模式
+#### <a name="to-exit-maintenance-mode"></a>To exit Maintenance mode
 
-1. 在命令提示字元中，輸入：
+1. At the command prompt type:
 
      `Exit-HcsMaintenanceMode`
 
-2. 隨即會出現警告訊息和確認訊息。輸入 **Y** 以結束維護模式。
+2. A warning message and a confirmation message will appear. Type **Y** to exit Maintenance mode.
 
-    這兩個控制站都將重新啟動。重新啟動完成時，會出現另一個訊息，指出裝置處於標準模式。
+    Both controllers will restart. When the restart is complete, another message will appear indicating that the device is in Normal mode.
 
-<!---HONumber=Oct15_HO3-->
+<!--HONumber=Oct16_HO2-->
+
+

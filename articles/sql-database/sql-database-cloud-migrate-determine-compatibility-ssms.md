@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在移轉至 Azure SQL Database 之前，先使用 SQL Server Management Studio 來判斷 SQL Database 相容性 | Microsoft Azure"
-   description="Microsoft Azure SQL Database, 資料庫移轉, SQL Database 相容性, 匯出資料層應用程式精靈"
+   pageTitle="Use SQL Server Management Studio to Determine SQL Database compatibility before migration to Azure SQL Database | Microsoft Azure"
+   description="Microsoft Azure SQL Database, database migration, SQL Database compatibility, Export Data Tier Application Wizard"
    services="sql-database"
    documentationCenter=""
    authors="CarlRabeler"
@@ -16,7 +16,8 @@
    ms.date="08/29/2016"
    ms.author="carlrab"/>
 
-# 在移轉至 Azure SQL Database 之前，先使用 SQL Server Management Studio 來判斷 SQL Database 相容性
+
+# <a name="use-sql-server-management-studio-to-determine-sql-database-compatibility-before-migration-to-azure-sql-database"></a>Use SQL Server Management Studio to Determine SQL Database compatibility before migration to Azure SQL Database
 
 > [AZURE.SELECTOR]
 - [SSDT](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)
@@ -25,46 +26,51 @@
 - [Upgrade Advisor](http://www.microsoft.com/download/details.aspx?id=48119)
 - [SAMW](sql-database-cloud-migrate-fix-compatibility-issues.md)
  
-在本文中，您將學習判斷 SQL Server 資料庫是否相容，以使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」移轉到 SQL Database。
+In this article you learn to determine if a SQL Server database is compatible to migrate to SQL Database using the Export Data Tier Application Wizard in SQL Server Management Studio.
 
-## 使用 SQL Server Management Studio
+## <a name="using-sql-server-management-studio"></a>Using SQL Server Management Studio
 
-1. 請確認您有最新版本的 SQL Server Management Studio。新版的 Management Studio 會每月更新以維持與 Azure 入口網站的更新同步。
+1. Verify that you have the latest version of SQL Server Management Studio. New versions of Management Studio are updated monthly to remain in sync with updates to the Azure portal.
 
- 	 > [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+     > [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 
-2. 開啟 Management Studio 並連接到您在 [物件總管] 中的來源資料庫。
-3. 以滑鼠右鍵按一下 [物件總管] 中的來源資料庫，指向 [工作]，並按一下 [匯出資料層應用程式]。
+2. Open Management Studio and connect to your source database in Object Explorer.
+3. Right-click the source database in the Object Explorer, point to **Tasks**, and click **Export Data-Tier Application…**
 
-	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS01.png)
+    ![Export a data-tier application from the Tasks menu](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS01.png)
 
-4. 在匯出精靈中，按一下 [下一步]，然後在 [設定] 索引標籤上，將匯出設定為將 BACPAC 檔案儲存到本機磁碟位置或 Azure Blob。如果您有沒有資料庫相容性問題，才會儲存 BACPAC 檔案。如果有相容性問題，它們會顯示在主控台上。
+4. In the export wizard, click **Next**, and then on the **Settings** tab, configure the export to save the BACPAC file to either a local disk location or to an Azure blob. A BACPAC file is saved if you have no database compatibility issues. If there are compatibility issues, they are be displayed on the console.
 
-	![匯出設定](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS02.png)
+    ![Export settings](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS02.png)
 
-5. 若要略過匯出資料，請按一下 [進階] 索引標籤並清除 [全選] 核取方塊。此時我們的目標是只測試相容性。
+5. To skip exporting data, click the **Advanced tab** and clear the **Select All** checkbox. Our goal at this point is only to test for compatibility.
 
-	![匯出設定](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS03.png)
+    ![Export settings](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS03.png)
 
-6. 然後依序按一下 [下一步] 和 [完成]。資料庫相容性問題 (如果有的話) 會在精靈驗證結構描述之後出現。
+6. Click **Next** and then click **Finish**. Database compatibility issues, if any, appear after the wizard validates the schema.
 
-	![匯出設定](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS04.png)
+    ![Export settings](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS04.png)
 
-7. 如果沒有任何錯誤出現，代表您的資料庫相容且您已準備好移轉。如果您有錯誤，您必須加以修正。若要查看錯誤，請按一下 [錯誤] 以**驗證結構描述**。![匯出設定](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS05.png)
+7. If no errors appear, your database is compatible and you are ready to migrate. If you have errors, you need to fix them. To see the errors, click **Error** for **Validating schema**. 
+    ![Export settings](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS05.png)
 
-8.	如果 *.BACPAC 檔案已成功產生，則您的資料庫與 SQL Database 相容，且您已準備好移轉。
+8.  If the *.BACPAC file is successfully generated, then your database is compatible with SQL Database, and you are ready to migrate.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
-- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
-- [修正資料庫移轉相容性問題](sql-database-cloud-migrate.md#fix-database-migration-compatibility-issues)
-- [將相容 SQL Server 資料庫移轉到 SQL Database](sql-database-cloud-migrate.md#migrate-a-compatible-sql-server-database-to-sql-database)
+- [Newest version of SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [Newest version of SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+- [Fix database migration compatibility issues](sql-database-cloud-migrate.md#fix-database-migration-compatibility-issues)
+- [Migrate a compatible SQL Server database to SQL Database](sql-database-cloud-migrate.md#migrate-a-compatible-sql-server-database-to-sql-database)
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
 - [SQL Database V12](sql-database-v12-whats-new.md)
-- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
-- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
+- [Transact-SQL partially or unsupported functions](sql-database-transact-sql-information.md)
+- [Migrate non-SQL Server databases using SQL Server Migration Assistant](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

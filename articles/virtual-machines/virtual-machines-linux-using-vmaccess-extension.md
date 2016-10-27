@@ -1,6 +1,6 @@
 <properties
-    pageTitle="使用 VMAccess 擴充功能重設 Azure Linux VM 的存取 | Microsoft Azure"
-    description="使用 VMAccess 擴充功能重設 Azure Linux VM 的存取。"
+    pageTitle="Reset access on Azure Linux VMs using the VMAccess Extension  | Microsoft Azure"
+    description="Reset access on Azure Linux VMs using the VMAccess Extension."
     services="virtual-machines-linux"
     documentationCenter=""
     authors="vlivech"
@@ -19,22 +19,23 @@
     ms.author="v-livech"
 />
 
-# 管理使用者、SSH，並使用 VMAccess 擴充功能檢查或修復 Azure Linux VM 上的磁碟
 
-本文將說明如何使用 Azure VMAcesss 延伸模組來檢查或修復磁碟、重設使用者存取、管理使用者帳戶或重設 Linux 上的 SSHD 組態。
+# <a name="manage-users,-ssh,-and-check-or-repair-disks-on-azure-linux-vms-using-the-vmaccess-extension"></a>Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension
 
-必要條件︰[Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)、[SSH 公開金鑰與私密金鑰](virtual-machines-linux-mac-create-ssh-keys.md)和使用 `azure config mode arm` 切換至 Resource Manager 模式的 Azure CLI。
+This article shows you how to use the Azure VMAcesss Extension to check or repair a disk, reset user access, manage user accounts, or reset the SSHD configuration on Linux.  
 
-## 快速命令
+Prerequisites are: [an Azure account](https://azure.microsoft.com/pricing/free-trial/), [SSH public and private keys](virtual-machines-linux-mac-create-ssh-keys.md), and the Azure CLI installed and switched to Resource Manager mode using `azure config mode arm`.
 
-有兩種方式可在 Linux VM 上使用 VMAccess：
+## <a name="quick-commands"></a>Quick commands
 
-- 使用 Azure CLI 和必要的參數。
-- 使用 VMAccess 處理的原始 JSON 檔案並採取行動。
+There are two ways to use VMAccess on your Linux VMs:
 
-在快速命令區段中，我們會使用 Azure CLI `azure vm reset-access` 方法。在下列命令範例中，將包含 "example" 的值取代為您環境中的值。
+- Using the Azure CLI and the required parameters.
+- Using raw JSON files that VMAccess processes and then act on.
 
-## 建立資源群組和 Linux VM
+For the quick command section, we are going to use the Azure CLI `azure vm reset-access` method. In the following command examples, replace the values that contain "example" with the values from your own environment.
+
+## <a name="create-a-resource-group-and-linux-vm"></a>Create a Resource Group and Linux VM
 
 ```bash
 azure group create resourcegroupexample westus
@@ -51,58 +52,58 @@ azure vm quick-create \
 -Q Debian
 ```
 
-## 重設根密碼
+## <a name="reset-root-password"></a>Reset root password
 
-重設根密碼：
+To reset the root password:
 
 ```bash
 azure vm reset-access -g exampleResourceGroup -n exampleVMName -u root -p examplenewPassword
 ```
 
-## SSH 金鑰重設
+## <a name="ssh-key-reset"></a>SSH key reset
 
-若要重設非根使用者的 SSH 金鑰︰
+To reset the SSH key of a non-root user:
 
 ```bash
 azure vm reset-access -g exampleResourceGroup -n exampleVMName -u userexample -M ~/.ssh/id_rsa.pub
 ```
 
-## 建立使用者
+## <a name="create-a-user"></a>Create a user
 
-若要建立使用者：
+To create a user:
 
 ```bash
 azure vm reset-access -g exampleResourceGroup -n exampleVMName -u userexample -p examplePassword
 ```
 
-## 移除使用者
+## <a name="remove-a-user"></a>Remove a user
 
 ```bash
 azure vm reset-access -g exampleResourceGroup -n exampleVMName -R userexample
 ```
 
-## 重設 SSHD
+## <a name="reset-sshd"></a>Reset SSHD
 
-重設 SSHD 組態：
+To reset the SSHD configuration:
 
 ```bash
 azure vm reset-access -g exampleResourceGroup -n exampleVMName -r
 ```
 
 
-## 詳細的逐步解說
+## <a name="detailed-walkthrough"></a>Detailed walkthrough
 
-### VMAccess 已定義︰
+### <a name="vmaccess-defined:"></a>VMAccess defined:
 
-Linux VM 的磁碟顯示錯誤。您不知怎麼重設 Linux VM的根密碼，或不小心刪除了 SSH 私密金鑰。如果是過去資料中心的時代發生此狀況，您必須親赴現場，然後再開啟 KVM 才能存取伺服器主控台。請將 Azure VMAccess 擴充功能想成 KVM 交換器，在此可以存取主控台重設 Linux 存取或執行磁碟等級維護。
+The disk on your Linux VM is showing errors. You somehow reset the root password for your Linux VM or accidentally deleted your SSH private key. If that happened back in the days of the datacenter, you would need to drive there and then open the KVM to get at the server console. Think of the Azure VMAccess extension as that KVM switch that allows you to access the console to reset access to Linux or perform disk level maintenance.
 
-在詳細的逐步解說中，我們會使用利用原始 JSON 檔案的完整格式 VMAccess。從 Azure 範本也可以呼叫這些 VMAccess JSON 檔案。
+For the detailed walkthrough, we are going to use the long form of VMAccess, which uses raw JSON files.  These VMAccess JSON files can also be called from Azure templates.
 
-### 使用 VMAccess 檢查或修復 Linux VM 的磁碟
+### <a name="using-vmaccess-to-check-or-repair-the-disk-of-a-linux-vm"></a>Using VMAccess to check or repair the disk of a Linux VM
 
-使用 VMAccess 可以執行在 Linux VM 磁碟上執行的 fsck。您也可以使用 VMAccess 執行磁碟檢查和磁碟修復。
+Using VMAccess you can do a fsck run on the disk under your Linux VM.  You can also do a disk check and a disk repair using a VMAccess.
 
-若要檢查並修復磁碟，請使用這個 VMAccess 指令碼︰
+To check, and then repair the disk use this VMAccess script:
 
 `disk_check_repair.json`
 
@@ -113,7 +114,7 @@ Linux VM 的磁碟顯示錯誤。您不知怎麼重設 Linux VM的根密碼，�
 }
 ```
 
-執行 VMAccess 指令碼搭配︰
+Execute the VMAccess script with:
 
 ```bash
 azure vm extension set exampleResourceGroup exampleVM \
@@ -121,11 +122,11 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path disk_check_repair.json
 ```
 
-### 使用 VMAccess 重設 Linux 的使用者存取
+### <a name="using-vmaccess-to-reset-user-access-to-linux"></a>Using VMAccess to reset user access to Linux
 
-如已無法存取 Linux VM 的根，您可以啟動 VMAccess 指令碼來重設根密碼。
+If you have lost access to root on your Linux VM, you can launch a VMAccess script to reset the root password.
 
-若要重設根密碼，請使用這個 VMAccess 指令碼︰
+To reset the root password, use this VMAccess script:
 
 `reset_root_password.json`
 
@@ -136,7 +137,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 }
 ```
 
-執行 VMAccess 指令碼搭配︰
+Execute the VMAccess script with:
 
 ```bash
 azure vm extension set exampleResourceGroup exampleVM \
@@ -144,7 +145,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path reset_root_password.json
 ```
 
-若要重設非根使用者的 SSH 金鑰，請使用這個 VMAccess 指令碼︰
+To reset the SSH key of a non-root user, use this VMAccess script:
 
 `reset_ssh_key.json`
 
@@ -155,7 +156,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 }
 ```
 
-執行 VMAccess 指令碼搭配︰
+Execute the VMAccess script with:
 
 ```bash
 azure vm extension set exampleResourceGroup exampleVM \
@@ -163,11 +164,11 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path reset_ssh_key.json
 ```
 
-### 使用 VMAccess 管理 Linux 的使用者帳戶
+### <a name="using-vmaccess-to-manage-user-accounts-on-linux"></a>Using VMAccess to manage user accounts on Linux
 
-VMAccess 是一種 Python 指令碼，可用來管理 Linux VM 上的使用者，但不需要登入及使用 sudo 或根帳戶。
+VMAccess is a Python script that can be used to manage users on your Linux VM without logging in and using sudo or the root account.
 
-若要建立使用者，請使用這個 VMAccess 指令碼︰
+To create a user, use this VMAccess script:
 
 `create_new_user.json`
 
@@ -179,7 +180,7 @@ VMAccess 是一種 Python 指令碼，可用來管理 Linux VM 上的使用者�
 }
 ```
 
-執行 VMAccess 指令碼搭配︰
+Execute the VMAccess script with:
 
 ```bash
 azure vm extension set exampleResourceGroup exampleVM \
@@ -187,7 +188,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path create_new_user.json
 ```
 
-若要建立使用者：
+To create a user:
 
 `remove_user.json`
 
@@ -197,7 +198,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 }
 ```
 
-執行 VMAccess 指令碼搭配︰
+Execute the VMAccess script with:
 
 ```bash
 azure vm extension set exampleResourceGroup exampleVM \
@@ -205,11 +206,11 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path remove_user.json
 ```
 
-### 使用 VMAccess 重設 SSHD 組態
+### <a name="using-vmaccess-to-reset-the-sshd-configuration"></a>Using VMAccess to reset the SSHD configuration
 
-如果您變更了 Linux VM SSHD 組態，並在驗證變更之前關閉 SSH 連線，您可能無法回到 SSH 作業。VMAccess 可用來將 SSHD 組態重設回到已知的良好組態，而不需透過 SSH 登入。
+If you make changes to the Linux VMs SSHD configuration and close the SSH connection before verifying the changes, you may be prevented from SSH'ing back in.  VMAccess can be used to reset the SSHD configuration back to a known good configuration without being logged in over SSH.
 
-使用這個 VMAccess 指令碼重設 SSHD 組態：
+To reset the SSHD configuration use this VMAccess script:
 
 `reset_sshd.json`
 
@@ -219,7 +220,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 }
 ```
 
-執行 VMAccess 指令碼搭配︰
+Execute the VMAccess script with:
 
 ```bash
 azure vm extension set exampleResourceGroup exampleVM \
@@ -227,14 +228,18 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path reset_sshd.json
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-使用 Azure VMAccess 延伸模組更新 Linux 是變更執行中的 Linux VM 的一種方法。您也可以使用類似 cloud-init 和 Azure 範本等工具，以在開機時修改您的 Linux VM。
+Updating Linux using Azure VMAccess Extensions is one method to make changes on a running Linux VM.  You can also use tools like cloud-init and Azure Templates to modify your Linux VM on boot.
 
-[有關虛擬機器擴充功能和功能](virtual-machines-linux-extensions-features.md)
+[About virtual machine extensions and features](virtual-machines-linux-extensions-features.md)
 
-[使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本](virtual-machines-linux-extensions-authoring-templates.md)
+[Authoring Azure Resource Manager templates with Linux VM extensions](virtual-machines-linux-extensions-authoring-templates.md)
 
-[在建立期間使用 cloud-init 自訂 Linux VM](virtual-machines-linux-using-cloud-init.md)
+[Using cloud-init to customize a Linux VM during creation](virtual-machines-linux-using-cloud-init.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,236 +1,242 @@
 <properties
-	pageTitle="使用機器學習分析客戶流失 | Microsoft Azure"
-	description="開發整合式模型以分析及評分客戶流失的案例研究"
-	services="machine-learning"
-	documentationCenter=""
-	authors="jeannt"
-	manager="jhubbard"
-	editor="cgronlun"/>
+    pageTitle="Analyzing Customer Churn using Machine Learning | Microsoft Azure"
+    description="Case study of developing an integrated model for analyzing and scoring customer churn"
+    services="machine-learning"
+    documentationCenter=""
+    authors="jeannt"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/20/2016" 
-	ms.author="jeannt"/>
+    ms.service="machine-learning"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/20/2016" 
+    ms.author="jeannt"/>
 
-# 使用 Azure Machine Learning 分析客戶流失
 
-##Overview
-本主題提供使用 Azure Machine Learning Studio 建置客戶流失分析專案的參考實作。其中將討論關聯的一般模型，可全面性地解決產業客戶流失的問題。對於以機器學習建立的模型，我們也衡量其正確性，同時評估進一步開發的方向。
+# <a name="analyzing-customer-churn-by-using-azure-machine-learning"></a>Analyzing Customer Churn by using Azure Machine Learning
 
-### 通知
+##<a name="overview"></a>Overview
+This topic presents a reference implementation of a customer churn analysis project that is built by using Azure Machine Learning Studio. It discusses associated generic models for holistically solving the problem of industrial customer churn. We also measure the accuracy of models that are built by using Machine Learning, and we assess directions for further development.  
 
-這項實驗是由 Microsoft 的首席資料科學家 Serge Berger 和 Microsoft Azure Machine Learning 的前產品經理 Roger Barga 共同開發和測試。Azure 文件小組高度認可其專業知識，並感謝他們分享這份白皮書。
+### <a name="acknowledgements"></a>Acknowledgements
 
->[AZURE.NOTE] 這項實驗中使用的資料無法公開使用。如需如何建置客戶流失分析的機器學習模型範例，請參閱︰[Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的[電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
+This experiment was developed and tested by Serge Berger, Principal Data Scientist at Microsoft, and Roger Barga, formerly Product Manager for Microsoft Azure Machine Learning. The Azure documentation team gratefully acknowledges their expertise and thanks them for sharing this white paper.
+
+>[AZURE.NOTE] The data used for this experiment is not publicly available. For an example of how to build a machine learning model for churn analysis, see: [Telco churn model template](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5) in [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/)
 
 
 [AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-##客戶流失的問題
-消費者市場和所有企業產業中的公司都必須處理客戶流失的問題。有時，客戶流失太多會影響政策決定。傳統的解決方案是預測流失傾向較高的客戶，透過特別禮遇、行銷活動或給予特殊待遇，滿足他們的需求。這些作法隨著產業而不同，甚至在同一產業的不同消費群之間也會不同 (例如電信業)。
+##<a name="the-problem-of-customer-churn"></a>The problem of customer churn
+Businesses in the consumer market and in all enterprise sectors have to deal with churn. Sometimes churn is excessive and influences policy decisions. The traditional solution is to predict high-propensity churners and address their needs via a concierge service, marketing campaigns, or by applying special dispensations. These approaches can vary from industry to industry and even from a particular consumer cluster to another within one industry (for example, telecommunications).
 
-共同點就是公司必須將這些額外的客戶維繫工作量降到最低。因此，一般的作法是以流失機率來評比每位客戶，然後解決排名前 N 位的客戶。排名前面的客戶可能是對公司最有利潤的客戶；例如在更複雜的情況下，選擇要給予特殊待遇的候選者時會採用利潤函數。這些考量只不過是處理客戶流失的整體策略的一部分。公司也需要考慮風險 (和相關的風險容忍度)、介入的程度和成本，以及合理的客戶區隔。
+The common factor is that businesses need to minimize these special customer retention efforts. Thus, a natural methodology would be to score every customer with the probability of churn and address the top N ones. The top customers might be the most profitable ones; for example, in more sophisticated scenarios, a profit function is employed during the selection of candidates for special dispensation. However, these considerations are only a part of the holistic strategy for dealing with churn. Businesses also have to take into account risk (and associated risk tolerance), the level and cost of the intervention, and plausible customer segmentation.  
 
-##產業展望和作法
-駕輕就熟地處理客戶流失是成熟產業的一項特徵。電信產業是典型的例子，用戶更換供應商的頻率很高。這種志願性流失是最主要問題所在。再者，供應商對於「流失成因」已累積大量經驗，亦即促成客戶更換供應商的因素。
+##<a name="industry-outlook-and-approaches"></a>Industry outlook and approaches
+Sophisticated handling of churn is a sign of a mature industry. The classic example is the telecommunications industry where subscribers are known to frequently switch from one provider to another. This voluntary churn is a prime concern. Moreover, providers have accumulated significant knowledge about *churn drivers*, which are the factors that drive customers to switch.
 
-例如，在行動電話業務中，手機或裝置選擇是導致客戶流失的一個明顯因素。因此，常用的手段是補助新用戶的手機價格，但對既有客戶收取全額的升級費用。根據歷史經驗，這種手段反而造成使客戶跳槽到另一家供應商來尋找新的折扣，使得供應商不得不修正策略。
+For instance, handset or device choice is a well-known driver of churn in the mobile phone business. As a result, a popular policy is to subsidize the price of a handset for new subscribers and charging a full price to existing customers for an upgrade. Historically, this policy has led to customers hopping from one provider to another to get a new discount, which in turn, has prompted providers to refine their strategies.
 
-手機產品日新月異，是造成以最新手機款式為主的客戶流失模型迅速失效的一項因素。此外，行動電話不只是通訊裝置，也是流行的代表 (例外 iPhone)，而這些社會性指標並不在一般的電信資料集之內。
+High volatility in handset offerings is a factor that very quickly invalidates models of churn that are based on current handset models. Additionally, mobile phones are not only telecommunication devices; they are also fashion statements (consider the iPhone), and these social predictors are outside the scope of regular telecommunications data sets.
 
-建構模型的最後結果就是，單純地排除客戶流失的已知原因，就不可能設計出一套完美的策略。事實上，持續性的模型建構策略是**必要的**，包括量化類別變項的傳統模型 (例如決策樹)。
+The net result for modeling is that you cannot devise a sound policy simply by eliminating known reasons for churn. In fact, a continuous modeling strategy, including classic models that quantify categorical variables (such as decision trees), is **mandatory**.
 
-組織對客戶利用巨量資料集來進行巨量資料分析 (尤其是根據巨量資料的客戶流失偵測)，當做解決問題的有效手段。您可以在＜建議＞中的 ETL 一節深入了解對付客戶流失問題的巨量資料作法。
+Using big data sets on their customers, organizations are performing big data analytics (in particular, churn detection based on big data) as an effective approach to the problem. You can find more about the big data approach to the problem of churn in the Recommendations on ETL section.  
 
-##客戶流失模型建構方法
-圖 1-3 顯示解決客戶流失時常用的問題解決流程。
+##<a name="methodology-to-model-customer-churn"></a>Methodology to model customer churn
+A common problem-solving process to solve customer churn is depicted in Figures 1-3:  
 
-1.	風險模型可讓您考量動作如何影響機率和風險。
-2.	介入模型讓您考量介入程度如何影響客戶流失機率和顧客終身價值 (CLV) 的數量。
-3.	此分析本身會形成定性分析，再逐步發展成以客戶族群為目標的積極行銷活動，以提供最佳服務。  
+1.  A risk model allows you to consider how actions affect probability and risk.
+2.  An intervention model allows you to consider how the level of intervention could affect the probability of churn and the amount of customer lifetime value (CLV).
+3.  This analysis lends itself to a qualitative analysis that is escalated to a proactive marketing campaign that targets customer segments to deliver the optimal offer.  
 
 ![][1]
 
-這個預視方法是應付流失最好的方法，但是會伴隨複雜性：我們必須開發多模型原型，並且追蹤模型之間的相依性。模型之間的互動可封裝起來，如下圖所示：
+This forward looking approach is the best way to treat churn, but it comes with complexity: we have to develop a multi-model archetype and trace dependencies between the models. The interaction among models can be encapsulated as shown in the following diagram:  
 
 ![][2]
 
-*圖 4：多模型整合原型*
+*Figure 4: Unified multi-model archetype*  
 
-如果要對客戶維繫提出一套全面性解決辦法，則不同模型之間的互動是關鍵。每個模型必然隨著時間而退化；因此，架構是一種隱性的環路 (類似於以 CRISP-DM 資料採礦標準所設定的原型，[***3***])。
+Interaction between the models is key if we are to deliver a holistic approach to customer retention. Each model necessarily degrades over time; therefore, the architecture is an implicit loop (similar to the archetype set by the CRISP-DM data mining standard, [***3***]).  
 
-風險-決策-行場區隔/分解的整個循環仍然是一般化結構，適用於解決許多商業問題。客戶流失分析只是這群問題的一種很明顯的典型例子，因為它指出複雜商業問題的所有特徵，而這種問題無法以簡單的預測方案來解決。方法中並未特別指出現代處理客戶流失辦法中的社會層面，社會層面封裝在模型原型中，就像在任何模型中一樣。
+The overall cycle of risk-decision-marketing segmentation/decomposition is still a generalized structure, which is applicable to many business problems. Churn analysis is simply a strong representative of this group of problems because it exhibits all the traits of a complex business problem that does not allow a simplified predictive solution. The social aspects of the modern approach to churn are not particularly highlighted in the approach, but the social aspects are encapsulated in the modeling archetype, as they would be in any model.  
 
-此處增添的一項重要部分是巨量資料分析。現今，電信業和零售業都竭盡所能地收集客戶的資料，可明顯預期銜接多重模型的需求將成為共同的趨勢，浮現的趨勢例如物聯網和普及化裝置，讓公司能夠將智慧型解決方案運用在許多層面上。
+An interesting addition here is big data analytics. Today's telecommunication and retail businesses collect exhaustive data about their customers, and we can easily foresee that the need for multi-model connectivity will become a common trend, given emerging trends such as the Internet of Things and ubiquitous devices, which allow business to employ smart solutions at multiple layers.  
 
  
-##在 Machine Learning Studio 中實作模型原型
-根據剛才說明的問題，實作一套整合的模型化和評分方法的最佳方式為何？ 在本節中，我們將示範如何利用 Azure Machine Learning Studio 來達成這項目的。
+##<a name="implementing-the-modeling-archetype-in-machine-learning-studio"></a>Implementing the modeling archetype in Machine Learning Studio
+Given the problem just described, what is the best way to implement an integrated modeling and scoring approach? In this section, we will demonstrate how we accomplished this by using Azure Machine Learning Studio.  
 
-針對客戶流失來設計整體原型時，多重模型方法不可或缺。即使是作法中的評分 (預測) 部分也應該為多重模型。
+The multi-model approach is a must when designing a global archetype for churn. Even the scoring (predictive) part of the approach should be multi-model.  
 
-下圖顯示我們已建立的原型，在 Machine Learning Studio 中採用四種評分演算法來預測客戶流失。使用多重模型方法的理由不只是為了建立集成分類器來提高準確性，也是為了避免過度訓練，同時改善制式的特徵選擇。
+The following diagram shows the prototype we created, which employs four scoring algorithms in Machine Learning Studio to predict churn. The reason for using a multi-model approach is not only to create an ensemble classifier to increase accuracy, but also to protect against over-fitting and to improve prescriptive feature selection.  
 
 ![][3]
 
-*圖 5：客戶流失模型建構方法的原型*
+*Figure 5: Prototype of a churn modeling approach*  
 
-以下幾節提供我們使用 Machine Learning Studio 實作的原型評分模型的詳細資料。
+The following sections provide more details about the prototype scoring model that we implemented by using Machine Learning Studio.  
 
-###選擇和準備資料
-用來建立模型和給客戶評分的資料取自於一個 CRM 垂直解決方案，為了保護客戶隱私，資料皆經過模糊處理。資料包含美國 8,000 個訂用帳戶的相關資訊，並結合了三個來源：佈建資料 (訂用帳戶中繼資料)、活動資料 (系統的使用方式)，以及客戶支援資料。資料不包含客戶的任何業務相關資訊；例如，不含忠誠度中繼資料或信用分數。
+###<a name="data-selection-and-preparation"></a>Data selection and preparation
+The data used to build the models and score customers was obtained from a CRM vertical solution, with the data obfuscated to protect customer privacy. The data contains information about 8,000 subscriptions in the U.S., and it combines three sources: provisioning data (subscription metadata), activity data (usage of the system), and customer support data. The data does not include any business related information about the customers; for example, it does not include loyalty metadata or credit scores.  
 
-為了簡單起見，ETL 和資料淨化處理不在討論範圍內，因為我們假設資料準備已在別處完成。
+For simplicity, ETL and data cleansing processes are out of scope because we assume that data preparation has already been done elsewhere.   
 
-模型的特徵選擇取決於預測變數組的初步顯著計分，包含在利用隨機森林模組的程序中。在 Machine Learning Studio 中實作時，我們計算代表性特徵的平均值、中位數和範圍。舉例來說，我們加上定性資料的總合，例如使用者活動的最小值和最大值。
+Feature selection for modeling is based on preliminary significance scoring of the set of predictors, included in the process that uses the random forest module. For the implementation in Machine Learning Studio, we calculated the mean, median, and ranges for representative features. For example, we added aggregates for the qualitative data, such as minimum and maximum values for user activity.    
 
-我們也取得最近 6 個月的暫時資訊。我們分析一年的資料後，發現即使存在統計顯著趨勢，對客戶流失的效應也會在六個月後遞減。
+We also captured temporal information for the most recent six months. We analyzed data for one year and we established that even if there were statistically significant trends, the effect on churn is greatly diminished after six months.  
 
-最重要的一點是整個過程 (包括 ETL、特徵選擇和模型化) 都在 Machine Learning Studio 中實作，並採用 Microsoft Azure 中的資料來源。
+The most important point is that the entire process, including ETL, feature selection, and modeling was implemented in Machine Learning Studio, using data sources in Microsoft Azure.   
 
-下圖顯示使用的資料。
+The following diagrams illustrate the data that was used.  
 
 ![][4]
 
-*圖 6：資料來源摘錄 (經過模糊處理)*
+*Figure 6: Excerpt of data source (obfuscated)*  
 
 ![][5]
 
 
-*圖 7：從資料來源擷取的特徵*  
-> 請注意，這項資料為私人所有，因此不能分享模型和資料。如需使用公開可用資料的類似模型，請參閱此 [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的實驗範例：[Telco Customer Churn (電信公司客戶流失)](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383)。
+*Figure 7: Features extracted from data source*
+ 
+> Note that this data is private and therefore the model and data cannot be shared.
+> However, for a similar model using publicly available data, see this sample experiment in the [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/): [Telco Customer Churn](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383).
 > 
-> 若要深入了解如何使用 Cortana Intelligence Suite 實作客戶流失分析模型，我們也推薦資深程式經理 Wee Hyong Tok 的[這段影片](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html)。
+> To learn more about how you can implement a churn analysis model using Cortana Intelligence Suite, we also recommend [this video](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html) by Senior Program Manager Wee Hyong Tok. 
 > 
 
-###原型中使用的演算法
+###<a name="algorithms-used-in-the-prototype"></a>Algorithms used in the prototype
 
-我們採用下列四種機器學習演算法來建立原型 (沒有自訂)：
+We used the following four machine learning algorithms to build the prototype (no customization):  
 
-1.	邏輯式迴歸 (LR)
-2.	推進式決策樹 (BT)
-3.	平均感知器 (AP)
-4.	支援向量機器 (SVM)  
-
-
-下圖顯示實驗設計介面的一部分，指出模型的建立順序：
-
-![][6]
+1.  Logistic regression (LR)
+2.  Boosted decision tree (BT)
+3.  Averaged perceptron (AP)
+4.  Support vector machine (SVM)  
 
 
-*圖 8：在 Machine Learning Studio 中建立模型*
+The following diagram illustrates a portion of the experiment design surface, which indicates the sequence in which the models were created:  
 
-###評分方法
-我們使用已標示的訓練資料集來對這四種模型評分。
+![][6]  
 
-我們也提交評分資料集給使用 SAS Enterprise Miner 12 桌上型版本建立的比較模型。我們測量 SAS 模型和所有四個 Machine Learning Studio 模型的正確性。
 
-##結果
-在本節中，我們根據評分資料集，提出關於模型正確性的調查結果。
+*Figure 8: Creating models in Machine Learning Studio*  
 
-###評分的正確性和準確度
-一般而言，在 Azure Machine Learning 中實作的正確性低於 SAS 大約 10-15% (曲線下面積或 AUC)。
+###<a name="scoring-methods"></a>Scoring methods
+We scored the four models by using a labeled training dataset.  
 
-不過，客戶流失中最重要的度量是分類誤判率；亦即，在分類器所預測排名前 N 位的流失客戶中，哪些實際上並**沒有**流失，但仍享受到特殊待遇？ 下圖比較所有模型的此項分類誤判率：
+We also submitted the scoring dataset to a comparable model built by using the desktop edition of SAS Enterprise Miner 12. We measured the accuracy of the SAS model and all four Machine Learning Studio models.  
+
+##<a name="results"></a>Results
+In this section, we present our findings about the accuracy of the models, based on the scoring dataset.  
+
+###<a name="accuracy-and-precision-of-scoring"></a>Accuracy and precision of scoring
+Generally, the implementation in Azure Machine Learning is behind SAS in accuracy by about 10-15% (Area Under Curve or AUC).  
+
+However, the most important metric in churn is the misclassification rate: that is, of the top N churners as predicted by the classifier, which of them actually did **not** churn, and yet received special treatment? The following diagram compares this misclassification rate for all the models:  
 
 ![][7]
 
 
-*圖 9：Passau 原型曲線下面積*
+*Figure 9: Passau prototype area under curve*
 
-###使用 AUC 來比較結果
-曲線下面積 (AUC) 是一種度量，代表正負母體的計分分布之間「可分性」的總體量測。它類似傳統的「受測者操作特徵」(ROC) 圖形，但一項重要的差別是 AUC 度量不需要您選擇臨界值。它會總結「所有」可能選擇的結果。反之，傳統 ROC 圖會在垂直軸顯示正比率，在水平軸顯示誤判率，而分類臨界值會變化。
+###<a name="using-auc-to-compare-results"></a>Using AUC to compare results
+Area Under Curve (AUC) is a metric that represents a global measure of *separability* between the distributions of scores for positive and negative populations. It is similar to the traditional Receiver Operator Characteristic (ROC) graph, but one important difference is that the AUC metric does not require you to choose a threshold value. Instead, it summarizes the results over **all** possible choices. In contrast, the traditional ROC graph shows the positive rate on the vertical axis and the false positive rate on the horizontal axis, and the classification threshold varies.   
 
-AUC 通常用來判斷不同演算法 (或不同系統) 是否有用處，因為它可根據 AUC 值來比較模型。這在如氣象和生物科學等領域是常用的方法。因此，AUC 是一種評估分類器表現的普遍工具。
+AUC is generally used as a measure of worth for different algorithms (or different systems) because it allows models to be compared by means of their AUC values. This is a popular approach in industries such as meteorology and biosciences. Thus, AUC represents a popular tool for assessing classifier performance.  
 
-###比較分類誤判率
-我們使用大約 8,000 個訂用帳戶的 CRM 資料，在相關資料集上比較分類誤判率。
+###<a name="comparing-misclassification-rates"></a>Comparing misclassification rates
+We compared the misclassification rates on the dataset in question by using the CRM data of approximately 8,000 subscriptions.  
 
--	SAS 分類誤判率為 10-15%。
--	Machine Learning Studio 對排名前 200-300 位流失客戶的分類誤判率為 15-20%。  
+-   The SAS misclassification rate was 10-15%.
+-   The Machine Learning Studio misclassification rate was 15-20% for the top 200-300 churners.  
 
-在電信業中，只提供特別禮遇或其他特殊待遇給最可能流失的客戶是很重要的。在這方面，Machine Learning Studio 實作所獲得的成果與 SAS 模型旗鼓相當。
+In the telecommunications industry, it is important to address only those customers who have the highest risk to churn by offering them a concierge service or other special treatment. In that respect, the Machine Learning Studio implementation achieves results on par with the SAS model.  
 
-基於同樣的理由，正確性比準確度更重要，因為我們最在意的是正確地將可能流失的客戶分類。
+By the same token, accuracy is more important than precision because we are mostly interested in correctly classifying potential churners.  
 
-下圖取自於維基百科，以生動、簡單明瞭的圖形來描述其中的關聯性：
+The following diagram from Wikipedia depicts the relationship in a lively, easy-to-understand graphic:  
 
 ![][8]
 
-*圖 10：正確性和準確度之間的取捨*
+*Figure 10: Tradeoff between accuracy and precision*
 
-###推進式決策樹模型的正確性與準確度結果  
+###<a name="accuracy-and-precision-results-for-boosted-decision-tree-model"></a>Accuracy and precision results for boosted decision tree model  
 
-下列圖表針對推進式決策樹模型，列出利用 Machine Learning Studio 原型來評分所得出的原始結果，剛好就是四種模型中最正確的模型：
+The following chart displays the raw results from scoring using the Machine Learning prototype for the boosted decision tree model, which happens to be the most accurate among the four models:  
 
 ![][9]
 
-*圖 11：推進式決策樹模型的特性*
+*Figure 11: Boosted decision tree model characteristics*
 
-##表現比較
-我們使用 Machine Learning Studio 模型和一個以 SAS Enterprise Miner 12.1 桌上型版本建立的比較模型，比較資料評分的速度。
+##<a name="performance-comparison"></a>Performance comparison
+We compared the speed at which data was scored using the Machine Learning Studio models and a comparable model created by using the desktop edition of SAS Enterprise Miner 12.1.  
 
-下表總結演算法的表現：
+The following table summarizes the performance of the algorithms:  
 
-*表 1.演算法的整體表現 (正確性)*
+*Table 1. General performance (accuracy) of the algorithms*
 
 | LR|BT|AP|SVM|
 |---|---|---|---|
-|平均模型|最佳模型|表現不佳|平均模型|
+|Average Model|The Best Model|Underperforming|Average Model|
 
-在執行速度方面，裝載於 Machine Learning Studio 中的模型比 SAS 快 15-25%，但正確性大致相等。
+The models hosted in Machine Learning Studio outperformed SAS by 15-25% for speed of execution, but accuracy was largely on par.  
 
-##討論與建議
-在電信業中，已出現許多作法來分析客戶流失，包括：
+##<a name="discussion-and-recommendations"></a>Discussion and recommendations
+In the telecommunications industry, several practices have emerged to analyze churn, including:  
 
--	導出四個基本類別的度量：
-	-	**實體 (例如訂用帳戶)**。提供訂用帳戶及/或客戶 (客源流失主題的對象) 的基本資訊。
-	-	**活動**。取得與實體相關的所有可能使用資訊，例如登入數目。
-	-	**客戶支援**。從客戶支援記錄中取得資訊，指出訂用帳戶是否有問題或曾經與客戶支援的互動。
-	-	**競爭性和商務資料**.取得與客戶有關的任何可能資訊 (例如可能無法取得或難以追蹤)。
--	使用重要性來引導特徵選擇。這意味著推進式決策樹模型一定是可行的方法。  
+-   Derive metrics for four fundamental categories:
+    -   **Entity (for example, a subscription)**. Provision basic information about the subscription and/or customer that is the subject of churn.
+    -   **Activity**. Obtain all possible usage information that is related to the entity, for example, the number of logins.
+    -   **Customer support**. Harvest information from customer support logs to indicate whether the subscription had issues or interactions with customer support.
+    -   **Competitive and business data**. Obtain any information possible about the customer (for example, can be unavailable or hard to track).
+-   Use importance to drive feature selection. This implies that the boosted decision tree model is always a promising approach.  
 
-使用這四個類別製造出一種假象，讓人誤以為簡單的「確定性」分析方法 (根據在每個類別的合理因素上形成的跡象) 就足以發現有流失風險的客戶。可惜，雖然這種想法看似可行，但卻是一種誤解。原因在於客戶流失是一種短暫效應，而造成客戶流失的因素通常是暫時狀態。今天導致客戶想要離開的原因，到了明天可能就不一樣，且六個月之後一定不同。因此，有必要使用「機率」模型。
+The use of these four categories creates the illusion that a simple *deterministic* approach, based on indexes formed on reasonable factors per category, should suffice to identify customers at risk for churn. Unfortunately, although this notion seems plausible, it is a false understanding. The reason is that churn is a temporal effect and the factors contributing to churn are usually in transient states. What leads a customer to consider leaving today might be different tomorrow, and it certainly will be different six months from now. Therefore, a *probabilistic* model is a necessity.  
 
-公司經常忽略這項重要的觀察，通常寧可選擇商業智慧導向的方法而不做分析，主要是因為前者較吸引人，直接了當就自動完成。
+This important observation is often overlooked in business, which generally prefers a business intelligence-oriented approach to analytics, mostly because it is an easier sell and admits straightforward automation.  
 
-然而，採用 Machine Learning Studio 進行自助式分析的價值在於，這四種資訊 (依部門分類) 將成為在客戶流失方面進行機器學習時的寶貴資料來源。
+However, the promise of self-service analytics by using Machine Learning Studio is that the four categories of information, graded by division or department, become a valuable source for machine learning about churn.  
 
-Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加入既有預先定義之模組的儲存機制中。這項功能基本上讓人有機會針對垂直市場選取程式庫和建立範本。這是 Azure Machine Learning 在市場中脫穎而出的一項重要利器。
+Another exciting capability coming in Azure Machine Learning is the ability to add a custom module to the repository of predefined modules that are already available. This capability, essentially, creates an opportunity to select libraries and create templates for vertical markets. It is an important differentiator of Azure Machine Learning in the market place.  
 
-我們希望未來繼續探討這個主題，特別是關於巨量資料分析。  
-##結論
-本文說明一套實用的方法，採取通用的架構來處理客戶流失這個普遍的問題。我們採用原型來給模型評分，並使用 Azure Machine Learning 來實作。最後，我們依據 SAS 中可比較的演算法，評估原型解決方案的正確性和表現。
+We hope to continue this topic in the future, especially related to big data analytics.
+  
+##<a name="conclusion"></a>Conclusion
+This paper describes a sensible approach to tackling the common problem of customer churn by using a generic framework. We considered a prototype for scoring models and implemented it by using Azure Machine Learning. Finally, we assessed the accuracy and performance of the prototype solution with regard to comparable algorithms in SAS.  
 
-**其他資訊：**
+**For more information:**  
 
-本文對您有幫助嗎？ 請提供意見給我們。請以 1 (非常差) 到 5 (非常好) 來評分，告訴我們您對本文有何評價，以及為何這樣評分？ 例如：
+Did this paper help you? Please give us your feedback. Tell us on a scale of 1 (poor) to 5 (excellent), how would you rate this paper and why have you given it this rating? For example:  
 
--	您給予較高評價是因為範例良好、螢幕擷取畫面精美、文章論述清楚，還是別有原因？
--	您給予較低評價是因為範例不當、螢幕擷取畫面模糊，還是文章論述含糊不清？  
+-   Are you rating it high due to having good examples, excellent screen shots, clear writing, or another reason?
+-   Are you rating it low due to poor examples, fuzzy screen shots, or unclear writing?  
 
-這些意見將有助於改善我們所發表的白皮書品質。
+This feedback will help us improve the quality of white papers we release.   
 
-[傳送意見](mailto:sqlfback@microsoft.com)。 
-##參考
-[1] Predictive Analytics: Beyond the Predictions (預測性分析：超出預測)，W. McKnight，資訊管理，2011 年 7 月/8 月，第 18-20 頁。
+[Send feedback](mailto:sqlfback@microsoft.com).
+ 
+##<a name="references"></a>References
+[1] Predictive Analytics: Beyond the Predictions, W. McKnight, Information Management, July/August 2011, p.18-20.  
 
-[2] 維基百科文章：[Accuracy and precision (正確性與準確度)](http://en.wikipedia.org/wiki/Accuracy_and_precision)
+[2] Wikipedia article: [Accuracy and precision](http://en.wikipedia.org/wiki/Accuracy_and_precision)
 
-\[3] [CRISP-DM 1.0：資料採礦逐步指南](http://www.the-modeling-agency.com/crisp-dm.pdf)
+[3] [CRISP-DM 1.0: Step-by-Step Data Mining Guide](http://www.the-modeling-agency.com/crisp-dm.pdf)   
 
-\[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
+[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
 
-\[5] [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
-##附錄
+[5] [Telco churn model template](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5) in [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) 
+ 
+##<a name="appendix"></a>Appendix
 
 ![][10]
 
-*圖 12：客戶流失原型的簡報擷取畫面*
+*Figure 12: Snapshot of a presentation on churn prototype*
 
 
 [1]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-1.png
@@ -244,4 +250,8 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 [9]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-9.png
 [10]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-10.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

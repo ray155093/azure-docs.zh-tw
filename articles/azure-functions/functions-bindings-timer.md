@@ -1,34 +1,35 @@
 <properties
-	pageTitle="Azure Functions 計時器觸發程序 | Microsoft Azure"
-	description="了解如何在 Azure Functions 中使用計時器觸發程序。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"/>
+    pageTitle="Azure Functions timer trigger | Microsoft Azure"
+    description="Understand how to use timer triggers in Azure Functions."
+    services="functions"
+    documentationCenter="na"
+    authors="christopheranderson"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="08/22/2016"
-	ms.author="chrande; glenga"/>
+    ms.service="functions"
+    ms.devlang="multiple"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="08/22/2016"
+    ms.author="chrande; glenga"/>
 
-# Azure Functions 計時器觸發程序
+
+# <a name="azure-functions-timer-trigger"></a>Azure Functions timer trigger
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中設定計時器觸發程序。計時器觸發程序會根據排程，以單次或週期性方式呼叫函數。
+This article explains how to configure timer triggers in Azure Functions. Timer triggers call functions based on a schedule, one time or recurring.  
 
-[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
 
-## 計時器觸發程序的 function.json
+## <a name="function.json-for-timer-trigger"></a>function.json for timer trigger
 
-「Function.json」檔案提供排程運算式。例如，下列排程會每分鐘執行函式一次︰
+The *function.json* file provides a schedule expression. For example, the following schedule runs the function every minute:
 
 ```json
 {
@@ -44,55 +45,55 @@
 }
 ```
 
-計時器觸發程序會自動處理多個執行個體向外延展︰只會跨所有執行個體執行特定計時器函式的單一執行個體。
+The timer trigger handles multi-instance scale-out automatically: only a single instance of a particular timer function will be running across all instances.
 
-## 排程運算式的格式
+## <a name="format-of-schedule-expression"></a>Format of schedule expression
 
-排程運算式是包含 6 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)︰`{second} {minute} {hour} {day} {month} {day of the week}`。
+The schedule expression is a [CRON expression](http://en.wikipedia.org/wiki/Cron#CRON_expression) that includes 6 fields:  `{second} {minute} {hour} {day} {month} {day of the week}`. 
 
-請注意，許多在線上找到的 cron 運算式都會省略 {秒} 欄位，因此如果您複製了這類運算式，就必須調整出額外的欄位。
+Note that many of the cron expressions you find online omit the {second} field, so if you copy from one of those you'll have to adjust for the extra field. 
 
-以下是一些其他排程運算式的範例：
+Here are some other schedule expression examples:
 
-若要每隔 5 分鐘觸發一次︰
+To trigger once every 5 minutes:
 
 ```json
 "schedule": "0 */5 * * * *"
 ```
 
-若要在每小時開始時觸發一次︰
+To trigger once at the top of every hour:
 
 ```json
 "schedule": "0 0 * * * *",
 ```
 
-若要每隔 2 小時觸發一次：
+To trigger once every two hours:
 
 ```json
 "schedule": "0 0 */2 * * *",
 ```
 
-若要在上午 9 點到下午 5 點之間每隔一小時觸發一次：
+To trigger once every hour from 9 AM to 5 PM:
 
 ```json
 "schedule": "0 0 9-17 * * *",
 ```
 
-若要在每天上午 9:30 觸發一次：
+To trigger At 9:30 AM every day:
 
 ```json
 "schedule": "0 30 9 * * *",
 ```
 
-若要在每個工作天上午 9:30 觸發一次：
+To trigger At 9:30 AM every weekday:
 
 ```json
 "schedule": "0 30 9 * * 1-5",
 ```
 
-## 計時器觸發程序 C# 程式碼範例
+## <a name="timer-trigger-c#-code-example"></a>Timer trigger C# code example
 
-每次觸發函式時，此 C# 程式碼範例會寫入單一記錄檔。
+This C# code example writes a single log each time the function is triggered.
 
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log)
@@ -101,8 +102,12 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 }
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
+[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)] 
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

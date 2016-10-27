@@ -1,149 +1,154 @@
 <properties 
-	pageTitle="在 Application Insights 中監視 Docker 應用程式" 
-	description="Docker 效能計數器、事件和例外狀況可以與來自容器化應用程式的遙測一起顯示在 Application Insights 上。" 
-	services="application-insights" 
+    pageTitle="Monitor Docker applications in Application Insights" 
+    description="Docker perf counters, events and exceptions can be displayed on Application Insights, along with the telemetry from the containerized apps." 
+    services="application-insights" 
     documentationCenter=""
-	authors="alancameronwills" 
-	manager="douge"/>
+    authors="alancameronwills" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="12/01/2015" 
-	ms.author="awills"/>
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="12/01/2015" 
+    ms.author="awills"/>
  
-# 在 Application Insights 中監視 Docker 應用程式
 
-[Docker](https://www.docker.com/) 容器的週期事件和效能計數器可以在 Application Insights 上繪製成圖表。在您的主機的容器中安裝 [Application Insights](app-insights-overview.md) 映像，它會顯示主機及其他映像的效能計數器。
+# <a name="monitor-docker-applications-in-application-insights"></a>Monitor Docker applications in Application Insights
 
-使用 Docker，您可以在完成所有相依性的輕量級容器中散發應用程式。它們會在執行 Docker 引擎的任何主機電腦上執行。
+Lifecycle events and performance counters from [Docker](https://www.docker.com/) containers can be charted on Application Insights. Install the [Application Insights](app-insights-overview.md) image in a container in your host, and it will display  performance counters for the host, as well as for the other images.
 
-當您在 Docker 主機上執行 [Application Insights 映像](https://hub.docker.com/r/microsoft/applicationinsights/)時，可為您提供下列好處：
+With Docker you distribute your apps in lightweight containers complete with all dependencies. They'll run on any host machine that runs a Docker Engine.
 
-* 主機上執行之所有容器的相關週期遙測 - 啟動、停止等。
-* 所有容器的效能計數器。CPU、記憶體、網路使用量等。
-* 如果您針對容器中執行的應用程式[安裝了 Application Insights SDK](app-insights-java-live.md)，這些應用程式的所有遙測會有用來識別容器和主機電腦的其他屬性。例如，如果您在多部主機上執行某個應用程式的多個執行個體，您可以輕鬆地依主機來篩選應用程式遙測。
+When you run the [Application Insights image](https://hub.docker.com/r/microsoft/applicationinsights/) on your Docker host, you'll get these benefits:
 
-![範例](./media/app-insights-docker/00.png)
+* Lifecycle telemetry about all the containers running on the host - start, stop, and so on.
+* Performance counters for all the containers. CPU, memory, network usage, and more.
+* If you [installed Application Insights SDK](app-insights-java-live.md) in the apps running in the containers, all the telemetry of those apps will have additional properties identifying the container and host machine. So for example, if you have instances of an app running in more than one host, you'll easily be able to filter your app telemetry by host.
 
-
-## 設定您的 Application Insights 資源
-
-1. 登入 [Microsoft Azure 入口網站](https://azure.com)並開啟適用於您應用程式的 Application Insights 資源；或者[建立新的資源](app-insights-create-new-resource.md)。 
-
-    *我應該使用哪種資源？* 如果您在主機上執行的應用程式是由其他人所開發，則您需要[建立新的 Application Insights 資源](app-insights-create-new-resource.md)。這是您檢視及分析遙測的位置(針對應用程式類型選取 [其他])。
-
-    但如果您是應用程式的開發人員，我們希望您[將 Application Insights SDK 加入](app-insights-java-live.md)每個應用程式中。如果這些應用程式其實全部都是單一商務應用程式的元件，則您可能會設定所有應用程式將遙測資料傳送至一個資源，再使用該相同的資源來顯示 Docker 週期和效能資料。
-
-    第三種情況是您已開發大部分應用程式，但想要使用不同的資源來顯示其遙測。在這種情況下，您可能也需要為 Docker 資料建立不同的資源。
-
-2.	新增 [Docker] 磚：選擇 [新增磚]，從資源庫拖曳 [Docker] 磚，然後按一下 [完成]。
-
-    ![範例](./media/app-insights-docker/03.png)
+![example](./media/app-insights-docker/00.png)
 
 
-3. 按一下 [程式集] 下拉式清單，然後複製檢測金鑰。您將會使用這個項目以告知 SDK 傳送遙測的位置。
+## <a name="set-up-your-application-insights-resource"></a>Set up your Application Insights resource
+
+1. Sign into [Microsoft Azure Portal](https://azure.com) and open the Application Insights resource for your app; or [create a new one](app-insights-create-new-resource.md). 
+
+    *Which resource should I use?* If the apps that you are running on your host were developed by someone else, then you'll need to [create a new Application Insights resource](app-insights-create-new-resource.md). This is where you view and analyze the telemetry. (Select 'Other' for the app type.)
+
+    But if you're the developer of the apps, then we hope you [added Application Insights SDK](app-insights-java-live.md) to each of them. If they're all really components of a single business application, then you might configure all of them to send telemetry to one resource, and you'll use that same resource to display the Docker lifecycle and performance data. 
+
+    A third scenario is that you developed most of the apps, but you are using separate resources to display their telemetry. In that case, you'll probably also want to create a separate resource for the Docker data. 
+
+2.  Add the Docker tile: Choose **Add Tile**, drag the Docker tile from the gallery, and then click **Done**. 
+
+    ![example](./media/app-insights-docker/03.png)
 
 
-    ![範例](./media/app-insights-docker/02-props.png)
-
-保持該瀏覽器視窗就緒，因為您稍後即會返回以查看您的遙測。
+3. Click the **Essentials** drop-down and copy the Instrumentation Key. You'll use this to tell the SDK where to send its telemetry.
 
 
-## 在您的主機上執行 Application Insights 監視器
+    ![example](./media/app-insights-docker/02-props.png)
+
+Keep that browser window handy, as you'll come back to it soon to look at your telemetry.
+
+
+## <a name="run-the-application-insights-monitor-on-your-host"></a>Run the Application Insights monitor on your host
  
-當您有其他位置可顯示遙測之後，您可以設定收集和傳送遙測的容器化應用程式。
+Now that you've got somewhere to display the telemetry, you can set up the containerized app that will collect and send it.
 
-1.	連接到您的 Docker 主機。 
-2.	在這個命令中編輯您的檢測金鑰，然後執行命令：
+1.  Connect to your Docker host. 
+2.  Edit your instrumentation key into this command, and then run it:
  
     ```
 
     docker run -v /var/run/docker.sock:/docker.sock -d microsoft/applicationinsights ikey=000000-1111-2222-3333-444444444
     ```
 
-每部 Docker 主機只需要一個 Application Insights 映像。如果您的應用程式部署在多部 Docker 主機上，請在每部主機上重複執行命令。
+Only one Application Insights image is required per Docker host. If your application is deployed on multiple Docker hosts, then repeat the command on every host.
 
-## 更新應用程式
+## <a name="update-your-app"></a>Update your app
 
-如果使用 [Application Insights SDK for Java](app-insights-java-get-started.md) 檢測您的應用程式，請將下行加入您專案之 ApplicationInsights.xml 檔案中的 `<TelemetryInitializers>` 項目底下：
+If your application is instrumented with the [Application Insights SDK for Java](app-insights-java-get-started.md), add the following line into the ApplicationInsights.xml file in your project, under the `<TelemetryInitializers>` element:
 
 ```xml
 
     <Add type="com.microsoft.applicationinsights.extensibility.initializer.docker.DockerContextInitializer"/> 
 ```
 
-這會將容器和主機 ID 等 Docker 資訊，加入從您的應用程式送出的每個遙測項目中。
+This adds Docker information such as container and host id to every telemetry item sent from your app.
 
-## 檢視遙測
+## <a name="view-your-telemetry"></a>View your telemetry
 
-返回 Azure 入口網站中的 Application Insights 資源。
+Go back to your Application Insights resource in the Azure portal.
 
-點選 [Docker] 磚。
+Click through the Docker tile.
 
-您很快就會看到來自 Docker 應用程式的資料抵達，尤其是如果您在 Docker 引擎上有其他容器執行。
-
-
-以下是一些您可以取得的檢視。
-
-### 依據主機的效能計數器，依據映像的活動
+You'll shortly see data arriving from the Docker app, especially if you have other containers running on your Docker engine.
 
 
-![範例](./media/app-insights-docker/10.png)
+Here are some of the views you can get.
+
+### <a name="perf-counters-by-host,-activity-by-image"></a>Perf counters by host, activity by image
 
 
-![範例](./media/app-insights-docker/11.png)
+![example](./media/app-insights-docker/10.png)
 
 
-
-按一下任何主機或映像名稱以取得更多詳細資料。
+![example](./media/app-insights-docker/11.png)
 
 
 
-若要自訂檢視，按一下任何圖表、方格標題，或使用 [新增圖表]。
-
-[深入了解計量瀏覽器](app-insights-metrics-explorer.md)。
-
-### Docker 容器事件
+Click any host or image name for more detail.
 
 
-![範例](./media/app-insights-docker/13.png)
 
-若要調查個別事件，請按一下 [搜尋][](app-insights-diagnostic-search.md)。搜尋和篩選以尋找您想要的事件。按一下任何事件以查看詳細資料。
+To customize the view, click any chart, the grid heading, or use Add Chart. 
+
+[Learn more about metrics explorer](app-insights-metrics-explorer.md).
+
+### <a name="docker-container-events"></a>Docker container events
+
+
+![example](./media/app-insights-docker/13.png)
+
+To investigate individual events, click [Search](app-insights-diagnostic-search.md). Search and filter to find the events you want. Click any event to get more detail.
  
-### 依據容器名稱的例外狀況
+### <a name="exceptions-by-container-name"></a>Exceptions by container name
  
 
-![範例](./media/app-insights-docker/14.png)
+![example](./media/app-insights-docker/14.png)
 
-### 已加入應用程式遙測中的 Docker 內容
+### <a name="docker-context-added-to-app-telemetry"></a>Docker context added to app telemetry
 
-從使用 AI SDK 檢測之應用程式送出的要求遙測，並以 Docker 內容擴充：
+Request telemetry sent from the application instrumented with AI SDK, enriched with Docker context:
 
-![範例](./media/app-insights-docker/16.png)
+![example](./media/app-insights-docker/16.png)
 
-處理器時間和可用記憶體效能計數器，並依 Docker 容器名稱擴充和分組：
-
-
-![範例](./media/app-insights-docker/15.png)
+Processor time and available memory performance counters, enriched and grouped by Docker container name:
 
 
+![example](./media/app-insights-docker/15.png)
 
 
 
-## 問答集
 
-*Application Insights 可以給我哪些無法從 Docker 取得的功能？*
 
-* 依據容器和映像的效能計數器的詳細分解圖。
-* 將容器和應用程式資料整合在一個儀表板中。
-* [匯出遙測](app-insights-export-telemetry.md)以進行資料庫、Power BI 或其他儀表板的進一步分析。
+## <a name="q-&-a"></a>Q & A
 
-*如何從應用程式本身取得遙測？*
+*What does Application Insights give me that I can't get from Docker?*
 
-* 在應用程式中安裝 Application Insights SDK。針對下列項目深入了解：[Java Web Apps](app-insights-java-get-started.md)、[Windows Web Apps](app-insights-asp-net.md)。
+* Detailed breakdown of performance counters by container and image.
+* Integrate container and app data in one dashboard.
+* [Export telemetry](app-insights-export-telemetry.md) for further analysis to a database, Power BI or other dashboard.
 
-<!---HONumber=AcomDC_1203_2015-->
+*How do I get telemetry from the app itself?*
+
+* Install the Application Insights SDK in the app. Learn how for: [Java web apps](app-insights-java-get-started.md), [Windows web apps](app-insights-asp-net.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

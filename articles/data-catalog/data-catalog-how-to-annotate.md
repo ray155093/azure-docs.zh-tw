@@ -1,6 +1,6 @@
 <properties
-   pageTitle="如何註解資料來源 | Microsoft Azure"
-   description="此作法文章重點在於於如何在 Azure 資料目錄中註解資料資產 (包括易記名稱、標記、說明和專家)。"
+   pageTitle="How to annotate data sources | Microsoft Azure"
+   description="How-to article highlighting how to annotate data assets in Azure Data Catalog, including friendly names, tags, descriptions, and experts."
    services="data-catalog"
    documentationCenter=""
    authors="steelanddata"
@@ -17,50 +17,56 @@
    ms.author="maroche"/>
 
 
-# 如何註解資料來源
 
-## 簡介
-**Microsoft Azure 資料目錄**是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。換句話說，資料目錄的重點在於協助人們探索、了解和使用資料來源，並可協助組織從現有的資料獲得更多價值。當資料來源向資料目錄註冊之後，該服務會複製其中繼資料並建立索引，但不僅止於此。資料目錄可讓使用者提供自己的描述性中繼資料 (如描述和標記)，以補充擷取自資料來源的中繼資料，並且讓更多人能夠理解資料來源。
+# <a name="how-to-annotate-data-sources"></a>How to annotate data sources
 
-## 註解與群眾外包
-每個人都有意見。而這是一件好事。資料目錄了解不同的使用者對企業資料來源有不同的觀點，而每個觀點都具有潛在的價值。請考慮下列狀況：
+## <a name="introduction"></a>Introduction
+**Microsoft Azure Data Catalog** is a fully managed cloud service that serves as a system of registration and system of discovery for enterprise data sources. In other words, Data Catalog is all about helping people discover, understand, and use data sources, and helping organizations to get more value from their existing data. When a data source is registered with Data Catalog, its metadata is copied and indexed by the service, but the story doesn’t end there. Data Catalog allows users to provide their own descriptive metadata – such as descriptions and tags – to supplement the metadata extracted from the data source, and to make the data source more understandable to more people.
 
-* 系統管理員知道服務或託管資料來源之服務的服務等級協定。
-* 資料庫管理員知道各資料庫的備份排程，以及 ETL 處理時段。
-* 系統擁有者知道使用者要求資料來源存取權的程序。
-* 資料負責人知道資料來源中的資產和屬性如何對應至企業資料模型。
-* 分析師知道資料在其支援的商務程序中是如何使用。
+## <a name="annotation-and-crowdsourcing"></a>Annotation and crowdsourcing
+Everyone has an opinion. And this is a good thing.
+Data Catalog recognizes that different users have different perspectives on enterprise data sources, and that each of these perspectives can be valuable. Consider the following scenario:
 
-上述各觀點都具有價值，而資料目錄針對中繼資料使用群眾外包的方使，讓每個觀點都能夠被擷取並用來提供已註冊資料來源的全局。使用資料目錄入口網站，每個使用者都能新增和編輯自己的註解，同時也可以檢視其他使用者提供的註解。
+* The system administrator knows the service level agreement for the servers or services that host the data source.
+* The database administrator knows the backup schedule for each database, and the allowed ETL processing windows.
+* The system owner knows the process for users to request access to the data source.
+* The data steward knows how the assets and attributes in the data source map to the enterprise data model.
+* The analyst knows how the data is used in the context of the business processes he supports.
 
-## 不同類型的註解
-資料目錄支援下列類型的註解：
+Each of these perspectives is valuable, and Data Catalog uses a crowdsourcing approach to metadata that allows each one to be captured and used to provide a complete picture of registered data sources. Using the Data Catalog portal, each user can add and edit his own annotations, while being able to view annotations provided by other users.
 
-| 註解 | 注意事項 |
+## <a name="different-types-of-annotations"></a>Different types of annotations
+Data Catalog supports the following types of annotations:
+
+| Annotation     | Notes                                                                                                                                                                                                                                                                                                                                                           |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 易記名稱 | 易記名稱可在資料資產層級提供，讓資料資產更易於了解。當基礎物件的名稱難以理解、以縮寫表示或對使用者不具意義時，易記名稱會非常有幫助。 |
-| 說明 | 說明可以在資料資產和屬性 / 資料行層級提供。說明是自由格式的簡短文字註解，描述使用者對於資料資產的觀點或其用途。 |
-| 標籤 (使用者標籤) | 標記可以在資料資產和屬性 / 資料行層級提供。使用者標籤是使用者定義的標籤，可用來分類資料資產或屬性。 |
-| 標籤 (詞彙標籤) | 標記可以在資料資產和屬性 / 資料行層級提供。詞彙標籤是集中定義的詞彙，可用於分類資料資產或使用通用的商務分類法的屬性。如需詳細資訊，請參閱[如何設定控管標籤的商務詞彙](data-catalog-how-to-business-glossary.md) |
-| 專家 | 專家可以在資料資產層級提供。專家可識別對資料具備專業觀點的使用者或群組，探索已註冊之資料來源的使用者若有現有註解無法解答的問題，專家即可做為其連絡點。 |
-| 要求存取 | 要求存取資訊可以在資料資產層級提供。這項資訊是提供給對其探索到的資料來源尚無存取權限的使用者。使用者可以輸入授與存取權的使用者或群組的電子郵件地址、程序的 URL 或使用者取得存取權所需的工具，或是以文字輸入程序本身。 |
-| 文件 | 文件可以在資料資產層級提供。資產文件是 RTF 格式的資訊，其中可以包含連結和影像，並可提供未透過描述和標籤傳達的任何資訊。 |
+| Friendly name  | Friendly names can be supplied at the data asset level, to make the data assets more easily understood. Friendly names are most useful when the underlying object name is cryptic, abbreviated or otherwise not meaningful to users.                                                                                                                            |
+| Description    | Descriptions can be supplied at the data asset and attribute / column levels. Descriptions are free-form short text annotations that describe the user’s perspective on the data asset or its use.                                                                                                                                                              |
+| Tags (user tags)          | Tags can be supplied at the data asset and attribute / column levels. User tags are user-defined labels that can be used to categorize data assets or attributes.                                                                                                                                                                                                    |
+| Tags (glossary tags)          | Tags can be supplied at the data asset and attribute / column levels. Glossary tags are centrally-defined glossary terms that can be used to categorize data assets or attributes using a common business taxonomy. For more information see  [How to set up the Business Glossary for Governed Tagging](data-catalog-how-to-business-glossary.md)                                                                                                                                                                                                    |
+| Experts        | Experts can be supplied at the data asset level. Experts identify users or groups with expert perspectives on the data and can serve as points of contact for users who discover the registered data sources and have questions that are not answered by the existing annotations.  |
+| Request access | Request access information can be supplied at the data asset level. This information is for users who discover a data source that they do not yet have permissions to access. Users can enter the email address of the user or group who grants access, the URL of the process or tool that users need to gain access, or can enter the process itself as text. |
+| Documentation | Documentation can be supplied at the data asset level. Asset documentation is rich text information that can include links and images, and which can provide any information not conveyed through descriptions and tags. |
 
 
-## 註解多個資產
-在資料目錄入口網站選取多個資料資產時，使用者可以在單一作業內註解所有選取的資產。註解會套用到所有選取的資產，方便您選取並提供一致的描述以及多組相關資料資產的標記和專家。
+## <a name="annotating-multiple-assets"></a>Annotating multiple assets
+When selecting multiple data assets in the Data Catalog portal, users can annotate all selected assets in a single operation. Annotations will apply to all selected assets, making it easy to select and provide a consistent description and sets of tags and experts for related data assets.
 
-> [AZURE.NOTE] 使用資料目錄資料來源註冊工具時也可以提供標記和專家。
+> [AZURE.NOTE] Tags and experts can also be provided when registering data assets using the Data Catalog data source registration tool.
 
-選取多個資料表或檢視的時候，資料目錄入口網站只會顯示全部資料資產的共通資料行。這樣可以讓使用者針對選取的全部資料資產中名稱相同的資料行提供標記和說明。
+When selecting multiple tables and views, only columns that all selected data assets have in common will be displayed in the Data Catalog portal. This allows users to provide tags and descriptions for all columns with the same name for all selected assets.
 
-## 註解和探索
-如同註冊期間從資料來源擷取的中繼資料會新增至資料目錄搜尋索引一樣，使用者提供的中繼資料也會建立索引。這表示註解不只讓使用者更容易理解探索的資料來源，同時也讓使用者更容易使用對他們有意義的詞彙進行搜尋，以探索已加上註解的資料資產。
+## <a name="annotations-and-discovery"></a>Annotations and discovery
+Just as the metadata extracted from the data source during registration is added to the Data Catalog search index, user-supplied metadata is also indexed. This means that not only do annotations make it easier for users to understand the data they discover, annotations also make it easier for users to discover the annotated data assets by searching using the terms that make sense to them.
 
-## 摘要
-使用資料目錄註冊資料來源，即可藉由將資料來源的結構性和描述性中繼資料複製到「目錄」服務內，使其變成可探索的資料。註冊資料來源之後，使用者就能加上註解，讓在資料目錄入口網站中探索和理解變得更加容易。
+## <a name="summary"></a>Summary
+Registering a data source with Data Catalog makes that data discoverable by copying structural and descriptive metadata from the data source into the Catalog service. Once a data source has been registered, users can provide annotations to make easier to discover and understand from within the Data Catalog portal.
 
-## 另請參閱
-- [開始使用 Azure 資料目錄](data-catalog-get-started.md)教學課程，取得如何標註資料來源的逐步詳細資料。
+## <a name="see-also"></a>See also
+- [Get Started with Azure Data Catalog](data-catalog-get-started.md) tutorial for step-by-step details about how to annotate data sources.
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

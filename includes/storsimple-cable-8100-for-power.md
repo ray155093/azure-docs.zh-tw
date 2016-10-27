@@ -1,27 +1,30 @@
 <!--author=alkohli last changed: 9/16/15-->
 
-#### 連接電源線
+#### <a name="to-cable-for-power"></a>To cable for power
 
-1. 請確定每個電源和冷卻模組 (PCM) 上的電源開關都在 OFF 的位置。
+1. Make sure that the power switches on each of the Power and Cooling Modules (PCMs) are in the OFF position.
 
-2. 將電源線連接至主要機箱中的每個 PCM。
+2. Connect the power cords to each of the PCMs in the primary enclosure.
 
-3. 將電源線連接至機架電源分配單元 (PDU)，如下列影像所示。確定兩個 PCM 使用不同的電源來源。
+3. Attach the power cords to the rack power distribution units (PDUs) as shown in the following image. Make sure that the two PCMs use separate power sources.
 
-    >[AZURE.IMPORTANT]若要確保系統的高可用性，我們建議您嚴格遵守電源佈線配置，如下圖所示。
+    >[AZURE.IMPORTANT] To ensure high availability for your system, we recommend that you strictly adhere to the power cabling scheme shown in the following diagram. 
 
-    ![為您的 2U 裝置進行電源佈線](./media/storsimple-cable-8100-for-power/HCSCableYour2UDeviceforPower.png)
+    ![Cable your 2U device for power](./media/storsimple-cable-8100-for-power/HCSCableYour2UDeviceforPower.png)
 
-    **8100 裝置上的電源佈線**
+    **Power cabling on an 8100 device**
 
-    |標籤|說明|
+    |Label|Description|
     |:----|:----------|
     |1|PCM 0|
-    |2|控制器 1|
-    |3|控制器 0|
+    |2|Controller 1|
+    |3|Controller 0|
     |4|PCM 1|
-    |5|PDU|
+    |5|PDUs|
 
-4. 將兩個 PCM 的電源開關切換到 ON (開啟) 位置，以開啟系統。
+4. To turn on the system, flip the power switches on both PCMs to the ON position.
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,67 +1,73 @@
 <properties writer="cynthn" editor="tysonn" manager="timlt" />
 
-1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com)。  
 
-2. 在視窗底部的命令列上，按一下 [新增]。
+1. Sign in to the [Azure classic portal](http://manage.windowsazure.com).  
 
-3. 在 [計算] 下，依序按一下 [虛擬機器] 及 [從映像庫]。
+2. On the command bar at the bottom of the window, click **New**.
 
-	![建立新的虛擬機器][Image1]
+3. Under **Compute**, click **Virtual Machine**, and then click **From Gallery**.
 
-4. 在 **SUSE** 群組之下，選取 OpenSUSE 虛擬機器映像，然後按一下箭號以繼續作業。
+    ![Create a New Virtual Machine][Image1]
 
-5. 在第一個 **[虛擬機器組態]** 頁面上：
+4. Under the **SUSE** group, select an OpenSUSE virtual machine image, and then click the arrow to continue.
 
-	- 輸入 [**虛擬機器名稱**] \(如 "testlinuxvm")。名稱必須介於 3 到 15 個字元，可以包含英數字和連字號，且必須以英文字母開頭，並以英文字母或數字結尾。
+5. On the first **Virtual machine configuration** page:
 
-	- 驗證 [**階層**] 並挑選 [**大小**]。階層可決定您可以選擇的大小。大小會影響其使用成本以及組態選項 (例如您可連接的資料磁碟數目)。如需詳細資訊，請參閱[虛擬機器的大小](../articles/virtual-machines-linux-sizes.md)。
-	- 輸入**新的使用者名稱**，或接受預設值 **azureuser**。這個名稱會新增至 Sudoers 清單檔案。
-	- 決定要使用的 [**驗證**] 類型。如需一般密碼指導方針，請參閱[字串密碼](http://msdn.microsoft.com/library/ms161962.aspx)。
+    - Type a **Virtual Machine Name**, such as "testlinuxvm". The name must contain between 3 and 15 characters, can contain only letters, numbers, and hyphens, and must start with a letter and end with either a letter or number.
 
-6. 在下一個 **[虛擬機器組態]** 頁面中：
+    - Verify the **Tier** and pick a **Size**. The tier determines the sizes you can choose from. The size affects the cost of using it, as well as configuration options such as how many data disks you can attach. For details, see [Sizes for virtual machines](../articles/virtual-machines-linux-sizes.md).
+    - Type a **New User Name**, or accept the default, **azureuser**. This name is added to the Sudoers list file.
+    - Decide which type of **Authentication** to use. For general password guidelines, see [Strong passwords](http://msdn.microsoft.com/library/ms161962.aspx).
 
-	- 使用預設 [**建立新的雲端服務**]。
-	- 在 [DNS 名稱] 方塊中，輸入唯一的 DNS 名稱以作為位址的一部分 (如 "testlinuxvm")。
-	- 在 [區域/同質群組/虛擬網路] 方塊中，選取這個虛擬映像將託管於的區域。
-	- 在**端點**下，保留 SSH 端點。您可以立即新增其他內容，或在建立虛擬機器之後新增、變更或刪除它們。
+6. On the next **Virtual machine configuration** page:
 
-	>[AZURE.NOTE] 如果您想要讓虛擬機器使用虛擬網路，就「必須」在建立虛擬機器時指定虛擬網路。在建立虛擬機器之後，您就無法將虛擬機器加入至虛擬網路。如需詳細資訊，請參閱[虛擬網路概觀](virtual-networks-overview.md)。
+    - Use the default **Create a new cloud service**.
+    - In the **DNS Name** box, type a unique DNS name to use as part of the address, such as "testlinuxvm".
+    - In the **Region/Affinity Group/Virtual Network** box, select a region where this virtual image will be hosted.
+    - Under **Endpoints**, keep the SSH endpoint. You can add others now, or add, change, or delete them after the virtual machine is created.
 
-7.	在最後一個 **[虛擬機器組態]** 頁面上，保留預設設定，然後按一下核取記號以完成作業。
+    >[AZURE.NOTE] If you want a virtual machine to use a virtual network, you **must** specify the virtual network when you create the virtual machine. You can't add a virtual machine to a virtual network after you create the virtual machine. For more information, see [Virtual Network Overview](virtual-networks-overview.md).
 
-入口網站會在 **[虛擬機器]** 底下列出新的虛擬機器。雖然狀態報告為 **(佈建)**，仍會設定虛擬機器。當狀態報告為**執行**，您可以移至下一個步驟。
+7.  On the last **Virtual machine configuration** page, keep the default settings and then click the check mark to finish.
 
-##連線至虛擬機器
+The portal lists the new virtual machine under **Virtual Machines**. While the status is reported as **(Provisioning)**, the virtual machine is being set up. When the status is reported as **Running**, you can move on to the next step.
 
-視您將連結之電腦上的作業系統而定，您將使用 SSH 或 PuTTY 連線至虛擬機器：
+##<a name="connect-to-the-virtual-machine"></a>Connect to the Virtual Machine
 
-- 請從執行 Linux 的電腦使用 SSH。在命令提示字元中，輸入：
+You'll use SSH or PuTTY to connect to the virtual machine, depending on the operating system on the computer you'll connect from:
 
-	`$ ssh newuser@testlinuxvm.cloudapp.net -o ServerAliveInterval=180`
+- From a computer running Linux, use SSH. At the command prompt, type:
 
-	輸入使用者的密碼。
+    `$ ssh newuser@testlinuxvm.cloudapp.net -o ServerAliveInterval=180`
 
-- 請從執行 Windows 的電腦使用 PuTTY。如果您尚未安裝，請從 [PuTTY 下載頁面][PuTTYDownload]將其下載。
+    Type the user's password.
 
-	將 **putty.exe** 儲存至您電腦上的目錄中。開啟命令提示字元，瀏覽至該資料夾，然後執行 **putty.exe**。
+- From a computer running Windows, use PuTTY. If you don't have it installed, download it from the [PuTTY Download Page][PuTTYDownload].
 
-	輸入主機名稱 (例如 "testlinuxvm.cloudapp.net")，然後針對 [**連接埠**] 輸入 "22"。
+    Save **putty.exe** to a directory on your computer. Open a command prompt, navigate to that folder, and run **putty.exe**.
 
-	![PuTTY 畫面][Image6]
+    Type the host name, such as "testlinuxvm.cloudapp.net", and type "22" for the **Port**.
 
-##更新虛擬機器 (選用)
+    ![PuTTY Screen][Image6]  
 
-1. 連線至虛擬機器之後，您可以選擇性地安裝系統更新和修補程式。若要執行更新，請輸入：
+##<a name="update-the-virtual-machine-(optional)"></a>Update the Virtual Machine (optional)
 
-	`$ sudo zypper update`
+1. After you're connected to the virtual machine, you can optionally install system updates and patches. To run the update, type:
 
-2. 選取 [**軟體**]，然後選取 [**線上更新**] 以列出可用的更新。選取 [**接受**] 即可開始安裝並套用所有可用的新修補程式 (選用修補程式除外)。
+    `$ sudo zypper update`
 
-3. 安裝完成之後，選取 [**完成**]。您的系統現在已是最新版本。
+2. Select **Software**, then **Online Update** to list available updates. Select **Accept** to start the installation and apply all new available patches (except the optional ones).
+
+3. After installation is done, select **Finish**.  Your system is now up to date.
 
 [PuTTYDownload]: http://www.puttyssh.org/download.html
 
 [Image1]: ./media/create-and-configure-opensuse-vm-in-portal/CreateVM.png
 
 [Image6]: ./media/create-and-configure-opensuse-vm-in-portal/putty.png
+
+
+
+<!--HONumber=Oct16_HO2-->
+
 

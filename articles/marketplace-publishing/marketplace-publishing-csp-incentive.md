@@ -1,6 +1,6 @@
 <properties
-   pageTitle="如何檢視及變更雲端方案提供者的「轉售商獎勵」| Microsoft Azure"
-   description="如何檢視及變更您的 CSP 轉銷商獎勵選擇"
+   pageTitle="How to view and change the Cloud Solution Provider's Reseller Incentive | Microsoft Azure"
+   description="How to view and change your selection for CSP Reseller Incentive"
    services="marketplace-publishing"
    documentationCenter="na"
    authors="DavidBosland"
@@ -16,35 +16,40 @@
    ms.date="02/10/2016"
    ms.author="DavidBosland"/>
 
-# 在 Azure Marketplace 中檢視及變更雲端方案提供者「轉售商獎勵」
 
-2016 年 3 月 15 日，我們將提供雲端方案提供者 (CSP)「轉售商獎勵」給 Marketplace 發行者。這個獎勵值的預設設定為「是」。身為發行者的您可以決定退出獎勵計畫。本文說明如何變更發行者設定檔中的設定來選擇退出。
+# <a name="view-and-change-your-cloud-solution-provider-"reseller-incentive"-in-the-azure-marketplace"></a>View and change your Cloud Solution Provider "Reseller Incentive" in the Azure Marketplace
 
-若要檢視或變更您的「轉售商獎勵」，請依照下列步驟執行：
+On March 15, 2016 we'll make the Cloud Solution Providers (CSPs) “Reseller Incentive” available to Marketplace publishers.  The default setting for this incentive value is **Yes**.  As a publisher you can decide to opt-out of the incentive program.  This article shows how to change the setting in your publisher profile so you can opt-out.
 
-1.	登入您的 [Microsoft Azure 發佈帳戶](https://publish.windowsazure.com/workspace)
+To view or change your “Reseller Incentive” status, follow these steps:
 
-    ![設定檔登陸畫面][1]
+1.  Log in to your [Microsoft Azure Publishing account](https://publish.windowsazure.com/workspace)
 
-2.	按一下 [發行者]
+    ![Profile landing screen][1]
 
-    ![設定檔登陸畫面 - 發行者連結][2]
+2.  Click **Publishers**
 
-3.	請注意設定檔中的 CSP 相關資訊。可以對「轉售商獎勵」**表達是或否** - 預設狀態為「是」。
+    ![Profile landing screen - publishers link][2]
 
-    ![設定檔 - 發行者][3]
+3.  Notice the information in your profile about CSPs.  There is a **switch to say yes or no** to the "Reseller Incentive" - the default status is “Yes.”
 
-4.	若要變更「轉售商獎勵」狀態，請存取您的發行者設定檔，然後選取並儲存您的選擇：
+    ![Profile - Publishers][3]
 
-  - 選取 [是] 表示對於轉售您在 Azure Marketplace 中陳列的應用程式和服務的 CSP，提供八折優惠。或選取 [否] 退出此獎勵計畫。在任一種情況下，發行者都會收到相同的支付額。
+4.  To change your "Reseller Incentive" status access your Publisher Profile then select and save your choice:
 
-  - 選擇之前，請記得按一下右上角的 [儲存]。
+  - Select **Yes** to choose to provide the 20 percent discount to the CSPs who are reselling the applications and services you have listed in the Azure Marketplace.  Or select **No** to opt out of this incentive program.  In either case the publisher receives the same payout.
 
-    ![設定檔 - 發行者 - 變更方塊][4]
+  - After you make a selection make sure you click **Save** in the upper right hand corner.
+
+    ![Profile - Publishers - change boxes][4]
 
 [1]: ./media/marketplace-publishing-csp-incentive/profile-stock.png
 [2]: ./media/marketplace-publishing-csp-incentive/profile-boxes.png
 [3]: ./media/marketplace-publishing-csp-incentive/profile-publishers-boxes.png
 [4]: ./media/marketplace-publishing-csp-incentive/profile-publishers-change-boxes.png
 
-<!---HONumber=AcomDC_0218_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

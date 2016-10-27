@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Concur 整合 | Microsoft Azure" 
-    description="了解如何使用 Concur 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Concur | Microsoft Azure" 
+    description="Learn how to use Concur with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,148 +11,154 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/11/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Concur 整合  
+
+#<a name="tutorial:-azure-active-directory-integration-with-concur"></a>Tutorial: Azure Active Directory integration with Concur  
 
 
-本教學課程的目的是要示範 Azure 與 Concur 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Concur.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   Concur 中的租用戶
+-   A valid Azure subscription
+-   A tenant in Concur
 
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Concur 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Concur
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-concur-tutorial/IC769766.png "案例")
+![Scenario](./media/active-directory-saas-concur-tutorial/IC769766.png "Scenario")
 
->[AZURE.NOTE] 設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
+>[AZURE.NOTE] The configuration of your Concur subscription for federated SSO via SAML is a separate task, which you must contact Concur to perform.
 
-##啟用 Concur 的應用程式整合
+##<a name="enabling-the-application-integration-for-concur"></a>Enabling the application integration for Concur
 
-本節的目的是要說明如何啟用 Concur 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Concur.
 
-###若要啟用 Concur 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-concur,-perform-the-following-steps:"></a>To enable the application integration for Concur, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-concur-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-concur-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-concur-tutorial/IC700994.png "Applications")
 
-4.  若要開啟 [應用程式庫]，請按一下 [新增應用程式]，然後按一下 [新增應用程式讓我的組織使用]。
+4.  To open the **Application Gallery**, click **Add An App**, and then click **Add an application for my organization to use**.
 
-    ![欲執行動作](./media/active-directory-saas-concur-tutorial/IC700995.png "欲執行動作")
+    ![What do you want to do?](./media/active-directory-saas-concur-tutorial/IC700995.png "What do you want to do?")
 
-5.  在**搜尋方塊**中，輸入 **Concur**。
+5.  In the **search box**, type **Concur**.
 
-    ![應用程式庫](./media/active-directory-saas-concur-tutorial/IC721727.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-concur-tutorial/IC721727.png "Application Gallery")
 
-6.  在結果窗格中，選取 [Concur]，然後按一下 [完成] 以加入應用程式。
+6.  In the results pane, select **Concur**, and then click **Complete** to add the application.
 
     ![Concur](./media/active-directory-saas-concur-tutorial/IC721728.png "Concur")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
 
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Concur。
+The objective of this section is to outline how to enable users to authenticate to Concur with their account in Azure AD using federation based on the SAML protocol.
 
->[AZURE.NOTE] 設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
+>[AZURE.NOTE] The configuration of your Concur subscription for federated SSO via SAML is a separate task, which you must contact Concur to perform.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Concur] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Concur **application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-concur-tutorial/IC769767.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-concur-tutorial/IC769767.png "Configure single sign-on")
 
-2.  在 [要如何讓使用者登入 Concur] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Concur** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-concur-tutorial/IC769768.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-concur-tutorial/IC769768.png "Configure single sign-on")
 
-3.  在 [設定應用程式 URL] 頁面的 [Concur 登入 URL] 文字方塊中，輸入您的 Concur 租用戶登入 URL，然後按 [下一步]：
+3.  On the **Configure App URL** page, in the **Concur Sign In URL** textbox, type your concur tenant sign-in URL, and then click **Next**: 
 
-    ![設定登入 URL](./media/active-directory-saas-concur-tutorial/IC769769.png "設定登入 URL")
+    ![Configure sign in URL](./media/active-directory-saas-concur-tutorial/IC769769.png "Configure sign in URL")
 
-4.  於 [在 Concur 設定單一登入] 頁面上，執行下列步驟。
+4.  On the **Configure single sign-on at Concur** page, perform the following steps.
 
-    ![設定登入 URL](./media/active-directory-saas-concur-tutorial/IC769770.png "設定登入 URL")
+    ![Configure sign in URL](./media/active-directory-saas-concur-tutorial/IC769770.png "Configure sign in URL")
 
-    1.  按 [下載中繼資料]，然後將資料檔儲存在您的電腦中。
-    2.  請連絡 Concur 支援小組來設定您的租用戶的 SSO。
-    3.  選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+    1.  Click Download the metadata, and then safe the data file to your computer.
+    2.  Contact the Concur support team to configure SSO for your tenant.
+    3.  Select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.  
 
-	>[AZURE.NOTE] 設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
+    >[AZURE.NOTE] The configuration of your Concur subscription for federated SSO via SAML is a separate task, which you must contact Concur to perform.
 
-##設定使用者佈建
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
 
-本節的目的是要說明如何對 Concur 啟用 Active Directory 使用者帳戶的佈建。
+The objective of this section is to outline how to enable provisioning of Active Directory user accounts to Concur.
 
-若要啟用 Expense Service 中的應用程式，您必須適當地設定及使用 Web 服務系統管理員設定檔，而不只是將 WS 系統管理員角色加入用於 T&E 系統管理功能的現有系統管理員設定檔。
+To enable apps in the Expense Service, there has to be proper setup and use of a Web Service Admin profile. Don't simply add the WS Admin role to your existing administrator profile that you use for T&E administrative functions.
 
-Concur 顧問或用戶端系統管理員必須建立不同的 Web 服務系統管理員設定檔，而且用戶端系統管理員必須使用這個設定檔來執行 Web 服務系統管理員功能 (例如啟用應用程式)。這些設定檔必須與用戶端系統管理員的每日 T&E 系統管理員設定檔分開保存 (T&E 系統管理員設定檔不應該指派 WS 系統管理員角色)。
+Concur Consultants or the client administrator must create a distinct Web Service Administrator profile and the Client administrator must use this profile for the Web Services Administrator functions (e.g. enabling apps). These profiles must be kept separate from the client administrator's daily T&E admin profile (the T&E admin profile should not have the WSAdmin role assigned).
 
-當您建立要用於啟用應用程式的設定檔時，請在使用者設定檔欄位中，輸入用戶端系統管理員的名稱。這會將擁有權指派給設定檔。建立設定檔之後，用戶端必須使用這個設定檔登入，並針對合作夥伴應用程式，按一下 [Web 服務] 功能表中的 [啟用] 按鈕。
+When you create the profile to be used for enabling the app, enter the client administrator's name into the user profile fields. This will assign ownership to the profile.Once the profile(s) is created, the client must log in with this profile to click the "*Enable*" button for a Partner App within the Web Services menu.
 
-基於下列原因，不應該透過用於一般 T&E 系統管理的設定檔完成這項動作。
+For the following reasons, this action should not be done with the profile they use for normal T&E administration.
 
-1.  用戶端必須在啟用應用程式之後所顯示的對話視窗中，按一下 [是]。這個點選動作可確認用戶端是否願意讓合作夥伴應用程式存取其資料，因此您或合作夥伴無法按 [是] 按鈕。
-2.  如果使用 T&E 系統管理員設定檔啟用應用程式的用戶端系統管理員已離職 (導致設定檔被停用)，在使用另一個現用 WS 系統管理員設定檔啟用應用程式之前，使用該設定檔啟用的所有應用程式都無法正常運作。因此，您必須建立不同的 WS 系統管理員設定檔。
-3.  如果系統管理員離職，與 WS 系統管理員設定檔關聯的名稱可視需要變更為續任的系統管理員，由於不需要停用該設定檔，因此不會影響已啟用的應用程式。
+1.  The client has to be the one that clicks "*Yes*" on the dialogue window that is displayed after an app is enabled. This click acknowledges the client is willing for the Partner application to access their data, so you or the Partner cannot click that Yes button.
+2.  If a client administrator that has enabled an app using the T&E admin profile leaves the company (resulting in the profile being inactivated), any apps enabled using that profile will not function until the app is enabled with another active WS Admin profile. This is why you are supposed to create distinct WS Admin profiles.
+3.  If an administrator leaves the company, the name associated to the WS Admin profile can be changed to the replacement administrator if desired without impacting the enabled app because that profile does not need inactivated
 
-###若要設定使用者佈建，請執行下列步驟：
+###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
 
-1.  登入您的 **Concur** 租用戶。
+1.  Logon to your **Concur** tenant.
 
-2.  從 [管理] 功能表中，選取 [Web 服務]。
+2.  From the **Administration** menu, select **Web Services**.
 
-    ![Concur 租用戶](./media/active-directory-saas-concur-tutorial/IC721729.png "Concur 租用戶")
+    ![Concur tenant](./media/active-directory-saas-concur-tutorial/IC721729.png "Concur tenant")
 
-3.  從左側的 [Web 服務] 窗格中，選取 [啟用合作夥伴應用程式]。
+3.  On the left side, from the **Web Services** pane, select **Enable Partner Application**.
 
-    ![啟用合作夥伴應用程式](./media/active-directory-saas-concur-tutorial/IC721730.png "啟用合作夥伴應用程式")
+    ![Enable Partner Application](./media/active-directory-saas-concur-tutorial/IC721730.png "Enable Partner Application")
 
-4.  從 [啟用應用程式] 清單中選取 [Azure Active Directory]，然後按一下 [啟用]。
+4.  From the **Enable Application** list, select **Azure Active Directory**, and then click **Enable**.
 
     ![Microsoft Azure Active Directory](./media/active-directory-saas-concur-tutorial/IC721731.png "Microsoft Azure Active Directory")
 
-5.  按一下 [是] 關閉 [確認動作] 對話方塊。
+5.  Click **Yes** to close the **Confirm Action** dialog.
 
-    ![確認動作](./media/active-directory-saas-concur-tutorial/IC721732.png "確認動作")
+    ![Confirm Action](./media/active-directory-saas-concur-tutorial/IC721732.png "Confirm Action")
 
-6.  從 Azure 傳統入口網站的應用程式清單中選取 [Concur]，以開啟 [Concur] 對話頁面。
+6.  In the Azure classic portal, select **Concur** from the applications list to open the **Concur** dialog page.
 
-7.  若要開啟 [設定使用者佈建] 對話頁面，按一下 [設定使用者佈建]。
+7.  To open the **Configure User Provisioning** dialog page, click **Configure user provisioning**.
 
-8.  輸入您的 Concur 系統管理員的使用者名稱和密碼，然後按 [下一步]。
+8.  Enter the user name and the password of your Concur administrator, and then click **Next**.
 
-9.  若要完成組態，請在 [確認] 頁面上，按一下 [完成] 按鈕。
+9.  To finish the configuration, on the **Confirmation** page, click the **Complete** button.
 
-您現在可以建立測試帳戶，請等候 10 分鐘並確認帳戶已同步至 Concur。
-##指派使用者
+You can now create a test account, wait for 10 minutes and verify that the account has been synchronized to Concur.
+##<a name="assigning-users"></a>Assigning users
 
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要將使用者指派給 Concur，請執行下列步驟：
+###<a name="to-assign-users-to-concur,-perform-the-following-steps:"></a>To assign users to Concur, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Concur] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Concur **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-concur-tutorial/IC769771.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-concur-tutorial/IC769771.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-concur-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-concur-tutorial/IC767830.png "Yes")
 
-請等候 10 分鐘並確認帳戶已同步至 Concur。
+You should now wait for 10 minutes and verify that the account has been synchronized to Concur.
 
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="測試 Microsoft Azure SUSE Linux VM 上的 SAP NetWeaver | Microsoft Azure"
-   description="在 Microsoft Azure SUSE Linux VM 上測試 SAP NetWeaver"
+   pageTitle="Testing SAP NetWeaver on Microsoft Azure SUSE Linux VMs | Microsoft Azure"
+   description="Testing SAP NetWeaver on Microsoft Azure SUSE Linux VMs"
    services="virtual-machines-linux"
    documentationCenter=""
    authors="hermanndms"
@@ -17,160 +17,167 @@
    ms.date="09/15/2016"
    ms.author="hermannd"/>
 
-# 在 Microsoft Azure SUSE Linux VM 上執行 SAP NetWeaver
+
+# <a name="running-sap-netweaver-on-microsoft-azure-suse-linux-vms"></a>Running SAP NetWeaver on Microsoft Azure SUSE Linux VMs
 
 
-這篇文章描述在 Microsoft Azure SUSE Linux 虛擬機器 (VM) 上執行 SAP NetWeaver 時應考量的各種事項。自 2016 年 5 月 19 日起，在 Azure 的 SUSE Linux VM 上已正式支援 SAP NetWeaver。如需有關 Linux 版本、SAP 核心版本等等的所有詳細資料，請參閱 SAP 附註 1928533＜Azure 上的 SAP 應用程式︰支援的產品和 Azure VM 類型＞。如需 Linux VM 上 SAP 的進一步相關文件，請參閱︰[在 Linux 虛擬機器 (VM) 上使用 SAP](virtual-machines-linux-sap-get-started.md)。
+This article describes various things to consider when you're running SAP NetWeaver on Microsoft Azure SUSE Linux virtual machines (VMs). As of May 19 2016 SAP NetWeaver is officially supported on SUSE Linux VMs on Azure. All details regarding Linux versions, SAP kernel versions and so on can be found in SAP Note 1928533 "SAP Applications on Azure: Supported Products and Azure VM types".
+Further documentation about SAP on Linux VMs can be found here : [Using SAP on Linux virtual machines (VMs)](virtual-machines-linux-sap-get-started.md).
 
 
-下列資訊應該協助您避免一些潛在的問題。
+The following information should help you avoid some potential pitfalls.
 
-## Azure 上用來執行 SAP 的 SUSE 映像
+## <a name="suse-images-on-azure-for-running-sap"></a>SUSE images on Azure for running SAP
 
-若要在 Azure 上執行 SAP NetWeaver，請只使用 SUSE Linux Enterprise Server SLES 12 (SPx) - 另請參閱 SAP 附註 1928533。您可以在 Azure Marketplace 找到特殊的 SUSE 映像 ("SLES 11 SP3 for SAP CAL")，但這不適用一般用途。請勿使用該映像，因為它是保留給 [SAP 雲端應用裝置程式庫](https://cal.sap.com/)解決方案使用的映像。
+For running SAP NetWeaver on Azure, use only SUSE Linux Enterprise Server SLES 12 ( SPx ) - see also SAP note 1928533. A special SUSE image is in the Azure Marketplace ("SLES 11 SP3 for SAP CAL"), but this is not intended for general usage. Do not use this image because it's reserved for the [SAP Cloud Appliance Library](https://cal.sap.com/) solution.  
 
-針對 Azure 上的所有新測試和安裝，您應該使用 Azure Resource Manager。若要尋找 SUSE SLES 映像和使用 Azure Powershell 或 Azure 命令列介面 (CLI) 的版本，請使用下列命令。然後可以使用輸出，例如，在 json 範本中定義作業系統映像，以部署新的 SUSE Linux VM。下列 PowerShell 命令適用於 Azure Powershell 版本 1.0.1 或更新版本。
+You should use Azure Resource Manager for all new tests and installations on Azure. To look for SUSE SLES images and versions by using Azure PowerShell or the Azure command-line interface (CLI), use the following commands. You can then use the output, for example, to define the OS image in a JSON template for deploying a new SUSE Linux VM.
+These PowerShell commands are valid for Azure PowerShell version 1.0.1 and later.
 
-* 尋找現有的發佈者，包括 SUSE：
+* Look for existing publishers, including SUSE:
 
    ```
    PS  : Get-AzureRmVMImagePublisher -Location "West Europe"  | where-object { $_.publishername -like "*US*"  }
    CLI : azure vm image list-publishers westeurope | grep "US"
    ```
 
-* 從 SUSE 尋找現有的供應項目：
+* Look for existing offerings from SUSE:
 
    ```
    PS  : Get-AzureRmVMImageOffer -Location "West Europe" -Publisher "SUSE"
    CLI : azure vm image list-offers westeurope SUSE
    ```
 
-* 尋找 SUSE SLES 供應項目：
+* Look for SUSE SLES offerings:
 
    ```
    PS  : Get-AzureRmVMImageSku -Location "West Europe" -Publisher "SUSE" -Offer "SLES"
    CLI : azure vm image list-skus westeurope SUSE SLES
    ```
 
-* 尋找 SLES SKU 的特定版本：
+* Look for a specific version of a SLES SKU:
 
    ```
    PS  : Get-AzureRmVMImage -Location "West Europe" -Publisher "SUSE" -Offer "SLES" -skus "12"
    CLI : azure vm image list westeurope SUSE SLES 12
    ```
 
-## 在 SUSE VM 中安裝 WALinuxAgent
+## <a name="installing-walinuxagent-in-a-suse-vm"></a>Installing WALinuxAgent in a SUSE VM
 
-稱為 WALinuxAgent 的代理程式是 Azure Marketplace 中的 SLES 映像的一部分。如需手動安裝 (例如從內部部署上傳 SLES OS 虛擬磁碟 (VHD)) 的相關資訊，請參閱：
+The agent called WALinuxAgent is part of the SLES images in the Azure Marketplace. For information about installing it manually (for example, when uploading a SLES OS virtual hard disk (VHD) from on-premises), see:
 
-- [OpenSUSE](http://software.opensuse.org/package/WALinuxAgent)
+- [OpenSUSE] (http://software.opensuse.org/package/WALinuxAgent)
 
-- [Azure](virtual-machines-linux-endorsed-distros.md)
+- [Azure] (virtual-machines-linux-endorsed-distros.md)
 
-- [SUSE](https://www.suse.com/communities/blog/suse-linux-enterprise-server-configuration-for-windows-azure/)
+- [SUSE] (https://www.suse.com/communities/blog/suse-linux-enterprise-server-configuration-for-windows-azure/)
 
-## SAP「增強型監視」
+## <a name="sap-"enhanced-monitoring""></a>SAP "enhanced monitoring"
 
-SAP「增強型監視」是在 Azure 上執行 SAP 的必要先決條件。請查看 SAP 附註 2191498＜Linux 搭配 Azure 上的 SAP：增強型監視＞中的詳細資料。
+SAP "enhanced monitoring" is a mandatory prerequisite to run SAP on Azure. Please check details in SAP note 2191498 "SAP on Linux with Azure: Enhanced Monitoring".
 
-## 將 Azure 資料磁碟連結至 Azure Linux VM
+## <a name="attaching-azure-data-disks-to-an-azure-linux-vm"></a>Attaching Azure data disks to an Azure Linux VM
 
-請絕對避免透過裝置識別碼將 Azure 資料磁碟掛接到 Azure Linux VM。相反地，請使用全域唯一識別碼 (UUID)。舉例來說，使用圖形工具來掛接 Azure 資料磁碟時應多加留意。請仔細檢查 /et/fstab 中的項目。
+You should never mount Azure data disks to an Azure Linux VM by using the device ID. Instead, use the universally unique identifier (UUID). Be careful when you use graphical tools to mount Azure data disks, for example. Double-check the entries in /etc/fstab.
 
-裝置識別碼的問題在於它可能會變更，然後 Azure VM 可能會在開機程序停止回應。若要解決這個問題，您可以在 /etc/fstab 中新增 nofail 參數。但請留意 nofail，因為應用程式可能會使用先前的掛接點，而且萬一外部 Azure 資料磁碟未在開機期間掛接，可能會寫入根目錄檔案系統。
+The issue with the device ID is that it might change, and then the Azure VM might hang in the boot process. To mitigate the issue, you could add the nofail parameter in /etc/fstab. But, be careful with nofail because applications might use the mount point as before, and might write into the root file system in case an external Azure data disk wasn't mounted during the boot.
 
-透過 UUID 掛接的唯一例外狀況是連接 OS 磁碟以進行疑難排解，如下列章節所述。
+The only exception to mounting via UUID is attaching an OS disk for troubleshooting purposes, as described in the following section.
 
-## 針對無法再存取的 SUSE VM 進行疑難排解
+## <a name="troubleshooting-a-suse-vm-that-isn't-accessible-anymore"></a>Troubleshooting a SUSE VM that isn't accessible anymore
 
-有時候 Azure 上的 SUSE VM 會停在開機程序 (例如，發生與掛接磁碟相關的錯誤)。您可以使用 Azure 入口網站中的 Azure 虛擬機器 v2 開機診斷功能來確認問題。如需詳細資訊，請參閱[開機診斷](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)。
+There might be situations where a SUSE VM on Azure hangs in the boot process (for example, with an error related to mounting disks). You can verify this issue by using the boot diagnostics feature for Azure Virtual Machines v2 in the Azure portal. For more information, see [Boot diagnostics] (https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/).
 
-解決這個問題的其中一個方法，是從損毀的 VM 將 OS 磁碟連接到 Azure 上的另一部 SUSE VM。接下來是進行適當的變更，如編輯 /etc/fstab 或移除網路 udev 規則，如下一節所述。
+One way to solve the problem is to attach the OS disk from the damaged VM to another SUSE VM on Azure. Then make appropriate changes like editing /etc/fstab or removing network udev rules, as described in the next section.
 
-請將一項重要事項納入考量。從相同的 Azure Marketplace 映像 (例如 SLES 11 SP4) 部署數個 SUSE VM，會導致 OS 磁碟一律將由相同的 UUID 掛接。因此，使用 UUID 從以相同 Azure Marketplace 映像部署的不同 VM 連接 OS 磁碟，將會導致兩個相同的 UUID。這會造成問題，並且可能讓原本進行疑難排解的 VM 實際上從連接和損毀的 OS 磁碟開機，而不是原始的磁碟。
+There is one important thing to consider. Deploying several SUSE VMs from the same Azure Marketplace image (for example, SLES 11 SP4) causes the OS disk to always be mounted by the same UUID. Therefore, using the UUID to attach an OS disk from a different VM that was deployed by using the same Azure Marketplace image will result in two identical UUIDs. This causes problems and could mean that the VM meant for troubleshooting will in fact boot from the attached and damaged OS disk instead of the original one.
 
-避免這種情形的做法有二種：
+There are two ways to avoid this:
 
-* 針對進行疑難排解的 VM 使用不同的 Azure Marketplace 映像 (例如 SLES 11 SPx，而不是 SLES 12)。
-* 不要使用 UUID 從另一部 VM 連接損毀的 OS 磁碟，而是使用其他項目
+* Use a different Azure Marketplace image for the troubleshooting VM (for example, SLES 11 SPx instead of SLES 12 ).
+* Don't attach the damaged OS disk from another VM by using UUID--use something else.
 
-## 從內部部署將 SUSE VM 上傳至 Azure
+## <a name="uploading-a-suse-vm-from-on-premises-to-azure"></a>Uploading a SUSE VM from on-premises to Azure
 
-如需從內部部署環境將 SUSE VM 上傳到 Azure 的步驟說明，請參閱[準備適用於 Azure 的 SLES 或 openSUSE 虛擬機器](virtual-machines-linux-create-upload-vhd-suse.md)。
+For a description of the steps to upload a SUSE VM from on-premises to Azure, see [Prepare a SLES or openSUSE virtual machine for Azure] (virtual-machines-linux-suse-create-upload-vhd.md).
 
-如果您想要上傳 VM，但是希望結束時沒有取消佈建步驟 (例如，為了保留現有的 SAP 安裝及主機名稱)，請檢查下列項目：
+If you want to upload a VM without the deprovision step at the end (for example, to keep an existing SAP installation, as well as the host name), check the following items:
 
-* 確定 OS 磁碟是使用 UUID 掛接，而不是透過裝置識別碼。只在 /etc/fstab 變更 UUID 對作業系統磁碟而言並不夠。同時，不要忘了透過 Yast 或編輯 /boot/grub/menu.lst 來調整開機載入器。
-* 如果您針對 SUSE OS 磁碟使用 VHDX 格式，為了上傳至 Azure 而將它轉換為 VHD，很有可能網路裝置已從 eth0 變更為 eth1。為避免稍後在 Azure 上開機時發生問題，請改回 eth0，如[修正複製之 SLES 11 VMware 中的 eth0](https://dartron.wordpress.com/2013/09/27/fixing-eth1-in-cloned-sles-11-vmware/) 所述。
+* Make sure that the OS disk is mounted by using UUID and not the device ID. Changing to UUID just in /etc/fstab is not enough for the OS disk. Also, don't forget to adapt the boot loader through YaST or by editing /boot/grub/menu.lst.
+* If you use the VHDX format for the SUSE OS disk and convert it to VHD for uploading to Azure, it's very likely that the network device will change from eth0 to eth1. To avoid issues when you're booting on Azure later, change back to eth0 as described in [Fixing eth0 in cloned SLES 11 VMware] (https://dartron.wordpress.com/2013/09/27/fixing-eth1-in-cloned-sles-11-vmware/).
 
-除了文章中說明的以外，建議您一併移除下列項目：
+In addition to what's described in the article, we recommend that you remove this:
 
-   # sudo mv /lib/udev/rules.d/75-persistent-net-generator.rules /var/lib/waagent/
+   /lib/udev/rules.d/75-persistent-net-generator.rules
 
-只要沒有多個 NIC，您還可以安裝 Azure Linux 代理程式 (waagent) 來避免潛在問題。
+You can also install the Azure Linux Agent (waagent) to help you avoid potential issues, as long as there are not multiple NICs.
 
-## 在 Azure 上部署 SUSE VM
+## <a name="deploying-a-suse-vm-on-azure"></a>Deploying a SUSE VM on Azure
 
-您應該使用新 Azure Resource Manager 模型中的 JSON 範本檔案來建立新的 SUSE VM。建立 JSON 範本檔案後，就可以使用下列 CLI 命令做為 Powershell 的替代來部署 VM：
+You should create new SUSE VMs by using JSON template files in the new Azure Resource Manager model. After the JSON template file is created, you can deploy the VM by using the following CLI command as an alternative to PowerShell:
 
    ```
    azure group deployment create "<deployment name>" -g "<resource group name>" --template-file "<../../filename.json>"
 
    ```
-如需有關 JSON 範本檔案的更多詳細資料，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)和 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)。
+For more details about JSON template files, see [Authoring Azure Resource Manager templates] (resource-group-authoring-templates.md) and [Azure quickstart templates] (https://azure.microsoft.com/documentation/templates/).
 
-如需有關 CLI 和 Azure Resource Manager 的更多詳細資料，請參閱[搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
+For more details about CLI and Azure Resource Manager, see [Use the Azure CLI for Mac, Linux, and Windows with Azure Resource Manager] (xplat-cli-azure-resource-manager.md).
 
-## SAP 授權與硬體金鑰
+## <a name="sap-license-and-hardware-key"></a>SAP license and hardware key
 
-針對官方的 SAP-Azure 憑證，已經有新的機制可以計算 SAP 授權使用的 SAP 硬體金鑰。要使用此機制，必須調整 SAP 核心。Linux 先前的 SAP 核心版本不包括此程式碼變更。因此，在某些情況下 (例如 Azure VM 調整大小)，SAP 硬體金鑰已發生變更，而 SAP 授權已不再有效在最新的 SAP Linux 核心中已解決此問題。如需詳細資料，請查看 SAP 附註 1928533。
+For the official SAP-Azure certification, a new mechanism was introduced to calculate the SAP hardware key that's used for the SAP license. The SAP kernel had to be adapted to make use of this. Former SAP kernel versions for Linux did not include this code change. Therefore, in certain situations (for example, Azure VM resizing), the SAP hardware key changed and the SAP license was no longer be valid. This is solved in the latest SAP Linux kernels. For details please check SAP note 1928533.
 
-## SUSE sapconf 封裝 / tuned-adm
+## <a name="suse-sapconf-package-/-tuned-adm"></a>SUSE sapconf package / tuned-adm
 
-SUSE 提供稱為 "sapconf" 的封裝，這組封裝負責管理一組 SAP 特定設定。如需有關此封裝之用途、安裝方式及使用方式的更多詳細資料，請參閱[使用 sapconf 來準備要執行 SAP 系統的 SUSE Linux Enterprise Server](https://www.suse.com/communities/blog/using-sapconf-to-prepare-suse-linux-enterprise-server-to-run-sap-systems/) 和[何謂 sapconf 或如何準備要執行 SAP 系統的 SUSE Linux Enterprise Server？](http://scn.sap.com/community/linux/blog/2014/03/31/what-is-sapconf-or-how-to-prepare-a-suse-linux-enterprise-server-for-running-sap-systems)。
+SUSE provides a package called "sapconf" that manages a set of SAP-specific settings. For more details about what this package does, and how to install and use it, see [Using sapconf to prepare a SUSE Linux Enterprise Server to run SAP systems] (https://www.suse.com/communities/blog/using-sapconf-to-prepare-suse-linux-enterprise-server-to-run-sap-systems/) and [What is sapconf or how to prepare a SUSE Linux Enterprise Server for running SAP systems?] (http://scn.sap.com/community/linux/blog/2014/03/31/what-is-sapconf-or-how-to-prepare-a-suse-linux-enterprise-server-for-running-sap-systems).
 
-同時還提供一個新工具來取代 sapconf - tuned-adm。您可以在下列這兩個連結中找到關於這個工具的更多詳細資料。
+In the meantime there is a new tool which replaces sapconf - tuned-adm. One can find more details about this tool following the two links below.
 
-您可以在[這裡](https://www.suse.com/documentation/sles-for-sap-12/book_s4s/data/sec_s4s_configure_sapconf.html)找到關於 tuned-adm 設定檔 sap-hana 的 SLES 文件
+SLES documentation about tuned-adm profile sap-hana can be found [here](https://www.suse.com/documentation/sles-for-sap-12/book_s4s/data/sec_s4s_configure_sapconf.html) 
 
-您可以在第 6.2 章中的[這裡](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/book_s4s/book_s4s.pdf)，找到如何利用 tuned-adm 針對 SAP 工作負載微調系統
-
-
-## 分散式 SAP 安裝中的 NFS 共用
-
-如果您擁有分散式安裝中 (例如，想要在個別的 VM 安裝資料庫和 SAP 應用程式伺服器)，可以透過網路檔案系統 (NFS) 共用 /sapmnt 目錄。如果為 /sapmnt 建立 NFS 共用之後安裝步驟發生問題，請檢查是否已為共用設定 "no\_root\_squash"。
-
-## 邏輯磁碟區
-
-在過去，如果使用者需要一個跨多個 Azure 資料磁碟的大型邏輯磁碟區 (例如用於 SAP 資料庫)，會建議使用 mdadm，因為 lvm 在 Azure 上尚未完全通過驗證。若要了解如何使用 mdadm 在 Azure 上設定 Linux RAID，請參閱[在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)。自 2016 年 5 月開始的同時起，lvm 在 Azure 上也已獲得完全支援，並可做為 mdadm 的替代方案。如需有關 Azure 上 lvm 的其他資訊，請參閱[在 Azure 中的 Linux VM 上設定 LVM](virtual-machines-linux-configure-lvm.md)。
+Tuning Systems for SAP Workloads with tuned-adm - can be found [here](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/book_s4s/book_s4s.pdf) in chapter 6.2
 
 
-## Azure SUSE 儲存機制
+## <a name="nfs-share-in-distributed-sap-installations"></a>NFS share in distributed SAP installations
 
-如果您在存取標準 Azure SUSE 儲存機制發生問題，可以使用一個簡單的命令來重設它。在 Azure 區域建立私用的 OS 映像，然後將該映像複製到不同的區域時，若您想依據這個私用的作業系統映像部署新的 VM 時，就可能會發生此問題。只要在 VM 中執行下列命令：
+If you have a distributed installation--for example, where you want to install the database and the SAP application servers in separate VMs--you can share the /sapmnt directory via Network File System (NFS). If you have problems with the installation steps after you create the NFS share for /sapmnt, check to see if "no_root_squash" is set for the share.
+
+## <a name="logical-volumes"></a>Logical volumes
+
+In the past if one needed a large logical volume across multiple Azure data disks (for example, for the SAP database), it was recommended to use mdadm as lvm wasn't fully validated yet on Azure. To learn how to set up Linux RAID on Azure by using mdadm, see [Configure software RAID on Linux](virtual-machines-linux-configure-raid.md). In the meantime as of beginning of May 2016 also lvm is fully supported on Azure and can be used as an alternative to mdadm. For additional information regarding lvm on Azure see [Configure LVM on a Linux VM in Azure](virtual-machines-linux-configure-lvm.md).
+
+
+## <a name="azure-suse-repository"></a>Azure SUSE repository
+
+If you have an issue with access to the standard Azure SUSE repository, you can use a simple command to reset it. This might happen if you create a private OS image in an Azure region and then copy the image to a different region where you want to deploy new VMs that are based on this private OS image. Just run the following command inside the VM:
 
    ```
    service guestregister restart
    ```
 
-## Gnome 桌面
+## <a name="gnome-desktop"></a>Gnome desktop
 
-如果您想要使用 Gnome 桌面，在單一 VM (包括 SAP GUI、瀏覽器及 SAP 管理主控台) 內安裝完整的 SAP 示範系統，請使用這裡的提示將它安裝在 Azure SLES 映像上：
+If you want to use the Gnome desktop to install a complete SAP demo system inside a single VM--including a SAP GUI, browser, and SAP management console--use this hint to install it on the Azure SLES images:
 
-   SLES 11：
+   For SLES 11:
 
    ```
    zypper in -t pattern gnome
    ```
 
-   SLES 12：
+   For SLES 12:
 
    ```
    zypper in -t pattern gnome-basic
    ```
 
-## 雲端中 Linux 上針對 Oracle 的 SAP 支援
+## <a name="sap-support-for-oracle-on-linux-in-the-cloud"></a>SAP support for Oracle on Linux in the cloud
 
-在虛擬環境中，Oracle 對 Linux 的支援有所限制。雖然這不是 Azure 專屬的主題，不過仍請務必了解。SAP 不支援 SUSE 上的 Oracle 或類似 Azure 之公用雲端中的 Red Hat。若要討論這個主題，請直接連絡 Oracle。
+There is a support restriction from Oracle on Linux in virtualized environments. Although this is not an Azure-specific topic, it's important to understand. SAP does not support Oracle on SUSE or Red Hat in a public cloud like Azure. To discuss this topic, contact Oracle directly.
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

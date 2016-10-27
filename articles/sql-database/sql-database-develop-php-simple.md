@@ -1,60 +1,65 @@
 <properties
-	pageTitle="在 Windows 上使用 PHP 連接到 SQL Database | Microsoft Azure"
-	description="提供可從 Windows 用戶端連接到 Azure SQL Database 的範例 PHP 程式，並提供用戶端所需之必要軟體元件的連結。"
-	services="sql-database"
-	documentationCenter=""
-	authors="meet-bhagdev"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Connect to SQL Database by using PHP on Windows | Microsoft Azure"
+    description="Presents a sample PHP program that connects to Azure SQL Database from a Windows client, and provides links to the necessary software components needed by the client."
+    services="sql-database"
+    documentationCenter=""
+    authors="meet-bhagdev"
+    manager="jhubbard"
+    editor=""/>
 
 
 <tags
-	ms.service="sql-database"
-	ms.workload="drivers"
-	ms.tgt_pltfrm="na"
-	ms.devlang="php"
-	ms.topic="article"
-	ms.date="06/16/2016"
-	ms.author="meetb"/>
+    ms.service="sql-database"
+    ms.workload="drivers"
+    ms.tgt_pltfrm="na"
+    ms.devlang="php"
+    ms.topic="article"
+    ms.date="10/03/2016"
+    ms.author="meetb"/>
 
 
-# 在 Windows 上使用 PHP 連接到 SQL Database
+
+# <a name="connect-to-sql-database-by-using-php-on-windows"></a>Connect to SQL Database by using PHP on Windows
 
 
-[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)]
+[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)] 
 
 
-本主題說明如何從以 PHP 撰寫並在 Windows 上執行的用戶端應用程式，連接到 Azure SQL Database。
+This topic illustrates how you can connect to Azure SQL Database from a client application written in PHP that runs on Windows.
 
-## 步驟 1︰設定開發環境
+## <a name="step-1:-configure-development-environment"></a>Step 1:  Configure Development Environment
 
-[Step 1: Configure development environment for PHP development (步驟 1：設定 PHP 開發的開發環境)](https://msdn.microsoft.com/library/mt720663.aspx)
+[Configure development environment for PHP development](https://msdn.microsoft.com/library/mt720663.aspx)
 
-## 步驟 2：建立 SQL Database
+## <a name="step-2:-create-a-sql-database"></a>Step 2: Create a SQL database
 
-請參閱[快速入門頁面](sql-database-get-started.md)，以了解如何建立範例資料庫。請務必遵循該指南以建立 **AdventureWorks 資料庫範本**。以下所示的範例僅適用於 **AdventureWorks 結構描述**。
+See the [getting started page](sql-database-get-started.md) to learn how to create a sample database.  It is important you follow the guide to create an **AdventureWorks database template**. The samples shown below only work with the **AdventureWorks schema**.
 
 
-## 步驟 3：取得連接詳細資料
+## <a name="step-3:-get-connection-details"></a>Step 3: Get Connection Details
 
 [AZURE.INCLUDE [sql-database-include-connection-string-details-20-portalshots](../../includes/sql-database-include-connection-string-details-20-portalshots.md)]
 
 
-## 步驟 4︰執行範例程式碼
+## <a name="step-4:-run-sample-code"></a>Step 4: Run sample code
 
-* [Step 3: Proof of concept connecting to SQL using PHP (步驟 3：使用 PHP 連接到 SQL 的概念證明)](https://msdn.microsoft.com/library/mt720665.aspx)
-* [Step 4: Connect resiliently to SQL with PHP (步驟 4：使用 PHP 復原連接 SQL)](https://msdn.microsoft.com/library/mt720667.aspx)
+* [Proof of concept connecting to SQL using PHP](https://msdn.microsoft.com/library/mt720665.aspx)
+* [Connect resiliently to SQL with PHP](https://msdn.microsoft.com/library/mt720667.aspx)
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-* 檢閱 [SQL Database 開發概觀](sql-database-develop-overview.md)
-* 更多有關 [Microsoft PHP Driver for SQL Server](https://msdn.microsoft.com/library/dn865013.aspx) 的資訊
-* 如需 PHP 安裝和使用方式的詳細資訊，請參閱[使用 PHP 存取 SQL Server Database](http://social.technet.microsoft.com/wiki/contents/articles/1258.accessing-sql-server-databases-from-php.aspx)。
+* Review the [SQL Database Development Overview](sql-database-develop-overview.md)
+* More information on the [Microsoft PHP Driver for SQL Server](https://msdn.microsoft.com/library/dn865013.aspx)
+* For more information regarding PHP installation and usage, see [Accessing SQL Server Databases with PHP](http://social.technet.microsoft.com/wiki/contents/articles/1258.accessing-sql-server-databases-from-php.aspx).
 
-## 其他資源 
+## <a name="additional-resources"></a>Additional resources 
 
-* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
-* 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)
+* [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* Explore all the [capabilities of SQL Database](https://azure.microsoft.com/services/sql-database/)
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

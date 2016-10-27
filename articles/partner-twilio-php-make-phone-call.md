@@ -1,120 +1,121 @@
 <properties
-	pageTitle="如何從 Twilio 撥打電話 (PHP) | Microsoft Azure"
-	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。範例適用於 PHP 應用程式。"
-	documentationCenter="php"
-	services=""
-	authors="devinrader"
-	manager="twilio"
-	editor="mollybos"/>
+    pageTitle="How to make a phone call from Twilio (PHP) | Microsoft Azure"
+    description="Learn how to make a phone call and send a SMS message with the Twilio API service on Azure. Samples are for PHP application."
+    documentationCenter="php"
+    services=""
+    authors="devinrader"
+    manager="twilio"
+    editor="mollybos"/>
 
 <tags
-	ms.service="multiple"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="PHP"
-	ms.topic="article"
-	ms.date="11/25/2014"
-	ms.author="microsofthelp@twilio.com"/>
+    ms.service="multiple"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="PHP"
+    ms.topic="article"
+    ms.date="11/25/2014"
+    ms.author="microsofthelp@twilio.com"/>
 
-# 如何在 Azure 上的 PHP 應用程式中使用 Twilio 撥打電話
 
-下列範例將說明如何從 Azure 代管的 PHP 網頁上使用 Twilio 撥打電話。產生的應用程式會提示使用者提供電話值，如下列螢幕擷取畫面所示。
+# <a name="how-to-make-a-phone-call-using-twilio-in-a-php-application-on-azure"></a>How to Make a Phone Call Using Twilio in a PHP Application on Azure
+
+The following example shows you how you can use Twilio to make a call from a PHP web page hosted in Azure. The resulting application will prompt the user for phone call values, as shown in the following screen shot.
 
 ![Azure Call Form Using Twilio and PHP][twilio_php]
 
-您必須執行下列動作才能使用本主題中的程式碼：
+You'll need to do the following to use the code in this topic:
 
-1. 取得 Twilio 帳戶和驗證權杖。若要開始使用 Twilio，請在 [http://www.twilio.com/pricing][twilio_pricing] 上評估價格。您可以在 [https://www.twilio.com/try-twilio][try_twilio] 上註冊試用帳戶。如需 Twilio 所提供之 API 的相關資訊，請參閱 [http://www.twilio.com/api][twilio_api]。
-2. 取得[適用於 PHP 的 Twilio 程式庫](https://github.com/twilio/twilio-php)，或以 PEAR 封裝的形式進行安裝。如需詳細資訊，請參閱[讀我檔案](https://github.com/twilio/twilio-php/blob/master/README.md)。
-3. 安裝 Azure SDK for PHP。如需 SDK 的概觀及其安裝指示，請參閱[設定 Azure SDK for PHP][setup_php_sdk]。
+1. Acquire a Twilio account and authentication token. To get started with Twilio, evaluate pricing at [http://www.twilio.com/pricing][twilio_pricing]. You can sign up for a trial account at [https://www.twilio.com/try-twilio][try_twilio]. For information about the API provided by Twilio, see [http://www.twilio.com/api][twilio_api].
+2. Obtain the [Twilio library for PHP](https://github.com/twilio/twilio-php) or install it as a PEAR package. For more information, see the [readme file](https://github.com/twilio/twilio-php/blob/master/README.md).
+3. Install the Azure SDK for PHP. For an overview of the SDK and instructions on installing it, see [Set up the Azure SDK for PHP][setup_php_sdk].
 
-## 建立用以撥打電話的 Web 表單
+## <a name="create-a-web-form-for-making-a-call"></a>Create a web form for making a call
 
-下列 HTML 程式碼將說明如何建置網頁 (**callform.html**)，以擷取撥打電話所需的使用者資料：
-
-    <html>
-	<head>
-		<title>Automated call form</title>
-	</head>
-	<body>
-	<h1>Automated Call Form</h1>
- 	<p>Fill in all fields and click <b>Make this call</b>.</p>
-  	<form action="makecall.php" method="post">
-   	<table>
-     	<tr>
-       		<td>To:</td>
-       		<td><input type="text" size=50 name="callTo" value=""></td>
-     	</tr>
-     	<tr>
-       		<td>From:</td>
-       		<td><input type="text" size=50 name="callFrom" value=""></td>
-     	</tr>
-     	<tr>
-       		<td>Call message:</td>
-       		<td><input type="text" size=100 name="callText" value="Hello. This is the call text. Good bye." /></td>
-     	</tr>
-     	<tr>
-       		<td colspan=2><input type="submit" value="Make this call"></td>
-     	</tr>
-   	</table>
- 	</form>
- 	<br/>
-	</body>
-	</html>
-
-## 建立用以撥打電話的程式碼
-下列程式碼將說明如何建置會在使用者提交 **callform.html** 所顯示的表單時受到呼叫的網頁 (**makecall.php**)。下方顯示的程式碼會建立通話訊息及產生通話。(在下方的程式碼中，請使用您的 Twilio 帳戶和驗證權杖，而不要使用指派給 **$sid** 和 **$token** 的預留位置值。)
+The following HTML code shows how to build a web page (**callform.html**) that retrieves user data for making a call:
 
     <html>
-	<head><title>Making call...</title></head>
-	<body>
-	<p>Your call is being made.</p>
+    <head>
+        <title>Automated call form</title>
+    </head>
+    <body>
+    <h1>Automated Call Form</h1>
+    <p>Fill in all fields and click <b>Make this call</b>.</p>
+    <form action="makecall.php" method="post">
+    <table>
+        <tr>
+            <td>To:</td>
+            <td><input type="text" size=50 name="callTo" value=""></td>
+        </tr>
+        <tr>
+            <td>From:</td>
+            <td><input type="text" size=50 name="callFrom" value=""></td>
+        </tr>
+        <tr>
+            <td>Call message:</td>
+            <td><input type="text" size=100 name="callText" value="Hello. This is the call text. Good bye." /></td>
+        </tr>
+        <tr>
+            <td colspan=2><input type="submit" value="Make this call"></td>
+        </tr>
+    </table>
+    </form>
+    <br/>
+    </body>
+    </html>
 
-	<?php
-	require_once 'Services/Twilio.php';
+## <a name="create-the-code-to-make-the-call"></a>Create the code to make the call
+The following code shows how to build a web page (**makecall.php**) which is called when the user submits the form displayed by **callform.html**. The code shown below creates the call message and generates the call. (Use your Twilio account and authentication token instead of the placeholder values assigned to **$sid** and **$token** in the code below.)
 
-	$sid = "your_account_sid";
-	$token = "your_authentication_token";
+    <html>
+    <head><title>Making call...</title></head>
+    <body>
+    <p>Your call is being made.</p>
 
-	$from_number = $_POST['callFrom']; // Calls must be made from a registered Twilio number.
-	$to_number = $_POST['callTo'];
-	$message = $_POST['callText'];
+    <?php
+    require_once 'Services/Twilio.php';
 
-	$client = new Services_Twilio($sid, $token, "2010-04-01");
+    $sid = "your_account_sid";
+    $token = "your_authentication_token";
 
-	$call = $client->account->calls->create(
-		$from_number,
-		$to_number,
-  		'http://twimlets.com/message?Message='.urlencode($message)
-	);
+    $from_number = $_POST['callFrom']; // Calls must be made from a registered Twilio number.
+    $to_number = $_POST['callTo'];
+    $message = $_POST['callText'];
 
-	echo "Call status: ".$call->status."<br />";
-	echo "URI resource: ".$call->uri."<br />";
-	?>
-	</body>
-	</html>
+    $client = new Services_Twilio($sid, $token, "2010-04-01");
 
-除了撥打電話以外，**makecall.php** 也會顯示某些通話中繼資料 (範例顯示於下方的螢幕擷取畫面中)。如需通話中繼資料的詳細資訊，請參閱 [https://www.twilio.com/docs/api/rest/call#instance-properties][twilio_call_properties]。
+    $call = $client->account->calls->create(
+        $from_number,
+        $to_number,
+        'http://twimlets.com/message?Message='.urlencode($message)
+    );
+
+    echo "Call status: ".$call->status."<br />";
+    echo "URI resource: ".$call->uri."<br />";
+    ?>
+    </body>
+    </html>
+
+In addition to making the call, **makecall.php** displays some call metadata (example shown in screenshot below). For more information about call metadata, see [https://www.twilio.com/docs/api/rest/call#instance-properties][twilio_call_properties].
 
 ![Azure Call Response Using Twilio and PHP][twilio_php_response]
 
-## 執行應用程式
-下一個步驟是將您的應用程式部署至 Azure 網站。下列文章包含使用 Git、FTP 或 WebMatrix 來建立網站及部署程式碼的相關資訊 (並非每篇文章中的所有資訊都是相關的)：
+## <a name="run-the-application"></a>Run the application
+The next step is to deploy your application to Azure Websites. The following articles contain the information for creating a website and deploying your code with Git, FTP, or WebMatrix (though not all information in each article is relevant):
 
-* [建立 PHP-MySQL Azure 網站並使用 Git 部署][website-git]
-* [建立 PHP-MySQL Azure 網站並使用 FTP 部署][website-ftp]
+* [Create a PHP-MySQL Azure Web Site and deploy using Git][website-git]
+* [Create a PHP-MySQL Azure Web Site and Deploy Using FTP][website-ftp]
 
-## 後續步驟
-此程式可說明在 Azure 上的 PHP 中使用 Twilio 的基本功能。在部署至生產環境中的 Azure 之前，您可以新增更多錯誤處理或其他功能。例如：
+## <a name="next-steps"></a>Next steps
+This code was provided to show you basic functionality using Twilio in PHP on Azure. Before deploying to Azure in production, you may want to add more error handling or other features. For example:
 
-* 除了使用 Web 表單以外，您也可以使用 Azure 儲存體 Blob 或 SQL Database 來儲存電話號碼和通話文字。如需在 PHP 中使用 Azure 儲存體 Blob 的相關資訊，請參閱[搭配使用 Azure 儲存體與 PHP 應用程式][howto_blob_storage_php]。如需在 PHP 中使用 SQL Database 的相關資訊，請參閱[搭配使用 SQL Database 與 PHP][howto_sql_azure_php]。
-* **makecall.php** 程式碼會使用 Twilio 提供的 URL ([http://twimlets.com/message][twimlet_message_url]) 來提供 Twilio 標記語言 (TwiML) 回應，以告知 Twilio 應如何執行通話。例如，傳回的 TwiML 可能會包含 `<Say>` 動詞，而產生要傳達給受話方的文字。除了使用 Twilio 提供的 URL 以外，您也可以建置自己的服務來回應 Twilio 的要求；如需詳細資訊，請參閱[如何在 PHP 中透過 Twilio 使用語音和簡訊功能][howto_twilio_voice_sms_php]。如需 TwiML 的詳細資訊，請參閱 [http://www.twilio.com/docs/api/twiml][twiml]；如需 `<Say>` 和其他 Twilio 動詞的詳細資訊，請參閱 [http://www.twilio.com/docs/api/twiml/say][twilio_say]。
-* 閱讀 [https://www.twilio.com/docs/security][twilio_docs_security] 上的 Twilio 安全性指引。
+* Instead of using a web form, you could use Azure storage blobs or SQL Database to store phone numbers and call text. For information about using Azure storage blobs in PHP, see [Using Azure Storage with PHP Applications][howto_blob_storage_php]. For information about using SQL Database in PHP, see [Using SQL Database with PHP Applications][howto_sql_azure_php].
+* The **makecall.php** code uses Twilio-provided URL ([http://twimlets.com/message][twimlet_message_url]) to provide a Twilio Markup Language (TwiML) response that informs Twilio how to proceed with the call. For example, the TwiML that is returned can contain a `<Say>` verb that results in text being spoken to the call recipient. Instead of using the Twilio-provided URL, you could build your own service to respond to Twilio's request; for more information, see [How to Use Twilio for Voice and SMS Capabilities in PHP][howto_twilio_voice_sms_php]. More information about TwiML can be found at [http://www.twilio.com/docs/api/twiml][twiml], and more information about `<Say>` and other Twilio verbs can be found at [http://www.twilio.com/docs/api/twiml/say][twilio_say].
+* Read the Twilio security guidelines at [https://www.twilio.com/docs/security][twilio_docs_security].
 
-如需 Twilio 的其他資訊，請參閱 [https://www.twilio.com/docs][twilio_docs]。
+For additional information about Twilio, see [https://www.twilio.com/docs][twilio_docs].
 
-## 另請參閱
-* [如何在 PHP 中透過 Twilio 使用語音和簡訊功能](partner-twilio-php-how-to-use-voice-sms.md)
+## <a name="see-also"></a>See Also
+* [How to Use Twilio for Voice and SMS Capabilities in PHP](partner-twilio-php-how-to-use-voice-sms.md)
 
 [twilio_pricing]: http://www.twilio.com/pricing
 [try_twilio]: http://www.twilio.com/try-twilio
@@ -139,4 +140,8 @@
 [website-ftp]: ./web-sites/web-sites-php-mysql-deploy-use-ftp.md
 [twilio_php_github]: https://github.com/twilio/twilio-php
 
-<!---HONumber=AcomDC_0413_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

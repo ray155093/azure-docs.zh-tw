@@ -1,42 +1,42 @@
 
-### 註冊 Blitline 帳戶
+### <a name="to-sign-up-for-a-blitline-account"></a>To sign up for a Blitline account
 
-1. 登入 [Azure 管理入口網站](https://manage.windowsazure.com/)。
+1. Log in to the [Azure Management Portal](https://manage.windowsazure.com/).
 
-2. 在管理入口網站的下方窗格中，按一下 [新增]。
+2. In the lower pane of the management portal, click **New**.
 
-	![command-bar-new][command-bar-new]
+    ![command-bar-new][command-bar-new]
 
-3. 按一下 [市集]。
+3. Click **Store**.
 
-	![blitline-store][blitline-store]
+    ![blitline-store][blitline-store]
 
-4. 在 [選擇附加元件] 對話方塊中，選取 [Blitline]，然後按一下向右箭頭。
+4. In the **Choose an Add-on** dialog, select **Blitline** and click the right arrow.
 
-5. 在 [個人化附加元件] 對話方塊中，選取想要註冊的 [Blitline] 方案。
+5. In the **Personalize Add-on** dialog select the **Blitline** plan you want to sign up for.
 
-6. 在 Azure 設定中，輸入名稱來識別您的 **Blitline** 服務，或使用預設值 [Blitline]。名稱的長度必須介於 1 到 100 個字元之間，而且只能包含英數字元、連字號、句點和底線。此名稱在已訂用的 Azure 市集項目清單中必須是唯一的。
+6. Enter a name to identify your **Blitline** service in your Azure settings, or use the default value of **Blitline**. Names must be between 1 and 100 characters in length and contain only alphanumeric characters, dashes, dots, and underscores. The name must be unique in your list of subscribed Azure Store Items.
 
-	![store-screen-1][store-screen-1]
+    ![store-screen-1][store-screen-1]
 
-7. 選擇地區值，例如美國西部。
+7. Choose a value for the region; for example, West US. 
 
-8. 按一下向右箭頭。
+8. Click the right arrow.
 
-9. 在 [檢閱購買項目] 索引標籤中，檢閱方案和價格資訊，並檢閱法律條款。如果您同意接受這些條款，請按一下核取記號。在您按一下打勾記號之後，您的 Blitline 帳戶將會開始進入佈建程序。
+9. On the **Review Purchase** tab, review the plan and pricing information, and review the legal terms. If you agree to the terms, click the check mark. After you click the check mark, your Blitline account will begin the provisioning process. 
 
 
-若要使用 Blitline，您需要有應用程式識別碼。
+To use Blitline you need to have your Application ID.
 
-### 尋找 Blitline 應用程式識別碼 ###
+### <a name="to-find-your-blitline-application-id"></a>To find your Blitline Application ID ###
 
-1. 按一下 [連線資訊]。
+1. Click **Connection Info**.
 
-	![blitline-connection-info-button][blitline-connection-info-button]
+    ![blitline-connection-info-button][blitline-connection-info-button]
 
-2. 在 [連線資訊] 對話方塊中，可以看到您的應用程式識別碼
+2. In the *Connection info* dialog, you can see your Application ID
 
-	![blitline-connection-info][blitline-connection-info]
+    ![blitline-connection-info][blitline-connection-info]
 
 <!--images-->
 
@@ -46,4 +46,8 @@
 [blitline-connection-info-button]: ./media/blitline-signup/blitline_connection_info_button.png
 [blitline-connection-info]: ./media/blitline-signup/blitline_connection_info_screen.jpeg
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

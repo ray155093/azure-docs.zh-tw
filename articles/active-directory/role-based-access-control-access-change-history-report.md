@@ -1,63 +1,68 @@
 <properties
-	pageTitle="建立存取權變更歷程記錄報告 | Microsoft Azure"
-	description="產生一份報告，其中列出您的 Azure 訂用帳戶 (採用角色型存取控制) 在過去 90 天內的所有存取權變更。"
-	services="active-directory"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor=""/>
+    pageTitle="Create an access change history report | Microsoft Azure"
+    description="Generate a report that lists all changes in access to your Azure subscriptions with Role-Based Access Control over the past 90 days."
+    services="active-directory"
+    documentationCenter=""
+    authors="kgremban"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="identity"
-	ms.date="08/03/2016"
-	ms.author="kgremban"/>
+    ms.service="active-directory"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="identity"
+    ms.date="08/03/2016"
+    ms.author="kgremban"/>
 
-# 建立存取權變更歷程記錄報告
 
-每當有人授與或撤銷您訂用帳戶中的存取權時，變更就會記錄在 Azure 事件中。您可以建立存取權變更歷程記錄報告，以查看過去 90 天內的所有變更。
+# <a name="create-an-access-change-history-report"></a>Create an access change history report
 
-## 使用 Azure PowerShell 建立報告
-若要在 PowerShell 中建立存取權變更歷程記錄報告，請使用 `Get-AzureRMAuthorizationChangeLog` 命令。[PowerShell 資源庫](https://www.powershellgallery.com/packages/AzureRM.Storage/1.0.6/Content/ResourceManagerStartup.ps1)中有提供關於此 Cmdlet 的更多詳細資料。
+Any time someone grants or revokes access within your subscriptions, the changes get logged in Azure events. You can create access change history reports to see all changes for the past 90 days.
 
-呼叫此命令時，您可以指定要列出哪一個指派屬性，其中包括下列屬性︰
+## <a name="create-a-report-with-azure-powershell"></a>Create a report with Azure PowerShell
+To create an access change history report in PowerShell, use the `Get-AzureRMAuthorizationChangeLog` command. More details about this cmdlet are available in the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureRM.Storage/1.0.6/Content/ResourceManagerStartup.ps1).
 
-| 屬性 | 說明 |
+When you call this command, you can specify which property of the assignments you want listed, including the following:
+
+| Property | Description |
 | -------- | ----------- |
-| **Action** | 已授與或已撤銷存取權 |
-| **Caller** | 負責存取權變更的擁有者 |
-| **Date** | 變更存取權的日期和時間 |
-| **DirectoryName** | Azure Active Directory 目錄 |
-| **PrincipalName** | 使用者、群組或應用程式的名稱 |
-| **PrincipalType** | 指派對象為使用者、群組或應用程式 |
-| **RoleId** | 已授與或已撤銷之角色的 GUID |
-| **RoleName** | 已授與或已撤銷的角色 |
-| **ScopeName** | 訂用帳戶、資源群組或資源的名稱 |
-| **ScopeType** | 指派的範圍是訂用帳戶、資源群組或資源 |
-| **SubscriptionId** | Azure 訂用帳戶的 GUID |
-| **SubscriptionName** | Azure 訂用帳戶的名稱 |
+| **Action** | Whether access was granted or revoked |
+| **Caller** | The owner responsible for the access change |
+| **Date** | The date and time that access was changed |
+| **DirectoryName** | The Azure Active Directory directory |
+| **PrincipalName** | The name of the user, group, or application |
+| **PrincipalType** | Whether the assignment was for a user, group, or application |
+| **RoleId** | The GUID of the role that was granted or revoked |
+| **RoleName** | The role that was granted or revoked |
+| **ScopeName** | The name of the subscription, resource group, or resource |
+| **ScopeType** | Whether the assignment was at the subscription, resource group, or resource scope |
+| **SubscriptionId** | The GUID of the Azure subscription |
+| **SubscriptionName** | The name of the Azure subscription |
 
-此範例命令會列出過去 7 天訂用帳戶中的所有存取權變更：
+This example command lists all access changes in the subscription for the past seven days:
 
 ```
 Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::FromDays(7)) | FT Caller,Action,RoleName,PrincipalType,PrincipalName,ScopeType,ScopeName
 ```
 
-![PowerShell Get-AzureRMAuthorizationChangeLog - 螢幕擷取畫面](./media/role-based-access-control-configure/access-change-history.png)
+![PowerShell Get-AzureRMAuthorizationChangeLog - screenshot](./media/role-based-access-control-configure/access-change-history.png)
 
-## 使用 Azure CLI 建立報告
-若要在 Azure 命令列介面 (CLI) 中建立存取權變更歷程記錄報告，請使用 `azure role assignment changelog list` 命令。
+## <a name="create-a-report-with-azure-cli"></a>Create a report with Azure CLI
+To create an access change history report in the Azure command-line interface (CLI), use the `azure role assignment changelog list` command.
 
-## 匯出為試算表
-若要儲存報告或處理此資料，請將存取權變更匯出為 .csv 檔案。您即可在試算表中檢閱此報告。
+## <a name="export-to-a-spreadsheet"></a>Export to a spreadsheet
+To save the report, or manipulate the data, export the access changes into a .csv file. You can then view the report in a spreadsheet for review.
 
-![以試算表形式來檢視的變更記錄 - 螢幕擷取畫面](./media/role-based-access-control-configure/change-history-spreadsheet.png)
+![Changelog viewed as spreadsheet - screenshot](./media/role-based-access-control-configure/change-history-spreadsheet.png)
 
-## 另請參閱
-- 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)
-- 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
+## <a name="see-also"></a>See also
+- Get started with [Azure Role-Based Access Control](role-based-access-control-configure.md)
+- Work with [Custom roles in Azure RBAC](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
- pageTitle="雲端服務的大小"
- description="列出 Azure 雲端服務 Web 和背景工作角色的各種虛擬機器大小。"
+ pageTitle="Sizes for cloud services"
+ description="Lists the different virtual machine sizes for Azure cloud service web and worker roles."
  services="cloud-services"
  documentationCenter=""
  authors="Thraka"
@@ -15,141 +15,142 @@
  ms.date="08/10/2016"
  ms.author="adegeo"/>
 
-# 雲端服務的大小
 
-本主題描述雲端服務角色執行個體 (Web 角色和背景工作角色)的可用大小和選項。同時也提供計劃使用這些資源時，需注意的部署考量。
+# <a name="sizes-for-cloud-services"></a>Sizes for Cloud Services
 
-雲端服務是 Azure 提供的數種計算資源類型之一。如需雲端服務的詳細資訊，請按一下[這裡](cloud-services-choose-me.md)。
+This topic describes the available sizes and options for Cloud Service role instances (web roles and worker roles). It also provides deployment considerations to be aware of when planning to use these resources.
 
-> [AZURE.NOTE]若要查看相關的 Azure 限制，請參閱 ＜[Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)＞
+Cloud Services is one of several types of compute resources offered by Azure. Click [here](cloud-services-choose-me.md) for more information about Cloud Services.
 
-## 用於 Web 和背景工作角色執行個體的大小
+> [AZURE.NOTE]To see related Azure limits, see [Azure Subscription and Service Limits, Quotas, and Constraints](../azure-subscription-service-limits.md)
 
-下列考量可協助您決定大小：
+## <a name="sizes-for-web-and-worker-role-instances"></a>Sizes for web and worker role instances
 
-* D 系列 VM 執行個體是為了執行要求更高計算能力和暫存磁碟效能的應用程式所設計。D 系列 VM 提供更快的處理器、較高的記憶體與核心比率，以及適用於暫存磁碟的固態硬碟 (SSD)。如需詳細資訊，請參閱 Azure 部落格的公告，[新 D 系列的虛擬機器大小](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/)。
+The following considerations might help you decide on a size:
 
-* Dv2 系列是原始 D 系列的延續，擁有更強大的 CPU。Dv2 系列 CPU 比 D 系列 CPU 快約 35%。它以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，搭配 Intel Turbo Boost Technology 2.0，最高可達 3.1 GHz。Dv2 系列的記憶體和磁碟組態和 D 系列一樣。
+* D-series VM instances are designed to run applications that demand higher compute power and temporary disk performance. D-series VMs provide faster processors, a higher memory-to-core ratio, and a solid-state drive (SSD) for the temporary disk. For details, see the announcement on the Azure blog, [New D-Series Virtual Machine Sizes](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/).  
 
-* 因系統需求，Web 角色和背景工作角色比 Azure 虛擬機器需要更多的暫存磁碟空間。系統檔案保留 4 GB 的空間供 Windows 分頁檔和 2 GB 的空間供 Windows 傾印檔案。
+* Dv2-series, a follow-on to the original D-series, features a more powerful CPU. The Dv2-series CPU is about 35% faster than the D-series CPU. It is based on the latest generation 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) processor, and with the Intel Turbo Boost Technology 2.0, can go up to 3.1 GHz. The Dv2-series has the same memory and disk configurations as the D-series.
 
-* 作業系統磁碟包含 Windows 客體 OS，並且包含 Program Files 資料夾 (包括透過啟動工作完成的安裝，除非您指定另一個磁碟)、登錄變更、System32 資料夾和 .NET Framework。
+* Web roles and worker roles require more temporary disk space than Azure Virtual Machines because of system requirements. The system files reserve 4 GB of space for the Windows page file, and 2 GB of space for the Windows dump file.  
 
-* **暫存磁碟**包含 Azure 記錄檔和設定檔、Azure 診斷 (其中包括 IIS 記錄檔)，以及您所定義的任何本機儲存體資源。
+* The OS disk contains the Windows guest OS and includes the Program Files folder (including installations done via startup tasks unless you specify another disk), registry changes, the System32 folder, and the .NET framework.  
 
-* **應用程式磁碟**是您解壓縮 .cspkg 的地方，並包含您的網站、二進位檔、角色主機處理序、啟動工作、web.config 等等。
+* The **temporary storage disk** contains Azure logs and configuration files, Azure Diagnostics (which includes your IIS logs), and any local storage resources you define.  
 
-* A8/A10 和 A9/A11 虛擬機器大小有相同的容量。A8 和 A9 虛擬機器執行個體包含額外的網路介面卡，其會連線到遠端直接記憶體存取 (RDMA) 網路，以利在虛擬機器之間進行快速通訊。A8 和 A9 執行個體是專為執行期間，節點之間需要常數和低延遲通訊的高效能計算應用程式所設計，例如，使用訊息傳遞介面 (MPI) 的應用程式。A10 和 A11 虛擬機器執行個體不包含額外的網路介面卡。A10 和 A11 執行個體專為不需要常數和低度延遲節點的高效能計算應用程式設計，也就是所謂的參數式或窘迫平行應用程式。
+* The **application disk** is where your .cspkg is extracted and includes your website, binaries, role host process, startup tasks, web.config, and so on.  
 
-    >[AZURE.NOTE] 如果您正在考慮調整 A8 到 A11 的大小，請閱讀[此](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)資訊。
+* The A8/A10 and A9/A11 virtual machine sizes have the same capacities. The A8 and A9 virtual machine instances include an additional network adapter that is connected to a remote direct memory access (RDMA) network for fast communication between virtual machines. The A8 and A9 instances are designed for high-performance computing applications that require constant and low-latency communication between nodes during execution, for example, applications that use the Message Passing Interface (MPI). The A10 and A11 virtual machine instances do not include the additional network adapter. A10 and A11 instances are designed for high-performance computing applications that do not require constant and low-latency communication between nodes, also known as parametric or embarrassingly parallel applications.
 
->[AZURE.NOTE] 所有機器大小會提供**應用程式磁碟**，它會儲存您的雲端服務封裝的所有檔案，大小大約 1.5 GB。
+    >[AZURE.NOTE] If you're considering sizes A8 through A11, please read [this](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) information.
 
-請務必檢閱每個雲端服務大小的[價格](https://azure.microsoft.com/pricing/details/cloud-services/)。
+>[AZURE.NOTE] All machine sizes provide an **application disk** that stores all the files from your cloud service package; it is around 1.5 GB in size. 
 
-## 一般用途
+Please make sure you review the [pricing](https://azure.microsoft.com/pricing/details/cloud-services/) of each Cloud Service size.
 
-適用於網路、中小型資料庫及其他日常應用程式。
+## <a name="general-purpose"></a>General purpose
 
->[AZURE.NOTE] 儲存體容量是使用 1024^3 位元組當作 GB 的度量單位來表示。這有時稱為 gibibyte 或基底 2 定義。比較使用不同基底系統的大小時，請記住，基底 2 的大小可能會顯示為小於基底 10，但是對於任何特定的大小 (例如 1 GB)，基底 2 的系統可提供比基底 10 系統更大的容量，因為 1024^3 大於 1000^3。
+For websites, small-to-medium databases, and other everyday applications.
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+>[AZURE.NOTE] Storage capacity is represented by using 1024^3 bytes as the unit of measurement for GB. This is sometimes referred to as gibibyte, or base 2 definition. When comparing sizes that use different base systems, remember that base 2 sizes may appear smaller than base 10 but for any specific size (such as 1 GB) a base 2 system provides more capacity than a base 10 system, because 1024^3 is greater than 1000^3. 
+
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | -------: |
-| 特小型 | 1 | 0\.75 GB | 低 | 19 GB |
-| 小型 | 1 | 1\.75 GB | 中度 | 224 GB |
-| 中型 | 2 | 3\.5 GB | 中度 | 489 GB |
-| 大型 | 4 | 7 GB | 高 | 999 GB |
-| 特大型 | 8 | 14 GB | 高 | 2,039 GB |
+| ExtraSmall      | 1         | 0.75 GB | Low           | 19 GB    |
+| Small           | 1         | 1.75 GB | Moderate      | 224 GB   |
+| Medium          | 2         | 3.5 GB  | Moderate      | 489 GB   |
+| Large           | 4         | 7 GB    | High          | 999 GB   |
+| ExtraLarge      | 8         | 14 GB   | High          | 2,039 GB |
 
->[AZURE.NOTE] **ExtraSmall** 到 **ExtraLarge** 也可以分別命名為 **A0-A4**。
+>[AZURE.NOTE] **ExtraSmall** through **ExtraLarge** can also be named **A0-A4** respectively.
 
-## 記憶體高用量
+## <a name="memory-intensive"></a>Memory intensive
 
-適用於大型資料庫、SharePoint 伺服器陣列及高輸送量應用程式。
+For large databases, SharePoint server farms, and high-throughput applications.
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | ------:  |
-| A5 | 2 | 14 GB | 中度 | 489 GB |
-| A6 | 4 | 28 GB | 高 | 999 GB |
-| A7 | 8 | 56 GB | 高 | 2,039 GB |
+| A5              | 2         | 14 GB   | Moderate      | 489 GB   |
+| A6              | 4         | 28 GB   | High          | 999 GB   |
+| A7              | 8         | 56 GB   | High          | 2,039 GB |
 
-## 經過優化處理的網路，支援 InfiniBand
+## <a name="network-optimized-with-infiniband-support"></a>Network optimized with InfiniBand support
 
-可在選取的資料中心使用。A8 和 A9 虛擬機器搭載 [Intel® Xeon® E5 處理器](http://www.intel.com/content/www/us/en/processors/xeon/xeon-processor-e5-family.html)。新增搭配遠端直接記憶體存取 (RDMA) 技術的 32Gbit/秒 **InfiniBand** 網路。適用於訊息傳遞介面 (MPI) 應用程式、高效能叢集、模型製作與模擬、視訊編碼及其他大量計算和網路高用量等案例。
+Available in select data centers. A8 and A9 virtual machines feature [Intel® Xeon® E5 processors](http://www.intel.com/content/www/us/en/processors/xeon/xeon-processor-e5-family.html). Adds a 32 Gbit/s **InfiniBand** network with remote direct memory access (RDMA) technology. Ideal for Message Passing Interface (MPI) applications, high-performance clusters, modeling and simulations, video encoding, and other compute or network intensive scenarios.
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | ------: |
-| A8 | 8 | 56 GB | 高 | 382 GB |
-| A9 | 16 | 112 GB | 非常高 | 382 GB |
+| A8              | 8         | 56 GB   | High          | 382 GB  |
+| A9              | 16        | 112 GB  | Very High     | 382 GB  |
 
-## 大量計算
+## <a name="compute-intensive"></a>Compute intensive
 
-可在選取的資料中心使用。A10 和 A11 虛擬機器搭載 [Intel® Xeon® E5 處理器](http://www.intel.com/content/www/us/en/processors/xeon/xeon-processor-e5-family.html)。適用於高效能叢集、模型製作與模擬、視訊編碼，以及其他需要大量計算及大量使用網路等案例。與 A8 和 A9 執行個體設定相似，沒有 InfiniBand 網路和 RDMA 技術。
+Available in select data centers. A10 and A11 virtual machines feature [Intel® Xeon® E5 processors](http://www.intel.com/content/www/us/en/processors/xeon/xeon-processor-e5-family.html). For high-performance clusters, modeling and simulations, video encoding, and other compute or network intensive scenarios. Similar to A8 and A9 instance configuration without the InfiniBand network and RDMA technology.
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | ------: |
-| A10 | 8 | 56 GB | 高 | 382 GB |
-| A11 | 16 | 112 GB | 非常高 | 382 GB |
+| A10             | 8         | 56 GB   | High          | 382 GB  |
+| A11             | 16        | 112 GB  | Very High     | 382 GB  |
 
-## D 系列︰最佳化計算
+## <a name="d-series:-optimized-compute"></a>D-series: Optimized compute
 
-D 系列虛擬機器的特色包括固態磁碟機 (SSD) 和比 A 系列還要快的處理器 (快上 60%)，而且也適用於 Azure 雲端服務中的 Web 角色或背景工作角色。應用程式若需要更快的 CPU、較佳的本機磁碟效能或更高的記憶體，則此系列會是理想的選擇。
+D-series virtual machines feature solid state drives (SSDs) and faster processors than the A-series (60% faster) and is also available for web or worker roles in Azure Cloud Services. This series is ideal for applications that demand faster CPUs, better local disk performance, or higher memory.
 
-## 一般用途 (D)
+## <a name="general-purpose-(d)"></a>General purpose (D)
 
-適用於網路、中小型資料庫及其他日常應用程式。
+For websites, small-to-medium databases, and other everyday applications.
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | ------: |
-| 標準\_D1 | 1 | 3\.5 GB | 中度 | 50 GB |
-| 標準\_D2 | 2 | 7 GB | 高 | 100 GB |
-| 標準\_D3 | 4 | 14 GB | 高 | 200 GB |
-| 標準\_D4 | 8 | 28 GB | 高 | 400 GB |
+| Standard_D1     | 1         | 3.5 GB  | Moderate      | 50 GB   |
+| Standard_D2     | 2         | 7 GB    | High          | 100 GB  |
+| Standard_D3     | 4         | 14 GB   | High          | 200 GB  |
+| Standard_D4     | 8         | 28 GB   | High          | 400 GB  |
 
-## 記憶體高用量 (D)
+## <a name="memory-intensive-(d)"></a>Memory intensive (D)
 
-適用於大型資料庫、SharePoint 伺服器陣列及高輸送量應用程式。
+For large databases, SharePoint server farms, and high-throughput applications.
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | ------: |
-| 標準\_D11 | 2 | 14 GB | 高 | 100 GB |
-| 標準\_D12 | 4 | 28 GB | 高 | 200 GB |
-| 標準\_D13 | 8 | 56 GB | 高 | 400 GB |
-| 標準\_D14 | 16 | 112 GB | 非常高 | 800 GB |
+| Standard_D11    | 2         | 14 GB   | High          | 100 GB  |
+| Standard_D12    | 4         | 28 GB   | High          | 200 GB  |
+| Standard_D13    | 8         | 56 GB   | High          | 400 GB  |
+| Standard_D14    | 16        | 112 GB  | Very High     | 800 GB  |
 
-## Dv2 系列︰最佳化計算
+## <a name="dv2-series:-optimized-compute"></a>Dv2-series: Optimized compute
 
-Dv2 系列執行個體是第二代 D 系列執行個體，可做為虛擬機器或雲端服務使用。Dv2 系列執行個體會搭載更強大的 CPU，平均比 D 系列執行個體快上 35%，並與 D 系列搭載相同的記憶體及磁碟組態。Dv2 系列執行個體是以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，且搭配 Intel 渦輪加速技術 2.0 可達 3.1 GHz。Dv2 系列及 D 系列適用於需要更快的 CPU、更佳的本機磁碟效能、或是更高記憶體的應用程式，並替許多企業級應用程式帶來強大的組合。
+Dv2-series instances are the next generation of D-series instances that can be used as Virtual Machines or Cloud Services. Dv2-series instances will carry more powerful CPUs which are on average about 35% faster than D-series instances, and carry the same memory and disk configurations as the D-series. Dv2-series instances are based on the latest generation 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) processor, and with Intel Turbo Boost Technology 2.0 can go to 3.1 GHz. Dv2-series and D-series are ideal for applications that demand faster CPUs, better local disk performance, or higher memories and offer a powerful combination for many enterprise-grade applications.
 
-## 一般用途 (Dv2)
+## <a name="general-purpose-(dv2)"></a>General purpose (Dv2)
 
-適用於網路、中小型資料庫及其他日常應用程式。
+For websites, small-to-medium databases, and other everyday applications.
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | ------: |
-| Standard\_D1\_v2 | 1 | 3\.5 GB | 中度 | 50 GB |
-| Standard\_D2\_v2 | 2 | 7 GB | 高 | 100 GB |
-| Standard\_D3\_v2 | 4 | 14 GB | 高 | 200 GB |
-| Standard\_D4\_v2 | 8 | 28 GB | 高 | 400 GB |
-| Standard\_D5\_v2 | 16 | 56 GB | 非常高 | 800 GB |
+| Standard_D1_v2  | 1         | 3.5 GB  | Moderate      | 50 GB   |
+| Standard_D2_v2  | 2         | 7 GB    | High          | 100 GB  |
+| Standard_D3_v2  | 4         | 14 GB   | High          | 200 GB  |
+| Standard_D4_v2  | 8         | 28 GB   | High          | 400 GB  |
+| Standard_D5_v2  | 16        | 56 GB   | Very High     | 800 GB  |
 
-## 記憶體高用量 (Dv2)
+## <a name="memory-intensive-(dv2)"></a>Memory intensive (Dv2)
 
-適用於大型資料庫、SharePoint 伺服器陣列及高輸送量應用程式
+For large databases, SharePoint server farms, and high-throughput applications
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
+| Size (id)       | Cores     | Ram     | Net Bandwidth | Total disk size |
 | --------------- | :-------: | ------: | :-----------: | -------: |
-| Standard\_D11\_v2 | 2 | 14 GB | 高 | 100 GB |
-| Standard\_D12\_v2 | 4 | 28 GB | 高 | 200 GB |
-| Standard\_D13\_v2 | 8 | 56 GB | 高 | 400 GB |
-| Standard\_D14\_v2 | 16 | 112 GB | 非常高 | 800 GB |
-| Standard\_D15\_v2 | 20 | 140 GB | 非常高 | 1,000 GB |
+| Standard_D11_v2 | 2         | 14 GB   | High          | 100 GB   |
+| Standard_D12_v2 | 4         | 28 GB   | High          | 200 GB   |
+| Standard_D13_v2 | 8         | 56 GB   | High          | 400 GB   |
+| Standard_D14_v2 | 16        | 112 GB  | Very High     | 800 GB   |
+| Standard_D15_v2 | 20        | 140 GB  | Very High     | 1,000 GB |
 
-## 設定雲端服務大小
+## <a name="configure-sizes-for-cloud-services"></a>Configure sizes for Cloud Services
 
-您可以指定角色執行個體的虛擬機器大小，作為[服務定義檔](cloud-services-model-and-package.md#csdef)所描述之服務模型的一部分。角色大小決定 CPU 核心數目、記憶體容量，以及配置給執行中執行個體的本機檔案系統大小。根據您應用程式的資源需求選擇角色大小。
+You can specify the Virtual Machine size of a role instance as part of the service model described by the [service definition file](cloud-services-model-and-package.md#csdef). The size of the role determines the number of CPU cores, the memory capacity, and the local file system size that is allocated to a running instance. Choose the role size based on your application's resource requirement.
 
-以下是將 Web 角色執行個體的角色大小設定為 [Standard\_D2](#general-purpose-d) 的範例：
+Here is an example for setting the role size to be [Standard_D2](#general-purpose-d) for a Web Role instance:
 
 ```xml
 <WebRole name="WebRole1" vmsize="<mark>Standard_D2</mark>">
@@ -157,4 +158,8 @@ Dv2 系列執行個體是第二代 D 系列執行個體，可做為虛擬機器�
 </WebRole>
 ```
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

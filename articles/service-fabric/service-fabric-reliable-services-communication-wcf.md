@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Reliable Services WCF 通訊堆疊 | Microsoft Azure"
-   description="Service Fabric 內建的 WCF 通訊堆疊提供 Reliable Services 專用的用戶端服務 WCF 通訊。"
+   pageTitle="Reliable Services WCF communication stack | Microsoft Azure"
+   description="The built-in WCF communication stack in Service Fabric provides client-service WCF communication for Reliable Services."
    services="service-fabric"
    documentationCenter=".net"
    authors="BharatNarasimman"
@@ -16,13 +16,14 @@
    ms.date="07/26/2016"
    ms.author="bharatn"/>
 
-# 適用於 Reliable Services 的 WCF 式通訊堆疊
-Reliable Services 架構允許服務作者選擇其想要針對服務使用的通訊堆疊。他們可以透過從 [CreateServiceReplicaListeners 或 CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) 方法傳回的 **ICommunicationListener**，來外掛所選擇的通訊堆疊。服務作者如果想要使用 Windows Communication Foundation (WCF) 式通訊，架構可提供以 WCF 式實作的通訊堆疊。
 
-## WCF 通訊接聽程式
-**ICommunicationListener** 的 ECF 特定實作係由 **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** 類別所提供。
+# <a name="wcf-based-communication-stack-for-reliable-services"></a>WCF-based communication stack for Reliable Services
+The Reliable Services framework allows service authors to choose the communication stack that they want to use for their service. They can plug in the communication stack of their choice via the **ICommunicationListener** returned from the [CreateServiceReplicaListeners or CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) methods. The framework provides an implementation of the communication stack based on the Windows Communication Foundation (WCF) for service authors who want to use WCF-based communication.
 
-假設我們有類型 `ICalculator` 的服務合約
+## <a name="wcf-communication-listener"></a>WCF Communication Listener
+The WCF-specific implementation of **ICommunicationListener** is provided by the **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** class.
+
+Lest say we have a service contract of type `ICalculator`
 
 ```csharp
 [ServiceContract]
@@ -33,7 +34,7 @@ public interface ICalculator
 }
 ```
 
-我們可以透過下列方式在服務中建立 WCF 通訊接聽程式。
+We can create a WCF communication listener in the service the following manner.
 
 ```csharp
 
@@ -59,8 +60,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 ```
 
-## 撰寫適用於 WCF 通訊堆疊的用戶端
-為了撰寫能夠使用 WCF 來與服務進行通訊的用戶端，架構提供了 **WcfClientCommunicationFactory**，也就是 [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md) 的 WCF 特定實作。
+## <a name="writing-clients-for-the-wcf-communication-stack"></a>Writing clients for the WCF communication stack
+For writing clients to communicate with services by using WCF, the framework provides **WcfClientCommunicationFactory**, which is the WCF-specific implementation of [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md).
 
 ```csharp
 
@@ -72,7 +73,7 @@ public WcfCommunicationClientFactory(
     object callback = null);
 ```
 
-WCF 通訊通道可以從 **WcfCommunicationClientFactory** 建立的 **WcfCommunicationClient** 來存取。
+The WCF communication channel can be accessed from the **WcfCommunicationClient** created by the **WcfCommunicationClientFactory**.
 
 ```csharp
 
@@ -86,7 +87,7 @@ public class WcfCommunicationClient : ServicePartitionClient<WcfCommunicationCli
 
 ```
 
-用戶端程式碼可以使用 **WcfCommunicationClientFactory** 連同實作 **ServicePartitionClient** 的 **WcfCommunicationClient** 來決定服務端點，並與服務通訊。
+Client code can use the **WcfCommunicationClientFactory** along with the **WcfCommunicationClient** which implements **ServicePartitionClient** to determine the service endpoint and communicate with the service.
 
 ```csharp
 // Create binding
@@ -113,13 +114,17 @@ var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
                 client => client.Channel.Add(2, 3)).Result;
 
 ```
->[AZURE.NOTE] 預設 ServicePartitionResolver 假設用戶端正在與服務相同的叢集中執行。如果不是這樣，請建立 ServicePartitionResolver 物件，並傳入叢集連接端點。
+>[AZURE.NOTE] The default ServicePartitionResolver assumes that the client is running in same cluster as the service. If that is not the case, create a ServicePartitionResolver object and pass in the cluster connection endpoints.
 
-## 後續步驟
-* [使用 Reliable Services 遠端服務進行遠端程序呼叫](service-fabric-reliable-services-communication-remoting.md)
+## <a name="next-steps"></a>Next steps
+* [Remote procedure call with Reliable Services remoting](service-fabric-reliable-services-communication-remoting.md)
 
-* [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)
+* [Web API with OWIN in Reliable Services](service-fabric-reliable-services-communication-webapi.md)
 
-* [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
+* [Securing communication for Reliable Services](service-fabric-reliable-services-secure-communication.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

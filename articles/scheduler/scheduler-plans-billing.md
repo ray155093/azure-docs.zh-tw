@@ -1,10 +1,10 @@
 <properties
- pageTitle="Azure 排程器的計劃和計費"
- description="Azure 排程器的計劃和計費"
+ pageTitle="Plans and Billing in Azure Scheduler"
+ description="Plans and Billing in Azure Scheduler"
  services="scheduler"
  documentationCenter=".NET"
- authors="krisragh"
- manager="dwrede"
+ authors="derek1ee"
+ manager="kevinlam1"
  editor=""/>
 <tags
  ms.service="scheduler"
@@ -13,83 +13,88 @@
  ms.devlang="dotnet"
  ms.topic="article"
  ms.date="08/18/2016"
- ms.author="krisragh"/>
+ ms.author="deli"/>
 
-# Azure 排程器的計劃和計費
 
-## 工作集合計劃
+# <a name="plans-and-billing-in-azure-scheduler"></a>Plans and Billing in Azure Scheduler
 
-工作集合是 Azure 排程器中可計費的實體。工作集合包含許多工作，並分成三個計劃 (免費、標準和高階)，如下所述。
+## <a name="job-collection-plans"></a>Job Collection Plans
 
-|**工作集合計劃**|**每個工作集合的工作數上限**|**最大週期**|**每個訂用帳戶的工作集合數上限**|**限制**|
+Job collections are the billable entity in Azure Scheduler. Job collections contain a number of jobs and come in three plans – Free, Standard, and Premium – that are described below.
+
+|**Job Collection Plan**|**Max # of Jobs per Job Collection**|**Max Recurrence**|**Max Job Collections per Subscription**|**Limits**|
 |:---|:---|:---|:---|:---|
-|**免費**|每個工作集合 5 個工作|每小時一次。執行工作不得超過一個小時|一個訂用帳戶最多允許 1 個免費工作集合|無法使用 [HTTP 輸出授權物件](scheduler-outbound-authentication.md)
-|**標準**|每個工作集合 50 個工作|每分鐘一次。執行工作不得超過一分鐘|一個訂用帳戶允許最多 100 個標準工作集合|存取排程器的完整功能集|
-|**P10 Premium**|每個工作集合 50 個工作|每分鐘一次。執行工作不得超過一分鐘|一個訂用帳戶允許最多 10,000 個 P10 進階工作集合。如需詳細資訊，請<a href="mailto:wapteams@microsoft.com">與我們連絡</a>。|存取排程器的完整功能集|
-|**P20 Premium**|每個作業集合 1000 個工作|每分鐘一次。執行工作不得超過一分鐘|一個訂用帳戶允許最多 10,000 個 P20 進階工作集合。如需詳細資訊，請<a href="mailto:wapteams@microsoft.com">與我們連絡</a>。|存取排程器的完整功能集|
+|**Free**|5 jobs per job collection|Once per hour. Cannot execute jobs more often than once an hour|A subscription is allowed up to 1 free job collection|Cannot use [HTTP outbound authorization object](scheduler-outbound-authentication.md)
+|**Standard**|50 jobs per job collection|Once per minute. Cannot execute jobs more often than once a minute|A subscription is allowed up to 100 standard job collections|Access to full feature set of Scheduler|
+|**P10 Premium**|50 jobs per job collection|Once per minute. Cannot execute jobs more often than once a minute|A subscription is allowed up to 10,000 P10 Premium job collections. <a href="mailto:wapteams@microsoft.com">Contact us</a> for more.|Access to full feature set of Scheduler|
+|**P20 Premium**|1000 jobs per job collection|Once per minute. Cannot execute jobs more often than once a minute|A subscription is allowed up to 10,000 P20 Premium job collections. <a href="mailto:wapteams@microsoft.com">Contact us</a> for more.|Access to full feature set of Scheduler|
 
-## 升級或降級工作集合計劃
+## <a name="upgrades-and-downgrades-of-job-collection-plans"></a>Upgrades and Downgrades of Job Collection Plans
 
-您隨時可在免費、標準和高階計劃之間升級或降級工作集合計畫。不過，當降級至免費工作集合時，降級可能由於下列其中一個原因而失敗：
+You may upgrade or downgrade a job collection plan anytime among the Free, Standard, and Premium plans. However, when downgrading to a free job collection, the downgrade may fail for one of the following reasons:
 
-- 免費工作集合已存在於訂用帳戶中
-- 工作集合中的工作有更高的週期，超過免費工作集合中工作允許的週期。免費工作集合中允許的最大週期為每小時一次
-- 工作集合中有 5 個以上的工作
-- 工作集合中的工作具有一個使用 [HTTP 輸出授權物件](scheduler-outbound-authentication.md)的 HTTP 或 HTTPS 動作。
+- A free job collection already exists in the subscription
+- A job in the job collection has a higher recurrence than allowed for jobs in free job collections. The maximum recurrence allowed in a free job collection is once per hour
+- There are more than 5 jobs in the job collection
+- A job in the job collection has an HTTP or HTTPS action that uses an [HTTP outbound authorization object](scheduler-outbound-authentication.md)
 
-## 計費與 Azure 計劃
+## <a name="billing-and-azure-plans"></a>Billing and Azure Plans
 
-不會對免費工作集合的訂用帳戶計費。如果您有 100 個以上的標準工作集合 (10 個標準計費單位)，則具有高階計劃中的所有工作集合，這是更好的方式。
+Subscriptions are not charged for free job collections. If you have more than 100 standard job collections (10 standard billing units), then it's a better deal to have all job collections in the premium plan.
 
-如果有一個標準工作集合和一個高階工作集合，則您會支付一個標準計費單位_和_ 一個高階計費單位。排程器服務會根據設定為標準或高階的作用中工作集合數目來計費；下兩節將有進一步的說明。
+If you have one standard job collection and one premium job collection, you are billed one standard billing unit _and_ one premium billing unit. The Scheduler service bills based on the number of active job collections that are set to either standard or premium; this is explained further in the next two sections.
 
-## 標準可計費單位
+## <a name="standard-billable-units"></a>Standard Billable Units
 
-標準可計費單位可以包含最多 10 個標準工作集合。由於標準工作集合可以讓每個工作集合最多具有 50 個工作，因此一個標準計費單位可讓一個訂用帳戶最多具有 500 個工作 – 每個月幾乎高達 2 千 2 百萬個工作執行。
+A standard billable unit can include up to 10 standard job collections. Since a standard job collection can have up to 50 jobs per job collection, one standard billing unit allows a subscription to have up to 500 jobs – up to almost 22 million job executions per month.
 
-如果有 1 到 10 個標準工作集合，則您將支付 1 個標準計費單位。如果有 11 到 20 個標準工作集合，則您將支付 2 個標準計費單位。如果有 21 到 30 個標準工作集合，則您將支付 3 個標準計費單位。
+If you have between 1 and 10 standard job collections, you'll be billed for 1 standard billing unit. If you have between 11 and 20 standard job collections, you'll be billed for 2 standard billing units. If you have between 21 and 30 standard job collections, you'll be billed for 3 standard billing units, and so on.
 
-## P10 進階可計費單位
+## <a name="p10-premium-billable-units"></a>P10 Premium Billable Units
 
-P10 進階可計費單位可以包含最多 10,000 個 P10 進階工作集合。由於 P10 進階工作集合可以讓每個工作集合最多具有 50 個工作，因此一個進階計費單位可讓一個訂用帳戶最多具有 500,000 個工作 – 每個月幾乎高達 220 億個工作執行。
+A P10 premium billable unit can include up to 10,000 P10 premium job collections. Since a P10 premium job collection can have up to 50 jobs per job collection, one premium billing unit allows a subscription to have up to 500,000 jobs – up to almost 22 billion job executions per month.
 
-如果有 1 到 10,000 個進階工作集合，則您將支付 1 個 P10 進階計費單位。如果有 10,001 到 20,000 個進階工作集合，則您將支付 2 個 P10 進階計費單位，依此類推。
+If you have between 1 and 10,000 premium job collections, you'll be billed for 1 P10 premium billing unit. If you have between 10,001 and 20,000 premium job collections, you'll be billed for 2 P10 premium billing units, and so on.
 
-因此，P10 進階工作集合具有與標準工作集合相同的功能，但萬一您的應用程式需要大量工作集合時提供折價。
+Thus, P10 premium job collections have the same functionality as the standard job collections but provide a price break in case your application requires a lot of job collections.
 
-## P20 進階可計費單位
+## <a name="p20-premium-billable-units"></a>P20 Premium Billable Units
 
-P20 進階可計費單位可以包含最多 5,000 個 P20 進階工作集合。由於 P20 進階工作集合可以讓每個工作集合最多具有 1,000 個工作，因此一個進階計費單位可讓一個訂用帳戶最多具有 5,000,000 個工作 – 每個月幾乎高達 2200 億個工作執行。
+A P20 premium billable unit can include up to 5,000 P20 premium job collections. Since a P20 premium job collection can have up to 1,000 jobs per job collection, one premium billing unit allows a subscription to have up to 5,000,000 jobs – up to almost 220 billion job executions per month.
 
-P20 進階工作集合提供與 P10 進階工作集合相同的功能，但整體比起 P10 進階，每個工作集合支援更大量的工作數和更大量的工作總數，可讓您有更多的延展性。
+P20 premium job collections provides the same capabilities as P10 premium job collections but also supports a greater number jobs per job collection and a greater total number of jobs overall than P10 premium allowing you to have more scalability.
 
-## 計費和作用中狀態
+## <a name="billing-and-active-status"></a>Billing and Active Status
 
-工作集合會永遠作用中，除非您整個訂用帳戶由於計費問題而進入部分暫時停用狀態。確保工作集合不計費的唯一方法，就是將它設定成_免費_計劃或刪除工作集合。
+Job collections are always active unless your entire subscription has gone into some temporary disabled state due to billing issues. The only way to ensure that a job collection is not billed is to either set it to the _Free_ plan or to delete the job collection.
 
-雖然您可能在單一作業中停用工作集合內的所有工作，但是它不會變更工作集合的計費狀態 – 工作集合_仍_會計費。同樣地，空白的工作集合會被視為作用中，並將計費。
+Although you may disable all jobs within a job collection in a single operation, it does not change the billing status of the job collection – the job collection will _still_ be billed. Similarly, empty job collections are considered active and will be billed.
 
-## 價格
+## <a name="pricing"></a>Pricing
 
-如需定價詳細資料，請參閱[排程器定價](https://azure.microsoft.com/pricing/details/scheduler/)。
+For pricing details, please see [Scheduler Pricing](https://azure.microsoft.com/pricing/details/scheduler/).
 
-## 另請參閱
+## <a name="see-also"></a>See Also
 
 
- [排程器是什麼？](scheduler-intro.md)
+ [What is Scheduler?](scheduler-intro.md)
 
- [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
+ [Azure Scheduler concepts, terminology, and entity hierarchy](scheduler-concepts-terms.md)
 
- [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
+ [Get started using Scheduler in the Azure portal](scheduler-get-started-portal.md)
 
- [Azure 排程器 REST API 參考](https://msdn.microsoft.com/library/mt629143)
+ [Azure Scheduler REST API reference](https://msdn.microsoft.com/library/mt629143)
 
- [Azure 排程器 PowerShell Cmdlet 參考](scheduler-powershell-reference.md)
+ [Azure Scheduler PowerShell cmdlets reference](scheduler-powershell-reference.md)
 
- [Azure 排程器高可用性和可靠性](scheduler-high-availability-reliability.md)
+ [Azure Scheduler high-availability and reliability](scheduler-high-availability-reliability.md)
 
- [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
+ [Azure Scheduler limits, defaults, and error codes](scheduler-limits-defaults-errors.md)
 
- [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
+ [Azure Scheduler outbound authentication](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

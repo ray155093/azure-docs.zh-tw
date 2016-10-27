@@ -1,12 +1,12 @@
 <properties 
-   pageTitle="Azure 自動化中的角色型存取控制 | Microsoft Azure"
-   description="角色型存取控制 (RBAC) 可以啟用對 Azure 資源的存取權管理。本文說明如何在 Azure 自動化中設定 RBAC。"
+   pageTitle="Role-based access control in Azure Automation | Microsoft Azure"
+   description="Role-based access control (RBAC) enables access management for Azure resources. This article describes how to set up RBAC in Azure Automation."
    services="automation"
    documentationCenter=""
    authors="mgoedtel"
    manager="jwhit"
    editor="tysonn"
-   keywords="自動化 rbac, 角色型存取控制, azure rbac" />
+   keywords="automation rbac, role based access control, azure rbac" />
 <tags 
    ms.service="automation"
    ms.devlang="na"
@@ -16,219 +16,230 @@
    ms.date="09/12/2016"
    ms.author="magoedte;sngun"/>
 
-# Azure 自動化中的角色型存取控制
 
-## 角色型存取控制
+# <a name="role-based-access-control-in-azure-automation"></a>Role-based access control in Azure Automation
 
-角色型存取控制 (RBAC) 可以啟用對 Azure 資源的存取權管理。您可以使用 [RBAC](../active-directory/role-based-access-control-configure.md) 來區隔小組內的職責，僅授與使用者、群組和應用程式執行作業所需的存取量。使用 Azure 入口網站、Azure 命令列工具或 Azure 管理 API 的使用者，可以獲授與角色型存取權。
+## <a name="role-based-access-control"></a>Role-based access control
 
-## 自動化帳戶中的 RBAC
+Role-based access control (RBAC) enables access management for Azure resources. Using [RBAC](../active-directory/role-based-access-control-configure.md), you can segregate duties within your team and grant only the amount of access to users, groups and applications that they need to perform their jobs. Role-based access can be granted to users using the Azure portal, Azure Command-Line tools or Azure Management APIs.
 
-在 Azure 自動化中，於自動化帳戶範圍將適當的 RBAC 角色指派給使用者、群組和應用程式，即可授與存取權。以下是自動化帳戶支援的內建角色：
+## <a name="rbac-in-automation-accounts"></a>RBAC in Automation Accounts
 
-|**角色** | **說明** |
+In Azure Automation, access is granted by assigning the appropriate RBAC role to users, groups, and applications at the Automation account scope. Following are the built-in roles supported by an Automation account:  
+
+|**Role** | **Description** |
 |:--- |:---|
-| 擁有者 | 擁有者角色允許存取自動化帳戶中的所有資源和動作，包括存取提供給其他使用者、群組和應用程式，以管理自動化帳戶。 |
-| 參與者 | 參與者角色可讓您管理各個項目，修改其他使用者的自動化帳戶存取權限除外。 |
-| 讀取者 | 讀取者角色可讓您檢視自動化帳戶中的所有資源，但無法進行任何變更。|
-| 自動化運算子 | 自動化操作員角色可讓您執行作業的工作，例如啟動、停止、暫停、繼續和排程作業。如果您想要保護認證資產和 Runbook 等自動化帳戶資源不被檢視或修改，但仍然允許組織的成員來執行這些 Runbook，這個角色會有所幫助。 |
-| 使用者存取系統管理員 | 使用者存取系統管理員角色可讓您管理 Azure 自動化帳戶的使用者存取。 |
+| Owner | The Owner role allows access to all resources and actions within an Automation account including providing access to other users, groups and applications to manage the Automation account. |
+| Contributor | The Contributor role allows you to manage everything except modifying other user’s access permissions to an Automation account. |
+| Reader | The Reader role allows you to view all the resources in an Automation account but cannot make any changes.|
+| Automation Operator | The Automation Operator role allows you to perform operational tasks such as start, stop, suspend, resume and schedule jobs. This role is helpful if you want to protect your Automation Account resources like credentials assets and runbooks from being viewed or modified but still allow members of your organization to execute these runbooks. |
+| User Access Administrator | The User Access Administrator role allows you to manage user access to Azure Automation accounts. |
 
->[AZURE.NOTE] 您無法授與特定 Runbook 的存取權限，只能授與自動化帳戶內資源和動作的存取權限。
+>[AZURE.NOTE] You cannot grant access rights to a specific runbook or runbooks, only to the resources and actions within the Automation account.  
 
-在本文中，我們將逐步引導您如何在 Azure 自動化中設定 RBAC。但首先，讓我們深入探討授與給參與者、讀取者、自動化操作員和使用者存取系統管理員的個別權限，以便在將自動化帳戶的權限授與給任何人前充分瞭解相關資訊。否則，可能會造成非預期或不想要的結果。
+In this article we will walk you through how to set up RBAC in Azure Automation. But first, let's take a closer look at the individual permissions granted to the Contributor, Reader, Automation Operator and User Access Administrator so that we gain a good understanding before granting anyone rights to the Automation account.  Otherwise it could result in unintended or undesirable consequences.     
 
-## 參與者角色權限
+## <a name="contributor-role-permissions"></a>Contributor role permissions
 
-下表顯示參與者角色可以在自動化中執行的特定動作。
+The following table presents the specific actions that can be performed by the Contributor role in Automation.
 
-| **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
+| **Resource Type** | **Read** | **Write** | **Delete** | **Other Actions** |
 |:--- |:---|:--- |:---|:--- |
-| Azure 自動化帳戶 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | 
-| 自動化憑證資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | |
-| 自動化連線資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | 
-| 自動化連線類型資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | 
-| 自動化認證資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | |
-| 自動化排程資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | |
-| 自動化變數資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | |
-| 自動化期望狀態組態 | | | | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |
-| Hybrid Runbook Worker 類型 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | 
-| Azure 自動化作業 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | 
-| 自動化作業串流 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | | 
-| 自動化作業排程 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | |
-| 自動化模組 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | |
-| Azure 自動化 Runbook | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |
-| 自動化 Runbook 草稿 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |
-| 自動化 Runbook 草稿測試作業 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | 
-| 自動化 Webhook | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |
+| Azure Automation Account | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | 
+| Automation Certificate Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | |
+| Automation Connection Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | 
+| Automation Connection Type Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | 
+| Automation Credential Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | |
+| Automation Schedule Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | |
+| Automation Variable Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | |
+| Automation Desired State Configuration | | | | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) |
+| Hybrid Runbook Worker Resource Type | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | 
+| Azure Automation Job | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | 
+| Automation Job Stream | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | | 
+| Automation Job Schedule | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | |
+| Automation Module | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | |
+| Azure Automation Runbook | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) |
+| Automation Runbook Draft | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) |
+| Automation Runbook Draft Test Job | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | 
+| Automation Webhook | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) |
 
-## 讀取者角色權限
+## <a name="reader-role-permissions"></a>Reader role permissions
 
-下表顯示讀取者角色可以在自動化中執行的特定動作。
+The following table presents the specific actions that can be performed by the Reader role in Automation.
 
-| **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
+| **Resource Type** | **Read** | **Write** | **Delete** | **Other Actions** |
 |:--- |:---|:--- |:---|:--- |
-| 傳統訂用帳戶管理員 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | 
-| 管理鎖定 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | 
-| 權限 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | |
-| 提供者作業 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | 
-| 角色指派 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | 
-| 角色定義 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | 
+| Classic subscription administrator | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | 
+| Management lock | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | 
+| Permission | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | |
+| Provider operations | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | 
+| Role assignment | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | 
+| Role definition | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | 
 
-## 自動化操作員角色權限
+## <a name="automation-operator-role-permissions"></a>Automation Operator role permissions
 
-下表顯示自動化操作員角色可以在自動化中執行的特定動作。
+The following table presents the specific actions that can be performed by the Automation Operator role in Automation.
 
-| **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
+| **Resource Type** | **Read** | **Write** | **Delete** | **Other Actions** |
 |:--- |:---|:--- |:---|:--- |
-| Azure 自動化帳戶 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | 
-| 自動化憑證資產 | | | |
-| 自動化連線資產 | | | |
-| 自動化連線類型資產 | | | |
-| 自動化認證資產 | | | |
-| 自動化排程資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | |
-| 自動化變數資產 | | | |
-| 自動化期望狀態組態 | | | | |
-| Hybrid Runbook Worker 類型 | | | | | 
-| Azure 自動化作業 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | 
-| 自動化作業串流 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | |  
-| 自動化作業排程 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | |
-| 自動化模組 | | | |
-| Azure 自動化 Runbook | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化 Runbook 草稿 | | | |
-| 自動化 Runbook 草稿測試作業 | | | |  
-| 自動化 Webhook | | | |
+| Azure Automation Account | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | 
+| Automation Certificate Asset | | | |
+| Automation Connection Asset | | | |
+| Automation Connection Type Asset | | | |
+| Automation Credential Asset | | | |
+| Automation Schedule Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | |
+| Automation Variable Asset | | | |
+| Automation Desired State Configuration | | | | |
+| Hybrid Runbook Worker Resource Type | | | | | 
+| Azure Automation Job | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | 
+| Automation Job Stream | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | |  
+| Automation Job Schedule | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | |
+| Automation Module | | | |
+| Azure Automation Runbook | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Runbook Draft | | | |
+| Automation Runbook Draft Test Job | | | |  
+| Automation Webhook | | | |
 
-如需進一步詳細資訊，[自動化操作員動作](../active-directory/role-based-access-built-in-roles.md#automation-operator)會列出自動化帳戶和其資源的自動化操作員角色所支援的動作。
+For further details, the [Automation operator actions](../active-directory/role-based-access-built-in-roles.md#automation-operator) lists the actions supported by the Automation operator role on the Automation account and its resources.
 
-## 使用者存取系統管理員角色權限
+## <a name="user-access-administrator-role-permissions"></a>User Access Administrator role permissions
 
-下表顯示使用者存取系統管理員角色可以在自動化中執行的特定動作。
+The following table presents the specific actions that can be performed by the User Access Administrator role in Automation.
 
-| **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
+| **Resource Type** | **Read** | **Write** | **Delete** | **Other Actions** |
 |:--- |:---|:--- |:---|:--- |
-| Azure 自動化帳戶 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化憑證資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化連線資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化連線類型資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化認證資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化排程資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化變數資產 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化期望狀態組態 | | | | |
-| Hybrid Runbook Worker 類型 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | | 
-| Azure 自動化作業 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | | 
-| 自動化作業串流 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | | 
-| 自動化作業排程 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化模組 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| Azure 自動化 Runbook | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化 Runbook 草稿 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
-| 自動化 Runbook 草稿測試作業 | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | | 
-| 自動化 Webhook | ![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | |
+| Azure Automation Account | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Certificate Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Connection Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Connection Type Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Credential Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Schedule Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Variable Asset | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Desired State Configuration | | | | |
+| Hybrid Runbook Worker Resource Type | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | | 
+| Azure Automation Job | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | | 
+| Automation Job Stream | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | | 
+| Automation Job Schedule | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Module | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Azure Automation Runbook | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Runbook Draft | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | |
+| Automation Runbook Draft Test Job | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | | | 
+| Automation Webhook | ![Green Status](media/automation-role-based-access-control/green-checkmark.png) | | |
 
-## 使用 Azure 入口網站為您的自動化帳戶設定 RBAC
+## <a name="configure-rbac-for-your-automation-account-using-azure-portal"></a>Configure RBAC for your Automation Account using Azure Portal
 
-1.	登入 [Azure 入口網站](https://portal.azure.com/)，並從 [自動化帳戶] 刀鋒視窗開啟您的自動化帳戶。
+1.  Log in to the [Azure Portal](https://portal.azure.com/) and open your Automation account from the Automation Accounts blade.  
 
-2.	按一下右上角的 [存取] 控制項。這會開啟 [使用者] 刀鋒視窗，您可以在其中加入新使用者、群組及應用程式來管理您的自動化帳戶，並檢視可以為自動化帳戶設定的現有角色。
+2.  Click on the **Access** control at the top right corner. This opens the **Users** blade where you can add new users, groups and applications to manage your Automation account and view existing roles that can be configured for the Automation Account.  
 
-    ![[存取] 按鈕](media/automation-role-based-access-control/automation-01-access-button.png)
+    ![Access button](media/automation-role-based-access-control/automation-01-access-button.png)  
 
->[AZURE.NOTE] **訂用帳戶管理員**已經存在做為預設的使用者。訂用帳戶管理員 Active Directory 群組包含服務系統管理員和 Azure 訂用帳戶的共同管理員。服務系統管理員為您的 Azure 訂用帳戶和其資源的擁有者，而且會具有對自動化帳戶繼承的擁有者角色。這表示存取權是**繼承**訂用帳戶的**服務系統管理員和共同管理員**，並且**指派**所有其他的使用者。按一下 [訂用帳戶管理員] 來檢視有關其權限的其他詳細資料。
+>[AZURE.NOTE] **Subscription admins** already exists as the default user. The subscription admins active directory group includes the service administrator(s) and co-administrator(s) for your Azure subscription. The Service admin is the owner of your Azure subscription and its resources, and will have the owner role inherited for the automation accounts too. This means that the access is **Inherited** for **service administrators and co-admins** of a subscription and it’s **Assigned** for all the other users. Click **Subscription admins** to view more details about their permissions.  
 
-### 加入新使用者並指派角色
+### <a name="add-a-new-user-and-assign-a-role"></a>Add a new user and assign a role
 
-1.	從 [使用者] 刀鋒視窗中，按一下 [加入] 以開啟 [加入存取] 刀鋒視窗，您可以在其中加入使用者、群組或應用程式，並將角色指派給他們。
+1.  From the Users blade, click **Add** to open the **Add access blade** where you can add a user, group, or application, and assign a role to them.  
 
-    ![新增使用者](media/automation-role-based-access-control/automation-02-add-user.png)
+    ![Add user](media/automation-role-based-access-control/automation-02-add-user.png)  
 
-2.	從可用角色的清單中選取角色。我們將選擇**讀取者**角色，但是您可以選擇自動化帳戶支援的任何可用的內建角色，或已定義的任何自訂角色。
+2.  Select a role from the list of available roles. We will choose the **Reader** role, but you can choose any of the available built-in roles that an Automation Account supports or any custom role you may have defined.  
 
-    ![選取角色](media/automation-role-based-access-control/automation-03-select-role.png)
+    ![Select role](media/automation-role-based-access-control/automation-03-select-role.png)  
 
-3.	按一下 [加入使用者] 以開啟 [加入使用者] 刀鋒視窗。如果您已新增任何使用者、群組或應用程式以管理您的訂用帳戶，則會列出這些使用者，您可以選取他們以新增存取權。如果沒有列出任何使用者，或未列出您有興趣加入的使用者，請按一下 [邀請] 開啟 [邀請來賓] 刀鋒視窗；您可以在此邀請具有有效 Microsoft 帳戶電子郵件地址 (例如 Outlook.com、OneDrive 或 Xbox Live ID) 的使用者。輸入了使用者的電子郵件地址之後，按一下 [選取] 以加入使用者，然後按一下 [確定]。
+3.  Click on **Add users** to open the **Add users** blade. If you have added any users, groups, or applications to manage your subscription then those users are listed and you can select them to add access. If there aren’t any users listed, or if the user you are interested in adding is not listed then click **invite** to open the **Invite a guest** blade, where you can invite a user with a valid Microsoft account email address such as Outlook.com, OneDrive, or Xbox Live Ids. Once you have entered the email address of the user, click **Select** to add the user, and then click **OK**. 
 
-    ![新增使用者](media/automation-role-based-access-control/automation-04-add-users.png)
+    ![Add users](media/automation-role-based-access-control/automation-04-add-users.png)  
  
-    現在您應該會看到使用者加入至 [使用者] 刀鋒視窗，並且獲指派**讀取者**角色。
+    Now you should see the user added to the **Users** blade with the **Reader** role assigned.  
 
-    ![列出使用者](media/automation-role-based-access-control/automation-05-list-users.png)
+    ![List users](media/automation-role-based-access-control/automation-05-list-users.png)  
 
-    您也可以從 [角色] 刀鋒視窗指派角色給使用者。
+    You can also assign a role to the user from the **Roles** blade. 
 
-1. 從 [使用者] 刀鋒視窗按一下 [角色] 以開啟 [角色] 刀鋒視窗。從這個刀鋒視窗中，您可以檢視角色的名稱、指派給該角色的使用者和群組數目。
+1. Click **Roles** from the Users blade to open the **Roles blade**. From this blade, you can view the name of the role, the number of users and groups assigned to that role.
 
-    ![從 [使用者] 刀鋒視窗指派角色](media/automation-role-based-access-control/automation-06-assign-role-from-users-blade.png)
+    ![Assign role from users blade](media/automation-role-based-access-control/automation-06-assign-role-from-users-blade.png)  
    
-    >[AZURE.NOTE] 只能在自動化帳戶層級，而非低於自動化帳戶的任何資源中設定以角色為基礎的存取控制。
+    >[AZURE.NOTE] Role-based access control can only be set at the Automation Account level and not at any resource below the Automation Account.
 
-    您可以將多個角色指派給使用者、群組或應用程式。例如，如果我們新增**自動化操作員**角色連同**讀取者角色**給使用者，那麼他們可以檢視所有的自動化資源，以及執行 Runbook 作業。您可以展開下拉式清單以檢視指派給使用者的角色清單。
+    You can assign more than one role to a user, group, or application. For example, if we add the **Automation Operator** role along with the **Reader role** to the user, then they can view all the Automation resources, as well as execute the runbook jobs. You can expand the dropdown to view a list of roles assigned to the user.  
 
-    ![檢視多個角色](media/automation-role-based-access-control/automation-07-view-multiple-roles.png)
+    ![View multiple roles](media/automation-role-based-access-control/automation-07-view-multiple-roles.png)  
  
-### 移除使用者
+### <a name="remove-a-user"></a>Remove a user
 
-您可以移除未管理自動化帳戶的使用者，或不再為組織工作之使用者的存取權限。以下是移除使用者的步驟：
+You can remove the access permission for a user who is not managing the Automation Account, or who no longer works for the organization. Following are the steps to remove a user: 
 
-1.	從 [使用者] 刀鋒視窗中，選取您想要移除的角色指派。
+1.  From the **Users** blade, select the role assignment that you wish to remove.
 
-2.	按一下指派詳細資料刀鋒視窗上的 [移除] 按鈕。
+2.  Click the **Remove** button in the assignment details blade.
 
-3.	按一下 [是] 以確認移除。
+3.  Click **Yes** to confirm removal. 
 
-    ![移除使用者](media/automation-role-based-access-control/automation-08-remove-users.png)
+    ![Remove users](media/automation-role-based-access-control/automation-08-remove-users.png)  
 
-## 角色指派的使用者
+## <a name="role-assigned-user"></a>Role Assigned User
 
-當獲派角色的使用者登入他們的自動化帳戶時，可以看到擁有者的帳戶列於**預設目錄**清單中。若要檢視他們被加入的自動化帳戶，他們必須將預設目錄切換到擁有者的預設目錄。
+When a user assigned to a role logs in to their Automation account, they can now see the owner’s account listed in the list of **Default Directories**. In order to view the Automation account that they have been added to, they must switch the default directory to the owner’s default directory.  
 
-![預設目錄](media/automation-role-based-access-control/automation-09-default-directory-in-role-assigned-user.png)
+![Default directory](media/automation-role-based-access-control/automation-09-default-directory-in-role-assigned-user.png)  
 
-### 自動化操作員角色的使用者經驗
+### <a name="user-experience-for-automation-operator-role"></a>User experience for Automation operator role
 
-當指派為自動化操作員角色的使用者檢視指派給他的自動化帳戶時，只能檢視在自動化帳戶中建立的 Runbook、Runbook 作業和排程的清單，但無法檢視其定義。他們可以啟動、停止、暫停、繼續或排程 Runbook 作業。使用者將無法存取其他自動化資源，例如組態、混合式背景工作群組或 DSC 節點。
+When a user, who is assigned to the Automation Operator role views the Automation account they are assigned to, they can only view the list of runbooks, runbook jobs and schedules created in the Automation account but can’t view their definition. They can start, stop, suspend, resume or schedule the runbook job. The user will not have access to other Automation resources such as configurations, hybrid worker groups or DSC nodes.  
 
-![沒有資源的存取權](media/automation-role-based-access-control/automation-10-no-access-to-resources.png)
+![No access to resourcres](media/automation-role-based-access-control/automation-10-no-access-to-resources.png)  
 
-當使用者按一下 Runbook 時，不會提供檢視來源或編輯 Runbook 的命令，因為自動化操作員角色不允許存取它們。
+When the user clicks on the runbook, the commands to view the source or edit the runbook are not provided as the Automation operator role doesn’t allow access to them.  
 
-![沒有編輯 Runbook 的存取權](media/automation-role-based-access-control/automation-11-no-access-to-edit-runbook.png)
+![No access to edit runbook](media/automation-role-based-access-control/automation-11-no-access-to-edit-runbook.png)  
 
-使用者將可檢視及建立排程，但無法存取任何其他資產類型。
+The user will have access to view and to create schedules but will not have access to any other asset type.  
 
-![沒有資產的存取權](media/automation-role-based-access-control/automation-12-no-access-to-assets.png)
+![No access to assets](media/automation-role-based-access-control/automation-12-no-access-to-assets.png)  
 
-這位使用者也沒有存取權可以檢視與 Runbook 相關聯的 Webhook
+This user also doesn’t have access to view the webhooks associated with a runbook
 
-![沒有 Webhook 的存取權](media/automation-role-based-access-control/automation-13-no-access-to-webhooks.png)
+![No access to webhooks](media/automation-role-based-access-control/automation-13-no-access-to-webhooks.png)  
 
-## 使用 Azure PowerShell 為您的自動化帳戶設定 RBAC
+## <a name="configure-rbac-for-your-automation-account-using-azure-powershell"></a>Configure RBAC for your Automation Account using Azure PowerShell
 
-使用下列 [Azure PowerShell Cmdlet](../active-directory/role-based-access-control-manage-access-powershell.md) 也可以將角色型存取設定到自動化帳戶。
+Role-based access can also be configured to an Automation Account using the following [Azure PowerShell cmdlets](../active-directory/role-based-access-control-manage-access-powershell.md).
 
-• [Get-AzureRmRoleDefinition](https://msdn.microsoft.com/library/mt603792.aspx) 會列出 Azure Active Directory 中可用的所有 RBAC 角色。您可以使用這個命令搭配 [名稱] 屬性，列出特定角色可以執行的所有動作。**範例：**![取得角色定義](media/automation-role-based-access-control/automation-14-get-azurerm-role-definition.png)
+• [Get-AzureRmRoleDefinition](https://msdn.microsoft.com/library/mt603792.aspx) lists all RBAC roles that are available in Azure Active Directory. You can use this command along with the **Name** property to list all the actions that can be performed by a specific role.  
+    **Example:**  
+    ![Get role definition](media/automation-role-based-access-control/automation-14-get-azurerm-role-definition.png)  
 
-• [Get-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt619413.aspx) 會列出在指定範圍的 Azure AD RBAC 角色指派。如果沒有任何參數，此命令會傳回在訂用帳戶下所做的所有角色指派。使用 **ExpandPrincipalGroups** 參數，列出指定使用者以及使用者為其成員之群組的存取權指派。**範例：**使用下列命令來列出自動化帳戶中的所有使用者以及其角色。
+• [Get-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt619413.aspx) lists Azure AD RBAC role assignments at the specified scope. Without any parameters, this command returns all the role assignments made under the subscription. Use the **ExpandPrincipalGroups** parameter to list access assignments for the specified user as well as the groups the user is a member of.  
+    **Example:** Use the following command to list all the users and their roles within an automation account.
 
     Get-AzureRMRoleAssignment -scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>” 
 
-![取得角色指派](media/automation-role-based-access-control/automation-15-get-azurerm-role-assignment.png)
+![Get role assignment](media/automation-role-based-access-control/automation-15-get-azurerm-role-assignment.png)
 
-• [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603580.aspx) 可將使用者、群組和應用程式的存取權指派給特定範圍。**範例：**使用下列命令來為自動化帳戶範圍內的使用者指派「自動化操作員」角色。
+• [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603580.aspx) to assign access to users, groups and applications to a particular scope.  
+    **Example:** Use the following command to assign the “Automation Operator” role for a user in the Automation Account scope.
 
     New-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish to grant access> -RoleDefinitionName "Automation operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”  
 
-![新角色指派](media/automation-role-based-access-control/automation-16-new-azurerm-role-assignment.png)
+![New role assignment](media/automation-role-based-access-control/automation-16-new-azurerm-role-assignment.png)
 
-• 使用 [Remove-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603781.aspx) 來移除特定範圍內指定的使用者、群組或應用程式的存取權。**範例：**使用下列命令，從自動化帳戶範圍內的「自動化操作員」角色移除使用者。
+• Use [Remove-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603781.aspx) to remove access of a specified user, group or application from a particular scope.  
+    **Example:** Use the following command to remove the user from the “Automation Operator” role in the Automation Account scope.
 
     Remove-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish to remove> -RoleDefinitionName "Automation Operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”
 
-在上述範例中，請以您的帳戶詳細資料取代[登入識別碼]、[訂用帳戶識別碼]、[資源群組名稱] 和 [自動化帳戶名稱]。當系統提示您確認時選擇 [是]，然後再繼續移除使用者角色指派。
+In the above examples, replace **sign in Id**, **subscription Id**, **resource group name** and **Automation account name** with your account details. Choose **yes** when prompted to confirm before continuing to remove user role assignment.   
 
 
-## 後續步驟
--  如需針對 Azure 自動化設定 RBAC 的不同方式詳細資訊，請參閱[使用 Azure PowerShell 管理 RBAC](../active-directory/role-based-access-control-manage-access-powershell.md)。
-- 如需以不同方式啟動 Runbook 的詳細資訊，請參閱[啟動 Runbook](automation-starting-a-runbook.md)
-- 如需不同 Runbook 類型的詳細資訊，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
+## <a name="next-steps"></a>Next Steps
+-  For information on different ways to configure RBAC for Azure Automation, refer to [manage RBAC with Azure PowerShell](../active-directory/role-based-access-control-manage-access-powershell.md).
+- For details on different ways to start a runbook, see [Starting a runbook](automation-starting-a-runbook.md)
+- For information about different runbook types, refer to [Azure Automation runbook types](automation-runbook-types.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

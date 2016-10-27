@@ -1,10 +1,10 @@
 <properties
-    pageTitle="在您的 Logic Apps 中新增 Azure SQL Database 連接器 | Microsoft Azure"
-    description="搭配 REST API 參數來使用 Azure SQL Database 連接器的概觀"
+    pageTitle="Add the Azure SQL Database connector in your Logic Apps | Microsoft Azure"
+    description="Overview of Azure SQL Database connector with REST API parameters"
     services=""
     documentationCenter="" 
     authors="MandiOhlinger"
-    manager="erikre"
+    manager="anneta"
     editor=""
     tags="connectors"/>
 
@@ -14,220 +14,225 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="07/25/2016"
+   ms.date="10/18/2016"
    ms.author="mandia"/>
 
 
-# 開始使用 Azure SQL Database 連接器
-使用 Azure SQL Database 連接器，為組織建立工作流程來管理資料表中的資料。
 
-利用 SQL Database，您可以：
+# <a name="get-started-with-the-azure-sql-database-connector"></a>Get started with the Azure SQL Database connector
+Using the Azure SQL Database connector, create workflows for your organization that manage data in your tables. 
 
-- 藉由在客戶資料庫中新增新客戶或在訂單資料庫中更新訂單，以建置工作流程。
-- 使用動作來取得一列資料、插入新的資料列，甚至加以刪除。例如，當有記錄在 Dynamics CRM Online 中建立時 (觸發程序)，則在 Azure SQL Database 插入資料列 (動作)。
+With SQL Database, you:
 
-本主題說明如何在邏輯應用程式中使用 SQL Database 連接器，並且也列出動作。
+- Build your workflow by adding a new customer to a customers database, or updating an order in an orders database.
+- Use actions to get a row of data, insert a new row, and even delete. For example,  when a record is created in Dynamics CRM Online (a trigger), then insert a row in an Azure SQL Database (an action). 
 
->[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
+This topic shows you how to use the SQL Database connector in a logic app, and also lists the actions.
 
-若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+>[AZURE.NOTE] This version of the article applies to Logic Apps general availability (GA). 
 
-## 連線到 Azure SQL Database
+To learn more about Logic Apps, see [What are logic apps](../app-service-logic/app-service-logic-what-are-logic-apps.md) and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 SQL Database，您必須先建立 SQL Database「連線」。若要建立連線，您需要輸入平常用來存取所連線服務的認證。因此，在 SQL Database 中，請輸入 SQL Database 認證來建立連線。
+## <a name="connect-to-azure-sql-database"></a>Connect to Azure SQL Database
 
-#### 建立連線
+Before your logic app can access any service, you first create a *connection* to the service. A connection provides connectivity between a logic app and another service. For example, to connect to SQL Database, you first create a SQL Database *connection*. To create a connection, you enter the credentials you normally use to access the service you are connecting to. So, in SQL Database, enter your SQL Database credentials to create the connection. 
 
->[AZURE.INCLUDE [建立至 SQL Azure 的連線](../../includes/connectors-create-api-sqlazure.md)]
+#### <a name="create-the-connection"></a>Create the connection
 
-## 使用觸發程序
+>[AZURE.INCLUDE [Create the connection to SQL Azure](../../includes/connectors-create-api-sqlazure.md)]
 
-此連接器並沒有任何觸發程序。請使用其他觸發程序來啟動邏輯應用程式，例如循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)可提供範例。
+## <a name="use-a-trigger"></a>Use a trigger
 
-## 使用動作
-	
-動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+This connector does not have any triggers. Use other triggers to start the logic app, such as a Recurrence trigger, an HTTP Webhook trigger, triggers available with other connectors, and more. [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md) provides an example.
 
-1. 選取加號。您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
+## <a name="use-an-action"></a>Use an action
+    
+An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
 
-	![](./media/connectors-create-api-sqlazure/add-action.png)
+1. Select the plus sign. You see several choices: **Add an action**, **Add a condition**, or one of the **More** options.
 
-2. 選擇 [新增動作]。
+    ![](./media/connectors-create-api-sqlazure/add-action.png)
 
-3. 在文字方塊中，輸入「sql」以取得所有可用動作的清單。
+2. Choose **Add an action**.
 
-	![](./media/connectors-create-api-sqlazure/sql-1.png)
+3. In the text box, type “sql” to get a list of all the available actions.
 
-4. 在我們的範例中，選擇 [SQL Server - 取得資料列]。如果連線已存在，則選取下拉式清單中的 [資料表名稱]，然後輸入想要傳回的 [資料列識別碼]。
+    ![](./media/connectors-create-api-sqlazure/sql-1.png) 
 
-	![](./media/connectors-create-api-sqlazure/sample-table.png)
+4. In our example, choose **SQL Server - Get row**. If a connection already exists, then select the **Table name** from the drop-down list, and enter the **Row ID** you want to return.
 
-	如果系統提示您輸入連線資訊，請輸入詳細資料以建立連線。本主題的[建立連線](connectors-create-api-sqlazure.md#create-the-connection)一節會說明這些屬性。
+    ![](./media/connectors-create-api-sqlazure/sample-table.png)
 
-	> [AZURE.NOTE] 在此範例中，我們會從資料表傳回資料列。若要查看此資料列中的資料，請新增另一個動作，以使用資料表中的欄位建立檔案。例如，新增 OneDrive 動作，使用 [FirstName] 和 [LastName] 欄位在雲端儲存體帳戶中建立新檔案。
+    If you are prompted for the connection information, then enter the details to create the connection. [Create the connection](connectors-create-api-sqlazure.md#create-the-connection) in this topic describes these properties. 
 
-5. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
+    > [AZURE.NOTE] In this example, we return a row from a table. To see the data in this row, add another action that creates a file using the fields from the table. For example, add a OneDrive action that uses the FirstName and LastName fields to create a new file in the cloud storage account. 
+
+5. **Save** your changes (top left corner of the toolbar). Your logic app is saved and may be automatically enabled.
 
 
-## 技術詳細資料
+## <a name="technical-details"></a>Technical Details
 
-## SQL Database 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。SQL Database 連接器包含下列動作。
+## <a name="sql-database-actions"></a>SQL Database actions
+An action is an operation carried out by the workflow defined in a logic app. The SQL Database connector includes the following actions. 
 
-|動作|說明|
+|Action|Description|
 |--- | ---|
-|[ExecuteProcedure](connectors-create-api-sqlazure.md#execute-stored-procedure)|在 SQL 中執行預存程序|
-|[GetRow](connectors-create-api-sqlazure.md#get-row)|擷取 SQL 資料表中的單一資料列|
-|[GetRows](connectors-create-api-sqlazure.md#get-rows)|從 SQL 資料表擷取多個資料列|
-|[InsertRow](connectors-create-api-sqlazure.md#insert-row)|在 SQL 資料表中插入新的資料列|
-|[DeleteRow](connectors-create-api-sqlazure.md#delete-row)|刪除 SQL 資料表中的資料列|
-|[GetTables](connectors-create-api-sqlazure.md#get-tables)|擷取 SQL 資料庫中的資料表|
-|[UpdateRow](connectors-create-api-sqlazure.md#update-row)|更新 SQL 資料表中現有的資料列|
+|[ExecuteProcedure](connectors-create-api-sqlazure.md#execute-stored-procedure)|Executes a stored procedure in SQL|
+|[GetRow](connectors-create-api-sqlazure.md#get-row)|Retrieves a single row from a SQL table|
+|[GetRows](connectors-create-api-sqlazure.md#get-rows)|Retrieves rows from a SQL table|
+|[InsertRow](connectors-create-api-sqlazure.md#insert-row)|Inserts a new row into a SQL table|
+|[DeleteRow](connectors-create-api-sqlazure.md#delete-row)|Deletes a row from a SQL table|
+|[GetTables](connectors-create-api-sqlazure.md#get-tables)|Retrieves tables from a SQL database|
+|[UpdateRow](connectors-create-api-sqlazure.md#update-row)|Updates an existing row in a SQL table|
 
-### 動作詳細資料
+### <a name="action-details"></a>Action Details
 
-在本節中，請查看每個動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
+In this section, see the specific details about each action, including any required or optional input properties, and any corresponding output associated with the connector.
 
 
-#### 執行預存程序
-在 SQL 中執行預存程序。
+#### <a name="execute-stored-procedure"></a>Execute stored procedure
+Executes a stored procedure in SQL.  
 
-| 屬性名稱| 顯示名稱 |說明|
+| Property Name| Display Name |Description|
 | ---|---|---|
-|程序 * | 程序名稱 | 您要執行的預存程序名稱 |
-|參數 * | 輸入參數 | 參數是動態的，而且以您選擇的預存程序為基礎。<br/><br/> 例如，如果要使用 Adventure Works 範例資料庫，請選擇「ufnGetCustomerInformation」預存程序。系統會顯示**客戶識別碼**輸入參數。請輸入「6」或其他客戶識別碼的其中一個。 |
+|procedure * | Procedure name | The name of the stored procedure you want to execute |
+|parameters * | Input parameters | The parameters are dynamic and based on the stored procedure you choose. <br/><br/> For example, if you're using the Adventure Works sample database, choose the *ufnGetCustomerInformation* stored procedure. The **Customer ID** input parameter is displayed. Enter "6" or one of the other customer IDs. |
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
-ProcedureResult︰帶有預存程序執行的結果
+##### <a name="output-details"></a>Output Details
+ProcedureResult: Carries result of stored procedure execution
 
-| 屬性名稱 | 資料類型 | 說明 |
+| Property Name | Data Type | Description |
 |---|---|---|
-|OutputParameters|物件|輸出參數值 |
-|ReturnCode|integer|傳回程序的代碼 |
-|ResultSets|物件| 結果集|
+|OutputParameters|object|Output parameter values |
+|ReturnCode|integer|Return code of a procedure |
+|ResultSets|object| Result sets|
 
 
-#### 取得單一資料列 
-從 SQL 資料表擷取單一資料列。
+#### <a name="get-row"></a>Get row 
+Retrieves a single row from a SQL table.  
 
-| 屬性名稱| 顯示名稱 |說明|
+| Property Name| Display Name |Description|
 | ---|---|---|
-|資料表 * | 資料表名稱 |SQL 資料表名稱|
-|識別碼 * | 資料列識別碼 |要擷取之資料列的唯一識別碼|
+|table * | Table name |Name of SQL table|
+|id * | Row id |Unique identifier of the row to retrieve|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
-項目
+##### <a name="output-details"></a>Output Details
+Item
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|ItemInternalId|字串|
+|ItemInternalId|string|
 
 
-#### 取得多個資料列 
-從 SQL 資料表擷取多個資料列。
+#### <a name="get-rows"></a>Get rows 
+Retrieves rows from a SQL table.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|資料表 *|資料表名稱|SQL 資料表名稱|
-|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
-|$top|最大取得計數|要擷取的項目數目上限 (預設值 = 256)|
-|$filter|篩選查詢|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+|table*|Table name|Name of SQL table|
+|$skip|Skip Count|Number of entries to skip (default = 0)|
+|$top|Maximum Get Count|Maximum number of entries to retrieve (default = 256)|
+|$filter|Filter Query|An ODATA filter query to restrict the number of entries|
+|$orderby|Order By|An ODATA orderBy query for specifying the order of entries|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
+##### <a name="output-details"></a>Output Details
 ItemsList
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
 |value|array|
 
 
-#### 插入資料列 
-在 SQL 資料表中插入新的資料列。
+#### <a name="insert-row"></a>Insert row 
+Inserts a new row into a SQL table.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|資料表 *|資料表名稱|SQL 資料表名稱|
-|項目 *|資料列|要在指定的 SQL 資料表中插入的資料列|
+|table*|Table name|Name of SQL table|
+|item*|Row|Row to insert into the specified table in SQL|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
-項目
+##### <a name="output-details"></a>Output Details
+Item
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|ItemInternalId|字串|
+|ItemInternalId|string|
 
 
-#### 刪除資料列 
-刪除 SQL 資料表中的資料列。
+#### <a name="delete-row"></a>Delete row 
+Deletes a row from a SQL table.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|資料表 *|資料表名稱|SQL 資料表名稱|
-|識別碼*|資料列識別碼|要刪除的資料列的唯一識別碼|
+|table*|Table name|Name of SQL table|
+|id*|Row id|Unique identifier of the row to delete|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
-無。
+##### <a name="output-details"></a>Output Details
+None.
 
-#### 取得資料表 
-擷取 SQL 資料庫中的資料表。
+#### <a name="get-tables"></a>Get tables 
+Retrieves tables from a SQL database.  
 
-這個呼叫沒有參數。
+There are no parameters for this call. 
 
-##### 輸出詳細資料 
+##### <a name="output-details"></a>Output Details 
 TablesList
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
 |value|array|
 
-#### 更新資料列 
-更新 SQL 資料表中現有的資料列。
+#### <a name="update-row"></a>Update row 
+Updates an existing row in a SQL table.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|資料表 *|資料表名稱|SQL 資料表名稱|
-|識別碼*|資料列識別碼|要更新的資料列的唯一識別碼|
-|項目 *|資料列|值已更新的資料列|
+|table*|Table name|Name of SQL table|
+|id*|Row id|Unique identifier of the row to update|
+|item*|Row|Row with updated values|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料  
-項目
+##### <a name="output-details"></a>Output Details  
+Item
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|ItemInternalId|字串|
+|ItemInternalId|string|
 
 
-### HTTP 回應
+### <a name="http-responses"></a>HTTP Responses
 
-呼叫不同動作時，您可能會收到特定回應。下表概述回應及其說明︰
+When making calls to the different actions, you may get certain responses. The following table outlines the responses and their descriptions:  
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|202|Accepted|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occurred|
+|default|Operation Failed.|
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md). Explore the other available connectors in Logic Apps at our [APIs list](apis-list.md).
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

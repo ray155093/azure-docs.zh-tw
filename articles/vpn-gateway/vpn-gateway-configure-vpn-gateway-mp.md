@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="設定 Azure 傳統入口網站中的 VPN 閘道 | Microsoft Azure"
-   description="本文將逐步引導您設定虛擬網路 VPN 閘道，以及變更閘道 VPN 路由類型。"
+   pageTitle="Configure a VPN Gateway in the Azure Classic Portal | Microsoft Azure"
+   description="This article walks you through configuring your virtual network VPN gateway and changing a gateway VPN routing type."
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -17,155 +17,160 @@
    ms.date="08/11/2016"
    ms.author="cherylmc" />
 
-# 設定傳統部署模型的 VPN 閘道
+
+# <a name="configure-a-vpn-gateway-for-the-classic-deployment-model"></a>Configure a VPN gateway for the classic deployment model
 
 
-如果您想要在 Azure 和內部部署位置之間建立安全的跨單位連線，您需要設定 VPN 閘道連線。在傳統部署模型中，閘道可以是兩種 VPN 路由類型的其中一種：靜態或動態。您所選擇的類型取決於您的網路設計規劃，以及您要使用的內部部署 VPN 裝置。
+If you want to create a secure cross-premises connection between Azure and your on-premises location, you need to configure a VPN gateway connection. In the classic deployment model, a gateway can be one of two VPN routing types: static, or dynamic. The type you choose depends on both your network design plan, and the on-premises VPN device you want to use. 
 
-例如，某些連線選項，例如點對站台連接，則需要動態路由閘道。如果您想要將閘道設定為同時支援點對站 (P2S) 連線和站對站 (S2S) 連線，則您必須設定動態路由閘道，即使站對站可以使用其中一種閘道 VPN 路由類型進行設定。
+For example, some connectivity options, such as a point-to-site connection, require a dynamic routing gateway. If you want to configure your gateway to support both point-to-site (P2S) connections and a site-to-site (S2S) connection, you have to configure a dynamic routing gateway even though site-to-site can be configured with either gateway VPN routing type. 
 
-此外，您必須確定要用於連線的裝置支援所要建立的 VPN 路由類型。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。
-
-
-**本文內容**
-
-本文章是針對使用[傳統入口網站](https://manage.windowsazure.com) (而非 Azure 入口網站) 的傳統部署模型所撰寫。
-
-**關於 Azure 部署模型**
-
-[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
-
-## 組態概觀
-
-下列步驟將逐步引導您在 Azure 傳統入口網站中設定 VPN 閘道。這些步驟適用於使用傳統部署模型所建立的虛擬網路閘道。目前，並非所有的閘道組態設定都可在 Azure 入口網站中使用。當可使用時，我們將會建立一組適用於 Azure 入口網站的新指示。
+Additionally, must make sure that the device you want to use for your connection supports the VPN routing type that you want to create. See [About VPN Devices](vpn-gateway-about-vpn-devices.md).
 
 
-1. [為您的 VNet 建立 VPN 閘道](#create-a-vpn-gateway)
+**About this article** 
 
-1. [收集 VPN 裝置組態的資訊](#gather-information-for-your-vpn-device-configuration)
+This article was written for the classic deployment model using the [classic portal](https://manage.windowsazure.com) (not the Azure portal). 
 
-1. [設定 VPN 裝置](#configure-your-vpn-device)
+**About Azure deployment models**
 
-1. [驗證您的區域網路範圍和 VPN 閘道 IP 位址](#verify-your-local-network-ranges-and-vpn-gateway-ip-address)
+[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)] 
 
-### 開始之前
+## <a name="configuration-overview"></a>Configuration overview
 
-設定您的閘道之前，您必須先建立虛擬網路。如需針對跨單位連線建立虛擬網路的步驟，請參閱[設定虛擬網路與站對站 VPN 連線](vpn-gateway-site-to-site-create.md)，或[設定虛擬網路與點對站 VPN 連線](vpn-gateway-point-to-site-create.md)。然後，使用下列步驟來設定 VPN 閘道，並收集您設定 VPN 裝置所需的資訊。
-
-如果您已擁有 VPN 閘道，且想要變更 VPN 路由類型，請參閱[如何變更閘道的 VPN 路由類型](#how-to-change-the-vpn-routing-type-for-your-gateway)。
-
-## 建立 VPN 閘道
-
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)的 [網路] 頁面上，確認您虛擬網路的狀態欄為 [已建立]。
-
-1. 在 [名稱] 欄中，按一下虛擬網路的名稱。
-
-1. 在 [**儀表板**] 頁面上，請注意此 VNet 尚未設定閘道。當您進行設定閘道的步驟時將會看到此狀態。
-
-![閘道未建立](./media/vpn-gateway-configure-vpn-gateway-mp/IC717025.png)
+The following steps walk you through configuring your VPN gateway in the Azure classic portal. These steps apply to gateways for virtual networks that were created using the classic deployment model. Currently, not all of the configuration settings for gateways are available in the Azure portal. When they are, we will create a new set of instructions that apply to the Azure portal.
 
 
-接下來，按一下頁面底部的 [**建立閘道**]。您可以選取 [*靜態路由*] 或 [*動態路由*]。您選取的 VPN 路由類型取決於一些因素。例如，您 VPN 裝置所支援的類型，以及您是否需要支援點對站連線。請參閱[關於虛擬網路連線的 VPN 裝置](vpn-gateway-about-vpn-devices.md)以驗證您所需要的路由類型。一旦建立閘道之後，您必須刪除並重新建立閘道才能變更閘道 VPN 路由類型。當系統提示您確認是否要建立閘道時，請按一下 [**是**]。
+1. [Create a VPN gateway for your VNet](#create-a-vpn-gateway)
 
-![閘道 VPN 路由類型](./media/vpn-gateway-configure-vpn-gateway-mp/IC717026.png)
+1. [Gather information for your VPN device configuration](#gather-information-for-your-vpn-device-configuration)
 
-閘道正在建立時，請注意頁面上的閘道圖形會變更為黃色，並顯示 [*正在建立閘道*]。閘道建立作業最多可能需要花費 45 分鐘。您必須先等候閘道建立完成，才能繼續進行其他組態設定。
+1. [Configure your VPN device](#configure-your-vpn-device)
 
-![閘道正在建立](./media/vpn-gateway-configure-vpn-gateway-mp/IC717027.png)
+1. [Verify your local network ranges and VPN gateway IP address](#verify-your-local-network-ranges-and-vpn-gateway-ip-address)
 
-當閘道變更為 [*正在連接*] 時，您可以收集 VPN 裝置所需的資訊。
+### <a name="before-you-begin"></a>Before you begin
 
-![閘道正在連接](./media/vpn-gateway-configure-vpn-gateway-mp/IC717028.png)
+Before you configure your gateway, you first need to create your virtual network. For steps to create a virtual network for cross-premises connectivity, see [Configure a virtual network with a site-to-site VPN connection](vpn-gateway-site-to-site-create.md), or [Configure a virtual network with a point-to-site VPN connection](vpn-gateway-point-to-site-create.md). Then, use the following steps to configure the VPN gateway and gather the information you need to configure your VPN device. 
 
-## 收集 VPN 裝置組態的資訊
+If you already have a VPN gateway and you want to change the VPN routing type, see [How to change the VPN routing type for your gateway](#how-to-change-the-vpn-routing-type-for-your-gateway).
 
-建立閘道之後，接著收集 VPN 裝置組態的資訊。這項資訊位於虛擬網路的 [**儀表板**] 頁面：
+## <a name="create-a-vpn-gateway"></a>Create a VPN gateway
 
-1. **閘道 IP 位址 -** IP 位址可在 [**儀表板**] 頁面中找到。您必須在閘道建立完成之後才能看見 IP。
+1. In the [Azure classic portal](https://manage.windowsazure.com), on the **Networks** page, verify that the status column for your virtual network is **Created**.
 
-1. **共用金鑰 -** 按一下畫面底部的 [**管理金鑰**]。按一下金鑰旁邊的圖示以將它複製到剪貼簿，然後貼上並儲存金鑰。此按鈕僅在有單一 S2S VPN 通道時才能正常運作。如果您有多個 S2S VPN 通道，請使用「取得虛擬網路閘道共用金鑰」API 或 PowerShell Cmdlet。
+1. In the **Name** column, click the name of your virtual network.
 
-![管理金鑰](./media/vpn-gateway-configure-vpn-gateway-mp/IC717029.png)
+1. On the **Dashboard** page, notice that this VNet doesn't have a gateway configured yet. You'll see this status as you go through the steps to configure your gateway.
+
+![Gateway Not Created](./media/vpn-gateway-configure-vpn-gateway-mp/IC717025.png)
 
 
-## 設定 VPN 裝置
+Next, at the bottom of the page, click **Create Gateway**. You can select either *Static Routing* or *Dynamic Routing*. The VPN routing type you select depends on few factors. For example, what your VPN device supports and whether you need to support point-to-site connections. Check [About VPN Devices for Virtual Network Connectivity](vpn-gateway-about-vpn-devices.md) to verify the VPN routing type that you need. Once the gateway has been created, you can't change between gateway VPN routing types without deleting and re-creating the gateway. When the system prompts you to confirm that you want the gateway created, click **Yes**.
 
-完成上一個步驟之後，您或您的網路管理員將需要設定 VPN 裝置以便建立連線。請參閱＜[關於虛擬網路連線的 VPN 裝置](vpn-gateway-about-vpn-devices.md)＞以取得 VPN 裝置的詳細資訊。
+![Gateway VPN routing type](./media/vpn-gateway-configure-vpn-gateway-mp/IC717026.png)
 
-設定 VPN 裝置之後，您可以在 VNet 的 [儀表板] 頁面上檢視更新的連接資訊。
+When your gateway is creating, notice the gateway graphic on the page changes to yellow and says *Creating Gateway*. It may take up to 45 minutes for the gateway to create. Wait until the gateway is complete before you can move forward with other configuration settings.
 
-您也可以執行下列任一命令以測試連接：
+![Gateway Creating](./media/vpn-gateway-configure-vpn-gateway-mp/IC717027.png)
 
-| | Cisco ASA | Cisco ISR/ASR | Juniper SSG/ISG | Juniper SRX/J |
+When the gateway changes to *Connecting*, you can gather the information you'll need for your VPN device.
+
+![Gateway Connecting](./media/vpn-gateway-configure-vpn-gateway-mp/IC717028.png)
+
+## <a name="gather-information-for-your-vpn-device-configuration"></a>Gather information for your VPN device configuration
+
+After the gateway has been created, gather information for your VPN device configuration. This information is located on the **Dashboard** page for your virtual network:
+
+1. **Gateway IP address -** The IP address can be found on the **Dashboard** page. You won't be able to see it until after your gateway has finished creating.
+
+1. **Shared key -** Click **Manage Key** at the bottom of the screen. Click the icon next to the key to copy it to your clipboard, and then paste and save the key. This button only works when there is a single S2S VPN tunnel. If you have multiple S2S VPN tunnels, please use the *Get Virtual Network Gateway Shared Key* API or PowerShell cmdlet.
+
+![Manage Key](./media/vpn-gateway-configure-vpn-gateway-mp/IC717029.png)
+
+
+## <a name="configure-your-vpn-device"></a>Configure your VPN device
+
+After completing the previous steps, you or your network administrator will need to configure the VPN device in order to create the connection. See [About VPN Devices for Virtual Network Connectivity](vpn-gateway-about-vpn-devices.md) for more information about VPN devices.
+
+After the VPN device has been configured, you can view your updated connection information on the Dashboard page for your VNet.
+
+You can also run one of the following commands to test your connection:
+
+|                      | Cisco ASA             | Cisco ISR/ASR         | Juniper SSG/ISG | Juniper SRX/J                            |
 |----------------------|-----------------------|-----------------------|-----------------|------------------------------------------|
-| **檢查主要模式 SA** | show crypto isakmp sa | show crypto isakmp sa | get ike cookie | show security ike security-association |
-| **檢查快速模式 SA** | show crypto ipsec sa | show crypto ipsec sa | get sa | show security ipsec security-association |
+| **Check main mode SAs**  | show crypto isakmp sa | show crypto isakmp sa | get ike cookie  | show security ike security-association   |
+| **Check quick mode SAs** | show crypto ipsec sa  | show crypto ipsec sa  | get sa          | show security ipsec security-association |
 
 
-## 驗證您的區域網路範圍和 VPN 閘道 IP 位址
+## <a name="verify-your-local-network-ranges-and-vpn-gateway-ip-address"></a>Verify your local network ranges and VPN gateway IP address
 
-### 驗證您的 VPN 閘道 IP 位址
+### <a name="verify-your-vpn-gateway-ip-address"></a>Verify your VPN gateway IP address
 
-為了讓閘道能正確連接，您 VPN 裝置的 IP 位址必須針對您為跨單位組態所指定的區域網路進行正確設定。一般而言，這會在設定站台對站台設定程序期間進行設定。不過，如果您先前已搭配不同的裝置使用此區域網路，或此區域網路的 IP 位址已變更，請編輯設定以便指定正確的閘道 IP 位址。
+For gateway to connect properly, the IP address for your VPN device must be correctly configured for the Local Network that you specified for your cross-premises configuration. Typically, this is configured during the site-to-site configuration process. However, if you previously used this local network with a different device, or the IP address has changed for this local network, edit the settings to specify the correct Gateway IP address.
 
-1. 若要驗證您的閘道 IP 位址，請在左側的入口網站窗格上按一下 [**網路**]，然後再選取頁面頂端的 [**區域網路**]。您會看到針對每個本機網路所建立的 VPN 閘道位址。若要編輯的 IP 位址，請選取 VNet，然後按一下頁面底部的 [**編輯**]。
+1. To verify your gateway IP address, click **Networks** on the left portal pane and then select **Local Networks** at the top of the page. You'll see the VPN Gateway Address for each local network that you have created. To edit the IP address, select the VNet and click **Edit** at the bottom of the page.
 
-1. 在 [**指定本機網路詳細資料**] 頁面上，編輯 IP 位址，然後按一下頁面底部的 [下一步] 箭頭。
+1. On the **Specify your local network details** page, edit the IP address, and then click the next arrow at the bottom of the page.
 
-1. 在 [**指定位址空間**] 頁面上，按一下右下角的核取記號以儲存設定。
+1. On the **Specify the address space** page, click the checkmark on the lower right to save your settings.
 
-### 驗證您區域網路的位址範圍
+### <a name="verify-the-address-ranges-for-your-local-networks"></a>Verify the address ranges for your local networks
 
-若要使正確的流量能夠流經閘道並通往您的內部部署位置，您需要驗證是否已指定每個 IP 位址範圍。每個範圍都必須列在您的 Azure「區域網路」組態中。根據您內部部署位置的網路組態，這可能是一項大工程。針對包含在列出範圍內 IP 位址所繫結的流量，將會透過虛擬網路 VPN 閘道來傳送。您列出的範圍不必是私人範圍，不過您會想要驗證內部部署組態是否能夠接收輸入流量。
+For the correct traffic to flow through the gateway to your on-premises location, you need to verify that each IP address range is specified. Each range must be listed in your Azure **Local Networks** configuration. Depending on the network configuration of your on-premises location, this can be a somewhat large task. Traffic that is bound for an IP address that is contained within the listed ranges will be sent through the virtual network VPN gateway. The ranges that you list don't have to be private ranges, although you will want to verify that your on-premises configuration can receive the inbound traffic.
 
-若要新增或編輯區域網路的範圍，請使用下列步驟。
+To add or edit the ranges for a Local Network, use the following steps.
 
-1. 若要編輯區域網路的 IP 位址範圍，請在左側的入口網站窗格上按一下 [**網路**]，然後再選取頁面頂端的 [**區域網路**]。在入口網站中，最簡單方法是檢視您在 [**編輯**] 頁面上所列出的範圍。若要查看範圍，請選取 VNet，然後按一下頁面底部的 [**編輯**]。
+1. To edit the IP address ranges for a local network, click **Networks** on the left portal pane and then select **Local Networks** at the top of the page. In the portal, the easiest way to view the ranges that you've listed is on the **Edit** page. To see your ranges, select the VNet and click **Edit** at the bottom of the page.
 
-1. 在 [**指定本機網路詳細資料**] 頁面上，請勿進行任何變更。按一下頁面底部的 [下一步] 箭頭。
+1. On the **Specify your local network details** page, don't make any changes. Click the next arrow at the bottom of the page.
 
-1. 在 [**指定位址空間**] 頁面上，您可以變更網路位址空間。然後按一下核取記號以儲存您的組態。
+1. On the **Specify the address space** page, make your network address space changes. Then click the checkmark to save your configuration.
 
-## 如何檢視閘道流量
+## <a name="how-to-view-gateway-traffic"></a>How to view gateway traffic
 
-您可以從虛擬網路 [**儀表板**] 頁面檢視您的閘道和閘道流量。
+You can view your gateway and gateway traffic from your Virtual Network **Dashboard** page.
 
-您可以在 [**儀表板**] 頁面檢視下列項目：
+On the **Dashboard** page you can view the following:
 
-- 流經閘道，包括資料輸入和資料輸出的資料量。
+- The amount of data that is flowing through your gateway, both data in and data out.
 
-- 針對虛擬網路所指定的 DNS 伺服器名稱。
+- The names of the DNS servers that are specified for your virtual network.
 
-- 您的閘道與 VPN 裝置之間的連接。
+- The connection between your gateway and your VPN device.
 
-- 用來設定閘道與 VPN 裝置連接的共用金鑰。
-
-
-## 如何變更閘道的 VPN 路由類型
-
-因為某些連線組態僅適用於特定閘道路由類型，您可能會發現需要變更現有 VPN 閘道的 VPN 路由閘道類型。例如，您可能要將點對站台連接新增至具有靜態閘道的現有站台對站台連線。點對站連線需要動態閘道。這表示若要設定 P2S 連接，您必須將您的閘道 VPN 路由類型從靜態變更為動態。
-
-如果您需要變更閘道 VPN 路由類型，您必須刪除現有的閘道，然後使用新的路由類型建立新的閘道。變更閘道路由類型不需要刪除整個虛擬網路。
-
-在變更閘道 VPN 路由類型之前，請務必驗證 VPN 裝置可支援所要使用的路由類型。若要下載新的路由組態範例，以及檢查 VPN 裝置需求，請參閱＜[關於虛擬網路連線的 VPN 裝置](vpn-gateway-about-vpn-devices.md)＞。
-
->[AZURE.IMPORTANT] 當您刪除虛擬網路 VPN 閘道時，將會釋放指派給該閘道的 VIP。當您重新建立閘道時，系統會將新的 VIP 指派給它。
-
-1. **刪除現有的 VPN 閘道。**
-
-	在虛擬網路的 [**儀表板**] 頁面上，瀏覽至頁面底部，然後按一下 [**刪除閘道**]。等候閘道已完成刪除的通知。一旦您在畫面上收到閘道已完成刪除的通知，就可以建立新的閘道。
-
-1. **建立新的 VPN 閘道。**
-
-	使用位於頁面頂端的程序來建立新的閘道：[建立 VPN 閘道](#create-a-vpn-gateway)。
+- The shared key that is used to configure your gateway connection to your VPN device.
 
 
-## 後續步驟
+## <a name="how-to-change-the-vpn-routing-type-for-your-gateway"></a>How to change the VPN routing type for your gateway
 
-您可以將虛擬機器加入您的虛擬網路。請參閱[如何建立自訂虛擬機器](../virtual-machines/virtual-machines-windows-classic-createportal.md)。
+Because some connectivity configurations are only available for certain gateway routing types, you may find that you need to change the gateway VPN routing type of an existing VPN gateway. For example, you may want to add point-to-site connectivity to an already existing site-to-site connection that has a static gateway. Point-to-site connections require a dynamic gateway. This means to configure a P2S connection, you have to change your gateway VPN routing type from static to dynamic.
 
-如果您想要設定點對站 VPN 連線，請參閱[設定點對站 VPN 連線](vpn-gateway-point-to-site-create.md)。
+If you need to change a gateway VPN routing type, you'll delete the existing gateway, and then create a new gateway with the new routing type. You don't need to delete the entire virtual network to change the gateway routing type.
+
+Before changing your gateway VPN routing type, be sure to verify that your VPN device supports the routing type that you want to use. To download new routing configuration samples and check VPN device requirements, see [About VPN Devices for Virtual Network Connectivity](vpn-gateway-about-vpn-devices.md).
+
+>[AZURE.IMPORTANT] When you delete a virtual network VPN gateway, the VIP assigned to the gateway is released. When you recreate the gateway, a new VIP is assigned to it.
+
+1. **Delete the existing VPN gateway.**
+
+    On the **Dashboard** page for your virtual network, navigate to the bottom of the page and click **Delete Gateway**. Wait for the notification that the gateway has been deleted. Once you receive the notification on the screen that your gateway has been deleted, you can create a new gateway.
+
+1. **Create a new VPN gateway.**
+
+    Use the procedure at the top of the page to create a new gateway: [Create a VPN gateway](#create-a-vpn-gateway).
+
+
+## <a name="next-steps"></a>Next steps
+
+You can add virtual machines to your virtual network. See [How to create a custom virtual machine](../virtual-machines/virtual-machines-windows-classic-createportal.md).
+
+If you want to configure a point-to-site VPN connection, see [Configure a point-to-site VPN connection](vpn-gateway-point-to-site-create.md).
 
  
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

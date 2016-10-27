@@ -1,11 +1,14 @@
-**Resource**|**預設限制**|**上限**
+**Resource**|**Default Limit**|**Maximum Limit**
 ---|---|---
-每一 Batch 帳戶的核心|20|N/A<sup>1</sup>
-每一 Batch 帳戶的工作和工作排程<sup>2</sup>|20|10,000
-每一 Batch 帳戶的集區|20|5000
+Cores per Batch account|20|N/A<sup>1</sup>
+Jobs and job schedules<sup>2</sup> per Batch account|20|10,000
+Pools per Batch account|20|5000
 
-<sup>1</sup> 可以增加每一 Batch 帳戶的核心數目，但未指定最大數目。請聯絡客戶支援以討論增加選項。
+<sup>1</sup> The number of cores per Batch account can be increased, but the maximum number is unspecified. Contact customer support to discuss increase options.
 
-<sup>2</sup> 包含執行一次使用中的工作和作用中的工作排程。完成的工作和工作排程數目沒有限制。
+<sup>2</sup> Includes run-once active jobs and active job schedules. Completed jobs and job schedules are not limited.
 
-<!---HONumber=AcomDC_0615_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

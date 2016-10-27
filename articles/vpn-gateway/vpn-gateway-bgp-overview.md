@@ -1,6 +1,6 @@
 <properties
-   pageTitle="BGP 與 Azure VPN 閘道概觀 | Microsoft Azure"
-   description="本文提供 BGP 與 Azure VPN 閘道的概觀。"
+   pageTitle="Overview of BGP with Azure VPN Gateways | Microsoft Azure"
+   description="This article provides an overview of BGP with Azure VPN Gateways."
    services="vpn-gateway"
    documentationCenter="na"
    authors="yushwang"
@@ -11,60 +11,66 @@
 <tags
    ms.service="vpn-gateway"
    ms.devlang="na"
-   ms.topic="get-started-article"
+   ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="06/16/2016"
    ms.author="yushwang"/>
 
-# BGP 與 Azure VPN 閘道概觀
 
-這篇文章提供 Azure VPN 閘道中的 BGP (邊界閘道協定) 支援概觀。
+# <a name="overview-of-bgp-with-azure-vpn-gateways"></a>Overview of BGP with Azure VPN Gateways
 
-## 有關 BGP
+This article provides an overview of BGP (Border Gateway Protocol) support in Azure VPN Gateways.
 
-BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多個網路之間的路由和可執行性資訊。在 Azure 虛擬網路的內容中使用時，BGP 會啟用 Azure VPN 閘道，以及內部部署 VPN 裝置 (稱為 BGP 對等互連或鄰近項目) 來交換「路由」，其會通知這兩個閘道對要通過閘道的首碼或所涉及之路由器的可用性和可執行性。BGP 也可以傳播從一個 BGP 對等互連到所有其他 BGP 對等所識別的 BGP 閘道，來啟用多個網路之間的傳輸路由。
+## <a name="about-bgp"></a>About BGP
+
+BGP is the standard routing protocol commonly used in the Internet to exchange routing and reachability information between two or more networks. When used in the context of Azure Virtual Networks, BGP enables the Azure VPN Gateways and your on-premises VPN devices, called BGP peers or neighbors, to exchange "routes" that will inform both gateways on the availability and reachability for those prefixes to go through the gateways or routers involved. BGP can also enable transit routing among multiple networks by propagating routes a BGP gateway learns from one BGP peer to all other BGP peers.
  
-### 為何要使用 BGP？
+### <a name="why-use-bgp?"></a>Why use BGP?
 
-BGP 是選用功能，可供您與 Azure 路由 VPN 閘道搭配使用。您也應該要先確定您的內部部署 VPN 裝置支援 BGP 後，再啟用此功能。您可以無需 BGP 即可繼續使用 Azure VPN 閘道和您的內部部署 VPN 裝置。它相當於使用靜態路由 (不含 BGP) 與在您的網路和 Azure 之間使用具有 BGP 的動態路由。
+BGP is an optional feature you can use with Azure Route-Based VPN gateways. You should also make sure your on-premises VPN devices support BGP before you enable the feature. You can continue to use Azure VPN gateways and your on-premises VPN devices without BGP. It is the equivalent of using static routes (without BGP) *vs.* using dynamic routing with BGP between your networks and Azure.
 
-BGP 具有數個優點和新功能：
+There are several advantages and new capabilities with BGP:
 
-#### 支援自動和彈性的前置詞更新
+#### <a name="support-automatic-and-flexible-prefix-updates"></a>Support automatic and flexible prefix updates
 
-利用 BGP，您只需要透過 IPsec S2S VPN 通道宣告特定 BGP 對等互連的最小前置詞。它也可以小至內部部署 VPN 裝置的 BGP 對等互連 IP 位址的主機前置詞 (/ 32)。您可以控制您要公告至 Azure 以允許 Azure 虛擬網路存取的內部部署網路首碼。
-	
-您也可以公告可能包含一些您的 VNet 位址首碼的較大首碼，例如預大型私人 IP 位址空間 (例如 10.0.0.0/8)。可是請注意，首碼無法與您的任何一個 VNet 首碼相同。與您的 VNet 首碼相同的路由將會遭到拒絕。
+With BGP, you only need to declare a minimum prefix to a specific BGP peer over the IPsec S2S VPN tunnel. It can be as small as a host prefix (/32) of the BGP peer IP address of your on-premises VPN device. You can control which on-premises network prefixes you want to advertise to Azure to allow your Azure Virtual Network to access.
+    
+You can also advertise a larger prefixes that may include some of your VNet address prefixes, such as a large private IP address space (e.g., 10.0.0.0/8). Please note though the prefixes cannot be identical with any one of your VNet prefixes. Those routes identical to your VNet prefixes will be rejected.
 
->[AZURE.IMPORTANT] 目前，公告 Azure VPN 閘道的預設路由 (0.0.0.0/0) 將會遭到封鎖。一旦這項功能，將會提供進一步的更新。
+>[AZURE.IMPORTANT] Currently, advertising the default route (0.0.0.0/0) to Azure VPN gateways will be blocked. Further update will be provided once this capability is enabled.
 
-#### 根據 BGP 使用自動容錯移轉，在 VNet 和內部部署站台之間支援多個通道
+#### <a name="support-multiple-tunnels-between-a-vnet-and-an-on-premises-site-with-automatic-failover-based-on-bgp"></a>Support multiple tunnels between a VNet and an on-premises site with automatic failover based on BGP
 
-您可以在 Azure VNet 與內部部署 VPN 裝置之間的相同位置中建立多個連接。這項功能在主動-主動組態中的兩個網路之間提供多個通道 (路徑)。如果其中一個通道已中斷連接，對應的路由會透過 BGP 撤回，且流量會自動轉換到其餘的通道。
-	
-下圖顯示這項高可用性設定的簡單範例︰
-	
-![多個作用中路徑](./media/vpn-gateway-bgp-overview/multiple-active-tunnels.png)
+You can establish multiple connections between your Azure VNet and your on-premises VPN devices in the same location. This capability provides multiple tunnels (paths) between the two networks in an active-active configuration. If one of the tunnels is disconnected, the corresponding routes will be withdrawn via BGP and the traffic will automatically shift to the remaining tunnels.
+    
+The following diagram shows a simple example of this highly available setup:
+    
+![Multiple active paths](./media/vpn-gateway-bgp-overview/multiple-active-tunnels.png)
 
-#### 支援內部部署網路與多個 Azure Vnet 之間的傳輸路由
+#### <a name="support-transit-routing-between-your-on-premises-networks-and-multiple-azure-vnets"></a>Support transit routing between your on-premises networks and multiple Azure VNets
 
-BGP 可讓多個閘道識別及傳播來自不同網路的首碼，無論這些網路是直接或間接連線。這可以使用內部部署站台之間的 Azure VPN 閘道，或跨多個 Azure 虛擬網路啟用傳送路由。
-	
-下圖顯示具有多個路徑的多重躍點拓撲的範例，這些路徑可透過Microsoft 網路內的 Azure VPN 閘道來傳輸兩個內部部署網路之間的流量︰
+BGP enables multiple gateways to learn and propagate prefixes from different networks, whether they are directly or indirectly connected. This can enable transit routing with Azure VPN gateways between your on-premises sites or across multiple Azure Virtual Networks.
+    
+The following diagram shows an example of a multi-hop topology with multiple paths that can transit traffic between the two on-premises networks through Azure VPN gateways within the Microsoft Networks:
 
-![多重躍點傳輸](./media/vpn-gateway-bgp-overview/full-mesh-transit.png)
+![Multi-hop transit](./media/vpn-gateway-bgp-overview/full-mesh-transit.png)
 
-## BGP 常見問題集
-
-
-[AZURE.INCLUDE [vpn-gateway-bgp-faq-include](../../includes/vpn-gateway-bpg-faq-include.md)]
+## <a name="bgp-faqs"></a>BGP FAQs
 
 
+[AZURE.INCLUDE [vpn-gateway-bgp-faq-include](../../includes/vpn-gateway-bpg-faq-include.md)] 
 
 
-## 後續步驟
 
-請參閱 [開始使用 Azure VPN 閘道上的 BGP](./vpn-gateway-bgp-resource-manager-ps.md)，以了解設定跨單位與 VNet 對 VNet 連線 BGP 的步驟。
 
-<!---HONumber=AcomDC_0622_2016-->
+## <a name="next-steps"></a>Next steps
+
+See [Getting started with BGP on Azure VPN gateways](./vpn-gateway-bgp-resource-manager-ps.md) for steps to configure BGP for your cross-premises and VNet-to-VNet connections.
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

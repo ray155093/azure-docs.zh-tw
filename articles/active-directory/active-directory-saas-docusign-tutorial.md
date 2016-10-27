@@ -1,262 +1,264 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 DocuSign 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 DocuSign 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+    pageTitle="Tutorial: Azure Active Directory integration with DocuSign | Microsoft Azure"
+    description="Learn how to configure single sign-on between Azure Active Directory and DocuSign."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeevansd"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/16/2016"
-	ms.author="jeedes"/>
-
-
-# 教學課程：Azure Active Directory 與 DocuSign 整合
-
-本教學課程的目的是要示範 Azure 與 DocuSign 的整合。本教學課程中說明的案例假設您已經具有下列項目：
-
-- 有效的 Azure 訂閱
-- DocuSign 中的租用戶
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/16/2016"
+    ms.author="jeedes"/>
 
 
 
-本教學課程中說明的案例由下列建置組塊組成：
+# <a name="tutorial:-azure-active-directory-integration-with-docusign"></a>Tutorial: Azure Active Directory integration with DocuSign
 
-1. [啟用 DocuSign 的應用程式整合](#enabling-the-application-integration-for-docusign)
+The objective of this tutorial is to show the integration of Azure and DocuSign.
+The scenario outlined in this tutorial assumes that you already have the following items:
 
-
-2. [設定單一登入](#configuring-single-sign-on)
-
-
-3. [設定帳戶佈建](#configuring-account-provisioning)
+- A valid Azure subscription
+- A tenant in DocuSign
 
 
-4. [指派使用者](#assigning-users)
 
-    ![設定單一登入][0]
+The scenario outlined in this tutorial consists of the following building blocks:
+
+1. [Enabling the application integration for DocuSign](#enabling-the-application-integration-for-docusign) 
+
+
+2. [Configuring single sign-on](#configuring-single-sign-on) 
+
+
+3. [Configuring account provisioning](#configuring-account-provisioning) 
+
+
+4. [Assigning users](#assigning-users) 
+
+    ![Configuring single sign-on][0]
  
 
-## 啟用 DocuSign 的應用程式整合
+## <a name="enabling-the-application-integration-for-docusign"></a>Enabling the application integration for DocuSign
 
-本節的目的是要說明如何啟用 DocuSign 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for DocuSign.
 
-### 若要啟用 DocuSign 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-docusign,-perform-the-following-steps:"></a>To enable the application integration for DocuSign, perform the following steps:
 
-1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1. In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
-	![設定單一登入][1]
+    ![Configuring single sign-on][1]
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2. From the Directory list, select the directory for which you want to enable directory integration.
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
 
-	![設定單一登入][2]
+    ![Configuring single sign-on][2]
 
-4. 按一下頁面底部的 [新增]。
+4. Click **Add** at the bottom of the page.
 
-	![[應用程式]][3]
+    ![Applications][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5. On the What do you want to do dialog, click **Add an application from the gallery**.
 
-	![設定單一登入][4]
-
-
-6. 在搜尋方塊中，輸入 **DocuSign**。
-
-	![設定單一登入][5]
-
-7. 在結果窗格中，選取 [DocuSign]，然後按一下 [完成] 來新增應用程式。
-
-	![設定單一登入][6]
+    ![Configuring single sign-on][4]
 
 
-## 設定單一登入
+6. In the search box, type **DocuSign**.
 
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 DocuSign。
+    ![Configuring single sign-on][5]
+
+7. In the results pane, select **DocuSign**, and then click **Complete** to add the application.
+
+    ![Configuring single sign-on][6]
 
 
-### 若要設定單一登入，請執行下列步驟：
+## <a name="configuring-single-sign-on"></a>Configuring single sign-on
 
-1. 在 Azure 傳統入口網站的 [DocuSign] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+The objective of this section is to outline how to enable users to authenticate to DocuSign with their account in Azure AD using federation based on the SAML protocol.
 
-	![設定單一登入][7]
 
-2. 在 [要如何讓使用者登入 DocuSign] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-	![設定單一登入][8]
+1. In the Azure classic portal, on the **DocuSign application integration** page, click **Configure single sign-on** to open the Configure Single Sign On dialog.
 
-3. 在 [設定應用程式設定] 頁面上，執行下列步驟：
+    ![Configuring single sign-on][7]
 
-	![設定單一登入][61]
+2. On the **How would you like users to sign on to DocuSign** page, select **Microsoft Azure AD Single Sign-On**, and then click Next.
 
-	a.在 [登入 URL] 文字方塊中，輸入 `https://account.docusign.com/*`。
+    ![Configuring single sign-on][8]
 
-	b.在 [識別碼] 文字方塊中，輸入 `https://account.docusign.com/*`。
+3. On the **Configure App Settings** page, perform the following steps:
+
+    ![Configuring single sign-on][61]
+
+    a. In the **Sign on URL** textbox, type `https://account.docusign.com/*`.  
+
+    b. In the **Identifier** textbox, type `https://account.docusign.com/*`.  
    
-	c.按 [下一步]。
+    c. Click **Next**. 
 
 
-    > [AZURE.TIP] [登入 URL] 和 [識別碼] 值只是預留位置。本主題稍後會提供如何擷取環境的實際值的指示。
+    > [AZURE.TIP] The Sign On URL and the Identifier values are only placeholders. Instructions for how to retrieve the actual values for your environment are covered later in this topic.
  
 
-4. 在 [設定在 DocuSign 單一登入] 頁面上，按一下 [下載憑證]，然後在本機電腦上儲存憑證檔案。
+4. On the **Configure single sign-on at DocuSign** page, click **Download certificate**, and then save the certificate file locally on your computer.
 
-	![設定單一登入][10]
-
-
-5. 在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **DocuSign 系統管理入口網站**。
+    ![Configuring single sign-on][10]
 
 
-6. 在左側導覽功能表中按一下 [網域]。
-
-	![設定單一登入][51]
-
-7. 在右窗格中，按一下 [宣告網域]。
-
-	![設定單一登入][52]
-
-8. 在 [宣告網域] 對話方塊，於 [網域名稱] 文字方塊內輸入您的公司網域，然後按一下 [宣告]。確定您已驗證網域，而且狀態為作用中。
-
-	![設定單一登入][53]
-
-9. 在左側的功能表中，按一下 [識別提供者]
-
-	![設定單一登入][54]
-
-10. 在右窗格中，按一下 [新增識別提供者]。
-	
-	![設定單一登入][55]
-
-11. 在 [識別提供者設定] 頁面上執行下列步驟：
-
-	![設定單一登入][56]
+5. In a different web browser window, log into your **DocuSign admin portal** as an administrator.
 
 
-	a.在 [名稱] 文字方塊中，輸入組態的唯一名稱。請勿使用空格。
+6. In the navigation menu on the left, click **Domains**.
 
-	b.在 Azure 傳統入口網站中，複製 [簽發者 URL]，然後貼到 [識別提供者簽發者] 文字方塊中。
+    ![Configuring single sign-on][51]
 
-	c.在 Azure 傳統入口網站中，複製 [遠端登入 URL]，然後貼到 [識別提供者登入 URL] 文字方塊中。
+7. On the right pane, click **Claim Domain**.
 
-	d.在 Azure 傳統入口網站中，複製 [遠端登出 URL]，然後貼到 [識別提供者登出 URL] 文字方塊中。
+    ![Configuring single sign-on][52]
 
-	e.選取 [登入驗證要求]。
+8. On the **Claim a domain** dialog, in the **Domain Name** textbox, type your company domain, and then click **Claim**. Make sure that you verify the domain and the status is active.
 
-	f.選取 [POST] 做為 [驗證要求傳送方式]。
+    ![Configuring single sign-on][53]
 
-	g.選取 [POST] 做為 [登出要求傳送方式]。
+9. In menu on the left side, click **Identity Providers**  
 
+    ![Configuring single sign-on][54]
 
-12. 在 [自訂屬性對應] 區段中，選擇您想要與 Azure AD 宣告對應的欄位。在此範例中，會使用 http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress** 的值對應 **emailaddress** 宣告。這是 Azure AD 針對電子郵件宣告所提供的預設宣告名稱。
+10. In the right pane, click **Add Identity Provider**. 
+    
+    ![Configuring single sign-on][55]
 
-	> [AZURE.NOTE] 請使用適當的**使用者識別碼**，將使用者從 Azure AD 對應到 DocuSign 使用者對應。選取適當的欄位，並根據組織的設定輸入適當的值。
+11. On the **Identity Provider Settings** page, perform the following steps:
 
-	![設定單一登入][57]
-
-13. 在 [識別提供者憑證] 區段中按一下 [新增憑證]，然後上傳您已從 Azure AD 傳統入口網站下載的憑證。
-
-	![設定單一登入][58]
-
-14. 按一下 [儲存]。
-
-15. 在 [識別提供者] 區段中，按一下 [動作]，然後按一下 [端點]。
-
-	![設定單一登入][59]
+    ![Configuring single sign-on][56]
 
 
+    a. In the **Name** textbox, type a unique name for your configuration. Please do not use spaces.
 
-10. 在 Azure 傳統入口網站上，回到 [設定應用程式設定] 頁面。
+    b. In the Azure classic portal, copy the Issuer URL, and then paste it into the **Identity Provider Issuer** textbox.
 
-16. 在 **DocuSign 系統管理入口網站**的 [檢視 SAML 2.0 端點] 區段中，執行下列步驟：
+    c. In the Azure classic portal, copy the **Remote Login URL**, and then paste it into the **Identity Provider Login URL** textbox.
 
-	![設定單一登入][60]
+    d. In the Azure classic portal, copy the **Remote Logout URL**, and then paste it into the **Identity Provider Logout URL** textbox.
 
-	a.複製 [服務提供者簽發者 URL]，然後將它貼入 Azure 傳統入口網站上的 [識別碼] 文字方塊。
+    e. Select **Sign AuthN Request**.
 
-	b.複製 [服務提供者登入 URL]，然後將它貼入 Azure 傳統入口網站上的 [登入 URL] 文字方塊。
+    f. As **Send AuthN request by**, select **POST**.
 
-	c.按一下 [關閉]
-
-
-10. 在 Azure 傳統入口網站上按 [下一步]。
+    g. As **Send logout request by**, select **POST**. 
 
 
-15. 在 Azure 傳統入口網站上，選取 [單一登入設定確認]，然後按 [下一步]。
+12. In the **Custom Attribute Mapping** section, choose the field you want to map with Azure AD Claim. In this example, the **emailaddress** claim is mapped with the value of **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**. This is the default claim name from Azure AD for email claim. 
 
-	![[應用程式]][14]
+    > [AZURE.NOTE] Use the appropriate **User identifier** to map the user from Azure AD to Docusign user mapping. Select the proper Field and enter the appropriate value based on your organization settings.
 
-10. 在 [單一登入確認] 頁面上，按一下 [完成]。
+    ![Configuring single sign-on][57]
 
-	![[應用程式]][15]
+13. In the **Identity Provider Certificate** section, click **Add Certificate**, and then upload the certificate you have downloaded from Azure AD classic portal.   
+
+    ![Configuring single sign-on][58]
+
+14. Click **Save**.
+
+15. In the **Identity Providers** section, click **Actions**, and then click **Endpoints**.   
+
+    ![Configuring single sign-on][59]
+
+
+
+10. On the Azure classic portal, go back to the **Configure App Settings** page. 
+
+16. On **DocuSign admin portal**, in the **View SAML 2.0 Endpoints** section perform, the following steps:
+
+    ![Configuring single sign-on][60]
+
+    a. Copy the **Service Provider Issuer URL**, and then paste it into the **Identifier** textbox on the Azure classic portal.
+
+    b. Copy the **Service Provider Login URL**, and then paste into the **Sign On URL** textbox on the Azure classic portal.
+
+    c.  Click **Close**  
+
+
+10. On the Azure classic portal, click **Next**. 
+
+
+15. On the Azure classic portal, select the **Single sign-on configuration confirmation**, and then click **Next**.
+
+    ![Applications][14]
+
+10. On the **Single sign-on confirmation** page, click **Complete**.
+
+    ![Applications][15]
  
 
-## 設定帳戶佈建
+## <a name="configuring-account-provisioning"></a>Configuring account provisioning
 
-本節的目的是要說明如何對 DocuSign 啟用 Active Directory 使用者帳戶的使用者佈建。
+The objective of this section is to outline how to enable user provisioning of Active Directory user accounts to DocuSign.
 
-### 若要設定使用者佈建，請執行下列步驟：
+### <a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
 
-1. 在 **Azure 傳統入口網站**的 [DocuSign 應用程式整合] 頁面上，按一下 [設定帳戶佈建] 以開啟 [設定使用者佈建] 對話方塊。
+1. In the **Azure classic portal**, on the **DocuSign application integration** page, click **Configure account provisioning** to open the Configure User Provisioning dialog.
 
-	![設定帳戶佈建][30]
+    ![Configuring account provisioning][30]
 
-2. 在 [設定及管理員認證] 頁面上，若要啟用自動使用者佈建，請提供具有足夠權限的 DocuSign 帳戶認證，然後按 [下一步]。
+2. On the **Settings and admin credentials** page, to enable automatic user provisioning, provide the credentials of a DocuSign account with sufficient rights, and then click **Next**. 
 
-	![設定帳戶佈建][31]
+    ![Configuring account provisioning][31]
 
-3. 在 [測試連接] 對話方塊中，按一下 [開始測試]，在測試成功時按 [下一步]。
+3. On the **Test connection** dialog, click **Start test**, and upon a successful test, click **Next**.
 
-	![設定帳戶佈建][32]
+    ![Configuring account provisioning][32]
 
-3. 在 [確認] 頁面中按一下 [完成]。
+3. On the **Confirmation** page, click **Complete**.
 
-	![設定帳戶佈建][33]
+    ![Configuring account provisioning][33]
  
 
-## 指派使用者
+## <a name="assigning-users"></a>Assigning users
 
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-### 若要將使用者指派給 DocuSign，請執行下列步驟：
+### <a name="to-assign-users-to-docusign,-perform-the-following-steps:"></a>To assign users to DocuSign, perform the following steps:
 
-1. 在 **Azure 傳統入口網站**中建立測試帳戶。
+1. In the **Azure classic portal**, create a test account.
 
-2. 在 [DocuSign 應用程式整合] 頁面上，按一下 [指派使用者]。
+2. On the **DocuSign application integration** page, click **Assign users**.
 
-	![指派使用者][40]
+    ![Assigning users][40]
  
 
-3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3. Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-	![指派使用者][41]
-
-
-請等候 10 分鐘並確認帳戶已同步至 DocuSign。
-
-在第一個驗證步驟中，您可以在 Azure 傳統入口網站的 DocuSign 應用程式整合頁面上，按一下 D 的儀表板來檢查佈建狀態。
-
-![指派使用者][42]
-
-成功完成的使用者佈建週期會以相關狀態表示：
-
-![指派使用者][43]
+    ![Assigning users][41]
 
 
-如果要測試您的單一登入設定，請開啟存取面板。
+You should now wait for 10 minutes and verify that the account has been synchronized to DocuSign.
 
-如需存取面板的詳細資訊，請參閱〈存取面板簡介〉。
+As a first verification step, you can check the provisioning status, by clicking Dashboard in the D on the DocuSign application integration page on the Azure classic portal.
+
+![Assigning users][42]
+
+A successfully completed user provisioning cycle is indicated by a related status:
+
+![Assigning users][43]
 
 
-## 其他資源
+If you want to test your single sign-on settings, open the Access Panel.
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+For more details about the Access Panel, see Introduction to the Access Panel.
+
+
+## <a name="additional-resources"></a>Additional Resources
+
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 
@@ -299,4 +301,7 @@
 [60]: ./media/active-directory-saas-docusign-tutorial/tutorial_docusign_28.png
 [61]: ./media/active-directory-saas-docusign-tutorial/tutorial_docusign_29.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

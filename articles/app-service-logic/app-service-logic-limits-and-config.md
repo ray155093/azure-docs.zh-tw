@@ -1,137 +1,141 @@
 <properties
-	pageTitle="邏輯應用程式的限制和設定 | Microsoft Azure"
-	description="適用於 Logic Apps 之服務限制和設定值的概觀。"
-	services="logic-apps"
-	documentationCenter=".net,nodejs,java"
-	authors="jeffhollan"
-	manager="dwrede"
-	editor=""/>
+    pageTitle="Logic App limits and configuration | Microsoft Azure"
+    description="Overview of the service limits and configuration values available for Logic Apps."
+    services="logic-apps"
+    documentationCenter=".net,nodejs,java"
+    authors="jeffhollan"
+    manager="dwrede"
+    editor=""/>
 
 <tags
-	ms.service="logic-apps"
-	ms.workload="integration"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/22/2016"
-	ms.author="jehollan"/>
+    ms.service="logic-apps"
+    ms.workload="integration"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/22/2016"
+    ms.author="jehollan"/>
 
-# 邏輯應用程式的限制和設定
 
-以下是 Azure Logic Apps 目前的限制和設定詳細資料的相關資訊。
+# <a name="logic-app-limits-and-configuration"></a>Logic App limits and configuration
 
-## 限制
+Below are information on the current limits and configuration details for Azure Logic Apps.
 
-### HTTP 要求限制
+## <a name="limits"></a>Limits
 
-以下是單一 HTTP 要求和/或連接器呼叫的限制
+### <a name="http-request-limits"></a>HTTP request limits
 
-#### 逾時
+These are limits for a single HTTP request and/or connector call
 
-|Name|限制|注意事項|
+#### <a name="timeout"></a>Timeout
+
+|Name|Limit|Notes|
 |----|----|----|
-|要求逾時|1 分鐘|[非同步模式](app-service-logic-create-api-app.md)或 [Until 迴圈](app-service-logic-loops-and-scopes.md)可以視需要抵銷|
+|Request Timeout|1 Minute|An [async pattern](app-service-logic-create-api-app.md) or [until loop](app-service-logic-loops-and-scopes.md) can compensate as needed|
 
-#### 訊息大小
+#### <a name="message-size"></a>Message size
 
-|Name|限制|注意事項|
+|Name|Limit|Notes|
 |----|----|----|
-|訊息大小|50 MB|某些連接器和 API 可能不支援 50 MB。要求觸發程序最多可支援 25 MB|
-|運算式評估限制|131,072 個字元|`@concat()`、`@base64()` 和 `string` 的長度不能超過此限制|
+|Message size|50 MB|Some connectors and APIs may not support 50MB.  Request trigger supports up to 25MB|
+|Expression evaluation limit|131,072 characters|`@concat()`, `@base64()`, `string` cannot be longer than this|
 
-#### 重試原則
+#### <a name="retry-policy"></a>Retry policy
 
-|名稱|限制|注意事項|
+|Name|Limit|Notes|
 |----|----|----|
-|重試次數|4|可以使用[重試原則參數](https://msdn.microsoft.com/zh-TW/library/azure/mt643939.aspx)進行設定|
-|重試延遲上限|1 小時|可以使用[重試原則參數](https://msdn.microsoft.com/zh-TW/library/azure/mt643939.aspx)進行設定|
-|重試延遲下限|20 分鐘|可以使用[重試原則參數](https://msdn.microsoft.com/zh-TW/library/azure/mt643939.aspx)進行設定|
+|Retry attempts|4|Can configure with the [retry policy parameter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Retry max delay|1 hour|Can configure with the [retry policy parameter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Retry min delay|20 min|Can configure with the [retry policy parameter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
 
-### 執行持續時間和保留期
+### <a name="run-duration-and-retention"></a>Run duration and retention
 
-以下是單一邏輯應用程式的執行限制。
+These are the limits for a single logic app run.
 
-|名稱|限制|注意事項|
+|Name|Limit|Notes|
 |----|----|----|
-|執行持續時間|90 天||
-|儲存體保留期|90 天|從執行開始時間算起|
-|最小循環間隔|15 秒||
-|最大循環間隔|500 天||
+|Run duration|90 days||
+|Storage retention|90 days|This is from the run start time|
+|Min recurrence interval|15 sec||
+|Max recurrence interval|500 days||
 
 
-### 迴圈和解除批次處理限制
+### <a name="looping-and-debatching-limits"></a>Looping and debatching limits
 
-以下是單一邏輯應用程式的執行限制。
+These are limits for a single logic app run.
 
-|Name|限制|注意事項|
+|Name|Limit|Notes|
 |----|----|----|
-|ForEach 項目|5,000|您可以視需要使用[查詢動作](../connectors/connectors-native-query.md)篩選較大的陣列|
-|反覆運算之前|10,000||
-|SplitOn 項目|10,000||
-|ForEach 平行處理原則|20|您可以藉由在 `foreach` 動作新增 `"operationOptions": "Sequential"` 以設定為循序 foreach|
+|ForEach items|5,000|You can use the [query action](../connectors/connectors-native-query.md) to filter larger arrays as needed|
+|Until iterations|10,000||
+|SplitOn items|10,000||
+|ForEach Parallelism|20|You can set to a sequential foreach by adding `"operationOptions": "Sequential"` to the `foreach` action|
 
 
-### 輸送量限制
+### <a name="throughput-limits"></a>Throughput limits
 
-以下是單一邏輯應用程式執行個體的限制。
+These are limits for a single logic app instance. 
 
-|名稱|限制|注意事項|
+|Name|Limit|Notes|
 |----|----|----|
-|每秒的觸發程序數目|100|可以視需要將工作流程分散在多個應用程式|
+|Triggers per second|100|Can distribute workflows across multiple apps as needed|
 
-### 定義限制
+### <a name="definition-limits"></a>Definition limits
 
-以下是單一邏輯應用程式定義的限制。
+These are limits for a single logic app definition.
 
-|名稱|限制|注意事項|
+|Name|Limit|Notes|
 |----|----|----|
-|ForEach 中的動作|1|您可以視需要新增巢狀工作流程以擴充此項目|
-|每個工作流程的動作數目|60|您可以視需要新增巢狀工作流程以擴充此項目|
-|允許的動作巢狀深度|5|您可以視需要新增巢狀工作流程以擴充此項目|
-|每個訂用帳戶每個區域的流程數目|1000||
-|每個工作流程的觸發程序數目|10||
-|每個運算式的字元數上限|8,192||
-|`trackedProperties` 大小上限 (以字元為單位)|16,000|
-|`action`/`trigger` 名稱限制|80||
-|`description` 長度限制|256||
-|`parameters` 限制|50||
-|`outputs` 限制|10||
+|Actions in ForEach|1|You can add nested workflows to extend this as needed|
+|Actions per workflow|60|You can add nested workflows to extend this as needed|
+|Allowed action nesting depth|5|You can add nested workflows to extend this as needed|
+|Flows per region per subscription|1000||
+|Triggers per workflow|10||
+|Max characters per expression|8,192||
+|Max `trackedProperties` size in characters|16,000|
+|`action`/`trigger` name limit|80||
+|`description` length limit|256||
+|`parameters` limit|50||
+|`outputs` limit|10||
 
-## 組態
+## <a name="configuration"></a>Configuration
 
-### IP 位址
+### <a name="ip-address"></a>IP Address
 
-來自[連接器](../connectors/apis-list.md)的呼叫將會來自下面指定的 IP 位址。
+Calls made from a [connector](../connectors/apis-list.md) will come from the IP Address specified below.
 
-直接來自邏輯應用程式的呼叫 (也就是透過 [HTTP](../connectors/connectors-native-http.md) 或 [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) 可能來自任何 [Azure 資料中心 IP 範圍](https://www.microsoft.com/zh-TW/download/details.aspx?id=41653)。
+Calls made from a logic app directly (i.e. via [HTTP](../connectors/connectors-native-http.md) or [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) may come from any of the [Azure Datacenter IP Ranges](https://www.microsoft.com/en-us/download/details.aspx?id=41653).
 
-|邏輯應用程式區域|輸出 IP|
+|Logic App Region|Outbound IP|
 |-----|----|
-|澳洲東部|40\.126.251.213|
-|澳大利亞東南部|40\.127.80.34|
-|巴西南部|191\.232.38.129|
-|印度中部|104\.211.98.164|
-|美國中部|40\.122.49.51|
-|東亞|23\.99.116.181|
-|美國東部|191\.237.41.52|
-|美國東部 2|104\.208.233.100|
-|日本東部|40\.115.186.96|
-|日本西部|40\.74.130.77|
-|美國中北部|65\.52.218.230|
-|北歐|104\.45.93.9|
-|美國中南部|104\.214.70.191|
-|東南亞|13\.76.231.68|
-|印度南部|104\.211.227.225|
-|西歐|40\.115.50.13|
-|印度西部|104\.211.161.203|
-|美國西部|104\.40.51.248|
+|Australia East|40.126.251.213|
+|Australia Southeast|40.127.80.34|
+|Brazil South|191.232.38.129|
+|Central India|104.211.98.164|
+|Central US|40.122.49.51|
+|East Asia|23.99.116.181|
+|East US|191.237.41.52|
+|East US 2|104.208.233.100|
+|Japan East|40.115.186.96|
+|Japan West|40.74.130.77|
+|North Central US|65.52.218.230|
+|North Europe|104.45.93.9|
+|South Central US|104.214.70.191|
+|Southeast Asia|13.76.231.68|
+|South India|104.211.227.225|
+|West Europe|40.115.50.13|
+|West India|104.211.161.203|
+|West US|104.40.51.248|
 
 
-## 後續步驟  
+## <a name="next-steps"></a>Next Steps  
 
-- 若要開始使用 Logic Apps，請遵循[建立 Logic Apps ](app-service-logic-create-a-logic-app.md)教學課程。
-- [檢視常見的範例和案例](app-service-logic-examples-and-scenarios.md)
-- [您可以使用 Logic Apps 自動化商務程序](http://channel9.msdn.com/Events/Build/2016/T694)
-- [了解如何整合您的系統與 Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
+- To get started with Logic Apps, follow the [create a Logic App](app-service-logic-create-a-logic-app.md) tutorial.  
+- [View common examples and scenarios](app-service-logic-examples-and-scenarios.md)
+- [You can automate business processes with Logic Apps](http://channel9.msdn.com/Events/Build/2016/T694) 
+- [Learn How to Integrate your systems with Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

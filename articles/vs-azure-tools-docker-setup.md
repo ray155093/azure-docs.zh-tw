@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 VirtualBox 設定 Docker 主機 | Microsoft Azure"
-   description="使用 Docker 機器和 VirtualBox 來設定預設 Docker 執行個體的逐步指示。"
+   pageTitle="Configure a Docker Host with VirtualBox | Microsoft Azure"
+   description="Step-by-step instructions to configure a default Docker instance using Docker Machine and VirtualBox"
    services="azure-container-service"
    documentationCenter="na"
    authors="mlearned"
@@ -15,51 +15,57 @@
    ms.date="06/08/2016"
    ms.author="mlearned" />
 
-# 使用 VirtualBox 設定 Docker 主機
 
-## Overview
-本文會逐步引導您使用 Docker 機器和 VirtualBox 來設定預設 Docker 執行個體。如果您是使用 [Docker for Windows Beta 版](http://beta.docker.com/)，則不需要此組態。
+# <a name="configure-a-docker-host-with-virtualbox"></a>Configure a Docker Host with VirtualBox
 
-## 必要條件
-您的電腦必須安裝下列工具。
+## <a name="overview"></a>Overview
+This article guides you through configuring a default Docker instance using Docker Machine and VirtualBox. If you’re using the [Docker for Windows beta](http://beta.docker.com/), this configuration is not necessary.
 
-- [Docker 工具箱](https://www.docker.com/products/overview#/docker_toolbox)
+## <a name="prerequisites"></a>Prerequisites
+The following tools need to be installed.
 
-## 使用 Windows PowerShell 設定 Docker 用戶端
+- [Docker Toolbox](https://www.docker.com/products/overview#/docker_toolbox)
 
-若要設定 Docker 用戶端，只需開啟 Windows PowerShell，然後執行下列步驟︰
+## <a name="configuring-the-docker-client-with-windows-powershell"></a>Configuring the Docker client with Windows PowerShell
 
-1. 建立預設 Docker 主機執行個體。
+To configure a Docker client, simply open Windows PowerShell, and perform the following steps:
+
+1. Create a default docker host instance.
 
     ```PowerShell
     docker-machine create --driver virtualbox default
     ```
  
-1. 確認預設執行個體已完成設定且正在執行。(您應該會看到名為「default」的執行個體正在執行。
+1. Verify the default instance is configured and running. (You should see an instance named `default' running.
 
     ```PowerShell
-	docker-machine ls 
+    docker-machine ls 
     ```
-		
-	![docker-machine ls 輸出][0]
+        
+    ![docker-machine ls output][0]
  
-1. 預設為目前的主機，並設定您的 Shell。
+1. Set default as the current host, and configure your shell.
 
     ```PowerShell
     docker-machine env default | Invoke-Expression
     ```
 
-1. 顯示作用中的 Docker 容器。清單應該是空的。
+1. Display the active Docker containers. The list should be empty.
 
     ```PowerShell
-	docker ps
+    docker ps
     ```
 
-	![docker ps 輸出][1]
+    ![docker ps output][1]
  
-> [AZURE.NOTE] 每次您將開發用機器重新開機時，就需要重新啟動您的本機 Docker 主機。做法是在命令提示字元發出下列命令：`docker-machine start default`。
+> [AZURE.NOTE] Each time you reboot your development machine, you’ll need to restart your local docker host.
+> To do this, issue the following command at a command prompt: `docker-machine start default`.
 
 [0]: ./media/vs-azure-tools-docker-setup/docker-machine-ls.png
 [1]: ./media/vs-azure-tools-docker-setup/docker-ps.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

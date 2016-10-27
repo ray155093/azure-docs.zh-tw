@@ -1,98 +1,103 @@
 <properties
-	pageTitle="在 Azure Machine Learning Studio 中建立文字分析模型 | Microsoft Azure"
-	description="如何在 Azure Machine Learning Studio 使用文字前置處理、N-Gram 或特徵雜湊來建立文字分析模型"
-	services="machine-learning"
-	documentationCenter=""
-	authors="rastala"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Create text analytics models in Azure Machine Learning Studio | Microsoft Azure"
+    description="How to create text analytics models in Azure Machine Learning Studio using modules for text preprocessing, N-grams or feature hashing"
+    services="machine-learning"
+    documentationCenter=""
+    authors="rastala"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/06/2016"
-	ms.author="roastala" />
+    ms.service="machine-learning"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/06/2016"
+    ms.author="roastala" />
 
 
-#在 Azure Machine Learning Studio 中建立文字分析模型
 
-您可以使用 Azure Machine Learning 來建置和實行文字分析模型。這些模型可協助您解決問題，例如，文件分類或情緒分析問題。
+#<a name="create-text-analytics-models-in-azure-machine-learning-studio"></a>Create text analytics models in Azure Machine Learning Studio
 
-在文字分析實驗中，您通常需要︰
+You can use Azure Machine Learning to build and operationalize text analytics models. These models can help you solve, for example, document classification or sentiment analysis problems.
 
- 1. 清理和前置處理文字資料集
- 2. 從已前置處理的文字擷取數值特徵向量
- 3. 定型分類或迴歸模型
- 4. 評分和驗證模型
- 5. 模型部署到生產環境
+In a text analytics experiment, you would typically:
 
-在此教學課程中，當我們使用「Amazon 書籍評論」資料集逐步解說情緒分析模型時，您會學到這些步驟 (請參閱研究報告 “Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification”，作者：Association of Computational Linguistics (ACL) 的 John Blitzer、Mark Dredze 和 Fernando Pereira，2007 年)。 此資料集是由評論分數 (1-2 或 4-5) 和自由格式文字所組成。目標是要預測評論分數︰低 (1-2) 或高 (4-5)。
+ 1. Clean and preprocess text dataset
+ 2. Extract numeric feature vectors from pre-processed text
+ 3. Train classification or regression model
+ 4. Score and validate the model
+ 5. Deploy the model to production
 
-您可以在 Cortana Intelligence Gallery 找到本教學課程中涵蓋的實驗︰
+In this tutorial, you learn these steps as we walk through a sentiment analysis model using Amazon Book Reviews dataset (see this research paper “Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification” by John Blitzer, Mark Dredze, and Fernando Pereira; Association of Computational Linguistics (ACL), 2007.) This dataset consists of review scores (1-2 or 4-5) and a free-form text. The goal is to predict the review score: low (1-2) or high (4-5).
 
-[預測書籍評論](https://gallery.cortanaintelligence.com/Experiment/Predict-Book-Reviews-1)
+You can find experiments covered in this tutorial at Cortana Intelligence Gallery:
 
-[預測書籍評論 - 預測性實驗](https://gallery.cortanaintelligence.com/Experiment/Predict-Book-Reviews-Predictive-Experiment-1)
+[Predict Book Reviews] (https://gallery.cortanaintelligence.com/Experiment/Predict-Book-Reviews-1)
 
-## 步驟 1：清理和前置處理文字資料集
+[Predict Book Reviews - Predictive Experiment] (https://gallery.cortanaintelligence.com/Experiment/Predict-Book-Reviews-Predictive-Experiment-1)
 
-一開始我們先將評論分數分為低與高兩類，以將問題公式化為雙類別分類。我們使用[編輯中繼資料](https://msdn.microsoft.com/library/azure/dn905986.aspx)和[群組類別值](https://msdn.microsoft.com/library/azure/dn906014.aspx)模組。
+## <a name="step-1:-clean-and-preprocess-text-dataset"></a>Step 1: Clean and preprocess text dataset
 
-![建立標籤](./media/machine-learning-text-analytics-module-tutorial/create-label.png)
+We begin the experiment by dividing the review scores into categorical low and high buckets to formulate the problem as two-class classification. We use [Edit Metadata] (https://msdn.microsoft.com/library/azure/dn905986.aspx) and [Group Categorical Values] (https://msdn.microsoft.com/library/azure/dn906014.aspx) modules.
 
-然後，我們使用[前置處理文字](https://msdn.microsoft.com/library/azure/mt762915.aspx)模組清除文字。清除可減少資料集雜訊、協助您找出最重要的特徵，並改善最終模型的精確度。我們會移除停用字詞 (例如 "the" 或 "a" 等常見單字)、數字、特殊字元、重複字元、電子郵件地址和 URL。我們也將文字轉換成小寫、將單字按屈折變化形式歸類，並偵測句子界限，然後在預先處理的文字中以 "| | |" 符號表示這些界限。
+![Create Label](./media/machine-learning-text-analytics-module-tutorial/create-label.png)
 
-![前置處理文字](./media/machine-learning-text-analytics-module-tutorial/preprocess-text.png)
+Then, we clean the text using [Preprocess Text] (https://msdn.microsoft.com/library/azure/mt762915.aspx) module. The cleaning reduces the noise in the dataset, help you find the most important features, and improve the accuracy of the final model. We remove stopwords - common words such as "the" or "a" - and numbers, special characters, duplicated characters, email addresses, and URLs. We also convert the text to lowercase, lemmatize the words, and detect sentence boundaries that are then indicated by "|||" symbol in pre-processed text.
 
-如果想使用自訂的停用字詞清單該怎麼做？ 您可以將它傳入做為選擇性的輸入。您也可以使用自訂的 C# 語法規則運算式來取代子字串，並按詞性 (名詞、動詞或形容詞) 移除單字。
+![Preprocess Text](./media/machine-learning-text-analytics-module-tutorial/preprocess-text.png)
 
-在前置處理完成之後，我們會將資料分成定型和測試集。
+What if you want to use a custom list of stopwords? You can pass it in as optional input. You can also use custom C# syntax regular expression to replace substrings, and remove words by part of speech: nouns, verbs, or adjectives.
 
-## 步驟 2：從已前置處理的文字擷取數值特徵向量
+After the preprocessing is complete, we split the data into train and test sets.
 
-若要建置文字資料的模型，您通常需要將自由格式的文字轉換成數值特徵向量。在此範例中，我們使用[從文字擷取 N-Gram 特徵](https://msdn.microsoft.com/library/azure/mt762916.aspx)模組，將文字資料轉換為這種格式。此模組會採用以空格分隔單字的資料行，並計算出現在您資料集中的單字字典或單字的 N-Gram。然後，它會計算每個單字或 N-Gram 出現在每筆記錄的次數，並從這些計數建立特徵向量。在本教學課程中，我們將 N-Gram 大小設為 2，因此我們的特徵向量包含一個單字和兩個後續單字的組合。
+## <a name="step-2:-extract-numeric-feature-vectors-from-pre-processed-text"></a>Step 2: Extract numeric feature vectors from pre-processed text
 
-![擷取 N-Gram](./media/machine-learning-text-analytics-module-tutorial/extract-ngrams.png)
+To build a model for text data, you typically have to convert free-form text into numeric feature vectors. In this example, we use [Extract N-Gram Features from Text] (https://msdn.microsoft.com/library/azure/mt762916.aspx) module to transform the text data to such format. This module takes a column of whitespace-separated words and computes a dictionary of words, or N-grams of words, that appear in your dataset. Then, it counts how many times each word, or N-gram, appears in each record, and creates feature vectors from those counts. In this tutorial, we set N-gram size to 2, so our feature vectors include single words and combinations of two subsequent words.
 
-我們會套用 TF*IDF (Term Frequency Inverse Document Frequency) 加權至 N-Gram 計數。這個方法會增加經常出現在單一記錄、卻很少在整個資料集出現的單字的權數。其他選項包括二進位、TF 及圖形加權。
+![Extract N-grams](./media/machine-learning-text-analytics-module-tutorial/extract-ngrams.png)
 
-這類文字特徵通常具有高維度。比方說，如果您的語言資料庫有 100,000 個唯一的單字，特徵空間會有 100,000 個維度，或使用更多的 N-Gram。「擷取 N-Gram 特徵」模組提供一組減少維度的選項。您可以選擇排除過短或過長的單字，或是太常見或太頻繁而有重要預測值的單字。在本教學課程中，我們會排除出現在少於 5 筆記錄或超過 80% 的記錄的 N-Gram。
+We apply TF*IDF (Term Frequency Inverse Document Frequency) weighting to N-gram counts. This approach adds weight of words that appear frequently in a single record but are rare across the entire dataset. Other options include binary, TF, and graph weighing.
 
-此外，使用特徵選取可以只選取與您的預測目標最相關的特徵。我們使用 Chi-Squared 特徵選取來選取 1000 個特徵。您可以按一下「擷取 N-Gram」模組右側的輸出，即可檢視所選單字或 N-Gram 的詞彙。
+Such text features often have high dimensionality. For example, if your corpus has 100,000 unique words, your feature space would have 100,000 dimensions, or more if N-grams are used. The Extract N-Gram Features module gives you a set of options to reduce the dimensionality. You can choose to exclude words that are short or long, or too uncommon or too frequent to have significant predictive value. In this tutorial, we exclude N-grams that appear in fewer than 5 records or in more than 80% of records.
 
-另一個方法是使用「擷取 N-Gram 特徵」，您就可以使用「特徵雜湊」模組。但請注意，[特徵雜湊](https://msdn.microsoft.com/library/azure/dn906018.aspx)沒有內建的特徵選取功能或 TF*IDF 加權。
+Also, you can use feature selection to select only those features that are the most correlated with your prediction target. We use Chi-Squared feature selection to select 1000 features. You can view the vocabulary of selected words or N-grams by clicking the right output of Extract N-grams module.
 
-## 步驟 3：定型分類或迴歸模型
+As an alternative approach to using Extract N-Gram Features, you can use Feature Hashing module. Note though that [Feature Hashing] (https://msdn.microsoft.com/library/azure/dn906018.aspx) does not have build-in feature selection capabilities, or TF*IDF weighing.
 
-現在文字已轉換為數值特徵資料行。資料集仍包含上一階段中的字串資料行，因此我們使用「選取資料集中的資料行」來排除它們。
+## <a name="step-3:-train-classification-or-regression-model"></a>Step 3: Train classification or regression model
 
-接著使用[二元羅吉斯迴歸](https://msdn.microsoft.com/library/azure/dn905994.aspx)預測我們的目標︰高或低的評論分數。此時，文字分析問題已轉換成一般分類問題。您可以使用 Azure Machine Learning 中可用的工具來改善模型。例如，您可以試驗不同的分類器以了解它們所提供結果的精確度，或使用超參數調整改善精確度。
+Now the text has been transformed to numeric feature columns. The dataset still contains string columns from previous stages, so we use Select Columns in Dataset to exclude them.
 
-![定型和評分](./media/machine-learning-text-analytics-module-tutorial/scoring-text.png)
+We then use [Two-Class Logistic Regression] (https://msdn.microsoft.com/library/azure/dn905994.aspx) to predict our target: high or low review score. At this point, the text analytics problem has been transformed into a regular classification problem. You can use the tools available in Azure Machine Learning to improve the model. For example, you can experiment with different classifiers to find out how accurate results they give, or use hyperparameter tuning to improve the accuracy.
 
-## 步驟 4：評分和驗證模型
+![Train and Score](./media/machine-learning-text-analytics-module-tutorial/scoring-text.png)
 
-如何驗證定型的模型？ 我們會對照測試資料集來評分，並評估精確度。不過，此模型已從了解定型資料集學到 N-Gram 和其加權的詞彙。因此，在從測試資料擷取特徵時，我們應該使用該詞彙和這些加權，而不是重新建立詞彙。因此，我們在實驗評分分支加入「擷取 N-Gram 特徵」模組、從定型分支連接輸出詞彙，並將詞彙模式設定為唯讀。我們也透過將最小值設為 1 個執行個體、最大值設為 100% 來停用依頻率篩選 N-Gram，並關閉特徵選取。
+## <a name="step-4:-score-and-validate-the-model"></a>Step 4: Score and validate the model
 
-在測試資料中的文字資料行轉換成數值特徵資料行之後，我們會排除先前階段 (例如在定型分支中) 中的字串資料行。接著使用「評分模型」模組進行預測，並使用「評估模型」模組來評估精確度。
+How would you validate the trained model? We score it against the test dataset and evaluate the accuracy. However, the model learned the vocabulary of N-grams and their weights from the training dataset. Therefore, we should use that vocabulary and those weights when extracting features from test data, as opposed to creating the vocabulary anew. Therefore, we add Extract N-Gram Features module to the scoring branch of the experiment, connect the output vocabulary from training branch, and set the vocabulary mode to read-only. We also disable the filtering of N-grams by frequency by setting the minimum to 1 instance and maximum to 100%, and turn off the feature selection.
 
-## 步驟 5：將模型部署到生產環境
+After the text column in test data has been transformed to numeric feature columns, we exclude the string columns from previous stages like in training branch. We then use Score Model module to make predictions and Evaluate Model module to evaluate the accuracy.
 
-模型已幾乎可立即部署到生產環境。部署為 Web 服務時，它會採用自由格式的文字字串做為輸入，並傳回「高」或「低」的預測。 它會使用學習到的 N-Gram 詞彙將文字轉換成特徵，並使用定型的羅吉斯迴歸模型，從這些特徵進行預測。
+## <a name="step-5:-deploy-the-model-to-production"></a>Step 5: Deploy the model to production
 
-為設定預測性實驗，我們先儲存 N-Gram 詞彙做為資料集，並使用實驗的定型分支中的定型羅吉斯迴歸模型。接著我們使用「另存新檔」儲存實驗，為預測性實驗建立實驗圖形。我們從實驗中移除「分割資料」模組和定型分支。我們再將先前儲存的 N-Gram 詞彙和模型分別連接到「擷取 N-Gram 特徵」和「評分模型」模組。我們也會移除「評估模型」模組。
+The model is almost ready to be deployed to production. When deployed as web service, it takes free-form text string as input, and return a prediction "high" or "low." It uses the learned N-gram vocabulary to transform the text to features, and trained logistic regression model to make a prediction from those features. 
 
-我們將「選取資料集中的資料行」模組插入「前置處理文字」模組之前以移除標籤資料行，並取消選取「評分模組」中的「 將評分資料行附加到資料集」選項。這樣一來，Web 服務就不會要求它正嘗試預測的標籤，也不會對回應中的輸入特徵做回應。
+To set up the predictive experiment, we first save the N-gram vocabulary as dataset, and the trained logistic regression model from the training branch of the experiment. Then, we save the experiment using "Save As" to create an experiment graph for predictive experiment. We remove the Split Data module and the training branch from the experiment. We then connect the previously saved N-gram vocabulary and model to Extract N-Gram Features and Score Model modules, respectively. We also remove the Evaluate Model module.
 
-![預測性實驗](./media/machine-learning-text-analytics-module-tutorial/predictive-text.png)
+We insert Select Columns in Dataset module before Preprocess Text module to remove the label column, and unselect "Append score column to dataset" option in Score Module. That way, the web service does not request the label it is trying to predict, and does not echo the input features in response.
 
-現在我們有一個實驗可以發行為 Web 服務，並使用要求-回應或批次執行 API 進行呼叫。
+![Predictive Experiment](./media/machine-learning-text-analytics-module-tutorial/predictive-text.png)
 
-## 後續步驟
+Now we have an experiment that can be published as a web service and called using request-response or batch execution APIs.
 
-從 [MSDN 文件](https://msdn.microsoft.com/library/azure/dn905886.aspx)深入了解文字分析模組。
+## <a name="next-steps"></a>Next Steps
 
-<!---HONumber=AcomDC_0914_2016-->
+Learn about text analytics modules from [MSDN documentation] (https://msdn.microsoft.com/library/azure/dn905886.aspx).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

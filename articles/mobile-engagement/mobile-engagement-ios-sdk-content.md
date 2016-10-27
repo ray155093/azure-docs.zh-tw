@@ -1,45 +1,50 @@
 <properties
-	pageTitle="Azure Mobile Engagement iOS SDK 內容"
-	description="Azure Mobile Engagement iOS SDK 的最新更新與程序"
-	services="mobile-engagement"
-	documentationCenter="mobile"
-	authors="MehrdadMzfr"
-	manager="dwrede"
-	editor="" />
+    pageTitle="Azure Mobile Engagement iOS SDK Content"
+    description="Latest updates and procedures for iOS SDK for Azure Mobile Engagement"
+    services="mobile-engagement"
+    documentationCenter="mobile"
+    authors="MehrdadMzfr"
+    manager="dwrede"
+    editor="" />
 
 <tags
-	ms.service="mobile-engagement"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-ios"
-	ms.devlang="objective-c"
-	ms.topic="article"
-	ms.date="08/19/2016"
-	ms.author="piyushjo" />
+    ms.service="mobile-engagement"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-ios"
+    ms.devlang="objective-c"
+    ms.topic="article"
+    ms.date="08/19/2016"
+    ms.author="piyushjo" />
 
-#SDK 內容
 
-本文件列出並描述 SDK 封存的內容。
+#<a name="sdk-content"></a>SDK Content
 
-##Engagement SDK
+This document lists and describes the content of the SDK archive.
+
+##<a name="engagement-sdk"></a>Engagement SDK
 
 `EngagementSDK`
 
-> 核心 Engagement SDK 包含了標頭、程式庫，以及一個提供來做為啟用/停用 IDFA 集合之原始程式碼的額外類別。
+> The core Engagement SDK containing headers, library and an additional class provided as a source code to enable/disable IDFA collection.
 
-##Engagement Reach SDK
+##<a name="engagement-reach-sdk"></a>Engagement Reach SDK
 
 `EngagementReach`
 
-> Engagement Reach SDK 包含標頭、程式庫，以及相關聯資源。
+> Engagement Reach SDK containing headers, library and associated resources.
 
-##其他檔案
+##<a name="additional-files"></a>Additional files
 
-`doc/index.html` (在 `doc` 資料夾)
+`doc/index.html` (in `doc` folder)
 
-> Engagement SDK 與 Reach SDK Objective-C 文件。
+> Engagement SDK and Reach SDK Objective-C documentation.
 
-`src` 資料夾
+`src` folder
 
-> Engagement 檢視控制器與 Reach SDK 原始程式碼 (適用於想要依照其需求調整 Engagement 類別的進階使用者)。
+> Engagement view controllers and Reach SDK's source code (for power users who want to adapt Engagement classes to their needs).
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

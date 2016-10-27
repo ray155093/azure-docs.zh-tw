@@ -1,49 +1,54 @@
 <properties
-	pageTitle="在 Azure Active Directory 預覽版中檢視所有現有的群組 | Microsoft Azure"
-	description="如何在 Azure Active Directory 預覽版中檢視已經建立的群組。"
-	services="active-directory"
-	documentationCenter=""
-	authors="curtand"
-	manager="femila"
-	editor=""/>
+    pageTitle="View all existing groups in Azure Active Directory preview | Microsoft Azure"
+    description="How to view the groups that have already been created in Azure Active Directory preview."
+    services="active-directory"
+    documentationCenter=""
+    authors="curtand"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/12/2016"
-	ms.author="curtand"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/12/2016"
+    ms.author="curtand"/>
 
 
-# 在 Azure Active Directory 預覽版中檢視所有現有的群組
 
-本文說明如何在 Azure Active Directory (Azure AD) 預覽版中檢視所有群組。[預覽版有何功能？](active-directory-preview-explainer.md) 其中一項 Azure Active Directory (Azure AD) 使用者管理功能，就是能夠建立可讓您將使用者填入其中的群組。您可以使用群組來執行管理工作，例如一次指派授權或權限給多名使用者。
+# <a name="view-all-existing-groups-in-azure-active-directory-preview"></a>View all existing groups in Azure Active Directory preview
 
-## 如何查看所有群組？
+This article explains how to view all groups in Azure Active Directory (Azure AD) preview. [What's in the preview?](active-directory-preview-explainer.md) One of the features of Azure Active Directory (Azure AD) user management is the ability to create groups that you can populate with your users. You use a group to perform management tasks such as assigning licenses or permissions to a number of users at once.
 
-1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
+## <a name="how-do-i-see-all-the-groups?"></a>How do I see all the groups?
 
-2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
+1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
 
-    ![開啟使用者管理](./media/active-directory-groups-view-azure-portal/search-user-management.png)
+2.  Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.
 
-3.  在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
+    ![Opening user management](./media/active-directory-groups-view-azure-portal/search-user-management.png)
 
-    ![開啟群組刀鋒視窗](./media/active-directory-groups-view-azure-portal/view-groups-blade.png)
+3.  On the **Users and groups** blade, select **All groups**.
 
-4. 在 [使用者和群組 - 所有群組] 刀鋒視窗上，您可以新增或移除顯示資料行、篩選清單來搜尋群組，或對您具備足夠變更權限的群組進行變更。
+    ![Opening the groups blade](./media/active-directory-groups-view-azure-portal/view-groups-blade.png)
 
-## 其他資訊
+4. On the **Users and groups - All groups** blade, you can add or remove display columns, filter the list to search for a group, or make changes to groups that you have sufficient permissions to change.
 
-這些文章提供有關 Azure Active Directory 的其他資訊。
+## <a name="additional-information"></a>Additional information
 
-* [查看現有的群組](active-directory-groups-view-azure-portal.md)
-* [建立新群組並新增成員](active-directory-groups-create-azure-portal.md)
-* [管理群組的設定](active-directory-groups-settings-azure-portal.md)
-* [管理群組的成員](active-directory-groups-members-azure-portal.md)
-* [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
-* [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
+These articles provide additional information on Azure Active Directory.
 
-<!---HONumber=AcomDC_0914_2016-->
+* [See existing groups](active-directory-groups-view-azure-portal.md)
+* [Create a new group and adding members](active-directory-groups-create-azure-portal.md)
+* [Manage settings of a group](active-directory-groups-settings-azure-portal.md)
+* [Manage members of a group](active-directory-groups-members-azure-portal.md)
+* [Manage memberships of a group](active-directory-groups-membership-azure-portal.md)
+* [Manage dynamic rules for users in a group](active-directory-groups-dynamic-membership-azure-portal.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

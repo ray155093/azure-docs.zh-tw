@@ -1,6 +1,6 @@
 <properties
-   pageTitle="從資料損毀或意外刪除復原的復原技術指導 | Microsoft Azure"
-   description="有關如何從意外損毀資料或刪除資料恢復資料，和設計可恢復、高可用性、容錯的應用程式，以及規劃災害復原的文章"
+   pageTitle="Resiliency technical guidance for recovering from data corruption or accidental deletion | Microsoft Azure"
+   description="Article on understanding how to recover from data corruption of data or accidental data deletion to and designing resilient, highly available, fault tolerant applications as well as planning for disaster recovery"
    services=""
    documentationCenter="na"
    authors="adamglick"
@@ -16,85 +16,89 @@
    ms.date="08/18/2016"
    ms.author="aglick"/>
 
-#Azure 復原技術指導：從資料損毀或意外刪除復原
 
-健全的商務持續性計畫的一部分為對資料損毀或遭意外刪除有所計畫。以下是因為應用程式錯誤或操作員錯誤而損毀或意外刪除資料之後，有關復原的資訊。
+#<a name="azure-resiliency-technical-guidance:-recovery-from-data-corruption-or-accidental-deletion"></a>Azure resiliency technical guidance: recovery from data corruption or accidental deletion
 
-##虛擬機器
+Part of a robust business continuity plan is having a plan if your data gets corrupted or accidentally deleted. The following is information about recovery after data has been corrupted or accidentally deleted, due to application errors or operator error.
 
-若要保護 Azure 虛擬機器 (有時稱為基礎結構即服務 VM) 不受應用程式錯誤或意外刪除，請使用 [Azure 備份](https://azure.microsoft.com/services/backup/)。Azure 備份可讓您跨多個 VM 磁碟建立一致的備份。此外，備份保存庫可以跨區域複寫，以從區域耗損提供復原。
+##<a name="virtual-machines"></a>Virtual Machines
 
-##儲存體
+To protect your Azure Virtual Machines (sometimes called infrastructure-as-a-service VMs) from application errors or accidental deletion, use [Azure Backup](https://azure.microsoft.com/services/backup/). Azure Backup enables the creation of backups that are consistent across multiple VM disks. In addition, the Backup Vault can be replicated across regions to provide recovery from region loss.
 
-請注意，雖然 Azure 儲存體透過自動化複本提供資料恢復，這無法防止您的應用程式程式碼 (或開發人員/使用者) 不會因為意外或非特意刪除、更新等而損毀資料。維護應用程式或使用者錯誤的資料精確度需要更進階的技術，例如複製資料到具有稽核記錄檔的次要儲存體位置。開發人員可以利用 Blob [快照集功能](https://msdn.microsoft.com/library/azure/ee691971.aspx)，這可以為 Blob 內容建立唯讀時間點快照集。這可用來當做 Azure 儲存體 Blob 的資料精確度解決方案的基礎。
+##<a name="storage"></a>Storage
 
-###Blob 和資料表儲存體備份
+Note that while Azure Storage provides data resiliency through automated replicas, this does not prevent your application code (or developers/users) from corrupting data through accidental or unintended deletion, update, and so on. Maintaining data fidelity in the face of application or user error requires more advanced techniques, such as copying the data to a secondary storage location with an audit log. Developers can take advantage of the blob [snapshot capability](https://msdn.microsoft.com/library/azure/ee691971.aspx), which can create read-only point-in-time snapshots of blob contents. This can be used as the basis of a data-fidelity solution for Azure Storage blobs.
 
-雖然 Blob 和資料表都很持久，但是它們一律會呈現資料的目前狀態。從不想要的修改或刪除資料復原可能需要將資料還原到先前的狀態。這可以利用 Azure 所提供用來儲存和保留時間點複本的功能來達成。
+###<a name="blob-and-table-storage-backup"></a>Blob and Table Storage Backup
 
-針對 Azure Blob，您可以使用 [Blob 快照集功能](https://msdn.microsoft.com/library/ee691971.aspx)執行時間點備份。針對每個快照集，您只需支付自從上一個快照集狀態後，在 Blob 中儲存差異所需的儲存體。快照集取決於其根據的原始 Blob，因此建議對另一個 Blob 或甚至是另一個儲存體帳戶進行複製作業。這可確保該備份資料可正確地受到保護，防止被意外刪除。對於 Azure 資料表，您可以對不同的資料表或 Azure Blob 建立時間點複本。執行資料表和 Blob 應用程式層級備份的更詳細指導方針與範例可以在這裡找到：
+While blobs and tables are highly durable, they always represent the current state of the data. Recovery from unwanted modification or deletion of data may require restoring data to a previous state. This can be achieved by taking advantage of the capabilities provided by Azure to store and retain point-in-time copies.
 
-  * [保護您的資料表以免發生應用程式錯誤](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/05/03/protecting-your-tables-against-application-errors/)
-  * [保護您的 Blob 以免發生應用程式錯誤](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/04/29/protecting-your-blobs-against-application-errors/)
+For Azure Blobs, you can perform point-in-time backups using the [blob snapshot feature](https://msdn.microsoft.com/library/ee691971.aspx). For each snapshot, you are only charged for the storage required to store the differences within the blob since the last snapshot state. The snapshots are dependent on the existence of the original blob they are based on, so a copy operation to another blob or even another storage account is advisable. This ensures that backup data is properly protected against accidental deletion. For Azure Tables, you can make point-in-time copies to a different table or to Azure Blobs. More detailed guidance and examples of performing application-level backups of tables and blobs can be found here:
 
-##資料庫
+  * [Protecting Your Tables Against Application Errors](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/05/03/protecting-your-tables-against-application-errors/)
+  * [Protecting Your Blobs Against Application Errors](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/04/29/protecting-your-blobs-against-application-errors/)
 
-有好幾種[商務持續性](../sql-database/sql-database-business-continuity.md) (備份、還原) 選項可供 Azure SQL Database 使用。透過[資料庫複製](../sql-database/sql-database-copy.md)功能，或透過[匯出](../sql-database/sql-database-export.md)與[匯入](https://msdn.microsoft.com/library/hh710052.aspx) SQL Server 的 bacpac 檔案即可複製資料庫。資料庫複製可提供交易一致的結果，而 bacpac (透過匯入/匯出服務) 則不會。這兩種選項都會在服務中心內以佇列為基礎的服務形式執行，並且目前不提供完成時間 SLA。
+##<a name="database"></a>Database
 
->[AZURE.NOTE]資料庫複製和匯入/匯出選項對來源資料庫有極明顯程度的負載。這些選項可能會觸發資源競爭或節流事件。
+There are several [business continuity](../sql-database/sql-database-business-continuity.md) (backup, restore) options available for Azure SQL Database. Databases can be copied by using the [Database Copy](../sql-database/sql-database-copy.md) functionality, or by  [exporting](../sql-database/sql-database-export.md) and [importing](https://msdn.microsoft.com/library/hh710052.aspx) a SQL Server bacpac file. Database Copy provides transactionally consistent results, while a bacpac (through the import/export service) does not. Both of these options run as queue-based services within the data center, and they do not currently provide a time-to-completion SLA.
 
-###SQL Database 備份
+>[AZURE.NOTE]The database copy and import/export options place a significant degree of load on the source database. They can trigger resource contention or throttling events.
 
-Microsoft Azure SQL Database 的時間點備份，是透過[複製您的 Azure SQL Database](../sql-database/sql-database-copy.md) 達成。您可以使用此命令對相同邏輯資料庫伺服器或不同伺服器建立資料庫的交易一致複本。在任一情況下，資料庫複本完整可運作，且完全獨立於來源資料庫。您所建立的每個複本代表一個時間點復原選項。您可以將新的資料庫重新命名為來源資料庫名稱，藉以完全復原資料庫狀態。或者，您可以使用 Transact-SQL 查詢，從新的資料庫復原特定資料子集。如需 SQL Database 的其他詳細資訊，請參閱[使用 Azure SQL Database 的商務持續性概觀](../sql-database/sql-database-business-continuity.md)。
+###<a name="sql-database-backup"></a>SQL Database Backup
 
-###虛擬機器備份上的 SQL Server
+Point-in-time backups for Microsoft Azure SQL Database are achieved by [copying your Azure SQL database](../sql-database/sql-database-copy.md). You can use this command to create a transactionally consistent copy of a database on the same logical database server or to a different server. In either case, the database copy is fully functional and completely independent of the source database. Each copy you create represents a point-in-time recovery option. You can recover the database state completely by renaming the new database with the source database name. Alternatively, you can recover a specific subset of data from the new database by using Transact-SQL queries. For additional details about SQL Database, see [Overview of business continuity with Azure SQL Database](../sql-database/sql-database-business-continuity.md).
 
-針對做為服務虛擬機器用於 Azure 基礎結構的 SQL Server (通常稱為 IaaS 或 IaaS VM)，有兩個選項：傳統備份和記錄傳送。使用傳統備份可讓您還原到特定時間點，但復原程序緩慢。還原傳統備份需要從最初的完整備份開始，然後套用之後所建立的任何備份。第二個選項是設定記錄傳送的工作階段，將記錄備份的還原延遲 (例如，兩個小時)。這會提供從在主要伺服器上所造成的錯誤復原的時間。
+###<a name="sql-server-on-virtual-machines-backup"></a>SQL Server on Virtual Machines Backup
 
-##其他 Azure 平台服務
+For SQL Server used with Azure infrastructure as a service virtual machines (often called IaaS or IaaS VMs), there are two options: traditional backups and log shipping. Using traditional backups enables you to restore to a specific point in time, but the recovery process is slow. Restoring traditional backups requires starting with an initial full backup, and then applying any backups taken after that. The second option is to configure a log shipping session to delay the restore of log backups (for example, by two hours). This provides a window to recover from errors made on the primary.
 
-某些 Azure 平台服務會將資訊儲存在使用者控制的儲存體帳戶或 Azure SQL Database。如果帳戶或儲存體資源遭到刪除或損毀，這可能造成服務的嚴重錯誤。在這些情況下，請務必維護備份，如果資料遭到刪除或損毀，便可讓您重新建立這些資源。
+##<a name="other-azure-platform-services"></a>Other Azure platform services
 
-針對 Azure 網站和 Azure 行動服務，您必須備份及維護相關聯的資料庫。針對 Azure 媒體服務和虛擬機器，您必須維護相關聯的 Azure 儲存體帳戶和該帳戶中的所有資源。例如，針對虛擬機器，您必須在 Azure Blob 儲存體中備份和管理 VM 磁碟。
+Some Azure platform services store information in a user-controlled storage account or Azure SQL Database. If the account or storage resource is deleted or corrupted, this could cause serious errors with the service. In these cases, it is important to maintain backups that would enable you to re-create these resources if they were deleted or corrupted.
 
-##資料損毀或意外刪除的檢查清單
+For Azure Web Sites and Azure Mobile Services, you must backup and maintain the associated databases. For Azure Media Service and Virtual Machines, you must maintain the associated Azure Storage account and all resources in that account. For example, for Virtual Machines, you must back up and manage the VM disks in Azure blob storage.
 
-##虛擬機器檢查清單
+##<a name="checklists-for-data-corruption-or-accidental-deletion"></a>Checklists for data corruption or accidental deletion
 
-  1. 檢閱此文件的＜虛擬機器＞一節。
-  2. 使用 Azure 備份來備份及維護 VM 磁碟 (或使用 Azure Blob 儲存體和 VHD 的快照集之您自己的備份系統)。
+##<a name="virtual-machines-checklist"></a>Virtual Machines checklist
 
-##儲存體檢查清單
+  1. Review the Virtual Machines section of this document.
+  2. Back up and maintain the VM disks with Azure Backup (or your own backup system by using Azure blob storage and VHD snapshots).
 
-  1. 檢閱此文件的＜儲存體＞一節。
-  2. 定期備份重要的儲存體資源。
-  3. 考慮對 Blob 使用快照集功能。
+##<a name="storage-checklist"></a>Storage checklist
 
-##資料庫檢查清單
+  1. Review the Storage section of this document.
+  2. Regularly back up critical storage resources.
+  3. Consider using the snapshot feature for blobs.
 
-  1. 檢閱此文件的＜資料庫＞一節。
-  2. 使用資料庫複製命令建立時間點備份。
+##<a name="database-checklist"></a>Database checklist
 
-##虛擬機器備份上的 SQL Server 檢查清單
+  1. Review the Database section of this document.
+  2. Create point-in-time backups by using the Database Copy command.
 
-  1. 檢閱此文件的＜虛擬機器備份上的 SQL Server＞一節。
-  2. 使用傳統備份和還原技術。
-  3. 建立延後的記錄傳送工作階段。
+##<a name="sql-server-on-virtual-machines-backup-checklist"></a>SQL Server on Virtual Machines Backup checklist
 
-##Web Apps 檢查清單
+  1. Review the SQL Server on Virtual Machines Backup section of this document.
+  2. Use traditional backup and restore techniques.
+  3. Create a delayed log shipping session.
 
-  1. 備份及維護相關聯的資料庫，如果有的話。
+##<a name="web-apps-checklist"></a>Web Apps checklist
 
-##媒體服務檢查清單
+  1. Back up and maintain the associated database, if any.
 
-  1. 備份及維護相關聯的儲存體資源。
+##<a name="media-services-checklist"></a>Media Services checklist
 
-##詳細資訊
+  1. Back up and maintain the associated storage resources.
 
-如需有關 Azure 的備份和還原功能的詳細資訊，請參閱[儲存體、備份和復原案例](https://azure.microsoft.com/documentation/scenarios/storage-backup-recovery/)。
+##<a name="more-information"></a>More information
 
-##後續步驟
+For more information about backup and restore features in Azure, see [Storage, backup and recovery scenarios](https://azure.microsoft.com/documentation/scenarios/storage-backup-recovery/).
 
-這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。如果您要尋找更多恢復、災害復原和高可用性的資源，請參閱 Azure 復原技術指導[其他資源](./resiliency-technical-guidance.md#additional-resources)。
+##<a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0824_2016-->
+This article is part of a series focused on [Azure resiliency technical guidance](./resiliency-technical-guidance.md). If you are looking for more resiliency, disaster recovery, and high availability resources, see the Azure resiliency technical guidance [additional resources](./resiliency-technical-guidance.md#additional-resources).
+
+
+<!--HONumber=Oct16_HO2-->
+
+

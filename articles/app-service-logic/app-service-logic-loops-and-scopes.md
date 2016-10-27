@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Logic Apps 迴圈、範圍和解除批次處理 | Microsoft Azure"
-   description="邏輯應用程式迴圈、範圍和解除批次處理的概念"
+   pageTitle="Logic Apps Loops, Scopes, and Debatching | Microsoft Azure"
+   description="Logic App loop, scope, and debatching concepts"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
@@ -16,15 +16,16 @@
    ms.date="05/14/2016"
    ms.author="jehollan"/>
    
-# Logic Apps 迴圈、範圍和解除批次處理
-  
->[AZURE.NOTE] 這一版的文章適用於 Logic Apps 2016-04-01-preview 結構描述和更新版本。概念與較舊的結構描述很類似，但範圍僅適用於這個結構描述和更新版本。
-  
-## ForEach 迴圈和陣列
-  
-Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動作。這可透過 `foreach` 動作來達成。在設計工具中，您可以指定要新增一個 for each 迴圈。在選取您希望反覆查看的陣列之後，就可以新增動作。目前您受限於每個 foreach 迴圈只能有一個動作，但在未來幾週內，將會提高此限制。一旦進入迴圈之後，您就可以開始指定應針對陣列的每個值執行哪些動作。
 
-如果使用程式碼檢視，您就可以指定 for each 迴圈，如下所示。這是 for each 迴圈的範例，可針對每個包含「microsoft.com」的電子郵件地址傳送傳送電子郵件︰
+# <a name="logic-apps-loops,-scopes,-and-debatching"></a>Logic Apps Loops, Scopes, and Debatching
+  
+>[AZURE.NOTE] This version of the article applies to Logic Apps 2016-04-01-preview schema and later.  Concepts are similar for older schemas, but scopes are only available for this schema and later.
+  
+## <a name="foreach-loop-and-arrays"></a>ForEach Loop and Arrays
+  
+Logic Apps allows you to loop over a set of data and perform an action for each item.  This is possible via the `foreach` action.  In the designer, you can specify to add a for each loop.  After selecting the array you wish to iterate over, you can begin adding actions.  Currently you are limited to only one action per foreach loop, but this restriction will be lifted in the coming weeks.  Once within the loop you can begin to specify what should occur at each value of the array.
+
+If using code-view, you can specify a for each loop like below.  This is an example of a for each loop that sends an email for each email address that contains 'microsoft.com':
 
 ```
 {
@@ -62,17 +63,17 @@ Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動
 }
 ```
   
-  `foreach` 動作可以反覆查看陣列，最多 5,000 個資料列。每個反覆項目都可平行執行，因此可能需要視流量控制來將訊息新增至佇列。
+  A `foreach` action can iterate over arrays up to 5,000 rows.  Each iteration can execute in parallel, so it may be necessary to add messages to a queue if flow control is needed.
   
-## Until 迴圈
+## <a name="until-loop"></a>Until Loop
   
-  您可以執行某個動作或一系列動作，直到符合某個條件為止。對於此迴圈的最常見案例是呼叫端點，直到您取得所需的回應為止。在設計工具中，您可以指定要新增一個 until 迴圈。在迴圈中新增動作之後，您就可以設定結束條件以及迴圈限制。迴圈循環之間有 1 分鐘的延遲。
+  You can perform an action or series of actions until a condition is met.  The most common scenario for this is calling an endpoint until you get the response you are looking for.  In the designer, you can specify to add an until loop.  After adding actions inside the loop, you can set the exit condition, as well as the loop limits.  There is a 1 minute delay between loop cycles.
   
-  如果使用程式碼檢視，您可以指定 until 迴圈，如下所示。這個範例會呼叫 HTTP 端點，直到回應主體具有「已完成」的值為止。它將會在符合下列其中一種情況時完成
+  If using code-view, you can specify an until loop like below.  This is an example of calling an HTTP endpoint until the response body has the value 'Completed'.  It will complete when either 
   
-  * HTTP 回應具有「已完成」的狀態
-  * 已嘗試 1 小時的時間
-  * 已執行過 100 次的迴圈
+  * HTTP Response has status of 'Completed'
+  * It has tried for 1 hour
+  * It has looped 100 times
   
   ```
   {
@@ -98,11 +99,11 @@ Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動
   }
   ```
   
-## SplitOn 和解除批次處理
+## <a name="spliton-and-debatching"></a>SplitOn and Debatching
 
-觸發程序有時可能會接收到您想要解除批次處理並針對每個項目啟動工作流程的項目陣列。這可透過 `spliton` 命令來完成。根據預設，如果您的觸發程序 Swagger 指定的承載是一個陣列，即會新增 `spliton`，並針對每個項目開始執行。SplitOn 只會新增至觸發程序。這可以在定義程式碼檢視中手動設定或覆寫。SplitOn 目前可以解除批次處理陣列，最多 5,000 個項目。您無法具有 `spliton` 並同時實作同步回應模式。若所呼叫的任何工作流程除了 `spliton` 之外還有 `response` 動作，將會以非同步方式執行並傳送立即 `202 Accepted` 回應。
+Sometimes a trigger may recieve an array of items that you want to debatch and start a workflow per item.  This can be accomplished via the `spliton` command.  By default, if your trigger swagger specifies a payload that is an array, a `spliton` will be added and start a run per item.  SplitOn can only be added to a trigger.  This can be manually configured or overridden in definition code-view.  Currently SplitOn can debatch arrays up to 5,000 items.  You cannot have a `spliton` and also implement the syncronous response pattern.  Any workflow called that has a `response` action in addition to `spliton` will run asyncronously and send an immediate `202 Accepted` response.  
 
-SplitOn 可以指定於程式碼檢視中，如下列範例所示。這將會接收到項目的陣列，並在每一列上解除批次處理。
+SplitOn can be specified in code-view as the following example.  This recieves an array of items and debatches on each row.
 
 ```
 {
@@ -112,7 +113,7 @@ SplitOn 可以指定於程式碼檢視中，如下列範例所示。這將會接
             "url": "http://getNewCustomers",
         },
         "recurrence": {
-            "frequencey": "Second",
+            "frequency": "Second",
             "interval": 15
         },
         "spliton": "@triggerBody()['rows']"
@@ -120,9 +121,9 @@ SplitOn 可以指定於程式碼檢視中，如下列範例所示。這將會接
 }
 ```
 
-## 範圍
+## <a name="scopes"></a>Scopes
 
-可能可以使用 scope 來將一系列動作群組在一起。這特別適合用來實作例外狀況處理。在設計工具中，您可以新增範圍，並開始在其內部新增任何動作。您可以在程式碼檢視中定義範圍，如下所示︰
+It is possible to group a series of actions together using a scope.  This is particularly useful for implementing exception handling.  In the designer you can add a new scope, and begin adding any actions inside of it.  You can define scopes in code-view like the following:
 
 
 ```
@@ -141,4 +142,8 @@ SplitOn 可以指定於程式碼檢視中，如下列範例所示。這將會接
 }
 ```
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

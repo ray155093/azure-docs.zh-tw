@@ -1,12 +1,12 @@
 <properties
-	pageTitle="邏輯應用程式 webhook 連接器 | Microsoft Azure"
-	description="執行如篩選陣列等動作的 Webhook 動作和觸發程序概觀。"
-	services=""
-	documentationCenter="" 
-	authors="jeffhollan"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="Logic App webhook connector | Microsoft Azure"
+    description="Overview of webhook action and triggers for performing actions like Filter Array."
+    services=""
+    documentationCenter="" 
+    authors="jeffhollan"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="logic-apps"
@@ -17,146 +17,153 @@
    ms.date="07/21/2016"
    ms.author="jehollan"/>
 
-# 開始使用 webhook 連接器
 
-透過使用 webhook 和觸發程序，您可以觸發、暫停和繼續流程來達成下列目的︰
+# <a name="get-started-with-the-webhook-connector"></a>Get started with the webhook connector
 
-- 一收到項目即從 [Azure 事件中樞](https://github.com/logicappsio/EventHubAPI)觸發
-- 等待核准再繼續工作流程
+With the webhook action and trigger you can trigger, pause, and resume flows to accomplish:
 
-若要了解如何建立支援 webhook 訂閱的 API，請參閱[建立邏輯應用程式連接器](../app-service-logic/app-service-logic-create-api-app.md)一文。
+- Trigger from an [Azure Event Hub as soon as an item](https://github.com/logicappsio/EventHubAPI) is received
+- Wait for an approval before continuing a workflow
 
----
-
-## 使用 webhook 觸發程序
-
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](connectors-overview.md)。Webhook 觸發程序特別有用，因為它不依賴輪詢新的項目- 就像[要求觸發程序](./connectors-native-reqres.md)一樣，邏輯應用程式會引發事件發生的瞬間。它的運作方式是註冊服務的*回呼 URL*，就能視需要用來觸發邏輯應用程式。
-
-以下是如何在邏輯應用程式設計工具中設定 HTTP 觸發程序的範例順序。這是假設您已部署或正在存取的 API 會遵循[邏輯應用程式中使用的 webhook 訂閱和取消訂閱模式](../app-service-logic/app-service-logic-create-api-app.md#webhook-triggers)。每當邏輯應用程式隨新的 webhook 儲存或由停用切換為啟用時，就會進行訂閱呼叫。每當邏輯應用程式 webhook 觸發程序移除與儲存時，就會進行取消訂閱呼叫。
-
-1. 將 **HTTP Webhook** 觸發程序新增為邏輯應用程式中的第一個步驟
-1. 填入 webhook 訂閱和取消訂閱呼叫的參數
-	- 以上所遵循的模式與 [HTTP 動作](./connectors-native-http.md)格式相同
-
-	![HTTP 觸發程序](./media/connectors-native-webhook/using-trigger.png)
-
-1. 加入至少一個動作
-1. 按一下 [儲存] 以發佈邏輯應用程式 - 這樣會呼叫含有觸發此邏輯應用程式所需的回呼 URL 的訂閱端點
-1. 每當服務對回呼 URL 發出 `HTTP POST` 呼叫時，邏輯應用程式就會觸發 (並包含要求中所傳遞的任何資料)
-
-## 使用 webhook 動作
-	
-動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作。](connectors-overview.md) Webhook 動作特別有用，因為它會註冊服務的*回呼 URL*，並等到呼叫該 URL 後再繼續。[傳送核准電子郵件](./connectors-create-api-office365-outlook.md)是遵循這個模式的連接器範例。您可以透過 webhook 動作將此模式擴充到任何服務。這是假設您已部署或正在存取的 API 會遵循[邏輯應用程式中使用的 webhook 訂閱和取消訂閱模式](../app-service-logic/app-service-logic-create-api-app.md#webhook-actions)。每當邏輯應用程式執行 webhook 動作時，就會進行訂閱呼叫。每當執行在等待回應時取消或在邏輯應用程式執行逾時前，就會進行取消訂閱呼叫。
-
-新增 webhook 動作：
-
-1. 選取 [新增步驟] 按鈕
-1. 選擇 [新增動作]
-1. 在動作搜尋方塊中，輸入 "webhook" 以列出 **HTTP Webhook** 動作
-
-	![選取查詢動作](./media/connectors-native-webhook/using-action-1.png)
-
-1. 填入 webhook 訂閱和取消訂閱呼叫的參數
-	- 以上所遵循的模式與 [HTTP 動作](./connectors-native-http.md)格式相同
-
-	![完整查詢動作](./media/connectors-native-webhook/using-action-2.png)
-
-	- 在執行階段，邏輯應用程式會在抵達步驟後呼叫訂閱端點
-
-1. 按一下工具列左上角的 [儲存]，邏輯應用程式便會儲存並發佈 (啟動)
+Information on creating an API that supports a webhook subscribe can be found [in this article on creating Logic App connectors](../app-service-logic/app-service-logic-create-api-app.md).
 
 ---
 
-## 技術詳細資訊
+## <a name="use-the-webhook-trigger"></a>Use the webhook trigger
 
-以下是 webhook 支援的觸發程序和動作的詳細資料。
+A trigger is an event that can be used to start the workflow defined in a Logic app. [Learn more about triggers](connectors-overview.md).  A webhook trigger is especially useful as it doesn't rely on polling for new items - like the [request trigger](./connectors-native-reqres.md) the logic app will fire the instant an event occurs.  It does this by registering a *callback URL* to a service which can be used to fire the logic app as needed.
 
-## WebHook 觸發程序
+Here’s an example sequence of how to setup a HTTP trigger in the logic app designer.  This assumes you have already deployed or are accessing an API that follows [the webhook subscribe and unsubscribe pattern used in Logic Apps](../app-service-logic/app-service-logic-create-api-app.md#webhook-triggers).  The subscribe call is made whenever a logic app is saved with a new webhook, or switched from disabled to enabled.  The unsubscribe call is made whenever a logic app webhook trigger is removed and saved, or switched from enabled to disabled.
 
-觸發程序是啟動工作流程的作業。[深入了解觸發程序。](connectors-overview.md) 此連接器有 1 個觸發程序。
+1. Add the **HTTP Webhook** trigger as the first step in a logic app
+1. Fill in the parameters for the webhook subscribe and unsubscribe calls
+    - This follow the same pattern as the [HTTP action](./connectors-native-http.md) format
 
-|動作|說明|
+    ![HTTP Trigger](./media/connectors-native-webhook/using-trigger.png)
+
+1. Add at least one action
+1. Click save to publish the logic app - this will call the subscribe endpoint with the callback URL needed to trigger this logic app
+1. Whenever the service makes an `HTTP POST` to the callback URL, the logic app will fire (and include any data passed in the request)
+
+## <a name="use-the-webhook-action"></a>Use the webhook action
+    
+An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions.](connectors-overview.md)  A webhook action is especially useful as it will register a *callback URL* with a service and wait until the URL is called before resuming.  The ["Send Approval Email"](./connectors-create-api-office365-outlook.md) is an example of a connector that follows this pattern.  You can extend this pattern into any service through the webhook action.  This assumes you have already deployed or are accessing an API that follows [the webhook subscribe and unsubscribe pattern used in Logic Apps](../app-service-logic/app-service-logic-create-api-app.md#webhook-actions).  The subscribe call is made whenever a logic app executes the webhook action.  The unsubscribe call is made whenever a run is cancelled while awaiting a response, or before the logic app run times out.
+
+To add a webhook action:
+
+1. Select the **New Step** button
+1. Choose **Add an action**
+1. In the action search box, type "webhook" to list the **HTTP Webhook** action
+
+    ![Select query action](./media/connectors-native-webhook/using-action-1.png)
+
+1. Fill in the parameters for the webhook subscribe and unsubscribe calls
+    - This follow the same pattern as the [HTTP action](./connectors-native-http.md) format
+
+    ![Complete query action](./media/connectors-native-webhook/using-action-2.png)
+
+    - At runtime the logic app will call the subscribe endpoint once it reaches the step
+
+1. Click save at the top left corner of the toolbar, and your logic app will both save and publish (activate)
+
+---
+
+## <a name="technical-details"></a>Technical details
+
+Below are the details for the trigger and action webhook supports.
+
+## <a name="webhook-triggers"></a>Webhook triggers
+
+A trigger is an operation to start a workflow. [Learn more about triggers.](connectors-overview.md) This connector has 1 trigger.
+
+|Action|Description|
 |---|---|
-|HTTP Webhook|訂閱服務的回呼 URL，就能視需要呼叫該 URL 以觸發邏輯應用程式。|
+|HTTP Webhook|Subscribe a callback URL to a service that can call the URL to fire logic app as needed.|
 
-### 觸發程序詳細資料
+### <a name="trigger-details"></a>Trigger details
 
-webhook 連接器隨附 1 個可能的觸發程序。下面是關於動作、其必要和選擇性輸入欄位，以及與其使用方式相關聯的對應輸出詳細資料的資訊。
+The webhook connector comes with 1 possible trigger. Below is the information on the action, its required and optional input fields, and the corresponding output details associated with its usage.
 
-#### HTTP Webhook
-訂閱服務的回呼 URL，就能視需要呼叫該 URL 以觸發邏輯應用程式。* 代表必要欄位。
+#### <a name="http-webhook"></a>HTTP Webhook
+Subscribe a callback URL to a service that can call the URL to fire logic app as needed.
+An * means required field.
 
-|顯示名稱|屬性名稱|說明|
+|Display Name|Property Name|Description|
 |---|---|---|
-|訂閱方法*|方法|用於訂閱要求的 HTTP 方法|
-|訂閱 URI*|uri|用於訂閱要求的 HTTP URI|
-|取消訂閱方法*|方法|用於取消訂閱要求的 HTTP 方法|
-|取消訂閱 URI*|uri|用於取消訂閱要求的 HTTP URI|
-|訂閱本文|body|訂閱的 HTTP 要求本文|
-|訂閱標頭|headers|訂閱的 HTTP 要求標頭|
-|訂閱驗證|驗證|訂閱要使用的 HTTP 驗證。如需詳細資訊，請參閱 [HTTP 連接器](./connectors-native-http.md#authenication)|
-|取消訂閱頁面|body|取消訂閱的 HTTP 要求本文|
-|取消訂閱標頭|headers|取消訂閱的 HTTP 要求標頭|
-|取消訂閱驗證|驗證|取消訂閱要使用的 HTTP 驗證。如需詳細資訊，請參閱 [HTTP 連接器](./connectors-native-http.md#authenication)|
+|Subscribe Method*|method|HTTP Method to use for subscribe request|
+|Subscribe URI*|uri|HTTP URI to use for subscribe request|
+|Unsubscribe Method*|method|HTTP method to use for unsubscribe request|
+|Unsubscribe URI*|uri|HTTP URI to use for unsubscribe request|
+|Subscribe Body|body|HTTP request body for subscribe|
+|Subscribe Headers|headers|HTTP request headers for subscribe|
+|Subscribe Authentication|authencation|HTTP authentication to use for subscribe. [See HTTP connector](./connectors-native-http.md#authenication) for details|
+|Unsubscribe Body|body|HTTP request body for unsubscribe|
+|Unsubscribe Headers|headers|HTTP request headers for unsubscribe|
+|Unsubscribe Authentication|authentication|HTTP authentication to use for unsubscribe. [See HTTP connector](./connectors-native-http.md#authenication) for details|
 <br>
 
-**輸出詳細資料**
+**Output Details**
 
-Webhook 要求
+Webhook request
 
-|屬性名稱|資料類型|說明|
+|Property Name|Data Type|Description|
 |---|---|---|
-|標頭|物件|Webhook 要求標頭|
-|內文|物件|Webhook 要求物件|
-|狀態碼|int|Webhook 要求狀態碼|
+|Headers|object|Webhook request headers|
+|Body|object|Webhook request object|
+|Status Code|int|Webhook request status code|
 
-## Webhook 動作
+## <a name="webhook-actions"></a>Webhook actions
 
-動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作。](connectors-overview.md) 連接器有 1 個可能的動作。
+An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions.](connectors-overview.md) The connector has 1 possible action. 
 
-|動作|說明|
+|Action|Description|
 |---|---|
-|HTTP Webhook|訂閱服務的回呼 URL，就能視需要呼叫繼續工作流程步驟的 URL。|
+|HTTP Webhook|Subscribe a callback URL to a service that can call the URL to resume a workflow step as needed.|
 
-### 動作詳細資料
+### <a name="action-details"></a>Action details
 
-webhook 連接器隨附 1 個可能的動作。下面是關於動作、其必要和選擇性輸入欄位，以及與其使用方式相關聯的對應輸出詳細資料的資訊。
+The webhook connector comes with 1 possible action. Below, there is information on the action, its required and optional input fields, and the corresponding output details associated with its usage.
 
-#### HTTP Webhook
-訂閱服務的回呼 URL，就能視需要呼叫繼續工作流程步驟的 URL。* 代表必要欄位。
+#### <a name="http-webhook"></a>HTTP Webhook
+Subscribe a callback URL to a service that can call the URL to resume a workflow step as needed.
+An * means required field.
 
-|顯示名稱|屬性名稱|說明|
+|Display Name|Property Name|Description|
 |---|---|---|
-|訂閱方法*|方法|用於訂閱要求的 HTTP 方法|
-|訂閱 URI*|uri|用於訂閱要求的 HTTP URI|
-|取消訂閱方法*|方法|用於取消訂閱要求的 HTTP 方法|
-|取消訂閱 URI*|uri|用於取消訂閱要求的 HTTP URI|
-|訂閱本文|body|訂閱的 HTTP 要求本文|
-|訂閱標頭|headers|訂閱的 HTTP 要求標頭|
-|訂閱驗證|驗證|訂閱要使用的 HTTP 驗證。如需詳細資訊，請參閱 [HTTP 連接器](./connectors-native-http.md#authentication)|
-|取消訂閱頁面|body|取消訂閱的 HTTP 要求本文|
-|取消訂閱標頭|headers|取消訂閱的 HTTP 要求標頭|
-|取消訂閱驗證|驗證|取消訂閱要使用的 HTTP 驗證。如需詳細資訊，請參閱 [HTTP 連接器](./connectors-native-http.md#authentication)|
+|Subscribe Method*|method|HTTP Method to use for subscribe request|
+|Subscribe URI*|uri|HTTP URI to use for subscribe request|
+|Unsubscribe Method*|method|HTTP method to use for unsubscribe request|
+|Unsubscribe URI*|uri|HTTP URI to use for unsubscribe request|
+|Subscribe Body|body|HTTP request body for subscribe|
+|Subscribe Headers|headers|HTTP request headers for subscribe|
+|Subscribe Authentication|authencation|HTTP authentication to use for subscribe. [See HTTP connector](./connectors-native-http.md#authentication) for details|
+|Unsubscribe Body|body|HTTP request body for unsubscribe|
+|Unsubscribe Headers|headers|HTTP request headers for unsubscribe|
+|Unsubscribe Authentication|authentication|HTTP authentication to use for unsubscribe. [See HTTP connector](./connectors-native-http.md#authentication) for details|
 <br>
 
-**輸出詳細資料**
+**Output Details**
 
-Webhook 要求
+Webhook request
 
-|屬性名稱|資料類型|說明|
+|Property Name|Data Type|Description|
 |---|---|---|
-|標頭|物件|Webhook 要求標頭|
-|內文|物件|Webhook 要求物件|
-|狀態碼|int|Webhook 要求狀態碼|
+|Headers|object|Webhook request headers|
+|Body|object|Webhook request object|
+|Status Code|int|Webhook request status code|
 
 ---
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-以下是有關如何推動邏輯應用程式的詳細資料和我們的社群。
+Below are details on how to move forward with logic apps and our community.
 
-## 建立邏輯應用程式
+## <a name="create-a-logic-app"></a>Create a logic app
 
-立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
+Try out the platform and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md) now. You can explore the other available connectors in logic apps by looking at our [APIs list](apis-list.md).
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

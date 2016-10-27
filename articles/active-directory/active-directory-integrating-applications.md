@@ -1,9 +1,9 @@
 <properties
-   pageTitle="整合應用程式與 Azure Active Directory | Microsoft Azure"
-   description="如何在 Azure Active Directory (Azure AD) 中新增、更新或移除應用程式的詳細資料。"
+   pageTitle="Integrating Applications with Azure Active Directory | Microsoft Azure"
+   description="Details on how to add, update, or remove an application in Azure Active Directory (Azure AD)."
    services="active-directory"
    documentationCenter=""
-   authors="msmbaldwin"
+   authors="bryanla"
    manager="mbaldwin"
    editor="mbaldwin" />
 <tags
@@ -12,343 +12,351 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="07/25/2016"
+   ms.date="10/11/2016"
    ms.author="mbaldwin;bryanla" />
 
-# 整合應用程式與 Azure Active Directory
+
+# <a name="integrating-applications-with-azure-active-directory"></a>Integrating applications with Azure Active Directory
 
 [AZURE.INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
-企業開發人員和軟體即服務 (SaaS) 提供者可以開發可與 Azure Active Directory (Azure AD) 整合的商業雲端服務或企業營運應用程式，以提供安全的登入和授權給其服務。若要整合應用程式或服務與 Azure AD，開發人員必須先透過 Azure 傳統入口網站，向 Azure AD 註冊他們的應用程式相關詳細資料。
+Enterprise developers and software-as-a-service (SaaS) providers can develop commercial cloud services or line of business applications that can be integrated with Azure Active Directory (Azure AD) to provide secure sign in and authorization for their services. To integrate an application or service with Azure AD, a developer must first register the details about their application with Azure AD through the Azure classic portal.
 
-本文將說明如何在 Azure AD 中新增、更新或移除應用程式。您將了解可與 Azure AD 整合的不同類型應用程式，以及如何設定您的應用程式存取其他資源，例如 Web API 等等。
+This article shows you how to add, update, or remove an application in Azure AD. You will learn about the different types of applications that can be integrated with Azure AD, how to configure your applications to access other resources such as Web APIs, and more.
 
-若要深入了解代表已註冊應用程式的兩個 Azure AD 物件與其間的關係，請參閱[應用程式物件和服務主體物件](active-directory-application-objects.md)；若要深入了解利用 Azure Active Directory 開發應用程式時應使用的商標指導方針，請參閱[整合應用程式的商標指導方針](active-directory-branding-guidelines.md)。
+To learn more about the two Azure AD objects that represent a registered application and the relationship between them, see [Application Objects and Service Principal Objects](active-directory-application-objects.md); to learn more about the branding guidelines you should use when developing applications with Azure Active Directory, see [Branding Guidelines for Integrated Apps](active-directory-branding-guidelines.md).
 
-## 新增應用程式
+## <a name="adding-an-application"></a>Adding an application
 
-任何想要使用 Azure AD 功能的應用程式都必須先在 Azure AD 租用戶中註冊。此登錄程序牽涉到提供 Azure AD 應用程式的相關詳細資料，例如其所在的 URL、要在使用者驗證之後傳送回應的 URL，以及會識別應用程式的 URI 等。
+Any application that wants to use the capabilities of Azure AD must first be registered in an Azure AD tenant. This registration process involves giving Azure AD details about your application, such as the URL where it’s located, the URL to send replies after a user is authenticated, the URI that identifies the app, and so on.
 
-如果您正在建置的 Web 應用程式只需要支援在 Azure AD 中登入使用者，您只需依照下列指示進行。若您的應用程式需要存取 Web API，或您想讓應用程式有多個租用戶以允許其他 Azure AD 租用戶的使用者進行存取，您必須繼續閱讀[更新應用程式](#updating-an-application)一節，以繼續設定您的應用程式。
+If you’re building a Web application that just needs to support sign-in for users in Azure AD, you can simply follow the instructions below. If your application needs access to a Web API, or you want to enable your application as multi-tenant to allow users from other Azure AD tenants to access it, you’ll need to continue reading the [Updating an Application](#updating-an-application) section to continue configuring your application.
 
-### 在 Azure 傳統入口網站註冊新的應用程式
+### <a name="to-register-a-new-application-in-the-azure-classic-portal"></a>To register a new application in the Azure classic portal
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+1. Sign in to the [Azure classic portal](https://manage.windowsazure.com).
 
-1. 按一下左側功能表中的 Active Directory 圖示，並按一下想要的目錄。
+1. Click on the Active Directory icon on the left menu, and then click on the desired directory.
 
-1. 在頂端功能表上，按一下 [**應用程式**]。如果您的目錄中尚未新增任何應用程式，此頁面僅會顯示新增應用程式連結。按一下該連結，或者您可以按一下命令列上的 [新增] 按鈕。
+1. On the top menu, click **Applications**. If no apps have been added to your directory, this page will only show the Add an App link. Click on the link, or alternatively you can click on the **Add** button on the command bar.
 
-1. 在 [欲執行動作] 頁面上，按一下此連結以[加入我的組織正在開發的應用程式]。
+1. On the What do you want to do page, click on the link to **Add an application my organization is developing**.
 
-1. 在 [告知我們您的應用程式] 頁面上，您必須指定應用程式的名稱並指出您向 Azure AD 註冊的應用程式類型。您可以從 Web 應用程式和/或 Web API (預設值，在 OAuth2 也稱為機密用戶端) 或原生用戶端應用程式 (代表安裝於電話或電腦等裝置上的應用程式，在 OAuth2 也稱為公用用戶端) 中選擇。完成之後，按一下頁面右下角的箭頭圖示。
+1. On the Tell us about your application page, you must specify a name for your application as well as indicate the type of application you are registering with Azure AD.  You can choose from a Web application and/or Web API (default, known as a confidential client in OAuth2) or Native client application which represents an application that is installed on a device such as a phone or computer (known as a public client in OAuth2). Once finished, click the arrow icon on the bottom-right corner of the page.
 
-1. 在 [應用程式屬性] 頁面上，如果您註冊的是 Web 應用程式或僅只原生用戶端應用程式的重新導向 URI，請提供登入 URL 和應用程式識別碼 URI，然後按一下頁面右下角的核取方塊。
+1. On the App properties page, provide the Sign-on URL and App ID URI if you’re registering a Web application or just the Redirect URI for a Native client application, then click the checkbox in the bottom-right hand corner of the page.
 
-1. 已新增您的應用程式，而且您將會進入應用程式的 [快速啟動] 頁面。根據您的應用程式為 Web 或原生應用程式，您會看到如何將其他功能加入至應用程式中的不同選項。一旦新增您的應用程式之後，就可以開始更新您的應用程式，讓使用者登入、在其他應用程式中存取 Web API 或設定多租用戶應用程式 (可讓其他組織存取您的應用程式)。
+1. Your application has been added, and you will be taken to the Quick Start page for your application. Depending on whether your application is a Web or Native application, you will see different options on how to add additional capabilities to your application. Once your application has been added, you can begin updating your application to enable users to sign in, access Web APIs in other applications, or configure multi-tenant application (which allows other organizations to access your application).
 
->[AZURE.NOTE] 根據預設，新建立的應用程式註冊會設定為允許來自您目錄的使用者登入您的應用程式。
+>[AZURE.NOTE] By default, the newly created application registration is configured to allow users from your directory to sign in to your application.
 
-## 更新應用程式
+## <a name="updating-an-application"></a>Updating an application
 
-一旦已向 Azure AD 註冊您的應用程式，可能需要更新才能存取 Web API，或供其他組織使用等等。本節說明您可能需要用來進一步設定其他應用程式的各種方式。一開始我們將先概述同意架構，如果您正在建置資源/API 應用程式，而其將由貴組織或其他組織中的開發人員所建置的用戶端應用程式來使用，那麼請務必了解此架構。
+Once your application has been registered with Azure AD, it may need to be updated to provide access to Web APIs, be made available in other organizations, and more. This section describes various ways in which you may need to configure your application further. First we will start with an overview of the Consent Framework, which is important to understand if you are building resource/API applications that will be consumed by client applications built by developers in your organization or another organization.
 
-如需如何在 Azure AD 中進行驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](active-directory-authentication-scenarios.md)。
+For more information on the way authentication works in Azure AD, see [Authentication Scenarios for Azure AD](active-directory-authentication-scenarios.md).
 
-### 同意架構的概觀
+### <a name="overview-of-the-consent-framework"></a>Overview of the consent framework
 
-Azure AD 的同意架構可讓您輕鬆地開發需要存取由 Azure AD 租用戶保護的多租用戶 Web 和原生用戶端應用程式 (不同於註冊用戶端應用程式的架構)。除了您自己的 Web API 之外，這些 Web API 包括圖形 API、Office 365 和其他 Microsoft 服務。此架構以使用者或系統管理員為根據，他們可同意讓應用程式在他們的目錄中註冊，並可能包括存取目錄資料。
+Azure AD’s consent framework makes it easy to develop multi-tenant Web and Native client applications that need to access Web APIs secured by an Azure AD tenant, different from the one where the client application is registered. These Web APIs include the Graph API, Office 365, and other Microsoft services, in addition to your own Web APIs. The framework is based on a user or an administrator giving consent to an application that asks to be registered in their directory, which may involve accessing directory data.
 
-例如，如果 Web 用戶端應用程式需要呼叫 Office 365 Web API/資源應用程式來讀取有關使用者的行事曆資訊，該使用者必須同意此用戶端應用程式。取得同意之後，用戶端應用程式可以代表使用者呼叫 Office 365 Web API，並視需要使用行事曆資訊。
+For example, if a Web client application needs to call an Office 365 Web API/resource application to read calendar information about the user, that user will be required to consent to the client application. After consent is given, the client application will be able to call the Office 365 Web API on behalf of the user, and use the calendar information as needed.
 
-同意架構建置在 OAuth 2.0 和各種不同流程上，例如授權碼授與和用戶端認證授與，使用公用或機密的用戶端。透過 OAuth 2.0，Azure AD 可以建置許多不同類型的用戶端應用程式，例如手機、平板電腦、伺服器或 Web 應用程式，並且存取所需的資源。
+The consent framework is built on OAuth 2.0 and its various flows, such as authorization code grant and client credentials grant, using public or confidential clients. By using OAuth 2.0, Azure AD makes it possible to build many different types of client applications, such as on a phone, tablet, server, or a Web application, and gain access to the required resources.
 
-如需同意架構的詳細資訊，請參閱 [Azure AD 中的 OAuth 2.0](https://msdn.microsoft.com/library/azure/dn645545.aspx)、[Azure AD 的驗證案例](active-directory-authentication-scenarios.md)和 Office 365 主題 ([了解使用 Office 365 API 進行驗證](https://msdn.microsoft.com/office/office365/howto/common-app-authentication-tasks))。
+For more detailed information about the consent framework, see [OAuth 2.0 in Azure AD](https://msdn.microsoft.com/library/azure/dn645545.aspx), [Authentication Scenarios for Azure AD](active-directory-authentication-scenarios.md), and Office 365 topic [Understanding authentication with Office 365 APIs](https://msdn.microsoft.com/office/office365/howto/common-app-authentication-tasks).
 
-#### 同意體驗的範例
+#### <a name="example-of-the-consent-experience"></a>Example of the consent experience
 
-下列步驟將示範如何將同意體驗用於應用程式開發人員和使用者。
+The following steps will show you how the consent experience works for both the application developer and user.
 
-1. 在 Azure 傳統入口網站的 Web 用戶端應用程式的組態頁面上，使用權限中的下拉式功能表，將您的應用程式所需的權限設定為其他應用程式的控制項。
+1. On your Web client application’s configuration page in the Azure classic portal, set the permissions your application requires by using the drop-down menus in the Permissions to other applications control.
 
-    ![其他應用程式的權限](./media/active-directory-integrating-applications/permissions.png)
+    ![Permissions to other applications](./media/active-directory-integrating-applications/permissions.png)
 
-1. 請考量您的應用程式權限是否已更新、是否正在執行應用程式，以及使用者是否即將第一次使用它。如果應用程式尚未取得存取或重新整理權杖，應用程式必須移至 Azure AD 的授權端點以取得授權碼，用來取得新的存取和重新整理權杖。
+1. Consider that your application’s permissions have been updated, the application is running, and a user is about to use it for the first time. If the application has not already acquired an access or refresh token, the application needs to go to Azure AD’s authorization endpoint to obtain an authorization code that can be used to acquire a new access and refresh token.
 
-1. 如果使用者尚未通過驗證，系統會要求他們登入 Azure AD。
+1. If the user is not already authenticated, they’ll be asked to sign in to Azure AD.
 
-    ![使用者或系統管理員登入 Azure AD](./media/active-directory-integrating-applications/useradminsignin.png)
+    ![User or administrator sign in to Azure AD](./media/active-directory-integrating-applications/useradminsignin.png)
 
-1. 使用者登入之後，Azure AD 會判斷是否需要向使用者顯示同意頁面。此判斷根據使用者 (或其組織的系統管理員) 是否已經同意應用程式。如果尚未授與同意，Azure AD 會提示使用者取得同意，並顯示其運作所需的必要權限。同意對話方塊中顯示的權限集，和在 Azure 傳統入口網站的權限中選取做為其他應用程式控制項的內容相同。
+1. After the user has signed in, Azure AD will determine if the user needs to be shown a consent page. This determination is based on whether the user (or their organization’s administrator) has already granted the application consent. If consent has not already been granted, Azure AD will prompt the user for consent and will display the required permissions it needs to function. The set of permissions that is displayed in the consent dialog are the same as what was selected in the Permissions to other applications control in the Azure classic portal.
 
-    ![使用者同意體驗](./media/active-directory-integrating-applications/userconsent.png)
+    ![User consent experience](./media/active-directory-integrating-applications/userconsent.png)
 
-1. 使用者同意後，授權碼會傳回您的應用程式，藉以兌換取得存取權杖和重新整理權杖。如需此流程的詳細資訊，請參閱 [Azure AD 的驗證案例](active-directory-authentication-scenarios.md)中的 [Web 應用程式到 Web API 區段](active-directory-authentication-scenarios.md#web-application-to-web-api)一節。
+1. After the user grants consent, an authorization code is returned to your application, which can be redeemed to acquire an access token and refresh token. For more information about this flow, see the [Web Application to Web API section](active-directory-authentication-scenarios.md#web-application-to-web-api) section in [Authentication Scenarios for Azure AD](active-directory-authentication-scenarios.md).
 
-### 設定用戶端應用程式以存取 Web API
+### <a name="configuring-a-client-application-to-access-web-apis"></a>Configuring a client application to access Web APIs
 
-當用戶端應用程式設定為存取資源應用程式所公開的 Web API (即 Azure AD 圖形 API)，以上所述的同意架構將確保用戶端取得必要的權限授與 (根據所要求的權限)。根據預設，所有應用程式都可以利用已根據預設選取的 Azure AD 「啟用登入並讀取使用者的設定檔」權限，從 Azure Active Directory (圖形 API) 和 Azure 服務管理 API 選擇權限。如果您的用戶端應用程式已在 Office 365 Azure AD 租用戶中註冊，則也可選取 SharePoint 與 Exchange Online 的 Web API 和權限。您可以從所需 Web API 旁之下拉式功能表中的兩種權限類型選取：
+When a client application is configured to access a Web API exposed by a resource application (ie: Azure AD Graph API), the consent framework described above will ensure the client obtains the permission grant required, based on the permissions requested. By default, all applications can choose permissions from Azure Active Directory (Graph API) and Azure Service Management API, with the Azure AD “Enable sign on and read user’s profile” permission already selected by default. If your client application is being registered in an Office 365 Azure AD tenant, Web APIs and permissions for SharePoint and Exchange Online will also be available for selection. You can select from two types of permissions in the drop-down menus next to the desired Web API:
 
-- 應用程式權限：您的用戶端應用程式本身需要直接存取 Web API (沒有使用者內容)。這種類型的權限需要系統管理員的同意，而且無法供原生用戶端應用程式使用。
+- Application Permissions: Your client application needs to access the Web API directly as itself (no user context). This type of permission requires administrator consent and is also not available for Native client applications.
 
-- 委派權限：您的用戶端應用程式需要存取 Web API 做為已登入的使用者，但其存取權受到選取權限的限制。這種類型的權限可由使用者授與，除非權限設定為需要系統管理員的同意。
+- Delegated Permissions: Your client application needs to access the Web API as the signed-in user, but with access limited by the selected permission. This type of permission can be granted by a user unless the permission is configured as requiring administrator consent.
 
-#### 新增 Web API 的存取
+#### <a name="to-add-access-to-web-apis"></a>To add access to Web APIs
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+1. Sign in to the [Azure classic portal.](https://manage.windowsazure.com)
 
-1. 按一下左側功能表中的 Active Directory 圖示，然後按一下想要的目錄。
+1. Click on the Active Directory icon on the left menu, then click on the desired directory.
 
-1. 在頂端功能表上，按一下 [應用程式]，然後按一下您想要設定的應用程式。單一登入及其他組態資訊都會顯示 [快速啟動] 頁面。
+1. On the top menu, click **Applications**, and then click the application you want to configure. The Quick Start page will appear with single sign-on and other configuration information.
 
-1. 在 [快速啟動] 的 [其他應用程式] 區段中展開存取 Web API，然後按一下 [選取權限] 區段下的 [立即設定]連結。應用程式屬性頁面會隨即出現。
+1. Expand the Access Web APIs in Other Applications section of the Quick Start, and then click the **Configure it now** link under the Select permissions section. The application properties page will appear.
 
-1. 向下捲動至 [其他應用程式] 區段的 [權限]。第一個資料行可讓您在公開 Web API 的目錄中從可用的資源應用程式中選取。一旦選取之後，您就可以選取 Web API 公開的應用程式和委派權限。
+1. Scroll down to the Permissions to other applications section. The first column allows you to select from the available resource applications in your directory that expose a Web API.  Once selected, you may select application and delegation permissions that the Web API exposes.
 
-1. 選取之後，按一下命令列上的 [儲存] 按鈕。
+1. Once selected, click the **Save** button on the command bar.
 
->[AZURE.NOTE] 按一下 [儲存] 按鈕，也可以根據您設定的其他應用程式權限，在您的目錄中自動設定您的影用程式權限。您可以查看 [應用程式屬性] 索引標籤來檢視這些應用程式權限。
+>[AZURE.NOTE] Clicking the Save button also automatically sets the permissions for your application in your directory based on the Permissions to other applications that you configured.  You can view these application permissions by looking at the application Properties tab.
 
-### 設定資源應用程式以公開 Web API
+### <a name="configuring-a-resource-application-to-expose-web-apis"></a>Configuring a resource application to expose Web APIs
 
-您可以開發 Web API，並藉由公開存取範圍使其可供用戶端應用程式使用。正確設定的 Web API 即可供使用，就像其他 Microsoft Web API 一樣，包括圖形 API 和 Office 365 API。存取範圍會透過您應用程式的資訊清單 (此為代表應用程式身分識別組態的 JSON 檔案) 公開。您可以瀏覽到 Azure 傳統入口網站中的應用程式，並按一下命令列上的 [應用程式資訊清單] 按鈕，即可公開存取範圍。
+You can develop a Web API and make it available to client applications by exposing access scopes. A correctly configured Web API is made available just like the other Microsoft Web APIs, including the Graph API and the Office 365 APIs. Access scopes are exposed through your application's manifest, which is a JSON file that represents your application’s identity configuration. You can expose your scopes by navigating to your application in the Azure classic portal and clicking on the Application Manifest button on the command bar.  
 
-#### 新增資源應用程式的存取範圍
+#### <a name="adding-access-scopes-to-your-resource-application"></a>Adding access scopes to your resource application
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+1. Sign in to the [Azure classic portal](https://manage.windowsazure.com).
 
-1. 按一下左側功能表中的 Active Directory 圖示，然後按一下想要的目錄。
+1. Click on the Active Directory icon on the left menu, then click on the desired directory.
 
-1. 在頂端功能表上，按一下 [應用程式]，然後按一下您想要設定的資源應用程式。單一登入及其他組態資訊都會顯示 [快速啟動] 頁面。
+1. On the top menu, click **Applications**, and then click the resource application you want to configure. The Quick Start page will appear with single sign-on and other configuration information.
 
-1. 按一下命令列中的 [管理資訊清單] 按鈕，並選取 [下載資訊清單]。
+1. Click on the **Manage manifest** button in the command bar, and select **Download manifest**.
 
-1. 開啟 JSON 應用程式資訊清單檔並以下列 JSON 程式碼片段取代 "oauth2Permissions" 節點。此程式碼片段是如何公開範圍 (稱為「使用者模擬」) 的範例，讓資源擁有者可以為用戶端應用程式提供資源的委派存取類型。確定您變更了自己的應用程式文字及值：
+1. Open the JSON application manifest file and replace “oauth2Permissions” node with the following JSON snippet. This snippet is an example of how to expose a scope known as "user impersonation", which allows a resource owner to give a client application a type of delegated access to a resource. Make sure that you change the text and values for your own application:
 
-		"oauth2Permissions": [
-		{
-			"adminConsentDescription": "Allow the application full access to the Todo List service on behalf of the signed-in 	user",
-			"adminConsentDisplayName": "Have full access to the Todo List service",
-			"id": "b69ee3c9-c40d-4f2a-ac80-961cd1534e40",
-			"isEnabled": true,
-			"type": "User",
-			"userConsentDescription": "Allow the application full access to the todo service on your behalf",
-			"userConsentDisplayName": "Have full access to the todo service",
-			"value": "user_impersonation"
-			}
-		],
+        "oauth2Permissions": [
+        {
+            "adminConsentDescription": "Allow the application full access to the Todo List service on behalf of the signed-in   user",
+            "adminConsentDisplayName": "Have full access to the Todo List service",
+            "id": "b69ee3c9-c40d-4f2a-ac80-961cd1534e40",
+            "isEnabled": true,
+            "type": "User",
+            "userConsentDescription": "Allow the application full access to the todo service on your behalf",
+            "userConsentDisplayName": "Have full access to the todo service",
+            "value": "user_impersonation"
+            }
+        ],
 
-    識別碼值必須是您使用 [GUID 產生工具](https://msdn.microsoft.com/library/ms241442%28v=vs.80%29.aspx)或以程式設計方式建立的新產生 GUID。它代表由 Web API 所公開之權限的唯一識別碼。一旦您的用戶端已正確設定為要求存取您的 Web API 並且呼叫 Web API，它會顯示 OAuth 2.0 JWT 權杖，其範圍 (scp) 宣告已設為上述值，在此案例中為 user\_impersonation。
+    The id value must be a new generated GUID that you create by using a [GUID generation tool](https://msdn.microsoft.com/library/ms241442%28v=vs.80%29.aspx) or programmatically. It represents a unique identifier for the permission that is exposed by the Web API. Once your client is appropriately configured to request access to your Web API and calls the Web API, it will present an OAuth 2.0 JWT token that has the scope (scp) claim set to the value above, which in this case is user_impersonation.
 
-	>[AZURE.NOTE] 稍後您可以視需要公開其他範圍。請考慮您的 Web API 可能會公開多個與各種不同功能相關聯的範圍。現在您可以使用在 OAuth 2.0 JWT 權杖中收到的範圍 (scp) 宣告，控制 Web API 的存取權。
+    >[AZURE.NOTE] You can expose additional scopes later as necessary. Consider that your Web API might expose multiple scopes associated with a variety of different functions. Now you can control access to the Web API by using the scope (scp) claim in the received OAuth 2.0 JWT token.
 
-1. 儲存更新的 JSON 檔案並將其上傳，方法是按一下命令列中的 [管理資訊清單] 按鈕、選取 [上傳資訊清單]、瀏覽至您的已更新資訊清單檔案並將其選取。上傳之後，您的 Web API 現在已設定為可供目錄中的其他應用程式使用。
+1. Save the updated JSON file and upload it by clicking the **Manage manifest** button in the command bar, selecting **Upload manifest**, browsing to your updated manifest file and then selecting it. Once uploaded, your Web API is now configured to be used by other applications in your directory.
 
-#### 確認已向目錄中的其他應用程式公開 Web API
+#### <a name="to-verify-the-web-api-is-exposed-to-other-applications-in-your-directory"></a>To verify the Web API is exposed to other applications in your directory
 
-1. 在頂端功能表上，按一下 [應用程式]，選取您想要設定 Web API 存取權所需的用戶端應用程式，然後按一下 [設定]。
+1. On the top menu, click **Applications**, select the desired client application you want to configure access to the Web API, and then click **Configure**.
 
-1. 向下捲動至 [其他應用程式] 區段的 [權限]。按一下 [選取應用程式] 下拉式功能表，您就可以選取只想對其公開權限的 Web API。從 [委派的權限] 下拉式功能表，選取新的權限。
+1. Scroll down to the permissions to other applications section. Click on the Select application drop-down menu and you will be able to select the Web API that you just exposed a permission for. From the Delegated Permissions drop-down menu, select the new permission.
 
-![顯示待辦事項清單權限](./media/active-directory-integrating-applications/listpermissions.png)
+![Todo List permissions are shown](./media/active-directory-integrating-applications/listpermissions.png)
 
-#### 應用程式資訊清單的詳細資料
-應用程式資訊清單實際上可做為更新應用程式實體的一種機制，其可定義 Azure AD 應用程式身分識別組態的所有屬性，包括我們所討論的 API 存取範圍。如需應用程式實體的詳細資訊，請參閱[圖形 API 應用程式實體文件](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#application-entity)。您會在其中找到用來指定您 API 權限的應用程式實體成員之完整參考資訊：
+#### <a name="more-on-the-application-manifest"></a>More on the application manifest
+The application manifest actually serves as a mechanism for updating the Application entity, which defines all attributes of an Azure AD application's identity configuration, including the API access scopes we discussed. For more information on the Application entity, please see the [Graph API Application entity documentation](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#application-entity). In it, you will find complete reference information on the Application entity members used to specify permissions for your API:  
 
-- appRoles 成員，其為 [AppRole](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#approle-type) 實體集合，可用來定義 Web API 的 [應用程式權限]
-- oauth2Permissions 成員，其為 [OAuth2Permission](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permission-type) 實體集合，可用來定義 Web API 的 [委派的權限]
+- the appRoles member, which is a collection of [AppRole](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#approle-type) entities that can be used to define the **Application Permissions** for a Web API  
+- the oauth2Permissions member, which is a collection of  [OAuth2Permission](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permission-type) entities that can be used to define the **Delegated Permissions** for a Web API
 
-如需應用程式資訊清單一般概念的詳細資訊，請參閱[了解 Azure Active Directory 應用程式資訊清單](active-directory-application-manifest.md)。
+For more information on application manifest concepts in general, please refer to [Understanding the Azure Active Directory application manifest](active-directory-application-manifest.md).
 
-### 存取 Azure AD Graph 和 Office 365 API
+### <a name="accessing-the-azure-ad-graph-and-office-365-apis"></a>Accessing the Azure AD Graph and Office 365 APIs
 
-如前文所述，除了在自己的資源應用程式上公開/存取 API，您也可以更新用戶端應用程式以存取 Microsoft 資源所公開的 API。依預設，Azure AD 圖形 API (在其他應用程式的 [權限] 清單中稱為 “Azure Active Directory”) 可供向 Azure AD 註冊的所有應用程式使用。如果您在 Office 365 所佈建的 Azure AD 租用戶中註冊您的用戶端應用程式，也可以存取 API 對各種 Office 365 資源公開的所有權限。
+As mentioned earlier, in addition to exposing/accessing APIs on your own resource applications, you can also update your client application to access APIs exposed by Microsoft resources.  The Azure AD Graph API, which is called “Azure Active Directory” in the list of Permissions to other applications, is available by default for all applications that are registered with Azure AD. If you are registering your client application in an Azure AD tenant that was provisioned by Office 365, you can also access all of the permissions exposed by the APIs to various Office 365 resources.
 
-如需以下項目所公開的存取範圍的完整討論：
+For a complete discussion on access scopes exposed by:  
 
-- Azure AD 圖形 API，請參閱 [權限範圍 | 圖形 API 概念](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes) 一文。
-- Office 365 API，請參閱[使用一般同意架構的驗證和授權](https://msdn.microsoft.com/office/office365/howto/application-manifest)一文。如需更多有關如何建置可與 Office 365 API 整合之用戶端應用程式的討論，請參閱[設定 Office 365 開發環境](https://msdn.microsoft.com/office/office365/HowTo/setup-development-environment)。
+- Azure AD Graph API, please see the [Permission scopes | Graph API concepts](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes) article.
+- Office 365 APIs, please see the [Authentication and Authorization using Common Consent Framework](https://msdn.microsoft.com/office/office365/howto/application-manifest) article. See [Set up your Office 365 development environment](https://msdn.microsoft.com/office/office365/HowTo/setup-development-environment) for the larger discussion on how to build a client app that integrates with Office 365 APIs.
 
->[AZURE.NOTE] 由於目前的限制，如果原生用戶端應用程式使用「存取組織的目錄」權限，它們只能呼叫 Azure AD 圖形 API。這項限制不適用於 Web 應用程式。
+>[AZURE.NOTE] Due to a current limitation, Native client applications can only call into the Azure AD Graph API if they use the “Access your organization's directory” permission.  This restriction does not apply for Web applications.
 
-### 設定多租用戶應用程式
+### <a name="configuring-multi-tenant-applications"></a>Configuring multi-tenant applications
 
-將應用程式新增至 Azure AD 時，您可以只讓組織中的使用者存取您的應用程式。或者，您可能想讓外部組織的使用者存取您的應用程式。這兩個應用程式類型稱為單一租用戶和多租用戶應用程式。您可以修改單一租用戶應用程式的組態，使其成為多組用戶應用程式，將於本章節下方討論。
+When adding an application to Azure AD, you may want your application to be accessed only by users in your organization. Alternatively, you may want your application to be accessed by users in external organizations. These two application types are called single tenant and multi-tenant applications. You can modify the configuration of a single tenant application to make it a multi-tenant application, which this section discusses below.
 
-請務必注意單一租用戶與多租用戶應用程式之間的差異：
+It’s important to note the differences between a single tenant and multi-tenant application:  
 
-- 單一租用戶應用程式適合在一個組織中使用。它們通常是由企業開發人員撰寫的企業營運 (LoB) 應用程式。單一租用戶應用程式只需要由一個目錄中的使用者存取，因此，它只需要佈建在一個目錄中。
-- 多租用戶應用程式適合在許多組織中使用。它們是通常由獨立軟體廠商 (ISV) 撰寫的軟體即服務 (SaaS) Web 應用程式。多租用戶應用程式需要佈建在將會用到它們的每個目錄中，而這需要使用者或系統管理員同意才能註冊 (透過 Azure AD 同意架構支援)。請注意，所有原生用戶端應用程式預設有多個租用戶，因為其安裝於資源擁有者的裝置上。如需同意架構的詳細資訊，請參閱上面的「同意架構的概觀」一節。
+- A single tenant application is intended for use in one organization. They are typically a line-of-business (LoB) application written by an enterprise developer. A single tenant application only needs to be accessed by users in one directory, and as a result, it only needs to be provisioned in one directory.
+- A multi-tenant application intended for use in many organizations. They are a software-as-a-service (SaaS) Web application typically written by an independent software vendor (ISV). Multi-tenant applications need to be provisioned in each directory where they will be used, which requires user or administrator consent to register them, supported via the Azure AD consent framework. Note that all Native client applications are multi-tenant by default as they are installed on the resource owner's device. See the Overview of the Consent Framework section above for more details on the consent framework.
 
-#### 讓外部使用者可以授與您的應用程式存取其資源的權限
+#### <a name="enabling-external-users-to-grant-your-application-access-to-their-resources"></a>Enabling external users to grant your application access to their resources
 
-如果您正在撰寫想要提供給組織外的客戶或合作夥伴使用的應用程式，您必須在 Azure 傳統入口網站中更新應用程式定義。
+If you are writing an application that you want to make available to your customers or partners outside of your organization, you will need to update the application definition in the Azure classic portal.
 
->[AZURE.NOTE] 啟用多租用戶時，您必須確定應用程式的應用程式識別碼 URI 屬於已驗證的網域。此外，傳回 URL 必須以 https:// 開頭。如需詳細資訊，請參閱[應用程式物件和服務主體物件](active-directory-application-objects.md)。
+>[AZURE.NOTE] When enabling multi-tenant, you must ensure that your application’s App ID URI belongs in a verified domain. Additionally, the Return URL must begin with https://. For more information, see [Application Objects and Service Principal Objects](active-directory-application-objects.md).
 
-讓外部使用者存取您的應用程式：
+To enable access to your app for external users: 
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+1. Sign in to the [Azure classic portal.](https://manage.windowsazure.com)
 
-1. 按一下左側功能表中的 Active Directory 圖示，然後按一下想要的目錄。
+1. Click on the Active Directory icon on the left menu, then click on the desired directory.
 
-1. 在頂端功能表上，按一下 [應用程式]，然後按一下您想要設定的應用程式。[快速啟動] 頁面將會顯示組態選項。
+1. On the top menu, click **Applications**, and then click the application you want to configure. The Quick Start page will appear with configuration options.
 
-1. 展開 [快速啟動] 的 [設定多租用戶應用程式] 區段，然後按一下 [啟用存取] 區段中的**立即設定**連結。應用程式屬性頁面會隨即出現。
+1. Expand the **Configure Multi-tenant Application** section of the Quick Start, then click the **Configure it now** link in the Enable Access section. The application properties page will appear.
 
-1. 按一下 [應用程式為多租用戶] 旁的 [是] 按鈕，然後按一下命令列上的 [儲存] 按鈕。
+1. Click the **Yes** button next to Application is multi-tenant, then click the **Save** button on the command bar.
 
-一旦您進行上述變更，其他組織中的使用者和系統管理員將可以讓您的應用程式存取他們的目錄和其他資料。
+Once you have made the change above, users and administrators in other organizations will be able to grant your application access to their directory and other data.
 
-#### 在執行階段觸發 Azure AD 同意架構
+#### <a name="triggering-the-azure-ad-consent-framework-at-runtime"></a>Triggering the Azure AD consent framework at runtime
 
-若要使用同意架構，多租用戶的用戶端應用程式必須使用 OAuth 2.0 要求授權。[程式碼範例](https://azure.microsoft.com/documentation/samples/?service=active-directory&term=multi-tenant)也可向您示範 Web 應用程式、原生應用程式或伺服器/精靈應用程式如何要求授權碼並存取權杖以呼叫 Web API。
+To use the consent framework, multi-tenant client applications must request authorization using OAuth 2.0. [Code samples](https://azure.microsoft.com/documentation/samples/?service=active-directory&term=multi-tenant) are available to show you how a Web application, Native application, or server/daemon application requests authorization codes and access tokens to call Web APIs.
 
-Web 應用程式也可提供使用者的註冊體驗。如果您已提供註冊體驗，預期使用者會按一下註冊按鈕，將瀏覽器重新導向至 Azure AD OAuth2.0 授權端點或 OpenID Connect userinfo 端點。這些端點可讓應用程式藉由檢查 id\_token 取得新使用者的相關資訊。在註冊階段後，使用者將會看到類似上面「同意架構的概觀」一節所示的同意提示。
+Your Web application may also offer a sign-up experience for users. If you do offer a sign-up experience, it is expected that the user will click on a sign up button that will redirect the browser to the Azure AD OAuth2.0 authorize endpoint or an OpenID Connect userinfo endpoint. These endpoints allow the application to get information about the new user by inspecting the id_token. Following the sign-up phase the user will be presented with a consent prompt similar to the one shown above in the Overview of the Consent Framework section.
 
-或者，您的 Web 應用程式可能還會提供可允許系統管理員「註冊我的公司」的體驗。這種體驗也會將使用者重新導向至 Azure AD OAuth 2.0 授權端點。在此情況下，您會將 prompt=admin\_consent 參數傳遞至授權端點，強迫系統管理員同意體驗，系統管理員會在其中代表其組織授與同意。只有使用屬於全域管理員角色的帳戶進行驗證的使用者可以提供同意；其他人會收到錯誤。成功同意時，回應將包含 admin\_consent=true。兌換存取權杖時，您也將獲得提供組織資訊的 id\_token，以及會註冊您的應用程式的系統管理員。
+Alternatively, your Web application may also offer an experience that allows administrators to “sign up my company”. This experience would also redirect the user to the Azure AD OAuth 2.0 authorize endpoint. In this case though, you pass a prompt=admin_consent parameter to the authorize endpoint to force the administrator consent experience, where the administrator will grant consent on behalf of their organization. Only a user that authenticates with an account that belongs to the Global Admin role can provide consent; others will receive an error. On successful consent, the response will contain admin_consent=true. When redeeming an access token, you’ll also receive an id_token that will provide information on the organization and the administrator that signed up for your application.
 
-### 啟用單一頁面應用程式的 OAuth 2.0 隱含授權
+### <a name="enabling-oauth-2.0-implicit-grant-for-single-page-applications"></a>Enabling OAuth 2.0 implicit grant for Single Page Applications
 
-單一頁面應用程式 (SPA) 通常會利用執行於瀏覽器中的 JavaScript-heavy 前端進行結構化，此前端會呼叫應用程式的 Web API 後端以執行其商務邏輯。針對裝載於 Azure AD 中的 SPA，您會使用 OAuth 2.0 隱含授權驗證具備 Azure AD 的使用者，並取得您可以使用的權杖以保護從應用程式的 JavaScript 用戶端到其後端 Web API 的呼叫。使用者授與同意權之後，這個相同的驗證通訊協定可用來取得權杖以保護用戶端和其他為應用程式設定之 Web API 資源之間的呼叫。若要深入了解隱含授權授與，並協助您決定其是否適合您的應用程式案例，請參閱 [了解 Azure Active Directory 中的 OAuth2 隱含授與流程](active-directory-dev-understanding-oauth2-implicit-grant.md)。
+Single Page Application’s (SPAs) are typically structured with a JavaScript-heavy front end that runs in the browser, which calls the application’s Web API back end to perform its business logic. For SPAs hosted in Azure AD, you use OAuth 2.0 Implicit Grant to authenticate the user with Azure AD and obtain a token that you can use to secure calls from the application's JavaScript client to its back end Web API. After the user has granted consent, this same authentication protocol can be used to obtain tokens to secure calls between the client and other Web API resources configured for the application. To learn more about the implicit authorization grant, and help you decide whether it's right for your application scenario, see [Understanding the OAuth2 implicit grant flow in Azure Active Directory ](active-directory-dev-understanding-oauth2-implicit-grant.md).
 
-根據預設，應用程式的 OAuth 2.0 隱含授權會停用。您也可以設定[應用程式資訊清單](active-directory-application-manifest.md)中的 `oauth2AllowImplicitFlow`”` 值，以啟用應用程式的「OAuth 2.0 隱含授權」，此值為表示應用程式身分識別組態的 JSON 檔案。
+By default, OAuth 2.0 implicit Grant is disabled for applications. You can enable OAuth 2.0 Implicit Grant for your application by setting the `oauth2AllowImplicitFlow`”` value in its [application manifest](active-directory-application-manifest.md), which is a JSON file that represents your application's identity configuration.
 
-#### 啟用 OAuth 2.0 隱含授權 
+#### <a name="to-enable-oauth-2.0-implicit-grant"></a>To enable OAuth 2.0 implicit grant 
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-1. 按一下左側功能表中的 **Active Directory** 圖示，然後按一下想要的目錄。
-1. 在頂端功能表上，按一下 [應用程式]，然後按一下您想要設定的應用程式。單一登入及其他組態資訊都會顯示 [快速啟動] 頁面。
-1. 按一下命令列中的 [管理資訊清單] 按鈕，並選取 [下載資訊清單]。開啟 JSON 應用程式資訊清單檔案並將 "oauth2AllowImplicitFlow" 值設為 “true”。根據預設，它是 “false”。
+1. Sign in to the [Azure classic portal.](https://manage.windowsazure.com)
+1. Click on the **Active Directory** icon on the left menu, then click on the desired directory.
+1. On the top menu, click **Applications**, and then click the application you want to configure. The Quick Start page will appear with single sign-on and other configuration information.
+1. Click on the **Manage manifest** button in the command bar, and select **Download manifest**.
+Open the JSON application manifest file and set the “oauth2AllowImplicitFlow” value to “true”. By default, it is “false”.
 
     `"oauth2AllowImplicitFlow": true,`
 
-1. 儲存更新的 JSON 檔案並將其上傳，方法是按一下命令列中的 [管理資訊清單] 按鈕、選取 [上傳資訊清單]、瀏覽至您的已更新資訊清單檔案並將其選取。上傳之後，您的 Web API 現在已設定為使用 OAuth 2.0 隱含授權來驗證使用者。
+1. Save the updated JSON file and upload it by clicking the **Manage manifest** button in the command bar, selecting **Upload manifest**, browsing to your updated manifest file and then selecting it. Once uploaded, your Web API is now configured to use OAuth 2.0 Implicit Grant to authenticate users.
 
 
-### 授與存取權的舊版體驗
+### <a name="legacy-experiences-for-granting-access"></a>Legacy experiences for granting access
 
-本節描述 2014 年 3 月 12 日之前的舊版同意體驗。這種體驗仍受支援且如下所述。在使用新功能之前，您只能授與下列權限：
+This section describes the legacy consent experience prior to March 12, 2014. This experience is still supported, and is described below. Prior to the new functionality, you could only grant the following permissions:
 
-- 登入其組織的使用者
+- Sign on users from their organization
 
-- 登入使用者並讀取其組織的目錄資料 (僅限應用程式)
+- Sign on users and read the their organization’s directory data (as the application only)
 
-- 登入使用者並讀取與寫入其組織的目錄資料 (僅限應用程式)
+- Sign on users and read and write their organization’s directory data (as the application only)
 
-您可遵循[利用 Azure AD 開發多租用戶 Web 應用程式](https://msdn.microsoft.com/library/azure/dn151789.aspx)中的步驟，授與在 Azure AD 中註冊之新應用程式的存取權。請務必注意，新的同意架構可允許更強大的應用程式，也可讓使用者 (而不只是系統管理員) 同意這些應用程式。
+You can follow the steps in the [Developing Multi-Tenant Web Applications with Azure AD](https://msdn.microsoft.com/library/azure/dn151789.aspx) to grant access for new applications registered in Azure AD. It’s important to note that the new consent framework allows much more powerful applications, and also enables users to consent to these applications instead of just administrators.
 
-#### 建置授與存取權給外部使用者的連結 (舊版)
+#### <a name="building-the-link-that-grants-access-for-external-users-(legacy)"></a>Building the link that grants access for external users (Legacy)
 
-為了讓外部使用者使用其組織帳戶註冊您的應用程式，您必須更新您的應用程式，在 Azure AD 上顯示連結至頁面的按鈕，讓他們可以授與存取權。這個註冊按鈕的商標指導方針將於[整合應用程式的商標指導方針](active-directory-branding-guidelines.md)主題中討論。使用者授與或拒絕存取權之後，Azure AD 授與存取頁面會利用回應將瀏覽器重新導向回您的應用程式。如需應用程式屬性的詳細資訊，請參閱[應用程式物件與服務原則](active-directory-application-objects.md)。
+In order for external users to sign up for your app using their organizational accounts, you’ll need to update your app to show a button that links to the page on Azure AD that enables them to grant access. Branding guidance for this sign up button is discussed in the [Branding Guidelines for Integrated Applications](active-directory-branding-guidelines.md) topic. After the user either grants or denies access, the Azure AD grant access page will redirect the browser back to your app with a response. For more information about application properties, see [Application Objects and Service Principles](active-directory-application-objects.md).
 
-授與存取頁面由 Azure AD 建立，您可以在 Azure 傳統入口網站的應用程式 [組態] 頁面中找到連結。若要移至 [設定] 頁面，請按一下 Azure AD 租用戶頂端功能表中的 [應用程式] 連結、按一下您想要設定的應用程式，然後從 [快速啟動] 頁面的頂端功能表按一下 [設定]。
+The grant access page is created by Azure AD, and you can find a link to it in your app’s Configuration page in the Azure classic portal. To get to the Configuration page, click on the **Applications** link in the top menu of your Azure AD tenant, click the app you want to configure, then click on **Configure** from the top menu of the Quick Start page.
 
-您的應用程式連結看起來像這樣：`http://account.activedirectory.windowsazure.com/Consent.aspx?ClientID=058eb9b2-4f49-4850-9b78-469e3176e247&RequestedPermissions=DirectoryReaders&ConsentReturnURL=https%3A%2F%2Fadatum.com%2FExpenseReport.aspx%3FContextId%3D123456`。下表描述部分的連結：
+The link for your application will look like this: `http://account.activedirectory.windowsazure.com/Consent.aspx?ClientID=058eb9b2-4f49-4850-9b78-469e3176e247&RequestedPermissions=DirectoryReaders&ConsentReturnURL=https%3A%2F%2Fadatum.com%2FExpenseReport.aspx%3FContextId%3D123456`. The following table describes the parts of the link:
 
-|參數|說明|
+|Parameter|Description|
 |---|---|
-|ClientId|必要。新增應用程式期間取得的用戶端識別碼。|
-|RequestedPermissions|選用。應用程式要求的存取層級，將會向授與應用程式存取權的使用者顯示。如果未指定，要求的存取層級會預設為僅單一登入。其他選項為 DirectoryReaders 和 DirectoryWriters。如需這些存取層級的詳細資訊，請參閱應用程式存取層級。|
-|ConsentReturnUrl|選用。您希望傳回授與存取回應的目標 URL。此值必須以 URL 編碼，且必須和設定於應用程式定義中的回覆 URL 在相同的網域下。如果未提供，授與存取回應將重新導向至已設定的回覆 URL。|
+|ClientId|Required. The Client ID you obtained as part of adding your app.|
+|RequestedPermissions|Optional. Access level that your app is requesting, that will be displayed to the user granting your app access. If not specified, the requested access level will default to single sign-on only. The other options are DirectoryReaders and DirectoryWriters. See Application Access Levels for more details on these access levels.|
+|ConsentReturnUrl|Optional. The URL that you want the grant access response returned to. This value must be URL-encoded and must be under the same domain as the Reply URL configured in your app definition. If not supplied, the grant access response will be redirected to your configured Reply URL.|
 
-指定 ConsentReturnUrl 和回覆 URL 彼此獨立可讓您的應用程式實作獨立的邏輯，以處理和回覆 URL 不同之 URL 上的回應 (通常會處理登入的 SAML 權杖)。您也可以在 ConsentReturnURL 編碼的 URL 中指定其他參數。這些參數會在重新導向時，以查詢字串參數的形式傳回至應用程式。此機制可用來維護其他資訊，或將存取權授與的應用程式要求繫結至來自 Azure AD 的回應。
+Specifying a ConsentReturnUrl separate from the Reply URL will allow your app to implement separate logic that can process the response on a different URL from the Reply URL (which normally processes SAML tokens for sign on). You may also specify additional parameters in the ConsentReturnURL encoded URL; these will be passed back as query string parameters to your app upon redirection.  This mechanism can be used to maintain additional info or to tie your app’s request for an access grant to the response from Azure AD.
 
-#### 授與存取權使用者經驗和回應 (舊版)
+#### <a name="grant-access-user-experience-and-response-(legacy)"></a>Grant access user experience and response (Legacy)
 
-當應用程式重新導向至授與存取連結時，下列映像會顯示使用者會體驗的內容。
+When an application redirects to the grant access link, the following images demonstrate what the user will experience.
 
-如果使用者尚未登入，它們將收到登入的提示：
+If the user is not already signed in, they will be prompted to do so:
 
-![登入 AAD](./media/active-directory-integrating-applications/signintoaad.png)
+![Sign in to AAD](./media/active-directory-integrating-applications/signintoaad.png)
 
-一旦使用者通過驗證，Azure AD 會將使用者重新導向至授與存取頁面：
+Once the user is authenticated, Azure AD will redirect the user to the grant access page:
 
-![授與存取權](./media/active-directory-integrating-applications/grantaccess.png)
+![Grant Access](./media/active-directory-integrating-applications/grantaccess.png)
 
->[AZURE.NOTE] 只有外部組織的公司系統管理員可以授與存取權給您的應用程式。如果使用者不是公司系統管理員，他們將可以選擇傳送郵件給他們的公司系統管理員，以要求授與此應用程式的存取權。
+>[AZURE.NOTE] Only the company administrator of the external organization can grant access to your app. If the user is not a company administrator, they will be given the option to send mail to their company administrator to request that this app be granted access.
 
-客戶藉由按一下 [授與存取權] 將存取權授與您的應用程式，或者如果它們藉由按一下 [取消] 拒絕存取權之後，Azure AD 會傳送回應至 ConsentReturnUrl 或已設定的回覆 URL。此回應包含下列參數：
+After the customer has granted access for your app by clicking Grant Access, or if they have denied access by clicking Cancel, Azure AD sends a response to the ConsentReturnUrl or to your configured Reply URL. This response contains the following parameters:
 
-|參數|說明|
+|Parameter|Description|
 |---|---|
-|TenantId|Azure AD 中已將存取權授與您應用程式的組織的唯一識別碼。只有在客戶已授與存取權時，才會指定此參數。|
-|同意|如果存取權已授與應用程式，此值會設為「已授與」，如果此要求遭到拒絕，則設為「已拒絕」。|
+|TenantId|The unique ID of the organization in Azure AD that has granted access for your app. This parameter will only be specified if the customer granted access.|
+|Consent|The value will be set to Granted if the app was granted access, or Denied if the request was rejected.|
 
-如果其他參數指定做為 ConsentReturnUrl 編碼 URL 的一部分，它們會被傳回應用程式。以下是授與存取要求的範例回應，指出已授權應用程式，且其包含授與存取要求中提供的 ContextID：`https://adatum.com/ExpenseReport.aspx?ContextID=123456&Consent=Granted&TenantId=f03dcba3-d693-47ad-9983-011650e64134`。
+Additional parameters will be returned to the app if they were specified as part of the ConsentReturnUrl encoded URL. The following is an example response to a grant access request that indicates the application has been authorized, and it includes a ContextID that was supplied in the grant access request: `https://adatum.com/ExpenseReport.aspx?ContextID=123456&Consent=Granted&TenantId=f03dcba3-d693-47ad-9983-011650e64134`.
 
->[AZURE.NOTE] 存取授與回應將不會包含使用指的安全性權杖。應用程式必須個別登入使用者。
+>[AZURE.NOTE] The access grant response will not contain a security token for the user; the app must sign the user in separately.
 
-以下是存取授與要求遭到拒絕的範例回應：`https://adatum.com/ExpenseReport.aspx?ContextID=123456&Consent=Denied`
+The following is an example response to an access grant request that was denied: `https://adatum.com/ExpenseReport.aspx?ContextID=123456&Consent=Denied`
 
-#### 變換應用程式金鑰以使圖形 API 的存取不會中斷 (舊版)
+#### <a name="rolling-app-keys-for-uninterrupted-access-to-the-graph-api-(legacy)"></a>Rolling app keys for uninterrupted access to the Graph API (Legacy)
 
-在您的應用程式存留期間，您可能需要在呼叫 Azure AD 取得存取權杖以呼叫圖形 API 時變更您所使用的金鑰。經常變更的金鑰分成兩類：當您的金鑰遭到入侵時的緊急變換，或是目前的金鑰即將到期的變更。請遵循下列程序，在您重新整理金鑰時提供不中斷的存取權 (主要針對第二個案例)。
+During the lifetime of your app, you may need to change the keys that you use when you call into Azure AD to acquire an access token to call the Graph API.  Generally changing keys falls into two categories: emergency roll over where your key has been compromised or a roll over when your current key is about to expire. The following procedure should be followed to provide your app with uninterrupted access while you refresh your keys (primarily for the second case).
 
-1. 在 Azure 傳統入口網站中，按一下目錄租用戶、按一下頂端功能表的 [應用程式]，然後按一下您想要設定的應用程式。單一登入及其他組態資訊都會顯示 [快速啟動] 頁面。
+1. In the Azure classic portal, click on your directory tenant, click **Applications** from the top menu, then click the app you want to configure. The Quick Start page will appear with single sign-on and other configuration information.
 
-1. 若要查看您的應用程式屬性清單，按一下頂端功能表中的 [設定]，就會看到您的金鑰清單。
+1. Click on **Configure** in the top menu to see a list of your app’s properties, and you’ll see a list of your keys.
 
-1. 在 [金鑰] 底下，按一下 [選取持續時間] 下拉式清單，挑選 1 或 2 年，然後按一下命令列中的 [儲存]。這會產生您應用程式的新密碼金鑰。複製這個新的密碼金鑰。此時現有和新的金鑰都可由您的應用程式用來從 Azure AD 取得存取權杖。
+1. Under Keys, click on the drop down that says **Select duration** and pick 1 or 2 years, and then click **Save** in the command bar. This generates a new password key for your app. Copy this new password key. At this point both the existing and new key can be used by your app to obtain an access token from Azure AD.
 
-1. 回到您的應用程式並更新組態以開始使用新的密碼金鑰。如需此更新應於何處發生的範例，請參閱[使用圖形 API 查詢 Azure AD](https://msdn.microsoft.com/library/azure/dn151791.aspx)。
+1. Go back to your app and update the configuration to start using the new password key. See [Using the Graph API to Query Azure AD](https://msdn.microsoft.com/library/azure/dn151791.aspx) for an example of where this update should happen.
 
-1. 您現在應該在整個生產環境啟用此變更 – 在其他所有服務節點上啟用此變更之前，先在一個服務節點上加以驗證。
+1. You should now roll this change out across your production environment – verifying it first on one service node, before rolling it out across the rest.
 
-1. 一旦在整個生產部署完成此更新之後，您就可以自由回到 Azure 傳統入口網站並移除舊的金鑰。
+1. Once the update is complete across your production deployment, you are free to come back to the Azure classic portal and remove the old key.
 
-#### 啟用存取之後變更應用程式屬性 (舊版)
+#### <a name="changing-app-properties-after-enabling-access-(legacy)"></a>Changing app properties after enabling access (Legacy)
 
-一旦您讓外部使用者存取您的應用程式，您可能還是會繼續在 Azure 傳統入口網站中變更您的應用程式屬性。不過，在您變更應用程式前授與您的應用程式存取權的客戶，在 Azure 傳統入口網站中檢視您的應用程式相關詳細資料時，將不會看到那些變更。一旦應用程式可供客戶使用之後，您在進行某些變更時必須要非常小心。例如，如果您更新應用程式識別碼 URI，在此變更之前授與存取權的現有客戶將無法使用其公司或學校帳戶登入您的應用程式。
+Once you enable access for external users to your app, you may still continue to make changes to your app’s properties in the Azure classic portal. However, customers who have already granted access to your app before you made app changes will not see those changes reflected when viewing details about your app in the Azure classic portal. Once the app is made available to customers, you need to be very careful when making certain changes. For example, if you update the App ID URI, then your existing customers who granted access before this change will be unable to log in to your app using their company or school accounts.
 
-如果您變更 RequestedPermissions 以要求更高的存取層級，現有客戶使用的應用程式功能目前已使用此提高的存取層級，利用新的 API 呼叫，所以現有客戶可能會從圖形 API 得到拒絕存取的回應。您的應用程式應該處理這些案例，並要求客戶將存取權授與您要求提高存取層級的應用程式。
+If you make a change to the RequestedPermissions to request a greater access level, existing customers using app functionality that now leverages new API calls using this increased access level may get an access denied response from the Graph API.  Your app should handle these cases and ask the customer to grant access to your app with the request for an increased access level.
 
-## 移除應用程式
+## <a name="removing-an-application"></a>Removing an application
 
-本節說明如何從 Azure AD 租用戶移除應用程式。
+This section describes how to remove an application from your Azure AD tenant.
 
-### 移除您的組織所編寫的應用程式
-這些是 Azure AD 租用戶的主要 [應用程式] 頁面上 [我的公司擁有的應用程式] 篩選器之下顯示的應用程式。在技術層面，這些是您透過 Azure 傳統入口網站以手動方式註冊的應用程式，或透過 PowerShell 或圖形 API 以程式設計方式註冊的應用程式。更具體來說，它們會由您租用戶中的應用程式與服務主體物件所表示。如需詳細資訊，請參閱[應用程式物件和服務主體物件](active-directory-application-objects.md)。
+### <a name="removing-an-application-authored-by-your-organization"></a>Removing an application authored by your organization
+These are the applications that show under the "Applications my company owns" filter on the main "Applications" page for your Azure AD tenant. In technical terms, these are applications you registered either manually via the Azure classic portal, or programmatically via PowerShell or the Graph API. More specifically, they are represented by both an Application and Service Principal object in your tenant. See [Application Objects and Service Principal Objects](active-directory-application-objects.md) for more information.
 
-#### 從您的目錄移除單一租用戶應用程式
+#### <a name="to-remove-a-single-tenant-application-from-your-directory"></a>To remove a single tenant application from your directory
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+1. Sign in to the [Azure classic portal.](https://manage.windowsazure.com)
 
-1. 按一下左側功能表中的 Active Directory 圖示，並按一下想要的目錄。
+1. Click on the Active Directory icon on the left menu, and then click on the desired directory.
 
-1. 在頂端功能表上，按一下 [應用程式]，然後按一下您想要設定的應用程式。單一登入及其他組態資訊都會顯示 [快速啟動] 頁面。
+1. On the top menu, click **Applications**, and then click the application you want to configure. The Quick Start page will appear with single sign-on and other configuration information.
 
-1. 按一下命令列中的 [刪除] 按鈕。
+1. Click on the **Delete** button in the command bar.
 
-1. 在確認訊息處按一下 [是]。
+1. Click **Yes** in the confirmation message.
 
-#### 從您的目錄移除多租用戶應用程式
+#### <a name="to-remove-a-multi-tenant-application-from-your-directory"></a>To remove a multi-tenant application from your directory
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+1. Sign in to the [Azure classic portal.](https://manage.windowsazure.com)
 
-1. 按一下左側功能表中的 Active Directory 圖示，並按一下想要的目錄。
+1. Click on the Active Directory icon on the left menu, and then click on the desired directory.
 
-1. 在頂端功能表上，按一下 [應用程式]，然後按一下您想要設定的應用程式。單一登入及其他組態資訊都會顯示 [快速啟動] 頁面。
+1. On the top menu, click **Applications**, and then click the application you want to configure. The Quick Start page will appear with single sign-on and other configuration information.
 
-1. 在 [應用程式是多租用戶] 區段中，按一下 [否]。這樣會將您的應用程式轉換為單一租用戶，但應用程式仍會留在授與其同意權的組織中。
+1. On the Application is multi-tenant section, click **No**. This converts your application to be single tenant, but the application will still remain in an organization who has already consented to it.
 
-1. 按一下命令列中的 [刪除] 按鈕。
+1. Click on the **Delete** button in the command bar.
 
-1. 在確認訊息處按一下 [是]。
+1. Click **Yes** in the confirmation message.
 
-### 移除其他組織授權的多租用戶應用程式
-這些是 Azure AD 租用戶的主要 [應用程式] 頁面上 [我的公司使用的應用程式] 篩選器之下顯示的部份應用程式，特別是未列在 [我的公司擁有的應用程式] 清單下的應用程式。在技術層面，這些是在同意處理期間註冊的多租用戶應用程式。更具體來說，它們僅由您租用戶中的服務主體物件表示。如需詳細資訊，請參閱[應用程式物件和服務主體物件](active-directory-application-objects.md)。
+### <a name="removing-a-multi-tenant-application-authorized-by-another-organization"></a>Removing a multi-tenant application authorized by another organization
+These are a subset of the applications that show under the "Applications my company uses" filter on the main "Applications" page for your Azure AD tenant, specifically the ones that are not listed under the "Applications my company owns" list. In technical terms, these are multi-tenant applications registered during the consent process. More specifically, they are represented by only a Service Principal object in your tenant. See [Application Objects and Service Principal Objects](active-directory-application-objects.md) for more information.
 
-為了移除多租用戶應用程式對您的目錄的存取權 (在授與同意之後)，公司系統管理員必須具有 Azure 訂用帳戶才能透過 Azure 傳統入口網站移除存取權。您只需瀏覽至應用程式的 [設定] 頁面，並按一下底部的 [管理存取權] 按鈕。或者，公司系統管理員可以使用 [Azure AD PowerShell Cmdlet](http://go.microsoft.com/fwlink/?LinkId=294151) 移除存取權。
+In order to remove a multi-tenant application’s access to your directory (after having granted consent), the company administrator must have an Azure subscription to remove access through the Azure classic portal. You simply navigate to the application's configuration page, and click the "Manage Access" button at the bottom. Alternatively, the company administrator can use the [Azure AD PowerShell Cmdlets](http://go.microsoft.com/fwlink/?LinkId=294151) to remove access.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 請參閱[整合應用程式的商標指導方針](active-directory-branding-guidelines.md)
+- See the [Branding Guidelines for Integrated Apps](active-directory-branding-guidelines.md) for tips on visual guidance for your app.
 
-- 了解[應用程式物件和服務主體物件](active-directory-application-objects.md)相關資訊
+- For more details on the relationship between an application's Application and Service Principal object(s), see [Application Objects and Service Principal Objects](active-directory-application-objects.md).
 
-- 了解[Azure Active Directory 應用程式資訊清單](active-directory-application-manifest.md)相關資訊
+- To learn more about the role the app manifest plays, see [Understanding the Azure Active Directory application manifest](active-directory-application-manifest.md)
 
-- 請瀏覽 [Azure Active Directory 開發人員指南](active-directory-developers-guide.md)
+- See the [Azure AD developer glossary](active-directory-dev-glossary.md) for definitions of some of the core Azure Active Directory (AD) developer concepts.
 
-<!---HONumber=AcomDC_0727_2016-->
+- Visit the [Active Directory developer's guide](active-directory-developers-guide.md) for an overview of all developer related content.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,105 +1,115 @@
 <properties
-	pageTitle="了解您的 Azure Marketplace 費用 | Microsoft Azure"
-	description="說明如何了解 Marketplace 訂單的相關費用。"
-	services=""
-	documentationCenter=""
-	authors="JiangChen79"
-	manager="felixwu"
-	editor=""
-	tags="billing"
-	/>
+    pageTitle="了解您的 Azure 外部服務費用 | Microsoft Azure"
+    description="了解 Azure 中外部服務 (先前稱為 Marketplace) 費用的計費方式。"
+    services=""
+    documentationCenter=""
+    authors="adpick"
+    manager="felixwu"
+    editor=""
+    tags="billing"
+    />
 
 <tags
-	ms.service="billing"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="cjiang"/>
+    ms.service="billing"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/12/2016"
+    ms.author="adpick"/>
 
-# 了解您的 Azure Marketplace 費用
-本文提供如何了解 Marketplace 訂單之相關費用的概觀。檢視您的帳單時需要注意的是價格類型的不同 (只有基本、只有使用量以及基本 + 使用量)。請注意，您訂購的每個 Marketplace 訂單有它自己的每月計費週期。以下將會詳細說明這些主題。
 
-> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+# <a name="understand-your-azure-external-service-charges"></a>了解您的 Azure 外部服務費用
 
-## 檢閱您的 Marketplace 帳單
-登入 [Azure 帳戶入口網站](https://account.windowsazure.com/subscriptions/)之後，您可以檢閱及下載目前和過去的帳單。
+本文說明 Azure 中外部服務的計費方式。 外部服務先前稱為 Marketplace 訂單。 外部服務是由獨立的服務廠商所提供，不過已完全整合在 Azure 生態系統中。 了解如何：
 
-若要檢視或下載帳單：
+- 識別外部服務
+- 了解計費方式與其他 Azure 資源的相異之處
+- 檢視及追蹤使用外部服務所累積的任何成本
+- 管理外部服務訂單和支付方式
 
-1. 使用您的 Org 識別碼，登入 Azure 帳戶入口網站。
-2. 按一下 [Marketplace]。所顯示的清單是由您的 Azure 帳戶訂購的所有 Marketplace 訂單的完整清單。您會發現訂單依照父 Azure 訂用帳戶名稱和識別碼分組。
+## <a name="what-are-azure-external-services?"></a>何謂 Azure 外部服務？
 
-	![Marketplace 訂單](./media/billing-understand-your-azure-marketplace-charges/marketplace-orders.png)
+外部服務先前稱為 Azure Marketplace。 一般而言，它們是由第三方發佈且適用於 Azure 的服務。 例如，ClearDB 和 SendGrid 是可在 Azure 中購買的外部服務，然而它們並非由 Microsoft 所發行。
 
-3. 按一下任何顯示的訂單，將會帶您前往該訂單目前計費週期的摘要概觀。在 [Marketplace 常見問題集](https://azure.microsoft.com/marketplace/faq/)中可以找到不同定價模式的說明。
+### <a name="identify-external-services"></a>識別外部服務
 
-	![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
+當您佈建新的外部服務或資源時，系統會顯示警告︰
 
-[摘要] 檢視包含每筆訂單的下列資訊︰
-- 價格
-- 計費週期
-- 購買日期
-- 相關聯的父訂用帳戶
-- 帳單貨幣
+![Marketplace 購買警告](./media/billing-understand-your-azure-marketplace-charges/marketplace-warning.PNG)
 
-請注意，我們已經對這項資訊的顯示方式做一些變更。先前我們顯示包含稅金的訂單成本。顯示已更新為依據您所在的國家/地區顯示含稅或未稅的價格。價格的位置也已經從瀏覽的右手邊移至中間。為了協助追蹤這些費用會關聯至哪一個 Azure 訂用帳戶，我們也將 Azure 訂用帳戶名稱和識別碼新增至瀏覽的右側，並且新增 [變更付款方式] 選項。
+>[AZURE.NOTE] 外部服務乃是由 Microsoft 之外的公司所發佈，不過 Microsoft 產品有時候也會分類為外部服務。
 
-## 更新付款方式和訂單管理
-[摘要] 頁面中有使用者動作，可讓您更新付款模型和訂單管理功能：
+### <a name="external-services-are-billed-separately"></a>外部服務會分開計費
 
-> [AZURE.NOTE] 如果您使用您的組織識別碼來變更個人資訊，您需要具有支援的票證。
+系統會將外部服務視為 Azure 訂用帳戶內的個別訂單。 當您購買服務時，會設定每項服務的計費期間。 這樣做可避免與購買服務之訂用帳戶的計費期間混淆。 您還會收到獨立的帳單，而信用卡收費也會分開進行。
 
-若要更新您的付款方式，請按一下頁面右側的 [變更付款方式] 連結。
+### <a name="each-external-service-has-a-different-billing-model"></a>每項外部服務都有各自的計費模式
 
-![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
+有些服務採用隨用隨付的方式計費，有些則使用按月付款模式。 您需要使用信用卡來支付 Azure 外部服務的費用，不能以發票付款的方式來購買。
 
-此連結會帶您前往不同的入口網站，您可以在那裡變更您的慣用付款方式。
+### <a name="you-can't-use-monthly-free-credits-for-external-services"></a>外部服務不適用於每個月的免費信用額度
 
-若要變更您的付款方式，請遵循下列步驟：
+如果您使用含有[免費信用額度](https://azure.microsoft.com/pricing/spending-limits/)的 Azure 訂用帳戶，該信用額度將無法套用至外部服務帳單。 請使用信用卡來購買外部服務。
 
-1. 按一下 [變更您的付款方式]。
+## <a name="view-external-service-spending-and-history"></a>檢視外部服務消費和歷程記錄
 
-	![訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/subscriptions.jpg)
+在 [Azure 入口網站](https://portal.azure.com/)內，您可以檢視每個訂用帳戶上的外部服務清單： 
 
-2. 選取您想變更的付款方式。[付款方式] 選項可讓您選取您的信用卡。[新增付款方式] 選項可讓您新增信用卡。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)並[瀏覽至 [計費] 刀鋒視窗](https://portal.azure.com/?flight=1#blade/Microsoft_Azure_Billing/BillingBlade)。
 
-	![變更付款方式](./media/billing-understand-your-azure-marketplace-charges/change-payment-method.jpg)
+    ![在 [中心] 功能表中選取 [計費]](./media/billing-understand-your-azure-marketplace-charges/billing-button.png) 
+  
+2. 在 [訂用帳戶成本] 區段中，選取要檢視的訂用帳戶。 
+   
+    ![在計費刀鋒視窗中選取訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/select-sub.png)
 
-## 訂單管理
-從 [摘要概觀] 頁面，您會看到 [管理訂單] 連結。此連結會帶您前往您的入口網站，您可以在那裡看到所有 Marketplace 訂單，檢視服務健全狀況，以及要求支援。
+3. 按一下 [外部服務]。
 
-![入口網站](./media/billing-understand-your-azure-marketplace-charges/portal.jpg)
+    ![在訂用帳戶刀鋒視窗中按一下 [外部服務]](./media/billing-understand-your-azure-marketplace-charges/external-service-blade.png)
 
-如需要求支援，請按一下 [說明 + 支援] 圖格。這會顯示下列 [說明 + 支援] 頁面，您可在此執行下列作業：
-- 開啟新的支援要求。
-- 管理現有的支援要求。
-- 管理資源健康狀態。
+4. 您應該會看到每項外部服務的訂單、發行者名稱、購買的服務層、資源的命名及目前的訂單狀態。 選取外部服務以查看過去的帳單。
 
-![要求支援](./media/billing-understand-your-azure-marketplace-charges/request-support.jpg)
+    ![選取外部服務](./media/billing-understand-your-azure-marketplace-charges/external-service-blade2.png)
 
-## 帳單記錄
-[摘要] 頁面上的新功能是檢視使用量型的優惠，例如虛擬機器。現在，您可以針對目前和已關閉的期間，根據計費週期下載使用量。若要檢視使用量，請按一下您想要檢視的每個期間的 [下載使用量] 連結。
+5. 在這裡，您可以檢視過去的帳單金額，包括稅額細目。
 
-如果您想要檢視實際費用，請按一下 [檢視費用]。系統會將您重新導向至不同的入口網站，您可以在那裡檢視所有含稅的費用。如果您使用組織識別碼，[檢視費用] 按鈕將不會啟用，您必須提交支援票證以要求您的費用摘要。
+    ![檢視外部服務帳單記錄](./media/billing-understand-your-azure-marketplace-charges/billing-overview-blade.png)
 
-![帳單記錄](./media/billing-understand-your-azure-marketplace-charges/billing-history.png)
+## <a name="manage-payment-methods-for-external-service-orders"></a>管理外部服務訂單的付款方法
 
-若要檢視實際費用，請遵循下列步驟：
+從[帳戶中心](https://account.windowsazure.com/)更新外部服務訂單的付款方法。
 
-1. 按一下 [帳單記錄] 頁面上的 [檢視費用]。
+> [AZURE.NOTE] 如果您使用公司或學校帳戶來購買訂用帳戶，應[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)來變更付款方法。
 
-	新的索引標籤會開啟，顯示[訂單歷程記錄](https://account.microsoft.com/billing/orders#/)。
+1. 登入[帳戶中心](https://account.windowsazure.com/)並[瀏覽至 [Marketplace] 索引標籤](https://account.windowsazure.com/Store)
 
-    請注意，如果您嘗試在「帳單與帳戶管理入口網站」存取原始的使用量，您必須按一下頁面底部的支援連結以連絡支援人員。)
+    ![在帳戶中心內選取 Marketplace](./media/billing-understand-your-azure-marketplace-charges/select-marketplace.png)
 
-	![訂單歷程記錄](./media/billing-understand-your-azure-marketplace-charges/order-history.jpg)
+2. 選取要管理的外部服務
 
-2. 找出您想要檢閱的訂單，然後按一下 [詳細資料] 以檢視費用的細項，包含小計、稅金和總計費用。
+    ![選取要管理的外部服務](./media/billing-understand-your-azure-marketplace-charges/select-ext-service.png)
 
-	![訂單詳細資料](./media/billing-understand-your-azure-marketplace-charges/order-details.jpg)
+3. 在頁面右側，按一下 [變更付款方式]。 此連結將帶您前往其他入口網站，以便您管理付款方法。
+    
+    ![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/change-payment.PNG)
 
-> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+4. 按一下 [編輯資訊]，然後遵循指示更新付款資訊。
 
-<!---HONumber=AcomDC_0928_2016-->
+    ![選取編輯資訊](./media/billing-understand-your-azure-marketplace-charges/edit-info.png)
+    
+## <a name="cancel-an-external-service-order"></a>取消外部服務訂單
+
+如果想要取消外部服務訂單，您需要在 [Azure 入口網站](https://portal.azure.com)中刪除資源。
+
+![刪除資源](./media/billing-understand-your-azure-marketplace-charges/deleteMarketplaceOrder.PNG)
+
+## <a name="need-help?-contact-support."></a>需要協助嗎？ 請連絡支援人員。
+
+如果您仍有其他問題，請 [連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 以快速解決您的問題。
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

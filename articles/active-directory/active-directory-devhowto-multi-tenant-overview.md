@@ -1,6 +1,6 @@
 <properties
-   pageTitle="如何建置可讓任何 Azure Active Directory 使用者登入的應用程式 | Microsoft Azure"
-   description="如何建置可讓使用者從任何 Azure Active Directory 租用戶登入之應用程式 (也稱為多租用戶應用程式) 的逐步解說。"
+   pageTitle="How to build an application that can sign in any Azure Active Directory user| Microsoft Azure"
+   description="Step by step instructions for building an application that can sign in a user from any Azure Active Directory tenant, also known as a multi-tenant application."
    services="active-directory"
    documentationCenter=""
    authors="skwan"
@@ -13,175 +13,176 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="07/25/2016"
+   ms.date="10/11/2016"
    ms.author="skwan;bryanla"/>
 
-# 如何使用多租用戶應用程式模式登入任何 Azure Active Directory (AD) 使用者
-如果您提供「軟體即服務」應用程式給許多公司，您可以將您的應用程式設定為可接受來自任何 Azure AD 租用戶的登入。在 Azure AD 中，這稱為讓您的應用程式成為多租用戶應用程式。任何 Azure AD 租用戶中的使用者在同意搭配您的應用程式使用其帳戶之後，便可登入您的應用程式。
 
-如果您的現有應用程式擁有自己的帳戶系統，或支援來自其他雲端提供者的其他類型登入方式，則新增來自任何租用戶的 Azure AD 登入相當簡單，只要註冊您的應用程式、透過 OAuth2、OpenID Connect 或 SAML 新增登入程式碼，然後在您的應用程式中放置一個 [登入 Microsoft] 按鈕即可。按一下下面的按鈕以深入了解如何為應用程式建立商標。
+# <a name="how-to-sign-in-any-azure-active-directory-(ad)-user-using-the-multi-tenant-application-pattern"></a>How to sign in any Azure Active Directory (AD) user using the multi-tenant application pattern
+If you offer a Software as a Service application to many organizations, you can configure your application to accept sign-ins from any Azure AD tenant.  In Azure AD this is called making your application multi-tenant.  Users in any Azure AD tenant will be able to sign in to your application after consenting to use their account with your application.  
 
-[![[登入] 按鈕][AAD-Sign-In]][AAD-App-Branding]
+If you have an existing application that has its own account system, or supports other kinds of sign in from other cloud providers, adding Azure AD sign in from any tenant is as simple as registering your app, adding sign in code via OAuth2, OpenID Connect, or SAML, and putting a Sign In with Microsoft button on your application. Click the button below to learn more about branding your application.
+
+[![Sign in button][AAD-Sign-In]][AAD-App-Branding]
 
 
-本文假設您已經熟悉如何為 Azure AD 建置單一租用戶應用程式。如果並非如此，請返回[開發人員指南首頁][AAD-Dev-Guide]，然後試試其中一個快速入門！
+This article assumes you’re already familiar with building a single tenant application for Azure AD.  If you’re not, head back up to the [developer guide homepage][AAD-Dev-Guide] and try one of our quick starts!
 
-將您的應用程式轉換成 Azure AD 多租用戶應用程式包含四個簡單的步驟︰
+There are four simple steps to convert your application into an Azure AD multi-tenant app:
 
-1.	將您的應用程式註冊更新成多租用戶
-2.	將您的程式碼更新成將要求傳送給 /common 端點
-3.	將您的程式碼更新成可處理多個簽發者值
-4.	了解使用者和系統管理員的同意意向並進行適當的程式碼變更
+1.  Update your application registration to be multi-tenant
+2.  Update your code to send requests to the /common endpoint 
+3.  Update your code to handle multiple issuer values
+4.  Understand user and admin consent and make appropriate code changes
 
-讓我們仔細看看每個步驟。您也可以直接跳到[這份多租用戶範例清單][AAD-Samples-MT]。
+Let’s look at each step in detail. You can also jump straight to [this list of multi-tenant samples][AAD-Samples-MT].
 
-## 將註冊更新成多租用戶
-Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。您只要在 [Azure 傳統入口網站][AZURE-classic-portal]中的應用程式註冊設定頁面上，找出 [應用程式是多租用戶] 參數並將其設定為 [是]，即可將您的註冊轉換成多租用戶。
+## <a name="update-registration-to-be-multi-tenant"></a>Update registration to be multi-tenant
+By default, web app/API registrations in Azure AD are single tenant.  You can make your registration multi-tenant by finding the “Application is Multi-Tenant” switch on the configuration page of your application registration in the [Azure classic portal][AZURE-classic-portal] and setting it to “Yes”.
 
-注意︰Azure AD 會要求應用程式的「應用程式識別碼 URI」必須具全域唯一性，才能被設定成多租用戶應用程式。「應用程式識別碼 URI」是其中一種可在通訊協定訊息中識別應用程式的方式。就單一租用戶應用程式而言，「應用程式識別碼 URI」只要在該租用戶中具唯一性即已足夠。就多租用戶應用程式而言，該 URI 則必須具全域唯一性，Azure AD 才能在所有租用戶中找到該應用程式。系統會透過要求「應用程式識別碼 URI」必須具有與已驗證的 Azure AD 租用戶網域相符的主機名稱，來強制執行全域唯一性。例如，如果租用戶的名稱是 contoso.onmicrosoft.com，則有效的「應用程式識別碼 URI」會是 `https://contoso.onmicrosoft.com/myapp`。如果租用戶具有已驗證的網域 `contoso.com`，則有效的「應用程式識別碼 URI」也會是 `https://contoso.com/myapp`。如果「應用程式識別碼 URI」沒有按照這個模式，將應用程式設定成多租用戶時就會失敗。
+Note: Before an application can be made multi-tenant, Azure AD requires the App ID URI of the application to be globally unique. The App ID URI is one of the ways an application is identified in protocol messages.  For a single tenant app, it is sufficient for the App ID URI to be unique within that tenant.  For a multi-tenant application, it must be globally unique so Azure AD can find the application across all tenants.  Global uniqueness is enforced by requiring the App ID URI to have a host name that matches a verified domain of the Azure AD tenant.  For example, if the name of your tenant was contoso.onmicrosoft.com then a valid App ID URI would be `https://contoso.onmicrosoft.com/myapp`.  If your tenant had a verified domain of `contoso.com`, then a valid App ID URI would also be `https://contoso.com/myapp`.  Setting an application as multi-tenant will fail if the App ID URI doesn’t follow this pattern.
 
-原生用戶端註冊預設即為多租用戶。您不需要採取任何動作來將原生用戶端應用程式註冊轉換成多租用戶。
+Native client registrations are multi-tenant by default.  You don’t need to take any action to make a native client application registration multi-tenant.
 
-## 將您的程式碼更新成將要求傳送給 /common
-在單一租用戶應用程式中，會將登入要求傳送給租用戶的登入端點。例如，以 contoso.onmicrosoft.com 來說，端點會是：
+## <a name="update-your-code-to-send-requests-to-/common"></a>Update your code to send requests to /common
+In a single tenant application, sign in requests are sent to the tenant’s sign in endpoint.   For example, for contoso.onmicrosoft.com the endpoint would be:
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-傳送給租用戶端點的要求可以讓該租用戶中的使用者 (或來賓) 登入該租用戶中的應用程式。使用多租用戶應用程式時，應用程式事先並不知道使用者來自哪個租用戶，因此您無法將要求傳送給租用戶的端點。取而代之的是，會將要求傳送給在所有 Azure AD 租用戶進行多工的端點：
+Requests sent to a tenant’s endpoint can sign in users (or guests) in that tenant to applications in that tenant.  With a multi-tenant application, the application doesn’t know up front what tenant the user is from, so you can’t send requests to a tenant’s endpoint.  Instead, requests are sent to an endpoint that multiplexes across all Azure AD tenants:
 
     https://login.microsoftonline.com/common
 
-當 Azure AD 在 /common 端點收到要求時，它會讓使用者登入，藉此探索使用者來自哪個租用戶。/common 端點可以與 Azure AD 支援的所有驗證通訊協定搭配使用：OpenID Connect、OAuth 2.0、SAML 2.0 及「WS-同盟」。
+When Azure AD receives a request on the /common endpoint, it signs the user in and as a consequence discovers which tenant the user is from.  The /common endpoint works with all of the authentication protocols supported by Azure AD:  OpenID Connect, OAuth 2.0, SAML 2.0, and WS-Federation.
 
-接著，應用程式的登入回應會包含代表該使用者的權杖。權杖中的簽發者值會告知應用程式該使用者來自哪個租用戶。從 /common 端點傳回回應時，權杖中的簽發者值將會與使用者的租用戶對應。請務必注意，/common 端點不是租用戶，也不是簽發者，而只是一個多工器。使用 /common 時，必須更新您應用程式中用來驗證權杖的邏輯，以便將這一點納入考量。
+The sign in response to the application then contains a token representing the user.  The issuer value in the token tells an application what tenant the user is from.  When a response returns from the /common endpoint, the issuer value in the token will correspond to the user’s tenant.  It’s important to note the /common endpoint is not a tenant and is not an issuer, it’s just a multiplexer.  When using /common, the logic in your application to validate tokens needs to be updated to take this into account. 
 
-如先前所述，多租用戶應用程式也應該為使用者提供一致的登入體驗，以遵循 Azure AD 應用程式的商標指導方針。按一下下面的按鈕以深入了解如何為應用程式建立商標。
+As mentioned earlier, multi-tenant applications should also provide a consistent sign-in experience for users, following the Azure AD application branding guidelines. Click the button below to learn more about branding your application.
 
-[![[登入] 按鈕][AAD-Sign-In]][AAD-App-Branding]
+[![Sign in button][AAD-Sign-In]][AAD-App-Branding]
 
-讓我們深入地看一下 /common 端點的使用和您的程式碼實作。
+Let’s take a look at the use of the /common endpoint and your code implementation in more detail.
 
-## 將您的程式碼更新成可處理多個簽發者值
-Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
+## <a name="update-your-code-to-handle-multiple-issuer-values"></a>Update your code to handle multiple issuer values
+Web applications and web APIs receive and validate tokens from Azure AD.  
 
-> [AZURE.NOTE] 雖然原生用戶端應用程式會要求並接收來自 Azure AD 的權杖，但它們這麼做是為了將權杖傳送給 API 來進行驗證。原生應用程式不會驗證權杖，而且必須將它們視為不透明。
+> [AZURE.NOTE] While native client applications request and receive tokens from Azure AD, they do so to send them to APIs, where they are validated.  Native applications do not validate tokens and must treat them as opaque.
 
-讓我們看看應用程式如何驗證它從 Azure AD 接收的權杖。單一租用戶應用程式通常會採用類似以下的端點值：
+Let’s look at how an application validates tokens it receives from Azure AD.  A single tenant application will normally take an endpoint value like:
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-然後使用它來建構中繼資料 URL (在此例中為 OpenID Connect)，例如︰
+and use it to construct a metadata URL (in this case, OpenID Connect) like:
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com/.well-known/openid-configuration
 
-以下載用來驗證權杖的兩項關鍵資訊︰租用戶的簽署金鑰和簽發者值。每個 Azure AD 租用戶都有具有採用下列格式的唯一簽發者值︰
+to download two critical pieces of information that are used to validate tokens:  the tenant’s signing keys and issuer value.  Each Azure AD tenant has a unique issuer value of the form:
 
     https://sts.windows.net/31537af4-6d77-4bb9-a681-d2394888ea26/
 
-其中的 GUID 值是租用戶的租用戶識別碼重新命名安全版本。如果您按一下上方的 `contoso.onmicrosoft.com` 中繼資料連結，就可以在文件中看到此簽發者值。
+where the GUID value is the rename-safe version of the tenant ID of the tenant.  If you click on the metadata link above for `contoso.onmicrosoft.com`, you can see this issuer value in the document.
 
-當單一租用戶應用程式驗證權杖時，它會將權杖的簽章對照來自中繼資料文件的簽署金鑰進行檢查，並確保權杖中的簽發者值與在中繼資料文件中找到的簽發者值相符。
+When a single tenant application validates a token, it checks the signature of the token against the signing keys from the metadata document, and makes sure the issuer value in the token matches the one that was found in the metadata document.
 
-因為 /common 端點既不對應租用戶也不是簽發者，所以當您檢查 /common 之中繼資料中的簽發者值時，它擁有的是一個樣板化的 URL 而不是實際值︰
+Since the /common endpoint doesn’t correspond to a tenant and isn’t an issuer, when you examine the issuer value in the metadata for /common it has a templated URL instead of an actual value:
 
     https://sts.windows.net/{tenantid}/
 
-因此，多租用戶應用程式無法僅透過將中繼資料中的簽發者值與權杖中的 `issuer` 值做比對來驗證權杖。多租用戶應用程式需要有可根據簽發者值的租用戶識別碼部分來決定哪些簽發者值有效、哪些簽發者值無效的邏輯。
+Therefore, a multi-tenant application can’t validate tokens just by matching the issuer value in the metadata with the `issuer` value in the token.  A multi-tenant application needs logic to decide which issuer values are valid and which are not, based on the tenant ID portion of the issuer value.  
 
-例如，如果多租用戶應用程式只允許從已註冊其服務的特定租用戶登入，它就必須檢查權杖中的簽發者值或 `tid` 宣告值，以確認該租用戶在其訂閱者清單中。如果多租用戶應用程式只處理個人而不根據租用戶做出任何存取決策，則它可以完全忽略簽發者值。
+For example, if a multi-tenant application only allows sign in from specific tenants who have signed up for their service, then it must check either the issuer value or the `tid` claim value in the token to make sure that tenant is in their list of subscribers.  If a multi-tenant application only deals with individuals and doesn’t make any access decisions based on tenants, then it can ignore the issuer value altogether.
 
-在可於本文結尾的[相關內容](#related-content)一節中找到的多租用戶範例中，為了讓任何 Azure AD 租用戶都能登入，已將簽發者驗證停用。
+In the multi-tenant samples you’ll find in the [Related Content](#related-content) section at the end of this article, issuer validation is disabled to enable any Azure AD tenant to sign in.
 
-現在，讓我們看看登入多租用戶應用程式之使用者的使用者體驗。
+Now let’s look at the user experience for users that are signing in to multi-tenant applications.
 
-## 了解使用者和系統管理員的同意意向
-若要讓使用者登入 Azuer AD 中的應用程式，必須以使用者的租用戶代表該應用程式。這可讓組織執行一些操作，例如在來自其租用戶的使用者登入應用程式時套用唯一原則。就單一租用戶應用程式而言，這個註冊程序相當簡單；就是您在 [Azure 傳統入口網站][AZURE-classic-portal]中註冊應用程式時所進行的程序。
+## <a name="understanding-user-and-admin-consent"></a>Understanding user and admin consent
+For a user to sign in to an application in Azure AD, the application must be represented in the user’s tenant.  This allows the organization to do things like apply unique policies when users from their tenant sign in to the application.  For a single tenant application this registration is simple; it’s the one that happens when you register the application in the [Azure classic portal][AZURE-classic-portal].
 
-就多租用戶應用程式而言，應用程式的初始註冊程序則是在開發人員所使用的 Azure AD 租用戶中進行。當來自不同租用戶的使用者第一次登入應用程式時，Azure AD 會要求他們同意應用程式所要求的權限。如果他們同意，系統就會在使用者的租用戶中建立一個稱為「服務主體」的應用程式代表，然後登入便可繼續進行。系統也會在記錄使用者對應用程式之同意意向的目錄中建立委派。如需有關應用程式之「應用程式」和「服務主體」物件的詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
+For a multi-tenant application, the initial registration for the application lives in the Azure AD tenant used by the developer.  When a user from a different tenant signs in to the application for the first time, Azure AD asks them to consent to the permissions requested by the application.  If they consent, then a representation of the application called a *service principal* is created in the user’s tenant, and sign in can continue. A delegation is also created in the directory that records the user’s consent to the application. See [Application Objects and Service Principal Objects][AAD-App-SP-Objects] for details on the application's Application and ServicePrincipal objects, and how they relate to each other.
 
-![同意單層式應用程式][Consent-Single-Tier]
+![Consent to single-tier app][Consent-Single-Tier] 
 
-這個同意體驗會受到應用程式所要求的權限影響。Azure AD 支援兩種類型的權限，即僅限應用程式的權限和委派的權限︰
+This consent experience is affected by the permissions requested by the application.  Azure AD supports two kinds of permissions, app-only and delegated:
 
-- 委派的權限可讓應用程式能夠充當登入的使用者來執行該使用者所能執行的一部分操作。例如，您可以授與應用程式委派的權限來讀取登入之使用者的行事曆。
-- 僅限應用程式的權限會直接授與應用程式的識別身分。例如，您可以將僅限應用程式的權限授與應用程式來讀取租用戶中的使用者清單，而且不論是誰登入此應用程式，此應用程式都將能夠執行這項操作。
+- A delegated permission grants an application the ability to act as a signed in user for a subset of the things the user can do.  For example, you can grant an application the delegated permission to read the signed in user’s calendar.
+- An app-only permission is granted directly to the identity of the application.  For example, you can grant an application the app-only permission to read the list of users in a tenant, and it will be able to do this regardless of who is signed in to the application.
 
-有些權限可以由一般使用者同意，有些則需要租用戶系統管理員的同意。
+Some permissions can be consented to by a regular user, while others require a tenant administrator’s consent. 
 
-### 系統管理員同意
-僅限應用程式的權限一律需要租用戶系統管理員的同意。如果您的應用程式要求僅限應用程式的權限，當一般使用者嘗試登入應用程式時，您的應用程式將會收到錯誤訊息，指出該使用者無法同意。
+### <a name="admin-consent"></a>Admin consent
+App-only permissions always require a tenant administrator’s consent.  If your application requests an app-only permission and a normal user tries to sign in to the application, your application will get an error message saying the user isn’t able to consent.
 
-有些委派的權限也需要租用戶系統管理員的同意。例如，若要能夠以登入的使用者身分寫回 Azure AD，就需要租用戶系統管理員的同意。與僅限應用程式的權限一樣，如果一般使用者嘗試登入要求委派權限的應用程式，而該權限需要系統管理員同意，您的應用程式將會收到錯誤。權限是否需要系統管理員同意是由發佈資源的開發人員決定，而且可以在該資源的文件中找到這項資訊。如需說明 Azure AD Graph API 和 Microsoft Graph API 可用權限的主題連結，請參閱本文的[相關內容](#related-content)一節。
+Certain delegated permissions also require a tenant administrator’s consent.  For example, the ability to write back to Azure AD as the signed in user requires a tenant administrator’s consent.  Like app-only permissions, if an ordinary user tries to sign in to an application that requests a delegated permission that requires administrator consent, your application will receive an error.  Whether or not a permission requires admin consent is determined by the developer that published the resource, and can be found in the documentation for the resource.  Links to topics describing the available permissions for the Azure AD Graph API and Microsoft Graph API are in the [Related Content](#related-content) section of this article.
 
-如果您的應用程式使用需要系統管理員同意的權限，您的應用程式中就必須要有相關的表示，例如可供系統管理員起始動作的按鈕或連結。您的應用程式針對此動作傳送的要求是一個一般的 OAuth2/OpenID Connect 授權要求，但此要求同時也包含 `prompt=admin_consent` 查詢字串參數。在系統管理員同意且系統已在客戶的租用戶中建立服務主體之後，後續的登入要求就不再需要 `prompt=admin_consent` 參數。由於系統管理員已決定可接受要求的權限，因此從該時間點之後，就不會再提示租用戶中的任何其他使用者行使同意權。
+If your application uses permissions that require admin consent, you need to have a gesture in your application such as a button or link where the admin can initiate the action.  The request your application sends for this action is a usual OAuth2/OpenID Connect authorization request, but that also includes the `prompt=admin_consent` query string parameter.  Once the admin has consented and the service principal is created in the customer’s tenant, subsequent sign in requests do not need the `prompt=admin_consent` parameter.   Since the administrator has decided the requested permissions are acceptable, no other users in the tenant will be prompted for consent from that point forward.
 
-如果應用程式要求的權限不需要系統管理員同意，但是想要提供一種體驗，讓租用戶系統管理員只需「註冊」應用程式一次，之後就不再提示所有其他使用者行使同意權，則這些應用程式也可以使用 `prompt=admin_consent` 參數。
+The `prompt=admin_consent` parameter can also be used by applications that request permissions that do not require admin consent, but want to give an experience where the tenant admin “signs up” for the application one time, and no other users are prompted for consent from that point on.
 
-如果應用程式需要系統管理員同意，當系統管理員登入應用程式但系統未傳送 `prompt=admin_consent` 參數時，系統管理員將能順利對此應用程式行使同意權，但是他們將只能代表其使用者帳戶行使同意權。一般使用者將仍然無法登入此應用程式並對其行使同意權。當您想要先讓租用戶系統管理員能夠瀏覽您的應用程式，然後才允許其他使用者存取時，這會相當有用。
+If an application requires administrator consent, and the administrator signs in to the application but the `prompt=admin_consent` parameter is not sent, the admin will be able to successfully consent to the application but they will only consent for their user account.  Regular users will still not be able to sign in and consent to the application.  This is useful if you want to give the tenant administrator the ability to explore your application before allowing other users access.
 
-租用戶系統管理員可以停用一般使用者對應用程式行使同意權的能力。如果停用這項功能，就一律需要系統管理員同意，才能在租用戶中設定應用程式。如果您想要在停用一般使用者同意的情況下測試您的應用程式，您可以在 [Azure 傳統入口網站][AZURE-classic-portal]的 Azure AD 租用戶設定區段中找到設定參數。
+A tenant administrator can disable the ability for regular users to consent to applications.  If this capability is disabled, admin consent is always required for the application to be set up in the tenant.  If you want to test your application with regular user consent disabled, you can find the configuration switch in the Azure AD tenant configuration section of the [Azure classic portal][AZURE-classic-portal].
 
-> [AZURE.NOTE] 有些應用程式想要提供一種體驗，讓一般使用者能夠一開始即表示同意，之後應用程式即可讓系統管理員參與操作並要求需要系統管理員同意的權限。目前在 Azure AD 中還沒有任何方法可以使用單一應用程式註冊來達到這個目的。即將推出 Azure AD v2 端點將可允許應用程式在執行階段 (而不是在註冊階段) 要求權限，這將使得此情況變成可行。如需詳細資訊，請參閱 [Azure AD 應用程式模型 v2 開發人員指南][AAD-V2-Dev-Guide]。
+> [AZURE.NOTE] Some applications want an experience where regular users are able to consent initially, and later the application can involve the administrator and request permissions that require admin consent.  There is no way to do this with a single application registration in Azure AD today.  The upcoming Azure AD v2 endpoint will allow applications to request permissions at runtime, instead of at registration time, which will enable this scenario.  For more information, see the [Azure AD App Model v2 Developer Guide][AAD-V2-Dev-Guide].
 
-### 同意和多層應用程式
-您的應用程式可能會有多層，每一層皆由它自己在 Azure AD 中的註冊代表。例如，一個呼叫 Web API 的原生應用程式，或是一個呼叫 Web API 的 Web 應用程式。在這兩種情況下，用戶端 (原生應用程式或 Web 應用程式) 都會要求可呼叫資源 (Web API) 的權限。若要讓用戶端順利獲得客戶同意新增到其租用戶中，則它要求權限的所有資源必須都已經存在於客戶的租用戶中。如果不符合此條件，Azuer AD 將會傳回錯誤，指出必須先新增資源。
+### <a name="consent-and-multi-tier-applications"></a>Consent and multi-tier applications
+Your application may have multiple tiers, each represented by its own registration in Azure AD.  For example, a native application that calls a web API, or a web application that calls a web API.  In both of these cases, the client (native app or web app) requests permissions to call the resource (web API).  For the client to be successfully consented into a customer’s tenant, all resources to which it requests permissions must already exist in the customer’s tenant.  If this condition isn’t met, Azure AD will return an error that the resource must be added first.
 
-如果您的邏輯應用程式包含兩個或更多個應用程式註冊 (例如個別的用戶端和資源)，這可能會造成問題。如何先將資源新增到客戶租用戶中？ Azure AD 是透過以單一步驟對用戶端和資源行使同意權的方式來處理此情況，其中使用者會在同意頁面上看到用戶端和資源兩者所要求之權限的總和。若要啟用此行為，在資源的應用程式資訊清單中，資源的應用程式註冊就必須以 `knownClientApplications` 的形式包含用戶端的「應用程式識別碼」。例如：
+This can be a problem if your logical application consists of two or more application registrations, for example a separate client and resource.  How do you get the resource into the customer tenant first?  Azure AD covers this case by enabling client and resource to be consented in a single step, where the user sees the sum total of the permissions requested by both the client and resource on the consent page.  To enable this behavior, the resource’s application registration must include the client’s App ID as a `knownClientApplications` in its application manifest.  For example:
 
     knownClientApplications": ["94da0930-763f-45c7-8d26-04d5938baab2"]
 
-若要更新此屬性，只需透過資源[應用程式的資訊清單][AAD-App-Manifest]即可，而在本文結尾之[相關內容](#related-content)一節的多層原生用戶端呼叫 Web API 範例中也有提供此屬性的相關示範。下圖會提供同意多層式應用程式的概觀︰
+This property can be updated via the resource [application’s manifest][AAD-App-Manifest], and is demonstrated in a multi-tier native client calling web API sample in the [Related Content](#related-content) section at the end of this article. The diagram below provides an overview of consent for a multi-tier app:
 
-![同意多層式已知用戶端應用程式][Consent-Multi-Tier-Known-Client]
+![Consent to multi-tier known client app][Consent-Multi-Tier-Known-Client] 
 
-如果在不同的租用戶中註冊不同的應用程式層，將會發生類似的情況。例如，想像建置一個會呼叫 Office 365 Exchange Online API 的原生用戶端應用程式的情況。若要開發此原生應用程式，然後讓此原生應用程式在客戶的租用戶中執行，就必須要有 Exchange Online 服務主體。在此情況下，客戶必須購買 Exchange Online，如此才能在其租用戶中建立服務主體。如果是 Microsoft 以外的組織所建置的 API，API 的開發人員則必須提供一個可供其客戶同意將其應用程式新增到客戶租用戶中的方式，例如一個使用本文所述之機制來促成同意的網頁。在於租用戶中建立服務主體之後，原生應用程式便可取得 API 的權杖。
+A similar case happens if the different tiers of an application are registered in different tenants.  For example, consider the case of building a native client application that calls the Office 365 Exchange Online API.  To develop the native application, and later for the native application to run in a customer’s tenant, the Exchange Online service principal must be present.  In this case the customer has to purchase Exchange Online for the service principal to be created in their tenant.  In the case of an API built by an organization other than Microsoft, the developer of the API needs to provide a way for their customers to consent their application into a customer tenant, for example a web page that drives consent using the mechanisms described in this article.  After the service principal is created in the tenant, the native application can get tokens for the API.
 
-下圖會提供同意註冊於不同租用戶之多層式應用程式的概觀︰
+The diagram below provides an overview of consent for a multi-tier app registered in different tenants:
 
-![同意多層式多方應用程式][Consent-Multi-Tier-Multi-Party]
+![Consent to multi-tier multi-party app][Consent-Multi-Tier-Multi-Party] 
 
-### 撤銷同意
-使用者和系統管理員可以隨時撤銷對您應用程式的同意：
+### <a name="revoking-consent"></a>Revoking Consent
+Users and administrators can revoke consent to your application at any time:
 
-- 使用者可藉由將個別應用程式從其[存取面板應用程式][AAD-Access-Panel]清單中移除，來撤銷對這些應用程式的存取權。
-- 系統管理員可藉由使用 [Azure 傳統入口網站][AZURE-classic-portal]的 Azure AD 管理區段，將應用程式從 Azure AD 中移除，來撤銷對這些應用程式的存取權。
+- Users revoke access to individual applications by removing them from their [Access Panel Applications][AAD-Access-Panel] list.
+- Administrators revoke access to applications by removing them from Azure AD using the Azure AD management section of the [Azure classic portal][AZURE-classic-portal].
 
-如果是由系統管理員代表租用戶中的所有使用者對應用程式行使同意權，使用者就不能個別撤銷存取權。只有系統管理員才能撤銷存取權，並且只能針對整個應用程式撤銷。
+If an administrator consents to an application for all users in a tenant, users cannot revoke access individually.  Only the administrator can revoke access, and only for the whole application.
 
-### 同意和通訊協定支援
-在 Azure AD 中，是透過 OAuth、OpenID Connect、「WS-同盟」及 SAML 通訊協定來支援同意。由於 SAML 和「WS-同盟」通訊協定並不支援 `prompt=admin_consent` 參數，因此系統管理員只能透過 OAuth 和 OpenID Connect 行使同意權。
+### <a name="consent-and-protocol-support"></a>Consent and Protocol Support
+Consent is supported in Azure AD via the OAuth, OpenID Connect, WS-Federation, and SAML protocols.  The SAML and WS-Federation protocols do not support the `prompt=admin_consent` parameter, so admin consent is only possible via OAuth and OpenID Connect.
 
-## 多租用戶應用程式和快取存取權杖
-多租用戶應用程式也可以取得存取權杖來呼叫受 Azure AD 保護的 API。搭配多租用戶應用程式使用 Active Directory Authentication Library (ADAL) 時有一個常見的錯誤，就是一開始即使用 /common 來為使用者要求權杖、接收回應，然後也使用 /common 來為該相同使用者要求後續的權杖。由於從 Azure AD 傳回的回應是來自租用戶而非 /common，因此 ADAL 快取權杖時會將它視為來自租用戶。後續為了為使用者取得存取權杖而進行的 /common 呼叫會遺漏快取項目，因此系統會再次提示使用者登入。為了避免遺漏快取，請確定後續為已登入之使用者進行的呼叫是對租用戶的端點發出。
+## <a name="multi-tenant-applications-and-caching-access-tokens"></a>Multi-Tenant Applications and Caching Access Tokens
+Multi-tenant applications can also get access tokens to call APIs that are protected by Azure AD.  A common error when using the Active Directory Authentication Library (ADAL) with a multi-tenant application is to initially request a token for a user using /common, receive a response, and then request a subsequent token for that same user also using /common.  Since the response from Azure AD comes from a tenant, not /common, ADAL caches the token as being from the tenant. The subsequent call to /common to get an access token for the user misses the cache entry, and the user is prompted to sign in again.  To avoid missing the cache, make sure subsequent calls for an already signed in user are made to the tenant’s endpoint.
 
-## 相關內容
+## <a name="related-content"></a>Related content
 
-- [多租用戶應用程式範例][AAD-Samples-MT]
-- [應用程式的商標指導方針][AAD-App-Branding]
-- [Azure AD 開發人員指南][AAD-Dev-Guide]
-- [應用程式物件和服務主體物件][AAD-App-SP-Objects]
-- [整合應用程式與 Azure Active Directory][AAD-Integrating-Apps]
-- [同意架構的概觀][AAD-Consent-Overview]
-- [Microsoft Graph API 權限範圍][MSFT-Graph-AAD]
-- [Azure AD Graph API 權限範圍][AAD-Graph-Perm-Scopes]
+- [Multi-tenant application samples][AAD-Samples-MT]
+- [Branding Guidelines for Applications][AAD-App-Branding]
+- [Azure AD Developer's Guide][AAD-Dev-Guide]
+- [Application Objects and Service Principal Objects][AAD-App-SP-Objects]
+- [Integrating Applications with Azure Active Directory][AAD-Integrating-Apps]
+- [Overview of the Consent Framework][AAD-Consent-Overview]
+- [Microsoft Graph API Permission Scopes][MSFT-Graph-AAD]
+- [Azure AD Graph API Permission Scopes][AAD-Graph-Perm-Scopes]
 
-請使用下方的 Disqus 註解區段來提供意見反應，並協助我們改善及設計我們的內容。
+Please use the Disqus comments section below to provide feedback and help us refine and shape our content.
 
 <!--Reference style links IN USE -->
-[AAD-Access-Panel]: https://myapps.microsoft.com
+[AAD-Access-Panel]:  https://myapps.microsoft.com
 [AAD-App-Branding]: ./active-directory-branding-guidelines.md
 [AAD-App-Manifest]: ./active-directory-application-manifest.md
 [AAD-App-SP-Objects]: ./active-directory-application-objects.md
 [AAD-Auth-Scenarios]: ./active-directory-authentication-scenarios.md
 [AAD-Consent-Overview]: ./active-directory-integrating-applications.md#overview-of-the-consent-framework
 [AAD-Dev-Guide]: ./active-directory-developers-guide.md
-[AAD-Graph-Overview]: https://azure.microsoft.com/zh-TW/documentation/articles/active-directory-graph-api/
+[AAD-Graph-Overview]: https://azure.microsoft.com/en-us/documentation/articles/active-directory-graph-api/
 [AAD-Graph-Perm-Scopes]: https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-graph-api-permission-scopes
 [AAD-Integrating-Apps]: ./active-directory-integrating-applications.md
 [AAD-Samples-MT]: https://azure.microsoft.com/documentation/samples/?service=active-directory&term=multitenant
 [AAD-Why-To-Integrate]: ./active-directory-how-to-integrate.md
 [AZURE-classic-portal]: https://manage.windowsazure.com
-[MSFT-Graph-AAD]: https://graph.microsoft.io/zh-TW/docs/authorization/permission_scopes
+[MSFT-Graph-AAD]: https://graph.microsoft.io/en-us/docs/authorization/permission_scopes
 
 <!--Image references-->
 [AAD-Sign-In]: ./media/active-directory-devhowto-multi-tenant-overview/sign-in-with-microsoft-light.png
@@ -206,13 +207,31 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 [AZURE-classic-portal]: https://manage.windowsazure.com
 [Duyshant-Role-Blog]: http://www.dushyantgill.com/blog/2014/12/10/roles-based-access-control-in-cloud-applications-using-azure-ad/
 [JWT]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
-[O365-Perm-Ref]: https://msdn.microsoft.com/zh-TW/office/office365/howto/application-manifest
+[O365-Perm-Ref]: https://msdn.microsoft.com/en-us/office/office365/howto/application-manifest
 [OAuth2-Access-Token-Scopes]: https://tools.ietf.org/html/rfc6749#section-3.3
 [OAuth2-AuthZ-Code-Grant-Flow]: https://msdn.microsoft.com/library/azure/dn645542.aspx
-[OAuth2-AuthZ-Grant-Types]: https://tools.ietf.org/html/rfc6749#section-1.3
+[OAuth2-AuthZ-Grant-Types]: https://tools.ietf.org/html/rfc6749#section-1.3 
 [OAuth2-Client-Types]: https://tools.ietf.org/html/rfc6749#section-2.1
 [OAuth2-Role-Def]: https://tools.ietf.org/html/rfc6749#page-6
 [OpenIDConnect]: http://openid.net/specs/openid-connect-core-1_0.html
 [OpenIDConnect-ID-Token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

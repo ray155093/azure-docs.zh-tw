@@ -1,76 +1,77 @@
 <properties 
-	pageTitle="SQL Database 的 XEvent 信號緩衝區程式碼 | Microsoft Azure" 
-	description="提供 Transact-SQL 程式碼範例，可在 Azure SQL Database 中輕鬆又快速使用信號緩衝區目標。" 
-	services="sql-database" 
-	documentationCenter="" 
-	authors="MightyPen" 
-	manager="jhubbard" 
-	editor="" 
-	tags=""/>
+    pageTitle="XEvent Ring Buffer code for SQL Database | Microsoft Azure" 
+    description="Provides a Transact-SQL code sample that is made easy and quick by use of the Ring Buffer target, in Azure SQL Database." 
+    services="sql-database" 
+    documentationCenter="" 
+    authors="MightyPen" 
+    manager="jhubbard" 
+    editor="" 
+    tags=""/>
 
 
 <tags 
-	ms.service="sql-database" 
-	ms.workload="data-management" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/23/2016" 
-	ms.author="genemi"/>
+    ms.service="sql-database" 
+    ms.workload="data-management" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/23/2016" 
+    ms.author="genemi"/>
 
 
-# SQL Database 中擴充事件的信號緩衝區目標程式碼
+
+# <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a>Ring Buffer target code for extended events in SQL Database
 
 [AZURE.INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-您想要完整的程式碼範例以最簡單快速的方式在測試期間擷取和報告擴充事件的資訊。擴充事件資料最簡單的目標是[信號緩衝區目標](http://msdn.microsoft.com/library/ff878182.aspx)。
+You want a complete code sample for the easiest quick way to capture and report information for an extended event during a test. The easiest target for extended event data is the [Ring Buffer target](http://msdn.microsoft.com/library/ff878182.aspx).
 
 
-本主題提供會執行下列動作的 Transact-SQL 程式碼範例：
+This topic presents a Transact-SQL code sample that:
 
 
-1. 使用資料建立要示範的資料表。
+1. Creates a table with data to demonstrate with.
 
-2. 建立現有擴充事件的工作階段，名稱為 **sqlserver.sql\_statement\_starting**。
-	- 此事件僅限於包含特定 Update 字串的 SQL 陳述式：**statement LIKE '%UPDATE tabEmployee%'**。
-	- 選擇要將事件的輸出傳送給信號緩衝區類型的目標，名稱為 **package0.ring\_buffer**。
+2. Creates a session for an existing extended event, namely **sqlserver.sql_statement_starting**.
+    - The event is limited to SQL statements that contain a particular Update string: **statement LIKE '%UPDATE tabEmployee%'**.
+    - Chooses to send the output of the event to a target of type Ring Buffer, namely  **package0.ring_buffer**.
 
-3. 啟動事件工作階段。
+3. Starts the event session.
 
-4. 發出幾個簡單的 SQL UPDATE 陳述式。
+4. Issues a couple of simple SQL UPDATE statements.
 
-5. 發出 SQL SELECT 擷取信號緩衝區的事件輸出。
-	- **sys.dm\_xe\_database\_session\_targets** 和其他動態管理檢視 (DMV) 會聯結在一起。
+5. Issues an SQL SELECT to retrieve event output from the Ring Buffer.
+    - **sys.dm_xe_database_session_targets** and other dynamic management views (DMVs) are joined.
 
-6. 停止事件工作階段。
+6. Stops the event session.
 
-7. 卸除信號緩衝區目標以釋放其資源。
+7. Drops the Ring Buffer target, to release its resources.
 
-8. 卸除事件工作階段和示範資料表。
-
-
-## 必要條件
+8. Drops the event session and the demo table.
 
 
-- Azure 帳戶和訂用帳戶。您可以註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+## <a name="prerequisites"></a>Prerequisites
 
 
-- 您可以在當中建立資料表的任何資料庫。
- - 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started.md)。
+- An Azure account and subscription. You can sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).
 
 
-- SQL Server Management Studio (ssms.exe)，最好是最新的每月更新版本。您可以從下列位置下載最新的 ssms.exe：
- - 名稱為[下載 SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx) 的主題。
- - [下載的直接連結。](http://go.microsoft.com/fwlink/?linkid=616025)
+- Any database you can create a table in.
+ - Optionally you can [create an **AdventureWorksLT** demonstration database](sql-database-get-started.md) in minutes.
 
 
-## 程式碼範例
+- SQL Server Management Studio (ssms.exe), ideally its latest monthly update version. You can download the latest ssms.exe from:
+ - Topic titled [Download SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx).
+ - [A direct link to the download.](http://go.microsoft.com/fwlink/?linkid=616025)
 
 
-只要稍加修改，就可以在 Azure SQL Database 或 Microsoft SQL Server 上執行下列信號緩衝區的程式碼範例。不同之處在於有些動態管理檢視 (DMV) (步驟 5 的 FROM 子句中所使用) 的名稱中有 '\_database' ()。例如：
+## <a name="code-sample"></a>Code sample
 
-- sys.dm\_xe**\_database**\_session\_targets
-- sys.dm\_xe\_session\_targets
+
+With very minor modification, the following Ring Buffer code sample can be run on either Azure SQL Database or Microsoft SQL Server. The difference is the presence of the node '_database' in the name of some dynamic management views (DMVs), used in the FROM clause in Step 5. For example:
+
+- sys.dm_xe**_database**_session_targets
+- sys.dm_xe_session_targets
 
 
 &nbsp;
@@ -86,63 +87,63 @@ GO
 
 
 IF EXISTS
-	(SELECT * FROM sys.objects
-		WHERE type = 'U' and name = 'tabEmployee')
+    (SELECT * FROM sys.objects
+        WHERE type = 'U' and name = 'tabEmployee')
 BEGIN
-	DROP TABLE tabEmployee;
+    DROP TABLE tabEmployee;
 END
 GO
 
 
 CREATE TABLE tabEmployee
 (
-	EmployeeGuid         uniqueIdentifier   not null  default newid()  primary key,
-	EmployeeId           int                not null  identity(1,1),
-	EmployeeKudosCount   int                not null  default 0,
-	EmployeeDescr        nvarchar(256)          null
+    EmployeeGuid         uniqueIdentifier   not null  default newid()  primary key,
+    EmployeeId           int                not null  identity(1,1),
+    EmployeeKudosCount   int                not null  default 0,
+    EmployeeDescr        nvarchar(256)          null
 );
 GO
 
 
 INSERT INTO tabEmployee ( EmployeeDescr )
-	VALUES ( 'Jane Doe' );
+    VALUES ( 'Jane Doe' );
 GO
 
 ---- Step set 2.
 
 
 IF EXISTS
-	(SELECT * from sys.database_event_sessions
-		WHERE name = 'eventsession_gm_azuresqldb51')
+    (SELECT * from sys.database_event_sessions
+        WHERE name = 'eventsession_gm_azuresqldb51')
 BEGIN
-	DROP EVENT SESSION eventsession_gm_azuresqldb51
-		ON DATABASE;
+    DROP EVENT SESSION eventsession_gm_azuresqldb51
+        ON DATABASE;
 END
 GO
 
 
 CREATE
-	EVENT SESSION eventsession_gm_azuresqldb51
-	ON DATABASE
-	ADD EVENT
-		sqlserver.sql_statement_starting
-			(
-			ACTION (sqlserver.sql_text)
-			WHERE statement LIKE '%UPDATE tabEmployee%'
-			)
-	ADD TARGET
-		package0.ring_buffer
-			(SET
-				max_memory = 500   -- Units of KB.
-			);
+    EVENT SESSION eventsession_gm_azuresqldb51
+    ON DATABASE
+    ADD EVENT
+        sqlserver.sql_statement_starting
+            (
+            ACTION (sqlserver.sql_text)
+            WHERE statement LIKE '%UPDATE tabEmployee%'
+            )
+    ADD TARGET
+        package0.ring_buffer
+            (SET
+                max_memory = 500   -- Units of KB.
+            );
 GO
 
 ---- Step set 3.
 
 
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
-	ON DATABASE
-	STATE = START;
+    ON DATABASE
+    STATE = START;
 GO
 
 ---- Step set 4.
@@ -151,10 +152,10 @@ GO
 SELECT 'BEFORE_Updates', EmployeeKudosCount, * FROM tabEmployee;
 
 UPDATE tabEmployee
-	SET EmployeeKudosCount = EmployeeKudosCount + 102;
+    SET EmployeeKudosCount = EmployeeKudosCount + 102;
 
 UPDATE tabEmployee
-	SET EmployeeKudosCount = EmployeeKudosCount + 1015;
+    SET EmployeeKudosCount = EmployeeKudosCount + 1015;
 
 SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 GO
@@ -203,23 +204,23 @@ GO
 
 
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
-	ON DATABASE
-	STATE = STOP;
+    ON DATABASE
+    STATE = STOP;
 GO
 
 ---- Step set 7.
 
 
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
-	ON DATABASE
-	DROP TARGET package0.ring_buffer;
+    ON DATABASE
+    DROP TARGET package0.ring_buffer;
 GO
 
 ---- Step set 8.
 
 
 DROP EVENT SESSION eventsession_gm_azuresqldb51
-	ON DATABASE;
+    ON DATABASE;
 GO
 
 DROP TABLE tabEmployee;
@@ -230,18 +231,18 @@ GO
 &nbsp;
 
 
-## 信號緩衝區內容
+## <a name="ring-buffer-contents"></a>Ring Buffer contents
 
 
-我們使用了 ssms.exe 來執行程式碼範例。
+We used ssms.exe to run the code sample.
 
 
-為了檢視結果，我們按了 **target\_data\_XML** 資料欄標題下的儲存格。
+To view the results, we clicked the cell under the column header **target_data_XML**.
 
-然後在結果窗格中，我們按了 **target\_data\_XML** 資料欄標題下的儲存格。這個點按動作在 ssms.exe 中以 XML 格式建立了另一個檔案索引標籤，其中顯示了結果儲存格的內容。
+Then in the results pane we clicked the cell under the column header **target_data_XML**. This click created another file tab in ssms.exe in which the content of the result cell was displayed, as XML.
 
 
-輸出如下列區塊所示。它看起來很長，但其實只是兩個 **<event>** 元素。
+The output is shown in the following block. It looks long, but it is just two **<event>** elements.
 
 
 &nbsp;
@@ -335,47 +336,47 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 ```
 
 
-#### 釋放信號緩衝區佔用的資源
+#### <a name="release-resources-held-by-your-ring-buffer"></a>Release resources held by your Ring Buffer
 
 
-當您處理完信號緩衝區時，可以發出 **ALTER** 將它移除並釋放其資源，如下所示：
+When you are done with your Ring Buffer, you can remove it and release its resources issuing an **ALTER** like the following:
 
 
 ```
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
-	ON DATABASE
-	DROP TARGET package0.ring_buffer;
+    ON DATABASE
+    DROP TARGET package0.ring_buffer;
 GO
 ```
 
 
-事件工作階段的定義會更新，但不會卸除。稍後您可以將信號緩衝區的另一個執行個體加入事件工作階段：
+The definition of your event session is updated, but not dropped. Later you can add another instance of the Ring Buffer to your event session:
 
 
 ```
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
-	ON DATABASE
-	ADD TARGET
-		package0.ring_buffer
-			(SET
-				max_memory = 500   -- Units of KB.
-			);
+    ON DATABASE
+    ADD TARGET
+        package0.ring_buffer
+            (SET
+                max_memory = 500   -- Units of KB.
+            );
 ```
 
 
-## 詳細資訊
+## <a name="more-information"></a>More information
 
 
-Azure SQL Database 上擴充事件的主要主題是：
+The primary topic for extended events on Azure SQL Database is:
 
 
-- [SQL Database 中的擴充事件考量](sql-database-xevent-db-diff-from-svr.md)，對比 Azure SQL Database 與 Microsoft SQL Server 之間擴充事件的不同層面。
+- [Extended event considerations in SQL Database](sql-database-xevent-db-diff-from-svr.md), which contrasts some aspects of extended events that differ between Azure SQL Database versus Microsoft SQL Server.
 
 
-下列連結提供擴充事件的其他程式碼範例主題。不過，您必須定期檢查所有範例以查看範例是否適用於 Microsoft SQL Server 與 Azure SQL Database。然後您可以決定是否需要稍加變更來執行範例。
+Other code sample topics for extended events are available at the following links. However, you must routinely check any sample to see whether the sample targets Microsoft SQL Server versus Azure SQL Database. Then you can decide whether minor changes are needed to run the sample.
 
 
-- Azure SQL Database 的程式碼範例：[SQL Database 中擴充事件的事件檔案目標程式碼](sql-database-xevent-code-event-file.md)
+- Code sample for Azure SQL Database: [Event File target code for extended events in SQL Database](sql-database-xevent-code-event-file.md)
 
 
 <!--
@@ -385,4 +386,8 @@ Azure SQL Database 上擴充事件的主要主題是：
 - Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

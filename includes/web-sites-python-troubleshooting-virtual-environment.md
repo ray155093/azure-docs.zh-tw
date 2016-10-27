@@ -1,24 +1,27 @@
-如果部署指令碼偵測到相容的虛擬環境已經存在，將會略過在 Azure 上建立虛擬環境。這樣做會大幅加速部署。PIP 將會略過已安裝的封裝。
+The deployment script will skip creation of the virtual environment on Azure if it detects that a compatible virtual environment already exists.  This can speed up deployment considerably.  Packages that are already installed will be skipped by pip.
 
-在某些情況下，您可能需要強制刪除該虛擬環境。如果您決定在儲存機制中包含虛擬環境，就需要這麼做。如果您要去除特定封裝，或測試 requirements.txt 的變更，也可能需要這麼做。
+In certain situations, you may want to force delete that virtual environment.  You'll want to do this if you decide to include a virtual environment as part of your repository.  You may also want to do this if you need to get rid of certain packages, or test changes to requirements.txt.
 
-在 Azure 上管理現有的虛擬環境有幾個選項：
+There are a few options to manage the existing virtual environment on Azure:
 
-### 選項 1：使用 FTP
+### <a name="option-1:-use-ftp"></a>Option 1: Use FTP
 
-使用 FTP 用戶端連線到伺服器，您將能夠刪除 env 資料夾。請注意，某些 FTP 用戶端 (例如網頁瀏覽器) 可能是唯讀的，而且不允許您刪除資料夾，因此請您務必使用具有該功能的 FTP 用戶端。FTP 主機名稱和使用者會顯示在 [Azure 入口網站](https://portal.azure.com)上您 Web 應用程式的刀鋒視窗中。
+With an FTP client, connect to the server and you'll be able to delete the env folder.  Note that some FTP clients (such as web browsers) may be read-only and won't allow you to delete folders, so you'll want to make sure to use an FTP client with that capability.  The FTP host name and user are displayed in your web app's blade on the [Azure Portal](https://portal.azure.com).
 
-### 選項 2：切換執行階段
+### <a name="option-2:-toggle-runtime"></a>Option 2: Toggle runtime
 
-以下是部署指令碼不符合所需的 Python 版本時，部署指令碼刪除 env 資料夾所使用的替代方案。這將會有效地刪除現有的環境，並建立一個新的環境。
+Here's an alternative that takes advantage of the fact that the deployment script will delete the env folder when it doesn't match the desired version of Python.  This will effectively delete the existing environment, and create a new one.
 
-1. 切換至不同的 Python 版本 (透過 runtime.txt 或 Azure 入口網站中的 [應用程式設定] 刀鋒視窗)
-1. Git 推送部分變更 (忽略任何 PIP 安裝錯誤 (如果有的話))
-1. 切換回最初的 Python 版本
-1. 再次 Git 推送部分變更
+1. Switch to a different version of Python (via runtime.txt or the **Application Settings** blade in the Azure Portal)
+1. git push some changes (ignore any pip install errors if any)
+1. Switch back to initial version of Python
+1. git push some changes again
 
-### 選項 3：自訂部署指令碼
+### <a name="option-3:-customize-deployment-script"></a>Option 3: Customize deployment script
 
-如果您已自訂部署指令碼，可以變更 deploy.cmd 中的程式碼，以強制它刪除 env 資料夾。
+If you've customized the deployment script, you can change the code in deploy.cmd to force it to delete the env folder.
 
-<!---HONumber=AcomDC_1125_2015-->
+
+<!--HONumber=Oct16_HO2-->
+
+

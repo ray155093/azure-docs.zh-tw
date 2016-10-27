@@ -1,6 +1,6 @@
 <properties
-   pageTitle="資料分割指引 |Microsoft Azure"
-   description="如何分割要個別管理和存取的分割區指引。"
+   pageTitle="Data partitioning guidance | Microsoft Azure"
+   description="Guidance for how to separate partitions to be managed and accessed separately."
    services=""
    documentationCenter="na"
    authors="dragon119"
@@ -17,554 +17,555 @@
    ms.date="07/14/2016"
    ms.author="masashin"/>
 
-# 資料分割指引
+
+# <a name="data-partitioning-guidance"></a>Data partitioning guidance
 
 [AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
-## Overview
+## <a name="overview"></a>Overview
 
-在許多大型解決方案中，資料分成個別的分割區，可以個別管理和存取。您必須仔細選擇資料分割策略，才能最大化利益，同時將不良影響降至最低。資料分割有助於改善延展性、減少爭用，以及最佳化效能。資料分割的另一項優點是可提供一種機制，藉由使用模式來區分資料。例如，您可以將較舊且較不使用 (冷) 的資料封存至成本較低的資料儲存體。
+In many large-scale solutions, data is divided into separate partitions that can be managed and accessed separately. The partitioning strategy must be chosen carefully to maximize the benefits while minimizing adverse effects. Partitioning can help improve scalability, reduce contention, and optimize performance. Another benefit of partitioning is that it can provide a mechanism for dividing data by the pattern of use. For example, you can archive older, less active (cold) data in cheaper data storage.
 
-## 為何要分割資料？
+## <a name="why-partition-data?"></a>Why partition data?
 
-大部分的雲端應用程式和服務會將資料儲存和擷取做為其作業的一部分。應用程式所使用之資料存放區的設計和系統的效能、輸送量和延展性有明顯的關係。通常會套用在大型系統中的一個技術是將資料區分成個別的分割區。
+Most cloud applications and services store and retrieve data as part of their operations. The design of the data stores that an application uses can have a significant bearing on the performance, throughput, and scalability of a system. One technique that is commonly applied in large-scale systems is to divide the data into separate partitions.
 
-> 本指引中所用的「資料分割」一詞指的是實際將資料區分至個別資料存放區的程序。這和 SQL Server 資料表分割不同，後者是不同的概念。
+> The term _partitioning_ that's used in this guidance refers to the process of physically dividing data into separate data stores. This is not the same as SQL Server table partitioning, which is a different concept.
 
-分割資料可以提供許多優點。例如，它可以套用來：
+Partitioning data can offer a number of benefits. For example, it can be applied in order to:
 
-- **改善延展性**。當您相應增加單一資料庫系統時，其最終將會到達實體硬體限制。如果您跨多個分割區來區分資料，而其中每一個分割區都裝載於個別伺服器上，您幾乎能夠無限制地相應放大系統。
-- **提升效能**。在每個分割區上的資料存取作業會透過較小的資料磁碟區進行。假設資料是以適當方式來分割，則資料分割可讓您的系統更有效率。影響多個分割區的作業都能平行執行。每個分割區可以靠近使用它的應用程式以最小化網路延遲。
-- **改善可用性**。跨多個伺服器分格資料可避免單一失敗點。如果伺服器失敗，或正在進行規劃的維護，只有該資料分割中的資料無法使用。在其他分割區上的作業可以繼續進行。增加分割區的數目可減少無法使用的資料百分比，藉以減少單一伺服器失敗的相對影響。複寫每個分割區可以進一步減少單一分割區失敗影響作業的機會。它也能夠分離必須持續高度可用的重要資料和可用性需求較低的低價值資料 (例如記錄檔)。
-- **改善安全性**。依據資料的性質及其分割方式，就可以將機密和非機密資料分離到不同的分割區，因而可分離到不同的伺服器或資料存放區。如此便可以為機密資料進行安全性的特別最佳化。
-- **提供做業彈性**。資料分割提供許多微調作業、最大化系統管理效率和最小化成本的機會。例如，您可以根據資料在每個分割區中的重要性，來定義適用於管理、監視、備份和還原的不同原則，以及其他系統管理工作。
-- **比對資料存放區和使用模式**。資料分割可根據資料存放區所提供的成本和內建功能，讓每個分割區部署在不同類型的資料存放區上。例如，大型二進位資料可儲存於 Blob 資料存放區，而更為結構化的資料可保存於文件資料庫中。如需詳細資訊，請參閱模式與實例指南中的 [Building a polyglot solution (建置 Polyglot 解決方案)] 和 Microsoft 網站上的 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence (高度可調整解決方案的資料存取：使用 SQL、NoSQL 和 Polyglot 持續性)]。
+- **Improve scalability**. When you scale up a single database system, it will eventually reach a physical hardware limit. If you divide data across multiple partitions, each of which is hosted on a separate server, you can scale out the system almost indefinitely.
+- **Improve performance**. Data access operations on each partition take place over a smaller volume of data. Provided that the data is partitioned in a suitable way, partitioning can make your system more efficient. Operations that affect more than one partition can run in parallel. Each partition can be located near the application that uses it to minimize network latency.
+- **Improve availability**. Separating data across multiple servers avoids a single point of failure. If a server fails, or is undergoing planned maintenance, only the data in that partition is unavailable. Operations on other partitions can continue. Increasing the number of partitions reduces the relative impact of a single server failure by reducing the percentage of data that will be unavailable. Replicating each partition can further reduce the chance of a single partition failure affecting operations. It also makes it possible to separate critical data that must be continually and highly available from low-value data that has lower availability requirements (log files, for example).
+- **Improve security**. Depending on the nature of the data and how it is partitioned, it might be possible to separate sensitive and non-sensitive data into different partitions, and therefore into different servers or data stores. Security can then be specifically optimized for the sensitive data.
+- **Provide operational flexibility**. Partitioning offers many opportunities for fine tuning operations, maximizing administrative efficiency, and minimizing cost. For example, you can define different strategies for management, monitoring, backup and restore, and other administrative tasks based on the importance of the data in each partition.
+- **Match the data store to the pattern of use**. Partitioning allows each partition to be deployed on a different type of data store, based on cost and the built-in features that data store offers. For example, large binary data can be stored in a blob data store, while more structured data can be held in a document database. For more information, see [Building a polyglot solution] in the patterns & practices guide and [Data access for highly-scalable solutions: Using SQL, NoSQL, and polyglot persistence] on the Microsoft website.
 
-有些系統不會實作資料分割，因為它會被視為成本，而不是一項優點。這個基本原理的常見原因包括：
+Some systems do not implement partitioning because it is considered a cost rather than an advantage. Common reasons for this rationale include:
 
-- 許多資料儲存系統不支援跨分割區聯結，而且難以維護資料分割系統中的參考完整性。通常必須要實作應用程式碼中 (資料分割層中) 的聯結和完整性檢查，而這可能會導致其他 I/O 和應用程式的複雜度。
-- 維護分割區不一定都是簡單的工作。在資料可變更的系統中，您可能需要定期重新平衡分割區來減少爭用和作用點。
-- 常用的一些工具不會自然地使用分割的資料。
+- Many data storage systems do not support joins across partitions, and it can be difficult to maintain referential integrity in a partitioned system. It is frequently necessary to implement joins and integrity checks in application code (in the partitioning layer), which can result in additional I/O and application complexity.
+- Maintaining partitions is not always a trivial task. In a system where the data is volatile, you might need to rebalance partitions periodically to reduce contention and hot spots.
+- Some common tools do not work naturally with partitioned data.
 
-## 移除分割區
+## <a name="designing-partitions"></a>Designing partitions
 
-資料可以用不同的方式分割：水平、垂直或功能。您選擇的策略取決於分割資料的原因、應用程式的需求和使用該資料的服務。
+Data can be partitioned in different ways: horizontally, vertically, or functionally. The strategy you choose depends on the reason for partitioning the data, and the requirements of the applications and services that will use the data.
 
-> [AZURE.NOTE] 在本指引中所述之資料分割配置的說明方式與基礎的資料儲存技術無關。它們可以套用到許多類型的資料存放區，包括關聯式和 NoSQL 資料庫。
+> [AZURE.NOTE] The partitioning schemes described in this guidance are explained in a way that is independent of the underlying data storage technology. They can be applied to many types of data stores, including relational and NoSQL databases.
 
-### 資料分割策略
+### <a name="partitioning-strategies"></a>Partitioning strategies
 
-分割資料的三個典型的策略是：
+The three typical strategies for partitioning data are:
 
-- **水平資料分割** (通常稱為_分區化_)。在此策略中，每個分割區本身都是資料存放區，但所有分割區具有相同的配置。每個分割區都稱為「分區」，而且會保存特定的資料子集，例如，電子商務應用程式中一組特定客戶的所有訂單。
-- **垂直資料分割**。在此策略中，每個分割區會在資料存放區中保留項目的欄位子集。欄位會根據其使用模式來區分。比方說，經常存取的欄位可能會放在一個垂直的分割區中，而較不常存取的欄位則放置於另一個分割區中。
-- **功能資料分割**。在此策略中，資料會根據系統中每個繫結的內容使用它的方式進行彙總。例如，實作發票開立和管理產品存貨等個別商務功能的電子商務系統可能會將發票資料儲存在某一個分割區中，並將產品庫存資料儲存於另一個。
+- **Horizontal partitioning** (often called _sharding_). In this strategy, each partition is a data store in its own right, but all partitions have the same schema. Each partition is known as a _shard_ and holds a specific subset of the data, such as all the orders for a specific set of customers in an e-commerce application.
+- **Vertical partitioning**. In this strategy, each partition holds a subset of the fields for items in the data store. The fields are divided according to their pattern of use. For example, frequently accessed fields might be placed in one vertical partition and less frequently accessed fields in another.
+- **Functional partitioning**. In this strategy, data is aggregated according to how it is used by each bounded context in the system. For example, an e-commerce system that implements separate business functions for invoicing and managing product inventory might store invoice data in one partition and product inventory data in another.
 
-請務必注意此處所述的三個策略可以結合。它們不會互斥，建議您在設計資料分割配置時應全部納入考量。例如，您可能會將資料區分成分區，然後使用垂直資料分割進一步細分每個分區中的資料。同樣地，功能分割區中的資料可劃分為分區 (也能以垂直方式分割)。
+It’s important to note that the three strategies described here can be combined. They are not mutually exclusive, and we recommend that you consider them all when you design a partitioning scheme. For example, you might divide data into shards and then use vertical partitioning to further subdivide the data in each shard. Similarly, the data in a functional partition can be split into shards (which can also be vertically partitioned).
 
-不過，每一種策略的不同需求可能會引發許多衝突問題。您在設計符合系統中整體資料處理效能目標的資料分割配置時，必須加以評估和平衡。下列各節會探索每一種策略的詳細資料。
+However, the differing requirements of each strategy can raise a number of conflicting issues. You must evaluate and balance all of these when designing a partitioning scheme that meets the overall data processing performance targets for your system. The following sections explore each of the strategies in more detail.
 
-### 水平資料分割 (分區化)
+### <a name="horizontal-partitioning-(sharding)"></a>Horizontal partitioning (sharding)
 
-圖 1 顯示水平資料分割或分區化的概觀。在此範例中，產品庫存資料會根據產品索引鍵區分成分區。每個分區都保存分區索引鍵 (A-G 和 H-Z) 的連續範圍資料，依照字母順序排列。
+Figure 1 shows an overview of horizontal partitioning or sharding. In this example, product inventory data is divided into shards based on the product key. Each shard holds the data for a contiguous range of shard keys (A-G and H-Z), organized alphabetically.
 
-![水平資料分割 (分區化) 的資料是以分割區索引鍵為基礎](media/best-practices-data-partitioning/DataPartitioning01.png)
+![Horizontally partitioning (sharding) data based on a partition key](media/best-practices-data-partitioning/DataPartitioning01.png)
 
-_圖 1.水平資料分割 (分區化) 資料是以分割區索引鍵為基礎_
+_Figure 1. Horizontally partitioning (sharding) data based on a partition key_
 
-分區化可協助您將負載分散到多部電腦，以減少爭用並改善效能。您可以藉由新增在其他伺服器上執行的進一步分區，相應放大系統。
+Sharding helps you spread the load over more computers, which reduces contention and improves performance. You can scale the system out by adding further shards that run on additional servers.
 
-實作此資料分割策略時的最重要因素是分區化索引鍵的選擇。系統在作業之後，就很難變更索引鍵。索引鍵必須確定資料已分割，使工作負載盡可能跨分區平均分配。
+The most important factor when implementing this partitioning strategy is the choice of sharding key. It can be difficult to change the key after the system is in operation. The key must ensure that data is partitioned so that the workload is as even as possible across the shards.
 
-請注意，不同的分區不一定會包含類似的資料磁碟區。而更重要的考量是平衡要求數目。有些分區可能非常大，但每個項目都是少量存取作業的主體。其他的分區可能比較小，但是更常存取每個項目。另一個重點是確保單一分區不會超過用來裝載該分區之資料存放區的規模限制 (以容量和處理資源為準)。
+Note that different shards do not have to contain similar volumes of data. Rather, the more important consideration is to balance the number of requests. Some shards might be very large, but each item is the subject of a low number of access operations. Other shards might be smaller, but each item is accessed much more frequently. It is also important to ensure that a single shard does not exceed the scale limits (in terms of capacity and processing resources) of the data store that's being used to host that shard.
 
-如果您使用分區化配置，請避免建立作用點 (或熱點分割區)，其會影響效能和可用性。例如，如果您使用客戶識別碼的雜湊，而不是客戶名稱的第一個字母，就能防止常見和較不常見首字母所產生的不平衡分佈。這是典型的技巧，有助於使資料更平均地跨分割區分佈。
+If you use a sharding scheme, avoid creating hotspots (or hot partitions) that can affect performance and availability. For example, if you use a hash of a customer identifier instead of the first letter of a customer’s name, you prevent the unbalanced distribution that results from common and less common initial letters. This is a typical technique that helps distribute data more evenly across partitions.
 
-選擇可最小化任何未來需求的分區化索引鍵，以將大型分區劃分成較小的片段、將小型分區聯合成較大的分割區，或者變更描述儲存在分割區集合中之資料的配置。這些作業非常耗時，而且可能需要在執行時讓一或多個分區離線。
+Choose a sharding key that minimizes any future requirements to split large shards into smaller pieces, coalesce small shards into larger partitions, or change the schema that describes the data stored in a set of partitions. These operations can be very time consuming, and might require taking one or more shards offline while they are performed.
 
-如果複寫分區，某些複本可能要保持上線，而其他複本會被劃分、合併或重新設定。但在進行重新設定時，系統可能需要限制可在這些分區中的資料上執行的作業。例如，複本中的資料無法標記為唯讀以限制不一致的範圍，不一致的情形可能會在重新建構分區時發生。
+If shards are replicated, it might be possible to keep some of the replicas online while others are split, merged, or reconfigured. However, the system might need to limit the operations that can be performed on the data in these shards while the reconfiguration is taking place. For example, the data in the replicas can be marked as read-only to limit the scope of inconsistences that might occur while shards are being restructured.
 
-> 如需這其中許多考量的詳細資訊和指引，以及設計實作水平資料分割的資料存放區之絕佳實務技術，請參閱 [Sharding Pattern (分區化模式)]。
+> For more detailed information and guidance about many of these considerations, and good practice techniques for designing data stores that implement horizontal partitioning, see [Sharding pattern].
 
-### 垂直資料分割
+### <a name="vertical-partitioning"></a>Vertical partitioning
 
-垂直資料分割的最常見用途是可降低與擷取最常存取之項目相關聯的 I/O 和效能成本，。圖 2 顯示垂直資料分割的範例。在此範例中，每個資料項目的不同屬性都會保留於不同的分割區中。有一個分割區會保留較常存取的資料，包括產品的名稱、描述和價格資訊。另一個則會保留存貨量和上次訂購日期。
+The most common use for vertical partitioning is to reduce the I/O and performance costs associated with fetching the items that are accessed most frequently. Figure 2 shows an example of vertical partitioning. In this example, different properties for each data item are held in different partitions. One partition holds data that is accessed more frequently, including the name, description, and price information for products. Another holds the volume in stock and the last ordered date.
 
-![以使用模式分割的垂直分割資料](media/best-practices-data-partitioning/DataPartitioning02.png)
+![Vertically partitioning data by its pattern of use](media/best-practices-data-partitioning/DataPartitioning02.png)
 
-_圖 2.依使用模式垂直分割資料_
+_Figure 2. Vertically partitioning data by its pattern of use_
 
-在此範例中，應用程式會在向客戶顯示產品詳細資料時，固定查詢產品名稱、描述和價格。存貨量和上一次從製造商訂購產品的日期保留在不同的分割區，因為這兩個項目通常一起使用。
+In this example, the application regularly queries the product name, description, and price when displaying the product details to customers. The stock level and date when the product was last ordered from the manufacturer are held in a separate partition because these two items are commonly used together.
 
-此資料分割配置會有額外的好處，移動頻率相當低的資料 (產品名稱、描述和價格) 會和較動態的資料 (存貨量和上一次訂單日期) 分開。如果移動頻率相當低的資料經常被存取，應用程式會發現在記憶體中快取該資料很有幫助。
+This partitioning scheme has the added advantage that the relatively slow-moving data (product name, description, and price) is separated from the more dynamic data (stock level and last ordered date). An application might find it beneficial to cache the slow-moving data in memory if it is frequently accessed.
 
-另一個此資料分割策略的典型案例是最大化機密資料的安全性。例如，您可以藉由將信用卡號碼和對應的卡片安全性驗證號碼儲存在個別的分割區中，來達到此目的。
+Another typical scenario for this partitioning strategy is to maximize the security of sensitive data. For example, you can do this by storing credit card numbers and the corresponding card security verification numbers in separate partitions.
 
-垂直資料分割也可以減少資料所需的並行存取數量。
+Vertical partitioning can also reduce the amount of concurrent access that's needed to the data.
 
-> 垂直資料分割都是在資料存放區內的實體層級運做，有部分會正規化實體，將其從_廣泛_項目細分成一組_縮小_項目。在理想的情況下，它適用於 HBase 和 Cassandra 等資料行導向的資料存放區。如果資料行集合中的資料不太可能變更，您也可以考慮使用 SQL Server 中的資料行存放區。
+> Vertical partitioning operates at the entity level within a data store, partially normalizing an entity to break it down from a _wide_ item to a set of _narrow_ items. It is ideally suited for column-oriented data stores such as HBase and Cassandra. If the data in a collection of columns is unlikely to change, you can also consider using column stores in SQL Server.
 
-### 功能資料分割
+### <a name="functional-partitioning"></a>Functional partitioning
 
-對於可以在應用程式中為每個不同的商業領域或服務識別繫結內容的系統，功能資料分割提供一種技術，可改善隔離和資料存取效能。功能資料分割的另一種常用功能是將讀寫資料與用於報告用途的唯讀資料分開。圖 3 顯示功能資料分割的概觀，清查資料可從客戶的資料分開。
+For systems where it is possible to identify a bounded context for each distinct business area or service in the application, functional partitioning provides a technique for improving isolation and data access performance. Another common use of functional partitioning is to separate read-write data from read-only data that's used for reporting purposes. Figure 3 shows an overview of functional partitioning where inventory data is separated from customer data.
 
-![以繫結的內容或子網域分割的功能分割資料](media/best-practices-data-partitioning/DataPartitioning03.png)
+![Functionally partitioning data by bounded context or subdomain](media/best-practices-data-partitioning/DataPartitioning03.png)
 
-_圖 3.依繫結的內容或子網域分割的功能分割資料_
+_Figure 3. Functionally partitioning data by bounded context or subdomain_
 
-此資料分割策略有助於減少跨系統的不同部分所發生的資料存取爭用。
+This partitioning strategy can help reduce data access contention across different parts of a system.
 
-## 設計延展性的分割區
+## <a name="designing-partitions-for-scalability"></a>Designing partitions for scalability
 
-請務必考慮每個分割區的大小和工作負載並加以平衡，使資料分佈以達到最大延展性。不過，您也必須分割資料，使它不會超過單一資料分割存放區的調整限制。
+It's vital to consider size and workload for each partition and balance them so that data is distributed to achieve maximum scalability. However, you must also partition the data so that it does not exceed the scaling limits of a single partition store.
 
-設計具延展性的分割區時，請遵循下列步驟：
+Follow these steps when designing partitions for scalability:
 
-1. 分析應用程式以了解資料存取模式，例如每個查詢所傳回的結果集大小、存取的頻率、固有的延遲，以及伺服器端計算處理需求。在許多情況下，幾個主要實體會要求大部分的處理資源。
-2. 使用此分析來判斷目前和未來的延展性目標，例如資料大小和工作負載。然後將資料分散在各個分割區上，以符合延展性目標。在水平資料分割策略中，選擇適當的分區索引鍵，這對確定分佈是否平均很重要。如需詳細資訊，請參閱[分區化模式]。
-3. 請確定每個分割區的可用資源充足，可處理資料大小和輸送量方面的延展性需求。例如，裝載於分割區的節點可能加諸固定限制的儲存空間量、處理能力或它提供的網路頻寬量。如果資料儲存體和處理需求可能超過這些限制，就可能需要調整您的資料分割策略或進一步劃分資料。例如，有一個延展性方法可能是與核心應用程式功能分開記錄資料。您可以使用個別的資料存放區，來防止資料儲存體需求總數超過節點的調整限制。如果資料存放區的總數超過節點限制，可能必須使用不同的儲存體節點。
-4. 監視系統，以用來確認資料會如預期般分佈，而且分割區可以處理加諸其上的負載。使用量可能與分析所預期的使用量不符。在此情況下，可能需要重新平衡分割區。如果無法做到，可能就必須重新設計系統的某些部分，以取得必要的平衡。
+1. Analyze the application to understand the data access patterns, such as the size of the result set returned by each query, the frequency of access, the inherent latency, and the server-side compute processing requirements. In many cases, a few major entities will demand most of the processing resources.
+2. Use this analysis to determine the current and future scalability targets, such as data size and workload. Then distribute the data across the partitions to meet the scalability target. In the horizontal partitioning strategy, choosing the appropriate shard key is important to make sure distribution is even. For more information, see the [Sharding pattern].
+3. Make sure that the resources available to each partition are sufficient to handle the scalability requirements in terms of data size and throughput. For example, the node that's hosting a partition might impose a hard limit on the amount of storage space, processing power, or network bandwidth that it provides. If the data storage and processing requirements are likely to exceed these limits, it might be necessary to refine your partitioning strategy or split data out further. For example, one scalability approach might be to separate logging data from the core application features. You do this by using separate data stores to prevent the total data storage requirements from exceeding the scaling limit of the node. If the total number of data stores exceeds the node limit, it might be necessary to use separate storage nodes.
+4. Monitor the system under use to verify that the data is distributed as expected and that the partitions can handle the load that is imposed on them. It's possible that the usage does not match the usage that's anticipated by the analysis. In that case, it might be possible to rebalance the partitions. Failing that, it might be necessary to redesign some parts of the system to gain the required balance.
 
-請注意，某些雲端環境會根據基礎結構界限配置資源。您應該確定您所選界限的限制可在資料儲存體、處理能力及頻寬等方面，提供足夠的空間，使資料量能夠如預期般成長。
+Note that some cloud environments allocate resources in terms of infrastructure boundaries. Ensure that the limits of your selected boundary provide enough room for any anticipated growth in the volume of data, in terms of data storage, processing power, and bandwidth.
 
-例如，如果您使用 Azure 表格儲存體，忙碌的分區所需的資源數可能超過可供單一分割區用來處理要求的資源數(對於單一磁碟區可在一段特定期間內處理的要求數量是有限制的。如需詳細資訊，請參閱 Microsoft 網站上的 [Azure 儲存體延展性和效能目標]頁面)。
+For example, if you use Azure table storage, a busy shard might require more resources than are available to a single partition to handle requests. (There is a limit to the volume of requests that can be handled by a single partition in a particular period of time. See the page [Azure storage scalability and performance targets] on the Microsoft website for more details.)
 
- 在此情況下，可能需要重新分割分區以散佈負載。如果這些表格的總大小或輸送量超過儲存體帳戶的容量，可能必須建立其他儲存體帳戶並跨這些帳戶散佈表格。如果儲存體帳戶的數目超過訂用帳戶可用的帳戶數目，則可能必須使用多個訂用帳戶。
+ If this is the case, the shard might need to be repartitioned to spread the load. If the total size or throughput of these tables exceeds the capacity of a storage account, it might be necessary to create additional storage accounts and spread the tables across these accounts. If the number of storage accounts exceeds the number of accounts that are available to a subscription, then it might be necessary to use multiple subscriptions.
 
-## 設計查詢效能的分割區
+## <a name="designing-partitions-for-query-performance"></a>Designing partitions for query performance
 
-使用較小的資料集和執行平行查詢，通常可提高查詢效能。每個分割區都應包含整個資料集的一小部分。數量的縮減可以改善查詢效能。不過，資料分割並不是適當地設計和設定資料庫的替代方式。例如，如果您使用關聯式資料庫，請確定您已備妥必要的索引。
+Query performance can often be boosted by using smaller data sets and by running parallel queries. Each partition should contain a small proportion of the entire data set. This reduction in volume can improve the performance of queries. However, partitioning is not an alternative for designing and configuring a database appropriately. For example, make sure that you have the necessary indexes in place if you are using a relational database.
 
-基於查詢效能設計分割區時，請遵循下列步驟：
+Follow these steps when designing partitions for query performance:
 
-1. 檢查應用程式的需求以及效能：
-	- 使用商務需求來判斷隨時必須快速執行的重要查詢。
-	- 監視系統以識別任何執行速度慢的查詢。
-	- 建立最常執行的查詢。每個查詢的單一執行個體可能會有最低的成本，但是資源的累計耗用量卻不少。它可能有助於將這些查詢所擷取的資料區分離到不同的分割區或甚至快取。
-2. 分割會導致效能變慢的資料：
-	- 限制每個分割區的大小，使查詢回應時間在目標內。
-	- 設計分區索引鍵，在您實作水平資料分割時，讓應用程式可以輕鬆地找到分割區。這可防止查詢需要掃描每個分割區。
-	- 請考慮分割區的位置。如果可能，請嘗試將資料保留在地理位置靠近存取它之應用程式和使用者的分割區。
-3. 如果實體有輸送量和查詢效能的需求，請根據該實體使用功能資料分割。如果這樣還是無法滿足需求，請同時套用水平資料分割。在大部分情況下，單一資料分割策略就足夠了，但在某些情況下，結合這兩種策略會更有效率。
-4. 請考慮使用跨分割區平行執行的非同步查詢，以改善效能。
+1. Examine the application requirements and performance:
+    - Use the business requirements to determine the critical queries that must always perform quickly.
+    - Monitor the system to identify any queries that perform slowly.
+    - Establish which queries are performed most frequently. A single instance of each query might have minimal cost, but the cumulative consumption of resources could be significant. It might be beneficial to separate the data that's retrieved by these queries into a distinct partition, or even a cache.
+2. Partition the data that is causing slow performance:
+    - Limit the size of each partition so that the query response time is within target.
+    - Design the shard key so that the application can easily find the partition if you are implementing horizontal partitioning. This prevents the query from having to scan through every partition.
+    - Consider the location of a partition. If possible, try to keep data in partitions that are geographically close to the applications and users that access it.
+3. If an entity has throughput and query performance requirements, use functional partitioning based on that entity. If this still doesn't satisfy the requirements, apply horizontal partitioning as well. In most cases a single partitioning strategy will suffice, but in some cases it is more efficient to combine both strategies.
+4. Consider using asynchronous queries that run in parallel across partitions to improve performance.
 
-## 設計可用性的分割區
+## <a name="designing-partitions-for-availability"></a>Designing partitions for availability
 
-分割資料可以確保整個資料集不會構成單一失敗點，而且確保資料集的個別子集可以分開管理，藉以改善應用程式的可用性。複寫包含重要資料的分割區，也能改善可用性。
+Partitioning data can improve the availability of applications by ensuring that the entire dataset does not constitute a single point of failure and that individual subsets of the dataset can be managed independently. Replicating partitions that contain critical data can also improve availability.
 
-設計和實作分割區時，請考慮下列會影響可用性的因素：
+When designing and implementing partitions, consider the following factors that affect availability:
 
-- **資料對商務營運的重要性**。某些資料可能包含重要商務資訊，例如發票明細或銀行交易。其他資料可能包含較不重要的營運資料，例如記錄檔、效能追蹤等等。識別每一個類型的資料之後，請考慮：
-	- 利用適當的備份計劃，將重要資料儲存在高度可用的分割區中。
-	- 為每個資料集的不同嚴重性建立個別的管理和監視機制或程序。將具有相同嚴重性等級的資料放在同一個分割區，利用適當的頻率一併進行備份。例如，保留銀行交易資料的分割區的備份頻率可能必須高於保留記錄或追蹤資訊的分割區。
-- **個別分割區的管理方式**。將分割區設計為支援獨立管理和維護可提供數個優點。例如：
-	- 如果分割區失敗，可以獨立復原而不會影響在其他分割區中存取資料的應用程式執行個體。
-	- 依地理區域分割資料，允許已排程的維護工作在每個位置的離峰時段進行。請確定分割區不會太大而無法防止任何已規劃的分割區維護在這段期間完成。
-- **是否要跨分割區複寫重要資料**。此策略可以改善可用性和效能，不過它也可以導入一致性問題。在分割區中對資料所做的變更，需要一段時間才能與每個複本同步。在這段期間，不同的分割區會包含不同的資料值。
+- **How critical the data is to business operations**. Some data might include critical business information such as invoice details or bank transactions. Other data might include less critical operational data, such as log files, performance traces, and so on. After identifying each type of data, consider:
+    - Storing critical data in highly-available partitions with an appropriate backup plan.
+    - Establishing separate management and monitoring mechanisms or procedures for the different criticalities of each dataset. Place data that has the same level of criticality in the same partition so that it can be backed up together at an appropriate frequency. For example, partitions that hold data for bank transactions might need to be backed up more frequently than partitions that hold logging or trace information.
+- **How individual partitions can be managed**. Designing partitions to support independent management and maintenance provides several advantages. For example:
+    - If a partition fails, it can be recovered independently without affecting instances of applications that access data in other partitions.
+    - Partitioning data by geographical area allows scheduled maintenance tasks to occur at off-peak hours for each location. Ensure that partitions are not too big to prevent any planned maintenance from being completed during this period.
+- **Whether to replicate critical data across partitions**. This strategy can improve availability and performance, although it can also introduce consistency issues. It takes time for changes made to data in a partition to be synchronized with every replica. During this period, different partitions will contain different data values.
 
-## 了解資料分割會對設計與開發產生何種影響
+## <a name="understanding-how-partitioning-affects-design-and-development"></a>Understanding how partitioning affects design and development
 
-使用資料分割會增加系統設計和開發的複雜度。即使系統一開始只包含單一分割區，也請考慮將資料分割視為系統設計的基本部分。如果您在系統開始遭遇效能和延展性問題時，將資料分割當成備案來處理，就會增加複雜性，因為您已經有要維護的即時系統。
+Using partitioning adds complexity to the design and development of your system. Consider partitioning as a fundamental part of system design even if the system initially only contains a single partition. If you address partitioning as an afterthought, when the system starts to suffer performance and scalability issues, the complexity increases because you already have a live system to maintain.
 
-如果您更新系統以將資料分割納入此環境中，就需要修改資料存取邏輯。而它也會涉及移轉大量現有資料以跨分割區分佈資料，通常會在使用者期望能夠繼續使用系統時發生此情況。
+If you update the system to incorporate partitioning in this environment, it necessitates modifying the data access logic. It can also involve migrating large quantities of existing data to distribute it across partitions, often while users expect to be able to continue using the system.
 
-在某些情況下，資料分割並不重要，因為初始資料集很小，而且可以輕鬆地由單一伺服器處理。對於不期待調整超出其初始大小的系統而言，這可能適用，但是許多商務系統都必須能夠在使用者數目增加時加以擴充。此擴充通常會伴隨資料量的成長。
+In some cases, partitioning is not considered important because the initial dataset is small and can be easily handled by a single server. This might be true in a system that is not expected to scale beyond its initial size, but many commercial systems need to expand as the number of users increases. This expansion is typically accompanied by a growth in the volume of data.
 
-同時，請務必了解資料分割不一定是大型資料存放區的功能。例如，數百個並行用戶端可能會大量存取一個小型資料存放區。在此情況下將資料分割可以協助減少爭用並提高輸送量。
+It's also important to understand that partitioning is not always a function of large data stores. For example, a small data store might be heavily accessed by hundreds of concurrent clients. Partitioning the data in this situation can help to reduce contention and improve throughput.
 
-當您設計資料分割配置時，應考慮下列幾點：
+Consider the following points when you design a data partitioning scheme:
 
-- **盡可能一併保留每個分割區中最常見資料庫作業的資料，以使跨分割區的資料存取作業減到最少**。跨分割區查詢可能比只在單一分割區內查詢更費時，但是最佳化一組查詢的分割區可能會對其他組的查詢造成不良影響。當您無法避免跨分割區查詢時，可以在應用程式內執行平行查詢並彙總結果，來將查詢時間降至最低。在某些情況下可能無法使用這種方法，例如，必須從某個查詢中取得結果並在下一個查詢使用此結果時。
-- **如果查詢會利用相對靜態的參考資料 (例如，郵遞區號資料表或產品清單)，請考慮將此資料複寫到所有分割區，以減少在不同分割區中個別查閱作業的需求**。這種方法也會減少參考資料成為「熱門」資料集的可能性，其受限於整個系統中的高流量。不過，還是會有與同步處理此參考資料的可能發生的任何變更相關聯的其他成本。
-- **盡可能最小化跨垂直和功能分割區之參考完整性的需求**。在這些配置中，應用程式本身會負責在更新和取用資料時維護跨分割區的參考完整性。必須跨多個分割區聯結資料的查詢執行速度遠低於只在相同分割區內聯結資料的查詢，因為應用程式通常必須先根據索引鍵，接著根據外部索引鍵來執行連續查詢。請改為考慮將相關資料複寫或取消正規化。為了將必須跨分割區聯結的查詢時間降至最低，請在分割區之間執行平行查詢，並在應用程式內聯結資料。
-- **請考慮資料分割配置可能會對跨分割區的資料一致性產生的效果。** 評估強式一致性是否為實際的需求。相反地，雲端中的常見方法是實作最終一致性。每個分割區中的資料會個別更新，而應用程式邏輯可確保所有更新都會順利完成。它也會在執行最終一致性作業時，處理查詢資料所引發的不一致性。如需實作最終一致性的詳細資訊，請參閱 [Data consistency primer (資料一致性入門)]。
-- **請考慮查詢如何尋找正確的分割區**。如果查詢必須掃描所有分割區來尋找所需的資料，即使是有多個平行查詢正在執行，還是會對效能產生嚴重的影響。搭配垂直和功能資料分割策略使用的查詢可以自然能夠指定分割區。不過，水平資料分割 (分區化) 會使得尋找項目變得困難，因為每個分區都有相同的結構描述。典型的分區化解決方案是維護對應，用來查閱特定資料項目的分區位置。此對應會在應用程式的分區化邏輯中實作，或者如果它支援透明的分區化，就會由資料存放區維護。
-- **使用水平資料分割策略時，請考慮定期重新平衡分區**。這有助於根據大小和工作負載來平均分佈資料，進而最小化作用點、最大化查詢效能，並解決實體的儲存體限制。不過，這是一個複雜的工作，通常需要使用自訂工具或程序。
-- **如果您複寫每個分割區，就能提供額外的保護以防止發生錯誤**。如果單一複本失敗，查詢可以導向至可用的複本。
-- **如果您達到資料分割策略的實體限制，您可能必須將延展性擴充至不同層級**。例如，如果資料分割是在資料庫層級，您可能需要尋找或複寫多個資料庫中的分割區。如果資料分割已經在資料庫層級，而且發生實體限制的問題，可能表示您需要尋找或複寫多個裝載帳戶中的分割區。
-- **避免在多個分割區中存取資料的交易**。某些資料存放區會為了修改資料的作業而實作交易一致性和完整性，但唯有當資料位於單一分割區時才如此。如果您需要跨多個分割區的交易式支援，您可能必須實作此支援做為應用程式邏輯的一部分，因為大部分的資料分割系統不會提供原生支援。
+- **Where possible, keep data for the most common database operations together in each partition to minimize cross-partition data access operations**. Querying across partitions can be more time-consuming than querying only within a single partition, but optimizing partitions for one set of queries might adversely affect other sets of queries. When you can't avoid querying across partitions, minimize query time by running parallel queries and aggregating the results within the application. This approach might not be possible in some cases, such as when it's necessary to obtain a result from one query and use it in the next query.
+- **If queries make use of relatively static reference data, such as postal code tables or product lists, consider replicating this data in all of the partitions to reduce the requirement for separate lookup operations in different partitions**. This approach can also reduce the likelihood of the reference data becoming a "hot" dataset that is subject to heavy traffic from across the entire system. However,   there is an additional cost associated with synchronizing any changes that might occur to this reference data.
+- **Where possible, minimize requirements for referential integrity across vertical and functional partitions**. In these schemes, the application itself is responsible for maintaining referential integrity across partitions when data is updated and consumed. Queries that must join data across multiple partitions run more slowly than queries that join data only within the same partition because the application typically needs to perform consecutive queries based on a key and then on a foreign key. Instead, consider replicating or de-normalizing the relevant data. To minimize the query time where cross-partition joins are necessary, run parallel queries over the partitions and join the data within the application.
+- **Consider the effect that the partitioning scheme might have on the data consistency across partitions.** Evaluate whether strong consistency is actually a requirement. Instead, a common approach in the cloud is to implement eventual consistency. The data in each partition is updated separately, and the application logic ensures that the updates are all completed successfully. It also handles the inconsistencies that can arise from querying data while an eventually consistent operation is running. For more information about implementing eventual consistency, see the [Data consistency primer].
+- **Consider how queries locate the correct partition**. If a query must scan all partitions to locate the required data, there is a significant impact on performance, even when multiple parallel queries are running. Queries that are used with vertical and functional partitioning strategies can naturally specify the partitions. However, horizontal partitioning (sharding) can make locating an item difficult because every shard has the same schema. A typical solution for sharding is to maintain a map that can be used to look up the shard location for specific items of data. This map can be implemented in the sharding logic of the application, or maintained by the data store if it supports transparent sharding.
+- **When using a horizontal partitioning strategy, consider periodically rebalancing the shards**. This helps distribute the data evenly by size and by workload to minimize hotspots, maximize query performance, and work around physical storage limitations. However, this is a complex task that often requires the use of a custom tool or process.
+- **If you replicate each partition, it provides additional protection against failure**. If a single replica fails, queries can be directed towards a working copy.
+- **If you reach the physical limits of a partitioning strategy, you might need to extend the scalability to a different level**. For example, if partitioning is at the database level, you might need to locate or replicate partitions in multiple databases. If partitioning is already at the database level, and physical limitations are an issue, it might mean that you need to locate or replicate partitions in multiple hosting accounts.
+- **Avoid transactions that access data in multiple partitions**. Some data stores implement transactional consistency and integrity for operations that modify data, but only when the data is located in a single partition. If you need transactional support across multiple partitions, you will probably need to implement this as part of your application logic because most partitioning systems do not provide native support.
 
-所有資料存放區都需要某些作業管理和監視活動。工作的範圍可包含載入資料、備份和還原資料、重新組織資料，以及確保系統正確、有效率地執行。
+All data stores require some operational management and monitoring activity. The tasks can range from loading data, backing up and restoring data, reorganizing data, and ensuring that the system is performing correctly and efficiently.
 
-請考慮下列會影響作業管理的因素：
+Consider the following factors that affect operational management:
 
-- **對分割資料時，如何實作適當的管理和操作工作**。這些工作可能包括備份與還原、封存資料、監視系統，以及其他管理工作。例如，在備份和還原作業期間維護邏輯一致性是一項挑戰。
-- **如何將資料載入多個分割區，並新增從其他來源送達的新資料**。某些工具和公用程式可能不支援分區化資料作業，例如，將資料載入正確的分割區。這表示，您可能必須建立或取得新的工具和公用程式。
-- **如何定期封存及刪除資料**。若要防止分割區過度成長，您必須定期 (也許是每月) 封存及刪除資料。可能需要轉換資料，以符合不同的封存結構描述。
-- **如何找出資料完整性問題**。請考慮定期執行程序以尋找任何資料完整性問題，例如，某一個分割區中的資料會參考另一個分割區中遺失的資訊。此程序可嘗試自動修正這些問題，或向操作人員引發警示以手動修正問題。例如，在電子商務應用程式中，訂單資訊可能保留於某一個分割區中，但是構成每張訂單的行項目可能保留於另一個。下單程序必須將資料新增到其他分割區。如果此程序失敗，可能就會儲存沒有對應訂單的行項目。
+- **How to implement appropriate management and operational tasks when the data is partitioned**. These tasks might include backup and restore, archiving data, monitoring the system, and other administrative tasks. For example, maintaining logical consistency during backup and restore operations can be a challenge.
+- **How to load the data into multiple partitions and add new data that's arriving from other sources**. Some tools and utilities might not support sharded data operations such as loading data into the correct partition. This means that you might have to create or obtain new tools and utilities.
+- **How to archive and delete the data on a regular basis**. To prevent the excessive growth of partitions, you need to archive and delete data on a regular basis (perhaps monthly). It might be necessary to transform the data to match a different archive schema.
+- **How to locate data integrity issues**. Consider running a periodic process to locate any data integrity issues such as data in one partition that references missing information in another. The process can either attempt to fix these issues automatically or raise an alert to an operator to correct the problems manually. For example, in an e-commerce application, order information might be held in one partition but the line items that constitute each order might be held in another. The process of placing an order needs to add data to other partitions. If this process fails, there might be line items stored for which there is no corresponding order.
 
-不同的資料儲存技術通常會提供自己的功能以支援資料分割。下列各節將扼要說明 Azure 應用程式常用之資料存放區所實作的選項。它們也會描述設計可以善用這些功能之應用程式的考量。
+Different data storage technologies typically provide their own features to support partitioning. The following sections summarize the options that are implemented by data stores commonly used by Azure applications. They also describe considerations for designing applications that can best take advantage of these features.
 
-## Azure SQL Database 的資料分割策略。
+## <a name="partitioning-strategies-for-azure-sql-database"></a>Partitioning strategies for Azure SQL Database
 
-Azure SQL Database 是在雲端中執行的關聯式資料庫即服務。它是以 Microsoft SQL Server 為基礎。關聯式資料庫會將資訊區分為資料表，而且每個資料表會保留以實體做為一系列資料列的相關資訊。每個資料列包含的資料行都會為實體的個別欄位保留資料。Microsoft 網站上的[什麼是 Azure SQL Database？] 頁面會提供建立及使用 SQL 資料庫的詳細文件。
+Azure SQL Database is a relational database-as-a-service that runs in the cloud. It is based on Microsoft SQL Server. A relational database divides information into tables, and each table holds information about entities as a series of rows. Each row contains columns that hold the data for the individual fields of an entity. The page [What is Azure SQL Database?] on the Microsoft website provides detailed documentation about creating and using SQL databases.
 
-## 利用彈性資料庫的水平資料分割
+## <a name="horizontal-partitioning-with-elastic-database"></a>Horizontal partitioning with Elastic Database
 
-單一 SQL 資料庫會對其可包含的資料量有所限制。輸送量會受到結構性因素和其支援之並行連接數目的限制。SQL Database 的彈性資料庫功能支援 SQL 資料庫的水平調整。使用彈性資料庫，您可以將資料分割成分區，以分佈到多個 SQL 資料庫。您也可以因為需要處理的資料量成長和縮減而新增或移除分區。使用彈性資料庫也可以藉由將負載分散到多個資料庫，協助減少爭用。
+A single SQL database has a limit to the volume of data that it can contain. Throughput is constrained by architectural factors and the number of concurrent connections that it supports. The Elastic Database feature of SQL Database supports horizontal scaling for a SQL database. Using Elastic Database, you can partition your data into shards that are spread across multiple SQL databases. You can also add or remove shards as the volume of data that you need to handle grows and shrinks. Using Elastic Database can also help reduce contention by distributing the load across databases.
 
-> [AZURE.NOTE] 彈性資料庫是 Azure SQL Database 同盟功能的替代項目。現有的 SQL Database 同盟安裝可以使用同盟移轉公用程式來移轉至彈性資料庫。或者，如果您的案例本身無法適用彈性資料庫提供的功能，您可以實作自己的分區化機制。
+> [AZURE.NOTE] Elastic Database is a replacement for the Federations feature of Azure SQL Database. Existing SQL Database Federation installations can be migrated to Elastic Database by using the Federations migration utility. Alternatively, you can implement your own sharding mechanism if your scenario does not lend itself naturally to the features that are provided by Elastic Database.
 
-每個分區都被實作成 SQL 資料庫。一個分區可以保留多個資料集 (稱為 _shardlet_)。每個資料庫會維護描述其所包含之 shardlet 的中繼資料。shardlet 可以是單一資料項目，或一組共用相同 shardlet 索引鍵的項目。例如，如果您在多租用戶應用程式中分區化資料，shardlet 索引鍵可以是租用戶識別碼，而給定租用戶的所有資料都可保留做為相同 shardlet 的一部分。其他租用戶的資料會保留在不同的 shardlet。
+Each shard is implemented as a SQL database. A shard can hold more than one dataset (referred to as a _shardlet_). Each database maintains metadata that describes the shardlets that it contains. A shardlet can be a single data item, or it can be a group of items that share the same shardlet key. For example, if you are sharding data in a multitenant application, the shardlet key can be the tenant ID, and all data for a given tenant can be held as part of the same shardlet. Data for other tenants would be held in different shardlets.
 
-設計人員的責任是建立資料集和 shardlet 索引鍵之間的關聯。個別的 SQL 資料庫可做為全域分區對應管理員。此資料庫包含一份系統中所有分區和 shardlet 的清單。存取資料的用戶端應用程式會先連接至全域分區對應管理員資料庫，以取得其接著會在本機快取的分區對應複本 (列出分區和 shardlet)。
+It is the programmer's responsibility to associate a dataset with a shardlet key. A separate SQL database acts as a global shard map manager. This database contains a list of all the shards and shardlets in the system. A client application that accesses data connects first to the global shard map manager database to obtain a copy of the shard map (listing shards and shardlets), which it then caches locally.
 
-應用程式會接著使用這項資訊，將資料要求路由傳送至適當的分區。此功能隱藏在一系列 API (包含在 Azure SQL Database 彈性資料庫用戶端程式庫中) 之後，可做為 NuGet 封裝使用。Microsoft 網站上的[彈性資料庫功能概觀]頁面提供更全面性的彈性資料庫介紹。
+The application then uses this information to route data requests to the appropriate shard. This functionality is hidden behind a series of APIs that are contained in the Azure SQL Database Elastic Database Client Library, which is available as a NuGet package. The page [Elastic Database features overview] on the Microsoft website provides a more comprehensive introduction to Elastic Database.
 
-> [AZURE.NOTE] 您可以複寫全域分區對應管理員資料庫，以減少延遲並改善可用性。如果您使用其中一個高階定價層來實作資料庫，您可以設定作用中的異地複寫，持續將資料複製到不同區域中的資料庫。在使用者以其為基礎的每個區域中，建立資料庫的複本。然後設定您的應用程式以連接到這個複本，以取得此分區對應。
+> [AZURE.NOTE] You can replicate the global shard map manager database to reduce latency and improve availability. If you implement the database by using one of the Premium pricing tiers, you can configure active geo-replication to continuously copy data to databases in different regions. Create a copy of the database in each region in which users are based. Then configure your application to connect to this copy to obtain the shard map.
 
-> 替代方法是使用 Azure SQL 資料同步或 Azure Data Factory 管線，跨區域複寫分區對應管理員資料庫。這種形式的複寫會定期執行，如果分區對應不常變更就更適合。此外，分區對應管理員資料庫不一定要使用高階定價層來建立。
+> An alternative approach is to use Azure SQL Data Sync or an Azure Data Factory pipeline to replicate the shard map manager database across regions. This form of replication runs periodically and is more suitable if the shard map changes infrequently. Additionally, the shard map manager database does not have to be created by using a Premium pricing tier.
 
-彈性資料庫提供將資料對應到 shardlet 並將它們儲存在分區中的兩個配置：
+Elastic Database provides two schemes for mapping data to shardlets and storing them in shards:
 
-- **清單分區對應**描述單一索引鍵和 shardlet 之間的關聯。例如，在多租用戶系統中，每個租用戶的資料可以和唯一的索引鍵相關聯，並儲存在自己的 shardlet 中。若要保證隱私權和隔離 (也就是防止某一個租用戶耗盡其他租用戶可使用的資料儲存體資源)，每個 shardlet 都可以保留在自己的分區內。
+- A **list shard map** describes an association between a single key and a shardlet. For example, in a multitenant system, the data for each tenant can be associated with a unique key and stored in its own shardlet. To guarantee privacy and isolation (that is, to prevent one tenant from exhausting the data storage resources available to others), each shardlet can be held within its own shard.
 
-![使用清單分區對應來將租用戶資料儲存在個別分區中](media/best-practices-data-partitioning/PointShardlet.png)
+![Using a list shard map to store tenant data in separate shards](media/best-practices-data-partitioning/PointShardlet.png)
 
-_圖 4.使用清單分區對應來將租用戶資料儲存在個別分區中_
+_Figure 4. Using a list shard map to store tenant data in separate shards_
 
-- **範圍分區對應**描述一組連續索引鍵值和 shardlet 之間的關聯。在先前所述的多租用戶範例中，有個實作專用 shardlet 的替代方案，就是您可以將資料分組成相同 shardlet 內的一組租用戶 (各有自己的索引鍵)。此配置的成本低於第一個配置 (因為租用戶會共用資料儲存體資源)，但它也會產生資料隱私權和隔離降低的風險。
+- A **range shard map** describes an association between a set of contiguous key values and a shardlet. In the multitenant example described previously, as an alternative to implementing dedicated shardlets, you can group the data for a set of tenants (each with their own key) within the same shardlet. This scheme is less expensive than the first (because tenants share data storage resources), but it also creates a risk of reduced data privacy and isolation.
 
-![使用範圍分區對應來儲存分區中租用戶範圍的資料](media/best-practices-data-partitioning/RangeShardlet.png)
+![Using a range shard map to store data for a range of tenants in a shard](media/best-practices-data-partitioning/RangeShardlet.png)
 
-_圖 5.使用範圍分區對應來儲存分區中租用戶範圍的資料_
+_Figure 5. Using a range shard map to store data for a range of tenants in a shard_
 
-請注意，單一分區可以包含數個 shardlet 的資料。例如，您可以使用清單 shardlet，將不同非連續租用戶的資料儲存在相同的分區中。您也可以混合相同分區中的範圍 shardlet 和清單 shardlet，雖然它們會透過全域分區對應管理員資料庫中的不同對應來處理(全域分區對應管理員資料庫可以包含多個分區對應)。 圖 6 說名這種方法。
+Note that a single shard can contain the data for several shardlets. For example, you can use list shardlets to store data for different non-contiguous tenants in the same shard. You can also mix range shardlets and list shardlets in the same shard, although they will be addressed through different maps in the global shard map manager database. (The global shard map manager database can contain multiple shard maps.) Figure 6 depicts this approach.
 
-![實作多個分區對應](media/best-practices-data-partitioning/MultipleShardMaps.png)
+![Implementing multiple shard maps](media/best-practices-data-partitioning/MultipleShardMaps.png)
 
-_圖 6.實作多個分區對應_
+_Figure 6. Implementing multiple shard maps_
 
-您實作的資料分割配置和系統效能有明確的關聯。它也會影響必須新增或移除分區的速率，或者必須跨分區重新分割資料的比率。使用彈性資料庫分割資料時，請考慮下列幾點：
+The partitioning scheme that you implement can have a significant bearing on the performance of your system. It can also affect the rate at which shards have to be added or removed, or the rate at which data must be repartitioned across shards. Consider the following points when you use Elastic Database to partition data:
 
-- 將一起使用的資料群組到同一個分區，並避免必須存取保留在多個分區之資料的作業。請記住，有了彈性資料庫，分區本身就是 SQL 資料庫，而 Azure SQL Database 不支援跨資料庫聯結 (其必須在用戶端上執行)。也請記住，在 Azure SQL Database 中，某一個資料庫中的參考完整性條件約束、觸發程序及預存程序都無法參考另一個資料庫中的物件。因此，請不要設計在分區之間具有相依性的系統。不過，SQL 資料庫可包含資料表 (保留查詢和其他作業常用的參考資料副本)。這些資料表不一定要屬於任何特定的 shardlet。跨分區複寫此資料有助於移除聯結跨越資料庫之資料的需要。在理想的情況下，這類資料應該是靜態或緩慢移動的，才能最小化複寫工作量並降低它陳舊的機會。
+- Group data that is used together in the same shard, and avoid operations that need to access data that's held in multiple shards. Keep in mind that with Elastic Database, a shard is a SQL database in its own right, and Azure SQL Database does not support cross-database joins (which have to be performed on the client side). Remember also that in Azure SQL Database, referential integrity constraints, triggers, and stored procedures in one database cannot reference objects in another. Therefore, don't design a system that has dependencies between shards. A SQL database can, however, contain tables that hold copies of reference data frequently used by queries and other operations. These tables do not have to belong to any specific shardlet. Replicating this data across shards can help remove the need to join data that spans databases. Ideally, such data should be static or slow-moving to minimize the replication effort and reduce the chances of it becoming stale.
 
-	> [AZURE.NOTE] 雖然 SQL Database 不支援跨資料庫聯結，但您可以使用彈性資料庫 API 執行跨分區查詢。您可以透過分區對應參考的所有 shardlet 中保留的資料，明確地逐一取得這些查詢。彈性資料庫 API 會將跨分區查詢細分為一連串的個別查詢 (每個資料庫一個)，然後合併結果。如需詳細資訊，請參閱 Microsoft 網站上的[多分區查詢]頁面。
+    > [AZURE.NOTE] Although SQL Database does not support cross-database joins, you can perform cross-shard queries with the Elastic Database API. These queries can transparently iterate through the data held in all the shardlets that are referenced by a shard map. The Elastic Database API breaks cross-shard queries down into a series of individual queries (one for each database) and then merges the results. For more information, see the page [Multi-shard querying] on the Microsoft website.
 
-- 儲存在屬於 相同分區對應之 shardlet 中的資料應該具有相同的結構描述。例如，建立的清單分區對應不會指向包含租用戶資料的某些 shardlet 和其他包含產品資訊的 shardlet。此規則不會由彈性資料庫強制執行，但如果每個 shardlet 都具有不同的結構描述，資料管理和查詢會變得非常複雜。在剛才提及的範例中，有個不錯的解決方案是建立兩個清單分區對應︰一個參考租用戶資料，另一個則指向產品資訊。請記住，屬於不同 shardlet 的資料可以儲存在相同的分區中。
+- The data stored in shardlets that belong to the same shard map should have the same schema. For example, don't create a list shard map that points to some shardlets containing tenant data and other shardlets containing product information. This rule is not enforced by Elastic Database, but data management and querying becomes very complex if each shardlet has a different schema. In the example just cited, a good is solution is to create two list shard maps: one that references tenant data and another that points to product information. Remember that the data belonging to different shardlets can be stored in the same shard.
 
-	> [AZURE.NOTE] 彈性資料庫 API 的跨分區查詢功能取決於包含相同結構描述之分區對應中的每個 shardlet。
+    > [AZURE.NOTE] The cross-shard query functionality of the Elastic Database API depends on each shardlet in the shard map containing the same schema.
 
-- 只有保留在同一個分區內的資料支援交易式作業，跨分區並不支援。交易可以跨越 shardlet，只要它們是相同分區的一部分。因此，如果您的商務邏輯需要執行交易，請將受影響的資料儲存在相同的分區，或實作最終一致性。如需詳細資訊，請參閱 [Data Consistency Primer (資料一致性入門)]。
-- 將分區放在要存取這些分區 (換句話說，就是異地尋找分區) 中之資料的使用者附近。此策略有助於減少延遲。
-- 避免混合高度作用中 (作用點) 和相對非使用中的分區。請嘗試跨分區平均分散負載。這可能需要為 shardlet 索引鍵設定雜湊。
-- 如果您是地理尋找分區，請確定雜湊索引鍵對應的 shardlet 保留在分區中 (這些分區儲存在存取該資料的使用者附近)。
-- 目前，只有部分的 SQL 資料類型集支援做為 shardlet 索引鍵；_int、bigint、varbinary_ 和 _uniqueidentifier_。SQL _int_ 和 _bigint_ 類型對應到 C# 中的 _int_ 和 _long_ 資料類型，而且具有相同的範圍。SQL _varbinary_ 類型可以使用 C# 中的_位元組_陣列處理，而 SQL _uniqueidentier_ 類型會對應到 .NET Framework 中的 _Guid_ 類別。
+- Transactional operations are only supported for data that's held within the same shard, and not across shards. Transactions can span shardlets as long as they are part of the same shard. Therefore, if your business logic needs to perform transactions, either store the affected data in the same shard or implement eventual consistency. For more information, see the [Data consistency primer].
+- Place shards close to the users that access the data in those shards (in other words, geo-locate the shards). This strategy helps reduce latency.
+- Avoid having a mixture of highly active (hotspots) and relatively inactive shards. Try to spread the load evenly across shards. This might require hashing the shardlet keys.
+- If you are geo-locating shards, make sure that the hashed keys map to shardlets held in shards stored close to the users that access that data.
+- Currently, only a limited set of SQL data types are supported as shardlet keys; _int, bigint, varbinary,_ and _uniqueidentifier_. The SQL _int_ and _bigint_ types correspond to the _int_ and _long_ data types in C#, and have the same ranges. The SQL _varbinary_ type can be handled by using a _Byte_ array in C#, and the SQL _uniqueidentier_ type corresponds to the _Guid_ class in the .NET Framework.
 
-正如其名，彈性資料庫能夠在資料數量縮小和成長時，讓系統新增及移除分區。Azure SQL Database 彈性資料庫用戶端程式庫中的 API，會讓應用程式以動態方式建立和刪除分區 (並明確地更新分區對應管理員)。但是，移除分區是破壞性作業，也需要刪除該分區中的所有資料。
+As the name implies, Elastic Database makes it possible for a system to add and remove shards as the volume of data shrinks and grows. The APIs in the Azure SQL Database Elastic Database client library enable an application to create and delete shards dynamically (and transparently update the shard map manager). However, removing a shard is a destructive operation that also requires deleting all the data in that shard.
 
-如果應用程式必須將一個分區劃分成兩個個別的分區，或將分區結合在一起，彈性資料庫可提供個別的劃分-合併服務。此服務會在雲端託管服務 (必須由開發人員建立) 中執行，並在分區之間安全地移轉資料。如需詳細資訊，請參閱 Microsoft 網站上的[使用彈性資料庫劃分合併工具進行調整]主題。
+If an application needs to split a shard into two separate shards or combine shards, Elastic Database provides a separate split-merge service. This service runs in a cloud-hosted service (which must be created by the developer) and migrates data safely between shards. For more information, see the topic [Scaling using the Elastic Database split-merge tool] on the Microsoft website.
 
-## Azure 儲存體的資料分割策略
+## <a name="partitioning-strategies-for-azure-storage"></a>Partitioning strategies for Azure Storage
 
-Azure 儲存體提供管理資料的三個抽象概念：
+Azure storage provides three abstractions for managing data:
 
-- 表格儲存體，實作可調整的結構儲存體。資料表包含實體集合，每一個集合都可包含一組屬性和值。
-- Blob 儲存體，提供大型物件和檔案的儲存體。
-- 儲存體佇列，支援應用程式之間可靠的非同步傳訊。
+- Table storage, which implements scalable structure storage. A table contains a collection of entities, each of which can include a set of properties and values.
+- Blob storage, which supplies storage for large objects and files.
+- Storage queues, which support reliable asynchronous messaging between applications.
 
-表格儲存體和 Blob 儲存體基本上是索引鍵-值存放區，可最佳化以分別保留結構化和非結構化資料。儲存體佇列提供用來建置鬆散結合且可調整之應用程式的機制。表格儲存體、Blob 儲存體和儲存體佇列會建立在 Azure 儲存體帳戶的內容中。儲存體帳戶支援三種形式的備援：
+Table storage and blob storage are essentially key-value stores that are optimized to hold structured and unstructured data respectively. Storage queues provide a mechanism for building loosely coupled, scalable applications. Table storage, blob storage, and storage queues are created within the context of an Azure storage account. Storage accounts support three forms of redundancy:
 
-- **本地備援儲存體**，可在單一資料中心內維護三個資料複本。這種形式的備援可防止硬體錯誤，但無法防止涉及整個資料中心的災害。
-- **區域備援儲存體**，可維護同一個區域內三個跨不同資料中心 (或跨兩個地理位置相近的區域) 散佈的資料複本。這種形式的備援可以防止在單一資料中心內發生的災害，但無法防止會影響整個區域的大規模網路中斷連線。請注意，區域備援儲存體目前僅適用於區塊 Blob。
-- **異地備援儲存體**，可維護六個資料複本：一個區域中 (您的所在地區) 的三個複本，以及一個遠端區域中的另外三個複本。這種形式的備援提供最高層級的災害防護。
+- **Locally redundant storage**, which maintains three copies of data within a single datacenter. This form of redundancy protects against hardware failure but not against a disaster that encompasses the entire datacenter.
+- **Zone-redundant storage**, which maintains three copies of data spread across different datacenters within the same region (or across two geographically close regions). This form of redundancy can protect against disasters that occur within a single datacenter, but cannot protect against large-scale network disconnects that affect an entire region. Note that zone-redundant storage is currently only currently available for block blobs.
+- **Geo-redundant storage**, which maintains six copies of data: three copies in one region (your local region), and another three copies in a remote region. This form of redundancy provides the highest level of disaster protection.
 
-Microsoft 已發佈 Azure 儲存體帳戶的延展性目標。如需詳細資訊，請參閱 Microsoft 網站上的 [Azure 儲存體延展性和效能目標]。總儲存體帳戶容量目前不能超過 500 TB(這包含保留在表格儲存體和 Blob 儲存體中的資料大小，以及保留在儲存體佇列中未處理訊息的大小)。
+Microsoft has published scalability targets for Azure Storage. For more information, see the page [Azure Storage scalability and performance targets] on the Microsoft website. Currently, the total storage account capacity cannot exceed 500 TB. (This includes the size of data that's held in table storage and blob storage, as well as outstanding messages that are held in storage queue).
 
-要求速率上限 (假設為 1 KB 的實體、Blob 或訊息大小) 是 20 KBps。如果您的系統可能會超過這些限制，請考慮跨多個儲存體帳戶分割負載。單一 Azure 訂用帳戶可以建立高達 100 個儲存體帳戶。不過，請注意這些限制可能會隨著時間變更。
+The maximum request rate (assuming a 1-KB entity, blob, or message size) is 20 KBps. If your system is likely to exceed these limits, consider partitioning the load across multiple storage accounts. A single Azure subscription can create up to 100 storage accounts. However, note that these limits might change over time.
 
-## 分割 Azure 表格儲存體
+## <a name="partitioning-azure-table-storage"></a>Partitioning Azure table storage
 
-Azure 表格儲存體是一個索引鍵-值存放區，專為資料分割而設計。所有實體都會儲存在分割區中，而且分割區會在內部由 Azure 表格儲存體管理。儲存在資料表中的每個實體都必須提供兩個部分的索引鍵，其中包括：
+Azure table storage is a key-value store that's designed around partitioning. All entities are stored in a partition, and partitions are managed internally by Azure table storage. Each entity that's stored in a table must provide a two-part key that includes:
 
-- **分割區索引鍵**。此為字串值，可決定 Azure 表格儲存體將在哪個分割區中放置實體。具有相同資料分割 索引鍵的所有實體將會儲存在相同分割區上。
-- **資料列索引鍵**。這是另一個字串值，會識別分割區內的實體。在一個分割區內的所有實體都會由此索引鍵依照語彙以遞增順序排列。分割區索引鍵/資料列索引鍵組合對每個實體必須是唯一的，且長度不能超過 1 KB。
+- **The partition key**. This is a string value that determines in which partition Azure table storage will place the entity. All entities with the same partition key will be stored in the same partition.
+- **The row key**. This is another string value that identifies the entity within the partition. All entities within a partition are sorted lexically, in ascending order, by this key. The partition key/row key combination must be unique for each entity and cannot exceed 1 KB in length.
 
-實體資料的其餘部分由應用程式定義的欄位組成。沒有特定的結構描述會強制執行，而且每個資料列可以包含一組不同的應用程式定義欄位。唯一的限制是實體的大小上限 (包括分割區和資料列索引鍵) 目前為 1 MB。資料表的大小上限為 200 TB，不過這些數字未來可能會變更(請查看 Microsoft 網站上的 [Azure 儲存體延展性和效能目標]頁面，以取得這些限制的最新資訊)。
+The remainder of the data for an entity consists of application-defined fields. No particular schemas are enforced, and each row can contain a different set of application-defined fields. The only limitation is that the maximum size of an entity (including the partition and row keys) is currently 1 MB. The maximum size of a table is 200 TB, although these figures might change in the future. (Check the page [Azure Storage scalability and performance targets] on the Microsoft website for the most recent information about these limits.)
 
-如果您嘗試儲存的實體超過這個容量，請考慮將它們劃分成多個資料表。使用垂直資料分割，將欄位區分成最有可能一起存取的群組。
+If you are attempting to store entities that exceed this capacity, then consider splitting them into multiple tables. Use vertical partitioning to divide the fields into the groups that are most likely to be accessed together.
 
-圖 7 顯示虛構電子商務應用程式之範例儲存體帳戶 (Contoso 資料) 的邏輯結構。儲存體帳戶包含三個表格：Customer Info、Product Info 和 Order Info。每個資料表有多個分割區。
+Figure 7 shows the logical structure of an example storage account (Contoso Data) for a fictitious e-commerce application. The storage account contains three tables: Customer Info, Product Info, and Order Info. Each table has multiple partitions.
 
-在 Customer Info 資料表中，資料是依據客戶所在的城市進行分割，而資料列索引鍵包含客戶識別碼。在 Product Info 資料表中，產品是依據產品類別進行分割，而資料列索引鍵包含產品號碼。在 Order Info 資料表中，訂單是依據下單的日期進行分割，而資料列索引鍵會指定收到訂單的時間。請注意，所有資料都會依據資料列索引鍵在每個分割區中排序。
+In the Customer Info table, the data is partitioned according to the city in which the customer is located, and the row key contains the customer ID. In the Product Info table, the products are partitioned by product category, and the row key contains the product number. In the Order Info table, the orders are partitioned by the date on which they were placed, and the row key specifies the time the order was received. Note that all data is ordered by the row key in each partition.
 
-![範例儲存體帳戶中的表格和分割區](media/best-practices-data-partitioning/TableStorage.png)
+![The tables and partitions in an example storage account](media/best-practices-data-partitioning/TableStorage.png)
 
-_圖 7.範例儲存體帳戶中的表格和分割區_
+_Figure 7. The tables and partitions in an example storage account_
 
-> [AZURE.NOTE] Azure 資料表儲存體也會將時間戳記欄位加入至每個實體。時間戳記欄位由資料表儲存體維護，而且會在每次修改實體並寫回分割區時更新。表格儲存體服務會使用此欄位來實作開放式並行存取 (每次應用程式將實體寫回表格儲存體時，表格儲存體服務會比較正在寫入之實體中的時間戳記值以及保留於表格儲存體中的值。如果這兩個值不同，就表示另一個應用程式在上次擷取實體之後應該已修改該實體，但寫入作業失敗。請勿以您自己的程式碼修改此欄位，也不要在建立新實體時指定此欄位的值。
+> [AZURE.NOTE] Azure table storage also adds a timestamp field to each entity. The timestamp field is maintained by table storage and is updated each time the entity is modified and written back to a partition. The table storage service uses this field to implement optimistic concurrency. (Each time an application writes an entity back to table storage, the table storage service compares the value of the timestamp in the entity that's being written with the value that's held in table storage. If the values are different, it means that another application must have modified the entity since it was last retrieved, and the write operation fails. Don't modify this field in your own code, and don't specify a value for this field when you create a new entity.
 
-Azure 資料表儲存體使用資料分割索引鍵來決定如何儲存資料。如果實體已利用先前未使用的分割區索引鍵新增至表格，Azure 表格儲存體就會為此實體建立新的分割區。具有相同資料分割索引鍵的其他實體將會儲存在相同分割區中。
+Azure table storage uses the partition key to determine how to store the data. If an entity is added to a table with a previously unused partition key, Azure table storage creates a new partition for this entity. Other entities with the same partition key will be stored in the same partition.
 
-這項機制會有效地實作自動化的向外延展策略。每個分割區都會儲存在 Azure 資料中心的單一伺服器上，以協助確保從單一分割區擷取資料的查詢可以快速執行。但是，不同的分割區可分散於多部伺服器上。此外，如果這些分割區的大小受限，單一伺服器可以裝載多個分割區。
+This mechanism effectively implements an automatic scale-out strategy. Each partition is stored on a single server in an Azure datacenter to help ensure that queries that retrieve data from a single partition run quickly. However, different partitions can be distributed across multiple servers. Additionally, a single server can host multiple partitions if these partitions are limited in size.
 
-當您設計 Azure 表格儲存體的實體時，請考慮下列幾點：
+Consider the following points when you design your entities for Azure table storage:
 
-- 驅動選取資料分割索引鍵與資料列索引鍵值的方法應該和存取資料的方法一致。請選擇分割區索引鍵/資料列索引鍵組合，以支援大多數的查詢。最有效率的查詢會藉由指定分割區索引鍵和資料列索引鍵來擷取資料。掃描單一分割區，即可完成指定分割區索引鍵和資料列索引鍵範圍的查詢。這是相對快速的方法，因為資料會以資料列索引鍵的順序保留。如果查詢未指定要掃描的分割區，則分割區索引鍵可能會要求 Azure 表格儲存體掃描資料的每個分割區。
+- The selection of partition key and row key values should be driven by the way in which the data is accessed. Choose a partition key/row key combination that supports the majority of your queries. The most efficient queries retrieve data by specifying the partition key and the row key. Queries that specify a partition key and a range of row keys can be completed by scanning a single partition. This is relatively fast because the data is held in row key order. If queries don't specify which partition to scan, the partition key might require Azure table storage to scan every partition for your data.
 
-	> [AZURE.TIP] 如果實體有一個自然索引鍵，則使用它做為資料分割索引鍵，並指定空白字串做為資料列索引鍵。如果實體具有包含兩個屬性的複合索引鍵，選取最慢的變更中屬性做為資料分割索引鍵，另一個則做為資料列索引鍵。如果實體有兩個以上的索引鍵屬性，使用屬性的串連來提供資料分割和資料列索引鍵。
+    > [AZURE.TIP] If an entity has one natural key, then use it as the partition key and specify an empty string as the row key. If an entity has a composite key comprising two properties, select the slowest changing property as the partition key and the other as the row key. If an entity has more than two key properties, use a concatenation of properties to provide the partition and row keys.
 
-- 如果您使用分割區和資料列索引鍵以外的欄位定期執行查閱資料的查詢，請考慮實作 [Index Table Pattern (索引資料表模式)]。
-- 如果您使用單純遞增或遞減數列 (例如 "0001"、"0002"、"0003"，依此類推) 來產生分割區索引鍵，而每個分割區只包含有限的資料數量，那麼 Azure 表格儲存體會在同一部伺服器上將這些分割區實際群組在一起。這個機制假設應用程式很有可能在連續範圍的分割區中執行查詢 (範圍查詢)，並已針對此情況進行最佳化。不過，這種方法會導致著重於單一伺服器的作用點，因為新實體的所有插入可能都會集中在連續範圍的其中一端。它也會降低延展性。若要跨伺服器更平均分佈負載，請考慮雜湊資料分割索引鍵，使順序更加隨機。
-- Azure 資料表儲存體支援屬於相同分割區之實體的交易式作業。這表示應用程式可以執行多個插入、更新、刪除、取代或合併作業做為不可部分完成的單位 (前提是交易未包含 100 個以上的實體，且要求的承載大小未超過 4 MB)。跨越多個分割區的作業不是交易式，而且可能需要您實作最終一致性，如同 [Data consistency primer (資料一致性入門)] 所述。如需表格儲存體和交易的詳細資訊，請瀏覽 Microsoft 網站上的[執行實體群組交易]頁面。
-- 請特別注意分割區索引鍵的細微性，原因入下：
-	- 對每個實體使用相同的分割區索引鍵，會使表格儲存體服務建立保留在某一部伺服器上的單一大型分割區。這可防止它相應放大，並改為將焦點放在單一伺服器上的負載。如此一來，這個方法只適用於管理少數實體的系統。不過，這個方法確實能確保所有實體都可以參與實體群組交易。
-	- 對每個實體使用唯一的分割區索引鍵，會導致表格儲存體服務為每個實體建立個別的分割區，可能會產生大量的小型分割區 (取決於實體的大小)。比起使用單一分割區索引鍵，這種方法具更大的可調整性，但無法進行實體群組交易，此外，擷取多個實體的查詢可能牽涉到讀取多部伺服器。不過，如果應用程式執行範圍查詢，使用單純的數列來產生分割區索引鍵可能有助於最佳化這些查詢。
-	- 跨實體的子集共用資料分割索引鍵，能夠讓您將相同分割區中的相關實體分組。涉及可使用實體群組交易執行之相關實體的作業，以及擷取一組相關實體的查詢，可藉由存取單一伺服器來滿足。
+- If you regularly perform queries that look up data by using fields other than the partition and row keys, consider implementing the [index table pattern].
+- If you generate partition keys by using a monotonic increasing or decreasing sequence (such as "0001", "0002", "0003", and so on) and each partition only contains a limited amount of data, then Azure table storage can physically group these partitions together on the same server. This mechanism assumes that the application is most likely to perform queries across a contiguous range of partitions (range queries) and is optimized for this case. However, this approach can lead to hotspots focused on a single server because all insertions of new entities are likely to be concentrated at one end or the other of the contiguous ranges. It can also reduce scalability. To spread the load more evenly across servers, consider hashing the partition key to make the sequence more random.
+- Azure table storage supports transactional operations for entities that belong to the same partition. This means that an application can perform multiple insert, update, delete, replace, or merge operations as an atomic unit (as long as the transaction doesn't include more than 100 entities and the payload of the request doesn't exceed 4 MB). Operations that span multiple partitions are not transactional, and might require you to implement eventual consistency as described by the [Data consistency primer]. For more information about table storage and transactions, go to the page [Performing entity group transactions] on the Microsoft website.
+- Give careful attention to the granularity of the partition key because of the following reasons:
+    - Using the same partition key for every entity causes the table storage service to create a single large partition that's held on one server. This prevents it from scaling out and instead focuses the load on a single server. As a result, this approach is only suitable for systems that manage a small number of entities. However, this approach does ensure that all entities can participate in entity group transactions.
+    - Using a unique partition key for every entity causes the table storage service to create a separate partition for each entity, possibly resulting in a large number of small partitions (depending on the size of the entities). This approach is more scalable than using a single partition key, but entity group transactions are not possible. Also, queries that fetch more than one entity might involve reading from more than one server. However, if the application performs range queries, then using a monotonic sequence to generate the partition keys might help to optimize these queries.
+    - Sharing the partition key across a subset of entities makes it possible for you to group related entities in the same partition. Operations that involve related entities can be performed by using entity group transactions, and queries that fetch a set of related entities can be satisfied by accessing a single server.
 
-如需 Azure 表格儲存體中資料分割的詳細資訊，請參閱 Microsoft 網站上的 [Azure 儲存體表格設計指南]一文。
+For additional information about partitioning data in Azure table storage, see the article [Azure storage table design guide] on the Microsoft website.
 
-## 分割 Azure blob 儲存體
+## <a name="partitioning-azure-blob-storage"></a>Partitioning Azure blob storage
 
-Azure Blob 儲存體能夠保留大型二進位物件，目前可保留大小高達 200 GB 的區塊 Blob 或 1 TB 的分頁 Blob(如需最新資訊，請參閱 Microsoft 網站上的 [Azure 儲存體延展性和效能目標]頁面)。 在案例中使用區塊 blob，例如您必須在其中快速上傳或下載大量資料的資料流。對需要隨機而不是序列存取部分資料的應用程式使用分頁 blob。
+Azure blob storage makes it possible to hold large binary objects--currently up to 200 GB in size for block blobs or 1 TB for page blobs. (For the most recent information, go to the page [Azure Storage scalability and performance targets] on the Microsoft website.) Use block blobs in scenarios such as streaming where you need to upload or download large volumes of data quickly. Use page blobs for applications that require random rather than serial access to parts of the data.
 
-每個 blob (區塊或分頁) 會保留在 Azure 儲存體帳戶中的容器中。您可以使用容器來將具有相同安全性需求的相關 Blob 群組在一起，儘管這個群組是邏輯性，而非實體的。在容器內，每個 Blob 都有唯一的名稱。
+Each blob (either block or page) is held in a container in an Azure storage account. You can use containers to group related blobs that have the same security requirements, although this grouping is logical rather than physical. Inside a container, each blob has a unique name.
 
-Blob 儲存體會根據 blob 名稱自動分割。每個 Blob 會保留在自己的分割區中。相同容器中的 Blob 不會共用分割區。此架構可協助 Azure Blob 儲存體明確地跨伺服器平衡負載，因為相同容器中的不同 Blob 可跨不同的伺服器分佈。
+Blob storage is automatically partitioned based on the blob name. Each blob is held in its own partition. Blobs in the same container do not share a partition. This architecture helps Azure blob storage to balance the load across servers transparently because different blobs in the same container can be distributed across different servers.
 
-寫入單一區塊 (區塊 blob) 或分頁 (分頁 blob) 的動作是不可部分完成的，但跨越區塊、分頁或 blob 的作業卻不是。如果您必須在跨區塊、分頁和 Blob 執行寫入作業時確保一致性，請使用 Blob 租用來執行寫入鎖定。
+The actions of writing a single block (block blob) or page (page blob) are atomic, but operations that span blocks, pages, or blobs are not. If you need to ensure consistency when performing write operations across blocks, pages, and blobs, take out a write lock by using a blob lease.
 
-Azure Blob 儲存體支援高達每秒 60 MB 的傳輸速率或每個 Blob 每秒 500 個要求。如果您預期會超過這些限制，而且 Blob 資料相對靜態，則考慮使用 Azure 內容傳遞網路來複寫 Blob。如需詳細資訊，請參閱 Microsoft 網站上的\[使用 Azure 的內容傳遞網路] 頁面。如需其他指引和考量，請參閱＜使用 Azure 的內容傳遞網路＞。
+Azure blob storage supports transfer rates of up to 60 MB per second or 500 requests per second for each blob. If you anticipate surpassing these limits, and the blob data is relatively static, then consider replicating blobs by using the Azure Content Delivery Network. For more information, see the page [Using Delivery Content Network for Azure] on the Microsoft website. For additional guidance and considerations, see  [Using Content Delivery Network for Azure].
 
-## 分割 Azure 儲存體佇列
+## <a name="partitioning-azure-storage-queues"></a>Partitioning Azure storage queues
 
-Azure 儲存體佇列可讓您實作程序之間的非同步傳訊。Azure 儲存體帳戶可以包含任意數目的佇列，而每個佇列可以包含任意數目的訊息。唯一的限制是儲存體帳戶中的可用空間。個別訊息的大小上限是 64 KB。如果您需要比這個限制更大的訊息，請考慮改用 Azure 服務匯流排佇列。
+Azure storage queues enable you to implement asynchronous messaging between processes. An Azure storage account can contain any number of queues, and each queue can contain any number of messages. The only limitation is the space that's available in the storage account. The maximum size of an individual message is 64 KB. If you require messages bigger than this, then consider using Azure Service Bus queues instead.
 
-每個儲存體佇列在其所屬的儲存體帳戶內都有唯一的名稱。Azure 會根據名稱分割佇列。同一個佇列的所有訊息都會儲存在相同的分割區中，由單一伺服器所控制。不同的佇列可以由不同的伺服器管理，以協助平衡負載。伺服器的佇列配置對應用程式和使用者而言是透明的。
+Each storage queue has a unique name within the storage account that contains it. Azure partitions queues based on the name. All messages for the same queue are stored in the same partition, which is controlled by a single server. Different queues can be managed by different servers to help balance the load. The allocation of queues to servers is transparent to applications and users.
 
- 在大型應用程式中，請勿將相同的儲存體佇列用於應用程式的所有執行個體，因為這種方法可能會使裝載佇列的伺服器變成作用點。請改為針對應用程式的不同功能區域使用不同的佇列。Azure 儲存體佇列不支援交易，因此將訊息導向到不同的佇列，對傳訊一致性的影響應該不大。
+ In a large-scale application, don't use the same storage queue for all instances of the application because this approach might cause the server that's hosting the queue to become a hotspot. Instead, use different queues for different functional areas of the application. Azure storage queues do not support transactions, so directing messages to different queues should have little impact on messaging consistency.
 
-Azure 儲存體佇列每秒可處理高達 2,000 個訊息。如果您必須以更高的速率處理訊息，請考慮建立多個佇列。例如，在全域應用程式的個別儲存體帳戶中建立個別儲存體佇列，以處理在每個區域中執行的應用程式執行個體。
+An Azure storage queue can handle up to 2,000 messages per second.  If you need to process messages at a greater rate than this, consider creating multiple queues. For example, in a global application, create separate storage queues in separate storage accounts to handle application instances that are running in each region.
 
-## Azure 服務匯流排的資料分割策略
+## <a name="partitioning-strategies-for-azure-service-bus"></a>Partitioning strategies for Azure Service Bus
 
-Azure 服務匯流排使用訊息代理程式，來處理傳送至服務匯流排佇列或主題的訊息。根據預設，所有傳送至佇列或主題的訊息都是由相同的訊息代理程式程序來處理。此架構可限制訊息佇列的整體輸送量。不過，您也可以在建立佇列或主題時進行分割。您可以將佇列或主題描述的 _EnablePartitioning_ 屬性設定為 _true_，藉以進行分割。
+Azure Service Bus uses a message broker to handle messages that are sent to a Service Bus queue or topic. By default, all messages that are sent to a queue or topic are handled by the same message broker process. This architecture can place a limitation on the overall throughput of the message queue. However, you can also partition a queue or topic when it is created. You do this by setting the _EnablePartitioning_ property of the queue or topic description to _true_.
 
-分割的佇列或主題會區分成多個片段，每個片段都會受到個別訊息存放區和訊息代理程式所支援。服務匯流排會負責建立和管理這些片段。當應用程式張貼訊息至分割的佇列或主題時，服務匯流排會將訊息指派給該佇列或主題的片段。當應用程式從佇列或訂用帳戶接收到訊息時，服務匯流排會檢查每個片段是否有下一個可用的訊息，然後將它傳遞給應用程式進行處理。
+A partitioned queue or topic is divided into multiple fragments, each of which is backed by a separate message store and message broker. Service Bus takes responsibility for creating and managing these fragments. When an application posts a message to a partitioned queue or topic, Service Bus assigns the message to a fragment for that queue or topic. When an application receives a message from a queue or subscription, Service Bus checks each fragment for the next available message and then passes it to the application for processing.
 
-這種結構有助於跨訊息代理程式和訊息存放區分佈負載，提高延展性並改善可用性。如果有一個片段的訊息代理程式或訊息存放區暫時無法使用，服務匯流排可以從其中一個剩餘的可用片段擷取訊息。
+This structure helps distribute the load across message brokers and message stores, increasing scalability and improving availability. If the message broker or message store for one fragment is temporarily unavailable, Service Bus can retrieve messages from one of the remaining available fragments.
 
-服務匯流排會指派訊息給片段，如下所示：
+Service Bus assigns a message to a fragment as follows:
 
-- 如果訊息屬於工作階段，所有具有「SessionId」屬性之相同值的訊息都會傳送至相同的片段。
-- 如果訊息不屬於工作階段，但寄件者已指定「PartitionKey」屬性的值，則具有相同「PartitionKey」值的所有訊息都會傳送至相同的片段。
+- If the message belongs to a session, all messages with the same value for the _ SessionId_  property are sent to the same fragment.
+- If the message does not belong to a session, but the sender has specified a value for the _PartitionKey_ property, then all messages with the same _PartitionKey_ value are sent to the same fragment.
 
-	> [AZURE.NOTE] 如果同時指定「SessionId」和「PartitionKey」屬性，則必須將它們設為相同的值，否則訊息將會遭到拒絕。
-- 如果未指定訊息的 _SessionId_ 和 _PartitionKey_ 屬性，但已啟用重複偵測，就會使用 _MessageId_ 屬性。具有相同 _MessageId_ 的所有訊息會導向至相同的片段。
-- 如果訊息不包含「SessionId」、「PartitionKey」或「MessageId」屬性，則服務匯流排會循序將訊息指派給片段。如果片段無法使用，服務匯流排會移至下一個片段。這表示，傳訊基礎結構中的暫時性錯誤不會造成訊息傳送作業失敗。
+    > [AZURE.NOTE] If the _SessionId_ and _PartitionKey_ properties are both specified, then they must be set to the same value or the message will be rejected.
+- If the _SessionId_ and _PartitionKey_ properties for a message are not specified, but duplicate detection is enabled, the _MessageId_ property will be used. All messages with the same _MessageId_ will be directed to the same fragment.
+- If messages do not include a _SessionId, PartitionKey,_ or _MessageId_ property, then Service Bus assigns messages to fragments sequentially. If a fragment is unavailable, Service Bus will move on to the next. This means that a temporary fault in the messaging infrastructure does not cause the message-send operation to fail.
 
-在決定是否或如何分割服務匯流排訊息佇列或主題時，請考慮下列幾點：
+Consider the following points when deciding if or how to partition a Service Bus message queue or topic:
 
-- 服務匯流排佇列和主題都會在服務匯流排命名空間的範圍內建立。服務匯流排目前每個命名空間允許最多 100 個分割佇列或主題。
-- 每個服務匯流排命名空間都會制定可用資源的配額，例如，每個主題的訂用帳戶數目、每秒同時傳送和接收要求的數目，以及可建立之並行連接的最大數目。這些配額會記錄在 Microsoft 網站上的[服務匯流排配額]頁面上。如果您預期超過這些值，請建立其他具有佇列和主題的命名空間，並跨這些命名空間分佈工作。例如，在全域應用程式中的每個區域建立不同的命名空間，並設定應用程式執行個體使用最接近命名空間中的佇列和主題。
-- 傳送做為交易一部分的訊息必須指定資料分割索引鍵。這可以是「SessionId」、「PartitionKey」或「MessageId」屬性。傳送做為相同交易一部分的所有訊息必須指定相同的資料分割索引鍵，因為它們必須由相同的訊息代理程式程序加以處理。您無法在相同的交易內傳送訊息至不同的佇列或主題。
-- 無法將分割的佇列或主題設定為在其變成閒置狀態時自動刪除。
-- 如果您正在建置跨平台或混合式解決方案，目前無法將分割的佇列和主題與進階訊息佇列通訊協定 (AMQP) 搭配使用。
+- Service Bus queues and topics are created within the scope of a Service Bus namespace. Service Bus currently allows up to 100 partitioned queues or topics per namespace.
+- Each Service Bus namespace imposes quotas on the available resources, such as the number of subscriptions per topic, the number of concurrent send and receive requests per second, and the maximum number of concurrent connections that can be established. These quotas are documented on the Microsoft website on the page [Service Bus quotas]. If you expect to exceed these values, then create additional namespaces with their own queues and topics, and spread the work across these namespaces. For example, in a global application, create separate namespaces in each region and configure application instances to use the queues and topics in the nearest namespace.
+- Messages that are sent as part of a transaction must specify a partition key. This can be a _SessionId_, _PartitionKey_, or _MessageId_ property. All messages that are sent as part of the same transaction must specify the same partition key because they must be handled by the same message broker process. You cannot send messages to different queues or topics within the same transaction.
+- Partitioned queues and topics can't be configured to be automatically deleted when they become idle.
+- Partitioned queues and topics can't currently be used with the Advanced Message Queuing Protocol (AMQP) if you are building cross-platform or hybrid solutions.
 
-## Azure DocumentDB 資料庫的資料分割策略
+## <a name="partitioning-strategies-for-azure-documentdb-databases"></a>Partitioning strategies for Azure DocumentDB databases
 
-Azure DocumentDB 是一種可以儲存文件的 NoSQL 資料庫。DocumentDB 資料庫中的文件是物件或其他資料片段的 JSON 序列化表示。沒有固定的結構描述會強制執行，但是每個文件都必須包含唯一識別碼。
+Azure DocumentDB is a NoSQL database that can store documents. A document in a DocumentDB database is a JSON-serialized representation of an object or other piece of data. No fixed schemas are enforced except that every document must contain a unique ID.
 
-文件會組織成集合。您可以將相關文件一起群組於一個集合中。例如，在維護部落格文章的系統中，您可以將每篇部落格文章的內容儲存為集合中的文件。您也可以為每個主體類型建立集合。或者，在多租用戶應用程式中 (例如，不同的作者可以控制和管理自己部落格文章的系統)，您可以根據作者分割部落格，並為每位作者建立個別的集合。配置給集合的儲存體空間非常有彈性，而且可以依需要縮小或成長。
+Documents are organized into collections. You can group related documents together in a collection. For example, in a system that maintains blog postings, you can store the contents of each blog post as a document in a collection. You can also create collections for each subject type. Alternatively, in a multitenant application, such as a system where different authors control and manage their own blog posts, you can partition blogs by author and create separate collections for each author. The storage space that's allocated to collections is elastic and can shrink or grow as needed.
 
-文件集合會提供自然的機制，可在單一資料庫內分割資料。在內部，DocumentDB 資料庫可以跨越多部伺服器，而且可能會嘗試跨伺服器分佈集合以分散負載。實作分區化最簡單的方法是建立每個分區的集合。
+Document collections provide a natural mechanism for partitioning data within a single database. Internally, a DocumentDB database can span several servers and might attempt to spread the load by distributing collections across servers. The simplest way to implement sharding is to create a collection for each shard.
 
-> [AZURE.NOTE] 每個 DocumentDB 資料庫都有「效能層級」，來決定它取得的資源數量。每個效能層級都會與「要求單位」(RU) 速率限制相關聯。RU 速率限制會指定要保留且可供該集合獨佔使用的資源量。集合的成本取決於為該集合選取的效能層級。效能層級 (和 RU 速率限制) 愈高，費用也愈高。您可以使用 Azure 入口網站來調整集合的效能層級。如需詳細資訊，請參閱 Microsoft 網站上的 [DocumentDB 中的效能層級]頁面。
+> [AZURE.NOTE] Each DocumentDB database has a _performance level_ that determines the amount of resources it gets. A performance level is associated with a _request unit_ (RU) rate limit. The RU rate limit specifies the volume of resources that's reserved and available for exclusive use by that collection. The cost of a collection depends on the performance level that's selected for that collection. The higher the performance level (and RU rate limit) the higher the charge. You can adjust the performance level of a collection by using the Azure portal. For more information, see the page [Performance levels in DocumentDB] on the Microsoft website.
 
-所有資料庫都要建立在 DocumentDB 帳戶的內容中。單一 DocumentDB 帳戶可以包含多個資料庫，而且它會指定要在哪些區域中建立資料庫。每個 DocumentDB 帳戶也會強制執行它自己的存取控制。您可以使用 DocumentDB 帳戶異地尋找靠近需要存取帳戶之使用者的地區 (資料庫內的集合)，並強制執行限制，以便只讓使用者和它們連接。
+All databases are created in the context of a DocumentDB account. A single DocumentDB account can contain several databases, and it specifies in which region the databases are created. Each DocumentDB account also enforces its own access control. You can use DocumentDB accounts to geo-locate shards (collections within databases) close to the users who need to access them, and enforce restrictions so that only those users can connect to them.
 
-每個 DocumentDB 帳戶都有配額，可限制其包含的資料庫和集合數目，以及可用的文件儲存體數量。這些限制可能會變更，但會描述在 Microsoft 網站上的 [DocumentDB 限制和配額]頁面上。理論上，如果您實作一個系統，其中所有分區都屬於同一個資料庫，就有可能達到帳戶的儲存體容量限制。
+Each DocumentDB account has a quota that limits the number of databases and collections that it can contain and the amount of document storage that's available. These limits are subject to change, but are described on the page [DocumentDB limits and quotas] on the Microsoft website. It is theoretically possible that if you implement a system where all shards belong to the same database, you might reach the storage capacity limit of the account.
 
-在此情況下，您可能必須建立其他 DocumentDB 帳戶和資料庫，並跨資料庫分佈分區。不過，即使您不太可能達到資料庫的儲存體容量，它還是使用多個資料庫的最佳做法。這是因為每個資料庫都有自己的一組使用者和權限，而您可以使用這項機制，在每個資料庫上隔離集合的存取權。
+In this case, you might need to create additional DocumentDB accounts and databases, and distribute the shards across these databases. However, even if you are unlikely to reach the storage capacity of a database, it's a good practice to use multiple databases. That's because each database has its own set of users and permissions, and you can use this mechanism to isolate access to collections on a per-database basis.
 
-圖 8 說明 DocumentDB 架構的高階結構。
+Figure 8 illustrates the high-level structure of the DocumentDB architecture.
 
-![DocumentDB 的結構](media/best-practices-data-partitioning/DocumentDBStructure.png)
+![The structure of DocumentDB](media/best-practices-data-partitioning/DocumentDBStructure.png)
 
-_圖 8.DocumentDB 架構的結構_
+_Figure 8.  The structure of the DocumentDB architecture_
 
-用戶端應用程式的工作是將要求導向到適當的分區，通常是以定義分區索引鍵的某些資料屬性為基礎，來實作其本身的對應機制。圖 9 顯示兩個 DocumentDB 資料庫，每一個都包含兩個集合做為分區。資料是由租用戶識別碼分區化，並包含特定租用戶的資料。資料庫會建立在個別的 DocumentDB 帳戶中。這些帳戶都會與其帳戶包含資料之租用戶位於相同的區域中。用戶端應用程式中的路由邏輯會使用租用戶識別碼做為分區索引鍵。
+It is the task of the client application to direct requests to the appropriate shard, usually by implementing its own mapping mechanism based on some attributes of the data that define the shard key. Figure 9 shows two DocumentDB databases, each containing two collections that are acting as shards. The data is sharded by a tenant ID and contains the data for a specific tenant. The databases are created in separate DocumentDB accounts. These accounts are located in the same region as the tenants for which they contain data. The routing logic in the client application uses the tenant ID as the shard key.
 
-![使用 Azure DocumentDB 實作分區化](media/best-practices-data-partitioning/DocumentDBPartitions.png)
+![Implementing sharding using Azure DocumentDB](media/best-practices-data-partitioning/DocumentDBPartitions.png)
 
-_圖 9.使用 Azure DocumentDB 資料庫實作分區化_
+_Figure 9. Implementing sharding using an Azure DocumentDB database_
 
-決定如何利用 DocumentDB 資料庫分割資料時，請考慮下列幾點：
+Consider the following points when deciding how to partition data with a DocumentDB database:
 
-- **DocumentDB 資料庫的可用資源受限於 DocumentDB 帳戶的配額限制**。每個資料庫可以保留許多集合 (同樣地，有其限制)，每個集合都和控管該集合 RU 速率限制 (保留的輸送量) 的效能層級相關聯。如需詳細資訊，請瀏覽 Microsoft 網站上的 [DocumentDB 限制與配額]頁面。
-- **每份文件都必須有一個屬性，可用來在保留該文件之集合內唯一識別該文件**。這個屬性和定義哪個集合要保留該文件的分區索引鍵不同。集合可以包含大量文件。理論上，它只受限於文件識別碼的最大長度。文件識別碼可多達 255 個字元。
-- **針對文件的所有作業都會在交易的內容中執行。DocumentDB 資料庫中的交易範圍則是包含該文件的集合。** 如果作業失敗，會復原已執行的工作。當文件受限於某個作業時，所做的任何變更都會受限於快照集層級隔離。例如，如果建立新文件的要求失敗，此機制可確保另一個同時查詢資料庫的使用者不會看到當時移除的部分文件。
-- **DocumentDB 資料庫查詢的範圍也只限於集合層級**。單一查詢只能從一個集合擷取資料。如果您需要從多個集合中擷取資料，您必須個別查詢每個集合，並利用應用程式程式碼來合併結果。
-- **DocumentDB 資料庫支援所有可和文件一起儲存在集合中的可程式化項目**。這些包括預存程序、使用者定義函式和觸發程序 (以 JavaScript 撰寫)。這些項目可以在相同的集合內存取任何文件。此外，這些項目會在環境交易的範圍內執行 (如果是針對文件執行之建立、刪除或取代作業的結果引發了觸發程序)，或啟動新的交易 (如果是明確的用戶端要求結果做為執行的預存程序)。如果可程式化項目中的程式碼擲回例外狀況，交易就會復原。您可以使用預存程序和觸發程序來維護文件之間的完整性和一致性，但這些文件都必須屬於相同的集合。
-- **您想要在 DocumentDB 帳戶的資料庫中保留的集合應該不太可能會超過集合的效能層級所定義的輸送量限制**。如需這些限制的說明，請參閱 Microsoft 網站上的[管理 DocumentDB 容量需求]頁面。如果您預期會達到這些限制，請考慮在不同的 DocumentDB 帳戶中跨資料庫劃分集合，以減少每個集合的負載。
+- **The resources available to a DocumentDB database are subject to the quota limitations of the DocumentDB account**. Each database can hold a number of collections (again, there is a limit), and each collection is associated with a performance level that governs the RU rate limit (reserved throughput) for that collection. For more information, go to the page [DocumentDB limits and quotas] on the Microsoft website.
+- **Each document must have an attribute that can be used to uniquely identify that document within the collection in which it is held**. This attribute is different from the shard key, which defines which collection holds the document. A collection can contain a large number of documents. In theory, it's limited only by the maximum length of the document ID. The document ID can be up to 255 characters.
+- **All operations against a document are performed within the context of a transaction. Transactions in DocumentDB databases are scoped to the collection in which the document is contained.** If an operation fails, the work that it has performed is rolled back. While a document is subject to an operation, any changes that are made are subject to snapshot-level isolation. This mechanism guarantees that if, for example, a request to create a new document fails, another user who's querying the database simultaneously will not see a partial document that is then removed.
+- **DocumentDB database queries are also scoped to the collection level**. A single query can retrieve data from only one collection. If you need to retrieve data from multiple collections, you must query each collection individually and merge the results in your application code.
+- **DocumentDB databases supports programmable items that can all be stored in a collection alongside documents**. These include stored procedures, user-defined functions, and triggers (written in JavaScript). These items can access any document within the same collection. Furthermore, these items run either inside the scope of the ambient transaction (in the case of a trigger that fires as the result of a create, delete, or replace operation performed against a document), or by starting a new transaction (in the case of a stored procedure that is run as the result of an explicit client request). If the code in a programmable item throws an exception, the transaction is rolled back. You can use stored procedures and triggers to maintain integrity and consistency between documents, but these documents must all be part of the same collection.
+- **The collections that you intend to hold in the databases in a DocumentDB account should be unlikely to exceed the throughput limits defined by the performance levels of the collections**. These limits are described on the page [Manage DocumentDB capacity needs] on the Microsoft website. If you anticipate reaching these limits, consider splitting collections across databases in different DocumentDB accounts to reduce the load per collection.
 
-## Azure 搜尋服務的資料分割策略
+## <a name="partitioning-strategies-for-azure-search"></a>Partitioning strategies for Azure Search
 
-搜尋資料的功能通常是許多 Web 應用程式所提供的主要導覽及探索方法。它可協助使用者根據搜尋準則的組合快速尋找資源 (例如，電子商務應用程式中的產品)。Azure 搜尋服務提供 web 內容上的全文檢索搜尋功能，並包括預先輸入、根據鄰近符合項目建議查詢，以及多面向導覽等功能。如需這些功能的完整說明，請參閱 Microsoft 網站上的[何謂 Azure 搜尋服務？]頁面。
+The ability to search for data is often the primary method of navigation and exploration that's provided by many web applications. It helps users find resources quickly (for example, products in an e-commerce application) based on combinations of search criteria. The Azure Search service provides full-text search capabilities over web content, and includes features such as type-ahead, suggested queries based on near matches, and faceted navigation. A full description of these capabilities is available on the page [What is Azure Search?] on the Microsoft website.
 
-Azure 搜尋服務會將可搜尋的內容儲存為資料庫中的 JSON 文件。您定義的索引可以在這些文件中指定可搜尋的欄位，並將這些定義提供給 Azure 搜尋服務。當使用者提交搜尋要求時，Azure 搜尋服務會使用適當的索引來尋找符合的項目。
+Azure Search stores searchable content as JSON documents in a database. You define indexes that specify the searchable fields in these documents and provide these definitions to Azure Search. When a user submits a search request, Azure Search uses the appropriate indexes to find matching items.
 
-為了減少爭用，Azure 搜尋服務所使用的儲存體可以區分成 1、2、3、4、6 或 12 個分割區，且每個分割區可以複寫高達 6 次。分割區數目乘以複本數目的乘積稱「搜尋單位」(SU)。Azure 搜尋服務的單一執行個體可以包含最多 36 個 SU (具有 12 個分割區的資料庫只支援最多 3 個複本)。
+To reduce contention, the storage that's used by Azure Search can be divided into 1, 2, 3, 4, 6, or 12 partitions, and each partition can be replicated up to 6 times. The product of the number of partitions multiplied by the number of replicas is called the _search unit_ (SU). A single instance of Azure Search can contain a maximum of 36 SUs (a database with 12 partitions only supports a maximum of 3 replicas).
 
-您需要支付配置給服務的每個 SU。當可搜尋的內容數量增加或搜尋要求的速率成長時，您可以將 SU 新增到 Azure 搜尋服務的現有執行個體來處理額外的負載。Azure 搜尋服務本身會跨分割區平均分佈文件。目前不支援任何手動資料分割策略。
+You are billed for each SU that is allocated to your service. As the volume of searchable content increases or the rate of search requests grows, you can add SUs to an existing instance of Azure Search to handle the extra load. Azure Search itself distributes the documents evenly across the partitions. No manual partitioning strategies are currently supported.
 
-每個分割區可以包含最多 1500 萬份文件或佔用 300 GB 的儲存空間 (取兩者中較低者)。您最多可以建立 50 個索引。服務的效能會因文件的複雜性、可用的索引，以及網路延遲的影響而有所不同。雖然我們建議利用您自己的資料來執行效能評比，以取得更精確的輸送量量值，但平均而言，單一複本 (1 SU) 的處理速度應該是每秒 15 個查詢 (QPS)。如需詳細資訊，請參閱 Microsoft 網站上的 [Azure 搜尋服務中的服務限制]頁面。
+Each partition can contain a maximum of 15 million documents or occupy 300 GB of storage space (whichever is smaller). You can create up to 50 indexes. The performance of the service varies and depends on the complexity of the documents, the available indexes, and the effects of network latency. On average, a single replica (1 SU) should be able to handle 15 queries per second (QPS), although we recommend performing benchmarking with your own data to obtain a more precise measure of throughput. For more information, see the page [Service limits in Azure Search] on the Microsoft website.
 
-> [AZURE.NOTE] 您可以將一組有限的資料類型儲存在可搜尋的文件中，包括字串、布林值、數字資料、日期時間資料，以及一些地理資料。如需詳細資料，請參閱 Microsoft 網站上的[支援的資料類型 (Azure 搜尋服務)] 頁面。
+> [AZURE.NOTE] You can store a limited set of data types in searchable documents, including strings, Booleans, numeric data, datetime data, and some geographical data. For more details, see the page [Supported data types (Azure Search)] on the Microsoft website.
 
-針對 Azure 搜尋服務如何分割每個服務執行個體的資料，您的控制權有限。不過，在全域環境中，您能夠藉由使用下列任一策略來分割服務本身，進一步改善效能並減少延遲和爭用：
+You have limited control over how Azure Search partitions data for each instance of the service. However, in a global environment you might be able to improve performance and reduce latency and contention further by partitioning the service itself using either of the following strategies:
 
-- 在每個地理區域中，建立 Azure 搜尋服務的執行個體，並確定會將用戶端應用程式導向至最接近的可用執行個體。此策略需要可搜尋內容的任何更新，可跨服務的所有執行個體即時複寫。
+- Create an instance of Azure Search in each geographic region, and ensure that client applications are directed towards the nearest available instance. This strategy requires that any updates to searchable content are replicated in a timely manner across all instances of the service.
 
-- 建立兩層的 Azure 搜尋服務︰
-    - 每個區域中的本機服務，包含該區域中的使用者最常存取的資料。使用者可以在此處導向要求 (適用於快速而有限的結果)。
-    - 包含所有資料的全域服務。使用者可以在此處導向要求 (適用於較慢但更完整的結果)。
+- Create two tiers of Azure Search:
+    - A local service in each region that contains the data that's most frequently accessed by users in that region. Users can direct requests here for fast but limited results.
+    - A global service that encompasses all the data. Users can direct requests here for slower but more complete results.
 
-當搜尋的資料中有重大的區域性變化時，最適用這個方法。
+This approach is most suitable when there is a significant regional variation in the data that's being searched.
 
-## Azure Redis Cache 的資料分割策略
+## <a name="partitioning-strategies-for-azure-redis-cache"></a>Partitioning strategies for Azure Redis Cache
 
-Azure Redis 快取在雲端中提供以 Redis 索引鍵-值資料存放區為基礎的共用快取服務。正如其名，Azure Redis 快取的目的是做為快取解決方案。只能用它來保留暫時性資料，而不是做為永久的資料存放區。如果快取無法使用，使用 Azure Redis 快取的應用程式應該能夠繼續運作。Azure Redis 快取支援主要/次要複寫以提供高可用性，但目前的快取大小上限為 53 GB。如果您需要更多的空間，您必須建立其他快取。如需詳細資訊，請瀏覽 Microsoft 網站上的 [Azure Redis 快取]頁面。
+Azure Redis Cache provides a shared caching service in the cloud that's based on the Redis key-value data store. As its name implies, Azure Redis Cache is intended as a caching solution. Use it only for holding transient data and not as a permanent data store. Applications that utilize Azure Redis Cache should be able to continue functioning if the cache is unavailable. Azure Redis Cache supports primary/secondary replication to provide high availability, but currently limits the maximum cache size to 53 GB. If you need more space than this, you must create additional caches. For more information, go to the page [Azure Redis Cache] on the Microsoft website.
 
-分割 Redis 資料存放區包含跨 Redis 服務的執行個體劃分資料。每個執行個體都會構成單一分割區。Azure Redis Cache 會抽象化外觀背後的 Redis 服務，而不會直接公開它們。實作資料分割的最簡單方式是建立多個 Azure Redis 快取執行個體，並將資料分佈於它們之間。
+Partitioning a Redis data store involves splitting the data across instances of the Redis service. Each instance constitutes a single partition. Azure Redis Cache abstracts the Redis services behind a façade and does not expose them directly. The simplest way to implement partitioning is to create multiple Azure Redis Cache instances and spread the data across them.
 
-您可以將每個資料項目關聯至指定哪個快取要儲存資料項目的識別碼 (分割區索引鍵)。用戶端應用程式邏輯接著可以使用這個識別碼，將要求路由傳送至適當的分割區。此配置非常簡單，但是如果資料分割配置有所變更 (例如，如果建立了其他 Azure Redis 快取執行個體)，則用戶端應用程式可能需要重新設定。
+You can associate each data item with an identifier (a partition key) that specifies which cache stores the data item. The client application logic can then use this identifier to route requests to the appropriate partition. This scheme is very simple, but if the partitioning scheme changes (for example, if additional Azure Redis Cache instances are created), client applications might need to be reconfigured.
 
-根據 Redis 叢集，原生 Redis (非 Azure Redis Cache) 支援伺服器端資料分割。在這種方法中，您可以使用雜湊機制，跨伺服器平均區分資料。每個 Redis 伺服器會儲存中繼資料 (描述分割區保留的雜湊索引鍵範圍)，也包含哪些雜湊索引鍵位於其他伺服器上的分割區中的相關資訊。
+Native Redis (not Azure Redis Cache) supports server-side partitioning based on Redis clustering. In this approach, you can divide the data evenly across servers by using a hashing mechanism. Each Redis server stores metadata that describes the range of hash keys that the partition holds, and also contains information about which hash keys are located in the partitions on other servers.
 
-用戶端應用程式只會將要求傳送至任何參與的 Redis 伺服器 (可能是最接近的伺服器)。Redis 伺服器會檢查用戶端要求。如果可以在本機解決，就會執行要求的作業，否則會將要求轉送到適當的伺服器。
+Client applications simply send requests to any of the participating Redis servers (probably the closest one). The Redis server examines the client request. If it can be resolved locally, it performs the requested operation. Otherwise it forwards the request on to the appropriate server.
 
-此模型會使用 Redis 叢集實作，而且會在 Redis 網站上的 [Redis 叢集教學課程]頁面上提供更詳細的描述。Redis 叢集對用戶端應用程式而言是透明的。其他的 Redis 伺服器可以加入至叢集 (資料可重新分割)，而不需重新設定用戶端。
+This model is implemented by using Redis clustering, and is described in more detail on the [Redis cluster tutorial] page on the Redis website. Redis clustering is transparent to client applications. Additional Redis servers can be added to the cluster (and the data can be re-partitioned) without requiring that you reconfigure the clients.
 
-> [AZURE.IMPORTANT] Azure Redis Cache 目前不支援 Redis 叢集。如果您想要利用 Azure 實作這個方法，則必須將 Redis 安裝在一組 Azure 虛擬機器上並手動設定它們，以實作您自己的 Redis 伺服器。Microsoft 網站上的[在 Azure 中的 CentOS Linux VM 上執行 Redis] 頁面會逐步解說範例，並顯示如何建置和設定做為 Azure VM 執行的 Redis 節點。
+> [AZURE.IMPORTANT] Azure Redis Cache does not currently support Redis clustering. If you want to implement this approach with Azure, then you must implement your own Redis servers by installing Redis on a set of Azure virtual machines and configuring them manually. The page [Running Redis on a CentOS Linux VM in Azure] on the Microsoft website walks through an example that shows you how to build and configure a Redis node running as an Azure VM.
 
-Redis 網站上的 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料)] 頁面會提供更多關於使用 Redis 實作資料分割的資訊。本節的其餘部分假設您正在實作用戶端或 proxy 輔助資料分割。
+The page [Partitioning: how to split data among multiple Redis instances] on the Redis website provides more information about implementing partitioning with Redis. The remainder of this section assumes that you are implementing client-side or proxy-assisted partitioning.
 
-決定如何利用 Azure Redis 快取來分割資料時，請考慮下列幾點：
+Consider the following points when deciding how to partition data with Azure Redis Cache:
 
-- Azure Redis 快取的目的不是做為永久的資料存放區，因此無論您實作任何資料分割配置，您應用程式的程式碼都必須夠從不是快取的位置上擷取資料。
-- 經常一起存取的資料應保留於相同的分割區中。Redis 是一個功能強大的索引鍵-值存放區，提供數種高度最佳化的機制以建構資料。這些機制可以是下列其中一項：
-    - 簡單字串 (長度高達 512 MB 的二進位資料)
-    - 彙總類型，例如清單 (其可做為佇列和堆疊)
-    - 集合 (排序和未排序)
-    - 雜湊 (可將相關的欄位群組在一起，例如在一個物件中代表欄位的項目)
+- Azure Redis Cache is not intended to act as a permanent data store, so whatever partitioning scheme you implement, your application code must be able to retrieve data from a location that's not the cache.
+- Data that is frequently accessed together should be kept in the same partition. Redis is a powerful key-value store that provides several highly optimized mechanisms for structuring data. These mechanisms can be one of the following:
+    - Simple strings (binary data up to 512 MB in length)
+    - Aggregate types such as lists (which can act as queues and stacks)
+    - Sets (ordered and unordered)
+    - Hashes (which can group related fields together, such as the items that represent the fields in an object)
 
-- 彙總類型可讓您將許多相關的值與同一個索引鍵建立關聯。Redis 索引鍵可識別清單、集合或雜湊，而非它所包含的資料項目。這些類型全都可供 Azure Redis 快取使用，並描述於 Redis 網站上的 [Data types (資料類型)] 頁面。例如，在追蹤客戶所下訂單的部分電子商務系統中，每一位客戶的詳細資料都可儲存於 Redis 雜湊中，使用客戶識別碼做為索引鍵。每個雜湊都可以保留客戶的訂單識別碼集合。個別的 Redis 集合可以保留訂單、重新建構為雜湊，並使用訂單識別碼做為索引鍵。圖 10 顯示此結構。請注意，Redis 不會實作任何形式的參考完整性，所以開發人員必須負責維護客戶和訂單之間的關聯性。
+- The aggregate types enable you to associate many related values with the same key. A Redis key identifies a list, set, or hash rather than the data items that it contains. These types are all available with Azure Redis Cache and are described by the [Data types] page on the Redis website. For example, in part of an e-commerce system that tracks the orders that are placed by customers, the details of each customer can be stored in a Redis hash that is keyed by using the customer ID. Each hash can hold a collection of order IDs for the customer. A separate Redis set can hold the orders, again structured as hashes, and keyed by using the order ID. Figure 10 shows this structure. Note that Redis does not implement any form of referential integrity, so it is the developer's responsibility to maintain the relationships between customers and orders.
 
-![Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構](media/best-practices-data-partitioning/RedisCustomersandOrders.png)
+![Suggested structure in Redis storage for recording customer orders and their details](media/best-practices-data-partitioning/RedisCustomersandOrders.png)
 
-_圖 10.Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構_
+_Figure 10. Suggested structure in Redis storage for recording customer orders and their details_
 
-> [AZURE.NOTE] 在 Redis 中，所有索引鍵都是二進位資料值 (例如 Redis 字串)，且最多可包含 512 MB 的資料。理論上，索引鍵幾乎可以包含所有資訊。不過，建議採用一致的索引鍵命名慣例，可描述資料類型並識別實體，但該慣例不可過長。常見的方法是使用 "entity\_type:ID" 形式的索引鍵。例如，您可以使用 "customer:99" 來指出客戶識別碼 99 的索引鍵。
+> [AZURE.NOTE] In Redis, all keys are binary data values (like Redis strings) and can contain up to 512 MB of data. In theory, a key can contain almost any information. However, we recommend adopting a consistent naming convention for keys that is descriptive of the type of data and that identifies the entity, but is not excessively long. A common approach is to use keys of the form "entity_type:ID". For example, you can use "customer:99" to indicate the key for a customer with the ID 99.
 
-- 您可以將相關的資訊儲存在相同資料庫中的不同彙總以實作垂直資料分割。例如，在電子商務應用程式中，您可以將經常存取的產品相關資訊儲存在某一個 Redis 雜湊中，並將較少使用的詳細資訊儲存在另一個。這兩個雜湊可以使用相同的產品識別碼做為索引鍵的一部分。例如，您可以針對產品資訊使用 "product:nn" (其中「nn」是產品識別碼)，而 "product\_details: nn" 則適用於詳細資料。此策略有助於減少大多數查詢可能會擷取的資料量。
-- 您可以重新分割 Redis 資料存放區，但請記住它是複雜且耗時的工作。Redis 叢集可以自動重新分割資料，但Azure Redis 快取無法使用此功能。因此，當您設計資料分割配置時，請嘗試在每個分割區中保留足夠的可用空間，以允許一段時間後預期的資料成長。不過，請記住 Azure Redis Cache 的目的是暫時快取資料，而且保留在快取中的資料具有有限的存留期，指定為存留時間 (TTL) 值。對於相對易變的資料而言，TTL 可以短一點，但對於靜態資料而言，TTL 可以更長。如果此資料量可能會填滿快取，請避免在快取中儲存大量長時間留存的資料。如果空間價格不斐，您可以指定會讓 Azure Redis Cache 移除資料的收回原則。
+- You can implement vertical partitioning by storing related information in different aggregations in the same database. For example, in an e-commerce application, you can store commonly accessed information about products in one Redis hash and less frequently used detailed information in another.
+Both hashes can use the same product ID as part of the key. For example, you can use "product: _nn_" (where _nn_ is the product ID) for the product information and "product_details: _nn_" for the detailed data. This strategy can help reduce the volume of data that most queries are likely to retrieve.
+- You can repartition a Redis data store, but keep in mind that it's a complex and time-consuming task. Redis clustering can repartition data automatically, but this capability is not available with Azure Redis Cache. Therefore, when you design your partitioning scheme, try to leave sufficient free space in each partition to allow for expected data growth over time. However, remember that Azure Redis Cache is intended to cache data temporarily, and that data held in the cache can have a limited lifetime specified as a time-to-live (TTL) value. For relatively volatile data, the TTL can be short, but for static data the TTL can be a lot longer. Avoid storing large amounts of long-lived data in the cache if the volume of this data is likely to fill the cache. You can specify an eviction policy that causes Azure Redis Cache to remove data if space is at a premium.
 
-	> [AZURE.NOTE] 當您使用 Azure Redis 快取時，可以藉由選取適當的定價層，來指定快取的大小上限 (從 250 MB 到 53 GB)。不過，建立 Azure Redis 快取之後，您就無法增加 (或減少) 其大小。
+    > [AZURE.NOTE] When you use Azure Redis cache, you specify the maximum size of the cache (from 250 MB to 53 GB) by selecting the appropriate pricing tier. However, after an Azure Redis Cache has been created, you cannot increase (or decrease) its size.
 
-- Redis 批次與交易無法跨越多個連接，因此受批次或交易影響的所有資料應都保留在相同的資料庫 (分區) 中。
+- Redis batches and transactions cannot span multiple connections, so all data that is affected by a batch or transaction should be held in the same database (shard).
 
-	> [AZURE.NOTE] Redis 交易中的作業序列不一定是不可部分完成的。構成交易的命令已經過驗證，並在執行之前已排入佇列，如果在這個階段期間發生錯誤，即會捨棄整個佇列。不過，在交易成功提交之後，排入佇列的命令就會依序執行。如果有任何命令失敗，則只有該命令會停止執行。佇列中的所有先前與後續命令都會執行。如需詳細資訊，請瀏覽 Redis 網站上的 [Transactions (交易)] 頁面。
+    > [AZURE.NOTE] A sequence of operations in a Redis transaction is not necessarily atomic. The commands that compose a transaction are verified and queued before they run. If an error occurs during this phase, the entire queue is discarded. However, after the transaction has been successfully submitted, the queued commands run in sequence. If any command fails, only that command stops running. All previous and subsequent commands in the queue are performed. For more information, go to the [Transactions] page on the Redis website.
 
-- Redis 支援有限數量的不可部分完成作業。支援多個索引鍵和值的此類型作業只有 MGET 和 MSET 作業。MGET 作業會傳回指定索引鍵清單值的集合，而 MSET 作業會儲存指定索引鍵清單值的集合。如果您必須使用這些作業，MSET 和 MGET 命令所參考的索引鍵-值組必須儲存在同一個資料庫內。
+- Redis supports a limited number of atomic operations. The only operations of this type that support multiple keys and values are MGET and MSET operations. MGET operations return a collection of values for a specified list of keys, and MSET operations store a collection of values for a specified list of keys. If you need to use these operations, the key-value pairs that are referenced by the MSET and MGET commands must be stored within the same database.
 
-## 重新平衡分割區
+## <a name="rebalancing-partitions"></a>Rebalancing partitions
 
-當系統成熟且您更加了解使用模式時，您可能必須調整資料分割配置。例如，個別的分割區可能開始吸引不當比例的流量並變得熱門，導致過度爭用。此外，您可能低估某些分割區中的資料量，使您達到這些分割區中的儲存體容量限制。無論原因為何，有時候必須重新平衡分割區，才能更平均地分散負載。
+As a system matures and you understand the usage patterns better, you might have to adjust the partitioning scheme. For example, individual partitions might start attracting a disproportionate volume of traffic and become hot, leading to excessive contention. Additionally, you might have underestimated the volume of data in some partitions, causing you to approach the limits of the storage capacity in these partitions. Whatever the cause, it is sometimes necessary to rebalance partitions to spread the load more evenly.
 
-在某些情況下，不公開資料配置到伺服器之方式的資料儲存系統，會在可用資源限制內自動重新平衡分割區。在其他情況下，重新平衡是由兩個階段組成的系統管理工作：
+In some cases, data storage systems that don't publicly expose how data is allocated to servers can automatically rebalance partitions within the limits of the resources available. In other situations, rebalancing is an administrative task that consists of two stages:
 
-1. 判斷新的資料分割策略，以確定：
-    - 哪些分割區可能必須劃分 (或可能必須結合)。
-    - 如何藉由設計新的分割區索引鍵，將資料配置到這些新的分割區。
-2. 將受影響的資料從舊的資料分割配置移轉至一組新的分割區。
+1. Determining the new partitioning strategy to ascertain:
+    - Which partitions might need to be split (or possibly combined).
+    - How to allocate data to these new partitions by designing new partition keys.
+2. Migrating the affected data from the old partitioning scheme to the new set of partitions.
 
-> [AZURE.NOTE] DocumentDB 資料庫集合到伺服器的對應是透明的，但您仍可達到 DocumentDB 帳戶的儲存容量與輸送量限制。如果發生這種情況，您可能必須重新設計資料分割配置，並移轉資料。
+> [AZURE.NOTE] The mapping of DocumentDB database collections to servers is transparent, but you can still reach the storage capacity and throughput limits of a DocumentDB account. If this happens, you might need to redesign your partitioning scheme and migrate the data.
 
-根據資料儲存技術和您的資料儲存系統設計，您可以在使用分割區時，於分割區之間移轉資料 (線上移轉) 。如果此方法不可行，您可能必須在重新定位資料時讓受影響的分割區暫時無法使用 (離線移轉)。
+Depending on the data storage technology and the design of your data storage system, you might be able to migrate data between partitions while they are in use (online migration). If this isn't possible, you might need to make the affected partitions temporarily unavailable while the data is relocated (offline migration).
 
-## 離線移轉
+## <a name="offline-migration"></a>Offline migration
 
-離線移轉可說是最簡單的方法，因為它可以減少發生爭用的機會。在移動與重新建構資料時，請勿變更資料。
+Offline migration is arguably the simplest approach because it reduces the chances of contention occurring. Don't make any changes to the data while it is being moved and restructured.
 
-就概念而言，此程序包含下列步驟：
+Conceptually, this process includes the following steps:
 
-1. 將分區標記為離線。
-2. 劃分-合併資料，並將其移到新的分區。
-3. 驗證資料。
-4. 使新的分區上線。
-5. 移除舊的分區。
+1. Mark the shard offline.
+2. Split-merge and move the data to the new shards.
+3. Verify the data.
+4. Bring the new shards online.
+5. Remove the old shard.
 
-若要保留一些可用性，您可在步驟 1 中將原始分區標示為唯讀，而不是使其無法使用。這允許應用程式在資料移動時讀取資料，而不是變更資料。
+To retain some availability, you can mark the original shard as read-only in step 1 rather than making it unavailable. This allows applications to read the data while it is being moved but not to change it.
 
-## 線上移轉
+## <a name="online-migration"></a>Online migration
 
-執行線上移轉更複雜，但是使用者比較不受干擾，因為資料在整個程序期間可繼續使用。其程序與離線移轉所使用的程序相似，不同之處在於原始分區未標示為離線 (步驟 1)。根據移轉程序的細微性 (例如，它是否會逐一項目或分區來完成)，用戶端應用程式中的資料存取程式碼必須處理保留在兩個位置 (原始分區和新分區) 中之資料的讀取和寫入。
+Online migration is more complex to perform but less disruptive to users because data remains available during the entire procedure. The process is similar to that used by offline migration, except that the original shard is not marked offline (step 1). Depending on the granularity of the migration process (for example, whether it's done item by item or shard by shard), the data access code in the client applications might have to handle reading and writing data that's held in two locations (the original shard and the new shard).
 
-如需支援線上移轉的解決方案範例，請參閱 Microsoft 網站上的[使用彈性資料庫分割合併工具來縮放]一文。
+For an example of a solution that supports online migration, see the article [Scaling using the Elastic Database split-merge tool] on the Microsoft website.
 
-## 相關的模式和指導方針
+## <a name="related-patterns-and-guidance"></a>Related patterns and guidance
 
-考量實作資料一致性的策略時，下列模式可能也會與您的案例相關：
+When considering strategies for implementing data consistency, the following patterns might also be relevant to your scenario:
 
-- Microsoft 網站上的 [Data Consistency Primer (資料一致性入門)] 頁面會說明在雲端等分散式環境中維護一致性的策略。
-- Microsoft 網站上的 [Data partitioning guidance (資料分割指引)] 頁面提供如何設計分割區以符合分散式解決方案中各種準則的一般概觀。
-- Microsoft 網站上所述的 [Sharding Pattern (分區化模式)] 摘要列出一些分區化資料的常見策略。
-- Microsoft 網站上所述的 [Index Table Pattern (索引資料表模式)] 說明如何建立資料的次要索引。應用程式可以使用未參考集合的主索引鍵的查詢，透過這個方法快速擷取資料。
-- Microsoft 網站上所述的 [Materialized View Pattern (具體化檢視模式)] 說明如何產生預先填入的檢視，可摘要列出資料以支援快速查詢作業。如果包含已摘要列出之資料的分割區會跨多個網站分佈，則這個方法對分割的資料存放區很有幫助。
-- Microsoft 網站上的[使用 Azure 的內容傳遞網路]一文提供有關設定和使用內容傳遞網路搭配 Azure 的其他指引。
+- The [Data consistency primer] page on the Microsoft website describes strategies for maintaining consistency in a distributed environment such as the cloud.
+- The [Data partitioning guidance] page on the Microsoft website provides a general overview of how to design partitions to meet various criteria in a distributed solution.
+- The [sharding pattern] as described on the Microsoft website summarizes some common strategies for sharding data.
+- The [index table pattern] as described on the Microsoft website illustrates how to create secondary indexes over data. An application can quickly retrieve data with this approach, by using queries that do not reference the primary key of a collection.
+- The [materialized view pattern] as described on the Microsoft website describes how to generate pre-populated views that summarize data to support fast query operations. This approach can be useful in a partitioned data store if the partitions that contain the data being summarized are distributed across multiple sites.
+- The [Using Azure Content Delivery Network] article on the Microsoft website provides additional guidance on configuring and using Content Delivery Network with Azure.
 
-## 詳細資訊
+## <a name="more-information"></a>More information
 
-- Microsoft 網站上的[什麼是 Azure SQL Database？]頁面提供詳細的文件，說明如何建立及使用 SQL 資料庫。
-- Microsoft 網站上的[彈性資料庫功能概觀]頁面提供全面性的彈性資料庫介紹。
-- Microsoft 網站上的[使用彈性資料庫分割合併工具來縮放]頁面會包含使用劃分-合併服務來管理彈性資料庫分區的相關資訊。
-- Microsoft 網站上的 [Azure 儲存體延展性和效能目標](https://msdn.microsoft.com/library/azure/dn249410.aspx)頁面記錄 Azure 儲存體目前的大小和輸送量限制。
-- Microsoft 網站上的[執行實體群組交易]頁面提供有關透過儲存在 Azure 表格儲存體的實體實作交易式作業的詳細資訊。
-- Microsoft 網站上的 [Azure 儲存體表格設計指南]一文會包含有關 Azure 表格儲存體中的資料分割的詳細資訊。
-- Microsoft 網站上的[使用 Azure 的內容傳遞網路]頁面會說明如何使用 Azure 內容傳遞網路來複寫保留在 Azure Blob 儲存體中的資料。
-- Microsoft 網站上的[管理 DocumentDB 容量需求]頁面包含 Azure DocumentDB 資料庫如何配置資源的相關資訊。
-- Microsoft 網站上的[何謂 Azure 搜尋服務？]頁面會提供可在 Azure 搜尋服務使用之功能的完整說明。
-- Microsoft 網站上的 [Azure 搜尋中的服務限制]頁面包含 Azure 搜尋服務之每個執行個體的功能相關資訊。
-- Microsoft 網站上的[支援的資料類型 (Azure 搜尋服務)] 頁面摘要列出您可以在可搜尋文件和索引中使用的資料類型。
-- Microsoft 網站上的 [Azure Redis 快取]頁面提供 Azure Redis 快取的簡介。
-- Redis 網站上的 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上劃分資料)] 頁面提供如何使用 Redis 實作資料分割的相關資訊。
-- Microsoft 網站上的[在 Azure 中的 CentOS Linux VM 上執行 Redis] 頁面會逐步解說範例，並顯示如何建置和設定做為 Azure VM 執行的 Redis 節點。
-- Redis 網站上的 [Data Types (資料類型)] 頁面描述 Redis 和 Azure Redis 快取皆可使用的資料類型。
+- The page [What is Azure SQL Database?] on the Microsoft website provides detailed documentation that describes how to create and use SQL databases.
+- The page [Elastic Database features overview] on the Microsoft website provides a comprehensive introduction to Elastic Database.
+- The page [Scaling using the Elastic Database split-merge tool] on the Microsoft website contains information about using the split-merge service to manage Elastic Database shards.
+- The page [Azure storage scalability and performance targets](https://msdn.microsoft.com/library/azure/dn249410.aspx) on the Microsoft website documents the current sizing and throughput limits of Azure Storage.
+- The page [Performing entity group transactions] on the Microsoft website provides detailed information about implementing transactional operations over entities that are stored in Azure table storage.
+- The article [Azure Storage table design guide] on the Microsoft website contains detailed information about partitioning data in Azure table storage.
+- The page [Using Azure Content Delivery Network] on the Microsoft website describes how to replicate data that's held in Azure blob storage by using the Azure Content Delivery Network.
+- The page [Manage DocumentDB capacity needs] on the Microsoft website contains information about how Azure DocumentDB databases allocate resources.
+- The page [What is Azure Search?] on the Microsoft website provides a full description of the capabilities that are available in Azure Search.
+- The page [Service limits in Azure Search] on the Microsoft website contains information about the capacity of each instance of Azure Search.
+- The page [Supported data types (Azure Search)] on the Microsoft website summarizes the data types that you can use in searchable documents and indexes.
+- The page [Azure Redis Cache] on the Microsoft website provides an introduction to Azure Redis Cache.
+- The [Partitioning: how to split data among multiple Redis instances] page on the Redis website provides information about how to implement partitioning with Redis.
+- The page [Running Redis on a CentOS Linux VM in Azure] on the Microsoft website walks through an example that shows you how to build and configure a Redis node running as an Azure VM.
+- The [Data types] page on the Redis website describes the data types that are available with Redis and Azure Redis Cache.
 
-[Azure Redis 快取]: http://azure.microsoft.com/services/cache/
-[Azure 儲存體延展性和效能目標]: storage/storage-scalability-targets.md
-[Azure 儲存體表格設計指南]: storage/storage-table-design-guide.md
-[Building a polyglot solution (建置 Polyglot 解決方案)]: https://msdn.microsoft.com/library/dn313279.aspx
-[Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence (高度可調整解決方案的資料存取：使用 SQL、NoSQL 和 Polyglot 持續性)]: https://msdn.microsoft.com/library/dn271399.aspx
-[Data consistency primer (資料一致性入門)]: http://aka.ms/Data-Consistency-Primer
-[Data partitioning guidance (資料分割指引)]: https://msdn.microsoft.com/library/dn589795.aspx
-[Data types (資料類型)]: http://redis.io/topics/data-types
-[DocumentDB 限制和配額]: documentdb/documentdb-limits.md
-[DocumentDB 限制與配額]: documentdb/documentdb-limits.md
-[彈性資料庫功能概觀]: sql-database/sql-database-elastic-scale-introduction.md
+[Azure Redis Cache]: http://azure.microsoft.com/services/cache/
+[Azure Storage Scalability and Performance Targets]: storage/storage-scalability-targets.md
+[Azure Storage Table Design Guide]: storage/storage-table-design-guide.md
+[Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx
+[Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
+[Data consistency primer]: http://aka.ms/Data-Consistency-Primer
+[Data Partitioning Guidance]: https://msdn.microsoft.com/library/dn589795.aspx
+[Data Types]: http://redis.io/topics/data-types
+[DocumentDB limits and quotas]: documentdb/documentdb-limits.md
+[Elastic Database features overview]: sql-database/sql-database-elastic-scale-introduction.md
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
-[Index Table Pattern (索引資料表模式)]: http://aka.ms/Index-Table-Pattern
-[管理 DocumentDB 容量需求]: documentdb/documentdb-manage.md
-[Materialized View Pattern (具體化檢視模式)]: http://aka.ms/Materialized-View-Pattern
-[多分區查詢]: sql-database/sql-database-elastic-scale-multishard-querying.md
-[Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料)]: http://redis.io/topics/partitioning
-[Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上劃分資料)]: http://redis.io/topics/partitioning
-[DocumentDB 中的效能層級]: documentdb/documentdb-performance-levels.md
-[執行實體群組交易]: https://msdn.microsoft.com/library/azure/dd894038.aspx
-[Redis 叢集教學課程]: http://redis.io/topics/cluster-tutorial
-[在 Azure 中的 CentOS Linux VM 上執行 Redis]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
-[使用彈性資料庫分割合併工具來縮放]: sql-database/sql-database-elastic-scale-overview-split-and-merge.md
-[使用彈性資料庫劃分合併工具進行調整]: sql-database/sql-database-elastic-scale-overview-split-and-merge.md
-[使用 Azure 的內容傳遞網路]: cdn/cdn-create-new-endpoint.md
-[服務匯流排配額]: service-bus/service-bus-quotas.md
-[Azure 搜尋中的服務限制]: search/search-limits-quotas-capacity.md
-[Azure 搜尋服務中的服務限制]: search/search-limits-quotas-capacity.md
-[Sharding Pattern (分區化模式)]: http://aka.ms/Sharding-Pattern
-[分區化模式]: http://aka.ms/Sharding-Pattern
-[支援的資料類型 (Azure 搜尋服務)]: https://msdn.microsoft.com/library/azure/dn798938.aspx
-[Transactions (交易)]: http://redis.io/topics/transactions
-[何謂 Azure 搜尋服務？]: search/search-what-is-azure-search.md
-[什麼是 Azure SQL Database？]: sql-database/sql-database-technical-overview.md
+[Index Table Pattern]: http://aka.ms/Index-Table-Pattern
+[Manage DocumentDB capacity needs]: documentdb/documentdb-manage.md
+[Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
+[Multi-shard querying]: sql-database/sql-database-elastic-scale-multishard-querying.md
+[Partitioning: how to split data among multiple Redis instances]: http://redis.io/topics/partitioning
+[Performance levels in DocumentDB]: documentdb/documentdb-performance-levels.md
+[Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
+[Redis cluster tutorial]: http://redis.io/topics/cluster-tutorial
+[Running Redis on a CentOS Linux VM in Azure]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
+[Scaling using the Elastic Database split-merge tool]: sql-database/sql-database-elastic-scale-overview-split-and-merge.md
+[Using Azure Content Delivery Network]: cdn/cdn-create-new-endpoint.md
+[Service Bus quotas]: service-bus/service-bus-quotas.md
+[Service limits in Azure Search]:  search/search-limits-quotas-capacity.md
+[Sharding pattern]: http://aka.ms/Sharding-Pattern
+[Supported Data Types (Azure Search)]:  https://msdn.microsoft.com/library/azure/dn798938.aspx
+[Transactions]: http://redis.io/topics/transactions
+[What is Azure Search?]: search/search-what-is-azure-search.md
+[What is Azure SQL Database?]: sql-database/sql-database-technical-overview.md
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

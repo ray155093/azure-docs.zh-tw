@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="管理 StorSimple 儲存體帳戶 | Microsoft Azure"
-   description="說明如何使用 StorSimple Manager 的 [設定] 頁面，來為與 StorSimple Virtual Array 相關聯的儲存體帳戶新增、編輯、刪除或替換安全性金鑰。"
+   pageTitle="Manage your StorSimple storage account | Microsoft Azure"
+   description="Explains how you can use the StorSimple Manager Configure page to add, edit, delete, or rotate the security keys for a storage account associated with the StorSimple Virtual Array."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -12,95 +12,102 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="04/18/2016"
+   ms.date="09/29/2016"
    ms.author="alkohli" />
 
-# 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務管理儲存體帳戶
 
-## 概觀
+# <a name="use-the-storsimple-manager-service-to-manage-storage-accounts-for-storsimple-virtual-array"></a>Use the StorSimple Manager service to manage storage accounts for StorSimple Virtual Array
 
-[設定] 頁面會顯示可在 StorSimple Manager 服務中建立的全域服務參數。這些參數可以套用到與該服務連線的所有裝置，還包括：
+## <a name="overview"></a>Overview
 
-- 儲存體帳戶 
-- 存取控制記錄 
+The **Configure** page presents the global service parameters that can be created in the StorSimple Manager service. These parameters can be applied to all the devices connected to the service, and include:
 
-本教學課程說明如何使用 [設定] 頁面，來為您的 StorSimple Virtual Array 新增、編輯或刪除儲存體帳戶。本教學課程中的資訊僅適用於執行 2016 年 3 月 GA 版軟體的 StorSimple Virtual Array。
+- Storage accounts 
+- Access control records 
 
- ![[設定] 頁面](./media/storsimple-ova-manage-storage-accounts/configure_service_page.png)
+This tutorial explains how you can use the **Configure** page to add, edit, or delete storage accounts for your StorSimple Virtual Array. The information in this tutorial only applies to the StorSimple Virtual Array running March 2016 GA release software.
 
-儲存體帳戶包含的認證可供裝置用來存取雲端服務提供者的儲存體帳戶。對於 Microsoft Azure 儲存體帳戶，像是帳戶名稱與主要存取金鑰就屬於這些認證。
+ ![Configure page](./media/storsimple-ova-manage-storage-accounts/configure_service_page.png)  
 
-在 [設定] 頁面上，為訂用帳戶計費而建立的所有儲存體帳戶都會以表格顯示，其中包含下列資訊：
+Storage accounts contain the credentials that the device uses to access your storage account with your cloud service provider. For Microsoft Azure storage accounts, these are credentials such as the account name and the primary access key. 
 
-- **名稱** – 帳戶建立時獲指派的唯一名稱。
-- **啟用 SSL** – 是否已啟用 SSL 並透過安全通道進行裝置對雲端的通訊。
+On the **Configure** page, all storage accounts that are created for the billing subscription are displayed in a tabular format containing the following information:
 
-最常見可在 [設定] 頁面上執行與儲存體帳戶相關的工作如下：
+- **Name** – The unique name assigned to the account when it was created.
+- **SSL enabled** – Whether the SSL is enabled and device-to-cloud communication is over the secure channel.
 
-- 新增儲存體帳戶 
-- 編輯儲存體帳戶 
-- 刪除儲存體帳戶 
+The most common tasks related to storage accounts that can be performed on the **Configure** page are:
+
+- Add a storage account 
+- Edit a storage account 
+- Delete a storage account 
 
 
-## 儲存體帳戶類型
+## <a name="types-of-storage-accounts"></a>Types of storage accounts
 
-有三種儲存體帳戶類型能與 StorSimple 裝置搭配使用。
+There are three types of storage accounts that can be used with your StorSimple device.
 
-- **自動產生的儲存體帳戶** – 正如其名，這類型的儲存體帳戶是在初次建立服務時自動產生。如要深入了解此儲存體帳戶的建立方式，請參閱[建立新的服務](storsimple-ova-manage-service.md#create-a-service)。 
-- **服務訂用帳戶中的儲存體帳戶** – 這些是與相同服務訂用帳戶相關聯的 Azure 儲存體帳戶。若要深入了解如何建立這些儲存體帳戶，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。 
-- **服務訂用帳戶外的儲存體帳戶** – 這些是與服務毫無關聯的 Azure 儲存體帳戶，而且可能在服務建立之前便已存在 。
+- **Auto-generated storage accounts** – As the name suggests, this type of storage account is automatically generated when the service is first created. To learn more about how this storage account is created, see [Create a new service](storsimple-ova-manage-service.md#create-a-service). 
+- **Storage accounts in the service subscription** – These are the Azure storage accounts that are associated with the same subscription as that of the service. To learn more about how these storage accounts are created, see [About Azure Storage Accounts](../storage/storage-create-storage-account.md). 
+- **Storage accounts outside of the service subscription** – These are the Azure storage accounts that are not associated with your service and likely existed before the service was created.
 
-## 新增儲存體帳戶
+Each StorSimple Virtual Array creates a container (with a prefix hcs) in the associated storage account. This container has all the cloud data for your device. Do not delete this container by accessing it through the Azure Storage service as this action will result in data loss.
 
-您可以在 StorSimple Manager 服務組態新增儲存體帳戶，方法是提供唯一的易記名稱，以及與儲存體帳戶相關的存取認證。您也能選擇啟用安全通訊端層 (SSL) 模式，建立裝置與雲端之間網路通訊的安全通道。
+## <a name="add-a-storage-account"></a>Add a storage account
 
-您可以為指定的雲端服務提供者建立多個帳戶。儲存體帳戶在儲存時，服務會嘗試與您的雲端服務提供者通訊。此時會驗證您提供的認證與存取資料。只有當驗證成功時，才會建立儲存體帳戶。如果驗證失敗，則會顯示適當的錯誤訊息。
+You can add a storage account to your StorSimple Manager service configuration by providing a unique friendly name and access credentials that are linked to the storage account. You also have the option of enabling the secure sockets layer (SSL) mode to create a secure channel for network communication between your device and the cloud.
 
-在 Azure 入口網站中建立的 Resource Manager 儲存體帳戶也支援 StorSimple。Resource Manager 儲存體帳戶會顯示在下拉式清單中供選取，只會顯示在 Azure 傳統入口網站中建立的儲存體帳戶。Resource Manager 儲存體帳戶必須使用如下所述的新增儲存體帳戶的程序來新增。
+You can create multiple accounts for a given cloud service provider. While the storage account is being saved, the service attempts to communicate with your cloud service provider. The credentials and the access material that you supplied will be authenticated at this time. A storage account is created only if the authentication succeeds. If the authentication fails, then an appropriate error message will be displayed.
 
-新增 Azure 傳統儲存體帳戶的程序詳述如下。
+Resource Manager storage accounts created in Azure portal are also supported with StorSimple. The Resource Manager storage accounts will not show up in the drop-down list for selection, only the storage accounts created in the Azure classic portal will be displayed. Resource Manager storage accounts will need to be added using the procedure to add a storage account as described below.
+
+The procedure for adding an Azure classic storage account is detailed below.
 
 [AZURE.INCLUDE [add-a-storage-account](../../includes/storsimple-ova-configure-new-storage-account.md)]
 
-## 編輯儲存體帳戶
+## <a name="edit-a-storage-account"></a>Edit a storage account
 
-您可以編輯您裝置使用的儲存體帳戶。如果您編輯的儲存體帳戶目前正在使用中，您就只能修改該儲存體帳戶的存取金鑰和 SSL 模式欄位。您可以提供新的儲存體存取金鑰，或是修改 [啟用 SSL 模式] 的選取項目，並儲存已更新的設定。
+You can edit a storage account used by your device. If you edit a storage account that is currently in use, the fields available to modify are the access key and the SSL mode for the storage account. You can supply the new storage access key or modify the **Enable SSL mode** selection and save the updated settings.
 
-#### 若要編輯儲存體帳戶
+#### <a name="to-edit-a-storage-account"></a>To edit a storage account
 
-1. 在服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [設定]。
+1. On the service landing page, select your service, double-click the service name, and then click **Configure**.
 
-2. 按一下 [新增/編輯儲存體帳戶]。
+2. Click **Add/Edit Storage Accounts**.
 
-3. 在 [新增/編輯儲存體帳戶] 對話方塊中：
+3. In the **Add/Edit Storage Accounts** dialog box:
 
-  1. 在 [儲存體帳戶] 下拉式清單中，選擇您想要修改的現有帳戶。
-  2. 如有必要，您可以修改 [啟用 SSL 模式] 選項。
-  3. 您可以選擇重新產生儲存體帳戶的存取金鑰。如需詳細資訊，請參閱[重新產生儲存體帳戶金鑰](storage-create-storage-account.md#manage-your-storage-access-keys)。請提供新的儲存體帳戶金鑰。而每個 Azure 儲存體帳戶，都有主要存取金鑰。 
-  4. 按一下核取圖示 ![核取圖示](./media/storsimple-ova-manage-storage-accounts/checkicon.png) 以儲存設定。[設定] 頁面上的設定隨即更新。 
-  5. 按一下頁面底部的 [儲存]，來儲存剛才更新的設定。 
+  1. In the drop-down list of **Storage Accounts**, choose an existing account that you would like to modify. 
+  2. If necessary, you can modify the **Enable SSL Mode** selection.
+  3. You can choose to regenerate your storage account access keys. For more information, see [Regenerate the storage account keys](storage-create-storage-account.md#manage-your-storage-access-keys). Supply the new storage account key. For an Azure storage account, this is the primary access key. 
+  4. Click the check icon ![check icon](./media/storsimple-ova-manage-storage-accounts/checkicon.png) to save the settings. The settings will be updated on the **Configure** page. 
+  5. At the bottom of the page, click **Save** to save the newly updated settings. 
 
-     ![編輯儲存體帳戶](./media/storsimple-ova-manage-storage-accounts/modifyexistingstorageaccount.png)
+     ![Edit a storage account](./media/storsimple-ova-manage-storage-accounts/modifyexistingstorageaccount.png)
   
-## 刪除儲存體帳戶
+## <a name="delete-a-storage-account"></a>Delete a storage account
 
-> [AZURE.IMPORTANT] 您只能刪除非使用中的儲存體帳戶。如果您要刪除的儲存體帳戶正在使用中，系統會通知您。
+> [AZURE.IMPORTANT] You can delete a storage account only if it is not in use. If a storage account is in use, you will be notified.
 
-#### 若要刪除儲存體帳戶
+#### <a name="to-delete-a-storage-account"></a>To delete a storage account
 
-1. 在 StorSimple Manager 服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [設定]。
+1. On the StorSimple Manager service landing page, select your service, double-click the service name, and then click **Configure**.
 
-2. 在儲存體帳戶的表格式清單中，將滑鼠停留在您想要刪除的帳戶上方。
+2. In the tabular list of storage accounts, hover over the account that you wish to delete.
 
-3. 刪除圖示 (**x**) 會出現在該儲存體帳戶資料行的最右邊。按一下 [x] 圖示，以刪除認證。
+3. A delete icon (**x**) will appear in the extreme right column for that storage account. Click the **x** icon to delete the credentials.
 
-4. 當系統提示您確認時，按一下 [是] 繼續進行刪除。表格式清單會更新以反映所做的變更。
+4. When prompted for confirmation, click **Yes** to continue with the deletion. The tabular listing will be updated to reflect the changes.
 
-5. 按一下頁面底部的 [儲存]，來儲存剛才更新的設定。
+5. At the bottom of the page, click **Save** to save the newly updated settings.
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 了解如何[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
+- Learn how to [administer your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
 
-<!---HONumber=AcomDC_0504_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

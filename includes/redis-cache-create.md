@@ -1,30 +1,34 @@
-若要建立快取，請先登入 [Azure 入口網站](https://portal.azure.com)，然後依序按一下 [新增]、[資料 + 儲存體] 和 [Redis 快取]。
+To create a cache, first sign in to the [Azure portal](https://portal.azure.com), and click **New**, **Data + Storage**, **Redis Cache**.
 
->[AZURE.NOTE] 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。
+>[AZURE.NOTE] If you don't have an Azure account, you can [Open an Azure account for free](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero) in just a couple of minutes.
 
 ![New cache](media/redis-cache-create/redis-cache-new-cache-menu.png)
 
->[AZURE.NOTE] 除了在 Azure 入口網站中建立快取，您也可以使用 Resource Manager 範本、PowerShell 或 Azure CLI 來建立。
+>[AZURE.NOTE] In addition to creating caches in the Azure portal, you can also create them using Resource Manager templates, PowerShell, or Azure CLI.
 >
->-	若要使用 Resource Manager 範本建立快取，請參閱[使用範本建立 Redis 快取](../articles/redis-cache/cache-redis-cache-arm-provision.md)。
->-	若要使用 Azure PowerShell 建立快取，請參閱[使用 Azure PowerShell 管理 Azure Redis 快取](../articles/redis-cache/cache-howto-manage-redis-cache-powershell.md)。
->-	若要使用 Azure CLI 建立快取，請參閱[如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取](../articles/redis-cache/cache-manage-cli.md)。
+>-  To create a cache using Resource Manager templates, see [Create a Redis cache using a template](../articles/redis-cache/cache-redis-cache-arm-provision.md).
+>-  To create a cache using Azure PowerShell, see [Manage Azure Redis Cache with Azure PowerShell](../articles/redis-cache/cache-howto-manage-redis-cache-powershell.md).
+>-  To create a cache using Azure CLI, see [How to create and manage Azure Redis Cache using the Azure Command-Line Interface (Azure CLI)](../articles/redis-cache/cache-manage-cli.md).
 
-在 [新增 Redis 快取] 分頁中，指定所需的快取組態。
+In the **New Redis Cache** blade, specify the desired configuration for the cache.
 
-![Create cache](media/redis-cache-create/redis-cache-cache-create.png)
+![Create cache](media/redis-cache-create/redis-cache-cache-create.png) 
 
--	在 [DNS 名稱] 中，輸入要用於快取端點的快取名稱。快取名稱必須是介於 1 到 63 個字元的字串，而且只能包含數字、字母和 `-` 字元。快取名稱的開頭或結尾不能是 `-` 字元，且連續的 `-` 字元無效。
--	針對 [訂用帳戶]，選取您要用於快取的 Azure 訂用帳戶。如果您的帳戶僅有一個訂用帳戶，則會自動加以選取，而且不會顯示 [訂用帳戶] 下拉式清單。
--	在 [資源群組] 中，選取或建立快取的資源群組。如需詳細資訊，請參閱[使用資源群組管理您的 Azure 資源](../articles/resource-group-overview.md)。
--	使用 [位置] 來指定管理快取所在的地理位置。為獲得最佳效能，Microsoft 強烈建議您在與快取用戶端應用程式相同的區域中建立快取。
--	使用 [價格層] 來選取需要的快取大小和功能。
--	**Redis 叢集**可讓您建立大於 53 GB 的快取，以及將資料分散於多個 Redis 節點。如需詳細資訊，請參閱[如何設定進階 Azure Redis 快取的叢集](../articles/redis-cache/cache-how-to-premium-clustering.md)。
--	**Redis 持續性**可讓您將您的快取保存至 Azure 儲存體帳戶。如需設定永續性的相關指示，請參閱[如何設定進階 Azure Redis Cache 的永續性](../articles/redis-cache/cache-how-to-premium-persistence.md)。
--	**虛擬網路**藉由將您的快取存取權限制於指定的 Azure 虛擬網路內的用戶端，以提供增強的安全性和隔離。您可以使用 VNet 的所有功能，例如子網路、存取控制原則和其他功能，進一步限制對 Redis 的存取權。如需詳細資訊，請參閱[如何設定進階 Azure Redis 快取的虛擬網路支援](../articles/redis-cache/cache-how-to-premium-vnet.md)。
+-   In **Dns name**, enter a cache name to use for the cache endpoint. The cache name must be a string between 1 and 63 characters and contain only numbers, letters, and the `-` character. The cache name cannot start or end with the `-` character, and consecutive `-` characters are not valid.
+-   For **Subscription**, select the Azure subscription that you want to use for the cache. If your account has only one subscription, it will be automatically selected and the **Subscription** drop-down will not be displayed.
+-   In **Resource group**, select or create a resource group for your cache. For more information, see [Using Resource groups to manage your Azure resources](../articles/resource-group-overview.md). 
+-   Use **Location** to specify the geographic location in which your cache is hosted. For the best performance, Microsoft strongly recommends that you create the cache in the same region as the cache client application.
+-   Use **Pricing Tier** to select the desired cache size and features.
+-   **Redis cluster** allows you to create caches larger than 53 GB and to shard data across multiple Redis nodes. For more information, see [How to configure clustering for a Premium Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-clustering.md).
+-   **Redis persistence** offers the ability to persist your cache to an Azure Storage account. For instructions on configuring persistence, see [How to configure persistence for a Premium Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-persistence.md).
+-   **Virtual Network** provides enhanced security and isolation by restricting access to your cache to only those clients within the specified Azure Virtual Network. You can use all the features of VNet such as subnets, access control policies, and other features to further restrict access to Redis. For more information, see [How to configure Virtual Network support for a Premium Azure Redis Cache](../articles/redis-cache/cache-how-to-premium-vnet.md).
 
-一旦設定了新的快取選項，請按一下 [建立新快取]。建立快取可能需要數分鐘的時間。若要檢查狀態，您可以監視開始面板上的進度。在建立了快取之後，新快取的狀態會是**「執行中」**，而且準備好與[預設設定](../articles/redis-cache/cache-configure.md#default-redis-server-configuration)搭配使用。
+Once the new cache options are configured, click **Create**. It can take a few minutes for the cache to be created. To check the status, you can monitor the progress on the startboard. After the cache has been created, your new cache has a **Running** status and is ready for use with [default settings](../articles/redis-cache/cache-configure.md#default-redis-server-configuration).
 
 ![Cache created](media/redis-cache-create/redis-cache-cache-created.png)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

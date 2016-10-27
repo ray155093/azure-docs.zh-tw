@@ -1,6 +1,6 @@
 <properties
-   pageTitle="深入了解 Microsoft Azure 資源耗用量 | Microsoft Azure"
-   description="提供 Azure 計費使用情況和 RateCard API 的概念性概觀，可用來提供 Azure 資源耗用量和趨勢的見解。"
+   pageTitle="Gain insights into your Microsoft Azure resource consumption | Microsoft Azure"
+   description="Provides a conceptual overview of the Azure Billing Usage and RateCard APIs, which are used to provide insights into Azure resource consumption and trends."
    services=""
    documentationCenter=""
    authors="BryanLa"
@@ -17,66 +17,71 @@
    ms.date="08/16/2016"
    ms.author="mobandyo;bryanla"/>
 
-# 深入瞭解 Microsoft Azure 資源耗用量
 
-客戶和合作夥伴必須能夠準確地預測並管理其 Azure 成本。當它們從 Capex 移至 Opex 模型時，它們也必須能夠進行回報 vs. 計費分析，並提供估計和計費的模式可靠性，特別是大型的雲端部署。
+# <a name="gain-insights-into-your-microsoft-azure-resource-consumption"></a>Gain insights into your Microsoft Azure resource consumption
 
-本文中討論的 Azure 資源使用情況和費率 Card API 可將新的見解應用於 Azure 資源的耗用量，藉以解決這些需求。
+Customers and partners require the ability to accurately predict and manage their Azure costs.  As they move from a Capex to an Opex model, they also need the ability to do showback vs. chargeback analysis, as well as provide mode fidelity in estimation and billing, especially for large cloud deployments.
 
-## Azure 資源使用情況與 RateCard API 簡介
+The Azure Resource Usage and Rate Card APIs discussed in this article address these needs, by enabling new insights into your consumption of Azure resources.  
 
-Azure 資源使用情況和 RateCard API 會實作為資源提供者，並由 Azure 資源管理員公開為 API 系列的一部分。
+## <a name="introducing-the-azure-resource-usage-and-ratecard-apis"></a>Introducing the Azure Resource Usage and RateCard APIs
 
-### Azure 資源使用情況 API (預覽)
-客戶和合作夥伴可以使用 Azure 資源使用情況 API 來取得其預估的 Azure 消耗量資料。這些功能包括：
+The Azure Resource Usage and RateCard APIs are implemented as a Resource Provider, as part of the family of APIs exposed by the Azure Resource Manager.  
 
-- **Azure 角色型存取控制** - 客戶和合作夥伴可以在 [Azure 入口網站](https://portal.azure.com)上或透過 [Azure PowerShell cmdlet](powershell-install-configure.md) 設定其存取原則，以指定哪些使用者或應用程式可以存取訂用帳戶的使用情況資料。呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。呼叫端也必須加入至讀取者、擁有者或參與者等角色，才可存取特定 Azure 訂用帳戶的使用情況資料。
+### <a name="azure-resource-usage-api-(preview)"></a>Azure Resource Usage API (Preview)
+Customers and partners can use the Azure Resource Usage API to get their estimated Azure consumption data. The features include:
 
-- **每小時或每日彙總** - 呼叫端可以指定要 Azure 使用情況資料的每小時值區或每日值區。預設值為每日值區。
+- **Azure Role-based Access Control** - Customers and partners can configure their access policies on the [Azure portal](https://portal.azure.com) or through [Azure PowerShell cmdlets](powershell-install-configure.md) to specify which users or applications can get access to the subscription’s usage data. Callers must use standard Azure Active Directory tokens for authentication. The caller must also be added to either the Reader, Owner or Contributor role to get access to the usage data for a particular Azure subscription.
 
-- **提供的執行個體中繼資料 (包括資源標記)** – 執行個體層級詳細資料，例如完整的資源 uri (/subscriptions/{subscription-id}/..)，以及資源群組資訊與資源標記都會在回應中提供。這樣可以協助客戶以決定性及程式設計方式，根據標記為跨領域收費之類的使用案例配置使用量。
+- **Hourly or Daily Aggregations** - Callers can specify whether they want their Azure usage data in hourly buckets or daily buckets. The default is daily.
 
-- **提供的資源中繼資料** - 資源詳細資料 (例如計量名稱、計量類別、計量子類別、單位和區域) 也會在回應中傳遞，讓呼叫端深入了解耗用的內容。我們也致力於跨 Azure 入口網站、Azure 使用情況 CSV、EA 計費 CSV 和其他向外公開的體驗統一資源中繼資料術語，使客戶能夠讓跨體驗的資料相互關聯。
+- **Instance metadata provided (includes resource tags)** – Instance-level details such as the fully qualified resource uri (/subscriptions/{subscription-id}/..), along with the resource group information and resource tags will be provided in the response. This will help customers deterministically and programmatically allocate usage by the tags, for use-cases like cross-charging.
 
-- **所有優惠類型的使用情況** – 所有優惠類型 (包含隨收隨付、MSDN、貨幣承諾、貨幣信用額度和 EA 等等) 的使用情況資料。
+- **Resource metadata provided** - Resource details such as the meter name, meter category, meter sub category, unit and region will also be passed in the response, to give the callers a better understanding of what was consumed. We are also working to align  resource metadata terminology across the Azure portal, Azure usage CSV, EA billing CSV and other public-facing experiences, to enable customers to correlate data across experiences.
 
-### Azure 資源 RateCard API (預覽)
-客戶和合作夥伴可以使用 Azure 資源 RateCard API 來取得可用 Azure 資源的清單，連同每個資源的估計定價資訊。這些功能包括：
+- **Usage for all offer types** – Usage data will be accessible for all offer types including Pay-as-you-go, MSDN, Monetary commitment, Monetary credit, and EA among others.
 
-- **Azure 角色型存取控制** - 客戶和合作夥伴可以在 [Azure 入口網站](https://portal.azure.com)上或透過 [Azure PowerShell cmdlet](powershell-install-configure.md) 設定其存取原則，以指定哪些使用者或應用程式可以存取 RateCard 資料。呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。呼叫端也必須加入至讀取者、擁有者或參與者等角色，才可存取特定 Azure 訂用帳戶的使用情況資料。
+### <a name="azure-resource-ratecard-api-(preview)"></a>Azure Resource RateCard API (Preview)
+Customers and partners can use the Azure Resource RateCard API to get the list of available Azure resources, along with estimated pricing information for each. The features include:
 
-- **支援隨收隨付、MSDN、貨幣承諾、貨幣信用額度優惠 (不支援 EA)** - 此 API 提供 Azure 優惠層級費率資訊與訂用帳戶層級資訊。此 API 的呼叫端必須輸入優惠資訊以取得資源詳細資料和費率。由於 EA 優惠已自訂每個註冊的費率，所以我們無法在此時提供 EA 費率。
+- **Azure Role-based Access Control** - Customers and partners can configure their access policies on the [Azure portal](https://portal.azure.com) or through [Azure PowerShell cmdlets](powershell-install-configure.md) to specify which users or applications can get access to the RateCard data. Callers must use standard Azure Active Directory tokens for authentication. The caller must also be added to either the Reader, Owner or Contributor role to get access to the usage data for a particular Azure subscription.
 
-## 案例
+- **Support for Pay-as-you-go, MSDN, Monetary commitment, and Monetary credit offers (EA not supported)** - This API provides Azure offer-level rate information, vs. subscription-level.  The caller of this API must pass in the offer information to get resource details and rates.  As EA offers have customized rates per enrollment, we are unable to provide the EA rates at this time.
 
-以下是一些案例，可產生使用情況和 RateCard API 的組合：
+## <a name="scenarios"></a>Scenarios
 
-- **Azure 月份花費** - 客戶可以使用使用情況和 RateCard API 組合，藉由分析每小時和每天的使用情形及收費評估值區，取得當月份雲端花費的更佳見解。
+Here are some of the scenarios that are made possible with the combination of the Usage and the RateCard APIs:
 
-- **設定警示** – 客戶和合作夥伴可以藉由使用使用情況和 RateCard API 取得預估的耗用量和收費評估，針對雲端耗用量設定以資源為基礎或以貨幣為基礎的警示。
+- **Azure spend during the month** - Customers can use the Usage and RateCard APIs in combination to get better insights into their cloud spend during the month, by analyzing the hourly and daily buckets of usage and charge estimates.
 
-- **預測計費** – 客戶和合作夥伴可以取得預估的耗用量及雲端花費，並應用機器學習演算法來預測他們在計費週期結束時的計費情形。
+- **Set up alerts** – Customers and partners can set up resource-based or monetary-based alerts on their cloud consumption by getting the estimated consumption and charge estimate using the Usage and the RateCard API.
 
-- **耗用前成本分析** – 如果客戶要藉由提供所需的使用量，將其工作負載移至 Azure，他們也可以使用 RateCard API 預測計費。如果客戶有其他雲端或私用雲端中的現有工作負載，他們也可以對應其使用情況和 Azure 費率，取得已評估 Azure 花費的較佳評估。這樣可增強檢視透過 [Azure 定價計算機](https://azure.microsoft.com/pricing/calculator/)取得的內容，因為計費合作夥伴 (舉例而言) 會提供優惠的樞紐分析功能，並比較/對比超越隨收隨付的不同優惠類型，包含貨幣承諾和貨幣信用額度。API 也會根據區域提供成本評估變更的功能，使假設分析的類型成為部署決策的必要條件，因為在全世界的不同 DC 中部署資源可以對總成本產生直接的影響。
+- **Predict bill** – Customers and partners can get their estimated consumption and cloud spend and apply machine learning algorithms to predict what their bill would be at the end of the billing cycle.
 
-- **假設分析** -
+- **Pre-consumption cost analysis** – Customers can also use the RateCard API to predict how much their bill would be if they were to move their workloads to Azure, by providing desired usage numbers. If customers have existing workloads in other clouds or private clouds, they can also map their usage with the Azure rates to get a better estimate of their estimated Azure spend. This provides an enhanced view of what can be obtained via the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/), as (for example) our Billing partners provide the ability to pivot on offer and compare/contrast between different offer types beyond Pay-As-You-Go, including Monetary commitment and Monetary credit. The APIs also provide the ability to do cost estimation changes by region, enabling the type of what-if analysis required to make deployment decisions, as deploying resources in different DCs around the world can have a direct impact on total cost.
 
-	- 客戶和合作夥伴可以判斷，在另一個區域執行其工作負載，或在 Azure 資源的另一個組態上執行，是否會比較符合成本效益。Azure 資源成本可能會因為其執行所在的 Azure 區域而有所不同，而這可讓客戶和合作夥伴取得成本最佳化。
+- **What-if analysis** -
 
-	- 客戶與合作夥伴也可以判斷另一個 Azure 優惠類型是否會在 Azure 資源上提供更好的費率。
+    - Customers and partners can determine whether it would be more cost-effective to run their workloads in another region, or on another configuration of the Azure resource. Azure resource costs may differ based on the Azure region in which they are running, and this allows customers and partners to get cost optimizations.
 
-## 合作夥伴解決方案
+    - Customers and partners can also determine if another Azure offer type gives a better rate on an Azure resource.
 
-[Microsoft Azure 使用情況和 RateCard API 可讓 Cloudyn 為客戶提供 ITFM](billing-usage-rate-card-partner-solution-cloudyn.md) 描述 Azure 計費 API 合作夥伴 [Cloudyn](https://www.cloudyn.com/microsoft-azure/) 所提供的整合經驗。本文章提供的詳細範圍包含他們的體驗，包括顯示 Azure 客戶如何使用 Cloudyn，Azure 計費 API 如何從 Azure 耗用量資料取得見解的短片。
+## <a name="partner-solutions"></a>Partner solutions
 
-[Cloud Cruiser 和 Microsoft Azure 計費 API 整合](billing-usage-rate-card-partner-solution-cloudcruiser.md)描述 [Azure Pack 適用的 Cloud Cruiser Express](http://www.cloudcruiser.com/partners/microsoft/) 如何直接從 WAP 入口網站運作，讓客戶能夠順暢地從單一使用者介面管理其 Microsoft Azure 私人或裝載公用雲端的作業和財務等方面。
+[Microsoft Azure Usage and RateCard APIs Enable Cloudyn to Provide ITFM for Customers](billing-usage-rate-card-partner-solution-cloudyn.md) describes the integration experience offered by Azure Billing API partner [Cloudyn](https://www.cloudyn.com/microsoft-azure/).  This article provides detailed coverage of their experiences, including a short video which shows how an Azure customer can use Cloudyn and the Azure Billing APIs to gains insights from their Azure consumption data.
 
-## 後續步驟
-+ 查看 [Azure 計費 REST API 參考](https://msdn.microsoft.com/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c)以取得兩個 API 的詳細資料，兩者皆屬於 Azure 資源管理員所提供的 API 集合。
-+ 如果您想要探究範例程式碼，請查看 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?term=billing)上的＜Microsoft Azure 計費 API 程式碼範例＞。
+[Cloud Cruiser and Microsoft Azure Billing API Integration](billing-usage-rate-card-partner-solution-cloudcruiser.md) describes how [Cloud Cruiser's Express for Azure Pack](http://www.cloudcruiser.com/partners/microsoft/) works directly from the  WAP portal, enabling customers to seamlessly manage both the operational and financial aspects of their Microsoft Azure private or hosted public cloud from a single user interface.   
 
-## 詳細資訊
-+ 請參閱 [Azure 資源管理員概觀](resource-group-overview.md)一文，以深入了解 Azure 資源管理員。
-+ 如需協助了解雲端花費之必要工具套件的其他資訊，請參閱 Gartner 文章 [IT 財務管理 (ITFM) 工具的市場指南](http://www.gartner.com/technology/reprints.do?id=1-212F7AL&ct=140909&st=sb)。
+## <a name="next-steps"></a>Next Steps
++ Check out the [Azure Billing REST API Reference](https://msdn.microsoft.com/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c) for more details on both APIs, which are part of the set of APIs provided by the Azure Resource Manager.
++ If you would like to dive right into the sample code, check out our Microsoft Azure Billing API Code Samples on [Azure Code Samples](https://azure.microsoft.com/documentation/samples/?term=billing).
 
-<!---HONumber=AcomDC_0817_2016-->
+## <a name="learn-more"></a>Learn more
++ See the [Azure Resource Manager Overview](resource-group-overview.md) article to learn more about the Azure Resource Manager.
++ For additional information on the suite of tools necessary to help in gaining an understanding of cloud spend, please refer to  Gartner article [Market Guide for IT Financial Management (ITFM) Tools](http://www.gartner.com/technology/reprints.do?id=1-212F7AL&ct=140909&st=sb).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

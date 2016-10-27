@@ -1,218 +1,227 @@
 <properties
-	pageTitle="適用於 Azure Web 應用程式的 Azure Resource Manager 架構 PowerShell 命令 | Microsoft Azure"
-	description="深入了解如何使用新的 Azure Resource Manager 架構 PowerShell 命令來管理 Azure Web Apps"
-	services="app-service\web"
-	documentationCenter=""
-	authors="ahmedelnably"
-	manager="stefsch"
-	editor=""/>
+    pageTitle="Azure Resource Manager-based PowerShell commands for Azure Web App | Microsoft Azure"
+    description="Learn how to use the new Azure Resource Manager-based PowerShell commands to manage your Azure Web Apps."
+    services="app-service\web"
+    documentationCenter=""
+    authors="ahmedelnably"
+    manager="stefsch"
+    editor=""/>
 
 <tags
-	ms.service="app-service-web"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/14/2016"
-	ms.author="aelnably"/>
+    ms.service="app-service-web"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/29/2016"
+    ms.author="aelnably"/>
 
-# 使用 Azure Resource Manager 架構 PowerShell 來管理 Azure Web Apps#
 
-Microsoft Azure PowerShell 1.0.0 版已加入新的命令，讓使用者能夠使用 Azure Resource Manager 架構 PowerShell 命令來管理 Web Apps。
+# <a name="using-azure-resource-manager-based-powershell-to-manage-azure-web-apps#"></a>Using Azure Resource Manager-Based PowerShell to Manage Azure Web Apps#
 
-若要深入了解如何管理資源群組，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。
+> [AZURE.SELECTOR]
+- [Azure CLI](app-service-web-app-azure-resource-manager-xplat-cli.md)
+- [Azure PowerShell](app-service-web-app-azure-resource-manager-powershell.md)
 
-若要深入了解適用於 Web App Azure Resource Manager PowerShell Cmdlet 的完整參數和選項清單，請參閱 [Web App Azure Resource Manager 架構 PowerShell Cmdlet 的完整 Cmdlet 參考](https://msdn.microsoft.com/library/mt619237.aspx)。
+With Microsoft Azure PowerShell version 1.0.0 new commands have been added, that give the user the ability to use Azure Resource Manager-based PowerShell commands to manage Web Apps.
 
-## 管理 App Service 方案 ##
+To learn about managing Resource Groups, see [Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md). 
 
-### 建立 App Service 方案 ###
-若要建立新的 App Service 方案，請使用 **New-AzureRmAppServicePlan** Cmdlet。
+To learn about the full list of parameters and options for the PowerShell cmdlets, see the [full Cmdlet Reference of Web App Azure Resource Manager-based PowerShell Cmdlets](https://msdn.microsoft.com/library/mt619237.aspx)
 
-以下是不同參數的說明︰
+## <a name="managing-app-service-plans"></a>Managing App Service Plans ##
 
-- 	**Name**：App Service 方案的名稱。
-- 	**Location**：服務方案名稱。
-- 	**ResourceGroupName**：包含新建立的 App Service 方案的資源群組。
-- 	**Tier**︰想要的定價層 (預設值是 [免費]，其他選項包括 [共用]、[基本]、[標準] 和 [高階])。
-- 	**WorkerSize**︰背景工作大小 (如果 Tier 參數指定為 [基本]、[標準] 或[進階]，則預設值為 [小型]。其他選項為 [中型] 和 [大型])。
-- 	**NumberofWorkers**︰App Service 方案中的背景工作數目 (預設值為 1)。 
+### <a name="create-an-app-service-plan"></a>Create an App Service Plan ###
+To create an app service plan, use the **New-AzureRmAppServicePlan** cmdlet.
 
-使用此 Cmdlet 的範例︰
+Following are descriptions of the different parameters:
+
+-   **Name**: name of the app service plan.
+-   **Location**: service plan location.
+-   **ResourceGroupName**: resource group that includes the newly created app service plan.
+-   **Tier**:  the desired pricing tier (Default is Free, other options are Shared, Basic, Standard, and Premium.)
+-   **WorkerSize**: the size of workers (Default is small if the Tier parameter was specified as Basic, Standard, or Premium. Other options are Medium, and Large.)
+-   **NumberofWorkers**: the number of workers in the app service plan (Default value is 1). 
+
+Example to use this cmdlet:
 
     New-AzureRmAppServicePlan -Name ContosoAppServicePlan -Location "South Central US" -ResourceGroupName ContosoAzureResourceGroup -Tier Premium -WorkerSize Large -NumberofWorkers 10
 
-### 在 App Service 環境中建立 App Service 方案 ###
-若要在 App Service 環境中建立新的 App Service 方案，可以使用相同的 **New-AzureRmAppServicePlan** 命令搭配額外的參數，來指定 ASE 名稱和 ASE 所屬的資源群組名稱。
+### <a name="create-an-app-service-plan-in-an-app-service-environment"></a>Create an App Service Plan in an App Service Environment ###
+To create an app service plan in an app service environment, use the same command **New-AzureRmAppServicePlan** command with extra parameters to specify the ASE's name and ASE's resource group name.
 
-使用此 Cmdlet 的範例︰
+Example to use this cmdlet:
 
     New-AzureRmAppServicePlan -Name ContosoAppServicePlan -Location "South Central US" -ResourceGroupName ContosoAzureResourceGroup -AseName constosoASE -AseResourceGroupName contosoASERG -Tier Premium -WorkerSize Large -NumberofWorkers 10
 
-若要深入了解 App Service 環境，請查看 [App Service 環境簡介](app-service-app-service-environment-intro.md)。
+To learn more about app service environment, check [Introduction to App Service Environment](app-service-app-service-environment-intro.md)
 
-### 列出現有的 App Service 方案 ###
+### <a name="list-existing-app-service-plans"></a>List Existing App Service Plans ###
 
-若要列出現有的 App Service 方案，請使用 **Get-AzureRmAppServicePlan** Cmdlet。
+To list the existing app service plans, use **Get-AzureRmAppServicePlan** cmdlet.
 
-若要列出您訂用帳戶下方的所有 App Service 方案，請使用：
+To list all app service plans under your subscription, use: 
 
     Get-AzureRmAppServicePlan
 
-若要列出特定資源群組之下的所有 App Service 方案，請使用︰
+To list all app service plans under a specific resource group, use:
 
     Get-AzureRmAppServicePlan -ResourceGroupname ContosoAzureResourceGroup
 
-若要取得特定的 App Service 方案，請使用︰
+To get a specific app service plan, use:
 
     Get-AzureRmAppServicePlan -Name ContosoAppServicePlan
 
 
-### 設定現有的 App Service 方案 ###
+### <a name="configure-an-existing-app-service-plan"></a>Configure an existing App Service Plan ###
 
-若要變更現有 App Service 方案的設定，請使用 **Set-AzureRmAppServicePlan** Cmdlet。您可以變更層級、背景工作大小和背景工作數目
+To change the settings for an existing app service plan, use the **Set-AzureRmAppServicePlan** cmdlet. You can change the tier, worker size, and the number of workers 
 
     Set-AzureRmAppServicePlan -Name ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup -Tier Standard -WorkerSize Medium -NumberofWorkers 9
 
-#### 調整 App Service 方案 ####
+#### <a name="scaling-an-app-service-plan"></a>Scaling an App Service Plan ####
 
-若要調整現有的 App Service 方案，請使用：
+To scale an existing App Service Plan, use:
 
     Set-AzureRmAppServicePlan -Name ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup -NumberofWorkers 9
 
-#### 變更 App Service 方案的背景工作大小 ####
+#### <a name="changing-the-worker-size-of-an-app-service-plan"></a>Changing the worker size of an App Service Plan ####
 
-若要變更現有 App Service 方案中的背景工作大小，請使用︰
+To change the size of workers in an existing App Service Plan, use:
 
     Set-AzureRmAppServicePlan -Name ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup -WorkerSize Medium
 
-#### 變更 App Service 方案的層級 ####
+#### <a name="changing-the-tier-of-an-app-service-plan"></a>Changing the Tier of an App Service Plan ####
 
-若要變更現有 App Service 方案的層級，請使用︰
+To change the tier of an existing App Service Plan, use:
 
     Set-AzureRmAppServicePlan -Name ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup -Tier Standard
 
-### 刪除現有的 App Service 方案 ###
+### <a name="delete-an-existing-app-service-plan"></a>Delete an existing App Service Plan ###
 
-若要刪除現有的 App Service 方案，必須先移動或刪除所有指派的 Web 應用程式，然後使用 **Remove-AzureRmAppServicePlan** Cmdlet，即可刪除 App Service 方案。
+To delete an existing app service plan, all assigned web apps need to be moved or deleted first. Then using the **Remove-AzureRmAppServicePlan** cmdlet you can delete the app service plan.
 
     Remove-AzureRmAppServicePlan -Name ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup
 
-## 管理 App Service Web Apps ##
+## <a name="managing-app-service-web-apps"></a>Managing App Service Web Apps ##
 
-### 建立新的 Web 應用程式 ###
+### <a name="create-a-web-app"></a>Create a Web App ###
 
-若要建立新的 Web 應用程式，請使用 **New-AzureRmWebApp** Cmdlet。
+To create a web app, use the **New-AzureRmWebApp** cmdlet.
 
-以下是不同參數的說明︰
+Following are descriptions of the different parameters:
 
-- **Name**：Web 應用程式的名稱。
-- **AppServicePlan**︰用來裝載 Web 應用程式的服務方案名稱。
-- **ResourceGroupName**：裝載 App Service 方案的資源群組。
-- **Location**：Web 應用程式位置。
+- **Name**: name for the web app.
+- **AppServicePlan**: name for the service plan used to host the web app.
+- **ResourceGroupName**: resource group that hosts the App service plan.
+- **Location**: the web app location.
 
-使用此 Cmdlet 的範例︰
+Example to use this cmdlet:
 
     New-AzureRmWebApp -Name ContosoWebApp -AppServicePlan ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup -Location "South Central US"
 
-### 在 App Service 環境中建立新的 Web 應用程式 ###
+### <a name="create-a-web-app-in-an-app-service-environment"></a>Create a Web App in an App Service Environment ###
 
-若要在 App Service 環境 (ASE) 中建立新的 Web 應用程式，可以使用相同的 **New-AzureRmWebApp** 命令搭配額外的參數，來指定 ASE 名稱和 ASE 所屬的資源群組名稱。
+To create a web app in an App Service Environment (ASE). Use the same **New-AzureRmWebApp** command with extra parameters to specify the ASE name and the resource group name that the ASE belongs to.
 
     New-AzureRmWebApp -Name ContosoWebApp -AppServicePlan ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup -Location "South Central US"  -ASEName ContosoASEName -ASEResourceGroupName ContosoASEResourceGroupName
 
-若要深入了解 App Service 環境，請查看 [App Service 環境簡介](app-service-app-service-environment-intro.md)。
+To learn more about app service environment, check [Introduction to App Service Environment](app-service-app-service-environment-intro.md)
 
-### 刪除現有的 Web 應用程式 ###
+### <a name="delete-an-existing-web-app"></a>Delete an existing Web App ###
 
-若要刪除現有的 Web 應用程式，您可以使用 **Remove-AzureRmWebApp** Cmdlet，還必須指定 Web 應用程式名稱和資源群組名稱。
+To delete an existing web app you can use the **Remove-AzureRmWebApp** cmdlet, you need to specify the name of the web app and the resource group name.
 
     Remove-AzureRmWebApp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup
 
 
-### 列出現有的 Web Apps ###
+### <a name="list-existing-web-apps"></a>List existing Web Apps ###
 
-若要列出現有的 Web 應用程式，請使用 **Get-AzureRmWebApp** Cmdlet。
+To list the existing web apps, use the **Get-AzureRmWebApp** cmdlet.
 
-若要列出您的訂用帳戶之下的所有 Web 應用程式，請使用︰
+To list all web apps under your subscription, use:
 
     Get-AzureRmWebApp
 
-若要列出特定資源群組之下的所有 Web 應用程式，請使用︰
+To list all web apps under a specific resource group, use:
 
     Get-AzureRmWebApp -ResourceGroupname ContosoAzureResourceGroup
 
-若要取得特定的 Web 應用程式，請使用︰
+To get a specific web app, use:
 
     Get-AzureRmWebApp -Name ContosoWebApp
 
-### 設定現有的 Web 應用程式 ###
+### <a name="configure-an-existing-web-app"></a>Configure an existing Web App ###
 
-若要變更現有 Web 應用程式的設定和組態，請使用 **Set-AzureRmWebApp** Cmdlet。如需完整的參數清單，請查看 [Cmdlet 參考連結](https://msdn.microsoft.com/library/mt652487.aspx)
+To change the settings and configurations for an existing web app, use the **Set-AzureRmWebApp** cmdlet. For a full list of parameters, check the [Cmdlet reference link](https://msdn.microsoft.com/library/mt652487.aspx)
 
-範例 (1)：使用此 Cmdlet 來變更連接字串
+Example (1): use this cmdlet to change connection strings
 
-	$connectionstrings = @{ ContosoConn1 = @{ Type = “MySql”; Value = “MySqlConn”}; ContosoConn2 = @{ Type = “SQLAzure”; Value = “SQLAzureConn”} }
-	Set-AzureRmWebApp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup -ConnectionStrings $connectionstrings
+    $connectionstrings = @{ ContosoConn1 = @{ Type = “MySql”; Value = “MySqlConn”}; ContosoConn2 = @{ Type = “SQLAzure”; Value = “SQLAzureConn”} }
+    Set-AzureRmWebApp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup -ConnectionStrings $connectionstrings
 
-範例 (2)：加入應用程式設定的範例
+Example (2): add or change app settings
 
-	$appsettings = @{appsetting1 = "appsetting1value"; appsetting2 = "appsetting2value"}
-	Set-AzureRmWebApp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup -AppSettings $appsettings
+    $appsettings = @{appsetting1 = "appsetting1value"; appsetting2 = "appsetting2value"}
+    Set-AzureRmWebApp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup -AppSettings $appsettings
 
 
-範例 (3)：設定 Web 應用程式以在 64 位元模式下執行
+Example (3):  set the web app to run in 64-bit mode
 
-	Set-AzureRmWebApp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup -Use32BitWorkerProcess $False
+    Set-AzureRmWebApp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup -Use32BitWorkerProcess $False
 
-### 變更現有 Web 應用程式的狀態 ###
+### <a name="change-the-state-of-an-existing-web-app"></a>Change the state of an existing Web App ###
 
-#### 重新啟動 Web 應用程式 ####
+#### <a name="restart-a-web-app"></a>Restart a web app ####
 
-若要重新啟動 Web 應用程式，您必須指定 Web 應用程式的名稱和資源群組。
+To restart a web app, you must specify the name and resource group of the web app.
 
     Restart-AzureRmWebapp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup
 
-#### 停止 Web 應用程式 ####
+#### <a name="stop-a-web-app"></a>Stop a web app ####
 
-若要停止 Web 應用程式，您必須指定 Web 應用程式的名稱和資源群組。
+To stop a web app, you must specify the name and resource group of the web app.
 
     Stop-AzureRmWebapp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup
 
-#### 啟動 Web 應用程式 ####
+#### <a name="start-a-web-app"></a>Start a web app ####
 
-若要啟動 Web 應用程式，您必須指定 Web 應用程式的名稱和資源群組。
+To start a web app, you must specify the name and resource group of the web app.
 
     Start-AzureRmWebapp -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup
 
-### 管理 Web 應用程式發行設定檔 ###
+### <a name="manage-web-app-publishing-profiles"></a>Manage Web App Publishing profiles ###
 
-每個 Web 應用程式都有發行設定檔可用來發佈您的應用程式，並可在發行設定檔上執行許多作業。
+Each web app has a publishing profile that can be used to publish your apps, several operations can be executed on publishing profiles.
 
-#### 取得發行設定檔 ####
+#### <a name="get-publishing-profile"></a>Get Publishing Profile ####
 
-若要取得 Web 應用程式的發行設定檔，請使用︰
+To get the publishing profile for a web app, use:
 
     Get-AzureRmWebAppPublishingProfile -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup -OutputFile .\publishingprofile.txt
 
-請注意，這會將發行設定檔回應至命令列，以及將發行設定檔輸出至文字檔案。
+This command echoes the publishing profile to the command line as well output the publishing profile to a text file.
 
-#### 重設發行設定檔 ####
+#### <a name="reset-publishing-profile"></a>Reset Publishing Profile ####
 
-若要同時對 Web 應用程式的 FTP 和 Web 部署重設發行密碼，使用︰
+To reset both the publishing password for FTP and web deploy for a web app, use:
 
     Reset-AzureRmWebAppPublishingProfile -Name ContosoWebApp -ResourceGroupName ContosoAzureResourceGroup
 
-### 管理 Web 應用程式憑證 ###
+### <a name="manage-web-app-certificates"></a>Manage Web App Certificates ###
 
-若要深入了解如何管理 Web 應用程式憑證，請參閱[使用 PowerShell 的 SSL 憑證繫結](app-service-web-app-powershell-ssl-binding.md)。
+To learn about how to manage web app certificates, see [SSL Certificates binding using PowerShell](app-service-web-app-powershell-ssl-binding.md)
+
+
+### <a name="next-steps"></a>Next Steps ###
+- To learn about Azure Resource Manager PowerShell support, see [Using Azure PowerShell with Azure Resource Manager.](../powershell-azure-resource-manager.md)
+- To learn about App Service Environments, see [Introduction to App Service Environment.](app-service-app-service-environment-intro.md)
+- To learn about managing App Service SSL certificates using PowerShell, see [SSL Certificates binding using PowerShell.](app-service-web-app-powershell-ssl-binding.md)
+- To learn about the full list of Azure Resource Manager-based PowerShell cmdlets for Azure Web Apps, see [Azure Cmdlet Reference of Web Apps Azure Resource Manager PowerShell Cmdlets.](https://msdn.microsoft.com/library/mt619237.aspx)
+- - To learn about managing App Service using CLI, see [Using Azure Resource Manager-Based XPlat CLI for Azure Web App.](app-service-web-app-azure-resource-manager-xplat-cli.md)
 
 
 
-### 後續步驟 ###
-- 若要深入了解 Azure Resource Manager PowerShell 支援，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。
-- 若要深入了解 App Service 環境，請參閱 [App Service 環境簡介](app-service-app-service-environment-intro.md)。
-- 若要深入了解如何使用 PowerShell 來管理 App Service SSL 憑證，請參閱[使用 PowerShell 的 SSL 憑證繫結](app-service-web-app-powershell-ssl-binding.md)。
-- 若要了解適用於 Azure Web Apps 的 Azure Resource Manager 架構 PowerShell Cmdlet，請參閱[Web Apps Azure Resource Manager PowerShell Cmdlet 的 Azure Cmdlet 參考](https://msdn.microsoft.com/library/mt619237.aspx)。
+<!--HONumber=Oct16_HO2-->
 
-<!---HONumber=AcomDC_0615_2016-->
+

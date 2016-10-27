@@ -1,14 +1,17 @@
-下表列出 PolicyBased 和 RouteBased VPN 閘道的需求。此資料表適用於資源管理員與傳統部署模型。就傳統模型而言，PolicyBased VPN 閘道與「靜態」閘道相同，而 RouteBased 閘道則與「動態」閘道相同。
+The following table lists the requirements for PolicyBased and RouteBased VPN gateways. This table applies to both the Resource Manager and classic deployment models. For the classic model, PolicyBased VPN gateways are the same as Static gateways, and Route-based gateways are the same as Dynamic gateways.
 
 
-| | **PolicyBased 基本 VPN 閘道** | **RouteBased 基本 VPN 閘道** | **RouteBased 標準 VPN 閘道** | **RouteBased 高效能 VPN 閘道** |
+|   | **PolicyBased Basic VPN Gateway** | **RouteBased Basic VPN Gateway** | **RouteBased Standard VPN Gateway**   | **RouteBased High Performance VPN Gateway** |
 |---|---------------------------------------|---------------------------------------|----------------------------|----------------------------------|
-| **站對站連線能力 (S2S)** | PolicyBased VPN 組態 | RouteBased VPN 組態 | RouteBased VPN 組態 | RouteBased VPN 組態 |
-| **點對站連線 (P2S)** | 不支援 | 支援 (可與 S2S 並存) | 支援 (可與 S2S 並存) | 支援 (可與 S2S 並存) |
-| **驗證方法** | 預先共用金鑰 | S2S 連線的預先共用金鑰，P2S 連線的憑證 | S2S 連線的預先共用金鑰，P2S 連線的憑證 | S2S 連線的預先共用金鑰，P2S 連線的憑證 |
-| **S2S 連接的數目上限** | 1 | 10 | 10 | 30 |
-| **P2S 連接的數目上限** | 不支援 | 128 | 128 | 128 |
-|**作用中路由支援 (BGP)** | 不支援 | 不支援 | 支援 | 支援 |
+|    **Site-to-Site connectivity   (S2S)**  | PolicyBased VPN configuration        | RouteBased VPN configuration  | RouteBased VPN configuration     | RouteBased VPN configuration    |
+| **Point-to-Site connectivity (P2S**)      | Not supported   | Supported (Can coexist with S2S)  | Supported (Can coexist with S2S)  | Supported (Can coexist with S2S) |
+| **Authentication method**                 |    Pre-shared key  | Pre-shared key for S2S connectivity, Certificates for P2S connectivity | Pre-shared key for S2S connectivity, Certificates for P2S connectivity | Pre-shared key for S2S connectivity, Certificates for P2S connectivity |
+| **Maximum number of S2S connections**       | 1                              | 10                                                                    | 10                                | 30                               |
+| **Maximum number of P2S connections**       | Not supported                  | 128                                                                   | 128                               | 128                              |
+|**Active routing support (BGP)**           | Not supported                  | Not supported                                                         | Supported                     | Supported                   |
  
 
-<!---HONumber=AcomDC_0921_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

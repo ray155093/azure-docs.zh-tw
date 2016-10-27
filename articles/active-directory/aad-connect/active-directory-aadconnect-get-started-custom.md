@@ -1,261 +1,272 @@
 <properties
-	pageTitle="Azure AD Connect：自訂安裝 | Microsoft Azure"
-	description="這份文件詳述了 Azure AD Connect 的自訂安裝選項。使用下列指示，透過 Azure AD Connect 安裝 Active Directory。"
-	services="active-directory"
-    keywords="何謂 Azure AD Connect、安裝 Active Directory、Azure AD 的必要元件"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor="curtand"/>
+    pageTitle="Azure AD Connect: Custom installation | Microsoft Azure"
+    description="This document details the custom installation options for Azure AD Connect. Use these instructions to install Active Directory through Azure AD Connect."
+    services="active-directory"
+    keywords="what is Azure AD Connect, install Active Directory, required components for Azure AD"
+    documentationCenter=""
+    authors="andkjell"
+    manager="femila"
+    editor="curtand"/>
 
 <tags
-	ms.service="active-directory"  
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="09/13/2016"
-	ms.author="billmath;andkjell"/>
+    ms.service="active-directory"  
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="09/13/2016"
+    ms.author="billmath"/>
 
-# 自訂 Azure AD Connect 安裝
-當您想要更多安裝選項時，可使用 Azure AD Connect **自訂設定**。如果您有多個樹系，或如果您想要設定未涵蓋在快速安裝中的選用功能，可使用它。只要是[**快速安裝**](active-directory-aadconnect-get-started-express.md)選項不能滿足部署或拓撲的情況，就可使用它。
 
-在開始安裝 Azure AD Connect 之前，請務必要[下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) 並完成 [Azure AD Connect：硬體和必要條件](../active-directory-aadconnect-prerequisites.md)中的必要條件步驟。另外，也請確定您具有 [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md)中所述的必要帳戶。
+# <a name="custom-installation-of-azure-ad-connect"></a>Custom installation of Azure AD Connect
+Azure AD Connect **Custom settings** is used when you want more options for the installation. It is used if you have multiple forests or if you want to configure optional features not covered in the express installation. It is used in all cases where the [**express installation**](active-directory-aadconnect-get-started-express.md) option does not satisfy your deployment or topology.
 
-如果自訂的設定不符合拓撲，例如若要升級 DirSync，請參閱[相關文件](#related-documentation)中的其他案例。
+Before you start installing Azure AD Connect, make sure to [download Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) and complete the pre-requisite steps in [Azure AD Connect: Hardware and prerequisites](../active-directory-aadconnect-prerequisites.md). Also make sure you have required accounts available as described in [Azure AD Connect accounts and permissions](active-directory-aadconnect-accounts-permissions.md).
 
-## Azure AD Connect 的自訂設定安裝
+If customized settings does not match your topology, for example to upgrade DirSync, see [related documentation](#related-documentation) for other scenarios.
 
-### 快速設定
-在此頁面上，按一下 [自訂] 以啟動自訂設定安裝。
+## <a name="custom-settings-installation-of-azure-ad-connect"></a>Custom settings installation of Azure AD Connect
 
-### 安裝必要的元件
-安裝同步處理服務時，您可以將選用組態區段保持未核取狀態，Azure AD Connect 會自動設定所有項目。它會設定 SQL Server 2012 Express LocalDB 執行個體、建立適當的群組，以及指派權限。如果您想要變更預設值，則可以使用下表了解可用的選用組態選項。
+### <a name="express-settings"></a>Express Settings
+On this page, click **Customize** to start a customized settings installation.
 
-![必要的元件](./media/active-directory-aadconnect-get-started-custom/requiredcomponents.png)
+### <a name="install-required-components"></a>Install required components
+When you install the synchronization services, you can leave the optional configuration section unchecked and Azure AD Connect sets up everything automatically. It sets up a SQL Server 2012 Express LocalDB instance, create the appropriate groups, and assign permissions. If you wish to change the defaults, you can use the following table to understand the optional configuration options that are available.
 
-選用組態 | 說明
+![Required Components](./media/active-directory-aadconnect-get-started-custom/requiredcomponents.png)
+
+Optional Configuration  | Description
 ------------- | -------------
-使用現有的 SQL Server | 可讓您指定 SQL Server 名稱和執行個體名稱。如果您已經有想要使用的 ad 資料庫伺服器，請選擇這個選項。如果您的 SQL Server 未啟用瀏覽，請在 [執行個體名稱] 中輸入執行個體名稱加上逗號及連接埠號碼。
-使用現有的服務帳戶 | Azure AD Connect 預設會建立本機服務帳戶，以供同步處理服務使用。密碼是自動產生的，但安裝 Azure AD Connect 的人員並不知道。如果您使用遠端 SQL Server 或使用需要驗證的 Proxy，您需要在網域中有一個服務帳戶並知道密碼。在這類情況下，請輸入要使用的服務帳戶。請確定執行安裝的使用者為 SQL 中的 SA，才可建立服務帳戶的登入。請參閱 [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md#custom-settings-installation)
-指定自訂同步群組 | Azure AD Connect 預設會在安裝同步處理服務時，建立四個伺服器的本機群組。這些群組如下：[系統管理員] 群組、[操作員] 群組、[瀏覽] 群組和 [密碼重設群組]。您可以在此指定自己的群組。群組必須位於伺服器本機上，不能位於網域中。
+Use an existing SQL Server | Allows you to specify the SQL Server name and the instance name. Choose this option if you already have a database server that you would like to use. Enter the instance name followed by a comma and port number in **Instance Name** if your SQL Server does not have browsing enabled.
+Use an existing service account | By default Azure AD Connect creates a local service account for the synchronization services to use. The password is generated automatically and unknown to the person installing Azure AD Connect. If you use a remote SQL server or use a proxy that requires authentication, you need a service account in the domain and know the password. In those cases, enter the service account to use. Make sure the user running the installation is an SA in SQL so a login for the service account can be created. See [Azure AD Connect accounts and permissions](active-directory-aadconnect-accounts-permissions.md#custom-settings-installation)
+Specify custom sync groups | By default Azure AD Connect creates four groups local to the server when the synchronization services are installed. These groups are: Administrators group, Operators group, Browse group, and the Password Reset Group. You can specify your own groups here. The groups must be local on the server and cannot be located in the domain.
 
-### 使用者登入
-在安裝必要元件後，系統會要求您選取使用者的單一登入方法。下表提供可用選項的簡短說明。如需登入方法的完整說明，請參閱[使用者登入](../active-directory-aadconnect-user-signin.md)。
+### <a name="user-sign-in"></a>User sign-in
+After installing the required components, you are asked to select your users single sign-on method. The following table provides a brief description of the available options. For a full description of the sign-in methods, see [User sign-in](../active-directory-aadconnect-user-signin.md).
 
-![使用者登入](./media/active-directory-aadconnect-get-started-custom/usersignin.png)
+![User Sign in](./media/active-directory-aadconnect-get-started-custom/usersignin.png)
 
-單一登入選項 | 說明
+Single Sign On option | Description
 ------------- | -------------
-密碼同步處理 | 使用者可使用他們在內部部署網路中使用的相同密碼登入 Microsoft Cloud 服務，例如 Office 365。使用者密碼會以密碼雜湊的形式同步至 Azure AD，並在雲端中進行驗證。詳細資訊請參閱[密碼同步處理](../active-directory-aadconnectsync-implement-password-synchronization.md)。
-與 AD FS 同盟 | 使用者可使用他們在內部部署網路中使用的相同密碼登入 Microsoft Cloud 服務，例如 Office 365。系統會將使用者重新導向至他們的內部部署 AD FS 執行個體以進行登入，並在內部部署中進行驗證。
-請勿設定 | 不會安裝和設定任何功能。如果您已經有第三方的同盟伺服器或另一個現有的適當方案，請選擇此選項。
+Password Sync | Users are able to sign in to Microsoft cloud services, such as Office 365, using the same password they use in their on-premises network. The users passwords are synchronized to Azure AD as a password hash and authentication occurs in the cloud. See [Password synchronization](../active-directory-aadconnectsync-implement-password-synchronization.md) for more information.
+Federation with AD FS | Users are able to sign in to Microsoft cloud services, such as Office 365, using the same password they use in their on-premises network.  The users are redirected to their on-premises AD FS instance to sign in and authentication occurs on-premises.
+Do not configure | Neither feature is installed and configured. Choose this option if you already have a 3rd party federation server or another existing solution in place.
 
-### 連接至 Azure AD
-在 [連接至 Azure AD] 畫面中，輸入全域系統管理員的帳戶和密碼。如果您在前一個頁面選取 [與 AD FS 同盟]，請勿以您打算啟用同盟的網域中的帳戶登入。建議使用隨附於 Azure AD 目錄的預設 **onmicrosoft.com** 網域中的帳戶。
+### <a name="connect-to-azure-ad"></a>Connect to Azure AD
+On the Connect to Azure AD screen, enter a global admin account and password. If you selected **Federation with AD FS** on the previous page, do not sign in with an account in a domain you plan to enable for federation. A recommendation is to use an account in the default **onmicrosoft.com** domain, which comes with your Azure AD directory.
 
-此帳戶只會用來在 Azure AD 中建立服務帳戶，而且在精靈完成後便不會使用。![使用者登入](./media/active-directory-aadconnect-get-started-custom/connectaad.png)
+This account is only used to create a service account in Azure AD and is not used after the wizard has completed.  
+![User Sign in](./media/active-directory-aadconnect-get-started-custom/connectaad.png)
 
-如果您的全域管理員帳戶已啟用 MFA，您需要在登入快顯視窗中再次提供密碼，並完成 MFA 認證。認證可能是提供驗證碼或撥打電話。![使用者登入 MFA](./media/active-directory-aadconnect-get-started-custom/connectaadmfa.png)
+If your global admin account has MFA enabled, then you need to provide the password again in the sign-in popup and complete the MFA challenge. The challenge could be a providing a verification code or a phone call.  
+![User Sign in MFA](./media/active-directory-aadconnect-get-started-custom/connectaadmfa.png)
 
-全域管理員帳戶也可以啟用 [Privileged Identity Management](../active-directory-privileged-identity-management-getting-started.md)。
+The global admin account can also have [Privileged Identity Management](../active-directory-privileged-identity-management-getting-started.md) enabled.
 
-如果您收到錯誤訊息，而且有連線問題，請參閱[針對連線問題進行疑難排解](../active-directory-aadconnect-troubleshoot-connectivity.md)。
+If you receive an error and have problems with connectivity, then see [Troubleshoot connectivity problems](../active-directory-aadconnect-troubleshoot-connectivity.md).
 
-## [同步] 一節的頁面
+## <a name="pages-under-the-section-sync"></a>Pages under the section Sync
 
-### 連接您的目錄
-若要連接到您的 Active Directory 網域服務，Azure AD Connect 需要具有足夠權限的帳戶認證。您可以用 NetBios 或 FQDN 格式輸入網域部分，也就是 FABRIKAM\\syncuser 或 fabrikam.com\\syncuser。此帳戶可以是一般使用者帳戶，因為我們只需要預設的讀取權限。不過，視您的情況而定，也可能需要更多權限。如需詳細資訊，請參閱 [Azure AD Connect 帳戶與權限](../active-directory-aadconnect-accounts-permissions.md#create-the-ad-ds-account)
+### <a name="connect-your-directories"></a>Connect your directories
+To connect to your Active Directory Domain Service, Azure AD Connect needs the credentials of an account with sufficient permissions. You can enter the domain part in either NetBios or FQDN format, that is, FABRIKAM\syncuser or fabrikam.com\syncuser. This account can be a regular user account because it only needs the default read permissions. However, depending on your scenario, you may need more permissions. For more information, see [Azure AD Connect Accounts and permissions](../active-directory-aadconnect-accounts-permissions.md#create-the-ad-ds-account)
 
-![連線目錄](./media/active-directory-aadconnect-get-started-custom/connectdir.png)
+![Connect Directory](./media/active-directory-aadconnect-get-started-custom/connectdir.png)
 
-### Azure AD 登入組態
-此頁面可讓您檢閱內部部署 AD DS 中存在的 UPN 網域，以及已在 Azure AD 中驗證的 UPN 網域。此頁面也可讓您設定要用於 userPrincipalName 的屬性。
+### <a name="azure-ad-sign-in-configuration"></a>Azure AD sign-in configuration
+This page allows you to review the UPN domains present in on-premises AD DS and which have been verified in Azure AD. This page also allows you to configure the attribute to use for the userPrincipalName.
 
-![未驗證的網域](./media/active-directory-aadconnect-get-started-custom/aadsigninconfig.png) 檢閱每一個標示為**未新增**和**未驗證**的網域。確定您所使用的網域皆已在 Azure AD 中完成驗證。驗證好網域時，按一下 [重新整理] 符號。如需詳細資訊，請參閱[新增並驗證網域](../active-directory-add-domain.md)
+![Unverified domains](./media/active-directory-aadconnect-get-started-custom/aadsigninconfig.png)  
+Review every domain marked **Not Added** and **Not Verified**. Make sure those domains you use have been verified in Azure AD. Click the Refresh symbol when you have verified your domains. For more information, see [add and verify the domain](../active-directory-add-domain.md)
 
-**UserPrincipalName**：屬性 userPrincipalName 是使用者登入 Azure AD 和 Office 365 時會使用的屬性。使用的網域 (也稱為 UPN 尾碼)，應該會在同步處理使用者前於 Azure AD 中進行驗證。Microsoft 建議保留預設屬性 userPrincipalName。如果此屬性不可路由傳送且無法驗證，則可以選取另一個屬性。例如，您可以選取電子郵件做為保存登入識別碼的屬性。使用 userPrincipalName 之外的其他屬性稱為**替代 ID**。替代 ID 屬性值必須遵循 RFC822 標準。替代 ID 可以搭配密碼同步和同盟來使用。
+**UserPrincipalName** - The attribute userPrincipalName is the attribute users use when they sign in to Azure AD and Office 365. The domains used, also known as the UPN-suffix, should be verified in Azure AD before the users are synchronized. Microsoft recommends to keep the default attribute userPrincipalName. If this attribute is non-routable and cannot be verified, then it is possible to select another attribute. You can for example select email as the attribute holding the sign-in ID. Using another attribute than userPrincipalName is known as **Alternate ID**. The Alternate ID attribute value must follow the RFC822 standard. An Alternate ID can be used with both password sync and federation.
 
 >[AZURE.WARNING]
-使用替代 ID 會與所有 Office 365 工作負載不相容。如需詳細資訊，請參閱[設定替代的登入 ID](https://technet.microsoft.com/library/dn659436.aspx)。
+Using an Alternate ID is not compatible with all Office 365 workloads. For more information, refer to [Configuring Alternate Login ID](https://technet.microsoft.com/library/dn659436.aspx).
 
-### 網域和 OU 篩選
-預設會同步所有網域和 OU。如果您不想將部分網域或 OU 同步處理至 Azure AD，您可以取消選取這些網域和 OU。![DomainOU 篩選](./media/active-directory-aadconnect-get-started-custom/domainoufiltering.png) 精靈的這個頁面將會設定網域型篩選。如需詳細資訊，請參閱[網域型篩選](../active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)。
+### <a name="domain-and-ou-filtering"></a>Domain and OU filtering
+By default all domains and OUs are synchronized. If there are some domains or OUs you do not want to synchronize to Azure AD, you can unselect these domains and OUs.  
+![DomainOU filtering](./media/active-directory-aadconnect-get-started-custom/domainoufiltering.png) This page in the wizard is configuring domain-based filtering. For more information, see [domain-based filtering](../active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering).
 
-由於防火牆限制，也可能無法連線到某些網域。依預設不會選取這些網域，而且會有警告。![無法連線到網域](./media/active-directory-aadconnect-get-started-custom/unreachable.png) 如果您看到此警告，請確定這些網域確實無法連線，因此預期會有警告。
+It is also possible that some domains are not reachable due to firewall restrictions. These domains are unselected by default and have a warning.  
+![Unreachable domains](./media/active-directory-aadconnect-get-started-custom/unreachable.png)  
+If you see this warning, make sure that these domains are indeed unreachable and the warning is expected.
 
-### 唯一識別您的使用者
-跨樹系比對功能可讓您定義 AD DS 樹系中的使用者在 Azure AD 中的顯示方式。使用者可能會在整個樹系中只顯示一次，或是具有啟用和停用帳戶的組合。使用者也可能顯示為某些樹系中的連絡人。
+### <a name="uniquely-identifying-your-users"></a>Uniquely identifying your users
+The Matching across forests feature allows you to define how users from your AD DS forests are represented in Azure AD. A user might either be represented only once across all forests or have a combination of enabled and disabled accounts. The user might also be represented as a contact in some forests.
 
-![唯一](./media/active-directory-aadconnect-get-started-custom/unique.png)
+![Unique](./media/active-directory-aadconnect-get-started-custom/unique.png)
 
-設定 | 說明
+Setting | Description
 ------------- | -------------
-[使用者在所有樹系中只會顯示一次](../active-directory-aadconnect-topologies.md#multiple-forests-separate-topologies) | 在 Azure AD 中，所有使用者會都建立為個別物件。在 Metaverse 中這些物件不會聯結。
-[郵件屬性](../active-directory-aadconnect-topologies.md#multiple-forests-full-mesh-with-optional-galsync) | 如果郵件屬性在不同樹系中具有相同的值，則此選項就會聯結使用者和連絡人。如果已透過 GALSync 建立了您的連絡人，請使用此選項。
-[ObjectSID 與 msExchangeMasterAccountSID/ msRTCSIP-OriginatorSid](../active-directory-aadconnect-topologies.md#multiple-forests-account-resource-forest) | 此選項會聯結帳戶樹系中已啟用的使用者與資源樹系中已停用的使用者。在 Exchange 中，此組態稱為連結信箱。如果您只使用 Lync 而 Exchange 不存在資源樹系中，也可以使用此選項。
-sAMAccountName 與 MailNickName | 此選項會在預期可以找到使用者登入 ID 的屬性中聯結。
-特定的屬性 | 此選項可讓您選取您的屬性。**限制：**確定選擇的是已可在 Metaverse 中找到的屬性。如果您選擇自訂屬性 (並非在 Metaverse 中)，精靈將無法完成。
+[Users are only represented once across all forests](../active-directory-aadconnect-topologies.md#multiple-forests-separate-topologies) | All users are created as individual objects in Azure AD. The objects are not joined in the metaverse.
+[Mail attribute](../active-directory-aadconnect-topologies.md#multiple-forests-full-mesh-with-optional-galsync) | This option joins users and contacts if the mail attribute has the same value in different forests. Use this option when your contacts have been created using GALSync.
+[ObjectSID and msExchangeMasterAccountSID/ msRTCSIP-OriginatorSid](../active-directory-aadconnect-topologies.md#multiple-forests-account-resource-forest) | This option joins an enabled user in an account forest with a disabled user in a resource forest. In Exchange, this configuration is known as a linked mailbox. This option can also be used if you only use Lync and Exchange is not present in the resource forest.
+sAMAccountName and MailNickName | This option joins on attributes where it is expected the sign-in ID for the user can be found.
+A specific attribute | This option allows you to select your own attribute. **Limitation:** Make sure to pick an attribute that already can be found in the metaverse. If you pick a custom attribute (not in the metaverse), the wizard cannot complete.
 
-**來源錨點**：屬性 sourceAnchor 是使用者物件存留期間都不會變更的屬性。它是連結內部部署使用者與 Azure AD 中使用者的主要金鑰。因為無法改變屬性，所以您必須規劃並使用好的屬性。objectGUID 就是不錯的選項。只要使用者帳戶沒有在樹系/網域之間移動，此屬性就不會改變。若在多樹系環境中，您會在樹系間移動帳戶時，就必須使用另一個屬性，例如 employeeID 屬性。請避免使用會在某人結婚或變更指派時改變的屬性。因為不可以使用帶有 @ 符號的屬性，所以無法使用 email 和 userPrincipalName。屬性也有區分大小寫，因此在樹系間移動物件時，請務必保留大寫/小寫。二進位屬性會以 base64 編碼，但其他屬性類型則會維持未編碼狀態。在同盟情況以及部分 Azure AD 介面中，此屬性也稱為 immutableID。您可以在[設計概念](../active-directory-aadconnect-design-concepts.md#sourceAnchor)中找到關於來源錨點的詳細資訊。
+**Source Anchor** - The attribute sourceAnchor is an attribute that is immutable during the lifetime of a user object. It is the primary key linking the on-premises user with the user in Azure AD. Since the attribute cannot be changed, you must plan for a good attribute to use. A good candidate is objectGUID. This attribute is not changed, unless the user account is moved between forests/domains. In a multi-forest environment where you move accounts between forests, another attribute must be used, such as an attribute with the employeeID. Avoid attributes that would change when a person marries or change assignments. You cannot use attributes with an @-sign, so email and userPrincipalName cannot be used. The attribute is also case-sensitive so when you move an object between forests, make sure to preserve the upper/lower case. Binary attributes are base64-encoded, but other attribute types remain in its unencoded state. In federation scenarios and some Azure AD interfaces, this attribute is also known as immutableID. More information about the source anchor can be found in the [design concepts](../active-directory-aadconnect-design-concepts.md#sourceAnchor).
 
-### 根據群組進行同步處理篩選
-篩選群組功能可讓您只同步處理一小部分的物件來進行試驗。若要使用這項功能，請在內部部署 Active Directory 中建立此目的專用的群組。然後新增應該同步處理至 Azure AD 做為直接成員的使用者和群組。您稍後可以在此群組中新增和移除使用者，藉此維護應該要顯示在 Azure AD 中的物件清單。所有您想要同步處理的物件，都必須是直接隸屬於群組的成員。使用者、群組、連絡人及電腦/裝置全都必須是直接成員。系統不會解析巢狀群組成員資格。當您新增群組做為成員時，只會新增群組本身而不會新增其成員。
+### <a name="sync-filtering-based-on-groups"></a>Sync filtering based on groups
+The filtering on groups feature allows you to sync only a small subset of objects for a pilot. To use this feature, create a group for this purpose in your on-premises Active Directory. Then add users and groups that should be synchronized to Azure AD as direct members. You can later add and remove users to this group to maintain the list of objects that should be present in Azure AD. All objects you want to synchronize must be a direct member of the group. Users, groups, contacts, and computers/devices must all be direct members. Nested group membership is not resolved. When you add a group as a member, only the group itself is added and not its members.
 
-![同步處理篩選](./media/active-directory-aadconnect-get-started-custom/filter2.png)
-
->[AZURE.WARNING]
-這項功能僅適用於支援試驗部署。請勿將其用於成熟的生產部署。
-
-在成熟的生產部署中，維護含有所有要同步處理之物件的單一群組將非常困難。您應該改用[設定篩選](../active-directory-aadconnectsync-configure-filtering.md)中的其中一種方法。
-
-### 選用功能
-此畫面可讓您針對特定情況選取選用功能。
-
-![選用功能](./media/active-directory-aadconnect-get-started-custom/optional.png)
+![Sync Filtering](./media/active-directory-aadconnect-get-started-custom/filter2.png)
 
 >[AZURE.WARNING]
-如果您目前啟用 DirSync 或 Azure AD Sync，請不要在 Azure AD Connect 中啟動任何回寫功能。
+This feature is only intended to support a pilot deployment. Do not use it in a full-blown production deployment.
 
-選用功能 | 說明
+In a full-blown production deployment, it is going to be hard to maintain a single group with all objects to synchronize. Instead you should use one of the methods in [Configure filtering](../active-directory-aadconnectsync-configure-filtering.md).
+
+### <a name="optional-features"></a>Optional Features
+This screen allows you to select the optional features for your specific scenarios.
+
+![Optional features](./media/active-directory-aadconnect-get-started-custom/optional.png)
+
+>[AZURE.WARNING]
+If you currently have DirSync or Azure AD Sync active, do not activate any of the writeback features in Azure AD Connect.
+
+Optional Features | Description
 ------------------- | -------------
-Exchange 混合部署 | Exchange 混合部署功能允許在內部部署和 Office 365 中並存 Exchange 信箱。Azure AD Connect 會將一組特定的[屬性](../active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback)從 Azure AD 同步處理回內部部署目錄。
-Azure AD 應用程式和屬性篩選 | 透過啟用 Azure AD 應用程式和屬性篩選，即可調整這組同步處理的屬性。這個選項會在精靈中另外新增兩個組態頁面。如需詳細資訊，請參閱 [Azure AD 應用程式和屬性篩選](#azure-ad-app-and-attribute-filtering)。
-密碼同步處理 | 如果您選取同盟做為登入解決方案，您可以啟用此選項。密碼同步處理可做為備份選項。如需其他資訊，請參閱[密碼同步處理](../active-directory-aadconnectsync-implement-password-synchronization.md)。
-密碼回寫 | 透過啟用密碼回寫，在 Azure AD 中產生的密碼變更會回寫至內部部署目錄。如需詳細資訊，請參閱[開始使用密碼管理](../active-directory-passwords-getting-started.md)。
-群組回寫 | 如果您使用 [Office 365 群組] 功能，就可以在內部部署的 Active Directory 中顯示這些群組。只有當您內部部署的 Active Directory 中已經有 Exchange 時，才能使用此選項。如需詳細資訊，請參閱[群組回寫](../active-directory-aadconnect-feature-preview.md#group-writeback)。
-裝置回寫 | 在條件式存取情況下，可讓您將 Azure AD 中的裝置物件回寫到內部部署的 Active Directory。如需詳細資訊，請參閱[在 Azure AD Connect 中啟用裝置回寫](../active-directory-aadconnect-feature-device-writeback.md)。
-目錄擴充屬性同步處理 | 透過啟用目錄擴充屬性同步處理，指定的屬性將會同步處理至 Azure AD。如需詳細資訊，請參閱[目錄擴充](../active-directory-aadconnectsync-feature-directory-extensions.md)。
+Exchange Hybrid Deployment | The Exchange Hybrid Deployment feature allows for the co-existence of Exchange mailboxes both on-premises and in Office 365. Azure AD Connect is synchronizing a specific set of [attributes](../active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback) from Azure AD back into your on-premises directory.
+Azure AD app and attribute filtering | By enabling Azure AD app and attribute filtering, the set of synchronized attributes can be tailored. This option adds two more configuration pages to the wizard. For more information, see [Azure AD app and attribute filtering](#azure-ad-app-and-attribute-filtering).
+Password synchronization | If you selected federation as the sign-in solution, then you can enable this option. Password synchronization can then be used as a backup option. For additional information, see [Password synchronization](../active-directory-aadconnectsync-implement-password-synchronization.md).
+Password writeback | By enabling password writeback, password changes that originate in Azure AD is written back to your on-premises directory. For more information, see [Getting started with password management](../active-directory-passwords-getting-started.md).
+Group writeback | If you use the **Office 365 Groups** feature, then you can have these groups represented in your on-premises Active Directory. This option is only available if you have Exchange present in your on-premises Active Directory. For more information, see [Group writeback](../active-directory-aadconnect-feature-preview.md#group-writeback).
+Device writeback | Allows you to writeback device objects in Azure AD to your on-premises Active Directory for conditional access scenarios. For more information, see [Enabling device writeback in Azure AD Connect](../active-directory-aadconnect-feature-device-writeback.md).
+Directory extension attribute sync | By enabling directory extensions attribute sync, attributes specified are synced to Azure AD. For more information, see [Directory extensions](../active-directory-aadconnectsync-feature-directory-extensions.md).
 
-### Azure AD 應用程式和屬性篩選
-如果您想要限制要將哪些屬性同步處理至 Azure AD，請先選取您將會使用的服務。如果您在此頁面上進行組態變更，則必須重新執行安裝精靈來明確選取新的服務。
+### <a name="azure-ad-app-and-attribute-filtering"></a>Azure AD app and attribute filtering
+If you want to limit which attributes to synchronize to Azure AD, then start by selecting which services you are using. If you make configuration changes on this page, a new service has to be selected explicitly by rerunning the installation wizard.
 
-![選用功能應用程式](./media/active-directory-aadconnect-get-started-custom/azureadapps2.png)
+![Optional features Apps](./media/active-directory-aadconnect-get-started-custom/azureadapps2.png)
 
-根據在上一個步驟中選取的服務，此頁面會顯示將同步處理的所有屬性。這份清單是正在同步處理的所有物件類型的組合。如果其中有一些您不需要同步處理的特定屬性，您可以取消選取那些屬性。
+Based on the services selected in the previous step, this page shows all attributes that are synchronized. This list is a combination of all object types being synchronized. If there are some particular attributes you need to not synchronize, you can unselect those attributes.
 
-![選用功能屬性](./media/active-directory-aadconnect-get-started-custom/azureadattributes2.png)
+![Optional features Attributes](./media/active-directory-aadconnect-get-started-custom/azureadattributes2.png)
 
 >[AZURE.WARNING]
-移除可能影響功能的屬性。如需最佳作法和建議，請參閱[同步處理的屬性](../active-directory-aadconnectsync-attributes-synchronized.md#attributes-to-synchronize)。
+Removing attributes can impact functionality. For best practices and recommendations, see [attributes synchronized](../active-directory-aadconnectsync-attributes-synchronized.md#attributes-to-synchronize).
 
-### 目錄擴充屬性同步處理
-您可以使用組織新增的自訂屬性或 Active Directory 中的其他屬性在 Azure AD 中擴充結構描述。若要使用這項功能，請選取 [選用功能] 頁面上的 [目錄擴充屬性同步處理]。您可以在此頁面上選取更多要同步處理的屬性。
+### <a name="directory-extension-attribute-sync"></a>Directory Extension attribute sync
+You can extend the schema in Azure AD with custom attributes added by your organization or other attributes in Active Directory. To use this feature, select **Directory Extension attribute sync** on the **Optional Features** page. You can select more attributes to sync on this page.
 
-![目錄擴充](./media/active-directory-aadconnect-get-started-custom/extension2.png)
+![Directory extensions](./media/active-directory-aadconnect-get-started-custom/extension2.png)
 
-如需詳細資訊，請參閱[目錄擴充](../active-directory-aadconnectsync-feature-directory-extensions.md)。
+For more information, see [Directory extensions](../active-directory-aadconnectsync-feature-directory-extensions.md).
 
-## 設定與 AD FS 同盟
-只要簡單按幾下，即可使用 Azure AD Connect 設定 AD FS。進行設定之前必須先具備下列項目。
+## <a name="configuring-federation-with-ad-fs"></a>Configuring federation with AD FS
+Configuring AD FS with Azure AD Connect is simple with just a few clicks. The following is required before the configuration.
 
-- 做為同盟伺服器的 Windows Server 2012 R2 伺服器，且已啟用遠端管理
-- 做為 Web 應用程式 Proxy 伺服器的 Windows Server 2012 R2 伺服器，且已啟用遠端管理
-- 您想要使用的 Federation Service 名稱 (例如 sts.contoso.com) 的 SSL 憑證
+- A Windows Server 2012 R2 server for the federation server with remote management enabled
+- A Windows Server 2012 R2 server for the Web Application Proxy server with remote management enabled
+- An SSL certificate for the federation service name you intend to use (for example sts.contoso.com)
 
-### AD FS 組態必要條件
-若要使用 Azure AD Connect 設定 AD FS 伺服器陣列，請確定已在遠端伺服器啟用 WinRM。此外，請完成[表 3 - Azure AD Connect 和同盟伺服器/WAP](../active-directory-aadconnect-ports.md#table-3---azure-ad-connect-and-federation-serverswap) 中列出的連接埠需求。
+### <a name="ad-fs-configuration-pre-requisites"></a>AD FS configuration pre-requisites
+To configure your AD FS farm using Azure AD Connect, ensure WinRM is enabled on the remote servers. In addition, go through the ports requirement listed in [Table 3 - Azure AD Connect and Federation Servers/WAP](../active-directory-aadconnect-ports.md#table-3---azure-ad-connect-and-federation-serverswap).
 
-### 建立新的 AD FS 伺服器陣列或使用現有的 AD FS 伺服器陣列
-您可以使用現有的 AD FS 伺服器陣列，或選擇建立新的 AD FS 伺服器陣列。如果您選擇建立新的伺服器陣列，就必須提供 SSL 憑證。如果 SSL 憑證有密碼保護，則系統會提示您輸入密碼。
+### <a name="create-a-new-ad-fs-farm-or-use-an-existing-ad-fs-farm"></a>Create a new AD FS farm or use an existing AD FS farm
+You can use an existing AD FS farm or you can choose to create a new AD FS farm. If you choose to create a new one, you are required to provide the SSL certificate. If the SSL certificate is protected by a password, you are prompted for the password.
 
-![AD FS 伺服器陣列](./media/active-directory-aadconnect-get-started-custom/adfs1.png)
+![AD FS Farm](./media/active-directory-aadconnect-get-started-custom/adfs1.png)
 
-如果您選擇使用現有的 AD FS 伺服器陣列，將會前往設定 AD FS 與 Azure AD 之間信任關係的畫面。
+If you choose to use an existing AD FS farm, you are taken directly to the configuring the trust relationship between AD FS and Azure AD screen.
 
-### 指定 AD FS 伺服器
-輸入想要在其中安裝 AD FS 的伺服器。您可以根據容量規劃需求，加入一或多部伺服器。請先將所有伺服器加入 Active Directory，再執行這項設定。Microsoft 建議安裝一部專門用於測試和試驗部署的 AD FS 伺服器。然後在完成初始設定之後透過再次執行 Azure AD Connect，新增及部署更多伺服器以符合您的調整需求。
-
->[AZURE.NOTE]
-請先確認所有伺服器均已加入 AD 網域，再執行這項設定。
-
-![AD FS 伺服器](./media/active-directory-aadconnect-get-started-custom/adfs2.png)
-
-### 指定 Web 應用程式 Proxy 伺服器
-輸入您要做為 Web 應用程式 Proxy 伺服器的伺服器。Web 應用程式 Proxy 伺服器會部署在您的 DMZ (外部網路對應) 中，且支援來自外部網路的驗證要求。您可以根據容量規劃需求，加入一或多部伺服器。Microsoft 建議安裝一部專門用於測試和試驗部署的 Web 應用程式 Proxy 伺服器。然後在完成初始設定之後透過再次執行 Azure AD Connect，新增及部署更多伺服器以符合您的調整需求。我們建議準備同樣數目的 Proxy 伺服器，以滿足來自內部網路的驗證需求。
+### <a name="specify-the-ad-fs-servers"></a>Specify the AD FS servers
+Enter the servers that you want to install AD FS on. You can add one or more servers based on your capacity planning needs. Join all servers to Active Directory before you perform this configuration. Microsoft recommends installing a single AD FS server for test and pilot deployments. Then add and deploy more servers to meet your scaling needs by running Azure AD Connect again after initial configuration.
 
 >[AZURE.NOTE]
-<li> 如果您使用的帳戶不是 AD FS 伺服器上的本機系統管理員，則系統會提示您提供系統管理員認證。</li>
-<li> 執行此步驟之前，請確認 Azure AD Connect 伺服器和 Web 應用程式 Proxy 伺服器之間有 HTTP/HTTPS 連線。</li>
-<li> 請確認 Web 應用程式伺服器和 AD FS 伺服器之間的 HTTP/HTTPS 連線是否允許流入驗證要求。</li>
+Ensure that all your servers are joined to an AD domain before you do this configuration.
 
-![Web 應用程式](./media/active-directory-aadconnect-get-started-custom/adfs3.png)
+![AD FS Servers](./media/active-directory-aadconnect-get-started-custom/adfs2.png)
 
-系統會提示您輸入認證，讓 Web 應用程式伺服器可以建立與 AD FS 伺服器的安全連線。這些認證必須是 AD FS 伺服器上的本機系統管理員。
+### <a name="specify-the-web-application-proxy-servers"></a>Specify the Web Application Proxy servers
+Enter the servers that you want as your Web Application proxy servers. The web application proxy server is deployed in your DMZ (extranet facing) and supports authentication requests from the extranet. You can add one or more servers based on your capacity planning needs. Microsoft recommends installing a single Web application proxy server for test and pilot deployments. Then add and deploy more servers to meet your scaling needs by running Azure AD Connect again after initial configuration. We recommend having an equivalent number of proxy servers to satisfy authentication from the intranet.
+
+>[AZURE.NOTE]
+<li> If the account you use is not a local admin on the AD FS servers, then you are prompted for admin credentials.</li>
+<li> Ensure that there is HTTP/HTTPS connectivity between the Azure AD Connect server and the Web Application Proxy server before you run this step.</li>
+<li> Ensure that there is HTTP/HTTPS connectivity between the Web Application Server and the AD FS server to allow authentication requests to flow through.</li>
+
+![Web App](./media/active-directory-aadconnect-get-started-custom/adfs3.png)
+
+You are prompted to enter credentials so that the web application server can establish a secure connection to the AD FS server. These credentials need to be a local administrator on the AD FS server.
 
 ![Proxy](./media/active-directory-aadconnect-get-started-custom/adfs4.png)
 
-### 指定 AD FS 服務的服務帳戶
-AD FS 服務需要網域服務帳戶來驗證使用者，以及在 Active Directory 中查閱使用者資訊。它可支援兩種類型的服務帳戶：
+### <a name="specify-the-service-account-for-the-ad-fs-service"></a>Specify the service account for the AD FS service
+The AD FS service requires a domain service account to authenticate users and lookup user information in Active Directory. It can support two types of service accounts:
 
-- **群組受管理服務帳戶**：在 Windows Server 2012 的 Active Directory 網域服務中導入。此類型的帳戶可為 AD FS 之類的服務提供單一帳戶，而不需要定期更新帳戶密碼。如果您在 AD FS 伺服器所屬的網域中已經有 Windows Server 2012 網域控制站，請使用此選項。
-- **網域使用者帳戶**：此類型的帳戶會要求您提供密碼，並在密碼變更或到期時定期更新密碼。只有當您在 AD FS 伺服器所屬的網域中沒有 Windows Server 2012 網域控制站時，才能使用此選項。
+- **Group Managed Service Account** - Introduced in Active Directory Domain Services with Windows Server 2012. This type of account provides services, such as AD FS, a single account without needing to update the account password regularly. Use this option if you already have Windows Server 2012 domain controllers in the domain that your AD FS servers belong to.
+- **Domain User Account** - This type of account requires you to provide a password and regularly update the password when the password changes or expires. Use this option only when you do not have Windows Server 2012 domain controllers in the domain that your AD FS servers belong to.
 
-如果您選取了 [群組受管理服務帳戶]，而這項功能從未在 Active Directory 中使用過，系統會提示您輸入企業系統管理員認證。這些認證會用來啟動金鑰存放區，並在 Active Directory 中啟用這項功能。
+If you selected Group Managed Service Account and this feature has never been used in Active Directory, you are prompted for Enterprise Admin credentials. These credentials are used to initiate the key store and enable the feature in Active Directory.
 
-![AD FS 服務帳戶](./media/active-directory-aadconnect-get-started-custom/adfs5.png)
+![AD FS Service Account](./media/active-directory-aadconnect-get-started-custom/adfs5.png)
 
-### 選取您想要建立同盟的 Azure AD 網域
-此組態會用來設定 AD FS 與 Azure AD 之間的同盟關係。它會設定 AD FS 將安全性權杖簽發給 Azure AD，並將 Azure AD 設定為信任來自此特定 AD FS 執行個體的權杖。此頁面只能讓您在初始安裝中設定單一網域。您可稍後再次執行 Azure AD Connect 以設定其他網域。
+### <a name="select-the-azure-ad-domain-that-you-wish-to-federate"></a>Select the Azure AD domain that you wish to federate
+This configuration is used to setup the federation relationship between AD FS and Azure AD. It configures AD FS to issue security tokens to Azure AD and configures Azure AD to trust the tokens from this specific AD FS instance. This page only allows you to configure a single domain in the initial installation. You can configure more domains later by running Azure AD Connect again.
 
-![Azure AD 網域](./media/active-directory-aadconnect-get-started-custom/adfs6.png)
+![Azure AD Domain](./media/active-directory-aadconnect-get-started-custom/adfs6.png)
 
-### 驗證所選取用於同盟的 Azure AD 網域
-當您選取要同盟的網域時，Azure AD Connect 會提供您所需資訊以供您驗證尚未驗證的網域。請參閱[新增並驗證網域](../active-directory-add-domain.md)以了解如何使用這項資訊。
+### <a name="verify-the-azure-ad-domain-selected-for-federation"></a>Verify the Azure AD domain selected for federation
+When you select the domain to be federated, Azure AD Connect provides you with necessary information to verify an unverified domain. See [Add and verify the domain](../active-directory-add-domain.md) for how to use this information.
 
-![Azure AD 網域](./media/active-directory-aadconnect-get-started-custom/verifyfeddomain.png)
-
->[AZURE.NOTE]
-AD Connect 會嘗試在設定階段驗證網域。如果您繼續進行設定，但未加入必要的 DNS 記錄，精靈將無法完成設定。
-
-## 設定並確認頁面
-設定會在此頁面上進行。
+![Azure AD Domain](./media/active-directory-aadconnect-get-started-custom/verifyfeddomain.png)
 
 >[AZURE.NOTE]
-在繼續安裝之前，如果已設定同盟，請確定您已設定[同盟伺服器的名稱解析](../active-directory-aadconnect-prerequisites.md#name-resolution-for-federation-servers)。
+AD Connect tries to verify the domain during the configure stage. If you continue to configure without adding the necessary DNS records, the wizard is not able to complete the configuration.
 
-![準備設定](./media/active-directory-aadconnect-get-started-custom/readytoconfigure2.png)
+## <a name="configure-and-verify-pages"></a>Configure and verify pages
+The configuration happens on this page.
 
-### 預備模式
-您可以在預備模式下同時設定新的同步處理伺服器。僅支援將一部同步處理伺服器匯出到雲端中的一個目錄。但如果您想要從另一部伺服器移動，例如執行 DirSync 的伺服器，可以啟用預備模式中的 Azure AD Connect。啟用時，同步處理引擎會照常匯入和同步處理資料，但它不會將任何項目匯出至 Azure AD 或 AD。在預備模式下，將會停用功能密碼同步處理和密碼回寫。
+>[AZURE.NOTE]
+Before you continue installation and if you configured federation, make sure that you have configured [Name resolution for federation servers](../active-directory-aadconnect-prerequisites.md#name-resolution-for-federation-servers).
 
-![預備模式](./media/active-directory-aadconnect-get-started-custom/stagingmode.png)
+![Ready to configure](./media/active-directory-aadconnect-get-started-custom/readytoconfigure2.png)
 
-在預備模式中，可以對同步處理引擎進行所需的變更，並檢閱要匯出的項目。當此組態看起來設定良好時，請再次執行安裝精靈，並停用預備模式。資料現在會從這個伺服器匯出至 Azure AD。同時請務必停用其他伺服器，如此才能只讓一部伺服器主動匯出。
+### <a name="staging-mode"></a>Staging mode
+It is possible to setup a new sync server in parallel with staging mode. It is only supported to have one sync server exporting to one directory in the cloud. But if you want to move from another server, for example one running DirSync, then you can enable Azure AD Connect in staging mode. When enabled, the sync engine import and synchronize data as normal, but it does not export anything to Azure AD or AD. The features password sync and password writeback are disabled while in staging mode.
 
-如需詳細資訊，請參閱[預備模式](../active-directory-aadconnectsync-operations.md#staging-mode)。
+![Staging mode](./media/active-directory-aadconnect-get-started-custom/stagingmode.png)
 
-### 驗證同盟組態
-當您按一下 [驗證] 按鈕時，Azure AD Connect 會為您驗證 DNS 設定。
+While in staging mode, it is possible to make required changes to the sync engine and review what is about to be exported. When the configuration looks good, run the installation wizard again and disable staging mode. Data is now exported to Azure AD from this server. Make sure to disable the other server at the same time so only one server is actively exporting.
 
-![完成](./media/active-directory-aadconnect-get-started-custom/completed.png)
+For more information, see [Staging mode](../active-directory-aadconnectsync-operations.md#staging-mode).
 
-![驗證](./media/active-directory-aadconnect-get-started-custom/adfs7.png)
+### <a name="verify-your-federation-configuration"></a>Verify your federation configuration
+Azure AD Connect verifies the DNS settings for you when you click the Verify button.
 
-此外，請執行下列驗證步驟：
+![Complete](./media/active-directory-aadconnect-get-started-custom/completed.png)
 
-- 驗證您可以從內部網路中已加入網域之電腦上的瀏覽器進行登入：連線到 https://myapps.microsoft.com，並使用您已登入的帳戶驗證登入。內建的 AD DS 系統管理員帳戶未同步處理，不能用於驗證。
-- 驗證您可以從外部網路的裝置登入。在家用電腦或行動裝置上連線到 https://myapps.microsoft.com，並提供您的認證。
-- 驗證豐富型用戶端登入。連線到 https://testconnectivity.microsoft.com，選擇 [Office 365] 索引標籤，然後選擇 [Office 365 單一登入測試]。
+![Verify](./media/active-directory-aadconnect-get-started-custom/adfs7.png)
 
-## 後續步驟
-安裝完成之後，請先登出 Windows 再重新登入，才能使用 Synchronization Service Manager 或同步處理規則編輯器。
+In addition, perform the following verification steps:
 
-安裝了 Azure AD Connect 之後，您可以[驗證安裝和指派授權](../active-directory-aadconnect-whats-next.md)。
+- Validate that you can sign in from a browser from a domain joined machine on the intranet: Connect to https://myapps.microsoft.com and verify the sign-in with your logged in account. The built-in AD DS administrator account is not synchronized and cannot be used for verification.
+- Validate that you can sign in from a device from the extranet. On a home machine or a mobile device, connect to https://myapps.microsoft.com and supply your credentials.
+- Validate rich client sign-in. Connect to https://testconnectivity.microsoft.com, choose the **Office 365** tab and chose the **Office 365 Single Sign-On Test**.
 
-深入了解這些在安裝時啟用的功能︰[防止意外刪除](../active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)和 [Azure AD Connect Health](../active-directory-aadconnect-health-sync.md)。
+## <a name="next-steps"></a>Next steps
+After the installation has completed, sign out and sign in again to Windows before you use Synchronization Service Manager or Synchronization Rule Editor.
 
-深入了解這些常見主題︰[排程器和如何觸發同步處理](../active-directory-aadconnectsync-feature-scheduler.md)。
+Now that you have Azure AD Connect installed you can [verify the installation and assign licenses](../active-directory-aadconnect-whats-next.md).
 
-深入了解[整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)。
+Learn more about these features, which were enabled with the installation: [Prevent accidental deletes](../active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) and [Azure AD Connect Health](../active-directory-aadconnect-health-sync.md).
 
-## 相關文件
+Learn more about these common topics: [scheduler and how to trigger sync](../active-directory-aadconnectsync-feature-scheduler.md).
 
-主題 |  
+Learn more about [Integrating your on-premises identities with Azure Active Directory](../active-directory-aadconnect.md).
+
+## <a name="related-documentation"></a>Related documentation
+
+Topic |  
 --------- | ---------
-Azure AD Connect 概觀 | [整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)
-使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md)
-從 DirSync 升級 | [從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
-用於安裝的帳戶 | [Azure AD Connect 帳戶與權限的詳細資訊](active-directory-aadconnect-accounts-permissions.md)
+Azure AD Connect overview | [Integrating your on-premises identities with Azure Active Directory](../active-directory-aadconnect.md)
+Install using Express settings | [Express installation of Azure AD Connect](active-directory-aadconnect-get-started-express.md)
+Upgrade from DirSync | [Upgrade from Azure AD sync tool (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md)
+Accounts used for installation | [More about Azure AD Connect accounts and permissions](active-directory-aadconnect-accounts-permissions.md)
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

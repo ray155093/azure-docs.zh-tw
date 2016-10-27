@@ -1,6 +1,6 @@
 <properties
-  pageTitle="將雲端服務連接到自訂網域控制站 | Microsoft Azure"
-  description="了解如何使用 PowerShell 和 AD 網域延伸將 Web/背景工作角色連接到自訂 AD 網域"
+  pageTitle="Connect a Cloud Service to a custom Domain Controller | Microsoft Azure"
+  description="Learn how to connect your web/worker roles to a custom AD Domain using PowerShell and AD Domain Extension"
   services="cloud-services"
   documentationCenter=""
   authors="Thraka"
@@ -16,21 +16,22 @@
     ms.date="09/06/2016"
     ms.author="adegeo"/>
 
-# 將 Azure 雲端服務角色連接到裝載於 Azure 中的自訂 AD 網域控制站
 
-我們會先在 Azure 中設定虛擬網路 (VNet)。接著再將 Active Directory 網域控制站 (裝載於 Azure 虛擬機器上) 加入 VNet。下一步是將現有雲端服務角色加入預先建立的 VNet，然後再將它們連接到網域控制站。
+# <a name="connecting-azure-cloud-services-roles-to-a-custom-ad-domain-controller-hosted-in-azure"></a>Connecting Azure Cloud Services Roles to a custom AD Domain Controller hosted in Azure
 
-在開始之前，請將以下幾件事牢記在心：
+We will first set up a Virtual Network (VNet) in Azure. We will then add an Active Directory Domain Controller (hosted on an Azure Virtual Machine) to the VNet. Next, we will add existing cloud service roles to the pre-created VNet and subsequently connect them to the Domain Controller.
 
-1.	本教學課程使用 PowerShell，因此請確認您已安裝 Azure PowerShell 且已準備就緒。如需設定 Azure PowerShell 的說明，請參閱[如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)。
+Before we get started, couple of things to keep in mind:
 
-2.	AD 網域控制站和 Web/背景工作角色執行個體必須位在 VNet 中。
+1.  This tutorial uses PowerShell, so please make sure you have Azure PowerShell installed and ready to go. To get help with setting up Azure PowerShell, see [How to install and configure Azure PowerShell](../powershell-install-configure.md).
 
-請遵循以下逐步指南，如果您遇到任何問題，請在下方留言，我們將會回覆您 (沒錯，我們真的會閱讀留言)。
+2.  Your AD Domain Controller and Web/Worker Role instances need to be in the VNet.
 
-## 建立虛擬網路
+Follow this step-by-step guide and if you run into any issues, leave us a comment below. Someone will get back to you (yes, we do read comments).
 
-您可以使用 Azure 傳統入口網站或 PowerShell 在 Azure 中建立虛擬網路。在本教學課程中，我們將使用 PowerShell。若要使用 Azure 傳統入口網站建立虛擬網路，請參閱「[建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)」。
+## <a name="create-a-virtual-network"></a>Create a Virtual Network
+
+You can create a Virtual Network in Azure using the Azure classic portal or PowerShell. For this tutorial, we will use PowerShell. To create a Virtual Network using the Azure classic portal, see [Create Virtual Network](../virtual-network/virtual-networks-create-vnet-arm-pportal.md).
 
 ```powershell
 #Create Virtual Network
@@ -59,11 +60,11 @@ $vnetConfigPath = "<path-to-vnet-config>"
 Set-AzureVNetConfig -ConfigurationPath $vnetConfigPath
 ```
 
-## 建立虛擬機器
+## <a name="create-a-virtual-machine"></a>Create a Virtual Machine
 
-完成虛擬網路的設定後，您需要建立 AD 網域控制站。在本教學課程中，我們會在 Azure 虛擬機器上設定 AD 網域控制站。
+Once you have completed setting up the Virtual Network, you will need to create an AD Domain Controller. For this tutorial, we will be setting up an AD Domain Controller on an Azure Virtual Machine.
 
-若要這樣做，請使用以下命令透過 PowerShell 建立虛擬機器：
+To do this, create a virtual machine through PowerShell using the commands below:
 
 ```powershell
 # Initialize variables
@@ -81,21 +82,21 @@ $affgrp = '<your- affgrp>'
 New-AzureQuickVM -Windows -ServiceName $vmsvc1 -Name $vm1 -ImageName $imgname -AdminUsername $username -Password $password -AffinityGroup $affgrp -SubnetNames $subnetname -VNetName $vnetname
 ```
 
-## 將虛擬機器提升為網域控制站
-若要將虛擬機器設定為 AD 網域控制站，您需要登入 VM 並進行設定。
+## <a name="promote-your-virtual-machine-to-a-domain-controller"></a>Promote your Virtual Machine to a Domain Controller
+To configure the Virtual Machine as an AD Domain Controller, you will need to log in to the VM and configure it.
 
-若要登入 VM，您可以透過 PowerShell 取得 RDP 檔案；請使用下列命令。
+To log in to the VM, you can get the RDP file through PowerShell, use the commands below.
 
 ```powershell
 # Get RDP file
 Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-path>
 ```
 
-登入 VM 後，請依照「[如何設定客戶的 AD 網域控制站](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx)」中的逐步指導將虛擬機器設為 AD 網域控制站。
+Once you are logged into the VM, setup your Virtual Machine as an AD Domain Controller by following the step-by-step guide on [How to setup your customer AD Domain Controller](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx).
 
-## 將雲端服務加入虛擬網路
+## <a name="add-your-cloud-service-to-the-virtual-network"></a>Add your Cloud Service to the Virtual Network
 
-接下來，您需要將雲端服務部署加入剛才建立的 VNet。若要這樣做，請使用 Visual Studio 或選擇的編輯器將相關區段加入 cscfg，藉此修改雲端服務 cscfg。
+Next, you need to add your cloud service deployment to the VNet you just created. To do this, modify your cloud service cscfg by adding the relevant sections to your cscfg using Visual Studio or the editor of your choice.
 
 ```xml
 <ServiceConfiguration serviceName="[hosted-service-name]" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="[os-family]" osVersion="*">
@@ -125,17 +126,17 @@ Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-
 </ServiceConfiguration>
 ```
 
-接下來，請建置雲端服務專案並將它部署到 Azure。如需將雲端服務封裝部署到 Azure 的說明，請參閱「[如何建立和部署雲端服務](cloud-services-how-to-create-deploy.md#deploy)」
+Next build your cloud services project and deploy it to Azure. To get help with deploying your cloud services package to Azure, see [How to Create and Deploy a Cloud Service](cloud-services-how-to-create-deploy.md#deploy)
 
-## 將 Web/背景工作角色連接到網域
+## <a name="connect-your-web/worker-role(s)-to-the-domain"></a>Connect your web/worker role(s) to the domain
 
-在 Azure 上部署雲端服務專案後，請使用 AD 網域延伸將角色執行個體連接到自訂 AD　網域。若要將 AD 網域延伸加入現有雲端服務部署及加入自訂網域，請在 PowerShell 中執行下列命令：
+Once your cloud service project is deployed on Azure, connect your role instances to the custom AD domain using the AD Domain Extension. To add the AD Domain Extension to your existing cloud services deployment and join the custom domain, execute the following commands in PowerShell:
 
 ```powershell
 # Initialize domain variables
 
 $domain = '<your-domain-name>'
-$dmuser = '$domain<your-username>'
+$dmuser = '$domain\<your-username>'
 $dmpswd = '<your-domain-password>'
 $dmspwd = ConvertTo-SecureString $dmpswd -AsPlainText -Force
 $dmcred = New-Object System.Management.Automation.PSCredential ($dmuser, $dmspwd)
@@ -145,15 +146,20 @@ $dmcred = New-Object System.Management.Automation.PSCredential ($dmuser, $dmspwd
 Set-AzureServiceADDomainExtension -Service <your-cloud-service-hosted-service-name> -Role <your-role-name> -Slot <staging-or-production> -DomainName $domain -Credential $dmcred -JoinOption 35
 ```
 
-就這麼簡單。
+And that's it.
 
-雲端服務現在應該已加入自訂網域控制站。如果您想要深入了解設定 AD 網域延伸時可用的其他選項，請依下圖所示的方法使用 PowerShell 說明。
+You cloud services should now be joined to your custom domain controller. If you would like to learn more about the different options available for how to configure AD Domain Extension, use the PowerShell help as shown below.
 
 ```powershell
 help Set-AzureServiceADDomainExtension
 help New-AzureServiceADDomainExtensionConfig
 ```
 
-關於取得將虛擬機器提升為網域控制站的延伸，我們也想知道您對這個做法實用與否的意見反應。如果您認為這個做法很實用，請在意見區段中留言，讓我們知道。
+We would also like your feedback on if it would be useful for you to have an extension that promotes a Virtual Machine to a Domain Controller. So if you think it would be, please let us know in the comments section.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

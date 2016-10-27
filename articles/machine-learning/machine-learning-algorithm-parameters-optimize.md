@@ -1,73 +1,84 @@
-<properties 
-	pageTitle="如何選擇參數來最佳化 Azure Machine Learning 中的演算法 | Microsoft Azure" 
-	description="說明如何為 Azure Machine Learning 中的演算法選擇最佳的參數設定。" 
-	services="machine-learning"
-	documentationCenter="" 
-	authors="bradsev" 
-	manager="jhubbard" 
-	editor="cgronlun"/>
+<properties
+    pageTitle="Choose parameters to optimize your algorithms in Azure Machine Learning | Microsoft Azure"
+    description="Explains how to choose the optimal parameter set for an algorithm in Azure Machine Learning."
+    services="machine-learning"
+    documentationCenter=""
+    authors="bradsev"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
-<tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/12/2016" 
-	ms.author="bradsev" />
+<tags
+    ms.service="machine-learning"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/12/2016"
+    ms.author="bradsev" />
 
 
-# 如何選擇參數來最佳化 Azure Machine Learning 中的演算法
 
-本主題說明如何為 Azure Machine Learning 中的演算法選擇正確的超參數 (hyperparameter) 集。大部分的機器學習服務演算法都會有需要設定的參數。當我們訓練一個模型時，必須提供這些參數的值。訓練過的模型效率會依據我們選擇的模型參數而定。找出最佳參數集的過程稱為模型選擇。
+# <a name="choose-parameters-to-optimize-your-algorithms-in-azure-machine-learning"></a>Choose parameters to optimize your algorithms in Azure Machine Learning
+
+This topic describes how to choose the right hyperparameter set for an algorithm in Azure Machine Learning. Most machine learning algorithms have parameters to set. When you train a model, you need to provide values for those parameters. The efficacy of the trained model depends on the model parameters that you choose. The process of finding the optimal set of parameters is known as *model selection*.
 
 [AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-有許多方法可以進行模型選擇。在機器學習中，交叉驗證是其中一種最廣泛使用的模型選擇方法，在 Azure Machine Learning 中是預設的模型選擇機制。由於 Azure Machine Learning 支援 R 和 Python 兩者，因此您可以使用 R 或 Python 來實作自己的模型選擇機制。
+There are various ways to do model selection. In machine learning, cross-validation is one of the most widely used methods for model selection, and it is the default model selection mechanism in Azure Machine Learning. Because Azure Machine Learning supports both R and Python, you can always implement their own model selection mechanisms by using either R or Python.
 
-找出最佳參數集的過程有四個步驟。
+There are four steps in the process of finding the best parameter set:
 
-1.	**定義參數空間**：對於演算法，我們首先決定我們想要考慮的確切參數值。
-2.	**定義交叉驗證設定**：對於資料集，我們需要決定如何選擇交叉驗證折數。
-3.	**定義計量**：然後我們決定要使用哪一種計量來判斷最佳的參數集，例如正確度、均方根誤差、精確度、召回率或 f 分數。
-4.	**訓練、評估和比較**：對於每個唯一的參數值組合，執行交叉驗證並根據使用者所定義的錯誤計量，就可以選擇最佳的執行模型。
+1.  **Define the parameter space**: For the algorithm, first decide the exact parameter values you want to consider.
+2.  **Define the cross-validation settings**: Decide how to choose cross-validation folds for the dataset.
+3.  **Define the metric**: Decide what metric to use for determining the best set of parameters, such as accuracy, root mean squared error, precision, recall, or f-score.
+4.  **Train, evaluate, and compare**: For each unique combination of the parameter values, cross-validation is carried out by and based on the error metric you define. After evaluation and comparison, you can choose the best-performing model.
 
-下列實驗顯示在 Azure Machine Learning 中如何達到這個目標。
+The following image illustrates shows how this can be achieved in Azure Machine Learning.
 
-![image1](./media/machine-learning-algorithm-parameters-optimize/fig1.png)
- 
-## 定義參數空間
-在進行模型初始化步驟時，可以定義參數集。所有機器學習演算法的參數窗格都有兩種訓練模式：[**單一參數**] 和 [**參數範圍**]。我們必須選擇 [**參數範圍**] 模式 (圖 1)。這個選項可讓您為每個參數輸入多個值：在文字方塊中輸入以逗號分隔的值。或者，使用 [**使用範圍產生器**] 可以定義網格的最大點數與最小點數，以及要產生的總點數。參數值預設會以線性刻度產生。但如果核取了 [對數刻度] 方塊，則值會以對數刻度產生 (也就是相鄰兩點的比率而不是其差異為常數)。對於整數參數，可以使用連字號 "-" 定義範圍，例如："1-10" 表示介於 1 到 10 (兩者皆含) 之間的所有整數會構成參數集。也支援使用混合的模式，例如"1-10, 20, 50"。在此情況下，除了 1-10 的整數，20 和 50 也會加入參數集。
-  
-![image2](./media/machine-learning-algorithm-parameters-optimize/fig2.png) ![image3](./media/machine-learning-algorithm-parameters-optimize/fig3.png)
+![Find the best parameter set](./media/machine-learning-algorithm-parameters-optimize/fig1.png)
 
-## 交叉驗證折疊定義
-使用[分割和樣本][partition-and-sample]模組可對資料隨機指派折數。在下圖中，我們會看到該模組的範例組態，其中我們定義五個折數，並且對樣本實例隨機指派折疊數目。
+## <a name="define-the-parameter-space"></a>Define the parameter space
+You can define the parameter set at the model initialization step. The parameter pane of all machine learning algorithms has two trainer modes: *Single Parameter* and *Parameter Range*. Choose Parameter Range mode. In Parameter Range mode, you can enter multiple values for each parameter. You can enter comma-separated values in the text box.
 
-![image4](./media/machine-learning-algorithm-parameters-optimize/fig4.png)
+![Two-class boosted decision tree, single parameter](./media/machine-learning-algorithm-parameters-optimize/fig2.png)
+
+ Alternately, you can define the maximum and minimum points of the grid and the total number of points to be generated with **Use Range Builder**. By default, the parameter values are generated on a linear scale. But if **Log Scale** is checked, the values are generated in the log scale (that is, the ratio of the adjacent points is constant instead of their difference). For integer parameters, you can define a range by using a hyphen. For example, “1-10” means that all integers between 1 and 10 (both inclusive) form the parameter set. A mixed mode is also supported. For example, the parameter set “1-10, 20, 50” would include integers 1-10, 20, and 50.
+
+![Two-class boosted decision tree, parameter range](./media/machine-learning-algorithm-parameters-optimize/fig3.png)
+
+## <a name="define-cross-validation-folds"></a>Define cross-validation folds
+The [Partition and Sample][partition-and-sample] module can be used to randomly assign folds to the data. In the following sample configuration for the module, we define five folds and randomly assign a fold number to the sample instances.
+
+![Partition and sample](./media/machine-learning-algorithm-parameters-optimize/fig4.png)
 
 
-## 定義計量
-[微調模型超參數][tune-model-hyperparameters]模組支援依據經驗為指定的演算法和資料集選擇一組最佳參數。此模組的屬性窗格除了有關訓練模型的其他資訊之外，還包括用來判斷最佳參數集的計量。分類和迴歸演算法分別有兩個不同的下拉式清單。如果考慮使用分類演算法，則會忽略迴歸計量，反之亦然。在此特定範例中，我們選擇 [**正確度**] 做為計量。
- 
-![image5](./media/machine-learning-algorithm-parameters-optimize/fig5.png)
+## <a name="define-the-metric"></a>Define the metric
+The [Tune Model Hyperparameters][tune-model-hyperparameters] module provides support for empirically choosing the best set of parameters for a given algorithm and dataset. In addition to other information regarding training the model, the **Properties** pane of this module includes the metric for determining the best parameter set. It has two different drop-down list boxes for classification and regression algorithms, respectively. If the algorithm under consideration is a classification algorithm, the regression metric is ignored and vice versa. In this specific example, the metric is **Accuracy**.   
 
-## 訓練、評估和比較  
-相同的[微調模型超參數][tune-model-hyperparameters]模組會訓練與參數集對應的所有模型、評估各種計量，然後根據您選擇的計量輸出訓練得最好的模型。此模組有兩個必要的輸入項：
+![Sweep parameters](./media/machine-learning-algorithm-parameters-optimize/fig5.png)
 
-* 未訓練過的學習者
-* 資料集
+## <a name="train,-evaluate,-and-compare"></a>Train, evaluate, and compare  
+The same [Tune Model Hyperparameters][tune-model-hyperparameters] module trains all the models that correspond to the parameter set, evaluates various metrics, and then creates the best-trained model based on the metric you choose. This module has two mandatory inputs:
 
-此模組也有一個選擇性資料集輸入項。我們將具有折疊資訊的資料集連接到必要的資料集輸入。如果資料集未被指派任何折疊資訊，則預設會自動執行 10 折交叉驗證。如果尚未進行折疊指派，且在選擇性資料集區域提供了驗證資料集，則會使用選擇的訓練-測試模式和第一個資料集針對每一個參數組合訓練模型。接著，會針對驗證資料集評估模型。模組的左側輸出區域將不同的計量顯示為參數值的函數。右側的輸出區域提供訓練過的模型，根據選擇的計量 (在此案例中為正確度) 對應到最佳的執行模型。
+* The untrained learner
+* The dataset
 
-![image6](./media/machine-learning-algorithm-parameters-optimize/fig6a.png) ![image7](./media/machine-learning-algorithm-parameters-optimize/fig6b.png)
- 
-將右側輸出區域具體呈現之後，我們可以看到所選擇的確切參數。此模型在儲存為訓練過的模型之後，可用來對測試集計分，或者用在可運作的 Web 服務。
+The module also has an optional dataset input. Connect the dataset with fold information to the mandatory dataset input. If the dataset is not assigned any fold information, then a 10-fold cross-validation is automatically executed by default. If the fold assignment is not done and a validation dataset is provided at the optional dataset port, then a train-test mode is chosen and the first dataset is used to train the model for each parameter combination.
 
+![Boosted decision tree classifier](./media/machine-learning-algorithm-parameters-optimize/fig6a.png)
+
+The model is then evaluated on the validation dataset. The left output port of the module shows different metrics as functions of parameter values. The right output port gives the trained model that corresponds to the best-performing model according to the chosen metric (**Accuracy** in this case).  
+
+![Validation dataset](./media/machine-learning-algorithm-parameters-optimize/fig6b.png)
+
+You can see the exact parameters chosen by visualizing the right output port. This model can be used in scoring a test set or in an operationalized web service after saving as a trained model.
 
 <!-- Module References -->
 [partition-and-sample]: https://msdn.microsoft.com/library/azure/a8726e34-1b3e-4515-b59a-3e4a475654b8/
 [tune-model-hyperparameters]: https://msdn.microsoft.com/library/azure/038d91b6-c2f2-42a1-9215-1f2c20ed1b40/
- 
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

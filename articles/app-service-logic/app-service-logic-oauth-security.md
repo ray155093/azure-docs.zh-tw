@@ -1,47 +1,52 @@
 <properties
-	pageTitle="SaaS 連接器和 API Apps 中的 OAUTH 安全性 | Azure"
-	description="閱讀有關在 Azure App Service 的連接器和 API Apps 中的 OAUTH 安全性；微服務架構；saas"
-	services="logic-apps"
-	documentationCenter=""
-	authors="MandiOhlinger"
-	manager="dwrede"
-	editor="cgronlun"/>
+    pageTitle="OAUTH Security in SaaS Connectors and API Apps | Azure"
+    description="Read about OAUTH security in the Connectors and API Apps in Azure App Service; microservices architecture; saas"
+    services="logic-apps"
+    documentationCenter=""
+    authors="MandiOhlinger"
+    manager="dwrede"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="logic-apps"
-	ms.workload="integration"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/23/2016"
-	ms.author="mandia"/>
+    ms.service="logic-apps"
+    ms.workload="integration"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/23/2016"
+    ms.author="mandia"/>
 
 
-# 了解 SaaS 連接器中的 OAUTH 安全性
 
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+# <a name="learn-about-oauth-security-in-saas-connectors"></a>Learn about OAUTH Security in SaaS connectors
 
-許多軟體即服務 (SaaS) 連接器 (像是 Facebook、Twitter、DropBox 等) 要求使用者使用 OAUTH 通訊協定來驗證。當您使用來自 Logic Apps 的 SaaS 連接器時，我們會提供簡化的使用者體驗，您可以按一下 Logic Apps 設計工具中的 [授權]。當您**授權**時，您必須登入 (如果尚未登入) 並同意以您的名義連接到 SaaS 服務。在您同意並授權之後，Logic Apps 就可以存取這些 SaaS 服務。
+>[AZURE.NOTE] This version of the article applies to logic apps 2014-12-01-preview schema version.
 
-## 建立您自己的 SaaS 應用程式
-這個簡化的體驗是可行的，因為我們先前已在這些 SaaS 服務中建立並註冊我們的應用程式。在某些情況下，您可能想要註冊及使用自己的應用程式。這是必要的，例如，當您想要在自訂應用程式中使用這些 SaaS 連接器時。這個範例會使用 DropBox 連接器，但程序與所有依賴 OAUTH 的連接器相同。
+Many of the Software as a Service (SaaS) connectors like Facebook, Twitter, DropBox, and so on require users to authenticate using the OAUTH protocol.  When you use these SaaS connectors from Logic Apps, we provide a simplified user experience where you click "Authorize" in the Logic Apps designer. When you **Authorize**, you are asked to sign in (if not already) and provide consent to connect to the SaaS service on your behalf. After you do provide consent and authorize, your Logic Apps can then access these SaaS services.
 
-即使在 Logic Apps 的內容中，您也可以使用自己的應用程式，而不是使用我們提供的預設應用程式。如果 [授權] 按鈕無法連接，您可以嘗試建立您自己的應用程式。以下列出 Twitter 連接器的步驟：
+## <a name="create-your-own-saas-app"></a>Create your own SaaS app
+This simplified experience is possible because we previously created and registered our application in these SaaS services.  In certain cases, you may want to register and use your own application.  This is necessary, for instance, when you want to use these SaaS connectors in your custom applications. This example uses the DropBox connector, but the process is the same for all connectors that rely on OAUTH.
 
-1. 在 Azure Preview 入口網站中開啟您的 Twitter 連接器。移至 [瀏覽] > API Apps。搜尋您的 Twitter 連接器：![][1]
+Even in the context of Logic Apps, you can use your own application instead of using the default application that we provide. If the "Authorize" button fails to connect, you can try creating your own app. The following lists these steps for the Twitter connector:
 
-2. 選取 [設定] > [驗證]：![][2]
+1. Open your Twitter connector in the Azure preview portal. Go to **Browse** > **API Apps**. Select your Twitter connector:  
+    ![][1]
 
-3. 複製**重新導向 URI** 值：![][3]
+2. Select **Settings** > **Authentication**:  
+    ![][2]
 
-4. 移至 [Twitter](http://apps.twitter.com) 並**建立新的應用程式**。在**回呼 URL** 屬性中，貼上從您的 Twitter 連接器複製的**重新導向 URI** 值：![][4]
-5. 建立您的 Twitter 應用程式時，請選取 [**金鑰和存取權杖**。複製這些值。
-6. 在您的 Twitter 連接器驗證設定中，將這些值貼到**用戶端識別碼**和**用戶端密碼**屬性：![][5]
-7. 儲存您的連接器設定。
+3. Copy the **Redirect URI** value:  
+    ![][3]
 
-現在，您應該能夠從 Logic Apps 使用您的連接器。當您從 Logic Apps 使用此連接器時，它會使用您的應用程式，而不是使用預設的應用程式。
+4. Go to [Twitter](http://apps.twitter.com) and **Create a New App**. In the **Callback URL** property, paste the **Redirect URI** value copied from  your Twitter connector:  ![][4]  
+5. When your Twitter app is created, select **Key and Access Tokens**. Copy these values.
+6. In your Twitter connector authentication settings, paste these values in the **Client ID** and **Client Secret** properties:   
+    ![][5]  
+7. Save your connector settings.  
 
-> [AZURE.NOTE] 如果您先前已授權應用程式，您可能必須重新授權應用程式。
+Now, you should be able to use your connector from Logic Apps. When you use this connector from Logic Apps, it uses your application instead of the default application.  
+
+> [AZURE.NOTE] If you have authorized an app previously, you may have to reauthorize the app.
 
 
 <!--Image references-->
@@ -51,4 +56,8 @@
 [4]: ./media/app-service-logic-oauth-security/TwitterApp.png
 [5]: ./media/app-service-logic-oauth-security/TwitterKeys.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

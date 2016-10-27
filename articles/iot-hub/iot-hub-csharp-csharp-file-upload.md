@@ -1,11 +1,11 @@
 <properties
-	pageTitle="使用 IoT 中心從裝置上傳檔案 | Microsoft Azure"
-	description="請遵循本教學課程以了解如何從使用 Azure IoT 中心搭配 C# 的裝置上傳檔案。"
-	services="iot-hub"
-	documentationCenter=".net"
-	authors="fsautomata"
-	manager="timlt"
-	editor=""/>
+    pageTitle="Upload files from devices using IoT Hub | Microsoft Azure"
+    description="Follow this tutorial to learn how to upload files from devices using Azure IoT Hub with C#."
+    services="iot-hub"
+    documentationCenter=".net"
+    authors="fsautomata"
+    manager="timlt"
+    editor=""/>
 
 <tags
      ms.service="iot-hub"
@@ -16,48 +16,49 @@
      ms.date="06/21/2016"
      ms.author="elioda"/>
 
-# 教學課程：如何使用 IoT 中樞將檔案從裝置上傳到雲端
 
-## 簡介
+# <a name="tutorial:-how-to-upload-files-from-devices-to-the-cloud-with-iot-hub"></a>Tutorial: How to upload files from devices to the cloud with IoT Hub
 
-Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。先前的教學課程 ([開始使用 IoT 中樞]和[使用 IoT 中樞傳送雲端到裝置訊息]) 說明了 IoT 中樞基本的裝置到雲端和雲端到裝置訊息功能，而[處理裝置到雲端訊息]教學課程會討論如何在 Azure Blob 儲存體中可靠地儲存裝置到雲端訊息的方式。不過，在某些情況下，您無法輕易地將裝置傳送的資料對應到 IoT 中樞接受且相對較小的裝置到雲端訊息。範例涵蓋包含圖片、影片、高頻率震動資料範例，或是包含部分前置處理資料形式的大型檔案。這些檔案通常會使用工具 (例如 [Azure Data Factory] 或 [Hadoop] 堆疊) 在雲端中進行批次處理。若偏好從裝置上傳檔案來傳送事件，您仍然可以使用 IoT 中樞安全性與可靠性功能。
+## <a name="introduction"></a>Introduction
 
-本教學課程是以[使用 IoT 中樞傳送雲端到裝置訊息]教學課程中的程式碼來建置，示範如何使用 IoT 中樞的檔案上傳功能。其中示範如何透過 Azure Blob URI 安全地提供裝置來上傳檔案，以及如何使用 IoT 中樞檔案上傳通知來觸發應用程式後端的檔案處理。
+Azure IoT Hub is a fully managed service that enables reliable and secure bi-directional communications between millions of IoT devices and an application back end. Previous tutorials ([Get started with IoT Hub] and [Send Cloud-to-Device messages with IoT Hub]) illustrate the basic device-to-cloud and cloud-to-device messaging functionality of IoT Hub, and the [Process Device-to-Cloud messages] tutorial describes a way to reliably store device-to-cloud messages in Azure blob storage. However, in some scenarios you cannot easily map the data your devices send into the relatively small device-to-cloud messages that IoT Hub accepts. Examples include large files that contain images, videos, vibration data sampled at high frequency, or that contain some form of preprocessed data. These files are typically batch processed in the cloud using tools such as [Azure Data Factory] or the [Hadoop] stack. When file uploads from a device are preferred to sending events, you can still use IoT Hub security and reliability functionality.
 
-在本教學課程結尾，您會執行兩個 Windows 主控台應用程式：
+This tutorial builds on the code in the [Send Cloud-to-Device messages with IoT Hub] tutorial to show you how to use the file upload capabilities of IoT Hub. It shows you how to securely provide a device with an Azure blob URI for uploading a file, and how to use the IoT Hub file upload notifications to trigger processing the file in your app back end.
 
-* **SimulatedDevice**，此為[使用 IoT 中樞傳送雲端到裝置訊息]教學課程中建立的應用程式修改版本，可以使用 IoT 中樞提供的 SAS URI，將檔案上傳到儲存體。
-* **ReadFileUploadNotification**，它會接收來自 IoT 中樞的檔案上傳通知。
+At the end of this tutorial you run two Windows console applications:
 
-> [AZURE.NOTE] IoT 中樞透過 Azure IoT 裝置 SDK 來支援許多裝置平台和語言 (包括 C、Java 及 Javascript)。如需如何將您的裝置連接到本教學課程中所示的程式碼 (通常是連接到 Azure IoT 中樞) 的逐步指示，請參閱 [Azure IoT 開發人員中心]。
+* **SimulatedDevice**, a modified version of the app created in the [Send Cloud-to-Device messages with IoT Hub] tutorial, which uploads a file to storage using a SAS URI provided by your IoT hub.
+* **ReadFileUploadNotification**, which receives file upload notifications from your IoT hub.
 
-若要完成本教學課程，您需要下列項目：
+> [AZURE.NOTE] IoT Hub supports many device platforms and languages (including C, Java, and Javascript) through Azure IoT device SDKs. Refer to the [Azure IoT Developer Center] for step by step instructions on how to connect your device to the code shown in this tutorial, and generally to Azure IoT Hub.
 
-+ Microsoft Visual Studio 2015，
+In order to complete this tutorial, you need the following:
 
-+ 使用中的 Azure 帳戶。(如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
++ Microsoft Visual Studio 2015,
 
-## 讓 Azure 儲存體帳戶與 IoT 中樞產生關聯
++ An active Azure account. (If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial][lnk-free-trial].)
 
-由於模擬裝置會將檔案上傳至 Azure 儲存體 Blob，因此您必須擁有和 IoT 中樞關聯的 [Azure 儲存體]帳戶。當您在建立儲存體帳戶與 IoT 中樞的關聯時，該中樞會產生可供裝置安全地將檔案上傳至 Blob 容器的 SAS URI。IoT 中樞服務和裝置 SDK 會協調產生 SAS URI 的程序，並使其可供裝置用來上傳檔案。
+## <a name="associate-an-azure-storage-account-to-iot-hub"></a>Associate an Azure Storage account to IoT Hub
 
-請依照[透過 Azure 入口網站管理 IoT 中樞]中的指示，讓 Azure 儲存體帳戶與 IoT 中樞產生關聯。
+Because the simulated device uploads a file to an Azure Storage blob, you must have an [Azure Storage] account associated to IoT Hub. When you associate a storage account with an IoT hub, the hub can generate a SAS URI that a device can use to securely upload a file to a blob container. The IoT Hub service and the device SDKs coordinate the process that generates the SAS URI and makes it available to a device to use to upload a file.
 
-## 從模擬裝置上傳檔案
+Follow the instructions in [Configure file uploads using the Azure portal][lnk-configure-upload] to associate an Azure Storage account to your IoT hub.
 
-在本節中，您將修改在[使用 IoT 中樞傳送雲端到裝置訊息]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
+## <a name="upload-a-file-from-a-simulated-device"></a>Upload a file from a simulated device
 
-1. 在 Visual Studio 中，以滑鼠右鍵按一下 **SimulatedDevice** 專案，按一下 [新增]，然後按一下 [現有項目]。瀏覽至影像檔並將它包含在您的專案中。本教學課程假設影像名稱為`image.jpg`。
+In this section, you modify the simulated device application you created in [Send Cloud-to-Device messages with IoT Hub] to receive cloud-to-device messages from the IoT hub.
 
-2. 以滑鼠右鍵按一下影像，然後按一下 [內容]。確定 [複製到輸出目錄] 是設為 [一律複製]。
+1. In Visual Studio, right-click the **SimulatedDevice** project, click **Add**, and then click **Existing Item**. Navigate to an image file and include it in your project. This tutorial assumes the image is named `image.jpg`.
+
+2. Right-click on the image, and then click **Properties**. Make sure that **Copy to Output Directory** is set to **Copy always**.
 
     ![][1]
 
-3. 在 **Program.cs** 檔的頂端，新增下列陳述式：
+3. In the **Program.cs** file, add the following statements at the top of the file:
 
         using System.IO;
 
-4. 將下列方法加入至 **Program** 類別：
+4. Add the following method to the **Program** class:
          
         private static async void SendToBlobAsync()
         {
@@ -74,40 +75,40 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
             Console.WriteLine("Time to upload file: {0}ms\n", watch.ElapsedMilliseconds);
         }
 
-    `UploadToBlobAsync` 方法會取得要上傳之檔案的檔案名稱與資料流來源，然後處理上傳至儲存體的工作。主控台應用程式會顯示上傳檔案時使用的時間。
+    The `UploadToBlobAsync` method takes in the file name and stream source of the file to be uploaded and handles the upload to storage. The console application displays the time it takes to upload the file.
 
-5. 將下列方法新增到 **Main** 方法中緊接在 `Console.ReadLine()` 行前面：
+5. Add the following method in the **Main** method, right before the `Console.ReadLine()` line:
 
         SendToBlobAsync();
 
-> [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在生產環境程式碼中，您應該如 MSDN 文章[暫時性錯誤處理]所建議，實作重試原則 (例如指數型輪詢)。
+> [AZURE.NOTE] For simplicity's sake, this tutorial does not implement any retry policy. In production code, you should implement retry policies (such as exponential backoff), as suggested in the MSDN article [Transient Fault Handling].
 
-## 接收檔案上傳通知
+## <a name="receive-a-file-upload-notification"></a>Receive a file upload notification
 
-在本節中，您將撰寫 Windows 主控台應用程式，它會接收來自 IoT 中樞的檔案上傳通知訊息。
+In this section, you write a Windows console app that receives file upload notification messages from IoT Hub.
 
-1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立新的 Visual C# Windows 專案。將專案命名為 **ReadFileUploadNotification**。
+1. In the current Visual Studio solution, create a new Visual C# Windows project by using the **Console Application** project template. Name the project **ReadFileUploadNotification**.
 
-    ![Visual Studio 中的新專案][2]
+    ![New project in Visual Studio][2]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ReadFileUploadNotification** 專案，然後按一下 [管理 NuGet 封裝]。
+2. In Solution Explorer, right-click the **ReadFileUploadNotification** project, and then click **Manage NuGet Packages**.
 
-    此時會顯示 [管理 NuGet 封裝] 視窗。
+    This displays the Manage NuGet Packages window.
 
-2. 搜尋 `Microsoft.Azure.Devices`，然後按一下 [**安裝**] 並接受使用條款。
+2. Search for `Microsoft.Azure.Devices`, click **Install**, and accept the terms of use. 
 
-	這會下載及安裝參考，並將參考加入 **ReadFileUploadNotification** 專案中的 [Azure IoT - 服務 SDK NuGet 封裝]。
+    This downloads, installs, and adds a reference to the [Azure IoT - Service SDK NuGet package] in the **ReadFileUploadNotification** project.
 
-3. 在 **Program.cs** 檔的頂端，新增下列陳述式：
+3. In the **Program.cs** file, add the following statements at the top of the file:
 
         using Microsoft.Azure.Devices;
 
-4. 將下列欄位新增到 **Program** 類別。將預留位置的值替換成[開始使用 IoT 中樞] 中的 IoT 中樞連接字串：
+4. Add the following fields to the **Program** class. Substitute the placeholder value with the IoT hub connection string from [Get started with IoT Hub]:
 
-		static ServiceClient serviceClient;
+        static ServiceClient serviceClient;
         static string connectionString = "{iot hub connection string}";
         
-5. 將下列方法加入至 **Program** 類別：
+5. Add the following method to the **Program** class:
    
         private async static Task ReceiveFileUploadNotificationAsync()
         {
@@ -127,40 +128,37 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
             }
         }
 
-    請注意，這裡的接收模式，與用來從裝置應用程式接收雲端到裝置訊息的模式相同。
+    Note that the receive pattern is the same one used to receive cloud-to-device messages from the device app.
 
-6. 最後，將下列幾行加入至 **Main** 方法：
+6. Finally, add the following lines to the **Main** method:
 
         Console.WriteLine("Receive file upload notifications\n");
         serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
         ReceiveFileUploadNotificationAsync().Wait();
         Console.ReadLine();
 
-## 執行應用程式
+## <a name="run-the-applications"></a>Run the applications
 
-現在您已經準備好執行應用程式。
+Now you are ready to run the applications.
 
-1. 在 Visual Studio 中，在您的方案上按一下滑鼠右鍵，然後選取 [設定啟始專案]。選取 [多個啟始專案]，然後針對 **ReadFileUploadNotification** 和 **SimulatedDevice** 選取 [啟動]。
+1. In Visual Studio, right-click your solution, and select **Set StartUp projects**. Select **Multiple startup projects**, then select the **Start** action for **ReadFileUploadNotification** and **SimulatedDevice**.
 
-2. 按 **F5**。這兩個應用程式應該都會啟動。您應該會在其中一個主控台應用程式中看到上傳已完成，以及另一個主控台應用程式所收到的上傳通知訊息。您可以使用 [Azure 入口網站]或 Visual Studio 伺服器總管，在您的儲存體帳戶中檢查上傳的檔案是否存在。
+2. Press **F5**. Both applications should start. You should see the upload completed in one console app and the upload notification message being received by the other console app. You can use the [Azure portal] or Visual Studio Server Explorer to check for the presence of the uploaded file in your storage account.
 
   ![][50]
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-在本教學課程中，您已學到如何運用 IoT 中樞的檔案上傳功能來簡化從裝置上傳檔案。您可以利用下列文章繼續探索 IoT 中樞功能和案例：
+In this tutorial, you learned how to leverage the file upload capabilities of IoT Hub to simplify file uploads from devices. You can continue explore IoT hub features and scenarios with the following articles:
 
-- [以程式設計方式建立 IoT 中樞][lnk-create-hub]
-- [C SDK 簡介][lnk-c-sdk]
-- [IoT 中心 SDK][lnk-sdks]
+- [Create an IoT hub programmatically][lnk-create-hub]
+- [Introduction to C SDK][lnk-c-sdk]
+- [IoT Hub SDKs][lnk-sdks]
 
-若要進一步探索 IoT 中樞的功能，請參閱︰
+To further explore the capabilities of IoT Hub, see:
 
-- [設計您的解決方案][lnk-design]
-- [使用範例 UI 探索裝置管理][lnk-dmui]
-- [使用閘道 SDK 模擬裝置][lnk-gateway]
-- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+- [Simulating a device with the Gateway SDK][lnk-gateway]
 
 <!-- Images. -->
 
@@ -170,29 +168,32 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 <!-- Links -->
 
-[Azure 入口網站]: https://portal.azure.com/
+[Azure portal]: https://portal.azure.com/
 
 [Azure Data Factory]: https://azure.microsoft.com/documentation/services/data-factory/
 [Hadoop]: https://azure.microsoft.com/documentation/services/hdinsight/
 
-[使用 IoT 中樞傳送雲端到裝置訊息]: iot-hub-csharp-csharp-c2d.md
-[處理裝置到雲端訊息]: iot-hub-csharp-csharp-process-d2c.md
-[開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
-[Azure IoT 開發人員中心]: http://www.azure.com/develop/iot
+[Send Cloud-to-Device messages with IoT Hub]: iot-hub-csharp-csharp-c2d.md
+[Process Device-to-Cloud messages]: iot-hub-csharp-csharp-process-d2c.md
+[Get started with IoT Hub]: iot-hub-csharp-csharp-getstarted.md
+[Azure IoT Developer Center]: http://www.azure.com/develop/iot
 
-[暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-[Azure 儲存體]: ../storage/storage-create-storage-account.md#create-a-storage-account
-[透過 Azure 入口網站管理 IoT 中樞]: iot-hub-manage-through-portal.md#file-upload
-[Azure IoT - 服務 SDK NuGet 封裝]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
+[Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[Azure Storage]: ../storage/storage-create-storage-account.md#create-a-storage-account
+[lnk-configure-upload]: iot-hub-configure-file-upload.md
+[Azure IoT - Service SDK NuGet package]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 
 [lnk-create-hub]: iot-hub-rm-template-powershell.md
 [lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
-[lnk-sdks]: iot-hub-sdks-summary.md
+[lnk-sdks]: iot-hub-devguide-sdks.md
 
-[lnk-design]: iot-hub-guidance.md
-[lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
-[lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

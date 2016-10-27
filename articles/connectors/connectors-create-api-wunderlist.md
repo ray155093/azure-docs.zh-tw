@@ -1,10 +1,10 @@
 <properties
 pageTitle="Wunderlist | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。Wunderlist 提供待辦事項清單和工作管理員，協助使用者完成其工作。無論是與親愛的人共用購物清單、處理專案，還是計劃假期，Wunderlist 都能讓您輕鬆擷取、共用及完成待辦事項。Wunderlist 立即同步處理您的電話、平板電腦及電腦，讓您可在任何地方存取工作。"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create Logic apps with Azure App service. Wunderlist provide a todo list and task manager to help people get their stuff done.  Whether you’re sharing a grocery list with a loved one, working on a project, or planning a vacation, Wunderlist makes it easy to capture, share, and complete your to¬dos. Wunderlist instantly syncs between your phone, tablet and computer, so you can access all your tasks from anywhere."
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,885 +17,889 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Wunderlist 連接器
 
-Wunderlist 提供待辦事項清單和工作管理員，協助使用者完成其工作。無論是與親愛的人共用購物清單、處理專案，還是計劃假期，Wunderlist 都能讓您輕鬆擷取、共用及完成待辦事項。Wunderlist 立即同步處理您的電話、平板電腦及電腦，讓您可在任何地方存取工作。
+# <a name="get-started-with-the-wunderlist-connector"></a>Get started with the Wunderlist connector
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+Wunderlist provide a todo list and task manager to help people get their stuff done.  Whether you’re sharing a grocery list with a loved one, working on a project, or planning a vacation, Wunderlist makes it easy to capture, share, and complete your to¬dos. Wunderlist instantly syncs between your phone, tablet and computer, so you can access all your tasks from anywhere.
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. 
 
-## 觸發程序及動作
+You can get started by creating a Logic app now, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+## <a name="triggers-and-actions"></a>Triggers and actions
 
- Wunderlist 連接器提供下列動作及/或觸發程序：
+The Wunderlist connector can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
 
-### Wunderlist 動作
-您可以採取下列動作：
+ The Wunderlist connector has the following action(s) and/or trigger(s) available:
 
-|動作|說明|
+### <a name="wunderlist-actions"></a>Wunderlist actions
+You can take these action(s):
+
+|Action|Description|
 |--- | ---|
-|[RetrieveLists](connectors-create-api-wunderlist.md#retrievelists)|擷取與帳戶相關聯的清單。|
-|[CreateList](connectors-create-api-wunderlist.md#createlist)|建立清單。|
-|[ListTasks](connectors-create-api-wunderlist.md#listtasks)|擷取特定清單中的工作。|
-|[CreateTask](connectors-create-api-wunderlist.md#createtask)|建立工作|
-|[ListSubTasks](connectors-create-api-wunderlist.md#listsubtasks)|擷取特定清單或特定工作中的子工作。|
-|[CreateSubTask](connectors-create-api-wunderlist.md#createsubtask)|在特定工作內建立子工作|
-|[ListNotes](connectors-create-api-wunderlist.md#listnotes)|擷取特定清單或特定工作的附註。|
-|[CreateNote](connectors-create-api-wunderlist.md#createnote)|在特定工作中加入附註|
-|[ListComments](connectors-create-api-wunderlist.md#listcomments)|擷取特定清單或特定工作的工作註解。|
-|[CreateComment](connectors-create-api-wunderlist.md#createcomment)|在特定工作中加入註解|
-|[RetrieveReminders](connectors-create-api-wunderlist.md#retrievereminders)|擷取特定清單或特定工作的提醒。|
-|[CreateReminder](connectors-create-api-wunderlist.md#createreminder)|設定提醒。|
-|[RetrieveFiles](connectors-create-api-wunderlist.md#retrievefiles)|擷取特定清單或特定工作的檔案。|
-|[GetList](connectors-create-api-wunderlist.md#getlist)|擷取特定的清單|
-|[DeleteList](connectors-create-api-wunderlist.md#deletelist)|刪除清單|
-|[UpdateList](connectors-create-api-wunderlist.md#updatelist)|更新特定的清單|
-|[GetTask](connectors-create-api-wunderlist.md#gettask)|擷取特定的工作|
-|[UpdateTask](connectors-create-api-wunderlist.md#updatetask)|更新特定的工作|
-|[DeleteTask](connectors-create-api-wunderlist.md#deletetask)|刪除特定的工作|
-|[GetSubTask](connectors-create-api-wunderlist.md#getsubtask)|擷取特定的子工作|
-|[UpdateSubTask](connectors-create-api-wunderlist.md#updatesubtask)|更新特定的子工作|
-|[DeleteSubTask](connectors-create-api-wunderlist.md#deletesubtask)|刪除特定的子工作|
-|[GetNote](connectors-create-api-wunderlist.md#getnote)|擷取特定的附註|
-|[UpdateNote](connectors-create-api-wunderlist.md#updatenote)|更新特定的附註|
-|[DeleteNote](connectors-create-api-wunderlist.md#deletenote)|刪除特定的附註|
-|[GetComment](connectors-create-api-wunderlist.md#getcomment)|擷取特定工作的註解|
-|[UpdateReminder](connectors-create-api-wunderlist.md#updatereminder)|更新特定的提醒|
-|[DeleteReminder](connectors-create-api-wunderlist.md#deletereminder)|刪除特定的提醒|
-### Wunderlist 觸發程序
-您可以接聽下列事件：
+|[RetrieveLists](connectors-create-api-wunderlist.md#retrievelists)|Retrieve the lists associated with your account.|
+|[CreateList](connectors-create-api-wunderlist.md#createlist)|Create a list.|
+|[ListTasks](connectors-create-api-wunderlist.md#listtasks)|Retrieve tasks from a specific list.|
+|[CreateTask](connectors-create-api-wunderlist.md#createtask)|Create a task|
+|[ListSubTasks](connectors-create-api-wunderlist.md#listsubtasks)|Retrieve subtasks from a specific list or from a specific task.|
+|[CreateSubTask](connectors-create-api-wunderlist.md#createsubtask)|Create a subtask within a specific task|
+|[ListNotes](connectors-create-api-wunderlist.md#listnotes)|Retrieve notes for a specific list or a specific task.|
+|[CreateNote](connectors-create-api-wunderlist.md#createnote)|Add a note to a specific task|
+|[ListComments](connectors-create-api-wunderlist.md#listcomments)|Retrieve task comments for a specific list or a specific task.|
+|[CreateComment](connectors-create-api-wunderlist.md#createcomment)|Add a comment to a specific task|
+|[RetrieveReminders](connectors-create-api-wunderlist.md#retrievereminders)|Retrieve reminders for a specific list or a specific task.|
+|[CreateReminder](connectors-create-api-wunderlist.md#createreminder)|Set a reminder.|
+|[RetrieveFiles](connectors-create-api-wunderlist.md#retrievefiles)|Retrieve files for a specific list or a specific task.|
+|[GetList](connectors-create-api-wunderlist.md#getlist)|Retrieves a specific list|
+|[DeleteList](connectors-create-api-wunderlist.md#deletelist)|Deletes a list|
+|[UpdateList](connectors-create-api-wunderlist.md#updatelist)|Update a specific list|
+|[GetTask](connectors-create-api-wunderlist.md#gettask)|Retrieves a specific task|
+|[UpdateTask](connectors-create-api-wunderlist.md#updatetask)|Updates a specific task|
+|[DeleteTask](connectors-create-api-wunderlist.md#deletetask)|Deletes a specific task|
+|[GetSubTask](connectors-create-api-wunderlist.md#getsubtask)|Retrieves a specific subtask|
+|[UpdateSubTask](connectors-create-api-wunderlist.md#updatesubtask)|Updates a specific subtask|
+|[DeleteSubTask](connectors-create-api-wunderlist.md#deletesubtask)|Deletes a specific subtask|
+|[GetNote](connectors-create-api-wunderlist.md#getnote)|Retrieve a specific note|
+|[UpdateNote](connectors-create-api-wunderlist.md#updatenote)|Update a specific note|
+|[DeleteNote](connectors-create-api-wunderlist.md#deletenote)|Delete a specific note|
+|[GetComment](connectors-create-api-wunderlist.md#getcomment)|Retrieve a specific task comment|
+|[UpdateReminder](connectors-create-api-wunderlist.md#updatereminder)|Update a specific reminder|
+|[DeleteReminder](connectors-create-api-wunderlist.md#deletereminder)|Delete a specific reminder|
+### <a name="wunderlist-triggers"></a>Wunderlist triggers
+You can listen for these event(s):
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|工作到期時|清單中的工作到期時就會觸發新的流程|
-|建立新工作時|在清單中建立新工作時就會觸發新的流程|
-|提醒出現時|提醒出現時就會觸發新的流程|
+|When a task is due|Triggers a new flow when a task in the list is due|
+|When a new task is created|Triggers a new flow when a new task is created in the list|
+|When a reminder occurs|Triggers a new flow when a reminder occurs|
 
 
-## 建立 Wunderlist 的連線
-若要使用 Wunderlist 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
+## <a name="create-a-connection-to-wunderlist"></a>Create a connection to Wunderlist
+To create Logic apps with Wunderlist, you must first create a **connection** then provide the details for the following properties: 
 
-|屬性| 必要|說明|
+|Property| Required|Description|
 | ---|---|---|
-|權杖|是|提供 Wunderlist 認證|
-建立連線後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+|Token|Yes|Provide Wunderlist Credentials|
+After you create the connection, you can use it to execute the actions and listen for the triggers described in this article. 
 
 
->[AZURE.INCLUDE [建立至 Wunderlist 連線的步驟](../../includes/connectors-create-api-wunderlist.md)]
+>[AZURE.INCLUDE [Steps to create a connection to Wunderlist](../../includes/connectors-create-api-wunderlist.md)] 
 
 
->[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
+>[AZURE.TIP] You can use this connection in other logic apps.
 
-## Wunderlist 的參考
-適用的版本：1.0
+## <a name="reference-for-wunderlist"></a>Reference for Wunderlist
+Applies to version: 1.0
 
-## TriggerTaskDue
-工作到期時：清單中的工作到期時就會觸發新的流程
+## <a name="triggertaskdue"></a>TriggerTaskDue
+When a task is due: Triggers a new flow when a task in the list is due 
 
-```GET: /trigger/tasksdue```
+```GET: /trigger/tasksdue``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
+|list_id|integer|yes|query|none|List ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation successful|
 
 
-## TriggerTaskNew
-建立新工作時︰在清單中建立新工作時就會觸發新的流程
+## <a name="triggertasknew"></a>TriggerTaskNew
+When a new task is created: Triggers a new flow when a new task is created in the list 
 
-```GET: /trigger/tasksnew```
+```GET: /trigger/tasksnew``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
+|list_id|integer|yes|query|none|List ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation successful|
 
 
-## TriggerReminder
-提醒出現時：提醒出現時就會觸發新的流程
+## <a name="triggerreminder"></a>TriggerReminder
+When a reminder occurs: Triggers a new flow when a reminder occurs 
 
-```GET: /trigger/reminders```
+```GET: /trigger/reminders``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|task\_id|integer|no|query|無|工作識別碼|
+|list_id|integer|yes|query|none|List ID|
+|task_id|integer|no|query|none|Task ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
+|200|Operation successful|
 
 
-## RetrieveLists
-取得清單：擷取與帳戶相關聯的清單。
+## <a name="retrievelists"></a>RetrieveLists
+Get lists: Retrieve the lists associated with your account. 
 
-```GET: /lists```
+```GET: /lists``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|400|不正確的要求|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|200|Operation successful|
+|400|Bad Request|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateList
-建立清單︰建立清單。
+## <a name="createlist"></a>CreateList
+Create a list: Create a list. 
 
-```POST: /lists```
+```POST: /lists``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|post| |yes|body|無|要建立的新清單|
+|post| |yes|body|none|New list to be created|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|預設值|作業失敗。|
+|200|Operation successful|
+|default|Operation Failed.|
 
 
-## ListTasks
-取得工作：擷取特定清單中的工作。
+## <a name="listtasks"></a>ListTasks
+Get tasks: Retrieve tasks from a specific list. 
 
-```GET: /tasks```
+```GET: /tasks``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|完成|布林值|no|query|無|Completed|
+|list_id|integer|yes|query|none|List ID|
+|completed|boolean|no|query|none|Completed|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|400|不正確的要求|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|200|Operation successful|
+|400|Bad Request|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateTask
-建立工作︰建立工作
+## <a name="createtask"></a>CreateTask
+Create a task: Create a task 
 
-```POST: /tasks```
+```POST: /tasks``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|post| |yes|body|無|要建立的新工作|
+|post| |yes|body|none|New task to be created|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|201|建立時間|
+|201|Created|
 
 
-## ListSubTasks
-取得子工作︰擷取特定清單或特定工作中的子工作。
+## <a name="listsubtasks"></a>ListSubTasks
+Get subtasks: Retrieve subtasks from a specific list or from a specific task. 
 
-```GET: /subtasks```
+```GET: /subtasks``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|task\_id|integer|no|query|無|工作識別碼|
-|完成|布林值|no|query|無|Completed|
+|list_id|integer|yes|query|none|List ID|
+|task_id|integer|no|query|none|Task ID|
+|completed|boolean|no|query|none|Completed|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|400|不正確的要求|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|200|Operation successful|
+|400|Bad Request|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateSubTask
-建立子工作：在特定工作內建立子工作
+## <a name="createsubtask"></a>CreateSubTask
+Create a subtask: Create a subtask within a specific task 
 
-```POST: /subtasks```
+```POST: /subtasks``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|post| |yes|body|無|要建立的新的子工作|
+|post| |yes|body|none|New subtask to be created|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|201|建立時間|
+|201|Created|
 
 
-## ListNotes
-取得附註：擷取特定清單或特定工作的附註。
+## <a name="listnotes"></a>ListNotes
+Get notes: Retrieve notes for a specific list or a specific task. 
 
-```GET: /notes```
+```GET: /notes``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|task\_id|integer|no|query|無|工作識別碼|
+|list_id|integer|yes|query|none|List ID|
+|task_id|integer|no|query|none|Task ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|400|不正確的要求|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|200|Operation successful|
+|400|Bad Request|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateNote
-建立附註︰在特定工作中加入附註
+## <a name="createnote"></a>CreateNote
+Create a note: Add a note to a specific task 
 
-```POST: /notes```
+```POST: /notes``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|post| |yes|body|無|要建立的新附註|
+|post| |yes|body|none|New note to be created|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|201|建立時間|
+|201|Created|
 
 
-## ListComments
-取得工作註解：擷取特定清單或特定工作的工作註解。
+## <a name="listcomments"></a>ListComments
+Get task comments: Retrieve task comments for a specific list or a specific task. 
 
-```GET: /task_comments```
+```GET: /task_comments``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|task\_id|integer|no|query|無|工作識別碼|
+|list_id|integer|yes|query|none|List ID|
+|task_id|integer|no|query|none|Task ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|400|不正確的要求|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|200|Operation successful|
+|400|Bad Request|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateComment
-加入工作註解：在特定工作中加入註解
+## <a name="createcomment"></a>CreateComment
+Add a comment to a task: Add a comment to a specific task 
 
-```POST: /task_comments```
+```POST: /task_comments``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|post| |yes|body|無|要建立的新工作註解|
+|post| |yes|body|none|New task comment to be created|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|201|建立時間|
+|201|Created|
 
 
-## RetrieveReminders
-取得提醒：擷取特定清單或特定工作的提醒。
+## <a name="retrievereminders"></a>RetrieveReminders
+Get reminders: Retrieve reminders for a specific list or a specific task. 
 
-```GET: /reminders```
+```GET: /reminders``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|task\_id|integer|no|query|無|工作識別碼|
+|list_id|integer|yes|query|none|List ID|
+|task_id|integer|no|query|none|Task ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|400|不正確的要求|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|200|Operation successful|
+|400|Bad Request|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## CreateReminder
-設定提醒︰設定提醒。
+## <a name="createreminder"></a>CreateReminder
+Set a reminder: Set a reminder. 
 
-```POST: /reminders```
+```POST: /reminders``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|post| |yes|body|無|要建立的新提醒|
+|post| |yes|body|none|New reminder to be created|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|預設值|作業失敗。|
+|200|Operation successful|
+|default|Operation Failed.|
 
 
-## RetrieveFiles
-取得檔案：擷取特定清單或特定工作的檔案。
+## <a name="retrievefiles"></a>RetrieveFiles
+Get files: Retrieve files for a specific list or a specific task. 
 
-```GET: /files```
+```GET: /files``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|task\_id|integer|no|query|無|工作識別碼|
+|list_id|integer|yes|query|none|List ID|
+|task_id|integer|no|query|none|Task ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|400|不正確的要求|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|200|Operation successful|
+|400|Bad Request|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## GetList
-取得清單：擷取特定的清單
+## <a name="getlist"></a>GetList
+Get list: Retrieves a specific list 
 
-```GET: /lists/{id}```
+```GET: /lists/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|id|string|yes|路徑|無|清單識別碼|
+|id|string|yes|path|none|List ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
-|---|---|
-|200|OK|
-
-
-## DeleteList
-刪除清單︰刪除清單
-
-```DELETE: /lists/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|清單識別碼|
-|修訂|integer|yes|query|無|修訂|
-
-#### Response
-
-|名稱|說明|
-|---|---|
-|204|沒有內容|
-
-
-## UpdateList
-更新清單︰更新特定的清單
-
-```PATCH: /lists/{id}```
-
-| Name| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|清單識別碼|
-|post| |yes|body|無|清單詳細資料|
-
-#### Response
-
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## GetTask
-取得工作：擷取特定的工作
+## <a name="deletelist"></a>DeleteList
+Delete list: Deletes a list 
 
-```GET: /tasks/{id}```
+```DELETE: /lists/{id}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|id|integer|yes|路徑|無|工作識別碼|
+|id|integer|yes|path|none|List ID|
+|revision|integer|yes|query|none|Revision|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
+|---|---|
+|204|No Content|
+
+
+## <a name="updatelist"></a>UpdateList
+Update a list: Update a specific list 
+
+```PATCH: /lists/{id}``` 
+
+| Name| Data Type|Required|Located In|Default Value|Description|
+| ---|---|---|---|---|---|
+|id|integer|yes|path|none|List ID|
+|post| |yes|body|none|List details|
+
+#### <a name="response"></a>Response
+
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## UpdateTask
-更新工作︰更新特定的工作
+## <a name="gettask"></a>GetTask
+Get task: Retrieves a specific task 
 
-```PATCH: /tasks/{id}```
+```GET: /tasks/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|id|integer|yes|路徑|無|工作識別碼|
-|post| |yes|body|無|作業詳細資料|
+|list_id|integer|yes|query|none|List ID|
+|id|integer|yes|path|none|Task ID|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## DeleteTask
-刪除工作：刪除特定的工作
+## <a name="updatetask"></a>UpdateTask
+Update a task: Updates a specific task 
 
-```DELETE: /tasks/{id}```
+```PATCH: /tasks/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|list\_id|integer|yes|query|無|清單識別碼|
-|id|integer|yes|路徑|無|工作識別碼|
-|修訂|integer|yes|query|無|修訂|
+|list_id|integer|yes|query|none|List ID|
+|id|integer|yes|path|none|Task ID|
+|post| |yes|body|none|Task details|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
-|---|---|
-|204|沒有內容|
-
-
-## GetSubTask
-取得子工作：擷取特定的子工作
-
-```GET: /subtasks/{id}```
-
-| Name| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|string|yes|路徑|無|子工作識別碼|
-
-#### Response
-
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## UpdateSubTask
-更新子工作︰更新特定的子工作
+## <a name="deletetask"></a>DeleteTask
+Delete task: Deletes a specific task 
 
-```PATCH: /subtasks/{id}```
+```DELETE: /tasks/{id}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|子工作識別碼|
-|post| |yes|body|無|子工作詳細資料|
+|list_id|integer|yes|query|none|List ID|
+|id|integer|yes|path|none|Task ID|
+|revision|integer|yes|query|none|Revision|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
+|---|---|
+|204|No Content|
+
+
+## <a name="getsubtask"></a>GetSubTask
+Get subtask: Retrieves a specific subtask 
+
+```GET: /subtasks/{id}``` 
+
+| Name| Data Type|Required|Located In|Default Value|Description|
+| ---|---|---|---|---|---|
+|id|string|yes|path|none|Subtask ID|
+
+#### <a name="response"></a>Response
+
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## DeleteSubTask
-刪除子工作︰刪除特定的子工作
+## <a name="updatesubtask"></a>UpdateSubTask
+Update a subtask: Updates a specific subtask 
 
-```DELETE: /subtasks/{id}```
+```PATCH: /subtasks/{id}``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|子工作識別碼|
-|修訂|integer|yes|query|無|修訂|
+|id|integer|yes|path|none|Subtask ID|
+|post| |yes|body|none|Subtask details|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
-|---|---|
-|204|沒有內容|
-
-
-## GetNote
-取得附註：擷取特定的附註
-
-```GET: /notes/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|string|yes|路徑|無|附註識別碼|
-
-#### Response
-
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## UpdateNote
-更新附註︰更新特定的附註
+## <a name="deletesubtask"></a>DeleteSubTask
+Delete a subtask: Deletes a specific subtask 
 
-```PATCH: /notes/{id}```
+```DELETE: /subtasks/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|附註識別碼|
-|post| |yes|body|無|附註詳細資料|
+|id|integer|yes|path|none|Subtask ID|
+|revision|integer|yes|query|none|Revision|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
+|---|---|
+|204|No Content|
+
+
+## <a name="getnote"></a>GetNote
+Get a note: Retrieve a specific note 
+
+```GET: /notes/{id}``` 
+
+| Name| Data Type|Required|Located In|Default Value|Description|
+| ---|---|---|---|---|---|
+|id|string|yes|path|none|Note ID|
+
+#### <a name="response"></a>Response
+
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## DeleteNote
-刪除附註︰刪除特定的附註
+## <a name="updatenote"></a>UpdateNote
+Update a note: Update a specific note 
 
-```DELETE: /notes/{id}```
+```PATCH: /notes/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|附註識別碼|
-|修訂|integer|yes|query|無|修訂|
+|id|integer|yes|path|none|Note ID|
+|post| |yes|body|none|Note details|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
-|---|---|
-|204|沒有內容|
-
-
-## GetComment
-取得工作註解：擷取特定的工作註解
-
-```GET: /task_comments/{id}```
-
-| Name| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|string|yes|路徑|無|註解識別碼|
-
-#### Response
-
-|Name|說明|
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## UpdateReminder
-更新提醒︰更新特定的提醒
+## <a name="deletenote"></a>DeleteNote
+Delete a note: Delete a specific note 
 
-```PATCH: /reminders/{id}```
+```DELETE: /notes/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|提醒識別碼|
-|post| |yes|body|無|提醒詳細資料|
+|id|integer|yes|path|none|Note ID|
+|revision|integer|yes|query|none|Revision|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
+|---|---|
+|204|No Content|
+
+
+## <a name="getcomment"></a>GetComment
+Get task comment: Retrieve a specific task comment 
+
+```GET: /task_comments/{id}``` 
+
+| Name| Data Type|Required|Located In|Default Value|Description|
+| ---|---|---|---|---|---|
+|id|string|yes|path|none|Comment ID|
+
+#### <a name="response"></a>Response
+
+|Name|Description|
 |---|---|
 |200|OK|
 
 
-## DeleteReminder
-刪除提醒︰更新特定的提醒
+## <a name="updatereminder"></a>UpdateReminder
+Update a reminder: Update a specific reminder 
 
-```DELETE: /reminders/{id}```
+```PATCH: /reminders/{id}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|id|integer|yes|路徑|無|提醒的識別碼。|
-|修訂|integer|yes|query|無|修訂|
+|id|integer|yes|path|none|Reminder ID|
+|post| |yes|body|none|Reminder details|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|204|沒有內容|
+|200|OK|
 
 
-## 物件定義 
+## <a name="deletereminder"></a>DeleteReminder
+Delete a reminder: Delete a specific reminder 
 
-### 列出
+```DELETE: /reminders/{id}``` 
+
+| Name| Data Type|Required|Located In|Default Value|Description|
+| ---|---|---|---|---|---|
+|id|integer|yes|path|none|ID of the reminder.|
+|revision|integer|yes|query|none|Revision|
+
+#### <a name="response"></a>Response
+
+|Name|Description|
+|---|---|
+|204|No Content|
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+## <a name="object-definitions"></a>Object definitions 
+
+### <a name="list"></a>List
+
+
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|created\_at|string|否 |
-|title|string|否 |
-|list\_type|string|否 |
-|類型|string|否 |
-|修訂|integer|否 |
+|id|integer|No |
+|created_at|string|No |
+|title|string|No |
+|list_type|string|No |
+|type|string|No |
+|revision|integer|No |
 
 
 
-### CreatedList
+### <a name="createdlist"></a>CreatedList
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|created\_at|string|否 |
-|title|string|否 |
-|修訂|integer|否 |
-|類型|string|否 |
+|id|integer|No |
+|created_at|string|No |
+|title|string|No |
+|revision|integer|No |
+|type|string|No |
 
 
 
-### 工作
+### <a name="task"></a>Task
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|assignee\_id|integer|否 |
-|assigner\_id|integer|否 |
-|created\_at|string|否 |
-|created\_by\_id|integer|否 |
-|due\_date|string|否 |
-|list\_id|integer|否 |
-|修訂|integer|否 |
-|已加星號|布林值|否 |
-|title|string|否 |
+|id|integer|No |
+|assignee_id|integer|No |
+|assigner_id|integer|No |
+|created_at|string|No |
+|created_by_id|integer|No |
+|due_date|string|No |
+|list_id|integer|No |
+|revision|integer|No |
+|starred|boolean|No |
+|title|string|No |
 
 
 
-### 子工作
+### <a name="subtask"></a>Subtask
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|task\_id|integer|否 |
-|created\_at|string|否 |
-|created\_by\_id|integer|否 |
-|修訂|string|否 |
-|title|string|否 |
+|id|integer|No |
+|task_id|integer|No |
+|created_at|string|No |
+|created_by_id|integer|No |
+|revision|string|No |
+|title|string|No |
 
 
 
-### 注意
+### <a name="note"></a>Note
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|task\_id|integer|否 |
-|內容|string|否 |
-|created\_at|string|否 |
-|updated\_at|string|否 |
-|修訂|integer|否 |
+|id|integer|No |
+|task_id|integer|No |
+|content|string|No |
+|created_at|string|No |
+|updated_at|string|No |
+|revision|integer|No |
 
 
 
-### 註解
+### <a name="comment"></a>Comment
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|task\_id|integer|否 |
-|修訂|integer|否 |
-|文字|string|否 |
-|類型|string|否 |
-|created\_at|string|否 |
+|id|integer|No |
+|task_id|integer|No |
+|revision|integer|No |
+|text|string|No |
+|type|string|No |
+|created_at|string|No |
 
 
 
-### 提醒
+### <a name="reminder"></a>Reminder
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|日期|string|否 |
-|task\_id|integer|否 |
-|修訂|integer|否 |
-|類型|string|否 |
-|created\_at|string|否 |
-|updated\_at|string|否 |
+|id|integer|No |
+|date|string|No |
+|task_id|integer|No |
+|revision|integer|No |
+|type|string|No |
+|created_at|string|No |
+|updated_at|string|No |
 
 
 
-### CreatedReminder
+### <a name="createdreminder"></a>CreatedReminder
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|日期|string|否 |
-|task\_id|integer|否 |
-|修訂|integer|否 |
-|created\_at|string|否 |
-|updated\_at|string|否 |
+|id|integer|No |
+|date|string|No |
+|task_id|integer|No |
+|revision|integer|No |
+|created_at|string|No |
+|updated_at|string|No |
 
 
 
-### 檔案
+### <a name="file"></a>File
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|id|integer|否 |
-|url|string|否 |
-|task\_id|integer|否 |
-|list\_id|integer|否 |
-|user\_id|integer|否 |
-|file\_name|string|否 |
-|content\_type|string|否 |
-|file\_size|integer|否 |
-|local\_created\_at|string|否 |
-|created\_at|string|否 |
-|updated\_at|string|否 |
-|類型|string|否 |
-|修訂|integer|否 |
+|id|integer|No |
+|url|string|No |
+|task_id|integer|No |
+|list_id|integer|No |
+|user_id|integer|No |
+|file_name|string|No |
+|content_type|string|No |
+|file_size|integer|No |
+|local_created_at|string|No |
+|created_at|string|No |
+|updated_at|string|No |
+|type|string|No |
+|revision|integer|No |
 
 
 
-### NewTask
+### <a name="newtask"></a>NewTask
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|list\_id|integer|是 |
-|title|string|是 |
-|assignee\_id|integer|否 |
-|完成|布林值|否 |
-|recurrence\_type|string|否 |
-|recurrence\_count|integer|否 |
-|due\_date|string|否 |
-|已加星號|布林值|否 |
+|list_id|integer|Yes |
+|title|string|Yes |
+|assignee_id|integer|No |
+|completed|boolean|No |
+|recurrence_type|string|No |
+|recurrence_count|integer|No |
+|due_date|string|No |
+|starred|boolean|No |
 
 
 
-### NewList
+### <a name="newlist"></a>NewList
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|title|string|是 |
+|title|string|Yes |
 
 
 
-### NewSubtask
+### <a name="newsubtask"></a>NewSubtask
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|list\_id|integer|是 |
-|task\_id|integer|是 |
-|title|string|是 |
-|完成|布林值|否 |
+|list_id|integer|Yes |
+|task_id|integer|Yes |
+|title|string|Yes |
+|completed|boolean|No |
 
 
 
-### NewNote
+### <a name="newnote"></a>NewNote
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|list\_id|integer|是 |
-|task\_id|integer|是 |
-|內容|string|是 |
+|list_id|integer|Yes |
+|task_id|integer|Yes |
+|content|string|Yes |
 
 
 
-### NewComment
+### <a name="newcomment"></a>NewComment
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|list\_id|integer|是 |
-|task\_id|integer|是 |
-|文字|string|是 |
+|list_id|integer|Yes |
+|task_id|integer|Yes |
+|text|string|Yes |
 
 
 
-### NewReminder
+### <a name="newreminder"></a>NewReminder
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|list\_id|integer|是 |
-|task\_id|integer|是 |
-|日期|string|是 |
+|list_id|integer|Yes |
+|task_id|integer|Yes |
+|date|string|Yes |
 
 
 
-### UpdateTask
+### <a name="updatetask"></a>UpdateTask
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|修訂|integer|否 |
-|title|string|否 |
-|assignee\_id|integer|否 |
-|完成|布林值|否 |
-|recurrence\_type|string|否 |
-|recurrence\_count|integer|否 |
-|due\_date|string|否 |
-|已加星號|布林值|否 |
+|revision|integer|No |
+|title|string|No |
+|assignee_id|integer|No |
+|completed|boolean|No |
+|recurrence_type|string|No |
+|recurrence_count|integer|No |
+|due_date|string|No |
+|starred|boolean|No |
 
 
 
-### UpdateList
+### <a name="updatelist"></a>UpdateList
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|修訂|integer|否 |
-|title|string|否 |
+|revision|integer|No |
+|title|string|No |
 
 
 
-### UpdateSubtask
+### <a name="updatesubtask"></a>UpdateSubtask
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|修訂|integer|否 |
-|title|string|否 |
-|完成|布林值|否 |
+|revision|integer|No |
+|title|string|No |
+|completed|boolean|No |
 
 
 
-### UpdateNote
+### <a name="updatenote"></a>UpdateNote
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|修訂|integer|否 |
-|內容|string|否 |
+|revision|integer|No |
+|content|string|No |
 
 
 
-### UpdateReminder
+### <a name="updatereminder"></a>UpdateReminder
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|日期|string|否 |
-|修訂|integer|否 |
+|date|string|No |
+|revision|integer|No |
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

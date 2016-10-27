@@ -1,79 +1,81 @@
-Azure 端點運作的方法與傳統和 Resource Manager 部署模型之間有些微不同。您現在有彈性可以建立網路篩選器，來控制進出您的 VM 的流量，讓您建立超越傳統部署模型中的簡單端點的複雜網路環境。這篇文章提供網路安全性群組的概觀，以及它們與使用傳統端點、建立篩選規則和範例部署案例有何不同。
+The approach to Azure endpoints works a little differently between the Classic and Resource Manager deployment models. You now have the flexibility to create network filters that control the flow of traffic in and out of your VMs, allowing you to create complex networking environments beyond a simple endpoint as in the Classic deployment model. This article provides an overview of network security groups and how they differ from using Classic endpoints, creating these filtering rules, and sample deployment scenarios.
 
 
-## Resource Manager 部署的概觀
-傳統部署模型中的端點由網路安全性群組和存取控制清單 (ACL) 規則所取代。實作網路安全性群組 ACL 規則的快速步驟如下︰
+## <a name="overview-of-resource-manager-deployments"></a>Overview of Resource Manager deployments
+Endpoints in the Classic deployment model are replaced by Network Security Groups and access control list (ACL) rules. Quick steps for implementing Network Security Group ACL rules are:
 
-- 建立網路安全性群組
-- 定義您的網路安全性群組 ACL 規則以允許或拒絕流量
-- 將您的網路安全性群組指派給網路介面或虛擬網路子網路
+- Create a Network Security Group
+- Define your Network Security Group ACL rules to allow or deny traffic
+- Assign your Network Security Group to a network interface or virtual network subnet
 
-如果您想要執行連接埠轉送，您需要將負載平衡器放在您的 VM 前方，並使用 NAT 規則。實作負載平衡器和 NAT 規則的快速步驟應如下所示︰
+If you are wanting to also perform port-forwarding, you need to place a load balancer in front of your VM and use NAT rules. Quick steps for implementing a load balancer and NAT rules would be as follows:
 
-- 建立負載平衡器
-- 建立後端集區，並將 VM 加入至集區
-- 定義必要的連接埠轉送的 NAT 規則
-- 將 NAT 規則指派給您的 VM
-
-
-## 網路安全性群組概觀
-網路安全性群組是新功能，提供一層安全性，以允許特定連接埠及子網路存取您的 VM。您通常都有網路安全性群組，提供您的 VM 與外界之間的安全性層級。網路安全性群組可以套用至虛擬網路子網路或 VM 的特定網路介面。不是建立端點 ACL 規則，您現在會建立網路安全性群組 ACL 規則。這些 ACL 規則提供比僅建立端點以轉送指定的連接埠更多的控制權。您可以[深入了解網路安全性群組](../articles/virtual-network/virtual-networks-nsg.md)。
-
-> [AZURE.TIP] 您可以將網路安全性群組指派給多個子網路或網路介面。沒有 1:1 對應，這表示您可以使用常用的一組 ACL 規則來建立網路安全性群組，並套用到多個子網路或網路介面。此外，網路安全性群組可以套用至資源您訂用帳戶中的資源 (根據[角色型存取控制](../articles/active-directory/role-based-access-control-what-is.md)。
+- Create a load balancer
+- Create a backend pool and add your VMs to the pool
+- Define your NAT rules for the required port forwarding
+- Assign your NAT rules to your VMs
 
 
-## 負載平衡器概觀
-在傳統部署模型中，Azure 會在雲端服務上為您執行所有的網路位址轉譯 (NAT) 和連接埠轉送。在建立端點時，您可以指定外部連接埠與流量導向的內部連接埠一起公開。網路安全性群組本身不會執行這個相同的 NAT 和連接埠轉送。
+## <a name="network-security-group-overview"></a>Network Security Group overview
+Network Security Groups are a new feature that provides a layer of security for you to allow specific ports and subnets to access your VMs. You typically always have a Network Security Group providing this layer of security between your VMs and the outside world. Network Security Groups can be applied to a virtual network subnet or a specific network interface for a VM. Rather than creating endpoint ACL rules, you now create Network Security Group ACL rules. These ACL rules provide much greater control than simply creating an endpoint to forward a given port. You can [read more about Network Security Groups](../articles/virtual-network/virtual-networks-nsg.md).
 
-若要讓您為這類連接埠轉送建立 NAT 規則，請在您的資源群組中建立 Azure Load Balancer。同樣地，負載平衡器十分細微，可依視需要只套用至特定 VM。Azure Load Balancer NAT 規則與網路安全性群組 ACL 規則搭配使用，提供比使用雲端服務端點可以達成的更多彈性和控制。您可以深入了解[負載平衡器概觀](../articles/load-balancer/load-balancer-overview.md)。
-
-
-## 網路安全性群組 ACL 規則
-ACL 規則可讓您根據特定的連接埠、連接埠範圍或通訊協定，定義可以進出您 VM 的流量。將這些規則指派給個別 VM 或子網路下列螢幕擷取畫面是常見的 Web 伺服器上的 ACL 規則的範例︰
-
-![網路安全性群組 ACL 規則的清單](./media/virtual-machines-common-endpoints-in-resource-manager/example-acl-rules.png)
-
-ACL 規則會根據您指定的優先順序度量套用 - 值越高，優先順序越低。每個網路安全性群組具有三個預設規則，設計來處理 Azure 網路流量，具有明確的 `DenyAllInbound` 做為最終的規則。預設的 ACL 規則的優先順序很低，因此不會影響您建立的規則。
+> [AZURE.TIP] You can assign Network Security Groups to multiple subnets or network interfaces. There is no 1:1 mapping, meaning that you can create a Network Security Group with a common set of ACL rules and apply to multiple subnets or network interfaces. Further, Network Security Group can be applied to resources across your subscription (based on [Role Based Access Controls](../articles/active-directory/role-based-access-control-what-is.md).
 
 
-## 指派網路安全性群組
-您將網路安全性群組指派給子網路或網路介面。這種方法可讓您在僅將 ACL 規則套用至特定 VM 時夠細膩，或確保一組常用的 ACL 規則會套用至子網路的所有 VM 組件︰
+## <a name="load-balancers-overview"></a>Load Balancers overview
+In the Classic deployment model, Azure would perform all the Network Address Translation (NAT) and port forwarding on a Cloud Service for you. When creating an endpoint, you would specify the external port to expose along with the internal port to direct traffic to. Network Security Groups by themselves do not perform this same NAT and port forwarding. 
 
-![將 NSG 套用至網路介面或子網路](./media/virtual-machines-common-endpoints-in-resource-manager/apply-nsg-to-resources.png)
-
-網路安全性群組的行為不會根據指派給子網路或網路介面而變更。常見的部署案例將網路安全性群組指派給子網路，以確保符合連接到該子網路的所有 VM。您可以深入了解[將網路安全性群組套用至資源](../virtual-nework/virtual-networks-nsg.md#associating-nsgs)。
+To allow you to create NAT rules for such port forwarding, create an Azure load balancer in your resource group. Again, the load balancer is granular enough to only apply to specific VMs if needed. The Azure load balancer NAT rules work alongside Network Security Group ACL rules to provide much more flexibility and control than was achievable using Cloud Service endpoints. You can read more about [load balancer overview](../articles/load-balancer/load-balancer-overview.md).
 
 
-## 網路安全性群組的預設行為
-根據您建立網路安全性群組的方式和時機，可能會建立預設規則以允許 TCP 連接埠 3389 上的 RDP 存取。Linux VM 允許 TCP 連接埠 22 上的 SSH 存取。在下列情況下，會建立這些自動 ACL 規則︰
+## <a name="network-security-group-acl-rules"></a>Network Security Group ACL rules
+ACL rules let you define what traffic can flow in and out of your VM based on specific ports, port ranges, or protocols. Rules are assigned to individual VMs or to a subnet. The following screenshot is an example of ACL rules for a common webserver:
 
-- 如果您透過入口網站建立 Windows VM，並接受預設動作來建立網路安全性群組，就會建立 ACL 規則以允許 TCP 連接埠 3389 (RDP)。
-- 如果您透過入口網站建立 Linux VM，並接受預設動作來建立網路安全性群組，就會建立 ACL 規則以允許 TCP 連接埠 22 (SSH)。
+![List of Network Security Group ACL rules](./media/virtual-machines-common-endpoints-in-resource-manager/example-acl-rules.png)
 
-在所有其他情況下，不會建立這些預設 ACL 規則。若未建立適當的 ACL 規則，您將無法連接到您的 VM 建立。這包括下列常見的動作︰
-
-- 透過入口網站建立網路安全性群組做為個別的動作來建立 VM。
-- 透過 PowerShell、Azure CLI、Rest API 等以程式設計方式建立網路安全性群組。
-- 建立 VM，並將它指派給現有的網路安全性群組，該群組尚未定義適當的 ACL 規則。
-
-在所有上述案例中，您必須為您的 VM 建立 ACL 規則，以允許適當的遠端管理連接。
+ACL rules are applied based on a priority metric that you specify - the higher the value, the lower the priority. Every Network Security Group has three default rules that are designed to handle the flow of Azure networking traffic, with an explicit `DenyAllInbound` as the final rule. Default ACL rules are given a low priority to not interfere with rules you create.
 
 
-## 沒有網路安全性群組的 VM 的預設行為
-您可以建立 VM，而不建立網路安全性群組。在這些情況下，您可以使用 RDP 或 SSH 連接至 VM，而不建立任何 ACL 規則。同樣地，如果您在連接埠 80 上安裝 Web 服務，該服務會自動可從遠端存取。VM 讓所有連接埠開啟。
+## <a name="assigning-network-security-groups"></a>Assigning Network Security Groups
+You assign a Network Security Group to a subnet or a network interface. This approach allows you to be as granular as needed when applying your ACL rules to only a specific VM, or ensure a common set of ACL rules are applied to all VMs part of a subnet:
 
-> [AZURE.NOTE] 您仍然必須將公用 IP 位址指派至 VM，以便進行任何遠端連接。沒有子網路或網路介面的網路安全性群組，就不會將 VM 公開至任何外部流量。透過入口網站建立 VM 時的預設動作是建立新的公用 IP。對於建立 VM 的所有其他形式，例如 PowerShell、Azure CLI 或 Resource Manager 範本，除非明確要求，否則不會自動建立公用 IP。透過入口網站的預設動作也是要建立網路安全性群組，因此您不應該在沒有網路篩選器就緒的公開 VM 的情況下結束。
+![Apply NSGs to network interfaces or subnets](./media/virtual-machines-common-endpoints-in-resource-manager/apply-nsg-to-resources.png)
+
+The behavior of the Network Security Group doesn't change depending on being assigned to a subnet or a network interface. A common deployment scenario has the Network Security Group assigned to a subnet to ensure compliance of all VMs attached to that subnet. You can read more about [applying Network Security groups to resources](../virtual-nework/virtual-networks-nsg.md#associating-nsgs).
 
 
-## 了解負載平衡器及 NAT 規則
-在傳統部署模型中，您可以建立也會執行連接埠轉送的端點。當您在傳統部署模型中建立 VM 時，RDP 或 SSH 的 ACL 規則就會自動建立。它們不會分別對外界公開 TCP 連接埠 3389 或 TCP 連接埠 22。相反地，高值的 TCP 連接埠會公開，對應至適當的內部連接埠。您也可以以類似的方式建立自己的 ACL 規則，例如在 TCP 連接埠 4280 上將 Web 伺服器向外界公開。您可以在傳統入口網站的下列螢幕擷取畫面中看到這些 ACL 規則和連接埠對應：
+## <a name="default-behavior-of-network-security-groups"></a>Default behavior of Network Security Groups
+Depending on how and when you create your network security group, default rules may be created to permit RDP access on TCP port 3389. Linux VMs permit SSH access on TCP port 22. These automatic ACL rules are created under the following conditions:
 
-![使用傳統端點的連接埠轉送](./media/virtual-machines-common-endpoints-in-resource-manager/classic-endpoints-port-forwarding.png)
+- If you create a Windows VM through the portal and accept the default action to create a Network Security Group, an ACL rule to allow TCP port 3389 (RDP) is created.
+- If you create a Linux VM through the portal and accept the default action to create a Network Security Group, an ACL rule to allow TCP port 22 (SSH) is created.
 
-利用網路安全性群組，該連接埠轉送功能是由負載平衡器處理。您可以深入了解 [Azure 中的負載平衡器](../articles/load-balancer/load-balancer-overview.md)。具有 NAT 規則以進行 VM 的 TCP 連接埠 4222 至內部 TCP 連接埠 22 的連接埠轉送的負載平衡器的範例，會在入口網站的下列螢幕擷取畫面中顯示：
+Under all other conditions, these default ACL rules are not created. You will be unable to connect to your VM without creating the appropriate ACL rules. This would include the following common actions:
 
-![連接埠轉送的負載平衡器 NAT 規則](./media/virtual-machines-common-endpoints-in-resource-manager/load-balancer-nat-rules.png)
+- Creating a Network Security Group through the portal as a separate action to creating the VM.
+- Creating a Network Security Group programmatically through PowerShell, Azure CLI, Rest APIs, etc.
+- Creating a VM and assigning it to an existing Network Security Group that does not already have the appropriate ACL rule defined.
 
-> [AZURE.NOTE] 當您實作負載平衡器時，通常不會對 VM 本身指派公用 IP 位址。相反地，負載平衡器會有公用 IP 位址指派給它。您還是需要建立您的網路安全性群組和 ACL 規則，以定義進出您的 VM 的流量。負載平衡器 NAT 規則只會定義哪些連接埠允許透過負載平衡器，以及它們如何跨後端 VM 分散。因此，您需要建立流量流經負載平衡器的 NAT 規則，然後再建立網路安全性群組 ACL 規則以允許流量實際達到 VM。
+In all the preceding cases, you need to create ACL rules for your VM to allow the appropriate remote management connections.
 
-<!---HONumber=AcomDC_0810_2016------>
+
+## <a name="default-behavior-of-a-vm-without-a-network-security-group"></a>Default behavior of a VM without a Network Security Group
+You can create a VM without creating a Network Security Group. In these situations, you can connect to your VM using RDP or SSH without creating any ACL rules. Similarly, if you installed a web service on port 80, that service is automatically accessible remotely. The VM has all ports open.
+
+> [AZURE.NOTE] You still need to have a public IP address assigned to a VM in order for any remote connections. Not having a Network Security Group for the subnet or network interface doesn't expose the VM to any external traffic. The default action when creating a VM through the portal is to create a new public IP. For all other forms of creating a VM such as PowerShell, Azure CLI, or Resource Manager template, a public IP is not automatically created unless explicitly requested. The default action through the portal is also to create a Network Security Group, so you shouldn't end up in a situation with an exposed VM that has no network filtering in place.
+
+
+## <a name="understanding-load-balancers-and-nat-rules"></a>Understanding Load Balancers and NAT rules
+In the Classic deployment model, you could create endpoints that also performed port forwarding. When you create a VM in the Classic deployment model, ACL rules for RDP or SSH would be automatically created. They would not expose TCP port 3389 or TCP port 22 respectively to the outside world. Instead, a high-value TCP port would be exposed that maps to the appropriate internal port. You could also create your own ACL rules in a similar manner, such as expose a webserver on TCP port 4280 to the outside world. You can see these ACL rules and port mappings in the following screenshot from the Classic portal:
+
+![Port-forwarding with Classic endpoints](./media/virtual-machines-common-endpoints-in-resource-manager/classic-endpoints-port-forwarding.png)
+
+With Network Security Groups, that port-forwarding function is handled by a load balancer. You can read more about [load balancers in Azure](../articles/load-balancer/load-balancer-overview.md). An example of a load balancer with a NAT rule to perform port-forwarding of TCP port 4222 to the internal TCP port 22 a VM is shown in the following screenshot from the portal:
+
+![Load balancer NAT rules for port-forwarding](./media/virtual-machines-common-endpoints-in-resource-manager/load-balancer-nat-rules.png)
+
+> [AZURE.NOTE] When you implement a load balancer, you typically don't assign the VM itself a public IP address. Instead, the load balancer has a public IP address assigned to it. You still need to create your Network Security Group and ACL rules to define the flow of traffic in and out of your VM. The load balancer NAT rules are simply to define what ports are allowed through the load balancer and how they get distributed across the backend VMs. As such, you need to create a NAT rule for traffic to flow through the load balancer and then create a Network Security Group ACL rule to allow the traffic to actually reach the VM.
+
+<!--HONumber=Oct16_HO2-->
+
+

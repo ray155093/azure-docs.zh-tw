@@ -14,183 +14,189 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="09/27/2016"
+   ms.date="10/06/2016"
    ms.author="cherylmc"/>
 
-# 使用傳統入口網站設定 VNet 的點對站連線
+
+# <a name="configure-a-point-to-site-connection-to-a-vnet-using-the-classic-portal"></a>使用傳統入口網站設定 VNet 的點對站連線
 
 > [AZURE.SELECTOR]
 - [Resource Manager - PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
+- [傳統 - Azure 入口網站](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
 - [傳統 - 傳統入口網站](vpn-gateway-point-to-site-create.md)
 
-點對站 (P2S) 設定可讓您建立從個別的用戶端電腦到虛擬網路的安全連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，P2S 連線是很實用的解決方案。
+點對站 (P2S) 設定可讓您建立從個別的用戶端電腦到虛擬網路的安全連線。 當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，P2S 連線是很實用的解決方案。
 
 本文逐步引導您使用**傳統入口網站**，在**傳統部署模型**中建立具有點對站連線的 VNet。
 
-點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。VPN 連線的建立方式是從用戶端電腦啟動連線。如需點對站連線的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[計劃與設計](vpn-gateway-plan-design.md)。
+點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。 VPN 連線的建立方式是從用戶端電腦啟動連線。 如需點對站連線的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[計劃與設計](vpn-gateway-plan-design.md)。
 
 
-### P2S 連線的部署模型和方法
+### <a name="deployment-models-and-methods-for-p2s-connections"></a>P2S 連線的部署模型和方法
 
-[AZURE.INCLUDE [vpn-gateway-table-point-to-site](../../includes/vpn-gateway-table-point-to-site-include.md)]
+[AZURE.INCLUDE [vpn-gateway-table-point-to-site](../../includes/vpn-gateway-table-point-to-site-include.md)] 
 
 **關於 Azure 部署模型**
 
-[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)] 
 
-![Point-to-Site-diagram](./media/vpn-gateway-point-to-site-create/p2sclassic.png "點對站")
+![Point-to-Site-diagram](./media/vpn-gateway-point-to-site-create/p2sclassic.png "point-to-site")
 
-## 有關建立點對站連線
+## <a name="about-creating-a-point-to-site-connection"></a>有關建立點對站連線
  
-以下步驟將逐步引導您建立與虛擬網路的安全點對站連線。
+以下步驟將逐步引導您建立與虛擬網路的安全點對站連線。 
 
-點對站連線的設定分為四個區段。您設定每個區段的順序很重要。請勿略過步驟或往前跳。
+點對站連線的設定分為四個區段。 您設定每個區段的順序很重要。 請勿略過步驟或往前跳。
 
-- **區段 1：**建立虛擬網路和 VPN 閘道。
-- **區段 2：**建立用來驗證的憑證並將其上傳。
-- **區段 3：**匯出並安裝用戶端憑證。
-- **區段 4：**設定 VPN 用戶端。
+- **區段 1：** 建立虛擬網路和 VPN 閘道。
+- **區段 2：** 建立用來驗證的憑證並將其上傳。
+- **區段 3：** 匯出並安裝用戶端憑證。
+- **區段 4：** 設定 VPN 用戶端。
 
-## <a name="vnetvpn"></a>區段 1 - 建立虛擬網路和 VPN 閘道
+## <a name="<a-name="vnetvpn"></a>section-1---create-a-virtual-network-and-a-vpn-gateway"></a><a name="vnetvpn"></a>區段 1 - 建立虛擬網路和 VPN 閘道
 
-### 第 1 部份 - 建立虛擬網路
+### <a name="part-1:-create-a-virtual-network"></a>第 1 部份 - 建立虛擬網路
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。這些步驟使用傳統入口網站，而非 Azure 入口網站。目前您無法使用 Azure 入口網站建立 P2S 連線。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。 這些步驟使用傳統入口網站，而非 Azure 入口網站。 目前您無法使用 Azure 入口網站建立 P2S 連線。
 
-2. 按一下螢幕左下角的 [新增]。在導覽窗格中依序按一下 [網路服務] 和 [虛擬網路]。按一下 [**自訂建立**] 開始組態精靈。
+2. 按一下螢幕左下角的 [新增]。 在導覽窗格中依序按一下 [網絡服務] 和 [虛擬網路]。 按一下 [Custom Create]  開始組態精靈。
 
-3. 在 [虛擬網路詳細資料] 頁面上，輸入下列資訊，然後按一下右下角的下一步箭頭。
-	- **名稱**：為虛擬網路命名。例如，'VNet1'。這是當您將 Vm 部署到此 VNet 時要參照的名稱。
-	- **位置**：位置會與您要存放資源 (VM) 的實體位置 (區域) 直接相關。例如，如果您要讓部署到此虛擬網路的 VM 實際上位於 East US 中，請選取該位置。建立關聯之後，您就無法變更與虛擬網路相關聯的區域。
+3. 在 [虛擬網路詳細資料]  頁面上，輸入下列資訊，然後按一下右下角的下一步箭頭。
+    - **名稱**：為虛擬網路命名。 例如，'VNet1'。 這是當您將 Vm 部署到此 VNet 時要參照的名稱。
+    - **位置**：位置會與您要存放資源 (VM) 的實體位置 (區域) 直接相關。 例如，如果您要讓部署到此虛擬網路的 VM 實際上位於 East US 中，請選取該位置。 建立關聯之後，您就無法變更與虛擬網路相關聯的區域。
 
-4. 在 [DNS Servers and VPN Connectivity] 頁面上，輸入下列資訊，然後按一下右下角的下一步箭頭。
-	- **DNS 伺服器**：輸入 DNS 伺服器名稱和 IP 位址，或從捷徑功能表中選取先前註冊的 DNS 伺服器。此設定不會建立 DNS 伺服器。它可讓您指定要用於此虛擬網路之名稱解析的 DNS 服務。如果您想要使用 Azure 預設的名稱解析服務，請讓此區段保留空白。
-	- **設定點對站 VPN**：勾選此核取方塊。
+4. 在 [DNS Servers and VPN Connectivity]  頁面上，輸入下列資訊，然後按一下右下角的下一步箭頭。
+    - **DNS 伺服器**：輸入 DNS 伺服器名稱和 IP 位址，或從捷徑功能表中選取先前註冊的 DNS 伺服器。 此設定不會建立 DNS 伺服器。 它可讓您指定要用於此虛擬網路之名稱解析的 DNS 服務。 如果您想要使用 Azure 預設的名稱解析服務，請讓此區段保留空白。
+    - **設定點對站 VPN**：勾選此核取方塊。
 
-5. 在 [點對站連線能力] 頁面中，指定 VPN 用戶端在連線時將接收 IP 位址的 IP 位址範圍。關於可指定的位址範圍，您必須遵守幾項規則。請務必確認您指定的範圍未與內部部署網路中的任何範圍重疊。
+5. 在 [點對站連線能力]  頁面中，指定 VPN 用戶端在連線時將接收 IP 位址的 IP 位址範圍。 關於可指定的位址範圍，您必須遵守幾項規則。 請務必確認您指定的範圍未與內部部署網路中的任何範圍重疊。
 
 6. 輸入下列資訊，然後按 [下一步] 箭頭。
  - **位址空間**：包含起始 IP 和 CIDR (位址計數)。
  - **新增位址空間**：唯有網路設計需要時才需新增位址空間。
 
-7. 在 [虛擬網路位址空間] 頁面上，指定您想要用於虛擬網路的位址範圍。這些是動態 IP 位址 (DIP)，會指派給 VM 和其他您部署至此虛擬網路的角色執行個體。<br><br>請務必選取不會與內部部署網路中的任何範圍重疊的範圍。您必須與網路管理員協調，後者可能需要從內部部署網路位址空間中切割出 IP 位址範圍，以供您用於虛擬網路。
+7. 在 [虛擬網路位址空間] 頁面上，指定您想要用於虛擬網路的位址範圍。 這些是將指派給 VM 的動態 IP 位址 (DIP)，以及指派給您部署至此虛擬網路之其他角色執行個體的動態 IP 位址 (DIP)。<br><br>特別重要的是，您選取的範圍不得與用於內部部署網路的任何範圍重疊。 您必須與網路管理員協調，後者可能需要從內部部署網路位址空間中切割出 IP 位址範圍，以供您用於虛擬網路。
 
 8. 輸入下列資訊，然後按一下勾號，開始建立您的虛擬網路。
- - **位址空間**：新增要用於此虛擬網路的內部 IP 位址範圍，包括起始 IP 和計數。重要的是，選取的範圍不得與用於內部部署網路的任何範圍重疊。
- - **新增子網路**：不需要其他子網路，但您可能希望為將擁有靜態 DIP 的 VM 建立個別子網路。或者，您想要讓 VM 與其他角色執行個體位於不同的子網路。
- - **新增閘道子網路**：點對站 VPN 需要閘道子網路。按一下以新增閘道子網路。閘道子網路僅用於虛擬網路閘道。
+ - **位址空間**：新增要用於此虛擬網路的內部 IP 位址範圍，包括起始 IP 和計數。 重要的是，選取的範圍不得與用於內部部署網路的任何範圍重疊。 
+ - **新增子網路**：不需要其他子網路，但您可能希望為將擁有靜態 DIP 的 VM 建立個別子網路。 或者，您想要讓 VM 與其他角色執行個體位於不同的子網路。
+ - **新增閘道子網路**：點對站 VPN 需要閘道子網路。 按一下以新增閘道子網路。 閘道子網路僅用於虛擬網路閘道。
 
-9. 一旦建立虛擬網路之後，您將在 Azure 傳統入口網站的網路頁面上看見 [狀態] 下列出 [已建立]。待虛擬網路建立後，您便可建立動態路由閘道。
+9. 一旦建立虛擬網路之後，您將在 Azure 傳統入口網站的網路頁面上看見 [狀態] 下列出 [已建立]。 待虛擬網路建立後，您便可建立動態路由閘道。
 
-### 第 2 部份 - 建立動態路由閘道器
+### <a name="part-2:-create-a-dynamic-routing-gateway"></a>第 2 部份 - 建立動態路由閘道器
 
-閘道器類型必須設定為動態。靜態路由閘道器無法與此功能搭配運作。
+閘道器類型必須設定為動態。 靜態路由閘道器無法與此功能搭配運作。
 
 1. 在 Azure 傳統入口網站的 [網路] 頁面上，按一下您建立的虛擬網路，然後瀏覽到 [儀表板] 頁面。
 
-2. 按一下 [儀表板] 頁面底部的 [建立閘道器]。畫面上將會出現一則訊息，詢問**您是否想要為虛擬網路 "VNet1" 建立閘道**。按一下 [是] 即可開始建立閘道。建立閘道可能需要大約 15 分鐘。
+2. 按一下 [儀表板] 頁面底部的 [建立閘道器]。 畫面上將會出現一則訊息，詢問**您是否想要為虛擬網路 "VNet1" 建立閘道**。 按一下 [是] 即可開始建立閘道。 建立閘道可能需要大約 15 分鐘。
 
-## <a name="generate"></a>區段 2 - 產生並上傳憑證
+## <a name="<a-name="generate"></a>section-2---generate-and-upload-certificates"></a><a name="generate"></a>區段 2 - 產生並上傳憑證
 
-憑證是用於點對站 VPN 的 VPN 用戶端驗證。您可以使用由企業憑證解決方案或自我簽署憑證所產生的憑證。您最多可將 20 個根憑證上傳至 Azure。一旦 .cer 檔案已上傳，Azure 就可以使用內含的資訊來驗證已安裝用戶端憑證的用戶端。用戶端憑證必須由 .cer 檔案所代表的相同憑證產生。
+憑證是用於點對站 VPN 的 VPN 用戶端驗證。 您可以使用由企業憑證解決方案或自我簽署憑證所產生的憑證。 您最多可將 20 個根憑證上傳至 Azure。 一旦 .cer 檔案已上傳，Azure 就可以使用內含的資訊來驗證已安裝用戶端憑證的用戶端。 用戶端憑證必須由 .cer 檔案所代表的相同憑證產生。
 
 您將在本區段中進行下列工作：
 
-- 取得根憑證的 .cer 檔案。這可以是自我簽署的憑證，或者您也可以使用企業憑證系統。
+- 取得根憑證的 .cer 檔案。 這可以是自我簽署的憑證，或者您也可以使用企業憑證系統。
 - 將 .cer 檔案上傳至 Azure。
 - 產生用戶端憑證。
 
-### <a name="root"></a>第 1 部分︰取得根憑證的 .cer 檔案
+### <a name="<a-name="root"></a>part-1:-obtain-the-.cer-file-for-the-root-certificate"></a><a name="root"></a>第 1 部分︰取得根憑證的 .cer 檔案
 
-如果您使用企業憑證系統，請取得您想要使用的根憑證的 .cer 檔案。在[第 3 部分](#createclientcert)中，您會從根憑證產生用戶端憑證。
+如果您使用企業憑證系統，請取得您想要使用的根憑證的 .cer 檔案。 在 [第 3 部分](#createclientcert)中，您會從根憑證產生用戶端憑證。
 
-如果您未使用企業憑證解決方案，您必須產生自我簽署的根憑證。如需 Windows 10 的步驟，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。本文會引導您完成使用 makecert 以產生自我簽署的憑證，然後匯出 .cer 檔案。
+如果您未使用企業憑證解決方案，您必須產生自我簽署的根憑證。 如需 Windows 10 的步驟，請參閱 [使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。 本文會引導您完成使用 makecert 以產生自我簽署的憑證，然後匯出 .cer 檔案。
 
-### <a name="upload"></a>第 2 部份︰將根憑證 .cer 檔案上傳至 Azure 傳統入口網站
+### <a name="<a-name="upload"></a>part-2:-upload-the-root-certificate-.cer-file-to-the-azure-classic-portal"></a><a name="upload"></a>第 2 部份︰將根憑證 .cer 檔案上傳至 Azure 傳統入口網站
 
-將受信任的憑證新增至 Azure。當您將 Base64 編碼 X.509 (.cer) 檔案新增至 Azure 時，便是告訴 Azure 信任該檔案所代表的根憑證。
+將受信任的憑證新增至 Azure。 當您將 Base64 編碼 X.509 (.cer) 檔案新增至 Azure 時，便是告訴 Azure 信任該檔案所代表的根憑證。
 
 1. 在 Azure 傳統入口網站中，於虛擬網路的 [憑證] 頁面上，按一下 [上傳根憑證]。
 
-2. 在 [上傳憑證] 頁面上，瀏覽到 .cer 根憑證，然後按一下勾號。
+2. 在 [上傳憑證]  頁面上，瀏覽到 .cer 根憑證，然後按一下勾號。
 
-### <a name="createclientcert"></a>第 3 部份︰產生用戶端憑證
+### <a name="<a-name="createclientcert"></a>part-3:-generate-a-client-certificate"></a><a name="createclientcert"></a>第 3 部份︰產生用戶端憑證
 
-接下來，產生用戶端憑證。您可以為每個會進行連線的用戶端產生唯一的憑證，您也可以在多個用戶端上使用相同的憑證。產生唯一的用戶端憑證的優點是能夠視需要撤銷單一憑證。否則，如果每個人都使用相同的用戶端憑證，而您發現需要撤銷某一個用戶端的憑證時，您必須為所有使用該憑證來驗證的用戶端產生並安裝新的憑證。
+接下來，產生用戶端憑證。 您可以為每個會進行連線的用戶端產生唯一的憑證，您也可以在多個用戶端上使用相同的憑證。 產生唯一的用戶端憑證的優點是能夠視需要撤銷單一憑證。 否則，如果每個人都使用相同的用戶端憑證，而您發現需要撤銷某一個用戶端的憑證時，您必須為所有使用該憑證來驗證的用戶端產生並安裝新的憑證。
 
-- 如果您使用企業憑證解決方案，請以一般的名稱值格式 'name@yourdomain.com' 產生用戶端憑證，而不要使用 NetBIOS 'DOMAIN\\username' 格式。
+- 如果您使用企業憑證解決方案，請以一般的名稱值格式 'name@yourdomain.com', 產生用戶端憑證，而不要使用 NetBIOS 'DOMAIN\username' 格式。 
 
-- 如果您使用自我簽署的憑證解決方案，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)，以產生用戶端憑證。
+- 如果您使用自我簽署的憑證解決方案，請參閱 [使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md) ，以產生用戶端憑證。
 
-## <a name="installclientcert"></a>第 3 部分 - 匯出及安裝用戶端憑證
+## <a name="<a-name="installclientcert"></a>section-3---export-and-install-the-client-certificate"></a><a name="installclientcert"></a>第 3 部分 - 匯出及安裝用戶端憑證
 
-在您想要連線至虛擬網路的每部電腦上安裝用戶端憑證。驗證會需要用戶端憑證。您可以自動安裝用戶端憑證，您也可以手動安裝。下列步驟將逐步引導您手動匯出並安裝用戶端憑證。
+在您想要連線至虛擬網路的每部電腦上安裝用戶端憑證。 驗證會需要用戶端憑證。 您可以自動安裝用戶端憑證，您也可以手動安裝。 下列步驟將逐步引導您手動匯出並安裝用戶端憑證。
 
-1. 若要匯出用戶端憑證，請使用 *certmgr.msc*。以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。
-2. 匯出具有私密金鑰的用戶端憑證。這會是 *.pfx* 檔案。請務必記下或牢記您為這個憑證設定的密碼 (金鑰)。
-3. 將 *.pfx* 檔案複製到用戶端電腦。在用戶端電腦上按兩下 *.pfx* 檔案以安裝。在系統要求時輸入密碼。請勿修改安裝位置。
+1. 若要匯出用戶端憑證，請使用 *certmgr.msc*。 以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。
+2. 匯出具有私密金鑰的用戶端憑證。 這會是 *.pfx* 檔案。 請務必記下或牢記您為這個憑證設定的密碼 (金鑰)。
+3. 將 *.pfx* 檔案複製到用戶端電腦。 在用戶端電腦上按兩下 *.pfx* 檔案以安裝。 在系統要求時輸入密碼。 請勿修改安裝位置。
 
-## <a name="vpnclientconfig"></a>第 4 部分 - 設定 VPN 用戶端
+## <a name="<a-name="vpnclientconfig"></a>section-4---configure-your-vpn-client"></a><a name="vpnclientconfig"></a>第 4 部分 - 設定 VPN 用戶端
 
-若要連接到虛擬網路，您還需要設定 VPN 用戶端。用戶端需要具備用戶端憑證及適當的 VPN 用戶端組態，才能順利連接。若要設定 VPN 用戶端，請依序執行下列步驟：
+若要連接到虛擬網路，您還需要設定 VPN 用戶端。 用戶端需要具備用戶端憑證及適當的 VPN 用戶端組態，才能順利連接。 若要設定 VPN 用戶端，請依序執行下列步驟：
 
-### 第 1 部份 - 建立 VPN 用戶端組態套件
+### <a name="part-1:-create-the-vpn-client-configuration-package"></a>第 1 部份 - 建立 VPN 用戶端組態套件
 
-1. 在 Azure 傳統入口網站中，虛擬網路的**儀表板**頁面上，瀏覽至右上角的 [快速瀏覽] 功能表。如需用戶端支援的作業系統清單，請參閱 VPN 閘道常見問題集中的[點對站連線](vpn-gateway-vpn-faq.md#point-to-site-connections)一節。VPN 用戶端套件包含的組態資訊可設定 Windows 內建的 VPN 用戶端軟體。此套件不會安裝其他軟體。這些設定專屬於您想要連接的虛擬網路。<br><br>選取對應至即將安裝之目標用戶端作業系統的下載套件：
- - 如果是 32 位元用戶端，請選取 [下載 32 位元用戶端 VPN 套件]。
- - 如果是 64 位元用戶端，請選取 [下載 64 位元用戶端 VPN 套件]。
+1. 在 Azure 傳統入口網站中，虛擬網路的**儀表板**頁面上，瀏覽至右上角的 [快速瀏覽] 功能表。 如需用戶端支援的作業系統清單，請參閱 VPN 閘道常見問題集中的[點對站連線](vpn-gateway-vpn-faq.md#point-to-site-connections)一節。 VPN 用戶端套件包含的組態資訊可設定 Windows 內建的 VPN 用戶端軟體。 此套件不會安裝其他軟體。 這些是您所要連接之虛擬網路的專屬設定。<br><br>選取對應至即將安裝之目標用戶端作業系統的下載封裝：
+ - 如果是 32 位元用戶端，請選取 [下載 32 位元用戶端 VPN 套件] 。
+ - 如果是 64 位元用戶端，請選取 [下載 64 位元用戶端 VPN 套件] 。
 
-2. 建立用戶端套件需要幾分鐘的時間。完成套件後，您就可以下載檔案。您下載的 *.exe* 檔案可以安全地儲存在本機電腦上。
+2. 建立用戶端套件需要幾分鐘的時間。 完成套件後，您就可以下載檔案。 您下載的 *.exe* 檔案可以安全地儲存在本機電腦上。
 
-3. 從 Azure 傳統入口網站產生及下載 VPN 用戶端套件之後，您便可將用戶端套件安裝至要連線到虛擬網路的用戶端電腦上。如果您打算將 VPN 用戶端套件安裝到多部用戶端電腦，請確定它們也已安裝用戶端憑證。
+3. 從 Azure 傳統入口網站產生及下載 VPN 用戶端套件之後，您便可將用戶端套件安裝至要連線到虛擬網路的用戶端電腦上。 如果您打算將 VPN 用戶端套件安裝到多部用戶端電腦，請確定它們也已安裝用戶端憑證。
 
-### 第 2 部份：在用戶端上安裝 VPN 組態套件
+### <a name="part-2:-install-the-vpn-configuration-package-on-the-client"></a>第 2 部份：在用戶端上安裝 VPN 組態套件
 
-1. 在本機將設定檔複製到您要連接到虛擬網路的電腦上，然後按兩下 .exe 檔案。
+1. 在本機將設定檔複製到您要連接到虛擬網路的電腦上，然後按兩下 .exe 檔案。 
 
-2. 套件安裝完成後，您就可以啟動 VPN 連線。設定套件並非由 Microsoft 所簽署。您可能想要使用組織的簽署服務來簽署套件，或是自行使用 [SignTool](http://go.microsoft.com/fwlink/p/?LinkId=699327) 來簽署。即使沒有簽署，還是可以使用套件。不過，如果套件未簽署，當您安裝套件時將會出現警告。
+2. 套件安裝完成後，您就可以啟動 VPN 連線。 設定套件並非由 Microsoft 所簽署。 建議您使用組織的簽署服務來簽署套件，或是自行使用 [SignTool]( http://go.microsoft.com/fwlink/p/?LinkId=699327) 來簽署。 即使沒有簽署，還是可以使用套件。 不過，如果套件未簽署，當您安裝套件時將會出現警告。
 
-3. 在用戶端電腦上，瀏覽至 [網路設定]，然後按一下 [VPN]。您會看到列出的連線。它會顯示將要連接的虛擬網路名稱，如下所示︰
+3. 在用戶端電腦上，瀏覽至 [網路設定]，然後按一下 [VPN]。 您會看到列出的連線。 它會顯示將要連接的虛擬網路名稱，如下所示︰ 
 
-	![VPN 用戶端](./media/vpn-gateway-point-to-site-create/vpn.png "VPN 用戶端")
+    ![VPN 用戶端](./media/vpn-gateway-point-to-site-create/vpn.png "VPN client")
 
 
-### 第 3 部分：連接到 Azure
+### <a name="part-3:-connect-to-azure"></a>第 3 部分：連接到 Azure
 
-1. 若要連接至您的 VNet，在用戶端電腦上瀏覽到 VPN 連線，然後找出所建立的 VPN 連線。其名稱會與虛擬網路相同。按一下 [**連接**]。可能會出現與使用憑證有關的快顯訊息。如果出現，按一下 [繼續] 以使用較高的權限。
+1. 若要連接至您的 VNet，在用戶端電腦上瀏覽到 VPN 連線，然後找出所建立的 VPN 連線。 其名稱會與虛擬網路相同。 按一下 [ **連接**]。 可能會出現與使用憑證有關的快顯訊息。 如果出現，按一下 [繼續]  以使用較高的權限。 
 
-2. 在 [連線] 狀態頁面上，按一下 [連線] 以便開始連線。如果出現 [選取憑證] 畫面，請確認顯示的用戶端憑證是要用來連接的憑證。如果沒有，請使用下拉箭頭來選取正確的憑證，然後按一下 [確定]。
+2. 在 [連線] 狀態頁面上，按一下 [連線] 以便開始連線。 如果出現 [選取憑證]  畫面，請確認顯示的用戶端憑證是要用來連接的憑證。 如果沒有，請使用下拉箭頭來選取正確的憑證，然後按一下 [確定] 。
 
-	![VPN 用戶端 2](./media/vpn-gateway-point-to-site-create/clientconnect.png "VPN 用戶端連線")
+    ![VPN 用戶端 2](./media/vpn-gateway-point-to-site-create/clientconnect.png "VPN client connection")
 
 3. 現在應該已建立您的連接。
 
-	![VPN 用戶端 3](./media/vpn-gateway-point-to-site-create/connected.png "VPN 用戶端連線 2")
+    ![VPN 用戶端 3](./media/vpn-gateway-point-to-site-create/connected.png "VPN client connection 2")
 
-### 第 4 部份︰驗證 VPN 連線
+### <a name="part-4:-verify-the-vpn-connection"></a>第 4 部份︰驗證 VPN 連線
 
 1. 若要驗證您的 VPN 連線為作用中狀態，請開啟提升權限的命令提示字元，並執行 *ipconfig/all*。
-2. 檢視結果。請注意，您接收到的 IP 位址是建立 VNet 時所指定之點對站連線位址範圍內的其中一個位址。結果應該類似下面的內容：
+2. 檢視結果。 請注意，您接收到的 IP 位址是建立 VNet 時所指定之點對站連線位址範圍內的其中一個位址。 結果應該類似下面的內容：
 
 範例：
 
 
 
     PPP adapter VNet1:
-		Connection-specific DNS Suffix .:
-		Description.....................: VNet1
-		Physical Address................:
-		DHCP Enabled....................: No
-		Autoconfiguration Enabled.......: Yes
-		IPv4 Address....................: 192.168.130.2(Preferred)
-		Subnet Mask.....................: 255.255.255.255
-		Default Gateway.................:
-		NetBIOS over Tcpip..............: Enabled
+        Connection-specific DNS Suffix .:
+        Description.....................: VNet1
+        Physical Address................:
+        DHCP Enabled....................: No
+        Autoconfiguration Enabled.......: Yes
+        IPv4 Address....................: 192.168.130.2(Preferred)
+        Subnet Mask.....................: 255.255.255.255
+        Default Gateway.................:
+        NetBIOS over Tcpip..............: Enabled
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
-您可以將虛擬機器新增到您的虛擬網路。請參閱[如何建立自訂虛擬機器](../virtual-machines/virtual-machines-windows-classic-createportal.md)。
+您可以將虛擬機器新增到您的虛擬網路。 請參閱 [如何建立自訂虛擬機器](../virtual-machines/virtual-machines-windows-classic-createportal.md)。
 
-如需關於虛擬網路的詳細資訊，請參閱[虛擬網路文件](https://azure.microsoft.com/documentation/services/virtual-network/)頁面。
+如需關於虛擬網路的詳細資訊，請參閱 [虛擬網路文件](https://azure.microsoft.com/documentation/services/virtual-network/) 頁面。
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

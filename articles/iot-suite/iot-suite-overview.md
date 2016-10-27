@@ -1,12 +1,12 @@
 <properties
-	pageTitle="Microsoft Azure IoT Suite 概觀 | Microsoft Azure"
-	description="大致說明 Azure IoT 套件如何提供物聯網預先設定的解決方案，以收集、分析和儲存資料、提供視覺效果，以及與其他系統整合。"
-	services=""
+    pageTitle="Microsoft Azure IoT Suite overview | Microsoft Azure"
+    description="Overview of how Azure IoT Suite delivers internet of things preconfigured solutions to collect, analyze, and store data, provide visualizations, and integrate with other systems."
+    services=""
     suite="iot-suite"
-	documentationCenter=""
-	authors="dominicbetts"
-	manager="timlt"
-	editor=""/>
+    documentationCenter=""
+    authors="dominicbetts"
+    manager="timlt"
+    editor=""/>
 
 <tags
      ms.service="iot-suite"
@@ -17,43 +17,44 @@
      ms.date="08/09/2016"
      ms.author="dobett"/>
 
-# 什麼是 Azure IoT 套件？
 
-Azure 物聯網 (IoT) 服務提供廣泛的功能。這些企業等級的服務可讓您：
+# <a name="what-is-azure-iot-suite?"></a>What is Azure IoT Suite?
 
-- 從裝置收集資料
-- 分析移動中的資料串流
-- 儲存和查詢大型資料集
-- 視覺化即時和歷程記錄資料
-- 與後端辦公室系統整合
+The Azure internet of things (IoT) services offer a broad range of capabilities. These enterprise grade services enable you to:
 
-為了提供這些功能，Azure IoT 套件將多個 Azure 服務與自訂延伸模組封裝在一起做為「預先設定的解決方案」。這些預先設定的解決方案是常見 IoT 解決方案模式的基礎實作，可幫助您減少實行 IoT 解決方案所花費的時間。透過使用 [IoT 軟體開發套件][lnk-sdks]，您將可自訂和擴充這些解決方案來滿足您自己的需求。您也可以使用這些解決方案做為開發新 IoT 解決方案時的範例或範本。
+- Collect data from devices
+- Analyze data streams in-motion
+- Store and query large data sets
+- Visualize both real-time and historical data
+- Integrate with back-office systems
 
-下列影片提供 Azure IoT 套件的簡介：
+To deliver these capabilities, Azure IoT Suite packages together multiple Azure services with custom extensions as *preconfigured solutions*. These preconfigured solutions are base implementations of common IoT solution patterns that help to reduce the time you take to deliver your IoT solutions. Using the [IoT software development kits][lnk-sdks], you can customize and extend these solutions to meet your own requirements. You can also use these solutions as examples or templates when you are developing new IoT solutions.
+
+The following video provides an introduction to Azure IoT Suite:
 
 > [AZURE.VIDEO azurecon-2015-introducing-the-microsoft-azure-iot-suite]
 
-## Azure IoT 套件中的 Azure IoT 服務
+## <a name="azure-iot-services-in-azure-iot-suite"></a>Azure IoT services in Azure IoT Suite
 
-預先設定的解決方案通常使用下列服務：
+The preconfigured solutions typically use the following services:
 
-- Azure IoT 套件的核心是 [Azure IoT 中樞][lnk-iot-hub]服務。這項服務提供裝置到雲端和雲端到裝置的傳訊功能，並做為雲端到其他重要的 IoT 套件服務的閘道器。此服務可讓您從您的裝置大量接收訊息，並將命令傳送給您的裝置。
+- Core to Azure IoT Suite is the [Azure IoT Hub][lnk-iot-hub] service. This service provides the device-to-cloud and cloud-to-device messaging capabilities and acts as the gateway to the cloud and the other key IoT Suite services. The service enables you to receive messages from your devices at scale, and send commands to your devices.
 
-- [Azure 串流分析][lnk-asa]提供移動中的資料分析。IoT 套件會運用這項服務來處理內送遙測、執行彙總以及偵測事件。預先設定的解決方案也會使用串流分析來處理資訊訊息，它包含像是中繼資料或是從裝置回應的命令的資料。這些解決方案使用「串流分析」來處理來自您裝置的訊息，並將這些訊息傳送給其他服務。
+- [Azure Stream Analytics][lnk-asa] provides in-motion data analysis. IoT Suite leverages this service to process incoming telemetry, perform aggregation, and detect events. The preconfigured solutions also use stream analytics to process informational messages that contain data such as metadata or command responses from devices. The solutions use Stream Analytics to process the messages from your devices and deliver those messages to other services.
 
-- [Azure 儲存體][lnk-azure-storage]和 [Azure DocumentDB][lnk-document-db] 提供資料儲存體功能。預先設定的解決方案使用 Blob 儲存體來儲存遙測，並且讓它可用於分析。這些解決方案使用 DocumentDB 來儲存裝置中繼資料，以及啟用解決方案的裝置管理功能。
+- [Azure Storage][lnk-azure-storage] and [Azure DocumentDB][lnk-document-db] provide the data storage capabilities. The preconfigured solutions use blob storage to store telemetry and to make it available for analysis. The solutions use DocumentDB to store device metadata and enable the device management capabilities of the solutions.
 
-- [Azure Web Apps][lnk-web-apps] 和 [Microsoft Power BI][lnk-power-bi] 提供資料視覺化功能。Power BI 的彈性可讓您快速建置自己的互動式儀表板 (使用 IoT 套件資料)。
+- [Azure Web Apps][lnk-web-apps] and [Microsoft Power BI][lnk-power-bi] provide the data visualization capabilities. The flexibility of Power BI enables you to quickly build your own interactive dashboards that use IoT Suite data.
 
-如需典型的 IoT 解決方案架構的概觀，請參閱 [Microsoft Azure 和物聯網 (IoT)][iot-suite-what-is-azure-iot]。
+For an overview of the architecture of a typical IoT solution, see [Microsoft Azure and the Internet of Things (IoT)][iot-suite-what-is-azure-iot].
 
-## 預先設定的解決方案
+## <a name="preconfigured-solutions"></a>Preconfigured solutions
 
-IoT 套件包括預先設定的解決方案，可讓您快速地開始使用，並瀏覽 Azure IoT 套件使其可行的常見 IoT 案例，例如「遠端監視」和「預測性維護」。您可以將這些解決方案部署到您的 Azure 訂用帳戶，然後執行完整的端對端 IoT 案例。
+IoT Suite includes preconfigured solutions that enable you to quickly get started with and to explore the common IoT scenarios, such as *Remote monitoring* and *Predictive maintenance*, that Azure IoT Suite makes possible. You can deploy these solutions to your Azure subscription and then run a complete, end-to-end IoT scenario.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-既然您已概略了解 IoT 套件的功能及其主要元件，您可以深入了解 IoT 套件中預先設定的解決方案，請參閱[什麼是 Azure IoT 預先設定的解決方案？][lnk-what-are-preconfig]
+Now that you have an overview of what IoT Suite can do and what are its main components, you can learn more about the preconfigured solutions in IoT Suite, see [What are the Azure IoT preconfigured solutions?][lnk-what-are-preconfig]
 
 [lnk-sdks]: https://azure.microsoft.com/documentation/articles/iot-hub-sdks-summary/
 [lnk-iot-hub]: https://azure.microsoft.com/documentation/services/iot-hub/
@@ -65,4 +66,8 @@ IoT 套件包括預先設定的解決方案，可讓您快速地開始使用，�
 [iot-suite-what-is-azure-iot]: iot-suite-what-is-azure-iot.md
 [lnk-what-are-preconfig]: iot-suite-what-are-preconfigured-solutions.md
 
-<!---HONumber=AcomDC_0810_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,44 +1,48 @@
 <properties
-	pageTitle="從 Azure 服務管理移轉到 Azure Resource Manager 的社群工具"
-	description="本文收錄由社群所提供，可協助將 IaaS 資源從 Azure 服務管理移轉至 Azure Resource Manager 堆疊的工具。"
-	services="virtual-machines-windows"
-	documentationCenter=""
-	authors="singhkays"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+    pageTitle="Community tools for Azure Service Management to Azure Resource Manager migration"
+    description="This article catalogs the tools that have been provided by the community to assist with migration of IaaS resources from Azure Service Management to the Azure Resource Manager stack."
+    services="virtual-machines-windows"
+    documentationCenter=""
+    authors="singhkays"
+    manager="timlt"
+    editor=""
+    tags="azure-resource-manager"/>
 
 <tags
-	ms.service="virtual-machines-windows"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/29/2016"
-	ms.author="singhkay"/>
+    ms.service="virtual-machines-windows"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/29/2016"
+    ms.author="singhkay"/>
 
-# 從 Azure 服務管理移轉到 Azure Resource Manager 的社群工具
 
-本文收錄由社群所提供，可協助將 IaaS 資源從 Azure 服務管理移轉至 Azure Resource Manager 堆疊的工具。
+# <a name="community-tools-for-azure-service-management-to-azure-resource-manager-migration"></a>Community tools for Azure Service Management to Azure Resource Manager migration
 
->[AZURE.NOTE]這些工具尚未獲得 Microsoft 支援服務的官方支援。因此可在 Github 上取得其開放原始碼，我們很樂意收到修正或其他案例的 PR。若要回報問題，請使用 Github 問題功能。
+This article catalogs the tools that have been provided by the community to assist with migration of IaaS resources from Azure Service Management to the Azure Resource Manager stack.
+
+>[AZURE.NOTE]These tools are not officially supported by Microsoft Support. Therefore they are open sourced on Github and we're happy to accept PRs for fixes or additional scenarios. To report an issue, use the Github issues feature.
 >
-> 使用這些工具移轉可能會造成傳統虛擬機器停機。如果您想要尋求平台支援的移轉，請造訪
+> Migrating with these tools will cause downtime for your classic Virtual Machine. If you're looking for platform supported migration, visit 
 >
->- [支援將 IaaS 資源從傳統移轉至 Azure Resource Manager 堆疊的平台](./virtual-machines-windows-migration-classic-resource-manager.md)
->- [深入技術探討支援從傳統移轉至 Azure Resource Manager 的平台](./virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
->- [使用 Azure PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager](./virtual-machines-windows-ps-migration-classic-resource-manager.md)
+>- [Platform supported migration of IaaS resources from Classic to Azure Resource Manager stack](./virtual-machines-windows-migration-classic-resource-manager.md)
+>- [Technical Deep Dive on Platform supported migration from Classic to Azure Resource Manager](./virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
+>- [Migrate IaaS resources from Classic to Azure Resource Manager using Azure PowerShell](./virtual-machines-windows-ps-migration-classic-resource-manager.md)
 
-## ASM2ARM
+## <a name="asm2arm"></a>ASM2ARM
 
-這是將您的**單一**虛擬機器 (VM) 從 Azure 服務管理堆疊移轉至 Azure Resource Manager 堆疊的 PowerShell 指令碼模組。
+This is a PowerShell script module for migrating your **single** Virtual Machine (VM) from Azure Service Management stack to Azure Resource Manager stack. 
 
-[連結至工具文件](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/asm2arm)
+[Link to the tool documentation](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/asm2arm)
 
-## migAz
+## <a name="migaz"></a>migAz
 
-migAz 是將一組完整的 Azure 服務管理 IaaS 資源移轉至 Azure Resource Manager IaaS 資源的額外選項。移轉可能會發生在相同的訂用帳戶內或不同的訂用帳戶與訂用帳戶類型之間 (例如 CSP 訂用帳戶)。
+migAz is an additional option to migrate a complete set of Azure Service Management IaaS resources to Azure Resource Manager IaaS resources. The migration can occur within the same subscription or between different subscriptions and subscription types (ex: CSP subscriptions).
 
-[連結至工具文件](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/migaz)
+[Link to the tool documentation](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/migaz)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

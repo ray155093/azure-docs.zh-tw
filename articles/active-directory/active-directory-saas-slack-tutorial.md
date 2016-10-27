@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Slack 整合 | Microsoft Azure" 
-    description="了解如何使用 Slack 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Slack | Microsoft Azure" 
+    description="Learn how to use Slack with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,130 +14,138 @@
     ms.date="09/19/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Slack 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-slack"></a>Tutorial: Azure Active Directory integration with Slack
   
-本教學課程的目的是要示範 Azure 與 Slack 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Slack.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂用帳戶
--   啟用 Slack 單一登入的訂用帳戶
+-   A valid Azure subscription
+-   A Slack single sign-on enabled subscription
   
-完成本教學課程之後，您指派給 Slack 的 Azure AD 使用者就能夠從您的 Slack 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
+After completing this tutorial, the Azure AD users you have assigned to Slack will be able to single sign into the application at your Slack company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Slack 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Slack
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-slack-tutorial/IC794980.png "案例")
+![Scenario](./media/active-directory-saas-slack-tutorial/IC794980.png "Scenario")
 
-##啟用 Slack 的應用程式整合
+##<a name="enabling-the-application-integration-for-slack"></a>Enabling the application integration for Slack
   
-本節的目的是概述如何啟用 Slack 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Slack.
 
-###若要啟用 Slack 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-slack,-perform-the-following-steps:"></a>To enable the application integration for Slack, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-slack-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-slack-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-slack-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-slack-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-slack-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從資源庫新增應用程式](./media/active-directory-saas-slack-tutorial/IC749322.png "從資源庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-slack-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在 [搜尋方塊]中，輸入 **Slack**。
+6.  In the **search box**, type **Slack**.
 
-    ![應用程式庫](./media/active-directory-saas-slack-tutorial/IC794981.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-slack-tutorial/IC794981.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Slack]，然後按一下 [完成] 加入應用程式。
+7.  In the results pane, select **Slack**, and then click **Complete** to add the application.
 
-    ![案例](./media/active-directory-saas-slack-tutorial/IC796925.png "案例")
+    ![Scenario](./media/active-directory-saas-slack-tutorial/IC796925.png "Scenario")
 
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Slack 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+The objective of this section is to outline how to enable users to authenticate to Slack with their account in Azure AD using federation based on the SAML protocol.  
+As part of this procedure, you are required to create a base-64 encoded certificate file.  
+If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Slack] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Slack** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-slack-tutorial/IC794982.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-slack-tutorial/IC794982.png "Configure Single Sign-On")
 
-2.  在 [要如何讓使用者登入 Slack] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Slack** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-slack-tutorial/IC794983.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-slack-tutorial/IC794983.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [Slack 登入 URL] 文字方塊中，輸入您的 Slack 租用戶 URL (例如："*https://azuread.slack.com*"*)，然後按 [下一步]*。
+3.  On the **Configure App URL** page, in the **Slack Sign In URL** textbox, type the URL of your Slack tenant (e.g.: "*https://azuread.slack.com*"), and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-slack-tutorial/IC794984.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-slack-tutorial/IC794984.png "Configure App URL")
 
-4.  在 [設定在 Slack 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後在本機電腦上儲存憑證檔案。
+4.  On the **Configure single sign-on at Slack** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-slack-tutorial/IC794985.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-slack-tutorial/IC794985.png "Configure Single Sign-On")
 
-5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Slack 公司網站。
+5.  In a different web browser window, log into your Slack company site as an administrator.
 
-6.  移至 [Microsoft Azure AD] > [小組設定]。
+6.  Go to **to Microsoft Azure AD \> Team Settings**.
 
-    ![小組設定](./media/active-directory-saas-slack-tutorial/IC794986.png "小組設定")
+    ![Team Settings](./media/active-directory-saas-slack-tutorial/IC794986.png "Team Settings")
 
-7.  在 [小組設定] 區段中，按一下 [驗證] 索引標籤，然後按一下 [變更設定]。
+7.  In the **Team Settings** section, click the **Authentication** tab, and then click **Change Settings**.
 
-    ![小組設定](./media/active-directory-saas-slack-tutorial/IC794987.png "小組設定")
+    ![Team Settings](./media/active-directory-saas-slack-tutorial/IC794987.png "Team Settings")
 
-8.  在 [SAML 驗證設定] 對話方塊上，執行下列步驟：
+8.  On the **SAML Authentication Settings** dialog, perform the following steps:
 
-    ![SAML 設定](./media/active-directory-saas-slack-tutorial/IC794988.png "SAML 設定")
+    ![SAML Settings](./media/active-directory-saas-slack-tutorial/IC794988.png "SAML Settings")
 
-    1.  在 Azure 傳統入口網站的 [設定在 Slack 單一登入] 對話頁面上，複製 [SAML SSO URL] 值，然後將它貼至 [SAML 2.0 端點 (HTTP)] 文字方塊中。
-    2.  在 Azure 傳統入口網站中的 [設定在 Slack 單一登入] 對話頁面上，複製 [簽發者 URL] 值，然後將它貼至 [識別提供者簽發者] 文字方塊中。
-    3.  從您下載的憑證建立「Base-64 編碼」檔案。
+    1.  In the Azure classic portal, on the **Configure single sign-on at Slack** dialog page, copy the **SAML SSO URL** value, and then paste it into the **SAML 2.0 Endpoint (HTTP)** textbox.
+    2.  In the Azure classic portal, on the **Configure single sign-on at Slack** dialog page, copy the **Issuer URL** value, and then paste it into the **Identity Provider Issuer** textbox.
+    3.  Create a **base-64 encoded** file from your downloaded certificate.
     
-        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
 
-    4.  在記事本中開啟您的 base-64 編碼的憑證，將其內容複製到剪貼簿，然後貼到 [公開憑證] 文字方塊中。
-    5.  取消選取 [允許使用者變更其電子郵件地址]。
-    6.  選取 [允許使用者選擇自己的使用者名稱]。
-    7.  針對 [必須使用您的小組的驗證]，選取 [此為選擇性]。
-    8.  按一下 [儲存組態]。
+    4.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **Public Certificate** textbox.
+    5.  Deselect **Allow users to change their email address**.
+    6.  Select **Allow users to choose their own username**.
+    7.  As **Authentication for your team must be used by**, select **It’s optional**.
+    8.  Click **Save Configuration**.
 
-9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-slack-tutorial/IC794989.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-slack-tutorial/IC794989.png "Configure Single Sign-On")
 
-##設定使用者佈建
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 Azure AD 使用者能夠登入 Slack，必須將他們佈建到 Slack。
+In order to enable Azure AD users to log into Slack, they must be provisioned into Slack.
   
-沒有動作項目可讓您設定 Slack 使用者佈建。當受指派使用者嘗試登入 Slack 時，則會自動建立一個 Slack 帳戶 (必要的話)。
+There is no action item for you to configure user provisioning to Slack.  
+When an assigned user tries to log into Slack, a Slack account is automatically created if necessary.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要將使用者指派到 Slack，請執行下列步驟：
+###<a name="to-assign-users-to-slack,-perform-the-following-steps:"></a>To assign users to Slack, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Slack] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Slack **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-slack-tutorial/IC794990.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-slack-tutorial/IC794990.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-slack-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-slack-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0921_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

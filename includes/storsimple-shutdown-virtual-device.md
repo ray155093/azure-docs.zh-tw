@@ -1,9 +1,12 @@
-#### 關閉虛擬裝置
+#### <a name="to-shut-down-a-virtual-device"></a>To shut down a virtual device
 
-1. 登入管理入口網站。
+1. Sign in to the Management Portal.
 
-2. 按一下 [虛擬機器]，然後選取虛擬裝置。
+2. Click **Virtual Machines**, and then select the virtual device.
 
-3. 按一下 [關閉]。
+3. Click **Shutdown**.
 
-<!---HONumber=AcomDC_1217_2015-->
+
+<!--HONumber=Oct16_HO2-->
+
+

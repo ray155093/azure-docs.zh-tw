@@ -1,43 +1,44 @@
 <properties
-	pageTitle="使用通知中樞傳送即時新聞 (Windows Universal)"
-	description="使用 Azure 通知中樞搭配註冊中的標籤，將重大新聞傳送至通用 Windows 應用程式。"
-	services="notification-hubs"
-	documentationCenter="windows"
-	authors="wesmc7777"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Use Notification Hubs to send breaking news (Windows Universal)"
+    description="Use Azure Notification Hubs with tags in the registration to send breaking news to a universal Windows app."
+    services="notification-hubs"
+    documentationCenter="windows"
+    authors="wesmc7777"
+    manager="erikre"
+    editor=""/>
 
 
 <tags
-	ms.service="notification-hubs"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-windows"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="06/29/2016"
-	ms.author="wesmc"/>
+    ms.service="notification-hubs"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-windows"
+    ms.devlang="dotnet"
+    ms.topic="article"
+    ms.date="06/29/2016"
+    ms.author="wesmc"/>
 
-# 使用通知中心傳送即時新聞
+
+# <a name="use-notification-hubs-to-send-breaking-news"></a>Use Notification Hubs to send breaking news
 
 
 [AZURE.INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 
-##Overview
+##<a name="overview"></a>Overview
 
-本主題將說明如何使用 Azure 通知中樞，將即時新聞通知廣播至 Windows 市集或 Windows Phone 8.1 (非 Silverlight) 應用程式。如果您的目標是 Windows Phone 8.1 Silverlight，請參閱 [Windows Phone](notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md) 版本。完成時，您便能夠註冊您所感興趣的即時新聞類別，並僅接收這些類別的推播通知。此情況是許多應用程式的共同模式，這些應用程式必須將通知傳送給先前宣告對通知有興趣的使用者群組，例如，RSS 閱讀程式、供樂迷使用的應用程式等等。
+This topic shows you how to use Azure Notification Hubs to broadcast breaking news notifications to a Windows Store or Windows Phone 8.1 (non-Silverlight) app. If you are targeting Windows Phone 8.1 Silverlight, please refer to the [Windows Phone](notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md) version. When complete, you will be able to register for breaking news categories you are interested in, and receive only push notifications for those categories. This scenario is a common pattern for many apps where notifications have to be sent to groups of users that have previously declared interest in them, e.g. RSS reader, apps for music fans, and so on. 
 
-在通知中心內建立註冊時，您可以透過包含一或多個 _tags_ 來啟用廣播案例。當標籤收到通知時，所有已註冊此標籤的裝置都會收到通知。由於標籤只是簡單的字串而已，您無需預先佈建標籤。如需標籤的詳細資訊，請參閱[通知中樞路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
+Broadcast scenarios are enabled by including one or more _tags_ when creating a registration in the notification hub. When notifications are sent to a tag, all devices that have registered for the tag will receive the notification. Because tags are simply strings, they do not have to be provisioned in advance. For more information about tags, refer to [Notification Hubs Routing and Tag Expressions](notification-hubs-tags-segment-push-message.md).
 
-##必要條件
+##<a name="prerequisites"></a>Prerequisites
 
-本主題會以您在[開始使用通知中樞][get-started]中所建立的應用程式為基礎。開始本教學課程之前，您必須已完成[開始使用通知中心][get-started]。
+This topic builds on the app you created in [Get started with Notification Hubs][get-started]. Before starting this tutorial, you must have already completed [Get started with Notification Hubs][get-started].
 
-##在應用程式中新增類別選項
+##<a name="add-category-selection-to-the-app"></a>Add category selection to the app
 
-第一個步驟是在您的現有主頁面上新增 UI 元素，以便使用者選取要註冊的類別。使用者所選取的類別會儲存在裝置上。啟動應用程式時，您的通知中心內會建立以所選取類別作為標籤的裝置註冊。
+The first step is to add the UI elements to your existing main page that enable the user to select categories to register. The categories selected by a user are stored on the device. When the app starts, a device registration is created in your notification hub with the selected categories as tags.
 
-1. 開啟 MainPage.xaml 專案檔案，然後在 **Grid** 元素中複製下列程式碼：
+1. Open the MainPage.xaml project file, then copy the following code in the **Grid** element:
 
         <Grid>
             <Grid.RowDefinitions>
@@ -62,16 +63,16 @@
         </Grid>
 
 
-2. 以滑鼠右鍵按一下 [**共用**] 專案中，加入名為 **Notifications** 的新類別，將 **public** 修飾詞新增至類別定義，然後在新的程式碼檔案中新增下列 **using** 陳述式：
+2. Right click the **Shared** project and add a new class named **Notifications**, add the **public** modifier to the class definition, then add the following **using** statements to the new code file:
 
-		using Windows.Networking.PushNotifications;
-		using Microsoft.WindowsAzure.Messaging;
-		using Windows.Storage;
-		using System.Threading.Tasks;
+        using Windows.Networking.PushNotifications;
+        using Microsoft.WindowsAzure.Messaging;
+        using Windows.Storage;
+        using System.Threading.Tasks;
 
-3. 將下列程式碼複製到新的 **Notifications** 類別：
+3. Copy the following code into the new **Notifications** class:
 
-		private NotificationHub hub;
+        private NotificationHub hub;
 
         public Notifications(string hubName, string listenConnectionString)
         {
@@ -84,7 +85,7 @@
             return await SubscribeToCategories(categories);
         }
 
-		public IEnumerable<string> RetrieveCategories()
+        public IEnumerable<string> RetrieveCategories()
         {
             var categories = (string) ApplicationData.Current.LocalSettings.Values["categories"];
             return categories != null ? categories.Split(','): new string[0];
@@ -100,43 +101,43 @@
             }
 
             // Using a template registration to support notifications across platforms.
-			// Any template notifications that contain messageParam and a corresponding tag expression
-			// will be delivered for this registration.
+            // Any template notifications that contain messageParam and a corresponding tag expression
+            // will be delivered for this registration.
 
-            const string templateBodyWNS = "<toast><visual><binding template="ToastText01"><text id="1">$(messageParam)</text></binding></visual></toast>";
+            const string templateBodyWNS = "<toast><visual><binding template=\"ToastText01\"><text id=\"1\">$(messageParam)</text></binding></visual></toast>";
 
             return await hub.RegisterTemplateAsync(channel.Uri, templateBodyWNS, "simpleWNSTemplateExample",
-					categories);
+                    categories);
         }
 
-    本類別會使用本機儲存體來儲存此裝置必須接收的新聞類別。請注意，我們呼叫*RegisterTemplateAsync* 而非 *RegisterNativeAsync* 來註冊使用範本註冊的類別。
-	
-	我們也為範本提供名稱 ("simpleWNSTemplateExample")，因為我們可能會想註冊多個範本 (例如，一個供快顯通知使用，一個供磚使用)，而且我們必須為其命名，才能加以更新或刪除。
+    This class uses the local storage to store the categories of news that this device has to receive. Note that instead of calling the *RegisterNativeAsync* method we call *RegisterTemplateAsync* to register for the categories using a template registration. 
+    
+    We also provide a name for the template ("simpleWNSTemplateExample"), because we might want to register more than one template (for instance one for toast notifications and one for tiles) and we need to name them in order to be able to update or delete them.
 
-	請注意，如果有裝置使用相同的標籤註冊多個範本，一個以該標籤為目標的傳入訊息將會使多個通知傳遞至裝置 (每個範本各一個)。此行為在相同的邏輯訊息必須產生多個視覺化通知時將有所幫助，例如，在一個 Windows 市集應用程式中同時顯示徽章和快顯通知。
+    Note that if a device registers multiple templates with the same tag, an incoming message targeting that tag will result in multiple notifications delivered to the device (one for each template). This behavior is useful when the same logical message has to result in multiple visual notifications, for instance showing both a badge and a toast in a Windows Store application.
 
-	如需範本的詳細資訊，請參閱[範本](notification-hubs-templates-cross-platform-push-messages.md)。
-
-
+    For more information on templates, see [Templates](notification-hubs-templates-cross-platform-push-messages.md).
 
 
-4. 在 App.xaml.cs 專案檔案中，新增下列屬性至 **App** 類別：
 
-		public Notifications notifications = new Notifications("<hub name>", "<connection string with listen access>");
 
-	此屬性可用來建立並存取 **Notifications** 執行個體。
+4. In the App.xaml.cs project file, add the following property to the **App** class:
 
-	在上述程式碼中，使用您的通知中樞名稱及先前取得的 *DefaultListenSharedAccessSignature* 連接字串，來取代 `<hub name>` 和 `<connection string with listen access>` 預留位置。
+        public Notifications notifications = new Notifications("<hub name>", "<connection string with listen access>");
 
-	> [AZURE.NOTE] 因為隨用戶端應用程式散佈的憑證通常不安全，您應只將接聽存取權的金鑰隨用戶端應用程式散佈。您的應用程式可透過接聽存取權來註冊通知，但無法修改現有的註冊或無法傳送通知。在安全的後端服務中，會使用完整存取金鑰來傳送通知和變更現有的註冊。
+    This property is used to create and access a **Notifications** instance.
 
-5. 在 MainPage.xaml.cs 中新增下列程式碼行：
+    In the above code, replace the `<hub name>` and `<connection string with listen access>` placeholders with your notification hub name and the connection string for *DefaultListenSharedAccessSignature* that you obtained earlier.
 
-		using Windows.UI.Popups;
+    > [AZURE.NOTE] Because credentials that are distributed with a client app are not generally secure, you should only distribute the key for listen access with your client app. Listen access enables your app to register for notifications, but existing registrations cannot be modified and notifications cannot be sent. The full access key is used in a secured backend service for sending notifications and changing existing registrations.
 
-6. 在 MainPage.xaml.cs 專案檔案中新增下列方法：
+5. In your MainPage.xaml.cs, add the following line:
 
-		private async void SubscribeButton_Click(object sender, RoutedEventArgs e)
+        using Windows.UI.Popups;
+
+6. In the MainPage.xaml.cs project file, add the following method:
+
+        private async void SubscribeButton_Click(object sender, RoutedEventArgs e)
         {
             var categories = new HashSet<string>();
             if (WorldToggle.IsOn) categories.Add("World");
@@ -153,28 +154,28 @@
             await dialog.ShowAsync();
         }
 
-	此方法會建立一份類別清單，並使用 **Notifications** 類別在本機儲存體中儲存清單，並在通知中心註冊對應標籤。變更類別時，系統會使用新類別重新建立註冊。
+    This method creates a list of categories and uses the **Notifications** class to store the list in the local storage and register the corresponding tags with your notification hub. When categories are changed, the registration is recreated with the new categories.
 
-您的應用程式現在可以在裝置上的本機儲存體中儲存一組類別，並在使用者每次變更類別選項時在通知中心註冊。
+Your app is now able to store a set of categories in local storage on the device and register with the notification hub whenever the user changes the selection of categories.
 
-##註冊通知
+##<a name="register-for-notifications"></a>Register for notifications
 
-這些步驟會在啟動時，使用已儲存在本機儲存體中的類別在通知中心註冊。
+These steps register with the notification hub on startup using the categories that have been stored in local storage.
 
-> [AZURE.NOTE] 由於 Windows 通知服務 (WNS) 所指派的通道 URI 可以隨時變更，您應經常註冊通知以避免通知失敗。此範例會在應用程式每次啟動時註冊通知。若是經常執行 (一天多次) 的應用程式，如果距離上次註冊的時間不到一天，則您可能可以略過註冊以保留頻寬。
+> [AZURE.NOTE] Because the channel URI assigned by the Windows Notification Service (WNS) can change at any time, you should register for notifications frequently to avoid notification failures. This example registers for notification every time that the app starts. For apps that are run frequently, more than once a day, you can probably skip registration to preserve bandwidth if less than a day has passed since the previous registration.
 
-1. 開啟 App.xaml.cs 檔案並更新 **InitNotificationsAsync** 方法，以使用 `notifications` 類別根據類別來訂閱。
+1. Open the App.xaml.cs file and update the **InitNotificationsAsync** method to use the `notifications` class to subscribe based on categories.
 
-		// *** Remove or comment out these lines *** 
-	    //var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-	    //var hub = new NotificationHub("your hub name", "your listen connection string");
-	    //var result = await hub.RegisterNativeAsync(channel.Uri);
-	
-	    var result = await notifications.SubscribeToCategories();
+        // *** Remove or comment out these lines *** 
+        //var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+        //var hub = new NotificationHub("your hub name", "your listen connection string");
+        //var result = await hub.RegisterNativeAsync(channel.Uri);
+    
+        var result = await notifications.SubscribeToCategories();
 
-	這會確保應用程式每次啟動時都會從本機儲存體擷取類別，並要求這些類別的註冊。[開始使用通知中樞][get-started]教學課程的一部分是建立 **InitNotificationsAsync** 方法。
+    This makes sure that every time the app starts it retrieves the categories from local storage and requests a registeration for these categories. The **InitNotificationsAsync** method was created as part of the [Get started with Notification Hubs][get-started] tutorial.
 
-3. 在 MainPage.xaml.cs 專案檔案中，在 *OnNavigatedTo* 方法中新增下列程式碼：
+3. In the MainPage.xaml.cs project file, add the following code to the *OnNavigatedTo* method:
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -188,45 +189,45 @@
             if (categories.Contains("Sports")) SportsToggle.IsOn = true;
         }
 
-	這會根據原先儲存的類別狀態更新主頁面。
+    This updates the main page based on the status of previously saved categories.
 
-現在已完成此應用程式，且可在裝置本機儲存體中儲存一組類別，以供每次使用者變更類別選項在通知中心註冊時使用。接著，我們會定義可將類別通知傳送至此應用程式的後端。
+The app is now complete and can store a set of categories in the device local storage used to register with the notification hub whenever the user changes the selection of categories. Next, we will define a backend that can send category notifications to this app.
 
-##傳送加註標記的通知
+##<a name="sending-tagged-notifications"></a>Sending tagged notifications
 
 [AZURE.INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-##執行應用程式並產生通知
+##<a name="run-the-app-and-generate-notifications"></a>Run the app and generate notifications
 
-1. 在 Visual Studio 中，按 F5 以編譯並啟動應用程式。
+1. In Visual Studio, press F5 to compile and start the app.
 
-	![][1]
+    ![][1]
 
-	請注意，應用程式 UI 提供一組切換，可讓您選擇要訂閱的類別。
+    Note that the app UI provides a set of toggles that lets you choose the categories to subscribe to.
 
-2. 啟用一或多個類別切換，然後按一下 [訂閱]。
+2. Enable one or more categories toggles, then click **Subscribe**.
 
-	應用程式會將選取的類別轉換成標籤，並在通知中心內為選取的標籤要求新裝置註冊。系統會傳回已註冊類別並顯示在對話方塊中。
+    The app converts the selected categories into tags and requests a new device registration for the selected tags from the notification hub. The registered categories are returned and displayed in a dialog.
 
-	![][19]
+    ![][19]
 
-4. 若要從後端傳送新通知，您可以使用下列其中一種方式：
+4. Send a new notification from the backend in one of the following ways:
 
-	+ **主控台應用程式：**啟動主控台應用程式。
+    + **Console app:** start the console app.
 
-	+ **Java/PHP：**執行您的應用程式/指令碼。
+    + **Java/PHP:** run your app/script.
 
-	選取的類別通知會以快顯通知方式出現。
+    Notifications for the selected categories appear as toast notifications.
 
-	![][14]
+    ![][14]
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-在本教學課程中，我們了解到如何按類別廣播即時新聞。請考慮完成下列其中一個強調其他進階通知中心案例的教學課程：
+In this tutorial we learned how to broadcast breaking news by category. Consider completing one of the following tutorials that highlight other advanced Notification Hubs scenarios:
 
-+ [使用通知中樞廣播已當地語系化的即時新聞]
++ [Use Notification Hubs to broadcast localized breaking news]
 
-	了解如何擴充即時新聞應用程式，以啟用傳送已當地語系化的通知。
+    Learn how to expand the breaking news app to enable sending localized notifications.
 
 
 
@@ -247,7 +248,7 @@
 
 <!-- URLs.-->
 [get-started]: /manage/services/notification-hubs/getting-started-windows-dotnet/
-[使用通知中樞廣播已當地語系化的即時新聞]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
+[Use Notification Hubs to broadcast localized breaking news]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
 [Notify users with Notification Hubs]: /manage/services/notification-hubs/notify-users
 [Mobile Service]: /develop/mobile/tutorials/get-started/
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
@@ -258,4 +259,8 @@
 
 [wns object]: http://go.microsoft.com/fwlink/p/?LinkId=260591
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

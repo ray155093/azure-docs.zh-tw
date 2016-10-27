@@ -1,29 +1,33 @@
 <properties
-	pageTitle="在 Logic Apps 中使用 OneDrive 連接器 | Microsoft Azure App Service"
-	description="如何建立並設定 OneDrive 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-	authors="msftman"
-	manager="erikre"
-	editor=""
-	services="logic-apps"
-	documentationCenter=""/>
+    pageTitle="Using the OneDrive Connector in Logic Apps | Microsoft Azure App Service"
+    description="How to create and configure the OneDrive Connector or API app and use it in a logic app in Azure App Service"
+    authors="msftman"
+    manager="erikre"
+    editor=""
+    services="logic-apps"
+    documentationCenter=""/>
 
 <tags
-	ms.service="logic-apps"
-	ms.workload="integration"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="04/19/2016"
+    ms.service="logic-apps"
+    ms.workload="integration"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="04/19/2016"
     ms.author="deonhe"/>
 
-# OneDrive 連接器已改善 
 
-已移除本頁中與邏輯應用程式版本 2014-12-01 預覽相關的內容，因為這個連接器已升級，而且現在只獲新的[邏輯應用程式結構描述版本 2015-08-01 預覽](./app-service-logic-schema-2015-08-01.md)和更新版本支援。
+# <a name="we've-improved-the-onedrive-connector"></a>We've improved the OneDrive connector 
+
+We've removed the content (which targeted Logic apps version 2014-12-01-preview) from this page because this connector has been upgraded and is now only supported on the new [Logic Apps schema version 2015-08-01-preview](./app-service-logic-schema-2015-08-01.md) and later. 
 
 
-## 後續步驟    
+## <a name="next-steps"></a>Next steps    
 
-- [深入了解這個新連接器](../connectors/connectors-create-api-onedrive.md)
-- 請參閱在新的邏輯應用程式結構描述版本 2015-08-01 預覽上執行之所有連接器的[完整清單](../connectors/apis-list.md)
+- [Learn more about the this new connector](../connectors/connectors-create-api-onedrive.md)
+- See [the full list](../connectors/apis-list.md) of all connectors that run on the new Logic Apps schema version 2015-08-01-preview  
 
-<!---HONumber=AcomDC_0803_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

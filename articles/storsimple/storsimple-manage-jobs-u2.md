@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="檢視和管理 StorSimple 工作 | Microsoft Azure"
-   description="說明 StorSimple Manager 服務工作頁面，以及如何使用該頁面來追蹤最近、當前和排程的備份工作。"
+   pageTitle="View and manage StorSimple jobs | Microsoft Azure"
+   description="Describes the StorSimple Manager service Jobs page and how to use it to track recent, current, and scheduled backup jobs."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,82 +15,88 @@
    ms.date="08/17/2016"
    ms.author="alkohli" />
 
-# 使用 StorSimple Manager 服務來檢視和管理 StorSimple 工作 (Update 2)
+
+# <a name="use-the-storsimple-manager-service-to-view-and-manage-storsimple-jobs-(update-2)"></a>Use the StorSimple Manager service to view and manage StorSimple jobs (Update 2)
 
 [AZURE.INCLUDE [storsimple-version-selector-manage-jobs](../../includes/storsimple-version-selector-manage-jobs.md)]
 
-## Overview
+## <a name="overview"></a>Overview
 
-[工作] 頁面提供單一中央入口網站，可針對連接到 StorSimple Manager 服務的裝置，檢視及管理在裝置上啟動的工作。您可以針對多個裝置，檢視已排程、執行中、完成、已取消和失敗的工作。結果會以表格式格式呈現。
+The **Jobs** page provides a single central portal for viewing and managing jobs that were started on devices connected to your StorSimple Manager service. You can view scheduled, running, completed, canceled, and failed jobs for multiple devices. Results are presented in a tabular format. 
 
-![[工作] 頁面](./media/storsimple-manage-jobs-u2/jobs.png)
+![Jobs page](./media/storsimple-manage-jobs-u2/jobs.png)
 
-您可以透過篩選欄位，快速找到您所感興趣的工作，例如：
+You can quickly find the jobs you are interested in by filtering on fields such as:
 
-- **狀態** – 工作可以是執行中、完成、已取消、失敗、取消中，或是完成但發生錯誤。
-- **起迄** – 工作可以根據日期和時間範圍進行篩選。
-- **類型** – 工作類型可以是備份、手動備份、還原、複製、裝置容錯移轉、建立固定在本機的磁碟區、修改磁碟區、更新、支援封裝，或佈建虛擬裝置。
+- **Status** – Jobs can be running, completed, canceled, failed, canceling, or completed with errors.
+- **From and To** – Jobs can be filtered based on the date and time range.
+- **Type** – The job type can be backup, manual backup, restore, clone, device failover, create locally pinned volume, modify volume, update, support package, or virtual device provisioning.
 
-- **裝置** – 工作會在連接到服務的特定裝置上進行初始化。篩選的工作接著會根據下列屬性製成表格：
+- **Devices** – Jobs are initiated on a certain device connected to your service.
+The filtered jobs are then tabulated on the basis of the following attributes:
 
-    - **類型** – 備份、手動備份、還原、複製、裝置容錯移轉、建立固定在本機的磁碟區、修改磁碟區、更新、支援封裝，或佈建虛擬裝置。
+    - **Type** – backup, manual backup, restore, clone, device failover, create locally pinned volume, modify volume, update, support package, or virtual device provisioning.
 
-    - **狀態** – 執行中、完成、已取消、失敗、取消中，或是完成但發生錯誤。
+    - **Status** – running, completed, canceled, failed, canceling, or completed with errors.
 
-    - **實體** – 工作可以與磁碟區、備份原則或裝置相關聯。例如，複製工作與磁碟區相關聯，而排程的備份工作則與備份原則相關聯。裝置工作是透過災害復原 (DR) 或還原作業而建立。
+    - **Entity** – The jobs can be associated with a volume, a backup policy, or a device. For example, a clone job is associated with a volume, whereas a scheduled backup job is associated with a backup policy. A device job is created as a result of a disaster recovery (DR) or a restore operation.
 
-    - **裝置** – 用來啟動工作之裝置的名稱。
+    - **Device** – The name of the device on which the job was started.
 
-    - **啟動於** – 啟動工作的時間。
+    - **Started on** – The time when the job was started.
 
-    - **進度** – 執行中工作的完成度百分比。對於完成的工作，百分比應該永遠是 100%。
+    - **Progress** – The percentage completion of a running job. For a completed job, this should always be 100%.
 
-工作清單每隔 30 秒會重新整理。
+The list of jobs is refreshed every 30 seconds.
 
-您可以在此頁面上執行下列工作相關的動作：
+You can perform the following job-related actions on this page:
 
-- 檢視工作詳細資料
+- View job details
 
-- 取消工作
+- Cancel a job
 
-## 檢視工作詳細資料
+## <a name="view-job-details"></a>View job details
 
-執行下列步驟來檢視任何工作的詳細資料。
+Perform the following steps to view the details of any job.
 
-#### 若要檢視工作詳細資料
+#### <a name="to-view-job-details"></a>To view job details
 
-1. 在 [工作] 頁面上，透過搭配適當的篩選器執行查詢來顯示您所感興趣的工作。您可以搜尋完成、執行中或已取消工作。
+1. On the **Jobs** page, display the job(s) you are interested in by running a query with appropriate filters. You can search for completed, running, or canceled jobs.
 
-2. 選取一個工作。
+2. Select a job.
 
-3. 按一下頁面底部的 [詳細資料]。
+3. At the bottom of the page, click **Details**.
 
-4. 在 [備份工作詳細資料] 對話方塊中，您可以檢視狀態、詳細資料、時間統計資料和資料統計資料。
+4. In the **Backup Job Details** dialog box, you can view the status, details, time statistics, and data statistics.
  
-    ![工作詳細資料頁面](./media/storsimple-manage-jobs-u2/JobDetails.png)
+    ![Job details page](./media/storsimple-manage-jobs-u2/JobDetails.png)
 
-## 取消工作
+## <a name="cancel-a-job"></a>Cancel a job
 
-執行下列步驟來取消執行中工作。
+Perform the following steps to cancel a running job.
 
->[AZURE.NOTE] 有些工作無法取消，例如修改磁碟區以變更磁碟區類型或是展開磁碟區。
+>[AZURE.NOTE] Some jobs, such as modifying a volume to change the volume type or expanding a volume, cannot be canceled.
 
-### 取消工作
+### <a name="to-cancel-a-job"></a>To cancel a job
 
-1. 在 [工作] 頁面上，透過搭配適當的篩選器執行查詢來顯示您要取消的執行中工作。
+1. On the **Jobs** page, display the running job(s) that you want to cancel by running a query with appropriate filters.
 
-1. 選取工作。
+1. Select the job.
 
-1. 按一下頁面底部的 [取消]。
+1. At the bottom of the page, click **Cancel**.
 
-1. 系統提示您進行確認時，按一下 [是]。
+1. When prompted for confirmation, click **Yes**.
 
-即會取消此工作。
+This job is now canceled.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 了解如何[管理您的 StorSimple 備份原則](storsimple-manage-backup-policies.md)。
+- Learn how to [manage your StorSimple backup policies](storsimple-manage-backup-policies.md).
 
-- 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+- Learn how to [use the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

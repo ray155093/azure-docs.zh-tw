@@ -1,13 +1,13 @@
 <properties
-   pageTitle="部署 Azure 容器服務叢集 | Microsoft Azure"
-   description="使用 Azure 入口網站、Azure CLI 或 PowerShell 來部署 Azure 容器服務叢集。"
+   pageTitle="Deploy an Azure Container Service cluster | Microsoft Azure"
+   description="Deploy an Azure Container Service cluster by using the Azure portal, the Azure CLI, or PowerShell."
    services="container-service"
    documentationCenter=""
    authors="rgardler"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker、容器、微服務、Mesos、Azure"/>
+   keywords="Docker, Containers, Micro-services, Mesos, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -18,171 +18,176 @@
    ms.date="09/13/2016"
    ms.author="rogardle"/>
 
-# 部署 Azure 容器服務叢集
 
-Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協調流程解決方案。透過 Azure 容器服務，您可以使用 Azure Resource Manager 範本或 Azure 入口網站來部署 DC/OS 和 Docker Swarm 叢集。您會使用 Azure 虛擬機器擴展集來部署這些叢集，而這些叢集會利用 Azure 網路功能與儲存體供應項目。若要存取 Azure 容器服務，您需要有 Azure 訂用帳戶。如果您沒有帳戶，您可以註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。
+# <a name="deploy-an-azure-container-service-cluster"></a>Deploy an Azure Container Service cluster
 
-本文件會逐步引導您使用 [Azure 入口網站](#creating-a-service-using-the-azure-portal)、[Azure 命令列介面 (CLI)](#creating-a-service-using-the-azure-cli) 和 [Azure PowerShell 模組](#creating-a-service-using-powershell)來部署 Azure 容器服務叢集。
+Azure Container Service provides rapid deployment of popular open-source container clustering and orchestration solutions. By using Azure Container Service, you can deploy DC/OS and Docker Swarm clusters with Azure Resource Manager templates or the Azure portal. You deploy these clusters by using Azure Virtual Machine Scale Sets, and the clusters take advantage of Azure networking and storage offerings. To access Azure Container Service, you need an Azure subscription. If you don't have one, then you can sign up for a [free trial](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935).
 
-## 使用 Azure 入口網站建立服務
+This document walks you through deploying an Azure Container Service cluster by using the [Azure portal](#creating-a-service-using-the-azure-portal), the [Azure command-line interface (CLI)](#creating-a-service-using-the-azure-cli), and the [Azure PowerShell module](#creating-a-service-using-powershell).  
 
-登入 Azure 入口網站、選取[新增]，並在 Azure Marketplace 中搜尋 [Azure 容器服務]。
+## <a name="create-a-service-by-using-the-azure-portal"></a>Create a service by using the Azure portal
 
-![建立部署 1](media/acs-portal1.png) <br />
+Sign in to the Azure portal, select **New**, and search the Azure Marketplace for **Azure Container Service**.
 
-選取 [Azure 容器服務]，然後按一下 [建立]。
+![Create deployment 1](media/acs-portal1.png)  <br />
 
-![建立部署 2](media/acs-portal2.png) <br />
+Select **Azure Container Service**, and click **Create**.
 
-輸入以下資訊：
+![Create deployment 2](media/acs-portal2.png)  <br />
 
-- **使用者名稱**：這是在 Azure 容器服務叢集中的每一個虛擬機器和虛擬機器擴展集上，將用於帳戶的使用者名稱。
-- **訂用帳戶**：選取 Azure 訂用帳戶。
-- **資源群組**：選取現有資源群組或建立新的群組。
-- **位置**：選取 Azure 容器服務部署的 Azure 區域。
-- **SSH 公開金鑰**：新增將用於對 Azure 容器服務的虛擬機器進行驗證的公開金鑰。請務必不要讓此金鑰包含分行符號，並且務必讓它包含 'ssh-rsa' 前置詞和 'username@domain' 後置詞。看起來應該類似於下列：**ssh-rsa AAAAB3Nz...<...>...UcyupgH azureuser@linuxvm**。如需建立安全殼層 (SSH) 金鑰的指引，請參閱 [Linux](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) 和 [Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) 文章。
+Enter the following information:
 
-準備好繼續時請按一下 [確定]。
+- **User name**: This is the user name that will be used for an account on each of the virtual machines and virtual machine scale sets in the Azure Container Service cluster.
+- **Subscription**: Select an Azure subscription.
+- **Resource group**: Select an existing resource group, or create a new one.
+- **Location**: Select an Azure region for the Azure Container Service deployment.
+- **SSH public key**: Add the public key that will be used for authentication against Azure Container Service virtual machines. It is very important that this key contains no line breaks, and that it includes the 'ssh-rsa' prefix and the 'username@domain' postfix. It should look something like the following: **ssh-rsa AAAAB3Nz...<...>...UcyupgH azureuser@linuxvm**. For guidance on creating Secure Shell (SSH) keys, see the [Linux]( https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) and [Windows]( https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) articles.
 
-![建立部署 3](media/acs-portal3.png) <br />
+Click **OK** when you're ready to proceed.
 
-選取 [協調流程] 類型。可用選項包括：
+![Create deployment 3](media/acs-portal3.png)  <br />
 
-- **DC/OS**：部署 DC/OS 叢集。
-- **Swarm**：部署 Docker Swarm 叢集。
+Select an Orchestration type. The options are:
 
-準備好繼續時請按一下 [確定]。
+- **DC/OS**: Deploys a DC/OS cluster.
+- **Swarm**: Deploys a Docker Swarm cluster.
 
-![建立部署 4](media/acs-portal4.png) <br />
+Click **OK** when you're ready to proceed.
 
-輸入以下資訊：
+![Create deployment 4](media/acs-portal4.png)  <br />
 
-- **主要主機計數**：叢集中主要主機的數目。
-- **代理程式計數**：若為 Docker Swarm，這會是代理程式調整集內的初始代理程式數目。若為 DC/OS，這會是私人調整集內的初始代理程式數目。此外，也會建立包含預先決定的代理程式數目的公用調整集。此公用調整集內的代理程式數目是由叢集中已建立的主要主機數目來決定：一個主要主機需要一個公用代理程式，三或五個主要主機則需要兩個公用代理程式。
-- **代理程式虛擬機器大小**：代理程式虛擬機器的大小。
-- **DNS 前置詞**：全球唯一的名稱，將用來做為服務之完整網域名稱的主要前置部分。
+Enter the following information:
 
-準備好繼續時請按一下 [確定]。
+- **Master count**: The number of masters in the cluster.
+- **Agent count**: For Docker Swarm, this will be the initial number of agents in the agent scale set. For DC/OS, this will be the initial number of agents in a private scale set. Additionally, a public scale set is created, which contains a predetermined number of agents. The number of agents in this public scale set is determined by how many masters have been created in the cluster--one public agent for one master, and two public agents for three or five masters.
+- **Agent virtual machine size**: The size of the agent virtual machines.
+- **DNS prefix**: A world unique name that will be used to prefix key parts of the fully qualified domain names for the service.
 
-![建立部署 5](media/acs-portal5.png) <br />
+Click **OK** when you're ready to proceed.
 
-服務驗證完成後請按一下 [確定]。
+![Create deployment 5](media/acs-portal5.png)  <br />
 
-![建立部署 6](media/acs-portal6.png) <br />
+Click **OK** after service validation has finished.
 
-按一下 [建立] 以啟動部署程序。
+![Create deployment 6](media/acs-portal6.png)  <br />
 
-![建立部署 7](media/acs-portal7.png) <br />
+Click **Create** to start the deployment process.
 
-如果您已選擇將部署釘選到 Azure 入口網站，您就可以看到部署狀態。
+![Create deployment 7](media/acs-portal7.png)  <br />
 
-![建立部署 8](media/acs-portal8.png) <br />
+If you've elected to pin the deployment to the Azure portal, you can see the deployment status.
 
-當部署完成時，Azure 容器服務叢集便可供使用。
+![Create deployment 8](media/acs-portal8.png)  <br />
 
-## 使用 Azure CLI 建立服務
+When the deployment has completed, the Azure Container Service cluster is ready for use.
 
-若要使用命令列建立 Azure 容器服務的執行個體，您需要有 Azure 訂用帳戶。如果您沒有帳戶，您可以註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。您也必須[安裝](../xplat-cli-install.md)並[設定](../xplat-cli-connect.md) Azure CLI。
+## <a name="create-a-service-by-using-the-azure-cli"></a>Create a service by using the Azure CLI
 
-若要部署 DC/OS 或 Docker Swarm 叢集，請從 GitHub 選取下列其中一個範本。請注意，除了預設的 Orchestrator 選項有所不同外，下列兩個範本完全相同。
+To create an instance of Azure Container Service by using the command line, you need an Azure subscription. If you don't have one, then you can sign up for a [free trial](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935). You also need to have [installed](../xplat-cli-install.md) and [configured](../xplat-cli-connect.md) the Azure CLI.
 
-* [DC/OS 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-mesos)
-* [Swarm 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
+To deploy a DC/OS or Docker Swarm cluster, select one of the following templates from GitHub. Note that both of these templates are the same, with the exception of the default orchestrator selection.
 
-接下來，請確定 Azure CLI 已連線至 Azure 訂用帳戶。您可以使用下列命令來達成目的：
+* [DC/OS template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-mesos)
+* [Swarm template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
+
+Next, make sure that the Azure CLI has been connected to an Azure subscription. You can do this by using the following command:
 
 ```bash
 azure account show
 ```
-如果沒有傳回 Azure 帳戶，請使用下列命令將 CLI 登入 Azure。
+If an Azure account is not returned, use the following command to sign the CLI in to Azure.
 
 ```bash
 azure login -u user@domain.com
 ```
 
-接下來，設定 Azure CLI 工具來使用 Azure Resource Manager。
+Next, configure the Azure CLI tools to use Azure Resource Manager.
 
 ```bash
 azure config mode arm
 ```
 
-使用下列命令建立 Azure 資源群組和容器服務叢集，其中︰
+Create an Azure resource group and Container Service cluster with the following command, where:
 
-- **RESOURCE\_GROUP** 是您想要用於此服務的資源群組名稱。
-- **LOCATION** 是要建立資源群組和 Azure 容器服務部署的 Azure 區域。
-- **TEMPLATE\_URI** 是部署檔案的位置。請注意，這必須是 RAW 檔案，而不是 GitHub UI 的指標。若要尋找這個 URL，請在 GitHub 中選取 azuredeploy.json 檔案，並按一下 [RAW] 按鈕。
+- **RESOURCE_GROUP** is the name of the resource group that you want to use for this service.
+- **LOCATION** is the Azure region where the resource group and Azure Container Service deployment will be created.
+- **TEMPLATE_URI** is the location of the deployment file. Note that this must be the Raw file, not a pointer to the GitHub UI. To find this URL, select the azuredeploy.json file in GitHub, and click the **Raw** button.
 
-> [AZURE.NOTE] 當您執行此命令時，殼層會提示您輸入部署參數值。
+> [AZURE.NOTE] When you run this command, the shell will prompt you for deployment parameter values.
 
 ```bash
 azure group create -n RESOURCE_GROUP DEPLOYMENT_NAME -l LOCATION --template-uri TEMPLATE_URI
 ```
 
-### 提供範本參數
+### <a name="provide-template-parameters"></a>Provide template parameters
 
-此版本的命令需要您以互動方式定義參數。如果您想要提供參數 (例如 JSON 格式的字串)，您可以使用 `-p` 參數來這樣做。例如：
+This version of the command requires you to define parameters interactively. If you want to provide parameters, such as a JSON-formatted string, you can do so by using the `-p` switch. For example:
 
  ```bash
 azure group deployment create RESOURCE_GROUP DEPLOYMENT_NAME --template-uri TEMPLATE_URI -p '{ "param1": "value1" … }'
 ```
 
-或者，您也可以使用 `-e` 參數來提供 JSON 格式的參數檔案：
+Alternatively, you can provide a JSON-formatted parameters file by using the `-e` switch:
 
 ```bash
 azure group deployment create RESOURCE_GROUP DEPLOYMENT_NAME --template-uri TEMPLATE_URI -e PATH/FILE.JSON
 ```
 
-若要查看名為 `azuredeploy.parameters.json` 的範例參數檔，請在 GitHub 的 Azure 容器服務範本中尋找。
+To see an example parameters file named `azuredeploy.parameters.json`, look for it with the Azure Container Service templates in GitHub.
 
-## 使用 PowerShell 建立服務
+## <a name="create-a-service-by-using-powershell"></a>Create a service by using PowerShell
 
-您也可以使用 PowerShell 部署 Azure 容器服務叢集。這份文件以 1.0 版的 [Azure PowerShell 模組](https://azure.microsoft.com/blog/azps-1-0/)為基礎。
+You can also deploy an Azure Container Service cluster with PowerShell. This document is based on the version 1.0 [Azure PowerShell module](https://azure.microsoft.com/blog/azps-1-0/).
 
-若要部署 DC/OS 或 Docker Swarm 叢集，請選取下列其中一個範本。請注意，除了預設的 Orchestrator 選項有所不同外，下列兩個範本完全相同。
+To deploy a DC/OS or Docker Swarm cluster, select one of the following templates. Note that both of these templates are the same, with the exception of the default orchestrator selection.
 
-* [DC/OS 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-mesos)
-* [Swarm 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
+* [DC/OS template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-mesos)
+* [Swarm template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
 
-在 Azure 訂用帳戶中建立叢集之前，請確認您的 PowerShell 工作階段已登入 Azure。您若要這麼做，可透過 `Get-AzureRMSubscription` 命令：
+Before creating a cluster in your Azure subscription, verify that your PowerShell session has been signed in to Azure. You can do this with the `Get-AzureRMSubscription` command:
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-如果您需要登入 Azure，請使用 `Login-AzureRMAccount` 命令：
+If you need to sign in to Azure, use the `Login-AzureRMAccount` command:
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-如果要部署到新的資源群組，您必須先建立資源群組。若要建立新的資源群組，請使用 `New-AzureRmResourceGroup` 命令，並指定資源群組名稱和目的地區域：
+If you're deploying to a new resource group, you must first create the resource group. To create a new resource group, use the `New-AzureRmResourceGroup` command, and specify a resource group name and destination region:
 
 ```powershell
 New-AzureRmResourceGroup -Name GROUP_NAME -Location REGION
 ```
 
-建立資源群組後，您就可以使用下列命令來建立叢集。`-TemplateUri` 參數指定所需範本的 URI。當您執行此命令時，PowerShell 會提示您輸入部署參數值。
+After you create a resource group, you can create your cluster with the following command. The URI of the desired template will be specified for the `-TemplateUri` parameter. When you run this command, PowerShell will prompt you for deployment parameter values.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name DEPLOYMENT_NAME -ResourceGroupName RESOURCE_GROUP_NAME -TemplateUri TEMPLATE_URI
 ```
 
-### 提供範本參數
+### <a name="provide-template-parameters"></a>Provide template parameters
 
-如果您熟悉 PowerShell，您知道您可以輸入減號 (-) 然後按下 TAB 鍵，循環 Cmdlet 的可用參數。相同的功能也適用於您在範本中定義的參數。在您輸入範本名稱之後，Cmdlet 便會立即擷取範本、剖析參數，並將範本參數動態新增至命令。這會讓指定範本參數值變得再容易不過了。另外，如果您忘記必要參數值，則 PowerShell 會出現此值的提示。
+If you're familiar with PowerShell, you know that you can cycle through the available parameters for a cmdlet by typing a minus sign (-) and then pressing the TAB key. This same functionality also works with parameters that you define in your template. As soon as you type the template name, the cmdlet fetches the template, parses the parameters, and adds the template parameters to the command dynamically. This makes it very easy to specify the template parameter values. And, if you forget a required parameter value, PowerShell prompts you for the value.
 
-以下是包含參數的完整命令。您可以對資源名稱提供您自己的值。
+Below is the full command, with parameters included. You can provide your own values for the names of the resources.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-TemplateURI TEMPLATE_URI -adminuser value1 -adminpassword value2 ....
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-既然您有一個可運作的叢集，請參閱這些文件來了解連接和管理的詳細資料：
+Now that you have a functioning cluster, see these documents for connection and management details:
 
-- [連接到 Azure 容器服務叢集](container-service-connect.md)
-- [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
-- [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
+- [Connect to an Azure Container Service cluster](container-service-connect.md)
+- [Work with Azure Container Service and DC/OS](container-service-mesos-marathon-rest.md)
+- [Work with Azure Container Service and Docker Swarm](container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

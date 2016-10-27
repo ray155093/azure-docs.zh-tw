@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="常見的 DocumentDB 使用案例 | Microsoft Azure" 
-    description="深入了解 DocumentDB 的前五個使用案例：使用者產生的內容、事件記錄、目錄資料、使用者喜好設定資料，和物聯網 (Internet of Things，IoT)。" 
+    pageTitle="Common DocumentDB use cases | Microsoft Azure" 
+    description="Learn about the top five use cases for DocumentDB: user generated content, event logging, catalog data, user preferences data, and  Internet of Things (IoT)." 
     services="documentdb" 
     authors="h0n" 
     manager="jhubbard" 
@@ -16,92 +16,97 @@
     ms.date="07/08/2016" 
     ms.author="hawong"/>
 
-# 常見的 DocumentDB 使用案例
-本文提供幾個常見的 DocumentDB 使用案例概觀。本文中的建議可以做為使用 DocumentDB 開發應用程式的起點。
 
-閱讀本文後，您將能夠回答下列問題：
+# <a name="common-documentdb-use-cases"></a>Common DocumentDB use cases
+This article provides an overview of several common use cases for DocumentDB.  The recommendations in this article serve as a starting point as you develop your application with DocumentDB.   
+
+After reading this article, you'll be able to answer the following questions: 
  
-- DocumentDB 有哪些常見使用案例？
-- 使用 DocumentDB 做為使用者產生的內容存放區有何優點？
-- 使用 DocumentDB 做為目錄資料存放區有何優點？
-- 使用 DocumentDB 做為事件記錄存放區有何優點？
-- 使用 DocumentDB 做為使用者喜好設定資料存放區有何優點？
-- 使用 DocumentDB 做為物聯網 (Internet of Things，IoT) 系統的資料存放區有何優點？
+- What are the common use cases for DocumentDB?
+- What are the benefits of using DocumentDB as a user generated content store?
+- What are the benefits of using DocumentDB as a catalog data store?
+- What are the benefits of using DocumentDB as a event log store?
+- What are the benefits of using DocumentDB as a user preferences data store?
+- What are the benefits of using DocumentDB as a data store for Internet of Things (IoT) systems?
 
-## DocumentDB 的常見使用案例
-Azure DocumentDB 是 NoSQL 資料庫的一般用途，其廣泛運用在應用程式和使用案例。它很適合用於需要低毫秒級回應時間，而且必須快速調整的應用程式。以下是讓 DocumentDB 非常適合用於高效能應用程式的一些特性。
+## <a name="common-use-cases-for-documentdb"></a>Common use cases for DocumentDB
+Azure DocumentDB is a general purpose NoSQL database that is used in a wide range of applications and use cases. It is a good choice for any application that needs low order-of-millisecond response times, and needs to scale rapidly. The following are some attributes of DocumentDB that make it well-suited for high-performance applications.
 
-- DocumentDB 會原生分割您的資料以實現高可用性和延展性。
-- DocumentDB 具有以 SSD 支持的儲存體，可提供低延遲的毫秒級回應時間。
-- DocumentDB 支援最終、工作階段和界限-陳舊等一致性層級，因此能提供高性價比。
-- DocumentDB 有彈性的資料友善計價模式，可針對儲存體和輸送量單獨計價。
-- DocumentDB 的保留輸送量模式可讓您以讀取/寫入數量，而非基礎硬體的 CPU/記憶體/IOPs 來做為思考方向。
-- DocumentDB 的設計可讓您調整為每日數十億個要求級數的巨量要求。
+- DocumentDB natively partitions your data for high availability and scalability.
+- DocumentDB's has SSD backed storage with low-latency order-of-millisecond response times.
+- DocumentDB's support for consistency levels like eventual, session and bounded-staleness allows for low cost-to performance-ratio. 
+- DocumentDB has a flexible data-friendly pricing model that meters storage and throughput independently.
+- DocumentDB's reserved throughput model allows you to think in terms of number of reads/writes instead of CPU/memory/IOPs of the underlying hardware.
+- DocumentDB's design lets you scale to massive request volumes in the order of billions of requests per day.
 
-對於需要低回應時間，而且必須處理大量讀取和寫入的 Web 應用程式、行動應用程式、遊戲應用程式和 IoT 應用程式來說，這些特性更是特別有用。
+These attributes are particularly beneficial when it comes to web, mobile, gaming and IoT applications that need low response times and need to handle massive amounts of reads and writes. 
 
-## 使用者產生的內容
-DocumentDB 的常見使用案例是針對 Web 和行動應用程式儲存和查詢使用者產生的內容 (UGC)，尤其是社交媒體應用程式。一些 UGC 範例包括對談、推文、部落格文章、評等和註解。通常，社交媒體應用程式中的 UGC 會結合使用自由格式文字、屬性、標記和不受固定結構限制的關聯性。
+## <a name="user-generated-content"></a>User generated content
+A common use case for DocumentDB is to store and query user generated content (UGC) for web and mobile applications, particularly social media applications.  Some examples of UGC are chat sessions, tweets, blog posts, ratings, and comments.  Often, the UGC in social media applications is a blend of free form text, properties, tags and relationships that are not bounded by rigid structure.   
 
-內容 (例如聊天、註解和貼文) 可以儲存在 DocumentDB 中，而無需要求關聯式對應層的轉換或複雜物件。開發人員在反覆查看應用程式程式碼時，可以輕鬆地新增或修改資料屬性以符合需求，進而加快開發的速度。
+Content such as chats, comments, and posts can be stored in DocumentDB without requiring transformations or complex object to relational mapping layers.  Data properties can be added or modified easily to match requirements as developers iterate over the application code, thus promoting rapid development.  
 
-與各種社交網路整合的應用程式必須回應這些網路不斷變更的結構描述。由於 DocumentDB 依預設會自動編製資料的索引，您可以隨時查詢資料。因此，這些應用程式可以有彈性地根據其各自的需求擷取投影。
+Applications that integrate with various social networks must respond to changing schemas from these networks.  As data is automatically indexed by default in DocumentDB, data is ready to be queried at any time.  Hence, these applications have the flexibility to retrieve projections as per their respective needs.       
 
-許多社交應用程式是以全球的規模運作，而且可能出現無法預期的使用模式。調整資料存放區的彈性十分重要，因為應用程式層會進行調整以符合使用需求。您可以透過在 DocumentDB 帳戶下新增其他資料分割區來進一步向外延伸。此外，您也可以跨多個區域建立其他 DocumentDB 帳戶。如需 DocumentDB 服務區域可用性，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
+Many of the social applications run at global scale and can exhibit unpredictable usage patterns.  Flexibility in scaling the data store is essential as the application layer scales to match usage demand.  You can scale out by adding additional data partitions under a DocumentDB account.  In addition, you can also create additional DocumentDB accounts across multiple regions. For DocumentDB service region availability, see [Azure Regions](https://azure.microsoft.com/regions/#services).   
 
-## 目錄資料
-目錄資料使用方式案例涉及儲存和查詢一組實體屬性，例如人員、地點和產品。目錄資料的一些範例包括使用者帳戶、產品目錄、IoT 的裝置註冊，和材料表系統。這項資料的屬性可能會有所不同，而且可以隨時間變更，以符合應用程式需求。
+## <a name="catalog-data"></a>Catalog data
+Catalog data usage scenarios involve storing and querying a set of attributes for entities such as people, places and products.  Some examples of catalog data are user accounts, product catalogs, device registries for IoT, and bill of materials systems.  Attributes for this data may vary and can change over time to fit application requirements.  
 
-請細想汽車零件供應商產品目錄的範例。除了所有零件共用的通用屬性外，每個零件還可能會有自己的屬性。此外，用於特定零件的屬性可能在明年推出新的模型時變更。做為 JSON 文件存放區，DocumentDB 支援彈性的結構描述，並可讓您使用巢狀屬性呈現資料，因此它很適合用來儲存產品目錄資料。
+Consider an example of a product catalog for an automotive parts supplier. Every part may have its own attributes in addition to the common attributes that all parts share.  Furthermore, attributes for a specific part can change the following year when a new model is released.  As a JSON document store, DocumentDB supports flexible schemas and allows you to represent data with nested properties, and thus it is well suited for storing product catalog data.       
 
-## 記錄和時間序列資料
-應用程式記錄通常會大量發出，並且根據部署的應用程式版本或元件記錄事件可能會有不同的屬性。記錄資料不會受到複雜關聯性或固定結構的限制。由於 JSON 屬於輕量型且方便閱讀，採用 JSON 格式保存記錄資料便成為一種趨勢。
+## <a name="logging-and-time-series-data"></a>Logging and Time-series data
+Application logging is often emitted in large volumes and may have varying attributes based on the deployed application version or the component logging events.  Log data is not bounded by complex relationships or rigid structures. Increasingly, log data is persisted in JSON format since JSON is lightweight and easy for humans to read.
    
-與事件記錄資料相關的主要典型使用案例有兩個。第一個使用案例是在資料子集上執行臨機操作查詢，以進行疑難排解。在疑難排解的過程中，資料子集會是第一個擷取的記錄檔，通常會按照時間序列進行排序。然後，透過篩選資料集的錯誤層級或錯誤訊息來執行向下鑽研。這是為什麼將事件記錄檔儲存在 DocumentDB 是一項優點的原因。根據預設，系統會自動為儲存在 DocumentDB 的記錄資料編製索引，因此它可以隨時提供查詢。此外，您可以按時間序列，保存跨資料分割的記錄資料。根據您的保留原則，較舊的記錄檔可以整合到冷儲存體。
+There are typically two major use cases related to event log data.  The first use case is to perform ad-hoc queries over a subset of data for troubleshooting.  During troubleshooting, a subset of data is first retrieved from the logs, typically by time series.  Then, a drill-down is performed by filtering the dataset with error levels or error messages. This is where storing event logs in DocumentDB is an advantage. Log data stored in DocumentDB is automatically indexed by default, and thus it is ready to be queried at any time. In addition, log data can be persisted across data partitions as a time-series. Older logs can be rolled out to cold storage per your retention policy.          
 
-第二個使用案例涉及在大量的記錄資料上，離線執行長時間執行的資料分析工作。這個使用案例的範例包括伺服器可用性分析、應用程式錯誤分析，和點選流資料分析。通常，您可以使用 Hadoop 來執行這些類型的分析。有了適用於 DocumentDB 的 Hadoop Connector，DocumentDB 資料庫可以當做 Pig、Hive 和 Map/Reduce 工作的資料來源與接收器。如需適用於 DocumentDB 的 Hadoop Connector 詳細資訊，請參閱[使用 DocumentDB 與 HDInsight 執行 Hadoop 工作](documentdb-run-hadoop-with-hdinsight.md)。
+The second use case involves long running data analytics jobs performed offline over a large volume of log data.  Examples of this use case include server availability analysis, application error analysis, and clickstream data analysis.  Typically, Hadoop is used to perform these types of analyses.  With the Hadoop Connector for DocumentDB, DocumentDB databases function as data sources and sinks for Pig, Hive and Map/Reduce jobs. For details on the Hadoop Connector for DocumentDB, see [Run a Hadoop job with DocumentDB and HDInsight](documentdb-run-hadoop-with-hdinsight.md).      
 
-## 玩遊戲
-資料庫層是遊戲應用程式的重要元件。現今的遊戲會在行動/主控台用戶端進行圖形處理，但依賴雲端來提供自訂和個人化的內容，如遊戲中的統計資料、社交媒體整合和得分排行榜。遊戲需要極低延遲的讀取及寫入，才能提供吸引人的遊戲體驗，而資料庫層則需要在新遊戲推出和功能更新期間處理起伏不定的要求速率。
+## <a name="gaming"></a>Gaming
+The database tier is a crucial component of gaming applications. Modern games perform graphical processing on mobile/console clients, but rely on the cloud to deliver customized and personalized content like in-game stats, social media integration, and high-score leaderboards. Games require extremely low latencies for reads and writes to provide an engaging in-game experience, and the database tier needs to handle highs and lows in request rates during new game launches and feature updates.
 
-DocumentDB 已獲得 [The Walking Dead: No Man's Land](https://azure.microsoft.com//blog/the-walking-dead-no-mans-land-game-soars-to-1-with-azure-documentdb/) ([Next Games](http://www.nextgames.com/) 所製作) 和 [Halo 5: Guardians](https://azure.microsoft.com/blog/how-halo-5-guardians-implemented-social-gameplay-using-azure-documentdb/) 之類的大場面遊戲所採用。在這兩個使用案例中，DocumentDB 的主要優勢如下︰
+DocumentDB is used by massive-scale games like [The Walking Dead: No Man's Land](https://azure.microsoft.com//blog/the-walking-dead-no-mans-land-game-soars-to-1-with-azure-documentdb/) by [Next Games](http://www.nextgames.com/), and [Halo 5: Guardians](https://azure.microsoft.com/blog/how-halo-5-guardians-implemented-social-gameplay-using-azure-documentdb/). In both use cases, the key advantages of DocumentDB were the following:
 
-- DocumentDB 可彈性調高或調降效能。這可讓遊戲藉由單一 API 呼叫就能處理同一時間區區十幾名玩家到數百萬名玩家的更新設定檔和統計資料。
-- DocumentDB 支援毫秒讀取和寫入，可避免玩家玩遊戲時發生延遲現象。
-- DocumentDB 的自動編製索引可針對多個不同的屬性進行即時篩選，例如依玩家的內部識別碼、GameCenter、Facebook、Google ID 找出玩家，或根據玩家的公會成員資格進行查詢。不用建置複雜的索引或分區化基礎結構就可做到這些事。
-- 透過彈性的結構描述更加輕易地實作社交功能，包括遊戲中的交談訊息、玩家的公會成員資格、已完成的挑戰、得分排行榜和社交關係圖。
-- DocumentDB 做為受管理的平台即服務 (PaaS) 時只需要最少的設定和管理工作就能快速重覆作業，因此能縮短上市時間。
+- DocumentDB allows performance to be scaled up or down elastically. This allows games to handle updating profile and stats from dozens to millions of simultaneous gamers by making a single API call.
+- DocumentDB supports millisecond reads and writes to help avoid any lags during game play.
+- DocumentDB's automatic indexing allows for filtering against multiple different properties in real-time, e.g. locate players by their internal player IDs, or their GameCenter, Facebook, Google IDs, or query based on player membership in a guild. This is possible without building complex indexing or sharding infrastructure.
+- Social features including in-game chat messages, player guild memberships, challenges completed, high-score leaderboards, and social graphs are easier to implement with a flexible schema.
+- DocumentDB as a managed platform-as-a-service (PaaS) required minimal setup and management work to allow for rapid iteration, and reduce time to market.
 
 
-## 使用者喜好設定資料
-現今，大部分的現代 Web 和行動應用程式具備複雜的檢視和體驗。這些檢視和體驗通常是動態的，根據使用者的喜好設定或情緒和品牌需求量身訂做。因此，應用程式必須要能夠有效地擷取個人化設定，以便快速呈現 UI 項目和體驗。
+## <a name="user-preferences-data"></a>User preferences data
+Nowadays, most modern web and mobile applications come with complex views and experiences. These views and experiences are usually dynamic, catering to user preferences or moods and branding needs.  Hence, applications need to be able to retrieve personalized settings effectively in order to render UI elements and experiences quickly. 
 
-JSON 是呈現 UI 配置資料的有效格式，因為它不只是輕量，還可以輕鬆地透過 JavaScript 解譯。DocumentDB 提供可微調的一致性層級，允許快速讀取和低延遲寫入。因此，在 DocumentDB 中將包括個人化設定的 UI 配置資料儲存為 JSON 文件，是在不同的線路上取得這項資料的有效方法。
+JSON is an effective format to represent UI layout data as it is not only lightweight, but also can be easily interpreted by JavaScript.  DocumentDB offers tunable consistency levels that allow fast reads with low latency writes. Hence, storing UI layout data including personalized settings as JSON documents in DocumentDB is an effective means to get this data across the wire.
 
-## IoT 與裝置感應器資料
-IoT 使用案例在如何擷取、處理和儲存資料方面通常共用一些模式。首先，這些系統允許攝取資料，可從各種地區設定的裝置感應器中擷取暴增的資料量。接著，這些系統會處理並分析資料流資料，以衍生即時的資訊分析。最後同樣重要的一點，大部分的資料最終將會置入資料存放區，進行臨機操作查詢和離線分析。
+## <a name="iot-and-device-sensor-data"></a>IoT and Device sensor data
+IoT use cases commonly share some patterns in how they ingest, process and store data.  First, these systems allow for data intake that can ingest bursts of data from device sensors of various locales.  Next, these systems process and analyze streaming data to derive real time insights. And last but not least, most if not all data will eventually land in a data store for adhoc querying and offline analytics.    
 
-Microsoft Azure 提供可在 IoT 使用案例中運用的各式各樣服務。Azure IoT 服務是一組包括 Azure 事件中樞、Azure DocumentDB、Azure 串流分析、Azure 通知中心、Azure 機器學習、Azure HDInsight 和 PowerBI 的服務。
+Microsoft Azure offers rich services that can be leveraged for IoT use cases.  Azure IoT services are a set of services including Azure Event Hubs, Azure DocumentDB, Azure Stream Analytics, Azure Notification Hub, Azure Machine Learning, Azure HDInsight, and PowerBI. 
 
-Azure 事件中樞可以擷取暴增的資料量，因為它提供高輸送量資料擷取和低延遲。您可以將需要處理以取得即時資訊分析的擷取資料，使用漏斗方式倒入 Azure 串流分析以進行即時分析。您可以將資料載入 DocumentDB 以進行臨機操作查詢。將資料載入 DocumentDB 之後，這些資料便可提供查詢。DocumentDB 中的資料可以當做參考資料使用，以做為即時分析的一部分。此外，您還可以進一步地調整和處理資料，方法是將 DocumentDB 資料連線到 HDInsight，以進行 Pig、Hive 或 Map/Reduce 工作。接著，調整過的資料會被載回 DocumentDB 進行報告。
+Bursts of data can be ingested by Azure Event Hubs as it offers high throughput data ingestion with low latency. Data ingested that needs to be processed for real time insight can be funneled to Azure Stream Analytics for real time analytics. Data can be loaded into DocumentDB for adhoc querying. Once the data is loaded into DocumentDB, the data is ready to be queried.  The data in DocumentDB can be used as reference data as part of real time analytics. In addition, data can further be refined and processed by connecting DocumentDB data to HDInsight for Pig, Hive or Map/Reduce jobs.  Refined data is then loaded back to DocumentDB for reporting.   
 
-如需使用 DocumentDB、EventHubs 和 Storm 的 IoT 解決方案範例，請參閱 [GitHub 上的 hdinsight-storm-examples 儲存機制](https://github.com/hdinsight/hdinsight-storm-examples/)。
+For a sample IoT solution using DocumentDB, EventHubs and Storm, see the [hdinsight-storm-examples repository on GitHub](https://github.com/hdinsight/hdinsight-storm-examples/).
 
-如需有關適用於 IoT 的 Azure 產品詳細資訊，請參閱[建立您的物聯網](http://www.microsoft.com/zh-TW/server-cloud/internet-of-things.aspx)。
+For more information on Azure offerings for IoT, see [Create the Internet of Your Things](http://www.microsoft.com/en-us/server-cloud/internet-of-things.aspx).
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
  
-若要開始使用 DocumentDB，您可以建立[帳戶](https://azure.microsoft.com/pricing/free-trial/)，然後依照我們的[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)執行，以了解 DocumentDB 並找到所需的資訊。
+To get started with DocumentDB, you can create an [account](https://azure.microsoft.com/pricing/free-trial/) and then follow our [learning path](https://azure.microsoft.com/documentation/learning-paths/documentdb/) to learn about DocumentDB and find the information you need. 
 
-或者，如果您想要閱讀更多有關使用 DocumentDB 的客戶，您也可以使用下列客戶案例：
+Or, if you'd like to read more about customers using DocumentDB, the following customer stories are available:
 
-- [Next Games](https://azure.microsoft.com//blog/the-walking-dead-no-mans-land-game-soars-to-1-with-azure-documentdb/)。The Walking Dead: No Man's Land 遊戲一舉成為 Azure DocumentDB 所支援的第一款遊戲。
-- [Halo](https://azure.microsoft.com/blog/how-halo-5-guardians-implemented-social-gameplay-using-azure-documentdb/)。Halo 5 如何使用 Azure DocumentDB 實作社交遊戲。
-- [Cortana Analytics 資源庫](https://azure.microsoft.com/blog/cortana-analytics-gallery-a-scalable-community-site-built-on-azure-documentdb/)。Cortana Analytics 資源庫 - 以 Azure DocumentDB 為基礎所建置的可調整社群網站。
-- [Breeze](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18602)。只需幾分鐘的時間，前置整合器即可使用富彈性的雲端技術來提供跨國企業的全球資訊分析。
-- [News Republic](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18639)。為新聞加入智慧功能，提供以參加的公民為對象的資訊。
-- [SGS International](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18653)。為取得全球的一致性色彩，主要品牌會尋求 SGS 的協助。而 SGS 會求助於 Azure。
-- [Telenor](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18608)。全球領導者 Telenor 借助雲端之力加快啟動速度。
-- [XOMNI](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18667)。未來存放區的運作基礎會是快速搜尋和簡單資料流程。
+- [Next Games](https://azure.microsoft.com//blog/the-walking-dead-no-mans-land-game-soars-to-1-with-azure-documentdb/). The Walking Dead: No Man's Land game soars to #1 supported by Azure DocumentDB.
+- [Halo](https://azure.microsoft.com/blog/how-halo-5-guardians-implemented-social-gameplay-using-azure-documentdb/). How Halo 5 implemented social gameplay using Azure DocumentDB.
+- [Cortana Analytics Gallery](https://azure.microsoft.com/blog/cortana-analytics-gallery-a-scalable-community-site-built-on-azure-documentdb/). Cortana Analytics Gallery - a scalable community site built on Azure DocumentDB.
+- [Breeze](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18602). Leading Integrator Gives Multinational Firms Global Insight in Minutes with Flexible Cloud Technologies.
+- [News Republic](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18639). Adding intelligence to the news to provide information with purpose for engaged citizens. 
+- [SGS International](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18653). For consistent color across the globe, major brands turn to SGS. And SGS turns to Azure.
+- [Telenor](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18608). Global leader Telenor uses the cloud to move with the speed of a startup. 
+- [XOMNI](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18667). The store of the future runs on speedy search and the easy flow of data.
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

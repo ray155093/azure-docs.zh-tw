@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Chef 的 Azure 虛擬機器部署 | Microsoft Azure"
-   description="了解如何使用 Chef 執行自動化的虛擬機器部署和設定 Microsoft Azure"
+   pageTitle="Azure virtual machine deployment with Chef | Microsoft Azure"
+   description="Learn how to use Chef to do automated virtual machine deployment and configuration on Microsoft Azure"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="diegoviso"
@@ -15,212 +15,213 @@ ms.topic="article"
 ms.date="05/19/2015"
 ms.author="diviso"/>
 
-# 使用 Chef 自動化 Azure 虛擬機器部署
+
+# <a name="automating-azure-virtual-machine-deployment-with-chef"></a>Automating Azure virtual machine deployment with Chef
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-Chef 是個很棒的工具，可提供自動化和所需狀態組態。
+Chef is a great tool for delivering automation and desired state configurations.
 
-在我們最新的雲端應用程式開發介面版本中，Chef 提供與 Azure 的緊密整合，您可以透過單一命令佈建和部署組態狀態。
+With our latest cloud-api release, Chef provides seamless integration with Azure, giving you the ability to provision and deploy configuration states through a single command.
 
-在本文中，您將了解如何設定可佈建 Azure 虛擬機器的 Chef 環境，並逐步指導您建立原則或 “CookBook”，然後將此操作手冊部署到 Azure 虛擬機器中。
+In this article, I’ll show you how to set up your Chef environment to provision Azure virtual machines and walk you through creating a policy or “CookBook” and then deploying this cookbook to an Azure virtual machine.
 
-讓我們開始吧！
+Let’s begin!
 
-## Chef 基本概念
+## <a name="chef-basics"></a>Chef basics
 
-開始之前，建議您檢閱 Chef 的基本概念。您可以在<a href="http://www.chef.io/chef" target="_blank">這裡</a>找到有用資訊，建議您在嘗試進行本逐步解說之前，先快速閱讀此內容。不過，在開始之前，我會先複習一下基本概念。
+Before you begin, I suggest you review the basic concepts of Chef. There is great material <a href="http://www.chef.io/chef" target="_blank">here</a> and I recommend you have a quick read before you attempt this walkthrough. I will however recap the basics before we get started.
 
-下圖說明高層級的 Chef 架構。
+The following diagram depicts the high-level Chef architecture.
 
 ![][2]
 
-Chef 有三個主要的架構元件：Chef 伺服器、Chef 用戶端 (節點) 和 Chef 工作站。
+Chef has three main architectural components: Chef Server, Chef Client (node), and Chef Workstation.
 
-Chef 伺服器是我們的管理重點，Chef 伺服器包含兩個選項：代管解決方案或內部部署解決方案。我們將使用代管解決方案。
+The Chef Server is our management point and there are two options for the Chef Server: a hosted solution or an on-premises solution. We will be using a hosted solution.
 
-Chef 用戶端 (節點)是位於您所管理之伺服器上的代理程式。
+The Chef Client (node) is the agent that sits on the servers you are managing.
 
-Chef 工作站是我們的系統管理工作站，我們可以在這裡建立原則並執行管理命令。我們可以從 Chef 工作站執行管理基礎結構的 **knife** 命令。
+The Chef Workstation is our admin workstation where we create our policies and execute our management commands. We run the **knife** command from the Chef Workstation to manage our infrastructure.
 
-此外還有 “Cookbooks” 和 “Recipes” 的概念。這些是我們有效定義並套用至服務的原則。
+There is also the concept of “Cookbooks” and “Recipes”. These are effectively the policies we define and apply to our servers.
 
-## 準備工作站
+## <a name="preparing-the-workstation"></a>Preparing the workstation
 
-首先準備工作站。使用標準的 Windows 工作站。我們需要建立可儲存組態檔和 cookbook 的目錄。
+First, lets prep the workstation. I’m using a standard Windows workstation. We need to create a directory to store our config files and cookbooks.
 
-首先，建立名為 C:\\chef 的目錄。
+First create a directory called C:\chef.
 
-然後建立名為 c:\\chef\\cookbooks 的第二個目錄。
+Then create a second directory called c:\chef\cookbooks.
 
-我們現在必須下載 Azure 設定檔，以便 Chef 與 Azure 訂閱進行通訊。
+We now need to download our Azure settings file so Chef can communicate with our Azure subscription.
 
-從[這裡](https://manage.windowsazure.com/publishsettings/)下載您的發行設定。
+Download your publish settings from [here](https://manage.windowsazure.com/publishsettings/).
 
-將發行設定檔儲存在 C:\\chef 中。
+Save the publish settings file in C:\chef.
 
-##建立受管理的 Chef 帳戶
+##<a name="creating-a-managed-chef-account"></a>Creating a managed Chef account
 
-在[這裡](https://manage.chef.io/signup)註冊代管的 Chef 帳戶。
+Sign up for a hosted Chef account [here](https://manage.chef.io/signup).
 
-在註冊過程中，我們將要求您建立新的組織。
+During the signup process, you will be asked to create a new organization.
 
 ![][3]
 
-建立組織後，請下載「入門套件」。
+Once your organization is created, download the starter kit.
 
 ![][4]
 
-> [AZURE.NOTE] 如果您收到提示，警告您將重新設定金鑰，您可以繼續作業，因為我們尚未設定任何基礎結構。
+> [AZURE.NOTE] If you receive a prompt warning you that your keys will be reset, it’s ok to proceed as we have no existing infrastructure configured as yet.
 
-此入門套件 zip 檔案包含您的組織組態檔和金鑰。
+This starter kit zip file contains your organization config files and keys.
 
-##設定 Chef 工作站
+##<a name="configuring-the-chef-workstation"></a>Configuring the Chef workstation
 
-將 chef-starter.zip 的內容解壓縮到 C:\\chef。
+Extract the content of the chef-starter.zip to C:\chef.
 
-將 chef-starter\\chef-repo.chef 下的所有檔案複製到您的 c:\\chef 目錄。
+Copy all files under chef-starter\chef-repo\.chef to your c:\chef directory.
 
-您的目錄現在看起來應該類似以下範例。
+Your directory should now look something like the following example.
 
 ![][5]
 
-您現在應該會有 4 個檔案，包括 c:\\chef 根目錄中的 Azure 發行檔案。
+You should now have four files including the Azure publishing file in the root of c:\chef.
 
-PEM 檔案包含可進行通訊的組織和管理員私密金鑰，而 knife.rb檔案則包含 knife 組態。我們將需要編輯 knife.rb 檔案。
+The PEM files contain your organization and admin private keys for communication while the knife.rb file contains your knife configuration. We will need to edit the knife.rb file.
 
-在您選擇的編輯器中開啟此檔案，並修改 “cookbook\_path” (移除其路徑中的 /../)，因此它會顯示如下所示。
+Open the file in your editor of choice and modify the “cookbook_path” by removing the /../ from the path so it appears as shown next.
 
-	cookbook_path  ["#{current_dir}/cookbooks"]
+    cookbook_path  ["#{current_dir}/cookbooks"]
 
-並新增下列反映 Azure 發行設定檔名稱的程式碼行。
+Also add the following line reflecting the name of your Azure publish settings file.
 
-	knife[:azure_publish_settings_file] = "yourfilename.publishsettings"
+    knife[:azure_publish_settings_file] = "yourfilename.publishsettings"
 
-現在 knife.rb 檔案看起來應該會類似下列範例。
+Your knife.rb file should now look similar to the following example.
 
 ![][6]
 
-這幾行程式碼可確保 Knife 會參考 c:\\chef\\cookbooks 底下的 cookbooks 目錄，並在 Azure 作業期間使用 Azure 發行設定檔。
+These lines will ensure that Knife references the cookbooks directory under c:\chef\cookbooks, and also uses our Azure Publish Settings file during Azure operations.
 
-## 安裝 Chef 開發套件
+## <a name="installing-the-chef-development-kit"></a>Installing the Chef Development Kit
 
-接下來[下載並安裝](http://downloads.getchef.com/chef-dk/windows) ChefDK (Chef 開發套件) 以設定 Chef 工作站。
+Next [download and install](http://downloads.getchef.com/chef-dk/windows) the ChefDK (Chef Development Kit) to set up your Chef Workstation.
 
 ![][7]
 
-安裝在 c:\\opscode 預設位置。此安裝大約需要 10 分鐘的時間。
+Install in the default location of c:\opscode. This install will take around 10 minutes.
 
-確認您的 PATH 變數包含 C:\\opscode\\chefdk\\bin、C:\\opscode\\chefdk\\embedded\\bin、c:\\users\\yourusername.chefdk\\gem\\ruby\\2.0.0\\bin 等項目
+Confirm your PATH variable contains entries for C:\opscode\chefdk\bin;C:\opscode\chefdk\embedded\bin;c:\users\yourusername\.chefdk\gem\ruby\2.0.0\bin
 
-如果沒有，請確定您已加入這些路徑 ！
+If they are not there, make sure you add these paths!
 
-*請注意，路徑的順序很重要！* 如果您的 opscode 路徑順序不正確，則會出現問題。
+*NOTE THE ORDER OF THE PATH IS IMPORTANT!* If your opscode paths are not in the correct order you will have issues.
 
-在繼續之前，請重新啟動您的工作站。
+Reboot your workstation before you continue.
 
-接下來，我們將安裝 Knife Azure 延伸模組。這會以「Azure 外掛程式」的形式提供 Knife。
+Next, we will install the Knife Azure extension. This provides Knife with the “Azure Plugin”.
 
-執行下列命令。
+Run the following command.
 
-	chef gem install knife-azure ––pre
+    chef gem install knife-azure ––pre
 
-> [AZURE.NOTE] -pre 引數可確保您會收到最新的 RC 版本 Knife Azure 外掛程式，該版本可讓您存取最新的 API 組合。
+> [AZURE.NOTE] The –pre argument ensures you are receiving the latest RC version of the Knife Azure Plugin which provides access to the latest set of APIs.
 
-同時也可能安裝多個相依性。
+It’s likely that a number of dependencies will also be installed at the same time.
 
 ![][8]
 
 
-若要確保一切都已正確設定，請執行下列命令。
+To ensure everything is configured correctly, run the following command.
 
-	knife azure image list
+    knife azure image list
 
-如果一切都已正確設定，您會在捲動時看到可用的 Azure 映像清單。
+If everything is configured correctly, you will see a list of available Azure images scroll through.
 
-恭喜！工作站已設定！
+Congratulations. The workstation is set up!
 
-##建立 Cookbook
+##<a name="creating-a-cookbook"></a>Creating a Cookbook
 
-Chef 會使用 Cookbook 來定義一組您想在受管理的用戶端上執行的命令。建立 Cookbook 非常簡單，我們可以使用 **chef generate cookbook** 命令來產生 Cookbook 範本。我將呼叫我的 Cookbook Web 伺服器，因為我需要可自動部署 IIS 的原則。
+A Cookbook is used by Chef to define a set of commands that you wish to execute on your managed client. Creating a Cookbook is straightforward and we use the **chef generate cookbook** command to generate our Cookbook template. I will be calling my Cookbook web server as I would like a policy that automatically deploys IIS.
 
-在 C:\\Chef 目錄下，執行下列命令。
+Under your C:\Chef directory run the following command.
 
-	chef generate cookbook webserver
+    chef generate cookbook webserver
 
-這會在 C:\\Chef\\cookbooks\\webserver 目錄下產生一組檔案。我們現在需要定義一組需要 Chef 用戶端在受管理的虛擬機器上執行的命令。
+This will generate a set of files under the directory C:\Chef\cookbooks\webserver. We now need to define the set of commands we would like our Chef client to execute on our managed virtual machine.
 
-這些命令會儲存在 default.rb. 檔案中在這個檔案中，請定義一組用來安裝 IIS、啟動 IIS 並將範本檔案複製到 wwwroot 資料夾的命令。
+The commands are stored in the file default.rb. In this file, I’ll be defining a set of commands that installs IIS, starts IIS and copies a template file to the wwwroot folder.
 
-修改 C:\\chef\\cookbooks\\webserver\\recipes\\default.rb 檔並加入下列幾行程式碼。
+Modify the C:\chef\cookbooks\webserver\recipes\default.rb file and add the following lines.
 
-	powershell_script 'Install IIS' do
- 		action :run
- 		code 'add-windowsfeature Web-Server'
-	end
+    powershell_script 'Install IIS' do
+        action :run
+        code 'add-windowsfeature Web-Server'
+    end
 
-	service 'w3svc' do
- 		action [ :enable, :start ]
-	end
+    service 'w3svc' do
+        action [ :enable, :start ]
+    end
 
-	template 'c:\inetpub\wwwroot\Default.htm' do
- 		source 'Default.htm.erb'
- 		rights :read, 'Everyone'
-	end
+    template 'c:\inetpub\wwwroot\Default.htm' do
+        source 'Default.htm.erb'
+        rights :read, 'Everyone'
+    end
 
-完成後，請儲存檔案。
+Save the file once you are done.
 
-## 建立範本
+## <a name="creating-a-template"></a>Creating a template
 
-如先前所述，我們需要產生可作為 default.html 頁面的範本檔案。
+As we mentioned previously, we need to generate a template file which will be used as our default.html page.
 
-執行下列命令以產生範本。
+Run the following command to generate the template.
 
-	chef generate template webserver Default.htm
+    chef generate template webserver Default.htm
 
-現在瀏覽至 C:\\chef\\cookbooks\\webserver\\templates\\default\\Default.htm.erb 檔案。加入一些簡單的 "Hello World" HTML 程式碼來編輯檔案，然後儲存檔案。
+Now navigate to the C:\chef\cookbooks\webserver\templates\default\Default.htm.erb file. Edit the file by adding some simple “Hello World” HTML code, and then save the file.
 
 
 
-## 將 Cookbook 上傳到 Chef 伺服器
+## <a name="upload-the-cookbook-to-the-chef-server"></a>Upload the Cookbook to the Chef Server
 
-在此步驟中，我們會將在本機電腦上建立的 Cookbook 複本，上傳到 Chef 代管伺服器。上傳後，Cookbook 便會出現在 [原則] 索引標籤底下。
+In this step, we are taking a copy of the Cookbook that we have created on our local machine and uploading it to the Chef Hosted Server. Once uploaded, the Cookbook will appear under the **Policy** tab.
 
-	knife cookbook upload webserver
+    knife cookbook upload webserver
 
 ![][9]
 
-## 使用 Knife Azure 部署虛擬機器
+## <a name="deploy-a-virtual-machine-with-knife-azure"></a>Deploy a virtual machine with Knife Azure
 
-我們現在要部署 Azure 虛擬機器，並套用 “Webserver” Cookbook，如此便會安裝 IIS Web 服務和預設網頁。
+We will now deploy an Azure virtual machine and apply the “Webserver” Cookbook which will install our IIS web service and default web page.
 
-若要這樣做，請使用 **knife azure server create** 命令。
+In order to do this, use the **knife azure server create** command.
 
-接下來會顯示此命令的範例。
+Am example of the command appears next.
 
-	knife azure server create --azure-dns-name 'diegotest01' --azure-vm-name 'testserver01' --azure-vm-size 'Small' --azure-storage-account 'portalvhdsxxxx' --bootstrap-protocol 'cloud-api' --azure-source-image 'a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-Datacenter-201411.01-en.us-127GB.vhd' --azure-service-location 'Southeast Asia' --winrm-user azureuser --winrm-password 'myPassword123' --tcp-endpoints 80,3389 --r 'recipe[webserver]'
+    knife azure server create --azure-dns-name 'diegotest01' --azure-vm-name 'testserver01' --azure-vm-size 'Small' --azure-storage-account 'portalvhdsxxxx' --bootstrap-protocol 'cloud-api' --azure-source-image 'a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-Datacenter-201411.01-en.us-127GB.vhd' --azure-service-location 'Southeast Asia' --winrm-user azureuser --winrm-password 'myPassword123' --tcp-endpoints 80,3389 --r 'recipe[webserver]'
 
-這些參數一看就懂。替換特定變數並執行。
+The parameters are self-explanatory. Substitute your particular variables and run.
 
-> [AZURE.NOTE] 透過命令列，我還打算使用 -tcp-endpoints 參數將端點網路篩選器規則自動化。我已經開放連接埠 80 和 3389 以供網頁和 RDP 工作階段存取。
+> [AZURE.NOTE] Through the the command line, I’m also automating my endpoint network filter rules by using the –tcp-endpoints parameter. I’ve opened up ports 80 and 3389 to provide access to my web page and RDP session.
 
-執行命令後，前往 Azure 入口網站，您會看到已經開始佈建您的機器。
+Once you run the command, go to the Azure portal and you will see your machine begin to provision.
 
 ![][13]
 
-命令提示字元會顯示下一步。
+The command prompt appears next.
 
 ![][10]
 
-部署完成之後，我們應該能夠透過連接埠 80 連接到 Web 服務，因為我們使用 Knife Azure 命令佈建虛擬機器時已將此連接埠開啟。由於此虛擬機器是我的雲端服務中唯一的虛擬機器，我要使用雲端服務 URL 來進行連接。
+Once the deployment is complete, we should be able to connect to the web service over port 80 as we had opened the port when we provisioned the virtual machine with the Knife Azure command. As this virtual machine is the only virtual machine in my cloud service, I’ll connect it with the cloud service url.
 
 ![][11]
 
-如您所見，我的 HTML 程式碼開始有點意思。
+As you can see, I got creative with my HTML code.
 
-別忘了我們也可以透過連接埠 3389，從 Azure 傳統入口網站的 RDP 工作階段進行連線。
+Don’t forget we can also connect through an RDP session from the Azure classic portal via port 3389.
 
-我希望這對您有所幫助！ 現在就開始使用 Azure 來體驗基礎結構即程式碼！
+I hope this has been helpful! Go  and start your infrastructure as code journey with Azure today!
 
 
 <!--Image references-->
@@ -239,4 +240,8 @@ Chef 會使用 Cookbook 來定義一組您想在受管理的用戶端上執行�
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0323_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

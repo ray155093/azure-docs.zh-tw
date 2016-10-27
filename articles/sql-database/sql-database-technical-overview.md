@@ -1,12 +1,12 @@
 <properties
-	pageTitle="什麼是 SQL Database？ SQL Database 簡介 | Microsoft Azure"
-	description="取得 SQL Database 簡介：Microsoft 的關聯式資料庫管理系統 (RDBMS) 在雲端中的技術詳細資料和功能。"
-	keywords="sql 簡介,sql 簡介,什麼是 sql database"
-	services="sql-database"
-	documentationCenter=""
-	authors="shontnew"
-	manager="jhubbard"
-	editor="cgronlun"/>
+    pageTitle="What is SQL Database? Intro to SQL Database | Microsoft Azure"
+    description="Get an introduction to SQL Database: technical details and capabilities of Microsoft's relational database management system (RDBMS) in the cloud."
+    keywords="introduction to sql,intro to sql,what is sql database"
+    services="sql-database"
+    documentationCenter=""
+    authors="shontnew"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
 <tags
    ms.service="sql-database"
@@ -17,46 +17,51 @@
    ms.date="08/16/2016"
    ms.author="shkurhek"/>
 
-# 什麼是 SQL Database？ SQL Database 簡介
 
-SQL Database 是以領先市場的 Microsoft SQL Server 引擎為基礎，位於雲端並擁有許多關鍵任務功能的關聯式資料庫服務。SQL Database 提供可預測的效能、無停機時間的延展性、商務持續性和資料保護等功能，且全都幾乎免管理。如此一來，您便可以專注於快速開發應用程式及加快上市時間，而不是耗費在管理虛擬機器與基礎結構上。由於 SQL Database 是以 [SQL Server](https://msdn.microsoft.com/library/bb545450.aspx) 引擎為基礎，因此可支援現有 SQL Server 工具、程式庫和 API，讓您可以更輕鬆地移動和延伸至雲端。
+# <a name="what-is-sql-database?-introduction-to-sql-database"></a>What is SQL Database? Introduction to SQL Database
 
-本文介紹與效能、延展性和管理能力相關的 SQL Database 核心概念和功能，並提供連結讓您進一步了解詳細資料。如果您已經準備開始，可以立即[建立您的第一個 SQL Database](sql-database-get-started.md)，或者[建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)。如果您想要進行更深入的探討，請觀賞這段 30 分鐘的影片。
+SQL Database is a relational database service in the cloud based on the market-leading Microsoft SQL Server engine, with mission-critical capabilities. SQL Database delivers predictable performance, scalability with no downtime, business continuity and data protection—all with near-zero administration. You can focus on rapid app development and accelerating your time to market, rather than managing virtual machines and infrastructure. Because it’s based on the [SQL Server](https://msdn.microsoft.com/library/bb545450.aspx) engine, SQL Database supports existing SQL Server tools, libraries and APIs, which makes it easier for you to move and extend to the cloud.
+
+This article is an introduction to SQL Database core concepts and features related to performance, scalability, and manageability, with links to explore details. If you’re ready to jump in, you can [Create your first SQL database](sql-database-get-started.md) or [Create an elastic database pool](sql-database-elastic-pool-create-portal.md) in minutes. If you want a deeper dive, watch this 30 minute video.
 
 > [AZURE.VIDEO azurecon-2015-get-started-with-azure-sql-database]
 
-## 無須停機即可調整效能和規模
+## <a name="adjust-performance-and-scale-without-downtime"></a>Adjust performance and scale without downtime
 
-基本、標準和高階服務層皆提供 SQL Database。每個服務層提供[不同層級的效能和功能](sql-database-service-tiers.md)，以支援輕量到重量級的資料庫工作負載。您可以在小型資料庫中建置第一個應用程式，一個月只需少許花費。接著可依據應用程式在全世界受歡迎的程度，隨時以手動或程式設計方式[變更服務層](sql-database-scale-up.md)，且應用程式或客戶皆無須停機。
+SQL databases is available in Basic, Standard, and Premium *service tiers*. Each service tier offers [different levels of performance and capabilities](sql-database-service-tiers.md) to support lightweight to heavyweight database workloads. You can build your first app on a small database for a few bucks a month, then [change the service tier](sql-database-scale-up.md) manually or programmatically at any time as your app goes viral worldwide, without downtime to your app or your customers.
 
-對於許多企業和應用程式而言，只要能夠建立資料庫，並依需求調高或調低單一資料庫的效能即可，尤其是當使用模式相當容易預測時更是如此。但如果您有無法預測的使用模式，則管理成本和商務模式就會變得相當困難。
+For many businesses and apps, being able to create databases and dial single database performance up or down on demand is enough, especially if usage patterns are relatively predictable. But if you have unpredictable usage patterns, it can make it hard to manage costs and your business model.
 
-SQL Database 中的[彈性集區](sql-database-elastic-pool.md)可解決此問題。概念很簡單。您可以將效能配置給集區，並針對集區的整體效能 (而非單一資料庫的效能) 付款。您不需要調高或調低資料庫的效能。集區中的資料庫 (即彈性資料庫) 可依據需求自動擴大或縮減規模。彈性資料庫會取用集區的資源，但不會超過其限制，因此您的成本可在資料庫使用情形無法預測的狀況下維持可預測性。此外，您還可以[將資料庫移入/移出集區](sql-database-elastic-pool-manage-portal.md)，並將您的應用程式從數個資料庫擴充至數千個，而且全都在您可掌控的預算之內。若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱[採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+[Elastic pools](sql-database-elastic-pool.md) in SQL Database solve this problem. The concept is simple. You allocate performance to a pool, and pay for the collective performance of the pool rather than single database performance. You don’t need to dial database performance up or down. The databases in the pool, called *elastic databases*, automatically scale up and down to meet demand. Elastic databases consume but don’t exceed the limits of the pool, so your cost remains predictable even if database usage doesn’t. What’s more, you can [add and remove databases to the pool](sql-database-elastic-pool-manage-portal.md), scaling your app from a handful of databases to thousands, all within a budget that you control. To learn more about design patterns for SaaS applications using elastic pools, see [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md).
 
-因此，不論您要使用單一或彈性資料庫，都將不再受到限制。您可以混合使用彈性資料庫集區與單一資料庫，並變更單一資料庫和集區的服務層，以製作創新的設計。此外，透過 Azure 功能強大而無遠弗屆的特性，您可以使用 SQL Database 混合和搭配 Azure 服務，滿足您獨特新型應用程式的設計需求、有效運用成本和資源，並且產生新的商機。
+Either way you go—single or elastic—you’re not locked in. You can blend single databases with elastic database pools, and change the service tiers of single databases and pools to create innovative designs. Moreover, with the power and reach of Azure, you can mix-and-match Azure services with SQL Database to meet your unique modern app design needs, drive cost and resource efficiencies, and unlock new business opportunities.
 
-但是，您要如何比較資料庫和資料庫集區的相對效能？ 當您調高和調低效能時，要如何知道該在何處停止？ 答案就是使用單一資料庫的資料庫交易單位 (DTU)，以及彈性資料庫和資料庫集區的彈性 DTU (eDTU)。如需詳細資訊，請參閱 [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)。
+But how can you compare the relative performance of databases and database pools? How do you know the right click-stop when you dial up and down? The answer is the Database Transaction Unit (DTU) for single databases and the elastic DTU (eDTU) for elastic databases and database pools. See [SQL Database options and performance: Understand what's available in each service tier](sql-database-service-tiers.md) for details.
 
-## 讓您的應用程式和業務持續運作
+## <a name="keep-your-app-and-business-running"></a>Keep your app and business running
 
-Azure 領先業界的 99.99% 可用性服務等級協定 [(SLA)](http://azure.microsoft.com/support/legal/sla/) (由 Microsoft 管理之資料中心的全球網路提供支援)，可協助讓您的應用程式 24 小時全年無休地運作。使用每個 SQL Database 時，您可以利用內建的資料保護、容錯功能，以及可能會需要另外設計、購買、建置和管理的資料保護功能。即便如此，根據您的業務需求，您也可能會要求額外層級的保護，以確保在發生嚴重損壞、錯誤或其他事件時，應用程式和業務可以快速復原。使用 SQL Database 時，每個服務層會提供不同的功能選單，讓您用來立即上線運作並維持該狀態。您可以使用時間點還原將資料庫回復成先前的狀態，最久可至 35 天前。此外，如果裝載資料庫的資料中心發生中斷情形，您可以容錯移轉至其他區域中的資料庫複本。或者您可以使用複本進行升級，或將其重新放置到不同區域。
+Azure's industry leading 99.99% availability service level agreement [(SLA)](http://azure.microsoft.com/support/legal/sla/), powered by a global network of Microsoft-managed datacenters, helps keep your app running 24/7. With every SQL database, you take advantage of built-in data protection, fault tolerance, and data protection that you would otherwise have to design, buy, build, and manage. Even so, depending on the demands of your business, you may demand additional layers of protection to ensure your app and your business can recover quickly in the event of a disaster, an error, or something else. With SQL Database, each service tier offers a different menu of features you can use to get up and running and stay that way. You can use point-in-time restore to return a database to an earlier state, as far back as 35 days. In addition, if the datacenter hosting your databases experiences an outage, you can failover to database replicas in a different region. Or you can use replicas for upgrades or relocation to different regions.
 
-![SQL Database 異地複寫](./media/sql-database-technical-overview/azure_sqldb_map.png)
+![SQL Database Geo-Replication](./media/sql-database-technical-overview/azure_sqldb_map.png)
 
 
-如需可用於不同服務層之其他商務持續性功能的詳細資料，請參閱[商務持續性](sql-database-business-continuity.md)。
+See [Business Continuity](sql-database-business-continuity.md) for details about the different business continuity features available for different service tiers.
 
-## 保護您的資料
-SQL Server 的資料安全性向來是一項可靠的傳統，而 SQL Database 支援與其相同的多項功能，可限制存取權、保護資料，以及協助您監視活動。如需可在 SQL Database 中使用之安全性選項的快速概要，請參閱[保護您的 SQL Database](sql-database-security.md)。如需更完整的安全性功能檢視，請參閱 [SQL Server Database Engine 和 SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)。如需 Azure 平台安全性的相關資訊，也請造訪 [Azure 信任中心](https://azure.microsoft.com/support/trust-center/security/)。
+## <a name="secure-your-data"></a>Secure your data
+SQL Server has a tradition of solid  data security that SQL Database upholds with features that limit access, protect data, and help you monitor activity. See [Securing your SQL database](sql-database-security.md) for a quick rundown of security options you have in SQL Database. See the [Security Center for SQL Server Database Engine and SQL Database](https://msdn.microsoft.com/library/bb510589) for a more comprehensive view of security features. And visit the [Azure Trust Center](https://azure.microsoft.com/support/trust-center/security/) for information about Azure's platform security.
 
-## 後續步驟
-您現已閱讀 SQL Database 簡介並回答了「什麼是 SQL Database？」問題，您就可以：
+## <a name="next-steps"></a>Next steps
+Now that you've read an introduction to SQL Database and answered the question "What is SQL Database?", you're ready to:
 
-- 如需單一資料庫及彈性資料庫的成本和計算機，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)。
-- 深入了解[彈性集區](sql-database-elastic-pool.md)。
-- 從[建立您的第一個資料庫](sql-database-get-started.md)開始。
-- [使用 SSMS 連接及查詢](sql-database-connect-query-ssms.md)
-- 以 C#、Java、Node.js、PHP、Python 或 Ruby 建置您的第一個應用程式：[SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
-- 請參閱 [Azure SQL Database 服務的所有主題](sql-database-index-all-articles.md)中的標題索引和描述。
+- See the [pricing page](https://azure.microsoft.com/pricing/details/sql-database/) for single database and elastic database cost comparisons and calculators.
+- Learn about [elastic pools](sql-database-elastic-pool.md).
+- Get started by [creating your first database](sql-database-get-started.md).
+- [Connect and query with SSMS](sql-database-connect-query-ssms.md)
+- Build your first app in C#, Java, Node.js, PHP, Python, or Ruby: [Connection libraries for SQL Database and SQL Server](sql-database-libraries.md)
+- See an index of the titles and descriptions of [All topics for Azure sql-database service](sql-database-index-all-articles.md).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

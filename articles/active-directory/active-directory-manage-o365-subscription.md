@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure 中管理 Office 365 訂用帳戶的目錄 | Microsoft Azure"
-   description="使用 Azure Active Directory 和 Azure 傳統入口網站管理 Office 365 訂用帳戶目錄"
+   pageTitle="Manage the directory for your Office 365 subscription in Azure | Microsoft Azure"
+   description="Managing an Office 365 subscription directory using Azure Active Directory and the Azure classic portal"
    services="active-directory"
    documentationCenter=""
    authors="curtand"
@@ -16,49 +16,54 @@
    ms.date="08/23/2016"
    ms.author="curtand"/>
 
-# 在 Azure 中管理 Office 365 訂用帳戶的目錄
 
-本文說明如何使用 Azure 傳統入口網站，管理針對 Office 365 訂用帳戶建立的目錄。您必須是服務管理員或 Azure 訂用帳戶的共同管理員，才能登入 Azure 傳統入口網站。如果您尚未擁有 Azure 訂用帳戶，您可以立即註冊 [免費 30 天試用版](https://azure.microsoft.com/trial/get-started-active-directory/)，並使用此連結在 5 分鐘內部署第一個雲端解決方案。請確認使用您用來登入 Office 365 的工作或學校帳戶來註冊。
+# <a name="manage-the-directory-for-your-office-365-subscription-in-azure"></a>Manage the directory for your Office 365 subscription in Azure
 
-完成 Azure 訂用帳戶之後，您便可以登入 Azure 傳統入口網站並存取 Azure 服務。按一下 Active Directory 擴充模組，以便管理用來驗證您 Office 365 使用者的相同目錄。
+This article describes how to manage a directory that was created for an Office 365 subscription, using the Azure classic portal. You must be either the Service Administrator or a co-administrator of an Azure subscription to sign in to the Azure classic portal. If you don’t yet have an Azure subscription, you can sign up for a [free 30-day trial](https://azure.microsoft.com/trial/get-started-active-directory/) today and deploy your first cloud solution in under 5 minutes, using this link. Be sure to use the work or school account that you use to sign in to Office 365.
 
-如果您已經擁有 Azure 訂用帳戶，則管理其他目錄的程序也很簡單。在此範例中，Michael Smith 可能擁有適用於 Contoso.com 的 Office 365 訂用帳戶。他也擁有使用其 Microsoft 帳戶 msmith@hotmail.com 所註冊的 Azure 訂用帳戶。在此情況下，他要管理兩個目錄。
+After you complete the Azure subscription, you can sign in to the Azure classic portal and access Azure services. Click the Active Directory extension to manage the same directory that authenticates your Office 365 users.
 
- 訂用帳戶 | Office 365 | Azure
+If you do already have an Azure subscription, the process to manage an additional directory is also straightforward. For example, Michael Smith might have an Office 365 subscription for Contoso.com. He also has an Azure subscription that he signed up for by using his Microsoft account, msmith@hotmail.com. In this case, he manages two directories.
+
+  Subscription |  Office 365  |  Azure
   -------------- | ------------- | -------------------------------
- 顯示名稱 | Contoso | 預設 Azure Active Directory (Azure AD) 目錄
- 網域名稱 | contoso.com | msmithhotmail.onmicrosoft.com
+  Display name |  Contoso  |     Default Azure Active Directory (Azure AD) directory
+  Domain name  |  contoso.com  | msmithhotmail.onmicrosoft.com
 
-他想要在使用 Microsoft 帳戶登入 Azure 時，管理 Contoso 目錄中的使用者身分識別，如此就能啟用 Azure AD 功能，例如多重要素驗證 。下圖可能有助於說明此程序。
+He wants to manage the user identities in the Contoso directory while he is signed in to Azure using his Microsoft account, so that he can enable Azure AD features such as multifactor authentication. The following diagram may help to illustrate the process.
 
-![兩個獨立目錄的管理圖表](./media/active-directory-manage-o365-subscription/AAD_O365_03.png)
+![Diagram to manage two independent directories](./media/active-directory-manage-o365-subscription/AAD_O365_03.png)
 
-在此情況下，這兩個目錄是彼此獨立的。
+In this case, the two directories are independent of each other.
 
-## 管理兩個獨立的目錄
-為了讓 Michael Smith 能夠在使用 msmith@hotmail.com 登入 Azure 時管理這兩個目錄，他必須完成下列步驟：
+## <a name="to-manage-two-independent-directories"></a>To manage two independent directories
+In order for Michael Smith to manage both directories while he is signed in to Azure as msmith@hotmail.com, he must complete the following steps:
 
 > [AZURE.NOTE]
-只有當使用者使用 Microsoft 帳戶登入時，才能完成下列步驟。如果使用者使用工作或學校帳戶登入，就無法使用 [使用現有的目錄] 選項。工作或學校帳戶只能透過其主目錄 (也就是儲存工作或學校帳戶，且由公司或學校所擁有的目錄) 進行驗證。
+> These steps can be completed only when a user is signed in with a Microsoft account. If the user is signed in with a work or school account, the option to **Use existing directory** isn't available. A work or school account can be authenticated only by its home directory (that is, the directory where the work or school account is stored, and that the business or school owns).
 
-1.	以 msmith@hotmail.com 身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2.	依序按一下 [**新增**] > [**應用程式服務**] > [**Active Directory**] > [**目錄**] > [**自訂建立**]。
-3.	按一下 [使用現有的目錄]，然後選取 [我現在已經可以登出] 核取方塊。
-4.	以 Contoso.onmicrosoft.com 的全域管理員身分登入 Azure 傳統入口網站 (例如 msmith@contoso.com)。
-5.	當系統出現 [搭配使用 Contoso 目錄和 Azure？] 提示時，按一下 [繼續]。
-6.	按一下 [**立即登出**]。
-7.	以 msmith@hotmail.com 身分登入 Azure 傳統入口網站。Contoso 目錄和預設目錄會出現在 Active Directory 延伸模組中。
+1.  Sign in to the [Azure classic portal](https://manage.windowsazure.com) as msmith@hotmail.com.
+2.  Click **New** > **App services** > **Active Directory** > **Directory** > **Custom Create**.
+3.  Click Use existing directory and select the **I am ready to be signed out now** checkbox.
+4.  Sign in to the Azure classic portal as global admin of Contoso.onmicrosoft.com (for example, msmith@contoso.com).
+5.  When prompted to **Use the Contoso directory with Azure?**, click **Continue**.
+6.  Click **Sign out now**.
+7.  Sign in to the Azure classic portal as msmith@hotmail.com. The Contoso directory and the Default directory appear in the Active Directory extension.
 
-完成這些步驟之後，msmith@hotmail.com 會成為 Contoso 目錄中的全域管理員。
+After completing these steps, msmith@hotmail.com is a global administrator in the Contoso directory.
 
-## 以全域管理員身分管理資源
-現在我們假設 Jane Doe 需要管理與 msmith@hotmail.com 的 Azure 訂用帳戶相關聯的網站和資料庫資源。在這麼做之前，Michael Smith 必須先完成下列額外步驟：
+## <a name="to-administer-resources-as-the-global-admin"></a>To administer resources as the global admin
+Now let’s suppose that Jane Doe needs administer websites and database resources that are associated with the Azure subscription for msmith@hotmail.com. Before she can do that, Michael Smith needs to complete these additional steps:
 
-1.	使用 Azure 訂用帳戶的服務管理員帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com) (在此範例中為 msmith@hotmail.com)。
-2.	將訂用帳戶移轉至 Contoso 目錄：按一下 [設定] > [訂用帳戶] > 選取訂用帳戶 > [編輯目錄] > 選取 [Contoso (Contoso.com)]。在移轉過程中，如果有工作或學校帳戶是訂用帳戶的共同管理員，則會移除這類帳戶。
-3.	新增 Jane Doe 做為訂用帳戶的共同管理員：按一下 [設定] > [系統管理員] > 選取訂用帳戶 > [新增] > 輸入 **JohnDoe@Contoso.com** 。
+1.  Sign in to the [Azure classic portal](https://manage.windowsazure.com) using the Service Administrator account for the Azure subscription (in this example, msmith@hotmail.com).
+2.  Transfer the subscription to the Contoso directory: click **Settings** > **Subscriptions** > select the subscription > **Edit Directory** > select **Contoso (Contoso.com)**. As part of the transfer, any work or school accounts that are co-administrators of the subscription are removed.
+3.  Add Jane Doe as co-administrator of the subscription: click **Settings** > **Administrators** > select the subscription > **Add** > type **JohnDoe@Contoso.com**.
 
-## 後續步驟
-如需訂用帳戶與目錄間的關聯性詳細資訊，請參閱[如何將訂用帳戶如何關聯至目錄](active-directory-how-subscriptions-associated-directory.md)。
+## <a name="next-steps"></a>Next steps
+For more information about the relationship between subscriptions and directories, see [How a subscription is associated with a directory](active-directory-how-subscriptions-associated-directory.md).
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

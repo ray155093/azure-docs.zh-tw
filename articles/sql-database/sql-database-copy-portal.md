@@ -1,92 +1,93 @@
 <properties
-	pageTitle="使用 Azure 入口網站複製 Azure SQL Database | Microsoft Azure"
-	description="建立 Azure SQL Database 的複本"
-	services="sql-database"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Copy an Azure SQL database using the Azure portal | Microsoft Azure"
+    description="Create a copy of an Azure SQL database"
+    services="sql-database"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="NA"
-	ms.date="09/19/2016"
-	ms.author="sstein"
-	ms.workload="data-management"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"/>
+    ms.service="sql-database"
+    ms.devlang="NA"
+    ms.date="09/19/2016"
+    ms.author="sstein"
+    ms.workload="data-management"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"/>
 
 
 
-# 使用 Azure 入口網站複製 Azure SQL Database
+
+# <a name="copy-an-azure-sql-database-using-the-azure-portal"></a>Copy an Azure SQL Database using the Azure portal
 
 > [AZURE.SELECTOR]
-- [概觀](sql-database-copy.md)
-- [Azure 入口網站](sql-database-copy-portal.md)
+- [Overview](sql-database-copy.md)
+- [Azure portal](sql-database-copy-portal.md)
 - [PowerShell](sql-database-copy-powershell.md)
 - [T-SQL](sql-database-copy-transact-sql.md)
 
-下列步驟說明如何利用 [Azure 入口網站](https://portal.azure.com)，將 SQL Database 複製到相同的伺服器或不同的伺服器。
+The following steps show you how to copy a SQL database with the [Azure portal](https://portal.azure.com) to the same server or a different server.
 
-若要複製 SQL Database，您需要下列項目：
+To copy a SQL database, you need the following items:
 
-- Azure 訂用帳戶。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費試用]，然後再回來完成這篇文章。
-- 要複製的 SQL Database。如果沒有 SQL Database，請遵循本文中以下的步驟：[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
+- An Azure subscription. If you need an Azure subscription simply click **FREE TRIAL** at the top of this page, and then come back to finish this article.
+- A SQL database to copy. If you do not have a SQL database, create one following the steps in this article: [Create your first Azure SQL Database](sql-database-get-started.md).
 
 
-## 複製您的 SQL Database
+## <a name="copy-your-sql-database"></a>Copy your SQL database
 
-針對您要複製的資料庫開啟 SQL Database 頁面：
+Open the SQL database page for the database you want to copy:
 
-1.	移至 [Azure 入口網站](https://portal.azure.com)。
-2.	按一下 [更多服務] > [SQL Database]，然後按一下想要的資料庫。
-3.	在 [SQL Database] 頁面上，按一下 [複製]：
+1.  Go to the [Azure portal](https://portal.azure.com).
+2.  Click **More services** > **SQL databases**, and then click the desired database.
+3.  On the SQL database page, click **Copy**:
 
     ![SQL Database](./media/sql-database-copy-portal/sql-database-copy.png)
 
-1.  在 [複製] 頁面上，系統會提供預設的資料庫名稱。視需要輸入不同的名稱 (伺服器上所有的資料庫都必須有一個唯一的名稱)。
-2.  選取 [目標伺服器]。目標伺服器就是要建立資料庫副本的位置。您可以將資料庫複製到相同的伺服器或不同的伺服器。您可以建立伺服器，或從清單中選取現有的伺服器。
-3.  選取 [目標伺服器] 之後，將會啟用 [彈性資料庫集區] 和 [定價層] 選項。如果伺服器有集區，您便可以將資料庫複製到該集區。
-3.  按一下 [確定] 開始複製程序。
+1.  On the **Copy** page, a default database name is provided. Type a different name if you want (all databases on a server must have unique names).
+2.  Select a **Target server**. The target server is where the database copy is created. You can copy the database to the same server, or a different server. You can create a server or select an existing server from the list. 
+3.  After selecting the **Target server**, the **Elastic database pool**, and **Pricing tier** options will be enabled. If the server has a pool, you can copy the database into it.
+3.  Click **OK** to start the copy process.
 
     ![SQL Database](./media/sql-database-copy-portal/copy-page.png)
 
 
-## 監視複製作業的進度
+## <a name="monitor-the-progress-of-the-copy-operation"></a>Monitor the progress of the copy operation
 
-- 開始複製之後，按一下入口網站通知以取得詳細資訊。
+- After starting the copy, click the portal notification for details.
 
-    ![通知][3]
+    ![notification][3]
  
     ![monitor][4]
 
 
-## 確認伺服器上的資料庫為線上狀態
+## <a name="verify-the-database-is-live-on-the-server"></a>Verify the database is live on the server
 
-- 按一下 [更多服務] > [SQL Database]，然後確認新資料庫為 [線上] 狀態。
-
-
-## 解析登入
-
-若要在複製作業完成之後解析登入，請參閱[解析登入](sql-database-copy-transact-sql.md#resolve-logins-after-the-copy-operation-completes)
+- Click **More services** > **SQL databases** and verify the new database is **Online**.
 
 
-## 後續步驟
+## <a name="resolve-logins"></a>Resolve logins
 
-- 如需複製 Azure SQL Database 的概觀，請參閱[複製 Azure SQL Database](sql-database-copy.md)。
-- 若要使用 PowerShell 複製資料庫，請參閱[使用 PowerShell 複製 Azure SQL Database](sql-database-copy-powershell.md)。
-- 若要使用 Transact-SQL 複製資料庫，請參閱[使用 T-SQL 複製 Azure SQL Database](sql-database-copy-transact-sql.md)。
-- 請參閱[如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)，以了解如何在將資料庫複製到不同的邏輯伺服器時管理使用者與登入。
+To resolve logins after the copy operation completes, see [Resolve logins](sql-database-copy-transact-sql.md#resolve-logins-after-the-copy-operation-completes)
 
 
+## <a name="next-steps"></a>Next steps
 
-## 其他資源
+- See [Copy an Azure SQL database](sql-database-copy.md) for an overview of copying an Azure SQL Database.
+- See [Copy an Azure SQL database using PowerShell](sql-database-copy-powershell.md) to copy a database using PowerShell.
+- See [Copy an Azure SQL database using T-SQL](sql-database-copy-transact-sql.md) to copy a database using Transact-SQL.
+- See [How to manage Azure SQL database security after disaster recovery](sql-database-geo-replication-security-config.md) to learn about managing users and logins when copying a database to a different logical server.
 
-- [管理登入](sql-database-manage-logins.md)
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
-- [將資料庫匯出至 BACPAC](sql-database-export.md)
-- [商務持續性概觀](sql-database-business-continuity.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
+
+
+## <a name="additional-resources"></a>Additional resources
+
+- [Manage logins](sql-database-manage-logins.md)
+- [Connect to SQL Database with SQL Server Management Studio and perform a sample T-SQL query](sql-database-connect-query-ssms.md)
+- [Export the database to a BACPAC](sql-database-export.md)
+- [Business Continuity Overview](sql-database-business-continuity.md)
+- [SQL Database documentation](https://azure.microsoft.com/documentation/services/sql-database/)
 
 
 
@@ -97,4 +98,9 @@
 [3]: ./media/sql-database-copy-portal/copy-notification.png
 [4]: ./media/sql-database-copy-portal/monitor-copy.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

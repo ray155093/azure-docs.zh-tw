@@ -1,326 +1,331 @@
 <properties
-	pageTitle="使用指令碼動作在以 Linux 為基礎的 HDInsight 上安裝 Solr | Microsoft Azure"
-	description="在本主題中，您將學習如何使用指令碼動作在以 Linux 為基礎的 HDInsight Hadoop 叢集上安裝 Solr。"
-	services="hdinsight"
-	documentationCenter=""
-	authors="Blackmist"
-	manager="jhubbard"
-	editor="cgronlun"
-	tags="azure-portal"/>
+    pageTitle="Use Script Action to install Solr on Linux-based HDInsight | Microsoft Azure"
+    description="Learn how to install Solr on Linux-based HDInsight Hadoop clusters using Script Actions."
+    services="hdinsight"
+    documentationCenter=""
+    authors="Blackmist"
+    manager="jhubbard"
+    editor="cgronlun"
+    tags="azure-portal"/>
 
 <tags
-	ms.service="hdinsight"
-	ms.workload="big-data"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/13/2016"
-	ms.author="larryfr"/>
+    ms.service="hdinsight"
+    ms.workload="big-data"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/03/2016"
+    ms.author="larryfr"/>
 
-# 在 HDInsight Hadoop 叢集上安裝和使用 Solr
 
-在本主題中，您將了解如何使用指令碼動作，在 Azure HDInsight 上安裝 Solr。Solr 是強大的搜尋平台，可對 Hadoop 管理的資料執行企業級搜尋功能。在 HDInsight 叢集上安裝 Solr 之後，您也將學習如何使用 Solr 搜尋資料。
+# <a name="install-and-use-solr-on-hdinsight-hadoop-clusters"></a>Install and use Solr on HDInsight Hadoop clusters
 
-> [AZURE.NOTE] 此文件中的步驟需要以 Linux 為基礎的 HDInsight 叢集。如需搭配以 Windows 為基礎的叢集使用 Solr 的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝和使用 Solr (Windows)](hdinsight-hadoop-solr-install.md)。
+In this topic, you will learn how to install Solr on Azure HDInsight by using Script Action. Solr is a powerful search platform and provides enterprise-level search capabilities on data managed by Hadoop. Once you have installed Solr on HDInsight cluster, you'll also learn how to search data by using Solr.
 
-本主題中使用的範例指令碼會以特定組態建立 Solr 叢集。如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須相應修改指令碼和 Solr 二進位檔。
+> [AZURE.NOTE] The steps in this document require a Linux-based HDInsight cluster. For information on using Solr with a Windows-based cluster, see [Install and use Solr on HDinsight Hadoop clusters (Windows)](hdinsight-hadoop-solr-install.md)
 
-## <a name="whatis"></a>什麼是 Solr？
+The sample script used in this topic creates a Solr cluster with a specific configuration. If you want to configure the Solr cluster with different collections, shards, schemas, replicas, etc., you must modify the script and Solr binaries accordingly.
 
-[Apache Solr](http://lucene.apache.org/solr/features.html) 是可對資料執行強大全文搜尋作業的企業搜尋平台。Hadoop 可儲存和管理大量資料，而 Apache Solr 則是提供搜尋功能以便快速擷取資料。本主題提供如何自訂 HDInsight 叢集以安裝 Solr 的指示。
+## <a name="<a-name="whatis"></a>what-is-solr?"></a><a name="whatis"></a>What is Solr?
 
-> [AZURE.WARNING] 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務將協助釐清與解決這些元件的相關問題。
+[Apache Solr](http://lucene.apache.org/solr/features.html) is an enterprise search platform that enables powerful full-text search on data. While Hadoop enables storing and managing vast amounts of data, Apache Solr provides the search capabilities to quickly retrieve the data. This topic provides instructions on how to customize an HDInsight cluster to install Solr.
+
+> [AZURE.WARNING] Components provided with the HDInsight cluster are fully supported and Microsoft Support will help to isolate and resolve issues related to these components.
 >
-> 自訂元件 (例如 Solr) 則獲得商務上合理的支援，協助您進一步對問題進行疑難排解。如此可能會進而解決問題，或要求您利用可用管道，以找出開放原始碼技術，從中了解該技術的深度專業知識。例如，有許多社群網站可以使用，像是：[HDInsight 的 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=hdinsight)、[http://stackoverflow.com](http://stackoverflow.com)。另外，Apache 專案在 [http://apache.org](http://apache.org) 上有專案網站，例如 [Hadoop](http://hadoop.apache.org/)。
+> Custom components, such as Solr, receive commercially reasonable support to help you to further troubleshoot the issue. This might result in resolving the issue OR asking you to engage available channels for the open source technologies where deep expertise for that technology is found. For example, there are many community sites that can be used, like: [MSDN forum for HDInsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Also Apache projects have project sites on [http://apache.org](http://apache.org), for example: [Hadoop](http://hadoop.apache.org/).
 
-## 指令碼會執行哪些作業
+## <a name="what-the-script-does"></a>What the script does
 
-此指令碼可以對 HDInsight 叢集進行下列變更：
+This script makes the following changes to the HDInsight cluster:
 
-* 將 Solr 安裝至 `/usr/hdp/current/solr`
-* 建立新的使用者 __solrusr__，用來執行 Solr 服務
-* 將 __solruser__ 設為 `/usr/hdp/current/solr` 的擁有者
-* 新增 [Upstart](http://upstart.ubuntu.com/) 組態，如果叢集節點重新啟動，就會啟動 Solr。Solr 也會在安裝之後於叢集節點上自動啟動
+* Installs Solr into `/usr/hdp/current/solr`
+* Creates a new user, __solrusr__, which is used to run the Solr service
+* Sets __solruser__ as the owner of `/usr/hdp/current/solr`
+* Adds an [Upstart](http://upstart.ubuntu.com/) configuration that will start Solr if a cluster node restarts. Solr is also automatically started on the cluster nodes after installation
 
-## <a name="install"></a>使用指令碼動作安裝 Solr
+## <a name="<a-name="install"></a>install-solr-using-script-actions"></a><a name="install"></a>Install Solr using Script Actions
 
-在 HDInsight 叢集上安裝 Solr 的範例指令碼位於下列位置。
+A sample script to install Solr on an HDInsight cluster is available at the following location.
 
     https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
 
-本節提供如何在使用 Azure 入口網站建立新叢集時使用範例指令碼的指示。
+This section provides instructions on how to use the sample script when creating a new cluster by using the Azure portal. 
 
-> [AZURE.NOTE] Azure PowerShell、Azure CLI、HDInsight .NET SDK 或 Azure Resource Manager 範本也可用來套用指令碼動作。您也可以將指令碼動作套用到執行中的叢集上。如需詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+> [AZURE.NOTE] Azure PowerShell, the Azure CLI, the HDInsight .NET SDK, or Azure Resource Manager templates can also be used to apply script actions. You can also apply script actions to already running clusters. For more information, see [Customize HDInsight clusters with Script Actions](hdinsight-hadoop-customize-cluster-linux.md).
 
-1. 使用[佈建以 Linux 為基礎的 HDInsight 叢集](hdinsight-provision-linux-clusters.md#portal)中的步驟開始佈建叢集，但是不完成佈建。
+1. Start provisioning a cluster by using the steps in [Provision Linux-based HDInsight clusters](hdinsight-hadoop-create-linux-clusters-portal.md), but do not complete provisioning.
 
-2. 在 [選用組態] 刀鋒視窗中，選取 [指令碼動作]，並提供下列資訊：
+2. On the **Optional Configuration** blade, select **Script Actions**, and provide the information below:
 
-	* __名稱__：輸入指令碼動作的易記名稱。
-	* __指令碼 URI__：https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
-	* __HEAD__：勾選此選項
-	* __WORKER__：勾選此選項
-	* __ZOOKEEPER__：勾選此選項以在 Zookeeper 節點上安裝
-	* __參數__：將此欄位保留空白
+    * __NAME__: Enter a friendly name for the script action.
+    * __SCRIPT URI__: https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
+    * __HEAD__: Check this option
+    * __WORKER__: Check this option
+    * __ZOOKEEPER__: Check this option to install on the Zookeeper node
+    * __PARAMETERS__: Leave this field blank
 
-3. 在 [指令碼動作] 底部，使用 [選取] 按鈕以儲存組態。最後，使用 [選用組態] 刀鋒視窗底部的 [選取] 按鈕，儲存選用組態資訊。
+3. At the bottom of the **Script Actions**, use the **Select** button to save the configuration. Finally, use the **Select** button at the bottom of the **Optional Configuration** blade to save the optional configuration information.
 
-4. 繼續如[佈建以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-portal.md)中所述佈建叢集。
+4. Continue provisioning the cluster as described in [Provision Linux-based HDInsight clusters](hdinsight-hadoop-create-linux-clusters-portal.md).
 
-## <a name="usesolr"></a>如何在 HDInsight 中使用 Solr？
+## <a name="<a-name="usesolr"></a>how-do-i-use-solr-in-hdinsight?"></a><a name="usesolr"></a>How do I use Solr in HDInsight?
 
-### 索引資料
+### <a name="indexing-data"></a>Indexing data
 
-您必須從以某些資料檔案編製 Solr 的索引來開始。然後，您可以使用 Solr 來對已編製索引的資料執行搜尋查詢。使用下列步驟以將某些範例資料新增至 Solr，然後查詢它：
+You must start with indexing Solr with some data files. You can then use Solr to run search queries on the indexed data. Use the following steps to add some example data to Solr, and then query it:
 
-1. 使用 SSH 連線到 HDInsight 叢集
+1. Connect to the HDInsight cluster using SSH:
 
-		ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
+        ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
 
-	如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
+    For more information on using SSH with HDInsight, see the following:
 
-	* [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
+    * [Use SSH with Linux-based Hadoop on HDInsight from Linux, Unix, or OS X](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-	* [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+    * [Use SSH with Linux-based Hadoop on HDInsight from Windows](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-	> [AZURE.IMPORTANT] 本文件中稍後的步驟會使用 SSL 通道以連線至 Solr Web UI。為了使用這些步驟，您必須建立 SSL 通道，然後設定您的瀏覽器以使用它。
-	>
-	> 如需詳細資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
+    > [AZURE.IMPORTANT] Steps later in this document make use of an SSL tunnel to connect to the Solr web UI. In order to use these steps, you must establish an SSL tunnel and then configure your browser to use it.
+    >
+    > For more information, see [Use SSH Tunneling to access Ambari web UI, ResourceManager, JobHistory, NameNode, Oozie, and other web UI's](hdinsight-linux-ambari-ssh-tunnel.md)
 
-2. 使用下列命令以具備 Solr 索引範例資料：
+2. Use the following commands to have Solr index sample data:
 
-		cd /usr/hdp/current/solr/example/exampledocs
-		java -jar post.jar solr.xml monitor.xml
+        cd /usr/hdp/current/solr/example/exampledocs
+        java -jar post.jar solr.xml monitor.xml
 
-	您會在主控台上看到下列輸出：
+    You'll see the following output on the console:
 
-		POSTing file solr.xml
-		POSTing file monitor.xml
-		2 files indexed.
-		COMMITting Solr index changes to http://localhost:8983/solr/update..
-		Time spent: 0:00:01.624
+        POSTing file solr.xml
+        POSTing file monitor.xml
+        2 files indexed.
+        COMMITting Solr index changes to http://localhost:8983/solr/update..
+        Time spent: 0:00:01.624
 
-	post.jar 公用程式使用 **solr.xml** 和 **monitor.xml** 這兩個範例文件對 Solr 編製索引。這些項目會儲存在 Solr 內的 __collection1__ 中。
+    The post.jar utility indexes Solr with two sample documents, **solr.xml** and **monitor.xml**. These will be stored in __collection1__ within Solr.
 
-3. 使用下列項目以查詢 Solr 公開的 REST API：
+3. Use the following to query the REST API exposed by Solr:
 
-		curl "http://localhost:8983/solr/collection1/select?q=*%3A*&wt=json&indent=true"
+        curl "http://localhost:8983/solr/collection1/select?q=*%3A*&wt=json&indent=true"
 
-	這會對任何符合 __*:*__ (在查詢字串中編碼為 *%3A*) 的文件針對 __collection1__ 發出查詢，回應應該以 JSON 傳回。回應看起來應該如下所示：
+    This issues a query against __collection1__ for any documents matching __\*:\*__ (encoded as \*%3A\* in the query string,) and that the response should be returned as JSON. The response should appear similar to the following:
 
-			"response": {
-			    "numFound": 2,
-			    "start": 0,
-			    "maxScore": 1,
-			    "docs": [
-			      {
-			        "id": "SOLR1000",
-			        "name": "Solr, the Enterprise Search Server",
-			        "manu": "Apache Software Foundation",
-			        "cat": [
-			          "software",
-			          "search"
-			        ],
-			        "features": [
-			          "Advanced Full-Text Search Capabilities using Lucene",
-			          "Optimized for High Volume Web Traffic",
-			          "Standards Based Open Interfaces - XML and HTTP",
-			          "Comprehensive HTML Administration Interfaces",
-			          "Scalability - Efficient Replication to other Solr Search Servers",
-			          "Flexible and Adaptable with XML configuration and Schema",
-			          "Good unicode support: héllo (hello with an accent over the e)"
-			        ],
-			        "price": 0,
-			        "price_c": "0,USD",
-			        "popularity": 10,
-			        "inStock": true,
-			        "incubationdate_dt": "2006-01-17T00:00:00Z",
-			        "_version_": 1486960636996878300
-			      },
-			      {
-			        "id": "3007WFP",
-			        "name": "Dell Widescreen UltraSharp 3007WFP",
-			        "manu": "Dell, Inc.",
-			        "manu_id_s": "dell",
-			        "cat": [
-			          "electronics and computer1"
-			        ],
-			        "features": [
-			          "30" TFT active matrix LCD, 2560 x 1600, .25mm dot pitch, 700:1 contrast"
-			        ],
-			        "includes": "USB cable",
-			        "weight": 401.6,
-			        "price": 2199,
-			        "price_c": "2199,USD",
-			        "popularity": 6,
-			        "inStock": true,
-			        "store": "43.17614,-90.57341",
-			        "_version_": 1486960637584081000
-			      }
-			    ]
-			  }
+            "response": {
+                "numFound": 2,
+                "start": 0,
+                "maxScore": 1,
+                "docs": [
+                  {
+                    "id": "SOLR1000",
+                    "name": "Solr, the Enterprise Search Server",
+                    "manu": "Apache Software Foundation",
+                    "cat": [
+                      "software",
+                      "search"
+                    ],
+                    "features": [
+                      "Advanced Full-Text Search Capabilities using Lucene",
+                      "Optimized for High Volume Web Traffic",
+                      "Standards Based Open Interfaces - XML and HTTP",
+                      "Comprehensive HTML Administration Interfaces",
+                      "Scalability - Efficient Replication to other Solr Search Servers",
+                      "Flexible and Adaptable with XML configuration and Schema",
+                      "Good unicode support: héllo (hello with an accent over the e)"
+                    ],
+                    "price": 0,
+                    "price_c": "0,USD",
+                    "popularity": 10,
+                    "inStock": true,
+                    "incubationdate_dt": "2006-01-17T00:00:00Z",
+                    "_version_": 1486960636996878300
+                  },
+                  {
+                    "id": "3007WFP",
+                    "name": "Dell Widescreen UltraSharp 3007WFP",
+                    "manu": "Dell, Inc.",
+                    "manu_id_s": "dell",
+                    "cat": [
+                      "electronics and computer1"
+                    ],
+                    "features": [
+                      "30\" TFT active matrix LCD, 2560 x 1600, .25mm dot pitch, 700:1 contrast"
+                    ],
+                    "includes": "USB cable",
+                    "weight": 401.6,
+                    "price": 2199,
+                    "price_c": "2199,USD",
+                    "popularity": 6,
+                    "inStock": true,
+                    "store": "43.17614,-90.57341",
+                    "_version_": 1486960637584081000
+                  }
+                ]
+              }
 
-### 使用 Solr 儀表板
+### <a name="using-the-solr-dashboard"></a>Using the Solr dashboard
 
-Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。Solr 儀表板不會直接從您的 HDInsight 叢集公開至網際網路上，必須使用 SSH 通道來存取。如需使用 SSH 通道的詳細資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
+The Solr dashboard is a web UI that allows you to work with Solr through your web browser. The Solr dashboard is not exposed directly on the Internet from your HDInsight cluster, but must be accessed using an SSH tunnel. For more information on using an SSH tunnel, see [Use SSH Tunneling to access Ambari web UI, ResourceManager, JobHistory, NameNode, Oozie, and other web UI's](hdinsight-linux-ambari-ssh-tunnel.md)
 
-一旦您建立 SSH 通道，請使用下列步驟以使用 Solr 儀表板：
+Once you have established an SSH tunnel, use the following steps to use the Solr dashboard:
 
-1. 決定主要前端節點的主機名稱：
+1. Determine the host name for the primary headnode:
 
-    1. 在連接埠 22 上使用 SSH 連接到叢集。例如，`ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`，其中 __USERNAME__ 是您的 SSH 使用者名稱，__CLUSTERNAME__ 是您的叢集名稱。
+    1. Use SSH to connect to the cluster on port 22. For example, `ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net` where __USERNAME__ is your SSH user name and __CLUSTERNAME__ is the name of your cluster.
 
-        如需使用 SSH 的詳細資訊，請參閱下列文件：
+        For more information on using SSH, see the following documents:
 
-        * [從 Linux、Unix 或 Mac OS X 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+        * [Use SSH with Linux-based HDInsight from a Linux, Unix, or Mac OS X client](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-        * [從 Windows 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+        * [Use SSH with Linux-based HDInsight from a Windows client](hdinsight-hadoop-linux-use-ssh-windows.md)
     
-    3. 使用下列命令以取得完整主機名稱︰
+    3. Use the following command to get the fully qualified hostname:
 
             hostname -f
 
-        此命令會傳回類似以下的名稱：
+        This will return a name similar to the following:
 
             hn0-myhdi-nfebtpfdv1nubcidphpap2eq2b.ex.internal.cloudapp.net
     
-        這是應該用於下列步驟中的主機名稱。
+        This is the hostname that should be used in the following steps.
     
-1. 在瀏覽器中，連接到 __http://HOSTNAME:8983/solr/#/__，其中 __HOSTNAME\_\_ 是您在先前步驟中決定的名稱。
+1. In your browser, connect to __http://HOSTNAME:8983/solr/#/__, where __HOSTNAME__ is the name you determined in the previous steps. 
 
-    此要求應該會透過 SSH 通道路由傳送至您的 HDInsight 叢集的前端節點。您應該會看到如下所示的頁面：
+    The request should be routed through the SSH tunnel to the head node for your HDInsight cluster. You should see a page similar to the following:
 
-	![Solr 儀表板的映像](./media/hdinsight-hadoop-solr-install-linux/solrdashboard.png)
+    ![Image of Solr dashboard](./media/hdinsight-hadoop-solr-install-linux/solrdashboard.png)
 
-2. 從左窗格使用 [核心選取器] 下拉式清單，以選取 [collection1]。數個項目應該會出現在 __collection1__ 底下。
+2. From the left pane, use the **Core Selector** drop-down to select **collection1**. Several entries should them appear below __collection1__.
 
-3. 從 __collection1__ 底下的項目中，選取 [查詢] 。使用下列值來填入搜尋頁面：
+3. From the entries below __collection1__, select __Query__. Use the following values to populate the search page:
 
-	* 在 [**q**] 文字方塊中輸入 ***:***。如此便會傳回已在 Solr 中編製索引的所有文件。如果您想要搜尋文件內的特定字串，您可以在此輸入該字串。
+    * In the **q** text box, enter **\*:**\*. This will return all the documents that are indexed in Solr. If you want to search for a specific string within the documents, you can enter that string here.
 
-	* 在 [**wt**] 文字方塊中，選取輸出格式。預設值是 [**json**]。
+    * In the **wt** text box, select the output format. Default is **json**.
 
-	最後，選取搜尋頁面底部的 [執行查詢] 按鈕。
+    Finally, select the **Execute Query** button at the bottom of the search pate.
 
-	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install-linux/hdi-solr-dashboard-query.png)
+    ![Use Script Action to customize a cluster](./media/hdinsight-hadoop-solr-install-linux/hdi-solr-dashboard-query.png)
 
-	輸出中會傳回兩個我們之前用於對 Solr 編製索引的文件。輸出結果類似下面：
+    The output returns the two docs that we used for indexing Solr. The output resembles the following:
 
-			"response": {
-			    "numFound": 2,
-			    "start": 0,
-			    "maxScore": 1,
-			    "docs": [
-			      {
-			        "id": "SOLR1000",
-			        "name": "Solr, the Enterprise Search Server",
-			        "manu": "Apache Software Foundation",
-			        "cat": [
-			          "software",
-			          "search"
-			        ],
-			        "features": [
-			          "Advanced Full-Text Search Capabilities using Lucene",
-			          "Optimized for High Volume Web Traffic",
-			          "Standards Based Open Interfaces - XML and HTTP",
-			          "Comprehensive HTML Administration Interfaces",
-			          "Scalability - Efficient Replication to other Solr Search Servers",
-			          "Flexible and Adaptable with XML configuration and Schema",
-			          "Good unicode support: héllo (hello with an accent over the e)"
-			        ],
-			        "price": 0,
-			        "price_c": "0,USD",
-			        "popularity": 10,
-			        "inStock": true,
-			        "incubationdate_dt": "2006-01-17T00:00:00Z",
-			        "_version_": 1486960636996878300
-			      },
-			      {
-			        "id": "3007WFP",
-			        "name": "Dell Widescreen UltraSharp 3007WFP",
-			        "manu": "Dell, Inc.",
-			        "manu_id_s": "dell",
-			        "cat": [
-			          "electronics and computer1"
-			        ],
-			        "features": [
-			          "30" TFT active matrix LCD, 2560 x 1600, .25mm dot pitch, 700:1 contrast"
-			        ],
-			        "includes": "USB cable",
-			        "weight": 401.6,
-			        "price": 2199,
-			        "price_c": "2199,USD",
-			        "popularity": 6,
-			        "inStock": true,
-			        "store": "43.17614,-90.57341",
-			        "_version_": 1486960637584081000
-			      }
-			    ]
-			  }
+            "response": {
+                "numFound": 2,
+                "start": 0,
+                "maxScore": 1,
+                "docs": [
+                  {
+                    "id": "SOLR1000",
+                    "name": "Solr, the Enterprise Search Server",
+                    "manu": "Apache Software Foundation",
+                    "cat": [
+                      "software",
+                      "search"
+                    ],
+                    "features": [
+                      "Advanced Full-Text Search Capabilities using Lucene",
+                      "Optimized for High Volume Web Traffic",
+                      "Standards Based Open Interfaces - XML and HTTP",
+                      "Comprehensive HTML Administration Interfaces",
+                      "Scalability - Efficient Replication to other Solr Search Servers",
+                      "Flexible and Adaptable with XML configuration and Schema",
+                      "Good unicode support: héllo (hello with an accent over the e)"
+                    ],
+                    "price": 0,
+                    "price_c": "0,USD",
+                    "popularity": 10,
+                    "inStock": true,
+                    "incubationdate_dt": "2006-01-17T00:00:00Z",
+                    "_version_": 1486960636996878300
+                  },
+                  {
+                    "id": "3007WFP",
+                    "name": "Dell Widescreen UltraSharp 3007WFP",
+                    "manu": "Dell, Inc.",
+                    "manu_id_s": "dell",
+                    "cat": [
+                      "electronics and computer1"
+                    ],
+                    "features": [
+                      "30\" TFT active matrix LCD, 2560 x 1600, .25mm dot pitch, 700:1 contrast"
+                    ],
+                    "includes": "USB cable",
+                    "weight": 401.6,
+                    "price": 2199,
+                    "price_c": "2199,USD",
+                    "popularity": 6,
+                    "inStock": true,
+                    "store": "43.17614,-90.57341",
+                    "_version_": 1486960637584081000
+                  }
+                ]
+              }
 
-### 啟動和停止 Solr
+### <a name="starting-and-stopping-solr"></a>Starting and stopping Solr
 
-如果您需要手動停止或啟動 Solar，請使用下列命令：
+If you need to manually stop or start Solar, use the following commands:
 
-	sudo stop solr
+    sudo stop solr
 
-	sudo start solr
+    sudo start solr
 
-## 備份已編製索引的資料
+## <a name="backup-indexed-data"></a>Backup indexed data
 
-您最好從 Solr 叢集節點將已編製索引的資料備份到 Azure Blob 儲存體。請執行下列步驟來進行此作業：
+As a good practice, you should back up the indexed data from the Solr cluster nodes onto Azure Blob storage. Perform the following steps to do so:
 
-1. 使用 SSH 連線到叢集，然後使用下列命令來取得前端節點的主機名稱：
+1. Connect to the cluster using SSH, then use the following command to get the host name for the head node:
 
         hostname -f
         
-2. 使用下列命令來建立已編製索引之資料的快照。以上一個命令傳回的名稱取代 __HOSTNAME__：
+2. Use the following to create a snapshot of the indexed data. Replace __HOSTNAME__ with the name returned from the previous command:
 
-		curl http://HOSTNAME:8983/solr/replication?command=backup
+        curl http://HOSTNAME:8983/solr/replication?command=backup
 
-	您應該會看到如下所示的回應：
+    You should see a response like this:
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<response>
-		  <lst name="responseHeader">
-		    <int name="status">0</int>
-		    <int name="QTime">9</int>
-		  </lst>
-		  <str name="status">OK</str>
-		</response>
+        <?xml version="1.0" encoding="UTF-8"?>
+        <response>
+          <lst name="responseHeader">
+            <int name="status">0</int>
+            <int name="QTime">9</int>
+          </lst>
+          <str name="status">OK</str>
+        </response>
 
-2. 接下來，將目錄變更為 __/usr/hdp/current/solr/example/solr__。在這裡每個集合會有子目錄。每個集合目錄包含__資料__目錄，這是該集合的快照所在的位置。
+2. Next, change directories to __/usr/hdp/current/solr/example/solr__. There will be a subdirectory here for each collection. Each collection directory contains a __data__ directory, which is where the snapshot for that collection is located.
 
-	例如，如果您使用先前的步驟來編製範例文件的索引，__/usr/hdp/current/solr/example/solr/collection1/data__ 目錄現在應該包含一個名為 __snapshot.###########__ 的目錄，其中 # 是快照的日期和時間。
+    For example, if you used the steps earlier to index the sample documents, the __/usr/hdp/current/solr/example/solr/collection1/data__ directory should now contain a directory named __snapshot.###########__ where the #'s are the date and time of the snapshot.
 
-3. 使用如下的命令，建立快照資料夾的壓縮封存：
+3. Create a compressed archive of the snapshot folder using a command similar to the following:
 
-		tar -zcf snapshot.20150806185338855.tgz snapshot.20150806185338855
+        tar -zcf snapshot.20150806185338855.tgz snapshot.20150806185338855
 
-	這會建立名為 __snapshot.20150806185338855.tgz__ 的新封存，其中包含 __snapshot.20150806185338855__ 目錄的內容。
+    This will create a new archive named __snapshot.20150806185338855.tgz__, which contains the contents of the __snapshot.20150806185338855__ directory.
 
-3. 然後您可以使用下列命令，將封存儲存至叢集的主要儲存體：
+3. You can then store the archive to the cluster's primary storage using the following command:
 
-	hadoop fs -copyFromLocal snapshot.20150806185338855.tgz /example/data
+    hadoop fs -copyFromLocal snapshot.20150806185338855.tgz /example/data
 
-	> [AZURE.NOTE] 您可能想要建立用來儲存 Solr 快照的專用目錄。例如，`hadoop fs -mkdir /solrbackup`。
+    > [AZURE.NOTE] You may want to create a dedicated directory for storing Solr snapshots. For example, `hadoop fs -mkdir /solrbackup`.
 
-如需有關使用 Solr 備份和還原的詳細資訊，請參閱[製作和還原 SolrCores 的備份](https://cwiki.apache.org/confluence/display/solr/Making+and+Restoring+Backups+of+SolrCores)。
+For more information on working with Solr backup and restores, see [Making and restoring backups of SolrCores](https://cwiki.apache.org/confluence/display/solr/Making+and+Restoring+Backups+of+SolrCores).
 
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-- [在 HDInsight 叢集上安裝及使用 Hue](hdinsight-hadoop-hue-linux.md)。Hue 是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
+- [Install and use Hue on HDInsight clusters](hdinsight-hadoop-hue-linux.md). Hue is a web UI that makes it easy to create, run and save Pig and Hive jobs, as well as browse the default storage for your HDInsight cluster.
 
-- [在 HDInsight 叢集上安裝 R][hdinsight-install-r]。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 R。R 是一個用於統計計算的開放原始碼語言和環境。它提供數百個內建的統計函式及它自己的程式設計語言，此語言結合了函式型和物件導向程式設計的層面。它也提供廣泛的圖形功能。
+- [Install R on HDInsight clusters][hdinsight-install-r]. Use cluster customization to install R on HDInsight Hadoop clusters. R is an open-source language and environment for statistical computing. It provides hundreds of built-in statistical functions and its own programming language that combines aspects of functional and object-oriented programming. It also provides extensive graphical capabilities.
 
-- [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Giraph。Giraph 可讓您利用 Hadoop 執行圖形處理，且可以搭配 Azure HDInsight 一起使用。
+- [Install Giraph on HDInsight clusters](hdinsight-hadoop-giraph-install-linux.md). Use cluster customization to install Giraph on HDInsight Hadoop clusters. Giraph allows you to perform graph processing by using Hadoop, and can be used with Azure HDInsight.
 
-- [在 HDInsight 叢集上安裝 Hue](hdinsight-hadoop-hue-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Hue。Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。
+- [Install Hue on HDInsight clusters](hdinsight-hadoop-hue-linux.md). Use cluster customization to install Hue on HDInsight Hadoop clusters. Hue is a set of Web applications used to interact with a Hadoop cluster.
 
 
 
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

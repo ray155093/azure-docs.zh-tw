@@ -1,47 +1,48 @@
 <properties
-	pageTitle="Azure Functions 服務匯流排觸發程序和繫結 | Microsoft Azure"
-	description="瞭解如何在 Azure Functions 中使用「Azure 服務匯流排」觸發程序和繫結。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"/>
+    pageTitle="Azure Functions Service Bus triggers and bindings | Microsoft Azure"
+    description="Understand how to use Azure Service Bus triggers and bindings in Azure Functions."
+    services="functions"
+    documentationCenter="na"
+    authors="christopheranderson"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="08/22/2016"
-	ms.author="chrande; glenga"/>
+    ms.service="functions"
+    ms.devlang="multiple"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="08/22/2016"
+    ms.author="chrande; glenga"/>
 
-# 佇列和主題的 Azure Functions 服務匯流排觸發程序和繫結
+
+# <a name="azure-functions-service-bus-triggers-and-bindings-for-queues-and-topics"></a>Azure Functions Service Bus triggers and bindings for queues and topics
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為「Azure 服務匯流排」觸發程序和繫結進行設定及撰寫程式碼。
+This article explains how to configure and code Azure Service Bus triggers and bindings in Azure Functions. 
 
-[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
 
-## <a id="sbtrigger"></a>服務匯流排的佇列或主題觸發程序
+## <a name="<a-id="sbtrigger"></a>-service-bus-queue-or-topic-trigger"></a><a id="sbtrigger"></a> Service Bus queue or topic trigger
 
-#### function.json
+#### <a name="function.json"></a>function.json
 
-「function.json」檔案指定了下列屬性。
+The *function.json* file specifies the following properties.
 
-- `name`︰函式程式碼中用於佇列或主題 (或是佇列或主題訊息) 的變數名稱。
-- `queueName`︰(僅適用於佇列觸發程序) 要輪詢的佇列名稱。
-- `topicName`︰(僅適用於主題觸發程序) 要輪詢的主題名稱。
-- `subscriptionName`︰(僅適用於主題觸發程序) 訂用帳戶名稱。
-- `connection`︰包含「服務匯流排」連接字串的應用程式設定名稱。連接字串必須是用於服務匯流排命名空間，而不限於特定佇列或主題。如果連接字串不具有管理權限，請設定 `accessRights` 屬性。如果將 `connection` 留白，觸發程序或繫結將會使用函式應用程式的預設「服務匯流排」連接字串，此預設值是由 AzureWebJobsServiceBus 應用程式設定所指定。
-- `accessRights`︰指定連接字串可用的存取權限。預設值為 `manage`。如果您使用的連接字串不提供管理權限，請設定為 `listen`。否則，Functions 執行階段可能會嘗試，但卻無法執行需要管理權限的作業。
-- `type`︰必須設為「serviceBusTrigger」。
-- `direction`：必須設為「in」。
+- `name` : The variable name used in function code for the queue or topic, or the queue or topic message. 
+- `queueName` : For queue trigger only, the name of the queue to poll.
+- `topicName` : For topic trigger only, the name of the topic to poll.
+- `subscriptionName` : For topic trigger only, the subscription name.
+- `connection` : The name of an app setting that contains a Service Bus connection string. The connection string must be for a Service Bus namespace, not limited to a specific queue or topic. If the connection string doesn't have manage rights, set the `accessRights` property. If you leave `connection` empty, the trigger or binding will work with the default Service Bus connection string for the function app, which is specified by the AzureWebJobsServiceBus app setting.
+- `accessRights` : Specifies the access rights available for the connection string. Default value is `manage`. Set to `listen` if you're using a connection string that doesn't provide manage permissions. Otherwise the Functions runtime might try and fail to do operations that require manage rights.
+- `type` : Must be set to *serviceBusTrigger*.
+- `direction` : Must be set to *in*. 
 
-「服務匯流排」佇列觸發程序的範例「function.json」：
+Example *function.json* for a Service Bus queue trigger:
 
 ```json
 {
@@ -58,7 +59,7 @@
 }
 ```
 
-#### 處理服務匯流排佇列訊息的 C# 程式碼範例
+#### <a name="c#-code-example-that-processes-a-service-bus-queue-message"></a>C# code example that processes a Service Bus queue message
 
 ```csharp
 public static void Run(string myQueueItem, TraceWriter log)
@@ -67,14 +68,14 @@ public static void Run(string myQueueItem, TraceWriter log)
 }
 ```
 
-#### 處理服務匯流排佇列訊息的 F# 程式碼範例
+#### <a name="f#-code-example-that-processes-a-service-bus-queue-message"></a>F# code example that processes a Service Bus queue message
 
 ```fsharp
 let Run(myQueueItem: string, log: TraceWriter) =
     log.Info(sprintf "F# ServiceBus queue trigger function processed message: %s" myQueueItem)
 ```
 
-#### 處理服務匯流排佇列訊息的 Node.js 程式碼範例
+#### <a name="node.js-code-example-that-processes-a-service-bus-queue-message"></a>Node.js code example that processes a Service Bus queue message
 
 ```javascript
 module.exports = function(context, myQueueItem) {
@@ -83,43 +84,43 @@ module.exports = function(context, myQueueItem) {
 };
 ```
 
-#### 支援的類型
+#### <a name="supported-types"></a>Supported types
 
-服務匯流排佇列訊息可以還原序列化為下列任何一種類型︰
+The Service Bus queue message can be deserialized to any of the following types:
 
-* 物件 (來自 JSON)
+* Object (from JSON)
 * string
-* 位元組陣列
-* `BrokeredMessage` (C#)
+* byte array 
+* `BrokeredMessage` (C#) 
 
-#### <a id="sbpeeklock"></a>PeekLock 行為
+#### <a name="<a-id="sbpeeklock"></a>-peeklock-behavior"></a><a id="sbpeeklock"></a> PeekLock behavior
 
-Functions 執行階段會在 `PeekLock` 模式下接收訊息，並在函式順利完成時，於訊息上呼叫 `Complete`，或是在函式失敗時呼叫 `Abandon`。如果函數執行時間較 `PeekLock` 逾時還長，即會自動更新鎖定。
+The Functions runtime receives a message in `PeekLock` mode and calls `Complete` on the message if the function finishes successfully, or calls `Abandon` if the function fails. If the function runs longer than the `PeekLock` timeout, the lock is automatically renewed.
 
-#### <a id="sbpoison"></a>有害訊息處理
+#### <a name="<a-id="sbpoison"></a>-poison-message-handling"></a><a id="sbpoison"></a> Poison message handling
 
-服務匯流排會自行處理無法在 Azure Functions 組態或程式碼中控制或設定的有害訊息。
+Service Bus does its own poison message handling which can't be controlled or configured in Azure Functions configuration or code. 
 
-#### <a id="sbsinglethread"></a>單一執行緒
+#### <a name="<a-id="sbsinglethread"></a>-single-threading"></a><a id="sbsinglethread"></a> Single-threading
 
-Functions 執行階段預設會並行處理多個佇列訊息。若要指示執行階段一次只處理一個佇列或主題訊息，請在「host.json」檔案中將 `serviceBus.maxConcurrrentCalls` 設定為 1。如需「host.json」檔案的相關資訊，請參閱開發人員參考文章中的[資料夾結構](functions-reference.md#folder-structure)和 WebJobs.Script 儲存機制 wiki 中的 [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
+By default the Functions runtime processes multiple queue messages concurrently. To direct the runtime to process only a single queue or topic message at a time, set `serviceBus.maxConcurrrentCalls` to 1 in the *host.json* file. For information about the *host.json* file, see [Folder Structure](functions-reference.md#folder-structure) in the Developer reference article, and [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) in the WebJobs.Script repository wiki.
 
-## <a id="sboutput"></a>服務匯流排的佇列或主題輸出繫結
+## <a name="<a-id="sboutput"></a>-service-bus-queue-or-topic-output-binding"></a><a id="sboutput"></a> Service Bus queue or topic output binding
 
-#### function.json
+#### <a name="function.json"></a>function.json
 
-「function.json」檔案指定了下列屬性。
+The *function.json* file specifies the following properties.
 
-- `name`︰函式程式碼中用於佇列或佇列訊息的變數名稱。
-- `queueName`︰(僅適用於佇列觸發程序) 要輪詢的佇列名稱。
-- `topicName`︰(僅適用於主題觸發程序) 要輪詢的主題名稱。
-- `subscriptionName`︰(僅適用於主題觸發程序) 訂用帳戶名稱。
-- `connection`︰與用於「服務匯流排」觸發程序的相同。
-- `accessRights`︰指定連接字串可用的存取權限。預設值為 `manage`。如果您使用的連接字串不提供管理權限，請設定為 `send`。否則，Functions 執行階段可能會嘗試，但卻無法執行需要管理權限的作業，例如建立佇列。
-- `type`︰必須設為「serviceBus」。
-- `direction`：必須設為「out」。
+- `name` : The variable name used in function code for the queue or queue message. 
+- `queueName` : For queue trigger only, the name of the queue to poll.
+- `topicName` : For topic trigger only, the name of the topic to poll.
+- `subscriptionName` : For topic trigger only, the subscription name.
+- `connection` : Same as for Service Bus trigger.
+- `accessRights` : Specifies the access rights available for the connection string. Default value is `manage`. Set to `send` if you're using a connection string that doesn't provide manage permissions. Otherwise the Functions runtime might try and fail to do operations that require manage rights, such as creating queues.
+- `type` : Must be set to *serviceBus*.
+- `direction` : Must be set to *out*. 
 
-使用計時器觸發程序來撰寫「服務匯流排」佇列訊息的「function.json」範例：
+Example *function.json* for using a timer trigger to write Service Bus queue messages:
 
 ```JSON
 {
@@ -143,23 +144,23 @@ Functions 執行階段預設會並行處理多個佇列訊息。若要指示執�
 }
 ``` 
 
-#### 支援的類型
+#### <a name="supported-types"></a>Supported types
 
-Azure Functions 可以從下列任何類型建立服務匯流排佇列訊息。
+Azure Functions can create a Service Bus queue message from any of the following types.
 
-* 物件 (一律會建立 JSON 訊息，當函式結束時，如果此值為 Null，則會使用 Null 物件建立訊息)
-* 字串 (當函式結束時，如果此值非 Null，則會建立訊息)
-* 位元組陣列 (像字串般運作)
-* `BrokeredMessage`(C#，運作方式與字串相同)
+* Object (always creates a JSON message, creates the message with a null object if the value is null when the function ends)
+* string (creates a message if the value is non-null when the function ends)
+* byte array (works like string) 
+* `BrokeredMessage` (C#, works like string)
 
-若要在 C# 函式中建立多個訊息，您可以使用 `ICollector<T>` 或 `IAsyncCollector<T>`。當您呼叫 `Add` 方法時，就會建立一則訊息。
+For creating multiple messages in a C# function, you can use `ICollector<T>` or `IAsyncCollector<T>`. A message is created when you call the `Add` method.
 
-#### 建立服務匯流排佇列訊息的 C# 程式碼範例
+#### <a name="c#-code-examples-that-create-service-bus-queue-messages"></a>C# code examples that create Service Bus queue messages
 
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log, out string outputSbQueue)
 {
-	string message = $"Service Bus queue message created at: {DateTime.Now}";
+    string message = $"Service Bus queue message created at: {DateTime.Now}";
     log.Info(message); 
     outputSbQueue = message;
 }
@@ -168,14 +169,14 @@ public static void Run(TimerInfo myTimer, TraceWriter log, out string outputSbQu
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log, ICollector<string> outputSbQueue)
 {
-	string message = $"Service Bus queue message created at: {DateTime.Now}";
+    string message = $"Service Bus queue message created at: {DateTime.Now}";
     log.Info(message); 
     outputSbQueue.Add("1 " + message);
     outputSbQueue.Add("2 " + message);
 }
 ```
 
-#### 建立服務匯流排佇列訊息的 F# 程式碼範例
+#### <a name="f#-code-example-that-creates-a-service-bus-queue-message"></a>F# code example that creates a Service Bus queue message
 
 ```fsharp
 let Run(myTimer: TimerInfo, log: TraceWriter, outputSbQueue: byref<string>) =
@@ -184,7 +185,7 @@ let Run(myTimer: TimerInfo, log: TraceWriter, outputSbQueue: byref<string>) =
     outputSbQueue = message
 ```
 
-#### 建立服務匯流排佇列訊息的 Node.js 程式碼範例
+#### <a name="node.js-code-example-that-creates-a-service-bus-queue-message"></a>Node.js code example that creates a Service Bus queue message
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -201,8 +202,12 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
+[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)] 
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

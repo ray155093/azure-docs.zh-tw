@@ -1,180 +1,181 @@
 <properties
-	pageTitle="SQL Database 中的擴充事件 | Microsoft Azure"
-	description="描述 Azure SQL Database 中的擴充事件 (XEvents)，以及事件工作階段與 Microsoft SQL Server 中的事件工作階段有如何的些微不同。"
-	services="sql-database"
-	documentationCenter=""
-	authors="MightyPen"
-	manager="jhubbard"
-	editor=""
-	tags=""/>
+    pageTitle="Extended events in SQL Database | Microsoft Azure"
+    description="Describes extended events (XEvents) in Azure SQL Database, and how event sessions differ slightly from event sessions in Microsoft SQL Server."
+    services="sql-database"
+    documentationCenter=""
+    authors="MightyPen"
+    manager="jhubbard"
+    editor=""
+    tags=""/>
 
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/23/2016"
-	ms.author="genemi"/>
+    ms.service="sql-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/23/2016"
+    ms.author="genemi"/>
 
 
-# SQL Database 中的擴充事件
+
+# <a name="extended-events-in-sql-database"></a>Extended events in SQL Database
 
 [AZURE.INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-本主題說明與 Microsoft SQL server 中的擴充事件相比，Azure SQL Database 中的擴充事件實作有何些微不同。
+This topic explains how the implementation of extended events in Azure SQL Database is slightly different compared to extended events in Microsoft SQL Server.
 
 
-- SQL Database V12 在 2015 年行事曆下半年度獲得擴充事件功能。
-- SQL Server 自 2008 開始即具有擴充事件。
-- SQL Database 上的擴充事件功能集是強大的 SQL Server 功能子集。
+- SQL Database V12 gained the extended events feature in the second half of calendar 2015.
+- SQL Server has had extended events since 2008.
+- The feature set of extended events on SQL Database is a robust subset of the features on SQL Server.
 
 
-*XEvents* 是非正式暱稱，有時在部落格或其他非正式位置用於「擴充事件」。
+*XEvents* is an informal nickname that is sometimes used for 'extended events' in blogs and other informal locations.
 
 
-> [AZURE.NOTE] 從 2015 年 10 月起，擴充事件工作階段功能會在 Azure SQL Database 的預覽層級中啟動。尚未設定公開上市 (GA) 日期。
+> [AZURE.NOTE] As of October 2015, the extended event session feature is activated in Azure SQL Database at the Preview level. The General Availability (GA) date is not yet set.
 >
-> Azure [服務更新](https://azure.microsoft.com/updates/?service=sql-database)頁面在進行 GA 宣告時會有文章發佈。
+> The Azure [Service Updates](https://azure.microsoft.com/updates/?service=sql-database) page has posts when GA announcements are made.
 
 
-如需有關 Azure SQL Database 和 Microsoft SQL Server 之擴充事件的其他資訊，請參閱：
+Additional information about extended events, for Azure SQL Database and Microsoft SQL Server, is available at:
 
-- [Quick Start: Extended events in SQL Server (快速入門：SQL Server 中的擴充事件)](http://msdn.microsoft.com/library/mt733217.aspx)
-- [擴充事件](http://msdn.microsoft.com/library/bb630282.aspx)
-
-
-## 必要條件
+- [Quick Start: Extended events in SQL Server](http://msdn.microsoft.com/library/mt733217.aspx)
+- [Extended Events](http://msdn.microsoft.com/library/bb630282.aspx)
 
 
-本主題假設您已經有一些下列項目的知識：
+## <a name="prerequisites"></a>Prerequisites
 
 
-- [Azure SQL Database 服務](https://azure.microsoft.com/services/sql-database/)。
+This topic assumes you already have some knowledge of:
 
 
-- Microsoft SQL Server 中的[擴充事件](http://msdn.microsoft.com/library/bb630282.aspx)。
- - 我們的大部分文件是關於適用於 SQL Server 和 SQL Database 的擴充事件。
+- [Azure SQL Database service](https://azure.microsoft.com/services/sql-database/).
 
 
-當選擇事件檔案做為[目標](#AzureXEventsTargets)時，事先公開下列項目很有幫助：
+- [Extended events](http://msdn.microsoft.com/library/bb630282.aspx) in Microsoft SQL Server.
+ - The bulk of our documentation about extended events applies to both SQL Server and SQL Database.
 
 
-- [Azure 儲存體服務](https://azure.microsoft.com/services/storage/)
+Prior exposure to the following items is helpful when choosing the Event File as the [target](#AzureXEventsTargets):
+
+
+- [Azure Storage service](https://azure.microsoft.com/services/storage/)
 
 
 - PowerShell
- - [搭配 Azure 儲存體使用 Azure PowerShell](../storage/storage-powershell-guide-full.md) - 提供 PowerShell 和 Azure 儲存體服務的完整資訊。
+ - [Using Azure PowerShell with Azure Storage](../storage/storage-powershell-guide-full.md) - Provides comprehensive information about PowerShell and the Azure Storage service.
 
 
-## 程式碼範例
+## <a name="code-samples"></a>Code samples
 
 
-相關的主題提供兩個程式碼範例：
+Related topics provide two code samples:
 
 
-- [SQL Database 中擴充事件的信號緩衝區目標程式碼](sql-database-xevent-code-ring-buffer.md)
- - 簡短的簡單 Transact-SQL 指令碼。
- - 我們在程式碼範例主題中強調，當您完成「信號緩衝區」目標的相關作業時，應該執行 alter-drop `ALTER EVENT SESSION ... ON DATABASE DROP TARGET ...;` 陳述式來釋出其資源。稍後您可以藉由 `ALTER EVENT SESSION ... ON DATABASE ADD TARGET ...`，加入信號緩衝區的另一個執行個體。
+- [Ring Buffer target code for extended events in SQL Database](sql-database-xevent-code-ring-buffer.md)
+ - Short simple Transact-SQL script.
+ - We emphasize in the code sample topic that, when you are done with a Ring Buffer target, you should release its resources by executing an alter-drop `ALTER EVENT SESSION ... ON DATABASE DROP TARGET ...;` statement. Later you can add another instance of Ring Buffer by `ALTER EVENT SESSION ... ON DATABASE ADD TARGET ...`.
 
 
-- [SQL Database 中擴充事件的事件檔案目標程式碼](sql-database-xevent-code-event-file.md)
- - 階段 1 是 PowerShell，建立 Azure 儲存體容器。
- - 階段 2 是 Transact-SQL，使用 Azure 儲存體容器。
+- [Event File target code for extended events in SQL Database](sql-database-xevent-code-event-file.md)
+ - Phase 1 is PowerShell to create an Azure Storage container.
+ - Phase 2 is Transact-SQL that uses the Azure Storage container.
 
 
-## Transact-SQL 差異
+## <a name="transact-sql-differences"></a>Transact-SQL differences
 
 
-- 當您在 SQL Server 上執行 [CREATE EVENT SESSION](http://msdn.microsoft.com/library/bb677289.aspx) 命令時，您使用 **ON SERVER** 子句。但是在 SQL Database 上，您改為使用 **ON DATABASE** 子句。
+- When you execute the [CREATE EVENT SESSION](http://msdn.microsoft.com/library/bb677289.aspx) command on SQL Server, you use the **ON SERVER** clause. But on SQL Database you use the **ON DATABASE** clause instead.
 
 
-- **ON DATABASE** 子句也適用於 [ALTER EVENT SESSION](http://msdn.microsoft.com/library/bb630368.aspx) 和 [DROP EVENT SESSION](http://msdn.microsoft.com/library/bb630257.aspx) Transact-SQL 命令。
+- The **ON DATABASE** clause also applies to the [ALTER EVENT SESSION](http://msdn.microsoft.com/library/bb630368.aspx) and [DROP EVENT SESSION](http://msdn.microsoft.com/library/bb630257.aspx) Transact-SQL commands.
 
 
-- 最佳做法是在您的 **CREATE EVENT SESSION** 或 **ALTER EVENT SESSION** 陳述式中包含 **STARTUP\_STATE = ON** 的事件工作階段選項。
- - **= ON** 值支援在由於容錯移轉而進行邏輯資料庫的重新設定之後，自動重新啟動。
+- A best practice is to include the event session option of **STARTUP_STATE = ON** in your **CREATE EVENT SESSION**  or **ALTER EVENT SESSION** statements.
+ - The **= ON** value supports an automatic restart after a reconfiguration of the logical database due to a failover.
 
 
-## 新的目錄檢視
+## <a name="new-catalog-views"></a>New catalog views
 
 
-擴充事件功能受到多個[目錄檢視](http://msdn.microsoft.com/library/ms174365.aspx)支援。目錄檢視會告訴您目前資料庫中使用者建立事件工作階段的*中繼資料或定義*的相關資訊。檢視不會傳回作用中事件工作階段的執行個體的相關資訊。
+The extended events feature is supported by several [catalog views](http://msdn.microsoft.com/library/ms174365.aspx). Catalog views tell you about *metadata or definitions* of user-created event sessions in the current database. The views do not return information about instances of active event sessions.
 
 
-| <br/>目錄檢視的名稱 | 說明 |
+| Name of<br/>catalog view | Description |
 | :-- | :-- |
-| **sys.database\_event\_session\_actions** | 針對事件工作階段的每個事件上的每個動作傳回資料列。 |
-| **sys.database\_event\_session\_events** | 針對事件工作階段中的每個事件傳回資料列。 |
-| **sys.database\_event\_session\_fields** | 針對已在事件和目標上明確設定的每個可自訂資料行傳回資料列。 |
-| **sys.database\_event\_session\_targets** | 針對事件工作階段的每個事件目標傳回資料列。 |
-| **sys.database\_event\_sessions** | 針對 SQL Database 資料庫中的每個事件工作階段傳回資料列。 |
+| **sys.database_event_session_actions** | Returns a row for each action on each event of an event session. |
+| **sys.database_event_session_events** | Returns a row for each event in an event session. |
+| **sys.database_event_session_fields** | Returns a row for each customize-able column that was explicitly set on events and targets. |
+| **sys.database_event_session_targets** | Returns a row for each event target for an event session. |
+| **sys.database_event_sessions** | Returns a row for each event session in the SQL Database database. |
 
 
-在 Microsoft SQL Server 中，類似的目錄檢視具有包含 *.server\_* 而不是 *.database\_* 的名稱。名稱模式類似 **sys.server\_event\_%**。
+In Microsoft SQL Server, similar catalog views have names that include *.server\_* instead of *.database\_*. The name pattern is like **sys.server_event_%**.
 
 
-## 新的動態管理檢視 [(DMV)](http://msdn.microsoft.com/library/ms188754.aspx)。
+## <a name="new-dynamic-management-views-[(dmvs)](http://msdn.microsoft.com/library/ms188754.aspx)"></a>New dynamic management views [(DMVs)](http://msdn.microsoft.com/library/ms188754.aspx)
 
 
-Azure SQL Database 具有支援擴充事件的[動態管理檢視 (DMV)](http://msdn.microsoft.com/library/bb677293.aspx)。DMV 會告訴您*作用中*事件工作階段的相關資訊。
+Azure SQL Database has [dynamic management views (DMVs)](http://msdn.microsoft.com/library/bb677293.aspx) that support extended events. DMVs tell you about *active* event sessions.
 
 
-| DMV 的名稱 | 說明 |
+| Name of DMV | Description |
 | :-- | :-- |
-| **sys.dm\_xe\_database\_session\_event\_actions** | 會傳回事件工作階段動作的相關資訊。 |
-| **sys.dm\_xe\_database\_session\_events** | 會傳回工作階段事件的相關資訊。 |
-| **sys.dm\_xe\_database\_session\_object\_columns** | 顯示繫結至工作階段的物件的組態值。 |
-| **sys.dm\_xe\_database\_session\_targets** | 會傳回工作階段目標的相關資訊。 |
-| **sys.dm\_xe\_database\_sessions** | 針對範圍為目前資料庫的每個事件工作階段傳回資料列。 |
+| **sys.dm_xe_database_session_event_actions** | Returns information about event session actions. |
+| **sys.dm_xe_database_session_events** | Returns information about session events. |
+| **sys.dm_xe_database_session_object_columns** | Shows the configuration values for objects that are bound to a session. |
+| **sys.dm_xe_database_session_targets** | Returns information about session targets. |
+| **sys.dm_xe_database_sessions** | Returns a row for each event session that is scoped to the current database. |
 
 
-在 Microsoft SQL Server 中，類似的目錄檢視名稱不含 *\_database* 名稱部分，例如：
+In Microsoft SQL Server, similar catalog views are named without the *\_database* portion of the name, such as:
 
 
-- **sys.dm\_xe\_sessions**，而不是名稱 <br/>**sys.dm\_xe\_database\_sessions**。
+- **sys.dm_xe_sessions**, instead of name<br/>**sys.dm_xe_database_sessions**.
 
 
-### 兩者通用的 DMV
+### <a name="dmvs-common-to-both"></a>DMVs common to both
 
 
-對於擴充事件，有通用於 Azure SQL Database 和 Microsoft SQL Server 的其他 DMV：
+For extended events there are additional DMVs that are common to both Azure SQL Database and Microsoft SQL Server:
 
 
-- **sys.dm\_xe\_map\_values**
-- **sys.dm\_xe\_object\_columns**
-- **sys.dm\_xe\_objects**
-- **sys.dm\_xe\_packages**
+- **sys.dm_xe_map_values**
+- **sys.dm_xe_object_columns**
+- **sys.dm_xe_objects**
+- **sys.dm_xe_packages**
 
 
 
  <a name="sqlfindseventsactionstargets" id="sqlfindseventsactionstargets"></a>
 
-## 尋找可用擴充事件、動作和目標
+## <a name="find-the-available-extended-events,-actions,-and-targets"></a>Find the available extended events, actions, and targets
 
 
-您可以執行簡單 SQL **SELECT** 以取得可用事件、動作和目標的清單。
+You can run a simple SQL **SELECT** to obtain a list of the available events, actions, and target.
 
 
 ```
 SELECT
-		o.object_type,
-		p.name         AS [package_name],
-		o.name         AS [db_object_name],
-		o.description  AS [db_obj_description]
-	FROM
-		           sys.dm_xe_objects  AS o
-		INNER JOIN sys.dm_xe_packages AS p  ON p.guid = o.package_guid
-	WHERE
-		o.object_type in
-			(
-			'action',  'event',  'target'
-			)
-	ORDER BY
-		o.object_type,
-		p.name,
-		o.name;
+        o.object_type,
+        p.name         AS [package_name],
+        o.name         AS [db_object_name],
+        o.description  AS [db_obj_description]
+    FROM
+                   sys.dm_xe_objects  AS o
+        INNER JOIN sys.dm_xe_packages AS p  ON p.guid = o.package_guid
+    WHERE
+        o.object_type in
+            (
+            'action',  'event',  'target'
+            )
+    ORDER BY
+        o.object_type,
+        p.name,
+        o.name;
 ```
 
 
@@ -183,90 +184,90 @@ SELECT
 
 &nbsp;
 
-## 您的 SQL Database 事件工作階段的目標
+## <a name="targets-for-your-sql-database-event-sessions"></a>Targets for your SQL Database event sessions
 
 
-以下是可以從您的 SQL Database 上的事件工作階段擷取結果的目標：
+Here are targets that can capture results from your event sessions on SQL Database:
 
 
-- [信號緩衝區目標](http://msdn.microsoft.com/library/ff878182.aspx) -在記憶體中簡短保留事件資料。
-- [事件計數器目標](http://msdn.microsoft.com/library/ff878025.aspx) -會計算在擴充事件工作階段期間發生的所有事件。
-- [事件檔案目標](http://msdn.microsoft.com/library/ff878115.aspx) - 會將完整緩衝區寫入 Azure 儲存體容器。
+- [Ring Buffer target](http://msdn.microsoft.com/library/ff878182.aspx) - Briefly holds event data in memory.
+- [Event Counter target](http://msdn.microsoft.com/library/ff878025.aspx) - Counts all events that occur during an extended events session.
+- [Event File target](http://msdn.microsoft.com/library/ff878115.aspx) - Writes complete buffers to an Azure Storage container.
 
 
-[Windows 事件追蹤 (ETW)](http://msdn.microsoft.com/library/ms751538.aspx) API 不適用於 SQL Database 上的擴充事件。
+The [Event Tracing for Windows (ETW)](http://msdn.microsoft.com/library/ms751538.aspx) API is not available for extended events on SQL Database.
 
 
-## 限制
+## <a name="restrictions"></a>Restrictions
 
 
-有幾個適用於 SQL Database 雲端環境的安全性相關差異：
+There are a couple of security-related differences befitting the cloud environment of SQL Database:
 
 
-- 擴充事件是建構在單一租用戶隔離模型的基礎上。一個資料庫中的事件工作階段無法從另一個資料庫存取資料或事件。
+- Extended events are founded on the single-tenant isolation model. An event session in one database cannot access data or events from another database.
 
-- 無法在 **master** 資料庫的內容中發出 **CREATE EVENT SESSION** 陳述式。
-
-
-## 權限模型
+- You cannot issue a **CREATE EVENT SESSION** statement in the context of the **master** database.
 
 
-您必須擁有資料庫的**控制**權限，才能發出 **CREATE EVENT SESSION** 陳述式。資料庫擁有者 (dbo) 有**控制**權限。
+## <a name="permission-model"></a>Permission model
 
 
-### 儲存體容器授權
+You must have **Control** permission on the database to issue a **CREATE EVENT SESSION** statement. The database owner (dbo) has **Control** permission.
 
 
-您針對 Azure 儲存體容器產生的 SAS 權杖必須指定權限的 **rwl**。**rwl** 值會提供下列權限：
+### <a name="storage-container-authorizations"></a>Storage container authorizations
 
 
-- 讀取
-- 寫入
-- 列出
+The SAS token you generate for your Azure Storage container must specify **rwl** for the permissions. The **rwl** value provides the following permissions:
 
 
-## 效能考量
+- Read
+- Write
+- List
 
 
-有大量使用擴充事件會累積超出整體系統狀況良好所允許的更多作用中記憶體的案例。因此，Azure SQL Database 系統動態設定和調整事件工作階段可以累積的作用中記憶體數量的限制。許多因素會列入動態計算。
+## <a name="performance-considerations"></a>Performance considerations
 
 
-如果您收到錯誤訊息，指出已強制執行記憶體最大值，您可以採取的一些更正動作為：
+There are scenarios where intensive use of extended events can accumulate more active memory than is healthy for the overall system. Therefore the Azure SQL Database system dynamically sets and adjusts limits on the amount of active memory that can be accumulated by an event session. Many factors go into the dynamic calculation.
 
 
-- 執行較少的並行事件工作階段。
+If you receive an error message that says a memory maximum was enforced, some corrective actions you can take are:
 
 
-- 透過您對於事件工作階段的 **CREATE** 和 **ALTER** 陳述式，減少您在 **MAX\_MEMORY** 子句中指定的記憶體數量。
+- Run fewer concurrent event sessions.
 
 
-### 網路延遲
+- Through your **CREATE** and **ALTER** statements for event sessions, reduce the amount of memory you specify on the **MAX\_MEMORY** clause.
 
 
-**事件檔案**目標在將資料保存到 Azure 儲存體 Blob 時可能會遇到網路延遲或失敗。SQL Database 中的其他事件可能會延遲，因為它們會等待網路通訊完成。此延遲會降低您的工作負載。
-
-- 若要減輕這個效能風險，請避免在您的事件工作階段定義中將 **EVENT\_RETENTION\_MODE** 選項設為 **NO\_EVENT\_LOSS**。
+### <a name="network-latency"></a>Network latency
 
 
-## 相關連結
+The **Event File** target might experience network latency or failures while persisting data to Azure Storage blobs. Other events in SQL Database might be delayed while they wait for the network communication to complete. This delay can slow your workload.
+
+- To mitigate this performance risk, avoid setting the **EVENT_RETENTION_MODE** option to **NO_EVENT_LOSS** in your event session definitions.
 
 
-- [搭配 Azure 儲存體使用 Azure PowerShell](../storage/storage-powershell-guide-full.md)
-- [Azure 儲存體 Cmdlet](http://msdn.microsoft.com/library/dn806401.aspx)
+## <a name="related-links"></a>Related links
 
 
-- [搭配 Azure 儲存體使用 Azure PowerShell](../storage/storage-powershell-guide-full.md) - 提供 PowerShell 和 Azure 儲存體服務的完整資訊。
-- [如何使用 .NET 的 Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)
+- [Using Azure PowerShell with Azure Storage](../storage/storage-powershell-guide-full.md).
+- [Azure Storage Cmdlets](http://msdn.microsoft.com/library/dn806401.aspx)
+
+
+- [Using Azure PowerShell with Azure Storage](../storage/storage-powershell-guide-full.md) - Provides comprehensive information about PowerShell and the Azure Storage service.
+- [How to use Blob storage from .NET](../storage/storage-dotnet-how-to-use-blobs.md)
 
 
 - [CREATE CREDENTIAL (Transact-SQL)](http://msdn.microsoft.com/library/ms189522.aspx)
 - [CREATE EVENT SESSION (Transact-SQL)](http://msdn.microsoft.com/library/bb677289.aspx)
 
 
-- [關於 Microsoft SQL Server 中擴充事件的 Jonathan Kehayias 部落格文章](http://www.sqlskills.com/blogs/jonathan/category/extended-events/)
+- [Jonathan Kehayias' blog posts about extended events in Microsoft SQL Server](http://www.sqlskills.com/blogs/jonathan/category/extended-events/)
 
 
-下列連結提供擴充事件的其他程式碼範例主題。不過，您必須定期檢查所有範例以查看範例是否適用於 Microsoft SQL Server 與 Azure SQL Database。然後您可以決定是否需要稍加變更來執行範例。
+Other code sample topics for extended events are available at the following links. However, you must routinely check any sample to see whether the sample targets Microsoft SQL Server versus Azure SQL Database. Then you can decide whether minor changes are needed to run the sample.
 
 
 <!--
@@ -276,4 +277,8 @@ SELECT
 - Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

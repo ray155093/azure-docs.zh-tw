@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Adobe EchoSign 整合 | Microsoft Azure" 
-    description="了解如何使用 Adobe EchoSign 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Adobe EchoSign | Microsoft Azure" 
+    description="Learn how to use Adobe EchoSign with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,148 +11,156 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/11/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Adobe EchoSign 整合
 
-本教學課程的目的是要示範 Azure 與 Adobe EchoSign 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+#<a name="tutorial:-azure-active-directory-integration-with-adobe-echosign"></a>Tutorial: Azure Active Directory integration with Adobe EchoSign
 
--   有效的 Azure 訂閱
--   啟用 Adobe EchoSign 單一登入的訂用帳戶
+The objective of this tutorial is to show the integration of Azure and Adobe EchoSign.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
-完成本教學課程之後，您指派給 Adobe EchoSign 的 Azure AD 使用者就能夠單一登入您 Adobe EchoSign 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)進行單一登入。
+-   A valid Azure subscription
+-   An Adobe EchoSign single sign on enabled subscription
 
-本教學課程中說明的案例由下列建置組塊組成：
+After completing this tutorial, the Azure AD users you have assigned to Adobe EchoSign will be able to single sign into the application at your Adobe EchoSign company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-1.  啟用 Adobe EchoSign 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+The scenario outlined in this tutorial consists of the following building blocks:
 
-![案例](./media/active-directory-saas-adobe-echosign-tutorial/IC789511.png "案例")
-##啟用 Adobe EchoSign 的應用程式整合
+1.  Enabling the application integration for Adobe EchoSign
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-本節的目的是概述如何啟用 Adobe EchoSign 的應用程式整合。
+![Scenario](./media/active-directory-saas-adobe-echosign-tutorial/IC789511.png "Scenario")
+##<a name="enabling-the-application-integration-for-adobe-echosign"></a>Enabling the application integration for Adobe EchoSign
 
-###若要啟用 Adobe EchoSign 的應用程式整合，請執行下列步驟：
+The objective of this section is to outline how to enable the application integration for Adobe EchoSign.
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+###<a name="to-enable-the-application-integration-for-adobe-echosign,-perform-the-following-steps:"></a>To enable the application integration for Adobe EchoSign, perform the following steps:
+
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-adobe-echosign-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-adobe-echosign-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-adobe-echosign-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-adobe-echosign-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-adobe-echosign-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-adobe-echosign-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-adobe-echosign-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **Adobe EchoSign**。
+6.  In the **search box**, type **Adobe EchoSign**.
 
-    ![應用程式庫](./media/active-directory-saas-adobe-echosign-tutorial/IC789514.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-adobe-echosign-tutorial/IC789514.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Adobe EchoSign]，然後按一下 [完成] 加入應用程式。
+7.  In the results pane, select **Adobe EchoSign**, and then click **Complete** to add the application.
 
     ![Adobe EchoSign](./media/active-directory-saas-adobe-echosign-tutorial/IC789515.png "Adobe EchoSign")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
 
-本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Adobe EchoSign 中進行驗證。在此程序中，您必須建立 base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+The objective of this section is to outline how to enable users to authenticate to Adobe EchoSign with their account in Azure AD using federation based on the SAML protocol.  
+As part of this procedure, you are required to create a base-64 encoded certificate file.  
+If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Adobe EchoSign] 應用程式整合頁面上，按一下 [設定單一登入] 開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Adobe EchoSign** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-adobe-echosign-tutorial/IC789516.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-adobe-echosign-tutorial/IC789516.png "Configure Single Sign-On")
 
-2.  在 [要如何讓使用者登入 Adobe EchoSign] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Adobe EchoSign** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-adobe-echosign-tutorial/IC789517.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-adobe-echosign-tutorial/IC789517.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [Adobe EchoSign 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://company.echosign.com/*"，然後按一下 *[下一步]*。
+3.  On the **Configure App URL** page, in the **Adobe EchoSign Sign On URL** textbox, type your URL using the following pattern "*https://company.echosign.com/*", and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-adobe-echosign-tutorial/IC789518.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-adobe-echosign-tutorial/IC789518.png "Configure App URL")
 
-4.  在 [設定在 Adobe EchoSign 單一登入] 頁面上，按一下 [下載憑證]，然後將憑證檔案儲存在您的電腦中。
+4.  On the **Configure single sign-on at Adobe EchoSign** page, click **Download certificate**, and then save the certificate file on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-adobe-echosign-tutorial/IC789519.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-adobe-echosign-tutorial/IC789519.png "Configure Single Sign-On")
 
-5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Adobe EchoSign 公司網站。
+5.  In a different web browser window, log into your Adobe EchoSign company site as an administrator.
 
-6.  在頂端的功能表中，按一下 [帳戶]，然後在左側瀏覽窗格中，按一下 [帳戶設定] 下的 [SAML 設定]。
+6.  In the menu on the top, click **Account**, and then, in the navigation pane on the left die, click **SAML Settings** under **Account Settings**.
 
-    ![帳戶](./media/active-directory-saas-adobe-echosign-tutorial/IC789520.png "帳戶")
+    ![Account](./media/active-directory-saas-adobe-echosign-tutorial/IC789520.png "Account")
 
-7.  在 [SAML 設定] 區段中，執行下列步驟：
+7.  In the SAML Settings section, perform the following steps:
 
-    ![SAML 設定](./media/active-directory-saas-adobe-echosign-tutorial/IC789521.png "SAML 設定")
+    ![SAML Settings](./media/active-directory-saas-adobe-echosign-tutorial/IC789521.png "SAML Settings")
 
-    1.  針對 [SAML 模式]，選取 [SAML 強制]。
-    2.  選取 [允許 EchoSign 帳戶管理員使用其 EchoSign 認證登入]。
-    3.  針對 [使用者建立]，選取 [透過 SAML 自動新增已驗證的使用者]。
+    1.  As **SAML Mode**, select **SAML Mandatory**.
+    2.  Select **Allow EchoSign Account Administrators to log in using their EchoSign Credentials**.
+    3.  As **User Creation**, select **Automatically add users authenticated through SAML**.
 
-8.  繼續執行下列步驟：
+8.  Move on, performing the following steps:
 
-    ![SAML 設定](./media/active-directory-saas-adobe-echosign-tutorial/IC789522.png "SAML 設定")
+    ![SAML Settings](./media/active-directory-saas-adobe-echosign-tutorial/IC789522.png "SAML Settings")
 
-    1.  在 Azure 傳統入口網站中的 [在 Adobe EchoSign 設定單一登入] 對話方塊頁面上，複製 [實體識別碼] 的值，然後將它貼至 [IdP 實體識別碼] 文字方塊中。
-    2.  在 Azure 傳統入口網站的 [設定在 Adobe EchoSign 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [IdP 登入 URL] 文字方塊中。
-    3.  在 Azure 傳統入口網站的 [設定在 Adobe EchoSign 單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [IdP 登出 URL] 文字方塊中。
-    4.  從您下載的憑證建立「Base-64 編碼」檔案。
+    1.  In the Azure classic portal, on the **Configure single sign-on at Adobe EchoSign** dialog page, copy the **Entity ID** value, and then paste it into the **IdP Entity ID** textbox.
+    2.  In the Azure classic portal, on the **Configure single sign-on at Adobe EchoSign** dialog page, copy the **Remote Login URL** value, and then paste it into the **IdP Login URL** textbox.
+    3.  In the Azure classic portal, on the **Configure single sign-on at Adobe EchoSign** dialog page, copy the **Remote Logout URL** value, and then paste it into the **IdP Logout URL** textbox.
+    4.  Create a **base-64 encoded** file from your downloaded certificate.  
 
-		>[AZURE.TIP] 如需詳細資料，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
-    5.  在記事本中開啟您的 base-64 編碼的憑證，將其內容複製到您的剪貼簿，然後貼至 [IdP 憑證] 文字方塊中。
-    6.  按一下 [儲存變更]。
+        >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
+    5.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **IdP Certificate** textbox 6.  Click **Save Changes**.
 
-9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-adobe-echosign-tutorial/IC789523.png "設定單一登入")
-##設定使用者佈建
+    ![Configure Single Sign-On](./media/active-directory-saas-adobe-echosign-tutorial/IC789523.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
 
-若要讓 Azure AD 使用者能夠登入 Adobe EchoSign，必須將他們佈建到 Adobe EchoSign。Adobe EchoSign 需以手動方式佈建。
+In order to enable Azure AD users to log into Adobe EchoSign, they must be provisioned into Adobe EchoSign.  
+In the case of Adobe EchoSign, provisioning is a manual task.
 
-###若要佈建使用者帳戶，請執行下列步驟：
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
 
-1.  以系統管理員身分登入您的 **Adobe EchoSign** 公司網站。
+1.  Log in to your **Adobe EchoSign** company site as administrator.
 
-2.  在頂端的功能表中，按一下 [帳戶]，然後在左側瀏覽窗格中，按一下 [使用者和群組]，接著按一下 [建立新的使用者]。
+2.  In the menu on the top, click **Account**, and then, in the navigation pane on the left die, click **Users & Groups**, and then, click **Create a new user**.
 
-    ![帳戶](./media/active-directory-saas-adobe-echosign-tutorial/IC789524.png "帳戶")
+    ![Account](./media/active-directory-saas-adobe-echosign-tutorial/IC789524.png "Account")
 
-3.  在 [建立新的使用者] 區段中，執行下列步驟：
+3.  In the **Create New User** section, perform the following steps:
 
-    ![建立使用者](./media/active-directory-saas-adobe-echosign-tutorial/IC789525.png "建立使用者")
+    ![Create User](./media/active-directory-saas-adobe-echosign-tutorial/IC789525.png "Create User")
 
-    1.  在相關的文字方塊中，輸入您想要佈建之有效 ADD 帳戶的 [電子郵件地址]、[名字] 和 [姓氏]。
-    2.  按一下 [建立使用者]。
+    1.  Type the **Email Address**, **First Name** and **Last Name** of a valid AAD account you want to provision into the related textboxes.
+    2.  Click **Create User**.
 
-		>[AZURE.NOTE] Azure Active Directory 帳戶的持有者會收到一封包含連結的電子郵件，以便在帳戶啟用前加以確認。
+        >[AZURE.NOTE] The Azure Active Directory account holder will receive an email that includes a link to confirm the account before it becomes active.
 
->[AZURE.NOTE] 您可以使用任何其他的 Adobe EchoSign 使用者帳戶建立工具或 Adobe EchoSign 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Adobe EchoSign user account creation tools or APIs provided by Adobe EchoSign to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
 
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要將使用者指派到 Adobe EchoSign，請執行下列步驟：
+###<a name="to-assign-users-to-adobe-echosign,-perform-the-following-steps:"></a>To assign users to Adobe EchoSign, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Adobe EchoSign] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Adobe EchoSign **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-adobe-echosign-tutorial/IC789526.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-adobe-echosign-tutorial/IC789526.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-adobe-echosign-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-adobe-echosign-tutorial/IC767830.png "Yes")
 
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

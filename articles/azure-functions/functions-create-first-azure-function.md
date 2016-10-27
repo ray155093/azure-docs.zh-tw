@@ -1,6 +1,6 @@
 <properties
-   pageTitle="建立您的第一個 Azure 函式 | Microsoft Azure"
-   description="在兩分鐘內建立您的第一個 Azure 函式 (無伺服器的應用程式)。"
+   pageTitle="Create your first Azure Function | Microsoft Azure"
+   description="Build your first Azure Function, a serverless application, in less than two minutes."
    services="functions"
    documentationCenter="na"
    authors="ggailey777"
@@ -18,56 +18,65 @@
    ms.date="09/08/2016"
    ms.author="glenga"/>
 
-#建立您的第一個 Azure 函式
 
-##Overview
-Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 應用程式平台，使其可實作其他 Azure 服務、SaaS 產品和內部部署系統內事件所觸發的程式碼。透過 Azure Functions，您的應用程式會根據需求調整，而您只需要支付所用資源的費用。Azure Functions 可您建立以各種程式設計語言實作的已排程或觸發的程式碼單位。若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
+#<a name="create-your-first-azure-function"></a>Create your first Azure Function
 
-本主題說明如何在入口網站中使用 Azure Functions 快速入門，建立由 HTTP 觸發程序叫用的簡單 "hello world" Node.js 函式。您也可以觀賞短片，了解如何在入口網站中執行這些步驟。
+##<a name="overview"></a>Overview
+Azure Functions is an event-driven, compute-on-demand experience that extends the existing Azure application platform with capabilities to implement code triggered by events occurring in other Azure services, SaaS products, and on-premises systems. With Azure Functions, your applications scale based on demand and you pay only for the resources you consume. Azure Functions enables you to create scheduled or triggered units of code implemented in a variety of programming languages. To learn more about Azure Functions, see the [Azure Functions Overview](functions-overview.md).
 
-## 觀賞影片
+This topic shows you how to use the Azure Functions quickstart in the portal to create a simple "hello world"  Node.js function that is invoked by an HTTP-trigger. You can also watch a short video to see how these steps are performed in the portal.
 
-下列影片顯示如何在本教學課程中執行基本步驟：
+## <a name="watch-the-video"></a>Watch the video
+
+The following video show how to perform the basic steps in this tutorial. 
 
 [AZURE.VIDEO create-your-first-azure-function-simple]
 
-##從快速入門建立函式
+##<a name="create-a-function-from-the-quickstart"></a>Create a function from the quickstart
 
-函式應用程式可在 Azure 中主控函式的執行。請遵循下列步驟來建立新的函式應用程式以及新的函式。新的函式應用程式以會預設組態建立。如需如何明確建立函式應用程式的範例，請參閱[其他 Azure Functions 快速入門教學課程](functions-create-first-azure-function-azure-portal.md)。
+A function app hosts the execution of your functions in Azure. Follow these steps to create a new function app as well as the new function. The new function app is created with a default configuration. For an example of how to explicitly create your function app, see [the other Azure Functions quickstart tutorial](functions-create-first-azure-function-azure-portal.md).
 
-您必須先具備有效的 Azure 帳戶，才可以建立第一個函式。如果您還沒有 Azure 帳戶，[可以使用免費帳戶](https://azure.microsoft.com/free/)。
+Before you can create your first function, you need to have an active Azure account. If you don't already have an Azure account, [free accounts are available](https://azure.microsoft.com/free/).
 
-1. 移至 [Azure Functions 入口網站](https://functions.azure.com/signin)，然後以您的 Azure 帳戶登入。
+1. Go to the [Azure Functions portal](https://functions.azure.com/signin) and sign-in with your Azure account.
 
-2. 輸入新函式應用程式的唯一 [名稱] 或接受所產生的名稱，選取您偏好的 [區域]，然後按一下 [建立 + 開始]。
+2. Type a unique **Name** for your new function app or accept the generated one, select your preferred **Region**, then click **Create + get started**. 
 
-3. 在 [快速入門] 索引標籤中，按一下 [WebHook + API] 及 [JavaScript]，然後按一下 [建立函式]。隨即建立新的預先定義的 Node.js 函式。
+3. In the **Quickstart** tab, click **WebHook + API** and **JavaScript**, then click **Create a function**. A new predefined Node.js function is created. 
 
-	![](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
+    ![](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
 
-4. (選擇性) 此時，您可以在快速入門中，選擇在入口網站中進行 Azure Functions 功能的快速導覽。一旦完成或跳過本教學課程，您可以使用 HTTP 觸發程序來測試新函式。
+4. (Optional) At this point in the quickstart, you can choose to take a quick tour of Azure Functions features in the portal.   Once you have completed or skipped the tour, you can test your new function by using the HTTP trigger.
 
-##測試函式
+##<a name="test-the-function"></a>Test the function
 
-由於 Azure Functions 快速入門包含功能程式碼，您可以立即測試您的新函式。
+Since the Azure Functions quickstarts contain functional code, you can immediately test your new function.
 
-1. 在 [開發] 索引標籤中，檢閱 [程式碼] 視窗，並請注意此 Node.js 程式碼預期 HTTP 要求有在訊息內文中或在查詢字串中傳遞的 *name* 值。此函式執行時，回應訊息中會傳回這個值。
+1. In the **Develop** tab, review the **Code** window and notice that this Node.js code expects an HTTP request with a *name* value passed either in the message body or in a query string. When the function runs, this value is returned in the response message.
 
-	![](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
+    ![](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
 
-2. 向下捲動至 [要求本文] 文字方塊，將 name 屬性的值變更為您的名稱，然後按一下 [執行]。您會看到執行是由測試 HTTP 要求所觸發，資訊會寫入至串流記錄檔，而 "hello" 回應會顯示在 [輸出] 中。
+2. Scroll down to the **Request body** text box, change the value of the *name* property to your name, and click **Run**. You will see that execution is triggered by a test HTTP request, information is written to the streaming logs, and the "hello" response is displayed in the **Output**. 
 
-3. 若要從另一個瀏覽器視窗或索引標籤觸發相同函式的執行，請從 [開發] 索引標籤複製 [函式 URL] 值並貼到瀏覽器網址列中，然後附加查詢字串值 `&name=yourname` 並按 Enter 鍵。相同的資訊會寫入至記錄檔，而瀏覽器會像之前一樣顯示 "hello" 回應。
+3. To trigger execution of the same function from another browser window or tab, copy the **Function URL** value from the **Develop** tab and paste it in a browser address bar, then append the query string value `&name=yourname` and press enter. The same information is written to the logs and the browser displays the "hello" response as before.
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-本快速入門示範非常簡單的基本 HTTP 觸發函式執行。如需有關在您的應用程式中運用 Azure Functions 功能的詳細資訊，請參閱下列主題。
+This quickstart demonstrates a very simple execution of a basic HTTP-triggered function. See these topics for more information about leveraging the power of Azure Functions in your apps.
 
-+ [Azure Functions 開發人員參考](functions-reference.md) 可供程式設計人員撰寫函式程式碼及定義觸發程序和繫結時參考。
-+ [測試 Azure Functions](functions-test-a-function.md) 說明可用於測試函式的各種工具和技巧。
-+ [如何調整 Azure 函數](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。
-+ [什麼是 Azure 應用程式服務？](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。
++ [Azure Functions developer reference](functions-reference.md)  
+Programmer reference for coding functions and defining triggers and bindings.
++ [Testing Azure Functions](functions-test-a-function.md)  
+Describes various tools and techniques for testing your functions.
++ [How to scale Azure Functions](functions-scale.md)  
+Discusses service plans available with Azure Functions, including the Dynamic service plan, and how to choose the right plan. 
++ [What is Azure App Service?](../app-service/app-service-value-prop-what-is.md)  
+Azure Functions leverages the Azure App Service platform for core functionality like deployments, environment variables, and diagnostics. 
 
-[AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
+[AZURE.INCLUDE [Getting Started Note](../../includes/functions-get-help.md)]
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

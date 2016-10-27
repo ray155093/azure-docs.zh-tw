@@ -1,112 +1,115 @@
 <properties 
-    pageTitle="使用 PowerShell 變更 Azure SQL Database 的服務層級和效能等級" 
-    description="變更 Azure SQL Database 的服務層級和效能等級說明如何使用 PowerShell 相應增加或減少您的 SQL Database。使用 PowerShell 變更 Azure SQL Database 的定價層。" 
-	services="sql-database"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Change the service tier and performance level of an Azure SQL database using PowerShell | Microsoft Azure" 
+    description="Change the service tier and performance level of an Azure SQL database shows how to scale your SQL database up or down with PowerShell. Changing the pricing tier of an Azure SQL database with PowerShell." 
+    services="sql-database"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="NA"
-	ms.date="07/19/2016"
-	ms.author="sstein"
-	ms.workload="data-management"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"/>
+    ms.service="sql-database"
+    ms.devlang="NA"
+    ms.date="10/12/2016"
+    ms.author="sstein"
+    ms.workload="data-management"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"/>
 
 
-# 使用 PowerShell 變更 SQL Database 的服務層級級和效能等級 (定價層)
+
+# <a name="change-the-service-tier-and-performance-level-(pricing-tier)-of-a-sql-database-with-powershell"></a>Change the service tier and performance level (pricing tier) of a SQL database with PowerShell
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-scale-up.md)
-- [PowerShell](sql-database-scale-up-powershell.md)
+- [Azure portal](sql-database-scale-up.md)
+- [**PowerShell**](sql-database-scale-up-powershell.md)
 
 
-服務層和效能層級描述您的 SQL Database 可用的功能和資源，而且可以視您的應用程式變更進行更新。如需詳細資訊，請參閱[服務層](sql-database-service-tiers.md)。
+Service tiers and performance levels describe the features and resources available for your SQL database and can be updated as the needs of your application change. For details, see [Service Tiers](sql-database-service-tiers.md).
 
-請注意，變更資料庫的服務層和/或效能層級會在新的效能層級建立原始資料庫的複本，然後將連接切換到複本。此程序期間不會遺失任何資料，但在我們切換到複本的短暫期間，資料庫的連接會停用，因此執行中的某些交易可能會回復。這個時間範圍會有不同，但平均在 4 秒下，而且超過 99% 的案例少於 30 秒。很少發生，尤其是如果在連接停用時有大型交易執行中，則此時間範圍可能會更長。
+Note that changing the service tier and/or performance level of a database creates a replica of the original database at the new performance level, and then switches connections over to the replica. No data is lost during this process but during the brief moment when we switch over to the replica, connections to the database are disabled, so some transactions in flight may be rolled back. This window varies, but is on average under 4 seconds, and in more than 99% of cases is less than 30 seconds. Very infrequently, especially if there are large numbers of transactions in flight at the moment connections are disabled, this window may be longer.  
 
-整個向上調整程序的期間取決於資料庫變更前後的大小和服務層。例如，在標準服務層內進行變更的 250 GB 資料庫應在 6 小時內完成。對於進階服務層內變更效能層級的相同大小資料庫，它應該在 3 小時內完成。
-
-
-- 若要將資料庫降級，資料庫應該小於目標服務層允許的大小上限。
-- 升級資料庫時若將[異地複寫](sql-database-geo-replication-portal.md)啟用，您必須先將其次要資料庫升級為所需的效能層，然後再升級主要資料庫。
-- 從高階服務層降級時，您必須先終止所有的「異地複寫」關聯性。您可以遵循[從中斷情況復原](sql-database-disaster-recovery.md)主題所述的步驟，停止主要資料庫與作用中次要資料庫之間的複寫程序。
-- 還原服務會針對各種服務層提供不同的選項。降級後您可能會無法還原至某個時間點，或具有較短的備份保留期限。如需詳細資訊，請參閱 [Azure SQL Database 備份和還原](sql-database-business-continuity.md)。
-- 完成變更之前，不會將新屬性套用至資料庫。
+The duration of the entire scale-up process depends on both the size and service tier of the database before and after the change. For example, a 250 GB database that is changing to, from, or within a Standard service tier, should complete within 6 hours. For a database of the same size that is changing performance levels within the Premium service tier, it should complete within 3 hours.
 
 
-
-**若要完成本文，您需要下列項目：**
-
-- Azure 訂用帳戶。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]，然後再回來完成這篇文章。
-- Azure SQL Database。如果您沒有 SQL Database，請遵循此文章中的步驟來建立：[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
-- Azure PowerShell。
-
-
-[AZURE.INCLUDE [啟動 PowerShell 工作階段](../../includes/sql-database-powershell.md)]
+- To downgrade a database, the database should be smaller than the maximum allowed size of the target service tier. 
+- When upgrading a database with [Geo-Replication](sql-database-geo-replication-portal.md) enabled, you must first upgrade its secondary databases to the desired performance tier before upgrading the primary database.
+- When downgrading from a Premium service tier, you must first terminate all Geo-Replication relationships. You can follow the steps described in the [Recover from an outage](sql-database-disaster-recovery.md) topic to stop the replication process between the primary and the active secondary databases.
+- The restore service offerings are different for the various service tiers. If you are downgrading you may lose the ability to restore to a point in time, or have a lower backup retention period. For more information, see [Azure SQL Database Backup and Restore](sql-database-business-continuity.md).
+- The new properties for the database are not applied until the changes are complete.
 
 
 
-## 變更您的 SQL Database 的服務層級和效能等級
+**To complete this article you need the following:**
 
-執行 **Set-AzureRmSqlDatabase** Cmdlet 並將 **-RequestedServiceObjectiveName** 設為想要之定價層的效能等級；例如 *S0*、*S1*、*S2*、*S3*、*P1*、*P2*、...
+- An Azure subscription. If you need an Azure subscription simply click **FREE ACCOUNT** at the top of this page, and then come back to finish this article.
+- An Azure SQL database. If you do not have a SQL database, create one following the steps in this article: [Create your first Azure SQL Database](sql-database-get-started.md).
+- Azure PowerShell.
 
-    $ResourceGroupName = "resourceGroupName"
+
+[AZURE.INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
+
+
+
+## <a name="change-the-service-tier-and-performance-level-of-your-sql-database"></a>Change the service tier and performance level of your SQL database
+
+Run the **Set-AzureRmSqlDatabase** cmdlet and set the **-RequestedServiceObjectiveName** to the performance level of the desired pricing tier; for example *S0*, *S1*, *S2*, *S3*, *P1*, *P2*, ...
+
+```
+$ResourceGroupName = "resourceGroupName"
     
-    $ServerName = "serverName"
-    $DatabaseName = "databaseName"
+$ServerName = "serverName"
+$DatabaseName = "databaseName"
 
-    $NewEdition = "Standard"
-    $NewPricingTier = "S2"
+$NewEdition = "Standard"
+$NewPricingTier = "S2"
 
-    $ScaleRequest = Set-AzureRmSqlDatabase -DatabaseName $DatabaseName -ServerName $ServerName -ResourceGroupName $ResourceGroupName -Edition $NewEdition -RequestedServiceObjectiveName $NewPricingTier
-
+Set-AzureRmSqlDatabase -DatabaseName $DatabaseName -ServerName $ServerName -ResourceGroupName $ResourceGroupName -Edition $NewEdition -RequestedServiceObjectiveName $NewPricingTier
+```
 
   
 
    
 
 
-## 變更您的 SQL Database 之服務層級和效能等級的範例 PowerShell 指令碼
+## <a name="sample-powershell-script-to-change-the-service-tier-and-performance-level-of-your-sql-database"></a>Sample PowerShell script to change the service tier and performance level of your SQL database
 
-    
+Replace ```{variables}``` with your values (do not include the curly braces).
 
+```
+$SubscriptionId = "{4cac86b0-1e56-bbbb-aaaa-000000000000}"
     
-    $SubscriptionId = "4cac86b0-1e56-bbbb-aaaa-000000000000"
+$ResourceGroupName = "{resourceGroup}"
+$Location = "{AzureRegion}"
     
-    $ResourceGroupName = "resourceGroupName"
-    $Location = "Japan West"
+$ServerName = "{server}"
+$DatabaseName = "{database}"
     
-    $ServerName = "serverName"
-    $DatabaseName = "databaseName"
+$NewEdition = "{Standard}"
+$NewPricingTier = "{S2}"
     
-    $NewEdition = "Standard"
-    $NewPricingTier = "S2"
+Add-AzureRmAccount
+Set-AzureRmContext -SubscriptionId $SubscriptionId
     
-    Add-AzureRmAccount
-    Select-AzureRmSubscription -SubscriptionId $SubscriptionId
-    
-    $ScaleRequest = Set-AzureRmSqlDatabase -DatabaseName $DatabaseName -ServerName $ServerName -ResourceGroupName $ResourceGroupName -Edition $NewEdition -RequestedServiceObjectiveName $NewPricingTier
-    
-    $ScaleRequest
-    
+Set-AzureRmSqlDatabase -DatabaseName $DatabaseName -ServerName $ServerName -ResourceGroupName $ResourceGroupName -Edition $NewEdition -RequestedServiceObjectiveName $NewPricingTier
+```
         
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [相應放大和縮小](sql-database-elastic-scale-get-started.md)
-- [使用 SSMS 連接和查詢 SQL Database](sql-database-connect-query-ssms.md)
-- [匯出 Azure SQL Database](sql-database-export-powershell.md)
+- [Scale out and in](sql-database-elastic-scale-get-started.md)
+- [Connect and query a SQL database with SSMS](sql-database-connect-query-ssms.md)
+- [Export an Azure SQL database](sql-database-export-powershell.md)
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [SQL Database 文件](http://azure.microsoft.com/documentation/services/sql-database/)
-- [Azure SQL Database Cmdlet](http://msdn.microsoft.com/library/mt574084.aspx)
+- [Business Continuity Overview](sql-database-business-continuity.md)
+- [SQL Database documentation](http://azure.microsoft.com/documentation/services/sql-database/)
+- [Azure SQL Database Cmdlets](http://msdn.microsoft.com/library/mt574084.aspx)
 
-<!---HONumber=AcomDC_0720_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

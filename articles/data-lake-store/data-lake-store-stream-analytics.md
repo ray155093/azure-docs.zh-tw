@@ -1,6 +1,6 @@
 <properties
-   pageTitle="將來自串流分析的資料串流處理至 Data Lake Store | Azure"
-   description="使用 Azure 串流分析將資料串流處理至 Azure Data Lake Store"
+   pageTitle="Stream data from Stream Analytics into Data Lake Store | Azure"
+   description="Use Azure Stream Analytics to stream data into Azure Data Lake Store"
    services="data-lake-store,stream-analytics" 
    documentationCenter=""
    authors="nitinme"
@@ -16,117 +16,122 @@
    ms.date="07/07/2016"
    ms.author="nitinme"/>
 
-# 使用 Azure 串流分析將來自 Azure 儲存體 Blob 的資料串流處理至 Data Lake Store
 
-在這篇文章中，您將了解如何使用 Azure Data Lake Store 做為 Azure 串流分析作業的輸出。這篇文章示範從 Azure 儲存體 Blob (輸入) 讀取資料以及將資料寫入至 Data Lake Store (輸出) 的簡單案例。
+# <a name="stream-data-from-azure-storage-blob-into-data-lake-store-using-azure-stream-analytics"></a>Stream data from Azure Storage Blob into Data Lake Store using Azure Stream Analytics
 
->[AZURE.NOTE] 目前只有在 [Azure 傳統入口網站](https://manage.windowsazure.com)支援建立及設定串流分析的 Data Lake Store 輸出。因此，此教學課程的部份內容會使用 Azure 傳統入口網站。
+In this article you will learn how to use Azure Data Lake Store as an output for an Azure Stream Analytics job. This article demonstrates a simple scenario that reads data from an Azure Storage blob (input) and writes the data to Data Lake Store (output).
 
-## 必要條件
+>[AZURE.NOTE] At this time, creation and configuration of Data Lake Store outputs for Stream Analytics is supported only in the [Azure Classic Portal](https://manage.windowsazure.com). Hence, some parts of this tutorial will use the Azure Classic Portal.
 
-開始進行本教學課程之前，您必須具備下列條件：
+## <a name="prerequisites"></a>Prerequisites
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+Before you begin this tutorial, you must have the following:
 
-- **啟用您的 Azure 訂用帳戶**以使用「Data Lake Store 公開預覽版」。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
 
-- **Azure 儲存體帳戶**您將使用來自此帳戶的 Blob 容器來輸入串流分析作業的資料。本教學課程中，假設您建立名為 **datalakestoreasa** 的儲存體帳戶，並在該帳戶中建立名為 **datalakestoreasacontainer** 的容器。一旦您已建立容器，請將範例資料檔案上傳給容器。您可以從 [Azure Data Lake Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)取得範例資料檔案。您可以使用各種用戶端，例如：[Azure 儲存體總管](http://storageexplorer.com/)，將資料上傳至 Blob 容器。
+- **Enable your Azure subscription** for Data Lake Store Public Preview. See [instructions](data-lake-store-get-started-portal.md#signup).
 
-	>[AZURE.NOTE] 如果您是從 Azure 入口網站建立帳戶，請確定您以**傳統**部署模型建立。這可確保儲存體帳戶可從 Azure 傳統入口網站進行存取，因為這是我們用來建立串流分析作業的方式。如需關於如何從 Azure 入口網站使用傳統部署建立儲存體帳戶的指示，請參閱[建立 Azure 儲存體帳戶](../storage/storage-create-storage-account/#create-a-storage-account)。
-	>
-	> 或者，您可以從 Azure 傳統入口網站來建立儲存體帳戶。
+- **Azure Storage account**. You will use a blob container from this account to input data for a Stream Analytics job. For this tutorial, assume you create a storage account called **datalakestoreasa** and a container within the account called **datalakestoreasacontainer**. Once you have created the container, upload a sample data file to it. You can get a sample data file from the [Azure Data Lake Git Repository](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt). You can use various clients, such as [Azure Storage Explorer](http://storageexplorer.com/), to upload data to a blob container.
 
-- **Azure Data Lake Store 帳戶**。遵循[使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。
+    >[AZURE.NOTE] If you create the account from the Azure Portal, make sure you create it with the **Classic** deployment model. This ensures that the storage account can be accessed from the Azure Classic Portal, because that is what we use to create a Stream Analytics job. For instructions on how to create a storage account from the Azure Portal using the Classic deployment, see [Create an Azure Storage account](../storage/storage-create-storage-account/#create-a-storage-account).
+    >
+    > Or, you could create a storage account from the Azure Classic Portal.
+
+- **Azure Data Lake Store account**. Follow the instructions at [Get started with Azure Data Lake Store using the Azure Portal](data-lake-store-get-started-portal.md).  
 
 
-## 建立串流分析作業
+## <a name="create-a-stream-analytics-job"></a>Create a Stream Analytics Job
 
-您可以從建立包含輸入來源和輸出目的地的串流分析作業開始。本教學課程中，來源是 Azure Blob 容器，而目的地則是 Data Lake Store。
+You start by creating a Stream Analytics job that includes an input source and an output destination. For this tutorial, the source is an Azure blob container and the destination is Data Lake Store.
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+1. Sign on to the [Azure Classic Portal](https://manage.windowsazure.com).
 
-2. 從畫面左下方，依序按一下 [新增]、[資料服務]，[串流分析] 和 [快速建立]。提供如下所示的值，然後按一下 [建立串流分析作業]。
+2. From the bottom-left of the screen, click **New**, **Data Services**, **Stream Analytics**, **Quick Create**. Provide the values as shown below and then click **Create Stream Analytics Job**.
 
-	![建立串流分析作業](./media/data-lake-store-stream-analytics/create.job.png "建立串流分析作業")
+    ![Create a Stream Analytics Job](./media/data-lake-store-stream-analytics/create.job.png "Create a Stream Analytics job")
 
-## 建立作業的 Blob 輸入
+## <a name="create-a-blob-input-for-the-job"></a>Create a Blob input for the job
 
-1. 開啟「串流分析作業」頁面，按一下 [輸入] 索引標籤，然後再按一下 [新增輸入] 來啟動精靈。
+1. Open the page for the Stream Analytics job, click the **Inputs** tab, and then click **Add an Input** to launch a wizard.
 
-2. 在「將輸入新增至您的作業」頁面上，選取 [資料流]，然後按一下下一步箭頭。
+2. On the **Add an input to your job** page, select **Data stream**, and then click the forward arrow.
 
-	![將輸入新增至您的作業](./media/data-lake-store-stream-analytics/create.input.1.png "將輸入新增至您的作業")
+    ![Add an input to your job](./media/data-lake-store-stream-analytics/create.input.1.png "Add an input to your job")
 
-3. 在「將資料流新增至您的作業」頁面上，選取 [Blob 儲存體]，然後按一下下一步箭頭。
+3. On the **Add a data stream to your job** page, select **Blob storage**, and then click the forward arrow.
 
-	![將資料流新增至作業](./media/data-lake-store-stream-analytics/create.input.2.png "將資料流新增至作業")
+    ![Add a data stream to the job](./media/data-lake-store-stream-analytics/create.input.2.png "Add a data stream to the job")
 
-4. 在**「Blob 儲存體設定」**頁面上，提供您會用來當做輸入資料來源的 Blob 儲存體詳細資料。
+4. On the **Blob storage settings** page, provide details for the blob storage that you will use as the input data source.
 
-	![提供 Blob 儲存體設定](./media/data-lake-store-stream-analytics/create.input.3.png "提供 Blob 儲存體設定")
+    ![Provide the blob storage settings](./media/data-lake-store-stream-analytics/create.input.3.png "Provide the blob storage settings")
 
-	* **輸入一個輸入別名**。這是提供作業輸入用的唯一名稱。
-	* **選取儲存體帳戶**。請確定儲存體帳戶和串流分析作業位於相同的區域，否則在區域之間移動資料，您會需要支付額外費用。
-	* **提供儲存體容器**。您可以選擇建立新的容器，或選取現有的容器。
+    * **Enter an input alias**. This is a unique name you provide for the job input.
+    * **Select a storage account**. Make sure the storage account is in the same region as the Stream Analytics job or you will incur additional cost of moving data between regions.
+    * **Provide a storage container**. You can choose to create a new container or select an existing container.
 
-	按一下向前箭號。
+    Click the forward arrow.
 
-5. 在「序列化設定」頁面上，將序列化格式設定為 [CSV]、分隔符號設定為 [索引標籤]，而編碼設定為 [UTF8]，然後按一下核取記號。
+5. On the **Serialization settings** page, set the serialization format as **CSV**, delimiter as **tab**, encoding as **UTF8**, and then click the checkmark.
 
-	![提供序列化設定](./media/data-lake-store-stream-analytics/create.input.4.png "提供序列化設定")
+    ![Provide the serialization settings](./media/data-lake-store-stream-analytics/create.input.4.png "Provide the serialization settings")
 
-6. 一旦您完成精靈之後，會將 Blob 輸入新增到 [輸入] 索引標籤之下，而 [診斷] 欄位應該會顯示 [確定]。您也可以使用下方的 [測試連線] 按鈕，明確地測試輸入的連線。
+6. Once you are done with the wizard, the blob input will be added under the **Inputs** tab and the **Diagnosis** column should show **OK**. You can also explicitly test the connection to the input by using the **Test Connection** button at the bottom.
 
-## 建立作業的 Data Lake Store 輸出
+## <a name="create-a-data-lake-store-output-for-the-job"></a>Create a Data Lake Store output for the job
 
-1. 開啟「串流分析作業」頁面，按一下 [輸出] 索引標籤，然後再按一下 [新增輸出] 來啟動精靈。
+1. Open the page for the Stream Analytics job, click the **Outputs** tab, and then click **Add an Output** to launch a wizard.
 
-2. 在「將輸出新增至您的作業」頁面上，選取 [Data Lake Store]，然後按一下下一步箭頭。
+2. On the **Add an output to your job** page, select **Data Lake Store**, and then click the forward arrow.
 
-	![將輸出新增至您的作業](./media/data-lake-store-stream-analytics/create.output.1.png "將輸出新增至您的作業")
+    ![Add an output to your job](./media/data-lake-store-stream-analytics/create.output.1.png "Add an output to your job")
 
-3. 在「授權連線」頁面上，如果您已建立 Data Lake Store 帳戶，請按一下 [立即授權]。否則，請按一下 [立即註冊] 來建立新帳戶。本教學課程中，讓我們假設您已建立 Data Lake Store 帳戶 (如必要條件中所述)。您將使用登入 Azure 傳統入口網站的認證來取得自動授權。
+3. On the **Authorize connection** page, if you have already created a Data Lake Store account, click **Authorize Now**. Otherwise, click **Sign up now** to create a new account. For this tutorial, let us assume that you already have a Data Lake Store account created (as mentioned in the prerequisite). You will be automatically authorized using the credentials with which you signed into the Azure Classic Portal.
 
-	![授權 Data Lake Store](./media/data-lake-store-stream-analytics/create.output.2.png "授權 Data Lake Store")
+    ![Authorize Data Lake Store](./media/data-lake-store-stream-analytics/create.output.2.png "Authorize Data Lake Store")
 
-4. 在「Data Lake Store」設定頁面上，輸入如下方螢幕擷取畫面中所示的資訊。
+4. On the **Data Lake Store Settings** page, enter the information as shown in the screen capture below.
 
-	![指定 Data Lake Store 設定](./media/data-lake-store-stream-analytics/create.output.3.png "指定 Data Lake Store 設定")
+    ![Specify Data Lake Store settings](./media/data-lake-store-stream-analytics/create.output.3.png "Specify Data Lake Store settings")
 
-	* **輸入一個輸出別名**。這是提供作業輸出用的唯一名稱。
-	* **指定 Data Lake Store 帳戶**。您應該已經建立此帳戶，如必要條件中所述。
-	* **指定路徑前置詞模式**。您必須指定此項目，才能識別由串流分析作業寫入至 Data Lake Store 的輸出檔案。因為由作業所寫入的輸出標題為 GUID 格式，因此納入前置詞可協助識別已寫入的輸出。如果您想要包含日期和時間戳記，做為前置詞的一部分，請確定將 `{date}/{time}` 納入前置詞模式中。如果您納入此模式，就會啟用 [日期格式] 和 [時間格式] 欄位，而且可以選取希望使用的格式。
+    * **Enter an output alias**. This is a unique name you provide for the job output.
+    * **Specify a Data Lake Store account**. You should have already created this, as mentioned in the prerequisite.
+    * **Specify a path prefix pattern**. This is required to identify the output files that are written to Data Lake Store by the Stream Analytics job. Because the titles of outputs written by the job are in a GUID format, including a prefix will help identify the written output. If you want to include a date and time stamp as part of the prefix make sure you include `{date}/{time}` in the prefix pattern. If you include this, the **Date Format **and **Time Format** fields are enabled and you can select the format of choice.
 
-	按一下向前箭號。
+    Click the forward arrow.
 
-5. 在「序列化設定」頁面上，將序列化格式設定為 [CSV]、分隔符號設定為 [索引標籤]，而編碼設定為 [UTF8]，然後按一下核取記號。
+5. On the **Serialization settings** page, set the serialization format as **CSV**, delimiter as **tab**, encoding as **UTF8**, and then click the check mark.
 
-	![指定輸出格式](./media/data-lake-store-stream-analytics/create.output.4.png "指定輸出格式")
+    ![Specify the output format](./media/data-lake-store-stream-analytics/create.output.4.png "Specify the output format")
 
-6. 一旦您完成精靈之後，會將 Data Lake Store 輸出新增到 [輸出] 索引標籤之下，而 [診斷] 欄位應該會顯示 [確定]。您也可以使用下方的 [測試連接] 按鈕，明確地測試至輸出的連接。
+6. Once you are done with the wizard, the Data Lake Store output will be added under the **Outputs** tab and the **Diagnosis** column should show **OK**. You can also explicitly test the connection to the output by using the **Test Connection** button at the bottom.
 
-## 執行串流分析作業
+## <a name="run-the-stream-analytics-job"></a>Run the Stream Analytics job
 
-若要執行串流分析作業，您必須從 [查詢] 索引標籤來執行查詢。本教學課程中，您可以藉由以作業輸入和輸出別名取代預留位置的方式執行範例查詢，如下方螢幕擷取畫面所示。
+To run a Stream Analytics job, you must run a query from the Query tab. For this tutorial, you can run the sample query by replacing the placeholders with the job input and output aliases, as shown in the screen capture below.
 
-![執行查詢](./media/data-lake-store-stream-analytics/run.query.png "執行查詢")
+![Run query](./media/data-lake-store-stream-analytics/run.query.png "Run query")
 
-在畫面下方按一下 [儲存]，然後按一下 [啟動]。從對話方塊中，選取 [自訂時間]，然後選取過去的日期，例如：**2016/1/1**。按一下核取記號以啟動作業。啟動作業會需要費時幾分鐘。
+Click **Save** from the bottom of the screen, and then click **Start**. From the dialog box, select **Custom Time**, and then select a date from the past, such as **1/1/2016**. Click the check mark to start the job. It can take up to a couple minutes to start the job.
 
-![設定作業時間](./media/data-lake-store-stream-analytics/run.query.2.png "設定作業時間")
+![Set job time](./media/data-lake-store-stream-analytics/run.query.2.png "Set job time")
 
-作業啟動之後，請按一下 [監視] 索引標籤，查看資料處理方式。
+After the job starts, click the **Monitor** tab to see how the data was processed.
 
-![監視作業](./media/data-lake-store-stream-analytics/run.query.3.png "監視作業")
+![Monitor job](./media/data-lake-store-stream-analytics/run.query.3.png "Monitor job")
 
-最後，您可以使用 [Azure 入口網站](https://portal.azure.com) 來開啟 Data Lake Store 帳戶，並驗證資料是否已成功寫入帳戶。
+Finally, you can use the [Azure Portal](https://portal.azure.com) to open your Data Lake Store account and verify whether the data was successfully written to the account.
 
-![驗證輸出](./media/data-lake-store-stream-analytics/run.query.4.png "驗證輸出")
+![Verify output](./media/data-lake-store-stream-analytics/run.query.4.png "Verify output")
 
-請注意，在「資料總管」窗格中，輸出會寫入至 Data Lake Store 輸出設定中所指定的資料夾 (`streamanalytics/job/output/{date}/{time}`)。
+In the Data Explorer pane, notice that the output is written to a folder as specified in the Data Lake Store output settings (`streamanalytics/job/output/{date}/{time}`).  
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-* [建立 HDInsight 叢集以使用 Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [Create an HDInsight cluster to use Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

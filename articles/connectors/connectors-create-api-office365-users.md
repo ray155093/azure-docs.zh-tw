@@ -1,6 +1,6 @@
 <properties
-    pageTitle="在 Logic Apps 中新增 Office 365 使用者連接器 | Microsoft Azure"
-    description="搭配 REST API 參數來使用 Office 365 使用者連接器的概觀"
+    pageTitle="Add the Office 365 Users connector in Logic Apps | Microsoft Azure"
+    description="Overview of Office 365 Users connector with REST API parameters"
     services=""    
     documentationCenter=""     
     authors="msftman"    
@@ -17,150 +17,156 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Office 365 使用者連接器
 
-連接至 Office 365 使用者，以取得設定檔、搜尋使用者等等。
+# <a name="get-started-with-the-office-365-users-connector"></a>Get started with the Office 365 Users connector
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+Connect to Office 365 Users to get profiles, search users, and more. 
 
-您可以利用 Office 365 使用者來：
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version.
 
-- 根據您從 Office 365 使用者所取得的資料，來建置您的商務流程。
-- 使用可取得直屬員工、取得管理員的使用者設定檔等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，取得某人的直屬員工，然後利用此資訊更新 SQL Azure 資料庫。
+With Office 365 Users, you can:
 
-如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+- Build your business flow based on the data you get from Office 365 Users. 
+- Use actions that get direct reports, get a manager's user profile, and more. These actions get a response, and then make the output available for other actions. For example, get a person's direct reports, and then take this information and update a SQL Azure database. 
 
-## 觸發程序及動作
+To add an operation in logic apps, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-Office 365 使用者連接器提供下列動作。但不包含觸發程序。
+## <a name="triggers-and-actions"></a>Triggers and actions
 
-| 觸發程序 | 動作|
+The Office 365 Users connector has the following actions available. There are no triggers.
+
+| Triggers | Actions|
 | --- | --- |
-|None | <ul><li>取得管理員</li><li>取得我的設定檔</li><li>取得直屬員工</li><li>取得使用者設定檔</li><li>搜尋使用者</li></ul>|
+|None | <ul><li>Get manager</li><li>Get my profile</li><li>Get direct reports</li><li>Get user profile</li><li>Search for users</li></ul>|
 
-所有連接器都支援 JSON 和 XML 格式的資料。
-
-
-## 建立至 Office 365 使用者的連線
-
-當您將這個連接器新增到邏輯應用程式時，您必須登入您的 Office 365 使用者帳戶，並允許邏輯應用程式連線到您的帳戶。
-
->[AZURE.INCLUDE [建立至 Office 365 使用者連線的步驟](../../includes/connectors-create-api-office365users.md)]
-
-連線建立之後，您需要輸入 Office 365 使用者屬性，像是使用者識別碼。本主題的 **REST API 參考**一節說明這些屬性。
-
->[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Office 365 使用者連線。
+All connectors support data in JSON and XML formats. 
 
 
-## Office 365 使用者 REST API 參考
-適用的版本：1.0。
+## <a name="create-a-connection-to-office-365-users"></a>Create a connection to Office 365 Users
 
-### 取得我的設定檔 
-擷取目前使用者的設定檔。```GET: /users/me```
+When you add this connector to your logic apps, you must sign-in to your Office 365 Users account and allow logic apps to connect to your account.
 
-這個呼叫沒有參數。
+>[AZURE.INCLUDE [Steps to create a connection to Office 365 Users](../../includes/connectors-create-api-office365users.md)]
 
-#### Response
+After you create the connection, you enter the Office 365 Users properties, like the user ID. The **REST API reference** in this topic describes these properties.
 
-|名稱|說明|
+>[AZURE.TIP] You can use this same Office 365 Users connection in other logic apps.
+
+
+## <a name="office-365-users-rest-api-reference"></a>Office 365 Users REST API reference
+Applies to version: 1.0.
+
+### <a name="get-my-profile"></a>Get my profile 
+Retrieves the profile for the current user.  
+```GET: /users/me``` 
+
+There are no parameters for this call.
+
+#### <a name="response"></a>Response
+
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|202|作業已順利完成|
+|200|Operation was successful|
+|202|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-### 取得使用者設定檔 
-擷取特定的使用者設定檔。```GET: /users/{userId}```
+### <a name="get-user-profile"></a>Get user profile 
+Retrieves a specific user profile.  
+```GET: /users/{userId}``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|userId|string|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
+|userId|string|yes|path|none|User principal name or email id|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|202|作業已順利完成|
+|200|Operation was successful|
+|202|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
-### 取得管理員 
-擷取指定使用者之管理員的使用者設定檔。```GET: /users/{userId}/manager```
+### <a name="get-manager"></a>Get manager 
+Retrieves user profile for the manager of the specified user.  
+```GET: /users/{userId}/manager``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|userId|string|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
+|userId|string|yes|path|none|User principal name or email id|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|202|作業已順利完成|
+|200|Operation was successful|
+|202|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
 
-### 取得直屬員工 
-取得直屬員工。```GET: /users/{userId}/directReports```
+### <a name="get-direct-reports"></a>Get direct reports 
+Get direct reports.  
+```GET: /users/{userId}/directReports``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|userId|string|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
+|userId|string|yes|path|none|User principal name or email id|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|202|作業已順利完成|
+|200|Operation was successful|
+|202|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
 
-### 搜尋使用者 
-擷取使用者設定檔的搜尋結果。```GET: /users```
+### <a name="search-for-users"></a>Search for users 
+Retrieves search results of user profiles.  
+```GET: /users``` 
 
-| Name| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|searchTerm|string|no|query|無|搜尋字串 (適用於：顯示名稱、名字、姓氏、郵件、郵件暱稱，及使用者主體名稱)|
+|searchTerm|string|no|query|none|Search string (applies to: display name, given name, surname, mail, mail nickname and user principal name)|
 
-#### Response
+#### <a name="response"></a>Response
 
-|Name|說明|
+|Name|Description|
 |---|---|
-|200|作業已順利完成|
-|202|作業已順利完成|
+|200|Operation was successful|
+|202|Operation was successful|
 |400|BadRequest|
-|401|未經授權|
-|403|禁止|
-|500|內部伺服器錯誤|
-|預設值|作業失敗。|
+|401|Unauthorized|
+|403|Forbidden|
+|500|Internal Server Error|
+|default|Operation Failed.|
 
 
 
-## 物件定義
+## <a name="object-definitions"></a>Object definitions
 
-#### User：使用者模型類別。
+#### <a name="user:-user-model-class"></a>User: User model class
 
-|屬性名稱 | 資料類型 |必要
+|Property Name | Data Type |Required
 |---|---|---|
 |DisplayName|string|no|
 |GivenName|string|no|
@@ -168,19 +174,19 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 |Mail|string|no|
 |MailNickname|string|no|
 |TelephoneNumber|string|no|
-|AccountEnabled|布林值|no|
-|識別碼|string|yes
+|AccountEnabled|boolean|no|
+|Id|string|yes
 |UserPrincipalName|string|no|
-|系所|string|no|
+|Department|string|no|
 |JobTitle|string|no|
 |mobilePhone|string|no|
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-返回 [API 清單](apis-list.md)。
+Go back to the [APIs list](apis-list.md).
 
 <!--References-->
 [5]: https://portal.azure.com
@@ -190,4 +196,8 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 [10]: ./media/connectors-create-api-office365-users/contoso-aad-app.PNG
 [11]: ./media/connectors-create-api-office365-users/contoso-aad-app-configure.PNG
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

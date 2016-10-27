@@ -1,153 +1,151 @@
-<properties 
-   pageTitle="巢狀流量管理員設定檔 | Microsoft Azure"
-   description="這篇文章說明「Azure 流量管理員」的「巢狀設定檔」功能"
-   services="traffic-manager"
-   documentationCenter=""
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="tysonn" />
-<tags 
-   ms.service="traffic-manager"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="05/25/2016"
-   ms.author="sewhee" />
+<properties
+    pageTitle="Nested Traffic Manager Profiles | Microsoft Azure"
+    description="This article explains the 'Nested Profiles' feature of Azure Traffic Manager"
+    services="traffic-manager"
+    documentationCenter=""
+    authors="sdwheeler"
+    manager="carmonm"
+    editor=""
+/>
+<tags
+    ms.service="traffic-manager"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="infrastructure-services"
+    ms.date="10/11/2016"
+    ms.author="sewhee"
+/>
 
-# 巢狀流量管理員設定檔
 
-「流量管理員」包括一系列流量路由方法，可讓您控制「流量管理員」如何選擇哪一個端點應接收來自每一位使用者的流量。[流量管理員流量路由方法](traffic-manager-routing-methods.md)中提供這些方法的相關描述，它們可讓「流量管理員」符合最常見的流量路由需求。
+# <a name="nested-traffic-manager-profiles"></a>Nested Traffic Manager profiles
 
-每個「流量管理員」設定檔皆指定一個流量路由方法。不過，有時較複雜的應用程式所需的流量路由比單一「流量管理員」設定檔所能提供的流量路由更為精密。
+Traffic Manager includes a range of traffic-routing methods that allow you to control how Traffic Manager chooses which endpoint should receive traffic from each end user. For more information, see [Traffic Manager traffic-routing methods](traffic-manager-routing-methods.md).
 
-為了支援這些複雜的應用程式，「流量管理員」會允許將「流量管理員」設定檔結合或以「巢狀」方式內嵌，讓單一應用程式能夠利用多個流量路由方法的優點。巢狀設定檔可讓您建立更有彈性且功能更強大的流量路由配置，以支援更大型、更複雜的部署需求。
+Each Traffic Manager profile specifies a single traffic-routing method. However, there are scenarios that require more sophisticated traffic routing than the routing provided by a single Traffic Manager profile. You can nest Traffic Manager profiles to combine the benefits of more than one traffic-routing method. Nested profiles allow you to override the default Traffic Manager behavior to support larger and more complex application deployments.
 
-此外，在某些情況下，巢狀設定檔還可讓您覆寫預設的「流量管理員」行為，例如在使用「效能」流量路由的情況下，在某個區域內或在容錯移轉期間傳遞流量。
+The following examples illustrate how to use nested Traffic Manager profiles in various scenarios.
 
-本頁面的其餘部分將透過一系列範例，說明如何在各種情況下使用巢狀「流量管理員」設定檔。我們將以巢狀設定檔的一些相關常見問題集作為結束
+## <a name="example-1:-combining-'performance'-and-'weighted'-traffic-routing"></a>Example 1: Combining 'Performance' and 'Weighted' traffic routing
 
-## 範例 1︰結合「效能」和「加權」流量路由
+Suppose that you deployed an application in the following Azure regions: West US, West Europe, and East Asia. You use Traffic Manager's 'Performance' traffic-routing method to distribute traffic to the region closest to the user.
 
-假設您的應用程式部署在多個 Azure 區域︰美國西部、西歐及東亞。您可以使用「流量管理員」的「效能」流量路由方法，將流量分配給最靠近使用者的區域。
+![Single Traffic Manager profile][1]
 
-![單一流量管理員設定檔][1]
+Now, suppose you wish to test an update to your service before rolling it out more widely. You want to use the 'weighted' traffic-routing method to direct a small percentage of traffic to your test deployment. You set up the test deployment alongside the existing production deployment in West Europe.
 
-現在，假設您希望先藉由少量的使用者來試驗服務更新，然後再進行更廣泛的推出。為此，您會想要使用「加權」流量路由方法，此方法可將一小部分的流量導向您的試驗部署。在使用單一設定檔的情況下，您無法既結合「加權」流量路由，也結合「效能」流量路由。如果使用「巢狀設定檔」，則兩者皆可執行。
+You cannot combine both 'Weighted' and 'Performance traffic-routing in a single profile. To support this scenario, you create a Traffic Manager profile using the two West Europe endpoints and the 'Weighted' traffic-routing method. Next, you add this 'child' profile as an endpoint to the 'parent' profile. The parent profile still uses the Performance traffic-routing method and contains the other global deployments as endpoints.
 
-以下是做法︰假設您想要在西歐試驗新部署。您在現有的生產環境部署旁邊設定試驗性部署，然後只使用這兩個端點以及「加權」流量路由方法來建立「流量管理員」設定檔。接著，您將這個「子」設定檔新增為「父」設定檔的端點，父設定檔仍使用「效能」流量路由方法，並且也包含其他全域部署作為端點。
+The following diagram illustrates this example:
 
-下圖說明此範例：
+![Nested Traffic Manager profiles][2]
 
-![巢狀流量管理員設定檔][2]
+In this configuration, traffic directed via the parent profile distributes traffic across regions normally. Within West Europe, the nested profile distributes traffic to the production and test endpoints according to the weights assigned.
 
-在這種安排之下，透過父設定檔導向的流量將會如常分配到各個區域。在西歐境內，則會根據指定的加權，在生產環境部署與試驗性部署之間進行流量導向。
+When the parent profile uses the 'Performance' traffic-routing method, each endpoint must be assigned a location. The location is assigned when you configure the endpoint. Choose the Azure region closest to your deployment. The Azure regions are the location values supported by the Internet Latency Table. For more information, see [Traffic Manager 'Performance' traffic-routing method](traffic-manager-routing-methods.md#performance-traffic-routing-method).
 
-請注意，當父設定檔使用「效能」流量路由方法時，每個端點的位置都必須為已知。就巢狀端點的外部端點而言，必須在端點組態中一併指定此位置。請選擇離您的部署最近的 Azure 區域，可用的選項為各個 Azure 區域，因為這些是「網際網路延遲資料表」所支援的位置。如需進一步的詳細資料，請參閱[流量管理員「效能」流量路由方法](traffic-manager-routing-methods.md#performance-traffic-routing-method)。
+## <a name="example-2:-endpoint-monitoring-in-nested-profiles"></a>Example 2: Endpoint monitoring in Nested Profiles
 
-## 範例 2︰巢狀設定檔中的端點監視
+Traffic Manager actively monitors the health of each service endpoint. If an endpoint is unhealthy, Traffic Manager directs users to alternative endpoints to preserve the availability of your service. This endpoint monitoring and failover behavior applies to all traffic-routing methods. For more information, see [Traffic Manager Endpoint Monitoring](traffic-manager-monitoring.md). Endpoint monitoring works differently for nested profiles. With nested profiles, the parent profile doesn't perform health checks on the child directly. Instead, the health of the child profile's endpoints is used to calculate the overall health of the child profile. This health information is propagated up the nested profile hierarchy. The parent profile this aggregated health to determine whether to direct traffic to the child profile. See the [FAQ](#faq) section of this article for full details on health monitoring of nested profiles.
 
-「流量管理員」會主動監控每個服務端點的健康情況。如果某個端點被判定為狀況不良，「流量管理員」就會改將使用者導向替代端點，藉此保持您服務的整體可用性。這項端點監視及容錯移轉行為適用於所有流量路由方法。如需進一步的詳細資料，請參閱[流量管理員端點監視](traffic-manager-monitoring.md)。
+Returning to the previous example, suppose the production deployment in West Europe fails. By default, the 'child' profile directs all traffic to the test deployment. If the test deployment also fails, the parent profile determines that the child profile should not receive traffic since all child endpoints are unhealthy. Then, the parent profile distributes traffic to the other regions.
 
-巢狀設定檔適用某些特殊的端點監視規則。如果為父設定檔設定一個子設定檔作為巢狀端點，父系並不會直接在子系執行健康情況檢查。取得代之的是，會使用子設定檔的端點來計算該子設定檔的整體健康情況，而這項資訊會在巢狀設定檔階層中向上傳播，以判斷父設定檔內巢狀端點的健康情況。這會決定父設定檔是否會將流量導向該子系。關於如何從子設定檔的健康情況計算出父設定檔中巢狀端點之健康情況的完整詳細資料，請參閱[下方](#faq)。
+![Nested Profile failover (default behavior)][3]
 
-回到範例 1，假設在西歐的生產環境部署失敗。「子」設定檔預設會將所有流量都導向試驗性部署。如果該部署也失敗，父設定檔就會判斷出所有子端點都狀況不良，因此子設定檔不應接收流量，它將會把所有西歐流量都容錯移轉到其他區域。
+You might be happy with this arrangement. Or you might be concerned that all traffic for West Europe is now going to the test deployment instead of a limited subset traffic. Regardless of the health of the test deployment, you want to fail over to the other regions when the production deployment in West Europe fails. To enable this failover, you can specify the 'MinChildEndpoints' parameter when configuring the child profile as an endpoint in the parent profile. The parameter determines the minimum number of available endpoints in the child profile. The default value is '1'. For this scenario, you set the MinChildEndpoints value to 2. Below this threshold, the parent profile considers the entire child profile to be unavailable and directs traffic to the other endpoints.
 
-![巢狀設定檔容錯移轉 (預設行為)][3]
+The following figure illustrates this configuration:
 
-您可能會滿意這個安排，也可能會顧慮不應該使用「試驗性」部署來進行所有西歐流量的容錯移轉 -- 在西歐的生產環境部署失敗時，「不論」試驗性部署的健康情況好壞，您都寧願容錯移轉到其他區域。這個做法也可行︰將子設定檔設定為父設定檔中的端點時，您可以指定 'MinChildEndpoints' 參數，此參數可決定子設定檔中必須可供使用的端點數目下限。如果低於此臨界值 (預設為 1)，父設定檔就會將整個子設定檔視為無法使用，然後將流量改為導向其他父設定檔端點。
+![Nested Profile failover with 'MinChildEndpoints' = 2][4]
 
-以下範例說明︰在將 MinChildEndpoints 設定為 2 的情況下，如果西歐的任一部署失敗，父設定檔將會判斷子設定檔不應接收流量，而使用者將被導向其他區域。
+>[AZURE.NOTE]
+>The 'Priority' traffic-routing method distributes all traffic to a single endpoint. Thus there is little purpose in a MinChildEndpoints setting other than '1' for a child profile.
 
-!['MinChildEndpoints' = 2 的巢狀設定檔容錯移轉][4]
+## <a name="example-3:-prioritized-failover-regions-in-'performance'-traffic-routing"></a>Example 3: Prioritized failover regions in 'Performance' traffic routing
 
-請注意，當子設定檔使用「優先順序」流量路由方法時，所有通往該子系的流量都會由單一端點接收。因此，在此情況下，將 MinChildEndpoints 設定為 '1' 以外的值並沒有什麼用。
+The default behavior for the 'Performance' traffic-routing method is designed to avoid over-loading the next nearest endpoint and causing a cascading series of failures. When an endpoint fails, all traffic that would have been directed to that endpoint is evenly distributed to the other endpoints across all regions.
 
-## 範例 3︰設定「效能」流量路由中容錯移轉區域的優先順序
+!['Performance' traffic routing with default failover][5]
 
-在單一設定檔使用「效能」流量路由的情況下，如果端點 (例如西歐) 發生失敗，所有本來會導向該端點的流量都會改為分配到所有區域的各個其他端點。這是「效能」流量路由方法的預設行為，其設計目的是要避免下一個最接近的端點發生超載而導致引發一連串的失敗。
+However, suppose you prefer the West Europe traffic failover to West US, and only direct traffic to other regions when both endpoints are unavailable. You can create this solution using a child profile with the 'Priority' traffic-routing method.
 
-![搭配預設容錯移轉的「效能」流量路由][5]
+!['Performance' traffic routing with preferential failover][6]
 
-不過，假設您偏好將西歐流量容錯移轉到美國西部，而只有在這兩個端點都無法使用時，才導向其他地方。若要這麼做，您可以建立一個使用「優先順序」流量路由方法的子設定檔，如以下所示：
+Since the West Europe endpoint has higher priority than the West US endpoint, all traffic is sent to the West Europe endpoint when both endpoints are online. If West Europe fails, its traffic is directed to West US. With the nested profile, traffic is directed to East Asia only when both West Europe and West US fail.
 
-![搭配優先性容錯移轉的「效能」流量路由][6]
+You can repeat this pattern for all regions. Replace all three endpoints in the parent profile with three child profiles, each providing a prioritized failover sequence.
 
-由於西歐端點的優先順序高於美國西部端點，因此當兩個端點都在線上時，所有流量會都傳送到西歐端點。如果西歐發生失敗，其流量就會導向美國西部。只有當美國西部也發生失敗，西歐流量才會導向東亞。
+## <a name="example-4:-controlling-'performance'-traffic-routing-between-multiple-endpoints-in-the-same-region"></a>Example 4: Controlling 'Performance' traffic routing between multiple endpoints in the same region
 
-您可以針對所有區域重複此模式，以 3 個子設定檔取代父設定檔中的所有 3 個端點，每個子設定檔都提供優先的容錯移轉順序。
+Suppose the 'Performance' traffic-routing method is used in a profile that has more than one endpoint in a particular region. By default, traffic directed to that region is distributed evenly across all available endpoints in that region.
 
-## 範例 4︰控制相同區域中多個端點之間的「效能」流量路由
+!['Performance' traffic routing in-region traffic distribution (default behavior)][7]
 
-假設在一個於特定區域 (例如美國西部) 擁有多個端點的設定檔中使用了「效能」流量路由方法。根據預設，導向該區域的流量將會平均分配到該區域中所有可用的端點。
+Instead of adding multiple endpoints in West Europe, those endpoints are enclosed in a separate child profile. The child profile is added to the parent as the only endpoint in West Europe. The settings on the child profile can control the traffic distribution with West Europe by enabling priority-based or weighted traffic routing within that region.
 
-![「效能」流量路由區域內流量分配 (預設行為)][7]
+!['Performance' traffic routing with custom in-region traffic distribution][8]
 
-透過使用巢狀「流量管理員」設定檔可以變更這個預設行為。您可以不在美國西部新增多個端點，而是將這些端點包含在一個個別的子設定檔中，然後將此子設定檔新增到父系作為美國西部的唯一端點。接著，就可以使用子設定檔上的設定來控制美國西部的相關流量分配，例如在該區域內啟用以優先順序為基礎或加權式的流量路由。
+## <a name="example-5:-per-endpoint-monitoring-settings"></a>Example 5: Per-endpoint monitoring settings
 
-![搭配自訂區域內流量分配的「效能」流量路由][8]
+Suppose you are using Traffic Manager to smoothly migrate traffic from a legacy on-premises web site to a new Cloud-based version hosted in Azure. For the legacy site, you want to use the home page URI to monitor site health. But for the new Cloud-based version, you are implementing a custom monitoring page (path '/monitor.aspx') that includes additional checks.
 
-## 範例 5︰每個端點的監視設定
+![Traffic Manager endpoint monitoring (default behavior)][9]
 
-假設您已在使用「流量管理員」，順暢地在傳統內部部署網站與裝載於 Azure 上的新雲端版本之間移轉流量。針對傳統網站，您想要使用首頁 (路徑 '/') 來監視網站健康情況，但針對新的雲端版本，則是實作包含額外檢查的自訂監視頁面 (路徑 '/monitor.aspx')。
+The monitoring settings in a Traffic Manager profile apply to all endpoints within a single profile. With nested profiles, you use a different child profile per site to define different monitoring settings.
 
-![流量管理員端點監視 (預設行為)][9]
+![Traffic Manager endpoint monitoring with per-endpoint settings][10]
 
-「流量管理員」設定檔中的監視設定會套用至設定檔中的所有端點，這意謂著您之前在這兩個網站必須使用相同的路徑。有了巢狀「流量管理員」設定檔之後，您現在便可以在每個網站使用子設定檔來為每個網站定義不同的監視設定︰
+## <a name="faq"></a>FAQ
 
-![搭配每個設定的流量管理員端點監視][10]
+### <a name="how-do-i-configure-nested-profiles?"></a>How do I configure nested profiles?
 
-## 常見問題集
+Nested Traffic Manager profiles can be configured using both the Azure Resource Manager and the classic Azure REST APIs, Azure PowerShell cmdlets and cross-platform Azure CLI commands. They are also supported via the new Azure portal. They are not supported in the classic portal.
 
-### 如何設定巢狀設定檔？
+### <a name="how-many-layers-of-nesting-does-traffic-manger-support?"></a>How many layers of nesting does Traffic Manger support?
 
-您可以使用 Azure Resource Manager (ARM) 和「Azure 服務管理」(ASM) REST API、PowerShell Cmdlet 及跨平台 Azure CLI 命令來設定巢狀「流量管理員」設定檔。透過 Azure 入口網站也支援它們，但是在「傳統」入口網站中則不支援。
+You can nest profiles up to 10 levels deep. 'Loops' are not permitted.
 
-### 流量管理員支援幾層巢狀結構？
-設定檔的巢狀結構深度最多可達 10 層。不允許使用「迴圈」。
+### <a name="can-i-mix-other-endpoint-types-with-nested-child-profiles,-in-the-same-traffic-manager-profile?"></a>Can I mix other endpoint types with nested child profiles, in the same Traffic Manager profile?
 
-### 在同一個「流量管理員」設定檔中，是否可以將其他端點類型與巢狀子設定檔混合使用？
+Yes. There are no restrictions on how you combine endpoints of different types within a profile.
 
-是。對於在設定檔內如何結合不同類型的端點，並沒有任何限制。
+### <a name="how-does-the-billing-model-apply-for-nested-profiles?"></a>How does the billing model apply for Nested profiles?
 
-### 巢狀設定檔如何套用計費模型？
+There is no negative pricing impact of using nested profiles.
 
-使用巢狀設定檔並沒有計價上的負面影響。
+Traffic Manager billing has two components: endpoint health checks and millions of DNS queries
 
-「流量管理員」計費有兩個要素︰端點健康情況檢查和數百萬個 DNS 查詢 (如需完整的詳細資料，請參閱我們的[定價頁面](https://azure.microsoft.com/pricing/details/traffic-manager/)。) 以下是在巢狀設定檔的套用情況︰
+- Endpoint health checks: There is no charge for a child profile when configured as an endpoint in a parent profile. Monitoring of the endpoints in the child profile are billed in the usual way.
+- DNS queries: Each query is only counted once. A query against a parent profile that returns an endpoint from a child profile is counted against the parent profile only.
 
-- 端點健康情況檢查︰當子設定檔被設定為父設定檔中的端點時，並不會針對該子設定檔收費。針對子設定檔中監視基礎服務的端點則是以一般方式收費。
+For full details, see the [Traffic Manager pricing page](https://azure.microsoft.com/pricing/details/traffic-manager/).
 
-- DNS 查詢：每個查詢只計算一次。如果查詢是針對父設定檔發出，但從子設定檔傳回端點，系統只會針對父設定檔計費。
+### <a name="is-there-a-performance-impact-for-nested-profiles?"></a>Is there a performance impact for nested profiles?
 
-### 巢狀設定檔是否會對效能造成影響？
+No. There is no performance impact incurred when using nested profiles.
 
-否，使用巢狀設定檔對效能並不會造成影響。
+The Traffic Manager name servers traverse the profile hierarchy internally when processing each DNS query. A DNS query to a parent profile can receive a DNS response with an endpoint from a child profile. A single CNAME record is used whether you are using a single profile or nested profiles. There is no need to create a CNAME record for each profile in the hierarchy.
 
-「流量管理員」名稱伺服器在處理每個 DNS 查詢時，會在內部周遊設定檔階層，讓針對父設定檔發出的 DNS 查詢可以收到含有來自子設定檔端點的 DNS 回應。
+### <a name="how-does-traffic-manager-compute-the-health-of-a-nested-endpoint-in-a-parent-profile?"></a>How does Traffic Manager compute the health of a nested endpoint in a parent profile?
 
-因此，只會使用單一 CNAME 記錄，就像使用單一「流量管理員」設定檔時一樣。並「不」需要使用 CNAME 記錄鏈結 (階層中每個設定檔各使用一個記錄)，因此不會對效能造成負面影響。
+The parent profile doesn't perform health checks on the child directly. Instead, the health of the child profile's endpoints are used to calculate the overall health of the child profile. This information is propagated up the nested profile hierarchy to determine the health of the nested endpoint. The parent profile uses this aggregated health to determine whether the traffic can be directed to the child.
 
-### 流量管理員如何根據子設定檔的健康情況，計算父設定檔中巢狀端點的健康情況？
+The following table describes the behavior of Traffic Manager health checks for a nested endpoint.
 
-如果為父設定檔設定一個子設定檔作為巢狀端點，父系並不會直接在子系執行健康情況檢查。取得代之的是，會使用子設定檔的端點來計算該子設定檔的整體健康情況，而這項資訊會在巢狀設定檔階層中向上傳播，以判斷父設定檔內巢狀端點的健康情況。這會決定父設定檔是否會將流量導向該子系。
-
-下表描述「流量管理員」針對父設定檔中指向子設定檔之巢狀端點的健康情況檢查行為。
-
-|子設定檔監視狀態|父端點監視狀態|注意事項|
+|Child Profile Monitor status|Parent Endpoint Monitor status|Notes|
 |---|---|---|
-|已停用。使用者已停用子設定檔。|已停止|父端點狀態為「已停止」，不是「已停用」。「已停用」狀態會保留，表示您已停用父設定檔中的端點。|
-|已降級。至少有一個子設定檔端點的狀態為「已降級」。|線上︰子設定檔中「線上」端點的數目至少等於 MinChildEndpoints 的值。CheckingEndpoint︰子設定檔中「線上」加 CheckingEndpoint 端點的數目至少等於 MinChildEndpoints 的值。已降級︰其他情況。|系統會將流量傳遞給狀態為 CheckingEndpoint 的端點。如果為 MinChildEndpoints 設定的值太高，端點將會一律被降級。|
-|線上。至少有一個子設定檔端點的狀態為「線上」，且沒有任何一個的狀態為「已降級」。|請參閱上方。||
-|CheckingEndpoints。至少有一個子設定檔端點的狀態為 'CheckingEndpoint'；沒有任何一個的狀態為「線上」或「已降級」|同上。||
-|非使用中。所有子設定檔端點的狀態不是「已停用」就是「已停止」，或者此設定檔沒有任何端點|已停止||
+|Disabled. The child profile has been disabled.|Stopped|The parent endpoint state is Stopped, not Disabled. The Disabled state is reserved for indicating that you have disabled the endpoint in the parent profile.|
+|Degraded. At least one child profile endpoint is in a Degraded state.| Online: the number of Online endpoints in the child profile is at least the value of MinChildEndpoints.<BR>CheckingEndpoint: the number of Online plus CheckingEndpoint endpoints in the child profile is at least the value of MinChildEndpoints.<BR>Degraded: otherwise.|Traffic is routed to an endpoint of status CheckingEndpoint. If MinChildEndpoints is set too high, the endpoint is always degraded.|
+|Online. At least one child profile endpoint is an Online state. No endpoint is in the Degraded state.|See above.||
+|CheckingEndpoints. At least one child profile endpoint is 'CheckingEndpoint'. No endpoints are 'Online' or 'Degraded'|Same as above.||
+|Inactive. All child profile endpoints are either Disabled or Stopped, or this profile has no endpoints.|Stopped||
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-深入了解[流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)
+Learn more about [how Traffic Manager works](traffic-manager-how-traffic-manager-works.md)
 
-了解如何[建立流量管理員設定檔](traffic-manager-manage-profiles.md)
+Learn how to [create a Traffic Manager profile](traffic-manager-manage-profiles.md)
 
 <!--Image references-->
 [1]: ./media/traffic-manager-nested-profiles/figure-1.png
@@ -161,4 +159,9 @@
 [9]: ./media/traffic-manager-nested-profiles/figure-9.png
 [10]: ./media/traffic-manager-nested-profiles/figure-10.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

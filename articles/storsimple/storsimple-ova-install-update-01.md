@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="在 StorSimple Virtual Array 上安裝更新 | Microsoft Azure"
-   description="描述如何透過 StorSimple Virtual Array Web UI，使用入口網站和 Hotfix 方法套用更新"
+   pageTitle="Install Updates on a StorSimple Virtual Array | Microsoft Azure"
+   description="Describes how to use the StorSimple Virtual Array web UI to apply updates using the portal and hotfix method"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,97 +15,102 @@
    ms.date="09/07/2016"
    ms.author="alkohli" />
 
-# 在 StorSimple Virtual Array 上安裝更新
 
-## 概觀
+# <a name="install-updates-on-your-storsimple-virtual-array"></a>Install Updates on your StorSimple Virtual Array
 
-本文說明透過本機 Web UI 和透過 Azure 傳統入口網站，在 StorSimple Virtual Array 上安裝更新時所需的步驟。您需要套用軟體更新或 Hotfix，以便讓您的 StorSimple Virtual Array 保持在最新狀態。
+## <a name="overview"></a>Overview
 
-請記住，安裝更新或 Hotfix 會重新啟動您的裝置。假設 StorSimple Virtual Array 是單一節點裝置，就會中斷任何進行中的 I/O，裝置也會停機。
+This article describes the steps required to install updates on your StorSimple Virtual Array via the local web UI and via the Azure classic portal. You need to apply software updates or hotfixes to keep your StorSimple Virtual Array up-to-date. 
 
-套用更新之前，建議您先讓主機上的磁碟區或共用離線，再讓裝置離線。這樣可以讓資料損毀的可能性降至最低。
+Keep in mind that installing an update or hotfix restarts your device. Given that the StorSimple Virtual Array is a single node device, any I/O in progress is disrupted and your device experiences downtime. 
 
-> [AZURE.IMPORTANT] 如果您正在執行 Update 0.1 或 GA 軟體版本，您就必須透過本機 Web UI 使用 Hotfix 方法來安裝 Update 0.3。如果您執行的是 Update 0.2，建議您透過 Azure 傳統入口網站安裝更新。
+Before you apply an update, we recommend that you take the volumes or shares offline on the host first and then the device. This minimizes any possibility of data corruption.
 
-## 使用本機 Web UI 
+> [AZURE.IMPORTANT] If you are running Update 0.1 or GA software versions, you must use the hotfix method via the local web UI to install update 0.3. If you are running Update 0.2, we recommend that you install the updates via the Azure classic portal.
+
+## <a name="use-the-local-web-ui"></a>Use the local web UI 
  
-使用本機 Web UI 時有兩個步驟︰
+There are two steps when using the local web UI:
 
-- 下載更新或 Hotfix
-- 安裝更新或 Hotfix
+- Download the update or the hotfix
+- Install the update or the hotfix
 
-### 下載更新或 Hotfix
+### <a name="download-the-update-or-the-hotfix"></a>Download the update or the hotfix
 
-請執行下列步驟，從 Microsoft Update Catalog 下載軟體更新。
+Perform the following steps to download the software update from the Microsoft Update Catalog.
 
-#### 下載更新或 Hotfix
+#### <a name="to-download-the-update-or-the-hotfix"></a>To download the update or the hotfix
 
-1. 啟動 Internet Explorer 並瀏覽至 [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)。
+1. Start Internet Explorer and navigate to [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
 
-2. 如果這是您第一次在此電腦上使用 Microsoft Update Catalog，請在系統提示您安裝 Microsoft Update Catalog 附加元件時，按一下 [安裝]。
+2. If this is your first time using the Microsoft Update Catalog on this computer, click **Install** when prompted to install the Microsoft Update Catalog add-on.
   
-3. 在 Microsoft Update Catalog 的搜尋方塊中，輸入您要下載的 Hotfix 知識庫 (KB) 編號。輸入 **3182061** (適用於 Update 0.3)，然後按一下 [搜尋]。
+3. In the search box of the Microsoft Update Catalog, enter the Knowledge Base (KB) number of the hotfix you want to download. Enter **3182061** for Update 0.3, and then click **Search**.
 
-    此時會顯示 Hotfix 清單，例如 **StorSimple Virtual Array Update 0.3**。
+    The hotfix listing appears, for example, **StorSimple Virtual Array Update 0.3**.
 
-    ![搜尋目錄](./media/storsimple-ova-install-update-01/download1.png)
+    ![Search catalog](./media/storsimple-ova-install-update-01/download1.png)
 
-4. 按一下 [新增]。更新便會新增到購物籃中。
+4. Click **Add**. The update is added to the basket.
 
-5. 按一下 [**檢視購物籃**]。
+5. Click **View Basket**.
 
-6. 按一下 [下載]。指定或「瀏覽」至您想要儲存下載項目的本機位置。更新便會下載到指定的位置，並放在與更新名稱相同的子資料夾中。資料夾也可以複製到裝置可連線的網路共用位置。
+6. Click **Download**. Specify or **Browse** to a local location where you want the downloads to appear. The updates are downloaded to the specified location and placed in a subfolder with the same name as the update. The folder can also be copied to a network share that is reachable from the device.
 
-7. 開啟已複製的資料夾，您應該會看到 Microsoft Update 獨立封裝檔案 `WindowsTH-KB3011067-x64`。此檔案是用來安裝更新或 Hotfix。
-
-
-### 安裝更新或 Hotfix
-
-安裝更新或 Hotfix 之前，請確定更新或 Hotfix 已下載至您主機的本機上，或是可透過網路共用存取。
-
-請使用此方法在執行 GA 或 Update 0.1 軟體版本的裝置上安裝更新。此程序需時不到 2 分鐘。請執行下列步驟以安裝更新或 Hotfix。
+7. Open the copied folder, you should see a Microsoft Update Standalone Package file `WindowsTH-KB3011067-x64`. This file is used to install the update or hotfix.
 
 
-#### 安裝更新或 Hotfix
+### <a name="install-the-update-or-the-hotfix"></a>Install the update or the hotfix
 
-1. 在本機 Web UI 中，移至 [維護] > [軟體更新]。
+Prior to the update or hotfix installation, make sure that you have the update or the hotfix downloaded either locally on your host or accessible via a network share. 
 
-    ![更新裝置](./media/storsimple-ova-install-update-01/update1m.png)
-
-2. 在 [更新檔案路徑] 中，輸入更新或 Hotfix 的檔案名稱。如果更新或 Hotfix 的安裝檔案是放在網路共用上，您也可以瀏覽至該檔案。按一下 [Apply (套用)]。
-
-	![更新裝置](./media/storsimple-ova-install-update-01/update2m.png)
-
-3.  此時會顯示警告。如果這是單一節點裝置，在套用更新後，裝置就會重新啟動而會有停機時間。按一下核取圖示。
-
-	![更新裝置](./media/storsimple-ova-install-update-01/update3m.png)
-
-4. 更新會開始進行。成功更新裝置之後，裝置就會重新啟動。在這段持續時間會無法存取本機 UI。
-
-    ![更新裝置](./media/storsimple-ova-install-update-01/update5m.png)
-
-5. 重新啟動完成後，您就會進入 [登入] 頁面。若要確認裝置軟體是否已更新，請在本機 Web UI 中，移至 [維護] > [軟體更新]。顯示的軟體版本應該是 **10.0.0.0.0.10288.0** (適用於 Update 0.3)。
-
-	> [AZURE.NOTE] 我們在本機 Web UI 和 Azure 傳統入口網站中回報軟體版本的方式略有不同。例如，本機 Web UI 會回報 **10.0.0.0.0.10288**，而相同版本在 Azure 傳統入口網站則會回報為 **10.0.10288.0**。
-
-	![更新裝置](./media/storsimple-ova-install-update-01/update6m.png)
+Use this method to install updates on a device running GA or Update 0.1 software versions. This procedure takes less than 2 minutes to complete. Perform the following steps to install the update or hotfix.
 
 
+#### <a name="to-install-the-update-or-the-hotfix"></a>To install the update or the hotfix
+
+1. In the local web UI, go to **Maintenance** > **Software Update**.
+
+    ![update device](./media/storsimple-ova-install-update-01/update1m.png)
+
+2. In **Update file path**, enter the file name for the update or the hotfix. You can also browse to the update or hotfix installation file if placed on a network share. Click **Apply**.
+
+    ![update device](./media/storsimple-ova-install-update-01/update2m.png)
+
+3.  A warning is displayed. Given this is a single node device, after the update is applied, the device restarts and there is downtime. Click the check icon.
+
+    ![update device](./media/storsimple-ova-install-update-01/update3m.png)
+
+4. The update starts. After the device is successfully updated, it restarts. The local UI is not accessible in this duration.
+
+    ![update device](./media/storsimple-ova-install-update-01/update5m.png)
+
+5. After the restart is complete, you are taken to the **Sign in** page. To verify that the device software has updated, in the local web UI, go to **Maintenance** > **Software Update**. The displayed software version should be **10.0.0.0.0.10288.0** for Update 0.3.
+
+    > [AZURE.NOTE] We report the software versions in a slightly different way in the local web UI and the Azure classic portal. For example, the local web UI reports **10.0.0.0.0.10288** and the Azure classic portal reports **10.0.10288.0** for the same version. 
+
+    ![update device](./media/storsimple-ova-install-update-01/update6m.png)
 
 
 
-## 使用 Azure 傳統入口網站
 
-如果執行 Update 0.2，建議您透過 Azure 傳統入口網站安裝更新。入口網站的程序需要使用者掃描、下載然後安裝更新。此程序需要大約 7 分鐘才能完成。請執行下列步驟以安裝更新或 Hotfix。
+
+## <a name="use-the-azure-classic-portal"></a>Use the Azure classic portal
+
+If running Update 0.2, we recommend that you install updates through the Azure classic portal. The portal procedure requires the user to scan, download, and then install the updates. This procedure takes around 7 minutes to complete. Perform the following steps to install the update or hotfix.
 
 [AZURE.INCLUDE [storsimple-ova-install-update-via-portal](../../includes/storsimple-ova-install-update-via-portal.md)]
 
-安裝完成後 (以作業狀態 100% 表示)，請移至 [裝置] > [維護] > [軟體更新]。顯示的軟體版本應該是 10.0.10288.0。
+After the installation is complete (as indicated by job status at 100 %), go to **Devices > Maintenance > Software Updates**. The displayed software version should be 10.0.10288.0.
 
-![更新裝置](./media/storsimple-ova-install-update-01/azupdate12m.png)
+![update device](./media/storsimple-ova-install-update-01/azupdate12m.png)
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-深入了解[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
+Learn more about [administering your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

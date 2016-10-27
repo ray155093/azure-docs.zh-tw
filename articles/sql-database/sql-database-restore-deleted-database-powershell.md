@@ -1,57 +1,82 @@
 <properties
-	pageTitle="還原已刪除的 Azure SQL Database (PowerShell) | Microsoft Azure"
-	description="還原已刪除的 Azure SQL Database (PowerShell)。"
-	services="sql-database"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Restore a deleted Azure SQL Database (PowerShell) | Microsoft Azure"
+    description="Restore a deleted Azure SQL Database (PowerShell)."
+    services="sql-database"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.devlang="NA"
-	ms.date="07/09/2016"
-	ms.author="sstein"
-	ms.workload="NA"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"/>
+    ms.service="sql-database"
+    ms.devlang="NA"
+    ms.date="10/12/2016"
+    ms.author="sstein"
+    ms.workload="NA"
+    ms.topic="article"
+    ms.tgt_pltfrm="NA"/>
 
 
-# 使用 PowerShell 還原已刪除的 Azure SQL Database
+
+# <a name="restore-a-deleted-azure-sql-database-by-using-powershell"></a>Restore a deleted Azure SQL Database by using PowerShell
 
 > [AZURE.SELECTOR]
-- [概觀](sql-database-recovery-using-backups.md)
-- [還原已刪除的資料庫︰Azure 入口網站](sql-database-restore-deleted-database-portal.md)
+- [Overview](sql-database-recovery-using-backups.md)
+- [Restore Deleted DB: Portal](sql-database-restore-deleted-database-portal.md)
+- [**Restore Deleted DB: PowerShell**](sql-database-restore-deleted-database-powershell.md)
 
-[AZURE.INCLUDE [啟動 PowerShell 工作階段](../../includes/sql-database-powershell.md)]
+[AZURE.INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
 
 
-## 將刪除的資料庫還原至獨立資料庫
+## <a name="get-a-list-of-deleted-databases"></a>Get a list of deleted databases
 
-1. 使用 [Get-AzureRmSqlDeletedDatabaseBackup](https://msdn.microsoft.com/library/azure/mt693387.aspx) Cmdlet 來取得您想要還原的已刪除資料庫備份。
+```
+$resourceGroupName = "resourcegroupname"
+$sqlServerName = "servername"
 
-        $DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName "resourcegroup01" -ServerName "server01" -DatabaseName "database01"
+$DeletedDatabases = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName $resourceGroupName -ServerName $sqlServerName
+```
 
-2. 使用 [Restore-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt693390.aspx) Cmdlet 來從已刪除的資料庫備份開始還原。
+## <a name="restore-your-deleted-database-into-a-standalone-database"></a>Restore your deleted database into a standalone database
 
-        Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName "RestoredDatabase" –ResourceId $DeletedDatabase.ResourceID -Edition "Standard" -ServiceObjectiveName "S2"
+Get the deleted database backup that you want to restore by using the [Get-AzureRmSqlDeletedDatabaseBackup](https://msdn.microsoft.com/library/azure/mt693387.aspx) cmdlet. Then start the restore from the deleted database backup by using the [Restore-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt693390.aspx) cmdlet.
 
-## 將已刪除的資料庫還原至彈性資料庫集區
+```
+$resourceGroupName = "resourcegroupname"
+$sqlServerName = "servername"
+$databaseName = "deletedDbToRestore"
 
-1. 使用 [Get-AzureRmSqlDeletedDatabaseBackup](https://msdn.microsoft.com/library/azure/mt693387.aspx) Cmdlet 來取得您想要還原的已刪除資料庫備份。
+$DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -DatabaseName $databaseName
 
-        $DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName "resourcegroup01" -ServerName "server01" -DatabaseName "database01"
+Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName "RestoredDatabase" –ResourceId $DeletedDatabase.ResourceID -Edition "Standard" -ServiceObjectiveName "S2"
+```
 
-2. 使用 [Restore-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt693390.aspx) Cmdlet 來從已刪除的資料庫備份開始還原。
 
-        Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName "RestoredDatabase" –ResourceId $DeletedDatabase.ResourceID –ElasticPoolName "elasticpool01"
+## <a name="restore-your-deleted-database-into-an-elastic-database-pool"></a>Restore your deleted database into an elastic database pool
 
-## 後續步驟
+Get the deleted database backup that you want to restore by using the [Get-AzureRmSqlDeletedDatabaseBackup](https://msdn.microsoft.com/library/azure/mt693387.aspx) cmdlet. Then start the restore from the deleted database backup by using the [Restore-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt693390.aspx) cmdlet.
 
-- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
-- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
-- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
-- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
+```
+$resourceGroupName = "resourcegroupname"
+$sqlServerName = "servername"
+$databaseName = "deletedDbToRestore"
 
-<!---HONumber=AcomDC_0803_2016-->
+$DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -DatabaseName $databaseName
+
+Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName "RestoredDatabase" –ResourceId $DeletedDatabase.ResourceID –ElasticPoolName "elasticpool01"
+```
+
+
+## <a name="next-steps"></a>Next steps
+
+- For a business continuity overview and scenarios, see [Business continuity overview](sql-database-business-continuity.md)
+- To learn about Azure SQL Database automated backups, see [SQL Database automated backups](sql-database-automated-backups.md)
+- To learn about using automated backups for recovery, see [restore a database from the service-initiated backups](sql-database-recovery-using-backups.md)
+- To learn about faster recovery options, see [Active-Geo-Replication](sql-database-geo-replication-overview.md)  
+- To learn about using automated backups for archiving, see [database copy](sql-database-copy.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

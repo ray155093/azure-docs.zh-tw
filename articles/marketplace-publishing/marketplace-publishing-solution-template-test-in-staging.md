@@ -1,6 +1,6 @@
 <properties
-   pageTitle="針對 Marketplace 測試您的解決方案範本供應項目 | Microsoft Azure"
-   description="了解如何針對 Azure Marketplace 測試您的解決方案範本供應項目。"
+   pageTitle="Testing your solution template offer for the Marketplace | Microsoft Azure"
+   description="Understand how to test your solution template offer for the Azure Marketplace."
    services="marketplace-publishing"
    documentationCenter=""
    authors="HannibalSII"
@@ -16,27 +16,32 @@
    ms.date="12/04/2015"
    ms.author="hascipio; v-divte" />
 
-# 在預備環境中測試您的解決方案範本供應項目
-預備環境代表將您的供應項目部署在私人的「沙箱」中，您可以在推送到生產環境之前在沙箱中測試與驗證其功能。供應項目會出現在預備環境中，就如同客戶已部署該項目一樣。您的供應項目必須經過認證才能推送至預備環境。
 
-預備供應項目之後，您可以在 [Azure 入口網站](https://portal.azure.com/)中檢視並測試供應項目。
+# <a name="test-your-solution-template-offer-in-staging"></a>Test your solution template offer in staging
+Staging means deploying your offer in a private "sandbox" where you can test and verify its functionality before pushing it to production. The offer appears in staging just as it would to a customer who has deployed it. Your offer must be certified to be pushed to staging.
 
-請遵循下列步驟，將您的供應項目推送至預備環境並在 [Azure 入口網站](https://portal.azure.com/)中進行測試：
+After the offer is staged, you can view and test the offer in the [Azure Portal](https://portal.azure.com/).
 
-1.	瀏覽至[發佈入口網站](https://publish.windowsazure.com) -> 選取 [解決方案範本] 索引標籤 -> 您的供應項目 -> [發佈] -> [推送至預備環境]。
-2.	提供您將用來預覽和測試供應項目的 Azure 訂用帳戶清單。
-3.	使用上一個步驟中使用的訂用帳戶 ID，登入 Azure Preview 入口網站。
-4.	在 Azure Preview 入口網站中，將以下提到的重點至少執行一回合測試：
-  -	請確定該行銷內容可在 Azure Marketplace 中正確顯示。
-  -	拓撲的端對端部署。
-  -	執行效能測試和壓力測試。
-  -	確定您的拓撲遵守最佳作法。
+Follow the steps below to push your offer to staging and test it in the [Azure Portal](https://portal.azure.com/):
 
-## 後續步驟
-如果您很滿意結果，則可以繼續進行最後的供應項目發佈階段，也就是**步驟 4**：[將您的供應項目部署至 Marketplace](marketplace-publishing-push-to-production.md)。否則，請在您的供應項目中進行變更並再次要求憑證。
+1.  Go to the [Publishing Portal](https://publish.windowsazure.com) > **Solution Templates** tab > your offer > **Publish** > **Push to Staging**.
+2.  Provide the list of Azure subscriptions that you will use to preview and test your offer.
+3.  Sign in to the Azure preview portal by using the subscription ID that you used in the previous step.
+4.  Carry out at least one round of testing in the Azure preview portal on the points mentioned below:
+  - Make sure that marketing content shows up correctly in the Azure Marketplace.
+  - End-to-end deployment of the topology.
+  - Perform performance testing and stress testing.
+  - Ensure that your topology adheres to the best practices.
 
-> [AZURE.NOTE]若為行銷內容變更，則不需要憑證。
+## <a name="next-steps"></a>Next steps
+If you are satisfied with the results, then you can proceed to the final offer publishing phase, **Step 4**:  [Deploying your offer to the Marketplace](marketplace-publishing-push-to-production.md). Otherwise, make changes in your offer and request certification again.
 
-如需所有發行者工作的指南，請參閱[快速入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)。
+> [AZURE.NOTE] For marketing content changes, certification is not required.
 
-<!-------HONumber=AcomDC_1210_2015--->
+See [Getting started: How to publish an offer to the Azure Marketplace](marketplace-publishing-getting-started.md) for a guide to all publisher tasks.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-    pageTitle="如何針對 Azure RemoteApp 集合規劃您的虛擬網路 | Microsoft Azure"
-    description="了解如何針對 Azure RemoteApp 集合規劃您的虛擬網路。"
+    pageTitle="How to plan your virtual network for an Azure RemoteApp collection | Microsoft Azure"
+    description="Learn how to plan your virtual network for an Azure RemoteApp collection."
     services="remoteapp"
     documentationCenter="" 
     authors="mghosh1616"
@@ -15,47 +15,53 @@
     ms.date="08/15/2016"
     ms.author="elizapo" />
 
-# 如何針對 Azure RemoteApp 規劃您的虛擬網路
+
+# <a name="how-to-plan-your-virtual-network-for-azure-remoteapp"></a>How to plan your virtual network for Azure RemoteApp
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-本文件說明如何針對 Azure RemoteApp 設定 Azure 虛擬網路 (VNET) 和子網路。如果您不熟悉 Azure 虛擬網路，這可協助您將網路基礎結構虛擬化至雲端，以及利用 Azure 和內部部署資源建立混合式解決方案。您可以在[此處](../virtual-network/virtual-networks-overview.md)閱讀相關資訊。
+This document describes how to set up your Azure virtual network (VNET) and the subnet for Azure RemoteApp. If you are unfamiliar with Azure virtual networks, this is a capability that helps you to virtualize your network infrastructure to the cloud and to create hybrid solutions with Azure and your on-premises resources. You can read more about it [here](../virtual-network/virtual-networks-overview.md).
 
-如果您要在您部署 Azure RemoteApp 的虛擬網路中定義流量 (內送和外寄) 的安全性原則，我們強烈建議您在 Azure 虛擬網路中為 Azure RemoteApp 建立與您其餘的部署不同的子網路。如需有關如何在 Azure 虛擬網路子網路上定義安全性原則的詳細資訊，請參閱 [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)。
+If you want to define security policies for traffic (both incoming and outgoing) in your virtual network where you are deploying Azure RemoteApp, we strongly recommend creating a separate subnet for Azure RemoteApp from the rest of your deployments in the Azure virtual network. For more information on how to define security policies on your Azure virtual network subnet, please read [What is a Network Security Group (NSG)?](../virtual-network/virtual-networks-nsg.md).
 
-## 具有 Azure 虛擬網路的 Azure RemoteApp 集合類型
+## <a name="types-of-azure-remoteapp-collections-with-azure-virtual-networks"></a>Types of Azure RemoteApp collections with Azure virtual networks
 
-下圖顯示您要使用虛擬網路時的兩個不同集合選項。
+The following graphics show the two different collection options when you want to use a virtual network.
 
-### 具有 VNET 的 Azure RemoteApp 雲端集合
+### <a name="azure-remoteapp-cloud-collection-with-vnet"></a>Azure RemoteApp cloud collection with VNET
 
- ![Azure RemoteApp - 具有 VNET 的雲端集合](./media/remoteapp-planvpn/ra-cloudvpn.png)
+ ![Azure RemoteApp - Cloud collection with a VNET](./media/remoteapp-planvpn/ra-cloudvpn.png)
 
-這表示 Azure RemoteApp 集合，其中 RemoteApp 工作階段主機需要存取的所有資源都已部署在 Azure 中。也可以在 Azure 中與 RemoteApp VNET 相同的 VNET 或不同的 VNET 中。
+This represents an Azure RemoteApp collection where all the resources that the RemoteApp session hosts need to access are deployed in Azure. They can be in the same VNET as the RemoteApp VNET or a different VNET in Azure.
 
-### 具有 VNET 的 RemoteApp 混合式集合
+### <a name="azure-remoteapp-hybrid-collection-with-vnet"></a>Azure RemoteApp hybrid collection with VNET
 
-![Azure RemoteApp - 具有 VNET 的混合式集合](./media/remoteapp-planvpn/ra-hybridvpn.png)
+![Azure RemoteApp - Hybrid collection with a VNET](./media/remoteapp-planvpn/ra-hybridvpn.png)
 
-這表示 Azure RemoteApp 集合，其中 RemoteApp 工作階段主機需要存取的某些資源已在內部部署。RemoteApp VNET 會使用 Azure 混合式技術 (像是站對站 VPN 或 Express Route) 連結到內部部署網路。
-
-
-## 系統的運作方式
-
-實際上，Azure RemoteApp 會將 Azure 虛擬機器 (與您上傳的映像) 部署到您在佈建期間所選擇的虛擬網路子網路。如果您選擇了混合式集合，我們會嘗試解析您在佈建工作流程中輸入的網域控制站的 FQDN，以及虛擬網路中提供的 DNS 伺服器。如果您要連接到現有的虛擬網路，請務必公開 Azure RemoteApp 子網路的網路安全性群組中的必要連接埠。
-
-我們建議您改用 [Azure RemoteApp 夠大的子網路](remoteapp-vnetsizing.md)。Azure 虛擬網路最大支援 /8 (使用 CIDR 子網路定義)。當更多使用者存取應用程式時，您的子網路在相應增加期間應足以容納所有的 Azure RemoteApp VM。
-
-以下是您必須在虛擬網路子網路上啟用的事項：
-
-2.	連接埠範圍 10101-10175 應允許來自子網路的輸出流量，才能與其中一個內部 Azure RemoteApp 服務通訊。
-3.	輸出流量應可來自您的子網路以連接到連接埠 443 上的 Azure 儲存體
-4.	如果您有 Azure 中裝載的 Active Directory，請確定 Azure RemoteApp 的虛擬網路子網路內的任何 VM 都能夠連接到該網域控制站。虛擬網路中的 DNS 應該能夠解析此網域控制站的 FQDN。
+This represents an Azure RemoteApp collection where some of the resources that the RemoteApp session hosts need to access are deployed on-premises. The RemoteApp VNET is linked to the on-premises network using Azure hybrid technologies like site-to-site VPN or Express Route.
 
 
-## 具有強制通道的虛擬網路
+## <a name="how-the-system-works"></a>How the system works
 
-現在所有新的 Azure RemoteApp 集合都支援[強制通道](../vpn-gateway/vpn-gateway-about-forced-tunneling.md)。我們目前不支援現有集合的移轉，而支援強制通道。您必須使用您要連結至 Azure RemoteApp 的 VNET 來刪除所有現有的集合，並建立新的集合以在集合上啟用強制通道。
+Under the covers Azure RemoteApp deploys Azure virtual machines (with your uploaded image) to the virtual network subnet that you chose during provisioning. If you opted for a hybrid collection, we try to resolve the FQDN of the domain controller you entered in the provisioning workflow with the DNS server provided in the virtual network.  
+If you are connecting to an existing virtual network, make sure to expose the necessary ports in your network security groups in your Azure RemoteApp subnet. 
 
-<!---HONumber=AcomDC_0817_2016-->
+We recommend you use a [large enough  subnet for Azure RemoteApp](remoteapp-vnetsizing.md). The largest supported by Azure Virtual network is /8 (using CIDR subnet definitions). Your subnet should be large enough to accommodate all the Azure RemoteApp VMs during scale-up when more users are accessing the apps. 
+
+Following are the things you will need to enable on your virtual network subnet: 
+
+2.  Outbound traffic from the subnet should be allowed on port range 10101-10175 to communicate with one of the internal Azure RemoteApp services.
+3.  Outbound traffic should be allowed from your subnet to connect to Azure Storage on port 443
+4.  If you have Active Directory hosted in Azure, make sure any VM within the virtual network subnet for Azure RemoteApp is able to connect to that domain controller. The DNS in the virtual network should be able to resolve the FQDN of this domain controller.
+
+
+## <a name="virtual-network-with-forced-tunneling"></a>Virtual network with forced tunneling
+
+[Forced tunneling](../vpn-gateway/vpn-gateway-about-forced-tunneling.md) is now supported for all new Azure RemoteApp collections. We currently do not support the migration of an existing collection to support forced tunneling.  You will have to delete all your existing collections using the VNET that you are linking to Azure RemoteApp and create a new one to get forced tunneling enabled on your collections. 
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,11 +1,11 @@
 <properties
-    pageTitle="Azure 搜尋服務的 Lucene 查詢範例 | Microsoft Azure 搜尋服務"
-    description="模糊搜尋、鄰近搜尋、詞彙提升、規則運算式搜尋與萬用字元搜尋的 Lucene 查詢語法。"
+    pageTitle="Lucene query examples for Azure Search | Microsoft Azure Search"
+    description="Lucene query syntax for fuzzy search, proximity search, term boosting, regular expression search, and wildcard search."
     services="search"
     documentationCenter=""
-	authors="LiamCa"
-	manager="pablocas"
-	editor=""
+    authors="LiamCa"
+    manager="pablocas"
+    editor=""
     tags="Lucene query analyzer syntax"
 />
 
@@ -19,114 +19,118 @@
     ms.author="liamca"
 />
 
-# 在 Azure 搜尋服務中建置查詢的 Lucene 查詢語法範例
 
-建構 Azure 搜尋服務的查詢時，您可以使用預設的[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)或替代的 [Azure 搜尋服務 Lucene 查詢剖析器](https://msdn.microsoft.com/library/azure/mt589323.aspx)。Lucene 查詢剖析器支援更複雜的查詢建構，例如欄位範圍查詢、模糊搜尋、鄰近搜尋、詞彙提升，和規則運算式搜尋。
+# <a name="lucene-query-syntax-examples-for-building-queries-in-azure-search"></a>Lucene query syntax examples for building queries in Azure Search
 
-在本文中，您可以逐步了解並排顯示查詢語法和結果的範例。針對在 [JSFiddle](https://jsfiddle.net/) 中預先載入的搜尋索引執行的範例，這是測試指令碼和 HTML 的線上程式碼編輯器。
+When constructing queries for Azure Search, you can use either the default [simple query syntax](https://msdn.microsoft.com/library/azure/dn798920.aspx) or the alternative [Lucene Query Parser in Azure Search](https://msdn.microsoft.com/library/azure/mt589323.aspx). The Lucene Query Parser supports more complex query constructs, such as field-scoped queries, fuzzy search, proximity search, term boosting, and reqular expression search.
 
-以滑鼠右鍵按一下查詢範例 URL，以在個別瀏覽器視窗中開啟 JSFiddle。
+In this article, you can step through examples that display Lucene query syntax and results side by side. Examples run against a pre-loaded Search index in [JSFiddle](https://jsfiddle.net/), an online code editor for testing script and HTML. 
 
-> [AZURE.NOTE] 下列範例會根據 [紐約市 OpenData](https://nycopendata.socrata.com/) 計劃所提供的資料集，利用由可用工作所組成的搜尋索引。這項資料不應視為目前的或已完成。索引位於由 Microsoft 提供的沙箱服務上。您不需要 Azure 訂用帳戶或 Azure 搜尋服務即可嘗試這些查詢。
+Right-click on the query example URLs to open JSFiddle in a separate browser window.
 
-## 檢視本文中的範例
+> [AZURE.NOTE] The following examples leverage a search index consisting of jobs available based on a dataset provided by the [City of New York OpenData](https://nycopendata.socrata.com/) initiative. This data should not be considered current or complete. The index is on a sandbox service provided by Microsoft. You do not need an Azure subscription or Azure Search to try these queries.
 
-本文中的所有範例都會透過 **queryType** 搜尋參數來指定 Lucene 查詢剖析器。從您的程式碼使用 Lucene 查詢剖析器時，每個要求您都會指定 **queryType**。有效值包括 **simple**|**full**，**simple** 為預設值，**full** 為 Lucene 查詢剖析器。如需指定查詢參數的詳細資訊，請參閱[搜尋文件 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798927.aspx)。
+## <a name="viewing-the-examples-in-this-article"></a>Viewing the examples in this article
 
-**範例 1** -- 以滑鼠右鍵按一下下列查詢程式碼片段，以在載入 JSFiddle 及執行查詢的新瀏覽器頁面上將其開啟：
+All of the examples in this article specify the Lucene Query Parser via the**queryType** search parameter. When using the Lucene Query Parser from your code, you'll specify the **queryType** on every request.  Valid values include **simple**|**full**, with **simple** as the default and **full** for the Lucene Query Parser. See [Search Documents (Azure Search Service REST API)](https://msdn.microsoft.com/library/azure/dn798927.aspx) for details about specifying query parameters.
+
+**Example 1** -- Right-click the following query snippet to open it in a new browser page that loads JSFiddle and runs the query:
 - [&queryType=full&search=*](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26searchFields=business_title%26$select=business_title%26queryType=full%26search=*)
 
-此查詢會從工作索引傳回文件 (在沙箱服務上載入)
+This query returns documents from our Jobs index (loaded on a sandbox service)
 
-在新的瀏覽器視窗中，您會看到 JavaScript 來源和 HTML 輸出並排顯示。指令碼會參考查詢，本文中的指令碼由範例 URL 提供。例如，在「範例 1」中，基礎查詢如下所示︰
+In the new browser window, you'll see the JavaScript source and HTML output side by side. The script references a query, which is provided by the example URLs in this article. For instance, in **Example 1**, the underlying query is as follows:
 
     http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26searchFields=business_title%26$select=business_title%26queryType=full%26search=*
 
-請注意查詢會使用預先設定的 Azure 搜尋服務索引，名為 nycjobs。**searchFields** 參數會將搜尋限制在商務標題欄位。**queryType** 設為 **full**，指示 Azure 搜尋服務對這個查詢使用 Lucene 查詢剖析器。
+Notice the query uses a preconfigured Azure Search index called nycjobs. The **searchFields** parameter restricts the search to just the business title field. The **queryType** is set to **full**, which instructs Azure Search to use the Lucene Query Parser for this query.
 
-### 加入欄位的查詢作業
+### <a name="fielded-query-operation"></a>Fielded query operation
 
-您可以修改本文中的範例：指定 **fieldname:searchterm** 建構來定義加入欄位的查詢作業，其中欄位是單一文字，而搜尋詞彙也是一個單一文字或片語，選擇性使用布林運算子。某些範例包括以下內容：
+You can modify the examples in this article by specifying a **fieldname:searchterm** construction to define a fielded query operation, where the field is a single word, and the search term is also a single word or a phrase, optionally with Boolean operators. Some examples include the following:
 
-- business\_title:(senior NOT junior)
+- business_title:(senior NOT junior)
 - state:("New York" AND "New Jersey")
 
-如果您想要將字串視為單一實體評估，請務必將多個字串放在引號中，例如搜尋 [位置] 欄位中兩個不同城市的情況。此外，請確定運算子是大寫，如同您看到的 NOT 和 AND。
+Be sure to put multiple strings within quotation marks if you want both strings to be evaluated as a single entity, as in this case searching for two distinct cities in the location field. Also, ensure the operator is capitalized as you see with NOT and AND.
 
-**fieldname:searchterm** 中指定的欄位必須是可搜尋的欄位。如需欄位定義中索引屬性使用方式的詳細資訊，請參閱[建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx)。
+The field specified in **fieldname:searchterm** must be a searchable field. See [Create Index (Azure Search Service REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx) for details on how index attributes are used in field definitions.
 
-## 模糊搜尋
+## <a name="fuzzy-search"></a>Fuzzy search
 
-模糊搜尋會尋找具有類似建構的相符項目。在每個 [Lucene 文件](https://lucene.apache.org/core/4_10_2/queryparser/org/apache/lucene/queryparser/classic/package-summary.html)中，模糊搜尋以 [Damerau-Levenshtein 距離](https://en.wikipedia.org/wiki/Damerau%e2%80%93Levenshtein_distance)為基礎。
+A fuzzy search finds matches in terms that have a similar construction. Per [Lucene documentation](https://lucene.apache.org/core/4_10_2/queryparser/org/apache/lucene/queryparser/classic/package-summary.html), fuzzy searches are based on [Damerau-Levenshtein Distance](https://en.wikipedia.org/wiki/Damerau%e2%80%93Levenshtein_distance).
 
-若要執行模糊搜尋，請在單一文字結尾使用波狀符號 "~"，加上選擇性參數，介於 0 和 2 之間且指定編輯距離的值。比方說，"blue~" 或 "blue~1" 會傳回 blue、blues 和 glue。
+To do a fuzzy search, use the tilde "~" symbol at the end of a single word with an optional parameter, a value between 0 and 2, that specifies the edit distance. For example, "blue~" or "blue~1" would return blue, blues, and glue.
 
-**範例 2** -- 以滑鼠右鍵按一下下列查詢程式碼片段來試試看。此查詢會搜尋包含 senior 詞彙的職稱，而不是包含 junior︰
+**Example 2** -- Right-click the following query snippet to give it a try. This query searches for business titles with the term senior in them, but not junior:
 
-- [&queryType=full&search= business\_title:senior NOT junior](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:senior+NOT+junior)
+- [&queryType=full&search= business_title:senior NOT junior](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:senior+NOT+junior)
 
-## 鄰近搜尋
+## <a name="proximity-search"></a>Proximity Search
 
-鄰近搜尋可用來尋找文件中彼此相近的詞彙。在片語的結尾插入波狀符號 "~"，後面加上建立鄰近界限的字數。例如，"hotel airport"~5 會在文件中每 5 個字內尋找旅館和機場等詞彙。
+Proximity searches are used to find terms that are near each other in a document. Insert a tilde "~" symbol at the end of a phrase followed by the number of words that create the proximity boundary. For example, "hotel airport"~5 will find the terms hotel and airport within 5 words of each other in a document.
 
-**範例 3** -- 以滑鼠右鍵按一下下列查詢程式碼片段。此查詢會搜尋具有詞彙關聯的工作 (其中有拼字錯誤)︰
+**Example 3** -- Right-click the following query snippet. This query searches for jobs with the term associate (where it is misspelled):
 
-- [&queryType=full&search= business\_title:asosiate~](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:asosiate~)
+- [&queryType=full&search= business_title:asosiate~](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:asosiate~)
 
-**範例 4** -- 以滑鼠右鍵按一下查詢。搜尋詞彙 "senior analyst"，且其中將其分隔的字數不得超過一個字︰
+**Example 4** -- Right-click the query. Search for jobs with the term "senior analyst" where it is separated by no more than one word:
 
-- [&queryType=full&search=business\_title:"senior analyst"~1](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:%22senior%20analyst%22~1)
+- [&queryType=full&search=business_title:"senior analyst"~1](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:%22senior%20analyst%22~1)
 
-**範例 5** -- 再試一次，移除 "senior analyst" 一詞之間的單字。
+**Example 5** -- Try it again removing the words between the term "senior analyst".
 
-- [&queryType=full&search=business\_title:"senior analyst"~0](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:%22senior%20analyst%22~0)
+- [&queryType=full&search=business_title:"senior analyst"~0](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:%22senior%20analyst%22~0)
 
-## 詞彙增強
+## <a name="term-boosting"></a>Term Boosting
 
-提升一詞指的是如果文件包含提升詞彙，則將其評等提高，高於不包含該詞彙的文件。這與評分設定檔的不同之處在於評分設定檔會提升特定欄位，而不是特定詞彙。下列範例可協助說明差異。
+Term boosting refers to ranking a document higher if it contains the boosted term, relative to documents that do not contain the term. This differs from scoring profiles in that scoring profiles boost certain fields, rather than specific terms. The following example helps illustrate the differences.
 
-請考慮使用評分設定檔，可提高特定欄位中的相符項目，例如 musicstoreindex 範例中的 **genre**。詞彙提升可用來進一步提升某些搜尋詞彙，使其高於其他詞彙。比方說，"rock^2 electronic" 可提升包含搜尋詞彙的文件﹐使其在 [genre] 欄位中高於索引中的其他可搜尋欄位。此外，包含搜尋詞彙 "rock" 的文件排名會比另一個搜尋詞彙 "electronic" 還高，此為詞彙提升值 (2) 的結果。
+Consider a scoring profile that boosts matches in a certain field, such as **genre** in the musicstoreindex example. Term boosting could be used to further boost certain search terms higher than others. For example, "rock^2 electronic" will boost documents that contain the search terms in the **genre** field higher than other searchable fields in the index. Furthermore, documents that contain the search term "rock" will be ranked higher than the other search term "electronic" as a result of the term boost value (2).
 
-若要提升詞彙，請使用插入號 "^"，並在搜尋詞彙的結尾加上提升係數 (數字)。提升係數越高，該詞彙相對於其他搜尋詞彙的關聯性也越高。根據預設，提升係數為 1。雖然提升係數必須是正數，但是它可能會小於 1 (例如，0.2)。
+To boost a term, use the caret, "^", symbol with a boost factor (a number) at the end of the term you are searching. The higher the boost factor, the more relevant the term will be relative to other search terms. By default, the boost factor is 1. Although the boost factor must be positive, it can be less than 1 (for example, 0.2).
 
-**範例 6** -- 以滑鼠右鍵按一下查詢。搜尋包含詞彙「電腦分析師 (computer analyst)」的工作時，我們會發現包含電腦和分析師兩個單字的搜尋沒有結果，但是分析師工作會顯示在結果的頂端。
+**Example 6**  -- Right-click the query. Search for jobs with the term "computer analyst" where we see there are no results with both words computer and analyst, yet analyst jobs are at the top of the results.
 
-- [&queryType=full&search=business\_title:computer analyst](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:computer%5e2%20analyst)
+- [&queryType=full&search=business_title:computer analyst](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:computer%5e2%20analyst)
 
-**範例 7** -- 再試一次，在兩個單字並沒有同時存在的情況下，這一次提升包含電腦一詞的結果，高於包含分析師一詞。
+**Example 7**  --  Try it again, this time boosting results with the term computer over the term analyst if both words do not exist.
 
-- [&queryType=full&search=business\_title:computer^2 analyst](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:computer%5e2%20analyst)
+- [&queryType=full&search=business_title:computer^2 analyst](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26$select=business_title%26queryType=full%26search=business_title:computer%5e2%20analyst)
 
-## 規則運算式
+## <a name="regular-expression"></a>Regular Expression
 
-規則運算式搜尋會根據正斜線 "/" 之間的內容尋找相符項目，如 [RegExp 類別](http://lucene.apache.org/core/4_10_2/core/org/apache/lucene/util/automaton/RegExp.html)中所記錄。
+A regular expression search finds a match based on the contents between forward slashes "/", as documented in the [RegExp class](http://lucene.apache.org/core/4_10_2/core/org/apache/lucene/util/automaton/RegExp.html).
 
-**範例 8** -- 以滑鼠右鍵按一下查詢。搜尋包含 Senior 或 Junior 詞彙的工作。
+**Example 8** -- Right-click the query. Search for jobs with either the term Senior or Junior.
 
 - `&queryType=full&$select=business_title&search=business_title:/(Sen|Jun)ior/`
 
-在頁面中，此範例的 URL 將無法正確轉譯。解決的方法是複製下列 URL 並將它貼到瀏覽器 URL 位址︰`http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26queryType=full%26$select=business_title%26search=business_title:/(Sen|Jun)ior/)`
+The URL for this example will not render properly in the page. As a workaround, copy the URL below and paste it into the browser URL address:     `http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26queryType=full%26$select=business_title%26search=business_title:/(Sen|Jun)ior/)`
 
 
-## 萬用字元搜尋
+## <a name="wildcard-search"></a>Wildcard Search
 
-您可以使用一般辨識語法進行多個 (*) 或單一 (?) 字元的萬用字元搜尋。請注意，Lucene 查詢剖析器支援搭配使用這些符號與單一詞彙，而不是片語。
+You can use generally recognized syntax for multiple (\*) or single (?) character wildcard searches. Note the Lucene query parser supports the use of these symbols with a single term, and not a phrase.
 
-**範例 9** -- 以滑鼠右鍵按一下查詢。搜尋包含前置詞 'prog' 的工作，其中包括內含程式設計 (programming) 與程式設計人員 (programmer) 的職稱。
+**Example 9** -- Right-click the  query. Search for jobs that contain the prefix 'prog' which would include business titles with the terms programming and programmer in it.
 
-- [&queryType=full&$select=business\_title&search=business\_title:prog*](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26queryType=full%26$select=business_title%26search=business_title:prog*)
+- [&queryType=full&$select=business_title&search=business_title:prog*](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26queryType=full%26$select=business_title%26search=business_title:prog*)
 
-您無法使用 * 或 ? 符號做為搜尋的第一個字元。
+You cannot use a * or ? symbol as the first character of a search.
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-請在您的程式碼中嘗試指定 Lucene 查詢剖析器。下列連結說明如何設定 .NET 和 REST API 的搜尋查詢。這些連結會使用預設的簡單語法，因此您必須套用您從本文了解的內容來指定 **queryType**。
+Try specifying the Lucene Query Parser in your code. The following links explain how to set up search queries for both .NET and the REST API. The links use the default simple syntax so you will need to apply what you learned from this article to specify the **queryType**.
 
-- [使用 .NET SDK 查詢 Azure 搜尋服務索引](search-query-dotnet.md)
-- [使用 REST API 查詢 Azure 搜尋服務索引](search-query-rest-api.md)
+- [Query your Azure Search Index using the .NET SDK](search-query-dotnet.md)
+- [Query your Azure Search Index using the REST API](search-query-rest-api.md)
 
 
  
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

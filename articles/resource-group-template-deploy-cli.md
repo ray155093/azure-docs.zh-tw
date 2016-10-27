@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure CLI 與範本部署資源 | Microsoft Azure"
-   description="使用 Azure Resource Manager 和 Azure CLI，將資源部署至 Azure。資源會定義在 Resource Manager 範本中。"
+   pageTitle="Deploy resources with Azure CLI and template | Microsoft Azure"
+   description="Use Azure Resource Manager and Azure CLI to deploy a resources to Azure. The resources are defined in a Resource Manager template."
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,60 +16,61 @@
    ms.date="08/15/2016"
    ms.author="tomfitz"/>
 
-# 使用 Resource Manager 範本與 Azure CLI 部署資源
+
+# <a name="deploy-resources-with-resource-manager-templates-and-azure-cli"></a>Deploy resources with Resource Manager templates and Azure CLI
 
 > [AZURE.SELECTOR]
 - [PowerShell](resource-group-template-deploy.md)
 - [Azure CLI](resource-group-template-deploy-cli.md)
-- [入口網站](resource-group-template-deploy-portal.md)
+- [Portal](resource-group-template-deploy-portal.md)
 - [REST API](resource-group-template-deploy-rest.md)
 
-本主題說明如何使用 Azure CLI 與 Resource Manager 範本，將您的資源部署至 Azure。
+This topic explains how to use Azure CLI with Resource Manager templates to deploy your resources to Azure.  
 
-> [AZURE.TIP] 如需部署期間偵錯錯誤的說明，請參閱︰
+> [AZURE.TIP] For help with debugging an error during deployment, see:
 >
-> - [使用 Azure CLI 來檢視部署作業](resource-manager-troubleshoot-deployments-cli.md)，以了解有關取得可協助您針對錯誤進行疑難排解的資訊
-> - [針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)，以了解如何解決常見的部署錯誤
+> - [View deployment operations with Azure CLI](resource-manager-troubleshoot-deployments-cli.md) to learn about getting information that helps you troubleshoot your error
+> - [Troubleshoot common errors when deploying resources to Azure with Azure Resource Manager](resource-manager-common-deployment-errors.md) to learn how to resolve common deployment errors
 
-您的範本可以是本機檔案，或者是透過 URI 提供使用的外部檔案。當您的範本位於儲存體帳戶中時，您可以限制範本的存取權，並在部署期間提供共用存取簽章 (SAS) Token
+Your template can be either a local file or an external file that is available through a URI. When your template resides in a storage account, you can restrict access to the template and provide a shared access signature (SAS) token during deployment.
 
-## 部署的快速步驟
+## <a name="quick-steps-to-deployment"></a>Quick steps to deployment
 
-本文章說明部署期間提供您選擇的所有不同選項。不過，通常您只需要兩個簡單的命令。若要快速開始部署，請使用下列命令：
+This article describes all the different options available to you during deployment. However, often you only need two simple commands. To quickly get started with deployment, use the following commands:
 
     azure group create -n ExampleResourceGroup -l "West US"
     azure group deployment create -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
 
-若要深入了解可能更適合您案例的部署選項，請繼續閱讀此文章。
+To learn more about options for deployment that might be better suited to your scenario, continue reading this article.
 
 [AZURE.INCLUDE [resource-manager-deployments](../includes/resource-manager-deployments.md)]
 
-## 使用 Azure CLI 進行部署
+## <a name="deploy-with-azure-cli"></a>Deploy with Azure CLI
 
-如果您之前未曾搭配使用 Azure CLI 與資源管理員，請參閱[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理](xplat-cli-azure-resource-manager.md)。
+If you have not previously used Azure CLI with Resource Manager, see [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management](xplat-cli-azure-resource-manager.md).
 
-1. 登入您的 Azure 帳戶。提供您的認證之後，命令會傳回您的登入的結果。
+1. Log in to your Azure account. After providing your credentials, the command returns the result of your login.
 
         azure login
   
         ...
         info:    login command OK
 
-2. 如果您有多個訂用帳戶，請提供您想要用於部署的訂用帳戶識別碼。
+2. If you have multiple subscriptions, provide the subscription id you wish to use for deployment.
 
         azure account set <YourSubscriptionNameOrId>
 
-3. 切換至 Azure 資源管理員模組。您會收到新模式的確認。
+3. Switch to Azure Resource Manager module. You receive confirmation of the new mode.
 
         azure config mode arm
    
         info:     New mode is arm
 
-4. 如果您沒有現有資源群組，請建立新的資源群組。提供您的解決方案所需的資源群組名稱和位置。您需要提供資源群組的位置，因為資源群組會儲存資源的相關中繼資料。為了符合法規，您可能會想要指定中繼資料的儲存位置。一般情況下，我們建議您指定大部分資源所在的位置。使用相同位置可簡化範本。
+4. If you do not have an existing resource group, create a resource group. Provide the name of the resource group and location that you need for your solution. You need to provide a location for the resource group because the resource group stores metadata about the resources. For compliance reasons, you may want to specify where that metadata is stored. In general, we recommend that you specify a location where most of your resources will reside. Using the same location can simplify your template.
 
         azure group create -n ExampleResourceGroup -l "West US"
 
-     隨即傳回新資源群組的摘要。
+     A summary of the new resource group is returned.
    
         info:    Executing command group create
         + Getting resource group ExampleResourceGroup
@@ -83,27 +84,27 @@
         data:
         info:    group create command OK
 
-5. 請先執行 **azure group template validate** 命令來驗證部署，然後再執行部署。測試部署時，請提供與執行部署時完全一致的參數 (如下個步驟所示)。
+5. Validate your deployment before executing it by running the **azure group template validate** command. When testing the deployment, provide parameters exactly as you would when executing the deployment (shown in the next step).
 
-        azure group template validate -f <PathToTemplate> -p "{"ParameterName":{"value":"ParameterValue"}}" -g ExampleResourceGroup
+        azure group template validate -f <PathToTemplate> -p "{\"ParameterName\":{\"value\":\"ParameterValue\"}}" -g ExampleResourceGroup
 
-5. 若要將資源部署至資源群組，請執行下列命令，並提供必要的參數。參數會包含您部署的名稱、資源群組的名稱、範本的路徑或 URL，以及您案例所需的任何其他參數。
+5. To deploy resources to your resource group, run the following command and provide the necessary parameters. The parameters include a name for your deployment, the name of your resource group, the path or URL to the template, and any other parameters needed for your scenario. 
    
-     您有下列三個選項可以用來提供參數值：
+     You have the following three options for providing parameter values: 
 
-     1. 使用內嵌參數和本機範本。每個參數皆為此格式：`"ParameterName": { "value": "ParameterValue" }`。以下範例顯示的是含逸出字元的參數。
+     1. Use inline parameters and a local template. Each parameter is in the format: `"ParameterName": { "value": "ParameterValue" }`. The following example shows the parameters with escape characters.
 
-            azure group deployment create -f <PathToTemplate> -p "{"ParameterName":{"value":"ParameterValue"}}" -g ExampleResourceGroup -n ExampleDeployment
+            azure group deployment create -f <PathToTemplate> -p "{\"ParameterName\":{\"value\":\"ParameterValue\"}}" -g ExampleResourceGroup -n ExampleDeployment
 
-     2. 使用內嵌參數和範本的連結。
+     2. Use inline parameters and a link to a template.
 
-            azure group deployment create --template-uri <LinkToTemplate> -p "{"ParameterName":{"value":"ParameterValue"}}" -g ExampleResourceGroup -n ExampleDeployment
+            azure group deployment create --template-uri <LinkToTemplate> -p "{\"ParameterName\":{\"value\":\"ParameterValue\"}}" -g ExampleResourceGroup -n ExampleDeployment
 
-     3. 使用參數檔案。如需範本檔案的相關資訊，請參閱[參數檔案](./#parameter-file)。
+     3. Use a parameter file. For information about the template file, see [Parameter file](#parameter-file).
     
             azure group deployment create -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
 
-     透過上述 3 個方法之一部署好資源之後，即可看到部署的摘要。
+     After the resources have been deployed through one of the three methods above, you will see a summary of the deployment.
   
         info:    Executing command group deployment create
         + Initializing template configurations and parameters
@@ -111,66 +112,71 @@
         ...
         info:    group deployment create command OK
 
-     若要執行完整部署，請將 **mode** 設為 **Complete**。使用此模式時請務必謹慎，因為您可以不小心刪除不在範本中的資源。
+     To run a complete deployment, set **mode** to **Complete**. Be careful when using this mode as you can inadvertently delete resources that are not in your template.
 
         azure group deployment create --mode Complete -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
 
-6. 如果您想要記錄部署的其他相關資訊，以助於針對任何部署錯誤進行疑難排解，請使用 **debug-setting** 參數。您可以指定在記錄部署作業時，一併記錄要求內容及/或回應內容。
+6. If you want to log additional information about the deployment that may help you troubleshoot any deployment errors, use the **debug-setting** parameter. You can specify that request content, response content, or both be logged with the deployment operation.
 
         azure group deployment create --debug-setting All -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
 
-## 使用 SAS Token 從儲存體部署範本
+## <a name="deploy-template-from-storage-with-sas-token"></a>Deploy template from storage with SAS token
 
-您可以將範本加入儲存體帳戶，並在部署期間使用 SAS Token 連結它們。
+You can add your templates to a storage account and link to them during deployment with a SAS token.
 
-> [AZURE.IMPORTANT] 遵循下列步驟，則僅有帳戶擁有者可以存取包含範本的 Blob。不過，當您建立 Blob 的 SAS Token 時，具備該 URI 的任何人都可以存取該 Blob。如果另一位使用者攔截了 URI，該使用者也能存取範本。使用 SAS Token 是限制存取您的範本的好方法，但您不應該將機密資料 (如密碼) 直接包含在範本中。
+> [AZURE.IMPORTANT] By following the steps below, the blob containing the template is accessible to only the account owner. However, when you create a SAS token for the blob, the blob is accessible to anyone with that URI. If another user intercepts the URI, that user is able to access the template. Using a SAS token is a good way of limiting access to your templates, but you should not include sensitive data like passwords directly in the template.
 
-### 將私人範本新增至儲存體帳戶
+### <a name="add-private-template-to-storage-account"></a>Add private template to storage account
 
-下列步驟設定範本的儲存體帳戶：
+The following steps set up a storage account for templates:
 
-1. 建立資源群組。
+1. Create a resource group.
 
         azure group create -n "ManageGroup" -l "westus"
 
-2. 建立儲存體帳戶。儲存體帳戶的名稱在整個 Azure 中必須是唯一的，因此請為帳戶提供您自己的名稱。
+2. Create a storage account. The storage account name must be unique across Azure, so provide your own name for the account.
 
         azure storage account create -g ManageGroup -l "westus" --sku-name LRS --kind Storage storagecontosotemplates
 
-3. 設定儲存體帳戶和金鑰的變數。
+3. Set variables for the storage account and key.
 
         export AZURE_STORAGE_ACCOUNT=storagecontosotemplates
         export AZURE_STORAGE_ACCESS_KEY={storage_account_key}
 
-4. 建立容器。權限設為 [關閉] 表示容器僅限擁有者存取。
+4. Create a container. The permission is set to **Off** which means the container is only accessible to the owner.
 
         azure storage container create --container templates -p Off 
         
-4. 將您的範本新增至容器。
+4. Add your template to the container.
 
         azure storage blob upload --container templates -f c:\Azure\Templates\azuredeploy.json
         
-### 在部署期間提供 SAS Token
+### <a name="provide-sas-token-during-deployment"></a>Provide SAS token during deployment
 
-若要在儲存體帳戶中部署私人範本，請擷取 SAS Token 並將它包含在範本的 URI 中。
+To deploy a private template in a storage account, retrieve a SAS token and include it in the URI for the template.
 
-1. 建立具有讀取權限與到期時間的 SAS Token，以限制存取權限。設定到期時間，以允許足夠的時間來完成部署。擷取包括 SAS Token 的完整範本 URI。
+1. Create a SAS token with read permissions and an expiry time to limit access. Set the expiry time to allow enough time to complete the deployment. Retrieve the full URI of the template including the SAS token.
 
         expiretime=$(date -I'minutes' --date "+30 minutes")
         fullurl=$(azure storage blob sas create --container templates --blob azuredeploy.json --permissions r --expiry $expiretimetime --json  | jq ".url")
 
-2. 提供包含 SAS Token 的 URI 來部署範本。
+2. Deploy the template by providing the URI that includes the SAS token.
 
         azure group deployment create --template-uri $fullurl -g ExampleResourceGroup
 
-如需使用包含已連結範本的 SAS Token 範例，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
+For an example of using a SAS token with linked templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).
 
 [AZURE.INCLUDE [resource-manager-parameter-file](../includes/resource-manager-parameter-file.md)]
 
-## 後續步驟
-- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)。
-- 若要在範本中定義參數，請參閱[編寫範本](resource-group-authoring-templates.md#parameters)。
-- 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
-- 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
+## <a name="next-steps"></a>Next steps
+- For an example of deploying resources through the .NET client library, see [Deploy resources using .NET libraries and a template](virtual-machines/virtual-machines-windows-csharp-template.md).
+- To define parameters in template, see [Authoring templates](resource-group-authoring-templates.md#parameters).
+- For guidance on deploying your solution to different environments, see [Development and test environments in Microsoft Azure](solution-dev-test-environments.md).
+- For details about using a KeyVault reference to pass secure values, see [Pass secure values during deployment](resource-manager-keyvault-parameter.md).
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

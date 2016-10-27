@@ -1,6 +1,6 @@
 <properties
- pageTitle="遠端監視預先設定解決方案逐步解說 | Microsoft Azure"
- description="說明 Azure IoT 預先設定解決方案遠端監視及其架構。"
+ pageTitle="Remote Monitoring preconfigured solution walkthrough | Microsoft Azure"
+ description="A description of the Azure IoT preconfigured solution remote monitoring and its architecture."
  services=""
  suite="iot-suite"
  documentationCenter=""
@@ -17,89 +17,90 @@
  ms.date="08/17/2016"
  ms.author="dobett"/>
 
-# 遠端監視預先設定解決方案逐步解說
 
-## 簡介
+# <a name="remote-monitoring-preconfigured-solution-walkthrough"></a>Remote monitoring preconfigured solution walkthrough
 
-IoT 套件遠端監視 [預先設定解決方案][lnk-preconfigured-solutions] 是適用於在遠端位置執行的多部機器之端對端監視解決方案實作。解決方案結合了主要的 Azure 服務以提供一般商務案例的實作，您可以將其做為自己實作的起點。您可以 [自訂][lnk-customize] 解決方案以滿足特定的業務需求。
+## <a name="introduction"></a>Introduction
 
-本文將逐步介紹遠端監視解決方案的一些重要元素，讓您瞭解它的運作方式。這項知識能協助您︰
+The IoT Suite remote monitoring [preconfigured solution][lnk-preconfigured-solutions] is an implementation of an end-to-end monitoring solution for multiple machines running in remote locations. The solution combines key Azure services to provide a generic implementation of the business scenario and you can use it as a starting point for your own implementation. You can [customize][lnk-customize] the solution to meet your own specific business requirements.
 
-- 在解決方案中進行疑難排解。
-- 規劃如何自訂解決方案以滿足您的特定需求。
-- 設計使用 Azure 服務的 IoT 解決方案。
+This article walks you through some of the key elements of the remote monitoring solution to enable you to understand how it works. This knowledge helps you to:
 
-## 邏輯架構
+- Troubleshoot issues in the solution.
+- Plan how to customize to the solution to meet your own specific requirements. 
+- Design your own IoT solution that uses Azure services.
 
-下圖概述預先設定解決方案的邏輯元件：
+## <a name="logical-architecture"></a>Logical architecture
 
-![邏輯架構](media/iot-suite-remote-monitoring-sample-walkthrough/remote-monitoring-architecture.png)
+The following diagram outlines the logical components of the preconfigured solution:
+
+![Logical architecture](media/iot-suite-remote-monitoring-sample-walkthrough/remote-monitoring-architecture.png)
 
 
-## 模擬的裝置
+## <a name="simulated-devices"></a>Simulated devices
 
-在預先設定解決方案中，模擬的裝置會表示冷卻裝置 (例如建築物空調或設備空氣處理單位)。當您部署預先設定解決方案時，也會自動佈建四個在 [Azure WebJob][lnk-webjobs] 中執行的模擬裝置。模擬裝置讓您可以輕鬆探索解決方案的行為，而不需要部署任何實體裝置。若要部署真實的實體裝置，請參閱[將裝置連接至遠端監視預先設定解決方案][lnk-connect-rm]教學課程。
+In the preconfigured solution, the simulated device represents a cooling device (such as a building air conditioner or facility air handling unit). When you deploy the preconfigured solution, you also automatically provision four simulated devices that run in an [Azure WebJob][lnk-webjobs]. The simulated devices make it easy for you to explore the behavior of the solution without the need to deploy any physical devices. To deploy a real physical device, see the [Connect your device to the remote monitoring preconfigured solution][lnk-connect-rm] tutorial.
 
-每個模擬裝置可以傳送下列訊息類型至 IoT 中樞︰
+Each simulated device can send the following message types to IoT Hub:
 
-| 訊息 | 說明 |
+| Message  | Description |
 |----------|-------------|
-| 啟動 | 裝置啟動時會將含有本身相關資訊的**裝置資訊**訊息傳送至後端。這項資料包括裝置識別碼、裝置中繼資料、裝置支援的命令清單，以及裝置目前的設定。 |
-| 目前狀態 | 裝置會定期傳送**目前狀態**訊息，以報告該裝置是否可以感應到感應器的目前狀態。 |
-| 遙測 | 裝置會定期傳送**遙測**訊息，以報告從裝置的模擬感應器收集到的溫度和溼度模擬值。 |
+| Startup  | When the device starts, it sends a **device-info** message containing information about itself to the back end. This data includes the device id, the device metadata, a list of the commands the device supports, and the current configuration of the device. |
+| Presence | A device periodically sends a **presence** message to report whether the device can sense the presence of a sensor. |
+| Telemetry | A device periodically sends a **telemetry** message that reports simulated values for the temperature and humidity collected from the device's simulated sensors. |
 
 
-模擬裝置會在**裝置資訊**訊息中傳送下列裝置屬性：
+The simulated devices send the following device properties in a **device-info** message:
 
-| 屬性 | 目的 |
+| Property               |  Purpose |
 |------------------------|--------- |
-| 裝置識別碼 | 在解決方案中建立裝置時所提供或指派的識別碼。 |
-| 製造商 | 裝置製造商 |
-| 型號 | 裝置的型號 |
-| 序號 | 裝置的序號 |
-| 韌體 | 裝置的目前韌體版本 |
-| 平台 | 裝置的平台架構 |
-| 處理器 | 執行裝置的處理器 |
-| 已安裝的 RAM | 在裝置上安裝的 RAM 數量 |
-| 中樞已啟用狀態 | 裝置的 IoT 中樞狀態屬性 |
-| 建立時間 | 在解決方案中建立裝置的時間 |
-| 更新時間 | 裝置上次更新屬性的時間 |
-| 緯度 | 裝置的緯度位置 |
-| 經度 | 裝置的經度位置 |
+| Device ID              | Id that is either provided or assigned when a device is created in the solution. |
+| Manufacturer           | Device manufacturer |
+| Model Number           | Model number of the device |
+| Serial Number          | Serial number of the device |
+| Firmware               | Current version of firmware on the device |
+| Platform               | Platform architecture of the device |
+| Processor              | Processor running the device |
+| Installed RAM          | Amount of RAM installed on the device |
+| Hub Enabled State      | IoT Hub state property of the device |
+| Created Time           | Time the device was created in the solution |
+| Updated Time           | Last time properties were updated for the device |
+| Latitude               | Latitude location of the device |
+| Longitude              | Longitude location of the device |
 
-模擬器會以範例值在模擬裝置中植入這些屬性。模擬器每次初始化模擬的裝置時，裝置會將預先定義的中繼資料發佈至 IoT 中樞。請注意，這會覆寫在裝置入口網站中所做的任何中繼資料更新。
+The simulator seeds these properties in simulated devices with sample values.  Each time the simulator initializes a simulated device, the device posts the pre-defined metadata to IoT Hub. Note how this overwrites any metadata updates made in the device portal.
 
 
-模擬的裝置可以處理透過 IoT 中樞從解決方案儀表板傳送的下列命令：
+The simulated devices can handle the following commands sent from the solution dashboard through the IoT hub:
 
-| 命令 | 說明 |
+| Command                | Description                                         |
 |------------------------|-----------------------------------------------------|
-| PingDevice | 傳送 _ping_ 給裝置以檢查是否運作 |
-| StartTelemetry | 傳送遙測以啟動裝置 |
-| StopTelemetry | 傳送遙測以停止裝置 |
-| ChangeSetPointTemp | 變更設定點值，在其周圍會產生隨機資料 |
-| DiagnosticTelemetry | 觸發裝置模擬器以傳送其他遙測值 (externalTemp) |
-| ChangeDeviceState | 變更裝置的擴充狀態屬性，並從裝置傳送裝置資訊訊息 |
+| PingDevice             | Sends a _ping_ to the device to check it is alive   |
+| StartTelemetry         | Starts the device sending telemetry                 |
+| StopTelemetry          | Stops the device from sending telemetry             |
+| ChangeSetPointTemp     | Changes the set point value around which the random data is generated |
+| DiagnosticTelemetry    | Triggers the device simulator to send an additional telemetry value (externalTemp) |
+| ChangeDeviceState      | Changes an extended state property for the device and sends the device info message from the device |
 
-解決方案後端的裝置命令通知是透過 IoT 中樞提供。
+The device command acknowledgment to the solution back end is provided through the IoT hub.
 
-## IoT 中樞
+## <a name="iot-hub"></a>IoT Hub
 
-[IoT 中樞][lnk-iothub]內嵌從裝置傳送至雲端的資料，並提供給 Azure 串流分析 (ASA) 作業。IoT 中樞也會代表裝置入口網站傳送命令到您的裝置。每個串流 ASA 作業使用不同的 IoT 中樞取用者群組，以從您的裝置讀取訊息串流。
+The [IoT hub][lnk-iothub] ingests data sent from the devices into the cloud and makes it available to the Azure Stream Analytics (ASA) jobs. IoT hub also sends commands to your devices on behalf of the device portal. Each stream ASA job uses a separate IoT Hub consumer group to read the stream of messages from your devices.
 
-## Azure 串流分析
+## <a name="azure-stream-analytics"></a>Azure Stream Analytics
 
-在遠端監視解決方案中，[Azure 串流分析][lnk-asa] \(ASA) 會將透過 IoT 中樞所收到的裝置訊息分派至其他後端元件進行處理或儲存。不同的 ASA 作業會根據訊息內容執行特定的功能。
+In the remote monitoring solution, [Azure Stream Analytics][lnk-asa] (ASA) dispatches device messages received by the IoT hub to other back-end components for processing or storage. Different ASA jobs perform specific functions based on the content of the messages.
 
-**作業 1：裝置資訊**會篩選來自傳入訊息串流的裝置資訊訊息，並將它們傳送到事件中樞端點。裝置會在啟動時傳送裝置資訊訊息，並且回應 **SendDeviceInfo** 命令。此作業使用下列查詢定義來識別**裝置資訊**訊息︰
+**Job 1: Device Info** filters device information messages from the incoming message stream and sends them to an Event Hub endpoint. A device sends device information messages at startup and in response to a **SendDeviceInfo** command. This job uses the following query definition to identify **device-info** messages:
 
 ```
 SELECT * FROM DeviceDataStream Partition By PartitionId WHERE  ObjectType = 'DeviceInfo'
 ```
 
-此作業會將其輸出傳送到事件中樞進行進一步的處理。
+This job sends its output to an Event Hub for further processing.
 
-**作業 2：規則**會針對每一裝置臨界值評估傳入氣溫和溼度遙測值。臨界值是在解決方案儀表板中提供的規則編輯器中設定。每個裝置/值組是依據時間戳記儲存在 blob 中，串流分析會讀取做為**參考資料**。工作會針對裝置的設定臨界值比較任何非空白值。如果超過 '>' 條件，作業會輸出**警示**事件，表示已超過臨界值，並且提供裝置、值和時間戳記值。此作業會使用下列查詢定義來識別應觸發警示的遙測訊息︰
+**Job 2: Rules** evaluates incoming temperature and humidity telemetry values against per-device thresholds. Threshold values are set in the rules editor available in the solution dashboard. Each device/value pair is stored by timestamp in a blob which Stream Analytics reads in as **Reference Data**. The job compares any non-empty value against the set threshold for the device. If it exceeds the '>' condition, the job outputs an **alarm** event that indicates that the threshold is exceeded and provides the device, value, and timestamp values. This job uses the following query definition to identify telemetry messages that should trigger an alarm:
 
 ```
 WITH AlarmsData AS 
@@ -140,9 +141,9 @@ INTO DeviceRulesHub
 FROM AlarmsData
 ```
 
-作業會將其輸出傳送至事件中樞供進一步處理，並將每項警示的詳細資料儲存至 blob 儲存體，解決方案儀表板可以從該位置讀取警示資訊。
+The job sends its output to an Event Hub for further processing and saves details of each alert to blob storage from where the solution dashboard can read the alert information.
 
-**作業 3：遙測**會以兩種方法來操作傳入裝置遙測串流。第一種方法會將裝置的所有遙測訊息都傳送至持續性 blob 儲存體以供長期儲存。第二種方法會透過五分鐘滑動視窗計算平均、最小和最大溼度值，並將此資料傳送至 Blob 儲存體。解決方案儀表板會從 blob 儲存體讀取遙測資料來填入圖表。此作業會使用下列查詢定義：
+**Job 3: Telemetry** operates on the incoming device telemetry stream in two ways. The first sends all telemetry messages from the devices to persistent blob storage for long-term storage. The second computes average, minimum, and maximum humidity values over a five-minute sliding window and sends this data to blob storage. The solution dashboard reads the telemetry data from blob storage to populate the charts. This job uses the following query definition:
 
 ```
 WITH 
@@ -185,52 +186,52 @@ GROUP BY
     SlidingWindow (mi, 5)
 ```
 
-## 事件中樞
+## <a name="event-hubs"></a>Event Hubs
 
-**裝置資訊**和**規則** ASA 作業將資料輸出至事件中樞，以便可靠地轉送給在 WebJob 中執行的**事件處理器**。
+The **device info** and **rules** ASA jobs output their data to Event Hubs to reliably forward on to the **Event Processor** running in the WebJob.
 
-## Azure 儲存體
+## <a name="azure-storage"></a>Azure storage
 
-此解決方案使用 Azure blob 儲存體來保存解決方案裝置中的所有原始和摘要遙測資料。儀表板會從 blob 儲存體讀取遙測資料來填入圖表。若要顯示警示，儀表板會從 blob 儲存體讀取當遙測值超過設定的臨界值時所記錄的資料。解決方案也使用 Blob 儲存體記錄您在儀表板中設定的臨界值。
+The solution uses Azure blob storage to persist all the raw and summarized telemetry data from the devices in the solution. The dashboard reads the telemetry data from blob storage to populate the charts. To display alerts, the dashboard reads the data from blob storage that records when telemetry values exceeded the configured threshold values. The solution also uses blob storage to record the threshold values you set in the dashboard.
 
-## WebJobs
+## <a name="webjobs"></a>WebJobs
 
-除了裝載裝置模擬器，在解決方案中的 WebJob 也託管在 Azure WebJob 中執行的**事件處理器**，它會處理裝置資訊訊息和命令回應。它會使用：
+In addition to hosting the device simulators, the WebJobs in the solution also host the **Event Processor** running in an Azure WebJob that handles device information messages and command responses. It uses:
 
-- 具有目前裝置資訊的裝置資訊訊息以更新裝置登錄 (儲存於 DocumentDB 資料庫)。
-- 命令回應訊息以更新裝置命令歷程記錄 (儲存於 DocumentDB 資料庫)。
+- Device information messages to update the device registry (stored in the DocumentDB database) with the current device information.
+- Command response messages to update the device command history (stored in the DocumentDB database).
 
-## DocumentDB
+## <a name="documentdb"></a>DocumentDB
 
-解決方案使用 DocumentDB 資料庫來儲存連接至解決方案的裝置相關資訊。這項資訊包括裝置的中繼資料和從儀表板傳送至裝置的命令記錄。
+The solution uses a DocumentDB database to store information about the devices connected to the solution. This information includes device metadata and the history of commands sent to devices from the dashboard.
 
-## Web 應用程式
+## <a name="web-apps"></a>Web apps
 
-### 遠端監視儀表板
-Web 應用程式中的此頁面會使用 PowerBI javascript 控制項 (請參閱 [PowerBI 視覺效果儲存機制](https://www.github.com/Microsoft/PowerBI-visuals)) 以視覺化方式呈現裝置的遙測資料。解決方案會使用 ASA 遙測作業，將遙測資料寫入至 blob 儲存體。
+### <a name="remote-monitoring-dashboard"></a>Remote monitoring dashboard
+This page in the web application uses PowerBI javascript controls (See [PowerBI-visuals repo](https://www.github.com/Microsoft/PowerBI-visuals)) to visualize the telemetry data from the devices. The solution uses the ASA telemetry job to write the telemetry data to blob storage.
 
 
-### 裝置系統管理入口網站
+### <a name="device-administration-portal"></a>Device administration portal
 
-此 Web 應用程式可讓您：
+This web app enables you to:
 
-- 佈建新裝置。這個動作會設定唯一裝置識別碼並產生驗證金鑰。會將裝置相關資訊寫入至 IoT 中樞身分識別登錄以及解決方案特定的 DocumentDB 資料庫。
-- 管理裝置屬性。這個動作包括檢視現有屬性和使用新的屬性更新。
-- 將命令傳送至裝置。
-- 檢視裝置的命令歷程記錄。
-- 啟用和停用裝置。
+- Provision a new device. This action sets the unique device id and generates the authentication key. It writes information about the device to both the IoT Hub identity registry and the solution-specific DocumentDB database.
+- Manage device properties. This action includes viewing existing properties and updating with new properties.
+- Send commands to a device.
+- View the command history for a device.
+- Enable and disable devices.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-下列 TechNet 部落格文章提供有關遠端監視預先設定之解決方案更多的詳細資料︰
+The following TechNet blog posts provide more detail about the remote monitoring preconfigured solution:
 
-- [IoT 套件 - 幕後 - 遠端監視](http://social.technet.microsoft.com/wiki/contents/articles/32941.iot-suite-under-the-hood-remote-monitoring.aspx)
-- [IoT 套件 - 遠端監視 - 新增即時與模擬裝置](http://social.technet.microsoft.com/wiki/contents/articles/32975.iot-suite-remote-monitoring-adding-live-and-simulated-devices.aspx)
+- [IoT Suite - Under The Hood - Remote Monitoring](http://social.technet.microsoft.com/wiki/contents/articles/32941.iot-suite-under-the-hood-remote-monitoring.aspx)
+- [IoT Suite - Remote Monitoring - Adding Live and Simulated Devices](http://social.technet.microsoft.com/wiki/contents/articles/32975.iot-suite-remote-monitoring-adding-live-and-simulated-devices.aspx)
 
-您可以繼續閱讀下列文章，了解如何開始使用 IoT 套件︰
+You can continue getting started with IoT Suite by reading the following articles:
 
-- [將裝置連接至遠端監視預先設定方案][lnk-connect-rm]
-- [azureiotsuite.com 網站的權限][lnk-permissions]
+- [Connect your device to the remote monitoring preconfigured solution][lnk-connect-rm]
+- [Permissions on the azureiotsuite.com site][lnk-permissions]
 
 [lnk-preconfigured-solutions]: iot-suite-what-are-preconfigured-solutions.md
 [lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
@@ -240,4 +241,7 @@ Web 應用程式中的此頁面會使用 PowerBI javascript 控制項 (請參閱
 [lnk-connect-rm]: iot-suite-connecting-devices.md
 [lnk-permissions]: iot-suite-permissions.md
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

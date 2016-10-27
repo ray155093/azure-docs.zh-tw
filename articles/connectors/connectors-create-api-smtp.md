@@ -1,10 +1,10 @@
 <properties
 pageTitle="SMTP | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。連接到 SMTP 以傳送電子郵件。"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create logic apps with Azure App service. Connect to SMTP to send email."
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,121 +17,125 @@ ms.workload="integration"
 ms.date="07/15/2016"
 ms.author="deonhe"/>
 
-# 開始使用 SMTP 連接器
 
-連接到 SMTP 以傳送電子郵件。
+# <a name="get-started-with-the-smtp-connector"></a>Get started with the SMTP connector
 
-若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
+Connect to SMTP to send email.
 
-## 連接到 SMTP
+To use [any connector](./apis-list.md), you first need to create a logic app. You can get started by [creating a logic app now](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。[連線](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。例如，若要連接到 SMTP，您必須先有 SMTP 連線。若要建立連線，您需要提供平常用來存取所要連線之服務的認證。因此，在 SMTP 範例中，您需要連接名稱、SMTP 伺服器位址，以及使用者登入資訊的認證才能建立 SMTP 連線。[深入了解連線]()
+## <a name="connect-to-smtp"></a>Connect to SMTP
 
-### 建立至 SMTP 的連線
+Before your logic app can access any service, you first need to create a *connection* to the service. A [connection](./connectors-overview.md) provides connectivity between a logic app and another service. For example, in order to connect to SMTP, you first need an SMTP *connection*. To create a connection, you would need to provide the credentials you normally use to access the service you wish to connect to. So, in the SMTP example, you would need the credentials to your connection name, SMTP server address, and user login information in order to create the connection to SMTP. [Learn more about connections]()  
 
->[AZURE.INCLUDE [建立至 SMTP 連線的步驟](../../includes/connectors-create-api-smtp.md)]
+### <a name="create-a-connection-to-smtp"></a>Create a connection to SMTP
 
-## 使用 SMTP 觸發程序
+>[AZURE.INCLUDE [Steps to create a connection to SMTP](../../includes/connectors-create-api-smtp.md)]
 
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+## <a name="use-an-smtp-trigger"></a>Use an SMTP trigger
 
-在此範例中，由於 SMTP 沒有觸發程序，因此我們將使用 **Salesforce - 當物件建立時**觸發程序。當 Salesforce 中有新的物件建立時，觸發程序就會啟動。在範例中，我們會設定使其每次在 Salesforce 中建立新的潛在客戶時，系統會透過 SMTP 連接器傳送電子郵件，並附帶已建立新的潛在客戶通知。
+A trigger is an event that can be used to start the workflow defined in a logic app. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
 
-1. 在邏輯應用程式設計工具的搜尋方塊中輸入 salesforce，然後選取 **Salesforce - 當建立物件時**觸發程序。  
+In this example, because SMTP does not have a trigger of its own, we'll use the **Salesforce - When an object is created** trigger. This trigger will activate when a new object is created in Salesforce. For our example, we'll set it up such that every time a new lead is created in Salesforce, a *send email* action occurs via the SMTP connector with a notification of the new lead being created.
+
+1. Enter *salesforce* in the search box on the logic apps designer then select the **Salesforce - When an object is created** trigger.  
  ![](../../includes/media/connectors-create-api-salesforce/trigger-1.png)  
 
-2. **當建立物件時**控制項隨即顯示。  
+2. The **When an object is created** control is displayed.
  ![](../../includes/media/connectors-create-api-salesforce/trigger-2.png)  
 
-3. 選取 [物件類型] 然後從清單的物件中選取 [潛在客戶]。在此步驟中表示您正在建立觸發程序，而此觸發程序會在每次 Salesforce 中有新的潛在客戶建立時，通知您的邏輯應用程式。  
+3. Select the **Object Type** then select *Lead* from the list of objects. In this step you are indicating that you are creating a trigger that will notify your logic app whenever a new lead is created in Salesforce.  
  ![](../../includes/media/connectors-create-api-salesforce/trigger3.png)  
 
-4. 觸發程序已建立。  
+4. The trigger has been created.  
  ![](../../includes/media/connectors-create-api-salesforce/trigger-4.png)  
 
-## 使用 SMTP 動作
+## <a name="use-an-smtp-action"></a>Use an SMTP action
 
-動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
 
-現在已新增觸發程序之後，請遵循下列步驟新增 Salesforce 中有新的潛在客戶建立時會發生的 SMTP 動作。
+Now that the trigger has been added, follow these steps to add an SMTP action that will occur when a new lead is created in Salesforce.
 
-1. 選取 [+ 新的步驟] 來新增您想要在新的潛在客戶建立時採取的動作。  
+1. Select **+ New Step** to add the action you would like to take when a new lead is created.  
  ![](../../includes/media/connectors-create-api-salesforce/trigger4.png)  
 
-2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。  
+2. Select **Add an action**. This opens the search box where you can search for any action you would like to take.  
  ![](../../includes/media/connectors-create-api-smtp/using-smtp-action-2.png)  
 
-3. 輸入 smtp 以搜尋與 SMTP 相關的動作。
+3. Enter *smtp* to search for actions related to SMTP.  
 
-4. 選取 [SMTP-傳送電子郵件]，作為新的潛在客戶建立時要採取的動作。動作控制區塊便會開啟。如果您先前未曾在設計工具區塊中建立 SMTP 連線，您必須這麼做。  
- ![](../../includes/media/connectors-create-api-smtp/smtp-2.png)  
+4. Select **SMTP - Send Email** as the action to take when the new lead is created. The action control block opens. You will have to establish your smtp connection in the designer block if you have not done so previously.  
+ ![](../../includes/media/connectors-create-api-smtp/smtp-2.png)    
 
-5. 在 **SMTP - 傳送電子郵件**區塊中輸入您想要的電子郵件資訊。  
+5. Input your desired email information in the **SMTP - Send Email** block.  
  ![](../../includes/media/connectors-create-api-smtp/using-smtp-action-4.PNG)  
 
-6. 儲存您的工作以啟動工作流程。
+6. Save your work in order to activate your workflow.  
 
-## 技術詳細資訊
+## <a name="technical-details"></a>Technical details
 
-以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+Here are the details about the triggers, actions and responses that this connection supports:
 
-## SMTP 觸發程序
+## <a name="smtp-triggers"></a>SMTP triggers
 
-SMTP 沒有觸發程序。
+SMTP has no triggers. 
 
-## SMTP 動作
+## <a name="smtp-actions"></a>SMTP actions
 
-SMTP 具有下列動作︰
+SMTP has the following action:
 
 
-|動作|說明|
+|Action|Description|
 |--- | ---|
-|[傳送電子郵件](connectors-create-api-smtp.md#send-email)|這樣作業會將電子郵件傳送給一或多位收件者。|
+|[Send Email](connectors-create-api-smtp.md#send-email)|This operation sends an email to one or more recipients.|
 
-### 動作詳細資料
+### <a name="action-details"></a>Action details
 
-以下是此連接器的動作以及其回應的詳細資料︰
-
-
-### 傳送電子郵件
-這樣作業會將電子郵件傳送給一或多位收件者。
+Here are the details for the action of this connector, along with its responses:
 
 
-|屬性名稱| 顯示名稱|說明|
+### <a name="send-email"></a>Send Email
+This operation sends an email to one or more recipients. 
+
+
+|Property Name| Display Name|Description|
 | ---|---|---|
-|收件人|收件人|指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com|
-|CC|副本|指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com|
-|主旨|主旨|電子郵件主旨|
-|內文|內文|電子郵件內文|
-|從|從|寄件者的電子郵件地址，例如 sender@domain.com|
-|IsHtml|是 HTML|以 HTML 格式傳送電子郵件 (true/false)|
-|密件副本|密件副本|指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com|
-|重要性|重要性|電子郵件的重要性 (高、一般或低)|
-|ContentData|附件內容資料|內容資料 (base64 編碼用於資料流，以及現狀用於字串)|
-|ContentType|附件內容類型|內容類型|
-|ContentTransferEncoding|附件內容轉移編碼|內容轉移編碼 (base64 或無)|
-|FileName|附件檔案名稱|檔案名稱|
-|ContentId|附件內容識別碼|內容識別碼|
+|To|To|Specify email addresses separated by semicolons like recipient1@domain.com;recipient2@domain.com|
+|CC|cc|Specify email addresses separated by semicolons like recipient1@domain.com;recipient2@domain.com|
+|Subject|Subject|Email subject|
+|Body|Body|Email body|
+|From|From|Email address of sender like sender@domain.com|
+|IsHtml|Is Html|Send the email as HTML (true/false)|
+|Bcc|bcc|Specify email addresses separated by semicolons like recipient1@domain.com;recipient2@domain.com|
+|Importance|Importance|Importance of the email (High, Normal, or Low)|
+|ContentData|Attachments Content Data|Content data (base64 encoded for streams and as-is for string)|
+|ContentType|Attachments Content Type|Content type|
+|ContentTransferEncoding|Attachments Content Transfer Encoding|Content Transfer Encoding (base64 or none)|
+|FileName|Attachments File Name|File name|
+|ContentId|Attachments Content ID|Content id|
 
-* 表示這是必要屬性
+An * indicates that a property is required
 
 
-## HTTP 回應
+## <a name="http-responses"></a>HTTP responses
 
-上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
+The actions and triggers above can return one or more of the following HTTP status codes: 
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤。|
-|預設值|作業失敗。|
+|202|Accepted|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occurred.|
+|default|Operation Failed.|
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!----HONumber=AcomDC_0803_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,264 +1,265 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 FieldGlass 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 FieldGlass 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+    pageTitle="Tutorial: Azure Active Directory integration with FieldGlass | Microsoft Azure"
+    description="Learn how to configure single sign-on between Azure Active Directory and FieldGlass."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeevansd"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/01/2016"
-	ms.author="jeedes"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/18/2016"
+    ms.author="jeedes"/>
 
 
-# 教學課程：Azure Active Directory 與 FieldGlass 整合
 
-本教學課程旨在說明如何整合 FieldGlass 與 Azure Active Directory (Azure AD)。
+# <a name="tutorial:-azure-active-directory-integration-with-fieldglass"></a>Tutorial: Azure Active Directory integration with FieldGlass
 
-FieldGlass 與 Azure AD 整合提供下列優點：
+The objective of this tutorial is to show you how to integrate FieldGlass with Azure Active Directory (Azure AD).
 
-- 您可以在 Azure AD 中控制可存取 FieldGlass 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 FieldGlass (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+Integrating FieldGlass with Azure AD provides you with the following benefits:
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+- You can control in Azure AD who has access to FieldGlass
+- You can enable your users to automatically get signed-on to FieldGlass (Single Sign-On) with their Azure AD accounts
+- You can manage your accounts in one central location - the Azure classic portal
 
-## 必要條件
+If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-若要設定 Azure AD 與 FieldGlass 整合，您需要下列項目：
+## <a name="prerequisites"></a>Prerequisites
 
-- Azure AD 訂用帳戶
-- 啟用 FieldGlass 單一登入的訂用帳戶
+To configure Azure AD integration with FieldGlass, you need the following items:
 
+- An Azure AD subscription
+- A FieldGlass single-sign on enabled subscription
 
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
+> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
 
-若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+To test the steps in this tutorial, you should follow these recommendations:
 
+- You should not use your production environment, unless this is necessary.
+- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
 
-## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。
 
-本教學課程中說明的案例由二個主要建置組塊組成：
+## <a name="scenario-description"></a>Scenario description
+The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.
 
-1. 從資源庫新增 FieldGlass
-2. 設定並測試 Azure AD 單一登入
+The scenario outlined in this tutorial consists of two main building blocks:
 
+1. Adding FieldGlass from the gallery
+2. Configuring and testing Azure AD single sign-on
 
-## 從資源庫新增 FieldGlass
-若要設定將 FieldGlass 整合到 Azure AD 中，您需要從資源庫將 FieldGlass 新增到受管理的 SaaS 應用程式清單。
 
-**若要從資源庫新增 FieldGlass，請執行下列步驟：**
+## <a name="adding-fieldglass-from-the-gallery"></a>Adding FieldGlass from the gallery
+To configure the integration of FieldGlass into Azure AD, you need to add FieldGlass from the gallery to your list of managed SaaS apps.
 
-1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格的 [Active Directory]。
+**To add FieldGlass from the gallery, perform the following steps:**
 
-	![Active Directory][1]
+1. In the **Azure classic Portal**, on the left navigation pane, click **Active Directory**.
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+    ![Active Directory][1]
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
-	
-	![應用程式][2]
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-4. 按一下頁面底部的 [新增]。
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
+    
+    ![Applications][2]
 
-	![應用程式][3]
+4. Click **Add** at the bottom of the page.
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+    ![Applications][3]
 
-	![應用程式][4]
+5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-6. 在搜尋方塊中，輸入 **FieldGlass**。
+    ![Applications][4]
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_01.png)
-7. 在結果窗格中，選取 [FieldGlass]，然後按一下 [完成] 以加入應用程式。
+6. In the search box, type **FieldGlass**.
 
-	![選取資源庫中的應用程式](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_0001.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_01.png)
+7. In the results pane, select **FieldGlass**, and then click **Complete** to add the application.
 
+    ![Selecting the app in the gallery](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_0001.png)
 
-##  設定並測試 Azure AD 單一登入
-本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 FieldGlass 搭配運作的 Azure AD 單一登入。
 
-如要讓單一登入順利運作，Azure AD 必須要知道與某位 Azure AD 使用者互相對應的 FieldGlass 使用者。換句話說，必須建立 Azure AD 使用者和 FieldGlass 中相關使用者之間的連結關聯性。
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
+The objective of this section is to show you how to configure and test Azure AD single sign-on with FieldGlass based on a test user called "Britta Simon".
 
-建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值，指派為 FieldGlass 中 [Username] 的值。
+For single sign-on to work, Azure AD needs to know what the counterpart user in FieldGlass to an user in Azure AD is. In other words, a link relationship between an Azure AD user and the related user in FieldGlass needs to be established.
 
-如要設定及測試搭配 FieldGlass 的 Azure AD 單一登入，您需要完成下列構成元素：
+This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in FieldGlass.
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 FieldGlass 測試使用者](#creating-a-fieldglass-test-user)** - 在 FieldGlass 中建立一個與 Azure AD 中代表 Britta Simon 的項目連結的 Britta Simon 對應項目。
-4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
+To configure and test Azure AD single sign-on with FieldGlass, you need to complete the following building blocks:
 
-### 設定 Azure AD 單一登入
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.
+2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
+3. **[Creating a FieldGlass test user](#creating-a-fieldglass-test-user)** - to have a counterpart of Britta Simon in FieldGlass that is linked to the Azure AD representation of her.
+4. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
 
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 FieldGlass 應用程式中設定單一登入。
+### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD single sign-on
 
-**若要使用 FieldGlass 設定 Azure AD 單一登入，請執行下列步驟：**
+In this section, you enable Azure AD single sign-on in the classic portal and configure single sign-on in your FieldGlass application.
 
-1. 在傳統入口網站的 [FieldGlass] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-	 
-	![設定單一登入][6]
+**To configure Azure AD single sign-on with FieldGlass, perform the following steps:**
 
-2. 在 [您希望使用者如何登入 FieldGlass] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+1. In the classic portal, on the **FieldGlass** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
+     
+    ![Configure Single Sign-On][6] 
 
-	![設定單一登入](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_03.png)
+2. On the **How would you like users to sign on to FieldGlass** page, select **Azure AD Single Sign-On**, and then click **Next**.
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟，然後按 [下一步]：
+    ![Configure Single Sign-On](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_03.png) 
 
-	![設定單一登入](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_04.png)
+3. On the **Configure App Settings** dialog page, perform the following steps and click **Next**:
 
-    a.在 [識別碼] 文字方塊中，輸入 URL `https://www.fieldglass.com` 或遵循下列模式︰`https://<company name>.fgvms.com`
+    ![Configure Single Sign-On](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_04.png)
 
-    b.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：
-	- `https://<company name>.fgvms.com/<company name>`
-	
-	- `https://www.fieldglass.net/<company name>`
+    a. In the **Identifier** textbox, type URL `https://www.fieldglass.com` or follow the pattern: `https://<company name>.fgvms.com`
 
-	c.按 [下一步]
+    b. In the **Reply URL** textbox, type a URL using the following patterns: 
+    - `https://<company name>.fgvms.com/<company name>`
+    
+    - `https://www.fieldglass.net/<company name>`
 
-	> [AZURE.NOTE] 請注意這些不是真正的值。您必須使用實際的識別碼和回覆 URL 更新這些值。若要取得這些值，請連絡 [FieldGlass](http://www.fieldglass.com/solutions/support)。
+    c. Click **Next**
 
-4. 在 [設定在 FieldGlass 單一登入] 頁面上，執行下列步驟，然後按一下 [下一步]：
+    > [AZURE.NOTE] Please note that these are not the real values. You have to update the values with the actual Identifier and Reply URL. To get these values, contact [FieldGlass](http://www.fieldglass.com/solutions/support).
 
-	![設定單一登入](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_05.png)
+4. On the **Configure single sign-on at FieldGlass** page, perform the following steps and click **Next**:
 
-    a.按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+    ![Configure Single Sign-On](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_05.png)
 
-    b.按 [下一步]。
+    a. Click **Download certificate**, and then save the file on your computer.
 
-5. 若要為您的應用程式設定 SSO，請連絡 FieldGlass 支援小組，並提供下列資訊：
+    b. Click **Next**.
 
-	- **下載的憑證**檔案
+5. To get SSO configured for your application, contact your FieldGlass support team and provide them with the following: 
 
-	- **實體識別碼**
+    - The **Downloaded certificate** file
 
-	- **單一登出服務 URL**
+    - The **Entity ID**
 
-6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
+    - The **Single Sign-Out Service URL**
 
-	![Azure AD 單一登入][10]
+6. In the classic portal, select the single sign-on configuration confirmation, and then click **Next**.
 
-7. 在 [單一登入確認] 頁面上，按一下 [完成]。
+    ![Azure AD Single Sign-On][10]
 
-	![Azure AD 單一登入][11]
+7. On the **Single sign-on confirmation** page, click **Complete**.  
 
+    ![Azure AD Single Sign-On][11]
 
 
-### 建立 Azure AD 測試使用者
-本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
-	
-![建立 Azure AD 使用者][20]
 
-**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
+The objective of this section is to create a test user in the classic portal called Britta Simon.
+    
+![Create Azure AD User][20]
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+**To create a test user in Azure AD, perform the following steps:**
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_09.png)
+1. In the **Azure classic Portal**, on the left navigation pane, click **Active Directory**.
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_09.png)
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
-	
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_03.png)
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
-	
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_04.png)
+3. To display the list of users, in the menu on the top, click **Users**.
+    
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_03.png)
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
+4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.
+    
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_04.png)
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_05.png)
+5. On the **Tell us about this user** dialog page, perform the following steps:
 
-    a.針對 [使用者類型]，選取 [您組織中的新使用者]。
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_05.png)
 
-    b.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    a. As Type Of User, select New user in your organization.
 
-    c.按 [下一步]。
+    b. In the User Name **textbox**, type **BrittaSimon**.
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
-	
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_06.png)
+    c. Click **Next**.
 
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
+6.  On the **User Profile** dialog page, perform the following steps:
+    
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_06.png)
 
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
+    a. In the **First Name** textbox, type **Britta**.  
 
-    c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    b. In the **Last Name** textbox, type, **Simon**.
 
-    d.在 [角色] 清單中選取 [使用者]。
+    c. In the **Display Name** textbox, type **Britta Simon**.
 
-    e.按 [下一步]。
+    d. In the **Role** list, select **User**.
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
-	
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_07.png)
+    e. Click **Next**.
 
-8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
-	
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_08.png)
+7. On the **Get temporary password** dialog page, click **create**.
+    
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_07.png)
 
-    a.記下 [新密碼] 的值。
+8. On the **Get temporary password** dialog page, perform the following steps:
+    
+    ![Creating an Azure AD test user](./media/active-directory-saas-fieldglass-tutorial/create_aaduser_08.png)
 
-    b.按一下 [完成]。
+    a. Write down the value of the **New Password**.
 
+    b. Click **Complete**.   
 
 
-### 建立 FieldGlass 測試使用者
 
-本節目標是在 FieldGlass 中建立名為 Britta Simon 的使用者。請與 FieldGlass 支援小組合作，在 FieldGlass 帳戶中新增使用者。
+### <a name="creating-a-fieldglass-test-user"></a>Creating a FieldGlass test user
 
+The objective of this section is to create a user called Britta Simon in FieldGlass.Please work with your FieldGlass support team to add the users in the FieldGlass account.
 
-### 指派 Azure AD 測試使用者
 
-本節的目標是要授與 Britta Simon 對 FieldGlass 的存取權，讓她能夠使用 Azure 單一登入。
-	
-![指派使用者][200]
+### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
 
-**若要將 Britta Simon 指派到 FieldGlass，請執行下列步驟：**
+The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to FieldGlass.
+    
+![Assign User][200]
 
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+**To assign Britta Simon to FieldGlass, perform the following steps:**
 
-	![指派使用者][201]
+1. On the classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
 
-2. 在應用程式清單中，選取 [FieldGlass]。
+    ![Assign User][201]
 
-	![設定單一登入](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_50.png)
+2. In the applications list, select **FieldGlass**.
 
-3. 在頂端的功能表中，按一下 [使用者]。
-	
-	![指派使用者][203]
+    ![Configure Single Sign-On](./media/active-directory-saas-fieldglass-tutorial/tutorial_fieldglass_50.png)
 
-4. 在 [使用者] 清單中，選取 [Britta Simon]。
+3. In the menu on the top, click **Users**.
+    
+    ![Assign User][203]
 
-5. 在底部的工具列中，按一下 [指派]。
+4. In the Users list, select **Britta Simon**.
 
-	![指派使用者][205]
+5. In the toolbar on the bottom, click **Assign**.
 
+    ![Assign User][205]
 
 
-### 測試單一登入
 
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
+### <a name="testing-single-sign-on"></a>Testing single sign-on
 
-當您在存取面板中按一下 [FieldGlass] 圖格時，應該會自動登入您的 FieldGlass 應用程式。
+The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.
 
+When you click the FieldGlass tile in the Access Panel, you should get automatically signed-on to your FieldGlass application.
 
-## 其他資源
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+## <a name="additional-resources"></a>Additional resources
+
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 
 
@@ -280,4 +281,8 @@ FieldGlass 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-fieldglass-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-fieldglass-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

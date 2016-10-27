@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure CLI 來檢視部署作業 | Microsoft Azure"
-   description="描述如何使用 Azure CLI 來偵測源自「資源管理員」部署的問題。"
+   pageTitle="View deployment operations with Azure CLI | Microsoft Azure"
+   description="Describes how to use the Azure CLI to detect issues from Resource Manager deployment."
    services="azure-resource-manager,virtual-machines"
    documentationCenter=""
    tags="top-support-issue"
@@ -17,31 +17,32 @@
    ms.date="08/15/2016"
    ms.author="tomfitz"/>
 
-# 使用 Azure CLI 來檢視部署作業
+
+# <a name="view-deployment-operations-with-azure-cli"></a>View deployment operations with Azure CLI
 
 > [AZURE.SELECTOR]
-- [入口網站](resource-manager-troubleshoot-deployments-portal.md)
+- [Portal](resource-manager-troubleshoot-deployments-portal.md)
 - [PowerShell](resource-manager-troubleshoot-deployments-powershell.md)
 - [Azure CLI](resource-manager-troubleshoot-deployments-cli.md)
 - [REST API](resource-manager-troubleshoot-deployments-rest.md)
 
-如果您在將資源部署到 Azure 時收到錯誤，您可能會想要查看有關所執行之部署作業的更多詳細資料。Azure CLI 提供命令，可讓您找出錯誤並判斷可能的修正方法。
+If you've received an error when deploying resources to Azure, you may want to see more details about the deployment operations that were executed. Azure CLI provides commands that enable you to find the errors and determine potential fixes.
 
 [AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
 
-部署之前先驗證您的範本和基礎結構，即可避免發生一些錯誤。您也可以記錄部署期間的要求和回應資訊，這在後續進行疑難排解時可能會有幫助。如需了解驗證，以及記錄要求和回應資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy-cli.md)。
+You can avoid some errors by validating your template and infrastructure before deployment. You can also log additional request and response information during deployment that may be helpful later for troubleshooting. To learn about validating, and logging request and response information, see [Deploy a resource group with Azure Resource Manager template](resource-group-template-deploy-cli.md).
 
-## 使用稽核記錄檔進行疑難排解
+## <a name="use-audit-logs-to-troubleshoot"></a>Use audit logs to troubleshoot
 
 [AZURE.INCLUDE [resource-manager-audit-limitations](../includes/resource-manager-audit-limitations.md)]
 
-若要查看部署相關錯誤，請使用下列步驟 ︰
+To see errors for a deployment, use the following steps:
 
-1. 若要查看稽核記錄檔，請執行 **azure group log show** 命令。您可以加入 **--last-deployment** 選項，就能只擷取最新部署的記錄檔。
+1. To see the audit logs, run the **azure group log show** command. You can include the **--last-deployment** option to retrieve only the log for the most recent deployment.
 
         azure group log show ExampleGroup --last-deployment
 
-2. **azure group log show** 命令可傳回大量資訊。在疑難排解時，您通常想要將焦點放在失敗的作業。下列指令碼會使用 **--json** 選項和 [jq](https://stedolan.github.io/jq/) JSON 公用程式來搜尋部署失敗的記錄檔。
+2. The **azure group log show** command returns a lot of information. For troubleshooting, you usually want to focus on operations that failed. The following script uses the **--json** option and the [jq](https://stedolan.github.io/jq/) JSON utility to search the log for deployment failures.
 
         azure group log show ExampleGroup --json | jq '.[] | select(.status.value == "Failed")'
         
@@ -75,24 +76,24 @@
         },
         "properties": {
           "statusCode": "Conflict",
-          "statusMessage": "{"Code":"Conflict","Message":"Website with given name mysite already exists.","Target":null,"Details":[{"Message":"Website with given name
-            mysite already exists."},{"Code":"Conflict"},{"ErrorEntity":{"Code":"Conflict","Message":"Website with given name mysite already exists.","ExtendedCode":
-            "54001","MessageTemplate":"Website with given name {0} already exists.","Parameters":["mysite"],"InnerErrors":null}}],"Innererror":null}"
+          "statusMessage": "{\"Code\":\"Conflict\",\"Message\":\"Website with given name mysite already exists.\",\"Target\":null,\"Details\":[{\"Message\":\"Website with given name
+            mysite already exists.\"},{\"Code\":\"Conflict\"},{\"ErrorEntity\":{\"Code\":\"Conflict\",\"Message\":\"Website with given name mysite already exists.\",\"ExtendedCode\":
+            \"54001\",\"MessageTemplate\":\"Website with given name {0} already exists.\",\"Parameters\":[\"mysite\"],\"InnerErrors\":null}}],\"Innererror\":null}"
         },
         ...
 
-    您可以看到，**properties** 包含 json 中有關失敗作業的資訊。
+    You can see **properties** includes information in json about the failed operation.
 
-    您可以使用 **-verbose** 和 **-vv** 選項來查看記錄檔中的詳細資訊。使用 **--verbose** 選項可顯示作業在 `stdout` 上經歷的步驟。如需完整的要求歷程記錄，請使用 **-vv** 選項。這些訊息通常會提供任何失敗原因的重要線索。
+    You can use the **--verbose** and **-vv** options to see more information from the logs.  Use the **--verbose** option to display the steps the operations go through on `stdout`. For a complete request history, use the **-vv** option. The messages often provide vital clues about the cause of any failures.
 
-3. 若要專注於失敗項目的狀態訊息，請使用下列命令︰
+3. To focus on the status message for failed entries, use the following command:
 
-        azure group log show ExampleGroup --json | jq -r ".[] | select(.status.value == "Failed") | .properties.statusMessage"
+        azure group log show ExampleGroup --json | jq -r ".[] | select(.status.value == \"Failed\") | .properties.statusMessage"
 
 
-## 使用部署作業進行疑難排解
+## <a name="use-deployment-operations-to-troubleshoot"></a>Use deployment operations to troubleshoot
 
-1. 利用 **azure group deployment show** 命令取得部署的整體狀態。下列範例中的部署失敗。
+1. Get the overall status of a deployment with the **azure group deployment show** command. In the example below the deployment has failed.
 
         azure group deployment show --resource-group ExampleGroup --name ExampleDeployment
         
@@ -112,15 +113,19 @@
         data:    workerSize       String  0
         info:    group deployment show command OK
 
-2. 若要查看部署失敗作業的訊息，請使用︰
+2. To see the message for failed operations for a deployment, use:
 
-        azure group deployment operation list --resource-group ExampleGroup --name ExampleDeployment --json  | jq ".[] | select(.properties.provisioningState == "Failed") | .properties.statusMessage.Message"
+        azure group deployment operation list --resource-group ExampleGroup --name ExampleDeployment --json  | jq ".[] | select(.properties.provisioningState == \"Failed\") | .properties.statusMessage.Message"
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 如需解決特定部署錯誤的說明，請參閱[針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
-- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
-- 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+- For help with resolving particular deployment errors, see [Resolve common errors when deploying resources to Azure with Azure Resource Manager](resource-manager-common-deployment-errors.md).
+- To learn about using the audit logs to monitor other types of actions, see [Audit operations with Resource Manager](resource-group-audit.md).
+- To validate your deployment before executing it, see [Deploy a resource group with Azure Resource Manager template](resource-group-template-deploy.md).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

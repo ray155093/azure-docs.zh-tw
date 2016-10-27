@@ -1,96 +1,101 @@
 <properties
-	pageTitle="如何建立 DocumentDB 帳戶 | Microsoft Azure"
-	description="使用 DocumentDB 建立 NoSQL 資料庫。遵循下列指示來建立 DocumentDB 帳戶，並開始建立速度超快、全球規模的 NoSQL 資料庫。" 
-	keywords="建立資料庫"
-	services="documentdb"
-	documentationCenter=""
-	authors="mimig1"
-	manager="jhubbard"
-	editor="monicar"/>
+    pageTitle="How to create a DocumentDB account | Microsoft Azure"
+    description="Build a NoSQL database with Azure DocumentDB. Follow these instructions to create a DocumentDB account and start building your blazing fast, global-scale NoSQL database." 
+    keywords="build a database"
+    services="documentdb"
+    documentationCenter=""
+    authors="mimig1"
+    manager="jhubbard"
+    editor="monicar"/>
 
 <tags
-	ms.service="documentdb"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="09/12/2016"
-	ms.author="mimig"/>
+    ms.service="documentdb"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="09/12/2016"
+    ms.author="mimig"/>
 
-# 如何使用 Azure 入口網站建立 DocumentDB NoSQL 帳戶
+
+# <a name="how-to-create-a-documentdb-nosql-account-using-the-azure-portal"></a>How to create a DocumentDB NoSQL account using the Azure portal
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](documentdb-create-account.md)
-- [Azure CLI 和 Azure Resource Manager](documentdb-automation-resource-manager-cli.md)
+- [Azure portal](documentdb-create-account.md)
+- [Azure CLI and Azure Resource Manager](documentdb-automation-resource-manager-cli.md)
 
-若要使用 Microsoft Azure DocumentDB 建立資料庫，您必須：
+To build a database with Microsoft Azure DocumentDB, you must:
 
-- 具有 Azure 帳戶。您可以取得[免費 Azure 帳戶](https://azure.microsoft.com/free) (若您尚無此帳戶)。
-- 建立 DocumentDB 帳戶。
+- Have an Azure account. You can get a [free Azure account](https://azure.microsoft.com/free) if you don't have one already. 
+- Create a DocumentDB account.  
 
-您可以使用 Azure 入口網站、Azure Resource Manager 範本或 Azure 命令列介面 (CLI) 來建立 DocumentDB 帳戶。本文說明如何使用 Azure 入口網站建立 DocumentDB 帳戶。若要使用 Azure Resource Manager 或 Azure CLI 建立帳戶，請參閱[自動建立 DocumentDB 資料庫帳戶](documentdb-automation-resource-manager-cli.md)。
+You can create a DocumentDB account using either the Azure portal, Azure Resource Manager templates, or Azure command-line interface (CLI). This article shows how to create a DocumentDB account using the Azure portal. To create an account using Azure Resource Manager or Azure CLI, see [Automate DocumentDB database account creation](documentdb-automation-resource-manager-cli.md).
 
-您是 DocumentDB 的新手嗎？ 觀看 Scott Hanselman 製作的[這部](https://azure.microsoft.com/documentation/videos/create-documentdb-on-azure/)四分鐘的影片，以了解如何在線上入口網站中完成最常見工作。
+Are you new to DocumentDB? Watch [this](https://azure.microsoft.com/documentation/videos/create-documentdb-on-azure/) four-minute video by Scott Hanselman to see how to complete the most common tasks in the online portal.
 
-1.	登入 [Azure 入口網站](https://portal.azure.com/)。
-2.	在 Jumpbar 中，按一下 [新增]，按一下 [資料 + 儲存體]，然後按一下 [DocumentDB (NoSQL)]。
+1.  Sign in to the [Azure portal](https://portal.azure.com/).
+2.  In the Jumpbar, click **New**, click **Data + Storage**, and then click **DocumentDB (NoSQL)**.
 
-	![Azure 入口網站的螢幕擷取畫面，其中反白顯示 [其他服務] 和 DocumentDB (NoSQL)](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-1.png)
+    ![Screen shot of the Azure portal, highlighting More Services, and DocumentDB (NoSQL)](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-1.png)  
 
-3. 在 [新增帳戶] 刀鋒視窗中，指定想要的 DocumentDB 帳戶組態。
+3. In the **New account** blade, specify the desired configuration for the DocumentDB account.
 
-	![[新增 DocumentDB] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-2.png)
+    ![Screen shot of the New DocumentDB blade](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-2.png)
 
-	- 在 [識別碼] 方塊中，輸入用來識別 DocumentDB 帳戶的名稱。驗證 [識別碼] 時，[識別碼] 方塊中會出現綠色的核取記號。[識別碼] 值會變成 URI 中的主機名稱。此 [識別碼] 只能包含小寫字母、數字及 '-' 字元，且長度必須為 3 到 50 個字元。請注意，*documents.azure.com* 會附加至您選擇的端點名稱後面，產生的結果會成為您的 DocumentDB 帳戶端點。
+    - In the **ID** box, enter a name to identify the DocumentDB account.  When the **ID** is validated, a green check mark appears in the **ID** box. The **ID** value becomes the host name within the URI. The **ID** may contain only lowercase letters, numbers, and the '-' character, and must be between 3 and 50 characters. Note that *documents.azure.com* is appended to the endpoint name you choose, the result of which becomes your DocumentDB account endpoint.
 
-    - 在 [NoSQL API] 方塊中，選取要使用的程式設計模型：
-        - **DocumentDB**：DocumentDB API 可以透過 .NET、Java、Node.js、Python 及 JavaScript 等 [SDK](documentdb-sdk-dotnet.md)，以及 HTTP [REST](https://msdn.microsoft.com/library/azure/dn781481.aspx) 取得，並提供所有 DocumentDB 功能的程式設計存取。
+    - In the **NoSQL API** box, select the programming model to use:
+        - **DocumentDB**: The DocumentDB API is available via .NET, Java, Node.js, Python and JavaScript [SDKs](documentdb-sdk-dotnet.md), as well as HTTP [REST](https://msdn.microsoft.com/library/azure/dn781481.aspx), and offers programmatic access to all the DocumentDB functionality. 
        
-        - **MongoDB**：DocumentDB 也針對 **MongoDB** API 提供[通訊協定層級的支援](documentdb-protocol-mongodb.md)。當您選擇 MongoDB API 選項時，您可以使用現有的 MongoDB SDK 及[工具](documentdb-mongodb-mongochef.md)來和 DocumentDB 通訊。您可以在[不需要進行任何程式碼變更](documentdb-connect-mongodb-account.md)的情況下，將現有的 MongoDB 應用程式[移轉為](documentdb-import-data.md)使用 DocumentDB，並充分利用受到完整管理，且具有無限制調整、全域複寫及其他功能的資料庫即服務。
+        - **MongoDB**: DocumentDB also offers [protocol-level support](documentdb-protocol-mongodb.md) for **MongoDB** APIs. When you choose the MongoDB API option, you can use existing MongoDB SDKs and [tools](documentdb-mongodb-mongochef.md) to talk to DocumentDB. You can [move](documentdb-import-data.md) your existing MongoDB apps to use DocumentDB, with [no code changes needed](documentdb-connect-mongodb-account.md), and take advantage of a fully managed database as a service, with limitless scale, global replication, and other capabilities.
 
-	- 在 [訂用帳戶] 中，選取您要用於 DocumentDB 帳戶的 Azure 訂用帳戶。如果您的帳戶只有一個訂用帳戶，預設會選取該帳戶。
+    - For **Subscription**, select the Azure subscription that you want to use for the DocumentDB account. If your account has only one subscription, that account is selected by default.
 
-	- 在 [資源群組] 中，選取或建立 DocumentDB 帳戶的資源群組。依預設會建立新的資源群組。如需詳細資訊，請參閱[使用 Azure 入口網站管理 Azure 資源](../articles/azure-portal/resource-group-portal.md)。
+    - In **Resource Group**, select or create a resource group for your DocumentDB account.  By default, a new resource group is created. For more information, see [Using the Azure portal to manage your Azure resources](../articles/azure-portal/resource-group-portal.md).
 
-	- 使用 [位置] 指定將代管您的 DocumentDB 帳戶的地理位置。
+    - Use **Location** to specify the geographic location in which to host your DocumentDB account. 
 
-4.	設定新的 DocumentDB 帳戶選項之後，按一下 [建立]。如果要檢查部署狀態，請查看通知中樞。
+4.  Once the new DocumentDB account options are configured, click **Create**. To check the status of the deployment, check the Notifications hub.  
 
-	![快速建立資料庫 - 通知中樞的螢幕擷取畫面，顯示正在建立 DocumentDB 帳戶](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-4.png)
+    ![Create databases quickly - Screen shot of the Notifications hub, showing that the DocumentDB account is being created](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-4.png)  
 
-	![通知中樞的螢幕擷取畫面，顯示已成功建立 DocumentDB 帳戶並部署到資源群組 - 線上資料庫建立者通知](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-5.png)
+    ![Screen shot of the Notifications hub, showing that the DocumentDB account was created successfully and deployed to a resource group - Online database creator notification](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-5.png)
 
-5.	建立好的 DocumentDB 帳戶可立即以預設值來使用。DocumentDB 帳戶的預設一致性會設定為 [工作階段]。您可以藉由按一下資源功能表中的 [預設一致性]，調整預設一致性。若要深入了解 DocumentDB 所提供的一致性層級，請參閱 [DocumentDB 中的一致性層級](documentdb-consistency-levels.md)。
+5.  After the DocumentDB account is created, it is ready for use with the default settings. The default consistency of the DocumentDB account is set to **Session**.  You can adjust the default consistency by clicking **Default Consistency** in the resource menu. To learn more about the consistency levels offered by DocumentDB, see [Consistency levels in DocumentDB](documentdb-consistency-levels.md).
 
-    ![[資源群組] 刀鋒視窗的螢幕擷取畫面 - 開始進行應用程式開發](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-6.png)
+    ![Screen shot of the Resource Group blade - begin application development](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-6.png)  
 
-    ![一致性層級刀鋒視窗的螢幕擷取畫面 - 工作階段一致性](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-7.png)
+    ![Screen shot of the Consistency Level blade - Session Consistency](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-7.png)  
 
 [How to: Create a DocumentDB account]: #Howto
 [Next steps]: #NextSteps
-[documentdb-manage]: ../articles/documentdb/documentdb-manage.md
+[documentdb-manage]:../articles/documentdb/documentdb-manage.md
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-您已有了 DocumentDB 帳戶，下一步是建立 DocumentDB 資料庫。
+Now that you have a DocumentDB account, the next step is to create a DocumentDB database. 
 
-您可以使用下列其中一個動作來建立新資料庫：
+You can create a new database by using one of the following:
 
-- Azure 入口網站，如[使用 Azure 入口網站建立 DocumentDB 資料庫](documentdb-create-database.md)中所述。
-- 包含以下項目之範例資料的完整內含教學課程：[.NET](documentdb-get-started.md)、[.NET MVC](documentdb-dotnet-application.md)、[Java](documentdb-java-application.md)、[Node.js](documentdb-nodejs-application.md) 或 [Python](documentdb-python-application.md)。
-- [.NET](documentdb-dotnet-samples.md#database-examples)、[Node.js](documentdb-nodejs-samples.md#database-examples) 或 [Python](documentdb-python-samples.md#database-examples) 範例程式碼可於 GitHub 取得。
-- [.NET](documentdb-sdk-dotnet.md)、[Node.js](documentdb-sdk-node.md)、[Java](documentdb-sdk-java.md)、[Python](documentdb-sdk-python.md) 及 [REST](https://msdn.microsoft.com/library/azure/mt489072.aspx) SDK。
+- The Azure portal, as described in [Create a DocumentDB database using the Azure portal](documentdb-create-database.md).
+- The all-inclusive tutorials, which include sample data: [.NET](documentdb-get-started.md), [.NET MVC](documentdb-dotnet-application.md), [Java](documentdb-java-application.md), [Node.js](documentdb-nodejs-application.md), or [Python](documentdb-python-application.md).
+- The [.NET](documentdb-dotnet-samples.md#database-examples), [Node.js](documentdb-nodejs-samples.md#database-examples), or [Python](documentdb-python-samples.md#database-examples) sample code available in GitHub.
+- The [.NET](documentdb-sdk-dotnet.md), [Node.js](documentdb-sdk-node.md), [Java](documentdb-sdk-java.md), [Python](documentdb-sdk-python.md), and [REST](https://msdn.microsoft.com/library/azure/mt489072.aspx) SDKs.
 
-建立您的資料庫之後, 您必須[加入一或多個集合](documentdb-create-collection.md)至資料庫，然後[加入文件](documentdb-view-json-document-explorer.md)至集合。
+After creating your database, you need to [add one or more collections](documentdb-create-collection.md) to the database, then [add documents](documentdb-view-json-document-explorer.md) to the collections.
 
-當您在集合中具有文件之後，您可以使用 [DocumentDB SQL](documentdb-sql-query.md) 來針對文件[執行查詢](documentdb-sql-query.md#executing-queries)。您可以使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，或是這些 [SDK](documentdb-sdk-dotnet.md) 的其中之一來執行查詢。
+After you have documents in a collection, you can use [DocumentDB SQL](documentdb-sql-query.md) to [execute queries](documentdb-sql-query.md#executing-queries) against your documents. You can execute queries by using the [Query Explorer](documentdb-query-collections-query-explorer.md) in the portal, the [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx), or one of the [SDKs](documentdb-sdk-dotnet.md).
 
-### 詳細資訊
+### <a name="learn-more"></a>Learn more
 
-若要深入了解 DocumentDB，請探索以下資源：
+To learn more about DocumentDB, explore these resources:
 
--	[DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
--	[DocumentDB 階層式資源模型和概念](documentdb-resources.md)
+-   [Learning path for DocumentDB](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
+-   [DocumentDB hierarchical resource model and concepts](documentdb-resources.md)
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Linux VM 擴充功能編寫範本 | Microsoft Azure"
-   description="了解如何使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本"
+   pageTitle="Authoring templates with Linux VM extensions | Microsoft Azure"
+   description="Learn about authoring Azure Resource Manager templates with extensions for Linux VMs"
    services="virtual-machines-linux"
    documentationCenter=""
    authors="kundanap"
@@ -17,34 +17,39 @@
    ms.date="03/29/2016"
    ms.author="kundanap"/>
 
-# 使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本
+
+# <a name="authoring-azure-resource-manager-templates-with-linux-vm-extensions"></a>Authoring Azure Resource Manager templates with Linux VM extensions
 
 [AZURE.INCLUDE [virtual-machines-common-extensions-authoring-templates](../../includes/virtual-machines-common-extensions-authoring-templates.md)]
 
-從 Azure CLI，執行下列命令︰
+From Azure CLI, run the following commnad:
 
       Azure VM extension list
 
-此命令會傳回發行者名稱、擴充功能名稱和版本，如下所示：
+This command returns the publisher name, extension name and version as following:
 
       Publisher                   : Microsoft.Azure.Extensions  
       ExtensionName               : DockerExtension
       Version                     : 1.0
 
-這三個屬性分別對應至上述範本程式碼片段中的 "publisher"、"type" 和 "typeHandlerVersion"。
+These three properties map to "publisher", "type", and "typeHandlerVersion" respectively in the above template snippet.
 
->[AZURE.NOTE]建議一律使用最新的擴充功能版本，以取得最新的功能。
+>[AZURE.NOTE]It's always recommended to use the latest extension version to get the most updated functionality.
 
-## 識別擴充功能組態參數的結構描述
+## <a name="identifying-the-schema-for-the-extension-configuration-parameters"></a>Identifying the schema for the extension configuration parameters
 
-編寫擴充功能範本的下一個步驟是識別用於提供組態參數的格式。每個延伸模組都支援自己的參數集。
+The next step with authoring an extension template is to identify the format for providing configuration parameters. Each extension supports its own set of parameters.
 
-若要查看 Linux 擴充功能的範例組態，請按一下 [Linux 擴充功能範例](virtual-machines-linux-extensions-configuration-samples.md)文件。
+To look at sample configurations for Linux extensions, click the documentation for see [Linux eExtensions samples](virtual-machines-linux-extensions-configuration-samples.md).
 
-請參閱下列項目以取得 VM 擴充功能的完整範本。
+Please refer to the following to get a fully complete template with VM Extensions.
 
-[Linux VM 上的自訂指令碼擴充功能。](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/mongodb-on-ubuntu/azuredeploy.json/)
+[Custom script extension on a Linux VM](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/mongodb-on-ubuntu/azuredeploy.json/)
 
-編寫範本之後，您可以使用 Azure CLI 部署它。
+After authoring the template, you can deploy it using the Azure CLI.
 
-<!---HONumber=AcomDC_0601_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,3 +1,6 @@
-VNet 對等互連是透過 Azure 骨幹網路來連接同一區域中兩個虛擬網路的機制。一旦對等互連，針對用作連線而言兩個虛擬網路看起來就像單一的虛擬網路。如果您不熟悉 VNet 對等互連，請參閱 [VNet 對等互連概觀](../articles/virtual-network/virtual-network-peering-overview.md)。
+VNet Peering is a mechanism to connect two Virtual Networks in the same region through the Azure backbone network. Once peered, the two Virtual Networks will appear like a single Virtual Network for all connectivity purposes. Read the [VNet Peering overview](../articles/virtual-network/virtual-network-peering-overview.md) if you are not familiar with VNet Peering.
 
-<!---HONumber=AcomDC_0928_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

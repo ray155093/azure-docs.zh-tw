@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 SumoLogic 整合 | Microsoft Azure" 
-    description="了解如何使用 SumoLogic 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with SumoLogic | Microsoft Azure" 
+    description="Learn how to use SumoLogic with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,157 +14,165 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 SumoLogic 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-sumologic"></a>Tutorial: Azure Active Directory Integration with SumoLogic
   
-本教學課程的目的是要示範 Azure 與 SumoLogic 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and SumoLogic.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂閱
--   SumoLogic 租用戶
+-   A valid Azure subscription
+-   A SumoLogic tenant
   
-完成本教學課程之後，您指派給 SumoLogicwill 的 Azure AD 使用者就能夠從您的 SumoLogicwill 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
+After completing this tutorial, the Azure AD users you have assigned to SumoLogicwill be able to single sign into the application at your SumoLogic company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 SumoLogic 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for SumoLogic
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-sumologic-tutorial/IC778549.png "案例")
+![Scenario](./media/active-directory-saas-sumologic-tutorial/IC778549.png "Scenario")
 
-##啟用 SumoLogic 的應用程式整合
+##<a name="enabling-the-application-integration-for-sumologic"></a>Enabling the application integration for SumoLogic
   
-本節的目的是概述如何啟用 SumoLogic 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for SumoLogic.
 
-###若要啟用 SumoLogic 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-sumologic,-perform-the-following-steps:"></a>To enable the application integration for SumoLogic, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-sumologic-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-sumologic-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-sumologic-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-sumologic-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-sumologic-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從資源庫新增應用程式](./media/active-directory-saas-sumologic-tutorial/IC749322.png "從資源庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-sumologic-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在 [搜尋方塊] 中，輸入 **sumologic**。
+6.  In the **search box**, type **sumologic**.
 
-    ![應用程式庫](./media/active-directory-saas-sumologic-tutorial/IC778550.png "應用程式庫")
+    ![Application gallery](./media/active-directory-saas-sumologic-tutorial/IC778550.png "Application gallery")
 
-7.  在結果窗格中，選取 [SumoLogic]，然後按一下 [完成] 加入應用程式。
+7.  In the results pane, select **SumoLogic**, and then click **Complete** to add the application.
 
     ![SumoLogic](./media/active-directory-saas-sumologic-tutorial/IC778551.png "SumoLogic")
 
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 SumoLogic 中進行驗證。在此程序中，您需要將 base-64 編碼憑證上傳到您的 SumoLogic 租用戶。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+The objective of this section is to outline how to enable users to authenticate to SumoLogic with their account in Azure AD using federation based on the SAML protocol.  
+As part of this procedure, you are required to upload a base-64 encoded certificate to your SumoLogictenant.  
+If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [SumoLogic] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **SumoLogic** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-sumologic-tutorial/IC778552.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-sumologic-tutorial/IC778552.png "Configure single sign-on")
 
-2.  在 [要如何讓使用者登入 SumoLogic] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to SumoLogic** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-sumologic-tutorial/IC778553.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-sumologic-tutorial/IC778553.png "Configure single sign-on")
 
-3.  在 [設定應用程式 URL] 頁面的 [SumoLogic 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<租用戶名稱>.SumoLogic.com*"，然後按 [下一步]。
+3.  On the **Configure App URL** page, in the **SumoLogic Sign In URL** textbox, type your URL using the following pattern "*https://\<tenant-name\>.SumoLogic.com*", and then click **Next**.
 
-    ![設定 aoo URL](./media/active-directory-saas-sumologic-tutorial/IC778554.png "設定 aoo URL")
+    ![Configure aoo URL](./media/active-directory-saas-sumologic-tutorial/IC778554.png "Configure aoo URL")
 
-4.  在 [設定在 SumoLogic 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
+4.  On the **Configure single sign-on at SumoLogic** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-sumologic-tutorial/IC778555.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-sumologic-tutorial/IC778555.png "Configure single sign-on")
 
-5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 SumoLogic 公司網站。
+5.  In a different web browser window, log into your SumoLogic company site as an administrator.
 
-6.  移至 [管理] > [安全性]。
+6.  Go to **Manage \> Security**.
 
-    ![管理](./media/active-directory-saas-sumologic-tutorial/IC778556.png "管理")
+    ![Manage](./media/active-directory-saas-sumologic-tutorial/IC778556.png "Manage")
 
-7.  按一下 [SAML]。
+7.  Click **SAML**.
 
-    ![全域安全性設定](./media/active-directory-saas-sumologic-tutorial/IC778557.png "全域安全性設定")
+    ![Global security settings](./media/active-directory-saas-sumologic-tutorial/IC778557.png "Global security settings")
 
-8.  從 [選取組態或建立新的組態] 清單中選取 [Azure AD]，然後按一下 [設定]。
+8.  From the **Select a configuration or create a new one** list, select **Azure AD**, and then click **Configure**.
 
-    ![設定 SAML 2.0](./media/active-directory-saas-sumologic-tutorial/IC778558.png "設定 SAML 2.0")
+    ![Configure SAML 2.0](./media/active-directory-saas-sumologic-tutorial/IC778558.png "Configure SAML 2.0")
 
-9.  在 [設定 SAML 2.0] 對話方塊上，執行下列步驟：
+9.  On the **Configure SAML 2.0** dialog, perform the following steps:
 
-    ![設定 SAML 2.0](./media/active-directory-saas-sumologic-tutorial/IC778559.png "設定 SAML 2.0")
+    ![Configure SAML 2.0](./media/active-directory-saas-sumologic-tutorial/IC778559.png "Configure SAML 2.0")
 
-    1.  在 [組態名稱] 文字方塊中，輸入 **Azure AD**。
-    2.  選取 [偵錯模式]。
-    3.  在 Azure 傳統入口網站中的 [設定在 SumoLogic 單一登入] 對話頁面上， 複製 [簽發者 URL] 值，然後將它貼至 [簽發者] 文字方塊中。
-    4.  在 Azure 傳統入口網站中的 [設定在 SumoLogic 單一登入] 對話頁面上， 複製 [驗證要求 URL] 值，然後將它貼至 [驗證要求 URL] 文字方塊中。
-    5.  從您下載的憑證建立 **Base-64 編碼**檔案。
+    1.  In the **Configuration Name** textbox, type **Azure AD**.
+    2.  Select **Debug Mode**.
+    3.  In the Azure classic portal, on the **Configure single sign-on at SumoLogic** dialogue page, copy the **Issuer URL** value, and then paste it into the **Issuer** textbox.
+    4.  In the Azure classic portal, on the **Configure single sign-on at SumoLogic** dialogue page, copy the **Authentication Request URL** value, and then paste it into the **Authn Request URL** textbox.
+    5.  Create a **Base-64 encoded** file from your downloaded certificate.  
 
-        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
 
-    6.  在記事本中開啟您的 base-64 編碼的憑證，將它的內容複製到您的剪貼簿，然後將整個憑證貼到 [X.509 憑證] 文字方塊中。
-    7.  在 [電子郵件屬性] 選取 [使用 SAML 主體]。
-    8.  選取 [服務提供者起始登入組態]。
-    9.  在 [登入路徑] 文字方塊中輸入 **Azure**。
-    10. 按一下 [儲存]。
+    6.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste the entire Certificate into **X.509 Certificate** textbox.
+    7.  As **Email Attribute**, select **Use SAML subject**.
+    8.  Select **SP initiated Login Configuration**.
+    9.  In the **Login Path** textbox, type **Azure**.
+    10. Click **Save**.
 
-10. 在 Azure 傳統入口網站的 [設定在 SumoLogic 單一登入] 對話方塊上，選取 [單一登入設定確認]，然後按一下 [完成]。
+10. In the Azure classic portal, on the **Configure single sign-on at SumoLogic** dialogue page, select the single sign-on configuration confirmation, and then click **Complete**.
 
-    ![設定單一登入](./media/active-directory-saas-sumologic-tutorial/IC778560.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-sumologic-tutorial/IC778560.png "Configure single sign-on")
 
-##設定使用者佈建
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 Azure AD 使用者能夠登入 SumoLogic，必須將他們佈建到 SumoLogic。SumoLogic 需以手動方式佈建。
+In order to enable Azure AD users to log into SumoLogic, they must be provisioned to SumoLogic.  
+In the case of SumoLogic, provisioning is a manual task.
 
-###若要佈建使用者帳戶，請執行下列步驟：
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
 
-1.  登入您的 **SumoLogic** 租用戶。
+1.  Log in to your **SumoLogic** tenant.
 
-2.  移至 [管理] > [使用者]。
+2.  Go to **Manage \> Users**.
 
-    ![使用者](./media/active-directory-saas-sumologic-tutorial/IC778561.png "使用者")
+    ![Users](./media/active-directory-saas-sumologic-tutorial/IC778561.png "Users")
 
-3.  按一下 [新增]。
+3.  Click **Add**.
 
-    ![使用者](./media/active-directory-saas-sumologic-tutorial/IC778562.png "使用者")
+    ![Users](./media/active-directory-saas-sumologic-tutorial/IC778562.png "Users")
 
-4.  在 [新增使用者] 對話方塊上，執行下列步驟：
+4.  On the **New User** dialog, perform the following steps:
 
-    ![新使用者](./media/active-directory-saas-sumologic-tutorial/IC778563.png "新使用者")
+    ![New User](./media/active-directory-saas-sumologic-tutorial/IC778563.png "New User")
 
-    1.  在 [名字]、[姓氏] 和 [電子郵件] 文字方塊中，輸入您想要佈建之 Azure AD 帳戶的相關資訊。
-    2.  選取角色。
-    3.  在 [狀態] 選取 [作用中]。
-    4.  按一下 [儲存]。
+    1.  Type the related information of the Azure AD account you want to provision into the **First Name**, **Last Name** and **Email** textboxes.
+    2.  Select a role.
+    3.  As **Status**, select **Active**.
+    4.  Click **Save**.
 
->[AZURE.NOTE] 您可以使用任何其他的 SumoLogic 使用者帳戶建立工具或 SumoLogic 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other SumoLogic user account creation tools or APIs provided by SumoLogic to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要將使用者指派到 SumoLogic，請執行下列步驟：
+###<a name="to-assign-users-to-sumologic,-perform-the-following-steps:"></a>To assign users to SumoLogic, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [SumoLogic] 應用程式整合頁面中，按一下 [指派使用者]。
+2.  On the **SumoLogic** application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-sumologic-tutorial/IC778564.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-sumologic-tutorial/IC778564.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-sumologic-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-sumologic-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

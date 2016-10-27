@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Virtual Array 備份教學課程 |Microsoft Azure"
-   description="說明如何備份 StorSimple Virtual Array 共用與磁碟區。"
+   pageTitle="StorSimple Virtual Array backup tutorial | Microsoft Azure"
+   description="Describes how to back up StorSimple Virtual Array shares and volumes."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,93 +15,98 @@
    ms.date="06/07/2016"
    ms.author="alkohli" />
 
-# 備份 StorSimple Virtual Array
 
-## 概觀 
+# <a name="back-up-your-storsimple-virtual-array"></a>Back up your StorSimple Virtual Array
 
-本教學課程適用於執行 2016 年 3 月公開上市 (GA) 版或更新版本的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置)。
+## <a name="overview"></a>Overview 
 
-StorSimple Virtual Array 是混合式雲端儲存體內部部署虛擬裝置，可設定為檔案伺服器或 iSCSI 伺服器。它可以建立備份、從備份還原，且當需要災害復原時可執行裝置容錯移轉。設為檔案伺服器時，也可進行項目層級的復原。本教學課程說明如何使用 Azure 傳統入口網站或 StorSimple Web UI 來建立 StorSimple Virtual Array 的排程及手動備份。
+This tutorial applies to the Microsoft Azure StorSimple Virtual Array (also known as the StorSimple on-premises virtual device or StorSimple virtual device) running March 2016 general availability (GA) release or later versions.
+
+The StorSimple Virtual Array is a hybrid cloud storage on-premises virtual device that can be configured as a file server or an iSCSI server. It can create backups, restore from backups, and perform device failover if disaster recovery is needed. When configured as a file server, it also allows item-level recovery. This tutorial describes how to use the Azure classic portal or the StorSimple web UI to create scheduled and manual backups of your StorSimple Virtual Array.
 
 
-## 備份共用和磁碟區
+## <a name="back-up-shares-and-volumes"></a>Back up shares and volumes
 
-備份可提供共用和磁碟區的時間點保護、改善復原能力，同時讓還原時間降至最低。您有兩種方法可以備份 StorSimple 裝置上的共用或磁碟區：「排程」或「手動」。下列各節討論上述每一種方法。
+Backups provide point-in-time protection, improve recoverability, and minimize restore times for shares and volumes. You can back up a share or volume on your StorSimple device in two ways: **Scheduled** or **Manual**. Each of the methods is discussed in the following sections.
 
-> [AZURE.NOTE] 在此版本中，排程的備份由預設原則建立，該原則會每日在特定時間執行並備份裝置上的所有共用或磁碟區。目前無法建立用於排程備份的自訂原則。
+> [AZURE.NOTE] In this release, scheduled backups are created by a default policy that runs daily at a specified time and backs up all the shares or volumes on the device. It is not possible to create custom policies for scheduled backups at this time.
 
-## 變更備份排程
+## <a name="change-the-backup-schedule"></a>Change the backup schedule
 
-您的 StorSimple 虛擬裝置有預設的備份原則，會在每日的特定時間 (22:30) 開始並備份裝置上所有共用或磁碟區。您可以變更備份開始的時間，但無法變更頻率及保留期 (指定備份保留的數量)。在備份時，會備份整部虛擬機器，因此建議您將備份排程在離峰時段。
+Your StorSimple virtual device has a default backup policy that starts at a specified time of day (22:30) and backs up all the shares or volumes on the device once a day. You can change the time at which the backup starts, but the frequency and the retention (which specifies the number of backups to retain) cannot be changed. During these backups, the entire virtual device is backed up; therefore, we recommend that you schedule these backups for off-peak hours.
 
-在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中執行下列步驟，以變更預設的備份開始時間。
+Perform the following steps in the [Azure classic portal](https://manage.windowsazure.com/) to change the default backup start time.
 
-#### 變更預設備份原則的開始時間
+#### <a name="to-change-the-start-time-for-the-default-backup-policy"></a>To change the start time for the default backup policy
 
-1. 瀏覽到裝置的 [組態] 索引標籤。
+1. Navigate to the device **Configuration** tab.
 
-2. 在 [備份] 區段下，指定每日備份的開始時間。
+2. Under the **Backup** section, specify the start time for the daily backup.
 
-3. 按一下 [儲存]。
+3. Click **Save**.
 
-### 進行手動備份
+### <a name="take-a-manual-backup"></a>Take a manual backup
 
-除了排程備份之外，您隨時可以進行手動 (指定) 備份。
+In addition to scheduled backups, you can take a manual (on-demand) backup at any time.
 
-#### 建立手動 (指定) 備份
+#### <a name="to-create-a-manual-(on-demand)-backup"></a>To create a manual (on-demand) backup
 
-1. 瀏覽至 [共用] 索引標籤或 [磁碟區] 索引標籤。
+1. Navigate to the **Shares** tab or the **Volumes** tab.
 
-2. 按一下頁面底部的 [全部備份]。系統會提示您以確認要立即開始備份。按一下核取圖示 ![核取圖示](./media/storsimple-ova-backup/image3.png) 以繼續備份。
+2. At the bottom of the page, click **Backup all**. You will be prompted to verify that you would like to take the backup now. Click the check icon ![check icon](./media/storsimple-ova-backup/image3.png) to proceed with the backup.
 
-    ![確認備份](./media/storsimple-ova-backup/image4.png)
+    ![backup confirmation](./media/storsimple-ova-backup/image4.png)
 
-    系統會通知您正在啟動備份作業。
+    You will be notified that a backup job is starting.
 
-    ![正在啟動備份](./media/storsimple-ova-backup/image5.png)
+    ![backup starting](./media/storsimple-ova-backup/image5.png)
 
-    系統會通知您已成功建立作業。
+    You will be notified that the job was created successfully.
 
-    ![已建立備份工作](./media/storsimple-ova-backup/image7.png)
+    ![backup job created](./media/storsimple-ova-backup/image7.png)
 
-3. 若要追蹤作業進度，按一下 [檢視作業]。
+3. To track the progress of the job, click **View Job**.
 
-4. 備份工作完成之後，請移至 [備份類別目錄] 索引標籤。您應該會看到完成的備份。
+4. After the backup job is finished, go to the **Backup catalog** tab. You should see your completed backup.
 
-    ![已完成的備份](./media/storsimple-ova-backup/image8.png)
+    ![Completed backup](./media/storsimple-ova-backup/image8.png)
 
-5. 將篩選的選項設為適當的裝置、備份原則和時間範圍，然後按一下核取圖示 ![核取圖示](./media/storsimple-ova-backup/image3.png)。
+5. Set the filter selections to the appropriate device, backup policy, and time range, and then click the check icon ![check icon](./media/storsimple-ova-backup/image3.png).
 
-    備份應該會出現在類別目錄中顯示的備份組清單中。
+    The backup should appear in the list of backup sets that is displayed in the catalog.
 
-## 檢視現有備份
+## <a name="view-existing-backups"></a>View existing backups
 
-請在 Azure 傳統入口網站中執行下列步驟，以檢視現有備份。
+Perform the following steps in the Azure classic portal to view the existing backups.
 
-#### 檢視現有備份
+#### <a name="to-view-existing-backups"></a>To view existing backups
 
-1. 在 StorSimple Manager 服務頁面上，按一下 [備份類別目錄] 索引標籤。
+1. On the StorSimple Manager service page, click the **Backup catalog** tab.
 
-2. 選取備份組，如下所示：
+2. Select a backup set as follows:
 
-    1. 選取裝置。
+    1. Select the device.
 
-    2. 在下拉式清單中，針對要選取的備份選擇共用或磁碟區。
+    2. In the drop-down list, choose the share or volume for the backup that you wish to select.
 
-    3. 指定時間範圍。
+    3. Specify the time range.
 
-    4. 按一下核取圖示 ![](./media/storsimple-ova-backup/image3.png) 以執行此查詢。
+    4. Click the check icon ![](./media/storsimple-ova-backup/image3.png) to execute this query.
 
-    與選取的共用或磁碟區相關的備份應會顯示在備份組清單中。
+    The backups associated with the selected share or volume should appear in the list of backup sets.
 
-![video\_icon](./media/storsimple-ova-backup/video_icon.png)**提供的影片**
+![video_icon](./media/storsimple-ova-backup/video_icon.png) **Video available**
 
-觀看影片以了解如何在 StorSimple Virtual Array 上建立共用、備份共用和還原資料。
+Watch the video to see how you can create shares, back up shares, and restore data on a StorSimple Virtual Array.
 
 > [AZURE.VIDEO use-the-storsimple-virtual-array]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-深入了解[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
+Learn more about [administering your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Azure"
-   description="說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。"
+   pageTitle="Create Docker hosts in Azure with Docker Machine | Microsoft Azure"
+   description="Describes use of Docker Machine to create docker hosts in Azure."
    services="azure-container-service"
    documentationCenter="na"
    authors="mlearned"
@@ -15,64 +15,68 @@
    ms.date="06/08/2016"
    ms.author="mlearned" />
 
-# 使用 Docker-Machine 在 Azure 中建立 Docker 主機
 
-執行 [Docker](https://www.docker.com/) 容器時需要執行 Docker 精靈的主機 VM。本主題說明如何使用 [docker-machine](https://docs.docker.com/machine/) 命令，來建立在 Azure 中執行並使用 Docker 精靈所設定的新 Linux VM。
+# <a name="create-docker-hosts-in-azure-with-docker-machine"></a>Create Docker Hosts in Azure with Docker-Machine
 
-**注意：**
-- *本文根據 docker-machine 0.7.0 版或更新版本*
-- *在不久的未來，將透過 docker-machine 支援 Windows Containers*
+Running [Docker](https://www.docker.com/) containers requires a host VM running the docker daemon.
+This topic describes how to use the [docker-machine](https://docs.docker.com/machine/) command to create new Linux VMs, configured with the Docker daemon, running in Azure. 
 
-## 使用 Docker 電腦建立 VM
+**Note:** 
+- *This article depends on docker-machine version 0.7.0 or greater*
+- *Windows Containers will be supported through docker-machine in the near future*
 
-搭配使用 `docker-machine create` 命令與 `azure` 驅動程式，在 Azure 中建立 Docker 主機 VM。
+## <a name="create-vms-with-docker-machine"></a>Create VMs with Docker Machine
 
-Azure 驅動程式將需要您的訂用帳戶識別碼。您可以使用 [Azure CLI](xplat-cli-install.md) 或 [Azure 入口網站](https://portal.azure.com)來擷取您的「Azure 訂用帳戶」。
+Create docker host VMs in Azure with the `docker-machine create` command using the `azure` driver. 
 
-**使用 Azure 入口網站**
-- 從左導覽頁面中選取 [訂用帳戶]，並複製到訂用帳戶識別碼。
+The Azure driver will need your subscription ID. You can use the [Azure CLI](xplat-cli-install.md) or the [Azure Portal](https://portal.azure.com) to retrieve your Azure Subscription. 
 
-**使用 Azure CLI**
-- 輸入 ```azure account list```，並複製訂用帳戶識別碼。
+**Using the Azure Portal**
+- Select Subscriptions from the left navigation page, and copy to subscription id.
 
-輸入 `docker-machine create --driver azure` 以查看選項和其預設值。您也可以查看 [Docker Azure 驅動程式文件](https://docs.docker.com/machine/drivers/azure/)，以取得詳細資訊。
+**Using the Azure CLI**
+- Type ```azure account list``` and copy the subscription id.
 
-下列範例依賴預設值，但會選擇性地開啟 VM 上的連接埠 80 來進行網際網路存取。
+Type `docker-machine create --driver azure` to see the options and their default values.
+You can also see the [Docker Azure Driver documentation](https://docs.docker.com/machine/drivers/azure/) for more info. 
+
+The following example relies upon the default values, but it does optionally open port 80 on the VM for internet access. 
 
 ```
 docker-machine create -d azure --azure-subscription-id <Your AZURE_SUBSCRIPTION_ID> --azure-open-port 80 mydockerhost
 ```
 
-## 使用 docker-machine 選擇 Docker 主機
-docker-machine 中有您主機的項目之後，即可在執行 docker 命令時設定預設主機。
-##使用 PowerShell
+## <a name="choose-a-docker-host-with-docker-machine"></a>Choose a docker host with docker-machine
+Once you have an entry in docker-machine for your host, you can set the default host when running docker commands.
+##<a name="using-powershell"></a>Using PowerShell
 
 ```powershell
 docker-machine env MyDockerHost | Invoke-Expression 
 ```
 
-##使用 Bash
+##<a name="using-bash"></a>Using Bash
 
 ```bash
 eval $(docker-machine env MyDockerHost)
 ```
 
-您現在可以對指定的主機執行 docker 命令
+You can now run docker commands against the specified host
 
 ```
 docker ps
 docker info
 ```
 
-## 執行容器
+## <a name="run-a-container"></a>Run a container
 
-設定主機之後，您現在可以執行簡單的 Web 伺服器，來測試是否已正確設定主機。我們在此使用標準 nginx 映像，指定它應該接聽連接埠 80，而且如果主機 VM 重新啟動，則容器也會重新啟動 (`--restart=always`)。
+With a host configured, you can now run a simple web server to test whether your host was configured correctly.
+Here we use a standard nginx image, specify that it should listen on port 80, and that if the host VM restarts, the container will restart as well (`--restart=always`). 
 
 ```bash
 docker run -d -p 80:80 --restart=always nginx
 ```
 
-輸出應該類似下面這樣：
+The output should look something like the following:
 
 ```
 Unable to find image 'nginx:latest' locally
@@ -86,27 +90,32 @@ Status: Downloaded newer image for nginx:latest
 25942c35d86fe43c688d0c03ad478f14cc9c16913b0e1c2971cb32eb4d0ab721
 ```
 
-## 測試容器
+## <a name="test-the-container"></a>Test the container
 
-使用 `docker ps` 檢查執行中容器：
+Examine running containers using `docker ps`:
 
 ```bash
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
 d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago       Up 5 minutes        0.0.0.0:80->80/tcp, 443/tcp   goofy_mahavira
 ```
 
-查看執行中容器，並輸入 `docker-machine ip <VM name>` 以尋找要在瀏覽器中輸入的 IP 位址：
+And check to see the running container, type `docker-machine ip <VM name>` to find the IP address to enter in the browser:
 
 ```
 PS C:\> docker-machine ip MyDockerHost
 191.237.46.90
 ```
 
-![執行 ngnix 容器](./media/vs-azure-tools-docker-machine-azure-config/nginxsuccess.png)
+![Running ngnix container](./media/vs-azure-tools-docker-machine-azure-config/nginxsuccess.png)
 
-##摘要
-運用 docker-machine，您可以在 Azure 中輕鬆地佈建 docker 主機來進行個別 docker 主機驗證。如需實際執行裝載容器，請參閱 [Azure Container Service](http://aka.ms/AzureContainerService)
+##<a name="summary"></a>Summary
+With docker-machine you can easily provision docker hosts in Azure for your individual docker host validations.
+For production hosting of containers, see the [Azure Container Service](http://aka.ms/AzureContainerService)
 
-若要使用 Visual Studio 開發 .NET Core 應用程式，請參閱 [Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS)
+To develop .NET Core Applications with Visual Studio, see [Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

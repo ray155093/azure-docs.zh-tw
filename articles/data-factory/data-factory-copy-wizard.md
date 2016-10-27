@@ -1,82 +1,94 @@
 <properties
-	pageTitle="Data Factory 複製精靈 | Microsoft Azure"
-	description="了解如何使用 Data Factory 複製精靈，將資料從支援的資料來源複製到接收。"
-	services="data-factory"
-	documentationCenter=""
-	authors="spelluru"
-	manager="jhubbard"
-	editor="monicar"/>
+    pageTitle="Data Factory Copy Wizard | Microsoft Azure"
+    description="Learn about how to use the Data Factory Copy Wizard to copy data from supported data sources to sinks."
+    services="data-factory"
+    documentationCenter=""
+    authors="spelluru"
+    manager="jhubbard"
+    editor="monicar"/>
 
 <tags
-	ms.service="data-factory"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/27/2016"
-	ms.author="spelluru"/>
+    ms.service="data-factory"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/29/2016"
+    ms.author="spelluru"/>
 
-# Data Factory 複製精靈
-Azure Data Factory 複製精靈可讓您建立管線，以在不需要撰寫連結服務、資料集和管線之 JSON 定義的情況下，將資料從支援的來源複製到目的地。若要啟動複製精靈，請在 Data Factory 首頁按一下 [複製資料] 圖格。
 
-![複製精靈](./media/data-factory-copy-wizard/copy-data-wizard.png)
+# <a name="data-factory-copy-wizard"></a>Data Factory Copy Wizard
+The Azure Data Factory Copy Wizard is to ease the process of ingesting data, which is usually a first step in an end-to-end data integration scenario. When going through the Azure Data Factory Copy Wizard, you do not need to understand any JSON definitions for linked services, datasets, and pipelines. However, after you complete all the steps in the wizard, the wizard automatically creates a pipeline to copy data from the selected data source to the selected destination. In addition, the Copy Wizard helps you to validate the data being ingested at the time of authoring, which saves much of your time, especially when you are ingesting data for the first time from the data source. To start the Copy Wizard, click the **Copy data** tile on the home page of your data factory.
 
-## 特性
+![Copy Wizard](./media/data-factory-copy-wizard/copy-data-wizard.png)
 
-### 用法直覺且操作流暢的資料複製精靈
-此精靈可讓您在幾分鐘內輕鬆地將資料從來源移動到目的地，只需要完成以下簡單的步驟即可︰
 
-1.	選取原始檔。
-2.	選取目的地。
-3.	配置設定。
+## <a name="an-intuitive-wizard-for-copying-data"></a>An intuitive wizard for copying data
+This wizard allows you to easily move data from a wide variety of sources to destinations in minutes. After going through the wizard, a pipeline with a copy activity is automatically created for you along with dependent Data Factory entities (linked services and datasets). No additional steps are required to create the pipeline.   
 
-![選取資料來源](./media/data-factory-copy-wizard/select-data-source-page.png)
+![Select data source](./media/data-factory-copy-wizard/select-data-source-page.png)
 
-### 豐富的資料探索和結構描述對應
-在精靈中，您可以瀏覽資料表和資料夾、預覽資料、對應結構描述、驗證運算式及執行簡單的資料轉換。
+> [AZURE.NOTE] See [Copy Wizard tutorial](data-factory-copy-data-wizard-tutorial.md) article for step-by-step instructions to create a sample pipeline to copy data from an Azure blob to an Azure SQL Database table. 
 
-**瀏覽資料表/資料夾** ![瀏覽資料表和資料夾](./media/data-factory-copy-wizard/browse-tables-folders.png)
+The wizard is designed with big data in mind from the start. It is simple and efficient to author Data Factory pipelines that move hundreds of folders, files, or tables using the Copy Data wizard. The wizard supports the following three features: Automatic data preview, schema capture and mapping, and filtering data. 
 
-### 適用於多樣化資料和物件類型的可調整經驗
-經驗的設計之初即是以巨量資料為出發點。它是撰寫 Data Factory 管線既簡單又有效率的方式，讓您得以移動數百個資料夾、檔案或資料表。
+## <a name="automatic-data-preview"></a>Automatic data preview 
+The copy wizard allows you to review part of the data from the selected data source for you to validate whether the data it is the right data you want to copy. In addition, if the source data is in a text file, the copy wizard parses the text file to learn row and column delimiters, and schema automatically. 
 
-**預覽資料** ![檔案格式設定](./media/data-factory-copy-wizard/file-format-settings.png)
+![File format settings](./media/data-factory-copy-wizard/file-format-settings.png)
 
-**對應結構描述** ![結構描述對應](./media/data-factory-copy-wizard/schema-mapping.png)
+## <a name="schema-capture-and-mapping"></a>Schema capture and mapping 
+The schema of input data may not match the schema of output data in some cases. In this scenario, you need to map columns from the source schema to columns from the destination schema. 
 
-**執行簡單的轉換** ![驗證運算式](./media/data-factory-copy-wizard/validate-expressions.png)
+The copy wizard automatically maps columns in the source schema to columns in the destination schema. You can override the mappings by using the drop-down lists (or) specify whether a column needs to be skipped while copying the data.   
 
-### 適用於多樣化資料和物件類型的可調整經驗
-使用複製精靈，您可以有效率且簡單地移動數百個資料夾、檔案或資料表。
+![Schema mapping](./media/data-factory-copy-wizard/schema-mapping.png)
 
-![選取要從中複製資料的資料表](./media/data-factory-copy-wizard/select-tables-to-copy-data.png)
+## <a name="filtering-data"></a>Filtering data  
+The wizard allows you to filter source data to select only the data that needs to be copied to the destination/sink data store. Filtering reduces the volume of the data to be copied to the sink data store and therefore enhances the throughput of the copy operation. It provides a flexible way to filter data in a relational database by using SQL query language (or) files in an Azure blob folder by using [Data Factory functions and variables](data-factory-functions-variables.md).   
 
-### 更豐富的排程選項
-您可以執行複製作業一次，或按照排程 (每小時、每日等) 執行。這兩個選項均適用於範圍跨越內部部署、雲端和本機桌面複本的廣闊連接器。
+### <a name="filtering-of-data-in-a-database"></a>Filtering of data in a database  
+In the example, the SQL query uses the `Text.Format` function and `WindowStart` variable. 
 
-一次性複製作業只能進行一次從來源到目的地的資料移動。它適用於任何規模和任何支援格式的資料。排程複製可讓您依照指定的週期複製資料。在設定排程複製時，您可以使用豐富的設定 (如重試、逾時和警示)。
+![Validate expressions](./media/data-factory-copy-wizard/validate-expressions.png)
 
-![排程屬性](./media/data-factory-copy-wizard/scheduling-properties.png)
+### <a name="filtering-of-data-in-an-azure-blob-folder"></a>Filtering of data in an Azure blob folder
+You can use variables in the folder path to copy data from a folder that is determined at runtime based on [system variables](data-factory-functions-variables.md#data-factory-system-variables). The supported variables are: **{year}**, **{month}**, **{day}**, **{hour}**, **{minute}**, and **{custom}**. Example: inputfolder/{year}/{month}/{day}.
 
-## Azure Blob 資料夾路徑中的變數
-您可以在資料夾路徑中使用變數，以複製在執行階段根據 [WindowStart 系統變數](data-factory-functions-variables.md#data-factory-system-variables)決定之資料夾內的資料。支援的變數包括︰**{year}**、**{month}**、**{day}**、**{hour}**、**{minute}** 和 **{custom}**。範例︰inputfolder/{year}/{month}/{day}。
+Suppose that you have input folders in the following format:
 
-假設您的輸入資料夾格式如下︰
+    2016/03/01/01
+    2016/03/01/02
+    2016/03/01/03
+    ...
 
-	2016/03/01/01
-	2016/03/01/02
-	2016/03/01/03
-	...
+Click the **Browse** button for **File or folder**, browse to one of these folders (for example, 2016->03->01->02), and click **Choose**. You should see `2016/03/01/02` in the text box. Now, replace **2016** with **{year}**, **03** with **{month}**, **01** with **{day}**, and **02** with **{hour}**, and press Tab. You should see drop-down lists to select the format for these four variables:
 
-按一下 [瀏覽] 按鈕以取用 [檔案或資料夾]，瀏覽至其中一個資料夾 (例如 2016->03->01->02)，然後按一下 [選擇]。您應該會在文字方塊中看到 **2016/03/01/02**。現在，請將 **2016** 取代為 **{year}**、**03** 取代為 **{month}**、**01** 取代為 **{day}**、**02** 取代為 **{hour}**，然後按 Tab 鍵。您應該會看到選取這四個變數之格式的下拉式清單︰
+![Using system variables](./media/data-factory-copy-wizard/blob-standard-variables-in-folder-path.png)   
 
-![使用系統變數](./media/data-factory-copy-wizard/blob-standard-variables-in-folder-path.png)
+As shown in the following screenshot, you can also use a **custom** variable and any [supported format strings](https://msdn.microsoft.com/library/8kb3ddd4.aspx). To select a folder with that structure, use the **Browse** button first. Then replace a value with **{custom}**, and press Tab to see the text box where you can type the format string.     
 
-如下列螢幕擷取畫面所示，您也可以使用 **custom** 變數和任何[支援的格式字串](https://msdn.microsoft.com/library/8kb3ddd4.aspx)。若要選取具有該結構的資料夾，請先使用 [瀏覽] 按鈕。然後將值取代為 **{custom}**，並按 Tab 鍵來查看用來輸入格式字串的文字方塊。
+![Using custom variable](./media/data-factory-copy-wizard/blob-custom-variables-in-folder-path.png)
 
-![使用自訂變數](./media/data-factory-copy-wizard/blob-custom-variables-in-folder-path.png)
 
-## 後續步驟
-如需使用 Data Factory 複製精靈建立含複製活動之管線的快速逐步解說，請參閱[教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線](data-factory-copy-data-wizard-tutorial.md)。
+## <a name="support-for-diverse-data-and-object-types"></a>Support for diverse data and object types
+By using the Copy Wizard, you can efficiently move hundreds of folders, files, or tables.
 
-<!---HONumber=AcomDC_0824_2016-->
+![Select tables from which to copy data](./media/data-factory-copy-wizard/select-tables-to-copy-data.png)
+
+## <a name="scheduling-options"></a>Scheduling options
+You can run the copy operation once or on a schedule (hourly, daily, and so on). Both of these options can be used for the breadth of the connectors across on-premises, cloud, and local desktop copy.
+
+A one-time copy operation enables data movement from a source to a destination only once. It applies to data of any size and any supported format. The scheduled copy allows you to copy data on a prescribed recurrence. You can use rich settings (like retry, timeout, and alerts) to configure the scheduled copy.
+
+![Scheduling properties](./media/data-factory-copy-wizard/scheduling-properties.png)
+
+
+## <a name="next-steps"></a>Next steps
+For a quick walkthrough of using the Data Factory Copy Wizard to create a pipeline with Copy Activity, see [Tutorial: Create a pipeline using the Copy Wizard](data-factory-copy-data-wizard-tutorial.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

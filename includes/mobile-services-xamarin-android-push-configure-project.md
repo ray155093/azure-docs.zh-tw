@@ -1,11 +1,11 @@
 
-1. 在 [方案] 檢視 (或 Visual Studio 中的 [方案總管]) 中，以滑鼠右鍵按一下 [元件] 資料夾，按一下 [取得更多元件]，搜尋 **Google Cloud Messaging 用戶端**並將其加入至專案。
+1. In the Solution view (or **Solution Explorer** in Visual Studio), right-click the **Components** folder, click  **Get More Components...**, search for the **Google Cloud Messaging Client** component and add it to the project.
 
-2. 開啟 ToDoActivity.cs 專案檔案，然後將下列 using 陳述式加入至類別：
+2. Open the ToDoActivity.cs project file and add the following using statement to the class:
 
-		using Gcm.Client;
+        using Gcm.Client;
 
-3. 將下列新程式碼加入至 **ToDoActivity** 類別：
+3. In the **ToDoActivity** class, add the following new code: 
 
         // Create a new instance field for this activity.
         static ToDoActivity instance = new ToDoActivity();
@@ -27,9 +27,9 @@
             }
         }
 
-	這樣做可讓您從推播處理常式服務處理程序存取行動服務用戶端執行個體。
+    This enables you to access the mobile client instance from the push handler service process.
 
-4.	在建立 **MobileServiceClient** 之後，將下列程式碼加入至 **OnCreate** 方法：
+4.  Add the following code to the **OnCreate** method, after the **MobileServiceClient** is created:
 
         // Set the current instance of TodoActivity.
         instance = this;
@@ -41,6 +41,8 @@
         // Register the app for push notifications.
         GcmClient.Register(this, ToDoBroadcastReceiver.senderIDs);
 
-您的 **ToDoActivity** 現在可供新增推送通知。
+Your **ToDoActivity** is now prepared for adding push notifications.
 
-<!---HONumber=AcomDC_1203_2015-->
+<!--HONumber=Oct16_HO2-->
+
+

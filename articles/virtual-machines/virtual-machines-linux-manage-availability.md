@@ -1,34 +1,39 @@
 <properties
-	pageTitle="管理 Linux VM 的可用性 | Microsoft Azure"
-	description="了解如何使用多部虛擬機器，確保 Azure 中 Linux 應用程式的高可用性。"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="cynthn"
-	manager="timlt"
-	editor="tysonn"
-	tags="azure-resource-manager,azure-service-management"/>
+    pageTitle="Manage the availability of Linux VMs | Microsoft Azure"
+    description="Learn how to use multiple virtual machines to ensure high availability for your Linux application in Azure"
+    services="virtual-machines-linux"
+    documentationCenter=""
+    authors="cynthn"
+    manager="timlt"
+    editor="tysonn"
+    tags="azure-resource-manager,azure-service-management"/>
 
 <tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="05/25/2016"
-	ms.author="cynthn"/>
+    ms.service="virtual-machines-linux"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-linux"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="05/25/2016"
+    ms.author="cynthn"/>
 
-# 管理虛擬機器的可用性
 
-了解如何設定及管理多部虛擬機器，以確保 Azure 中 Linux 應用程式的高可用性。您也可以[管理 Windows 虛擬機器的可用性](virtual-machines-windows-manage-availability.md)。
+# <a name="manage-the-availability-of-virtual-machines"></a>Manage the availability of virtual machines
+
+Learn ways to set up and manage multiple virtual machines to ensure high availability for your Linux application in Azure. You can also [manage the availability of Windows virtual machines](virtual-machines-windows-manage-availability.md).
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-如需有關使用 CLI 在 Resource Manger 部署模型中建立可用性設定組的指示，請參閱 [azure availset：用來管理可用性設定組的命令](../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets)。
+For instructions on creating an availability set using CLI in the Resource Manager deployment model, see [azure availset: commands to manage your availability sets](../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets).
 
 [AZURE.INCLUDE [virtual-machines-common-manage-availability](../../includes/virtual-machines-common-manage-availability.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要深入了解如何對虛擬機器進行負載平衡，請參閱[對虛擬機器進行負載平衡](virtual-machines-linux-load-balance.md)。
+To learn more about load balancing your virtual machines, see [Load Balancing virtual machines](virtual-machines-linux-load-balance.md).
 
-<!---HONumber=AcomDC_0601_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

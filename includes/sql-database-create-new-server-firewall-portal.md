@@ -9,41 +9,44 @@ articles/sql-database/sql-database-get-started-tutorial.md
 articles/sql-database/sql-database-configure-firewall-settings
 
 -->
-## 建立新的 Azure SQL 伺服器層級防火牆
+## <a name="create-a-new-azure-sql-server-level-firewall"></a>Create a new Azure SQL server-level firewall
 
-在 Azure 入口網站中使用下列步驟來建立伺服器層級防火牆規則，以允許從個別 IP 位址 (您的用戶端電腦) 或整個 IP 位址範圍連接到 SQL Database 邏輯伺服器。
+Use the following steps in the Azure portal to create a server-level firewall rule that allows connections from an individual IP address (your client computer) or an entire IP address range to a SQL Database logical server.
 
-1. 如果目前未連線，請連線到 [Azure 入口網站](http://portal.azure.com)。
-2. 在預設刀鋒視窗上，按一下 [SQL Server]。
+1. If you're not currently connected, connect to the [Azure portal](http://portal.azure.com).
+2. On the default blade, click **SQL servers**.
 
-  	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-1.png)
+    ![New server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-1.png)
 
-3. 在 [SQL Server] 刀鋒視窗上，按一下要在其上建立防火牆規則的伺服器。
+3. On the **SQL servers** blade, click the server on which to create the firewall rule.
 
- 	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-2.png)
+    ![New server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-2.png)
 
-4. 檢閱您伺服器的屬性。
+4. Review the properties of your server.
 
- 	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-3.png)
+    ![New server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-3.png)
 
-5. 在 [設定] 刀鋒視窗上，按一下 [防火牆]。
+5. On the **Settings** blade, click **Firewall**.
 
- 	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-4.png)
+    ![New server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-4.png)
 
- 	> [AZURE.NOTE] 您也可以從 [資料庫] 刀鋒視窗的工具列存取伺服器層級的 [防火牆設定] 刀鋒視窗。
+    > [AZURE.NOTE] You can also access the server-level **Firewall settings** blade from the toolbar of the **Database** blade.
 
-6. 按一下 [新增用戶端 IP] 讓 Azure 為您的用戶端 IP 位址建立規則。
+6. Click **Add client IP** to have Azure create a rule for your client IP address.
 
-      ![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-5.png)
+      ![New server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-5.png)
 
-7. 若要允許某個 IP 位址範圍的存取，按一下所新增的 IP 位址來編輯防火牆位址 (選擇性)。
+7. Optionally, to allow access to a range of IP addresses, click the IP address that was added to edit the firewall address.
 
-      ![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-6.png)
+      ![New server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-6.png)
 
-8. 按一下 [儲存] 以建立伺服器層級防火牆規則。
+8. Click **Save** to create the server-level firewall rule.
 
-     ![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-7.png)
+     ![New server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-7.png)
 
-	>[AZURE.IMPORTANT] 您的用戶端 IP 位址可能會不時變動，且在您建立新的防火牆規則前，將可能無法存取伺服器。您可以使用 [Bing](http://www.bing.com/search?q=my%20ip%20address) 檢查您的 IP 位址。然後新增單一 IP 位址或 IP 位址範圍。如需詳細資訊，請參閱[管理防火牆設定](sql-database-configure-firewall-settings.md#manage-existing-server-level-firewall-rules-through-the-azure-portal)。
+    >[AZURE.IMPORTANT] Your client IP address might change from time to time, and you might not be able to access your server until you create a new firewall rule. You can check your IP address by using [Bing](http://www.bing.com/search?q=my%20ip%20address). Then add a single IP address or a range of IP addresses. See [Manage firewall settings](sql-database-configure-firewall-settings.md#manage-existing-server-level-firewall-rules-through-the-azure-portal) for details.
 
-<!---HONumber=AcomDC_0912_2016--->
+
+<!--HONumber=Oct16_HO2-->
+
+

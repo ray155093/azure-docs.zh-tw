@@ -1,49 +1,54 @@
 <properties
-	pageTitle="發生影響 Azure 金鑰保存庫的 Azure 服務中斷事件時該怎麼辦 | Microsoft Azure"
-	description="了解發生影響 Azure 金鑰保存庫的 Azure 服務中斷事件時該怎麼辦。"
-	services="key-vault"
-	documentationCenter=""
-	authors="adamglick"
-	manager="mbaldwin"
-	editor=""/>
+    pageTitle="What to do in the event of an Azure service disruption that impacts Azure Key Vault | Microsoft Azure"
+    description="Learn what to do in the event of an Azure service disruption that impacts Azure Key Vault."
+    services="key-vault"
+    documentationCenter=""
+    authors="adamglick"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="key-vault"
-	ms.workload="key-vault"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/26/2016"
-	ms.author="sumedhb;aglick"/>
+    ms.service="key-vault"
+    ms.workload="key-vault"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/26/2016"
+    ms.author="sumedhb;aglick"/>
 
 
-# Azure 金鑰保存庫的可用性與備援
 
-Azure 金鑰保存庫具備多層備援功能，以確保您的金鑰和密碼會保持可供應用程式使用，甚至在服務的個別元件失敗時也是如此。
+# <a name="azure-key-vault-availability-and-redundancy"></a>Azure Key Vault availability and redundancy
 
-金鑰保存庫的內容會在區域內複寫，以及複寫到至少有 150 英哩距離，但位於相同地理位置內的次要地區。這可維持您金鑰和密碼的高持久性。
+Azure Key Vault features multiple layers of redundancy to make sure that your keys and secrets remain available to your application even if individual components of the service fail.
 
-如果金鑰保存庫服務內的個別元件失敗，則區域內替代的元件會接替來處理您的要求，以確保不會導致功能的效能降低。您不需要採取任何動作以觸發這項功能。它會以您無法察覺的方式自動發生。
+The contents of your key vault are replicated within the region as well as to a secondary region at least 150 miles away but within the same geography. This maintains high durability of your keys and secrets.
 
-在整個 Azure 區域無法使用的罕見情況下，您在該區域中的 Azure 金鑰保存庫所做出的要求會自動路由傳送 (「容錯移轉」) 到次要地區。當主要區域再次可用時，要求會路由傳送回 (「回復」) 到主要區域。同樣地，您不需要採取任何動作，因為這會自動發生。
+If individual components within the Key Vault service fail, alternate components within the region step in to serve your request to make sure that there is no degradation of functionality. You do not need to take any action to trigger this. It will happen automatically and will be transparent to you.
 
-有一些您應該要注意的事項：
+In the rare event that an entire Azure region is unavailable, the requests that you make of Azure Key Vault in that region are automatically routed (“failed over”) to a secondary region. When the primary region is available again, requests are routed back (“failed back”) to the primary region. Again, you do not need to take any action because this will happen automatically.
 
-* 若發生區域容錯移轉，可能需要幾分鐘，服務才能進行容錯移轉。在這段期間所做的要求，在容錯移轉完成之前可能會失敗。
-* 容錯移轉完成之後，金鑰保存庫會處於__唯讀__模式。在此模式中支援的要求是：
- * 列出金鑰保存庫
- * 取得金鑰保存庫的屬性
- * 列出密碼
- * 取得密碼
- * 列出金鑰
- * 取得金鑰 (的屬性)
- * 加密
- * 解密
- * 包裝
- * 解除包裝
- * 驗證
- * 簽署
+There are a few caveats that you should be aware of:
+
+* In the event of a region fail-over, it may take a few minutes for the service to fail over. Requests that are made during this time may fail until the fail-over completes.
+* After a fail-over is complete, your key vault is in ___read-only___ mode. Requests that are supported in this mode are:
+ * list key vaults
+ * get properties of key vaults
+ * list secrets
+ * get secrets
+ * list keys
+ * get (properties of) keys
+ * encrypt
+ * decrypt
+ * wrap
+ * unwrap
+ * verify
+ * sign
  * backup
-* 容錯移轉回復之後，所有要求的類型 (即讀取__和__寫入要求) 均可供使用。
+* After a failover is failed back, all request types (i.e. read ___and___ write requests) are available.
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

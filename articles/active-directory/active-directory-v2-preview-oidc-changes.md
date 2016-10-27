@@ -1,132 +1,133 @@
 <properties
-	pageTitle="變更為 Azure AD v2.0 端點 | Microsoft Azure"
-	description="對應用程式模型 v2.0 公用預覽通訊協定所進行的變更的描述。"
-	services="active-directory"
-	documentationCenter=""
-	authors="dstrockis"
-	manager="mbaldwin"
-	editor=""/>
+    pageTitle="Changes to the Azure AD v2.0 endpoint | Microsoft Azure"
+    description="A description of changes that are being made to the app model v2.0 public preview protocols."
+    services="active-directory"
+    documentationCenter=""
+    authors="dstrockis"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="dastrock"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/16/2016"
+    ms.author="dastrock"/>
 
-# v2.0 驗證通訊協定的重要更新
-開發人員請注意！ 在接下來兩週，我們會對 v2.0 驗證通訊協定進行一些更新，這些更新對於您在我們的預覽期間撰寫的任何應用程式可能是重大變更。
 
-## 那些人會受到影響？
-任何已撰寫使用 v2.0 整合驗證端點的任何應用程式，
+# <a name="important-updates-to-the-v2.0-authentication-protocols"></a>Important Updates to the v2.0 Authentication Protocols
+Attention developers! Over the next two weeks, we will be making a few updates to our v2.0 authentication protocols that may mean breaking changes for any apps you have written during our preview period.  
+
+## <a name="who-does-this-affect?"></a>Who does this affect?
+Any apps that have been written to use the v2.0 converged authentication endpoint,
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
 ```
 
-更多關於 v2.0 端點的詳細資訊可以在[這裡](active-directory-appmodel-v2-overview.md)找到。
+More information on the v2.0 endpoint can be found [here](active-directory-appmodel-v2-overview.md).
 
-如果您已經藉由直接編碼至 v2.0 通訊協定，使用 v2.0 端點來建置應用程式，使用我們的任何 OpenID Connect 或 OAuth Web 中繼軟體，或使用其他協力廠商程式庫來執行驗證，您應該準備好測試您的專案，並且視需要進行變更。
+If you have built an app using the v2.0 endpoint by coding directly to the v2.0 protocol, using any of our OpenID Connect or OAuth web middlewares, or using other 3rd party libraries to perform authentication, you should be prepared to test your projects and make changes if necessary.
 
-## 那些人不會受到影響？
-任何已根據保護 Azure AD 驗證端點所撰寫的任何應用程式，
+## <a name="who-doesn`t-this-affect?"></a>Who doesn`t this affect?
+Any apps that have been written against the production Azure AD authentication endpoint,
 
 ```
 https://login.microsoftonline.com/common/oauth2/authorize
 ```
 
-此通訊協定一定都是如此，並且不會發生任何變更。
+This protocol is set in stone and will not be experiencing any changes.
 
-此外，如果您的應用程式**只**使用我們的 ADAL 程式庫來執行驗證，您不必變更任何項目。ADAL 已防護您的應用程式免於變更。
+Furthermore, if your app **only** uses our ADAL library to perform authentication, you won`t have to change anything.  ADAL has shielded your app from the changes.  
 
-## 所做的變更有哪些？
-### 從 JWT 標頭移除 x5t 值
-V2.0 端點大量使用 JWT 權杖，其中包含標頭參數區段與權杖的相關中繼資料。如果您解碼其中一個目前 JWT 的標頭，您會發現類似以下的情形：
+## <a name="what-are-the-changes?"></a>What are the changes?
+### <a name="removing-the-x5t-value-from-jwt-headers"></a>Removing the x5t value from JWT headers
+The v2.0 endpoint uses JWT tokens extensively, which contain a header parameters section with relevant metadata about the token.  If you decode the header of one of our current JWTs, you would find something like:
 
 ```
 { 
-	"type": "JWT",
-	"alg": "RS256",
-	"x5t": "MnC_VZcATfM5pOYiJHMba9goEKY",
-	"kid": "MnC_VZcATfM5pOYiJHMba9goEKY"
+    "type": "JWT",
+    "alg": "RS256",
+    "x5t": "MnC_VZcATfM5pOYiJHMba9goEKY",
+    "kid": "MnC_VZcATfM5pOYiJHMba9goEKY"
 }
 ```
 
-「x5t」和「kid」屬性都會識別從 OpenID Connect 中繼資料端點擷取，應該用於驗證權杖簽章的公開金鑰。
+Where both the "x5t" and "kid" properties identify the public key that should be used to validate the token`s signature, as retrieved from the OpenID Connect metadata endpoint.
 
-我們在這裡進行的變更是要移除「x5t」屬性。您可以繼續使用相同的機制來驗證權杖，但應該只依賴「kid」屬性來擷取正確的公用金鑰，如 OpenID Connect 通訊協定中所指定。
+The change we are making here is to remove the "x5t" property.  You may continue to use the same mechanisms to validate tokens, but should rely only on the "kid" property to retrieve the correct public key, as specified in the OpenID Connect protocol. 
 
-> [AZURE.IMPORTANT] **您的作業：請確定您的應用程式不依賴 x5t 值是否存在。**
+> [AZURE.IMPORTANT] **Your job: Make sure your app does not depend on the existence of the x5t value.**
 
-### 移除 profile\_info
-先前，v2.0 端點在稱為 `profile_info` 的權杖回應中已傳回 base64 編碼的 JSON 物件。藉由傳送要求至下列項目，從 v2.0 端點要求存取權杖時：
+### <a name="removing-profile_info"></a>Removing profile_info
+Previously, the v2.0 endpoint has been returning a base64 encoded JSON object in token responses called `profile_info`.  When requesting an access token from the v2.0 endpoint by sending a request to:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
 
-回應看起來類似下列 JSON 物件：
+The response would look like the following JSON object:
 ```
 { 
-	"token_type": "Bearer",
-	"expires_in": 3599,
-	"scope": "https://outlook.office.com/mail.read",
-	"access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
-	"refresh_token": "OAAABAAAAiL9Kn2Z27UubvWFPbm0gL...",
-	"profile_info": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
+    "token_type": "Bearer",
+    "expires_in": 3599,
+    "scope": "https://outlook.office.com/mail.read",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
+    "refresh_token": "OAAABAAAAiL9Kn2Z27UubvWFPbm0gL...",
+    "profile_info": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
 }
 ```
 
-包含 `profile_info` 值的資訊是關於登入應用程式的使用者 - 其顯示名稱、名字、姓氏、電子郵件地址、 識別碼等等。`profile_info` 主要是用於權杖快取和顯示用途。
+The `profile_info` value contained information about the user who signed into the app - their display name, first name, surname, email address, identifier, and so on.  Primarily, the `profile_info` was used for token caching and display purposes.
 
-我們現在移除 `profile_info` 值 - 不過別擔心，我們仍然會在稍微不同的地方為開發人員提供這項資訊。不是 `profile_info`，v2.0 端點現在會在每個權杖回應中傳回 `id_token`：
+We are now removing the `profile_info` value – but don't worry, we are still providing this information to developers in a slightly different place.  Instead of `profile_info`, the v2.0 endpoint will now return an `id_token` in each token response:
 
 ```
 { 
-	"token_type": "Bearer",
-	"expires_in": 3599,
-	"scope": "https://outlook.office.com/mail.read",
-	"access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
-	"refresh_token": "OAAABAAAAiL9Kn2Z27UubvWFPbm0gL...",
-	"id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
+    "token_type": "Bearer",
+    "expires_in": 3599,
+    "scope": "https://outlook.office.com/mail.read",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
+    "refresh_token": "OAAABAAAAiL9Kn2Z27UubvWFPbm0gL...",
+    "id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
 }
 ```
 
-您可以解碼並剖析的 id\_token 以擷取您從 profile\_info 所收到的相同資訊。Id\_token 是 JSON Web 權杖 (JWT)，其內容由 OpenID Connect 所指定。要執行這項操作的程式碼應該非常類似 – 您只需要擷取 id\_token 的中間區段 (主體)，而且 base64 會將其解碼以在 JSON 物件中存取。
+You may decode and parse the id_token to retrieve the same information that you received from profile_info.  The id_token is a JSON Web Token (JWT), with contents as specified by OpenID Connect.  The code for doing so should be very similar – you simply need to extract the middle segment (the body) of the id_token and base64 decode it to access the JSON object within.
 
-兩週過後，您應該撰寫程式碼以從 `id_token` 或 `profile_info` (存在的其中一個) 擷取使用者資訊。如此一來，當變更時，您的應用程式可以順暢地處理從 `profile_info` 至 `id_token` 的轉換而不會中斷。
+Over the next two weeks, you should code your app to retrieve the user information from either the `id_token` or `profile_info`; whichever is present.  That way when the change is made, your app can seamlessly handle the transition from `profile_info` to `id_token` without interruption.
 
-> [AZURE.IMPORTANT] **您的作業：請確定您的應用程式不依賴 `profile_info` 值是否存在。**
+> [AZURE.IMPORTANT] **Your job: Make sure your app does not depend on the existence of the `profile_info` value.**
 
-### 移除 id\_token\_expires\_in
-類似於 `profile_info`，我們同時也從回應中移除 `id_token_expires_in` 參數。先前，v2.0 端點會傳回 `id_token_expires_in` 的值以及每個 id\_token 回應，例如在授權回應中：
+### <a name="removing-id_token_expires_in"></a>Removing id_token_expires_in
+Similar to `profile_info`, we are also removing the `id_token_expires_in` parameter from responses.  Previously, the v2.0 endpoint would return a value for `id_token_expires_in` along with each id_token response, for instance in an authorize response:
 
 ```
 https://myapp.com?id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...&id_token_expires_in=3599...
 ```
 
-或權杖回應中：
+Or in a token response:
 
 ```
 { 
-	"token_type": "Bearer",
-	"id_token_expires_in": 3599,
-	"scope": "openid",
-	"id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
-	"refresh_token": "OAAABAAAAiL9Kn2Z27UubvWFPbm0gL...",
-	"profile_info": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
+    "token_type": "Bearer",
+    "id_token_expires_in": 3599,
+    "scope": "openid",
+    "id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
+    "refresh_token": "OAAABAAAAiL9Kn2Z27UubvWFPbm0gL...",
+    "profile_info": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...",
 }
 ```
 
-`id_token_expires_in` 值會指出 id\_token 保持有效的秒數。現在，我們完全移除 `id_token_expires_in` 值。相反地，您可以使用 OpenID Connect 標準 `nbf` 和 `exp` 宣告來檢查 id\_token 的有效性。請參閱 [v2.0 權杖參考](active-directory-v2-tokens.md)以取得這些宣告的詳細資訊。
+The `id_token_expires_in` value would indicate the number of seconds the id_token would remain valid for.  Now, we are removing the `id_token_expires_in` value completely.  Instead, you may use the OpenID Connect standard `nbf` and `exp` claims to examine the validity of an id_token.  See the [v2.0 token reference](active-directory-v2-tokens.md) for more information on these claims.
 
-> [AZURE.IMPORTANT] **您的作業：請確定您的應用程式不依賴 `id_token_expires_in` 值是否存在。**
+> [AZURE.IMPORTANT] **Your job: Make sure your app does not depend on the existence of the `id_token_expires_in` value.**
 
 
-### 變更 scope=openid 傳回的宣告
-這項變更將是最重要的 – 事實上，它將會影響使用 v2.0 端點的幾乎每個應用程式。許多應用程式使用 `openid` 範圍將要求傳送至 v2.0 端點，例如：
+### <a name="changing-the-claims-returned-by-scope=openid"></a>Changing the claims returned by scope=openid
+This change will be the most significant – in fact, it will affect almost every app that uses the v2.0 endpoint.  Many applications send requests to the v2.0 endpoint using the `openid` scope, like:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -137,30 +138,30 @@ client_id=...
 &scope=openid offline_access https://outlook.office.com/mail.read
 ```
 
-今天，當使用者同意 `openid` 範圍，您的應用程式會在產生的 id\_token 中收到豐富的使用者相關資訊。這些宣告可以包含其名稱、慣用的使用者名稱、電子郵件地址、物件識別碼等等。
+Today, when the user grants consent for the `openid` scope, your app receives a wealth of information about the user in the resulting id_token.  These claims can include their name, preferred username, email address, object ID, and more.
 
-在此更新中，我們會變更 `openid` 範圍給予您的應用程式存取權的資訊，使其更符合 OpenID Connect 規格。`openid` 範圍只允許您的應用程式將使用者登入，在 id\_token 的 `sub` 宣告中接收應用程式特定識別碼。只被授與 `openid` 範圍的 id\_token 中的宣告會缺乏任何個人識別資訊。範例 id\_token 宣告為：
+In this update, we are changing the information that the `openid` scope affords your app access to, to better comform with the OpenID Connect specification.  The `openid` scope will only allow your app to sign the user in, and receive an app-specific identifier for the user in the `sub` claim of the id_token.  The claims in an id_token with only the `openid` scope granted will be devoid of any personally identifiable information.  Example id_token claims are:
 
 ```
 { 
-	"aud": "580e250c-8f26-49d0-bee8-1c078add1609",
-	"iss": "https://login.microsoftonline.com/b9410318-09af-49c2-b0c3-653adc1f376e/v2.0 ",
-	"iat": 1449520283,
-	"nbf": 1449520283,
-	"exp": 1449524183,
-	"nonce": "12345",
-	"sub": "MF4f-ggWMEji12KynJUNQZphaUTvLcQug5jdF2nl01Q",
-	"tid": "b9410318-09af-49c2-b0c3-653adc1f376e",
-	"ver": "2.0",
+    "aud": "580e250c-8f26-49d0-bee8-1c078add1609",
+    "iss": "https://login.microsoftonline.com/b9410318-09af-49c2-b0c3-653adc1f376e/v2.0 ",
+    "iat": 1449520283,
+    "nbf": 1449520283,
+    "exp": 1449524183,
+    "nonce": "12345",
+    "sub": "MF4f-ggWMEji12KynJUNQZphaUTvLcQug5jdF2nl01Q",
+    "tid": "b9410318-09af-49c2-b0c3-653adc1f376e",
+    "ver": "2.0",
 }
 ```
 
-如果您想要取得有關您的應用程式中的使用者的個人識別資訊 (PII)，您的應用程式必須向使用者要求其他權限。我們從 OpenID Connect 規格引進兩個新領域的支援 – `email` 和 `profile` 範圍 – 可讓您執行這項操作。
+If you want to obtain personally identifiable information (PII) about the user in your app, your app will need to request additional permissions from the user.  We are introducing support for two new scopes from the OpenID Connect spec – the `email` and `profile` scopes – which allow you to do so.
 
-- `email` 範圍非常簡單，它可讓您的應用程式透過 id\_token 中的 `email` 宣告存取使用者的主要電子郵件地址。請注意，`email` 宣告不一定會出現在 id\_tokens 中 – 只有在使用者的設定檔中可用時才會包含。
-- `profile` 範圍可以讓您的應用程式存取使用者的所有其他基本資訊 – 其名稱、慣用的使用者名稱、物件識別碼等等。
+- The `email` scope is very straightforward – it allows your app access to the user's primary email address via the `email` claim in the id_token.  Note that the `email` claim will not always be present in id_tokens – it will only be included if available in the user's profile.
+- The `profile` scope affords your app access to all other basic information about the user – their name, preferred username, object ID, and so on.
 
-這可讓您以最低洩漏的方式編碼應用程式 – 您可以只向使用者要求應用程式執行其作業所需的資訊集。如果您想要繼續取得您的應用程式目前接收的使用者資訊的完整集合，您應該在授權要求中包含所有三個範圍：
+This allows you to code your app in a minimal-disclosure fashion – you can ask the user for just the set of information that your app requires to do its job.  If you want to continue getting the full set of user information that your app is currently receiving, you should include all three scopes in your authorization requests:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -171,50 +172,54 @@ client_id=...
 &scope=openid profile email offline_access https://outlook.office.com/mail.read
 ```
 
-您的應用程式可以立即開始傳送 `email` 和 `profile`，v2.0 端點會接受這兩個範圍，並且視需要開始向使用者要求權限。不過，`openid` 範圍的轉譯中的變更幾週之後才會生效。
+Your app can begin sending the `email` and `profile` scopes immediately, and the v2.0 endpoint will accept these two scopes and begin requesting permissions from users as necessary.  However, the change in the interpretation of the `openid` scope will not take effect for a few weeks.
 
-> [AZURE.IMPORTANT] **您的作業：如果您的應用程式需要使用者的相關資訊，新增 `profile` 和 `email` 範圍。** 請注意，ADAL 預設會在要求中同時包含這些權限。
+> [AZURE.IMPORTANT] **Your job: Add the `profile` and `email` scopes if your app requires information about the user.**  Note that ADAL will include both of these permissions in requests by default. 
 
-### 移除簽發者結尾斜線。
-先前，v2.0 端點的權杖中的簽發者值採用此格式
+### <a name="removing-the-issuer-trailing-slash."></a>Removing the issuer trailing slash.
+Previously, the issuer value that appears in tokens from the v2.0 endpoint took the form
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0/
 ```
 
-其中 guid 是發行權杖的 Azure AD 租用戶的 tenantId。進行這些變更之後，簽發者值會改變
+Where the guid was the tenantId of the Azure AD tenant which issued the token.  With these changes, the issuer value becomes
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0 
 ```
 
-在這兩個權杖和 OpenID Connect 探索文件中。
+in both tokens and in the OpenID Connect discovery document.
 
-> [AZURE.IMPORTANT] **您的作業：確定您的應用程式在簽發者驗證期間接受包含或不含結尾斜線的簽發者值。**
+> [AZURE.IMPORTANT] **Your job: Make sure your app accepts the issuer value both with and without a trailing slash during issuer validation.**
 
-## 為何變更？
-導入這些變更的主要動機是要與 OpenID Connect 標準規格相容。與 OpenID Connect 相容，我們希望將與 Microsoft 識別服務以及業界其他識別服務整合的差異降到最低。我們想要讓開發人員使用他們最愛的開放原始碼驗證程式庫而不必變更程式庫，以配合 Microsoft 的差異。
+## <a name="why-change?"></a>Why change?
+The primary motivation for introducing these changes is to be compliant with the OpenID Connect standard specification.  By being OpenID Connect compliant, we hope to minimize differences between integrating with Microsoft identity services and with other identity services in the industry.  We want to enable developers to use their favorite open source authentication libraries without having to alter the libraries to accommodate Microsoft differences.
 
-## 您該怎麼辦？
-目前，您可以開始進行上述的所有變更。您應該立即：
+## <a name="what-can-you-do?"></a>What can you do?
+As of today, you can begin making all of the changes described above.  You should immediately:
 
-1.	**移除 `x5t` 標頭參數的任何相依性。**
-2.	**正常處理權杖回應中從 `profile_info` 至 `id_token` 的轉換。**
-3.  **移除 `id_token_expires_in` 回應參數的任何相依性。**
-3.	**如果您的應用程式需要基本使用者資訊，將 `profile` 和 `email` 範圍新增至您的應用程式。**
-4.	**在權杖中接受包含或不含結尾斜線的簽發者值。**
+1.  **Remove any dependencies on the `x5t` header parameter.**
+2.  **Gracefully handle the transition from `profile_info` to `id_token` in token responses.**
+3.  **Remove any dependencies on the `id_token_expires_in` response parameter.**
+3.  **Add the `profile` and `email` scopes to your app if your app needs basic user information.**
+4.  **Accept issuer values in tokens both with and without a trailing slash.**
 
-我們的 [v2.0 通訊協定文件](active-directory-v2-protocols.md)已更新以反映這些變更，因此您可能會使用它做為協助更新程式碼的參考。
+Our [v2.0 protocol documentation](active-directory-v2-protocols.md) has already been updated to reflect these changes, so you may use it as reference in helping update your code.
 
-如果您對於變更的範圍有任何進一步的問題，歡迎在我們的 Twitter (@AzureAD) 與我們連絡。
+If you have any further questions on the scope of the changes, please feel free to reach out to us on Twitter at @AzureAD.
 
-## 通訊協定變更發生頻率為何？
-我們無法預見驗證通訊協定的任何進一步重大變更。我們刻意將這些變更統合至一個發行版本，這樣，您就不需要馬上再經歷這種類型的更新程序。當然，我們將會繼續將功能新增至您可以充分利用的 v2.0 驗證服務，但是這些變更應該只是附加的，而不是中斷現有的程式碼。
+## <a name="how-often-will-protocol-changes-occur?"></a>How often will protocol changes occur?
+We do not foresee any further breaking changes to the authentication protocols.  We are intentionally bundling these changes into one release so that you won`t have to go through this type of update process again any time soon.  Of course, we will continue to add features to the converged v2.0 authentication service that you can take advantage of, but those changes should be additive and not break existing code.
 
-最後，感謝您在預覽期間試用功能。至此，我們早期採用者的深入資訊和體驗非常寶貴，而且我們希望您將會繼續共用您的意見與想法。
+Lastly, we would like to say thank you for trying things out during the preview period.  The insights and experiences of our early adopters have been invaluable thus far, and we hope you`ll continue to share your opinions and ideas.
 
-祝各位編碼程式愉快！
+Happy coding!
 
-Microsoft 身分識別部門
+The Microsoft Identity Division
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

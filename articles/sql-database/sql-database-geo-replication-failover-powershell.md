@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉 | Microsoft Azure" 
-    description="使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉" 
+    pageTitle="Initiate a planned or unplanned failover for Azure SQL Database with PowerShell | Microsoft Azure" 
+    description="Initiate a planned or unplanned failover for Azure SQL Database using PowerShell" 
     services="sql-database" 
     documentationCenter="" 
     authors="stevestein" 
@@ -16,62 +16,63 @@
     ms.date="08/29/2016"
     ms.author="sstein"/>
 
-# 使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉
+
+# <a name="initiate-a-planned-or-unplanned-failover-for-azure-sql-database-with-powershell"></a>Initiate a planned or unplanned failover for Azure SQL Database with PowerShell
 
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-geo-replication-failover-portal.md)
+- [Azure portal](sql-database-geo-replication-failover-portal.md)
 - [PowerShell](sql-database-geo-replication-failover-powershell.md)
 - [T-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
 
-本文將說明如何使用 PowerShell 為 SQL Database 起始計劃性或非計劃性容錯移轉。若要設定「異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)。
+This article shows you how to Initiate a planned or unplanned failover for SQL Database with PowerShell. To configure Geo-Replication, see [Configure Geo-Replication for Azure SQL Database](sql-database-geo-replication-powershell.md).
 
 
 
-## 起始規劃的容錯移轉
+## <a name="initiate-a-planned-failover"></a>Initiate a planned failover
 
-使用 **Set-AzureRmSqlDatabaseSecondary** Cmdlet 搭配 **-Failover** 參數，來升級次要資料庫，使它成為新主要資料庫，將現有主要資料庫降級成為次要資料庫。這項功能是為了規劃的容錯移轉 (例如災害復原鑽研期間) 設計，並且需要主要資料庫可供使用。
+Use the **Set-AzureRmSqlDatabaseSecondary** cmdlet with the **-Failover** parameter to promote a secondary database to become the new primary database, demoting the existing primary to become a secondary. This functionality is designed for a planned failover, such as during disaster recovery drills, and requires that the primary database be available.
 
-此命令會執行下列工作流程：
+The command performs the following workflow:
 
-1. 暫時將複寫切換到同步模式。這會導致將所有未處理的交易排清至次要資料庫。
+1. Temporarily switch replication to synchronous mode. This will cause all outstanding transactions to be flushed to the secondary.
 
-2. 切換「異地複寫」合作關係中兩個資料庫的角色。
+2. Switch the roles of the two databases in the Geo-Replication partnership.  
 
-此順序可保證在角色切換之前兩個資料庫經過同步處理，因此不會發生資料遺失。切換角色時，會有一小段時間無法使用這兩個資料庫 (大約為 0 到 25 秒)。在正常情況下，完成整個作業所需的時間應該少於一分鐘。如需詳細資訊，請參閱 [Set-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt619393.aspx)。
-
-
+This sequence guarantees that the two databases are synchronized before the roles switch and therefore no data loss will occur. There is a short period during which both databases are unavailable (on the order of 0 to 25 seconds) while the roles are switched. The entire operation should take less than a minute to complete under normal circumstances. For more information, see [Set-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt619393.aspx).
 
 
-將次要資料庫切換為主要程序完成時，這個 Cmdlet 將傳回。
 
-下列命令會將資源群組 "rg2" 下伺服器 "srv2" 上名為 "mydb" 的資料庫角色切換為主要資料庫。"db2" 所連線的原始主要資料庫，在兩個資料庫完全同步處理之後會切換為次要資料庫。
+
+This cmdlet will return when the process of switching the secondary database to primary is completed.
+
+The following command switches the roles of the database named "mydb” on the server "srv2” under the resource group "rg2” to primary. The original primary to which "db2” was connected to will switch to secondary after the two databases are fully synchronized.
 
     $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" –ResourceGroupName "rg2” –ServerName "srv2”
     $database | Set-AzureRmSqlDatabaseSecondary -Failover
 
 
-> [AZURE.NOTE] 在少數情況下，作業會無法完成並且可能會顯得沒有回應。在此情況下，使用者可以呼叫強制容錯移轉命令 (未規劃的容錯移轉) 並接受資料遺失。
+> [AZURE.NOTE] In rare cases it is possible that the operation cannot complete and may appear unresponsive. In this case the user can call the force failover command (unplanned failover) and accept data loss.
 
 
-## 起始從主要資料庫到次要資料庫的未規劃的容錯移轉
+## <a name="initiate-an-unplanned-failover-from-the-primary-database-to-the-secondary-database"></a>Initiate an unplanned failover from the primary database to the secondary database
 
 
-您可以使用 **Set-AzureRmSqlDatabaseSecondary** Cmdlet 搭配 **-Failover** 和 **-AllowDataLoss** 參數來升級次要資料庫，使它成為未規劃的方式中的新主要資料庫，每當主要資料庫無法使用時，強制將現有主要複本降級成為次要複本。
+You can use the **Set-AzureRmSqlDatabaseSecondary** cmdlet with **–Failover** and **-AllowDataLoss** parameters to promote a secondary database to become the new primary database in an unplanned fashion, forcing the demotion of the existing primary to become a secondary at a time when the primary database is no longer available.
 
-這項功能是針對還原資料庫的可用性非常重要而且部分資料遺失是可接受時的災害復原所設計。叫用強制容錯移轉時，指定的次要資料庫立即成為主要資料庫，並開始接受寫入交易。在強制容錯移轉作業後，原始主要資料庫能夠與這個新的主要資料庫重新連線時，會在原始主要資料庫執行增量備份，而舊的主要資料庫會變成新主要資料庫的次要資料庫；之後就只是新的主要資料庫的複本。
+This functionality is designed for disaster recovery when restoring availability of the database is critical and some data loss is acceptable. When forced failover is invoked, the specified secondary database immediately becomes the primary database and begins accepting write transactions. As soon as the original primary database is able to reconnect with this new primary database after the forced failover operation, an incremental backup is taken on the original primary database and the old primary database is made into a secondary database for the new primary database; subsequently, it is merely a replica of the new primary.
 
-但因為還原時間點在次要資料庫不受支援，如果您想要復原已認可到舊主要資料庫但尚未被複寫到新主要資料庫的資料，您應該接洽 CSS 來將資料庫還原至已知的記錄備份。
+But because Point In Time Restore is not supported on secondary databases, if you wish to recovery data committed to the old primary database which had not been replicated to the new primary database, you should engage CSS to restore a database to the known log backup.
 
-> [AZURE.NOTE] 如果在主要資料庫和次要資料庫上線時發出此命令，舊的主要會立即變成新的次要資料庫，而不會進行資料同步處理。發出命令時，如果主要複本正在認可交易，可能會發生部分資料遺失。
-
-
-如果主要資料庫中有多個次要複本，命令將只有部分成功。執行命令的次要複本會變成主要複本。不過舊的主要複本將仍為主要複本，亦即，兩個主要複本最終會處於不一致狀態並透過擱置的複寫連結連接。使用者必須在主要資料庫上使用「移除次要複本」API 手動修復此組態。
+> [AZURE.NOTE] If the command is issued when the both primary and secondary are online the old primary will become the new secondary immediately without data synchronization. If the primary is committing transactions when the command is issued some data loss may occur.
 
 
-下列命令在主要複本無法使用時，將名為 "mydb" 的資料庫角色切換為主要複本。"mydb" 所連線的原始主要複本，將在回到線上之後切換為次要複本。在該時間點，同步處理可能會導致資料遺失。
+If the primary database has multiple secondaries the command will partially succeed. The secondary on which the command was executed will become primary. The old primary however will remain primary, i.e. the two primaries will end up in inconsistent state and connected by a suspended replication link. The user will have to manually repair this configuration using a “remove secondary” API on either of these primary databases.
+
+
+The following command switches the roles of the database named "mydb” to primary when the primary is unavailable. The original primary to which "mydb” was connected to will switch to secondary after it is back online. At that point the synchronization may result in data loss.
 
     $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" –ResourceGroupName "rg2” –ServerName "srv2”
     $database | Set-AzureRmSqlDatabaseSecondary –Failover -AllowDataLoss
@@ -79,13 +80,17 @@
 
 
 
-## 後續步驟   
+## <a name="next-steps"></a>Next steps   
 
-- 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。如需詳細資訊，請參閱[災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
-- 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱[災害復原演練](sql-database-disaster-recovery.md)
-- 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱[新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
-- 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱[使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- 如需使用主動式異地複寫與彈性資料庫集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
-- 如需商務持續性的概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- After failover, ensure the authentication requirements for your server and database are configured on the new primary. For details, see [SQL Database security after disaster recovery](sql-database-geo-replication-security-config.md).
+- To learn recovering after a disaster using Active Geo-Replication, including pre and post recovery steps and performing a disaster recovery drill, see [Disaster Recovery Drills](sql-database-disaster-recovery.md)
+- For a Sasha Nosov blog post about Active Geo-Replication, see [Spotlight on new Geo-Replication capabilities](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
+- For information about designing cloud applications to use Active Geo-Replication, see [Designing cloud applications for business continuity using Geo-Replication](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- For information about using Active Geo-Replication with elastic database pools, see [Elastic Pool disaster recovery strategies](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
+- For an overview of business continurity, see [Business Continuity Overview](sql-database-business-continuity.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

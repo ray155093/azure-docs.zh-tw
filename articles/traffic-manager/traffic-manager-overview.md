@@ -1,51 +1,68 @@
-<properties 
-   pageTitle="什麼是流量管理員 | Microsoft Azure"
-   description="本文將協助您了解何謂流量管理員，以及它是否為您的應用程式的正確流量路由選擇"
-   services="traffic-manager"
-   documentationCenter=""
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="tysonn" />
-<tags 
-   ms.service="traffic-manager"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="06/09/2016"
-   ms.author="sewhee" />
+<properties
+    pageTitle="What is Traffic Manager | Microsoft Azure"
+    description="This article will help you understand what Traffic Manager is, and whether it is the right traffic routing choice for your application"
+    services="traffic-manager"
+    documentationCenter=""
+    authors="sdwheeler"
+    manager="carmonm"
+    editor=""
+/>
+<tags
+    ms.service="traffic-manager"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="infrastructure-services"
+    ms.date="10/11/2016"
+    ms.author="sewhee"
+/>
 
-# 什麼是流量管理員？
 
-Microsoft Azure 流量管理員可讓您控制使用者流量，將流量分散到您在世界各地的不同資料中心執行的服務端點。
+# <a name="overview-of-traffic-manager"></a>Overview of Traffic Manager
 
-流量管理員支援的服務端點包括 Azure VM、Web Apps 和雲端服務。您也可以將流量管理員使用於外部、非 Azure 端點。
+Microsoft Azure Traffic Manager allows you to control the distribution of user traffic for service endpoints in different datacenters. Service endpoints supported by Traffic Manager include Azure VMs, Web Apps, and cloud services. You can also use Traffic Manager with external, non-Azure endpoints.
 
-流量管理員的運作方式是使用網域名稱系統 (DNS)，根據所設定的流量路由方法和目前的端點健康狀態檢視，將使用者要求導向最適當的端點。然後用戶端就會直接連接到適當的服務端點。
+Traffic Manager uses the Domain Name System (DNS) to direct client requests to the most appropriate endpoint based on a [traffic-routing method](traffic-manager-routing-methods.md) and the health of the endpoints. Traffic Manager provides a range of traffic-routing methods to suit different application needs, endpoint health [monitoring](traffic-manager-monitoring.md), and automatic failover. Traffic Manager is resilient to failure, including the failure of an entire Azure region.
 
-流量管理員支援[各種的流量路由方法](traffic-manager-routing-methods.md)，以符合不同的應用程式需求。流量管理員提供[端點健康情況檢查和自動端點容錯移轉](traffic-manager-monitoring.md)，讓您建置可從失敗 (包括整個 Azure 區域的失敗) 中復原的高可用性應用程式。
+## <a name="traffic-manager-benefits"></a>Traffic Manager benefits
 
-## 流量管理員的優點
+Traffic Manager can help you:
 
-流量管理員可協助您：
+- **Improve availability of critical applications**
 
-- **提高重要應用程式的可用性** – 流量管理員可讓您藉由監視 Azure 中的端點，以及在端點停止運作時提供自動容錯移轉功能，為重要的應用程式提供高可用性。
-- **改善高效能應用程式的回應能力** – Azure 可讓您在位於世界各地的資料中心執行雲端服務或網站。流量管理員可以藉由將使用者導向用戶端網路延遲最低的端點，改善應用程式的回應性。
-- **升級和執行服務維護而不需要停機** – 您可以在進行維護時，使用流量管理員將流量導向替代端點，順暢地對應用程式執行升級及其他計劃性維護作業，而不需要使用者停機。
-- **結合內部部署和雲端應用程式** – 流量管理員支援外部、非 Azure 端點，並可搭配混合式雲端和內部部署使用，包括「高載至雲端」、「移轉至雲端」和「容錯移轉至雲端」案例。
-- **分散大型複雜部署的流量** – 使用[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)可以合併流量路由方法，以建立複雜而有彈性的流量路由組態，進而符合更大型、更複雜部署的需求。
+    Traffic Manager delivers high availability for your applications by monitoring your endpoints and providing automatic failover when an endpoint goes down.
+
+- **Improve responsiveness for high-performance applications**
+
+    Azure allows you to run cloud services or websites in datacenters located around the world. Traffic Manager improves application responsiveness by directing traffic to the endpoint with the lowest network latency for the client.
+
+- **Perform service maintenance without downtime**
+
+    You can perform planned maintenance operations on your applications without downtime. Traffic Manager directs traffic to alternative endpoints while the maintenance is in progress.
+
+- **Combine on-premises and Cloud-based applications**
+
+    Traffic Manager supports external, non-Azure endpoints enabling it to be used with hybrid cloud and on-premises deployments, including the "burst-to-cloud," "migrate-to-cloud," and "failover-to-cloud" scenarios.
+
+- **Distribute traffic for large, complex deployments**
+
+    Using [nested Traffic Manager profiles](traffic-manager-nested-profiles.md), traffic-routing methods can be combined to create sophisticated and flexible rules to support the needs of larger, more complex deployments.
 
 [AZURE.INCLUDE [load-balancer-compare-tm-ag-lb-include.md](../../includes/load-balancer-compare-tm-ag-lb-include.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-- 深入了解[流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)。
+- Learn more about [how Traffic Manager works](traffic-manager-how-traffic-manager-works.md).
 
-- 了解如何使用[流量管理員端點監視](traffic-manager-monitoring.md)來開發高可用性應用程式。
+- Learn how to develop high-availability applications using [Traffic Manager endpoint monitoring](traffic-manager-monitoring.md).
 
-- 深入了解流量管理員支援的[流量路由方法](traffic-manager-routing-methods.md)。
+- Learn more about the [traffic-routing methods](traffic-manager-routing-methods.md) supported by Traffic Manager.
 
-- [建立流量管理員設定檔](traffic-manager-manage-profiles.md)。
- 
+- [Create a Traffic Manager profile](traffic-manager-manage-profiles.md).
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

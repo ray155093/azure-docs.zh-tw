@@ -1,150 +1,156 @@
 <properties 
-	pageTitle="Application Insights：主動式異常診斷 | Microsoft Azure" 
-	description="Application Insights 會深入分析您的 App 遙測，並且警告您有潛在的問題。" 
-	services="application-insights" 
+    pageTitle="Application Insights: Proactive anomaly diagnostics | Microsoft Azure" 
+    description="Application Insights performs deep analysis of your app telemetry and warns you of potential problems." 
+    services="application-insights" 
     documentationCenter="windows"
-	authors="antonfrMSFT" 
-	manager="douge"/>
+    authors="antonfrMSFT" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/31/2016" 
-	ms.author="awills"/>
-
-#  主動式異常診斷
-
-*Application Insights 目前僅供預覽。*
-
-[Visual Studio Application Insights](app-insights-overview.md) 會深入分析您的 App 遙測，並且可以警告您有潛在的效能問題。您可能是因為經由電子郵件收到我們的其中一項主動式警示才會閱讀本文。
-
-此功能不需要設定，而且會在您的應用程式產生足夠的遙測時自動啟動。
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/31/2016" 
+    ms.author="awills"/>
 
 
-## 什麼是主動式異常偵測？
+#  <a name="proactive-anomaly-diagnostics"></a>Proactive anomaly diagnostics
 
-主動式異常偵測會藉由分析傳送至 Application Insights 的遙測，來探索您應用程式中的效能異常模式。
+*Application Insights is in preview.*
 
-特別是，它會尋找只會影響某些使用者，或只在某些情況下影響使用者的效能問題。
+[Visual Studio Application Insights](app-insights-overview.md) performs deep analysis of your app telemetry, and can warn you about potential performance problems. You're probably reading this because you received one of our proactive alerts by email. 
 
-例如，若您的應用程式頁面在某一類型瀏覽器上的載入速度遠低於其他瀏覽器，或特定伺服器服務要求的速度較慢，它就會通知您。它同時可以探索與屬性組合相關的問題，例如在某地區中的某個特定時段，頁面載入速度緩慢的問題。
-
-這類異常狀況很難只藉由調查資料來偵測，但比您想像的更為常見。通常只在您的客戶抱怨時才會浮出檯面。但那時就太晚了：受影響的使用者已經轉而選擇您的對手！
-
-目前，我們的演算法會查看頁面載入時間、伺服器上的要求回應時間，和相依性回應時間。
-
-您不需設定任何臨界值或設定規則。機器學習服務和資料採礦演算法會用來偵測異常模式。
-
-我們熱切期待您的意見反應。請告訴我們如何讓產品協助您、如何改進主動式偵測，以及希望我們加入哪些額外的功能。您可以透過入口網站中的 [傳送笑臉/哭臉] 提供意見反應，或寄送電子郵件至 AppInsightsML@microsoft.com。
-
-## 關於主動式警示
-
-* *我為什麼會收到這封電子郵件？*
- * 主動式偵測分析您的應用程式傳送至 Application Insights 的遙測後，偵測到您的應用程式中有效能問題。
-* *收到通知代表一定是有問題嗎？*
- * 不一定。這只是一個建議，您可以仔細探究其中的問題。
-* *我該怎麼辦？*
- * [查看提供的資料](#responding-to-an-alert)。使用計量瀏覽器來檢閱一段時間的效能，並向下鑽研其他計量。使用搜尋來篩選出可協助您識別根本原因的特定事件。
-* *所以你們會看到我的資料嗎？*
- * 不會。服務完全是自動的。只有您會收到通知。您的資料是[不公開的](app-insights-data-retention-privacy.md)。
+This feature requires no setup, and is automatically active when your app generates enough telemetry.
 
 
-## 偵測程序
+## <a name="what-is-proactive-anomaly-detection?"></a>What is proactive anomaly detection?
 
-* *偵測哪些種類的異常？*
- * 由您自行檢查會很耗時的模式。例如，某種位置、時間與平台組合的效能不佳。
-* *你們會分析 Application Insights 收集的所有資料嗎？*
- * 目前尚未。我們目前會分析要求回應時間、相依性回應時間和頁面載入時間。其他計量的分析功能即將推出。
-* *我可以建立自己的異常偵測規則嗎？*
- * 尚未提供。但是您可以：
- * [設定警示](app-insights-alerts.md)，在計量超出臨界值時通知您。
- * [匯出遙測](app-insights-export-telemetry.md)至[資料庫](app-insights-code-sample-export-sql-stream-analytics.md)或 [至 PowerBI](app-insights-export-power-bi.md) 或[其他](app-insights-code-sample-export-telemetry-sql-database.md)工具以自行分析。
-* *執行分析的頻率為何？*
- * 我們每天都會根據前一天的遙測執行分析。
-* *那麼這可以取代[計量警示](app-insights-alerts.md)嗎？
- * 否。我們不保證能偵測您可能認為異常的每項行為。
+Proactive anomaly detection discovers unusual patterns of performance in your app, by analyzing the telemetry it sends to Application Insights. 
 
-## 如何調查主動式偵測所引發的問題
+In particular, it finds performance issues that only affect some of your users, or only affect users in some cases.
 
-您可以從電子郵件或從異常清單開啟異常報告。
+For example, it can notify you if your app pages load much more slowly on one type of browser than others, or if requests are served more slowly from a particular server. It can also discover problems associated with combinations of properties, such as slow page loads in one geographical area at particular times of day.
 
-![按一下電子郵件警示中的連結，可在 Azure 中開啟異常報告](./media/app-insights-proactive-anomaly-diagnostics/03.png)
+Anomalies like these are very hard to detect just by inspecting the data, but are more common than you might think. Often they only surface when your customers complain. By that time, it’s too late: the affected users are already switching to your competitors!
 
+Currently, our algorithms look at page load times, request response times at the server, and dependency response times.  
 
-* [時間]顯示偵測到問題的時間。
-* [內容]描述
- * 偵測到的問題；
- * 我們發現的事件集的特性顯示了問題行為。
-* 表格會比較效能差的事件集和所有其他事件的平均行為。
+You don't have to set any thresholds or configure rules. Machine learning and data mining algorithms are used to detect abnormal patterns. 
 
-按下連結以開啟 [計量瀏覽器]，搜尋相關報告、篩選緩慢執行的事件集的時間和屬性。
+We’re very eager to have your feedback. Please let us know how it helps you, how we can improve Proactive detection and what additional capabilities you want us to add. You can provide feedback through Send a smile/frown in the portal or email us to AppInsightsML@microsoft.com. 
 
-修改時間範圍和篩選器可探索遙測。
+## <a name="about-the-proactive-alert"></a>About the proactive alert
 
-## 如何改善效能？
-
-您可從自己的經驗得知，對網站使用者而言，回應緩慢和失敗是最大挫折之一。因此，請務必解決問題。
-
-### 分級
-
-首先，這很重要嗎？ 如果頁面的載入速度一直很慢，但是只有 1% 的網站台使用者必須查看該網頁，您或許有更重要的事項需要考慮。另一方面，如果只有 1% 的使用者開啟該網頁，但它每次都擲回例外狀況，這可能就是值得調查的問題。
-
-使用電子郵件中的影響敘述作為一般指南，但請留意該敘述並不是全部的詳情。蒐集其他證據進行確認。
-
-請考慮這個問題的參數。如果與地理位置有關，請設定包括該地區的[可用性測試](app-insights-monitor-web-app-availability.md)：該地區可能只有網路問題。
-
-### 診斷頁面載入緩慢 
-
-問題出在哪裡？ 伺服器是否回應太慢、頁面是否很長，或瀏覽器必須執行很多工作才能顯示頁面？
-
-開啟 [瀏覽器] 計量刀鋒視窗。 [分段顯示瀏覽器頁面載入時間](app-insights-javascript.md#explore-your-data)會顯示時間的進度。
-
-* 如果 [傳送要求時間]太久，不是伺服器回應速度緩慢，就是要求是含有大量資料的文章。查看[效能計量](app-insights-web-monitor-performance.md#metrics)以調查回應時間。
-* 設定[相依性追蹤](app-insights-dependencies.md)以查看速度慢是否是外部服務或您的資料庫所造成。
-* 如果 [接收回應]是主導因素，您的頁面和其相依組件 (JavaScript、CSS 及影像等，而非以非同步方式載入的資料) 會很長。設定[可用性測試](app-insights-monitor-web-app-availability.md)，而且務必設定載入相依組件的選項。當您取得一些結果時，請開啟結果的詳細資料並將它展開，以查看不同檔案的載入時間。
-* [用戶端處理時間] 過長表示指令碼執行速度很慢。如果原因不明顯，請考慮加入一些時間計時程式碼並在 trackMetric 呼叫中傳送時間。
-
-### 改善慢速網頁
-
-Web 上有改善您的伺服器回應和頁面載入時間的完整建議，因此我們不會嘗試這次重複說明。以下是您可能已知道的一些祕訣，這只是為提醒您：
-
-* 由大型檔案造成的緩慢載入：以非同步方式載入指令碼和其他組件。使用指令碼統合。將主頁面分成可個別載入其資料的 Widget。不要對長資料表傳送純舊式 HTML：使用指令碼要求 JSON 或其他壓縮格式的資料，然後就地填滿資料表。有一些絕佳的架構可協助進行這一切。(當然，也必須承擔大型指令碼)。
-* 降低伺服器相依性：考慮您的元件的地理位置。比方說，如果您使用 Azure，請確定 Web 伺服器和資料庫位於相同的區域中。查詢是否會擷取超過所需的資訊？ 快取或批次處理是否有所幫助？
-* 容量問題：查看回應時間和要求計數的伺服器計量。如果回應時間尖峰與要求計數尖峰不成比例，有可能是您的伺服器已被過度使用。
+* *Why have I received this email?*
+ * Proactive detection analyzed the telemetry your application sent to Application Insights and detected a performance issue in your application. 
+* *Does the notification mean I definitely have a problem?*
+ * No. It's simply a suggestion about something you might want to look at more closely. 
+* *What should I do?*
+ * [Look at the data presented](#responding-to-an-alert). Use Metrics Explorer to review the performance over time and drill in to additional metrics. Use Search to filter out specific events that help you identify the root cause. 
+* *So, you guys look at my data?*
+ * No. The service is entirely automatic. Only you get the notifications. Your data is [private](app-insights-data-retention-privacy.md).
 
 
-## 通知電子郵件
+## <a name="the-detection-process"></a>The detection process
 
-* *我必須訂閱這項服務才能收到通知嗎？*
- * 不用。我們的 bot 會定期調查所有 Application Insights 使用者的資料，如果偵測到問題，就會傳送通知。
-* *我是否可以取消訂閱或改為傳送通知給我的同事？*
- * 按一下警示或電子郵件中的取消訂閱連結。
+* *What kinds of anomalies are detected?*
+ * Patterns that you would find it time-consuming to check for yourself. For example, poor performance in a specific combination of location, time of day and platform.
+* *Do you analyze all the data collected by Application Insights?*
+ * Not at present. Currently, we analyze request response time, dependency response time and page load time. Analysis of additional metrics is coming soon. 
+* *Can I create my own anomaly detection rules?*
+ * Not yet. But you can:
+ * [Set up alerts](app-insights-alerts.md) that tell you when a metric crosses a threshold.)
+ * [Export telemetry](app-insights-export-telemetry.md) to a [database](app-insights-code-sample-export-sql-stream-analytics.md) or [to PowerBI](app-insights-export-power-bi.md) or [other](app-insights-code-sample-export-telemetry-sql-database.md) tools, where you can analyze it yourself.
+* *How often is the analysis performed?*
+ * We run the analysis daily on the telemetry from the previous day.
+* *So does this replace [metric alerts](app-insights-alerts.md)?
+ * No.  We don't commit to detect every behaviour that you might consider abnormal.
+
+## <a name="how-to-investigate-issues-raised-by-proactive-detection"></a>How to investigate issues raised by Proactive Detection
+
+Open the anomaly report either from the email or from the anomalies list.
+
+![From the email alert, click the link to open the anomaly report in Azure](./media/app-insights-proactive-anomaly-diagnostics/03.png)
+
+
+* **When** shows the time the issue was detected.
+* **What** describes
+ * The problem that was detected;
+ * The characteristics of the set of events that we found displayed the problem behavior.
+* The table compares the poorly-performing set with the average behavior of all other events.
+
+Click the links to open Metric Explorer and Search on relevant reports, filtered on the time and properties of the slow performing set.
+
+Modify the time range and filters to explore the telemetry.
+
+## <a name="how-can-i-improve-performance?"></a>How can I improve performance?
+
+Slow and failed responses are one of the biggest frustrations for web site users, as you know from your own experience. So it's important to address the issues.
+
+### <a name="triage"></a>Triage
+
+First, does it matter? If a page is always slow to load, but only 1% of your site's users ever have to look at it, maybe you have more important things to think about. On the other hand, if only 1% of users open it, but it throws exceptions every time, that might be worth investigating.
+
+Use the impact statement in the email as a general guide, but be aware that it isn't the whole story. Gather other evidence to confirm.
+
+Consider the parameters of the issue. If it's geography-dependent, set up [availability tests](app-insights-monitor-web-app-availability.md) including that region: there might simply be network issues in that area. 
+
+### <a name="diagnose-slow-page-loads"></a>Diagnose slow page loads 
+
+Where is the problem? Is the server slow to respond, is the page very long, or does the browser have to do a lot of work to display it?
+
+Open the Browsers metric blade. The [segmented display of browser page load time](app-insights-javascript.md#explore-your-data) shows where the time is going. 
+
+* If **Send Request Time** is high, either the server is responding slowly, or the request is a post with a lot of data. Look at the [performance metrics](app-insights-web-monitor-performance.md#metrics) to investigate response times. 
+* Set up [dependency tracking](app-insights-dependencies.md) to see whether the slowness is due to external services or your database.
+* If **Receiving Response** is predominant, your page and its dependent parts - JavaScript, CSS, images and so on (but not asynchronously loaded data) are long. Set up an [availability test](app-insights-monitor-web-app-availability.md), and be sure to set the option to load dependent parts. When you get some results, open the detail of a result and expand it to see the load times of different files.
+* High **Client Processing time** suggests scripts are running slowly. If the reason isn't obvious, consider adding some timing code and send the times in trackMetric calls.
+
+### <a name="improve-slow-pages"></a>Improve slow pages
+
+There's a web full of advice on improving your server responses and page load times, so we won't try to repeat it all here. Here are a few tips that you probably already know about, just to get you thinking:
+
+* Slow loading because of big files: Load the scripts and other parts asynchronously. Use script bundling. Break the main page into widgets that load their data separately. Don't send plain old HTML for long tables: use a script to request the data as JSON or other compact format, then fill the table in place. There are great frameworks to help with all this. (They also entail big scripts, of course.)
+* Slow server dependencies: Consider the geographical locations of your components. For example, if you're using Azure, make sure the web server and the database are in the same region. Do queries retrieve more information than they need? Would caching or batching help?
+* Capacity issues: Look at the server metrics of response times and request counts. If response times peak disproportionately with peaks in request counts, it's likely that your servers are stretched. 
+
+
+## <a name="notification-emails"></a>Notification emails
+
+* *Do I have to subscribe to this service in order to receive notifications?*
+ * No. Our bot periodically surveys the data from all Application Insights users, and sends notifications if it detects problems.
+* *Can I unsubscribe or get the notifications sent to my colleagues instead?*
+ * Click the unsubscribe link in the alert or email. 
  
-    它們目前會傳送給擁有 [Application Insights 資源寫入權限](app-insights-resources-roles-access-control.md)的人員。
+    Currently they're sent to those who have [write access to the Application Insights resource](app-insights-resources-roles-access-control.md).
 
-    您也可以在 [主動式偵測] 刀鋒視窗的 [設定] 中編輯收件者清單。
-* *我不想要被這些訊息淹沒。*
- * 系統限制為每天一封，內含我們尚未報告的最相關問題。您不會重複收到任何訊息。
-* *如果我沒有做任何動作，會收到提醒嗎？*
- * 不會，每個問題您只會收到一次訊息。
-* *我遺失了電子郵件。在入口網站中哪裡可以找到通知？*
- * 在應用程式的 Application Insights 概觀中，按一下 [主動式偵測] 圖格。您可以在這裡找到最多 7 天前的所有通知。
+    You can also edit the recipients list Settings in the Proactive Detection blade.
+* *I don't want to be flooded with these messages.*
+ * They are limited to one per day with the most relevant issue that we haven't reported about yet. You won't get repeats of any message.
+* *If I don't do anything, will I get a reminder?*
+ * No, you get a message about each issue only once. 
+* *I lost the email. Where can I find the notifications in the portal?*
+ * In the Application Insights overview of your app, click the **Proactive Detection** tile. There you'll be able to find all notifications up to 7 days back.
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-這些診斷工具可協助您檢查來自您的應用程式的遙測︰
+These diagnostic tools help you inspect the telemetry from your app:
 
-* [計量瀏覽器](app-insights-metrics-explorer.md)
-* [搜尋總管](app-insights-diagnostic-search.md)
-* [分析 - 功能強大的查詢語言](app-insights-analytics-tour.md)
+* [Metric explorer](app-insights-metrics-explorer.md)
+* [Search explorer](app-insights-diagnostic-search.md)
+* [Analytics - powerful query language](app-insights-analytics-tour.md)
 
-主動式偵測是完全自動的。但是，或許您會想要再設定一些警示？
+Proactive detections are completely automatic. But maybe you'd like to set up some more alerts?
 
-* [手動設定的度量警示](app-insights-alerts.md)
-* [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
+* [Manually configured metric alerts](app-insights-alerts.md)
+* [Availability web tests](app-insights-monitor-web-app-availability.md) 
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

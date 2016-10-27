@@ -1,55 +1,56 @@
 <properties 
-	pageTitle="如何使用 Blitline 進行影像處理 - Azure 功能指南" 
-	description="了解如何使用 Blitline 服務處理 Azure 應用程式內的影像。" 
-	services="" 
-	documentationCenter=".net" 
-	authors="blitline-dev" 
-	manager="jason@blitline.com" 
-	editor="jason@blitline.com"/>
+    pageTitle="How to use Blitline for image processing - Azure feature guide" 
+    description="Learn how to use the Blitline service to process images within an Azure application." 
+    services="" 
+    documentationCenter=".net" 
+    authors="blitline-dev" 
+    manager="jason@blitline.com" 
+    editor="jason@blitline.com"/>
 
 <tags 
-	ms.service="multiple" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="12/09/2014" 
-	ms.author="support@blitline.com"/>
-# 如何使用搭配 Azure 和 Azure 儲存體的 Blitline
+    ms.service="multiple" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="12/09/2014" 
+    ms.author="support@blitline.com"/>
 
-本指南將說明如何存取 Blitline 服務，以及如何將工作提交至 Blitline。
+# <a name="how-to-use-blitline-with-azure-and-azure-storage"></a>How to use Blitline with Azure and Azure Storage
 
-## 什麼是 Blitline？
+This guide will explain how to access Blitline services and how to submit jobs to Blitline.
 
-Blitline 是雲端影像處理服務，可提供企業級的影像處理，而價格卻只有自我建置的數分之一。
+## <a name="what-is-blitline?"></a>What is Blitline?
 
-事實上，影像處理一再重複出現，通常需要從頭開始重新建置每個網站。我們了解這個情況，那是因為我們已經建立了上百萬次。有一天，我們決定或許是替所有人執行此動作的時候了。我們知道如何做、如何做得快以及做得有效率，並同時減輕每個人的工作。
+Blitline is a cloud-based image processing service that provides enterprise level image processing at a fraction of the price that it would cost to build it yourself.
 
-如需詳細資訊，請參閱 [http://www.blitline.com](http://www.blitline.com) (英文)。
+The fact is that image processing has been done over and over again, usually rebuilt from the ground up for each and every website. We realize this because we’ve built them a million times too. One day we decided that perhaps it‘s time we just do it for everyone. We know how to do it, to do it fast and efficiently, and save everyone work in the meantime.
 
-## Blitline 不是什麼...
+For more information, see [http://www.blitline.com](http://www.blitline.com).
 
-若要釐清 Blitline 有什麼功能，在繼續之前，找出 Blitline 沒有什麼功能通常比較容易。
+## <a name="what-blitline-is-not..."></a>What Blitline is NOT...
 
-- Blitline 沒有上傳影像的 HTML Widget。您必須要有公開可用的影像，或 Blitline 可用來存取的限制權限。
+To clarify what Blitline is useful for, it is often easier to identify what Blitline does NOT do before moving forward.
 
-- Blitline 不會執行即時影像處理，如 Aviary.com
+- Blitline does NOT have HTML widgets to upload images. You must have images available publicly or with restricted permissions available for Blitline to reach.
 
-- Blitline 不接受影像上傳，您無法將影像直接推送至 Blitline。您必須將影像推送至 Azure 儲存體或其他 Blitline 支援的位置，然後通知 Blitline 取得這些影像的位置。
+- Blitline does NOT do live image processing, like Aviary.com
 
-- Blitline 可大量平行處理，但無法執行任何同步處理。這表示您必須提供 postback\_url 給我們，我們會在處理完成時通知您。
+- Blitline does NOT accept image uploads, you cannot push your images to Blitline directly. You must push them to Azure Storage or other places Blitline supports and then tell Blitline where to go get them.
 
-## 建立 Blitline 帳戶
+- Blitline is massively parallel and does NOT do any synchronous processing. Meaning you must give us a postback_url and we can tell you when we are done processing.
+
+## <a name="create-a-blitline-account"></a>Create a Blitline account
 
 [AZURE.INCLUDE [blitline-signup](../includes/blitline-signup.md)]
 
-## 如何建立 Blitline 工作
+## <a name="how-to-create-a-blitline-job"></a>How to create a Blitline job
 
-Blitline 使用 JSON 定義您要對影像採取的動作。此 JSON 是由幾個簡單欄位組合而成。
+Blitline uses JSON to define the actions you want to take on an image. This JSON is composed of a few simple fields.
 
-下列是個最簡單範例：
+The simplest example is as follows:
 
-	    json : '{
+        json : '{
        "application_id": "MY_APP_ID",
        "src" : "http://cdn.blitline.com/filters/boys.jpeg",
        "functions" : [ {
@@ -59,19 +60,19 @@ Blitline 使用 JSON 定義您要對影像採取的動作。此 JSON 是由幾�
        } ]
     }'
 
-在此，我們要求 JSON 準備一個 "src" 影像 "...boys.jpeg"，然後將該影像大小調整為 240x140。
+Here we have JSON that will take a "src" image "...boys.jpeg" and then resize that image to 240x140.
 
-您可以在 Azure 上的 [連接資訊] 或 [管理] 索引標籤中找到應用程式識別碼的資訊。應用程式識別碼是可讓您在 Blitline 上執行工作的密碼識別碼。
+The Application ID is something you can find in your **CONNECTION INFO** or **MANAGE** tab on Azure. It is your secret identifier that allows you to run jobs on Blitline.
 
-"save" 參數可識別有關處理完影像時，您想要放置該影像的位置資訊。在這個簡單的案例中，我們尚未定義一個位置。如果沒有定義位置，Blitline 會將它儲存在本機 (並暫時地) 的唯一雲端位置。建立 Blitline 時，您將能夠從 Blitline 所傳回的 JSON 取得該位置。"image" 識別碼為必要欄位，並會在要識別此特定儲存影像時傳回。
+The "save" parameter identifies information about where you want to put the image once we have processed it. In this trivial case, we haven't defined one. If no location is defined Blitline will store it locally (and temporarily) at a unique cloud location. You will be able to get that location from the JSON returned by Blitline when you make the Blitline. The "image" identifier is required and is returned to you when to identify this particular saved image.
 
-您可以在下列連結中找到有關我們可支援的更多「函數」相關資訊：<http://www.blitline.com/docs/functions> 
+You can find more information about the *functions* we support here: <http://www.blitline.com/docs/functions>
 
-您也可以在下列連結中找到有關工作選項的相關文件：<http://www.blitline.com/docs/api>
+You can also find documentation about the job options here: <http://www.blitline.com/docs/api>
 
-在有了 JSON 之後，您唯一需要做的動作是將它 **POST** 至 `http://api.blitline.com/job`
+Once you have your JSON all you need to do is **POST** it to `http://api.blitline.com/job`
 
-您將取回如下所示的 JSON：
+You will get JSON back that looks something like this:
 
     {
      "results":
@@ -85,13 +86,13 @@ Blitline 使用 JSON 定義您要對影像採取的動作。此 JSON 是由幾�
     }
 
 
-這代表 Blitline 已收到您的要求，它已將您的要求置入處理佇列，以及當它完成映像時的位置：**https://s3.amazonaws.com/dev.blitline/2011110722/YOUR\_APP\_ID/CK3f0xBF_2bV6wf7gEZE8w.jpg**
+This tells you that Blitline has recieved your request, it has put it in a processing queue, and when it has completed the image will be available at: **https://s3.amazonaws.com/dev.blitline/2011110722/YOUR\_APP\_ID/CK3f0xBF_2bV6wf7gEZE8w.jpg**
 
-## 如何將影像儲存至您的 Azure 儲存體帳戶
+## <a name="how-to-save-an-image-to-your-azure-storage-account"></a>How to save an image to your Azure Storage account
 
-如果您有 Azure 儲存體帳戶，您可以輕易地要求 Blitline 將已處理的影像推送到 Azure 容器。透過新增 "azure\_destination"，您可以定義 Blitline 要推送的位置和權限。
+If you have an Azure Storage account, you can easily have Blitline push the processed images into your Azure container. By adding an "azure_destination" you define the location and permissions for Blitline to push to.
 
-下列是一個範例：
+Here is an example:
 
     job : '{
       "application_id": "YOUR_APP_ID",
@@ -109,27 +110,31 @@ Blitline 使用 JSON 定義您要對影像採取的動作。此 JSON 是由幾�
        }'
 
 
-透過靠您自己填入大寫值，您可以將此 JSON 提交至 http://api.blitline.com/job，並對 "src" 影像採用模糊濾鏡的處理，然後推送至 Azure 目的地。
+By filling in the CAPITALIZED values with your own, you can submit this JSON to http://api.blitline.com/job and the "src" image will be processed with a blur filter and then pushed to you Azure destination.
 
-###請注意：
+###<a name="please-note:"></a>Please note:
 
-SAS 必須包含整個 SAS URL，包括目的地檔案的檔案名稱。
+The SAS must contain the entire SAS url, including the filename of the destination file.
 
-範例：
+Example:
 
     http://blitline.blob.core.windows.net/sample/image.jpg?sr=b&sv=2012-02-12&st=2013-04-12T03%3A18%3A30Z&se=2013-04-12T04%3A18%3A30Z&sp=w&sig=Bte2hkkbwTT2sqlkkKLop2asByrE0sIfeesOwj7jNA5o%3D
 
 
-您也可以參閱[此處](http://www.blitline.com/docs/azure_storage) (英文) 的最新版本 Blitline Azure 儲存體文件。
+You can also read the latest edition of Blitline's Azure Storage docs [here](http://www.blitline.com/docs/azure_storage).
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-請造訪 blitline.com 以閱讀所有其他功能：
+Visit blitline.com to read about all our other features:
 
-* Blitline API 端點文件 <http://www.blitline.com/docs/api>
-* Blitline API 函數 <http://www.blitline.com/docs/functions>
-* Blitline API 範例 <http://www.blitline.com/docs/examples>
-* 協力廠商 Nuget 程式庫 <http://nuget.org/packages/Blitline.Net>
+* Blitline API Endpoint Docs <http://www.blitline.com/docs/api>
+* Blitline API Functions <http://www.blitline.com/docs/functions>
+* Blitline API Examples <http://www.blitline.com/docs/examples>
+* Third Part Nuget Library <http://nuget.org/packages/Blitline.Net>
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

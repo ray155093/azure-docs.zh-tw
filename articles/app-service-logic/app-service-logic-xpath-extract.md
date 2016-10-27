@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Logic Apps 中使用 BizTalk XPath 擷取程式 | Microsoft Azure App Service"
-   description="BIzTalk XPath 擷取程式"
+   pageTitle="Using the BizTalk XPath Extractor in logic apps in Azure App Service | Microsoft Azure"
+   description="BizTalk XPath Extractor"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="rajram"
@@ -16,35 +16,42 @@
    ms.date="04/20/2016"
    ms.author="rajram"/>
 
-# BIzTalk XPath 擷取程式
+
+# <a name="biztalk-xpath-extractor"></a>BizTalk XPath Extractor
 
 [AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
 
-BizTalk XPath 擷取連接器可協助您的應用程式根據指定的 XPath 查閱 XML 內容並從中擷取資料。
+BizTalk XPath Extract connector helps your app lookup and extract data from XML content based on a given XPath.
 
-## 使用 BizTalk XPath 擷取程式
-1. 若要使用 BizTalk Xpath 擷取程式，您必須先建立 BizTalk Xpath 擷取程式 API 應用程式的執行個體。在建立邏輯應用程式時進行內嵌，或從 Azure Marketplace 選取 BizTalk Xpath 擷取程式 API 應用程式，即可完成此作業。
+## <a name="using-the-biztalk-xpath-extractor"></a>Using the BizTalk Xpath Extractor
+1. To use the BizTalk Xpath Extractor, you need to first create an instance of the BizTalk Xpath Extractor API app. This can be done either inline while creating a logic app or by selecting the BizTalk Xpath Extractor API app from the Azure Marketplace.
 
-	>[AZURE.NOTE] 沒有與 BizTalk Xpath 擷取程式相關聯的組態設定。
-2. [建立新的邏輯應用程式]。在邏輯應用程式中開啟 [觸發程序和動作] 以開啟 Logic Apps 設計工具，來設定您的流程。
-3. 設計工具上，右窗格會列出可用來建置流程的 API Apps。尋找「BizTalk XPath 擷取程式」。選取此項將新增「XPath 擷取程式」到您的流程，並佈建它的執行個體。
-4. 佈建完成後，設計工具會顯示與 BizTalk XPath 擷取程式 API 應用程式相關聯的動作：![BizTalk XPath 擷取程式選擇動作][1]
+    >[AZURE.NOTE] There are no configuration settings associated with BizTalk Xpath Extractor.
+2. [Create a new logic app]. Open “Triggers and Actions” within your Logic App to open the Logic Apps Designer to configure your flow.
+3. On designer, the right pane lists the API Apps available to build your flow. Find the "BizTalk XPath Extractor". Selecting it adds the Xpath Extractor to your flow and provisions an instance of it.
+4. Once provisioned, the designer shows up the action associated with BizTalk XPath Extractor API App:  
+    ![BizTalk XPath Extractor Choose Action][1]
 
-5. 選擇 [使用 XPath 擷取]。[使用 XPath 擷取] 會評估指定的輸入 XML 上的輸入 xpath 運算式：![BizTalk XPath 擷取程式輸入][2]
+5. Choose "Extract Using XPath". "Extract Using XPath" evaluates input xpath expression on a given input XML:  
+    ![BizTalk XPath Extractor Input][2]
 
-	參數|類型|參數說明
+    Parameter|Type|Description of the parameter
 ---|---|---
-XPath|字串|查詢 xml 內的路徑。
-輸入 Xml|字串|輸入 Xml 內容。
+XPath|string|Query path inside xml.
+Input Xml|string|Input Xml content.
 
-此動作會以字串形式傳回輸出 - 結果。結果包含 XML 內查詢路徑的值。
+The action returns the output as a string - Result. Result contains the value of query path inside the XML.
 
 <!-- References -->
 [1]: ./media/app-service-logic-xpath-extract/ChooseAction.PNG
 [2]: ./media/app-service-logic-xpath-extract/ConfigureInput.PNG
 
 <!-- Links -->
-[建立新的邏輯應用程式]: app-service-logic-create-a-logic-app.md
+[Create a new Logic App]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

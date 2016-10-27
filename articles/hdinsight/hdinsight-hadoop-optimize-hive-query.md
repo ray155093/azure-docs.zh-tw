@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 HDInsight 中最佳化 Hive 查詢以獲得更快的執行速度 |Microsoft Azure"
-   description="了解如何在 HDInsight 中最佳化 Hadoop 的 Hive 查詢。"
+   pageTitle="Optimize your Hive queries for faster execution in HDInsight | Microsoft Azure"
+   description="Learn how to optimize your Hive queries for Hadoop in HDInsight."
    services="hdinsight"
    documentationCenter=""
    authors="rashimg"
@@ -18,204 +18,213 @@
    ms.author="rashimg"/>
 
 
-# 在 Hdinsight 中最佳化 Hadoop 的 Hive 查詢
 
-根據預設，Hadoop 叢集不會為了效能進行最佳化。本文涵蓋幾個最常見 Hive 效能最佳化方法，您可將這些方法套用於我們的查詢。
+# <a name="optimize-hive-queries-for-hadoop-in-hdinsight"></a>Optimize Hive queries for Hadoop in HDInsight
 
-##相應放大背景工作節點
+By default, Hadoop clusters are not optimized for performance. This article covers a few of the most common Hive performance optimization methods that you can apply to our queries.
 
-增加叢集中的背景工作節點數目，即可運用更多平行執行的對應器和歸納器。在 HDInsight 中您有兩種方法可相應放大：
+##<a name="scale-out-worker-nodes"></a>Scale out worker nodes
 
-- 在佈建階段，您可以使用 Azure 入口網站、Azure PowerShell 或跨平台命令列介面指定背景工作節點的數目。如需詳細資訊，請參閱[佈建 HDInsight 叢集](hdinsight-provision-clusters.md)。下列畫面顯示 Azure 入口網站上的工作者節點組態：
+Increasing the number of worker nodes in a cluster can leverage more mappers and reducers to be run in parallel. There are two ways you can increase scale out in HDInsight:
 
-	![scaleout\_1][image-hdi-optimize-hive-scaleout\_1]
+- At the provision time, you can specify the number of worker nodes using the Azure Portal, Azure PowerShell or Cross-platform command line interface.  For more information, see [Provision HDInsight clusters](hdinsight-provision-clusters.md). The following screen show the worker node configuration on the Azure Portal:
 
-- 在執行階段，您可以也相應放大叢集，而不需重新一個叢集。如下所示。![scaleout\_1][image-hdi-optimize-hive-scaleout\_2]
+    ![scaleout_1][image-hdi-optimize-hive-scaleout_1]
 
-如需 HDInsight 支援的各種虛擬機器的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
+- At the run time, you can also scale out a cluster without recreating one. This is shown below.
+![scaleout_1][image-hdi-optimize-hive-scaleout_2]
 
-##啟用 Tez
+For more details on the different virtual machines supported by HDInsight, see [HDInsight pricing](https://azure.microsoft.com/pricing/details/hdinsight/).
 
-[Apache Tez](http://hortonworks.com/hadoop/tez/) 是 MapReduce 引擎的替代執行引擎：
+##<a name="enable-tez"></a>Enable Tez
 
-![tez\_1][image-hdi-optimize-hive-tez\_1]
+[Apache Tez](http://hortonworks.com/hadoop/tez/) is an alternative execution engine to the MapReduce engine:
+
+![tez_1][image-hdi-optimize-hive-tez_1]
 
 
-Tez 比較迅速，因為：
+Tez is faster because:
 
-- 在 MapReduce 引擎中以單一工作的形式執行有向非循環圖 (DAG)，而所表示的 DAG 要求每一組對應器的後面都接著一組歸納器。這會導致多個 MapReduce 工作針對每個 Hive 查詢而分拆。Tez 沒有此種條件約束，並可將複雜的 DAG 當作一項工作處理，因而將工作啟動的額外負荷降至最低。
-- **避免不必要的寫入**：由於 MapReduce 引擎中有多項工作正針對相同的 Hive 查詢而運作，所有每項工作的輸出會寫入至 HDFS 做為中繼資料。Tez 可以將每個 Hive 查詢的工作數目降至最低，所以能夠避免不必要的寫入。
-- **最小化啟動延遲**：Tez 會減少所需啟動的對應器數目，又能提升整個最佳化，所以比較能夠將啟動延遲降到最低。
-- **重複使用容器**：Tez 會儘可能重複使用容器，確保減少因為啟動容器而產生的延遲。
-- **連續最佳化技巧**：習慣上，最佳化是在編譯階段進行。但是有更多關於輸入的資訊可用，所以在執行階段進行最佳化比較理想。Tez 會使用連續最佳化技巧，進一步在執行階段將計劃最佳化。
+- Execute Directed Acyclic Graph (DAG) as a single job in the MapReduce engine, the DAG that is expressed requires each set of mappers to be followed by one set of reducers. This causes multiple MapReduce jobs to be spun off for each Hive query. Tez does not have such constraint and can process complex DAG as one job thus minimizing job startup overhead.
+- **Avoids unnecessary writes** Due to multiple jobs being spun for the same Hive query in the MapReduce engine, the output of each job is written to HDFS for intermediate data. Since Tez minimizes number of jobs for each Hive query it is able to avoid unnecessary write.
+- **Minimizes start-up delays** Tez is better able to minimize start-up delay by reducing the number of mappers it needs to start and also improving optimization throughout.
+- **Reuses containers** Whenever possible Tez is able to reuse containers to ensure that latency due to starting up containers is reduced.
+- **Continuous optimization techniques** Traditionally optimization was done during compilation phase. However more information about the inputs is available that allow for better optimization during runtime. Tez uses continous optimization techniques that allows it to optimize the plan further into the runtime phase.
 
-如需這些概念的詳細資訊，請按一下[這裡](http://hortonworks.com/hadoop/tez/)
+For more details on these concepts, click [here](http://hortonworks.com/hadoop/tez/)
 
-在查詢的前面加上以下設定，即可啟用任何 Hive 查詢 Tez：
+You can make any Hive query Tez enabled by prefixing the query with the setting below:
 
-	set hive.execution.engine=tez;
+    set hive.execution.engine=tez;
 
-對於以 Windows 為基礎的 HDInsight 叢集，Tez 必須在佈建階段啟用。以下的 Azure PowerShell 指令碼範例可供佈建已啟用 Tez 的 Hadoop 叢集：
+For Windows-based HDInsight clusters, Tez must be enabled at the provision time. The following is a sample Azure PowerShell script for provisioning a Hadoop cluster with Tez enabled:
 
 [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-	$clusterName = "[HDInsightClusterName]"
-	$location = "[AzureDataCenter]" #i.e. West US
-	$dataNodes = 32 # number of worker nodes in the cluster
+    $clusterName = "[HDInsightClusterName]"
+    $location = "[AzureDataCenter]" #i.e. West US
+    $dataNodes = 32 # number of worker nodes in the cluster
 
-	$defaultStorageAccountName = "[DefaultStorageAccountName]"
-	$defaultStorageContainerName = "[DefaultBlobContainerName]"
-	$defaultStorageAccountKey = $defaultStorageAccountKey = Get-AzureStorageKey $defaultStorageAccountName.ToLower() | %{ $_.Primary }
+    $defaultStorageAccountName = "[DefaultStorageAccountName]"
+    $defaultStorageContainerName = "[DefaultBlobContainerName]"
+    $defaultStorageAccountKey = $defaultStorageAccountKey = Get-AzureStorageKey $defaultStorageAccountName.ToLower() | %{ $_.Primary }
 
-	$hdiUserName = "[HTTPUserName]"
-	$hdiPassword = "[HTTPUserPassword]"
+    $hdiUserName = "[HTTPUserName]"
+    $hdiPassword = "[HTTPUserPassword]"
 
-	$hdiSecurePassword = ConvertTo-SecureString $hdiPassword -AsPlainText -Force
-	$hdiCredential = New-Object System.Management.Automation.PSCredential($hdiUserName, $hdiSecurePassword)
+    $hdiSecurePassword = ConvertTo-SecureString $hdiPassword -AsPlainText -Force
+    $hdiCredential = New-Object System.Management.Automation.PSCredential($hdiUserName, $hdiSecurePassword)
 
-	$hiveConfig = new-object 'Microsoft.WindowsAzure.Management.HDInsight.Cmdlet.DataObjects.AzureHDInsightHiveConfiguration'
-	$hiveConfig.Configuration = @{ "hive.execution.engine"="tez" }
+    $hiveConfig = new-object 'Microsoft.WindowsAzure.Management.HDInsight.Cmdlet.DataObjects.AzureHDInsightHiveConfiguration'
+    $hiveConfig.Configuration = @{ "hive.execution.engine"="tez" }
 
-	New-AzureHDInsightClusterConfig -ClusterSizeInNodes $dataNodes -HeadNodeVMSize Standard_D14 -DataNodeVMSize Standard_D14 |
-	Set-AzureHDInsightDefaultStorage -StorageAccountName "$defaultStorageAccountName.blob.core.windows.net" -StorageAccountKey $defaultStorageAccountKey -StorageContainerName $defaultStorageContainerName |
-	Add-AzureHDInsightConfigValues -Hive $hiveConfig |
-	New-AzureHDInsightCluster -Name $clusterName -Location $location -Credential $hdiCredential
+    New-AzureHDInsightClusterConfig -ClusterSizeInNodes $dataNodes -HeadNodeVMSize Standard_D14 -DataNodeVMSize Standard_D14 |
+    Set-AzureHDInsightDefaultStorage -StorageAccountName "$defaultStorageAccountName.blob.core.windows.net" -StorageAccountKey $defaultStorageAccountKey -StorageContainerName $defaultStorageContainerName |
+    Add-AzureHDInsightConfigValues -Hive $hiveConfig |
+    New-AzureHDInsightCluster -Name $clusterName -Location $location -Credential $hdiCredential
 
     
-> [AZURE.NOTE] Linux 的 HDInsight 叢集預設會啟用 Tez。
+> [AZURE.NOTE] Linux-based HDInsight clusters have Tez enabled by default.
     
 
-## Hive 分割
+## <a name="hive-partitioning"></a>Hive partitioning
 
-I/O 作業是執行 Hive 查詢的主要效能瓶頸。如果可以減少需要讀取的資料量，即可改善效能。根據預設，Hive 查詢會掃描整個 Hive 資料表。這很適合資料表掃描之類的查詢，但是對於只需要掃描少量資料的查詢 (例如具有篩選的查詢)，這就會產生不必要的額外負荷。Hive 分割可讓 Hive 查詢只存取 Hive 資料表中所需的資料量。
+I/O operation is the major performance bottleneck for running Hive queries. The performance can be improved if the amount of data that needs to be read can be reduced. By default, Hive queries scan entire Hive tables. This is great for queries like table scans, however for queries that only need to scan a small amount of data (e.g. queries with filtering), this creates unnecessary overhead. Hive partitioning allows Hive queries to access only the necessary amount of data in Hive tables.
 
-Hive 分割的實作方法是將未經處理的資料重新整理成新的目錄，而每個分割區都有自己的目錄 - 其中的分割區是由使用者定義。下圖說明如何依據*年度* 資料行來分割 Hive 資料表。每年都會建立新的目錄。
+Hive partitioning is implemented by reorganizing the raw data into new directories with each partition having its own directory - where the partition is defined by the user. The following diagram illustrates partitioning a Hive table by the column *Year*. A new directory is created for each year.
 
-![partitioning][image-hdi-optimize-hive-partitioning\_1]
+![partitioning][image-hdi-optimize-hive-partitioning_1]
 
-一些分割考量：
+Some partitioning considerations:
 
-- **請勿分割不足** - 依據只有少數幾個值的資料行進行分割，可能會造成極少的分割區。例如，依據性別進行分割只會建立兩個分割區 (男性和女性)，因此只會降低最多一半的延遲。
+- **Do not under-partition** - Partitioning on columns with only a few values can cause very few partitions. For example, partitioning on gender will only create two partitions to be created (male and female), thus only reduce the latency by a maximum of half.
 
-- **請勿分割過度** - 另一方面，依據具有唯一值 (如使用者識別碼) 的資料行建立分割區會造成多個分割區，以致叢集 namenode 因為必須處理大量目錄而壓力很大。
+- **Do not over-partition** - On the other extreme, creating a partition on a column with a unique value (e.g. userid) will cause multiple partitions causing a lot of stress on the cluster namenode as it will have to handle the large amount of directories.
 
-- **避免資料扭曲** - 明智地選擇分割索引鍵，讓所有分割區的大小平均。例如，依據*州* 進行分割可能造成加州的記錄數目幾乎是佛蒙特州的記錄數目的 30 倍 (因為人口差異)。
+- **Avoid data skew** - Choose your partitioning key wisely so that all partitions are even size. An example is partitioning on *State* may cause the number of records under California to be almost 30x that of Vermont due to the difference in population.
 
-若要建立分割資料表，請使用 *Partitioned By* 子句：
+To create a partition table, use the *Partitioned By* clause:
 
     CREATE TABLE lineitem_part
-    	(L_ORDERKEY INT, L_PARTKEY INT, L_SUPPKEY INT,L_LINENUMBER INT,
-    	 L_QUANTITY DOUBLE, L_EXTENDEDPRICE DOUBLE, L_DISCOUNT DOUBLE,
-    	 L_TAX DOUBLE, L_RETURNFLAG STRING, L_LINESTATUS STRING,
-    	 L_SHIPDATE_PS STRING, L_COMMITDATE STRING, L_RECEIPTDATE 	  	 STRING, L_SHIPINSTRUCT STRING, L_SHIPMODE STRING,
-    	 L_COMMENT STRING)
+        (L_ORDERKEY INT, L_PARTKEY INT, L_SUPPKEY INT,L_LINENUMBER INT,
+         L_QUANTITY DOUBLE, L_EXTENDEDPRICE DOUBLE, L_DISCOUNT DOUBLE,
+         L_TAX DOUBLE, L_RETURNFLAG STRING, L_LINESTATUS STRING,
+         L_SHIPDATE_PS STRING, L_COMMITDATE STRING, L_RECEIPTDATE        STRING, L_SHIPINSTRUCT STRING, L_SHIPMODE STRING,
+         L_COMMENT STRING)
     PARTITIONED BY(L_SHIPDATE STRING)
     ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
     STORED AS TEXTFILE;
 
-建立分割資料表後，您可以建立靜態分割或動態分割。
+Once the partitioned table is created, you can either create static partitioning or dynamic partitioning.
 
-- **靜態分割**表示您已在適當的目錄中將資料分區，而且可以手動要求以目錄位置為基礎的 Hive 分割區。如以下程式碼片段所示。
+- **Static partitioning** means that you have already sharded data in the appropriate directories and you can ask Hive partitions manually based on the directory location. This is shown in the code snippet below.
 
-	    INSERT OVERWRITE TABLE lineitem_part
-	    PARTITION (L_SHIPDATE = ‘5/23/1996 12:00:00 AM’)
-	    SELECT * FROM lineitem 
-	    WHERE lineitem.L_SHIPDATE = ‘5/23/1996 12:00:00 AM’
+        INSERT OVERWRITE TABLE lineitem_part
+        PARTITION (L_SHIPDATE = ‘5/23/1996 12:00:00 AM’)
+        SELECT * FROM lineitem 
+        WHERE lineitem.L_SHIPDATE = ‘5/23/1996 12:00:00 AM’
 
-	    ALTER TABLE lineitem_part ADD PARTITION (L_SHIPDATE = ‘5/23/1996 12:00:00 AM’))
-	    LOCATION ‘wasbs://sampledata@ignitedemo.blob.core.windows.net/partitions/5_23_1996/'
+        ALTER TABLE lineitem_part ADD PARTITION (L_SHIPDATE = ‘5/23/1996 12:00:00 AM’))
+        LOCATION ‘wasbs://sampledata@ignitedemo.blob.core.windows.net/partitions/5_23_1996/'
 
-- **動態分割**表示您要 Hive 為您自動建立分割區。我們已從暫存資料表建立分割資料表，所以我們只需要將資料插入至分割資料表，如下所示：
+- **Dynamic partitioning** means that you want Hive to create partitions automatically for you. Since we have already created the partitioning table from the staging table, all we need to do is insert data to the partitioned table as shown below:
 
-	    SET hive.exec.dynamic.partition = true;
-	    SET hive.exec.dynamic.partition.mode = nonstrict;
-	    INSERT INTO TABLE lineitem_part
-	    PARTITION (L_SHIPDATE)
-	    SELECT L_ORDERKEY as L_ORDERKEY, L_PARTKEY as L_PARTKEY , 
-	    	 L_SUPPKEY as L_SUPPKEY, L_LINENUMBER as L_LINENUMBER,
-	     	 L_QUANTITY as L_QUANTITY, L_EXTENDEDPRICE as L_EXTENDEDPRICE,
-	    	 L_DISCOUNT as L_DISCOUNT, L_TAX as L_TAX, L_RETURNFLAG as 	 	 L_RETURNFLAG, L_LINESTATUS as L_LINESTATUS, L_SHIPDATE as 	 	 L_SHIPDATE_PS, L_COMMITDATE as L_COMMITDATE, L_RECEIPTDATE as 	 L_RECEIPTDATE, L_SHIPINSTRUCT as L_SHIPINSTRUCT, L_SHIPMODE as 	 L_SHIPMODE, L_COMMENT as L_COMMENT, L_SHIPDATE as L_SHIPDATE FROM lineitem;
+        SET hive.exec.dynamic.partition = true;
+        SET hive.exec.dynamic.partition.mode = nonstrict;
+        INSERT INTO TABLE lineitem_part
+        PARTITION (L_SHIPDATE)
+        SELECT L_ORDERKEY as L_ORDERKEY, L_PARTKEY as L_PARTKEY , 
+             L_SUPPKEY as L_SUPPKEY, L_LINENUMBER as L_LINENUMBER,
+             L_QUANTITY as L_QUANTITY, L_EXTENDEDPRICE as L_EXTENDEDPRICE,
+             L_DISCOUNT as L_DISCOUNT, L_TAX as L_TAX, L_RETURNFLAG as       L_RETURNFLAG, L_LINESTATUS as L_LINESTATUS, L_SHIPDATE as       L_SHIPDATE_PS, L_COMMITDATE as L_COMMITDATE, L_RECEIPTDATE as   L_RECEIPTDATE, L_SHIPINSTRUCT as L_SHIPINSTRUCT, L_SHIPMODE as      L_SHIPMODE, L_COMMENT as L_COMMENT, L_SHIPDATE as L_SHIPDATE FROM lineitem;
 
-如需詳細資訊，請參閱[分割的資料表](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-PartitionedTables)。
+For more details, see [Partitioned Tables](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-PartitionedTables).
 
-##使用 ORCFile 格式
+##<a name="use-the-orcfile-format"></a>Use the ORCFile format
 
-Hive 支援不同的檔案格式。例如：
+Hive supports different file formats. For example:
 
-- **文字**：這是預設檔案格式，適用於大部分的案例
-- **Avro**：適用於互通性案例
-- **ORC/Parquet**：最適合處理效能
+- **Text**: this is the default file format and works with most scenarios
+- **Avro**: works well for interoperability scenarios
+- **ORC/Parquet**: best suited for performance
 
-ORC (最佳化的資料列單欄式) 格式是儲存 Hive 資料的高效率方式。相較於其他格式，ORC 具有下列優點：
+ORC (Optimized Row Columnar) format is a highly efficient way to store Hive data. Compared to other formats, ORC has the following advantages:
 
-- 支援複雜的類型，包括 DateTime 和複雜和半結構化類型
-- 高達 70% 的壓縮
-- 每 10,000 個資料列的索引可讓您略過一些資料列
-- 執行階段的執行大幅減少
+- support for complex types including DateTime and complex and semi-structured types
+- up to 70% compression
+- indexes every 10,000 rows which allow skipping rows
+- a significant drop in run-time execution
 
-若要啟用 ORC 格式，請先使用子句 *Stored as ORC* 建立資料表：
+To enable ORC format, you first create a table with the clause *Stored as ORC*:
 
     CREATE TABLE lineitem_orc_part
-    	(L_ORDERKEY INT, L_PARTKEY INT,L_SUPPKEY INT, L_LINENUMBER INT,
-    	 L_QUANTITY DOUBLE, L_EXTENDEDPRICE DOUBLE, L_DISCOUNT DOUBLE,
-    	 L_TAX DOUBLE, L_RETURNFLAG STRING, L_LINESTATUS STRING,
-    	 L_SHIPDATE_PS STRING, L_COMMITDATE STRING, L_RECEIPTDATE STRING,
-		 L_SHIPINSTRUCT STRING, L_SHIPMODE STRING, L_COMMENT 	 STRING)
+        (L_ORDERKEY INT, L_PARTKEY INT,L_SUPPKEY INT, L_LINENUMBER INT,
+         L_QUANTITY DOUBLE, L_EXTENDEDPRICE DOUBLE, L_DISCOUNT DOUBLE,
+         L_TAX DOUBLE, L_RETURNFLAG STRING, L_LINESTATUS STRING,
+         L_SHIPDATE_PS STRING, L_COMMITDATE STRING, L_RECEIPTDATE STRING,
+         L_SHIPINSTRUCT STRING, L_SHIPMODE STRING, L_COMMENT     STRING)
     PARTITIONED BY(L_SHIPDATE STRING)
     STORED AS ORC;
 
-接著，將資料從暫存資料表插入至 ORC 資料表。例如：
+Next, you insert data to the ORC table from the staging table. For example:
 
     INSERT INTO TABLE lineitem_orc
     SELECT L_ORDERKEY as L_ORDERKEY, 
            L_PARTKEY as L_PARTKEY , 
-    	   L_SUPPKEY as L_SUPPKEY,
-		   L_LINENUMBER as L_LINENUMBER,
-     	   L_QUANTITY as L_QUANTITY, 
-		   L_EXTENDEDPRICE as L_EXTENDEDPRICE,
-    	   L_DISCOUNT as L_DISCOUNT,
-		   L_TAX as L_TAX,
+           L_SUPPKEY as L_SUPPKEY,
+           L_LINENUMBER as L_LINENUMBER,
+           L_QUANTITY as L_QUANTITY, 
+           L_EXTENDEDPRICE as L_EXTENDEDPRICE,
+           L_DISCOUNT as L_DISCOUNT,
+           L_TAX as L_TAX,
            L_RETURNFLAG as L_RETURNFLAG,
-		   L_LINESTATUS as L_LINESTATUS,
-		   L_SHIPDATE as L_SHIPDATE,
-		   L_COMMITDATE as L_COMMITDATE,
-		   L_RECEIPTDATE as L_RECEIPTDATE, 
-		   L_SHIPINSTRUCT as L_SHIPINSTRUCT,
-		   L_SHIPMODE as L_SHIPMODE,
-		   L_COMMENT as L_COMMENT
+           L_LINESTATUS as L_LINESTATUS,
+           L_SHIPDATE as L_SHIPDATE,
+           L_COMMITDATE as L_COMMITDATE,
+           L_RECEIPTDATE as L_RECEIPTDATE, 
+           L_SHIPINSTRUCT as L_SHIPINSTRUCT,
+           L_SHIPMODE as L_SHIPMODE,
+           L_COMMENT as L_COMMENT
     FROM lineitem;
 
-您可以在[這裡](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC)進一步了解 ORC 格式。
+You can read more on the ORC format [here](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC).
 
-##向量化
+##<a name="vectorization"></a>Vectorization
 
-向量化可讓 Hive 以批次方式同時處理 1024 個資料列，而不是一次處理一個資料列。這表示，因為需要執行的內部程式碼較少，所以簡單的作業會更快完成。
+Vectorization allows Hive to process a batch of 1024 rows together instead of processing one row at a time. This means that simple operations are done faster because less internal code needs to run.
 
-若要啟用向量化，請在 Hive 查詢的前面加上以下列設定：
+To enable vectorization prefix your Hive query with the following setting:
 
     set hive.vectorized.execution.enabled = true;
 
-如需詳細資訊，請參閱[向量化查詢執行](https://cwiki.apache.org/confluence/display/Hive/Vectorized+Query+Execution)。
+For more information, see [Vectorized query execution](https://cwiki.apache.org/confluence/display/Hive/Vectorized+Query+Execution).
 
 
-##其他最佳化方法
+##<a name="other-optimization-methods"></a>Other optimization methods
 
-您有更多最佳化方法可以考慮，例如：
+There are more optimization methods that you can consider, for example:
 
-- **Hive 值區：**能將大型資料集叢集化或分段以最佳化查詢效能的技術。
-- **聯結最佳化：**Hive 的查詢執行計劃最佳化，可改善聯結的效率並減少使用者提示的需求。如需詳細資訊，請參閱[聯結最佳化](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+JoinOptimization#LanguageManualJoinOptimization-JoinOptimization)。
-- **增加歸納器**
+- **Hive bucketing:** a technique that allows to cluster or segment large sets of data to optimize query performance.
+- **Join optimization:** optimization of Hive's query execution planning to improve the efficiency of joins and reduce the need for user hints. For more information, see [Join optimization](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+JoinOptimization#LanguageManualJoinOptimization-JoinOptimization).
+- **increase Reducers**
 
-##<a id="nextsteps"></a> 後續步驟
-在本文中，您學到幾種常見的 Hive 查詢最佳化方法。若要深入了解，請參閱下列文章：
+##<a name="<a-id="nextsteps"></a>-next-steps"></a><a id="nextsteps"></a> Next steps
+In this article, you have learned several common Hive query optimization methods. To learn more, see the following articles:
 
-- [在 HDInsight 中使用 Apache Hive](hdinsight-use-hive.md)
-- [在 HDInsight 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)
-- [在 HDInsight 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data.md)
-- [在 HDInsight 的 Hadoop 上使用 Hive 查詢主控台分析感應器資料](hdinsight-hive-analyze-sensor-data.md)
-- [使用 HDInsight 上的 Hive 分析網站的記錄](hdinsight-hive-analyze-website-log.md)
+- [Use Apache Hive in HDInsight](hdinsight-use-hive.md)
+- [Analyze flight delay data by using Hive in HDInsight](hdinsight-analyze-flight-delay-data.md)
+- [Analyze Twitter data using Hive in HDInsight](hdinsight-analyze-twitter-data.md)
+- [Analyze sensor data using the Hive Query Console on Hadoop in HDInsight](hdinsight-hive-analyze-sensor-data.md)
+- [Use Hive with HDInsight to analyze logs from websites](hdinsight-hive-analyze-website-log.md)
 
 
-[image-hdi-optimize-hive-scaleout_1]: ./media/hdinsight-hadoop-optimize-hive-query/scaleout_1.png [image-hdi-optimize-hive-scaleout_2]: ./media/hdinsight-hadoop-optimize-hive-query/scaleout_2.png [image-hdi-optimize-hive-tez_1]: ./media/hdinsight-hadoop-optimize-hive-query/tez_1.png [image-hdi-optimize-hive-partitioning_1]: ./media/hdinsight-hadoop-optimize-hive-query/partitioning_1.png
+[image-hdi-optimize-hive-scaleout_1]: ./media/hdinsight-hadoop-optimize-hive-query/scaleout_1.png
+[image-hdi-optimize-hive-scaleout_2]: ./media/hdinsight-hadoop-optimize-hive-query/scaleout_2.png
+[image-hdi-optimize-hive-tez_1]: ./media/hdinsight-hadoop-optimize-hive-query/tez_1.png
+[image-hdi-optimize-hive-partitioning_1]: ./media/hdinsight-hadoop-optimize-hive-query/partitioning_1.png
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

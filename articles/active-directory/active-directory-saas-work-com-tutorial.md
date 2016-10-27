@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Work.com 整合 | Microsoft Azure" 
-    description="了解如何使用 Work.com 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Work.com | Microsoft Azure" 
+    description="Learn how to use Work.com with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,200 +14,204 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Work.com 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-work.com"></a>Tutorial: Azure Active Directory integration with Work.com
   
-本教學課程的目的是要示範 Azure 與 Work.com 的整合。
-本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Work.com.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂用帳戶
--   已啟用 Work.com 單一登入功能的訂用帳戶
+-   A valid Azure subscription
+-   A Work.com single sign-on enabled subscription
   
-完成本教學課程之後，或使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)，指派了 Work.com 存取的 AAD 使用者就能夠在 Work.com 公司網站 (服務提供者起始登入) 的應用程式單一登入。
+After completing this tutorial, the AAD users to whom you have assign Work.com access will be able to single sign into the application at your Work.com company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Work.com 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Work.com
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-work-com-tutorial/IC794105.png "案例")
+![Scenario](./media/active-directory-saas-work-com-tutorial/IC794105.png "Scenario")
 
-##啟用 Work.com 的應用程式整合
+##<a name="enabling-the-application-integration-for-work.com"></a>Enabling the application integration for Work.com
   
-本節的目的是概述如何啟用 Work.com 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Work.com.
 
-###若要啟用 Work.com 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-work.com,-perform-the-following-steps:"></a>To enable the application integration for Work.com, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-work-com-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-work-com-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-work-com-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-work-com-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-work-com-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從資源庫新增應用程式](./media/active-directory-saas-work-com-tutorial/IC749322.png "從資源庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-work-com-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **Work.com**。
+6.  In the **search box**, type **Work.com**.
 
-    ![應用程式庫](./media/active-directory-saas-work-com-tutorial/IC794106.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-work-com-tutorial/IC794106.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Work.com]，然後按一下 [完成] 加入應用程式。
+7.  In the results pane, select **Work.com**, and then click **Complete** to add the application.
 
     ![Work.com](./media/active-directory-saas-work-com-tutorial/IC794107.png "Work.com")
 
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Work.com 中進行驗證。
-您必須將憑證上傳至 Work.com.com，這是程序的一部分。
+The objective of this section is to outline how to enable users to authenticate to Work.com with their account in Azure AD using federation based on the SAML protocol.  
+As part of this procedure, you are required to upload a certificate to Work.com.com.
 
->[AZURE.NOTE] 若要設定單一登入，您還需要設定自訂的 Work.com 網域名稱。您至少需要定義一個網域名稱、測試網域名稱，並將它部署到整個組織。
+>[AZURE.NOTE] To configure single sign-on, you need to setup a custom Work.com domain name yet. You need to define at least a domain name, test your domain name, and deploy it to your entire organization.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  以系統管理員身分登入 Work.com 租用戶。
+1.  Log in to your Work.com tenant as administrator.
 
-2.  移到 [設定]。
+2.  Go to **Setup**.
 
-    ![設定](./media/active-directory-saas-work-com-tutorial/IC794108.png "設定")
+    ![Setup](./media/active-directory-saas-work-com-tutorial/IC794108.png "Setup")
 
-3.  在 [系統管理員] 區段的左方導覽窗格中，按一下 [定義域管理] 展開相關的區段，然後按一下 [我的網域] 來開啟 [我的網域] 頁面。
+3.  On the left navigation pane, in the **Administer** section, click **Domain Management** to expand the related section, and then click **My Domain** to open the **My Domain** page. 
 
-    ![我的網域](./media/active-directory-saas-work-com-tutorial/IC767825.png "我的網域")
+    ![My Domain](./media/active-directory-saas-work-com-tutorial/IC767825.png "My Domain")
 
-4.  若要確認是否已正確設定您的網域，請確定它在 [步驟 4 已部署到使用者的網域] 中，並檢閱 [我的網域設定]。
+4.  To verify that your domain has been setup correctly, make sure that it is in “**Step 4 Deployed to Users**” and review your “**My Domain Settings**”.
 
-    ![已部署到使用者的網域](./media/active-directory-saas-work-com-tutorial/IC784377.png "已部署到使用者的網域")
+    ![Doman Deployed to User](./media/active-directory-saas-work-com-tutorial/IC784377.png "Doman Deployed to User")
 
-5.  在不同的 Web 瀏覽器視窗中，登入您的 Azure 傳統入口網站。
+5.  In a different web browser window, log in to your Azure classic portal.
 
-6.  在 [Work.com] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
+6.  On the **Work.com **application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-work-com-tutorial/IC794109.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-work-com-tutorial/IC794109.png "Configure Single Sign-On")
 
-7.  在 [要如何讓使用者登入 Work.com] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+7.  On the **How would you like users to sign on to Work.com** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-work-com-tutorial/IC794110.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-work-com-tutorial/IC794110.png "Configure Single Sign-On")
 
-8.  在 [設定應用程式 URL] 頁面的 [Work.com 登入 URL] 文字方塊中，輸入使用者用來登入 Work.com 應用程式的 URL (例如：”http://company.my.salesforce.com*”)，然後按 [下一步]*：
+8.  On the **Configure App URL** page, in the **Work.com Sign On URL** textbox, type the URL used by your users to sign on to your Work.com application (e.g.:” *http://company.my.salesforce.com*”), and then click **Next**: 
 
-    ![設定應用程式 URL](./media/active-directory-saas-work-com-tutorial/IC794111.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-work-com-tutorial/IC794111.png "Configure App URL")
 
-9.  在 [設定在 Work.com 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在本機電腦上。
+9.  On the **Configure single sign-on at Work.com** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-work-com-tutorial/IC794112.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-work-com-tutorial/IC794112.png "Configure Single Sign-On")
 
-10. 登入 Work.com 租用戶。
+10. Log in to your Work.com tenant.
 
-11. 移到 [設定]。
+11. Go to **Setup**.
 
-    ![設定](./media/active-directory-saas-work-com-tutorial/IC794108.png "設定")
+    ![Setup](./media/active-directory-saas-work-com-tutorial/IC794108.png "Setup")
 
-12. 展開 [安全性控制] 功能表，然後再按一下 [單一登入設定]。
+12. Expand the **Security Controls** menu, and then click **Single Sign-On Settings**.
 
-    ![單一登入設定](./media/active-directory-saas-work-com-tutorial/IC794113.png "單一登入設定")
+    ![Single Sign-On Settings](./media/active-directory-saas-work-com-tutorial/IC794113.png "Single Sign-On Settings")
 
-13. 在 [單一登入設定] 對話方塊頁面執行下列步驟：
+13. On the **Single Sign-On Settings** dialog page, perform the following steps:
 
-    ![啟用 SAML](./media/active-directory-saas-work-com-tutorial/IC781026.png "啟用 SAML")
+    ![SAML Enabled](./media/active-directory-saas-work-com-tutorial/IC781026.png "SAML Enabled")
 
-    1.  選取 [已啟用 SAML]。
-    2.  按一下 [新增]。
+    1.  Select **SAML Enabled**.
+    2.  Click **New**.
 
-14. 在 [SAML 單一登入設定] 區段中，執行下列步驟：
+14. In the **SAML Single Sign-On Settings** section, perform the following steps:
 
-    ![SAML 單一登入設定](./media/active-directory-saas-work-com-tutorial/IC794114.png "SAML 單一登入設定")
+    ![SAML Single Sign-On Setting](./media/active-directory-saas-work-com-tutorial/IC794114.png "SAML Single Sign-On Setting")
 
-    1.  在 [名稱] 文字方塊中，輸入您的組態名稱。  
+    1.  In the **Name** textbox, type a name for your configuration.  
 
-        >[AZURE.NOTE] 提供 [名稱] 的值，[API 名稱] 文字方塊就會自動填入內容。
+        >[AZURE.NOTE] Providing a value for **Name** does automatically populate the **API Name** textbox.
 
-    2.  在 Azure 傳統入口網站中的 [設定在 Work.com 單一登入] 對話方塊頁面上，複製 [簽發者 URL] 值，然後將它貼到 [簽發者] 文字方塊中。
-    3.  若要上傳已下載的憑證，請按一下 [瀏覽]。
-    4.  在 [實體 ID] 文字方塊中，輸入 **https://salesforce-work.com**。
-    5.  對於 [SAML 身分識別類型]，選取 [判斷提示包含來自使用者物件的同盟識別碼]。
-    6.  在 [SAML 識別位置]，請選取 [識別位於 Subject 陳述式的 NameIdentifier 元素中]。
-    7.  在 Azure 傳統入口網站中的 [設定在 Work.com 單一登入] 對話方塊頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [識別提供者登入 URL] 文字方塊中。
-    8.  在 Azure 傳統入口網站中的 [設定在 Work.com 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值，然後將它貼到 [識別提供者登出 URL] 文字方塊中。
-    9.  在 [服務提供者起始的要求繫結]，請選取 [HTTP Post]。
-    10. 按一下 [儲存]。
+    2.  In the Azure classic portal, on the **Configure single sign-on at Work.com** dialog page, copy the **Issuer URL** value, and then paste it into the **Issuer** textbox.
+    3.  To upload the downloaded certificate, click **Browse**.
+    4.  In the **Entity Id** textbox, type **https://salesforce-work.com**.
+    5.  As **SAML Identity Type**, select **Assertion contains the Federation ID from the User object**.
+    6.  As **SAML Identity Location**, select **Identity is in the NameIdentfier element of the Subject statement**.
+    7.  In the Azure classic portal, on the **Configure single sign-on at Work.com** dialog page, copy the **Remote Login URL** value, and then paste it into the **Identity Provider Login URL** textbox.
+    8.  In the Azure classic portal, on the **Configure single sign-on at Work.com** dialog page, copy the **Remote Logout URL** value, and then paste it into the **Identity Provider Logout URL** textbox.
+    9.  As **Service Provider Initiated Request Binding**, select **HTTP Post**.
+    10. Click **Save**.
 
-15. 在 Work.com 傳統入口網站的左側導覽窗格中，按一下 [網域管理] 以展開相關區段，然後按一下 [我的網域] 來開啟 [我的網域] 頁面。
+15. In your Work.com classic portal, on the left navigation pane, click **Domain Management** to expand the related section, and then click **My Domain** to open the **My Domain** page. 
 
-    ![我的網域](./media/active-directory-saas-work-com-tutorial/IC794115.png "我的網域")
+    ![My Domain](./media/active-directory-saas-work-com-tutorial/IC794115.png "My Domain")
 
-16. 在 [我的網域] 頁面的 [登入頁面商標] 區段中，按一下 [編輯]。
+16. On the **My Domain** page, in the **Login Page Branding** section, click **Edit**.
 
-    ![登入頁面商標](./media/active-directory-saas-work-com-tutorial/IC767826.png "登入頁面商標")
+    ![Login Page Branding](./media/active-directory-saas-work-com-tutorial/IC767826.png "Login Page Branding")
 
-17. [登入頁面商標] 頁面的 [驗證服務] 區段中，就會顯示您的 [SAML SSO 設定] 的名稱。請選取該名稱，然後按一下 [儲存]。
+17. On the **Login Page Branding** page, in the **Authentication Service** section, the name of your **SAML SSO Settings** is displayed. Select it, and then click **Save**.
 
-    ![登入頁面商標](./media/active-directory-saas-work-com-tutorial/IC784366.png "登入頁面商標")
+    ![Login Page Branding](./media/active-directory-saas-work-com-tutorial/IC784366.png "Login Page Branding")
 
-18. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+18. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-work-com-tutorial/IC794116.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-work-com-tutorial/IC794116.png "Configure Single Sign-On")
 
-##設定使用者佈建
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-Azure Active Directory 使用者必須先佈建到 Work.com，才可以登入。
-Work.com 需以手動方式佈建。
+For Azure Active Directory users to be able to sign in, they must be provisioned to Work.com.  
+In the case of Work.com, provisioning is a manual task.
 
-###若要設定使用者佈建，請執行下列步驟：
+###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
 
-1.  以系統管理員身分登入您的 Work.com 公司網站。
+1.  Sign on to your Work.com company site as an administrator.
 
-2.  移到 [設定]。
+2.  Go to **Setup**.
 
-    ![設定](./media/active-directory-saas-work-com-tutorial/IC794108.png "設定")
+    ![Setup](./media/active-directory-saas-work-com-tutorial/IC794108.png "Setup")
 
-3.  移至 [管理使用者 > 使用者]。
+3.  Go to **Manage Users \> Users**.
 
-    ![管理使用者](./media/active-directory-saas-work-com-tutorial/IC784369.png "管理使用者")
+    ![Manage Users](./media/active-directory-saas-work-com-tutorial/IC784369.png "Manage Users")
 
-4.  按一下 [新使用者]。
+4.  Click **New User**.
 
-    ![所有使用者](./media/active-directory-saas-work-com-tutorial/IC794117.png "所有使用者")
+    ![All Users](./media/active-directory-saas-work-com-tutorial/IC794117.png "All Users")
 
-5.  在 [使用者編輯] 區段中，執行下列步驟：
+5.  In the User Edit section, perform the following steps:
 
-    ![使用者編輯](./media/active-directory-saas-work-com-tutorial/IC794118.png "使用者編輯")
+    ![User Edit](./media/active-directory-saas-work-com-tutorial/IC794118.png "User Edit")
 
-    1.  輸入要佈建到相關文字方塊的有效 Azure Active Directory 帳戶的 [姓氏]、[別名]、[電子郵件]、[使用者名稱] 和 [暱稱] 屬性。
-    2.  選取 [角色]、[使用者授權] 和 [設定檔]。
-    3.  按一下 [儲存]。  
+    1.  Type the **Last Name**, **Alias**, **Email**, **Username** and **Nickname** attributes of a valid Azure Active Directory account you want to provision into the related textboxes.
+    2.  Select **Role**, **User License** and **Profile**.
+    3.  Click **Save**.  
 
-        >[AZURE.NOTE] Azure Active Directory 帳戶的持有者會收到一封包含連結的電子郵件，以便在帳戶啟用前加以確認。
+        >[AZURE.NOTE] The Azure Active Directory account holder will get an email including a link to confirm the account before it becomes active.
 
->[AZURE.NOTE] 您可以使用任何其他的 Work.com 使用者帳戶建立工具或 Work.com 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Work.com user account creation tools or APIs provided by Work.com to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要將使用者指派到 Work.com，請執行下列步驟：
+###<a name="to-assign-users-to-work.com,-perform-the-following-steps:"></a>To assign users to Work.com, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Work.com] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the Work.com application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-work-com-tutorial/IC794119.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-work-com-tutorial/IC794119.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-work-com-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-work-com-tutorial/IC767830.png "Yes")
   
-請等候 10 分鐘並確認帳戶已同步處理至 Work.com.com。
+You should now wait for 10 minutes and verify that the account has been synchronized to Work.com.com.
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

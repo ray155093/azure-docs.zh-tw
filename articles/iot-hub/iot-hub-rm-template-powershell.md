@@ -1,11 +1,11 @@
 <properties
-	pageTitle="使用 Resource Manager 範本與 PowerShell 建立 IoT 中樞 |Microsoft Azure"
-	description="請依照此教學課程的說明，開始使用資源管理員範本搭配 PowerShell 來建立 IoT 中樞。"
-	services="iot-hub"
-	documentationCenter=".net"
-	authors="dominicbetts"
-	manager="timlt"
-	editor=""/>
+    pageTitle="Create an IoT Hub using a Resource Manager template and PowerShell | Microsoft Azure"
+    description="Follow this tutorial to get started using Resource Manager templates to create an IoT Hub with PowerShell."
+    services="iot-hub"
+    documentationCenter=".net"
+    authors="dominicbetts"
+    manager="timlt"
+    editor=""/>
 
 <tags
      ms.service="iot-hub"
@@ -16,49 +16,50 @@
      ms.date="09/07/2016"
      ms.author="dobett"/>
 
-# 使用 PowerShell 建立 IoT 中樞
+
+# <a name="create-an-iot-hub-using-powershell"></a>Create an IoT hub using PowerShell
 
 [AZURE.INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
-## 簡介
+## <a name="introduction"></a>Introduction
 
-您可以使用 Azure 資源管理員，以程式設計方式建立和管理 Azure IoT 中樞。本教學課程示範如何使用 Resource Manager 範本搭配 PowerShell 來建立 IoT 中樞。
+You can use Azure Resource Manager to create and manage Azure IoT hubs programmatically. This tutorial shows you how to use a Resource Manager template to create an IoT hub with PowerShell.
 
-> [AZURE.NOTE] Azure 建立和處理資源的部署模型有二種：[資源管理員和傳統](../resource-manager-deployment-model.md)。本文涵蓋內容包括如何使用 Resource Manager 部署模型。
+> [AZURE.NOTE] Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).  This article covers using the Resource Manager deployment model.
 
-若要完成此教學課程，您需要下列項目：
+To complete this tutorial you need the following:
 
-- 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
-- [Microsoft Azure PowerShell 1.0][lnk-powershell-install] 或更新版本。
+- An active Azure account. <br/>If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial][lnk-free-trial].
+- [Microsoft Azure PowerShell 1.0][lnk-powershell-install] or later.
 
-> [AZURE.TIP] [搭配使用 Azure PowerShell 與 Azure Resource Manager][lnk-powershell-arm] 一文提供有關如何使用 PowerShell 指令碼和 Resource Manager 範本來建立 Azure 資源的詳細資訊。
+> [AZURE.TIP] The article [Using Azure PowerShell with Azure Resource Manager][lnk-powershell-arm] provides more information about how to use PowerShell scripts and Resource Manager templates to create Azure resources. 
 
-## 連線到 Azure 訂閱
+## <a name="connect-to-your-azure-subscription"></a>Connect to your Azure subscription
 
-在 PowerShell 命令提示字元中，輸入下列命令來登入您的 Azure 訂用帳戶：
+In a PowerShell command prompt, enter the following command to sign in to your Azure subscription:
 
 ```
 Login-AzureRmAccount
 ```
 
-您可以使用下列命令來探索可部署 IoT 中樞的位置和目前支援的 API 版本：
+You can use the following commands to discover where you can deploy an IoT hub and the currently supported API versions:
 
 ```
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).Locations
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).ApiVersions
 ```
 
-在 IoT 中樞支援的其中一個位置，使用下列命令建立資源群組來包含您的 IoT 中樞。這個範例會建立一個稱為 **MyIoTRG1** 的資源群組：
+Create a resource group to contain your IoT hub using the following command in one of the supported locations for IoT Hub. This example creates a resource group called **MyIoTRG1**:
 
 ```
 New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 ```
 
-## 提交範本，以建立 IoT 中樞
+## <a name="submit-a-template-to-create-an-iot-hub"></a>Submit a template to create an IoT hub
 
-使用 JSON 範本在資源群組中建立 IoT 中樞。您也可以使用範本變更現有的 IoT 中樞。
+Use a JSON template to create an IoT hub in your resource group. You can also use a template to make changes to an existing IoT hub.
 
-1. 使用文字編輯器來建立名為 **template.json** 的 Resource Manager 範本，其中包含下列資源定義來建立新的標準 IoT 中樞。這個範例會在**美國東部**區域加入 IoT 中樞、在事件中樞相容端點上建立兩個取用者群組 (**cg1** 和 **cg2**)，並使用 **2016-02-03** API 版本。這個範本也要求您在一個名為 **hubName** 的參數中傳入 IoT 中樞名稱。如需目前支援「IoT 中樞」的位置清單，請參閱 [Azure 狀態][lnk-status]。
+1. Use a text editor to create a Resource Manager template called **template.json** with the following resource definition to create a new standard IoT hub. This example adds the IoT Hub in the **East US** region, creates two consumer groups (**cg1** and **cg2**) on the Event Hub-compatible endpoint, and uses the **2016-02-03** API version. This template also expects you to pass in the IoT hub name as a parameter called **hubName**. For the current list of locations that support IoT Hub see [Azure Status][lnk-status].
 
     ```
     {
@@ -110,38 +111,35 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
     }
     ```
 
-2. 將範本檔案儲存在本機電腦上。這個範例假設您將它儲存在名為 **c:\\templates** 的資料夾中。
+2. Save the template file on your local machine. This example assumes you save it in a folder called **c:\templates**.
 
-3. 執行下列命令來部署新的 IoT 中樞，並傳遞 IoT 中樞的名稱做為參數。在此範例中，IoT 中樞名稱是 **abcmyiothub** (請注意，此名稱必須是全域唯一的，因此應該包含您的名稱或縮寫)：
+3. Run the following command to deploy your new IoT hub, passing the name of your IoT hub as a parameter. In this example, the name of the IoT hub is **abcmyiothub** (note that this name must be globally unique so it should include your name or initials):
 
     ```
     New-AzureRmResourceGroupDeployment -ResourceGroupName MyIoTRG1 -TemplateFile C:\templates\template.json -hubName abcmyiothub
     ```
 
-4. 輸出會顯示您建立的 IoT 中樞的金鑰。
+4. The output displays the keys for the IoT hub you created.
 
-5. 若要確認應用程式是否新增了 IoT 中樞，可前往[入口網站][lnk-azure-portal]檢視您的資源清單，或是使用 **Get-AzureRmResource** PowerShell Cmdlet。
+5. You can verify that your application added the new IoT hub by visiting the [portal][lnk-azure-portal] and viewing your list of resources, or by using the **Get-AzureRmResource** PowerShell cmdlet.
 
-> [AZURE.NOTE] 此範例應用程式會加入您付費的「S1 標準 IoT 中樞」。您可透過[入口網站][lnk-azure-portal]刪除此 IoT 中樞，或在完成時，使用 **Remove-AzureRmResource** PowerShell Cmdlet。
+> [AZURE.NOTE] This example application adds an S1 Standard IoT Hub for which you are billed. You can delete the IoT hub through the [portal][lnk-azure-portal] or by using the **Remove-AzureRmResource** PowerShell cmdlet when you are finished.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-現在您已使用 Resource Manager 範本搭配 PowerShell 來部署 IoT 中樞，您可以再進一步探索：
+Now you have deployed an IoT hub using a Resource Manager template with PowerShell, you may want to explore further:
 
-- 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
-- 如需 Azure 資源管理員功能的詳細資訊，請參閱 [Azure 資源管理員概觀][lnk-azure-rm-overview]。
+- Read about the capabilities of the [IoT Hub Resource Provider REST API][lnk-rest-api].
+- Read [Azure Resource Manager overview][lnk-azure-rm-overview] to learn more about the capabilities of Azure Resource Manager.
 
-若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
+To learn more about developing for IoT Hub, see the following:
 
-- [C SDK 簡介][lnk-c-sdk]
-- [IoT 中心 SDK][lnk-sdks]
+- [Introduction to C SDK][lnk-c-sdk]
+- [IoT Hub SDKs][lnk-sdks]
 
-若要進一步探索 IoT 中樞的功能，請參閱︰
+To further explore the capabilities of IoT Hub, see:
 
-- [設計您的解決方案][lnk-design]
-- [使用範例 UI 探索裝置管理][lnk-dmui]
-- [使用閘道 SDK 模擬裝置][lnk-gateway]
-- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+- [Simulating a device with the Gateway SDK][lnk-gateway]
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
@@ -153,11 +151,12 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 [lnk-powershell-arm]: ../powershell-azure-resource-manager.md
 
 [lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
-[lnk-sdks]: iot-hub-sdks-summary.md
+[lnk-sdks]: iot-hub-devguide-sdks.md
 
-[lnk-design]: iot-hub-guidance.md
-[lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
-[lnk-portal]: iot-hub-manage-through-portal.md
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

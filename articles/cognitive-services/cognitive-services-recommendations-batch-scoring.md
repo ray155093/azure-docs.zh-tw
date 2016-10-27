@@ -1,56 +1,59 @@
 
 <properties
-	pageTitle="以批次方式取得建議：機器學習服務的建議 API | Microsoft Azure"
-	description="Azure 機器學習服務建議 - 以批次方式取得建議"
-	services="cognitive-services"
-	documentationCenter=""
-	authors="luiscabrer"
-	manager="jhubbard"
-	editor="cgronlun"/>
+    pageTitle="Getting recommendations in batches: Machine learning recommendations API | Microsoft Azure"
+    description="Azure machine learning recommendations--getting recommendations in batches"
+    services="cognitive-services"
+    documentationCenter=""
+    authors="luiscabrer"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="cognitive-services"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="luisca"/>
+    ms.service="cognitive-services"
+    ms.workload="data-services"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/17/2016"
+    ms.author="luisca"/>
 
-# 以批次方式取得建議
 
->[AZURE.NOTE] 相較於一次取得一個建議，以批次方式取得建議會比較複雜。查看 API，以取得如何針對單一要求取得建議的相關資訊︰
+# <a name="get-recommendations-in-batches"></a>Get recommendations in batches
 
-> [項目對項目的建議](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d4)<br> [使用者對項目的建議](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3dd)
+>[AZURE.NOTE] Getting recommendations in batches is more complicated than getting recommendations one at a time. Check the APIs for information about how to get recommendations for a single request:
+
+> [Item-to-Item recommendations](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d4)<br>
+> [User-to-Item recommendations](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3dd)
 >
-> 批次計分僅適用於在 2016 年 7 月 21 日之後建立的組建。
+> Batch scoring only works for builds that were created after July 21, 2016.
 
 
-也有些情況是您需要一次取得對多個項目的建議。例如，您可能想要建立建議快取，或甚至分析您所取得的建議類型。
+There are situations in which you need to get recommendations for more than one item at a time. For instance, you might be interested in creating a recommendations cache or even analyzing the types of recommendations that you are getting.
 
-我們所稱的批次計分作業是非同步作業。您需要提交要求，等待作業完成，然後收集結果。
+Batch scoring operations, as we call them, are asynchronous operations. You need to submit the request, wait for the operation to finish, and then gather your results.  
 
-以下列出要遵循的步驟，以求更精確地說明︰
+To be more precise, these are the steps to follow:
 
-1.	如果您還沒有 Azure 儲存體容器，請加以建立。
-2.	將描述您每個建議要求的輸入檔上傳至 Azure Blob 儲存體。
-3.	開始進行評分的批次作業。
-4.	等候非同步作業完成。
-5.	作業完成後，請從 Azure Blob 儲存體收集結果。
+1.  Create an Azure Storage container if you don’t have one already.
+2.  Upload an input file that describes each of your recommendation requests to Azure Blob storage.
+3.  Kick-start the scoring batch job.
+4.  Wait for the asynchronous operation to finish.
+5.  When the operation has finished, gather the results from Blob storage.
 
-我們將逐步解說各個步驟。
+Let’s walk through each of these steps.
 
-## 如果您還沒有儲存體容器，請建立一個
+## <a name="create-a-storage-container-if-you-don’t-have-one-already"></a>Create a Storage container if you don’t have one already
 
-如果您還沒有新的儲存體帳戶，請前往 [Azure 入口網站](https://portal.azure.com)並建立一個新的儲存體帳戶。若要這麼做，請瀏覽至 [新增] > [資料 + 儲存體] > [儲存體帳戶]。
+Go to the [Azure portal](https://portal.azure.com) and create a new storage account if you don’t have one already. To do this, navigate to **New** > **Data** + **Storage** > **Storage Account**.
 
-有儲存體帳戶之後，您需要建立 Blob 容器，用以儲存批次執行的輸入和輸出。
+After you have a storage account, you need to create the blob containers where you will store the input and output of the batch execution.
 
-將描述每個建議要求的輸入檔上傳至 Blob 儲存體 -- 在此將這個檔案稱為 input.json。有容器之後，您需要上傳描述每個要求的檔案，才能從建議服務執行。
+Upload an input file that describes each of your recommendation requests to Blob storage--let's call the file input.json here.
+After you have a container, you need to upload a file that describes each of the requests that you need to perform from the recommendations service.
 
-批次只能從特定組建執行一種要求。我們將在下一節說明如何定義此資訊。現在假設我們將在特定組建之外執行項目推薦。因此，輸入檔會包含每個要求的輸入資訊 (在此為種子項目)。
+A batch can perform only one type of request from a specific build. We will explain how to define this information in the next section. For now, let’s assume that we will be performing item recommendations out of a specific build. The input file then contains the input information (in this case, the seed items) for each of the requests.
 
-以下是 input.json 檔外觀的範例：
+This is an example of what the input.json file looks like:
 
     {
       "requests": [
@@ -65,15 +68,15 @@
       ]
     }
 
-如您所見，此檔案是 JSON 檔案，其中每個要求都有傳送建議要求所需的資訊。為您必須完成的要求建立類似的 JSON 檔案，並複製到剛才在 Blob 儲存體建立的容器。
+As you can see, the file is a JSON file, where each of the requests has the information that's necessary to send a recommendations request. Create a similar JSON file for the requests that you need to fulfill, and copy it to the container that you just created in Blob storage.
 
-## 開始進行批次作業
+## <a name="kick-start-the-batch-job"></a>Kick-start the batch job
 
-下一步是提交新的批次作業。如需詳細資訊，請查看 [API 參考](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/)。
+The next step is to submit a new batch job. For more information, check the [API reference](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/).
 
-API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也需要定義存取這些位置所需的認證。此外，您必須指定一些適用於整個批次的參數 (要求的建議類型、要使用的模型/組建、每次呼叫的結果數目等等)。
+The request body of the API needs to define the locations where the input, output, and error files need to be stored. It also needs to define the credentials that are necessary to access those locations. In addition, you need to specify some parameters that apply to the whole batch (the type of recommendations to request, the model/build to use, the number of results per call, and so on.)
 
-以下是要求本文外觀的範例：
+This is an example of what the request body should look like:
 
     {
       "input": {
@@ -104,23 +107,24 @@ API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也�
       }
     }
 
-有一些重點值得注意：
+Here a few important things to note:
 
--	目前 **uthenticationType** 應一律設為 **PublicOrSas**。
+-   Currently, **authenticationType** should always be set to **PublicOrSas**.
 
--	您必須取得共用存取簽章 (SAS) 權杖，以允許 Recommendations API 讀取和寫入自/至您的 Blob 儲存體帳戶。如需如何產生 SAS 權杖的詳細資訊，請參閱[](../storage/storage-dotnet-shared-access-signature-part-1.md)。
+-   You need to get a Shared Access Signature (SAS) token to allow the Recommendations API to read and write from/to your Blob storage account. More information about how to generate SAS tokens can be found on [the Recommendations API page](../storage/storage-dotnet-shared-access-signature-part-1.md).
 
--	目前唯一支援的 **apiName** 是用於項目對項目建議的 **ItemRecommend**。批次處理目前不支援使用者對項目的建議。
+-   The only **apiName** that's currently supported is **ItemRecommend**, which is used for Item-to-Item  recommendations. Batching doesn't currently support User-to-Item recommendations.
 
-## 等候非同步作業完成。
+## <a name="wait-for-the-asynchronous-operation-to-finish"></a>Wait for the asynchronous operation to finish
 
-當您啟動批次作業時，回應會傳回「作業 - 位置」標頭，以提供追蹤作業所需的資訊。您可以和追蹤組建作業一樣，使用 [擷取作業狀態 API](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3da) 來追蹤作業。
+When you start the batch operation, the response returns the Operation-Location header that gives you the information that's necessary to track the operation.
+You track the operation by using the [Retrieve Operation Status API]( https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3da), just like you do for tracking the operation of a build operation.
 
-## 取得結果
+## <a name="get-the-results"></a>Get the results
 
-作業完成後，假設沒有任何錯誤，您就可以從輸出 Blob 儲存體收集結果。
+After the operation has finished, assuming that there were no errors, you can gather the results from your output Blob storage.
 
-以下範例顯示輸出的大致外觀。在此範例中，為求簡單明瞭，我們顯示只有兩個要求的批次結果。
+The example below show what the output might look like. In this example, we show results for a batch with only two requests (for brevity).
 
     {
       "results":
@@ -193,9 +197,13 @@ API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也�
     ]}
 
 
-## 了解限制
+## <a name="learn-about-the-limitations"></a>Learn about the limitations
 
--	每個訂用帳戶一次只能呼叫一個批次作業。
--	批次作業輸入檔不能超過 2 MB。
+-   Only one batch job can be called per subscription at a time.
+-   A batch job input file cannot be more than 2 MB.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

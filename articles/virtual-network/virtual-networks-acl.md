@@ -1,6 +1,6 @@
 <properties
-   pageTitle="什麼是網路存取控制清單 (ACL)？"
-   description="了解 ACL"
+   pageTitle="What is a Network Access Control List (ACL)?"
+   description="Learn about ACLs"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -15,88 +15,93 @@
    ms.date="03/15/2016"
    ms.author="jdial" />
 
-# 什麼是端點存取控制清單 (ACL)？
 
-端點存取控制清單 (ACL) 是適用於您 Azure 部署的安全性增強功能。ACL 提供針對虛擬機器端點選擇性允許或拒絕流量的功能。此封包篩選功能提供了一層額外的安全性。您可以僅針對端點指定網路 ACL。您無法針對虛擬網路或是包含在虛擬網路中的特定子網路指定 ACL。
+# <a name="what-is-an-endpoint-access-control-list-(acls)?"></a>What is an endpoint Access Control List (ACLs)?
 
-> [AZURE.IMPORTANT] 建議在網路安全性群組 (NSG) 可用時，用其取代 ACL 的使用。若要深入了解 NSG，請參閱＜[什麼是網路安全性群組？](virtual-networks-nsg.md)＞。
+An endpoint Access Control List (ACL) is a security enhancement available for your Azure deployment. An ACL provides the ability to selectively permit or deny traffic for a virtual machine endpoint. This packet filtering capability provides an additional layer of security. You can specify network ACLs for endpoints only. You can't specify an ACL for a virtual network or a specific subnet contained in a virtual network.
 
-您可以使用 PowerShell 或管理入口網站設定 ACL。若要使用 PowerShell 設定網路 ACL，請參閱＜[使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md)＞。若要使用管理入口網站來設定網路 ACL，請參閱＜[如何設定虛擬機器的端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)＞。
+> [AZURE.IMPORTANT] It is recommended to use Network Security Groups (NSGs) instead of ACLs whenever possible. To learn more about NSGs, see [What is a Network Security Group?](virtual-networks-nsg.md).
 
-您可以使用網路 ACL 執行下列作業：
+ACLs can be configured by using either PowerShell or the Management Portal. To configure a network ACL by using PowerShell, see [Managing Access Control Lists (ACLs) for Endpoints by using PowerShell](virtual-networks-acl-powershell.md). To configure a network ACL by using the Management Portal, see [How to Set Up Endpoints to a Virtual Machine](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md).
 
-- 根據遠端子網路與虛擬機器輸入端點的 IPv4 位址範圍，選擇性允許或拒絕傳入流量。
+Using Network ACLs, you can do the following:
 
-- 將 IP 位址加入黑名單
+- Selectively permit or deny incoming traffic based on remote subnet IPv4 address range to a virtual machine input endpoint.
 
-- 為每個虛擬機器端點建立多個規則
+- Blacklist IP addresses
 
-- 為每個虛擬機器端點指定最多 50 個 ACL 規則
+- Create multiple rules per virtual machine endpoint
 
-- 使用規則順序以確保正確的規則集套用於指定的虛擬機器端點 (從最低到最高)
+- Specify up to 50 ACL rules per virtual machine endpoint
 
-- 為特定遠端子網路 IPv4 位址指定 ACL。
+- Use rule ordering to ensure the correct set of rules are applied on a given virtual machine endpoint (lowest to highest)
 
-## ACL 的運作方式
+- Specify an ACL for a specific remote subnet IPv4 address.
 
-ACL 是包含規則清單的物件。當您建立 ACL 並將它套用到虛擬機器端點時，封包篩選會在您 VM 的主機節點上進行。這表示來自遠端 IP 位址的流量會透過符合 ACL 規則的主機節點進行篩選，而非在您的 VM 上。這可讓您的 VM 在封包篩選時免於耗費珍貴的 CPU 週期。
+## <a name="how-acls-work"></a>How ACLs work
 
-建立虛擬機器後，預設的 ACL 將準備好封鎖所有傳入流量。不過，如果所建立的端點使用 (連接埠 3389)，則預設 ACL 會修改成允許該端點的所有輸入流量。接著會允許來自任何遠端子網路的輸入流量傳輸至該端點，且不需要佈建任何防火牆。除非建立那些連接埠的端點，否則會封鎖所有其他連接埠則的輸入流量。預設為允許輸出流量。
+An ACL is an object that contains a list of rules. When you create an ACL and apply it to a virtual machine endpoint, packet filtering takes place on the host node of your VM. This means the traffic from remote IP addresses is filtered by the host node for matching ACL rules instead of on your VM. This prevents your VM from spending the precious CPU cycles on packet filtering.
 
-**範例預設 ACL 資料表**
+When a virtual machine is created, a default ACL is put in place to block all incoming traffic. However, if an endpoint is created for (port 3389), then the default ACL is modified to allow all inbound traffic for that endpoint. Inbound traffic from any remote subnet is then allowed to that endpoint and no firewall provisioning is required. All other ports are blocked for inbound traffic unless endpoints are created for those ports. Outbound traffic is allowed by default.
 
-| **規則編號** | **遠端子網路** | **端點** | **允許/拒絕** |
+**Example Default ACL table**
+
+| **Rule #** | **Remote Subnet** | **Endpoint** | **Permit/Deny** |
 |--------|---------------|----------|-------------|
-| 100 | 0\.0.0.0/0 | 3389 | 允許 |
+| 100    | 0.0.0.0/0     | 3389     | Permit      |
 
-## 允許和拒絕
+## <a name="permit-and-deny"></a>Permit and deny
 
-您可以透過建立指定「允許」或「拒絕」的規則，選擇性允許或拒絕虛擬機器輸入端點的網路流量。請務必注意建立端點時，預設為允許端點的所有流量。基於這個原因，如果您想要更精確地控制允許連接到虛擬機器端點的網路流量，請務必了解如何建立允許/拒絕規則，並將它們放在適當的優先順序。
+You can selectively permit or deny network traffic for a virtual machine input endpoint by creating rules that specify "permit" or "deny". It's important to note that by default, when an endpoint is created, all traffic is permitted to the endpoint. For that reason, it's important to understand how to create permit/deny rules and place them in the proper order of precedence if you want granular control over the network traffic that you choose to allow to reach the virtual machine endpoint.
 
-考慮事項：
+Points to consider:
 
-1. **無 ACL –** 建立端點後，我們預設允許所有端點的流量。
+1. **No ACL –** By default when an endpoint is created, we permit all for the endpoint.
 
-1. **允許 -** 當您新增一個或多個「允許」範圍時，將預設為拒絕所有其他範圍。僅來自允許 IP 範圍的封包能夠與虛擬機器端點進行通訊。
+1. **Permit -** When you add one or more "permit" ranges, you are denying all other ranges by default. Only packets from the permitted IP range will be able to communicate with the virtual machine endpoint.
 
-1. **拒絕 -** 當您新增一個或多個「拒絕」範圍時，將預設為允許所有其他範圍。
+1. **Deny -** When you add one or more "deny" ranges, you are permitting all other ranges of traffic by default.
 
-1. **允許和拒絕的組合 -** 當您想要規劃一個允許或拒絕的特定 IP 範圍時，您可以使用「允許」和「拒絕」的組合。
+1. **Combination of Permit and Deny -** You can use a combination of "permit" and "deny" when you want to carve out a specific IP range to be permitted or denied.
 
-## 規則和規則優先順序
+## <a name="rules-and-rule-precedence"></a>Rules and rule precedence
 
-網路 ACL 可以在特定的虛擬機器端點上進行設定。例如，您可以針對在虛擬機器上建立的 RDP 端點指定網路 ACL，以便鎖定特定 IP 位址的存取權。下方資料表顯示授與特定範圍公用虛擬 IP (VIP) 的存取權來允許存取 RDP 的方式。所有其他遠端 IP 會遭到拒絕。我們遵循*最低優先*的規則順序。
+Network ACLs can be set up on specific virtual machine endpoints. For example, you can specify a network ACL for an RDP endpoint created on a virtual machine which locks down access for certain IP addresses. The table below shows a way to grant access to public virtual IPs (VIPs) of a certain range to permit access for RDP. All other remote IPs are denied. We follow a *lowest takes precedence* rule order.
 
-### 多個規則
+### <a name="multiple-rules"></a>Multiple rules
 
-在下方範例中，如果您想要允許僅能從兩個公用 IPv4 位址範圍 (65.0.0.0/8，以及 159.0.0.0/8) 來存取 RDP 端點，您可以指定兩個*允許*規則來達到這個目的。在此案例中，因為預設會建立虛擬機器的 RDP，您可能要根據遠端子網路鎖定 RDP 連接埠的存取權。下方範例顯示授與特定範圍公用虛擬 IP (VIP) 的存取權來允許存取 RDP 的方式。所有其他遠端 IP 會遭到拒絕。這是因為網路 ACL 可以針對特定虛擬機器端點進行設定，且預設為拒絕存取。
+In the example below, if you want to allow access to the RDP endpoint only from two public IPv4 address ranges (65.0.0.0/8, and 159.0.0.0/8), you can achieve this by specifying two *Permit* rules. In this case, since RDP is created by default for a virtual machine, you may want to lock down access to the RDP port based on a remote subnet. The example below shows a way to grant access to public virtual IPs (VIPs) of a certain range to permit access for RDP. All other remote IPs are denied. This works because network ACLs can be set up for a specific virtual machine endpoint and access is denied by default.
 
-**範例 – 多個規則**
+**Example – Multiple rules**
 
-| **規則編號** | **遠端子網路** | **端點** | **允許/拒絕** |
+| **Rule #** | **Remote Subnet** | **Endpoint** | **Permit/Deny** |
 |--------|---------------|----------|-------------|
-| 100 | 65\.0.0.0/8 | 3389 | 允許 |
-| 200 | 159\.0.0.0/8 | 3389 | 允許 |
+| 100    | 65.0.0.0/8    | 3389     | Permit      |
+| 200    | 159.0.0.0/8   | 3389     | Permit      |
 
-### 規則順序
+### <a name="rule-order"></a>Rule order
 
-因為端點可以指定多個規則，故必須依靠一種方式組織規則，以判斷規則的優先順序。規則順序會指定優先順序。網路 ACL 遵循*最低優先*的規則順序。在下方範例中，連接埠 80 上的端點會選擇性僅針對某些特定 IP 位址範圍授與存取權。若要進行此設定，我們可以針對 175.1.0.1/24 空間中的位址使用拒絕規則 (規則編號 100)。接著指定第二個規則的優先順序為 200，以便允許 175.0.0.0/8 下所有其他位址的存取。
+Because multiple rules can be specified for an endpoint, there must be a way to organize rules in order to determine which rule takes precedence. The rule order specifies precedence. Network ACLs follow a *lowest takes precedence* rule order. In the example below, the endpoint on port 80 is selectively granted access to only certain IP address ranges. To configure this, we have a deny rule (Rule \# 100) for addresses in the 175.1.0.1/24 space. A second rule is then specified with precedence 200 that permits access to all other addresses under 175.0.0.0/8.
 
-**範例 – 規則優先順序**
+**Example – Rule precedence**
 
-| **規則編號** | **遠端子網路** | **端點** | **允許/拒絕** |
+| **Rule #** | **Remote Subnet** | **Endpoint** | **Permit/Deny** |
 |--------|---------------|----------|-------------|
-| 100 | 175\.1.0.1/24 | 80 | 拒絕 |
-| 200 | 175\.0.0.0/8 | 80 | 允許 |
+| 100    | 175.1.0.1/24  | 80       | Deny        |
+| 200    | 175.0.0.0/8   | 80       | Permit      |
 
-## 網路 ACL 和負載平衡集合
+## <a name="network-acls-and-load-balanced-sets"></a>Network ACLs and load balanced sets
 
-網路 ACL 可以在負載平衡集合 (LB 集合) 端點上進行指定。如果針對 LB 集合指定 ACL，則網路 ACL 會套用至該 LB 集合中的所有虛擬機器。例如，如果以「連接埠 80」建立 LB 集合，而此 LB 集合包含 3 個 VM，則在其中一個 VM 的端點「連接埠 80」上所建立的網路 ACL 會自動套用至其他 VM。
+Network ACLs can be specified on a Load balanced set (LB Set) endpoint. If an ACL is specified for a LB Set, the Network ACL is applied to all Virtual Machines in that LB Set. For example, if a LB Set is created with "Port 80" and the LB Set contains 3 VMs, the Network ACL created on endpoint "Port 80" of one VM will automatically apply to the other VMs.
 
-![網路 ACL 和負載平衡集合](./media/virtual-networks-acl/IC674733.png)
+![Network ACLs and load balanced sets](./media/virtual-networks-acl/IC674733.png)
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-[如何使用 PowerShell 管理存取控制清單 (ACL) 端點](virtual-networks-acl-powershell.md)
+[How to manage Access Control Lists (ACLs) for Endpoints by using PowerShell](virtual-networks-acl-powershell.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

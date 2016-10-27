@@ -1,6 +1,6 @@
 <properties
-   pageTitle="部署 StorSimple Virtual Array：在 VMware 中佈建"
-   description="部署 StorSimple Virtual Array 的第二個教學課程，內容為如何在 VMware 中佈建虛擬裝置。"
+   pageTitle="Deploy StorSimple Virtual Array - Provision in VMware"
+   description="This second tutorial in StorSimple Virtual Array deployment series involves provisioning a virtual device in VMware."
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -17,293 +17,300 @@
    ms.author="alkohli"/>
 
 
-# 部署 StorSimple Virtual Array：在 VMware 中佈建虛擬陣列
+
+# <a name="deploy-storsimple-virtual-array---provision-a-virtual-array-in-vmware"></a>Deploy StorSimple Virtual Array - Provision a Virtual Array in VMware
 
 ![](./media/storsimple-ova-deploy2-provision-vmware/vmware4.png)
 
-## 概觀 
-本佈建教學課程適用於執行 2016 年 3 月公開上市 (GA) 版的 StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置)。本教學課程說明如何在執行 VMware ESXi 5.5 及更新版本 的主機系統上佈建及連線到 StorSimple 虛擬陣列。本文適用於 StorSimple Virtual Arrays 在 Azure 傳統入口網站的部署，以及 Microsoft Azure 政府服務雲端。
+## <a name="overview"></a>Overview 
+This provisioning tutorial applies to StorSimple Virtual Arrays (also known as StorSimple on-premises virtual devices or StorSimple virtual devices) running March 2016 general availability (GA) release. This tutorial describes how to provision and connect to a StorSimple Virtual Array on a host system running VMware ESXi 5.5 and above. This article applies to the deployment of StorSimple Virtual Arrays in Azure classic portal as well as Microsoft Azure Government Cloud.
 
-您需要系統管理員權限，才能佈建及連線到虛擬裝置。佈建及初始安裝程序可能需要大約 10 分鐘的時間才能完成。
+You will need administrator privileges to provision and connect to a virtual device. The provisioning and initial setup can take around 10 minutes to complete.
 
 
-## 佈建的必要條件
+## <a name="provisioning-prerequisites"></a>Provisioning prerequisites
 
-我們在此提供要在執行 VMware ESXi 5.5 及更新版本的主機系統上佈建虛擬裝置的必要條件。
+Here you will find the prerequisites to provision a virtual device on a host system running VMware ESXi 5.5 and above.
 
-### 對於 StorSimple Manager 服務
+### <a name="for-the-storsimple-manager-service"></a>For the StorSimple Manager service
 
-在您開始前，請確定：
+Before you begin, make sure that:
 
--   您已完成[準備入口網站以使用 StorSimple Virtual Array](storsimple-ova-deploy1-portal-prep.md) 中的所有步驟。
+-   You have completed all the steps in [Prepare the portal for StorSimple Virtual Array](storsimple-ova-deploy1-portal-prep.md).
 
--   您已經從 Azure 入口網站下載適用於 VMware 的虛擬裝置映像。如需詳細資訊，請參閱〈[步驟 3：下載虛擬裝置映像](storsimple-ova-deploy1-portal-prep.md#step-3-download-the-virtual-device-image)〉。
+-   You have downloaded the virtual device image for VMware from the Azure portal. For more information, see [Step 3: Download the virtual device image](storsimple-ova-deploy1-portal-prep.md#step-3-download-the-virtual-device-image).
 
-### 對於 StorSimple 虛擬裝置 
+### <a name="for-the-storsimple-virtual-device"></a>For the StorSimple virtual device 
 
-在您部署虛擬裝置之前，請確定：
+Before you deploy a virtual device, make sure that:
 
--   您可以存取執行 Hyper-V (2008 R2 或更新版本)，且可用來佈建裝置的主機系統。
+-   You have access to a host system running Hyper-V (2008 R2 or later) that can be used to a provision a device.
 
--   主機系統能夠把下列資源專門用來佈建虛擬裝置：
+-   The host system is able to dedicate the following resources to provision your virtual device:
 
-	-   至少 4 顆核心。
+    -   A minimum of 4 cores.
 
-	-   至少 8 GB 的 RAM。
+    -   At least 8 GB of RAM.
 
-	-   一個網路介面。
+    -   One network interface.
 
-	-   供系統資料使用的 500 GB 虛擬磁碟。
+    -   A 500 GB virtual disk for system data.
 
-### 對於資料中心的網路 
+### <a name="for-the-network-in-datacenter"></a>For the network in datacenter 
 
-在您開始前，請確定：
+Before you begin, make sure that:
 
--   您已經檢閱部署 StorSimple 虛擬裝置的網路需求，且已經根據需求設定資料中心的網路。如需詳細資訊，請參閱 [StorSimple Virtual Array 系統需求](storsimple-ova-system-requirements.md)。
+-   You have reviewed the networking requirements to deploy a StorSimple virtual device and configured the datacenter network as per the requirements. For more information, see [StorSimple Virtual Array system requirements](storsimple-ova-system-requirements.md).
 
-## 佈建的逐步指示 
+## <a name="step-by-step-provisioning"></a>Step-by-step provisioning 
 
-若要佈建及連接到虛擬裝置，您必須執行下列步驟：
+To provision and connect to a virtual device, you will need to perform the following steps:
 
-1.  確認主機系統有足夠的資源來符合最低的虛擬裝置需求。
+1.  Ensure that the host system has sufficient resources to meet the minimum virtual device requirements.
 
-2.  在 Hypervisor 中佈建虛擬裝置。
+2.  Provision a virtual device in your hypervisor.
 
-3.  啟動虛擬裝置，並取得 IP 位址。
+3.  Start the virtual device and get the IP address.
 
-## 步驟 1：確認主機系統符合最低的虛擬裝置需求
+## <a name="step-1:-ensure-host-system-meets-minimum-virtual-device-requirements"></a>Step 1: Ensure host system meets minimum virtual device requirements
 
-若要建立虛擬裝置，您將需要：
+To create a virtual device, you will need:
 
--   能夠存取執行 VMware ESXi 伺服器 5.5 及更新版本的主機系統。
+-   Access to a host system running VMware ESXi Server 5.5 and above.
 
--   您系統上的 VMware vSphere 用戶端，以便管理 ESXi 主機。
+-   VMware vSphere client on your system to manage the ESXi host.
 
-	-   至少 4 顆核心。
+    -   A minimum of 4 cores.
 
-	-   至少 8 GB 的 RAM。
+    -   At least 8 GB of RAM.
 
-	-   網路介面，且已連線到能夠將流量路由至網際網路的網路。網際網路頻寬應該至少要有 5 Mbps，以便讓裝置能夠發揮最大功能。
+    -   One network interface connected to the network capable of routing traffic to Internet. The minimum Internet bandwidth should be 5 Mbps to allow for optimal working of the device.
 
-	-   供資料使用的 500 GB 虛擬磁碟。
+    -   A 500 GB virtual disk for data.
 
-## 步驟 2：在 Hypervisor 中佈建虛擬裝置
+## <a name="step-2:-provision-a-virtual-device-in-hypervisor"></a>Step 2: Provision a virtual device in hypervisor
 
-請執行下列步驟，以便在您的 Hypervisor 中佈建虛擬裝置。
+Perform the following steps to provision a virtual device in your hypervisor.
 
-1.  複製您系統中的虛擬裝置映像。這就是您之前透過 Azure 傳統入口網站下載的映像。 
-	1.  請確定這是您已下載的最新映像檔。如果您稍早下載過映像，請再下載一次，確定您擁有最新映像。最新映像具有兩個檔案 (而不是一個)。
-	2.  請記下您複製映像的位置，因為稍後將會在程序中使用該資訊。
+1.  Copy the virtual device image on your system. This is the image that you have downloaded through the Azure classic portal. 
+    1.  Ensure that this is the latest image file that you have downloaded. If you downloaded the image earlier, download it again to ensure you have the latest image. The latest image has two files (instead of one).
+    2.  Make a note of the location where you copied the image as you will be using this later in the procedure.
 
-2.  使用 vSphere 用戶端登入 ESXi 伺服器。您必須有系統管理員權限，才能建立虛擬機器。
+2.  Log into the ESXi server using the vSphere client. You will need to have administrator privileges to create a virtual machine.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image1.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image1.png)
 
-1.  在 vSphere 用戶端中，選取左窗格 [詳細目錄] 區段中的 [ESXi 伺服器]。
+1.  In the vSphere client, in the inventory section in the left pane, select the ESXi Server.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image2.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image2.png)
 
-1.  首先您要將 VMDK 上傳至 ESXi 伺服器。瀏覽至右窗格中的 [組態] 索引標籤。選取 [硬體] 下方的 [儲存體]。
+1.  You will first upload the VMDK to the ESXi server. Navigate to the **Configuration** tab in the right pane. Under **Hardware**, select **Storage**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image3.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image3.png)
 
-1.  在右窗格的 [資料存放區] 下方，選取您要上傳 VMDK 的資料存放區。資料存放區必須要有足夠的可用空間來容納作業系統和資料磁碟。
+1.  In the right pane, under **Datastores**, select the datastore where you want to upload the VMDK. The datastore must have enough free space for the OS and data disks.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image4.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image4.png)
 
-1.  按一下滑鼠右鍵，然後選取 [瀏覽資料存放區]。
+1.  Right click and select **Browse Datastore**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image5.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image5.png)
 
-1.  畫面會出現 [資料存放區瀏覽器] 視窗。
+1.  A **Datastore Browser** window will appear.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image6.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image6.png)
 
-1.  在工具列上，按一下 ![](./media/storsimple-ova-deploy2-provision-vmware/image7.png) 圖示來建立新資料夾。然後指定資料夾的名稱，並把該名稱記下來。您稍後在建立虛擬機器時，將會使用該資料夾名稱 (建議的最佳做法)。按一下 [確定]。
+1.  In the tool bar, click ![](./media/storsimple-ova-deploy2-provision-vmware/image7.png) icon to create a new folder. Specify the folder name and make a note of it. You will use this folder name later when creating a virtual machine (recommended best practice). Click **OK**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image8.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image8.png)
 
-1.  [資料存放區瀏覽器] 的左窗格將會出現新的資料夾。
+1.  The new folder will appear in the left pane of the **Datastore Browser**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image9.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image9.png)
 
-1.  按一下上傳圖示 ![](./media/storsimple-ova-deploy2-provision-vmware/image10.png)，然後選取 [上傳檔案]。
+1.  Click the Upload icon ![](./media/storsimple-ova-deploy2-provision-vmware/image10.png) and select **Upload File**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image11.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image11.png)
 
-1.  您現在應該瀏覽並指向您之前下載的 VMDK 檔案。將會有兩個檔案。選取要上傳的檔案。
+1.  You should now browse and point to the VMDK files that you downloaded. There will be two files. Select a file to upload.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image12m.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image12m.png)
 
-1.  按一下 [開啟]。此時將 VMDK 檔案上傳至指定資料存放區的作業將會開始。檔案可能需要幾分鐘的時間才能上傳完畢。
+1.  Click **Open**. This will now start the upload of the VMDK file to the specified datastore. It may take several minutes for the file to upload.
 
 
-1.  上傳完成之後，檔案就會出現在資料存放區裡您所建立的資料夾中。
+1.  After the upload is complete, you will see the file in the datastore in the folder you created. 
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image14.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image14.png)
 
-	您現在需要將第二個 VMDK 檔案上傳至相同的資料存放區。
+    You will now need to upload the second VMDK file to the same datastore.
 
-1.  返回 vSphere 用戶端視窗。在選取 ESXi 伺服器之後按一下滑鼠右鍵，然後選取 [新增虛擬機器]。
+1.  Return to the vSphere client window. With ESXi server selected, right-click and select **New Virtual Machine**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image15.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image15.png)
 
-1.  畫面會出限 [建立新虛擬機器] 視窗。在 [設定] 頁面上，選取 [自訂] 選項。按 [下一步]。![](./media/storsimple-ova-deploy2-provision-vmware/image16.png)
+1.  A **Create New Virtual Machine** window will appear. On the **Configuration** page, select the **Custom** option. Click **Next**.
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image16.png)
 
-2.  在 [名稱和位置] 頁面上，指定虛擬機器的名稱。這個名稱應該與您之前在步驟 8 中指定的資料夾名稱 (建議的最佳做法) 相同。
+2.  On the **Name and Location** page, specify the name of your virtual machine. This name should match the folder name (recommended best practice) you specified earlier in Step 8.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image17.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image17.png)
 
-1.  在 [儲存體] 頁面上，選取您要用來佈建虛擬機器的資料存放區。
+1.  On the **Storage** page, select a datastore you want to use to provision your VM.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image18.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image18.png)
 
-1.  在 [虛擬機器版本] 頁面上，選取 [虛擬機器版本: 8]。請注意，支援第 8 版到第 11 版。
+1.  On the **Virtual Machine Version** page, select **Virtual Machine Version: 8**. Note that versions 8 to 11 are all supported.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image19.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image19.png)
 
-1.  在 [客體作業系統] 頁面上，將 [客體作業系統] 選取為 [Windows] 。而對於 [版本]，請從下拉式清單中選取 [Microsoft Windows Server 2012 (64 位元)]。
+1.  On the **Guest Operating System** page, select the **Guest Operating System** as **Windows**. For **Version**, from the dropdown list, select **Microsoft Windows Server 2012 (64-bit)**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image20.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image20.png)
 
-1.  在 [CPU] 頁面上，調整 [虛擬通訊端的數目] 和 [每個虛擬通訊端的核心數目]，以便讓 [核心總數] 至少為 4。按 [下一步]。
+1.  On the **CPUs** page, adjust the **Number of virtual sockets** and **Number of cores per virtual socket** so that the **Total number of cores** is 4 (or more). Click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image21.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image21.png)
 
-1.  在 [記憶體] 頁面上，將 RAM 指定為至少為 8 GB。按 [下一步]。
+1.  On the **Memory** page, specify 8 GB (or more) of RAM. Click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image22.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image22.png)
 
-1.  在 [網路] 頁面上，指定網路介面的數目。最低需求是一個網路介面。
+1.  On the **Network** page, specify the number of the network interfaces. The minimum requirement is one network interface.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image23.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image23.png)
 
-1.  在 [SCSI 控制器] 頁面上，接受預設的 [LSI Logic SAS 控制器]。
+1.  On the **SCSI Controller** page, accept the default **LSI Logic SAS controller**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image24.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image24.png)
 
-1.  在 [選取磁碟] 頁面上，選擇 [使用現有的虛擬硬碟]。按 [下一步]。
+1.  On the **Select a Disk** page, choose **Use an existing virtual disk**. Click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image25.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image25.png)
 
-1.  在 [選取現有的磁碟]頁面的 [磁碟檔案路徑] 下方，按一下 [瀏覽]。這會開啟 [瀏覽資料存放區] 對話方塊。瀏覽至您之前上傳 VMDK 的位置。因為已合併一開始上傳的兩個檔案，所以您現在於資料存放區中只會看到一個檔案。選取檔案，然後按一下 [確定]。按 [下一步]。
+1.  On the **Select Existing Disk** page, under **Disk File Path**, click **Browse**. This opens a **Browse Datastores** dialog. Navigate to the location where you uploaded the VMDK. You will now see only one file in the datastore as the two files that you initially uploaded have been merged. Select the file and click **OK**. Click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image26.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image26.png)
 
-1.  在 [進階選項] 頁面上，接受預設值並按 [下一步]。
+1.  On the **Advanced Options** page, accept the default and click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image27.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image27.png)
 
-1.  在 [準備完成] 頁面上，檢閱與新的虛擬機器相關的所有設定。核取 [在完成之前編輯虛擬機器的設定]。按一下 [繼續]。
+1.  On the **Ready to Complete** page, review all the settings associated with the new virtual machine. Check **Edit the virtual machine settings before completion**. Click **Continue**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image28.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image28.png)
 
-1.  在 [虛擬機器屬性] 頁面的 [硬體] 索引標籤上尋找裝置的硬體。選取 [新增硬碟]。按一下 [新增]。
+1.  On the **Virtual Machines Properties** page, in the **Hardware** tab, locate the device hardware. Select **New Hard Disk**. Click **Add**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image29.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image29.png)
 
-1.  此時畫面會出現 [新增硬體] 視窗。在 [裝置類型] 頁面的 [選擇您想要新增的裝置類型] 下面，選取 [硬碟]並按 [下一步]。
+1.  This brings up the **Add Hardware** window. On the **Device Type** page, under **Choose the type of device you wish to add**, select **Hard Disk** and click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image30.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image30.png)
 
-1.  在 [選取磁碟] 頁面上，選擇 [建立新的虛擬磁碟]。按 [下一步]。
+1.  On the **Select a Disk** page, choose **Create a new virtual disk**. Click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image31.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image31.png)
 
-1.  在 [建立磁碟] 頁面上，將 [磁碟大小] 變更為至少 500 GB。在 [磁碟佈建] 下方，選取 [精簡佈建]。按 [下一步]。
+1.  On the **Create a Disk** page, change the **Disk Size** to 500 GB (or more). Under **Disk Provisioning**, select **Thin Provision**. Click **Next**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image32.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image32.png)
 
-1.  在 [進階選項] 頁面上，接受預設值。
+1.  On the **Advanced Options** page, accept the default.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image33.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image33.png)
 
-1.  在 [準備完成] 頁面上，檢閱磁碟的各個選項。按一下 [完成]。
+1.  On the **Ready to Complete** page, review the disk options. Click **Finish**.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image34.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image34.png)
 
-1.  此時您會返回 [虛擬機器屬性] 頁面。您的虛擬機器已新增一個硬碟。按一下 [完成]。
+1.  You will now return to the Virtual Machine Properties page. A new hard disk is added to your virtual machine. Click **Finish**.
   
-	![](./media/storsimple-ova-deploy2-provision-vmware/image35.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image35.png)
 
-2.  在右窗格中選取您的虛擬機器，然後瀏覽至 [摘要] 索引標籤。請檢閱您虛擬機器的設定。
+2.  With your virtual machine selected in the right pane, navigate to the **Summary** tab. Review the settings for your virtual machine.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image36.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image36.png)
 
-您的虛擬機器已成功佈建。下一個步驟是啟動該虛擬機器，然後取得 IP 位址。
+Your virtual machine is now provisioned. The next step is to power on this machine and get the IP address.
 
-## 步驟 3：啟動虛擬裝置，並取得 IP 位址
+## <a name="step-3:-start-the-virtual-device-and-get-the-ip"></a>Step 3: Start the virtual device and get the IP
 
-請執行下列步驟來啟動您的虛擬裝置，並連線到該虛擬裝置。
+Perform the following steps to start your virtual device and connect to it.
 
-#### 啟動虛擬裝置
+#### <a name="to-start-the-virtual-device"></a>To start the virtual device
 
-1.  啟動虛擬裝置。在 vSphere 設定管理員中，選取左窗格中您的裝置，然後按一下滑鼠右鍵來開啟操作功能表。選取 [電源]，然後選取 [開啟電源]。此時您的虛擬機器應該會開機。您可以在 vSphere 用戶端的 [最近的工作] 窗格底部檢視狀態。
+1.  Start the virtual device. In the vSphere Configuration Manager, in the left pane, select your device and right-click to bring up the context menu. Select **Power** and then select **Power on**. This should power on your virtual machine. You can view the status in the bottom **Recent Tasks** pane of the vSphere client.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image37.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image37.png)
 
-1.  安裝工作將需要幾分鐘的時間才能完成。當裝置開始運作時，瀏覽至 [主控台] 索引標籤。傳送 Ctrl+Alt+Delete 來登入裝置。或者，您可以讓游標指向主控台視窗，然後按下 Ctrl+Alt+Insert。預設的使用者為「StorSimpleAdmin」，而預設密碼為「Password1」。
+1.  The setup tasks will take a few minutes to complete. Once the device is running, navigate to the **Console** tab. Send Ctrl+Alt+Delete to log into the device. Alternatively, you can point the cursor on the console window and press Ctrl+Alt+Insert. The default user is *StorSimpleAdmin* and the default password is *Password1*.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image38.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image38.png)
 
-1.  基於安全上的理由，裝置系統管理員密碼會在您第一次登入時過期。系統將會提示您變更密碼。
+1.  For security reasons, the device administrator password expires at the first log on. You will be prompted to change the password.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image39.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image39.png)
 
-1.  請輸入至少包含 8 個字元的密碼。密碼必須包含下列 4 個需求中的 3 個：大寫、小寫、數字和特殊字元。請重新輸入密碼來加以確認。系統將會通知您密碼已經變更。
+1.  Enter a password that contains at least 8 characters. The password must contain 3 out of 4 of these requirements: uppercase, lowercase, numeric, and special characters. Reenter the password to confirm it. You will be notified that the password has changed.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image40.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image40.png)
 
-1.  密碼變更成功之後，裝置可能會重新開機。請等待裝置開機完畢。畫面可能會出現裝置的 Windows PowerShell 主控台及進度列。
+1.  After the password is successfully changed, the virtual device may reboot. Wait for the reboot to complete. The Windows PowerShell console of the device may be displayed along with a progress bar.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image41.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image41.png)
 
-1.  步驟 6 至 8 僅適用於在非 DHCP 環境中開機的情況。如果您是在 DHCP 環境中，請略過這些步驟並前往步驟 9。如果您是在非 DHCP 環境中讓裝置開機，您會看到下列畫面。
+1.  Steps 6-8 only apply when booting up in a non DHCP environment. If you are in a DHCP environment, then skip these steps and go to step 9. If you booted up your device in non DHCP environment, you will see the following screen. 
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image42m.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image42m.png)
 
-	您現在必須設定網路。
+    You will now need to configure the network.
 
-1.  使用 `Get-HcsIpAddress` 命令來列出虛擬裝置上已啟用的網路介面。如果您的裝置有已啟用的單一網路介面，系統指派給該介面的預設名稱會是 `Ethernet`。
+1.  Use the `Get-HcsIpAddress` command to list the network interfaces enabled on your virtual device. If your device has a single network interface enabled, the default name assigned to this interface is `Ethernet`.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image43m.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image43m.png)
 
-1.  使用 `Set-HcsIpAddress` Cmdlet 來設定網路。範例如下所示：
+1.  Use the `Set-HcsIpAddress` cmdlet to configure the network. An example is shown below:
 
 
     `Set-HcsIpAddress –Name Ethernet –IpAddress 10.161.22.90 –Netmask 255.255.255.0 –Gateway 10.161.22.1`
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image44.png)
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image44.png)
 
-1.  初始安裝程序完成，且裝置已開機之後，您將會看到裝置橫幅文字。請記下 IP 位址及橫幅文字中的 URL，以便管理裝置。您將使用此 IP 位址連線到虛擬裝置的 Web UI，以及完成本機安裝和註冊程序。
+1.  After the initial setup is complete and the device has booted up, you will see the device banner text. Make a note of the IP address and the URL displayed in the banner text to manage the device. You will use this IP address to connect to the web UI of your virtual device and complete the local setup and registration.
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image45.png)
-
-
-1. (選擇性) 只有當您要在政府服務雲端部署裝置時，才執行這個步驟。您現在將在您的裝置上啟用美國聯邦資訊處理標準 (FIPS) 模式。FIPS 140 標準定義核准美國聯邦政府電腦系統所使用的密碼編譯演算法來保護機密資料。
-	1. 若要啟用 FIPS 模式，請執行下列 Cmdlet：
-		
-		`Enter-HcsFIPSMode`
-
-	2. 在您啟用 FIPS 模式之後，重新啟動您的裝置，讓密碼編譯驗證生效。
-
-		> [AZURE.NOTE] 您可以在您的裝置上啟用或停用 FIPS 模式。不支援在 FIPS 和非 FIPS 模式之間替換裝置。
+    ![](./media/storsimple-ova-deploy2-provision-vmware/image45.png)
 
 
-如果裝置不符合最低設定需求，橫幅文字中會出現錯誤訊息 (如下所示)。您必須修改裝置設定，讓裝置有足夠的資源來符合最低需求。然後您就可以將裝置重新啟動，並連線到該裝置。請參閱[步驟 1：確認主機系統符合最低的虛擬裝置需求](#step-1-ensure-host-system-meets-minimum-virtual-device-requirements)中的最低設定需求。
+1. (Optional) Perform this step only if you are deploying your device in the Government Cloud. You will now enable the United States Federal Information Processing Standard (FIPS) mode on your device. The FIPS 140 standard defines cryptographic algorithms approved for use by US Federal government computer systems for the protection of sensitive data.
+    1. To enable the FIPS mode, run the following cmdlet:
+        
+        `Enter-HcsFIPSMode`
+
+    2. Reboot your device after you have enabled the FIPS mode so that the cryptographic validations take effect.
+
+        > [AZURE.NOTE] You can either enable or disable FIPS mode on your device. Alternating the device between FIPS and non-FIPS mode is not supported.
+
+
+If your device does not meet the minimum configuration requirements, you will see an error in the banner text (shown below). You will need to modify the device configuration so that it has adequate resources to meet the minimum requirements. You can then restart and connect to the device. Refer to the minimum configuration requirements in [Step 1: Ensure that the host system meets minimum virtual device requirements](#step-1-ensure-host-system-meets-minimum-virtual-device-requirements).
 
 ![](./media/storsimple-ova-deploy2-provision-vmware/image46.png)
 
-如果您在使用本機 Web UI 進行初始設定作業時碰到其他任何錯誤，請參閱[使用本機 Web UI 管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md) 中的下列工作流程。
+If you face any other error during the initial configuration using the local web UI, refer to the following workflows in [Manage your StorSimple Virtual Array using the local web UI](storsimple-ova-web-ui-admin.md).
 
--   執行診斷測試來[疑難排解 Web UI 安裝程式錯誤](storsimple-ova-web-ui-admin.md#troubleshoot-web-ui-setup-errors)。
+-   Run diagnostic tests to [troubleshoot web UI setup](storsimple-ova-web-ui-admin.md#troubleshoot-web-ui-setup-errors).
 
--   [產生記錄檔封裝及檢視記錄檔](storsimple-ova-web-ui-admin.md#generate-a-log-package)。
+-   [Generate log package and view log files](storsimple-ova-web-ui-admin.md#generate-a-log-package)..
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
--   [Set up your StorSimple Virtual Array as a file server (將 StorSimple 虛擬陣列設定為檔案伺服器)](storsimple-ova-deploy3-fs-setup.md)
+-   [Set up your StorSimple Virtual Array as a file server](storsimple-ova-deploy3-fs-setup.md)
 
--   [Set up your StorSimple Virtual Array as an iSCSI server (將 StorSimple 虛擬陣列設定為 iSCSI 伺服器)](storsimple-ova-deploy3-iscsi-setup.md)
+-   [Set up your StorSimple Virtual Array as an iSCSI server](storsimple-ova-deploy3-iscsi-setup.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

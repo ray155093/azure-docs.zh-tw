@@ -1,15 +1,20 @@
 
 
-推播通知通常會以後端服務傳送，例如 Mobile Apps 或使用相容程式庫的 ASP.NET。如果程式庫不適用於您的後端，也可以直接使用 REST API 來傳送通知訊息。
+Push notifications are normally sent in a back-end service like Mobile Apps or ASP.NET using a compatible library. You can also use the REST API directly to send notification messages if a library is not available for your back-end. 
 
-以下是可供您在傳送通知時檢閱的其他教學課程清單：
+Here is a list of some other tutorials you may want to review for sending notifications:
 
-- Azure Mobile Apps：如需如何從已與通知中樞整合的 Mobile Apps 傳送通知的範例，請參閱[新增推播通知至您的 iOS App](../articles/app-service-mobile/app-service-mobile-ios-get-started-push.md)。  
-- ASP.NET：[使用通知中樞將通知推播給使用者](../articles/notification-hubs/notification-hubs-aspnet-backend-ios-apple-apns-notification.md)。
-- Azure 通知中樞 Java SDK：請參閱[如何從 Java 使用通知中樞](../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md)，以便從 Java 傳送通知。這已在 Eclipse for Android Development 中測試。
-- PHP：[如何從 PHP 使用通知中樞](../articles/notification-hubs/notification-hubs-php-push-notification-tutorial.md)。
+- Azure Mobile Apps : For an example of how to send notifications from an Mobile Apps backend integrated with Notification Hubs, see [Add Push Notifications to your iOS App](../articles/app-service-mobile/app-service-mobile-ios-get-started-push.md).  
+- ASP.NET : [Use Notification Hubs to push notifications to users](../articles/notification-hubs/notification-hubs-aspnet-backend-ios-apple-apns-notification.md).
+- Azure Notification Hub Java SDK: See [How to use Notification Hubs from Java](../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md) for sending notifications from Java. This has been tested in Eclipse for Android Development.
+- PHP: [How to use Notification Hubs from PHP](../articles/notification-hubs/notification-hubs-php-push-notification-tutorial.md).
 
 
-在教學課程的下一節中，您將學習如何使用[通知中樞 REST 介面](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx)直接在您的 App 中傳送通知訊息。所有已註冊的裝置都會收到任何裝置所傳送的通知。
+In the next section of the tutorial, you will learn how to use the [Notification Hub REST interface](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx) to send the notification message directly in your app. All registered devices receive the notification sent by any device.  
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,10 +1,10 @@
 <properties 
-    pageTitle="Azure RemoteApp - 利用一些常見案例測試您的網路頻寬使用量 | Microsoft Azure"
-	description="了解常見的使用量案例，可協助您找出適用於 Azure RemoteApp 的網路頻寬需求。"
-	services="remoteapp"
-	documentationCenter="" 
-	authors="lizap" 
-	manager="mbaldwin" />
+    pageTitle="Azure RemoteApp - testing your network bandwidth usage with some common scenarios | Microsoft Azure"
+    description="Learn how about common usage scenarios that can help you figure out your network bandwidth needs for Azure RemoteApp."
+    services="remoteapp"
+    documentationCenter="" 
+    authors="lizap" 
+    manager="mbaldwin" />
 
 <tags 
     ms.service="remoteapp" 
@@ -15,37 +15,38 @@
     ms.date="08/15/2016" 
     ms.author="elizapo" />
     
-# Azure RemoteApp - 利用一些常見案例測試您的網路頻寬使用量
+
+# <a name="azure-remoteapp---testing-your-network-bandwidth-usage-with-some-common-scenarios"></a>Azure RemoteApp - testing your network bandwidth usage with some common scenarios
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-如同我們在 [Estimate Azure RemoteApp network bandwidth usage (估計 Azure RemoteApp 網路頻寬使用量)](remoteapp-bandwidth.md) 中所討論，找出 Azure RemoteApp 對您的網路會產生何種影響的最佳方式是執行一些使用量測試。在設定時段期間執行這些測試，以及測量每個案例所需的頻寬。如果您有能力，您也可以測量網路封包遺失和網路抖動，以了解將在您的特定環境中建立的網路模式。
+As we discussed in [Estimate Azure RemoteApp network bandwidth usage](remoteapp-bandwidth.md), the best way to figure out what the impact of Azure RemoteApp to your network is to run some usage tests. Run these tests for a set time period and measure the bandwidth needed for each scenario. If you have the capability, you can also measure the network packet loss and network jitter to understand the network patterns that will be created in your specific environment.
 
     
-評估頻寬使用量時，請記得貴公司內不同的使用者會有不同的使用量。例如，文字讀者和作家所耗用的頻寬會比使用視訊的使用者還少。為了獲得最佳結果，請調查您自己的使用者需求，並建立下列最能符合您公司內使用者的案例組合：請記得[檢閱會影響頻寬使用量和使用者體驗的因素](remoteapp-bandwidthexperience.md) - 這將可協助您識別理想的測試。
+When evaluating the bandwidth usage, remember that usage varies between different users within your company. For example, text readers and writers usually consume less bandwidth than users that work with video. For best results, study your own user needs and create a mix of the following scenarios that best represents the users in your company. Remember to [review the factors that impact bandwidth usage and user experience](remoteapp-bandwidthexperience.md) - that will help you identify the ideal tests.
 
-先閱讀測試相關資訊、挑選您的組合，然後執行它們。您可以使用下表來協助追蹤效能。
+First read about the tests, pick your mix, and then run them. You can use the table below to help track performance.
 
->[AZURE.NOTE] 如果您無法執行自己的網路測試，或者您沒有時間去做，請查看我們的[基本的網路頻寬估計值/建議](remoteapp-bandwidthguidelines.md)。不過，您的級距可能有所不同，因此，如果您「可以」執行自己的測試，就應該這樣做。
+>[AZURE.NOTE] If you cannot do your own network testing, or you do not have the time to do so, check out our [basic network bandwidth estimates/recommendations](remoteapp-bandwidthguidelines.md). Your mileage may vary, however, so if you *can* run your own tests, you should.
 
 
-## 使用量測試
-這其中每一個測試的執行時間各有不同，並且會測試各種耗用網路頻寬的功能/特性。請務必選擇最符合個別公司使用者的測試組合。
+## <a name="the-usage-tests"></a>The usage tests
+Each of these tests run for different amounts of time and test different functions/features that consume network bandwidth. Remember to choose the mix of test that best matches your individual company users.
  
-### 高階主管/複雜的 PowerPoint - 執行 900-1000秒
+### <a name="executive/complex-powerpoint---run-for-900-1000-seconds"></a>Executive/complex PowerPoint - Run for 900-1000 seconds
 
-使用者可以在全螢幕模式中使用 Microsoft Office PowerPoint，呈現 45-50 張高畫質的投影片。投影片應該包含影像、轉換 (含動畫)，以及貴公司典型的色彩漸層背景。使用者應該在每張投影片上至少花費 20 秒的時間。
+A user presents between 45-50 high-fidelity slides by using Microsoft Office PowerPoint in full-screen mode. The slides should contain images, transitions (with animations), and backgrounds with color gradient that are typical for your company. The user should spend at least 20 seconds on each slide.
     
-從簡報中的某一張投影片轉換到下一張投影片時，這個案例會產生暴增流量。
+This scenario creates bursty traffic, when a slide transitions to the next slide in the presentation.
     
-### 簡單的 PowerPoint - 執行 ~620 秒
+### <a name="simple-powerpoint---run-for-~620-seconds"></a>Simple PowerPoint - Run for ~620 seconds
 
-使用者可以在全螢幕模式中使用 Microsoft Office PowerPoint，來呈現約含 30 張投影片的簡單 PowerPoint 檔案。投影片的文字量比高階主管/複雜的 PowerPoint 案例更多，並含有更簡單的背景和影像 (黑色圖表)。
+A user presents a simple PowerPoint file with approximately 30 slides by using Microsoft Office PowerPoint in full-screen mode. The slides are more text-intensive than in the Executive/complex PowerPoint scenario and have simpler backgrounds and images (black diagrams). 
     
-### Internet Explorer - 執行 ~250 秒
+### <a name="internet-explorer---run-for-~250-seconds"></a>Internet Explorer - Run for ~250 seconds
 
-使用者使用 Internet Explorer 瀏覽網站。使用者完整瀏覽及捲動文字、自然影像及一些圖解圖表的組合。網頁會在遠端桌面工作階段主機 (RD 工作階段主機) 伺服器的本機磁碟機上儲存為 .MHT 檔案。使用者會使用 Page Up 鍵、Page Down 鍵、向上鍵和向下鍵來捲動，並針對每個捲動的按鍵/類型使用各種不同的時間間隔：
+A user browses the web by using Internet Explorer. The user browses and scrolls through a mix of text, natural images, and some schematic diagrams. The web pages stored on the local disk drive of the Remote Desktop Session Host (RD Session Host) server as an .MHT file. The user scrolls using Page Up, Page Down, Up, and Down keys, with varying intervals for each key/type of scroll:
     
     - Down - 250 keystrokes very 500 ms
     - Page Up - 36 keystrokes every 1000 ms
@@ -53,51 +54,54 @@ Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go
     - Page Down - 20 keystrokes every 500 ms
     - Up - 120 keystrokes every 300 ms
     
-### PDF 文件 - 簡單 - 執行 ~610 秒
-使用者會使用 Adobe Acrobat Reader，以各種不同方式來讀取和搜尋 PDF 文件。文件應該包含表格、簡單圖形及多種文字字型。文件長度是 35-40 頁。使用者會使用兩種不同速率、向前和向後，利用四種不同的縮放大小 (調整成一頁、符合寬度、100% 及您選擇的另一個項目) 進行完整捲動。縮放可確保文字 (字型) 會以不同的大小來呈現。使用 Page Up 鍵、Page Down 鍵、向上鍵和向下鍵進行向下捲動，並針對每個捲動使用各種不同的時間間隔。
+### <a name="pdf-document---simple---run-for-~610-seconds"></a>PDF document - simple - Run for ~610 seconds
+A user reads and searches a PDF document in various ways by using Adobe Acrobat Reader. The document should consist of tables, simple graphs, and multiple text fonts. The document is 35-40 pages long. The user scrolls through at two different rates, backwards and forwards, at four different zoom sizes (fit to page, fit to width, 100%, and another of your choosing). The zooming ensures that the text (font) renders in different sizes. Scrolling is down using the Page Up, Page Down, Up, and Down keys, with varying intervals for each scroll.
 
-### PDF 文件 - 混合 - 執行 ~320 秒
-使用者會使用 Adobe Acrobat Reader，以各種不同方式來讀取和搜尋 PDF 文件。文件包含高品質的影像 (包括相片)、表格、簡單的圖形，以及多種文字字型。使用者會使用兩種不同速率、向前和向後，利用四種不同的縮放大小 (調整成一頁、符合寬度、100% 及您選擇的另一個項目) 進行完整捲動。縮放可確保文字 (字型) 會以不同的大小來呈現。使用 Page Up 鍵、Page Down 鍵、向上鍵和向下鍵進行向下捲動，並針對每個捲動使用各種不同的時間間隔。
+### <a name="pdf-document---mixed---run-for-~320-seconds"></a>PDF document - mixed - Run for ~320 seconds
+A user reads and searches a PDF document in various ways by using Adobe Acrobat Reader. The document consists of high-quality images (including photographs), tables, simple graphs, and multiple text fonts. The user scrolls through at two different rates, backwards and forwards, at four different zoom sizes (fit to page, fit to width, 100%, and another of your choosing). The zooming ensures that the text (font) renders in different sizes. Scrolling is down using the Page Up, Page Down, Up, and Down keys, with varying intervals for each scroll.
 
-### Flash 視訊播放 - 執行 ~180 秒
-使用者檢視內嵌於網頁中以 Adobe Flash 編碼的視訊。網頁會儲存在 RD 工作階段主機伺服器的本機硬碟機中。視訊是透過內嵌的播放程式外掛程式，在 Internet Explorer 內播放。
+### <a name="flash-video-playback---run-for-~180-seconds"></a>Flash video playback - Run for ~180 seconds
+A user views an Adobe Flash-encoded video embedded in a web page. The web page is stored in the local hard drive of the RD Session Host server. The video is played within Internet Explorer by an embedded player plug-in.
 
-此案例會模擬使用者檢視包含多媒體的豐富內容網頁。大部分的資料應該透過 VOBR 來使用。
+This scenario emulates users viewing rich content web pages containing multimedia. Most of the data should bo through VOBR.
 
-### Word 遠端輸入 - 執行 ~1800 秒
-使用者透過 RDP 工作階段輸入文件。按鍵動作是透過 RDP 工作階段從用戶端傳送至在遠端工作階段執行的 Microsoft Word 中的文件。輸入速度是每 250 毫秒一個字元 (總共 7050 個字元)。
+### <a name="word-remote-typing---run-for-~1800-seconds"></a>Word remote typing - Run for ~1800 seconds
+A user types a document over an RDP session. Keystrokes are sent from the client side through the RDP session to a document in Microsoft Word running in the remote session. The typing rate is one character every 250 ms (total 7050 characters). 
 
-這是適用於知識工作者的最常見案例之一。此案例會測試使用者輸入最新工作處理器的回應能力。此案例甚至會受到頻寬使用量中的微小變更所影響。
+This is one of the most common scenarios for a knowledge worker. This scenario tests the responsiveness of a user typing into a modern work processor. This scenario is sensitive to even small changes in bandwidth usage.
 
-## 追蹤測試結果
+## <a name="tracking-the-test-results"></a>Tracking the test results
 
-您可以使用下表來評估環境中的案例。下面提供的資料僅供說明使用 - 它可能與您所觀察到的情況大不相同。
+You can use the following table to evaluate the scenarios in your environment. The data provided below is just for illustration - it may be vastly different from what you observe. 
 
-為了簡單起見，我們假設所有案例的測試條件都一樣：使用相同的 1920 x 1080 像素螢幕解析度，在網路上使用低於 200 毫秒的延遲進行 TCP 傳輸，以及約有 1% 標記為 120 ms+ 的網路抖動。
+For simplicity, we assume that all scenarios are tested using the same 1920x1080 pixels screen resolution and TCP transports on a network with latency (delay) below 200 ms and network jitter in the 120 ms+ mark of about 1%.
 
-關於表格：
-- **平均體驗**所包含的網路頻寬不會大幅影響使用者產能，且不會排除偶爾發生的視訊或音訊問題。系統仍能利用動態邏輯快速復原。網路頻寬會估計可保證使用者體驗品質的嘗試次數。
- - **值得注意的問題 (中斷點)** 包含使用者可能會在他們的體驗中注意到重大問題的網路頻寬，而其產能會在一段顯著的期間內受到影響。此時，因為沒有足夠的網路頻寬，所以 RDP 演算法更是雪上加霜，且無法保證使用者的高品質體驗。
- - **建議**包含用來取得較佳或極佳體驗所建議的網路頻寬。它通常是一個高於對應**平均體驗**資料行中之值的步驟。
- - **注意事項**包括觀察值和註解。
+About the table:
+- **Average experience** contains the network bandwidth where user productivity is not significantly impacted but does not exclude occasional video or audio glitches. The system is able to recover quickly by taking advantage of the dynamic logic. The network bandwidth estimates attempt to guarantee the quality of the user experience.
+ - **Noticeable issues (break point)** contains the network bandwidth where users might notice significant issues in their experience, and their productivity is impacted for measurable time periods. At this point the RDP algorithms are struggling and cannot guarantee the user's quality of experience because of insufficient network bandwidth.
+ - **Recommended** contains the network bandwidth recommended for good or excellent experience. It is usually one step higher than the value in the corresponding **Average experience** column.
+ - **Notes** include observations and comments.
  
-| 測試 | 平均體驗 | 值得注意的問題 (中斷點) | 建議的網路頻寬 | 注意事項 |
+| Test                  | Average experience | Noticeable issues (break point) | Recommended network bandwidth | Notes                                                              |
 |-----------------------|--------------------|---------------------------------|-------------------------------|--------------------------------------------------------------------|
-| 高階主管/複雜的 PPT | 10 MB/秒 | 1 MB/秒 | > 10 MB/秒，通常使用 100 MB/秒 | 在 1 MB/秒內遺失許多動畫 |
-| 簡單的 PPT | 5 MB/秒 | 256 KB/秒 | 10 MB/秒 | 在 256 KB/秒內投影片是以可通知的延遲載入 |
-| Internet Explorer | 10 MB/秒 | 1 MB/秒 | > 10 MB/秒，通常使用 100 MB/秒 | 在 1 MB/秒內，Web 視訊是模糊且不穩定的，快速捲動會發生問題 |
-| 簡單的 PDF | 1 MB/秒 | 256 KB/秒 | 5 MB/秒 | 在 256 KB/秒內，需要花時間來載入網頁 |
-| 混合的 PDF | 1 MB/秒 | 256 KB/秒 | 5 MB/秒 | 在 256 KB/秒內，頁面佔用了大量的時間來載入 |
-| Flash 視訊播放 | 10 MB/秒 | 1 MB/秒 | > 10 MB/秒，通常使用 100 MB/秒 | 在 1 MB/秒內，視訊呈現顆粒狀，並捨棄一些畫面格 |
-| Word 遠端輸入 | 256 KB/秒 | 128 KB/秒 | 1 MB/秒 | 在 256 KB/秒內，使用者可能會注意到按鍵動作之間的時間 |
+| Executive/complex PPT | 10 MB/s             | 1 MB/s                           | >10 MB/s, 100 MB/s preferred    | At 1 MB/s many animations are lost                                   |
+| Simple PPT            | 5 MB/s              | 256 KB/s                         | 10 MB/s                        | At 256 KB/s the slides load with noticeable delay                   |
+| Internet Explorer     | 10 MB/s             | 1 MB/s                           | >10 MB/s, 100 MB/s preferred    | At 1 MB/s web videos are blurry and choppy, fast scrolling has issues |
+| Simple PDF            | 1 MB/s              | 256 KB/s                         | 5 MB/s                         | At 256 KB/s it takes a while to load the page                       |
+| Mixed PDF             | 1 MB/s             | 256 KB/s                         | 5 MB/s                         | At 256 KB/s the page takes a considerable amount of time to load    |
+| Flash video playback  | 10 MB/s             | 1 MB/s                           | >10 MB/s, 100 MB/s preferred    | At 1 MB/s the video is grainy and some frames are dropped           |
+| Word remote typing    | 256 KB/s            | 128 KB/s                         | 1 MB/s                         | At 256 KB/s user may notice the time between keystrokes             |
 
-若要評估每位使用者的網路頻寬，請建立上述案例的組合以及所需網路頻寬的對應比例。選擇您的案例所需的最高數字。由於使用者幾乎不會單獨使用系統，因此，請考慮針對會同時在同一個網路上工作的使用者進行部分保留。
+To evaluate the network bandwidth per user, create a mix of the above scenarios and the corresponding proportion of required network bandwidth. Pick the highest number needed for your scenarios. Since users almost never use the system alone, consider some reserve for users that work simultaneously on the same network.
      
-## 詳細資訊
-- [Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量)](remoteapp-bandwidth.md)
+## <a name="learn-more"></a>Learn more
+- [Estimate Azure RemoteApp network bandwidth usage](remoteapp-bandwidth.md)
 
-- [Azure RemoteApp - how do network bandwidth and quality of experience work together? (Azure RemoteApp - 如何兼顧網路頻寬和體驗品質？)](remoteapp-bandwidthexperience.md)
+- [Azure RemoteApp - how do network bandwidth and quality of experience work together?](remoteapp-bandwidthexperience.md)
 
-- [Azure RemoteApp network bandwidth - general guidelines (if you can't test your own) (Azure RemoteApp 網路頻寬 - 一般指引 (如果您無法自行測試))](remoteapp-bandwidthguidelines.md)
+- [Azure RemoteApp network bandwidth - general guidelines (if you can't test your own)](remoteapp-bandwidthguidelines.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

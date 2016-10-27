@@ -1,16 +1,18 @@
-儲存體受限於磁碟空間，或者索引或文件的「數目上限」，取決於何者較早出現。
+Storage is constrained by disk space or by a hard limit on the *maximum number* of indexes or documents, whichever comes first. 
 
-資源|免費|基本|S1|S2|S3 <br/>(預覽)|S3 HD <br/>(預覽)
+Resource|Free|Basic|S1|S2|S3 <br/>(Preview)|S3 HD <br/>(Preview)
 ---|---|---|---|----|---|----
-服務等級協定 (SLA)|否 <sup>1</sup> |是 |是 |是 |否 <sup>1</sup> |否 <sup>1</sup> 
-每個服務的儲存體|50 MB |2 GB|300 GB|1\.2 TB|2\.4 TB|200 GB
-每個服務的分割區|N/A|1|12|12|12|1
-分割區大小|N/A|2 GB|25 GB|100 GB|200 GB |200 GB
-複本數|N/A|1|12|12|12|12
-索引個數上限|3|5|50|200|200|1000
-文件個數上限|10,000|100 萬|每個服務 1 億 8000 萬，每個分割區 1500 萬 |每個服務 7 億 2000 萬份文件，每個分割區 6000 萬|每個服務 14 億份文件，每個分割區 1 億 2000 萬|每個服務 2 億，每個索引 100 萬
-預估每秒查詢次數 (QPS)|N/A|~3/每個複本|~15/每個複本|~60/每個複本|>60/每個複本|>60/每個複本
+Service Level Agreement (SLA)|No <sup>1</sup> |Yes |Yes  |Yes |No <sup>1</sup> |No <sup>1</sup> 
+Storage per service|50 MB |2 GB|300 GB|1.2 TB|2.4 TB|200 GB
+Partitions per service|N/A|1|12|12|12|1
+Partition size|N/A|2 GB|25 GB|100 GB|200 GB |200 GB
+Replicas|N/A|1|12|12|12|12
+Maximum Indexes|3|5|50|200|200|1000
+Maximum Documents|10,000|1 million|180 million per service, 15 million per partition |720 million documents per service, 60 million per partition|1.4 billion documents per service, 120 million per partition|200 million per service, 1 million per index
+Estimated queries per second (QPS)|N/A|~3 per replica|~15 per replica|~60 per replica|>60 per replica|>60 per replica
 
-<sup>1</sup>「免費」和「預覽」SKU 並未隨附 SLA。在 SKU 正式推出之後，才會強制執行 SLA。
+<sup>1</sup> Free and Preview SKUs do not come with SLAs. SLAs are enforced once a SKU becomes generally available.
 
-<!---HONumber=AcomDC_0608_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

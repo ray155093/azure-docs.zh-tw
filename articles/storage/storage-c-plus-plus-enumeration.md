@@ -1,6 +1,6 @@
 <properties
-    pageTitle="使用 Microsoft Azure Storage Client Library for C++ 列出 Azure 儲存體資源 |Microsoft Azure"
-    description="了解如何使用 Microsoft Azure Storage Client Library for C++ 中的列表 API 來列舉容器、Blob、佇列、資料表和實體。"
+    pageTitle="List Azure Storage Resources with the Microsoft Azure Storage Client Library for C++ | Microsoft Azure"
+    description="Learn how to use the listing APIs in Microsoft Azure Storage Client Library for C++ to enumerate containers, blobs, queues, tables, and entities."
     documentationCenter=".net"
     services="storage"
     authors="dineshmurthy"
@@ -12,176 +12,181 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="09/20/2016"
-    ms.author="dineshm;tamram"/>
+    ms.date="10/18/2016"
+    ms.author="dineshm"/>
 
-# 使用 C++ 列出 Azure 儲存體資源
 
-列表作業是許多使用 Azure 儲存體的開發案例的關鍵。本文說明如何使用 Microsoft Azure Storage Client Library for C++ 中提供的列表 API，以最有效率的方式列舉 Azure 儲存體中的物件。
+# <a name="list-azure-storage-resources-in-c++"></a>List Azure Storage Resources in C++
 
->[AZURE.NOTE] 本指南以 Azure Storage Client Library for C++ 2.x 版為對象 (其可透過 [NuGet](http://www.nuget.org/packages/wastorage) 或 [GitHub](https://github.com/Azure/azure-storage-cpp) 取得)。
+Listing operations are key to many development scenarios with Azure Storage. This article describes how to most efficiently enumerate objects in Azure Storage using the listing APIs provided in the Microsoft Azure Storage Client Library for C++.
 
-Storage Client Library 提供各種方法來列出或查詢 Azure 儲存體中的物件。本文說明下列案例：
+>[AZURE.NOTE] This guide targets the Azure Storage Client Library for C++ version 2.x, which is available via [NuGet](http://www.nuget.org/packages/wastorage) or [GitHub](https://github.com/Azure/azure-storage-cpp).
 
--	列出帳戶中的容器
--	列出容器或虛擬 Blob 目錄中的 Blob
--	列出帳戶中的佇列
--	列出帳戶中的資料表
--	查詢資料表中的實體
+The Storage Client Library provides a variety of methods to list or query objects in Azure Storage. This article addresses the following scenarios:
 
-每個方法會使用不同案例的不同多載來顯示。
+-   List containers in an account
+-   List blobs in a container or virtual blob directory
+-   List queues in an account
+-   List tables in an account
+-   Query entities in a table
 
-## 同步與非同步
+Each of these methods is shown using different overloads for different scenarios.
 
-因為 Storage Client Library for C++ 的建置基礎為 [C++ REST 程式庫](https://github.com/Microsoft/cpprestsdk)，所以我們原本就使用 [pplx::task](http://microsoft.github.io/cpprestsdk/classpplx_1_1task.html) 支援非同步作業。例如：
+## <a name="asynchronous-versus-synchronous"></a>Asynchronous versus synchronous
 
-	pplx::task<list_blob_item_segment> list_blobs_segmented_async(continuation_token& token) const;
+Because the Storage Client Library for C++ is built on top of the [C++ REST library](https://github.com/Microsoft/cpprestsdk), we inherently support asynchronous operations by using [pplx::task](http://microsoft.github.io/cpprestsdk/classpplx_1_1task.html). For example:
 
-同步作業會包裝對應的非同步作業：
+    pplx::task<list_blob_item_segment> list_blobs_segmented_async(continuation_token& token) const;
 
-	list_blob_item_segment list_blobs_segmented(const continuation_token& token) const
-	{
-	    return list_blobs_segmented_async(token).get();
-	}
+Synchronous operations wrap the corresponding asynchronous operations:
 
-如果您正在使用多個執行緒的應用程式或服務，建議您直接使用非同步 API，而不是建立執行緒來呼叫同步 API，這會大幅影響您的效能。
+    list_blob_item_segment list_blobs_segmented(const continuation_token& token) const
+    {
+        return list_blobs_segmented_async(token).get();
+    }
 
-## 分段列表
+If you are working with multiple threading applications or services, we recommend that you use the async APIs directly instead of creating a thread to call the sync APIs, which significantly impacts your performance.
 
-雲端儲存體的級別需要分段列表。例如，在 Azure blob 容器中可有超過 100 萬個 Blob，或在 Azure 資料表中可有超過 10 億個實體。這些不是理論上的數字，而是實際的客戶使用量案例。
+## <a name="segmented-listing"></a>Segmented listing
 
-因此，列出單一回應中的所有物件並不切實際。反而，您可以使用分頁列出物件。每個列表 API 都有*分段*多載。
+The scale of cloud storage requires segmented listing. For example, you can have over a million blobs in an Azure blob container or over a billion entities in an Azure Table. These are not theoretical numbers, but real customer usage cases.
 
-分段列表作業的回應包含：
+It is therefore impractical to list all objects in a single response. Instead, you can list objects using paging. Each of the listing APIs has a *segmented* overload.
 
--	<i>\_segment</i>，其中包含針對列表 API 的單一呼叫所傳回的結果集。
--	*continuation\_token*，其會傳遞給下一個呼叫，以便取得下一頁的結果。沒有可傳回的結果時，接續 Token 為 null。
+The response for a segmented listing operation includes:
 
-例如，列出容器中所有 Blob 的典型呼叫可能如下列程式碼片段所示。此程式碼可在我們的[範例](https://github.com/Azure/azure-storage-cpp/blob/master/Microsoft.WindowsAzure.Storage/samples/BlobsGettingStarted/Application.cpp)中取得：
+-   <i>_segment</i>, which contains the set of results returned for a single call to the listing API.
+-   *continuation_token*, which is passed to the next call in order to get the next page of results. When there are no more results to return, the continuation token is null.
 
-	// List blobs in the blob container
-	azure::storage::continuation_token token;
-	do
-	{
-	    azure::storage::list_blob_item_segment segment = container.list_blobs_segmented(token);
-	    for (auto it = segment.results().cbegin(); it != segment.results().cend(); ++it)
-	{
-	    if (it->is_blob())
-	    {
-	        process_blob(it->as_blob());
-	    }
-	    else
-	    {
-	        process_diretory(it->as_directory());
-	    }
-	}
+For example, a typical call to list all blobs in a container may look like the following code snippet. The code is available in our [samples](https://github.com/Azure/azure-storage-cpp/blob/master/Microsoft.WindowsAzure.Storage/samples/BlobsGettingStarted/Application.cpp):
 
-	    token = segment.continuation_token();
-	}
-	while (!token.empty());
+    // List blobs in the blob container
+    azure::storage::continuation_token token;
+    do
+    {
+        azure::storage::list_blob_item_segment segment = container.list_blobs_segmented(token);
+        for (auto it = segment.results().cbegin(); it != segment.results().cend(); ++it)
+    {
+        if (it->is_blob())
+        {
+            process_blob(it->as_blob());
+        }
+        else
+        {
+            process_diretory(it->as_directory());
+        }
+    }
 
-請注意，一個頁面傳回的結果數目可由每個 API 的多載中的參數 *max\_results* 所控制，例如：
+        token = segment.continuation_token();
+    }
+    while (!token.empty());
 
-	list_blob_item_segment list_blobs_segmented(const utility::string_t& prefix, bool use_flat_blob_listing,
-		blob_listing_details::values includes, int max_results, const continuation_token& token,
-		const blob_request_options& options, operation_context context)
+Note that the number of results returned in a page can be controlled by the parameter *max_results* in the overload of each API, for example:
 
-如果您未指定 *max\_results* 參數，則會在單一頁面中傳回多達 5000 筆結果的預設最大值。
+    list_blob_item_segment list_blobs_segmented(const utility::string_t& prefix, bool use_flat_blob_listing,
+        blob_listing_details::values includes, int max_results, const continuation_token& token,
+        const blob_request_options& options, operation_context context)
 
-也請注意，對 Azure 資料表儲存體的查詢可能不會傳回任何記錄，或傳回少於您指定之 *max\_results* 參數值的記錄 (即使接續 Token 不是空的)。其中一個原因可能是查詢無法在五秒內完成。只要接續 Token 不是空的，查詢就應該繼續進行，而您的程式碼不得假設區段結果的大小。
+If you do not specify the *max_results* parameter, the default maximum value of up to 5000 results is returned in a single page.
 
-大多數案例的建議編碼模式為分段列表，可以提供明確的列表或查詢進度，以及服務回應每個要求的方式。尤其是 C++ 應用程式或服務，列表進度的較低層級控制項有助於控制記憶體和效能。
+Also note that a query against Azure Table storage may return no records, or fewer records than the value of the *max_results* parameter that you specified, even if the continuation token is not empty. One reason might be that the query could not complete in five seconds. As long as the continuation token is not empty, the query should continue, and your code should not assume the size of segment results.
 
-## 窮盡列表
+The recommended coding pattern for most scenarios is segmented listing, which provides explicit progress of listing or querying, and how the service responds to each request. Particularly for C++ applications or services, lower-level control of the listing progress may help control memory and performance.
 
-舊版的 Storage Client Library for C++ (0.5.0 預覽版或更早版本) 包含了適用於資料表和佇列的非分段列表 API，如下列範例所示：
+## <a name="greedy-listing"></a>Greedy listing
 
-	std::vector<cloud_table> list_tables(const utility::string_t& prefix) const;
-	std::vector<table_entity> execute_query(const table_query& query) const;
-	std::vector<cloud_queue> list_queues() const;
+Earlier versions of the Storage Client Library for C++ (versions 0.5.0 Preview and earlier) included non-segmented listing APIs for tables and queues, as in the following example:
 
-這些方法已做為分段 API 的包裝函式實作。對於分段列表的每個回應，程式碼會將結果附加至向量，並傳回掃描完整容器後的所有結果。
+    std::vector<cloud_table> list_tables(const utility::string_t& prefix) const;
+    std::vector<table_entity> execute_query(const table_query& query) const;
+    std::vector<cloud_queue> list_queues() const;
 
-當儲存體帳戶或資料表包含少量物件時，這個方法可能有用。不過，隨著物件數目的增加，所需的記憶體可能會無所限制的增加，因為所有結果都會保留在記憶體中。一項列表作業可能需要很長的時間，在這段期間內呼叫端沒有其進度的相關資訊。
+These methods were implemented as wrappers of segmented APIs. For each response of segmented listing, the code appended the results to a vector and returned all results after the full containers were scanned.
 
-SDK 中的這些窮盡列表 API 不存在於 C#、Java 或 JavaScript Node.js 環境中。為了避免使用這些窮盡 API 的潛在問題，我們已在 0.6.0 預覽版中予以移除。
+This approach might work when the storage account or table contains a small number of objects. However, with an increase in the number of objects, the memory required could increase without limit, because all results remained in memory. One listing operation can take a very long time, during which the caller had no information about its progress.
 
-如果您的程式碼呼叫這些窮盡 API：
+These greedy listing APIs in the SDK do not exist in C#, Java, or the JavaScript Node.js environment. To avoid the potential issues of using these greedy APIs, we removed them in version 0.6.0 Preview.
 
-	std::vector<azure::storage::table_entity> entities = table.execute_query(query);
-	for (auto it = entities.cbegin(); it != entities.cend(); ++it)
-	{
-	    process_entity(*it);
-	}
+If your code is calling these greedy APIs:
 
-您就應該修改程式碼以使用分段列表 API：
+    std::vector<azure::storage::table_entity> entities = table.execute_query(query);
+    for (auto it = entities.cbegin(); it != entities.cend(); ++it)
+    {
+        process_entity(*it);
+    }
 
-	azure::storage::continuation_token token;
-	do
-	{
-	    azure::storage::table_query_segment segment = table.execute_query_segmented(query, token);
-	    for (auto it = segment.results().cbegin(); it != segment.results().cend(); ++it)
-	    {
-	        process_entity(*it);
-	    }
+Then you should modify your code to use the segmented listing APIs:
 
-	    token = segment.continuation_token();
-	} while (!token.empty());
+    azure::storage::continuation_token token;
+    do
+    {
+        azure::storage::table_query_segment segment = table.execute_query_segmented(query, token);
+        for (auto it = segment.results().cbegin(); it != segment.results().cend(); ++it)
+        {
+            process_entity(*it);
+        }
 
-指定區段的 *max\_results* 參數，即可平衡要求數目與記憶體使用量，以符合您的應用程式的效能考量。
+        token = segment.continuation_token();
+    } while (!token.empty());
 
-此外，如果您使用分段列表 API，但以「窮盡」樣式將資料儲存在本機集合中，也強烈建議您重整您的程式碼，以便仔細地將資料大規模儲存在本機集合中。
+By specifying the *max_results* parameter of the segment, you can balance between the numbers of requests and memory usage to meet performance considerations for your application.
 
-## 延遲列表
+Additionally, if you’re using segmented listing APIs, but store the data in a local collection in a "greedy" style, we also strongly recommend that you refactor your code to handle storing data in a local collection carefully at scale.
 
-雖然窮盡列表引發了潛在的問題，但如果容器中沒有太多物件，則很方便。
+## <a name="lazy-listing"></a>Lazy listing
 
-如果您也使用 C# 或 Oracle Java SDK，您應該熟悉可提供延遲樣式列表的「可列舉」程式設計模型，其中特定位移的資料只會在必要時提取。在 C++ 中，以迭代器為基礎的範本也會提供類似的方法。
+Although greedy listing raised potential issues, it is convenient if there are not too many objects in the container.
 
-典型的延遲列表 API (以 **list\_blobs** 為例) 如下所示：
+If you’re also using C# or Oracle Java SDKs, you should be familiar with the Enumerable programming model, which offers a lazy-style listing, where the data at a certain offset is only fetched if it is required. In C++, the iterator-based template also provides a similar approach.
 
-	list_blob_item_iterator list_blobs() const;
+A typical lazy listing API, using **list_blobs** as an example, looks like this:
 
-使用延遲列表模式的典型程式碼片段可能如下所示：
+    list_blob_item_iterator list_blobs() const;
 
-	// List blobs in the blob container
-	azure::storage::list_blob_item_iterator end_of_results;
-	for (auto it = container.list_blobs(); it != end_of_results; ++it)
-	{
-		if (it->is_blob())
-		{
-			process_blob(it->as_blob());
-		}
-		else
-		{
-			process_directory(it->as_directory());
-		}
-	}
+A typical code snippet that uses the lazy listing pattern might look like this:
 
-請注意，延遲列表僅可用於同步模式。
+    // List blobs in the blob container
+    azure::storage::list_blob_item_iterator end_of_results;
+    for (auto it = container.list_blobs(); it != end_of_results; ++it)
+    {
+        if (it->is_blob())
+        {
+            process_blob(it->as_blob());
+        }
+        else
+        {
+            process_directory(it->as_directory());
+        }
+    }
 
-相較於窮盡列表，延遲列表只會在必要時提取資料。實際上，只有在下一個迭代器移至下一個區段時，它才會從 Azure 儲存體提取資料。因此，記憶體使用量會控制在有限的大小內，且作業速度很快。
+Note that lazy listing is only available in synchronous mode.
 
-延遲列表 API 已包含在 Storage Client Library for C++ 2.2.0 版中。
+Compared with greedy listing, lazy listing fetches data only when necessary. Under the covers, it fetches data from Azure Storage only when the next iterator moves into next segment. Therefore, memory usage is controlled with a bounded size, and the operation is fast.
 
-## 結論
+Lazy listing APIs are included in the Storage Client Library for C++ in version 2.2.0.
 
-在本文中，我們針對 Storage Client Library for C++ 中的各種物件，討論了列表 API 的不同多載。總結：
+## <a name="conclusion"></a>Conclusion
 
--	在多個執行緒的案例中，強烈建議使用非同步 API。
--	在大部分的案例中，建議使用分段列表。
--	程式庫中提供的延遲列表是同步案例中的方便包裝函式。
--	不建議使用窮盡列表，並已從程式庫中移除。
+In this article, we discussed different overloads for listing APIs for various objects in the Storage Client Library for C++ . To summarize:
 
-##後續步驟
+-   Async APIs are strongly recommended under multiple threading scenarios.
+-   Segmented listing is recommended for most scenarios.
+-   Lazy listing is provided in the library as a convenient wrapper in synchronous scenarios.
+-   Greedy listing is not recommended and has been removed from the library.
 
-如需 Azure Storage Client Library for C++ 的詳細資訊，請參閱下列資源。
+##<a name="next-steps"></a>Next steps
 
--	[如何使用 C++ 的 Blob 儲存體](storage-c-plus-plus-how-to-use-blobs.md)
--	[如何使用 C++ 的資料表儲存體](storage-c-plus-plus-how-to-use-tables.md)
--	[如何使用 C++ 的佇列儲存體](storage-c-plus-plus-how-to-use-queues.md)
--	[Azure Storage Client Library for C++ API 文件。](http://azure.github.io/azure-storage-cpp/)
--	[Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
--	[Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
+For more information about Azure Storage and Client Library for C++, see the following resources.
 
-<!---HONumber=AcomDC_0921_2016-->
+-   [How to use Blob Storage from C++](storage-c-plus-plus-how-to-use-blobs.md)
+-   [How to use Table Storage from C++](storage-c-plus-plus-how-to-use-tables.md)
+-   [How to use Queue Storage from C++](storage-c-plus-plus-how-to-use-queues.md)
+-   [Azure Storage Client Library for C++ API documentation.](http://azure.github.io/azure-storage-cpp/)
+-   [Azure Storage Team Blog](http://blogs.msdn.com/b/windowsazurestorage/)
+-   [Azure Storage Documentation](https://azure.microsoft.com/documentation/services/storage/)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,10 +1,10 @@
 <properties
-    pageTitle="在您的 Logic Apps 中新增 Azure Blob 儲存體連接器 | Microsoft Azure"
-    description="搭配 REST API 參數來使用 Azure Blob 儲存體連接器的概觀"
+    pageTitle="Add the Azure blob storage Connector in your Logic Apps | Microsoft Azure"
+    description="Overview of Azure blob storage Connector with REST API parameters"
     services=""
     documentationCenter="" 
     authors="MandiOhlinger"
-    manager="erikre"
+    manager="anneta"
     editor=""
     tags="connectors"/>
 
@@ -14,299 +14,307 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="07/25/2016"
+   ms.date="10/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 Azure Blob 儲存體連接器
-Azure Blob 儲存體是用來儲存大量非結構化資料的服務。請在 Azure Blob 儲存體中執行上傳、更新、取得和刪除 Blob 等各種動作。
 
-您可以利用 Azure Blob 儲存體來：
+# <a name="get-started-with-the-azure-blob-storage-connector"></a>Get started with the Azure blob storage connector
+Azure Blob storage is a service for storing large amounts of unstructured data. Perform various actions such as upload, update, get, and delete blobs in Azure blob storage. 
 
-- 上傳新專案或取得最近更新的檔案以建置工作流程。
-- 使用動作來取得檔案中繼資料、刪除檔案、複製檔案和進行其他作業。例如，當 Azure 網站中的工具更新時 (觸發程序)，則更新 Blob 儲存體中的檔案 (動作)。
+With Azure blob storage, you:
 
-本主題說明如何在邏輯應用程式中使用 Blob 儲存體連接器，並且也列出動作。
+- Build your workflow by uploading new projects, or getting files that have been  recently updated.
+- Use actions to get file metadata, delete a file, copy files, and more. For example,  when a tool is updated in an Azure web site (a trigger), then update a file in blob storage (an action). 
 
->[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
+This topic shows you how to use the blob storage connector in a logic app, and also lists the actions.
 
-若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+>[AZURE.NOTE] This version of the article applies to Logic Apps general availability (GA). 
 
-## 連線至 Azure Blob 儲存體
+To learn more about Logic Apps, see [What are logic apps](../app-service-logic/app-service-logic-what-are-logic-apps.md) and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線至儲存體帳戶，您得先建立 Blob 儲存體連線。若要建立連線，請輸入平常用來存取所連線服務的認證。因此，請在 Azure 儲存體中，輸入儲存體帳戶的認證以建立連線。
+## <a name="connect-to-azure-blob-storage"></a>Connect to Azure blob storage
 
-#### 建立連線
+Before your logic app can access any service, you first create a *connection* to the service. A connection provides connectivity between a logic app and another service. For example, to connect to a storage account, you first create a blob storage *connection*. To create a connection, enter the credentials you normally use to access the service you are connecting to. So with Azure storage, enter the credentials to your storage account to create the connection. 
 
->[AZURE.INCLUDE [建立至 Azure Blob 儲存體的連線](../../includes/connectors-create-api-azureblobstorage.md)]
+#### <a name="create-the-connection"></a>Create the connection
+
+>[AZURE.INCLUDE [Create a connection to Azure blob storage](../../includes/connectors-create-api-azureblobstorage.md)]
  
-## 使用觸發程序
+## <a name="use-a-trigger"></a>Use a trigger
 
-此連接器並沒有任何觸發程序。請使用其他觸發程序來啟動邏輯應用程式，例如循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)可提供範例。
+This connector does not have any triggers. Use other triggers to start the logic app, such as a Recurrence trigger, an HTTP Webhook trigger, triggers available with other connectors, and more. [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md) provides an example.
 
-## 使用動作
-	
-動作是由邏輯應用程式中定義的工作流程所執行的作業。
+## <a name="use-an-action"></a>Use an action
+    
+An action is an operation carried out by the workflow defined in a logic app.
 
-1. 選取加號。您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
+1. Select the plus sign. You see several choices: **Add an action**, **Add a condition**, or one of the **More** options.
 
-	![](./media/connectors-create-api-azureblobstorage/add-action.png)
+    ![](./media/connectors-create-api-azureblobstorage/add-action.png)
 
-2. 選擇 [新增動作]。
+2. Choose **Add an action**.
 
-3. 在文字方塊中，輸入「blob」以取得所有可用動作的清單。
+3. In the text box, type “blob” to get a list of all the available actions.
 
-	![](./media/connectors-create-api-azureblobstorage/actions.png)
+    ![](./media/connectors-create-api-azureblobstorage/actions.png) 
 
-4. 在我們的範例中，選擇 [AzureBlob - 使用路徑取得檔案中繼資料]。如果連線已存在，請選取 [...] \(顯示選擇器) 按鈕來選取檔案。
+4. In our example, choose **AzureBlob - Get file metadata using path**. If a connection already exists, then select the **...** (Show Picker) button to select a file.
 
-	![](./media/connectors-create-api-azureblobstorage/sample-file.png)
+    ![](./media/connectors-create-api-azureblobstorage/sample-file.png)
 
-	如果系統提示您輸入連線資訊，請輸入詳細資料以建立連線。本主題的[建立連線](connectors-create-api-azureblobstorage.md#create-the-connection)一節會說明這些屬性。
+    If you are prompted for the connection information, then enter the details to create the connection. [Create the connection](connectors-create-api-azureblobstorage.md#create-the-connection) in this topic describes these properties. 
 
-	> [AZURE.NOTE] 在此範例中，我們會取得檔案的中繼資料。若要查看中繼資料，請新增另一個動作，以使用另一個連接器建立新檔案。例如，新增 OneDrive 動作，以根據中繼資料建立新的「測試」檔案。
+    > [AZURE.NOTE] In this example, we get the metadata of a file. To see the metadata, add another action that creates a new file using another connector. For example, add a OneDrive action that creates a new "test" file based on the metadata. 
 
-5. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
+5. **Save** your changes (top left corner of the toolbar). Your logic app is saved and may be automatically enabled.
 
-> [AZURE.TIP] [Storage Explorer](http://storageexplorer.com/) 是很適合用來管理多個儲存體帳戶的工具。
+> [AZURE.TIP] [Storage Explorer](http://storageexplorer.com/) is a great tool to  manage multiple storage accounts.
 
-## 技術詳細資料
+## <a name="technical-details"></a>Technical Details
 
-## 儲存體 Blob 動作
+## <a name="storage-blob-actions"></a>Storage Blob actions
 
-|動作|說明|
+|Action|Description|
 |--- | ---|
-|[取得檔案中繼資料](connectors-create-api-azureblobstorage.md#get-file-metadata)|這項作業會使用檔案識別碼取得檔案中繼資料。|
-|[更新檔案](connectors-create-api-azureblobstorage.md#update-file)|這項作業會更新檔案。|
-|[刪除檔案](connectors-create-api-azureblobstorage.md#delete-file)|這項作業會刪除檔案。|
-|[使用路徑來取得檔案中繼資料](connectors-create-api-azureblobstorage.md#get-file-metadata-using-path)|這項作業會使用路徑取得檔案中繼資料。|
-|[使用路徑來取得檔案內容](connectors-create-api-azureblobstorage.md#get-file-content-using-path)|這項作業會使用路徑取得檔案內容。|
-|[取得檔案內容](connectors-create-api-azureblobstorage.md#get-file-content)|這項作業會使用識別碼取得檔案內容。|
-|[建立檔案](connectors-create-api-azureblobstorage.md#create-file)|這項作業會上傳檔案。|
-|[複製檔案](connectors-create-api-azureblobstorage.md#copy-file)|這項作業會將檔案複製到 Azure Blob 儲存體。|
-|[將封存檔案解壓縮到資料夾](connectors-create-api-azureblobstorage.md#extract-archive-to-folder)|這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。|
+|[Get file metadata](connectors-create-api-azureblobstorage.md#get-file-metadata)|This operation gets file metadata using file id.|
+|[Update file](connectors-create-api-azureblobstorage.md#update-file)|This operation updates a file.|
+|[Delete file](connectors-create-api-azureblobstorage.md#delete-file)|This operation deletes a file.|
+|[Get file metadata using path](connectors-create-api-azureblobstorage.md#get-file-metadata-using-path)|This operation gets file metadata using the path.|
+|[Get file content using path](connectors-create-api-azureblobstorage.md#get-file-content-using-path)|This operation gets file contents using the path.|
+|[Get file content](connectors-create-api-azureblobstorage.md#get-file-content)|This operation gets file contents using id.|
+|[Create file](connectors-create-api-azureblobstorage.md#create-file)|This operation uploads a file.|
+|[Copy file](connectors-create-api-azureblobstorage.md#copy-file)|This operation copies a file to Azure Blob Storage.|
+|[Extract archive to folder](connectors-create-api-azureblobstorage.md#extract-archive-to-folder)|This operation extracts an archive file into a folder (example: .zip).|
 
-### 動作詳細資料
+### <a name="action-details"></a>Action details
 
-在本節中，請查看每個動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
+In this section, see the specific details about each action, including any required or optional input properties, and any corresponding output associated with the connector.
 
-#### 取得檔案中繼資料
-這項作業會使用檔案識別碼取得檔案中繼資料。
+#### <a name="get-file-metadata"></a>Get file metadata
+This operation gets file metadata using file id.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|檔案|選取檔案|
+|id*|File|Select a file|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
+##### <a name="output-details"></a>Output Details
 BlobMetadata
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
-#### 更新檔案
-這項作業會更新檔案。
+#### <a name="update-file"></a>Update file
+This operation updates a file.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|檔案|選取檔案|
-|body*|檔案內容|要更新之檔案的內容|
+|id*|File|Select a file|
+|body*|File content|Content of the file to update|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
+##### <a name="output-details"></a>Output Details
 BlobMetadata
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
-#### 刪除檔案
-這項作業會刪除檔案。
+#### <a name="delete-file"></a>Delete file
+This operation deletes a file.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|識別碼*|檔案|選取檔案|
+|id*|File|Select a file|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
-無。
+##### <a name="output-details"></a>Output Details
+None.
 
 
-#### 使用路徑來取得檔案中繼資料
-這項作業會使用路徑取得檔案中繼資料。
+#### <a name="get-file-metadata-using-path"></a>Get file metadata using path
+This operation gets file metadata using the path.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|path*|檔案路徑|選取檔案|
+|path*|File path|Select a file|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
+##### <a name="output-details"></a>Output Details
 BlobMetadata
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
-#### 使用路徑來取得檔案內容
-這項作業會使用路徑取得檔案內容。
+#### <a name="get-file-content-using-path"></a>Get file content using path
+This operation gets file contents using the path.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|path*|檔案路徑|選取檔案|
+|path*|File path|Select a file|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
-無。
+##### <a name="output-details"></a>Output Details
+None.
 
 
-#### 取得檔案內容
-這項作業會使用識別碼取得檔案內容。
+#### <a name="get-file-content"></a>Get file content
+This operation gets file contents using id.  
 
-|屬性名稱| 資料類型|說明|
+|Property Name| Data Type|Description|
 | ---|---|---|
-|識別碼*|字串|選取檔案|
+|id*|string|Select a file|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
-無。
+##### <a name="output-details"></a>Output Details
+None.
 
 
-#### 建立檔案
-這項作業會上傳檔案。
+#### <a name="create-file"></a>Create file
+This operation uploads a file.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|folderPath*|資料夾路徑|選取資料夾|
-|name*|檔案名稱|要上傳之檔案的名稱|
-|body*|檔案內容|要上傳之檔案的內容|
+|folderPath*|Folder path|Select a folder|
+|name*|File name|Name of file to upload|
+|body*|File content|Content of the file to upload|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
+##### <a name="output-details"></a>Output Details
 BlobMetadata
 
-| 屬性名稱 | 資料類型 | 
+| Property Name | Data Type | 
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
-#### 複製檔案
-這項作業會將檔案複製到 Azure Blob 儲存體。
+#### <a name="copy-file"></a>Copy file
+This operation copies a file to Azure Blob Storage.  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|source*|來源 URL|指定來源檔案的 URL|
-|destination*|目的地檔案路徑|指定目的地檔案路徑，包括目標檔案名稱|
-|overwrite|覆寫？|是否應覆寫現有目的地檔案 (true/false)？ |
+|source*|Source url|Specify Url to source file|
+|destination*|Destination file path|Specify the destination file path, including target filename|
+|overwrite|Overwrite?|Should an existing destination file be overwritten (true/false)?  |
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
+##### <a name="output-details"></a>Output Details
 BlobMetadata
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
-#### 將封存檔案解壓縮到資料夾
-這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。
+#### <a name="extract-archive-to-folder"></a>Extract archive to folder
+This operation extracts an archive file into a folder (example: .zip).  
 
-|屬性名稱| 顯示名稱|說明|
+|Property Name| Display Name|Description|
 | ---|---|---|
-|source*|來源封存檔案路徑|選取封存檔案|
-|destination*|目的地資料夾路徑|選取要解壓縮的內容|
-|overwrite|覆寫？|是否應覆寫現有目的地檔案 (true/false)？|
+|source*|Source archive file path|Select an archive file|
+|destination*|Destination folder path|Select the contents to extract|
+|overwrite|Overwrite?|Should an existing destination file be overwritten (true/false)?|
 
-星號 (*) 代表必要屬性。
+An asterisk (*) means the property is required.
 
-##### 輸出詳細資料
+##### <a name="output-details"></a>Output Details
 BlobMetadata
 
-| 屬性名稱 | 資料類型 |
+| Property Name | Data Type |
 |---|---|
-|識別碼|字串|
-|名稱|字串|
-|DisplayName|字串|
-|Path|字串|
-|LastModified|字串|
-|大小|integer|
-|MediaType|字串|
-|IsFolder|布林值|
-|ETag|字串|
-|FileLocator|字串|
+|Id|string|
+|Name|string|
+|DisplayName|string|
+|Path|string|
+|LastModified|string|
+|Size|integer|
+|MediaType|string|
+|IsFolder|boolean|
+|ETag|string|
+|FileLocator|string|
 
 
-## HTTP 回應
+## <a name="http-responses"></a>HTTP responses
 
-呼叫不同動作時，您可能會收到特定回應。下表概述回應及其說明︰
+When making calls to the different actions, you may get certain responses. The following table outlines the responses and their descriptions:  
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|202|Accepted|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occurred|
+|default|Operation Failed.|
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md). Explore the other available connectors in Logic Apps at our [APIs list](apis-list.md).
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Visual Studio 中管理應用程式 | Microsoft Azure"
-   description="使用 Visual Studio 來建立、開發、封裝、部署和偵錯 Service Fabric 應用程式和服務。"
+   pageTitle="Manage your applications in Visual Studio | Microsoft Azure"
+   description="Use Visual Studio to create, develop, package, deploy, and debug your Service Fabric applications and services."
    services="service-fabric"
    documentationCenter=".net"
    authors="seanmck"
@@ -16,89 +16,94 @@
    ms.date="09/09/2016"
    ms.author="seanmck;mikhegn"/>
 
-# 使用 Visual Studio 簡化撰寫及管理 Service Fabric 應用程式
 
-您可以透過 Visual Studio 管理 Azure Service Fabric 應用程式與服務。[設定開發環境](service-fabric-get-started.md)後，您可以使用 Visual Studio 在本機開發叢集中建立 Service Fabric 應用程式、新增服務，或是封裝、註冊及部署應用程式。
+# <a name="use-visual-studio-to-simplify-writing-and-managing-your-service-fabric-applications"></a>Use Visual Studio to simplify writing and managing your Service Fabric applications
 
-## 部署 Service Fabric 應用程式
+You can manage your Azure Service Fabric applications and services through Visual Studio. Once you've [set up your development environment](service-fabric-get-started.md), you can use Visual Studio to create Service Fabric applications, add services, or package, register, and deploy applications in your local development cluster.
 
-根據預設，部署應用程式會將以下幾個步驟結合成一個簡單的作業：
+## <a name="deploy-your-service-fabric-application"></a>Deploy your Service Fabric application
 
-1. 建立應用程式封裝
-2. 將應用程式封裝上傳至映像存放區
-3. 註冊應用程式類型
-4. 移除任何執行中的應用程式執行個體
-5. 建立新的應用程式執行個體
+By default, deploying an application combines the following steps into one simple operation:
 
-在 Visual Studio 中按下 **F5** 也會部署應用程式，並將偵錯工具附加到所有應用程式執行個體。您可以使用 **Ctrl + F5** 來部署應用程式而不進行偵錯，或是使用發佈設定檔來發佈至本機或遠端叢集。如需詳細資訊，請參閱[使用 Visual Studio 將應用程式發佈至遠端叢集](service-fabric-publish-app-remote-cluster.md)。
+1. Creating the application package
+2. Uploading the application package to the image store
+3. Registering the application type
+4. Removing any running application instances
+5. Creating a new application instance
 
-### 應用程式偵錯模式
+In Visual Studio, pressing **F5** will also deploy your application and attach the debugger to all application instances. You can use **Ctrl+F5** to deploy an application without debugging, or you can publish to a local or remote cluster by using the publish profile. For more information, see [Publish an application to a remote cluster by using Visual Studio](service-fabric-publish-app-remote-cluster.md).
 
-根據預設，當您停止偵錯，或 (如果您部署應用程式而未附加偵錯工具) 當您重新部署應用程式時，Visual Studio 會移除應用程式類型的現有執行個體。在此情況下，所有應用程式的資料都會移除。在本機偵錯時，您可能會想要保留在測試新版本的應用程式時已經建立的資料、想要讓應用程式繼續執行，或想要後續的偵錯工作階段升級應用程式。Visual Studio Service Fabric 工具提供一個稱為**應用程式偵錯模式**的屬性，可控制 **F5** 是否應該解除安裝應用程式、在偵錯工作階段結束之後讓應用程式繼續執行，或讓應用程式在後續的偵錯工作階段進行升級，而不是移除或重新部署。
+### <a name="application-debug-mode"></a>Application Debug Mode
 
-#### 設定應用程式偵錯模式屬性
+By default, Visual Studio removes existing instances of your application type when you stop debugging or (if you deployed the app without attaching the debugger), when you redeploy the application. In that case, all the application's data is removed. While debugging locally, you may want to keep data that you've already created when testing a new version of the application, you want to keep the application running or you want subsequent debug sessions to upgrade the application. Visual Studio Service Fabric Tools provide a property called **Application Debug Mode**, which controls whether the **F5** should uninstall the application, keep the application running after a debug session ends or enable the application to be upgraded on subsequent debugging sessions, rather than removed and redeployed.
 
-1. 在應用程式專案的捷徑功能表上，選擇 [屬性] \(或按 **F4** 按鍵)。
-2. 在 [屬性] 視窗中，設定 [應用程式偵錯模式] 屬性。
+#### <a name="to-set-the-application-debug-mode-property"></a>To set the Application Debug Mode property
 
-    ![設定應用程式偵錯模式屬性][debugmodeproperty]
+1. On the application project's shortcut menu, choose **Properties** (or press the **F4** key).
+2. In the **Properties** window, set the **Application Debug Mode** property.
 
-以下是可用的 [應用程式偵錯模式] 選項。
+    ![Set Application Debug Mode Property][debugmodeproperty]
 
-1. **自動升級**：偵錯工作階段結束時，應用程式繼續執行。接著按 **F5** 會將部署視為升級，使用未受監視的自動模式，將應用程式快速升級為較新版本並附加日期字串。此升級程序會保留您在前一個偵錯工作階段中輸入的所有資料。
+These are the **Application Debug Mode** options available.
 
-2. **保留應用程式**︰偵錯工作階段結束時，應用程式會在叢集中繼續執行。接著按 **F5** 會移除該應用程式，然後將新建置的應用程式部署到叢集。
+1. **Auto Upgrade**: The application continues to run when the debug session ends. The next **F5** will treat the deployment as an upgrade by using unmonitored auto mode to quickly upgrade the application to a newer version with a date string appended. The upgrade process preserves any data that you entered in a previous debug session.
 
-3. **移除應用程式**會在偵錯工作階段結束時移除應用程式。
+2. **Keep Application**: The application keeps running in the cluster when the debug session ends. On the next **F5** the application will be removed and the newly built application will be deployed to the cluster.
 
-如果使用 [自動升級]，資料會藉由套用 Service Fabric 的應用程式升級功能得以保留，但是它會針對效能調整最佳化，而不是針對安全。如需有關升級應用程式和如何在實際環境中執行升級的詳細資訊，請參閱 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)。
+3. **Remove Application** causes the application to be removed when the debug session ends.
 
-![附加日期的新應用程式版本範例][preservedata]
+For **Auto Upgrade** data is preserved by applying the application upgrade capabilities of Service Fabric, but it is tuned to optimize for performance rather than safety. For more information about upgrading applications and how you might perform an upgrade in a real environment, see [Service Fabric application upgrade](service-fabric-application-upgrade.md).
 
->[AZURE.NOTE] Visual Studio 適用的 Service Fabric 工具 1.1 版之前沒有這個屬性。在 1.1 之前，請使用 [啟動時保留資料] 屬性來達成相同的行為。適用 Visual Studio 的 Service Fabric 工具 1.2 版已引入 [保留應用程式] 選項。
+![Example of new application version with date appended][preservedata]
 
-## 將服務加入 Service Fabric 應用程式
+>[AZURE.NOTE] This property doesn't exist prior to version 1.1 of the Service Fabric Tools for Visual Studio. Prior to 1.1, please use the **Preserve Data On Start** property to achieve the same behavior. The "Keep Application" option was introduced in version 1.2 of the Service Fabric Tools for Visual Studio.
 
-您可以將新的服務新增至應用程式以擴充其功能。若要確保應用程式封裝中包含該服務，請透過 [新增 Fabric 服務] 功能表項目新增服務。
+## <a name="add-a-service-to-your-service-fabric-application"></a>Add a service to your Service Fabric application
 
-![新增新 Fabric 服務至應用程式][newservice]
+You can add new services to your application to extend its functionality.  To ensure that the service is included in your application package, add the service through the **New Fabric Service...** menu item.
 
-選取要新增至應用程式的 Service Fabric 專案類型，並指定服務的名稱。請參閱[選擇服務架構](service-fabric-choose-framework.md)，以協助您決定要使用的服務類型。
+![Add a new fabric service to your application][newservice]
 
-![選取要新增至應用程式的 Fabric 服務類型][addserviceproject]
+Select a Service Fabric project type to add to your application, and specify a name for the service.  See [Choosing a framework for your service](service-fabric-choose-framework.md) to help you decide which service type to use.
 
-新服務將會新增到方案與現有的應用程式封裝。服務參照與預設的服務執行個體將會新增到應用程式資訊清單。該服務會在下次您部署應用程式時建立並啟動。
+![Select a Fabric Service project type to add to your application][addserviceproject]
 
-![新服務將會新增到應用程式資訊清單][newserviceapplicationmanifest]
+The new service will be added to your solution and existing application package. The service references and a default service instance will be added to the application manifest. The service will be created and started the next time you deploy the application.
 
-## 封裝 Service Fabric 應用程式
+![The new service will be added to your application manifest][newserviceapplicationmanifest]
 
-若要將應用程式及其服務部署到叢集，您需要建立應用程式封裝。封裝會以特定的配置來組織應用程式資訊清單、服務資訊清單和其他必要的檔案。Visual Studio 會在 'pkg' 目錄的應用程式專案資料夾中設定與管理封裝。從 [應用程式] 操作功能表中按一下 [封裝] 會建立或更新應用程式封裝。如果您使用自訂的 Powershell 指令碼來部署應用程式，您可能會想要這麼做。
+## <a name="package-your-service-fabric-application"></a>Package your Service Fabric application
 
-## 使用 Cloud Explorer 移除應用程式和應用程式類型
+To deploy the application and its services to a cluster, you need to create an application package.  The package organizes the application manifest, service manifest(s), and other necessary files in a specific layout.  Visual Studio sets up and manages the package in the application project's folder, in the 'pkg' directory.  Clicking **Package** from the **Application** context menu creates or updates the application package.  You may want to do this if you deploy the application by using custom PowerShell scripts.
 
-您可以從 Visual Studio 使用 Cloud Explorer (可從 [檢視] 功能表啟動) 執行基本的叢集管理作業。例如，您可以在本機或遠端叢集上刪除應用程式和解除佈建應用程式類型。
+## <a name="remove-applications-and-application-types-using-cloud-explorer"></a>Remove applications and application types using Cloud Explorer
 
-![移除應用程式](./media/service-fabric-manage-application-in-visual-studio/removeapplication.png)
+You can perform basic cluster management operations from within Visual Studio using Cloud Explorer, which you can launch from the **View** menu. For instance, you can delete applications and unprovision application types on local or remote clusters.
 
->[AZURE.TIP] 如需更豐富的叢集管理功能，請參閱[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+![Remove an application](./media/service-fabric-manage-application-in-visual-studio/removeapplication.png)
+
+>[AZURE.TIP] For richer cluster management functionality, see [Visualizing your cluster with Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
 
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [Service Fabric 應用程式模型](service-fabric-application-model.md)
-- [Service Fabric 應用程式部署](service-fabric-deploy-remove-applications.md)
-- [管理多個環境的應用程式參數](service-fabric-manage-multiple-environment-app-configuration.md)
-- [偵錯 Service Fabric 應用程式](service-fabric-debugging-your-application.md)
-- [使用 Service Fabric 總管視覺化叢集](service-fabric-visualizing-your-cluster.md)
+- [Service Fabric application model](service-fabric-application-model.md)
+- [Service Fabric application deployment](service-fabric-deploy-remove-applications.md)
+- [Managing application parameters for multiple environments](service-fabric-manage-multiple-environment-app-configuration.md)
+- [Debugging your Service Fabric application](service-fabric-debugging-your-application.md)
+- [Visualizing your cluster by using Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)
 
 <!--Image references-->
-[addserviceproject]: ./media/service-fabric-manage-application-in-visual-studio/addserviceproject.png
+[addserviceproject]:./media/service-fabric-manage-application-in-visual-studio/addserviceproject.png
 [manageservicefabric]: ./media/service-fabric-manage-application-in-visual-studio/manageservicefabric.png
-[newservice]: ./media/service-fabric-manage-application-in-visual-studio/newservice.png
-[newserviceapplicationmanifest]: ./media/service-fabric-manage-application-in-visual-studio/newserviceapplicationmanifest.png
-[preservedata]: ./media/service-fabric-manage-application-in-visual-studio/preservedata.png
-[debugmodeproperty]: ./media/service-fabric-manage-application-in-visual-studio/debugmodeproperty.png
+[newservice]:./media/service-fabric-manage-application-in-visual-studio/newservice.png
+[newserviceapplicationmanifest]:./media/service-fabric-manage-application-in-visual-studio/newserviceapplicationmanifest.png
+[preservedata]:./media/service-fabric-manage-application-in-visual-studio/preservedata.png
+[debugmodeproperty]:./media/service-fabric-manage-application-in-visual-studio/debugmodeproperty.png
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

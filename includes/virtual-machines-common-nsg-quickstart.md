@@ -1,14 +1,16 @@
-您可以透過在子網路或 VM 網路介面上建立網路篩選，對 Azure 中的虛擬機器 (VM) 開啟連接埠或建立端點。您可將控制輸入和輸出流量的這些篩選器放在可接收流量的資源所附加的網路安全性群組上。
+You open a port, or create an endpoint, to a virtual machine (VM) in Azure by creating a network filter on a subnet or VM network interface. You place these filters, which control both inbound and outbound traffic, on a Network Security Group attached to the resource that receives the traffic.
 
-讓我們使用連接埠 80 上的 Web 流量的常見範例。一旦您的 VM 設定為在標準 TCP 連接埠 80 上為 Web 要求提供服務 (請記得啟動適當的服務，並且在 VM 上開啟任何作業系統防火牆規則)，您可以︰
+Let's use a common example of web traffic on port 80. Once you have a VM that is configured to serve web requests on the standard TCP port 80 (remember to start the appropriate services and open any OS firewall rules on the VM as well), you:
 
-1. 建立網路安全性群組。
-2. 建立輸入規則允許具有下列項目的流量︰
-  - 目的地連接埠範圍為 "80"
-  - 來源連接埠範圍為 "*" (允許任何來源連接埠)
-  - 優先順序值小於 65,500 (比預設全面涵蓋拒絕輸入規則的優先順序高)
-3. 讓網路安全性群組與 VM 網路介面或子網路產生關聯。
+1. Create a Network Security Group.
+2. Create an inbound rule allowing traffic with:
+  - the destination port range of "80"
+  - the source port range of "*" (allowing any source port)
+  - a priority value of less 65,500 (to be higher in priority than the default catch-all deny inbound rule)
+3. Associate the Network Security Group with the VM network interface or subnet.
     
-您可以建立複雜的網路組態，以使用網路安全性群組和規則保護您的環境。我們的範例僅使用一個或兩個規則，允許 HTTP 流量或遠端管理。如需詳細資訊，請參閱下面的[「相關資訊」](#more-information-on-network-security-groups)一節，或[什麼是網路安全性群組？](../articles/virtual-network/virtual-networks-nsg.md)
+You can create complex network configurations to secure your environment using Network Security Groups and rules. Our example uses only one or two rules that allow HTTP traffic or remote management. For more information, see the following ['More Information'](#more-information-on-network-security-groups) section or [What is a Network Security Group?](../articles/virtual-network/virtual-networks-nsg.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

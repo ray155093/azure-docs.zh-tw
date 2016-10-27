@@ -1,250 +1,257 @@
 <properties
-	pageTitle="Microsoft Azure 儲存體的用戶端 Java 加密 | Microsoft Azure"
-	description="Azure Storage Client Library for Java 支援用戶端加密以及與 Azure 金鑰保存庫的整合，為您的 Azure 儲存體應用程式提供最大的安全性。"
-	services="storage"
-	documentationCenter="java"
-	authors="dineshmurthy"
-	manager="jahogg"
-	editor="tysonn"/>
+    pageTitle="Client-Side Encryption with Java for Microsoft Azure Storage | Microsoft Azure"
+    description="The Azure Storage Client Library for Java supports client-side encryption and integration with Azure Key Vault for maximum security for your Azure Storage applications."
+    services="storage"
+    documentationCenter="java"
+    authors="dineshmurthy"
+    manager="jahogg"
+    editor="tysonn"/>
 
 <tags
-	ms.service="storage"
-	ms.workload="storage"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/20/2016"
-	ms.author="dineshm;robinsh"/>
+    ms.service="storage"
+    ms.workload="storage"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/18/2016"
+    ms.author="dineshm"/>
 
 
-# Microsoft Azure 儲存體的用戶端 Java 加密   
+
+# <a name="client-side-encryption-with-java-for-microsoft-azure-storage"></a>Client-Side Encryption with Java for Microsoft Azure Storage   
 
 [AZURE.INCLUDE [storage-selector-client-side-encryption-include](../../includes/storage-selector-client-side-encryption-include.md)]
 
-## 概觀  
+## <a name="overview"></a>Overview  
 
-[Azure Storage Client Library for Java](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) 支援在上傳至 Azure 儲存體之前將用戶端應用程式內的資料加密，並在下載至用戶端時解密資料。程式庫也支援與 [Azure 金鑰保存庫](https://azure.microsoft.com/services/key-vault/)整合，以進行儲存體帳戶金鑰管理。
+The [Azure Storage Client Library for Java](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) supports encrypting data within client applications before uploading to Azure Storage, and decrypting data while downloading to the client. The library also supports integration with [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) for storage account key management.
 
-## 透過信封技術進行加密和解密    
-加密和解密的程序採用信封技術。
+## <a name="encryption-and-decryption-via-the-envelope-technique"></a>Encryption and decryption via the envelope technique    
+The processes of encryption and decryption follow the envelope technique.  
 
-### 透過信封技術加密  
-透過信封技術加密的運作方式如下：
+### <a name="encryption-via-the-envelope-technique"></a>Encryption via the envelope technique  
+Encryption via the envelope technique works in the following way:  
 
-1.	Azure 儲存體用戶端程式庫會產生內容加密金鑰 (CEK)，這是使用一次的對稱金鑰。  
+1.  The Azure storage client library generates a content encryption key (CEK), which is a one-time-use symmetric key.  
 
-2.	使用此 CEK 加密使用者資料。
+2.  User data is encrypted using this CEK.   
 
-3.	然後使用金鑰加密金鑰 (KEK) 包裝 (加密) CEK。KEK 由金鑰識別碼所識別，可以是非對稱金鑰組或對稱金鑰，且可以在本機管理或儲存在 Azure 金鑰保存庫中。儲存體用戶端程式庫本身永遠沒有 KEK 的存取權。程式庫會叫用金鑰保存庫所提供的金鑰包裝演算法。如有需要，使用者可以選擇使用自訂提供者來包裝/取消包裝金鑰。
+3.  The CEK is then wrapped (encrypted) using the key encryption key (KEK). The KEK is identified by a key identifier and can be an asymmetric key pair or a symmetric key and can be managed locally or stored in Azure Key Vaults.  
+The storage client library itself never has access to KEK. The library invokes the key wrapping algorithm that is provided by Key Vault. Users can choose to use custom providers for key wrapping/unwrapping if desired.  
 
-4.	然後，將加密的資料上傳至 Azure 儲存體服務。包裝的金鑰及一些其他加密中繼資料會儲存為中繼資料 (在 blob 上)，或插補加密的資料 (訊息佇列和資料表實體)。
+4.  The encrypted data is then uploaded to the Azure Storage service. The wrapped key along with some additional encryption metadata is either stored as metadata (on a blob) or interpolated with the encrypted data (queue messages and table entities).
 
-### 透過信封技術解密  
-透過信封技術解密的運作方式如下：
+### <a name="decryption-via-the-envelope-technique"></a>Decryption via the envelope technique  
+Decryption via the envelope technique works in the following way:  
 
-1.	用戶端程式庫假設使用者在本機或 Azure 金鑰保存庫中管理金鑰加密金鑰 (KEK)。使用者不必知道用於加密的特定金鑰。相反地，可以設定並使用金鑰解析程式，將不同的金鑰識別碼解析成金鑰。  
+1.  The client library assumes that the user is managing the key encryption key (KEK) either locally or in Azure Key Vaults. The user does not need to know the specific key that was used for encryption. Instead, a key resolver which resolves different key identifiers to keys can be set up and used.  
 
-2.	用戶端程式庫會下載加密的資料，以及儲存在服務上的任何加密資料。
+2.  The client library downloads the encrypted data along with any encryption material that is stored on the service.  
 
-3.	然後，使用金鑰加密金鑰 (KEK) 將已包裝的內容加密金鑰 (CEK) 解除包裝 (解密)。同樣地，用戶端程式庫在此沒有 KEK 的存取權。它只會叫用自訂或金鑰保存庫提供者的解除包裝演算法。
+3.  The wrapped content encryption key (CEK) is then unwrapped (decrypted) using the key encryption key (KEK). Here again, the client library does not have access to KEK. It simply invokes the custom or Key Vault provider’s unwrapping algorithm.  
 
-4.	然後，使用內容加密金鑰 (CEK) 解密已加密的使用者資料。
+4.  The content encryption key (CEK) is then used to decrypt the encrypted user data.
 
-## 加密機制  
-儲存體用戶端程式庫會使用 [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) 來加密使用者資料。具體來說，就是[加密區塊鏈結 (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) 模式搭配 AES。每個服務的運作方式稍有不同，我們將在這裡討論每個服務。
+## <a name="encryption-mechanism"></a>Encryption Mechanism  
+The storage client library uses [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) in order to encrypt user data. Specifically, [Cipher Block Chaining (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) mode with AES. Each service works somewhat differently, so we will discuss each of them here.
 
-### Blob  
-用戶端程式庫目前僅支援整個 Blob 的加密。更明確地說，是在使用者使用 **upload** 方法或 **openOutputStream** 方法時支援加密。針對下載，則皆支援完整與範圍下載。
+### <a name="blobs"></a>Blobs  
+The client library currently supports encryption of whole blobs only. Specifically, encryption is supported when users use the **upload*** methods or the **openOutputStream** method. For downloads, both complete and range downloads are supported.  
 
-在加密期間，用戶端程式庫會產生 16 位元組的隨機初始化向量 (IV)，以及 32 位元組的隨機內容加密金鑰 (CEK)，並使用這項資訊執行 blob 資料的信封加密。然後，已包裝的 CEK 和一些其他加密中繼資料會儲存為 blob 中繼資料，並連同加密的 blob 一起儲存在服務上。
+During encryption, the client library will generate a random Initialization Vector (IV) of 16 bytes, together with a random content encryption key (CEK) of 32 bytes, and perform envelope encryption of the blob data using this information. The wrapped CEK and some additional encryption metadata are then stored as blob metadata along with the encrypted blob on the service.
 
->[AZURE.WARNING] 如果您要為 blob 編輯或上傳您自己的中繼資料，則必須確定保留此中繼資料。如果您上傳新的中繼資料，但缺少此中繼資料，包裝的 CEK、IV 和其他中繼資料將會遺失，而且永遠無法再擷取 blob 內容。
+>[AZURE.WARNING] If you are editing or uploading your own metadata for the blob, you need to ensure that this metadata is preserved. If you upload new metadata without this metadata, the wrapped CEK, IV and other metadata will be lost and the blob content will never be retrievable again.
 
-下載已加密的 blob 牽涉到使用 **download*/openInputStream** 便利方法來擷取整個 blob 的內容。包裝的 CEK 會解除包裝，並與 IV (在此情況下儲存為 blob 中繼資料) 一起用來傳回解密的資料給使用者。
+Downloading an encrypted blob involves retrieving the content of the entire blob using the **download*/openInputStream** convenience methods. The wrapped CEK is unwrapped and used together with the IV (stored as blob metadata in this case) to return the decrypted data to the users.
 
-在加密的 Blob 中下載任意範圍 (**downloadRange*** 方法)，包含調整使用者所提供的範圍，藉此取得少量額外的資料以便用來成功解密所要求的範圍。
+Downloading an arbitrary range (**downloadRange*** methods) in the encrypted blob involves adjusting the range provided by users in order to get a small amount of additional data that can be used to successfully decrypt the requested range.  
 
-所有 Blob 類型 (區塊 Blob、頁面 Blob 和附加 Blob) 都可以使用此機制進行加密/解密。
+All blob types (block blobs, page blobs, and append blobs) can be encrypted/decrypted using this scheme.
 
-### 佇列  
-因為佇列訊息可以是任何格式，用戶端程式庫會定義自訂的格式，其中包含訊息文字中的初始化向量 (IV) 和加密的內容加密金鑰 (CEK)。
+### <a name="queues"></a>Queues  
+Since queue messages can be of any format, the client library defines a custom format that includes the Initialization Vector (IV) and the encrypted content encryption key (CEK) in the message text.  
 
-在加密期間，用戶端程式庫會產生 16 位元組的隨機 IV，以及 32 位元組的隨機 CEK，並使用這項資訊執行佇列訊息文字的信封加密。然後，已包裝的 CEK 和一些其他加密中繼資料會加入至已加密的佇列訊息。這個修改過的訊息 (如下所示) 會儲存在服務上。
+During encryption, the client library generates a random IV of 16 bytes along with a random CEK of 32 bytes and performs envelope encryption of the queue message text using this information. The wrapped CEK and some additional encryption metadata are then added to the encrypted queue message. This modified message (shown below) is stored on the service.
 
-	<MessageText>{"EncryptedMessageContents":"6kOu8Rq1C3+M1QO4alKLmWthWXSmHV3mEfxBAgP9QGTU++MKn2uPq3t2UjF1DO6w","EncryptionData":{…}}</MessageText>
+    <MessageText>{"EncryptedMessageContents":"6kOu8Rq1C3+M1QO4alKLmWthWXSmHV3mEfxBAgP9QGTU++MKn2uPq3t2UjF1DO6w","EncryptionData":{…}}</MessageText>
 
-在解密期間，從佇列訊息中擷取已包裝的金鑰，並解除包裝。IV 也會從佇列訊息中擷取，並與未包裝的金鑰一起用來解密佇列訊息資料。請注意，加密中繼資料很小 (小於 500 位元組)，雖然計入佇列訊息的 64KB 限制內，但影響仍在可掌控的範圍內。
+During decryption, the wrapped key is extracted from the queue message and unwrapped. The IV is also extracted from the queue message and used along with the unwrapped key to decrypt the queue message data. Note that the encryption metadata is small (under 500 bytes), so while it does count toward the 64KB limit for a queue message, the impact should be manageable.
 
-### 資料表  
-用戶端程式庫支援在插入和取代作業時進行實體屬性的加密。
+### <a name="tables"></a>Tables  
+The client library supports encryption of entity properties for insert and replace operations.
 
->[AZURE.NOTE] 目前不支援合併。因為屬性子集先前可能是使用不同的金鑰加密，直接合併新的屬性並更新中繼資料會導致資料遺失。合併可能需要額外的服務呼叫來從服務讀取預先存在的實體，或在每個屬性上都使用新的金鑰，兩者都不利用於效能。
+>[AZURE.NOTE] Merge is not currently supported. Since a subset of properties may have been encrypted previously using a different key, simply merging the new properties and updating the metadata will result in data loss. Merging either requires making extra service calls to read the pre-existing entity from the service, or using a new key per property, both of which are not suitable for performance reasons.
 
-資料表資料加密的運作方式如下：
+Table data encryption works as follows:  
 
-1.	使用者指定要加密的屬性。  
+1.  Users specify the properties to be encrypted.  
 
-2.	用戶端程式庫會針對每個實體產生 16 位元組的隨機初始化向量 (IV) 以及 32 位元組的隨機內容加密金鑰 (CEK)，並在個別屬性上執行信封加密，使每個屬性衍生新的 IV，藉此進行加密。加密的屬性會儲存為二進位資料。
+2.  The client library generates a random Initialization Vector (IV) of 16 bytes along with a random content encryption key (CEK) of 32 bytes for every entity, and performs envelope encryption on the individual properties to be encrypted by deriving a new IV per property. The encrypted property is stored as binary data.  
 
-3.	然後，已包裝的 CEK 和一些其他加密中繼資料會儲存成額外兩個保留的屬性。第一個保留的屬性 (\_ClientEncryptionMetadata1) 是字串屬性，保存 IV、版本和已包裝的金鑰的相關資訊。第二個保留的屬性 (\_ClientEncryptionMetadata2) 二進位屬性，其保留已加密之屬性的相關資訊。此第二個屬性 (\_ClientEncryptionMetadata2) 中的資訊已自行加密。
+3.  The wrapped CEK and some additional encryption metadata are then stored as two additional reserved properties. The first reserved property (_ClientEncryptionMetadata1) is a string property that holds the information about IV, version, and wrapped key. The second reserved property (_ClientEncryptionMetadata2) is a binary property that holds the information about the properties that are encrypted. The information in this second property (_ClientEncryptionMetadata2) is itself encrypted.  
 
-4.	由於加密需要這些額外保留的屬性，使用者現在可能只有 250 個自訂屬性，而不是 252 個。實體的總大小必須小於 1MB。
+4.  Due to these additional reserved properties required for encryption, users may now have only 250 custom properties instead of 252. The total size of the entity must be less than 1MB.  
 
-	請注意，只有字串屬性可以加密。如果有其他類型的屬性需要加密，則必須轉換成字串。加密的字串儲存在服務上作為二進位屬性，且解密後會轉換回字串。
+    Note that only string properties can be encrypted. If other types of properties are to be encrypted, they must be converted to strings. The encrypted strings are stored on the service as binary properties, and they are converted back to strings after decryption.
 
-	針對資料表，除了加密原則之外，使用者必須指定要加密的屬性。作法是指定 [Encrypt] 屬性 (針對衍生自 TableEntity 的 POCO 實體)，或在要求選項中指定加密解析程式。加密解析程式是委派，接受資料分割索引鍵、資料列索引鍵和屬性名稱，然後傳回布林值，指出是否應該加密該屬性。在加密期間，用戶端程式庫會使用此資訊，決定將屬性在寫到網路時是否應該加密。委派也提供關於屬性如何加密的可能邏輯。(例如，如果 X，則加密屬性 A，否則加密屬性 A 和 B。) 請注意，讀取或查詢實體時不需要提供這項資訊。
+    For tables, in addition to the encryption policy, users must specify the properties to be encrypted. This can be done by either specifying an [Encrypt] attribute (for POCO entities that derive from TableEntity) or an encryption resolver in request options. An encryption resolver is a delegate that takes a partition key, row key, and property name and returns a boolean that indicates whether that property should be encrypted. During encryption, the client library will use this information to decide whether a property should be encrypted while writing to the wire. The delegate also provides for the possibility of logic around how properties are encrypted. (For example, if X, then encrypt property A; otherwise encrypt properties A and B.) Note that it is not necessary to provide this information while reading or querying entities.
 
-### 批次作業  
-在批次作業中，批次作業中的所有資料列上會使用相同的 KEK，因為用戶端程式庫只允許每個批次作業有一個選項物件 (也就是一個原則/KEK)。不過，用戶端程式庫會在內部為批次中的每個資料列產生新的隨機 IV 和隨機 CEK。使用者也可以選擇為批次中的每個作業加密不同的屬性，作法是在加密解析程式中定義此行為。
+### <a name="batch-operations"></a>Batch Operations  
+In batch operations, the same KEK will be used across all the rows in that batch operation because the client library only allows one options object (and hence one policy/KEK) per batch operation. However, the client library will internally generate a new random IV and random CEK per row in the batch. Users can also choose to encrypt different properties for every operation in the batch by defining this behavior in the encryption resolver.
 
-### 查詢  
-若要執行查詢作業，您必須指定一個能夠解析結果集中的所有金鑰的金鑰解析程式。如果查詢結果中包含的實體無法解析成提供者，用戶端程式庫會擲回錯誤。針對執行伺服器端投影的任何查詢，用戶端程式庫會依預設將特殊加密中繼資料屬性 (\_ClientEncryptionMetadata1 和 \_ClientEncryptionMetadata2) 加入選取的資料行。
+### <a name="queries"></a>Queries  
+To perform query operations, you must specify a key resolver that is able to resolve all the keys in the result set. If an entity contained in the query result cannot be resolved to a provider, the client library will throw an error. For any query that performs server side projections, the client library will add the special encryption metadata properties (_ClientEncryptionMetadata1 and _ClientEncryptionMetadata2) by default to the selected columns.
 
-## Azure 金鑰保存庫  
-Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密碼編譯金鑰和密碼。使用 Azure 金鑰保存庫時，使用者可以使用受硬體安全模組 (HSM) 保護的金鑰來加密金鑰和密碼 (例如驗證金鑰、儲存體帳戶金鑰、資料加密金鑰、.PFX 檔案和密碼)。如需詳細資訊，請參閱[什麼是 Azure 金鑰保存庫？](../key-vault/key-vault-whatis.md)。
+## <a name="azure-key-vault"></a>Azure Key Vault  
+Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud applications and services. By using Azure Key Vault, users can encrypt keys and secrets (such as authentication keys, storage account keys, data encryption keys, .PFX files, and passwords) by using keys that are protected by hardware security modules (HSMs). For more information, see [What is Azure Key Vault?](../key-vault/key-vault-whatis.md).
 
-儲存體用戶端程式庫會使用金鑰保存庫核心程式庫，以提供整個 Azure 的通用架構來管理金鑰。使用者也享有使用金鑰保存庫延伸模組程式庫的額外好處。延伸模組程式庫提供實用的功能，包括簡單又完善的對稱/RSA 本機和雲端金鑰提供者，以及彙總和快取。
+The storage client library uses the Key Vault core library in order to provide a common framework across Azure for managing keys. Users also get the additional benefit of using the Key Vault extensions library. The extensions library provides useful functionality around simple and seamless Symmetric/RSA local and cloud key providers as well as with aggregation and caching.
 
-### 介面和相依性  
-有三個金鑰保存庫封裝：
+### <a name="interface-and-dependencies"></a>Interface and dependencies  
+There are three Key Vault packages:  
 
-- azure-keyvault-core 包含 IKey 和 IKeyResolver。這是不具有相依性的小型封裝。Java 的儲存體用戶端程式庫會將其定義為相依。
-- azure-keyvault 包含金鑰保存庫 REST 用戶端。  
-- azure-keyvault-extensions 包含延伸模組程式碼，其中包含密碼編譯演算法的實作及 RSAKey 和 SymmetricKey。它依賴 Core 和 KeyVault 命名空間，並提供功能來定義彙總解析程式 (當使用者想要使用多個金鑰提供者時) 和快取金鑰解析程式。儲存體用戶端程式庫不直接依賴這個封裝，如果使用者想要使用 Azure 金鑰保存庫來儲存其金鑰，或使用金鑰保存庫延伸模組來取用本機和雲端密碼編譯提供者，則需要此封裝。  
+- azure-keyvault-core contains the IKey and IKeyResolver. It is a small package with no dependencies. The storage client library for Java defines it as a dependency.
+- azure-keyvault contains the Key Vault REST client.  
+- azure-keyvault-extensions contains extension code that includes implementations of cryptographic algorithms and an RSAKey and a SymmetricKey. It depends on the Core and KeyVault namespaces and provides functionality to define an aggregate resolver (when users want to use multiple key providers) and a caching key resolver. Although the storage client library does not directly depend on this package, if users wish to use Azure Key Vault to store their keys or to use the Key Vault extensions to consume the local and cloud cryptographic providers, they will need this package.  
 
-  金鑰保存庫是專為高價值的主要金鑰而設計，個別金鑰保存庫的節流限制都以此為設計重點。使用金鑰保存庫執行用戶端加密時，慣用的模型是使用在金鑰保存庫中儲存為密碼且在本機快取的對稱主要金鑰。使用者必須執行下列動作：
+  Key Vault is designed for high-value master keys, and throttling limits per Key Vault are designed with this in mind. When performing client-side encryption with Key Vault, the preferred model is to use symmetric master keys stored as secrets in Key Vault and cached locally. Users must do the following:  
 
-1.	離線建立密碼，再上載至金鑰保存庫。  
+1.  Create a secret offline and upload it to Key Vault.  
 
-2.	使用密碼的基底識別碼做為參數，解析用於加密的目前密碼版本，並在本機快取這項資訊。使用 CachingKeyResolver 進行快取。使用者不需要實作自己的快取邏輯。
+2.  Use the secret's base identifier as a parameter to resolve the current version of the secret for encryption and cache this information locally. Use CachingKeyResolver for caching; users are not expected to implement their own caching logic.  
 
-3.	建立加密原則時，使用快取解析程式做為輸入。如需有關「金鑰保存庫」使用方式的詳細資訊，請參閱加密程式碼範例。<fix URL>
+3.  Use the caching resolver as an input while creating the encryption policy.
+More information regarding Key Vault usage can be found in the encryption code samples. <fix URL>  
 
-## 最佳作法  
-只有 Java 的儲存體用戶端程式庫才支援加密。
+## <a name="best-practices"></a>Best practices  
+Encryption support is available only in the storage client library for Java.
 
->[AZURE.IMPORTANT] 使用用戶端加密時，請留意以下重點：
+>[AZURE.IMPORTANT] Be aware of these important points when using client-side encryption:
 >  
->- 讀取或寫入加密的 Blob 時，使用整個 Blob 上傳命令及範圍/整個 Blob 下載命令。避免寫入使用通訊協定作業的加密 Blob，例如：放置區塊、放置區塊清單、寫入頁面、清除頁面或附加區塊；否則您可能會破壞加密 Blob 並使它無法讀取。
+>- When reading from or writing to an encrypted blob, use whole blob upload commands and range/whole blob download commands. Avoid writing to an encrypted blob using protocol operations such as Put Block, Put Block List, Write Pages, Clear Pages, or Append Block; otherwise you may corrupt the encrypted blob and make it unreadable.
 >
->- 對於資料表，存在類似的條件約束。請小心在未更新加密中繼資料時即更新加密的內容。
+>- For tables, a similar constraint exists. Be careful to not update encrypted properties without updating the encryption metadata.  
 >
->- 如果您在加密 Blob 上設定中繼資料，您可能會覆寫加密所需的加密相關中繼資料，因為設定中繼資料不是加總解密。快照集也是如此。在為加密的 Blob 建立快照集時，請避免指定中繼資料。如果必須設定中繼資料，請務必先呼叫 **downloadAttributes** 方法，以取得目前的加密中繼資料，並避免在設定中繼資料時並行寫入。
+>- If you set metadata on the encrypted blob, you may overwrite the encryption-related metadata required for decryption, since setting metadata is not additive. This is also true for snapshots; avoid specifying metadata while creating a snapshot of an encrypted blob. If metadata must be set, be sure to call the **downloadAttributes** method first to get the current encryption metadata, and avoid concurrent writes while metadata is being set.  
 >
->- 在預設的要求選項中啟用 **requireEncryption** 旗標，使用者就應該只能使用加密的資料。如需詳細資訊請參閱下方內容。
+>- Enable the **requireEncryption** flag in the default request options for users that should work only with encrypted data. See below for more info.  
 
-## 用戶端 API / 介面  
-使用者在建立 EncryptionPolicy 物件時，可以只提供金鑰 (實作 IKey)、只提供者解析程式 (實作 IKeyResolver)，或兩者都提供。IKey 是以金鑰識別碼來識別的基本金鑰類型，且提供包裝/解除包裝的邏輯。IKeyResolver 在解密程序期間用來解析金鑰。它定義 ResolveKey 方法，可根據金鑰識別碼傳回 IKey。這可讓使用者從多個位置中管理的多個金鑰之中選擇。
+## <a name="client-api-/-interface"></a>Client API / Interface  
+While creating an EncryptionPolicy object, users can provide only a Key (implementing IKey), only a resolver (implementing IKeyResolver), or both. IKey is the basic key type that is identified using a key identifier and that provides the logic for wrapping/unwrapping. IKeyResolver is used to resolve a key during the decryption process. It defines a ResolveKey method that returns an IKey given a key identifier. This provides users the ability to choose between multiple keys that are managed in multiple locations.
 
-- 加密時一律使用金鑰，缺少金鑰將會導致錯誤。  
-- 解密：  
-	- 叫用金鑰解析程式 (如果指定) 以取得金鑰。如果已指定解析程式，但沒有金鑰識別碼的對應，則會擲回錯誤。  
-	- 如果未指定解析程式但指定了金鑰，則如果其識別項符合所需的金鑰識別項，就會使用該金鑰。如果識別項不符合，則會擲回錯誤。  
+- For encryption, the key is used always and the absence of a key will result in an error.  
+- For decryption:  
+    - The key resolver is invoked if specified to get the key. If the resolver is specified but does not have a mapping for the key identifier, an error is thrown.  
+    - If resolver is not specified but a key is specified, the key is used if its identifier matches the required key identifier. If the identifier does not match, an error is thrown.  
 
-	  [加密範例](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples) <fix URL>針對 blob、佇列和資料表以及「金鑰保存庫」整合，示範更詳細的端對端案例。
+      The [encryption samples](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples) <fix URL>demonstrate a more detailed end-to-end scenario for blobs, queues and tables, along with Key Vault integration.
 
-### RequireEncryption 模式  
-使用者可以針對所有上傳和下載都必須加密的作業模式，從中選擇啟用。在此模式中，在用戶端上嘗試上傳沒有加密原則的資料或下載未在服務上加密的資料將會失敗。要求選項物件的 **requireEncryption** 旗標會控制此行為。如果您的應用程式會將所有儲存在 Azure 儲存體中的物件加密，則您可以在服務用戶端服務的預設要求選項上，設定 **requireEncryption** 屬性。
+### <a name="requireencryption-mode"></a>RequireEncryption mode  
+Users can optionally enable a mode of operation where all uploads and downloads must be encrypted. In this mode, attempts to upload data without an encryption policy or download data that is not encrypted on the service will fail on the client. The **requireEncryption** flag of the request options object controls this behavior. If your application will encrypt all objects stored in Azure Storage, then you can set the **requireEncryption** property on the default request options for the service client object.   
 
-例如，使用 **CloudBlobClient.getDefaultRequestOptions().setRequireEncryption(true)** 要求加密透過該用戶端物件所執行的所有 Blob 作業。
+For example, use **CloudBlobClient.getDefaultRequestOptions().setRequireEncryption(true)** to require encryption for all blob operations performed through that client object.
 
-### Blob 服務加密  
-建立 **BlobEncryptionPolicy** 物件，並在要求選項中加以設定 (透過 API 或在用戶端層級使用 **DefaultRequestOptions**)。其他一切由用戶端程式庫在內部處理。
+### <a name="blob-service-encryption"></a>Blob service encryption  
+Create a **BlobEncryptionPolicy** object and set it in the request options (per API or at a client level by using **DefaultRequestOptions**). Everything else will be handled by the client library internally.
 
-	// Create the IKey used for encryption.
-	RsaKey key = new RsaKey("private:key1" /* key identifier */);
+    // Create the IKey used for encryption.
+    RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
-	// Create the encryption policy to be used for upload and download.
-	BlobEncryptionPolicy policy = new BlobEncryptionPolicy(key, null);
+    // Create the encryption policy to be used for upload and download.
+    BlobEncryptionPolicy policy = new BlobEncryptionPolicy(key, null);
 
-	// Set the encryption policy on the request options.
-	BlobRequestOptions options = new BlobRequestOptions();
-	options.setEncryptionPolicy(policy);
+    // Set the encryption policy on the request options.
+    BlobRequestOptions options = new BlobRequestOptions();
+    options.setEncryptionPolicy(policy);
 
-	// Upload the encrypted contents to the blob.
-	blob.upload(stream, size, null, options, null);
+    // Upload the encrypted contents to the blob.
+    blob.upload(stream, size, null, options, null);
 
-	// Download and decrypt the encrypted contents from the blob.
-	ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-	blob.download(outputStream, null, options, null);
+    // Download and decrypt the encrypted contents from the blob.
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    blob.download(outputStream, null, options, null);
 
-### 佇列服務加密  
-建立 **QueueEncryptionPolicy** 物件，並在要求選項中加以設定 (透過 API 或在用戶端層級使用 **DefaultRequestOptions**)。其他一切由用戶端程式庫在內部處理。
+### <a name="queue-service-encryption"></a>Queue service encryption  
+Create a **QueueEncryptionPolicy** object and set it in the request options (per API or at a client level by using **DefaultRequestOptions**). Everything else will be handled by the client library internally.
 
-	// Create the IKey used for encryption.
-	RsaKey key = new RsaKey("private:key1" /* key identifier */);
+    // Create the IKey used for encryption.
+    RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
-	// Create the encryption policy to be used for upload and download.
-	QueueEncryptionPolicy policy = new QueueEncryptionPolicy(key, null);
+    // Create the encryption policy to be used for upload and download.
+    QueueEncryptionPolicy policy = new QueueEncryptionPolicy(key, null);
 
-	// Add message
-	QueueRequestOptions options = new QueueRequestOptions();
-	options.setEncryptionPolicy(policy);
+    // Add message
+    QueueRequestOptions options = new QueueRequestOptions();
+    options.setEncryptionPolicy(policy);
 
-	queue.addMessage(message, 0, 0, options, null);
+    queue.addMessage(message, 0, 0, options, null);
 
-	// Retrieve message
-	CloudQueueMessage retrMessage = queue.retrieveMessage(30, options, null);
+    // Retrieve message
+    CloudQueueMessage retrMessage = queue.retrieveMessage(30, options, null);
 
-### 資料表服務加密  
-除了建立加密原則並在要求選項上加以設定之外，您必須在 **TableRequestOptions** 中指定 **EncryptionResolver**，或在實體的 getter 與 setter 上設定 [Encryp] 屬性。
+### <a name="table-service-encryption"></a>Table service encryption  
+In addition to creating an encryption policy and setting it on request options, you must either specify an **EncryptionResolver** in **TableRequestOptions**, or set the [Encrypt] attribute on the entity’s getter and setter.
 
-### 使用解析程式  
+### <a name="using-the-resolver"></a>Using the resolver  
 
-	// Create the IKey used for encryption.
-	RsaKey key = new RsaKey("private:key1" /* key identifier */);
+    // Create the IKey used for encryption.
+    RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
-	// Create the encryption policy to be used for upload and download.
-	TableEncryptionPolicy policy = new TableEncryptionPolicy(key, null);
+    // Create the encryption policy to be used for upload and download.
+    TableEncryptionPolicy policy = new TableEncryptionPolicy(key, null);
 
-	TableRequestOptions options = new TableRequestOptions()
-	options.setEncryptionPolicy(policy);
-	options.setEncryptionResolver(new EncryptionResolver() {
-	    public boolean encryptionResolver(String pk, String rk, String key) {
-        	if (key == "foo")
-        	{
-	            return true;
-        	}
-        	return false;
-    	}
-	});
+    TableRequestOptions options = new TableRequestOptions()
+    options.setEncryptionPolicy(policy);
+    options.setEncryptionResolver(new EncryptionResolver() {
+        public boolean encryptionResolver(String pk, String rk, String key) {
+            if (key == "foo")
+            {
+                return true;
+            }
+            return false;
+        }
+    });
 
-	// Insert Entity
-	currentTable.execute(TableOperation.insert(ent), options, null);
+    // Insert Entity
+    currentTable.execute(TableOperation.insert(ent), options, null);
 
-	// Retrieve Entity
-	// No need to specify an encryption resolver for retrieve
-	TableRequestOptions retrieveOptions = new TableRequestOptions()
-	retrieveOptions.setEncryptionPolicy(policy);
+    // Retrieve Entity
+    // No need to specify an encryption resolver for retrieve
+    TableRequestOptions retrieveOptions = new TableRequestOptions()
+    retrieveOptions.setEncryptionPolicy(policy);
 
-	TableOperation operation = TableOperation.retrieve(ent.PartitionKey, ent.RowKey, DynamicTableEntity.class);
-	TableResult result = currentTable.execute(operation, retrieveOptions, null);
+    TableOperation operation = TableOperation.retrieve(ent.PartitionKey, ent.RowKey, DynamicTableEntity.class);
+    TableResult result = currentTable.execute(operation, retrieveOptions, null);
 
-### 使用屬性  
-如上所述，如果實體實作 TableEntity，則屬性可以使用 [Encrypt] 屬性裝飾 getter 與 setter 屬性，不需指定 **EncryptionResolver**。
+### <a name="using-attributes"></a>Using attributes  
+As mentioned above, if the entity implements TableEntity, then the properties getter and setter can be decorated with the [Encrypt] attribute instead of specifying the **EncryptionResolver**.
 
-	private string encryptedProperty1;
+    private string encryptedProperty1;
 
-	@Encrypt
-	public String getEncryptedProperty1 () {
-	    return this.encryptedProperty1;
-	}
+    @Encrypt
+    public String getEncryptedProperty1 () {
+        return this.encryptedProperty1;
+    }
 
-	@Encrypt
-	public void setEncryptedProperty1(final String encryptedProperty1) {
-	    this.encryptedProperty1 = encryptedProperty1;
-	}
+    @Encrypt
+    public void setEncryptedProperty1(final String encryptedProperty1) {
+        this.encryptedProperty1 = encryptedProperty1;
+    }
 
-## 加密和效能  
-請注意，加密您的儲存體資料會造成額外的效能負擔。必須產生內容金鑰和 IV，內容本身必須經過加密，而且其他中繼資料必須格式化並上傳。這個額外負荷會因所加密的資料數量而有所不同。我們建議客戶一定要在開發期間測試其應用程式的效能。
+## <a name="encryption-and-performance"></a>Encryption and performance  
+Note that encrypting your storage data results in additional performance overhead. The content key and IV must be generated, the content itself must be encrypted, and additional meta-data must be formatted and uploaded. This overhead will vary depending on the quantity of data being encrypted. We recommend that customers always test their applications for performance during development.
 
-## 後續步驟  
+## <a name="next-steps"></a>Next steps  
 
-- 下載 [Azure Storage Client Library for Java Maven package (適用於 Java Maven 封裝的 Azure 儲存體用戶端程式庫)](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage)
-- 從 GitHub 下載 [Azure Storage Client Library for Java Source Code (適用於 Java 原始程式碼的 Azure 儲存體用戶端程式庫)](https://github.com/Azure/azure-storage-java)
-- 下載適用於 Java Maven 的 Azure 金鑰保存庫 Maven 程式庫封裝：
-	- [核心](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-core)封裝
-	- [用戶端](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault)封裝
-- 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)
+- Download the [Azure Storage Client Library for Java Maven package](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage)  
+- Download the [Azure Storage Client Library for Java Source Code from GitHub](https://github.com/Azure/azure-storage-java)   
+- Download the Azure Key Vault Maven Library for Java Maven packages:
+    - [Core](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-core) package
+    - [Client](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault) package
+- Visit the [Azure Key Vault Documentation](../key-vault/key-vault-whatis.md)  
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

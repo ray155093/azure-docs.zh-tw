@@ -1,123 +1,128 @@
 <properties
-	pageTitle="將 Git 構件儲存機制加入 Azure DevTest Labs 中的實驗室 | Microsoft Azure"
-	description="將適用於自訂構件來源的 GitHub 或 Visual Studio Team Services Git 儲存機制加入 Azure DevTest Labs"
-	services="devtest-lab,virtual-machines,visual-studio-online"
-	documentationCenter="na"
-	authors="tomarcher"
-	manager="douge"
-	editor=""/>
+    pageTitle="Add a Git artifact repository to a lab in Azure DevTest Labs | Microsoft Azure"
+    description="Add a GitHub or Visual Studio Team Services Git repository for your custom artifacts source in Azure DevTest Labs"
+    services="devtest-lab,virtual-machines,visual-studio-online"
+    documentationCenter="na"
+    authors="tomarcher"
+    manager="douge"
+    editor=""/>
 
 <tags
-	ms.service="devtest-lab"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/06/2016"
-	ms.author="tarcher"/>
+    ms.service="devtest-lab"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/06/2016"
+    ms.author="tarcher"/>
 
-# 將 Git 構件儲存機制加入 Azure DevTest Labs 中的實驗室
+
+# <a name="add-a-git-artifact-repository-to-a-lab-in-azure-devtest-labs"></a>Add a Git artifact repository to a lab in Azure DevTest Labs
 
 > [AZURE.VIDEO how-to-add-your-private-artifacts-repository-in-a-devtest-lab]
 
-在 Azure DevTest Labs 中，構件是「動作」 - 例如安裝軟體或執行指令碼和命令 (VM 建立時)。根據預設，實驗室包含來自官方 Azure DevTest Labs 構件儲存機制的構件。您可以將 Git 構件儲存機制加入您的實驗室，以包含小組建立的構件 。儲存機制可以裝載在 [GitHub](https://github.com) 或 [Visual Studio Team Services (VSTS)](https://visualstudio.com) 上。
+In Azure DevTest Labs, artifacts are *actions* - such as installing software or running scripts and commands - when a VM is created. By default, a lab includes artifacts from the official Azure DevTest Labs artifact repository. You can add a Git artifact repository to your lab to include the artifacts that your team creates. The repository can be hosted on [GitHub](https://github.com) or on [Visual Studio Team Services (VSTS)](https://visualstudio.com).
 
-- 若要了解如何建立 GitHub 儲存機制，請參閱 [GitHub Bootcamp](https://help.github.com/categories/bootcamp/)。
-- 若要了解如何使用 Git 儲存機制建立 Team Services 專案，請參閱[連接到 Visual Studio Team Services](https://www.visualstudio.com/get-started/setup/connect-to-visual-studio-online)。
+- To learn how to create a GitHub repository, see [GitHub Bootcamp](https://help.github.com/categories/bootcamp/).
+- To learn how to create a Team Services project with a Git Repository, see [Connect to Visual Studio Team Services](https://www.visualstudio.com/get-started/setup/connect-to-visual-studio-online).
 
-下列螢幕擷取畫面顯示包含構件的儲存機制在 GitHub 中的可能外觀範例：![GitHub 構件儲存機制範例](./media/devtest-lab-add-artifact-repo/devtestlab-github-artifact-repo-home.png)
+The following screen shot shows an example of how a repository containing artifacts might look in GitHub:  
+![Sample GitHub artifacts repo](./media/devtest-lab-add-artifact-repo/devtestlab-github-artifact-repo-home.png)
 
 
-## 取得儲存機制資訊和認證
+## <a name="get-the-repository-information-and-credentials"></a>Get the repository information and credentials
 
-若要將構件儲存機制加入您的實驗室，您必須先從儲存機制取得特定資訊。下列各節會引導您取得 GitHub 與 Visual Studio Team Services 上裝載的構件儲存機制的這項資訊。
+To add an artifact repository to your lab, you must first get certain information from your repository. The following sections guide you through getting this information for artifact repositories hosted on GitHub and Visual Studio Team Services.
 
-### 取得 GitHub 儲存機制複製 URL 和個人存取權杖
+### <a name="get-the-github-repository-clone-url-and-personal-access-token"></a>Get the GitHub repository clone URL and personal access token
 
-若要取得 GitHub 儲存機制複製 URL 和個人存取權杖，請遵循下列步驟：
+To get the GitHub repository clone URL and personal access token, follow these steps:
 
-1. 瀏覽至包含構件定義的 GitHub 儲存機制首頁。
+1. Browse to the home page of the GitHub repository that contains the artifact definitions.
 
-1. 選取 [複製或下載]。
+1. Select **Clone or download**.
 
-1. 選取將 **HTTPS 複製 URL** 複製到剪貼簿的按鈕，並儲存該 URL 供稍後使用。
+1. Select the button to copy the **HTTPS clone url** to the clipboard, and save the URL for later use.
 
-1. 選取 GitHub 右上角的設定檔影像，然後選取 [設定]。
+1. Select the profile image in the upper-right corner of GitHub, and select **Settings**.
 
-1. 在左側的 [個人設定] 功能表上，選取 [個人存取權杖]。
+1. In the **Personal settings** menu on the left, select **Personal access tokens**.
 
-1. 選取 [產生新的權杖]。
+1. Select **Generate new token**.
 
-1. 在 [新增個人存取權杖] 頁面上，輸入 [權杖描述]、接受 [選取範圍] 中的預設項目，然後選擇 [產生權杖]。
+1. On the **New personal access token** page, enter a **Token description**, accept the default items in the **Select scopes**, and then choose **Generate Token**.
 
-1. 儲存產生的權杖，因為您稍後需要用到。
+1. Save the generated token as you need it later.
 
-1. 您現在可以關閉 GitHub。
+1. You can close GitHub now.   
 
-1. 繼續[將您的實驗室連接至構件儲存機制](#connect-your-lab-to-the-artifact-repository)一節。
+1. Continue to the [Connect your lab to the artifact repository](#connect-your-lab-to-the-artifact-repository) section.
 
-### 取得 Visual Studio Team Services 儲存機制複製 URL 和個人存取權杖
+### <a name="get-the-visual-studio-team-services-repository-clone-url-and-personal-access-token"></a>Get the Visual Studio Team Services repository clone URL and personal access token
 
-若要取得 Visual Studio Team Services 儲存機制複製 URL 和個人存取權杖，請遵循下列步驟：
+To get the Visual Studio Team Services repository clone URL and personal access token, follow these steps:
 
-1. 開啟您的小組集合首頁 (例如 `https://contoso-web-team.visualstudio.com`)，然後選取構件專案。
+1. Open the home page of your team collection (for example, `https://contoso-web-team.visualstudio.com`), and then select the artifact project.
 
-1. 在專案首頁上，選取 [程式碼]。
+1. On the project home page, select **Code**.
 
-1. 若要檢視複製 URL，可在專案 [程式碼] 頁面上，選取 [複製]。
+1. To view the clone URL, on the project **Code** page, select **Clone**.
 
-1. 儲存 URL，因為在本教學課程稍後將需要此資訊。
+1. Save the URL as you need it later in this tutorial.
 
-1. 若要建立個人存取權杖，可從使用者帳戶下拉式功能表中選取 [我的設定檔]。
+1. To create a Personal Access Token, select **My profile** from the user account drop-down menu.
 
-1. 在 [設定檔資訊] 頁面上，選取 [安全性]。
+1. On the profile information page, select **Security**.
 
-1. 在 [安全性] 索引標籤上，選取 [新增]。
+1. On the **Security** tab, select **Add**.
 
-1. 在 [建立個人存取權杖] 頁面中：
+1. In the **Create a personal access token** page:
 
-    - 輸入權杖的**描述**。
-    - 從 [到期日] 清單中選取 [180 天] 。
-    - 從 [帳戶] 清單中選擇 [所有可存取的帳戶]。
-    - 選擇 [所有範圍] 選項。
-    - 選擇 [建立權杖]。
+    - Enter a **Description** for the token.
+    - Select **180 days** from the **Expires In** list.
+    - Choose **All accessible accounts** from the **Accounts** list.
+    - Choose the **All scopes** option.
+    - Choose **Create Token**.
 
-1. 完成時，新的權杖會出現在 [個人存取權杖] 清單中。選取 [複製權杖]，然後儲存權杖值供稍後使用。
+1. When finished, the new token appears in the **Personal Access Tokens** list. Select **Copy Token**, and then save the token value for later use.
 
-1. 繼續[將您的實驗室連接至構件儲存機制](#connect-your-lab-to-the-artifact-repository)一節。
+1. Continue to the [Connect your lab to the artifact repository](#connect-your-lab-to-the-artifact-repository) section.
 
-##將您的實驗室連接至構件儲存機制
+##<a name="connect-your-lab-to-the-artifact-repository"></a>Connect your lab to the artifact repository
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. Select **More Services**, and then select **DevTest Labs** from the list.
 
-1. 從實驗室清單中，選取所需的實驗室。
+1. From the list of labs, select the desired lab.   
 
-1. 在實驗室的刀鋒視窗上，選取 [組態]。
+1. On the lab's blade, select **Configuration**.
 
-1. 在實驗室的 [組態] 刀鋒視窗上，選取 [構件儲存機制]。
+1. On the lab's **Configuration** blade, select **Artifacts Repositories**.
 
-1. 在 [構件儲存機制] 刀鋒視窗上，選取 [+ 加入]。
+1. On the **Artifacts Repositories** blade, select **+ Add**.
 
-	![加入構件儲存機制按鈕](./media/devtest-lab-add-artifact-repo/add-artifact-repo.png)
+    ![Add artifact repository button](./media/devtest-lab-add-artifact-repo/add-artifact-repo.png)
  
-1. 在第二個 [構件儲存機制] 刀鋒視窗上，指定下列各項︰
+1. On the second **Artifacts Repositories** blade, specify the following:
 
-    - **名稱** - 輸入儲存機制的名稱。
-    - **Git 複製 URL** - 輸入您先前從 GitHub 或 Visual Studio Team Services 複製的 Git HTTPS 複製 URL。
-    - **資料夾路徑** - 輸入相對於包含構件定義的複製 URL 的資料夾路徑。
-    - **分支** - 輸入取得構件定義的分支。
-    - **個人存取權杖** - 輸入您先前從 GitHub 或 Visual Studio Team Services 取得的個人存取權杖。
+    - **Name** - Enter a name for the repository.
+    - **Git Clone Url** - Enter the Git HTTPS clone URL that you copied earlier from either GitHub or Visual Studio Team Services. 
+    - **Folder Path** - Enter the folder path relative to the clone URL that contains your artifact definitions.
+    - **Branch** - Enter the branch to get your artifact definitions.
+    - **Personal Access Token** - Enter the personal access token you obtained earlier from either GitHub or Visual Studio Team Services. 
      
-	![構件儲存機制刀鋒視窗](./media/devtest-lab-add-artifact-repo/artifact-repo-blade.png)
+    ![Artifact repo blade](./media/devtest-lab-add-artifact-repo/artifact-repo-blade.png)
 
-1. 選取 [**儲存**]。
+1. Select **Save**.
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## 相關部落格文章
-- [如何在 AzureDevTestLabs 疑難排解失敗的構件](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)
-- [在 Azure 研發測試實驗室使用 ARM 範本將 VM 加入至現有 AD 網域](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
+## <a name="related-blog-posts"></a>Related blog posts
+- [How to troubleshoot failing Artifacts in AzureDevTestLabs](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)
+- [Join a VM to existing AD Domain using ARM template in Azure Dev Test Lab](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

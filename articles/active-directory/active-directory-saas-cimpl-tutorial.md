@@ -1,250 +1,254 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 Cimpl 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 Cimpl 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+    pageTitle="Tutorial: Azure Active Directory integration with Cimpl | Microsoft Azure"
+    description="Learn how to configure single sign-on between Azure Active Directory and Cimpl."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeevansd"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/05/2016"
-	ms.author="jeedes"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/24/2016"
+    ms.author="jeedes"/>
 
 
-# 教學課程：Azure Active Directory 與 Cimpl 整合
 
-本教學課程旨在說明如何將 Cimpl 與 Azure Active Directory (Azure AD) 整合。將 Cimpl 與 Azure AD 整合提供下列優點：
+# <a name="tutorial:-azure-active-directory-integration-with-cimpl"></a>Tutorial: Azure Active Directory integration with Cimpl
 
-- 您可以在 Azure AD 中控制可存取 Cimpl 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Cimpl (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+The objective of this tutorial is to show you how to integrate Cimpl with Azure Active Directory (Azure AD).  
+Integrating Cimpl with Azure AD provides you with the following benefits:
 
+- You can control in Azure AD who has access to Cimpl
+- You can enable your users to automatically get signed-on to Cimpl (Single Sign-On) with their Azure AD accounts
+- You can manage your accounts in one central location - the Azure classic portal
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-## 必要條件
+If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-若要設定 Azure AD 與 Cimpl 整合，您需要下列項目：
+## <a name="prerequisites"></a>Prerequisites
 
-- Azure AD 訂用帳戶
-- 已啟用 Cimpl 單一登入功能的訂用帳戶
+To configure Azure AD integration with Cimpl, you need the following items:
 
+- An Azure AD subscription
+- A Cimpl single-sign on enabled subscription
 
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
+> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
 
-若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+To test the steps in this tutorial, you should follow these recommendations:
 
+- You should not use your production environment, unless this is necessary.
+- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
 
-## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫新增 Cimpl
-2. 設定並測試 Azure AD 單一登入
+## <a name="scenario-description"></a>Scenario Description
+The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.  
+The scenario outlined in this tutorial consists of two main building blocks:
 
+1. Adding Cimpl from the gallery
+2. Configuring and testing Azure AD single sign-on
 
-## 從資源庫新增 Cimpl
-若要設定將 Cimpl 整合到 Azure AD 中，您需要從資源庫將 Cimpl 新增到受管理的 SaaS 應用程式清單。
 
-**若要從資源庫新增 Cimpl，請執行下列步驟：**
+## <a name="adding-cimpl-from-the-gallery"></a>Adding Cimpl from the gallery
+To configure the integration of Cimpl into Azure AD, you need to add Cimpl from the gallery to your list of managed SaaS apps.
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+**To add Cimpl from the gallery, perform the following steps:**
 
-	![Active Directory][1]
+1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**. 
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+    ![Active Directory][1]
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-	![應用程式][2]
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
 
-4. 按一下頁面底部的 [新增]。
+    ![Applications][2]
 
-	![應用程式][3]
+4. Click **Add** at the bottom of the page.
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+    ![Applications][3]
 
-	![應用程式][4]
+5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-6. 在搜尋方塊中，輸入 **Cimpl**。
+    ![Applications][4]
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_01.png)
+6. In the search box, type **Cimpl**.
 
-7. 在結果窗格中，選取 [Cimpl]，然後按一下 [完成] 以新增應用程式。
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_01.png)
 
+7. In the results pane, select **Cimpl**, and then click **Complete** to add the application.
 
-##  設定並測試 Azure AD 單一登入
-本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Cimpl 搭配運作的 Azure AD 單一登入。
 
-若要讓單一登入能夠運作，Azure AD 必須知道 Cimpl 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Cimpl 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法是指派 Azure AD 中 [使用者名稱] 的值做為 Cimpl 中 [Username]\(使用者名稱) 的值。
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
+The objective of this section is to show you how to configure and test Azure AD single sign-on with Cimpl based on a test user called "Britta Simon".
 
-若要設定及測試與 Cimpl 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
+For single sign-on to work, Azure AD needs to know what the counterpart user in Cimpl to an user in Azure AD is. In other words, a link relationship between an Azure AD user and the related user in Cimpl needs to be established.  
+This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Cimpl.
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-4. **[建立 Cimpl 測試使用者](#creating-a-cimpl-test-user)** - 在 Cimpl 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表 Britta Simon 的項目連結。
-5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
+To configure and test Azure AD single sign-on with Cimpl, you need to complete the following building blocks:
 
-### 設定 Azure AD 單一登入
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.
+2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
+4. **[Creating a Cimpl test user](#creating-a-cimpl-test-user)** - to have a counterpart of Britta Simon in Cimpl that is linked to the Azure AD representation of her.
+5. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
 
-本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Cimpl 應用程式中設定單一登入。
+### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD Single Sign-On
 
+The objective of this section is to enable Azure AD single sign-on in the Azure classic portal and to configure single sign-on in your Cimpl application.
 
 
-**若要設定與 Cimpl 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站的 [Cimpl] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+**To configure Azure AD single sign-on with Cimpl, perform the following steps:**
 
-	![設定單一登入][6]
+1. In the Azure classic portal, on the **Cimpl** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
 
-2. 在 [要如何讓使用者登入 Cimpl] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+    ![Configure Single Sign-On][6] 
 
-	![設定單一登入](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_03.png)
+2. On the **How would you like users to sign on to Cimpl** page, select **Azure AD Single Sign-On**, and then click **Next**.
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
+    ![Configure Single Sign-On](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_03.png) 
 
-	![設定單一登入](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_04.png)
+3. On the **Configure App Settings** dialog page, perform the following steps:.
 
+    ![Configure Single Sign-On](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_04.png) 
 
-    a.在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 Cimpl 應用程式的 URL：**“https://login.bws.cimpl.com/SAMLSSO/Service.aspx?cimpl.idpid=<TENANT ID PID>”**。
 
+    a. In the Sign On URL textbox, type the URL used by your users to sign-on to your Cimpl application using the following pattern: **“https://login.bws.cimpl.com/SAMLSSO/Service.aspx?cimpl.idpid=\<TENANT ID PID\>”**.
 
-4. 在 [設定在 Cimpl 單一登入] 頁面上，執行下列步驟：
 
-	![設定單一登入](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_05.png)
+4. On the **Configure single sign-on at Cimpl** page, perform the following steps:
 
-    a.按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+    ![Configure Single Sign-On](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_05.png) 
 
-    b.按 [下一步]。
+    a. Click **Download certificate**, and then save the file on your computer.
 
+    b. Click **Next**.
 
-5. 若要為您的應用程式設定 SSO，請透過 +1 866-982-8250 連絡您的 Cimpl 支援小組，並在電子郵件中附加所下載的憑證檔案。請一併提供「識別提供者 ID」和「遠端登入 URL」，以便為 SSO 整合設定這些項目。
 
+5. To get SSO configured for your application, contact your Cimpl support team on +1 866-982-8250 and email the attach downloaded certificate file. Also please do provide the Identity Provider ID and Remote Login URL so that they can be configured for SSO integration.
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
 
-	![Azure AD 單一登入][10]
+6. In the Azure classic portal, select the single sign-on configuration confirmation, and then click **Next**.
 
-7. 在 [單一登入確認] 頁面上，按一下 [完成]。
+    ![Azure AD Single Sign-On][10]
 
-	![Azure AD 單一登入][11]
+7. On the **Single sign-on confirmation** page, click **Complete**.  
 
+    ![Azure AD Single Sign-On][11]
 
 
-### 建立 Azure AD 測試使用者
-本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
-![建立 Azure AD 使用者][20]
+### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
+The objective of this section is to create a test user in the Azure classic portal called Britta Simon.  
 
-**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+![Create Azure AD User][20]
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+**To create a test user in Azure AD, perform the following steps:**
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/create_aaduser_09.png)
+1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/create_aaduser_09.png) 
 
-3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/create_aaduser_03.png)
+3. To display the list of users, in the menu on the top, click **Users**.
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/create_aaduser_03.png) 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/create_aaduser_04.png)
+4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/create_aaduser_04.png) 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/create_aaduser_05.png)
+5. On the **Tell us about this user** dialog page, perform the following steps:
 
-    a.針對 [使用者類型]，選取 [您組織中的新使用者]。
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/create_aaduser_05.png) 
 
-    b.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    a. As Type Of User, select New user in your organization.
 
-    c.按 [下一步]。
+    b. In the User Name **textbox**, type **BrittaSimon**.
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+    c. Click **Next**.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/create_aaduser_06.png)
+6.  On the **User Profile** dialog page, perform the following steps:
 
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/create_aaduser_06.png) 
 
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
+    a. In the **First Name** textbox, type **Britta**.  
 
-    c.在 [顯示名稱] 文字方塊中輸入 **Britta Simon**。
+    b. In the **Last Name** textbox, type, **Simon**.
 
-    d.在 [角色] 清單中選取 [使用者]。
+    c. In the **Display Name** textbox, type **Britta Simon**.
 
-    e.按 [下一步]。
+    d. In the **Role** list, select **User**.
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
+    e. Click **Next**.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/create_aaduser_07.png)
+7. On the **Get temporary password** dialog page, click **create**.
 
-8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/create_aaduser_07.png) 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-cimpl-tutorial/create_aaduser_08.png)
+8. On the **Get temporary password** dialog page, perform the following steps:
 
-    a.記下 [新密碼] 的值。
+    ![Creating an Azure AD test user](./media/active-directory-saas-cimpl-tutorial/create_aaduser_08.png) 
 
-    b.按一下 [完成]。
+    a. Write down the value of the **New Password**.
 
+    b. Click **Complete**.   
 
 
-### 建立 Cimpl 測試使用者
 
-本節的目標是要在 Cimpl 中建立一個名為 Britta Simon 的使用者。請與 Cimpl 支援小組合作以在 Cimpl 帳戶中新增使用者。
+### <a name="creating-a-cimpl-test-user"></a>Creating a Cimpl test user
 
+The objective of this section is to create a user called Britta Simon in Cimpl. Please work with Cimpl support team to add the users in the Cimpl account. 
 
-> [AZURE.NOTE] 如果您需要手動建立使用者，就需要連絡 Cimpl 支援小組。
 
+> [AZURE.NOTE] If you need to create an user manually, you need to contact the Cimpl support team.
 
-### 指派 Azure AD 測試使用者
 
-本節的目標是要授權 Britta Simon 存取 Cimpl，讓她能夠使用 Azure 單一登入。
+### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
 
-![指派使用者][200]
+The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to Cimpl.
 
-**若要將 Britta Simon 指派給 Cimpl，請執行下列步驟：**
+![Assign User][200] 
 
-1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+**To assign Britta Simon to Cimpl, perform the following steps:**
 
-	![指派使用者][201]
+1. On the Azure classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
 
-2. 在應用程式清單中，選取 [Cimpl]。
+    ![Assign User][201] 
 
-	![設定單一登入](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_50.png)
+2. In the applications list, select **Cimpl**.
 
-1. 在頂端的功能表中，按一下 [使用者]。
+    ![Configure Single Sign-On](./media/active-directory-saas-cimpl-tutorial/tutorial_cimpl_50.png) 
 
-	![指派使用者][203]
+1. In the menu on the top, click **Users**.
 
-1. 在 [使用者] 清單中，選取 [Britta Simon]。
+    ![Assign User][203] 
 
-2. 在底部的工具列中，按一下 [指派]。
+1. In the Users list, select **Britta Simon**.
 
-	![指派使用者][205]
+2. In the toolbar on the bottom, click **Assign**.
 
+    ![Assign User][205]
 
 
-### 測試單一登入
 
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。當您在「存取面板」中按一下 [Cimpl] 磚時，應該會自動登入您的 Cimpl 應用程式。
+### <a name="testing-single-sign-on"></a>Testing Single Sign-On
 
+The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.  hen you click the Cimpl tile in the Access Panel, you should get automatically signed-on to your Cimpl application.
 
-## 其他資源
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+## <a name="additional-resources"></a>Additional Resources
+
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 
 <!--Image references-->
@@ -265,4 +269,8 @@
 [204]: ./media/active-directory-saas-cimpl-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-cimpl-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

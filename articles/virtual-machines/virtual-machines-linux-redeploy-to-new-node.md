@@ -1,42 +1,43 @@
 <properties 
-	pageTitle="重新部署 Linux 虛擬機器 | Microsoft Azure" 
-	description="說明如何重新部署 Linux 虛擬機器，以減輕 SSH 連線問題。" 
-	services="virtual-machines-linux" 
-	documentationCenter="virtual-machines" 
-	authors="iainfoulds" 
-	manager="timlt"
-	tags="azure-resource-manager,top-support-issue" 
+    pageTitle="Redeploy Linux Virtual Machines | Microsoft Azure" 
+    description="Describes how to redeploy Linux virtual machines to mitigate SSH connection issues." 
+    services="virtual-machines-linux" 
+    documentationCenter="virtual-machines" 
+    authors="iainfoulds" 
+    manager="timlt"
+    tags="azure-resource-manager,top-support-issue" 
 />
-	
+    
 
 <tags 
-	ms.service="virtual-machines-linux" 
-	ms.devlang="na" 
-	ms.topic="support-article" 
-	ms.tgt_pltfrm="vm-linux"
-	ms.workload="infrastructure" 
-	ms.date="09/19/2016" 
-	ms.author="iainfou" 
+    ms.service="virtual-machines-linux" 
+    ms.devlang="na" 
+    ms.topic="support-article" 
+    ms.tgt_pltfrm="vm-linux"
+    ms.workload="infrastructure" 
+    ms.date="09/19/2016" 
+    ms.author="iainfou" 
 />
 
-# 將虛擬機器重新部署至新的 Azure 節點
 
-如果您在疑難排解 Azure 虛擬機器 (VM) 的 SSH 或應用程式存取時一直遇到問題，重新部署 VM 也許可以解決。重新部署 VM 時會將 VM 移到 Azure 基礎結構內的新節點，然後重新開啟它的電源，保留所有組態選項和相關聯的資源。本文將說明如何使用 Azure CLI 或 Azure 入口網站來重新部署 VM。
+# <a name="redeploy-virtual-machine-to-new-azure-node"></a>Redeploy virtual machine to new Azure node
 
-> [AZURE.NOTE] 重新部署 VM 之後，暫存磁碟會遺失，而系統會更新與虛擬網路介面關聯的動態 IP 位址。
+If you have been facing difficulties troubleshooting SSH or application access to an Azure virtual machine (VM), redeploying the VM may help. When you redeploy a VM, it moves the VM to a new node within the Azure infrastructure and then powers it back on, retaining all your configuration options and associated resources. This article shows you how to redeploy a VM using Azure CLI or the Azure portal.
+
+> [AZURE.NOTE] After you redeploy a VM, the temporary disk is lost and dynamic IP addresses associated with virtual network interface are updated. 
 
 
-## 使用 Azure CLI
+## <a name="using-azure-cli"></a>Using Azure CLI
 
-請確定您的機器上已安裝[最新版本的 Azure CLI](../xplat-cli-install.md)，而且您已處於 Resource Manager 模式 (`azure config mode arm`)。
+Make sure you have the [latest Azure CLI installed](../xplat-cli-install.md) on your machine and you are in Resource Manager mode (`azure config mode arm`).
 
-使用下列 Azure CLI 命令來重新部署您的虛擬機器：
+Use the following Azure CLI command to redeploy your virtual machine:
 
 ```bash
 azure vm redeploy --resourcegroup <resourcegroup> --vm-name <vmname> 
 ```
 
-您可以看到 VM 隨著重新部署過程而變更狀態。在 VM 重新部署至新主機的過程中，它的 `PowerState` 會從「正在執行中」變成「正在更新」，接著變成「正在啟動」，最後變成「正在執行」。使用下列命令檢查資源群組內的 VM 狀態︰
+You can see the status of the VM change as it goes through the redeploy process. The `PowerState` of the VM goes from 'Running' to 'Updating', then 'Starting', and finally 'Running' as it goes through the process of redeploying to a new host. Check the status of the VMs within a resource group with:
 
 ```bash
 azure vm list -g <resourcegroup>
@@ -46,7 +47,10 @@ azure vm list -g <resourcegroup>
 [AZURE.INCLUDE [virtual-machines-common-redeploy-to-new-node](../../includes/virtual-machines-common-redeploy-to-new-node.md)]
 
 
-## 後續步驟
-如果您在連接至 VM 時發生問題，您可以在[針對 SSH 連線進行疑難排解](virtual-machines-linux-troubleshoot-ssh-connection.md)或[詳細的 SSH 疑難排解步驟](virtual-machines-linux-detailed-troubleshoot-ssh-connection.md)中找到具體的說明。如果無法存取在您 VM 上執行的應用程式，您也可以參閱[應用程式疑難排解問題](virtual-machines-linux-troubleshoot-app-connection.md)。
+## <a name="next-steps"></a>Next steps
+If you are having issues connecting to your VM, you can find specific help on [troubleshooting SSH connections](virtual-machines-linux-troubleshoot-ssh-connection.md) or [detailed SSH troubleshooting steps](virtual-machines-linux-detailed-troubleshoot-ssh-connection.md). If you cannot access an application running on your VM, you can also read [application troubleshooting issues](virtual-machines-linux-troubleshoot-app-connection.md).
 
-<!---HONumber=AcomDC_0921_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

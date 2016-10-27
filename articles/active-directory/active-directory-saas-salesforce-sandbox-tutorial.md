@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Salesforce 沙箱整合 | Microsoft Azure"
-    description="了解如何使用 Salesforce 沙箱搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Salesforce Sandbox | Microsoft Azure"
+    description="Learn how to use Salesforce Sandbox with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -16,204 +16,211 @@
     ms.author="jeedes" />
 
 
-#教學課程：Azure Active Directory 與 Salesforce 沙箱整合
->[AZURE.TIP]如需意見反應，請按一下[這裡](http://go.microsoft.com/fwlink/?LinkId=521878)。
-  
-本教學課程的目的是要示範 Azure 與 Salesforce 沙箱的整合。  
-沙箱讓您能夠針對不同用途 (例如開發、測試和訓練) 在個別環境中建立貴組織的多個複本，而不會危害 Salesforce 生產環境組織中的資料和應用程式。  
-如需詳細資訊，請參閱[沙箱概觀](https://help.salesforce.com/HTViewHelpDoc?id=create_test_instance.htm&language=en_US)
-  
-本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
--   在 Salesforce.com 中的沙箱
+#<a name="tutorial:-azure-active-directory-integration-with-salesforce-sandbox"></a>Tutorial: Azure Active Directory integration with Salesforce Sandbox
+>[AZURE.TIP]For feedback, click [here](http://go.microsoft.com/fwlink/?LinkId=521878).
   
-如果您在 Salesforce.com 中還沒有有效的沙箱，則您需要連絡 Salesforce。
+The objective of this tutorial is to show the integration of Azure and Salesforce Sandbox.  
+Sandboxes give you the ability to create multiple copies of your organization in separate environments for a variety of purposes, such as development, testing, and training, without compromising the data and applications in your Salesforce production organization.  
+For more details, see [Sandbox Overview](https://help.salesforce.com/HTViewHelpDoc?id=create_test_instance.htm&language=en_US)
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial assumes that you already have the following items:
 
-1.  啟用 Salesforce 沙箱的應用程式整合
-2.  設定單一登入
-3.  啟用您的網域
-4.  設定使用者佈建
-5.  指派使用者
-
-![案例](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769571.png "案例")
-##啟用 Salesforce 沙箱的應用程式整合
+-   A valid Azure subscription
+-   A sandbox in Salesforce.com
   
-本節的目的是要說明如何啟用 Salesforce 沙箱的應用程式整合。
+If you don’t have a valid sandbox in Salesforce.com yet, you need to contact Salesforce.
+  
+The scenario outlined in this tutorial consists of the following building blocks:
 
-###若要啟用 Salesforce 沙箱的應用程式整合，請執行下列步驟：
+1.  Enabling the application integration for Salesforce Sandbox
+2.  Configuring single sign-on
+3.  Enabling your domain
+4.  Configuring user provisioning
+5.  Assigning users
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+![Scenario](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769571.png "Scenario")
+##<a name="enabling-the-application-integration-for-salesforce-sandbox"></a>Enabling the application integration for Salesforce Sandbox
+  
+The objective of this section is to outline how to enable the application integration for Salesforce sandbox.
+
+###<a name="to-enable-the-application-integration-for-salesforce-sandbox,-perform-the-following-steps:"></a>To enable the application integration for Salesforce sandbox, perform the following steps:
+
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700994.png "Applications")
 
-4.  若要開啟 [應用程式庫]，請按一下 [新增應用程式]，然後按一下 [新增應用程式讓我的組織使用]。
+4.  To open the **Application Gallery**, click **Add An App**, and then click **Add an application for my organization to use**.
 
-    ![欲執行動作](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700995.png "欲執行動作")
+    ![What do you want to do?](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700995.png "What do you want to do?")
 
-5.  在 [搜尋方塊] 中，輸入 **Salesforce 沙箱**。
+5.  In the **search box**, type **Salesforce Sandbox**.
 
-    ![應用程式庫](./media/active-directory-saas-salesforce-sandbox-tutorial/IC710978.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-salesforce-sandbox-tutorial/IC710978.png "Application Gallery")
 
-6.  在結果窗格中，選取 [Salesforce 沙箱]，然後按一下 [完成] 來新增應用程式。
+6.  In the results pane, select **Salesforce Sandbox**, and then click **Complete** to add the application.
 
     ![Salesforce Sandbox](./media/active-directory-saas-salesforce-sandbox-tutorial/IC746474.png "Salesforce Sandbox")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Salesforce 中進行驗證。
+The objective of this section is to outline how to enable users to authenticate to Salesforce with their account in Azure AD using federation based on the SAML protocol.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [**Salesforce 沙箱**] 應用程式整合頁面上，按一下 [**設定單一登入**] 開啟 [**設定單一登入**] 對話方塊。
+1.  In the Azure classic portal, on the **Salesforce Sandbox** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-salesforce-sandbox-tutorial/IC749323.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-salesforce-sandbox-tutorial/IC749323.png "Configure single sign-on")
 
-2.  在 [要如何讓使用者登入 Salesforce 沙箱] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Salesforce Sandbox** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
     ![Salesforce Sandbox](./media/active-directory-saas-salesforce-sandbox-tutorial/IC746479.png "Salesforce Sandbox")
 
-3.  在 [設定應用程式 URL] 頁面的 [登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*`http://company.my.salesforce.com`，然後按 [下一步]。
+3.  On the **Configure App URL** page, in the **Sign On URL** textbox, type your URL using the following pattern `http://company.my.salesforce.com`, and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781022.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781022.png "Configure App URL")
 
-4. 如果您已為目錄中的另一個 Salesforce 沙箱執行個體設定單一登入，則也須將**識別碼**設定為具有與**登入 URL** 相同的值。您也可以在對話方塊的 [**設定應用程式 URL**] 頁面上核取 [**顯示進階設定**] 核取方塊，來尋找 [**識別碼**] 欄位。
+4. If you have already configured single sign-on for another Salesforce Sandbox instance in your directory, then you must also configure the **Identifier** to have the same value as the **Sign on URL**. The **Identifier** field can be found by checking the **Show advanced settings** checkbox on the **Configure App URL** page of the dialog.
 
-4.  在 [設定在 Salesforce 沙箱單一登入] 頁面上，按一下 [下載憑證]，然後將憑證檔案儲存在您的電腦上。
+4.  On the **Configure single sign-on at Salesforce Sandbox** page, click **Download certificate**, and then save the certificate file on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781023.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781023.png "Configure Single Sign-On")
 
-5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Salesforce 沙箱。
+5.  In a different web browser window, log into your Salesforce sandbox as an administrator.
 
-6.  在頂端的功能表中，按一下 [安裝]。
+6.  In the menu on the top, click **Setup**.
 
-    ![設定](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781024.png "設定")
+    ![Setup](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781024.png "Setup")
 
-7.  在左側的導覽窗格中，按一下 [安全性控制項]，然後按一下 [單一登入設定]。
+7.  In the navigation pane on the left, click **Security Controls**, and then click **Single Sign-On Settings**.
 
-    ![單一登入設定](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781025.png "單一登入設定")
+    ![Single Sign-On Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781025.png "Single Sign-On Settings")
 
-8.  在 [單一登入設定] 區段中，執行下列步驟：
+8.  On the Single Sign-On Settings section, perform the following steps:
 
-    ![單一登入設定](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781026.png "單一登入設定")
+    ![Single Sign-On Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781026.png "Single Sign-On Settings")
 
-    a.選取 [已啟用 SAML]。
+    a.  Select **SAML Enabled**.
     
-    b.按一下 [新增]。
+    b.  Click **New**.
 
-9.  在 [SAML 單一登入設定] 區段中，執行下列步驟：
+9.  On the SAML Single Sign-On Settings section, perform the following steps:
 
-    ![SAML 單一登入設定](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781027.png "SAML 單一登入設定")
+    ![SAML Single Sign-On Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781027.png "SAML Single Sign-On Settings")
 
-    a.在 [名稱] 文字方塊中，輸入組態的名稱 (例如：*SPSSOWAAD\_Test*)。
+    a.  In the Name textbox, type the name of the configuration (e.g.: *SPSSOWAAD\_Test*).
     
-    b.在 Azure 傳統入口網站中的 [設定在 Salesforce 沙箱單一登入] 對話方塊頁面上，複製 [簽發者 URL] 值，然後貼到 [簽發者] 文字方塊中。
+    b.  In the Azure classic portal, on the **Configure single sign-on at Salesforce Sandbox** dialogue page, copy the **Issuer URL** value, and then paste it into the **Issuer** textbox.
     
-    c.如果這是您要新增至目錄的第一個 Salesforce 沙箱執行個體，請在 [實體識別碼] 文字方塊中，輸入 **https://test.salesforce.com**。如果您已新增 Salesforce 沙箱的執行個體，請對 [實體識別碼]** 輸入登入 URL**，其格式如下：`http://company.my.salesforce.com`
+    c.  In the **Entity Id** textbox, type **https://test.salesforce.com** if this is the first Salesforce Sandbox instance that you are adding to your directory. If you have already added an instance of Salesforce Sandbox, then for the **Entity ID** type in the **Sign On URL**, which should be in this format: `http://company.my.salesforce.com`
     
-    d.按一下 [瀏覽] 來上傳已下載的憑證。
+    d.  Click **Browse** to upload the downloaded certificate.
     
-    e.對於 [SAML 身分識別類型]，選取 [判斷提示包含來自使用者物件的同盟識別碼]。
+    e.  As **SAML Identity Type**, select **Assertion contains the Federation ID from the User object**.
     
-    f.對於 [SAML 身分識別位置]，選取 [身分識別位於 Subject 陳述式的 NameIdentifier 元素中]
+    f.  As **SAML Identity Location**, select **Identity is in the NameIdentifier element of the Subject statement**.
     
-    g.在 Azure 傳統入口網站中的 [設定在 Salesforce 沙箱單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後貼到 [識別提供者登入 URL] 文字方塊中。
+    g.  In the Azure classic portal, on the **Configure single sign-on at Salesforce Sandbox** dialogue page, copy the **Remote Login URL** value, and then paste it into the **Identity Provider Login URL** textbox.
     
-    h.SFDC 不支援 SAML 登出。解決方法是在 [識別提供者登出 URL] 文字方塊中貼上 'https://login.windows.net/common/wsfederation?wa=wsignout1.0'。
+    h.  SFDC does not support SAML logout.  As a workaround, paste 'https://login.windows.net/common/wsfederation?wa=wsignout1.0' it into the **Identity Provider Logout URL** textbox.
     
-    i.對於 [服務提供者起始的要求繫結]，選取 [HTTP POST]。
+    i.  As **Service Provider Initiated Request Binding**, select **HTTP POST**.
     
-    j.按一下 [儲存]。
+    j. Click **Save**.
 
-10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781028.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781028.png "Configure Single Sign-On")
 
-##啟用您的網域
+##<a name="enabling-your-domain"></a>Enabling your domain
   
-本節假設您已經建立了一個網域。如需詳細資訊，請參閱[定義您的網域名稱](https://help.salesforce.com/HTViewHelpDoc?id=domain_name_define.htm&language=en_US)。
+This section assumes that you already have created a domain.  
+For more details, see [Defining Your Domain Name](https://help.salesforce.com/HTViewHelpDoc?id=domain_name_define.htm&language=en_US).
 
-###若要啟用您的網域，請執行下列步驟：
+###<a name="to-enable-your-domain,-perform-the-following-steps:"></a>To enable your domain, perform the following steps:
 
-1.  在左邊的導覽窗格中按一下 [定義域管理]，然後按一下 [我的網域]。
+1.  In the left navigation pane, click **Domain Management**, and then click **My Domain.**
 
-    ![我的網域](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781029.png "我的網域")
+    ![My Domain](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781029.png "My Domain")
 
-    >[AZURE.NOTE]請確定您的網域已正確設定。
+    >[AZURE.NOTE]Please make sure that your domain has been configured correctly.
 
-2.  在 [登入頁面設定] 區段中，按一下 [編輯]，然後對於 [驗證服務]，選取來自前一區段 SAML 單一登入設定的名稱，最後按一下 [儲存]。
+2.  In the **Login Page Settings** section, click **Edit**, then, as **Authentication Service**, select the name of the SAML Single Sign-On Setting from the previous section, and finally click **Save**.
 
-    ![我的網域](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781030.png "我的網域")
+    ![My Domain](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781030.png "My Domain")
   
-一旦您設定了網域，您的使用者便應使用該網域 URL 登入至 Salesforce 沙箱。若要取得 URL 的值，請按一下您在上一區段中所建立的 SSO 設定檔。
-##設定使用者佈建
+As soon as you have a domain configured, your users should use the domain URL to login to the Salesforce sandbox.  
+To get the value of the URL, click the SSO profile you have created in the previous section.
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-本節的目的是要說明如何對 Salesforce 沙箱啟用 Active Directory 使用者帳戶的使用者佈建。
+The objective of this section is to outline how to enable user provisioning of Active Directory user accounts to Salesforce Sandbox.
 
-###若要設定使用者佈建，請執行下列步驟：
+###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
 
-1.  在 Salesforce 入口網站上方的導覽列中選取您的名稱來展開使用者功能表：
+1.  In the Salesforce portal, in the top navigation bar, select your name to expand your user menu:
 
-    ![我的設定](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698773.png "我的設定")
+    ![My Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698773.png "My Settings")
 
-2.  從使用者功能表中，選取 [我的設定] 來開啟 [我的設定] 頁面。
+2.  From your user menu, select **My Settings** to open your **My Settings** page.
 
-3.  在左方導覽窗格中，按一下 [個人] 來展開 [個人] 區段，然後按一下 [重設我的安全性權杖]：
+3.  In the left pane, click **Personal** to expand the Personal section, and then click **Reset My Security Token**:
 
-    ![我的設定](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698774.png "我的設定")
+    ![My Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698774.png "My Settings")
 
-4.  在 [重設我的安全性權杖] 頁面上，按一下 [重設安全性權杖] 來要求包含 Salesforce.com 安全性權杖的電子郵件。
+4.  On the **Reset My Security Token** page, click **Reset Security Token** to request an email that contains your Salesforce.com security token.
 
-    ![新的權杖](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698776.png "新的權杖")
+    ![New Token](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698776.png "New Token")
 
-5.  檢查您的電子郵件收件匣，尋找來自 Salesforce.com 且主旨為「**salesforce.com.com 安全性確認**」的電子郵件。
+5.  Check your email inbox for an email from Salesforce.com with “**salesforce.com.com security confirmation**” as subject.
 
-6.  檢閱這封電子郵件並複製安全性權杖值。
+6.  Review this email and copy the security token value.
 
-7.  在 Azure 傳統入口網站中的 [Salesforce 沙箱] 應用程式整合頁面上，按一下 [設定使用者佈建] 來開啟 [設定使用者佈建] 對話方塊。
+7.  In the Azure classic portal, on the **salesforce Sandbox** application integration page, click **Configure user provisioning** to open the **Configure User Provisioning** dialog.
 
-    ![設定使用者佈建](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769573.png "設定使用者佈建")
+    ![Configure user provisioning](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769573.png "Configure user provisioning")
 
-8.  在 [輸入您的 Salesforce 沙箱認證來啟用自動使用者佈建] 頁面上，提供以下組態設定：
+8.  On the **Enter your Salesforce Sandbox credentials to enable automatic user provisioning** page, provide the following configuration settings:
 
     ![Salesforce Sandbox](./media/active-directory-saas-salesforce-sandbox-tutorial/IC746476.png "Salesforce Sandbox")
 
-    a.在 [Salesforce 沙箱管理員使用者名稱] 文字方塊中，輸入已在 Salesforce.com 中指派**系統管理員**設定檔的 Salesforce 沙箱帳戶名稱。
+    a.  In the **Salesforce Sandbox Admin User Name** textbox, type a Salesforce sandbox account name that has the **System Administrator** profile in Salesforce.com assigned.
 
-    b.在 [Salesforce 沙箱管理員密碼] 文字方塊中，輸入這個帳戶的密碼。
+    b.  In the **Salesforce Sandbox Admin Password** textbox, type the password for this account.
 
-    c.在 [使用者安全性權杖] 文字方塊中，貼上安全性權杖值。
+    c.  In the **User Security Token** textbox, paste the security token value.
 
-    d.按一下 [驗證] 來驗證您的組態。
+    d.  Click **Validate** to verify your configuration.
 
-    e.按 [下一步] 按鈕以開啟 [確認] 頁面。
+    e.  Click the **Next** button to open the **Confirmation** page.
 
-9.  在 [確認] 頁面上，按一下 [完成] 來儲存您的組態。
-##指派使用者
+9.  On the **Confirmation** page, click **Complete** to save your configuration.
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要將使用者指派給 Salesforce 沙箱，請執行下列步驟：
+###<a name="to-assign-users-to-salesforce-sandbox,-perform-the-following-steps:"></a>To assign users to Salesforce Sandbox, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Salesforce 沙箱] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Salesforce Sandbox **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769574.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769574.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-salesforce-sandbox-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-salesforce-sandbox-tutorial/IC767830.png "Yes")
   
-請等候 10 分鐘並確認帳戶已同步至 Salesforce 沙箱。
+You should now wait for 10 minutes and verify that the account has been synchronized to Salesforce Sandbox.
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](https://msdn.microsoft.com/library/dn308586)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](https://msdn.microsoft.com/library/dn308586).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

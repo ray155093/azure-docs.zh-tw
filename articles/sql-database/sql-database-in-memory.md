@@ -1,84 +1,85 @@
 <properties
-	pageTitle="開始使用 SQL In-Memory | Microsoft Azure"
-	description="SQL 記憶體內部技術大幅提升交易和分析工作負載的效能。了解如何利用這些技術。"
-	services="sql-database"
-	documentationCenter=""
-	authors="jodebrui"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="SQL In-Memory, Get started | Microsoft Azure"
+    description="SQL In-Memory technologies greatly improve the performance of transactional and analytics workloads. Learn how to take advantage of these technologies."
+    services="sql-database"
+    documentationCenter=""
+    authors="jodebrui"
+    manager="jhubbard"
+    editor=""/>
 
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/29/2016"
-	ms.author="jodebrui"/>
+    ms.service="sql-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/29/2016"
+    ms.author="jodebrui"/>
 
 
-# 在 SQL Database 中開始使用 In-Memory (預覽)
 
-記憶體內部功能大幅提升適當情況下交易和分析工作負載的效能。
+# <a name="get-started-with-in-memory-(preview)-in-sql-database"></a>Get started with In-Memory (Preview) in SQL Database
 
-本主題著重在兩個示範，一個針對「記憶體內部 OLTP」，一個針對「記憶體內部分析」。每個示範都有完整的步驟以及執行示範所需的程式碼。您可以：
+In-Memory features greatly improve the performance of transactional and analytics workloads in the right situations.
 
-- 使用程式碼來測試變化以查看效能結果差異；或
-- 閱讀程式碼來了解案例，以及了解如何建立和利用 In-Memory 物件。
+This topic emphasizes two demonstrations, one for In-Memory OLTP, and one for In-Memory Analytics. Each demo comes complete with the steps and code you would need to run the demo. You can either:
+
+- Use the code to test variations to see differences in performance results; or
+- Read the code to understand the scenario, and to see how to create and utilize the In-Memory objects.
 
 > [AZURE.VIDEO azure-sql-database-in-memory-technologies]
 
-- [Quick Start 1: In-Memory OLTP Technologies for Faster T-SQL Performance (快速入門 1：記憶體內部 OLTP 技術以獲得更快的 T-SQL 效能)](http://msdn.microsoft.com/library/mt694156.aspx) - 是另一篇文章，可協助您開始著手。
+- [Quick Start 1: In-Memory OLTP Technologies for Faster T-SQL Performance](http://msdn.microsoft.com/library/mt694156.aspx) - is another article to help you get started.
 
-#### 記憶體內部 OLTP
+#### <a name="in-memory-oltp"></a>In-Memory OLTP
 
-記憶體內部 [OLTP](#install_oltp_manuallink) (線上交易處理) 的功能如下：
+The features of In-Memory [OLTP](#install_oltp_manuallink) (online transaction processing) are:
 
-- 記憶體最佳化資料表。
-- 原生編譯預存程序。
-
-
-除了硬碟上的標準表示法以外，記憶體最佳化資料表本身在使用中記憶體中有一個表示法。資料表的商務交易執行速度更快，因為這些交易只會直接與使用中記憶體中的表示法互動。
-
-透過「記憶體內部 OLTP」，視工作負載的細節而定，在交易輸送量上最高可以達到 30 倍的增益。
+- Memory-optimized tables.
+- Natively compiled stored procedures.
 
 
-與傳統解譯預存程序相比，原生編譯預存程序在執行階段所需的機器指示較少。我們已看見 1/100 解譯持續時間的持續時間中的原生編譯結果。
+A memory-optimized table has one representation of itself in active memory, in addition to the standard representation on a hard drive. Business transactions against the table run faster because they directly interact with only the representation that is in active memory.
+
+With In-Memory OLTP, you can achieve up to 30 times gain in transaction throughput, depending on the specifics of the workload.
 
 
-#### 記憶體內部分析 
-
-記憶體內部[分析](#install_analytics_manuallink)的功能如下：
-
-資料行存放區索引可改善分析和報表查詢的效能。
+Natively compiled stored procedures require fewer machine instructions during run time than traditional interpreted stored procedures. We have seen native compilation result in durations that are 1/100th of the interpreted duration.
 
 
-#### 即時分析
+#### <a name="in-memory-analytics"></a>In-Memory Analytics 
 
-如需[即時分析](http://msdn.microsoft.com/library/dn817827.aspx)，您可結合記憶體內部 OLTP 和分析來取得：
+The feature of In-Memory [Analytics](#install_analytics_manuallink) is:
 
-- 以作業資料為基礎的即時商務深入解析。
-
-
-#### Availability
+Columnstore indexes improve the performance of analytics and reporting queries. 
 
 
-公開上市 (GA)：
+#### <a name="real-time-analytics"></a>Real-Time Analytics
 
-- *磁碟上*的[資料行存放區索引](http://msdn.microsoft.com/library/dn817827.aspx)。
+For [Real-Time Analytics](http://msdn.microsoft.com/library/dn817827.aspx) you combine In-Memory OLTP and Analytics to get:
+
+- Real-time business insight based on operational data.
 
 
-預覽：
+#### <a name="availability"></a>Availability
 
-- 記憶體內部 OLTP
+
+GA, General Availability:
+
+- [Columnstore indexes](http://msdn.microsoft.com/library/dn817827.aspx) that are *on-disk*.
+
+
+Preview:
+
+- In-Memory OLTP
 - Real-Time Operational Analytics
 
 
-[本主題稍後](#preview_considerations_for_in_memory)會描述在「預覽」階段的「記憶體內部」功能考量事項。
+Considerations while the In-Memory features are in Preview are described [later in this topic](#preview_considerations_for_in_memory).
 
 
-> [AZURE.NOTE] 這些預覽階段功能僅適用於 [Premium](sql-database-service-tiers.md) Azure SQL 資料庫，不適用於標準或基本服務層上的資料庫。
+> [AZURE.NOTE] These in-Preview features are available only for [*Premium*](sql-database-service-tiers.md) Azure SQL databases, not for databases on the Standard or Basic service tier.
 
 
 
@@ -86,40 +87,40 @@
 
 &nbsp;
 
-## A.安裝記憶體內部 OLTP 範例
+## <a name="a.-install-the-in-memory-oltp-sample"></a>A. Install the In-Memory OLTP sample
 
-在 [Azure 入口網站](https://portal.azure.com/)中按幾下滑鼠，即可建立 AdventureWorksLT [V12] 範例資料庫。本節中的步驟說明如何擴充 AdventureWorksLT 資料庫：
+You can create the AdventureWorksLT [V12] sample database by a few clicks in the [Azure portal](https://portal.azure.com/). Then the steps in this section explain how you can enrich your AdventureWorksLT database with:
 
-- 記憶體內資料表。
-- 原生編譯預存程序。
+- In-Memory tables.
+- A natively compiled stored procedure.
 
 
-#### 安裝步驟
+#### <a name="installation-steps"></a>Installation steps
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，於 V12 伺服器上建立高階資料庫。將 [來源] 設定為 AdventureWorksLT [V12] 範例資料庫。
- - 如需詳細指示，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
+1. In the [Azure portal](https://portal.azure.com/), create a Premium database on a V12 server. Set the **Source** to the AdventureWorksLT [V12] sample database.
+ - For detailed instructions, you can see [Create your first Azure SQL database](sql-database-get-started.md).
 
-2. 使用 SQL Server Management Studio [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx) 連接到資料庫。
+2. Connect to the database with SQL Server Management Studio [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx).
 
-3. 將 [In-Memory OLTP Transact-SQL 指令碼](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_oltp_sample.sql)複製到剪貼簿。
- - T-SQL 指令碼會在步驟 1 建立的 AdventureWorksLT 範例資料庫中建立所需的 In-Memory 物件。
+3. Copy the [In-Memory OLTP Transact-SQL script](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_oltp_sample.sql) to your clipboard.
+ - The T-SQL script creates the necessary In-Memory objects in the AdventureWorksLT sample database you created in step 1.
 
-4. 將 T-SQL 指令碼貼到 SSMS 中，然後執行該指令碼。
- - 重要的是 `MEMORY_OPTIMIZED = ON` 子句 CREATE TABLE 陳述式，如下所示：
+4. Paste the T-SQL script into SSMS, and then execute the script.
+ - Crucial is the `MEMORY_OPTIMIZED = ON` clause CREATE TABLE statements, as in:
 
 
 ```
 CREATE TABLE [SalesLT].[SalesOrderHeader_inmem](
-	[SalesOrderID] int IDENTITY NOT NULL PRIMARY KEY NONCLUSTERED ...,
-	...
+    [SalesOrderID] int IDENTITY NOT NULL PRIMARY KEY NONCLUSTERED ...,
+    ...
 ) WITH (MEMORY_OPTIMIZED = ON);
 ```
 
 
-#### 錯誤 40536
+#### <a name="error-40536"></a>Error 40536
 
 
-如果您在執行 T-SQL 指令碼時收到錯誤 40536，請執行下列 T-SQL 指令碼來確認資料庫是否支援 In-Memory：
+If you get error 40536 when you run the T-SQL script, run the following T-SQL script to verify whether the database supports In-Memory:
 
 
 ```
@@ -127,120 +128,120 @@ SELECT DatabasePropertyEx(DB_Name(), 'IsXTPSupported');
 ```
 
 
-結果為 **0** 表示不支援 In-Memory，而 1 表示提供支援。若要診斷此問題：
+A result of **0** means In-Memory is not supported, and 1 means it is supported. To diagnose the problem:
 
-- 確保資料庫建立於記憶體內部 OLTP 功能可用於預覽版本之後。
-- 確保資料庫位於「高階」服務層。
+- Ensure the database was created after the In-Memory OLTP features became active for Preview.
+- Ensure the database is at the Premium service tier.
 
 
-#### 關於已建立的記憶體最佳化項目
+#### <a name="about-the-created-memory-optimized-items"></a>About the created memory-optimized items
 
-**資料表**：此範例包含下列記憶體最佳化資料表：
+**Tables**: The sample contains the following memory-optimized tables:
 
-- SalesLT.Product\_inmem
-- SalesLT.SalesOrderHeader\_inmem
-- SalesLT.SalesOrderDetail\_inmem
+- SalesLT.Product_inmem
+- SalesLT.SalesOrderHeader_inmem
+- SalesLT.SalesOrderDetail_inmem
 - Demo.DemoSalesOrderHeaderSeed
 - Demo.DemoSalesOrderDetailSeed
 
 
-您可以透過 SSMS 中的**物件總管**，檢查記憶體最佳化資料表，方法是：
+You can inspect memory-optimized tables through the **Object Explorer** in SSMS by:
 
-- 以滑鼠右鍵按一下 [資料表] > [篩選] > [篩選設定] > [記憶體最佳化] 等於 1。
+- Right-click **Tables** > **Filter** > **Filter Settings** > **Is Memory Optimized** equals 1.
 
 
-或者您可以查詢目錄檢視，例如：
+Or you can query the catalog views such as:
 
 
 ```
 SELECT is_memory_optimized, name, type_desc, durability_desc
-	FROM sys.tables
-	WHERE is_memory_optimized = 1;
+    FROM sys.tables
+    WHERE is_memory_optimized = 1;
 ```
 
 
-**原生編譯預存程序**：SalesLT.usp\_InsertSalesOrder\_inmem 可以透過目錄檢視查詢來檢查：
+**Natively compiled stored procedure**: SalesLT.usp_InsertSalesOrder_inmem can be inspected through a catalog view query:
 
 
 ```
 SELECT uses_native_compilation, OBJECT_NAME(object_id), definition
-	FROM sys.sql_modules
-	WHERE uses_native_compilation = 1;
+    FROM sys.sql_modules
+    WHERE uses_native_compilation = 1;
 ```
 
 
 &nbsp;
 
-## 執行範例 OLTP 工作負載
+## <a name="run-the-sample-oltp-workload"></a>Run the sample OLTP workload
 
-下列兩個預存程序的唯一差別在於第一個程序會使用記憶體最佳化資料表版本，而第二個程序會使用一般磁碟資料表：
+The only difference between the following two *stored procedures* is that the first procedure uses memory-optimized versions of the tables, while the second procedure uses the regular on-disk tables:
 
-- SalesLT**.**usp\_InsertSalesOrder**\_inmem**
-- SalesLT**.**usp\_InsertSalesOrder**\_ondisk**
-
-
-在本節中，您會了解如何使用便利的 **ostress.exe** 公用程式，在壓力層級執行兩個預存程序。您可以比較完成兩個壓力回合所需的時間。
+- SalesLT**.**usp_InsertSalesOrder**_inmem**
+- SalesLT**.**usp_InsertSalesOrder**_ondisk**
 
 
-當您執行 ostress.exe 時，建議您將指定的參數值傳遞至兩者：
-
-- 使用 -n100 來執行大量的並行連線。
-- 使用 -r500 讓每個連線執行幾百次迴圈。
+In this section, you see how to use the handy **ostress.exe** utility to execute the two stored procedures at stressful levels. You can compare how long it takes the two stress runs to complete.
 
 
-不過，您可能想從較小的值 (-n10 和 -r50) 開始，以確保一切都運作正常。
+When you run ostress.exe, we recommend that you pass parameter values designed to both:
+
+- Run a large number of concurrent connections, by using -n100.
+- Have each connection loop hundreds of times, by using -r500.
 
 
-### Ostress.exe 的指令碼
+However, you might want to start with much smaller values like -n10 and -r50 to ensure the everything is working.
 
 
-本節顯示 ostress.exe 命令列中內嵌的 T-SQL 指令碼。此指令碼會使用您稍早安裝的 T-SQL 指令碼所建立的項目。
+### <a name="script-for-ostress.exe"></a>Script for ostress.exe
 
 
-下列指令碼會在下列記憶體最佳化資料表中插入有 5 個細項的範例銷售訂單：
+This section displays the T-SQL script that is embedded in our ostress.exe command line. The script uses items that were created by the T-SQL script you installed earlier.
 
-- SalesLT.SalesOrderHeader\_inmem
-- SalesLT.SalesOrderDetail\_inmem
+
+The following script inserts a sample sales order with five line items into the following memory-optimized *tables*:
+
+- SalesLT.SalesOrderHeader_inmem
+- SalesLT.SalesOrderDetail_inmem
 
 
 ```
 DECLARE
-	@i int = 0,
-	@od SalesLT.SalesOrderDetailType_inmem,
-	@SalesOrderID int,
-	@DueDate datetime2 = sysdatetime(),
-	@CustomerID int = rand() * 8000,
-	@BillToAddressID int = rand() * 10000,
-	@ShipToAddressID int = rand() * 10000;
-	
+    @i int = 0,
+    @od SalesLT.SalesOrderDetailType_inmem,
+    @SalesOrderID int,
+    @DueDate datetime2 = sysdatetime(),
+    @CustomerID int = rand() * 8000,
+    @BillToAddressID int = rand() * 10000,
+    @ShipToAddressID int = rand() * 10000;
+    
 INSERT INTO @od
-	SELECT OrderQty, ProductID
-	FROM Demo.DemoSalesOrderDetailSeed
-	WHERE OrderID= cast((rand()*60) as int);
-	
+    SELECT OrderQty, ProductID
+    FROM Demo.DemoSalesOrderDetailSeed
+    WHERE OrderID= cast((rand()*60) as int);
+    
 WHILE (@i < 20)
 begin;
-	EXECUTE SalesLT.usp_InsertSalesOrder_inmem @SalesOrderID OUTPUT,
-		@DueDate, @CustomerID, @BillToAddressID, @ShipToAddressID, @od;
-	SET @i = @i + 1;
+    EXECUTE SalesLT.usp_InsertSalesOrder_inmem @SalesOrderID OUTPUT,
+        @DueDate, @CustomerID, @BillToAddressID, @ShipToAddressID, @od;
+    SET @i = @i + 1;
 end
 ```
 
 
-若要針對 ostress.exe 製作上述 T-SQL 的 \_ondisk 版本，您只需以 *\_ondisk* 取代兩個出現的 *\_inmem* 子字串即可。這類取代會影響資料表和預存程序的名稱。
+To make the _ondisk version of the preceding T-SQL for ostress.exe, you would simply replace both occurrences of the *_inmem* substring with *_ondisk*. These replaces affect the names of tables and stored procedures.
 
 
-### 安裝 RML 公用程式和 ostress
+### <a name="install-rml-utilities-and-ostress"></a>Install RML utilities and ostress
 
 
-您最好規劃在 Azure VM 上執行 ostress.exe。您會在 AdventureWorksLT 資料庫所在的相同 Azure 地理區域中建立 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)。但是您可以改在您的膝上型電腦上執行 ostress.exe。
+Ideally you would plan to run ostress.exe on an Azure VM. You would create an [Azure Virtual Machine](https://azure.microsoft.com/documentation/services/virtual-machines/) in the same Azure geographic region where your AdventureWorksLT database resides. But you can run ostress.exe on your laptop instead.
 
 
-在 VM 上或你選擇的任何主機上，安裝包含 ostress.exe 的 Replay Markup Language (RML) 公用程式。
+On the VM, or on whatever host you choose, install the Replay Markup Language (RML) utilities, which include ostress.exe.
 
-- 請參閱 [In-Memory OLTP 的範例資料庫](http://msdn.microsoft.com/library/mt465764.aspx)中的 ostress.exe 討論。
- - 或參閱[記憶體內部 OLTP 的範例資料庫](http://msdn.microsoft.com/library/mt465764.aspx)。
- - 或參閱[安裝 ostress.exe 的部落格](http://blogs.msdn.com/b/psssql/archive/2013/10/29/cumulative-update-2-to-the-rml-utilities-for-microsoft-sql-server-released.aspx)
+- See the ostress.exe discussion in [Sample Database for In-Memory OLTP](http://msdn.microsoft.com/library/mt465764.aspx).
+ - Or see [Sample Database for In-Memory OLTP](http://msdn.microsoft.com/library/mt465764.aspx).
+ - Or see [Blog for installing ostress.exe](http://blogs.msdn.com/b/psssql/archive/2013/10/29/cumulative-update-2-to-the-rml-utilities-for-microsoft-sql-server-released.aspx)
 
 
 
@@ -256,13 +257,13 @@ whereas for SQL 2016+
 
 
 
-### 先執行 \_inmem 壓力工作負載
+### <a name="run-the-_inmem-stress-workload-first"></a>Run the _inmem stress workload first
 
 
-您可以使用 RML 命令提示字元 視窗來執行 ostress.exe 命令列。命令列參數會將 ostress 導向至：
+You can use an *RML Cmd Prompt* window to run our ostress.exe command line. The command line parameters direct ostress to:
 
-- 同時執行 100 個連線 (-n100)。
-- 每個連線會執行 T-SQL 指令碼 50 次 (-r50)。
+- Run 100 connections concurrently (-n100).
+- Have each connection run the T-SQL script 50 times (-r50).
 
 
 ```
@@ -270,50 +271,50 @@ ostress.exe -n100 -r50 -S<servername>.database.windows.net -U<login> -P<password
 ```
 
 
-若要執行上述的 ostress.exe 命令列：
+To run the preceding ostress.exe command line:
 
 
-1. 在 SSMS 中執行下列命令來重設資料庫資料內容，以刪除先前執行插入的所有資料：
+1. Reset the database data content by running the following command in SSMS, to delete all the data that was inserted by any previous runs:
 ```
 EXECUTE Demo.usp_DemoReset;
 ```
 
-2. 將上述 ostress.exe 命令列的文字複製到剪貼簿。
+2. Copy the text of the preceding ostress.exe command line to your clipboard.
 
-3. 以正確的實數值取代參數 -S -U -P -d 的 `<placeholders>`。
+3. Replace the `<placeholders>` for the parameters -S -U -P -d with the correct real values.
 
-4. 在 [RML 命令] 視窗中執行已編輯的命令列。
-
-
-#### 結果是持續時間
+4. Run your edited command line in an RML Cmd window.
 
 
-當 ostress.exe 完成時，它會在 RML 命令視窗中寫入執行持續時間做為輸出的最後一行。例如，較短的測試回合持續大約 1.5 分鐘：
+#### <a name="result-is-a-duration"></a>Result is a duration
+
+
+When ostress.exe completes, it writes the run duration as its final line of output in the RML Cmd window. For example, a shorter test run lasted about 1.5 minutes:
 
 `11/12/15 00:35:00.873 [0x000030A8] OSTRESS exiting normally, elapsed time: 00:01:31.867`
 
 
-#### 重設，針對 \_ondisk 編輯，然後重新執行
+#### <a name="reset,-edit-for-_ondisk,-then-rerun"></a>Reset, edit for _ondisk, then rerun
 
 
-在獲得 \_inmem 執行的結果之後，請針對 \_ondisk 執行回合執行下列步驟：
+After you have the result from the _inmem run, perform the following steps for the _ondisk run:
 
 
-1. 在 SSMS 中執行下列命令來重設資料庫，以刪除先前執行插入的所有資料：
+1. Reset the database by running the following command in SSMS, to delete all the data that was inserted by the previous run:
 ```
 EXECUTE Demo.usp_DemoReset;
 ```
 
-2. 編輯 ostress.exe 命令列，以 *\_ondisk* 取代所有的 *\_inmem*。
+2. Edit the ostress.exe command line to replace all *_inmem* with *_ondisk*.
 
-3. 第二次重新執行 ostress.exe，並擷取持續時間結果。
+3. Rerun ostress.exe for the second time, and capture the duration result.
 
-4. 再次重設資料庫，以負責刪除可能的大量測試資料。
+4. Again reset the database, for responsible deletion of what can be a large amount of test data.
 
 
-#### 預期的比較結果
+#### <a name="expected-comparison-results"></a>Expected comparison results
 
-就這個過度簡單的工作負載而言，我們的「記憶體內部」測試顯示當 ostress 是在與資料庫相同 Azure 區域中的 Azure VM 上執行時，可獲得「9 倍」的效能改善。
+Our In-Memory tests have shown a **9 times** performance improvement for this simplistic workload, with ostress running on an Azure VM in the same Azure region as the database.
 
 
 
@@ -322,56 +323,56 @@ EXECUTE Demo.usp_DemoReset;
 &nbsp;
 
 
-## B.安裝記憶體內部分析範例
+## <a name="b.-install-the-in-memory-analytics-sample"></a>B. Install the In-Memory Analytics sample
 
 
-在本節中，您將比較使用資料行存放區索引與使用傳統 B 型樹狀結構索引時的 IO 和統計資料結果。
+In this section, you compare the IO and Statistics results when using a columnstore index versus a traditional b-tree index.
 
 
-針對 OLTP 工作負載的即時分析，通常最好使用非叢集式資料行存放區索引。如需詳細資訊，請參閱[已描述的資料行存放區索引](http://msdn.microsoft.com/library/gg492088.aspx)。
+For real-time analytics on an OLTP workload, it is often best to use a NONclustered columnstore index. For details see [Columnstore Indexes Described](http://msdn.microsoft.com/library/gg492088.aspx).
 
 
 
-### 準備資料行存放區分析測試
+### <a name="prepare-the-columnstore-analytics-test"></a>Prepare the columnstore analytics test
 
 
-1. 使用 Azure 入口網站，從範例建立全新的 AdventureWorksLT 資料庫。
- - 使用相同的名稱。
- - 選擇任何進階服務層。
+1. Use the Azure portal to create a fresh AdventureWorksLT database from the sample.
+ - Use that exact name.
+ - Choose any Premium service tier.
 
-2. 將 [sql\_in-memory\_analytics\_sample](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_analytics_sample.sql) 複製到剪貼簿。
- - T-SQL 指令碼會在步驟 1 建立的 AdventureWorksLT 範例資料庫中建立所需的 In-Memory 物件。
- - 此指令碼會建立維度資料表和兩個事實資料表。每個事實資料表會填入 350 萬個資料列。
- - 此指令碼可能需要 15 分鐘才能完成。
+2. Copy the [sql_in-memory_analytics_sample](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_analytics_sample.sql) to your clipboard.
+ - The T-SQL script creates the necessary In-Memory objects in the AdventureWorksLT sample database you created in step 1.
+ - The script creates the Dimension table, and two fact tables. The fact tables are populated with 3.5 million rows each.
+ - The script might take 15 minutes to complete.
 
-3. 將 T-SQL 指令碼貼到 SSMS 中，然後執行該指令碼。
- - 重要的是 **CREATE INDEX** 陳述式上的 **COLUMNSTORE** 關鍵字，如下所示：<br/>`CREATE NONCLUSTERED COLUMNSTORE INDEX ...;`
+3. Paste the T-SQL script into SSMS, and then execute the script.
+ - Crucial is the **COLUMNSTORE** keyword on a **CREATE INDEX** statement, as in:<br/>`CREATE NONCLUSTERED COLUMNSTORE INDEX ...;`
 
-4. 將 AdventureWorksLT 設為相容性層級 130：<br/>`ALTER DATABASE AdventureworksLT SET compatibility_level = 130;`
- - 層級 130 並未與 In-Memory 功能直接相關。但層級 130 通常會提供比層級 120 更快的查詢效能。
-
-
-#### 重要資料表和資料行存放區索引
+4. Set AdventureWorksLT to compatibility level 130:<br/>`ALTER DATABASE AdventureworksLT SET compatibility_level = 130;`
+ - Level 130 is not directly related to In-Memory features. But level 130 generally provides faster query performance than does 120.
 
 
-- dbo.FactResellerSalesXL\_CCI 是具有叢集式「資料行存放區」索引的資料表，此資料表已在「資料」層級進一步壓縮。
-
-- dbo.FactResellerSalesXL\_PageCompressed 是具有對等一般叢集式索引的資料表，此資料表只在「頁面」層級壓縮。
+#### <a name="crucial-tables-and-columnstore-indexes"></a>Crucial tables and columnstore indexes
 
 
-#### 用來比較資料行存放區索引的重要查詢
+- dbo.FactResellerSalesXL_CCI is a table that has a clustered **columnstore** index, which has advanced compression at the *data* level.
+
+- dbo.FactResellerSalesXL_PageCompressed is a table that has an equivalent regular clustered index, which is compressed only at the *page* level.
 
 
-[這裡](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/clustered_columnstore_sample_queries.sql)是您可以執行的數種 T-SQL 查詢類型，以便查看效能改進。在 T-SQL 指令碼的步驟 2 中，有一組直接相關的查詢。這兩個查詢的不同之處只有一行：
+#### <a name="crucial-queries-to-compare-the-columnstore-index"></a>Crucial queries to compare the columnstore index
+
+
+[Here](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/clustered_columnstore_sample_queries.sql) are several T-SQL query types you can run to see performance improvements. From Step 2 in the T-SQL script, there is a pair of queries that are of direct interest. The two queries differ only on one line:
 
 
 - `FROM FactResellerSalesXL_PageCompressed a`
 - `FROM FactResellerSalesXL_CCI a`
 
 
-叢集式資料行存放區索引位於 FactResellerSalesXL**\_CCI** 資料表上。
+A clustered columnstore index is on the FactResellerSalesXL**_CCI** table.
 
-下列 T-SQL 指令碼摘錄列出每個資料表查詢的 IO 和 TIME 統計資料。
+The following T-SQL script excerpt prints statistics for IO and TIME for the query of each table.
 
 
 ```
@@ -391,20 +392,20 @@ SET STATISTICS TIME ON
 GO
 
 SELECT c.Year
-	,e.ProductCategoryKey
-	,FirstName + ' ' + LastName AS FullName
-	,count(SalesOrderNumber) AS NumSales
-	,sum(SalesAmount) AS TotalSalesAmt
-	,Avg(SalesAmount) AS AvgSalesAmt
-	,count(DISTINCT SalesOrderNumber) AS NumOrders
-	,count(DISTINCT a.CustomerKey) AS CountCustomers
+    ,e.ProductCategoryKey
+    ,FirstName + ' ' + LastName AS FullName
+    ,count(SalesOrderNumber) AS NumSales
+    ,sum(SalesAmount) AS TotalSalesAmt
+    ,Avg(SalesAmount) AS AvgSalesAmt
+    ,count(DISTINCT SalesOrderNumber) AS NumOrders
+    ,count(DISTINCT a.CustomerKey) AS CountCustomers
 FROM FactResellerSalesXL_PageCompressed a
 INNER JOIN DimProduct b ON b.ProductKey = a.ProductKey
 INNER JOIN DimCustomer d ON d.CustomerKey = a.CustomerKey
 Inner JOIN DimProductSubCategory e on e.ProductSubcategoryKey = b.ProductSubcategoryKey
 INNER JOIN DimDate c ON c.DateKey = a.OrderDateKey
 WHERE e.ProductCategoryKey =2
-	AND c.FullDateAlternateKey BETWEEN '1/1/2014' AND '1/1/2015'
+    AND c.FullDateAlternateKey BETWEEN '1/1/2014' AND '1/1/2015'
 GROUP BY e.ProductCategoryKey,c.Year,d.CustomerKey,d.FirstName,d.LastName
 GO
 SET STATISTICS IO OFF
@@ -418,20 +419,20 @@ SET STATISTICS IO ON
 SET STATISTICS TIME ON
 GO
 SELECT c.Year
-	,e.ProductCategoryKey
-	,FirstName + ' ' + LastName AS FullName
-	,count(SalesOrderNumber) AS NumSales
-	,sum(SalesAmount) AS TotalSalesAmt
-	,Avg(SalesAmount) AS AvgSalesAmt
-	,count(DISTINCT SalesOrderNumber) AS NumOrders
-	,count(DISTINCT a.CustomerKey) AS CountCustomers
+    ,e.ProductCategoryKey
+    ,FirstName + ' ' + LastName AS FullName
+    ,count(SalesOrderNumber) AS NumSales
+    ,sum(SalesAmount) AS TotalSalesAmt
+    ,Avg(SalesAmount) AS AvgSalesAmt
+    ,count(DISTINCT SalesOrderNumber) AS NumOrders
+    ,count(DISTINCT a.CustomerKey) AS CountCustomers
 FROM FactResellerSalesXL_CCI a
 INNER JOIN DimProduct b ON b.ProductKey = a.ProductKey
 INNER JOIN DimCustomer d ON d.CustomerKey = a.CustomerKey
 Inner JOIN DimProductSubCategory e on e.ProductSubcategoryKey = b.ProductSubcategoryKey
 INNER JOIN DimDate c ON c.DateKey = a.OrderDateKey
 WHERE e.ProductCategoryKey =2
-	AND c.FullDateAlternateKey BETWEEN '1/1/2014' AND '1/1/2015'
+    AND c.FullDateAlternateKey BETWEEN '1/1/2014' AND '1/1/2015'
 GROUP BY e.ProductCategoryKey,c.Year,d.CustomerKey,d.FirstName,d.LastName
 GO
 
@@ -445,87 +446,92 @@ GO
 <a id="preview_considerations_for_in_memory" name="preview_considerations_for_in_memory"></a>
 
 
-## 記憶體內部 OLTP 預覽版本注意事項
+## <a name="preview-considerations-for-in-memory-oltp"></a>Preview considerations for In-Memory OLTP
 
 
-Azure SQL Database 中的記憶體內部 OLTP 功能[於 2015 年 10 月 28 日進入預覽階段](https://azure.microsoft.com/updates/public-preview-in-memory-oltp-and-real-time-operational-analytics-for-azure-sql-database/)。
+The In-Memory OLTP features in Azure SQL Database became [active for preview on October 28, 2015](https://azure.microsoft.com/updates/public-preview-in-memory-oltp-and-real-time-operational-analytics-for-azure-sql-database/).
 
 
-在目前的預覽版本中，記憶體內部 OLTP 支援僅適用於：
+In the current preview, In-Memory OLTP is supported only for:
 
-- 在*進階*服務層的資料庫。
+- Databases that are at a *Premium* service tier.
 
-- 在記憶體內部 OLTP 功能生效後建立的資料庫。
- - 如果從記憶體內部 OLTP 功能生效前建立的資料庫還原，則新的資料庫無法支援記憶體內部 OLTP。
+- Databases that were created after the In-Memory OLTP features became active.
+ - A new database cannot support In-Memory OLTP if it is restored from a database that was created before the In-Memory OLTP features became active.
 
 
-如有疑問，您一律可以執行下列 T-SQL SELECT 來確定您的資料庫是否支援「記憶體內部 OLTP」。結果為 **1** 表示資料庫可支援記憶體內部 OLTP：
+When in doubt, you can always run the following T-SQL SELECT to ascertain whether your database supports In-Memory OLTP. A result of **1** means the database does support In-Memory OLTP:
 
 ```
 SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 ```
 
 
-如果查詢傳回 **1**，即表示在此資料庫及根據此資料庫建立的任何資料庫複本和資料庫還原，都支援「記憶體內部 OLTP」。
+If the query returns **1**, In-Memory OLTP is supported in this database, and any database copy and database restore created based on this database.
 
 
-#### 只允許進階的物件
+#### <a name="objects-allowed-only-at-premium"></a>Objects allowed only at Premium
 
 
-如果資料庫包含下列任何種類的記憶體內部 OLTP 物件或類型，則不支援將資料庫的服務層從進階降級為基本或標準。若要將資料庫降級，您必須先卸除下列物件：
+If a database contains any of the following kinds of In-Memory OLTP objects or types, downgrading the service tier of the database from Premium to either Basic or Standard is not supported. To downgrade the database, first drop these objects:
 
-- 記憶體最佳化資料表
-- 記憶體最佳化資料表類型
-- 原生編譯模組
-
-
-#### 其他關聯性
+- Memory-optimized tables
+- Memory-optimized table types
+- Natively compiled modules
 
 
-- 在預覽期間不支援將記憶體內部 OLTP 功能使用於彈性集區中的資料庫。
- - 若要將具有或已經有記憶體內部 OLTP 物件的資料庫移動至彈性集區，請遵循下列步驟 ︰
-  - 1. 在資料庫中卸除任何記憶體最佳化資料表、資料表類型和原生編譯的 T-SQL 模組
-  - 2. 將資料庫的服務層變更為標準
-  - 3. 將資料庫移入彈性集區。
-
-- 不支援使用記憶體內部 OLTP 搭配 SQL 資料倉儲。
- - SQL 資料倉儲支援記憶體內部分析的資料行存放區索引功能。
-
-- 「查詢存放區」不會擷取原生編譯模組內的查詢。
-
-- 記憶體內部 OLTP 不支援某些 TRANSACT-SQL 功能。這適用於 Microsoft SQL Server 和 Azure SQL Database。如需詳細資訊，請參閱：
- - [記憶體內部 OLTP 的 Transact-SQL 支援](http://msdn.microsoft.com/library/dn133180.aspx)
- - [記憶體內部 OLTP 不支援的 Transact-SQL 建構。](http://msdn.microsoft.com/library/dn246937.aspx)
+#### <a name="other-relationships"></a>Other relationships
 
 
-## 後續步驟
+- Using In-Memory OLTP features with databases in elastic pools is not supported during Preview.
+ - To move a database that has or has had In-Memory OLTP objects to an elastic pool, follow these steps:
+  - 1. Drop any memory-optimized tables, table types, and natively compiled T-SQL modules in the database
+  - 2. Change the service tier of the database to standard
+  - 3. Move the database into the elastic pool
+
+- Using In-Memory OLTP with SQL Data Warehouse is not supported.
+ - The columnstore index feature of In-Memory Analytics is supported in SQL Data Warehouse.
+
+- The Query Store does not capture queries inside natively compiled modules.
+
+- Some Transact-SQL features are not supported with In-Memory OLTP. This applies to both Microsoft SQL Server and Azure SQL Database. For details, see:
+ - [Transact-SQL Support for In-Memory OLTP](http://msdn.microsoft.com/library/dn133180.aspx)
+ - [Transact-SQL Constructs Not Supported by In-Memory OLTP](http://msdn.microsoft.com/library/dn246937.aspx)
 
 
-- 嘗試[在現有的 Azure SQL 應用程式中使用記憶體內部 OLTP](sql-database-in-memory-oltp-migration.md)。
+## <a name="next-steps"></a>Next steps
 
 
-## 其他資源
+- Try [Use In-Memory OLTP in an existing Azure SQL Application.](sql-database-in-memory-oltp-migration.md)
 
-#### 更深入的資訊
 
-- [了解記憶體內部 OLTP (這適用於 Microsoft SQL Server 和 Azure SQL Database)](http://msdn.microsoft.com/library/dn133186.aspx)
+## <a name="additional-resources"></a>Additional resources
 
-- [深入了解 MSDN 上的 Real-Time Operational Analytics](http://msdn.microsoft.com/library/dn817827.aspx)
+#### <a name="deeper-information"></a>Deeper information
 
-- [一般工作負載模式和移轉考量白皮書](http://msdn.microsoft.com/library/dn673538.aspx)，其中描述記憶體內部 OLTP 經常提供顯著效能改善的工作負載模式。
+- [Learn about In-Memory OLTP, which applies to both Microsoft SQL Server and Azure SQL Database](http://msdn.microsoft.com/library/dn133186.aspx)
 
-#### 應用程式設計
+- [Learn about Real-Time Operational Analytics on MSDN](http://msdn.microsoft.com/library/dn817827.aspx)
 
-- [記憶體內部 OLTP (記憶體內部最佳化)](http://msdn.microsoft.com/library/dn133186.aspx)
+- White paper on [Common Workload Patterns and Migration Considerations](http://msdn.microsoft.com/library/dn673538.aspx), which describes workload patterns where In-Memory OLTP commonly provides significant performance gains.
 
-- [在現有的 Azure SQL 應用程式中使用記憶體內部 OLTP。](sql-database-in-memory-oltp-migration.md)
+#### <a name="application-design"></a>Application design
 
-#### 工具
+- [In-Memory OLTP (In-Memory Optimization)](http://msdn.microsoft.com/library/dn133186.aspx)
 
-- [SQL Server Data Tools Preview (SSDT)](http://msdn.microsoft.com/library/mt204009.aspx)，最新的每月版本。
+- [Use In-Memory OLTP in an existing Azure SQL Application.](sql-database-in-memory-oltp-migration.md)
 
-- [SQL Server 的 Replay Markup Language (RML) 公用程式說明](http://support.microsoft.com/zh-TW/kb/944837)
+#### <a name="tools"></a>Tools
 
-- 適用於記憶體內部 OLTP 的[監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
+- [SQL Server Data Tools Preview (SSDT)](http://msdn.microsoft.com/library/mt204009.aspx), for the latest monthly version.
 
-<!---HONumber=AcomDC_0831_2016-->
+- [Description of the Replay Markup Language (RML) Utilities for SQL Server](http://support.microsoft.com/en-us/kb/944837)
+
+- [Monitor In-Memory Storage](sql-database-in-memory-oltp-monitoring.md) for In-Memory OLTP.
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Wikispaces 整合 | Microsoft Azure" 
-    description="了解如何使用 Wikispaces 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory integration with Wikispaces | Microsoft Azure" 
+    description="Learn how to use Wikispaces with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,129 +14,135 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Wikispaces 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-wikispaces"></a>Tutorial: Azure Active Directory integration with Wikispaces
   
-本教學課程的目的是要示範 Azure 與 Wikispaces 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+The objective of this tutorial is to show the integration of Azure and Wikispaces.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
--   有效的 Azure 訂用帳戶
--   已啟用 Wikispaces 單一登入功能的訂用帳戶
+-   A valid Azure subscription
+-   A Wikispaces single sign-on enabled subscription
   
-完成本教學課程之後，您指派給 Wikispaces 的 Azure AD 使用者就能夠從您的 Wikispaces 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
+After completing this tutorial, the Azure AD users you have assigned to Wikispaces will be able to single sign into the application at your Wikispaces company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
   
-本教學課程中說明的案例由下列建置組塊組成：
+The scenario outlined in this tutorial consists of the following building blocks:
 
-1.  啟用 Wikispaces 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+1.  Enabling the application integration for Wikispaces
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-![案例](./media/active-directory-saas-wikispaces-tutorial/IC787182.png "案例")
+![Sceanrio](./media/active-directory-saas-wikispaces-tutorial/IC787182.png "Sceanrio")
 
-##啟用 Wikispaces 的應用程式整合
+##<a name="enabling-the-application-integration-for-wikispaces"></a>Enabling the application integration for Wikispaces
   
-本節的目的是要說明如何啟用 Wikispaces 的應用程式整合。
+The objective of this section is to outline how to enable the application integration for Wikispaces.
 
-###若要啟用 Wikispaces 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-wikispaces,-perform-the-following-steps:"></a>To enable the application integration for Wikispaces, perform the following steps:
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-wikispaces-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-wikispaces-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-wikispaces-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-wikispaces-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-wikispaces-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從資源庫新增應用程式](./media/active-directory-saas-wikispaces-tutorial/IC749322.png "從資源庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-wikispaces-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **Wikispaces**。
+6.  In the **search box**, type **Wikispaces**.
 
-    ![應用程式庫](./media/active-directory-saas-wikispaces-tutorial/IC787186.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-wikispaces-tutorial/IC787186.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Wikispaces]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Wikispaces**, and then click **Complete** to add the application.
 
     ![Wikispaces](./media/active-directory-saas-wikispaces-tutorial/IC787187.png "Wikispaces")
 
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 Wikispaces。
+The objective of this section is to outline how to enable users to authenticate to Wikispaces with their account in Azure AD using federation based on the SAML protocol.
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Wikispaces] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Wikispaces** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787188.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-wikispaces-tutorial/IC787188.png "Configure Single Sign-On")
 
-2.  在 [您希望使用者如何登入 Wikispaces] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Wikispaces** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787189.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-wikispaces-tutorial/IC787189.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [Wikispaces 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："http://company.wikispaces.net*"，然後按 [下一步]*。
+3.  On the **Configure App URL** page, in the **Wikispaces Sign On URL** textbox, type your URL using the following pattern "*http://company.wikispaces.net*", and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-wikispaces-tutorial/IC787190.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-wikispaces-tutorial/IC787190.png "Configure App URL")
 
-4.  於 [在 Wikispaces 設定單一登入] 頁面上，按 [下載中繼資料]，然後將中繼資料檔儲存在您的電腦中。
+4.  On the **Configure single sign-on at Wikispaces** page, click **Download metadata**, and then save the metadata file on your computer.
 
-    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787191.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-wikispaces-tutorial/IC787191.png "Configure Single Sign-On")
 
-5.  將中繼資料檔傳送給 Wikispaces 支援小組。
+5.  Send the metadatafile to the Wikispaces support team.
 
-    >[AZURE.NOTE] 單一登入組態必須由 Wikispaces 支援小組執行。設定完成後，您將會收到通知。
+    >[AZURE.NOTE] The single sign-on configuration has to be performed by the Wikispaces support team. You will get a notification as soon as the configuration has been completed.
 
-6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+6.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787192.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-wikispaces-tutorial/IC787192.png "Configure Single Sign-On")
 
-##設定使用者佈建
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
   
-若要讓 Azure AD 使用者可以登入 Wikispaces，則必須將他們佈建到 Wikispaces。Wikispaces 需以手動的方式佈建。
+In order to enable Azure AD users to log into Wikispaces, they must be provisioned into Wikispaces.  
+In the case of Wikispaces, provisioning is a manual task.
 
-###若要佈建使用者帳戶，請執行下列步驟：
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
 
-1.  以系統管理員身分登入您的 **Wikispaces** 公司網站。
+1.  Log in to your **Wikispaces** company site as an administrator.
 
-2.  移至 [成員]。
+2.  Go to **Members**.
 
-    ![成員](./media/active-directory-saas-wikispaces-tutorial/IC787193.png "成員")
+    ![Members](./media/active-directory-saas-wikispaces-tutorial/IC787193.png "Members")
 
-3.  按一下 [邀請人員]。
+3.  Click the **Invite People**.
 
-    ![邀請人員](./media/active-directory-saas-wikispaces-tutorial/IC787194.png "邀請人員")
+    ![Invite People](./media/active-directory-saas-wikispaces-tutorial/IC787194.png "Invite People")
 
-4.  在 [邀請人員] 區段中，執行下列步驟：
+4.  In the **Invite People** section, perform the following steps:
 
-    ![邀請人員](./media/active-directory-saas-wikispaces-tutorial/IC787208.png "邀請人員")
+    ![Invite People](./media/active-directory-saas-wikispaces-tutorial/IC787208.png "Invite People")
 
-    1.  在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶**使用者名稱或電子郵件地址**。
-    2.  按一下 [**傳送**]。
+    1.  Type the **Usernames or Email Address** of a valid AAD account you want to provision into the related textboxes.
+    2.  Click **Send**.  
 
-        >[AZURE.NOTE] Azure Active Directory 帳戶的持有者會收到一封包含連結的電子郵件，以在啟用帳戶前進行確認。
+        >[AZURE.NOTE] The Azure Active Directory account holder receives an email including a link to confirm the account before it becomes active.
 
->[AZURE.NOTE] 您可以使用任何其他的 Wikispaces 使用者帳戶建立工具或 Wikispaces 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Wikispaces user account creation tools or APIs provided by Wikispaces to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
   
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Wikispaces，請執行下列步驟：
+###<a name="to-assign-users-to-wikispaces,-perform-the-following-steps:"></a>To assign users to Wikispaces, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Wikispaces] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Wikispaces **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-wikispaces-tutorial/IC787195.png "指派使用者")
+    ![Assign Users](./media/active-directory-saas-wikispaces-tutorial/IC787195.png "Assign Users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-wikispaces-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-wikispaces-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

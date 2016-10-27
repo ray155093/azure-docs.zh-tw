@@ -1,37 +1,38 @@
 <properties
-	pageTitle="在 Linux 虛擬機器上部署 LAMP | Microsoft Azure"
-	description="了解如何在 Linux VM 上安裝 LAMP 堆疊"
-	services="virtual-machines-linux"
-	documentationCenter="virtual-machines"
-	authors="jluk"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+    pageTitle="Deploy LAMP on a Linux virtual machine | Microsoft Azure"
+    description="Learn how to install the LAMP stack on a Linux VM"
+    services="virtual-machines-linux"
+    documentationCenter="virtual-machines"
+    authors="jluk"
+    manager="timlt"
+    editor=""
+    tags="azure-resource-manager"/>
 
 <tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="NA"
-	ms.topic="article"
-	ms.date="06/07/2016"
-	ms.author="jluk"/>
+    ms.service="virtual-machines-linux"
+    ms.workload="infrastructure-services"
+    ms.tgt_pltfrm="vm-linux"
+    ms.devlang="NA"
+    ms.topic="article"
+    ms.date="06/07/2016"
+    ms.author="jluk"/>
 
-# 在 Azure 上部署 LAMP 堆疊
-本文將逐步引導您在 Azure 上部署 Apache 網頁伺服器、MySQL 和 PHP (LAMP 堆疊)。您需要 Azure 帳戶 ([取得免費試用](https://azure.microsoft.com/pricing/free-trial/)) 和 [Azure CLI](../xplat-cli-install.md)，也就是[連線到您的 Azure 帳戶](../xplat-cli-connect.md)。
 
-本文涵蓋兩種用於安裝 LAMP 的方法︰
+# <a name="deploy-lamp-stack-on-azure"></a>Deploy LAMP Stack on Azure
+This article will walk you through how to deploy an Apache web server, MySQL, and PHP (the LAMP stack) on Azure. You will need an Azure Account ([get a free trial](https://azure.microsoft.com/pricing/free-trial/)) and the [Azure CLI](../xplat-cli-install.md) that is [connected to your Azure account](../xplat-cli-connect.md).
 
-## 快速命令摘要
+There are two methods for installing LAMP covered in this article:
 
-1) 在新的 VM 上部署 LAMP
+## <a name="quick-command-summary"></a>Quick Command Summary
+
+1) Deploy LAMP on new VM
 
 ```
 # One command to create a resource group holding a VM with LAMP already on it
 $ azure group create -n uniqueResourceGroup -l westus --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.json
 ```
 
-2) 在現有 VM 上部署 LAMP
+2) Deploy LAMP on existing VM
 
 ```
 # Two commands: one updates packages, the other installs Apache, MySQL, and PHP
@@ -39,9 +40,9 @@ user@ubuntu$ sudo apt-get update
 user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 ```
 
-## 在新的 VM 上部署 LAMP 逐步解說
+## <a name="deploy-lamp-on-new-vm-walkthrough"></a>Deploy LAMP on new VM Walkthrough
 
-首先，您可以從建立包含 VM 的新[資源群組](../resource-group-overview.md)：
+You can start by creating a new [resource group](../resource-group-overview.md) that will contain the VM:
 
     $ azure group create uniqueResourceGroup westus
     info:    Executing command group create
@@ -56,11 +57,11 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
     data:
     info:    group create command OK
 
-若要建立 VM 本身，您可以使用已撰寫的 Azure Resource Manager 範本 (位於 [GitHub ](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app))。
+To create the VM itself, you can use an already written Azure Resource Manager template found [here on GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app).
 
     $ azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.json uniqueResourceGroup uniqueLampName
 
-您應會看到提示更多輸入的回應︰
+You should see a response prompting some more inputs:
 
     info:    Executing command group deployment create
     info:    Supply values for the following parameters
@@ -94,75 +95,77 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
     data:    ubuntuOSVersion           String        14.04.2-LTS
     info:    group deployment create command OK
 
-您現在已建立安裝了 LAMP 的 Linux VM。如果您希望，您可以向下跳到 [確認 LAMP 安裝成功] 來確認安裝。
+You have now created a Linux VM with LAMP already installed on it. If you wish, you can verify the install by jumping down to [Verify LAMP Successfully Installed].
 
-## 在現有 VM 上部署 LAMP 逐步解說
+## <a name="deploy-lamp-on-existing-vm-walkthrough"></a>Deploy LAMP on existing VM Walkthrough
 
-如果您需要建立 Linux VM 的說明，您可以前往[這裡以了解如何建立 Linux VM](./virtual-machines-linux-quick-create-cli.md)。接下來，您將需要透過 SSH 登入 Linux VM。如果您需要建立 SSH 金鑰的說明，您可以前往[這裡以了解如何在 Linux/Mac 上建立 SSH 金鑰](./virtual-machines-linux-mac-create-ssh-keys.md)。如果您已經有 SSH 金鑰，請繼續進行並透過 SSH 使用 `ssh username@uniqueDNS` 登入 Linux VM。
+If you need help creating a Linux VM you can head [here to learn how to create a Linux VM] (./virtual-machines-linux-quick-create-cli.md). Next, you will need to SSH into the Linux VM. If you need help with creating an SSH key you can head [here to learn how to create an SSH key on Linux/Mac] (./virtual-machines-linux-mac-create-ssh-keys.md).
+If you have an SSH key already, go ahead and SSH into your Linux VM with `ssh username@uniqueDNS`.
 
-您現在要使用 Linux VM，我們將逐步引導您在以 Debian 為基礎的散發版本上安裝 LAMP 堆疊。其他 Linux 散發版本的確切命令可能會有所不同。
+Now that you are working within your Linux VM, we will walk through installing the LAMP stack on Debian-based distributions. The exact commands might differ for other Linux distros.
 
-#### 安裝在 Debian/Ubuntu 上
+#### <a name="installing-on-debian/ubuntu"></a>Installing on Debian/Ubuntu
 
-您需要安裝下列封裝：`apache2`、`mysql-server`、`php5` 和 `php5-mysql`。直接擷取這些封裝或使用 Tasksel，即可安裝這些項目。這兩個選項的指示如下所列。安裝之前，您必須下載及更新封裝清單。
+You will need the following packages installed: `apache2`, `mysql-server`, `php5`, and `php5-mysql`. You can install these by directly grabbing these packages or using Tasksel. Instructions for both options are listed below.
+Before installing you will need to download and update package lists.
 
     user@ubuntu$ sudo apt-get update
     
-##### 個別封裝
-使用 apt-get：
+##### <a name="individual-packages"></a>Individual Packages
+Using apt-get:
 
-	user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
+    user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 
-##### 使用 Tasksel
-或者，您也可以下載 Tasksel，這是一個 Debian/Ubuntu 工具，以協調工作的方式安裝多個相關套件到您的系統上。
+##### <a name="using-tasksel"></a>Using Tasksel
+Alternatively you can download Tasksel, a Debian/Ubuntu tool that installs multiple related packages as a coordinated "task" onto your system.
 
     user@ubuntu$ sudo apt-get install tasksel
     user@ubuntu$ sudo tasksel install lamp-server
 
-執行上述任一選項之後，隨即會提示您安裝這些封裝和一些其他相依項目。按 'y' 然後按 'Enter' 鍵以繼續進行，並遵循所有其他提示，即可設定 MySQL 的管理密碼。這會安裝使用 PHP 搭配 MySQL 時所需之最基本的 PHP 擴充功能。
+After running the either of the above options you will be prompted to install these packages and a number of other dependencies. Press 'y' and then 'Enter' to continue, and follow any other prompts to set an administrative password for MySQL. This will install the minimum required PHP extensions needed to use PHP with MySQL. 
 
 ![][1]
 
-請執行下列命令，以查看可以封裝形式提供的其他 PHP 擴充功能：
+Run the following command to see other PHP extensions that are available as packages:
 
-	user@ubuntu$ apt-cache search php5
+    user@ubuntu$ apt-cache search php5
 
 
-#### 建立 info.php 文件
+#### <a name="create-info.php-document"></a>Create info.php document
 
-您現在應可透過命令列輸入 `apache2 -v`、`mysql -v` 或 `php -v`，檢查您有哪個版本的 Apache、MySQL 和 PHP。
+You should now be able to check what version of Apache, MySQL, and PHP you have through the command line by typing `apache2 -v`, `mysql -v`, or `php -v`.
 
-如果您想要進一步測試，您可以建立快速 PHP 資訊頁面，以在瀏覽器中檢視。透過以下命令，使用 Nano 文字編輯器建立新的檔案︰
+If you would like to test further, you can create a quick PHP info page to view in a browser. Create a new file with Nano text editor with this command:
 
     user@ubuntu$ sudo nano /var/www/html/info.php
 
-在 GNU Nano 文字編輯器中，新增下列幾行：
+Within the GNU Nano text editor, add the following lines:
 
     <?php
     phpinfo();
     ?>
 
-然後，儲存並結束文字編輯器。
+Then save and exit the text editor.
 
-使用這個命令重新啟動 Apache，讓所有新的安裝生效。
+Restart Apache with this command so all new installs will take effect.
 
     user@ubuntu$ sudo service apache2 restart
 
-## 確認 LAMP 安裝成功
+## <a name="verify-lamp-successfully-installed"></a>Verify LAMP Successfully Installed
 
-您現在可以移至 http://youruniqueDNS/info.php，以在瀏覽器中檢查您剛建立的 PHP 資訊頁面 (看起來應該如下所示)。
+Now you can check the PHP info page you just created in your browser by going to http://youruniqueDNS/info.php, it should look similar to this.
 
 ![][2]
 
-前往 http://youruniqueDNS/ 檢視 Apache2 Ubuntu 預設頁面，即可檢查您的 Apache 安裝。您應該會看到如下的結果。
+You can check your Apache installation by viewing the Apache2 Ubuntu Default Page by going to you http://youruniqueDNS/. You should see something like this.
 
 ![][3]
 
-恭喜，您剛已在 Azure VM 上安裝 LAMP 堆疊！
+Congratulations, you have just setup a LAMP stack on your Azure VM!
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-請查看 LAMP 堆疊上的 Ubuntu 文件︰
+Check out the Ubuntu documentation on the LAMP stack:
 
 - [https://help.ubuntu.com/community/ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)
 
@@ -170,4 +173,8 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 [2]: ./media/virtual-machines-linux-deploy-lamp-stack/phpsuccesspage.png
 [3]: ./media/virtual-machines-linux-deploy-lamp-stack/apachesuccesspage.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

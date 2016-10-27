@@ -1,6 +1,6 @@
 <properties
-   pageTitle="搭配使用 VS Code 與 Resource Manager 範本 | Microsoft Azure"
-   description="示範如何設定 Visual Studio Code 來建立 Azure Resource Manager 範本。"
+   pageTitle="Use VS Code with Resource Manager templates | Microsoft Azure"
+   description="Shows how to set up Visual Studio Code to create Azure Resource Manager templates."
    services="azure-resource-manager"
    documentationCenter="na"
    authors="cmatskas"
@@ -16,124 +16,129 @@
    ms.date="09/26/2016"
    ms.author="chmatsk;tomfitz"/>
 
-# 在 Visual Studio Code 中使用 Azure Resource Manager 範本
 
-Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。這些檔案有時候可能很大又複雜，所以工具支援非常重要。Visual Studio Code 是全新的、輕量型、開放原始碼、跨平台程式碼編輯器。它會透過[新的擴充功能](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)，支援建立和編輯 Resource Manager 範本。VS Code 可隨處執行，而且不需要網際網路存取，除非您也想要部署 Resource Manager 範本。
+# <a name="working-with-azure-resource-manager-templates-in-visual-studio-code"></a>Working with Azure Resource Manager Templates in Visual Studio Code
 
-如果您還沒有 VS Code，可以在 [https://code.visualstudio.com/](https://code.visualstudio.com/) 進行安裝。
+Azure Resource Manager templates are JSON files that describe a resource and related dependencies. These files can sometimes be large and complicated so tooling support is important. Visual Studio Code is a new, lightweight, open-source, cross-platform code editor. It supports creating and editing Resource Manager templates through a [new extension](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools). VS Code runs everywhere and doesn't require Internet access unless you also want to deploy your Resource Manager templates.
 
-## 安裝 Resource Manager 擴充功能
+If you do not already have VS Code, you can install it at [https://code.visualstudio.com/](https://code.visualstudio.com/).
 
-若要在 VS Code 中使用 JSON 範本，您需要安裝擴充功能。下列步驟可下載並安裝 Resource Manager JSON 範本的語言支援︰
+## <a name="install-the-resource-manager-extension"></a>Install the Resource Manager extension
 
-1. 啟動 VS Code
-2. 開啟快速開啟 (Ctrl+P)
-3. 執行以下命令：
+To work with the JSON templates in VS Code, you need to install an extension. The following steps download and install the language support for Resource Manager JSON templates:
+
+1. Launch VS Code 
+2. Open Quick Open (Ctrl+P) 
+3. Run the following command: 
 
         ext install azurerm-vscode-tools
 
-4. 在系統提示時重新啟動 VS Code 以啟用擴充功能。
+4. Restart VS Code when prompted to enable the extension. 
 
- 作業完成！
+ Job done!
 
-## 設定 Resource Manager 程式碼片段
+## <a name="set-up-resource-manager-snippets"></a>Set up Resource Manager snippets
 
-先前的步驟已安裝工具支援，但我們現在需要設定 VS Code，才可使用 JSON 範本程式碼片段。
+The previous steps installed the tooling support, but now we need to configure VS Code to use JSON template snippets.
 
-1. 將檔案的內容從 [azure-xplat-arm-tooling](https://raw.githubusercontent.com/Azure/azure-xplat-arm-tooling/master/VSCode/armsnippets.json) 儲存機制複製到剪貼簿。
-2. 啟動 VS Code
-3. 在 VS Code 中，您可以利用下列方式開啟 JSON 程式碼片段檔案：瀏覽至 [檔案] -> [喜好設定] -> [使用者程式碼片段] -> [JSON]，或選取 **F1** 並輸入**喜好設定**，直到您可以選取 [喜好設定︰程式碼片段] 為止。
+1. Copy the contents of the file from the [azure-xplat-arm-tooling](https://raw.githubusercontent.com/Azure/azure-xplat-arm-tooling/master/VSCode/armsnippets.json) repository to your clipboard.
+2. Launch VS Code 
+3. In VS Code, you can open the JSON snippets file by either navigating to **File** -> **Preferences** -> **User Snippets** -> **JSON**, or by selecting **F1** and typing **preferences** until you can select **Preferences: Snippets**.
 
-    ![喜好設定程式碼片段](./media/resource-manager-vs-code/preferences-snippets.png)
+    ![preference snippets](./media/resource-manager-vs-code/preferences-snippets.png)
 
-    從選項中選取 [JSON]。
+    From the options, select **JSON**.
 
-    ![選取 json](./media/resource-manager-vs-code/select-json.png)
+    ![select json](./media/resource-manager-vs-code/select-json.png)
 
-4. 將步驟 1 的檔案內容貼到您的使用者程式碼片段檔案中最後一個 "}" 之前
-5. 請確定 JSON 看起來正常，且任何地方都沒有波浪線。
-6. 儲存並關閉使用者程式碼片段檔案。
+4. Paste the contents of the file on step 1 into your user snippets file before the final "}" 
+5. Make sure the JSON looks OK and there are no squiggles anywhere. 
+6. Save and close the user snippets file.
 
-這就是開始使用 Resource Manager 程式碼片段所需的檔案。接下來，我們將會測試此安裝程式。
+That's all that's needed to start using the Resource Manager snippets. Next, we'll put this setup to the test.
 
-## 在 VS Code 中使用範本
+## <a name="work-with-template-in-vs-code"></a>Work with template in VS Code
 
-開始使用範本的最簡單方法是擷取 [Github](https://github.com/Azure/azure-quickstart-templates) 上的其中一個快速啟動範本，或使用您自己的其中一個範本。您可以透過入口網站輕鬆地針對任何資源群組[匯出範本](resource-manager-export-template.md)。
+The easiest way to start working with a template is to either grab one of the Quick Start Templates available on [Github](https://github.com/Azure/azure-quickstart-templates) or use one of your own. You can easily [export a template](resource-manager-export-template.md) for any of your resource groups through the portal. 
 
-1. 如果您從資源群組中匯出範本，請在 VS Code 中開啟已解壓縮的檔案。
+1. If you exported a template from a resource group, open the extracted files in VS Code.
 
-    ![顯示檔案](./media/resource-manager-vs-code/show-files.png)
+    ![show files](./media/resource-manager-vs-code/show-files.png)
 
-2. 開啟 template.json 檔案，以便編輯它並新增一些額外的資源。在 **"resources": [** 之後按 Enter 鍵，開始新的一行。如果輸入 **arm**，您將會看到選項清單。這些選項是您安裝的範本程式碼片段。它看起來應該如下所示：
+2. Open the template.json file so that you can edit it and add some additional resources. After the **"resources": [** press enter to start a new line. If you type **arm**, you'll be presented with a list of options. These options are the template snippets you installed. It should look like this: 
 
-    ![顯示程式碼片段](./media/resource-manager-vs-code/type-snippets.png)
+    ![show snippets](./media/resource-manager-vs-code/type-snippets.png)
 
-3. 選擇您想要的程式碼片段。在本文中，我會選擇 **arm-ip** 來建立新的公用 IP 位址。在新建資源的右括號 "}" 後面加上逗號，確保您的範本語法有效。
+3. Choose the snippet you wish. For this article, I am choosing **arm-ip** to create a new public IP address. Put a comma after the closing bracket "}" of the newly created resource to make sure your template syntax is valid.
 
-     ![新增逗號](./media/resource-manager-vs-code/add-comma.png)
+     ![add comma](./media/resource-manager-vs-code/add-comma.png)
 
-4. VS Code 有內建的 IntelliSense。當您編輯範本時，VS Code 會建議可用的值。例如，若要將變數區段加入至您的範本，請加入 **""** (兩個雙引號)，然後選取這兩個引號之間的 **Ctrl+空格鍵**。您會看到包含**變數**的選項。
+4. VS Code has built-in IntelliSense. As you edit your templates, VS Code suggests available values. For example, to add a variables section to your template, add **""** (two double-quotes) and select **Ctrl+Space** between those quotes. You will be presented with options including **variables**.
 
-    ![新增變數](./media/resource-manager-vs-code/add-variables.png)
+    ![add variables](./media/resource-manager-vs-code/add-variables.png)
 
-5. IntelliSense 也可以建議可用的值或函式。若要將屬性設定為參數值，請建立包含 **""** 和 **Ctrl+空格鍵**的運算式。您可以開始輸入函式的名稱。當您找到想要的函式時，請選取 **Tab**。
+5. IntelliSense can also suggest available values or functions. To set a property to a parameter value, create an expression with **"[]"** and **Ctrl+Space**. You can start typing the name of a function. Select **Tab** when you have found the function you want.
 
-    ![新增參數](./media/resource-manager-vs-code/select-parameters.png)
+    ![add parameter](./media/resource-manager-vs-code/select-parameters.png)
 
-6. 再次選取函式內的 **Ctrl+空格鍵**，以查看您的範本內可用的參數清單。
+6. Select **Ctrl+Space** again within the function to see a list of the available parameters within your template.
 
-    ![新增參數](./media/resource-manager-vs-code/select-avail-parameters.png)
+    ![add parameter](./media/resource-manager-vs-code/select-avail-parameters.png)
 
-7. 如果您在範本中有任何結構描述驗證問題，則會在編輯器中看到熟悉的波浪線。輸入 **Ctrl+Shift+M** 或選取左下方狀態列中的字符 (glyph)，即可檢視錯誤和警告清單。
+7. If you have any schema validation issues in your template, you'll see the familiar squiggles in the editor. You can view the list of errors and warnings by typing **Ctrl+Shift+M** or selecting the glyphs in the lower left status bar.
 
-    ![錯誤](./media/resource-manager-vs-code/errors.png)
+    ![errors](./media/resource-manager-vs-code/errors.png)
 
-    驗證範本可協助您偵測語法問題；不過，您也可能看到可以忽略的錯誤。在某些情況下，編輯器會比較您的範本與不是最新狀態的結構描述，因此會回報即使您已知正確無誤的錯誤。例如，假設函式最近已加入至 Resource Manager，但尚未更新結構描述。儘管函式在部署期間正常運作，編輯器仍會回報錯誤。
+    Validation of your template can help you detect syntax problems; however, you may also see errors that you can ignore. In some cases, the editor is comparing your template against a schema that is not up-to-date and therefore reports an error even though you know it is correct. For example, suppose a function has recently been added to Resource Manager but the schema has not been updated. The editor reports an error despite the fact the function works correctly during deployment.
 
-    ![錯誤訊息](./media/resource-manager-vs-code/unrecognized-function.png)
+    ![error message](./media/resource-manager-vs-code/unrecognized-function.png)
 
-## 部署新資源
+## <a name="deploy-your-new-resources"></a>Deploy your new resources
 
-當您的範本準備就緒時，可以依照下列指示來部署新資源︰
+When your template is ready, you can deploy the new resources following the instructions below: 
 
-### Windows
+### <a name="windows"></a>Windows
 
-1. 開啟 PowerShell 命令提示字元。
-2. 若要登入類型︰
+1. Open a PowerShell command prompt 
+2. To login type: 
 
         Login-AzureRmAccount 
 
-3. 如果您有多個訂用帳戶，請透過下列方式取得訂用帳戶清單：
+3. If you have multiple subscriptions, get a list of the subscriptions with:
 
         Get-AzureRmSubscription
 
-    以及選取要使用的訂用帳戶。
+    And select the subscription to use.
    
         Select-AzureRmSubscription -SubscriptionId <Subscription Id>
 
-4. 更新 parameters.json 檔案中的參數
-5. 執行 Deploy.ps1 以在 Azure 上部署您的範本
+4. Update the parameters in your parameters.json file
+5. Run the Deploy.ps1 to deploy your template on Azure
 
-### OSX/Linux
+### <a name="osx/linux"></a>OSX/Linux
 
-1. 開啟終端機視窗
-2. 若要登入類型︰
+1. Open a terminal window 
+2. To login type:
 
         azure login 
 
-3. 如果您有多個訂用帳戶，請透過下列方式選取適當的訂用帳戶：
+3. If you have multiple subscriptions, select the right subscription with:
 
         azure account set <subscriptionNameOrId> 
 
-4. 更新 parameters.json 檔案中的參數。
-5. 若要部署範本，請執行：
+4. Update the parameters in the parameters.json file.
+5. To deploy the template, run:
 
         azure group deployment create -f <PathToTemplate> 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 若要了解範本，請參閱[撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
-- 若要了解範本函式，請參閱 [Azure Resource Manager 範本函式](resource-group-template-functions.md)。
-- 如需更多使用 Visual Studio Code 的範例，請參閱來自 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的 [Build cloud apps with Visual Studio Code (使用 Visual Studio Code 建置雲端應用程式)](https://github.com/Microsoft/HealthClinic.biz/wiki/Build-cloud-apps-with-Visual-Studio-Code)。如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure Developer Tools Quickstarts (Azure 開發人員工具快速入門)](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
+- To learn more about templates, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).
+- To learn about template functions, see [Azure Resource Manager template functions](resource-group-template-functions.md).
+- For more examples of working with Visual Studio Code, see [Build cloud apps with Visual Studio Code](https://github.com/Microsoft/HealthClinic.biz/wiki/Build-cloud-apps-with-Visual-Studio-Code) from the [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [demo](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/). For more quickstarts from the HealthClinic.biz demo, see [Azure Developer Tools Quickstarts](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts).
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

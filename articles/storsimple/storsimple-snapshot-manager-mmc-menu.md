@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Snapshot Manager MMC 功能表動作 | Microsoft Azure"
-   description="說明如何在 StorSimple Snapshot Manager 中，使用標準的 Microsoft Management Console (MMC) 功能表動作。"
+   pageTitle="StorSimple Snapshot Manager MMC menu actions | Microsoft Azure"
+   description="Describes how to use the standard Microsoft Management Console (MMC) menu actions in StorSimple Snapshot Manager."
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -15,115 +15,120 @@
    ms.date="04/25/2016"
    ms.author="v-sharos" />
 
-# 在 StorSimple Snapshot Manager 使用 MMC 功能表動作
 
-## 概觀
+# <a name="use-the-mmc-menu-actions-in-storsimple-snapshot-manager"></a>Use the MMC menu actions in StorSimple Snapshot Manager
 
-在 StorSimple Snapshot Manager 中，您會看到下列所有動作列在 [**動作**] 窗格的所有動作功能表和變化上。
+## <a name="overview"></a>Overview
 
-- 檢視
-- 從這裡開啟新視窗 
-- 重新整理 
-- 匯出清單 
-- 說明 
+In StorSimple Snapshot Manager, you will see the following actions listed on all action menus and all variations of the **Actions** pane. 
 
-這些動作是 Microsoft Management Console (MMC) 的一部分，並非是 StorSimple Snapshot Manager 特有的動作。本教學課程會描述這些動作，並說明如何在 StorSimple Snapshot Manager 使用其中每一個動作。
+- View
+- New Window from Here 
+- Refresh 
+- Export List 
+- Help 
 
-## 檢視
+These actions are part of the Microsoft Management Console (MMC) and are not specific to StorSimple Snapshot Manager. This tutorial describes these actions and explains how to use each of them in StorSimple Snapshot Manager.
 
-您可以使用 [**檢視**] 選項，來變更 [**結果**] 窗格檢視，以及變更主控台視窗檢視。
+## <a name="view"></a>View
 
-#### 若要變更 [結果] 窗格檢視
+You can use the **View** option to change the **Results** pane view and to change the console window view. 
 
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
+#### <a name="to-change-the-results-pane-view"></a>To change the Results pane view
 
-2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下任何節點，或展開節點並以滑鼠右鍵按一下 [**結果**] 窗格中的項目，然後按一下 [**檢視**] 選項。
+1. Click the desktop icon to start StorSimple Snapshot Manager.
 
-3. 若要新增或移除 [**結果**] 窗格中出現的資料行，請按一下 [**新增/移除資料行**]。[**新增/移除資料行**] 對話方塊隨即出現。
+2. In the **Scope** pane, right-click any node or expand the node and right-click an item in the **Results** pane, and then click the **View** option. 
 
-    ![新增或移除 [結果] 窗格中的資料行](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Add_remove_columns.png)
+3. To add or remove the columns that appear in the **Results** pane, click **Add/Remove Columns**. The **Add/Remove Columns** dialog box appears.
 
-4. 完成表單，如下所示：
+    ![Add or remove columns from Results pane](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Add_remove_columns.png) 
 
-    - 從 [**可用**] 資料行清單中選取項目，然後按一下 [**新增**]，將它們新增至 [**顯示的資料行**] 清單。 
+4. Complete the form as follows:
 
-    - 按一下 [**顯示的資料行**] 清單中的項目，然後按一下 [**移除**]，從清單中移除它們。
+    - Select items from the **Available** columns list and click **Add** to add them to the **Displayed columns** list. 
 
-    - 選取 [**顯示的資料行**] 清單中的項目，然後按一下 [**下移**] 或 [**下移**]，在清單中向上或向下移動項目。
+    - Click items in the **Displayed columns** list, and click **Remove** to remove them from the list. 
 
-    - 按一下 [**還原預設值**]，以還原為預設 [**結果**] 窗格組態。
+    - Select an item in the **Displayed** columns list and click **Move Up** or **Move Down** to move the item up or down in the list. 
 
-5. 當完成您的選擇時，請按一下 [**確定**]。
+    - Click **Restore Defaults** to return to the default **Results** pane configuration. 
 
-#### 若要變更主控台視窗檢視
+5. When you are finished with your selections, click **OK**. 
 
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
+#### <a name="to-change-the-console-window-view"></a>To change the console window view
 
-2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下任何節點，按一下 [**檢視**]，然後按一下 [**自訂**]。[**自訂**] 對話方塊隨即出現。
+1. Click the desktop icon to start StorSimple Snapshot Manager.
 
-    ![自訂主控台視窗](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Customize.png)
+2. In the **Scope** pane, right-click any node, click **View**, and then click **Customize**. The **Customize** dialog box appears.
 
-3. 選取或清除核取方塊，以顯示或隱藏主控台視窗中的項目。當完成您的選擇時，請按一下 [**確定**]。
+    ![Customize the console window](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Customize.png) 
 
-## 從這裡開啟新視窗
+3. Select or clear the check boxes to show or hide items in the console window. When you are finished with your selections, click **OK**.
 
-您可以使用 [**從這裡開啟新視窗**] 選項，以開啟新的主控台視窗。
+## <a name="new-window-from-here"></a>New Window from Here
 
-#### 若要開啟新的主控台視窗
+You can use the **New Window from Here** option to open a new console window.
 
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
+#### <a name="to-open-a-new-console-window"></a>To open a new console window
 
-2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下任何節點，然後按一下 [**從這裡開啟新視窗**]。
+1. Click the desktop icon to start StorSimple Snapshot Manager.
 
-    新的視窗隨即出現，僅顯示您所選取的範圍。比方說，如果您以滑鼠右鍵按一下 [**備份原則**] 節點中，新的視窗只會顯示 [**範圍**] 窗格中的 [**備份原則**] 節點，以及 [**結果**] 窗格中已定義的備份原則清單。請參閱下列範例。
+2. In the **Scope** pane, right-click any node, and then click **New Window from Here**. 
 
-    ![從這裡開啟新視窗](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_NewWindow.png)
+    A new window appears, showing only the scope that you selected. For example, if you right-click the **Backup Policies** node, the new window will show only the **Backup Policies** node in the **Scope** pane and a list of defined backup policies in the **Results** pane. See the following example.
+
+    ![New Window from Here](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_NewWindow.png) 
  
-## 重新整理
+## <a name="refresh"></a>Refresh
 
-您可以使用 [**重新整理**] 動作來更新主控台視窗。
+You can use the **Refresh** action to update the console window.
 
-#### 若要更新主控台視窗
+#### <a name="to-update-the-console-window"></a>To update the console window
 
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
+1. Click the desktop icon to start StorSimple Snapshot Manager.
 
-2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下任何節點，或展開節點並以滑鼠右鍵按一下 [**結果**] 窗格中的項目，然後按一下 [**重新整理**]。
+2. In the **Scope** pane, right-click any node or expand the node and right-click an item in the **Results** pane, and then click **Refresh**. 
 
-## 匯出清單
+## <a name="export-list"></a>Export List
 
-您可以使用 [**匯出清單**] 動作，將清單儲存為逗號分隔值 (CSV) 檔案。例如，您可以匯出備份原則清單或備份目錄。然後，您可以將 CSV 檔案匯入試算表應用程式進行分析。
+You can use the **Export List** action to save a list in a comma-separated value (CSV) file. For example, you can export the list of backup policies or the backup catalog. You can then import the CSV file into a spreadsheet application for analysis.
 
-#### 若要將清單儲存為逗號分隔值 (CSV) 檔案
+#### <a name="to-save-a-list-in-a-comma-separated-value-(csv)-file"></a>To save a list in a comma-separated value (CSV) file
 
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。 
+1. Click the desktop icon to start StorSimple Snapshot Manager. 
 
-2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下任何節點，或展開節點並以滑鼠右鍵按一下 [**結果**] 窗格中的項目，然後按一下 [**匯出清單**]。
+2. In the **Scope** pane, right-click any node or expand the node and right-click an item in the **Results** pane, and then click **Export List**. 
 
-3. [**匯出清單**] 對話方塊隨即出現。完成表單，如下所示：
+3. The **Export List** dialog box appears. Complete the form as follows: 
 
-    1. 在 [**檔案名稱**] 方塊中，輸入 CSV 檔案的名稱，或按一下箭頭以從下拉式清單中選取。
+    1. In the **File name** box, type a name for the CSV file or click the arrow to select from the drop-down list.
 
-    2. 在 [**存檔類型**] 方塊中，按一下箭號，從下拉式清單中選取檔案類型。
+    2. In the **Save as type** box, click the arrow and select a file type from the drop-down list.
 
-    3. 若只儲存選取的項目，請選取資料列，然後按一下 [**只儲存選取的列**] 核取方塊。若要儲存所有匯出的清單，請清除 [**只儲存選取的列**] 核取方塊。
+    3. To save only selected items, select the rows and then click the **Save Only Selected Rows** check box. To save all exported lists, clear the **Save Only Selected Rows** check box.
 
-    4. 按一下 [儲存]。
+    4. Click **Save**.
 
-    ![將清單匯出成逗號分隔值檔案](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Export_List.png)
+    ![Export list as a comma-separated value file](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Export_List.png) 
  
-## 說明
+## <a name="help"></a>Help
 
-您可以使用 [**說明**] 功能表，來檢視 StorSimple Snapshot Manager 和 MMC 的可用線上說明。
+You can use the **Help** menu to view available online help for StorSimple Snapshot Manager and the MMC.
 
-#### 若要檢視可用的線上說明
+#### <a name="to-view-available-online-help"></a>To view available online help
 
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
+1. Click the desktop icon to start StorSimple Snapshot Manager.
 
-2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下任何節點，或展開節點並以滑鼠右鍵按一下 [**結果**] 窗格中的項目，然後按一下 [**說明**]。
+2. In the **Scope** pane, right-click any node or expand the node and right-click an item in the **Results** pane, and then click **Help**. 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 深入了解 [StorSimple Snapshot Manager 使用者介面](storsimple-use-snapshot-manager.md)。
-- 深入了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
+- Learn more about the [StorSimple Snapshot Manager user interface](storsimple-use-snapshot-manager.md).
+- Learn more about [using StorSimple Snapshot Manager to administer your StorSimple solution](storsimple-snapshot-manager-admin.md).
 
-<!---HONumber=AcomDC_0427_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

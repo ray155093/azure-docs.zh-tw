@@ -1,33 +1,36 @@
-### 必要條件
-- Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
-- [Azure Blob 儲存體帳戶](../articles/storage/storage-create-storage-account.md)，包括儲存體帳戶名稱和其存取金鑰。這項資訊會列在 Azure 入口網站儲存體帳戶的屬性中。深入了解 [Azure 儲存體](../articles/storage/storage-introduction.md)。
+### <a name="prerequisites"></a>Prerequisites
+- An Azure account; you can create a [free account](https://azure.microsoft.com/free)
+- An [Azure Blob Storage account](../articles/storage/storage-create-storage-account.md) including the storage account name, and its access key. This information is listed in the properties of the storage account in the Azure portal. Read more about [Azure Storage](../articles/storage/storage-introduction.md).
 
-在於邏輯應用程式中使用您的「Azure Blob 儲存體」帳戶之前，請先連線到您的「Azure Blob 儲存體」帳戶。您可以在 Azure 入口網站上，從邏輯應用程式內輕鬆完成此操作。
+Before using your Azure Blob Storage account in a logic app, connect to your Azure Blob Storage account. You can do this easily within your logic app on the Azure  portal.  
 
-請使用下列步驟來連線到您的「Azure Blob 儲存體」帳戶：
+Connect to your Azure Blob Storage account using the following steps:  
 
-1. 建立邏輯應用程式。在 Logic Apps 設計工具中，新增一個觸發程序，然後新增一個動作。從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 "blob"。選取其中一個動作︰
+1. Create a logic app. In the Logic Apps designer, add a trigger, and then add an action. Select **Show Microsoft managed APIs** in the drop down list, and then enter "blob" in the search box. Select one of the actions:  
 
-	![Azure Blob 儲存體連接的建立步驟](./media/connectors-create-api-azureblobstorage/azureblobstorage-1.png)
+    ![Azure Blob Storage connection creation step](./media/connectors-create-api-azureblobstorage/azureblobstorage-1.png)  
 
-2. 如果您之前尚未建立與 Azure 儲存體的任何連線，系統將會提示您輸入連線詳細資料：
+2. If you haven't previously created any connections to Azure storage, you are prompted for the connection details:   
 
-	![Azure Blob 儲存體連接的建立步驟](./media/connectors-create-api-azureblobstorage/connection-details.png)
+    ![Azure Blob Storage connection creation step](./media/connectors-create-api-azureblobstorage/connection-details.png)  
 
-3. 輸入儲存體帳戶詳細資料。具有星號的屬性為必要項目。
+3. Enter the storage account details. Properties with an asterisk are required.
 
-	| 屬性 | 詳細資料 |
+    | Property | Details |
 |---|---|
-| 連線名稱 * | 為連接器輸入任何名稱。 |
-| Azure 儲存體帳戶名稱 * | 輸入儲存體帳戶名稱。儲存體帳戶名稱會顯示在 Azure 入口網站的儲存體屬性中。 |
-| Azure 儲存體帳戶存取金鑰 * | 輸入儲存體帳戶金鑰。存取金鑰會顯示在 Azure 入口網站的儲存體屬性中。 |
+| Connection Name * | Enter any name for your connection. |
+| Azure Storage Account Name * | Enter the storage account name. The storage account name is displayed in the storage properties in the Azure portal. |
+| Azure Storage Account Access Key * | Enter the storage account key. The access keys are displayed in the storage properties in the Azure portal. |
 
-	這些認證會用來授權邏輯應用程式連線並存取資料。
+    These credentials are used to authorize your logic app to connect, and access your data. 
 
-4. 選取 [建立]。
+4. Select **Create**.
 
-5. 請注意，已建立連線。現在，請繼續進行您邏輯應用程式中的其他步驟：
+5. Notice the connection has been created. Now, proceed with the other steps in your logic app: 
 
-	![Azure Blob 儲存體連接的建立步驟](./media/connectors-create-api-azureblobstorage/azureblobstorage-3.png)
+    ![Azure Blob Storage connection creation step](./media/connectors-create-api-azureblobstorage/azureblobstorage-3.png)  
 
-<!---HONumber=AcomDC_0727_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,19 +1,22 @@
-## 累加部署與完整部署
+## <a name="incremental-and-complete-deployments"></a>Incremental and complete deployments
 
-資源管理員預設會將部署處理為資源群組的累加式更新。使用累加部署，資源管理員將：
+By default, Resource Manager handles deployments as incremental updates to the resource group. With incremental deployment, Resource Manager:
 
-- **保留且不變更**現存於資源群組中但未在範本中指定的資源
-- **加入**在範本中指定但未存在於資源群組中的資源
-- **不重新佈建**現存於資源群組，並在範本中以相同條件定義的資源
-- **重新佈建**在範本中具有更新設定的現有資源
+- **leaves unchanged** resources that exist in the resource group but are not specified in the template
+- **adds** resources that are specified in the template but do not exist in the resource group 
+- **does not re-provision** resources that exist in the resource group in the same condition defined in the template
+- **re-provisions** existing resources that have updated settings in the template
 
-使用完整部署，資源管理員將：
+With complete deployment, Resource Manager:
 
-- **刪除**現存於資源群組中但未在範本中指定的資源
-- **加入**在範本中指定但未存在於資源群組中的資源
-- **不重新佈建**現存於資源群組，並在範本中以相同條件定義的資源
-- **重新佈建**在範本中具有更新設定的現有資源
+- **deletes** resources that exist in the resource group but are not specified in the template
+- **adds** resources that are specified in the template but do not exist in the resource group 
+- **does not re-provision** resources that exist in the resource group in the same condition defined in the template
+- **re-provisions** existing resources that have updated settings in the template
  
-您可以透過 **Mode** 屬性指定部署類型。
+You specify the type of deployment through the **Mode** property.
 
-<!---HONumber=AcomDC_0713_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

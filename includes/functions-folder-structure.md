@@ -1,5 +1,5 @@
 
-指定函數應用程式中所有函數的程式碼，都位於包含主機組態檔和一或多個子資料夾 (每個都包含個別函數的程式碼) 的根資料夾中，如以下範例所示
+The code for all of the functions in a given function app lives in a root folder that contains a host configuration file and one or more subfolders, each of which contain the code for a separate function, as in the following example
 
 ```
 wwwroot
@@ -15,8 +15,10 @@ wwwroot
  | | - run.csx
 ```
 
-*host.json* 檔案包含一些執行階段特定的組態，並位在函數應用程式的根資料夾中。如需可用設定的資訊，請參閱 WebJobs.Script 百科儲存庫中的 [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
+The *host.json* file contains some runtime-specific configuration and sits in the root folder of the function app. For information on settings that are available, see [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) in the WebJobs.Script repository wiki.
 
-每個函數都會有一個資料夾，其中包含一或多個程式碼檔案、function.json 組態及其他相依性。
+Each function has a folder that contains one or more code files, the function.json configuration and other dependencies.
 
-<!---HONumber=AcomDC_0824_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

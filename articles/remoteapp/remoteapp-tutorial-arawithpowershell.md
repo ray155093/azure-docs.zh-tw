@@ -1,6 +1,6 @@
 <properties
-   pageTitle="將 PowerShell Cmdlet 搭配 Azure RemoteApp 使用 | Microsoft Azure"
-   description="了解如何在 Azure RemoteApp 中使用 Windows PowerShell Cmdlet。"
+   pageTitle="Use PowerShell cmdlets with Azure RemoteApp | Microsoft Azure"
+   description="Learn how to use Windows PowerShell cmdlets in Azure RemoteApp."
    services="remoteapp"
    documentationCenter=""
    authors="guscatalano"
@@ -18,56 +18,57 @@
 
 
 
-# 將 Windows PowerShell Cmdlet 搭配 Azure RemoteApp 使用
+
+# <a name="use-windows-powershell-cmdlets-with-azure-remoteapp"></a>Use Windows PowerShell cmdlets with Azure RemoteApp
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
- 您可以使用 Azure RemoteApp PowerShell Cmdlet 管理和維護您的集合。首先，請使用下列資訊。
+ You can use the Azure RemoteApp PowerShell cmdlets to administer and maintain your collections. Use the following information to get started.
 
-## 取得 Cmdlet 
+## <a name="get-the-cmdlets"></a>Get the cmdlets 
 -------------
-先在[這裡](http://go.microsoft.com/?linkid=9811175)下載 Azure Powershell Cmdlet，當中內含 RemoteApp Cmdlet。
+First download the Azure Powershell cmdlets [here](http://go.microsoft.com/?linkid=9811175), the RemoteApp cmdlets are included in it. 
 
-請查看 [Azure RemoteApp Cmdlet 說明](https://msdn.microsoft.com/library/mt428031.aspx)。
+Check out the [Azure RemoteApp cmdlet help](https://msdn.microsoft.com/library/mt428031.aspx).
 
-## 設定 Azure Cmdlet 以使用訂用帳戶
+## <a name="configure-azure-cmdlets-to-use-your-subscription"></a>Configure Azure cmdlets to use your subscription
 ------------------
-請依照[本指南](../powershell-install-configure.md)進行，以對 Azure 訂用帳戶使用 Cmdlet。
+Follow [this guide](../powershell-install-configure.md) so you can use the cmdlets against your Azure subscription.
 
-您可以透過這些步驟快速開始使用：
+You can use these steps to get started quickly:
 
-1.	下載並安裝 [Azure PowerShell Cmdlet](http://go.microsoft.com/?linkid=9811175)。
-2.	啟動 Microsoft Azure PowerShell。
-3.	執行 **Add-AzureAccount** 以驗證您的 Azure 訂用帳戶。出現提示時，請輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-4.	執行 **Get-AzureSubscription** 以列出與您使用者帳戶相關聯的訂用帳戶。
-5.	執行 **Select-AzureSubscription** 並指定要在 PowerShell 主控台中使用的訂用帳戶名稱或識別碼。
+1.  Download and install the [Azure PowerShell cmdlets](http://go.microsoft.com/?linkid=9811175).
+2.  Launch Microsoft Azure PowerShell.
+3.  Run **Add-AzureAccount** to authenticate to your Azure subscription. When prompted, enter the same user name and password that you use to sign in to Azure portal.  
+4.  Run **Get-AzureSubscription** to list the subscriptions associated with your user account. 
+5.  Run **Select-AzureSubscription** and specify the subscription name or ID to use in the PowerShell console.
 
-恭喜，您的 Azure PowerShell 主控台已設定完成且可以使用了。請注意，每次您啟動 Azure PowerShell 主控台後都必須重複步驟 2至 5。
+Congratulations, your Azure PowerShell console is configured and ready to use. Be aware that you'll need to repeate steps 2 through 5 each time you start the the Azure PowerShell console.  
 
-## 建立雲端收藏
+## <a name="create-a-cloud-collection"></a>Create a cloud collection
 --------------------
-十分簡單，只要執行下列命令：
+It's simple, run the following command:
 
     New-AzureRemoteAppCollection -Collectionname RAppO365Col1 -ImageName "Office 365 ProPlus (Subscription required)" -Plan Basic -Location "West US" - Description "Office 365 Collection."
 
-上述命令會自動發佈 Microsoft Office 365 應用程式 (Excel、OneNote、Outlook、PowerPoint、Visio 和 Word)。
+The above command automatically publishes Microsoft Office 365 applications (Excel, OneNote, Outlook, PowerPoint, Visio and Word).
 
-建立集合可能需要 30 分鐘或更久的時間才能完成。因此，此命令會傳回可使用的追蹤識別碼，如下所示：
+Collection creation can take 30 minutes or longer to complete. Therefore, this command returns a tracking ID that you can use as follows:
 
 
     Get-AzureRemoteAppOperationResult -TrackingId xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-完成集合之後，您可以使用下列命令，將使用者新增至集合：
+After the collection is done, you can add users to the collection with the following command:
 
     Add-AzureRemoteAppUser -CollectionName RAppO365Col1 -Type microsoftAccount -UserUpn someone@domain.com
 
-大功告成！ 該使用者應該可以使用在[這裡](https://www.remoteapp.windowsazure.com/)找到的 Azure RemoteApp 用戶端連接到應用程式。
+And you're done! That user should be able to connect to the application using the Azure RemoteApp client found [here](https://www.remoteapp.windowsazure.com/).
 
-## 可用的 Cmdlet
-我們還有一些其他命令，將會簡短予以說明：
+## <a name="available-cmdlets"></a>Available cmdlets
+There are lots of other commands that we have, the documentation for them will be coming shortly:
 
-基本 RemoteApp 集合 Cmdlet：
+Basic RemoteApp Collection  cmdlets: 
 
 - New-AzureRemoteAppCollection
 - Get-AzureRemoteAppCollection
@@ -114,4 +115,8 @@ Other RemoteApp cmdlets:
 - Get-AzureRemoteAppOperationResult
  
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

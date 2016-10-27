@@ -1,6 +1,6 @@
 <properties
-   pageTitle="疑難排解應用程式閘道閘道不正確 (502) 的錯誤 |Microsoft Azure"
-   description="了解如何對應用程式閘道 502 錯誤進行疑難排解"
+   pageTitle="Troubleshoot Application Gateway Bad Gateway (502) errors | Microsoft Azure"
+   description="Learn how to troubleshoot Application Gateway 502 errors"
    services="application-gateway"
    documentationCenter="na"
    authors="amitsriva"
@@ -17,131 +17,136 @@
    ms.date="09/02/2016"
    ms.author="amitsriva" />
 
-# 疑難排解應用程式閘道中閘道不正確的錯誤
 
-## Overview
+# <a name="troubleshooting-bad-gateway-errors-in-application-gateway"></a>Troubleshooting bad gateway errors in Application Gateway
 
-設定 Azure 應用程式閘道之後，使用者可能遇到的其中一個錯誤是「伺服器錯誤︰502 - 網頁伺服器做為閘道器或 Proxy 伺服器時收到無效的回應」。這可能是由於下列主要原因所導致：
+## <a name="overview"></a>Overview
 
-- Azure 應用程式閘道的後端集區並未設定或空白。
-- VM 擴展集中沒有任何狀況良好的 VM 或執行個體。
-- VM 擴展集的後端 VM 或執行個體都沒有回應預設的健全狀況探查。
-- 無效或不適當的自訂健全狀況探查組態。
-- 要求逾期，或使用者要求的連線問題。
+After configuring an Azure Application Gateway, one of the errors which users may encounter is "Server Error: 502 - Web server received an invalid response while acting as a gateway or proxy server". This may happen due to the following main reasons:
 
-## 空白的 BackendAddressPool
+- Azure Application Gateway's back-end pool is not configured or empty.
+- None of the VMs or instances in VM Scale Set are healthy.
+- Back-end VMs or instances of VM Scale Set are not responding to the default health probe.
+- Invalid or improper configuration of custom health probes.
+- Request time out or connectivity issues with user requests.
 
-### 原因
+## <a name="empty-backendaddresspool"></a>Empty BackendAddressPool
 
-如果應用程式閘道未在後端位址集區中設定 VM 或 VM 擴展集，就無法路由傳送任何客戶要求，並會擲回閘道不正確的錯誤。
+### <a name="cause"></a>Cause
 
-### 方案
+If the Application Gateway has no VMs or VM Scale Set configured in the back-end address pool, it cannot route any customer request and throws a bad gateway error.
 
-確定後端位址集區不是空白的。這可透過 PowerShell、CLI 或入口網站來完成。
+### <a name="solution"></a>Solution
 
-	Get-AzureRmApplicationGateway -Name "SampleGateway" -ResourceGroupName "ExampleResourceGroup"
+Ensure that the back-end address pool is not empty. This can be done either via PowerShell, CLI, or portal.
 
-前述 Cmdlet 的輸出應包含非空白的後端位址集區。下列範例會傳回兩個針對後端 VM 使用 FQDN 或 IP 位址設定的集區。BackendAddressPool 的佈建狀態必須是 'Succeeded'。
-	
-	BackendAddressPoolsText: 
-			[{
-				"BackendAddresses": [{
-					"ipAddress": "10.0.0.10",
-					"ipAddress": "10.0.0.11"
-				}],
-				"BackendIpConfigurations": [],
-				"ProvisioningState": "Succeeded",
-				"Name": "Pool01",
-				"Etag": "W/"00000000-0000-0000-0000-000000000000"",
-				"Id": "/subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/Microsoft.Network/applicationGateways/<application gateway name>/backendAddressPools/pool01"
-			}, {
-				"BackendAddresses": [{
-					"Fqdn": "xyx.cloudapp.net",
-					"Fqdn": "abc.cloudapp.net"
-				}],
-				"BackendIpConfigurations": [],
-				"ProvisioningState": "Succeeded",
-				"Name": "Pool02",
-				"Etag": "W/"00000000-0000-0000-0000-000000000000"",
-				"Id": "/subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/Microsoft.Network/applicationGateways/<application gateway name>/backendAddressPools/pool02"
-			}]
+    Get-AzureRmApplicationGateway -Name "SampleGateway" -ResourceGroupName "ExampleResourceGroup"
 
-
-## BackendAddressPool 中狀況不良的執行個體
-
-### 原因
-
-如果 BackendAddressPool 的所有執行個體都狀況不良，則應用程式閘道不會包含任何要將使用者要求路由傳送到其中的後端。當後端執行個體的狀況良好，但尚未部署必要的應用程式時，也可能發生此情況。
-
-### 方案
-
-確定執行個體的狀況良好且已正確設定應用程式。檢查後端執行個體是否能夠從同一個 VNet 中的其他 VM 回應 Ping。如果是使用公用端點所設定，請確定對 Web 應用程式的瀏覽器要求能夠提供服務。
-
-## 預設健全狀況探查的問題
-
-### 原因
-
-502 錯誤也可以是預設健全狀態探查無法連線到後端 VM 的常用指標。佈建應用程式閘道執行個體時，它會使用 BackendHttpSetting 的屬性，自動將預設的健全狀況探查設定到每個 BackendAddressPool 。設定此探查時不需任何使用者輸入。具體而言，設定負載平衡規則時，會在 BackendHttpSetting 和 BackendAddressPool 之間建立關聯。預設探查是針對這其中的每一個關聯所設定，而應用程式閘道會在 BackendHttpSetting 項目中指定的連接埠上，將定期的健全狀況檢查連線初始到 BackendAddressPool 中的每一個執行個體。下表列出與預設健全狀況探查相關聯的值。
+The output from the preceding cmdlet should contain non-empty back-end address pool. Following is an example where two pools are returned which are configured with FQDN or IP addresses for backend VMs. The provisioning state of the BackendAddressPool must be 'Succeeded'.
+    
+    BackendAddressPoolsText: 
+            [{
+                "BackendAddresses": [{
+                    "ipAddress": "10.0.0.10",
+                    "ipAddress": "10.0.0.11"
+                }],
+                "BackendIpConfigurations": [],
+                "ProvisioningState": "Succeeded",
+                "Name": "Pool01",
+                "Etag": "W/\"00000000-0000-0000-0000-000000000000\"",
+                "Id": "/subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/Microsoft.Network/applicationGateways/<application gateway name>/backendAddressPools/pool01"
+            }, {
+                "BackendAddresses": [{
+                    "Fqdn": "xyx.cloudapp.net",
+                    "Fqdn": "abc.cloudapp.net"
+                }],
+                "BackendIpConfigurations": [],
+                "ProvisioningState": "Succeeded",
+                "Name": "Pool02",
+                "Etag": "W/\"00000000-0000-0000-0000-000000000000\"",
+                "Id": "/subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/Microsoft.Network/applicationGateways/<application gateway name>/backendAddressPools/pool02"
+            }]
 
 
-|探查屬性 | 值 | 說明|
+## <a name="unhealthy-instances-in-backendaddresspool"></a>Unhealthy instances in BackendAddressPool
+
+### <a name="cause"></a>Cause
+
+If all the instances of BackendAddressPool are unhealthy, then Application Gateway would not have any back-end to route user request to. This could also be the case when back-end instances are healthy but do not have the required application deployed.
+
+### <a name="solution"></a>Solution
+
+Ensure that the instances are healthy and the application is properly configured. Check if the back-end instances are able to respond to a ping from another VM in the same VNet. If configured with a public end point, ensure that a browser request to the web application is serviceable.
+
+## <a name="problems-with-default-health-probe"></a>Problems with default health probe
+
+### <a name="cause"></a>Cause
+
+502 errors can also be frequent indicators that the default health probe is not able to reach back-end VMs. When an Application Gateway instance is provisioned, it automatically configures a default health probe to each BackendAddressPool using properties of the BackendHttpSetting. No user input is required to set this probe. Specifically, when a load balancing rule is configured, an association is made between a BackendHttpSetting and BackendAddressPool. A default probe is configured for each of these associations and Application Gateway initiates a periodic health check connection to each instance in the BackendAddressPool at the port specified in the BackendHttpSetting element. Following table lists the values associated with the default health probe.
+
+
+|Probe property | Value | Description|
 |---|---|---|
-| 探查 URL| http://127.0.0.1/ | URL 路徑 |
-| 間隔 | 30 | 探查間隔 (秒) |
-| 逾時 | 30 | 探查逾時 (秒) |
-| 狀況不良臨界值 | 3 | 探查重試計數。連續探查失敗計數到達狀況不良臨界值後，就會將後端伺服器標示為故障。 |
+| Probe URL| http://127.0.0.1/ | URL path |
+| Interval | 30 | Probe interval in seconds |
+| Time-out  | 30 | Probe time-out in seconds |
+| Unhealthy threshold | 3 | Probe retry count. The back-end server is marked down after the consecutive probe failure count reaches the unhealthy threshold. |
 
-### 方案
+### <a name="solution"></a>Solution
 
-- 確定預設網站已設定且正於 127.0.0.1 上進行接聽。
-- 如果 BackendHttpSetting 指定了 80 以外的連接埠，則應將預設網站設定為在該連接埠上進行接聽。
-- 對 http://127.0.0.1:port 的呼叫應該會傳回 HTTP 結果碼 200。這應該會在 30 秒逾時期間內傳回。
-- 確定設定的連接埠已開啟，而且沒有任何防火牆或 Azure 網路安全性群組會在所設定的連接埠上封鎖連入或連出流量。
-- 如果Azure 傳統 VM 或雲端服務會與 FQDN 或公用 IP 搭配使用，請確認對應的[端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)已開啟。
-- 如果 VM 是透過 Azure Resource Manager 所設定且位於應用程式閘道部署所在的 VNet 外部，就必須將[網路安全性群組](../virtual-network/virtual-networks-nsg.md)設定為允許在所需的連接埠上進行存取。
+- Ensure that a default site is configured and is listening at 127.0.0.1.
+- If BackendHttpSetting specifies a port other than 80, the default site should be configured to listen at that port.
+- The call to http://127.0.0.1:port should return an HTTP result code of 200. This should be returned within the 30 sec time-out period.
+- Ensure that port configured is open and that there are no firewall rules or Azure Network Security Groups, which block incoming or outgoing traffic on the port configured.
+- If Azure classic VMs or Cloud Service is used with FQDN or Public IP, ensure that the corresponding [endpoint](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md) is opened.
+- If the VM is configured via Azure Resource Manager and is outside the VNet where Application Gateway is deployed, [Network Security Group](../virtual-network/virtual-networks-nsg.md) must be configured to allow access on the desired port.
 
 
-## 自訂健全狀況探查的問題
+## <a name="problems-with-custom-health-probe"></a>Problems with custom health probe
 
-### 原因
+### <a name="cause"></a>Cause
 
-自訂的健全狀況探查能夠對於預設探查行為提供更多彈性。使用自訂探查時，使用者可以設定探查間隔、要測試的 URL 和路徑，以及在將後端集區執行個體標示為狀況不良前，可接受的失敗回應次數。已新增下列其他屬性。
+Custom health probes allow additional flexibility to the default probing behavior. When using custom probes, users can configure the probe interval, the URL, and path to test, and how many failed responses to accept before marking the back-end pool instance as unhealthy. The following additional properties are added.
 
-|探查屬性| 說明|
+|Probe property| Description|
 |---|---|
-| Name | 探查的名稱。此名稱用來在後端 HTTP 設定中指出探查。 |
-| 通訊協定 | 用來傳送探查的通訊協定。HTTP 是唯一有效的通訊協定。 |
-| Host | 用來傳送探查的主機名稱。只有當應用程式閘道上設定多站台時適用。這與 VM 主機名稱不同。 |
-| Path | 探查的相對路徑。有效路徑的開頭為 '/'。探查會傳送到 <protocol>://<host>:<port><path> |
-| 間隔 | 探查間隔 (秒)。這是兩個連續探查之間的時間間隔。|
-| 逾時 | 探查逾時 (秒)。如果在這個逾時期間內未收到有效的回應，則會將探查標示為失敗。 |
-| 狀況不良臨界值 | 探查重試計數。連續探查失敗計數到達狀況不良臨界值後，就會將後端伺服器標示為故障。 |
+| Name | Name of the probe. This name is used to refer to the probe in back-end HTTP settings. |
+| Protocol | Protocol used to send the probe. HTTP is the only valid protocol. |
+| Host |  Host name to send the probe. Applicable only when multi-site is configured on Application Gateway. This is different from VM host name.  |
+| Path | Relative path of the probe. The valid path starts from '/'. The probe is sent to \<protocol\>://\<host\>:\<port\>\<path\> |
+| Interval | Probe interval in seconds. This is the time interval between two consecutive probes.|
+| Time-out | Probe time-out in seconds. The probe is marked as failed if a valid response is not received within this time-out period. |
+| Unhealthy threshold | Probe retry count. The back-end server is marked down after the consecutive probe failure count reaches the unhealthy threshold. |
 
 
-### 方案
+### <a name="solution"></a>Solution
 
-確認已按照上述資料表正確設定 [自訂健全狀態探查]。除了上述的疑難排解步驟，也請確定下列各項：
+Validate that the Custom Health Probe is configured correctly as the preceding table. In addition to the preceding troubleshooting steps, also ensure the following:
 
-- 確定只將 Protocol 設定為 HTTP。目前不支援 HTTPS。
-- 確定已根據[指南](application-gateway-create-probe-ps.md)正確指定探查。
-- 如果已將應用程式閘道設定為單一站台，根據預設，除非已在自訂探查中加以設定，否則應將主機名稱指定為 '127.0.0.1'。
-- 確定對 http://\<host>:<port><path> 的呼叫會傳回 HTTP 結果碼 200。
-- 確定 Interval、Time-out 和 UnhealtyThreshold 皆在可接受的範圍內。
+- Ensure that the Protocol is set to HTTP only. HTTPS is not currently supported.
+- Ensure that the probe is correctly specified as per the [guide](application-gateway-create-probe-ps.md).
+- If Application Gateway is configured for a single site, by default the Host name should be specified as '127.0.0.1', unless otherwise configured in custom probe.
+- Ensure that a call to http://\<host\>:\<port\>\<path\> returns an HTTP result code of 200.
+- Ensure that Interval, Time-out and UnhealtyThreshold are within the acceptable ranges.
 
-## 要求逾時
+## <a name="request-time-out"></a>Request time out
 
-### 原因
+### <a name="cause"></a>Cause
 
-收到使用者要求時，應用程式閘道會將設定的規則套用到該要求，並將其路由傳送到後端集區執行個體。其會等候一段可設定的時間間隔以接收來自後端應用程式的回應。根據預設，這個間隔為 **30 秒**。如果應用程式閘道沒有在此時間間隔內收到來自後端應用程式的回應，使用者要求就會看到 502 錯誤。
+When a user request is received, Application Gateway applies the configured rules to the request and routes it to a back-end pool instance. It waits for a configurable interval of time for a response from the back-end instance. By default, this interval is **30 seconds**. If Application Gateway does not receive a response from back-end application in this interval, user request would see a 502 error.
 
-### 方案
+### <a name="solution"></a>Solution
 
-應用程式閘道允許使用者透過 BackendHttpSetting 設定此組態，接著可將之套用到其他集區。不同的後端集區可以有不同的 BackendHttpSetting，因此可設定不同的要求逾時。
+Application Gateway allows users to configure this setting via BackendHttpSetting, which can be then applied to different pools. Different back-end pools can have different BackendHttpSetting and hence different request time out configured.
 
-	New-AzureRmApplicationGatewayBackendHttpSettings -Name 'Setting01' -Port 80 -Protocol Http -CookieBasedAffinity Enabled -RequestTimeout 60
+    New-AzureRmApplicationGatewayBackendHttpSettings -Name 'Setting01' -Port 80 -Protocol Http -CookieBasedAffinity Enabled -RequestTimeout 60
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如果上述步驟無法解決問題，請開啟[支援票證](https://azure.microsoft.com/support/options/)。
+If the preceding steps do not resolve the issue, open a [support ticket](https://azure.microsoft.com/support/options/).
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

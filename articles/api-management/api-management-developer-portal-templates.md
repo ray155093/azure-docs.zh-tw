@@ -1,189 +1,190 @@
 <properties 
-	pageTitle="如何使用範本自訂 Azure API 管理開發人員入口網站 | Microsoft Azure" 
-	description="了解如何使用範本自訂 Azure API 管理開發人員入口網站。" 
-	services="api-management" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+    pageTitle="How to customize the Azure API Management developer portal using templates | Microsoft Azure" 
+    description="Learn how to customize the Azure API Management developer portal using templates." 
+    services="api-management" 
+    documentationCenter="" 
+    authors="steved0x" 
+    manager="erikre" 
+    editor=""/>
 
 <tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+    ms.service="api-management" 
+    ms.workload="mobile" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/25/2016" 
+    ms.author="sdanie"/>
 
 
-# 如何使用範本自訂 Azure API 管理開發人員入口網站。
 
-Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發人員入口網站的外觀與風格](api-management-customize-portal.md)，以及使用一組設定網頁本身內容的範本來自訂開發人員入口網站頁面的內容。使用 [DotLiquid](http://dotliquidmarkup.org/) 語法及一組提供的當地語系化字串資源、圖示和頁面控制項，您可以使用這些範本依照您的想法自由靈活地設定頁面內容。
+# <a name="how-to-customize-the-azure-api-management-developer-portal-using-templates"></a>How to customize the Azure API Management developer portal using templates
 
-## 開發人員入口網站範本概觀
+Azure API Management provides several customization features to allow administrators to [customize the look and feel of the developer portal](api-management-customize-portal.md), as well as customize the content of the developer portal pages using a set of templates that configure the content of the pages themselves. Using [DotLiquid](http://dotliquidmarkup.org/) syntax, and a provided set of localized string resources, icons, and page controls, you have great flexibility to configure the content of the pages as you see fit using these templates.
 
-開發人員入口網站的範本，都是由 API 管理服務執行個體的系統管理員，在開發人員入口網站中加以管理。若要管理開發人員範本，請瀏覽至 Azure 傳統入口網站的 API 管理服務執行個體，然後按一下 [瀏覽]。
+## <a name="developer-portal-templates-overview"></a>Developer portal templates overview
 
-![開發人員入口網站][api-management-browse]
+Developer portal templates are managed in the developer portal by administrators of the API Management service instance. To manage developer templates, navigate to your API Management service instance in the Azure Classic Portal and click **Browse**.
 
-如果您已在發行者入口網站中，您可以按一下 [開發人員入口網站] 來存取開發人員入口網站。
+![Developer portal][api-management-browse]
 
-![開發人員入口網站功能表][api-management-developer-portal-menu]
+If you are already in the publisher portal, you can access the developer portal by clicking **Developer portal**.
 
-若要存取開發人員入口網站範本，請按一下左側的自訂圖示，顯示 [自訂] 功能表，然後按一下 [範本]。
+![Developer portal menu][api-management-developer-portal-menu]
 
-![開發人員入口網站範本][api-management-customize-menu]
+To access the developer portal templates, click the customize icon on the left to display the customization menu, and click **Templates**.
 
-[範本] 清單會顯示數個範本類別，涵蓋開發人員入口網站的不同頁面。每個範本各不相同，但是編輯和發佈變更的步驟是一樣的。若要編輯範本，請按一下範本的名稱。
+![Developer portal templates][api-management-customize-menu]
 
-![開發人員入口網站範本][api-management-templates-menu]
+The templates list displays several categories of templates covering the different pages in the developer portal. Each template is different, but the steps to edit them and publish the changes are the same. To edit a template, click the name of the template.
 
-按一下範本即會將您帶到可使用該範本自訂的開發人員入口網站頁面。這個範例會顯示**產品清單**範本。**產品清單**範本控制的畫面區域會以紅色矩形表示。
+![Developer portal templates][api-management-templates-menu]
 
-![產品清單範本][api-management-developer-portal-templates-overview]
+Clicking a template takes you to the developer portal page that is customizable by that template. In this example the **Product list** template is displayed. The **Product list** template controls the area of the screen indicated by the red rectangle. 
 
-有些範本，像是**使用者設定檔**範本，自訂的是同一頁面的不同部分。
+![Products list template][api-management-developer-portal-templates-overview]
 
-![使用者設定檔範本][api-management-user-profile-templates]
+Some templates, like the **User Profile** templates, customize different parts of the same page. 
 
-每個開發人員入口網站範本的編輯器都會在頁面底部顯示兩個區段。左側顯示範本的編輯窗格，右側顯示範本的資料模型。
+![User profile templates][api-management-user-profile-templates]
 
-範本編輯窗格包含的標記，可控制開發人員入口網站中對應頁面的外觀和行為。範本中的標記會使用 [DotLiquid](http://dotliquidmarkup.org/) 語法。常用的 DotLiquid 編輯器是 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)。在編輯期間對範本進行的任何變更都會即時顯示在瀏覽器中，但您的客戶要到您[儲存](#to-save-a-template)和[發佈](#to-publish-a-template)範本後才看得到。
+The editor for each developer portal template has two sections displayed at the bottom of the page. The left-hand side displays the editing pane for the template, and the right-hand side displays the data model for the template. 
 
-![範本標記][api-management-template]
+The template editing pane contains the markup that controls the appearance and behavior of the corresponding page in the developer portal. The markup in the template uses the [DotLiquid](http://dotliquidmarkup.org/) syntax. One popular editor for DotLiquid is [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers). Any changes made to the template during editing are displayed in real-time in the browser, but are not visible to your customers until you [save](#to-save-a-template) and [publish](#to-publish-a-template) the template.
 
-[範本資料] 窗格可為能在特定範本中使用的實體，提供有關資料模型的指南。它提供這份指南的方法是顯示開發人員入口網站中目前顯示的即時資料。您可以按一下 [範本資料] 窗格右上角的矩形，展開範本窗格。
+![Template markup][api-management-template]
 
-![範本資料模型][api-management-template-data]
+The **Template data** pane provides a guide to the data model for the entities that are available for use in a particular template. It provides this guide by displaying the live data that are currently displayed in the developer portal. You can expand the template panes by clicking the rectangle in the upper-right corner of the **Template data** pane.
 
-上述範例在開發人員入口網站中顯示了兩項產品，擷取自 [範本資料] 窗格顯示的資料，如下例所示。
+![Template data model][api-management-template-data]
 
-	{
-		"Paging": {
-			"Page": 1,
-			"PageSize": 10,
-			"TotalItemCount": 2,
-			"ShowAll": false,
-			"PageCount": 1
-		},
-		"Filtering": {
-			"Pattern": null,
-			"Placeholder": "Search products"
-		},
-		"Products": [
-			{
-				"Id": "56ec64c380ed850042060001",
-				"Title": "Starter",
-				"Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
-				"Terms": "",
-				"ProductState": 1,
-				"AllowMultipleSubscriptions": false,
-				"MultipleSubscriptionsCount": 1
-			},
-			{
-				"Id": "56ec64c380ed850042060002",
-				"Title": "Unlimited",
-				"Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
-				"Terms": null,
-				"ProductState": 1,
-				"AllowMultipleSubscriptions": false,
-				"MultipleSubscriptionsCount": 1
-			}
-		]
-	}
+In the previous example there are two products displayed in the developer portal that were retrieved from the data displayed in the **Template data** pane, as shown in the following example.
 
-**產品清單**範本中的標記會處理資料，逐一查看產品集合，顯示每項個別產品的資訊和連結，來提供所需的輸出。請注意標記中的 `<search-control>` 和 `<page-control>` 元素。這些控制項會顯示頁面的搜尋和分頁控制項。`ProductsStrings|PageTitleProducts` 是當地語系化的字串參考，包含頁面的 `h2` 頁首文字。如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
+    {
+        "Paging": {
+            "Page": 1,
+            "PageSize": 10,
+            "TotalItemCount": 2,
+            "ShowAll": false,
+            "PageCount": 1
+        },
+        "Filtering": {
+            "Pattern": null,
+            "Placeholder": "Search products"
+        },
+        "Products": [
+            {
+                "Id": "56ec64c380ed850042060001",
+                "Title": "Starter",
+                "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
+                "Terms": "",
+                "ProductState": 1,
+                "AllowMultipleSubscriptions": false,
+                "MultipleSubscriptionsCount": 1
+            },
+            {
+                "Id": "56ec64c380ed850042060002",
+                "Title": "Unlimited",
+                "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
+                "Terms": null,
+                "ProductState": 1,
+                "AllowMultipleSubscriptions": false,
+                "MultipleSubscriptionsCount": 1
+            }
+        ]
+    }
 
-	<search-control></search-control>
-	<div class="row">
-	    <div class="col-md-9">
-	        <h2>{% localized "ProductsStrings|PageTitleProducts" %}</h2>
-	    </div>
-	</div>
-	<div class="row">
-	    <div class="col-md-12">
-		{% if products.size > 0 %}
-		<ul class="list-unstyled">
-		{% for product in products %}
-			<li>
-				<h3><a href="/products/{{product.id}}">{{product.title}}</a></h3>
-				{{product.description}}
-			</li>	
-		{% endfor %}
-		</ul>
-		<paging-control></paging-control>
-		{% else %}
-		{% localized "CommonResources|NoItemsToDisplay" %}
-		{% endif %}
-		</div>
-	</div>
+The markup in the **Product list** template processes the data to provide the desired output by iterating through the collection of products to display information and a link to each individual product. Note the `<search-control>` and `<page-control>` elements in the markup. These control the display of the searching and paging controls on the page. `ProductsStrings|PageTitleProducts` is a localized string reference that contains the `h2` header text for the page. For a list of string resources, page controls, and icons available for use in developer portal templates, see [API Management developer portal templates reference](https://msdn.microsoft.com/library/azure/mt697540.aspx).
 
-## 儲存範本
+    <search-control></search-control>
+    <div class="row">
+        <div class="col-md-9">
+            <h2>{% localized "ProductsStrings|PageTitleProducts" %}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+        {% if products.size > 0 %}
+        <ul class="list-unstyled">
+        {% for product in products %}
+            <li>
+                <h3><a href="/products/{{product.id}}">{{product.title}}</a></h3>
+                {{product.description}}
+            </li>   
+        {% endfor %}
+        </ul>
+        <paging-control></paging-control>
+        {% else %}
+        {% localized "CommonResources|NoItemsToDisplay" %}
+        {% endif %}
+        </div>
+    </div>
 
-若要儲存範本，請按一下範本編輯器的 [儲存]。
+## <a name="to-save-a-template"></a>To save a template
 
-![儲存範本][api-management-save-template]
+To save a template, click save in the template editor.
 
-儲存的變更不會即時顯示在開發人員入口網站中，要發佈後才會顯示。
+![Save template][api-management-save-template]
 
-## 發佈範本
+Saved changes are not live in the developer portal until they are published.
 
-儲存的範本可以個別或一起發佈。若要發佈個別的範本，請按一下範本編輯器的 [發佈]。
+## <a name="to-publish-a-template"></a>To publish a template
 
-![發佈範本][api-management-publish-template]
+Saved templates can be published either individually, or all together. To publish an individual template, click publish in the template editor.
 
-按一下 [是] 確認，並讓範本即時顯示在開發人員入口網站中。
+![Publish template][api-management-publish-template]
 
-![確認發佈][api-management-publish-template-confirm]
+Click **Yes** to confirm and make the template live on the developer portal.
 
-若要發佈目前所有尚未發佈的範本版本，請按一下範本清單的 [發佈]。未發佈的範本會在範本名稱後面標記星號。本例中要發佈**產品清單**和**產品**範本。
+![Confirm publish][api-management-publish-template-confirm]
 
-![發佈範本][api-management-publish-templates]
+To publish all currently unpublished template versions, click **Publish** in the templates list. Unpublished templates are designated by an asterisk following the template name. In this example, the **Product list** and **Product** templates are being published.
 
-請按一下 [Publish customizations]\(發佈自訂) 確認。
+![Publish templates][api-management-publish-templates]
 
-![確認發佈][api-management-publish-customizations]
+Click **Publish customizations** to confirm.
 
-新發佈的範本在開發人員入口網站中會立即生效。
+![Confirm publish][api-management-publish-customizations]
 
-## 將範本還原成先前的版本
+Newly published templates are effective immediately in the developer portal.
 
-若要將範本還原為先前發佈的版本，請按一下範本編輯器的 [還原]。
+## <a name="to-revert-a-template-to-the-previous-version"></a>To revert a template to the previous version
 
-![還原範本][api-management-revert-template]
+To revert a template to the previous published version, click revert in the template editor.
 
-按一下 [**是**] 以確認。
+![Revert template][api-management-revert-template]
+
+Click **Yes** to confirm.
 
 ![Confirm][api-management-revert-template-confirm]
 
-還原作業一完成，先前發佈的範本版本就會立即顯示在開發人員入口網站中。
+The previously published version of a template is live in the developer portal once the revert operation is complete.
 
-## 將範本還原成預設的版本
+## <a name="to-restore-a-template-to-the-default-version"></a>To restore a template to the default version
 
-將範本還原成預設版本的程序有兩個步驟。首先必須還原範本，然後一定要發佈還原的版本。
+Restoring templates to their default version is a two-step process. First the templates must be restored, and then the restored versions must be published.
 
-若要還原單一範本的預設版本，請按一下範本編輯器的 [還原]。
+To restore a single template to the default version click restore in the template editor.
 
-![還原範本][api-management-reset-template]
+![Revert template][api-management-reset-template]
 
-按一下 [**是**] 以確認。
+Click **Yes** to confirm.
 
 ![Confirm][api-management-reset-template-confirm]
 
-若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates]\(還原預設範本)。
+To restore all templates to their default versions, click **Restore default templates** on the template list.
 
-![還原範本][api-management-restore-templates]
+![Restore templates][api-management-restore-templates]
 
-已還原的範本必須個別發佈，或依照[發佈範本](#to-publish-a-template)的步驟一次全部發佈。
+The restored templates must then be published individually or all at once by following the steps in [To publish a template](#to-publish-a-template).
 
-## 開發人員入口網站範本參考
+## <a name="developer-portal-templates-reference"></a>Developer portal templates reference
 
-如需開發人員入口網站範本、字串資源、圖示和頁面控制項的參考資訊，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
+For reference information for developer portal templates, string resources, icons, and page controls, see [API Management developer portal templates reference](https://msdn.microsoft.com/library/azure/mt697540.aspx).
 
-## 觀看影片概觀
+## <a name="watch-a-video-overview"></a>Watch a video overview
 
-請觀看以下影片，了解如何使用範本在開發人員入口網站的 API 和操作頁面中加入討論區和評等。
+Watch the following video to see how to add a discussion board and ratings to the API and operation pages in the developer portal using templates.
 
 > [AZURE.VIDEO adding-developer-portal-functionality-using-templates-in-azure-api-management]
 
@@ -207,4 +208,15 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 [api-management-reset-template-confirm]: ./media/api-management-developer-portal-templates/api-management-reset-template-confirm.png
 [api-management-restore-templates]: ./media/api-management-developer-portal-templates/api-management-restore-templates.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

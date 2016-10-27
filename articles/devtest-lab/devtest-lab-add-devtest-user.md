@@ -1,150 +1,157 @@
 <properties
-	pageTitle="在 Azure DevTest Labs 中新增擁有者和使用者 | Microsoft Azure"
-	description="使用 Azure 入口網站或 PowerShell 在 Azure DevTest Labs 中新增擁有者和使用者"
-	services="devtest-lab,virtual-machines"
-	documentationCenter="na"
-	authors="tomarcher"
-	manager="douge"
-	editor=""/>
+    pageTitle="Add owners and users in Azure DevTest Labs| Microsoft Azure"
+    description="Add owners and users in Azure DevTest Labs using either the Azure portal or PowerShell"
+    services="devtest-lab,virtual-machines"
+    documentationCenter="na"
+    authors="tomarcher"
+    manager="douge"
+    editor=""/>
 
 <tags
-	ms.service="devtest-lab"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/12/2016"
-	ms.author="tarcher"/>
+    ms.service="devtest-lab"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/12/2016"
+    ms.author="tarcher"/>
 
-# 在 Azure DevTest Labs 中新增擁有者和使用者
+
+# <a name="add-owners-and-users-in-azure-devtest-labs"></a>Add owners and users in Azure DevTest Labs
 
 > [AZURE.VIDEO how-to-set-security-in-your-devtest-lab]
 
-Azure DevTest Labs 的存取權是由 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 所控制。RBAC 可讓您將小組內的職責區隔為「角色」，而僅授與使用者執行作業所需的存取權數量。這些 RBAC 角色的其中三個分別是「擁有者」、「DevTest Labs 使用者」和「參與者」。在本文中，您會了解三個主要 RBAC 角色中各自可執行哪些動作。從中您將會了解如何透過入口網站和透過 PowerShell 指令碼將使用者新增至實驗室，以及如何在訂用帳戶層級新增使用者。
+Access in Azure DevTest Labs is controlled by [Azure Role-Based Access Control (RBAC)](../active-directory/role-based-access-control-what-is.md). Using RBAC, you can segregate duties within your team into *roles* where you grant only the amount of access necessary to users to perform their jobs. Three of these RBAC roles are *Owner*, *DevTest Labs User*, and *Contributor*. In this article, you learn what actions can be performed in each of the three main RBAC roles. From there, you learn how to add users to a lab - both via the portal and via a PowerShell script, and how to add users at the subscription level.
 
-## 可在每個角色執行的動作
+## <a name="actions-that-can-be-performed-in-each-role"></a>Actions that can be performed in each role
 
-您可以對使用者指派三個主要角色︰
+There are three main roles that you can assign a user:
 
-- 擁有者
-- DevTest Labs 使用者
-- 參與者
+- Owner
+- DevTest Labs User
+- Contributor
 
-下表說明使用者可在每個角色中執行的動作︰
+The following table illustrates the actions that can be performed by users in each of these roles:
 
-| **此角色中的使用者可以執行的動作** | **DevTest Labs 使用者** | **擁有者** | **參與者** |
+| **Actions users in this role can perform** | **DevTest Labs User**            | **Owner** | **Contributor** |
 |---|---|---|---|
-| **實驗室工作** | | | |
-| 將使用者新增至實驗室 | 否 | 是 | 否 |
-| 更新成本設定 | 否 | 是 | 是 |
-| **VM 的基本工作** | | | |
-| 新增和移除自訂映像 | 否 | 是 | 是 |
-| 新增、更新和刪除公式 | 是 | 是 | 是 |
-| 將 Azure Marketplace 映像加入白名單 | 否 | 是 | 是 |
-| **VM 工作** | | | |
-| 建立 VM | 是 | 是 | 是 |
-| 啟動、停止和刪除 VM | 僅限使用者所建立的 VM | 是 | 是 |
-| 更新 VM 原則 | 否 | 是 | 是 |
-| 在 VM 中新增/移除資料磁碟 | 僅限使用者所建立的 VM | 是 | 是 |
-| **構件工作** | | | |
-| 新增和移除構件儲存機制 | 否 | 是 | 是 |
-| 套用構件 | 是 | 是 | 是 |
+| **Lab tasks**                          |                              |       |             |
+| Add users to a lab                     | No                           | Yes   | No          |
+| Update cost settings                   | No                           | Yes   | Yes         |
+| **VM base tasks**                      |                              |       |             |
+| Add and remove custom images           | No                           | Yes   | Yes         |
+| Add, update, and delete formulas       | Yes                          | Yes   | Yes         |
+| Whitelist Azure Marketplace images     | No                           | Yes   | Yes         |
+| **VM tasks**                           |                              |       |             |
+| Create VMs                             | Yes                          | Yes   | Yes         |
+| Start, stop, and delete VMs            | Only VMs created by the user | Yes   | Yes         |
+| Update VM policies                     | No                           | Yes   | Yes         |
+| Add/remove data disks to/from VMs      | Only VMs created by the user | Yes   | Yes         |
+| **Artifact tasks**                     |                              |       |             |
+| Add and remove artifact repositories   | No                           | Yes   | Yes         |
+| Apply artifacts                        | Yes                          | Yes   | Yes         |
 
-> [AZURE.NOTE] 當使用者建立 VM 時，該使用者會自動指派給所建立 VM 的**擁有者**角色。
+> [AZURE.NOTE] When a user creates a VM, that user is automatically assigned to the **Owner** role of the created VM.
 
-## 在實驗室層級新增擁有者或使用者
+## <a name="add-an-owner-or-user-at-the-lab-level"></a>Add an owner or user at the lab level
 
-可透過 Azure 入口網站在實驗室層級新增擁有者和使用者。這包括擁有有效 [Microsoft 帳戶 (MSA)](devtest-lab-faq.md#what-is-a-microsoft-account) 的外部使用者。下列步驟會引導您進行在 Azure DevTest Labs 新增擁有者或使用者至實驗室的程序︰
+Owners and users can be added at the lab level via the Azure portal. This includes external users with a valid [Microsoft account (MSA)](devtest-lab-faq.md#what-is-a-microsoft-account).
+The following steps guide you through the process of adding an owner or user to a lab in Azure DevTest Labs:
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. Select **More services**, and then select **DevTest Labs** from the list.
 
-1. 從實驗室清單中，選取所需的實驗室。
+1. From the list of labs, select the desired lab.
 
-1. 在實驗室的刀鋒視窗上，選取 [組態]。
+1. On the lab's blade, select **Configuration**. 
 
-1. 在 [組態] 刀鋒視窗上，選取 [使用者]。
+1. On the **Configuration** blade, select **Users**.
 
-1. 在 [使用者] 刀鋒視窗上，選取 [+ 新增]。
+1. On the **Users** blade, select **+Add**.
 
-	![新增使用者](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
+    ![Add user](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
 
-1. 在 [選取角色] 刀鋒視窗上，選取所需的角色。[可在每個角色執行的動作](#actions-that-can-be-performed-in-each-role)一節列出使用者可在擁有者、DevTest 使用者和參與者角色中執行的各種動作。
+1. On the **Select a role** blade, select the desired role. The section [Actions that can be performed in each role](#actions-that-can-be-performed-in-each-role) lists the various actions that can be performed by users in the Owner, DevTest User, and Contributor roles.
 
-1. 在 [新增使用者] 刀鋒視窗上，輸入您想要在指定角色中新增之使用者的電子郵件地址或名稱。如果找不到該使用者，會出現錯誤訊息來說明問題。如果有找到使用者，則會列出並選取該使用者。
+1. On the **Add users** blade, enter the email address or name of the user you want to add in the role you specified. If the user can't be found, an error message explains the issue. If the user is found, that user is listed and selected. 
 
-1. 選取 [選取]。
+1. Select **Select**.
 
-1. 選取 [確定]，以關閉 [新增存取] 刀鋒視窗。
+1. Select **OK** to close the **Add access** blade.
 
-1. 當您返回 [使用者] 刀鋒視窗時，該使用者已新增。
+1. When you return to the **Users** blade, the user has been added.  
 
-## 使用 PowerShell 將外部使用者新增至實驗室
+## <a name="add-an-external-user-to-a-lab-using-powershell"></a>Add an external user to a lab using PowerShell
 
-除了在 Azure 入口網站新增使用者，您還可以使用 PowerShell 指令碼將外部使用者新增至實驗室。在下列範例中，直接修改 **Values to change** 註解底下的值。您可以從 Azure 入口網站中的 [實驗室] 刀鋒視窗擷取 `subscriptionId`、`labResourceGroup` 及 `labName`。
+In addition to adding users in the Azure portal, you can add an external user to your lab using a PowerShell script. In the following example, simply modify the parameter values under the **Values to change** comment.
+You can retrieve the `subscriptionId`, `labResourceGroup`, and `labName` values from the lab blade in the Azure portal.
 
 > [AZURE.NOTE]
-範例指令碼假設指定的使用者已做為來賓新增至 Active Directory 中，如果並非如此則會失敗。若要將不在 Active Directory 中的使用者新增至實驗室，請如[在實驗室層級新增擁有者或使用者](#add-an-owner-or-user-at-the-lab-level)一節所述使用 Azure 入口網站將使用者指派給角色。
+> The sample script assumes that the specified user has been added as a guest to the Active Directory, and will fail if that is not the case. To add a user not in the Active Directory to a lab, use the Azure portal to assign the user to a role as illustrated in the section, [Add an owner or user at the lab level](#add-an-owner-or-user-at-the-lab-level).   
 
-	# Add an external user in DevTest Labs user role to a lab
-	# Ensure that guest users can be added to the Azure Active directory:
-	# https://azure.microsoft.com/documentation/articles/active-directory-create-users/#set-guest-user-access-policies
+    # Add an external user in DevTest Labs user role to a lab
+    # Ensure that guest users can be added to the Azure Active directory:
+    # https://azure.microsoft.com/en-us/documentation/articles/active-directory-create-users/#set-guest-user-access-policies
 
-	# Values to change
-	$subscriptionId = "<Enter Azure subscription ID here>"
-	$labResourceGroup = "<Enter lab's resource name here>"
-	$labName = "<Enter lab name here>"
-	$userDisplayName = "<Enter user's display name here>"
+    # Values to change
+    $subscriptionId = "<Enter Azure subscription ID here>"
+    $labResourceGroup = "<Enter lab's resource name here>"
+    $labName = "<Enter lab name here>"
+    $userDisplayName = "<Enter user's display name here>"
 
-	# Log into your Azure account
-	Login-AzureRmAccount
-	
-	# Select the Azure subscription that contains the lab. 
-	# This step is optional if you have only one subscription.
-	Select-AzureRmSubscription -SubscriptionId $subscriptionId
-	
-	# Retrieve the user object
-	$adObject = Get-AzureRmADUser -SearchString $userDisplayName
-	
-	# Create the role assignment. 
-	$labId = ('subscriptions/' + $subscriptionId + '/resourceGroups/' + $labResourceGroup + '/providers/Microsoft.DevTestLab/labs/' + $labName)
-	New-AzureRmRoleAssignment -ObjectId $adObject.Id -RoleDefinitionName 'DevTest Labs User' -Scope $labId
+    # Log into your Azure account
+    Login-AzureRmAccount
+    
+    # Select the Azure subscription that contains the lab. 
+    # This step is optional if you have only one subscription.
+    Select-AzureRmSubscription -SubscriptionId $subscriptionId
+    
+    # Retrieve the user object
+    $adObject = Get-AzureRmADUser -SearchString $userDisplayName
+    
+    # Create the role assignment. 
+    $labId = ('subscriptions/' + $subscriptionId + '/resourceGroups/' + $labResourceGroup + '/providers/Microsoft.DevTestLab/labs/' + $labName)
+    New-AzureRmRoleAssignment -ObjectId $adObject.Id -RoleDefinitionName 'DevTest Labs User' -Scope $labId
 
-## 在訂用帳戶層級新增擁有者或使用者
+## <a name="add-an-owner-or-user-at-the-subscription-level"></a>Add an owner or user at the subscription level
 
-在 Azure 中，Azure 權限會從父範圍傳播至子範圍。因此，包含實驗室之 Azure 訂用帳戶的擁有者會自動成為這些實驗室的擁有者。他們也擁有實驗室使用者和 Azure DevTest Labs 服務所建立的 VM 和其他資源。
+Azure permissions are propagated from parent scope to child scope in Azure. Therefore, owners of an Azure subscription that contains labs are automatically owners of those labs. They also own the VMs and other resources created by the lab's users, and the Azure DevTest Labs service. 
 
-您可以在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中透過實驗室的刀鋒視窗對實驗室新增其他擁有者。不過，所新增擁有者的管理範圍小於訂用帳戶擁有者的範圍。例如，新增的擁有者沒有 DevTest Labs 服務在訂用帳戶中所建立之某些資源的完整存取權。
+You can add additional owners to a lab via the lab's blade in the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040). However, the added owner's scope of administration is more narrow than the subscription owner's scope. For example, the added owners do not have full access to some of the resources that are created in the subscription by the DevTest Labs service. 
 
-若要對 Azure 訂用帳戶新增擁有者，請遵循下列步驟︰
+To add an owner to an Azure subscription, follow these steps:
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 選取 [更多服務]，然後從清單中選取 [訂用帳戶]。
+1. Select **More Services**, and then select **Subscriptions** from the list.
 
-1. 選取所需的訂用帳戶。
+1. Select the desired subscription.
 
-1. 選取 [存取] 圖示。
+1. Select **Access** icon. 
 
-	![存取使用者](./media/devtest-lab-add-devtest-user/access-users.png)
+    ![Access users](./media/devtest-lab-add-devtest-user/access-users.png)
 
-1. 在 [使用者] 刀鋒視窗上，選取 [新增]。
+1. On the **Users** blade, select **Add**.
 
-	![新增使用者](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
+    ![Add user](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
 
-1. 在 [選取角色] 刀鋒視窗中，選取 [擁有者]。
+1. On the **Select a role** blade, select **Owner**.
 
-1. 在 [新增使用者] 刀鋒視窗上，輸入您想要新增為擁有者之使用者的電子郵件地址或名稱。如果找不到該使用者，您會收到錯誤訊息來說明問題。如果有找到使用者，該使用者會列在 [使用者] 文字方塊底下。
+1. On the **Add users** blade, enter the email address or name of the user you want to add as an owner. If the user can't be found, you get an error message explaining the issue. If the user is found, that user is listed under the **User** text box.
 
-1. 選取找到的使用者名稱。
+1. Select the located user name.
 
-1. 選取 [選取]。
+1. Select **Select**.
 
-1. 選取 [確定]，以關閉 [新增存取] 刀鋒視窗。
+1. Select **OK** to close the **Add access** blade.
 
-1. 當您返回 [使用者] 刀鋒視窗時，該使用者已新增為擁有者。此使用者現在是在此訂用帳戶下建立之所有實驗室的擁有者，因而能夠執行擁有者工作。
+1. When you return to the **Users** blade, the user has been added as an owner. This user is now an owner of any labs created under this subscription, and thus be able to perform owner tasks. 
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

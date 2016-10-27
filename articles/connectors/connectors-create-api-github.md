@@ -1,10 +1,10 @@
 <properties
 pageTitle="GitHub | Microsoft Azure"
-description="使用 Azure App Service 建立邏輯應用程式。GitHub 是 Web 架構的 Git 儲存機制裝載服務。它提供所有 Git 分散式修訂控制項和來源程式碼管理 (SCM) 功能，也加入自己的功能。"
-services="logic-apps"	
-documentationCenter=".net,nodejs,java" 	
-authors="msftman"	
-manager="erikre"	
+description="Create Logic apps with Azure App service. GitHub is a web-based Git repository hosting service. It offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features."
+services="logic-apps"   
+documentationCenter=".net,nodejs,java"  
+authors="msftman"   
+manager="erikre"    
 editor=""
 tags="connectors" />
 
@@ -17,160 +17,164 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 GitHub 連接器
 
-GitHub 是 Web 架構的 Git 儲存機制裝載服務。它提供所有 Git 分散式修訂控制項和來源程式碼管理 (SCM) 功能，也加入自己的功能。
+# <a name="get-started-with-the-github-connector"></a>Get started with the GitHub connector
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+GitHub is a web-based Git repository hosting service. It offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features.
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+>[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. 
 
-## 觸發程序及動作
+You can get started by creating a Logic app now, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
 
-GitHub 連接器可當成動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+## <a name="triggers-and-actions"></a>Triggers and actions
 
- GitHub 連接器提供下列動作及/或觸發程序：
+The GitHub connector can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
 
-### GitHub 動作
-您可以採取下列動作：
+ The GitHub connector has the following action(s) and/or trigger(s) available:
 
-|動作|說明|
+### <a name="github-actions"></a>GitHub actions
+You can take these action(s):
+
+|Action|Description|
 |--- | ---|
-|[CreateIssue](connectors-create-api-github.md#createissue)|建立問題|
-### GitHub 觸發程序
-您可以接聽下列事件：
+|[CreateIssue](connectors-create-api-github.md#createissue)|Creates an issue|
+### <a name="github-triggers"></a>GitHub triggers
+You can listen for these event(s):
 
-|觸發程序 | 說明|
+|Trigger | Description|
 |--- | ---|
-|開啟問題時|開啟問題|
-|關閉問題時|關閉問題|
-|指派問題時|指派問題|
+|When an issue is opened|An issue is opened|
+|When an issue is closed|An issue is closed|
+|When an issue is assigned|An issue is assigned|
 
 
-## 建立 GitHub 的連線
-若要使用 GitHub 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
+## <a name="create-a-connection-to-github"></a>Create a connection to GitHub
+To create Logic apps with GitHub, you must first create a **connection** then provide the details for the following properties: 
 
-|屬性| 必要|說明|
+|Property| Required|Description|
 | ---|---|---|
-|權杖|是|提供 GitHub 認證|
-建立連線後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+|Token|Yes|Provide GitHub Credentials|
+After you create the connection, you can use it to execute the actions and listen for the triggers described in this article. 
 
->[AZURE.INCLUDE [建立至 GitHub 連線的步驟](../../includes/connectors-create-api-github.md)]
+>[AZURE.INCLUDE [Steps to create a connection to GitHub](../../includes/connectors-create-api-github.md)]
 
->[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
+>[AZURE.TIP] You can use this connection in other logic apps.
 
-## GitHub 的參考
-適用的版本：1.0
+## <a name="reference-for-github"></a>Reference for GitHub
+Applies to version: 1.0
 
-## CreateIssue
-建立問題︰建立問題
+## <a name="createissue"></a>CreateIssue
+Create an issue: Creates an issue 
 
-```POST: /repos/{repositoryOwner}/{repositoryName}/issues```
+```POST: /repos/{repositoryOwner}/{repositoryName}/issues``` 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|repositoryOwner|string|yes|路徑|無|儲存機制擁有者|
-|repositoryName|string|yes|路徑|無|儲存機制名稱|
-|issueBasicDetails| |yes|body|無|問題詳細資料|
+|repositoryOwner|string|yes|path|none|Repository owner|
+|repositoryName|string|yes|path|none|Repository name|
+|issueBasicDetails| |yes|body|none|Issue details|
 
-#### Response
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## IssueOpened
-開啟問題時︰開啟問題
+## <a name="issueopened"></a>IssueOpened
+When an issue is opened: An issue is opened 
 
-```GET: /trigger/issueOpened```
+```GET: /trigger/issueOpened``` 
 
-這個呼叫沒有參數
-#### Response
+There are no parameters for this call
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## IssueClosed
-關閉問題時︰關閉問題
+## <a name="issueclosed"></a>IssueClosed
+When an issue is closed: An issue is closed 
 
-```GET: /trigger/issueClosed```
+```GET: /trigger/issueClosed``` 
 
-這個呼叫沒有參數
-#### Response
+There are no parameters for this call
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## IssueAssigned
-指派問題時︰指派問題
+## <a name="issueassigned"></a>IssueAssigned
+When an issue is assigned: An issue is assigned 
 
-```GET: /trigger/issueAssigned```
+```GET: /trigger/issueAssigned``` 
 
-這個呼叫沒有參數
-#### Response
+There are no parameters for this call
+#### <a name="response"></a>Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+|400|Bad Request|
+|401|Unauthorized|
+|403|Forbidden|
+|404|Not Found|
+|500|Internal Server Error. Unknown error occured|
+|default|Operation Failed.|
 
 
-## 物件定義 
+## <a name="object-definitions"></a>Object definitions 
 
-### IssueBasicDetailsModel
+### <a name="issuebasicdetailsmodel"></a>IssueBasicDetailsModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|title|string|是 |
-|body|string|是 |
-|受託人|string|是 |
+|title|string|Yes |
+|body|string|Yes |
+|assignee|string|Yes |
 
 
 
-### IssueDetailsModel
+### <a name="issuedetailsmodel"></a>IssueDetailsModel
 
 
-| 屬性名稱 | 資料類型 | 必要 |
+| Property Name | Data Type | Required |
 |---|---|---|
-|title|string|是 |
-|body|string|是 |
-|受託人|string|是 |
-|number|string|否 |
-|state|string|否 |
-|created\_at|string|否 |
-|repository\_url|string|否 |
+|title|string|Yes |
+|body|string|Yes |
+|assignee|string|Yes |
+|number|string|No |
+|state|string|No |
+|created_at|string|No |
+|repository_url|string|No |
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## <a name="next-steps"></a>Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

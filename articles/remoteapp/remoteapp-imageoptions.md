@@ -1,6 +1,6 @@
 <properties
-    pageTitle="建立 Azure RemoteApp 映像 | Microsoft Azure"
-    description="了解可用來建立 Azure RemoteApp 之映像的選項"
+    pageTitle="Create an Azure RemoteApp image | Microsoft Azure"
+    description="Learn about the options available for creating images for Azure RemoteApp"
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -17,21 +17,26 @@
 
 
 
-# 建立 Azure RemoteApp 映像
+
+# <a name="create-an-azure-remoteapp-image"></a>Create an Azure RemoteApp image
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-Azure RemoteApp 使用映像保留與使用者共用的應用程式。(我們使用您的映像來建立 VM - 這是使用者登入 Azure RemoteApp 時存取的內容。) 若要使用選擇的應用程式建立 Azure RemoteApp 集合 (不論是雲端還是混合式)，請從建立已安裝這些應用程式的映像開始。接著，建立使用該映像的集合，並將使用者指派給集合，然後將應用程式發佈給那些使用者。
+Azure RemoteApp uses images to hold the apps that you share with your users. (We take your image and use it to create VMs - that's what the users access when they sign into Azure RemoteApp.) To create an Azure RemoteApp collection with your choice of applications, whether it is cloud or hybrid, you  start by creating an image with those applications installed. Then, create a collection that uses that image, assign users to the collection, and publish apps to those users.
 
-您有幾個選項可建立或使用映像。映像的基本[需求](remoteapp-imagereqs.md)是它執行 Windows Server 2012 R2 並已安裝遠端桌面工作階段主機 (RDSH) 角色。如何達成就是有趣的地方。
+You have several options for creating or using images. The basic [requirement](remoteapp-imagereqs.md) for an image is that it run Windows Server 2012 R2 and have the Remote Desktop Session Host (RDSH) role installed. How you get that is where things get interesting.
 
-如果是映像，則您有下列選擇：
+You have the following options when it comes to images:
 
-- 您可以匯入和使用[根據 Azure 虛擬機器的映像](remoteapp-image-on-azurevm.md)。這適用於需要自訂設定的特定業務應用程式。您可以自訂要用於應用程式的映像。
-- 您可以[建立和上傳自訂映像](remoteapp-create-custom-image.md)。如果您已經有用於內部部署遠端桌面服務部署的映像，則這十分不錯。
-- 您可以使用 RemoteApp 訂用帳戶中所含的其中一個[範本映像](remoteapp-images.md)。這些映像是由 RemoteApp 小組所建立和維護，並且包含一些可提供給您使用者的標準應用程式 (如 Office 套件)。請注意，只有 Office 365 Pro Plus 映像才能用於生產設定中。
+- You can import and use an [image based on an Azure virtual machine](remoteapp-image-on-azurevm.md). This is good for line-of-business apps that require custom settings. You can customize the image to work for the app.
+- You can [create and upload a custom image](remoteapp-create-custom-image.md). This is good if you already have an image that you use for your on-premises Remote Desktop Services deployment.
+- You can use one of the [template images](remoteapp-images.md) included in your RemoteApp subscription. These images are created and maintained by the RemoteApp team and contain some standard applications (like the Office suite) that you can make available to your users. Note that only the Office 365 Pro Plus image can be used in a production setting.
 
-不論在何處取得映像或如何建立映像，您都會想要確定您了解[應用程式需求](remoteapp-appreqs.md)，確保您的應用程式在 RemoteApp 中運作良好。然後，下一步是建立[雲端](remoteapp-create-cloud-deployment.md)或[混合式](remoteapp-create-hybrid-deployment.md) 集合。
+Regardless of where you get your image or how you create it, you'll want to make sure you understand the [app requirements](remoteapp-appreqs.md) to ensure that your app works well in RemoteApp. Then, the next step is to create a [cloud](remoteapp-create-cloud-deployment.md) or [hybrid](remoteapp-create-hybrid-deployment.md) collection.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

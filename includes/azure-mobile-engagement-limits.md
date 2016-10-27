@@ -1,12 +1,15 @@
-資源|上限
+Resource|Maximum Limit
 ---|---
-應用程式集合使用者|每個應用程式集合 5 個
-平均資料點|每天每個作用中使用者 200 個
-設定的平均應用程式資訊|每天每個作用中使用者 50 個
-推送的平均訊息|每天每個作用中使用者 20 個
-使用者分佈|每個應用程式 100 個
-每個區段的準則|10
-作用中的推送活動|每個應用程式 50 個
-總推送活動 (包括作用中和已完成)|每個應用程式 1000 個
+App Collection Users|5 per App Collection
+Average Data points|200 per Active User/Day
+Average App-Info set|50 per Active User/Day
+Average Messages pushed|20 per Active User/Day
+Segments|100 per app
+Criteria per segment|10
+Active Push Campaigns|50 per app
+Total Push Campaigns (includes Active & Completed)|1000 per app
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Oct16_HO2-->
+
+

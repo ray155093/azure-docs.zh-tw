@@ -1,89 +1,80 @@
 <properties
-	pageTitle="如果我的 Azure 訂用帳戶被停用，該怎麼辦？| Microsoft Azure"
-	description="說明 Azure 訂用帳戶遭停用的原因和解決方式"
-	services=""
-	documentationCenter=""
-	authors="genlin"
-	manager="msmbaldwin"
-	editor=""
-	tags="billing"
-	/>
+    pageTitle="Reactivate disabled Azure subscription | Microsoft Azure"
+    description="Describes when you might have an Azure subscription disabled and how to reactivate it."
+    keywords="azure subscription disabled"
+    services=""
+    documentationCenter=""
+    authors="genlin"
+    manager="mbaldwin"
+    editor=""
+    tags="billing"
+    />
 
 <tags
-	ms.service="billing"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/24/2016"
-	ms.author="genli"/>
+    ms.service="billing"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/04/2016"
+    ms.author="genli"/>
 
-# 如果我的 Azure 訂用帳戶被停用，該怎麼辦？
 
-> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+# <a name="why-is-my-azure-subscription-disabled-and-how-do-i-reactivate-it?"></a>Why is my Azure subscription disabled and how do I reactivate it?
 
-如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它。您的 Azure 訂用帳戶可能會因下列原因而遭到停用。
+You might have your Azure subscription disabled because you reached your spending limit, have an overdue bill, hit your credit card limit, or because the subscription was canceled by the account administrator. See what issue applies to you and follow the steps in this article to get your subscription reactivated. 
 
-## 您已達到消費限制
+## <a name="you-reached-your-spending-limit"></a>You reached your spending limit
 
-為了防止意外產生超過優惠金額的使用費用，我們引進了[消費限制](https://azure.microsoft.com/pricing/spending-limits/)功能。當您用完優惠附贈的每月金額之後，我們將在該帳務月份的剩餘時間內停用您的服務。您可以選擇移除消費限制避免發生這種情況，並[為您的 Microsoft Azure 訂用帳戶設定帳單通知](billing-set-up-alerts.md)，協助您監視及管理 Azure 帳戶的計費活動。
+When your usage exhausts the monthly amounts included with your subscription, we disable your service for the remainder of that billing month. Your service is disabled to protect you from accidentally incurring charges for usage beyond the amount included with your subscription. You can remove the spending limit and [set up billing alerts for your Microsoft Azure subscriptions](billing-set-up-alerts.md) to help you monitor and manage billing activity for your Azure accounts.
 
-移除消費限制的方法如下：
+To remove your spending limit,
 
-1. 登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)。
+1. Log in to the [Azure Account Center](https://account.windowsazure.com/Home/Index).
 
-2. 按一下 [訂用帳戶]。
+2. Click **Subscriptions**.
 
-3. 選取一個訂用帳戶。
+3. Select a subscription.
 
-4. 如果您看到「此訂用帳戶已達消費限制，並已停用以避免收費」，請對它按一下。
+4. Click **Subscription reached the Spending Limit and has been disabled to prevent charges**.
 
-	或者，按一下 [訂用帳戶狀態] 區域中的 [移除消費限制]。
+    If you don't see that option, click **Remove spending limit** in the subscription **Status** area.
 
-5. 選取下列適合您的選項之一︰
+5. Select one of the following options:
 
-|選項|效果|
+|Option|Effect|
 |------|------|
-|無限期移除消費限制|移除消費限制，不在下一個計費週期開始時自動開啟。|
-|移除目前計費週期的消費限制|移除消費限制，讓它在下一個計費週期開始時自動開啟。|
+|Remove spending limit indefinitely|Removes the spending limit until you turn it back on.|
+|Remove spending limit for the current billing period|Removes the spending limit but the spending limit restarts for the next billing period.|
 
->[AZURE.NOTE] 如果您使用免費試用訂用帳戶，則移除消費限制將會在免費試用結束時把您的訂用帳戶轉換為隨用隨付。
+If you have a Free Trial subscription and you remove the spending limits, your subscription converts to Pay-As-You-Go at the end of the free trial.
 
-## 您的帳單逾期未繳
+## <a name="your-bill-is-past-due"></a>Your bill is past due
 
-全額支付您未付的差額。若要執行這項作業，請參閱[為什麼會收到 Azure 訂用帳戶有逾期未付帳款的通知？](billing-azure-subscription-past-due-balance.md#what-can-you-do-to-resolve-the-issue)
+Pay your outstanding balance in full. See the article [Why have you received a notification that your Azure subscription has a past due balance?](billing-azure-subscription-past-due-balance.md#what-can-you-do-to-resolve-the-issue)
 
-## 帳單超出您的信用卡額度
+## <a name="the-bill-exceeds-your-credit-card-limit"></a>The bill exceeds your credit card limit
 
-若要解決這個問題，請使用下列其中一個方法：
+To resolve this issue, [switch to a different credit card](billing-how-to-change-credit-card.md). Or if you're representing a business, you can [switch to pay by invoice](https://azure.microsoft.com/pricing/invoicing/).
 
-- [如何變更用來支付 Azure 訂用帳戶的信用卡](billing-how-to-change-credit-card.md)。
-- 如果您是企業用戶，請參閱 [Azure 發票](https://azure.microsoft.com/pricing/invoicing/)。
+## <a name="the-subscription-was-canceled-by-the-account-administrator"></a>The subscription was canceled by the Account Administrator
 
-## 訂用帳戶已被帳戶管理員取消
+If you're the account administrator, reactivate your Pay-As-You-Go subscription by using the following steps: 
 
->[AZURE.NOTE] 這個方法目前僅適用於「隨用隨付」訂用帳戶。針對其他訂用帳戶類型，您將必須[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+1. Log in to the [Azure Account Center](https://account.windowsazure.com/Home/Index).
+2. Select the canceled subscription.
+3. Click **Reactivate**.
 
-如果您是帳戶管理員，您可以依照下列步驟來重新啟用您的「隨用隨付」訂用帳戶︰
+![Screenshot that shows reactivate links on the right pane.](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
 
-- 選取已取消的訂用帳戶。
-- 按一下 [訂用帳戶詳細資料] 頁面上的其中一個 [重新啟用] 連結。
+For other subscription types, [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to have your subscription reactivated.
 
-![reactivate-sub](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
+## <a name="need-help?-contact-support."></a>Need help? Contact support.
+If you still need help, [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly. 
 
-## 如何重新啟用非隨用隨付訂用帳戶︰
 
-若要重新啟用已停用的訂用帳戶，您必須建立支援票證︰請登入 [Azure 入口網站](https://portal.azure.com/)，然後選取 [說明 + 支援] > [新增支援要求]。
 
-![helpandsupportbutton](./media/billing-how-to-create-billing-support-ticket/helpandsupport.png)
 
-如果您無法存取入口網站，可以從 Azure 支援網站或 Azure 帳戶中心提交支援要求︰
+<!--HONumber=Oct16_HO2-->
 
- * 若要從 [Azure 支援網站](https://azure.microsoft.com/support/options/)提交支援票證，請按一下 [取得支援]。
- * 若要從 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)提交支援票證，請選取訂用帳戶，然後按一下 [連絡 Microsoft 支援服務]。
 
-如需詳細資訊，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
-
-> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
-
-<!---HONumber=AcomDC_0914_2016-->

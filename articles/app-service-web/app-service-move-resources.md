@@ -1,29 +1,34 @@
 <properties
-	pageTitle="將 Web App 資源移動到另一個資源群組"
-	description="描述您可以將 Web Apps 與 App Service 從一個資源群組移至另一個的案例。"
-	services="app-service"
-	documentationCenter=""
-	authors="ZainRizvi"
-	manager="wpickett"
-	editor=""/>
+    pageTitle="Move Web App Resources to another Resource Group"
+    description="Describes the scenarios where you can move Web Apps and App Services from one Resource Group to another."
+    services="app-service"
+    documentationCenter=""
+    authors="ZainRizvi"
+    manager="wpickett"
+    editor=""/>
 
 <tags
-	ms.service="app-service"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="01/04/2016"
-	ms.author="zarizvi"/>
-	
-# 支援的移動組態
+    ms.service="app-service"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="01/04/2016"
+    ms.author="zarizvi"/>
+    
 
-您可以使用 [ARM Move Resources API](../resource-group-move-resources.md) 移動Azure Web App 資源。
+# <a name="supported-move-configurations"></a>Supported Move Configurations
 
-Azure Web Apps 目前支援下列移動案例：
+You can move Azure Web App resources using the [ARM Move Resources Api](../resource-group-move-resources.md).
 
-* 將整個資源群組內容 (Web App、App Service 方案與憑證) 移動到另一個資源群組 
-	* 注意：目的地資源群組不能包含此案例中的任何 Microsoft.Web 資源
-* 將個別 Web 應用程式移動到不同的資源群組，同時也在其目前的 App Service 方案中裝載它們 (App Service 方案保留在舊的資源群組中)
+Azure Web Apps currently supports the following move scenarios:
 
-<!---HONumber=AcomDC_0107_2016-->
+* Moving the entire contents of a resource group (web apps, app service plans, and certificates) to another resource group 
+    * Note: The destination resource group can not contain any Microsoft.Web resources in this scenario
+* Moving individual web apps to a different resource group, while still hosting them in their current app service plan (the app service plan stays in the old resource group)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

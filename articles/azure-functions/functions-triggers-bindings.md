@@ -1,38 +1,43 @@
 <properties
-	pageTitle="Azure Functions 觸發程序和繫結 | Microsoft Azure"
-	description="瞭解如何在 Azure Functions 中使用觸發程序和繫結。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"/>
+    pageTitle="Azure Functions triggers and bindings | Microsoft Azure"
+    description="Understand how to use triggers and bindings in Azure Functions."
+    services="functions"
+    documentationCenter="na"
+    authors="christopheranderson"
+    manager="erikre"
+    editor=""
+    tags=""
+    keywords="azure functions, functions, event processing, webhooks, dynamic compute, serverless architecture"/>
 
 <tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="08/27/2016"
-	ms.author="chrande"/>
+    ms.service="functions"
+    ms.devlang="multiple"
+    ms.topic="reference"
+    ms.tgt_pltfrm="multiple"
+    ms.workload="na"
+    ms.date="08/27/2016"
+    ms.author="chrande"/>
 
-# Azure Functions 觸發程序和繫結開發人員參考
 
-下列文章說明如何在 Azure Functions 中為觸發程序和繫結進行設定及撰寫程式碼。這些文章假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)及 [C#](functions-reference-csharp.md) 或 [F#](functions-reference-fsharp.md) 或 [Node.js](functions-reference-node.md) 開發人員參考文章。
+# <a name="azure-functions-triggers-and-bindings-developer-reference"></a>Azure Functions triggers and bindings developer reference
 
-## 觸發程序和繫結文章
+The following articles explain how to configure and code triggers and bindings in Azure Functions. The articles assume that you've read the [Azure Functions developer reference](functions-reference.md), and the [C#](functions-reference-csharp.md), [F#](functions-reference-fsharp.md), or [Node.js](functions-reference-node.md) developer reference articles.
 
-按一下下面所列的觸發程序或繫結以深入了解︰
+## <a name="triggers-and-bindings-articles"></a>Triggers and bindings articles
+
+Click on a trigger or binding listed below to learn more:
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如需詳細資訊，請參閱下列資源：
+For more information, see the following resources:
 
-* [測試函數](functions-test-a-function.md)
-* [調整函數](functions-scale.md)
+* [Testing a function](functions-test-a-function.md)
+* [Scale a function](functions-scale.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

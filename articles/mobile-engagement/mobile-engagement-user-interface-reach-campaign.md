@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure Mobile Engagement 使用者介面 - 觸達活動" 
-   description="了解如何使用 Azure Mobile Engagement 建立和管理推播通知活動。" 
+   pageTitle="Azure Mobile Engagement User Interface - Reach Campaign" 
+   description="Laern how to create and manage push notification campaigns using Azure Mobile Engagement" 
    services="mobile-engagement" 
    documentationCenter="" 
    authors="piyushjo" 
@@ -17,154 +17,156 @@
    ms.author="piyushjo"/>
 
 
-# 如何建立和管理推播通知活動。
-您可以使用 UI 的 [觸達] 區段，提供傳送推播通知所需的所有資訊，建立具有複雜公式的新推播活動。觸達活動的選項根據四種活動類型而有所不同：通知、投票、資料推送和磚 (僅 Windows Phone)。
 
-### 選項適用範圍：
-- 語言：全部 (通知、投票、資料推送、磚)
-- 活動：全部 (通知、投票、資料推送、磚)
-- 通知：通知、投票
-- 內容：每種活動類型都不同
-- 對象：全部 (通知、投票、資料推送、磚)
-- 時間範圍：通知、投票、磚
-- 測試：全部 (通知、投票、資料推送、磚)
+# <a name="how-to-create-and-manage-push-notification-campaigns"></a>How to create and manage push notification campaigns
+You can use the Reach section of the UI to create a new Push campaign with a complex formula by providing all the information you need to send a push notification. The options of a Push campaign vary slightly depending on the four campaign types: Announcements, Polls, Data Pushes, and Tiles (Windows Phone only).
+
+### <a name="option-applies-to:"></a>Option Applies to:
+- Languages:    All (Announcements, Polls, Data Pushes, Tiles)
+- Campaign:    All (Announcements, Polls, Data Pushes, Tiles)
+- Notification:     Announcements, Polls
+- Content:    Unique for each campaign type
+- Audience:     All (Announcements, Polls, Data Pushes, Tiles)
+- Time frame:     Announcements, Polls, Tiles
+- Test:    All (Announcements, Polls, Data Pushes, Tiles)
  
 ![Reach-Campaign1][20]
 
-## 語言
-您可以使用 [語言] 下拉式功能表，將不同版本的推播傳送至設定使用不同語言的裝置。無論裝置設定使用的語言為何，所有裝置預設都會收到相同的推播。將裝置設定使用不同語言的使用者會收到預設語言版本的推播。大部分的推播活動選項都可讓您針對每個額外選取的其他語言，來指定不同的內容。
+## <a name="languages"></a>Languages
+You can use the Languages drop-down menu to send a different version of your Push to devices that are set to use different languages. By default, all devices will receive the same Push regardless of what language they are set to use. Users with their device set to a different language will receive the Default Language version of the Push. Many of the push campaign options allow you to specify alternate content for each of the additional languages you select. 
  
 ![Reach-Campaign2][21]
 
-### 語言差異適用範圍：
-- 語言：除了預設語言之外，還可以選取其他指定的的語言。
-- 活動：所有語言都相同
-- 通知：不只預設語言，可針對個別語言來指定
-- 內容：不只預設語言，可針對個別語言來指定
-- 對象：可根據個別的語言準則來篩選
-- 時間範圍：所有語言都相同
-- 測試：一次可以傳送給一種語言
+### <a name="language-differences-apply-to:"></a>Language differences apply to:
+- Languages:    Unique languages may be selected in addition to the default language
+- Campaign:    Same for all languages
+- Notification:    Unique for each language in addition to the default language
+- Content:    Unique for each language in addition to the default language
+- Audience:     May be filtered by a separate language criterion
+- Time frame:     Same for all languages
+- Test:    May be sent to each language at a time
  
-### 支援的語言：
-- 阿拉伯文 (ar)
-- 保加利亞文 (bg)
-- 卡達隆尼亞文 (ca)
-- 中文 (zh)
-- 克羅埃西亞文 (hr)
-- 捷克文 (cs)
-- 丹麥文 (da)
-- 荷蘭文 (nl)
-- 英文 (en)
-- 芬蘭文 (fi)
-- 法文 (fr)
-- 德文 (de)
-- 希臘文 (el)
-- 希伯來文 (he)
-- 印度文 (hi)
-- 匈牙利文 (hu)
-- 印尼文 (id)
-- 義大利文 (it)
-- 日文 (ja)
-- 韓文 (ko)
-- 拉脫維亞文 (lv)
-- 立陶宛文 (lt)
-- 馬來文 (macrolanguage) (ms)
-- 挪威文 (巴克摩) (nb)
-- 波蘭文 (pl)
-- 葡萄牙文 (pt)
-- 羅馬尼亞文 (ro)
-- 俄文 (ru)
-- 塞爾維亞文 (sr)
-- 斯洛伐克文 (sk)
-- 斯洛維尼亞文 (sl)
-- 西班牙文 (es)
-- 瑞典文 (sv)
-- 塔加拉族文 (tl)
-- 泰文 (th)
-- 土耳其文 (tr)
-- 烏克蘭文 (uk)
-- 越南文 (vi)
+### <a name="supported-languages:"></a>Supported Languages:
+- Arabic (ar) 
+- Bulgarian (bg) 
+- Catalan (ca) 
+- Chinese (zh) 
+- Croatian (hr) 
+- Czech (cs) 
+- Danish (da) 
+- Dutch (nl) 
+- English (en) 
+- Finnish (fi) 
+- French (fr) 
+- German (de) 
+- Greek (el) 
+- Hebrew (he) 
+- Hindi (hi) 
+- Hungarian (hu) 
+- Indonesian (id) 
+- Italian (it) 
+- Japanese (ja) 
+- Korean (ko) 
+- Latvian (lv) 
+- Lithuanian (lt) 
+- Malay (macrolanguage) (ms) 
+- Norwegian Bokmål (nb) 
+- Polish (pl) 
+- Portuguese (pt) 
+- Romanian (ro) 
+- Russian (ru) 
+- Serbian (sr) 
+- Slovak (sk) 
+- Slovenian (sl) 
+- Spanish (es) 
+- Swedish (sv) 
+- Tagalog (tl) 
+- Thai (th) 
+- Turkish (tr) 
+- Ukrainian (uk) 
+- Vietnamese (vi) 
  
-## 活動
-您可以使用 [活動] 區段設定活動的名稱和類別，如果您計劃忽略推播活動的對象區段，並改為透過觸達 API (以及使用低階推播 API 的部份元素) 傳送此活動，也可以這麼做。類別可以搭配自訂的通知範本一起使用，以便根據預先定義的設定控制應用程式內通知。您可以透過觸達 API 取得一份您現有的「類別」清單。
+## <a name="campaign"></a>Campaign
+You can use the Campaign section to set the name and category of your campaign as well as if you plan to ignore the audience section of a Push campaign and send this campaign via the Reach API (and some elements with the low level Push API) instead. Categories can be used with a custom notification template to control in-app notifications based on predefined settings. You can get a list of your existing “Categories” via the Reach API.
 
-> 警告：如果您在觸達活動的 [活動] 區段中使用 [略過對象，推播將透過 API 傳送給使用者] 選項，活動將「不」會自動傳送，您必須以手動方式透過觸達 API 傳送活動。
+> Warning: If you use the "Ignore Audience, push will be sent to users via the API" option in the "Campaign" section of a Reach campaign, the campaign will NOT automatically send, you will need to send it manually via the Reach API.
  
 ![Reach-Campaign3][22]
  
-### 選項適用範圍：
-- 名稱：全部
-- 類別：通知、投票
-- 略過對象，推播將透過 API 傳送給使用者：全部
+### <a name="option-applies-to:"></a>Option Applies to:
+- Name:    All
+- Category:    Announcements, Polls
+- Ignore Audience, push will be sent to users via the API:    All
  
-## 通知
-您可以使用 [通知] 區段設定推播的基本設定，包括：推送的標題、訊息、應用程式內影像，或者它是否可關閉。許多通知設定都和您使用的裝置平台有關。您可以選取要在「應用程式內」或「應用程式外」或兩者傳送您的推播。(請留意，對於「應用程式外」的推播，使用者可以在裝置的作業系統層級「選擇加入」或「選擇退出」，Azure Mobile Engagement 無法覆寫這項設定。另請留意，觸達 API 可處理「應用程式內」和「應用程式外」推播。推播 API 也可用來處理「應用程式外」推播)。 推播可使用圖片或 HTML 內容加以自訂，包括連結到您應用程式之外，或連結到您應用程式內其他位置的深層連結 (需要 Android SDK 2.1.0 或更新版本的類別)。您可以變更圖示或 iOS 徽章，並傳送文字或 Web 內容 (有 html 內容和 URL 連結的快顯，可連結到應用程式內部或外部的其他位置)。您也可以使用推播讓 Android 裝置響鈴或震動。(請留意，您需要在 Android 資訊清單檔案中有正確的 SDK 權限，才能讓裝置響鈴或震動)。 Android 的「大型圖片」尺寸目前沒有任何業界標準，因為每個裝置使用不同的螢幕尺寸，不過 400x100 的圖片幾乎可在所有的螢幕尺寸上運作。
+## <a name="notification"></a>Notification
+You can use the Notification section to set basic settings for your push including: The title of the Push, the message, an in-app image, or if it is dismissible. Many notification settings are specific to the platform of your device. You can select whether your push will be sent "in app" or "out of app" or both. (Remember that users can "opt-in" or "opt-out" of "out of app" Pushes at the Operating System level on their devices, and Azure Mobile Engagement will not be able to override this setting. Also remember that the Reach API handles "in app" and "out of app" Pushes. The Push API can be used to handle "out of app" pushes too.) Pushes can be customized with pictures or HTML content, including deep links for linking outside of your App or to another location in your App (Android SDK 2.1.0 or later intent categories required). You can change the icon or iOS badge, and send either text or web content (a popup with html content, URL link to another location either inside or outside of the app). You can also make Android devices ring or vibrate with the Push. (Remember that you will need the correct SDK permissions in your Android manifest file to ring or vibrate a device.) There is currently no industry standard for Android "Big Picture" sizes, since screen sizes are different on every device, but 400x100 pictures work on almost any screen size.
 
-### 傳遞類型：
--    僅限應用程式外：當使用者不使用應用程式時，就會傳遞通知。
-- 僅限應用程式外的通知需要來自 Apple 或 Google 的憑證 (APN 或 GCM 憑證)。
-- 僅限應用程式內：通知只會在應用程式執行時顯示。
-- 通知使用 Capptain 傳遞系統觸達使用者。您可以完全自訂推播的版面配置/顯示方式。
-- 任何時間：無論應用程式是否執行，此選項可確保您傳送通知。
+### <a name="delivery-types:"></a>Delivery Types:
+-    Out of app only: the notification will be delivered when the user does not use the application.
+- The out of app only notification requires a certificate from Apple or Google (APNS or GCM certificate).
+- In-app only: The notification appears only when the application is running.
+- The notification uses the Capptain delivery system to reach the user. You can fully customize the visual layout/display of your push.
+- Anytime: This option ensures that you send a notification either the application is running or not.
 
  
 ![Reach-Campaign4][23]
 
-### 選項適用範圍：
-- 通知：通知、投票
+### <a name="option-applies-to:"></a>Option Applies to:
+- Notification:     Announcements, Polls
  
-## 內容
-您可以使用 [內容] 區段修改通知、投票、資料推送和磚 (僅限 Windows Phone) 的內容。推播活動的 [內容] 設定與活動類型有關。
+## <a name="content"></a>Content
+You can use the Content section to modify the content of your Announcements, Polls, Data Pushes, and Tiles (Windows Phone only). The Content setting of Push campaigns is specific to the type of campaign. 
 
-### 另請參閱
-- [UI 文件 - 觸達 - 推送內容][Link 29]
+### <a name="see-also"></a>See also
+- [UI Documentation - Reach - Push Content][Link 29]
  
 ![Reach-Campaign5][24]
 
-## 觀眾
-您可以使用 [對象] 區段定義標準的項目清單，或者根據自訂的準則，對活動設定限制。限制對象的標準選項設定，可讓您只發送給新的或舊的使用者，或者只給原生的推播使用者。您也可以設定配額，限制接收推播的使用者數目。您可以手動編輯運算式，如何篩選您的活動以包含一或多個選取使用者的準則。您可以手動輸入對象運算式。這類運算式必須明確定義準則之間的關係。描述準則的識別項必須以大寫字母開頭，而且不能包含空格。準則之間的關係可以使用 and、or、not 等運算子，以及「(」、「)」 來描述。範例："Criterion1 or (Criterion1 and not Criterion2)"。
+## <a name="audience"></a>Audience
+You can use the Audience section to define a standard list of items to limit your campaign or limits your campaign based on customized criteria. The standard set of options to Limit your Audience allows you to push to either new or old users or native push users only. You can also set a quota to limit the number of users who receive the push. You can manually Edit the expression for how your campaign is filtered to include one or more criterion to target users. You can manually type an audience expression. Such an expression must explicitly define the relation between criteria. A criterion is described by an identifier that must start with a capital letter and cannot contain spaces. The relation between the criteria can be described using 'and', 'or', 'not' operators as well as '(', ')'. Example: "Criterion1 or (Criterion1 and not Criterion2)".
 
-> 注意：如果活動的對象很多，尤其是當您嘗試同時啟動多個活動時，伺服器端的目標掃描可能會變慢。
+> Note: With a large audience included in campaigns, the server side targeting scan can be slow, especially if you attempt to start multiple campaigns at the same time.
 
-- 可能的話，一次只啟動一個活動。
-- 一次最多只啟動四個活動。
-- 只推送給作用中使用者 (核取 [只吸引可使用原生推送觸達的使用者] 和 [只吸引作用中使用者] 方塊)，就只會掃描仍然安裝應用程式且使用它的使用者。一旦定義您的對象之後，就可以使用模擬按鈕找出會收到此推播的使用者數目。這會計算此對象可能選出的已知使用者數目 (根據使用者的隨機取樣估計)。請注意，已解除安裝應用程式的使用者也屬於這類對象，但無法觸達。
+- If possible, only start one campaign at a time.
+- At the most, only start four campaigns at a time.
+- Push only to your active users (checkbox "Engage only users who can be reached using Native Push" and "Engage only active users") so that only your users who still have the app installed and use it will need to be scanned.
+Once your audience is defined, you can use the simulate button to find out how many users will receive this Push. This will compute the number of known users potentially targeted by this audience (this is an estimate based on a random sample of users). Be aware that users who have uninstalled the application are also part of this audience, but cannot be reached.
 
-### 另請參閱
-- [UI 文件 - 觸達 - 新增推播準則][Link 28]
+### <a name="see-also"></a>See also
+- [UI Documentation - Reach - New Push Criterion][Link 28]
 
 ![Reach-Campaign6][25]
 
-### 編輯運算式
+### <a name="edit-expression"></a>Edit expression
 ![Reach-Campaign7][26]
  
-### 限制對象選項適用範圍：
-- 只吸引部份使用者：全部 (通知、投票、資料推送、磚)
-- 只吸引舊使用者：全部 (通知、投票、資料推送、磚)
-- 只吸引新使用者：全部 (通知、投票、資料推送、磚)
-- 只吸引閒置使用者：通知、投票、磚
-- 只吸引作用中使用者：全部 (通知、投票、資料推送、磚)
-- 只吸引可使用原生推送觸達的使用者：
+### <a name="limit-your-audience-option-applies-to:"></a>Limit your audience option applies to:
+- Engage only a subset of users:    All (Announcements, Polls, Data Pushes, Tiles)
+- Engage only old users:    All (Announcements, Polls, Data Pushes, Tiles)
+- Engage only new users:    All (Announcements, Polls, Data Pushes, Tiles)
+- Engage only idle users:    Announcements, Polls, Tiles
+- Engage only active users:    All (Announcements, Polls, Data Pushes, Tiles)
+- Engage only users who can be reached using Native Push:     Announcements, Polls
  
-## 時間範圍
-您可以使用 [時間範圍] 區段設定推播傳送的時間，或者可以將時間範圍留空以便立即啟動活動。請留意，使用使用者的時區來啟動活動，對於亞洲的使用者可能會比您預期的時間還早一天，因此請在世界上所有的時區都符合活動的時間範圍時，才一次傳送小型批次的推播。使用使用者的時區也可能會造成活動延遲，因為必須先從使用者的電話取得時間才能啟動推送。
+## <a name="time-frame"></a>Time Frame
+You can use the Time Frame section to set when the push will be sent or you can leave the time frame blank to start the campaign immediately. Remember that using the end-users' time zone may start the campaign a day earlier than you expect for your end-users in Asia and send small batches of pushes at a time until all time zones in the world match the time frame set for your campaign. Using the end users' time zone can also cause delays in campaigns since it has to request the time from the phone before starting the push.
 
-> 注意：沒有結束日期的活動可能會在本機快取推播，甚至在您手動完成活動之後，仍然繼續顯示推播。若要避免發生這個狀況，請為活動設定確切的結束時間。
+> Note: Campaigns without an end date can cache pushes locally and still display them after you manually complete campaigns. To avoid this behavior, specific an end time for campaigns.
 
-### 另請參閱
-- [觸達 - 做法 – 排程][Link 3]
+### <a name="see-also"></a>See also
+- [Reach - How Tos – Scheduling][Link 3] 
  
 ![Reach-Campaign8][27]
 
-### 設定適用範圍：
-- 時間範圍：通知、投票、磚
+### <a name="settings-apply-to:"></a>Settings Apply to:
+- Time frame:     Announcements, Polls, Tiles
  
-## 測試
-儲存活動之前，您可以使用 [測試] 區段將此推播傳送到您自己的測試裝置。如果您為此活動設定任何自訂語言，可以使用每個語言測試推播。您可以從 [我的帳戶] 設定測試裝置。
-> 注意：當您使用按鈕來「測試」推播時，不會記錄任何伺服器端的資料，只會記錄實際推播活動的資料。
+## <a name="test"></a>Test
+You can use the Test section to send this push to your own test device before saving the campaign. If you have configured any custom languages for this campaign, you can test the push in each language. You can setup a test device from “My Account”.
+> Note: No server side data is logged when you use the button to "test" pushes, data is only logged for real push campaigns.
 
-### 另請參閱
-- [UI 文件 - 我的帳戶][Link 14]
+### <a name="see-also"></a>See also
+- [UI Documentation - My Account][Link 14]
  
 ![Reach-Campaign9][28]
 
@@ -260,4 +262,8 @@
 [Link 29]: mobile-engagement-user-interface-reach-content.md
  
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

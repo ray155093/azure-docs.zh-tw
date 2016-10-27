@@ -1,302 +1,303 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 MOVEit Transfer 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 MOVEit Transfer 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+    pageTitle="Tutorial: Azure Active Directory integration with MOVEit Transfer | Microsoft Azure"
+    description="Learn how to configure single sign-on between Azure Active Directory and MOVEit Transfer."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeevansd"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/04/2016"
-	ms.author="jeedes"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/18/2016"
+    ms.author="jeedes"/>
 
 
-# 教學課程：Azure Active Directory 與 MOVEit Transfer 整合
 
-本教學課程旨在說明如何將 MOVEit Transfer 與 Azure Active Directory (Azure AD) 整合。
+# <a name="tutorial:-azure-active-directory-integration-with-moveit-transfer"></a>Tutorial: Azure Active Directory integration with MOVEit Transfer
 
-將 MOVEit Transfer 與 Azure AD 整合可提供下列優點：
+The objective of this tutorial is to show you how to integrate MOVEit Transfer with Azure Active Directory (Azure AD).
 
-- 您可以在 Azure AD 中控制可存取 MOVEit Transfer 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 MOVEit Transfer (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+Integrating MOVEit Transfer with Azure AD provides you with the following benefits:
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+- You can control in Azure AD who has access to MOVEit Transfer
+- You can enable your users to automatically get signed-on to MOVEit Transfer (Single Sign-On) with their Azure AD accounts
+- You can manage your accounts in one central location - the Azure classic portal
 
-## 必要條件
+If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-若要設定 Azure AD 與 MOVEit Transfer 整合，您需要下列項目：
+## <a name="prerequisites"></a>Prerequisites
 
-- Azure AD 訂用帳戶
-- 已啟用 MOVEit Transfer 單一登入功能的訂用帳戶
+To configure Azure AD integration with MOVEit Transfer, you need the following items:
 
-
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+- An Azure AD subscription
+- A MOVEit Transfer single-sign on enabled subscription
 
 
-若要測試本教學課程中的步驟，您應該遵循這些建議：
-
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
 
 
-## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。
+To test the steps in this tutorial, you should follow these recommendations:
 
-本教學課程中說明的案例由二個主要建置組塊組成：
-
-1. 從資源庫新增 MOVEit Transfer
-2. 設定並測試 Azure AD 單一登入
+- You should not use your production environment, unless this is necessary.
+- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
 
 
-## 從資源庫新增 MOVEit Transfer
-若要設定 MOVEit Transfer 與 Azure AD 整合，您需要從資源庫將 MOVEit Transfer 加入到受管理的 SaaS 應用程式清單中。
+## <a name="scenario-description"></a>Scenario description
+The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.
 
-**若要從資源庫新增 MOVEit Transfer，請執行下列步驟：**
+The scenario outlined in this tutorial consists of two main building blocks:
 
-1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格上的 [Active Directory]。
+1. Adding MOVEit Transfer from the gallery
+2. Configuring and testing Azure AD single sign-on
 
-	![Active Directory][1]
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+## <a name="adding-moveit-transfer-from-the-gallery"></a>Adding MOVEit Transfer from the gallery
+To configure the integration of MOVEit Transfer into Azure AD, you need to add MOVEit Transfer from the gallery to your list of managed SaaS apps.
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
-	
-	![應用程式][2]
+**To add MOVEit Transfer from the gallery, perform the following steps:**
 
-4. 按一下頁面底部的 [新增]。
-	
-	![應用程式][3]
+1. In the **Azure classic Portal**, on the left navigation pane, click **Active Directory**. 
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+    ![Active Directory][1]
 
-	![應用程式][4]
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-6. 在搜尋方塊中，輸入 **MOVEit Transfer**。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_01.png)
-
-7. 在結果窗格中，選取 [MOVEit Transfer]，然後按一下 [完成] 以加入應用程式。
-
-	![選取資源庫中的應用程式](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_0001.png)
-
-##  設定並測試 Azure AD 單一登入
-本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 MOVEit Transfer 搭配運作的 Azure AD 單一登入。
-
-若要讓單一登入運作，Azure AD 必須知道 MOVEit Transfer 與 Azure AD 中互相對應的使用者。換句話說，必須建立 Azure AD 使用者和 MOVEit Transfer 中相關使用者之間的連結關聯性。
-
-建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值，指定為 MOVEit Transfer 中 **Username** 的值。
-
-若要設定及測試對 MOVEit Transfer 的 Azure AD 單一登入，您需要完成下列建置組塊：
-
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 MOVEit Transfer 測試使用者](#creating-a-moveit-transfer-test-user)** - 在 MOVEit Transfer 中建立 Britta Simon 的對應項目，且該項目必須與 Azure AD 中代表 Britta Simon 的項目連結。
-4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
-
-### 設定 Azure AD 單一登入
-
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 MOVEit Transfer 中設定單一登入。
-
-**若要使用 MOVEit Transfer 設定 Azure AD 單一登入功能，請執行下列步驟：**
-
-1. 在傳統入口網站的 [MOVEit Transfer] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-	 
-	![設定單一登入][6]
-
-2. 在 [要如何讓使用者登入 MOVEit Transfer] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
     
-	![設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_03.png)
+    ![Applications][2]
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟，然後按 [下一步]：
-
-    ![設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_04.png)
-
-	a.在 [登入 URL] 文字方塊中，輸入登入 URL 與您自己的網域。
-
-    b.在 [識別碼] 文字方塊中，輸入實體識別碼 URL。
-
-    c.在 [回覆 URL] 文字方塊中，輸入已啟用的判斷提示取用者介面 URL。
-
-	d.按 [下一步]
-
-	> [AZURE.NOTE] 請注意，您必須使用實際的「登入 URL」及「識別碼」來更新這些值。若要取得這些值，您可以參考「步驟 8」以取得詳細資訊，或連絡 [MOVEit Transfer](https://www.ipswitch.com/support/technical-support)。
-
-4. 在 [設定在 MOVEit Transfer 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
-
-	![設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_05.png)
-
-    a.按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-
-    b.按 [下一步]。
-
-5. 以系統管理員身分登入 MOVEit Transfer 租用戶。
-
-6. 在左側的導覽窗格上，按一下 [設定]。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_000.png)
-
-7. 按一下 [單一登入] 連結，其位於 [安全性原則] -> [使用者驗證] 底下。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_001.png)
-
-8. 按一下 [中繼資料 URL] 連結以下載中繼資料文件。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_002.png)
-
-	- 確認 [entityID] 符合步驟 3 的 [識別碼]。
-	
-	- 確認 [AssertionConsumerService] 位置 URL 符合步驟 3 的 [回覆 URL]。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_007.png)
-
-9. 按一下 [新增識別提供者] 按鈕來加入新的同盟識別提供者。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_003.png)
-
-10. 按一下 [瀏覽...] 以選取您在步驟 4 中所下載的中繼資料檔案，然後按一下 [新增識別提供者] 以上傳所下載的檔案。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_004.png)
-
-11. 選取 [是] 做為 [編輯同盟識別提供者設定...] 頁面中的 [啟用]，然後按一下 [儲存]。
-
-	 ![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_005.png)
-
-12. 在 [編輯同盟識別提供者使用者設定] 頁面中執行下列動作，並按一下 [儲存]。
-
-	a.選取 [SAML NameID] 做為 [登入名稱]。
-
-	b.選取 [其他] 做為 [全名]，並在 [屬性名稱] 文字方塊中放入值︰http://schemas.microsoft.com/identity/claims/displayname。
-
-	c.選取 [其他] 做為 [電子郵件]，並在 [屬性名稱] 文字方塊中放入值︰http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress。
-
-	d.選取 [是] 做為 [在登入時自動建立帳戶]。
-
-	e.按一下 [儲存] 按鈕。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_006.png)
-
-13. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
+4. Click **Add** at the bottom of the page.
     
-	![Azure AD 單一登入][10]
+    ![Applications][3]
 
-14. 在 [單一登入確認] 頁面上，按一下 [完成]。
+5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
+
+    ![Applications][4]
+
+6. In the search box, type **MOVEit Transfer**.
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_01.png)
+
+7. In the results panel, select **MOVEit Transfer**, and then click **Complete** to add the application.
+
+    ![Selecting the app in the gallery](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_0001.png)
+
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
+The objective of this section is to show you how to configure and test Azure AD single sign-on with MOVEit Transfer based on a test user called "Britta Simon".
+
+For single sign-on to work, Azure AD needs to know what the counterpart user in MOVEit Transfer to an user in Azure AD is. In other words, a link relationship between an Azure AD user and the related user in MOVEit Transfer needs to be established.
+
+This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in MOVEit Transfer.
+
+To configure and test Azure AD single sign-on with MOVEit Transfer, you need to complete the following building blocks:
+
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.
+2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
+3. **[Creating a MOVEit Transfer test user](#creating-a-moveit-transfer-test-user)** - to have a counterpart of Britta Simon in MOVEit Transfer that is linked to the Azure AD representation of her.
+4. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
+
+### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD single sign-on
+
+In this section, you enable Azure AD single sign-on in the classic portal and configure single sign-on in your MOVEit Transfer application.
+
+**To configure Azure AD single sign-on with MOVEit Transfer, perform the following steps:**
+
+1. In the classic portal, on the **MOVEit Transfer** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
+     
+    ![Configure Single Sign-On][6] 
+
+2. On the **How would you like users to sign on to MOVEit Transfer** page, select **Azure AD Single Sign-On**, and then click **Next**.
     
-	![Azure AD 單一登入][11]
+    ![Configure Single Sign-On](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_03.png)
 
+3. On the **Configure App Settings** dialog page, perform the following steps and click **Next**:
 
+    ![Configure Single Sign-On](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_04.png)
 
-### 建立 Azure AD 測試使用者
-本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
+    a. In the **Sign On URL** textbox, type sign in URL with your own domain.
 
-![建立 Azure AD 使用者][20]
+    b. In the **Identifier** textbox, type a entity ID URL.
 
-**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+    c. In the **REPLY URL** textbox, type a enebled Assertion Consumer Interface URL.
 
-1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格上的 [Active Directory]。
+    d. Click **Next**
 
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_09.png)
+    > [AZURE.NOTE] Please note that you have to update these values with the actual Sign On URL and Identifier. To get these values, you can refer step 8 for more details or contact [MOVEit Transfer](https://www.ipswitch.com/support/technical-support).
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+4. On the **Configure single sign-on at MOVEit Transfer** page, perform the following steps and click **Next**:
 
-3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
+    ![Configure Single Sign-On](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_05.png)
+
+    a. Click **Download metadata**, and then save the file on your computer.
+
+    b. Click **Next**.
+
+5. Sign-on to your MOVEit Transfer tenant as an administrator.
+
+6. On the left navigation pane, click **Settings**.
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_000.png)
+
+7. Click **Single Signon** link which is under **Security Policies -> User Auth**.
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_001.png)
+
+8. Click the Metadata URL link to download the metadata document.
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_002.png)
+
+    - Verify **entityID** matches **Identifier** in step3.
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_03.png)
+    - Verify **AssertionConsumerService** Location URL matches **REPLY URL** in step3.
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_007.png)
 
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_04.png)
+9. Click **Add Identity Provider** button to add a new Federated Identity Provider.
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_003.png)
 
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_05.png)
+10. Click **Browse...** to select the metadata file which you downloaded in step 4,then click **Add Identity Provider** to upload the downloaded file. 
 
-    a.針對 [使用者類型]，選取 [您組織中的新使用者]。
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_004.png)
 
-    b.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+11. Select "**Yes**" as **Enabled** in the **Edit Federated Identity Provider Settings...** page and click **Save**.
 
-    c.按 [下一步]。
+     ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_005.png)
 
-6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
+12. In the **Edit Federated Identity Provider User Settings** page perform the following actions and click **Save**.
+
+    a. Select **SAML NameID** as **Login name**.
+
+    b. Select **Other** as **Full name** and in the **Attribute name** textbox put the value: http://schemas.microsoft.com/identity/claims/displayname.
+
+    c. Select **Other** as **Email** and in the **Attribute name** textbox put the value: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress.
+
+    d. Select **Yes** as **Auto-create account on signon**.
+
+    e. Click **Save** button.
+
+    ![Configure Single Sign-On On App side](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_006.png)
+
+13. In the classic portal, select the single sign-on configuration confirmation, and then click **Next**.
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_06.png)
+    ![Azure AD Single Sign-On][10]
 
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
-
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
-
-    c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-
-    d.在 [角色] 清單中選取 [使用者]。
-
-    e.按 [下一步]。
-
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
+14. On the **Single sign-on confirmation** page, click **Complete**.  
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_07.png)
+    ![Azure AD Single Sign-On][11]
 
-8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
+
+
+### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
+The objective of this section is to create a test user in the classic portal called Britta Simon.
+
+![Create Azure AD User][20]
+
+**To create a test user in Azure AD, perform the following steps:**
+
+1. In the **Azure classic Portal**, on the left navigation pane, click **Active Directory**.
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_09.png)
+
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
+
+3. To display the list of users, in the menu on the top, click **Users**.
     
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_08.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_03.png)
 
-    a.記下 [新密碼] 的值。
+4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.
 
-    b.按一下 [完成]。
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_04.png)
 
+5. On the **Tell us about this user** dialog page, perform the following steps:
 
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_05.png)
 
-### 建立 MOVEit Transfer 測試使用者
+    a. As Type Of User, select New user in your organization.
 
-本節的目標是要在 MOVEit Transfer 中建立一個名為 Britta Simon 的使用者。MOVEit Transfer 支援您已啟用的 Just-In-Time 佈建。
+    b. In the User Name **textbox**, type **BrittaSimon**.
 
-在這一節沒有您需要進行的動作項目。嘗試存取 MOVEit Transfer 時，如果使用者還不存在，就會建立新使用者。
+    c. Click **Next**.
 
-> [AZURE.NOTE] 如果您需要手動建立使用者，就必須連絡 MOVEit Transfer 支援小組。
-
-
-### 指派 Azure AD 測試使用者
-
-本節目標是授與 Britta Simon 對 MOVEit Transfer 的存取權，讓她能夠使用 Azure 單一登入。
-	
-![指派使用者][200]
-
-**如要將 Britta Simon 指派給 MOVEit Transfer，請執行下列步驟：**
-
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+6.  On the **User Profile** dialog page, perform the following steps:
     
-	![指派使用者][201]
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_06.png)
 
-2. 在應用程式清單中，選取 [MOVEit Transfer]。
+    a. In the **First Name** textbox, type **Britta**.  
+
+    b. In the **Last Name** textbox, type, **Simon**.
+
+    c. In the **Display Name** textbox, type **Britta Simon**.
+
+    d. In the **Role** list, select **User**.
+
+    e. Click **Next**.
+
+7. On the **Get temporary password** dialog page, click **create**.
     
-	![設定單一登入](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_50.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_07.png)
 
-3. 在頂端的功能表中，按一下 [使用者]。
+8. On the **Get temporary password** dialog page, perform the following steps:
     
-	![指派使用者][203]
+    ![Creating an Azure AD test user](./media/active-directory-saas-moveittransfer-tutorial/create_aaduser_08.png)
 
-4. 在 [使用者] 清單中，選取 [Britta Simon]。
+    a. Write down the value of the **New Password**.
 
-5. 在底部的工具列中，按一下 [指派]。
+    b. Click **Complete**.   
+
+
+
+### <a name="creating-a-moveit-transfer-test-user"></a>Creating a MOVEit Transfer test user
+
+The objective of this section is to create a user called Britta Simon in MOVEit Transfer. MOVEit Transfer supports just-in-time provisioning, which you have enabled.
+
+There is no action item for you in this section. A new user will be created during an attempt to access MOVEit Transfer if it doesn't exist yet.
+
+> [AZURE.NOTE] If you need to create an user manually, you need to contact the MOVEit Transfer support team.
+
+
+### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
+
+The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to MOVEit Transfer.
     
-	![指派使用者][205]
+![Assign User][200]
 
-### 測試單一登入
+**To assign Britta Simon to MOVEit Transfer, perform the following steps:**
 
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
+1. On the classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
+    
+    ![Assign User][201]
+
+2. In the applications list, select **MOVEit Transfer**.
+    
+    ![Configure Single Sign-On](./media/active-directory-saas-moveittransfer-tutorial/tutorial_moveittransfer_50.png)
+
+3. In the menu on the top, click **Users**.
+    
+    ![Assign User][203]
+
+4. In the Users list, select **Britta Simon**.
+
+5. In the toolbar on the bottom, click **Assign**.
+    
+    ![Assign User][205]
+
+### <a name="testing-single-sign-on"></a>Testing single sign-on
+
+The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.
  
-當您在「存取面板」中按一下 [MOVEit Transfer] 圖格時，應該會自動登入您的 MOVEit Transfer 應用程式。
+When you click the MOVEit Transfer tile in the Access Panel, you should get automatically signed-on to your MOVEit Transfer application.
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 
 
@@ -318,4 +319,8 @@
 [204]: ./media/active-directory-saas-moveittransfer-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-moveittransfer-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

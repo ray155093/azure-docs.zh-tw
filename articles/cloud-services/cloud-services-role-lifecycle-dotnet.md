@@ -1,6 +1,6 @@
 <properties 
-pageTitle="處理雲端服務生命週期事件 | Microsoft Azure" 
-description="了解如何在 .NET 中使用雲端服務角色的生命週期方法" 
+pageTitle="Handle Cloud Service lifecycle events | Microsoft Azure" 
+description="Learn how the lifecycle methods of a Cloud Service role can be used in .NET" 
 services="cloud-services" 
 documentationCenter=".net" 
 authors="Thraka" 
@@ -15,35 +15,36 @@ ms.topic="article"
 ms.date="09/06/2016" 
 ms.author="adegeo"/>
 
-# 在 .NET 中自訂 Web 或背景工作角色的生命週期
 
-當您建立背景工作角色時，擴充可為您提供覆寫方法並讓您回應生命週期事件的 [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) 類別。若是 Web 角色，此類別是選擇性的，因此您必須使用它來回應生命週期事件。
+# <a name="customize-the-lifecycle-of-a-web-or-worker-role-in-.net"></a>Customize the Lifecycle of a Web or Worker role in .NET
 
-## 擴充 RoleEntryPoint 類別
+When you create a worker role, you extend the [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) class which provides methods for you to override that let you respond to lifecycle events. For web roles this class is optional, so you must use it to respond to lifecycle events.
 
-當 Azure **啟動**、**執行**或**停止** Web 或背景工作角色時，[RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) 類別包含 Azure 呼叫的方法。您可以選擇性地覆寫這些方法來管理角色初始化、角色關機順序或角色的執行緒。
+## <a name="extend-the-roleentrypoint-class"></a>Extend the RoleEntryPoint class
 
-擴充 **RoleEntryPoint** 時，您應該注意下列方法的行為：
+The [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) class includes methods that are called by Azure when it **starts**, **runs**, or **stops** a web or worker role. You can optionally override these methods to manage role initialization, role shutdown sequences, or the execution thread of the role. 
 
--   [OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) 和 [OnStop](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) 方法會傳回布林值，因此可能會從這些方法傳回 **false**。
+When extending **RoleEntryPoint**, you should be aware of the following behaviors of the methods:
 
-     如果您的程式碼傳回 **false**，會突然終止角色處理序，而不會執行您既有的任何關機順序。一般而言，您應該避免從 **OnStart** 方法傳回 **false**。
+-   The [OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) and [OnStop](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) methods return a boolean value, so it is possible to return **false** from these methods.
+
+     If your code returns **false**, the role process is abruptly terminated, without running any shutdown sequence you may have in place. In general, you should avoid returning **false** from the **OnStart** method.
      
--   **RoleEntryPoint** 方法多載中未能攔截的任何例外狀況，都會被視為未處理的例外狀況。
+-   Any uncaught exception within an overload of a **RoleEntryPoint** method is treated as an unhandled exception.
 
-     如果在其中一個生命週期方法內發生例外狀況，Azure 將會引發 [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) 事件，然後處理序便會終止。您的角色離線之後，Azure 將重新啟動該角色。當未處理的例外狀況發生時，不會引發 [Stopping](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.stopping.aspx) 事件，也不會呼叫 **OnStop** 方法。
+     If an exception occurs within one of the lifecycle methods, Azure will raise the [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) event, and then the process is terminated. After your role has been taken offline, it will be restarted by Azure. When an unhandled exception occurs, the [Stopping](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.stopping.aspx) event is not raised, and the **OnStop** method is not called.
 
-如果您的角色無法啟動，或在初始化、忙碌和停止狀態之間循環，每次角色重新啟動時，您的程式碼可能會在其中一個生命週期事件內擲回未處理的例外狀況。在此情況下，使用 [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) 事件判斷造成此例外狀況的原因，並適當地處理。您的角色可能也會從 [Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) 方法傳回，而導致該角色重新啟動。如需有關部署狀態的詳細資訊，請參閱[導致角色循環的常見問題](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md)。
+If your role does not start, or is recycling between the initializing, busy, and stopping states, your code may be throwing an unhandled exception within one of the lifecycle events each time the role restarts. In this case, use the [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) event to determine the cause of the exception and handle it appropriately. Your role may also be returning from the [Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) method, which causes the role to restart. For more information about deployment states, see [Common Issues Which Cause Roles to Recycle](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md).
 
-> [AZURE.NOTE] 如果您要使用 **Azure Tools for Microsoft Visual Studio** 開發您的應用程式，角色專案範本會在 WebRole.cs 及 WorkerRole.cs 檔案中，自動為您擴充 **RoleEntryPoint** 類別。
+> [AZURE.NOTE] If you are using the **Azure Tools for Microsoft Visual Studio** to develop your application, the role project templates automatically extend the **RoleEntryPoint** class for you, in the *WebRole.cs* and *WorkerRole.cs* files.
 
-## OnStart 方法
+## <a name="onstart-method"></a>OnStart method
 
-當 Azure 將您的角色執行個體連線時，會呼叫 **OnStart** 方法。OnStart 程式碼執行時，角色執行個體會標示為 **Busy**，而且負載平衡器不會將任何外部流量導向至該執行個體。您可以覆寫此方法以執行初始化工作，例如實作事件處理常式及啟動 [Azure 診斷](cloud-services-how-to-monitor.md)。
+The **OnStart** method is called when your role instance is brought online by Azure. While the OnStart code is executing, the role instance is marked as **Busy** and no external traffic will be directed to it by the load balancer. You can override this method to perform initialization work, such as implementing event handlers and starting [Azure Diagnostics](cloud-services-how-to-monitor.md).
 
-如果 **OnStart** 傳回 **true**，便會成功地初始化執行個體，而且 Azure 會呼叫 **RoleEntryPoint.Run** 方法。如果 **OnStart** 傳回 **false**，角色會立即終止，而不執行任何計劃的關機順序。
+If **OnStart** returns **true**, the instance is successfully initialized and Azure calls the **RoleEntryPoint.Run** method. If **OnStart** returns **false**, the role terminates immediately, without executing any planned shutdown sequences.
 
-下列程式碼範例示範如何覆寫 **OnStart** 方法。當角色執行個體啟動，並設定將記錄資料傳輸至儲存體帳戶時，此方法會設定並啟動診斷監視器：
+The following code example shows how to override the **OnStart** method. This method configures and starts a diagnostic monitor when the role instance starts and sets up a transfer of logging data to a storage account:
 
 ```csharp
 public override bool OnStart()
@@ -59,25 +60,28 @@ public override bool OnStart()
 }
 ```
 
-## OnStop 方法
+## <a name="onstop-method"></a>OnStop method
 
-在 Azure 將角色執行個體離線之後，以及處理序結束之前，會呼叫 **OnStop** 方法。您可以覆寫此方法以呼叫讓您的角色執行個體正常關機所需的程式碼。
+The **OnStop** method is called after a role instance has been taken offline by Azure and before the process exits. You can override this method to call code required for your role instance to cleanly shut down.
 
-> [AZURE.IMPORTANT] 因為使用者起始關機以外的原因呼叫使用 **OnStop** 方法執行的程式碼時，其完成時間有限。經過這個時間之後，處理序便會終止，因此您必須確定 **OnStop** 方法中的該程式碼可以快速執行，或容許完成之前不執行。系統會在引發 **Stopping** 事件之後呼叫 **OnStop** 方法。
-
-
-## Run 方法
-
-您可以覆寫 **Run** 方法，針對您的角色執行個體實作長時間執行的執行緒。
-
-不需要覆寫 **Run** 方法；預設實作會啟動永久處於睡眠狀態的執行緒。如果您覆寫 **Run** 方法，您的程式碼應該會無限期地封鎖。如果傳回 **Run** 方法，就會自動正常回收角色；換句話說，Azure 會引發 **Stopping** 事件並呼叫 **OnStop** 方法，讓您的關機順序可以在角色離線之前執行。
+> [AZURE.IMPORTANT] Code running in the **OnStop** method has a limited time to finish when it is called for reasons other than a user-initiated shutdown. After this time elapses, the process is terminated, so you must make sure that code in the **OnStop** method can run quickly or tolerates not running to completion. The **OnStop** method is called after the **Stopping** event is raised.
 
 
-### 實作 Web 角色的 ASP.NET 生命週期方法
+## <a name="run-method"></a>Run method
 
-除了提供 **RoleEntryPoint** 類別提供的方法之外，您還可以使用 ASP.NET 生命週期方法管理 Web 角色的初始化及關機順序。如果您要將現有的 ASP.NET 應用程式移植至 Azure，這對於相容性可能很有幫助。系統會從 **RoleEntryPoint** 方法內呼叫 ASP.NET 生命週期方法。系統會在 **RoleEntryPoint.OnStart** 方法完成之後，呼叫 **Application\_Start** 方法。系統會在呼叫 **RoleEntryPoint.OnStop** 方法之前，呼叫 **Application\_End** 方法。
+You can override the **Run** method to implement a long-running thread for your role instance.
 
-## 後續步驟
-了解如何[建立雲端服務封裝](cloud-services-model-and-package.md)。
+Overriding the **Run** method is not required; the default implementation starts a thread that sleeps forever. If you do override the **Run** method, your code should block indefinitely. If the **Run** method returns, the role is automatically gracefully recycled; in other words, Azure raises the **Stopping** event and calls the **OnStop** method so that your shutdown sequences may be executed before the role is taken offline.
 
-<!---HONumber=AcomDC_0914_2016-->
+
+### <a name="implementing-the-asp.net-lifecycle-methods-for-a-web-role"></a>Implementing the ASP.NET lifecycle methods for a web role
+
+You can use the ASP.NET lifecycle methods, in addition to those provided by the **RoleEntryPoint** class, to manage initialization and shutdown sequences for a web role. This may be useful for compatibility purposes if you are porting an existing ASP.NET application to Azure. The ASP.NET lifecycle methods are called from within the **RoleEntryPoint** methods. The **Application\_Start** method is called after the **RoleEntryPoint.OnStart** method finishes. The **Application\_End** method is called before the **RoleEntryPoint.OnStop** method is called.
+
+## <a name="next-steps"></a>Next steps
+Learn how to [create a cloud service package](cloud-services-model-and-package.md).
+
+
+<!--HONumber=Oct16_HO2-->
+
+

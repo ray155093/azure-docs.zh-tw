@@ -1,257 +1,260 @@
-# 物聯網安全性架構
+# <a name="internet-of-things-security-architecture"></a>Internet of Things security architecture
 
-在設計系統時，我們應了解該系統的潛在威脅並加入適當的防禦機制，以妥善設計系統與其架構。在一開始設計產品時就先考量安全性是非常重要的，因為了解攻擊者可能如何破壞系統，有助於從一開始就備妥適當的安全防護功能。
+When designing a system, it is important to understand the potential threats to that system, and add appropriate defenses accordingly, as the system is designed and architected. It is particularly important to design the product from the start with security in mind because understanding how an attacker might be able to compromise a system helps make sure appropriate mitigations are in place from the beginning. 
 
-## 保障安全從威脅模型開始
+## <a name="security-starts-with-a-threat-model"></a>Security starts with a threat model
  
-Microsoft 產品在採用威脅模型方面的經驗悠久，並已公開發表公司的威脅模型化程序。Microsoft 的成功經驗證實，模型化除了可以立即掌握哪些是最關鍵的威脅，還擁有超越期望的優點。比方說，模型化作業也能建立與其他外部開發團隊開放討論的管道，以獲取產品的新構想和增強功能。
+Microsoft has long used threat models for its products and has made the company’s threat modeling process publically available. The company experience demonstrates that the modelling has unexpected benefits beyond the immediate understanding of what threats are the most concerning. For example, it also creates an avenue for an open discussion with others outside the development team, which can lead to new ideas and improvements in the product.
   
-威脅模型化作業的目標是了解攻擊者可能如何破壞系統，以確保備妥適當的安全防護功能。威脅模型化作業可確保設計團隊在系統設計階段就考慮安全防護功能，而不是等到系統部署之後才亡羊補牢。這一點是非常重要的，因為要現場修改大量裝置的安全性防禦措施非但不可行、容易產生錯誤，也會讓客戶面臨風險。
+The objective of threat modeling is to understand how an attacker might be able to compromise a system and then make sure appropriate mitigations are in place. Threat modeling forces the design team to consider mitigations as the system is designed rather than after a system is deployed. This fact is critically important, because retrofitting security defenses to a myriad of devices in the field is infeasible, error prone and will leave customers at risk.
 
-許多開發團隊能精準掌握對客戶有益的系統功能需求。不過，識別有心人士可能如何濫用系統的隱匿方式則更具挑戰性。威脅模型化作業可協助開發團隊了解攻擊者可能採取的行動和原因。威脅模型化作業是一種結構化的程序，其可建立系統安全設計決策的討論，以及過程中的設計變更會對安全性產生哪些影響。雖然威脅模型只是一種文件，但這份文件也是傳承知識、保存所學經驗，並協助新小組快速上手的理想方式。最後，威脅模型化作業的結果應可讓您考慮安全性的其他層面，例如想要提供給客戶哪些安全性承諾。將這些承諾與威脅模型化作業搭配使用，即可針對您的物聯網 (IoT) 方案提供分析與行動測試。
+Many development teams do an excellent job capturing the functional requirements for the system that benefit customers. However, identifying non-obvious ways that someone might misuse the system is more challenging. Threat modeling can help development teams understand what an attacker might do and why. Threat modeling is a structured process that creates a discussion about the security design decisions in the system, as well as changes to the design that are made along the way that impact security. While a threat model is simply a document, this documentation also represents an ideal way to ensure continuity of knowledge, retention of lessons learned, and help new team onboard rapidly. Finally, an outcome of threat modeling is to enable you to consider other aspects of security, such as what security commitments you wish to provide to your customers. These commitments in conjunction with threat modeling will inform and drive testing of your Internet of Things (IoT) solution.
  
 
-### 進行威脅模型化作業的時機
+### <a name="when-to-threat-model"></a>When to threat model
 
-在設計階段中納入[威脅威脅模型化作業](http://www.microsoft.com/security/sdl/adopt/threatmodeling.aspx)時，才能發揮最大效益。因為只有在設計階段，您才有最大的彈性空間可進行威脅排除變更。最理想的結果就是透過設計來排除潛在威脅。這麼做比新增安全防護功能、加以測試，並確保它們保持最新狀態等作業更加容易，因為排除作業不是隨時想做就能做。當產品日益成熟，排除威脅會更加困難，相較於開發早期採用的威脅模型化作業，這需要更多投入與更高難度的取捨。
+[Threat modeling](http://www.microsoft.com/security/sdl/adopt/threatmodeling.aspx) offers the greatest value if it is incorporated into the design phase. When you are designing, you have the greatest flexibility to make changes to eliminate threats. Eliminating threats by design is the desired outcome. It is much easier than adding mitigations, testing them, and ensuring they remain current and moreover, such elimination is not always possible. It becomes harder to eliminate threats as a product becomes more mature, and in turn will ultimately require more work and a lot harder tradeoffs than threat modeling early on in the development.
 
-### 威脅模型化作業該注意什麼？
+### <a name="what-to-threat-model"></a>What to threat model
 
-您應該將模型與整個方案整合成一體，同時將焦點放在下列領域︰
+You should thread model the solution as a whole and also focus in the following areas:
 
-- 安全性與隱私權功能
-- 其成敗會影響安全性的相關功能
-- 觸及信任邊界的功能
+- The security and privacy features
+- The features whose failures are security relevant
+- The features that touch a trust boundary 
 
-### 威脅模型跟誰有關
+### <a name="who-threat-models"></a>Who threat models
 
-威脅模型化作業與任何其他程序一樣。建議您將威脅模型文件視為方案的任何其他元件，並加以驗證。許多開發團隊能精準掌握對客戶有益的系統功能需求。不過，識別有心人士可能如何濫用系統的隱匿方式則更具挑戰性。威脅模型化作業可協助開發團隊了解攻擊者可能採取的行動和原因。
+Threat modeling is a process like any other.  It is a good idea to treat the threat model document like any other component of the solution and validate it. Many development teams do an excellent job capturing the functional requirements for the system that benefit customers. However, identifying non-obvious ways that someone might misuse the system is more challenging. Threat modeling can help development teams understand what an attacker might do and why.
 
-### 如何使用威脅模型
+### <a name="how-to-threat-model"></a>How to threat model
 
-威脅模型化作業程序包含下列四個步驟：
+The threat modeling process is composed of four steps; the steps are:
 
-- 應用程式建模
-- 列舉威脅
-- 降低威脅的風險
-- 驗證安全防護功能
+- Model the application
+- Enumerate Threats
+- Mitigate threats
+- Validate the mitigations
 
-#### 程序步驟
+#### <a name="the-process-steps"></a>The process steps
 
-建立威脅模型時，請謹記下列三個基本原則︰
+Three rules of thumb to keep in mind when building a threat model:
 
-1. 建立參考架構圖表。
-2. 先從廣度下手。取得概觀，先概略了解整個系統，再進行深入工作。這有助確保您在適當的位置進行深入工作。
-3. 由您來控制程序，而不是受到程序的擺佈。如果您在模型化作業階段發現問題，並想要加以探索，儘管放心去做！ 您並不需要盲目遵循這些步驟。
+1. Create a diagram out of reference architecture. 
+2. Start breadth-first. Get an overview, and understand the system as a whole, before deep-diving.  This helps ensure that you deep-dive in the right places.
+3. Drive the process, don’t let the process drive you. If you find an issue in the modeling phase and want to explore it, go for it!  Don’t feel you need to follow these steps slavishly.  
 
-#### 威脅
+#### <a name="threats"></a>Threats
 
-威脅模型的四個核心項目為︰
+The four core elements of a threat model are:
 
-- 處理序 (Web 服務、Win32 服務、*nix daemons 等)請注意，如果無法在這些區域中進行技術性向下鑽研時，可將部分複雜的實體 (例如現場閘道器和感應器) 抽象化為處理序。
-- 資料存放區 (儲存資料的任何位置，例如組態檔或資料庫)
-- 資料流程 (其中資料會在應用程式的其他項目之間移動)
-- 外部實體 (與系統互動但不在應用程式控制之下的任何項目，例如使用者和附屬摘要)
+- Processes (web services, Win32 services, *nix daemons, etc. Note that some complex entities (e.g. field gateways and sensors) can be abstracted as a process when a technical drill down in these areas is not possible.
+- Data stores (anywhere data is stored, such as a configuration file or database)
+- Data flow (where data moves between other elements in the application)
+- External Entities (anything that interacts with the system, but is not under the control of the application, examples include users and satellite feeds)
 
-架構圖中的所有項目皆受限於各種威脅；針對這些威脅，我們將使用 STRIDE 助憶鍵。請閱讀 [Threat Modeling Again, STRIDE (威脅模型化作業重點 STRIDE)](https://blogs.msdn.microsoft.com/larryosterman/2007/09/04/threat-modeling-again-stride/)，以深入了解 STRIDE 元素。
+All elements in the architectural diagram are subject to various threats; we will use the STRIDE mnemonic. Read [Threat Modeling Again, STRIDE](https://blogs.msdn.microsoft.com/larryosterman/2007/09/04/threat-modeling-again-stride/) to know more about the STRIDE elements.
 
-應用程式圖表的不同項目受限於特定 STRIDE 威脅而定︰
+Different elements of the application diagram are subject to certain STRIDE threats:
 
-- 處理序受限於 STRIDE
-- 資料流程受限於 TID
-- 資料存放區受限於 TID，有時受限於 R (如果資料存放區是記錄檔的話)。
-- 外部實體受限於 SRD
+- Processes are subject to STRIDE
+- Data flows are subject to TID
+- Data stores are subject to TID, and sometimes R, if the data stores are log files.
+- External entities are subject to SRD
 
-## IoT 中的安全性
+## <a name="security-in-iot"></a>Security in IoT
 
-特殊用途的連線裝置具有大量的潛在互動介面區與互動模式，您必須全面考慮所有項目才能提供適當的架構，以保護這些裝置的數位存取安全。此處的「數位存取」一詞是用來與透過直接裝置互動來執行的任何作業進行區隔，而直接互動的存取安全性是透過實體存取控制來保障。例如，將裝置放入室內，然後將門上鎖。雖然實體存取無法透過軟體和硬體拒絕存取，仍可採取一些措施來防止實體存取干擾系統。
+Connected special-purpose devices have a significant number of potential interaction surface areas and interaction patterns, all of which must be considered to provide a framework for securing digital access to those devices. The term “digital access” is used here to distinguish from any operations that are carried out through direct device interaction where access security is provided through physical access control. For example, putting the device into a room with a lock on the door. While physical access cannot be denied using software and hardware, measures can be taken to prevent physical access from leading to system interference. 
 
-在探索互動模式時，我們會對「裝置控制」和「裝置資料」同等重視。「裝置控制」可以歸類為任一方提供給裝置的任何資訊，其目標是要變更或影響裝置針對其狀態或環境狀態的行為。「裝置資料」可以歸類為任何資訊，其為裝置發出給另一方的裝置狀態和環境觀察狀態相關資訊。
+As we explore the interaction patterns, we will look at “device control” and “device data” with the same level of attention. “Device control” can be classified as any information that is provided to a device by any party with the goal of changing or influencing its behavior towards its state or the state of its environment. “Device data” can be classified as any information that a device emits to any other party about its state and the observed state of its environment.
    
-為了發揮安全性最佳做法的最大效益，建議您將典型的 IoT 架構分割成若干元件/區域，以作為威脅模型化作業練習的一部分。本節會詳細說明這些區域，並包括下列重點︰
+In order to optimize security best practices, it is recommended that a typical IoT architecture be divided into several component/zones as part of the threat modeling exercise. These zones are described fully throughout this section and include:
 
--	裝置、
--	現場閘道器、
--	雲端閘道器以及
--	宣告型授權。
+-   Device,
+-   Field Gateway,
+-   Cloud gateways, and
+-   Services.
 
-區域是從廣度方面來區隔方案；每個區域通常會有它自己的資料以及驗證和授權需求。區域也可以用來隔離損毀，並限制低度信任區域對較高信任區域的影響。
+Zones are broad way to segment a solution; each zone often has its own data and authentication and authorization requirements. Zones can also be used to isolation damage and restrict the impact of low trust zones on higher trust zones.
 
-每個區域都由信任邊界來區隔；下圖中其以紅色虛線標示。它代表從某個來源到另一個來源之間的資料/資訊轉換。在這項轉換期間，資料/資訊可能會受限於 STRIDE 的影響，亦即詐騙 (Spoofing)、竄改 (Tampering)、否認性 (Repudiation)、資訊洩漏 (Information Disclosure)、拒絕服務 (Denial of Service) 與權限提高 (Elevation of Privileg)。
+Each zone is separated by a Trust Boundary, which is noted as the dotted red line in the diagram below. It represents a transition of data/information from one source to another. During this transition, the data/information could be subject to Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service and Elevation of Privilege (STRIDE).
 
-![IoT 安全性區域](media/iot-security-architecture/iot-security-architecture-fig1.png)
+![IoT Security Zones](media/iot-security-architecture/iot-security-architecture-fig1.png) 
 
-每個邊界內所描述的元件也會受限於 STRIDE 的影響，因此我們需啟用方案的全方位威脅模型化作業檢視。下列章節詳述每個元件和特定的安全性考量，以及應備妥的解決方案。
+The components depicted within each boundary are also subjected to STRIDE, enabling a full 360 threat modeling view of the solution. The sections below elaborate on each of the components and specific security concerns and solutions that should be put into place.
 
-後續章節將討論這些區域中常見的標準元件。
+The sections that follows will discuss standard components typically found in these zones.
 
-### 裝置區域
+### <a name="the-device-zone"></a>The Device Zone
 
-裝置環境是指裝置周圍即時的實體空間，其中可進行裝置的實體存取及/或「區域網路」對等式數位存取。「區域網路 」則假設為不同的隔離網路，但可能橋接至公用網際網路，並包含任何短程無線電技術以讓裝置進行對等式通訊。它「不」包括任何網路虛擬化技術 (其會建立這類區域網路的假象)，也不包含公用電信營運商的網路 (其中任兩個裝置需要具備對等式通訊關聯，才能跨公用網路空間進行通訊)。
+The device environment is the immediate physical space around the device where physical access and/or “local network” peer-to-peer digital access to the device is feasible. A “local network” is assumed to be a network that is distinct and insulated from – but potentially bridged to – the public Internet, and includes any short-range wireless radio technology that permits peer-to-peer communication of devices. It does *not* include any network virtualization technology creating the illusion of such a local network and it does also not include public operator networks that require any two devices to communicate across public network space if they were to enter a peer-to-peer communication relationship.
 
-### 現場閘道器區域
+### <a name="the-field-gateway-zone"></a>The Field Gateway Zone
 
-現場閘道器是一種裝置/應用裝置，或作為通訊啟用器的一般用途伺服器電腦軟體，甚至可能是裝置控制系統和裝置資料處理中心。現場閘道器的區域包括現場閘道器本身以及連接到它的所有裝置。正如其名，現場閘道器可作為外部專用的資料處理設備，通常會和位置繫結，亦可能受限於實體入侵的影響，並具有限的作業備援。簡而言之，現場閘道器是在大家知道其功能以後，最容易觸及與蓄意破壞的裝置。
+Field gateway is a device/appliance or some general-purpose server computer software that acts as communication enabler and, potentially, as a device control system and device data processing hub. The field gateway zone includes the field gateway itself and all devices that are attached to it. As the name implies, field gateways act outside dedicated data processing facilities, are usually location bound, are potentially subject to physical intrusion, and will have limited operational redundancy. All to say that a field gateway is commonly a thing one can touch and sabotage while knowing what its function is. 
 
-現場閘道器和單純的流量路由器不同，它在管理存取與資料流程方面扮演積極的角色，這表示它是由應用程式處理之實體和網路連線或工作階段的終端。相反地，NAT 裝置或防火牆並不算現場閘道器，因為它們並不是明確的連線或工作階段的終端，而是連線或工作階段經過的路線 (或區塊)。現場閘道器有兩個不同的介面區。一個介面區表示區域的內部，並面對連接到該區的裝置，而另一個介面區表示區域的邊緣，並面對所有外部方。
+A field gateway is different from a mere traffic router in that it has had an active role in managing access and information flow, meaning it is an application addressed entity and network connection or session terminal. An NAT device or firewall, in contrast, do not qualify as field gateways since they are not explicit connection or session terminals, but rather a route (or block) connections or sessions made through them. The field gateway has two distinct surface areas. One faces the devices that are attached to it and represents the inside of the zone, and the other faces all external parties and is the edge of the zone.   
 
-### 雲端閘道器區域
+### <a name="the-cloud-gateway-zone"></a>The cloud gateway zone
 
-雲端閘道器是一種系統，其可讓跨公用網路空間之數個不同站台的裝置之間進行遠端通訊；其通常是針對雲端式控制和資料分析系統，也可說是這類系統的同盟。在某些情況下，雲端閘道器可立即提升特殊用途裝置的終端機存取速度 (如平板電腦或手機)。在此處所討論的內容中，「雲端」是指未繫結至連接裝置或現場閘道器之相同網站的專屬資料處理系統。此外，在雲端區域中，用來防止實體存取目標的作業措施並不一定要向 「公用雲端」基礎結構公開。
+Cloud gateway is a system that enables remote communication from and to devices or field gateways from several different sites across public network space, typically towards a cloud-based control and data analysis system, a federation of such systems. In some cases, a cloud gateway may immediately facilitate access to special-purpose devices from terminals such as tablets or phones. In the context discussed here, “cloud” is meant to refer to a dedicated data processing system that is not bound to the same site as the attached devices or field gateways. Also in a Cloud Zone, operational measures prevent targeted physical access and is not necessarily exposed to a “public cloud” infrastructure.  
 
-雲端閘道器可能會對應到網路虛擬化重疊，以隔離雲端閘道器與所有連接裝置或現場閘道器的任何其他網路流量。雲端閘道器本身不屬於裝置控制系統，也不是處理或儲存裝置資料的設備；反之，是這些設備與雲端閘道器接合。雲端閘道器區域包含雲端閘道器和所有現場閘道器，以及直接或間接連接其上的裝置。區域邊緣是不同的介面區，所有外部方會透過這裡進行通訊。
+A cloud gateway may potentially be mapped into a network virtualization overlay to insulate the cloud gateway and all of its attached devices or field gateways from any other network traffic. The cloud gateway itself is neither a device control system nor a processing or storage facility for device data; those facilities interface with the cloud gateway. The cloud gateway zone includes the cloud gateway itself along with all field gateways and devices directly or indirectly attached to it. The edge of the zone is a distinct surface area where all external parties communicate through.
 
-### 服務區域
+### <a name="the-services-zone"></a>The services zone
 
-本內容將「服務」定義為任何軟體元件或模組，其透過現場閘道器或雲端閘道器來與裝置互動、進行資料收集和分析，以及命令與控制等功能。服務是一種中介程序。它們會以面向閘道和其他子系統的身分識別來執行動作、儲存和分析資料、根據資料的深入資訊或排程自動向裝置發出命令，並向授權使用者公開資訊與控制功能。
+A “service” is defined for this context as any software component or module that is interfacing with devices through a field- or cloud gateway for data collection and analysis, as well as for command and control.  Services are mediators. They act under their identity towards gateways and other subsystems, store and analyze data, autonomously issue commands to devices based on data insights or schedules and expose information and control capabilities to authorized end-users.
 
-### 資訊裝置與特殊用途的裝置
+### <a name="information-devices-vs.-special-purpose-devices"></a>Information-devices vs. special-purpose devices
 
-PC、手機和平板電腦主要的互動式資訊裝置。手機和平板電腦是特別為了發揮最大電池續航力而最佳化的產品。當不需立即與人員進行互動，或是不提供播放音樂或為裝置擁有者進行路線規劃等服務時，最好將這些裝置部分關閉。從系統觀點來看，這些資訊技術裝置主要是作為面對人的 Proxy。也就是說，它們是建議動作的「人類傳動器」，以及收集輸入的「人類感應器」。
+PCs, phones, and tablets are primarily interactive information devices. Phones and tablets are explicitly optimized around maximizing battery lifetime. They preferably turn off partially when not immediately interacting with a person, or when not providing services like playing music or guiding their owner to a particular location. From a systems perspective, these information technology devices are mainly acting as proxies towards people. They are “people actuators” suggesting actions and “people sensors” collecting input. 
 
-特殊用途的裝置則各有不同，從簡單的溫度感應器到每條生產線內含有上千個元件的複雜工廠生產線皆算在內。這類裝置主要是以實際用途為目的，即使提供使用者介面，多半都只限於用來接合或整合在現實生活中的資產。它們可以測量和報告環境情況、開啟閥門、 控制伺服、發出警報、切換燈號，以及執行許多其他工作。如果使用資訊裝置進行某些工作會大材小用、過於昂貴、過大或太脆弱，就可以改用特殊用途的裝置。這類裝置的具體用途決定了它們的技術設計，包括可用的生產預算金額與預定的生命週期作業。這兩項關鍵因素的組合會限制可用的作業能源預算、實際使用量，乃至於可用的儲存空間、計算和安全性功能。
+Special-purpose devices, from simple temperature sensors to complex factory production lines with thousands of components inside them, are different. These devices are much more scoped in purpose and even if they provide some user interface, they are largely scoped to interfacing with or be integrated into assets in the physical world. They measure and report environmental circumstances, turn valves, control servos, sound alarms, switch lights, and do many other tasks. They help to do work for which an information device is either too generic, too expensive, too big, or too brittle. The concrete purpose immediately dictates their technical design as well the available monetary budget for their production and scheduled lifetime operation. The combination of these two key factors constrains the available operational energy budget, physical footprint, and thus available storage, compute, and security capabilities.  
 
-如果具自動化功能或可遠端控制的裝置發生某些問題，例如，實體瑕疵或控制邏輯瑕疵導致蓄意的未經授權入侵和操作，則可能會導致生產工廠毀壞、大樓被掠奪或燒毀，甚至可能造成人員傷亡。這類損失的等級顯然比信用卡遭竊並被刷爆來得嚴重。因此，如果是涉及物品移動的裝置以及最終會發出命令導致物品移動的感應器資料，這樣的安全性標準就必須高於任何電子商務或銀行的案例。
+If something “goes wrong” with automated or remote controllable devices, for example, physical defects or control logic defects to willful unauthorized intrusion and manipulation. The production lots may be destroyed, buildings may be looted or burned down, and people may be injured or even die. This is, of course, a whole different class of damage than someone maxing out a stolen credit card's limit. The security bar for devices that make things move, and also for sensor data that eventually results in commands that cause things to move, must be higher than in any e-commerce or banking scenario. 
 
 
-### 裝置控制和裝置資料的互動
+### <a name="device-control-and-device-data-interactions"></a>Device control and device data interactions
 
-特殊用途的連線裝置具有大量的潛在互動介面區與互動模式，您必須全面考慮所有項目才能提供適當的架構，以保護這些裝置的數位存取安全。此處的「數位存取」一詞是用來與透過直接裝置互動來執行的任何作業進行區隔，而直接互動的存取安全性是透過實體存取控制來保障。例如，將裝置放入室內，然後將門上鎖。雖然實體存取無法透過軟體和硬體拒絕存取，仍可採取一些措施來防止實體存取干擾系統。
+Connected special-purpose devices have a significant number of potential interaction surface areas and interaction patterns, all of which must be considered to provide a framework for securing digital access to those devices. The term “digital access” is used here to distinguish from any operations that are carried out through direct device interaction where access security is provided through physical access control. For example, putting the device into a room with a lock on the door. While physical access cannot be denied using software and hardware, measures can be taken to prevent physical access from leading to system interference. 
  
-在探索互動模式與進行威脅模型時，我們會對「裝置控制」和「裝置資料」同等重視。「裝置控制」可以歸類為任一方提供給裝置的任何資訊，其目標是要變更或影響裝置針對其狀態或環境狀態的行為。「裝置資料」可以歸類為任何資訊，其為裝置發出給另一方的裝置狀態和環境觀察狀態相關資訊。
+As we explore the interaction patterns, we will look at “device control” and “device data” with the same level of attention while threat modeling. “Device control” can be classified as any information that is provided to a device by any party with the goal of changing or influencing its behavior towards its state or the state of its environment. “Device data” can be classified as any information that a device emits to any other party about its state and the observed state of its environment. 
 
-## 為 Azure IoT 參考架構進行威脅模型化作業
+## <a name="threat-modeling-the-azure-iot-reference-architecture"></a>Threat modeling the Azure IoT reference architecture
 
-Microsoft 是使用以上概述的架構來為 Azure IoT 進行威脅模型化作業。因此，在下一節中，我們會使用 Azure IoT 參考架構的具體範例來示範如何分析 IoT 威脅模型化作業，以及如何處理所識別的威脅。在本案例中，我們會識別下列四個主要的區域︰
+Microsoft uses the framework outlined above to do threat modelling for Azure IoT. In the section below we therefore use the concrete example of Azure IoT Reference Architecture to demonstrate how to think about threat modelling for IoT and how to address the threats identified. In our case we identified four main areas of focus:
 
--	裝置和資料來源、
--	資料傳輸、
--	裝置和事件處理以及
--	展示
+-   Devices and Data Sources,
+-   Data Transport,
+-   Device and Event Processing, and
+-   Presentation
 
-![Azure IoT 的威脅模型化作業](media/iot-security-architecture/iot-security-architecture-fig2.png)
+![Threat Modeling for Azure IoT](media/iot-security-architecture/iot-security-architecture-fig2.png) 
 
-下圖提供簡化的 Microsoft IoT 架構檢視，該架構使用 Microsoft 威脅模型化工具所用的資料流程圖模型︰
+The diagram below provides a simplified view of Microsoft’s IoT Architecture using a Data Flow Diagram model that is used by the Microsoft Threat Modeling Tool:
 
-![使用 MS 威脅模型化工具進行 Azure IoT 威脅模型化作業](media/iot-security-architecture/iot-security-architecture-fig3.png)
+![Threat Modeling for Azure IoT using MS Threat Modeling Tool](media/iot-security-architecture/iot-security-architecture-fig3.png)
 
-請注意，該架構將裝置和閘道器功能區隔開來。這可讓使用者運用更安全的閘道器裝置：這類裝置可以使用安全的通訊協定與雲端閘道器進行通訊，且通常需要的處理負荷高於原生裝置 (例如控溫器) 可自行提供的量。在 Azure 服務區域中，我們假設 Azure IoT 中樞服務代表雲端閘道器。
+It is important to note that the architecture separates the device and gateway capabilities. This allows the user to leverage gateway devices that are more secure: they are capable of communicating with the cloud gateway using secure protocols, which typically requires greater processing overhead that a native device  - such as a thermostat - could provide on its own. In the Azure services zone, we assume that the Cloud Gateway is represented by the Azure IoT Hub service.
 
-### 裝置與資料來源/資料傳輸
+### <a name="device-and-data-sources/data-transport"></a>Device and data sources/data transport
 
-本節將放大檢視威脅模型化作業，以探討之前概述的架構，並提供如何解決一些固有考量的概述。我們將著重在威脅模型的核心項目︰
+This section explores the architecture outlined above through the lens of threat modeling and gives an overview of how we are addressing some of the inherent concerns. We will focus on the core elements of a threat model:
 
-- 處理序 (包括我們所掌控的處理序以及外部項目)
-- 通訊 (也稱為資料流程)
-- 儲存體 (也稱為資料存放區)
+- Processes (those under our control and external items)
+- Communication (also called data flows)
+- Storage (also called data stores)
 
-#### 處理序
+#### <a name="processes"></a>Processes
 
-在 Azure IoT 架構所概述的每個類別中，我們嘗試跨資料/資訊存在的三個階段來降低不同威脅的風險：處理序、通訊以及儲存體。下面我們提供「處理序」分類中最常見之威脅的概觀，並概要說明如何以最妥善的方式降低這些威脅的風險︰
+In each of the categories outlined in the Azure IoT architecture, we try to mitigate a number of different threats across the different stages data/information exists in: process, communication, and storage. Below we give an overview of the most common ones for the “process” category, followed by an overview of how these could be best mitigated: 
 
-**詐騙 (S)**︰攻擊者可能會從裝置擷取密碼編譯金鑰資料 (不論軟體或硬體層級)，接著利用取得密碼編譯金鑰資料之裝置的身分識別，搭配不同的實體或虛擬裝置來存取系統。遙控器就是很好的一例，既可以遙控電視機，也是很熱門的惡作劇工具。
+**Spoofing (S)**: An attacker may extract cryptographic key material from a device, either at the software or hardware level, and subsequently access the system with a different physical or virtual device under the identity of the device the key material has been taken from. A good illustration is remote controls that can turn any TV and that are popular prankster tools.
 
-**拒絕服務 (D)**︰藉由干擾無線電頻率或剪斷線路，導致可以轉譯的裝置無法運作或無法通訊。例如，蓄意破壞監控攝影機的電源或網路連線，使其完全無法回報資料。
+**Denial of Service (D)**: A device can be rendered incapable of functioning or communicating by interfering with radio frequencies or cutting wires. For example, a surveillance camera that had its power or network connection intentionally knocked out will not report data, at all.
 
-**竄改 (T)**︰如果非法程式可以使用金鑰資料或保存金鑰資料的密碼編譯設備，攻擊者可能會部分或全部取代裝置上執行的軟體，藉此讓取而代之的軟體運用裝置的正版身分識別。例如，攻擊者可能會利用擷取的金鑰資料，來攔截和隱藏通訊路徑上的裝置資料，並以竊取的金鑰資料來通過驗證，再以假資料取而代之。
+**Tampering (T)**: An attacker may partially or wholly replace the software running on the device, potentially allowing the replaced software to leverage the genuine identity of the device if the key material or the cryptographic facilities holding key materials were available to the illicit program. For example, an attacker may leverage extracted key material to intercept and suppress data from the device on the communication path and replace it with false data that is authenticated with the stolen key material.
 
-**資訊洩漏 (I)**︰如果裝置正在執行受操控的軟體，這類受操控的軟體可能會將資料洩漏給未經授權的一方。例如，攻擊者可能利用擷取的金鑰資料以介入裝置、控制器、現場閘道器或雲端閘道之間的通訊路徑，藉此竊取資訊。
+**Information Disclosure (I)**: If the device is running manipulated software, such manipulated software could potentially leak data to unauthorized parties. For example, an attacker may leverage extracted key material to inject itself into the communication path between the device and a controller or field gateway or cloud gateway to siphon off information.
 
-**權限提高 (E)**︰具有特定功能的裝置可能會被強制執行其他動作。例如，程式設計為半開的閥門可能會受騙而完全打開。
+**Elevation of Privilege (E)**: A device that does specific function can be forced to do something else. For example, a valve that is programmed to open half way can be tricked to open all the way.
 
-| **元件** | **Threat** | **緩和** | **風險** | **實作** |
+| **Component** | **Threat** | **Mitigation**                                                                                                                                                | **Risk**                                                                                                                                                                                                    | **Implementation**                                                                                                                                                                                                                                                                                                                                     |
 |---------------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 裝置 | S | 指派身分識別給裝置並驗證裝置 | 用其他裝置取代裝置或部分裝置。該怎麼判斷我們是在跟正確的裝置通訊？ | 使用傳輸層安全性 (TLS) 或 IPSec 來驗證裝置。如果裝置無法處理完整的非對稱密碼編譯，則基礎結構應該支援在這些裝置上使用預先共用金鑰 (PSK)。利用 Azure AD、[OAuth](http://www.rfc-editor.org/in-notes/internet-drafts/draft-ietf-ace-oauth-authz-01.txt) |
-| | TRID | 藉由讓人很難甚至不可能從裝置擷取金鑰和其他密碼編譯資料，以為裝置套用防竄改機制。 | 但風險是我們不知道裝置是不是已經受到竄改 (實體干擾)？該怎麼確認裝置未受到竄改？ | 最有效的安全防護功能是信賴平台模組 (TPM) 功能，其可讓您將金鑰存放在特殊的晶片電路中，以確保金鑰不被讀取，但僅適用於只使用金鑰而不會揭露金鑰的密碼編譯作業。裝置的記憶體加密。裝置的金鑰管理。簽署程式碼。 |
-| | E | 具有裝置的存取控制。授權配置。 | 如果裝置可以依據外部來源或甚至遭入侵之感應器的命令來執行個別動作，這意謂著攻擊可以藉此執行作業，而不僅是存取內容。 | 為裝置進行授權配置 |
-| 現場閘道器 | S | 現場閘道器到雲端閘道器的驗證 (憑證式、PSK、宣告式...) | 如果有心人士可以欺騙現場閘道器，就可以偽裝成任何裝置。 | TLS RSA/PSK、IPSe、[RFC 4279](https://tools.ietf.org/html/rfc4279)。同樣地，一般的裝置金鑰儲存和證明考量都高度建議使用 TPM。IPSec 的 6LowPAN 擴充可支援無線感測網路 (WSN)。 |
-| | TRID | 保護現場閘道器免遭竄改 (TPM？) | 詐騙攻擊會讓雲端閘道器誤以為和現場閘道器通訊，而可能導致資訊洩漏與資料遭竄改。 | 記憶體加密、TPM、驗證。 |
-| | E | 現場閘道器的存取控制機制 | | |
+| Device        | S          | Assigning identity to the device and authenticating the device                                                                                                | Replacing device or part of the device with some other device. How do we know we are talking to the right device?                                                                                           | Authenticating the device, using Transport Layer Security (TLS) or IPSec. Infrastructure should support using pre-shared key (PSK) on those devices that cannot handle full asymmetric cryptography. Leverage Azure AD, [OAuth](http://www.rfc-editor.org/in-notes/internet-drafts/draft-ietf-ace-oauth-authz-01.txt)                             |
+|               | TRID       | Apply tamperproof mechanisms to the device for example by making it very hard to impossible to extract keys and other cryptographic material from the device. | The risk is if someone is tampering the device (physical interference). How are we sure, that device has not tampered with.                                                                                 | The most effective mitigation is a trusted platform module (TPM) capability that allows storing keys in special on-chip circuitry from which the keys cannot be read, but can only be used for cryptographic operations that use the key but never disclose the key. Memory encryption of the device. Key management for the device. Signing the code. |
+|               | E          | Having access control of the device. Authorization scheme.                                                                                                    | If the device allows for individual actions to be performed based on commands from an outside source, or even compromised sensors, it will allow the attack to perform operations not otherwise accessible. | Having authorization scheme for the device                                                                                                                                                                                                                                                                                                             |
+| Field Gateway | S          | Authenticating the Field gateway to Cloud Gateway (cert based, PSK, Claim based,..)                                                                           | If someone can spoof Field Gateway, then it can present itself as any device.                                                                                                                               | TLS RSA/PSK, IPSe, [RFC 4279](https://tools.ietf.org/html/rfc4279). All the same key storage and attestation concerns of devices in general – best case is use TPM. 6LowPAN extension for IPSec to support Wireless Sensor Networks (WSN).                                                                                                              |
+|               | TRID       | Protect the Field Gateway against tampering (TPM?)                                                                                                            | Spoofing attacks that trick the cloud gateway thinking it is talking to field gateway could result in information disclosure and data tampering                                                             | Memory encryption, TPM’s, authentication.                                                                                                                                                                                                                                                                                                              |
+|               | E          | Access control mechanism for Field Gateway                                                                                                                    |                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                        |
 
-以下是這類威脅的一些範例︰
+Here are some examples of threats in this category:
 
-詐騙︰攻擊者可能會從裝置擷取密碼編譯金鑰資料 (不論軟體或硬體層級)，接著利用取得密碼編譯金鑰資料之裝置的身分識別，搭配不同的實體或虛擬裝置來存取系統。
+Spoofing: An attacker may extract cryptographic key material from a device, either at the software or hardware level, and subsequently access the system with a different physical or virtual device under the identity of the device the key material has been taken from.
 
-**阻斷服務**︰藉由干擾無線電頻率或剪斷線路，即可讓裝置變成無法運作或通訊。例如，蓄意破壞監控攝影機的電源或網路連線，使其完全無法回報資料。
+**Denial of Service**: A device can be rendered incapable of functioning or communicating by interfering with radio frequencies or cutting wires. For example, a surveillance camera that had its power or network connection intentionally knocked out will not report data, at all.
 
-**竄改**︰如果非法程式可以使用金鑰資料或保存金鑰資料的密碼編譯設備，攻擊者便可能部分取代或全部取代裝置上執行的軟體，而可能讓替代的軟體擅用裝置的真實身分識別。
+**Tampering**: An attacker may partially or wholly replace the software running on the device, potentially allowing the replaced software to leverage the genuine identity of the device if the key material or the cryptographic facilities holding key materials were available to the illicit program.
 
-**竄改**︰監控攝影機如果是顯示空走廊的可見範圍影像，可能會被對著這類走廊的照片拍攝。煙霧或火災感應器可能會回報下方有人手持打火機。任一種情況下，系統可能會在技術上完全信任裝置，但是裝置回報的資訊卻有可能受到操控。
+**Tampering**: A surveillance camera that’s showing a visible-spectrum picture of an empty hallway could be aimed at a photograph of such a hallway. A smoke or fire sensor could be reporting someone holding a lighter under it. In either case, the device may be technically fully trustworthy towards the system, but it will report manipulated information.
 
-**竄改**︰攻擊者可能會利用擷取的金鑰資料來攔截和隱藏通訊路徑上來自裝置的資料，然後使用以竊取的金鑰資料通過驗證的假資料來取而代之。
+**Tampering**: An attacker may leverage extracted key material to intercept and suppress data from the device on the communication path and replace it with false data that is authenticated with the stolen key material.
 
-**竄改**︰如果非法程式可以使用金鑰資料或保存金鑰資料的密碼編譯設備，攻擊者便可能部分取代或全部取代裝置上執行的軟體，而可能讓替代的軟體擅用裝置的真實身分識別。
+**Tampering**: An attacker may partially or completely replace the software running on the device, potentially allowing the replaced software to leverage the genuine identity of the device if the key material or the cryptographic facilities holding key materials were available to the illicit program.
    
-**資訊洩漏**︰如果裝置正在執行受操控的軟體，這類受操控的軟體可能會將資料洩漏給未經授權的一方。
+**Information Disclosure**: If the device is running manipulated software, such manipulated software could potentially leak data to unauthorized parties.
 
-**資訊洩漏**：攻擊者可能利用擷取的金鑰資料讓自己介入裝置與控制器、現場閘道或雲端閘道之間的通訊路徑，藉此竊取資訊。
+**Information Disclosure**: An attacker may leverage extracted key material to inject itself into the communication path between the device and a controller or field gateway or cloud gateway to siphon off information.
 
-**阻斷服務**︰可將裝置關閉或轉換成無法通訊的模式 (許多產業用機器會刻意設計此功能)。
+**Denial of Service**: The device can be turned off or turned into a mode where communication is not possible (which is intentional in many industrial machines).
 
-**竄改**︰可將裝置重新設定成以控制系統不知的狀態運作 (在已知的校正參數範圍外)，藉此提供可能被誤解的資料。
+**Tampering**: The device can be reconfigured to operate in a state unknown to the control system (outside of known calibration parameters) and thus provide data that can be misinterpreted
 
-**權限提高**︰具有特定功能的裝置可能會被強制執行其他動作。例如，程式設計為半開的閥門可能會受騙而完全打開。
+**Elevation of Privilege**: A device that does specific function can be forced to do something else. For example, a valve that is programmed to open half way can be tricked to open all the way.
 
-**阻斷服務**︰可將裝置轉換成無法通訊的狀態。
+**Denial of Service**: The device can be turned into a state where communication is not possible.
 
-**竄改**︰可將裝置重新設定成以控制系統不知的狀態運作 (在已知的校正參數範圍外)，藉此提供可能被誤解的資料。
+**Tampering**: The device can be reconfigured to operate in a state unknown to the control system (outside of known calibration parameters) and thus provide data that can be misinterpreted.
  
-**詐騙/竄改/否認性**：在未受保護的情況下 (消費性遙控器很少有這種情況)，攻擊者將能夠以匿名方式操控裝置的狀態。遙控器就是很好的一例，既可以遙控電視機，也是很熱門的惡作劇工具。
+**Spoofing/Tampering/Repudiation**: If not secured (which is rarely the case with consumer remote controls) an attacker can manipulate the state of a device anonymously. A good illustration is remote controls that can turn any TV and that are popular prankster tools.
 
-#### 通訊
+#### <a name="communication"></a>Communication
 
-裝置、裝置和現場閘道器，以及裝置和雲端閘道器之間的通訊路徑周遭，也佈滿威脅。針對位於開啟的通訊端上的裝置/VPN，下表提供相關指引︰
+Threats around communication path between devices, devices and field gateways and device and cloud gateway. The table below has some guidance around open sockets on the device/VPN:
 
-| **元件** | **Threat** | **緩和** | **風險** | **實作** |
+| **Component**               | **Threat** | **Mitigation**                                      | **Risk**                                                                                                      | **Implementation**                                                                                                                                                                                                                                                                                                                                                               |
 |-----------------------------|------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 裝置 IoT 中樞 | TID | 使用 (D)TLS (PSK/RSA) 以加密流量 | 竊聽或干擾裝置與閘道器之間的通訊 | 通訊協定層級的安全性。使用自訂通訊協定時，我們需要了解如何對其進行保護。在大部分情況下，通訊主要是發生在裝置到 IoT 中樞這一段位置 (由裝置起始連線)。 |
-| 裝置裝置 | TID | 使用 (D)TLS (PSK/RSA) 以加密流量。 | 讀取裝置間傳輸中的資料。竄改資料。多載具有新連線的裝置 | 通訊協定層級的安全性 (HTTP (S)/AMQP/MQTT/CoAP)。使用自訂通訊協定時，我們需要了解如何對其進行保護。DoS 威脅的安全防護功能是透過雲端閘道器或現場閘道器，將裝置設為對等，使其僅可以網路用戶端形式運作。在閘道器代理對等之後，對等作業可能會導致對等之間直接連線。 |
-| 外部實體裝置 | TID | 外部實體與裝置的強式配對 | 竊聽裝置的連線。干擾裝置的通訊 | 使用 NFC/Bluetooth LE 安全地配對外部實體與裝置。控制裝置 (實體) 的操作面板 |
-| 現場閘道雲端閘道 | TID | 使用 TLS (PSK/RSA) 以加密流量。 | 竊聽或干擾裝置與閘道器之間的通訊 | 通訊協定層級的安全性 (HTTP (S)/AMQP/MQTT/CoAP)。使用自訂通訊協定時，我們需要了解如何對其進行保護。 |
-| 裝置雲端閘道 | TID | 使用 TLS (PSK/RSA) 以加密流量。 | 竊聽或干擾裝置與閘道器之間的通訊 | 通訊協定層級的安全性 (HTTP (S)/AMQP/MQTT/CoAP)。使用自訂通訊協定時，我們需要了解如何對其進行保護。 |
+| Device IoT Hub              | TID        | (D)TLS (PSK/RSA) to encrypt the traffic             | Eavesdropping or interfering the communication between the device and the gateway                             | Security on the protocol level. With custom protocols, we need to figure out how to protect them. In most cases, the communication takes place from the device to the IoT Hub (device initiates the connection).                                                                                                                                                                 |
+| Device Device               | TID        | (D)TLS (PSK/RSA) to encrypt the traffic.            | Reading data in transit between devices. Tampering with the data. Overloading the device with new connections | Security on the protocol level (HTTP(S)/AMQP/MQTT/CoAP. With custom protocols, we need to figure out how to protect them. The mitigation for the DoS threat is to peer devices through a cloud or field gateway and have them only act as clients towards the network. The peering may result in a direct connection between the peers after having been brokered by the gateway |
+| External Entity Device      | TID        | Strong pairing of the external entity to the device | Eavesdropping the connection to the device. Interfering the communication with the device                     | Securely pairing the external entity to the device NFC/Bluetooth LE. Controlling the operational panel of the device (Physical)                                                                                                                                                                                                                                                  |
+| Field Gateway Cloud Gateway | TID        | TLS (PSK/RSA) to encrypt the traffic.               | Eavesdropping or interfering the communication between the device and the gateway                             | Security on the protocol level (HTTP(S)/AMQP/MQTT/CoAP). With custom protocols, we need to figure out how to protect them.                                                                                                                                                                                                                                                       |
+| Device Cloud Gateway        | TID        | TLS (PSK/RSA) to encrypt the traffic.               | Eavesdropping or interfering the communication between the device and the gateway                             | Security on the protocol level (HTTP(S)/AMQP/MQTT/CoAP). With custom protocols, we need to figure out how to protect them.                                                                                                                                                                                                                                                       |
 
-以下是這類威脅的一些範例︰
+Here are some examples of threats in this category:
 
-**阻斷服務**︰受限裝置在主動接聽輸入連線或網路上來路不明的資料包時，通常會處於 DoS 威脅之下，因為攻擊者可以平行開啟許多連線但卻不提供服務或以非常緩慢的速度提供服務，或是裝置可能會被來路不明的流量給塞爆。在這兩種情況下，都會讓裝置在網路上實際變成無法運作。
+**Denial of Service**: Constrained devices are generally under DoS threat when they actively listen for inbound connections or unsolicited datagrams on a network, because an attacker can open many connections in parallel and not service them or service them very slowly, or the device can be flooded with unsolicited traffic. In both cases, the device can effectively be rendered inoperable on the network.
 
-**詐騙、資訊洩漏**︰受限裝置和特殊用途裝置通常會有通用型安全性措施 (例如密碼或 PIN 碼保護)，或是完全仰賴網路授信，也就是只要裝置位在相同的網路中，就會授與資訊的存取權，而該網路通常只受到共用金鑰保護。這表示當裝置或網路共用的密碼遭公開時，有心人士就可以控制裝置或觀察從裝置發出的資料。
+**Spoofing, Information Disclosure**: Constrained devices and special-purpose devices often have one-for-all security facilities like password or PIN protection, or they wholly rely on trusting the network, meaning they will grant access to information when a device is on the same network, and that network is often only protected by a shared key. That means that when the shared secret to device or network is disclosed, it is possible to control the device or observe data emitted from the device.  
 
-**詐騙**︰攻擊者可能對廣播進行攔截或部分覆寫，然後詐騙建立者 (攔截式)。
+**Spoofing**: an attacker may intercept or partially override the broadcast and spoof the originator (man in the middle)
 
-**竄改**︰攻擊者可能會攔截或部分覆寫廣播，並傳送錯誤的資訊
+**Tampering**: an attacker may intercept or partially override the broadcast and send false information 
 
-**資訊洩漏**：攻擊者可能會竊聽廣播並在未經授權的情況下取得資訊。**阻斷服務**：攻擊者可能會干擾廣播訊號並拒絕資訊散發
+**Information Disclosure:** an attacker may eavesdrop on a broadcast and obtain information without authorization **Denial of Service:** an attacker may jam the broadcast signal and deny information distribution
 
-#### 儲存體
+#### <a name="storage"></a>Storage
 
-每個裝置和現場閘道器都有某種形式的儲存體 (暫存資料佇列、OS 映像儲存體)。
+Every device and field gateway has some form of storage (temporary for queuing the data, os image storage).
 
-| **元件** | **Threat** | **緩和** | **風險** | **實作** |
+| **Component**                            | **Threat** | **Mitigation**                       | **Risk**                                                                                                                                                                                                                                                                                                                | **Implementation**                                                                                                                                                     |
 |------------------------------------------|------------|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 裝置儲存空間 | TRID | 儲存體加密、簽署記錄檔 | 讀取儲存體的資料 (PII)、竄改遙測資料。竄改排入佇列或快取的命令控制資料。竄改組態或韌體更新封包，而本機快取或佇列可能會導致 OS 及/或系統元件遭到入侵 | 加密、訊息驗證碼 (MAC) 或數位簽章。盡可能透過資源的存取控制清單 (ACL) 或權限，進行強式存取控制。 |
-| 裝置 OS 映像 | TRID | | 竄改OS/取代 OS 元件 | 唯讀 OS 分割區、簽署 OS 映像、加密 |
-| 現場閘道器儲存體 (佇列資料) | TRID | 儲存體加密、簽署記錄檔 | 讀取儲存體的資料 (PII)、竄改遙測資料、竄改排入佇列或快取的命令控制資料。竄改組態或韌體更新封包 (指向裝置或現場閘道器)，而本機快取或佇列可能會導致 OS 及/或系統元件遭到入侵 | BitLocker |
-| 現場閘道器 OS 映像 | TRID | | 竄改OS/取代 OS 元件 | 唯讀 OS 分割區、簽署 OS 映像、加密 |
+| Device storage                           | TRID       | Storage encryption, signing the logs | Reading data from the storage (PII data), tampering with telemetry data. Tampering with queued or cached command control data. Tampering with configuration or firmware update packages while cached or queued locally can lead to OS and/or system components being compromised                                         | Encryption, message authentication code (MAC) or digital signature. Where possible, strong access control through resource access control lists (ACLs) or permissions. |
+| Device OS image                          | TRID       |                                      | Tampering with OS /replacing the OS components                                                                                                                                                                                                                                                                         | Read-only OS partition, signed OS image, Encryption                                                                                                                    |
+| Field Gateway storage (queuing the data) | TRID       | Storage encryption, signing the logs | Reading data from the storage (PII data), tampering with telemetry data, tampering with queued or cached command control data. Tampering with configuration or firmware update packages (destined for devices or field gateway) while cached or queued locally can lead to OS and/or system components being compromised | BitLocker                                                                                                                                                              |
+| Field Gateway OS image                   | TRID       |                                      | Tampering with OS /replacing the OS components                                                                                                                                                                                                                                                                          | Read-only OS partition, signed OS image, Encryption                                                                                                                    |
 
-### 裝置和事件處理/雲端閘道器區域
+### <a name="device-and-event-processing/cloud-gateway-zone"></a>Device and event processing/cloud gateway zone
 
-雲端閘道器是一種系統，其可讓跨公用網路空間之數個不同站台的裝置之間進行遠端通訊；其通常是針對雲端式控制和資料分析系統，也可說是這類系統的同盟。在某些情況下，雲端閘道器可立即提升特殊用途裝置的終端機存取速度 (如平板電腦或手機)。在此處所討論的內容中，「雲端」是指未繫結至連接裝置或現場閘道器之相同網站的專屬資料處理系統，且其中用來防止實體存取目標的作業措施並不一定要向 「公用雲端」基礎結構公開。雲端閘道器可能會對應到網路虛擬化重疊，以隔離雲端閘道器與所有連接裝置或現場閘道器的任何其他網路流量。雲端閘道器本身不屬於裝置控制系統，也不是處理或儲存裝置資料的設備；反之，是這些設備與雲端閘道器接合。雲端閘道器區域包含雲端閘道器和所有現場閘道器，以及直接或間接連接其上的裝置。
+A cloud gateway is system that enables remote communication from and to devices or field gateways from several different sites across public network space, typically towards a cloud-based control and data analysis system, a federation of such systems. In some cases, a cloud gateway may immediately facilitate access to special-purpose devices from terminals such as tablets or phones. In the context discussed here, “cloud” is meant to refer to a dedicated data processing system that is not bound to the same site as the attached devices or field gateways, and where operational measures prevent targeted physical access but is not necessarily to a “public cloud” infrastructure.  A cloud gateway may potentially be mapped into a network virtualization overlay to insulate the cloud gateway and all of its attached devices or field gateways from any other network traffic. The cloud gateway itself is neither a device control system nor a processing or storage facility for device data; those facilities interface with the cloud gateway. The cloud gateway zone includes the cloud gateway itself along with all field gateways and devices directly or indirectly attached to it.
 
-雲端閘道器通常是指以服務形式執行且自訂建置的軟體，其含有公開的端點供現場閘道器和裝置進行連線。因此，它的設計必須完全考慮到安全性問題。請遵循 [SDL](http://www.microsoft.com/sdl) 程序來設計和建置此服務。
+Cloud gateway is mostly custom built piece of software running as a service with exposed endpoints to which field gateway and devices connect. As such it must be designed with security in mind. Please follow [SDL](http://www.microsoft.com/sdl) process for designing and building this service. 
 
-#### 服務區域
+#### <a name="services-zone"></a>Services zone
 
-控制系統 (或控制器) 是一種軟體解決方案，其可與裝置、現場閘道器或雲端閘道器接合，以控制一個或多個裝置，以便收集、儲存及/或分析裝置資料，以進行簡報或後續的控制用途。在本討論範圍中，控制系統是唯一可立即協助與人互動的實體。裝置上的中繼實體控制面 (像是可讓使用者關閉裝置或變更其他屬性的交換器) 則屬例外情況，包括不含任何可數位存取之對等功能等情況。
+A control system (or controller) is a software solution that interfaces with a device, or a field gateway, or cloud gateway for the purpose of controlling one or multiple devices and/or to collect and/or store and/or analyze device data for presentation, or subsequent control purposes. Control systems are the only entities in the scope of this discussion that may immediately facilitate interaction with people. The exception are intermediate physical control surfaces on devices, like a switch that allows a person to turn the device off or change other properties, and for which there is no functional equivalent that can be accessed digitally. 
 
-在中繼實體控制介面中，任何類型的控制邏輯皆可限制實體控制介面的功能，使得對等的功能可以從遠端啟動或避免遠端輸入的輸入衝突 – 這類中繼控制介面在概念上是連接到本機控制系統，該系統運用的基礎功能會與裝置可平行附加之任何其他遠端控制系統相同。請參閱[雲端安全性聯盟 (CSA)](https://cloudsecurityalliance.org/research/top-threats/) 頁面，以了解雲端運算的主要威脅。
+Intermediate physical control surfaces are those where any sort of governing logic constrains the function of the physical control surface such that an equivalent function can be initiated remotely or input conflicts with remote input can be avoided – such intermediated control surfaces are conceptually attached to a local control system that leverages the same underlying functionality as any other remote control system that the device may be attached to in parallel. Top threats to the cloud computing can be read at [Cloud Security Alliance (CSA)](https://cloudsecurityalliance.org/research/top-threats/) page.
 
 
-## 其他資源
+## <a name="additional-resources"></a>Additional resources
 
-如需詳細資訊，請參閱下列文章：
+Refer to the following articles for additional information:
 
-- [SDL 威脅模型化工具](https://www.microsoft.com/sdl/adopt/threatmodeling.aspx)
-- [Microsoft Azure IoT 參考架構](https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/)
+- [SDL Threat Modeling Tool](https://www.microsoft.com/sdl/adopt/threatmodeling.aspx)
+- [Microsoft Azure IoT reference architecture](https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/)
  
 
-<!---HONumber=AcomDC_0928_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

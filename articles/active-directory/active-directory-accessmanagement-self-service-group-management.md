@@ -1,58 +1,65 @@
 <properties
-	pageTitle="設定自助式服務應用程式存取管理的 Azure Active Directory | Microsoft Azure"
-	description="自助式群組管理可讓使用者在 Azure Active Directory 中建立及管理安全性群組或 Office 365 群組，以及讓使用者可要求安全性群組或 Office 365 群組成員資格"
-	services="active-directory"
-	documentationCenter=""
+    pageTitle="Setting up Azure Active Directory for self service application access management| Microsoft Azure"
+    description="Self-service group management enables users to create and manage security groups or Office 365 groups in Azure Active Directory and offers users the possibility to request security group or Office 365 group memberships"
+    services="active-directory"
+    documentationCenter=""
   authors="curtand"
-	manager="femila"
-	editor=""
-	/>
+    manager="femila"
+    editor=""
+    />
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/10/2016"
-	ms.author="curtand"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="08/10/2016"
+    ms.author="curtand"/>
 
-# 設定 Azure Active Directory 進行自助服務群組管理
 
-自助式群組管理可讓使用者在 Azure Active Directory 中建立及管理安全性群組或 Office 365 群組。使用者也可以要求安全性群組或 Office 365 群組成員資格，然後群組擁有者可以管理或拒絕成員資格。如此一來，可以將群組成員資格的日常控制權委派給了解該成員資格的商務內容的人員。自助式群組管理功能僅供安全性群組和 Office 365 群組使用，但具備郵件功能的安全性群組或通訊群組清單無法使用此功能。
+# <a name="setting-up-azure-active-directory-for-self-service-group-management"></a>Setting up Azure Active Directory for self-service group management
 
-自助式群組管理目前包含兩個重要案例：委派的群組管理和自助式群組管理。
+Self-service group management enables users to create and manage security groups or Office 365 groups in Azure Active Directory (Azure AD). Users can also request security group or Office 365 group memberships, and then the owner of the group can approve or deny membership. In this way, day-to-day control of group membership can be delegated to people who understand the business context for that membership. Self-service group management features are available only for security groups and Office 365 groups, but not for mail-enabled security groups or distribution lists.
 
-- **委派的群組管理**：例如，管理對系統管理員公司所使用之 SaaS 應用程式存取權的系統管理員。管理這些存取權限會變得很麻煩，所以此系統管理員會要求企業業主建立新的群組。系統管理員會將應用程式的存取權指派給新群組，並新增至所有人員已存取該應用程式的群組。接著，企業業主可以新增更多使用者，而且這些使用者會自動佈建到應用程式。企業業主不需要等待系統管理員管理使用者的存取權。如果系統管理員將相同的權限授與不同業務群組中的管理員，則該人員也可以管理自己的使用者的存取權限。企業業主或管理員都不可以檢視或管理彼此的使用者。系統管理員仍然可以看到可以存取應用程式的所有使用者，並視需要封鎖存取權。
+Self-service group management currently comprises two essential scenarios: delegated group management and self-service group management.
 
-- **自助式群組管理**：此案例的其中一個範例是都已獨立設定 SharePoint Online 網站的兩個使用者。他們想要賦與彼此團隊各自網站的存取權。為了達成此目的，他們可以在 Azure AD 中建立一個群組，並各自在 SharePoint Online 中選取該群組來提供對他們網站的存取權。當有人想要存取權時，他們會從 [存取面板] 中要求，而且在核准之後，他們就可以自動取得這兩個 SharePoint Online 網站的存取權。之後，其中一個人會決定存取網站的所有人員也可以存取特定的 SaaS 應用程式。SaaS 應用程式的系統管理員可以將此應用程式的存取權限新增到 SharePoint Online 網站。從那時起，任何獲得核准的要求都可以存取兩個 SharePoint Online 網站，也可以存取此 SaaS 應用程式。
+- **Delegated group management**
+    An example is an administrator who is managing access to a SaaS application that the company is using. Managing these access rights is becoming cumbersome, so this administrator asks the business owner to create a new group. The administrator assigns access for the application to the new group, and adds to the group all people already accessing to the application. The business owner then can add more users, and those users are automatically provisioned to the application. The business owner doesn't need to wait for the administrator to manage access for users. If the administrator grants the same permission to a manager in a different business group, then that person can also manage access for their own users. Neither the business owner nor the manager can view or manage each other’s users. The administrator can still see all users who have access to the application and block access rights if needed.
 
-## 提供可供一般使用者自助服務的群組
+- **Self-service group management**
+    An example of this scenario is two users who both have SharePoint Online sites that they set up independently. They want to give each other’s teams access to their sites. To accomplish this, they can create one group in Azure AD, and in SharePoint Online each of them selects that group to provide access to their sites. When someone wants access, they request it from the Access Panel, and after approval they get access to both SharePoint Online sites automatically. Later, one of them decides that all people accessing the site should also get access to a particular SaaS application. The administrator of the SaaS application can add access rights for the  application to the SharePoint Online site. From then on, any requests that get approved gives access to the two SharePoint Online sites and also to this SaaS application.
 
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，開啟 Azure AD 目錄。
+## <a name="making-a-group-available-for-end-user-self-service"></a>Making a group available for end user self-service
 
-2. 在 [設定] 索引標籤上，將 [委派的群組管理] 設定為 [已啟用]。
+1. In the [Azure classic portal](https://manage.windowsazure.com), open your Azure AD directory.
 
-3. 將 [使用者可以建立安全性群組] 或 [使用者可以建立 Office 群組] 設定為 [已啟用]。
+2. On the **Configure** tab, set **Delegated group management** to Enabled.
 
-當 [使用者可以建立安全性群組] 啟用時，目錄中的所有使用者都可以建立新的安全性群組，並將成員新增至這些群組。這些新的群組也會顯示在其他所有使用者的 [存取面板] 中。如果群組的原則設定允許，其他使用者可以建立加入這些群組的要求。如果 [使用者可以建立安全性群組] 已停用，使用者就無法建立群組，也無法變更其擁有的現有群組。不過，他們仍然可以管理這些群組的成員資格，以及核准其他使用者加入其群組的要求。
+3. Set **Users can create security groups** or **Users can create Office groups** to Enabled.
 
-您也能夠使用 [可為安全性群組使用自助的使用者]，對您使用者的自助式群組管理功能實現更精細的存取控制。當 [使用者可以建立群組] 啟用時，目錄中的所有使用者都可以建立新群組，並將成員新增至這些群組。透過同時將 [可為安全性群組使用自助的使用者] 設定為 [部分]，表示您要將群組管理限制為只有一組有限的使用者。當這個參數設定為 [部分] 時，您必須先將使用者加入至 SSGMSecurityGroupsUsers 群組，他們才能建立新的群組並在其中加入成員。透過將 [可為安全性群組使用自助的使用者] 設定為 [全部]，表示您允許目錄中的所有使用者建立新群組。
+When **Users can create security groups** is enabled, all users in your directory are allowed to create new security groups and add members to these groups. These new groups would also show up in the Access Panel for all other users. If the policy setting on the group allows it, other users can create requests to join these groups. If **Users can create security groups** is disabled, users can't create groups and can't change existing groups for which they are an owner. However, they can still manage the memberships of those groups and approve requests from other users to join their groups.
 
-您也可以使用 [可為安全性群組使用自助的群組] 方塊，為其成員可以使用自助服務的群組指定自訂名稱。
+You can also use **Users who can use self-service for security groups** to achieve a more fine-grained access control over self-service group management for your users. When **Users can create groups** is enabled, all users in your directory are allowed to create new groups and add members to these groups. By also setting **Users who can use self-service for security groups** to Some, you are restricting group management to only a limited group of users. When this switch is set to Some, you must add users to the group SSGMSecurityGroupsUsers before they can create new groups and add members to them. By setting **Users who can use self-service for security groups** to All, you enable all users in your directory to create new groups.
 
-## 其他資訊
+You can also use the **Group that can use self-service for security groups** box to specify a custom name for a group whose members can use self-service.
 
-這些文章提供有關 Azure Active Directory 的其他資訊。
+## <a name="additional-information"></a>Additional information
 
-* [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
+These articles provide additional information on Azure Active Directory.
 
-* [設定群組設定的 Azure Active Directory Cmdlet](active-directory-accessmanagement-groups-settings-cmdlets.md)
+* [Managing access to resources with Azure Active Directory groups](active-directory-manage-groups.md)
 
-* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [Azure Active Directory cmdlets for configuring group settings](active-directory-accessmanagement-groups-settings-cmdlets.md)
 
-* [什麼是 Azure Active Directory？](active-directory-whatis.md)
+* [Article Index for Application Management in Azure Active Directory](active-directory-apps-index.md)
 
-* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [What is Azure Active Directory?](active-directory-whatis.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+* [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,153 +1,157 @@
 <properties
-	pageTitle="管理 Azure DevTest Labs 中的公式來建立 VM | Microsoft Azure"
-	description="了解如何建立、更新和移除 Azure DevTest Labs 公式，以及如何使用它們來建立新的 VM。"
-	services="devtest-lab,virtual-machines"
-	documentationCenter="na"
-	authors="tomarcher"
-	manager="douge"
-	editor=""/>
+    pageTitle="Manage formulas in Azure DevTest Labs to create VMs | Microsoft Azure"
+    description="Learn how to create, update, and remove Azure DevTest Labs formulas, and use them to create new VMs."
+    services="devtest-lab,virtual-machines"
+    documentationCenter="na"
+    authors="tomarcher"
+    manager="douge"
+    editor=""/>
 
 <tags
-	ms.service="devtest-lab"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/30/2016"
-	ms.author="tarcher"/>
+    ms.service="devtest-lab"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/30/2016"
+    ms.author="tarcher"/>
 
-# 管理研發/測試實驗室公式來建立 VM
 
-Azure DevTest Labs 中的公式是用來建立虛擬機器 (VM) 的預設屬性值清單。透過公式建立 VM 時，可以依現況使用預設值，或修改預設值。正如[自訂映像](./devtest-lab-create-template.md)和 [Marketplace 映像](./devtest-lab-configure-marketplace-images.md)，公式提供進行快速 VM 佈建的機制。
+# <a name="manage-devtest-labs-formulas-to-create-vms"></a>Manage DevTest Labs formulas to create VMs
 
-在本文中，您將了解如何執行下列工作：
+A formula in Azure DevTest Labs is a list of default property values used to create a virtual machine (VM). When creating a VM from a formula, the default values can be used as-is, or modified. Like [custom images](./devtest-lab-create-template.md) and [Marketplace images](./devtest-lab-configure-marketplace-images.md), formulas provide a mechanism for fast VM provisioning.  
 
-- [建立公式](#create-a-formula)
-- [使用公式來佈建 VM](#use-a-formula-to-provision-a-vm)
-- [修改公式](#modify-a-formula)
-- [刪除公式](#delete-a-formula)
+In this article, you'll learn how to perform the following tasks:
 
-> [AZURE.NOTE] 公式 (就像[自訂映像](./devtest-lab-create-template.md)一樣) 可讓您從 VHD 檔案建立基本映像。而基本映像可用來佈建新的 VM。若要協助決定哪一個適用於您的特定環境，請參閱文章：[比較研發/測試實驗室中的自訂映像和公式](./devtest-lab-comparing-vm-base-image-types.md)。
+- [Create a formula](#create-a-formula)
+- [Use a formula to provision a VM](#use-a-formula-to-provision-a-vm)
+- [Modify a formula](#modify-a-formula)
+- [Delete a formula](#delete-a-formula)
 
-## 建立公式
-具有 DevTest Labs「使用者」權限的所有使用者，都可以使用公式作為基底來建立 VM。有兩種方式可以建立公式：
+> [AZURE.NOTE] Formulas - like [custom images](./devtest-lab-create-template.md) - enable you to create a base image from a VHD file. The base image can then be used to provision a new VM. To help decide which is right for your particular environment, refer to the article, [Comparing custom images and formulas in DevTest Labs](./devtest-lab-comparing-vm-base-image-types.md).
 
-- 從基底開始 - 在您想要定義公式的所有特性時使用。
-- 從現有實驗室 VM - 在您想要根據現有 VM 的設定建立公式時使用。
+## <a name="create-a-formula"></a>Create a formula
+Anyone with DevTest Labs *Users* permissions is able to create VMs using a formula as a base. There are two ways to create formulas: 
 
-### 從基底建立公式
-下列步驟會引導您完成從自訂映像、Marketplace 映像或其他公式建立公式的程序。
+- From a base - Use when you want to define all the characteristics of the formula.
+- From an existing lab VM - Use when you want to create a formula based on the settings of an existing VM.
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+### <a name="create-a-formula-from-a-base"></a>Create a formula from a base
+The following steps guide you through the process of creating a formula from a custom image, Marketplace image, or another formula.
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 從實驗室清單中，選取所需的實驗室。
+1. Select **More Services**, and then select **DevTest Labs** from the list.
 
-1. 在實驗室的刀鋒視窗上，選取 [公式 (可重複使用的基底)]。
+1. From the list of labs, select the desired lab.  
 
-    ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
+1. On the lab's blade, select **Formulas (reusable bases)**.
 
-1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，選取 [+ 加入]。
+    ![Formula menu](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-    ![加入公式](./media/devtest-lab-manage-formulas/add-formula.png)
+1. On the **Lab formulas** blade, select **+ Add**.
 
-1. 在 [選擇基底] 刀鋒視窗上，選取您想要用來建立公式的基底 (自訂映像、Marketplace 映像或公式)。
+    ![Add a formula](./media/devtest-lab-manage-formulas/add-formula.png)
 
-    ![基本清單](./media/devtest-lab-manage-formulas/base-list.png)
+1. On the **Choose a base** blade, select the base (custom image, Marketplace image, or formula) from which you want to create the formula.
 
-1. 在 [建立公式] 刀鋒視窗上，指定下列值：
+    ![Base list](./media/devtest-lab-manage-formulas/base-list.png)
 
-	- **公式名稱** - 輸入公式的名稱。這個值將會在建立 VM 時顯示於基本映像清單中。名稱會在您加以輸入時進行驗證，如果無效，則會出現訊息表示有效名稱的需求。
-	- **描述** - 輸入公式的有意義描述。當您建立 VM 時，可以從公式的操作功能表使用這個值。
-	- **使用者名稱** - 輸入將被授與系統管理員權限的使用者名稱。
-	- - 從下拉式清單中輸入或選取一個值，該值與您想用於指定使用者的密碼相關聯。
-	- **映像** - 這個欄位會顯示您在前一個刀鋒視窗上選取的基本映像名稱。
-	- **虛擬機器大小** - 選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及要建立的 VM 的硬碟大小。
-	- **虛擬網路** - 指定所需的虛擬網路。
-	- **子網路** - 指定所需的子網路。
-	- **公用 IP 位址** - 如果將實驗室原則設定為允許所選子網路的公用 IP 位址，請選取 [是] 或 [否]，來指定您是否想要讓 IP 位址成為公用的位址。否則，這個選項會停用並選取為 [否]。
-	- **構件** - 選取並設定您想要加入至基本映像中的構件。安全字串值不會隨公式儲存。因此，做為安全字串的構件參數不會顯示。
+1. On the **Create formula** blade, specify the following values:
 
-    	![建立公式](./media/devtest-lab-manage-formulas/create-formula.png)
+    - **Formula name** - Enter a name for your formula. This value will be displayed in the list of base images when you create a VM. The name is validated as you type it, and if not valid, a message will indicate the requirements for a valid name.
+    - **Description** - Enter a meaningful description for your formula. This value is available from the formula's context menu when you create a VM.
+    - **User name** - Enter a user name that will be granted administrator privileges.
+    - **Password** - Enter - or select from the dropdown - a value that is associated with the secret (password) that you want to use for the specified user.  
+    - **Image** - This field displays name of the base image you selected on the previous blade. 
+    - **Virtual machine size** - Select one of the predefined items that specify the processor cores, RAM size, and the hard drive size of the VM to create.
+    - **Virtual network** - Specify the desired virtual network.
+    - **Subnet** - Specify the desired subnet.
+    - **Public IP address** - If the lab policy is set to allow public IP addresses for the selected subnet, specify whether you want the IP address to be public by selecting either **Yes** or **No**. Otherwise, this option is disabled and selected as **No**.
+    - **Artifacts** - Select and configure the artifacts that you want to add to the base image. Secure string values are not saved with the formula. Therefore, artifact parameters that are secure strings are not displayed. 
 
-1. 選取 [建立] 以建立公式。
+        ![Create formula](./media/devtest-lab-manage-formulas/create-formula.png)
 
-### 從 VM 建立公式
-下列步驟會引導您完成根據現有 VM 建立公式的程序。
+1. Select **Create** to create the formula.
 
-> [AZURE.NOTE] VM 必須是在 2016 年 3 月 30 日以後建立的，才能從該 VM 建立公式。
+### <a name="create-a-formula-from-a-vm"></a>Create a formula from a VM
+The following steps guide you through the process of creating a formula based on an existing VM. 
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+> [AZURE.NOTE] To create a formula from a VM, the VM must have been created after March 30, 2016. 
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 從實驗室清單中，選取所需的實驗室。
+1. Select **More Services**, and then select **DevTest Labs** from the list.
 
-1. 在實驗室的 [概觀] 刀鋒視窗中，選取要從中建立公式的 VM。
+1. From the list of labs, select the desired lab.  
 
-	![實驗室 VM](./media/devtest-lab-manage-formulas/my-vms.png)
+1. On the lab's **Overview** blade, select the VM from which you wish to create the formula.
 
-1. 在 VM 的刀鋒視窗上，選取 [建立公式 (可重複使用的基底)]。
+    ![Labs VMs](./media/devtest-lab-manage-formulas/my-vms.png)
 
-	![建立公式](./media/devtest-lab-manage-formulas/create-formula-menu.png)
+1. On the VM's blade, select **Create formula (reusable base)**.
 
-1. 在 [建立公式] 刀鋒視窗上，輸入新公式的 [名稱] 和 [描述]。
+    ![Create formula](./media/devtest-lab-manage-formulas/create-formula-menu.png)
 
-	![建立公式刀鋒視窗](./media/devtest-lab-manage-formulas/create-formula-blade.png)
+1. On the **Create formula** blade, enter a **Name** and **Description** for your new formula.
 
-1. 選取 [確定] 以建立公式。
+    ![Create formula blade](./media/devtest-lab-manage-formulas/create-formula-blade.png)
 
-## 使用公式來佈建 VM
-一旦您建立公式，您就可以根據該公式建立 VM。[新增具有構件的 VM](devtest-lab-add-vm-with-artifacts.md#add-a-vm-with-artifacts)一節會逐步引導您完成此程序。
+1. Select **OK** to create the formula.
 
-## 修改公式
-若要修改公式，請遵循下列步驟︰
+## <a name="use-a-formula-to-provision-a-vm"></a>Use a formula to provision a VM
+Once you've created a formula, you can create a VM based on that formula. The section [Add a VM with artifacts](devtest-lab-add-vm-with-artifacts.md#add-a-vm-with-artifacts) walks you through the process.
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+## <a name="modify-a-formula"></a>Modify a formula
+To modify a formula, follow these steps:
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 從實驗室清單中，選取所需的實驗室。
+1. Select **More Services**, and then select **DevTest Labs** from the list.
 
-1. 在實驗室的刀鋒視窗上，選取 [公式 (可重複使用的基底)]。
+1. From the list of labs, select the desired lab.  
 
-    ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
+1. On the lab's blade, select **Formulas (reusable bases)**.
 
-1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，選取您想要修改的公式。
+    ![Formula menu](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Update formula]\(更新公式) 刀鋒視窗上，進行所需的編輯，然後選取 [更新]。
+1. On the **Lab formulas** blade, select the formula you wish to modify.
 
-## 刪除公式 
-若要刪除公式，請遵循下列步驟︰
+1. On the **Update formula** blade, make the desired edits, and select **Update**.
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+## <a name="delete-a-formula"></a>Delete a formula 
+To delete a formula, follow these steps:
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. 從實驗室清單中，選取所需的實驗室。
+1. Select **More Services**, and then select **DevTest Labs** from the list.
 
-1. 在實驗室的 [設定] 刀鋒視窗上，選取 [公式]。
+1. From the list of labs, select the desired lab.  
 
-    ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
+1. On the lab **Settings** blade, select **Formulas**.
 
-1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，選取您想要刪除之公式右邊的省略符號。
+    ![Formula menu](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-    ![公式功能表](./media/devtest-lab-manage-formulas/lab-formulas-blade.png)
+1. On the **Lab formulas** blade, select the ellipsis to the right of the formula you wish to delete.
 
-1. 在公式的操作功能表上，選取 [刪除]。
+    ![Formula menu](./media/devtest-lab-manage-formulas/lab-formulas-blade.png)
 
-    ![公式操作功能表](./media/devtest-lab-manage-formulas/formula-delete-context-menu.png)
+1. On the formula's context menu, select **Delete**.
 
-1. 在刪除確認對話方塊上，選取 [是]。
+    ![Formula context menu](./media/devtest-lab-manage-formulas/formula-delete-context-menu.png)
+
+1. Select **Yes** to the deletion confirmation dialog.
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## 相關部落格文章
+## <a name="related-blog-posts"></a>Related blog posts
 
-- [自訂映像或公式？](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
+- [Custom images or formulas?](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
 
-## 後續步驟
-建立要在建立 VM 時使用的公式之後，下一個步驟就是[將 VM 加入實驗室](./devtest-lab-add-vm-with-artifacts.md)。
+## <a name="next-steps"></a>Next steps
+Once you have created a formula for use when creating a VM, the next step is to [add a VM to your lab](./devtest-lab-add-vm-with-artifacts.md).
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

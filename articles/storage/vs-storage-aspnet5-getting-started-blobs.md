@@ -1,68 +1,69 @@
 <properties
-	pageTitle="開始使用 Blob 儲存體和 Visual Studio 已連接服務 (ASP.NET 5) | Microsoft Azure"
-	description="在使用 Visual Studio 已連接服務建立儲存體帳戶之後，如何在 Visual Studio ASP.NET 5 專案中開始使用 Azure Blob 儲存體"
-	services="storage"
-	documentationCenter=""
-	authors="TomArcher"
-	manager="douge"
-	editor=""/>
+    pageTitle="Get started with blob storage and Visual Studio connected services (ASP.NET 5) | Microsoft Azure"
+    description="How to get started using Azure Blob storage in a Visual Studio ASP.NET 5 project after you have created a storage account using Visual Studio connected services"
+    services="storage"
+    documentationCenter=""
+    authors="TomArcher"
+    manager="douge"
+    editor=""/>
 
 <tags
-	ms.service="storage"
-	ms.workload="web"
-	ms.tgt_pltfrm="vs-getting-started"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/18/2016"
-	ms.author="tarcher"/>
+    ms.service="storage"
+    ms.workload="web"
+    ms.tgt_pltfrm="vs-getting-started"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/18/2016"
+    ms.author="tarcher"/>
 
-# 開始使用 Azure Blob 儲存體和 Visual Studio 已連接服務 (ASP.NET 5)
+
+# <a name="get-started-with-azure-blob-storage-and-visual-studio-connected-services-(asp.net-5)"></a>Get started with Azure Blob storage and Visual Studio connected services (ASP.NET 5)
 
 [AZURE.INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
-##概觀
+##<a name="overview"></a>Overview
 
-本文說明當您使用 Visual Studio 的 [新增已連接服務] 對話方塊，建立或參考了 ASP.NET 5 專案中的 Azure 儲存體帳戶之後，如何開始在 Visual Studio 使用 Azure Blob 儲存體。
+This article describes how to get started using Azure Blob storage in Visual Studio after you have created or referenced an Azure storage account in an ASP.NET 5 project by using the Visual Studio Add Connected Services dialog.
 
-Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量非結構化資料的服務，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。單一 Blob 可以是任何大小。Blob 可以是影像、音訊和視訊檔、原始資料及文件檔案。本文描述如何在您使用 ASP.NET 5 專案中 Visual Studio 的 [**加入已連接服務**] 對話方塊，建立 Azure 儲存體帳戶之後開始使用 Blob 儲存體。
+Azure Blob storage is a service for storing large amounts of unstructured data that can be accessed from anywhere in the world via HTTP or HTTPS. A single blob can be any size. Blobs can be things like images, audio and video files, raw data, and document files. This article describes how to get started with blob storage after you create an Azure storage account by using the Visual Studio **Add Connected Services** dialog in an ASP.NET 5 project.
 
-就像檔案在資料夾中一樣，儲存體 Blob 位於容器中。在您已建立儲存體之後，您會在儲存體中建立一個或多個容器。例如，在稱為 “Scrapbook” 的儲存體中，您可以在此儲存體中建立稱為 “images” 的容器來儲存圖片，以及建立另一個稱為 “audio” 的容器來儲存音訊檔。建立容器之後，就可以將個別的 Blob 檔案上傳至這些容器。如需以程式設計方式處理 Blob 的詳細資訊，請參閱[以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
+Just as files live in folders, storage blobs live in containers. After you have created a storage, you create one or more containers in the storage. For example, in a storage called “Scrapbook,” you can create containers in the storage called “images” to store pictures and another called “audio” to store audio files. After you create the containers, you can upload individual blob files to them. See [Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md) for more information on programmatically manipulating blobs.
 
-##在程式碼中存取 blob 容器
+##<a name="access-blob-containers-in-code"></a>Access blob containers in code
 
-若要以程式設計方式存取 ASP.NET 5 專案中的 Blob，您需要加入下列項目 (如果尚不存在)。
+To programmatically access blobs in ASP.NET 5 projects, you need to add the following items, if they're not already present.
 
-1. 將下列程式碼命名空間宣告，新增至您想要在其中以程式設計方式存取 Azure 儲存體之任何 C# 檔案內的頂端。
+1. Add the following code namespace declarations to the top of any C# file in which you want to programmatically access Azure storage.
 
-		using Microsoft.Extensions.Configuration;
-		using Microsoft.WindowsAzure.Storage;
-		using Microsoft.WindowsAzure.Storage.Blob;
-		using System.Threading.Tasks;
-		using LogLevel = Microsoft.Extensions.Logging.LogLevel;
+        using Microsoft.Extensions.Configuration;
+        using Microsoft.WindowsAzure.Storage;
+        using Microsoft.WindowsAzure.Storage.Blob;
+        using System.Threading.Tasks;
+        using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。使用下列程式碼，從 Azure 服務組態取得您的儲存體連接字串和儲存體帳戶資訊。
+2. Get a **CloudStorageAccount** object that represents your storage account information. Use the following code to get the your storage connection string and storage account information from the Azure service configuration.
 
-		 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-		   CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
 
-    **注意：**請在後續小節中的程式碼前面使用上述所有程式碼。
+    **NOTE:** Use all of the above code in front of the code in the following sections.
 
 
-3. 使用 **CloudBlobClient** 物件，以取得儲存體帳戶中現有容器的 **CloudBlobContainer** 參考。
+3. Use a **CloudBlobClient** object to get a **CloudBlobContainer** reference to an existing container in your storage account.
 
-		// Create a blob client.
-		CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+        // Create a blob client.
+        CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
         // Get a reference to a container named “mycontainer.”
         CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
 
 
-##在程式碼中建立容器
+##<a name="create-a-container-in-code"></a>Create a container in code
 
-您也可以使用 **CloudBlobClient**，在儲存體帳戶中建立容器。您只需加入 **CreateIfNotExistsAsync** 的呼叫即可，如下列程式碼所示：
+You can also use the **CloudBlobClient** to create a container in your storage account. All you need to do is to add a call to **CreateIfNotExistsAsync** as in the following code:
 
-	// Create a blob client.
+    // Create a blob client.
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
     // Get a reference to a container named “my-new-container.”
@@ -72,20 +73,20 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
     await container.CreateIfNotExistsAsync();
 
 
-**注意：**對 ASP.NET 5 中的 Azure 儲存體執行呼叫的 API 是非同步的。如需詳細資訊，請參閱[使用 Async 和 Await 進行非同步程式設計](http://msdn.microsoft.com/library/hh191443.aspx)。以下程式碼假設使用非同步程式設計方法。
+**NOTE:** The APIs that perform calls to Azure storage in ASP.NET 5 are asynchronous. See [Asynchronous programming with Async and Await](http://msdn.microsoft.com/library/hh191443.aspx) for more information. The code below assumes async programming methods are being used.
 
-若要讓所有人都能使用容器中的檔案，您可以使用下列程式碼將容器設定為公用容器。
+To make the files within the container available to everyone, you can set the container to be public by using the following code.
 
-	await container.SetPermissionsAsync(new BlobContainerPermissions
+    await container.SetPermissionsAsync(new BlobContainerPermissions
     {
         PublicAccess = BlobContainerPublicAccessType.Blob
     });
 
-##將 Blob 上傳至容器
+##<a name="upload-a-blob-into-a-container"></a>Upload a blob into a container
 
-若要將 Blob 檔案上傳至容器，請取得容器參考，並使用該參考來取得 Blob 參考。擁有 Blob 參考後，即可藉由呼叫 **UploadFromStreamAsync** 方法，將任何資料流上傳至其中。如果 Blob 不存在，此操作會建立 Blob，若已存在，則予以覆寫。下列範例顯示如何將 Blob 上傳到容器，並假設已建立該容器。
+To upload a blob file into a container, get a container reference and use it to get a blob reference. After you have a blob reference, you can upload any stream of data to it by calling the **UploadFromStreamAsync** method. This operation creates the blob if it’s not already there, or overwrites it if it does exist. The following example shows how to upload a blob into a container and assumes that the container was already created.
 
-	// Get a reference to a blob named "myblob".
+    // Get a reference to a blob named "myblob".
     CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
 
     // Create or overwrite the "myblob" blob with the contents of a local file
@@ -95,10 +96,10 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
         await blockBlob.UploadFromStreamAsync(fileStream);
     }
 
-##列出容器中的 Blob
-若要列出容器中的 Blob，請先取得容器參照。然後您即可呼叫容器的 **ListBlobsSegmentedAsync** 方法來擷取其中的 Blob 和/或目錄。若要針對傳回的 **IListBlobItem** 存取一組豐富的屬性與方法，您必須先將它轉換至 **CloudBlockBlob**、**CloudPageBlob** 或 **CloudBlobDirectory** 物件。如果不知道 Blob 類型，可使用類型檢查來決定要將其轉換成何種類型。下列程式碼示範如何擷取和輸出容器中每個項目的 URI。
+##<a name="list-the-blobs-in-a-container"></a>List the blobs in a container
+To list the blobs in a container, first get a container reference. You can then call the container's **ListBlobsSegmentedAsync** method to retrieve the blobs and/or directories within it. To access the rich set of properties and methods for a returned **IListBlobItem**, you must cast it to a **CloudBlockBlob**, **CloudPageBlob**, or **CloudBlobDirectory** object. If you don’t know the blob type, you can use a type check to determine which to cast it to. The following code demonstrates how to retrieve and output the URI of each item in a container.
 
-	BlobContinuationToken token = null;
+    BlobContinuationToken token = null;
     do
     {
         BlobResultSegment resultSegment = await container.ListBlobsSegmentedAsync(token);
@@ -128,33 +129,37 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
         }
     } while (token != null);
 
-還有其他方法可列出 Blob 容器的內容。如需詳細資訊，請參閱[以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container)。
+There are others ways to list the contents of a blob container. See [Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container) for more information.
 
-##下載 Blob
-若要下載 Blob，請先取得 Blob 的參考，然後呼叫 **DownloadToStreamAsync** 方法。下列範例會使用 **DownloadToStreamAsync** 方法，將 Blob 內容傳送給資料流物件，您接著可將該物件儲存為本機檔案。
+##<a name="download-a-blob"></a>Download a blob
+To download a blob, first get a reference to the blob, and then call the **DownloadToStreamAsync** method. The following example uses the **DownloadToStreamAsync** method to transfer the blob contents to a stream object that you can then save as a local file.
 
-	// Get a reference to a blob named "photo1.jpg".
-	CloudBlockBlob blockBlob = container.GetBlockBlobReference("photo1.jpg");
+    // Get a reference to a blob named "photo1.jpg".
+    CloudBlockBlob blockBlob = container.GetBlockBlobReference("photo1.jpg");
 
-	// Save the blob contents to a file named “myfile”.
-	using (var fileStream = System.IO.File.OpenWrite(@"path\myfile"))
-	{
-    	await blockBlob.DownloadToStreamAsync(fileStream);
-	}
+    // Save the blob contents to a file named “myfile”.
+    using (var fileStream = System.IO.File.OpenWrite(@"path\myfile"))
+    {
+        await blockBlob.DownloadToStreamAsync(fileStream);
+    }
 
-還有其他方法可將 Blob 儲存為檔案。如需詳細資訊，請參閱[以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md#download-blobs)。
+There are other ways to save blobs as files. See [Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md#download-blobs) for more information.
 
-##刪除 Blob
-若要刪除 Blob，請先取得 Blob 的參考，然後對其呼叫 **DeleteAsync** 方法。
+##<a name="delete-a-blob"></a>Delete a blob
+To delete a blob, first get a reference to the blob, and then call the **DeleteAsync** method on it.
 
-	// Get a reference to a blob named "myblob.txt".
-	CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob.txt");
+    // Get a reference to a blob named "myblob.txt".
+    CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob.txt");
 
-	// Delete the blob.
-	await blockBlob.DeleteAsync();
+    // Delete the blob.
+    await blockBlob.DeleteAsync();
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
 [AZURE.INCLUDE [vs-storage-dotnet-blobs-next-steps](../../includes/vs-storage-dotnet-blobs-next-steps.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

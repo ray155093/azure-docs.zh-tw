@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 PowerShell 建立 SQL 資料倉儲 | Microsoft Azure"
-   description="使用 PowerShell 建立 SQL 資料倉儲"
+   pageTitle="Create SQL Data Warehouse by using PowerShell | Microsoft Azure"
+   description="Create SQL Data Warehouse by using PowerShell"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="lodipalm"
@@ -16,95 +16,100 @@
    ms.date="08/25/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
-# 使用 PowerShell 建立 SQL 資料倉儲
+
+# <a name="create-sql-data-warehouse-using-powershell"></a>Create SQL Data Warehouse using PowerShell
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-data-warehouse-get-started-provision.md)
+- [Azure Portal](sql-data-warehouse-get-started-provision.md)
 - [TSQL](sql-data-warehouse-get-started-create-database-tsql.md)
 - [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
 
-本文說明如何使用 PowerShell 建立 SQL 資料倉儲。
+This article shows you how to create a SQL Data Warehouse using PowerShell.
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-若要開始，您需要：
+To get started, you need:
 
-- **Azure 帳戶**︰請瀏覽 [Azure 免費試用][]或 [MSDN Azure 點數][]以建立帳戶。
-- **Azure SQL Server**︰如需詳細資訊，請參閱[使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器][]或[使用 PowerShell 建立 Azure SQL Database 邏輯伺服器][]。
-- **資源群組**︰使用與 Azure SQL Server 相同的資源群組，或參閱[如何建立資源群組][]。
-- **PowerShell 1.0.3 版或更新版本**：您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。可透過 [Microsoft Web Platform Installer][] 安裝最新的版本。如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
+- **Azure account**: Visit [Azure Free Trial][] or [MSDN Azure Credits][] to create an account.
+- **Azure SQL server**:  See [Create an Azure SQL Database logical server with the Azure Portal][] or [Create an Azure SQL Database logical server with PowerShell][] for more details.
+- **Resource group**: Either use the same resource group as your Azure SQL server or see [how to create a resource group][].
+- **PowerShell version 1.0.3 or greater**:  You can check your version by running **Get-Module -ListAvailable -Name Azure**.  The latest version can be installed from [Microsoft Web Platform Installer][].  For more information on installing the latest version, see [How to install and configure Azure PowerShell][].
 
-> [AZURE.NOTE] 建立 SQL 資料倉儲可能會導致新的可計費服務。如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][]。
+> [AZURE.NOTE] Creating a SQL Data Warehouse may result in a new billable service.  See [SQL Data Warehouse pricing][] for more details on pricing.
 
-## 建立 SQL 資料倉儲
+## <a name="create-a-sql-data-warehouse"></a>Create a SQL Data Warehouse
 
-1. 開啟 Windows PowerShell。
-2. 執行此 Cmdlet 來登入 Azure 資源管理員。
+1. Open Windows PowerShell.
+2. Run this cmdlet to login to Azure Resource Manager.
 
-	```Powershell
-	Login-AzureRmAccount
-	```
-	
-3. 選取目前的工作階段要使用的訂用帳戶。
+    ```Powershell
+    Login-AzureRmAccount
+    ```
+    
+3. Select the subscription you want to use for your current session.
 
-	```Powershell
-	Get-AzureRmSubscription	-SubscriptionName "MySubscription" | Select-AzureRmSubscription
-	```
+    ```Powershell
+    Get-AzureRmSubscription -SubscriptionName "MySubscription" | Select-AzureRmSubscription
+    ```
 
-4.  建立資料庫。這個範例會使用服務目標等級 "DW400" 建立名為 "mynewsqldw" 的資料庫，以部署到 "mywesteuroperesgp1" 資源群組中名為 "sqldwserver1" 的伺服器。
+4.  Create database. This example creates a database named "mynewsqldw", with service objective level "DW400", to the server named "sqldwserver1", which is in the resource group named "mywesteuroperesgp1".
 
-	```Powershell
-	New-AzureRmSqlDatabase -RequestedServiceObjectiveName "DW400" -DatabaseName "mynewsqldw" -ServerName "sqldwserver1" -ResourceGroupName "mywesteuroperesgp1" -Edition "DataWarehouse" -CollationName "SQL_Latin1_General_CP1_CI_AS" -MaxSizeBytes 10995116277760
-	```
+    ```Powershell
+    New-AzureRmSqlDatabase -RequestedServiceObjectiveName "DW400" -DatabaseName "mynewsqldw" -ServerName "sqldwserver1" -ResourceGroupName "mywesteuroperesgp1" -Edition "DataWarehouse" -CollationName "SQL_Latin1_General_CP1_CI_AS" -MaxSizeBytes 10995116277760
+    ```
 
-必要參數如下：
+Required Parameters are:
 
-- **RequestedServiceObjectiveName**：您要求的 [DWU][] 數量。支援的值為︰DW100、DW200、DW300、DW400、DW500、DW600、DW1000、DW1200、DW1500、DW2000、DW3000 和 DW6000。
-- **DatabaseName**：您要建立的 SQL 資料倉儲的名稱。
-- **ServerName**：您用來建立的伺服器名稱 (必須是 V12)。
-- **ResourceGroupName**：您使用的資源群組。若要尋找訂用帳戶中可用的資源，請使用 Get-AzureResource。
-- **版本**：必須是 "DataWarehouse"，才能建立 SQL 資料倉儲。
+- **RequestedServiceObjectiveName**: The amount of [DWU][] you are requesting.  Supported values are: DW100, DW200, DW300, DW400, DW500, DW600, DW1000, DW1200, DW1500, DW2000, DW3000, and DW6000.
+- **DatabaseName**: The name of the SQL Data Warehouse that you are creating.
+- **ServerName**: The name of the server that you are using for creation (must be V12).
+- **ResourceGroupName**: Resource group you are using.  To find available resource groups in your subscription use Get-AzureResource.
+- **Edition**: Must be "DataWarehouse" to create a SQL Data Warehouse.
 
-選擇性參數如下：
+Optional Parameters are:
 
-- **CollationName**：未指定定序時的預設值為 SQL\_Latin1\_General\_CP1\_CI\_AS。無法變更資料庫的定序。
-- **MaxSizeBytes**︰資料庫的預設大小上限為 10 GB。
+- **CollationName**: The default collation if not specified is SQL_Latin1_General_CP1_CI_AS.  Collation cannot be changed on a database.
+- **MaxSizeBytes**: The default max size of a database is 10 GB.
 
 
-如需參數選項的詳細資訊，請參閱 [New-AzureRmSqlDatabase][] 和[建立資料庫 (Azure SQL 資料倉儲)][]。
+For more details on the parameter options, see [New-AzureRmSqlDatabase][] and [Create Database (Azure SQL Data Warehouse)][].
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或查看如何[開發][]、[載入][]或[移轉][]。
+After your SQL Data Warehouse has finished provisioning you may want to try [loading sample data][] or check out how to [develop][], [load][], or [migrate][].
 
-如果您有興趣進一步了解如何以程式設計方式管理 SQL 資料倉儲，請查看我們的文章中有關 [PowerShell Cmdlet 和 REST API][] 的使用方式。
+If you're interested in more on how to manage SQL Data Warehouse programmatically, check out our article on how to use [PowerShell cmdlets and REST APIs][].
 
 <!--Image references-->
 
 <!--Article references-->
 [DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
-[移轉]: ./sql-data-warehouse-overview-migrate.md
-[開發]: ./sql-data-warehouse-overview-develop.md
-[載入]: ./sql-data-warehouse-load-with-bcp.md
-[載入範例資料]: ./sql-data-warehouse-load-sample-databases.md
-[PowerShell Cmdlet 和 REST API]: ./sql-data-warehouse-reference-powershell-cmdlets.md
+[migrate]: ./sql-data-warehouse-overview-migrate.md
+[develop]: ./sql-data-warehouse-overview-develop.md
+[load]: ./sql-data-warehouse-load-with-bcp.md
+[loading sample data]: ./sql-data-warehouse-load-sample-databases.md
+[PowerShell cmdlets and REST APIs]: ./sql-data-warehouse-reference-powershell-cmdlets.md
 [firewall rules]: ../sql-database-configure-firewall-settings.md
 
-[如何安裝和設定 Azure PowerShell]: ../powershell/powershell-install-configure.md
+[How to install and configure Azure PowerShell]: ../powershell/powershell-install-configure.md
 [how to create a SQL Data Warehouse from the Azure Portal]: ./sql-data-warehouse-get-started-provision.md
-[使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器]: ../sql-database/sql-database-get-started.md#create-an-azure-sql-database-logical-server
-[使用 PowerShell 建立 Azure SQL Database 邏輯伺服器]: ../sql-database/sql-database-get-started-powershell.md#database-setup-create-a-resource-group-server-and-firewall-rule
-[如何建立資源群組]: ../resource-group-template-deploy-portal.md#create-resource-group
+[Create an Azure SQL Database logical server with the Azure Portal]: ../sql-database/sql-database-get-started.md#create-an-azure-sql-database-logical-server
+[Create an Azure SQL Database logical server with PowerShell]: ../sql-database/sql-database-get-started-powershell.md#database-setup-create-a-resource-group-server-and-firewall-rule
+[how to create a resource group]: ../resource-group-template-deploy-portal.md#create-resource-group
 
 <!--MSDN references--> 
 [MSDN]: https://msdn.microsoft.com/library/azure/dn546722.aspx
 [New-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619339.aspx
-[建立資料庫 (Azure SQL 資料倉儲)]: https://msdn.microsoft.com/library/mt204021.aspx
+[Create Database (Azure SQL Data Warehouse)]: https://msdn.microsoft.com/library/mt204021.aspx
 
 <!--Other Web references-->
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
-[SQL 資料倉儲價格]: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
-[Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
-[MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
+[SQL Data Warehouse pricing]: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
+[Azure Free Trial]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
+[MSDN Azure Credits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

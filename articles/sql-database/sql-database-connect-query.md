@@ -1,105 +1,113 @@
 <properties
-	pageTitle="透過 C# 查詢連接到 SQL Database | Microsoft Azure"
-	description="以 C# 撰寫程式以查詢和連接到 SQL Database。有關 IP 位址、連接字串、安全登入和免費 Visual Studio 的資訊。"
-	services="sql-database"
-	keywords="c# 資料庫查詢, c# 查詢, 連接到資料庫, SQL C#"
-	documentationCenter=""
-	authors="stevestein"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Connect to SQL Database with a C# query | Microsoft Azure"
+    description="Write a program in C# to query and connect to SQL database. Info about IP addresses, connection strings, secure login, and free Visual Studio."
+    services="sql-database"
+    keywords="c# database query, c# query, connect to database, SQL C#"
+    documentationCenter=""
+    authors="stevestein"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="get-started-article"
-	ms.date="08/17/2016"
-	ms.author="stevestein"/>
+    ms.service="sql-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="dotnet"
+    ms.topic="get-started-article"
+    ms.date="08/17/2016"
+    ms.author="stevestein"/>
 
 
 
-# 使用 Visual Studio 連接到 SQL Database
+
+# <a name="connect-to-a-sql-database-with-visual-studio"></a>Connect to a SQL Database with Visual Studio
 
 > [AZURE.SELECTOR]
 - [Visual Studio](sql-database-connect-query.md)
 - [SSMS](sql-database-connect-query-ssms.md)
 - [Excel](sql-database-connect-excel.md)
 
-了解如何在 Visual Studio 中連接到 Azure SQL Database。
+Learn how to connect to an Azure SQL database in Visual Studio. 
 
-## 必要條件
-
-
-若要使用 Visual Studio 連接到 SQL Database，您需要下列各項：
+## <a name="prerequisites"></a>Prerequisites
 
 
-- 要連接的 SQL Database。本文使用 **AdventureWorks** 範例資料庫。若要取得 AdventureWorks 範例資料庫，請參閱[建立示範資料庫](sql-database-get-started.md)。
+To connect to a SQL database using Visual Studio, you need the following: 
 
 
-- Visual Studio 2013 Update 4 (或更新版本)。Microsoft 現在*免費*提供 Visual Studio Community。
- - [Visual Studio Community，下載](http://www.visualstudio.com/products/visual-studio-community-vs)
- - [免費 Visual Studio 的更多選項](http://www.visualstudio.com/products/free-developer-offers-vs.aspx)
+- A SQL database to connect to. This article uses the **AdventureWorks** sample database. To get the AdventureWorks sample database, see [Create the demo database](sql-database-get-started.md).
+
+
+- Visual Studio 2013 update 4 (or later). Microsoft now provides Visual Studio Community for *free*.
+ - [Visual Studio Community, download](http://www.visualstudio.com/products/visual-studio-community-vs)
+ - [More options for free Visual Studio](http://www.visualstudio.com/products/free-developer-offers-vs.aspx)
 
 
 
 
-## 從 Azure 入口網站開啟 Visual Studio
+## <a name="open-visual-studio-from-the-azure-portal"></a>Open Visual Studio from the Azure portal
 
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+1. Log in to the [Azure portal](https://portal.azure.com/).
 
-2. 按一下 [其他服務] > [SQL Database]
-3. 找出並按一下 AdventureWorks 資料庫，以開啟 **AdventureWorks** 資料庫刀鋒視窗。
+2. Click **More Services** > **SQL databases**
+3. Open the **AdventureWorks** database blade by locating and clicking the *AdventureWorks* database.
 
-6. 按一下資料庫刀鋒視窗頂端的 [工具] 按鈕：
+6. Click the **Tools** button at the top of the database blade:
 
-	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/tools.png)
+    ![New query. Connect to SQL Database server: SQL Server Management Studio](./media/sql-database-connect-query/tools.png)
 
-7. 按一下 [在 Visual Studio 中開啟] \(如果您需要 Visual Studio，請按一下下載連結)︰
+7. Click **Open in Visual Studio** (if you need Visual Studio, click the download link):
 
-	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/open-in-vs.png)
-
-
-8. Visual Studio 隨即開啟，其 [連接到伺服器] 視窗已設定為連接到您在入口網站中選取的伺服器和資料庫。(按一下 [選項] 以確認連接已設為正確的資料庫)。 輸入您的伺服器系統管理員密碼，然後按一下 [連接]。
+    ![New query. Connect to SQL Database server: SQL Server Management Studio](./media/sql-database-connect-query/open-in-vs.png)
 
 
-	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/connect.png)
+8. Visual Studio opens with the **Connect to Server** window already set to connect to the server and database you selected in the portal.  (Click **Options** to verify that the connection is set to the correct database.) Type your server admin password and click **Connect**.
 
 
-8. 如果您未針對您電腦的 IP 位址設定防火牆規則，您會在此收到「無法連接」訊息。若要建立防火牆規則，請參閱[設定 Azure SQL Database 伺服器層級的防火牆規則](sql-database-configure-firewall-settings.md)。
+    ![New query. Connect to SQL Database server: SQL Server Management Studio](./media/sql-database-connect-query/connect.png)
 
 
-9. 成功連線之後，[SQL Server 物件總管] 視窗隨即開啟，內含您的資料庫連線。
-
-	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/sql-server-object-explorer.png)
+8. If you do not have a firewall rule set up for your computer's IP address, you get a *Cannot connect* message here. To create a firewall rule, see [Configure an Azure SQL Database server-level firewall rule](sql-database-configure-firewall-settings.md).
 
 
-## 執行範例查詢
+9. After successfully connecting, the **SQL Server Object Explorer** window opens with a connection to your database.
 
-我們現已連接至資料庫，下列步驟顯示如何執行簡單查詢︰
+    ![New query. Connect to SQL Database server: SQL Server Management Studio](./media/sql-database-connect-query/sql-server-object-explorer.png)
 
-2. 在資料庫上按一下滑鼠右鍵，然後選取 [新增查詢]。
 
-	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/new-query.png)
+## <a name="run-a-sample-query"></a>Run a sample query
 
-3. 在查詢視窗中，複製並貼上下列程式碼。
+Now that we're connected to the database, the following steps show how to run a simple query:
 
-		SELECT
-		CustomerId
-		,Title
-		,FirstName
-		,LastName
-		,CompanyName
-		FROM SalesLT.Customer;
+2. Right-click the database and then select **New Query**.
 
-4. 按一下 [執行] 按鈕執行查詢：
+    ![New query. Connect to SQL Database server: SQL Server Management Studio](./media/sql-database-connect-query/new-query.png)
 
-	![成功。連接到 SQL Database 伺服器：Visual Studio](./media/sql-database-connect-query/run-query.png)
+3. In the query window, copy and paste the following code.
 
-## 後續步驟
+        SELECT
+        CustomerId
+        ,Title
+        ,FirstName
+        ,LastName
+        ,CompanyName
+        FROM SalesLT.Customer;
 
-- 在 Visual Studio 中開啟 SQL Database 以使用 SQL Server Data Tools。如需詳細資訊，請參閱 [SQL Server Data Tools](https://msdn.microsoft.com/library/hh272686.aspx)。
-- 若要使用程式碼連接到 SQL Database，請參閱[使用 .NET (C#) 連接到 SQL Database](sql-database-develop-dotnet-simple.md)。
+4. Click the **Execute** button to run the query:
 
-<!---HONumber=AcomDC_0824_2016--->
+    ![Success. Connect to SQL Database server: SVisual Studio](./media/sql-database-connect-query/run-query.png)
+
+## <a name="next-steps"></a>Next steps
+
+- Opening SQL databases in Visual Studio uses SQL Server Data Tools. For more details, see [SQL Server Data Tools](https://msdn.microsoft.com/library/hh272686.aspx).
+- To connect to a SQL database using code, see [Connect to SQL Database by using .NET (C#)](sql-database-develop-dotnet-simple.md).
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

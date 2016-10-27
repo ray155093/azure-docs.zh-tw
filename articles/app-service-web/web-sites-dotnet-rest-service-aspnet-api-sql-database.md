@@ -1,246 +1,249 @@
 <properties 
-	pageTitle="在 Azure App Service 中使用 ASP.NET Web API 和 SQL Database 建立 REST 服務" 
-	description="指導如何使用 Visual Studio，將使用 ASP.NET Web API 的應用程式部署至 Azure Web 應用程式的教學課程。" 
-	services="app-service\web" 
-	documentationCenter=".net" 
-	authors="Rick-Anderson" 
-	writer="Rick-Anderson" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Create a REST service using ASP.NET Web API and SQL Database in Azure App Service" 
+    description="A tutorial that teaches you how to deploy an app that uses the ASP.NET Web API to an Azure web app by using Visual Studio." 
+    services="app-service\web" 
+    documentationCenter=".net" 
+    authors="Rick-Anderson" 
+    writer="Rick-Anderson" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service-web" 
-	ms.workload="web" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="dotnet" 
-	ms.topic="article" 
-	ms.date="02/29/2016" 
-	ms.author="riande"/>
+    ms.service="app-service-web" 
+    ms.workload="web" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="dotnet" 
+    ms.topic="article" 
+    ms.date="02/29/2016" 
+    ms.author="riande"/>
 
-# 在 Azure App Service 中使用 ASP.NET Web API 和 SQL Database 建立 REST 服務
 
-本教學課程示範如何使用 Visual Studio 2013 或 Visual Studio 2013 Community Edition 中的 [發佈 Web] 精靈，將 ASP.NET Web 應用程式部署至 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)。
+# <a name="create-a-rest-service-using-asp.net-web-api-and-sql-database-in-azure-app-service"></a>Create a REST service using ASP.NET Web API and SQL Database in Azure App Service
 
-您可以免費申請 Azure 帳戶，而且如果您還沒有 Visual Studio 2013，SDK 會自動安裝 Visual Studio 2013 for Web Express。如此您就能開始免費進行 Azure 相關開發。
+This tutorial shows how to deploy an ASP.NET web app to an [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) by using the Publish Web wizard in Visual Studio 2013 or Visual Studio 2013 Community Edition. 
 
-本教學課程假設您先前沒有使用 Azure 的經驗。完成本教學課程後，您將有個簡單的 Web 應用程式已在雲端中啟動並執行。
+You can open an Azure account for free, and if you don't already have Visual Studio 2013, the SDK automatically installs Visual Studio 2013 for Web Express. So you can start developing for Azure entirely for free.
+
+This tutorial assumes that you have no prior experience using Azure. On completing this tutorial, you'll have a simple web app up and running in the cloud.
  
-您將了解：
+You'll learn:
 
-* 如何安裝 Azure SDK 好讓電腦適合用於進行 Azure 開發。
-* 如何建立 Visual Studio ASP.NET MVC 5 專案，並將它發行至 Azure 應用程式。
-* 如何使用 ASP.NET Web API 來啟用符合 REST 限制的 API 呼叫。
-* 如何使用 SQL 資料庫在 Azure 中儲存資料。
-* 如何將應用程式更新發行至 Azure。
+* How to enable your machine for Azure development by installing the Azure SDK.
+* How to create a Visual Studio ASP.NET MVC 5 project and publish it to an Azure app.
+* How to use the ASP.NET Web API to enable Restful API calls.
+* How to use a SQL database to store data in Azure.
+* How to publish application updates to Azure.
 
-您將建立一個簡單的連絡人清單 Web 應用程式，該應用程式建立於 ASP.NET MVC 5 之上，並使用 ADO.NET Entity Framework 進行資料庫存取。下圖顯示完成的應用程式：
+You'll build a simple contact list web application that is built on ASP.NET MVC 5 and uses the ADO.NET Entity Framework for database access. The following illustration shows the completed application:
 
-![網站的螢幕擷取畫面][intro001]
+![screenshot of web site][intro001]
 
 <!-- the next line produces the "Set up the development environment" section as see at http://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/ -->
 [AZURE.INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
-### 建立專案
+### <a name="create-the-project"></a>Create the project
 
-1. 啟動 Visual Studio 2013。
-1. 從 [檔案] 功能表，按一下 [新增專案]。
-3. 在 [**新增專案**] 對話方塊中，展開 [**Visual C#**] 並選取 [**Web**]，再選取 [**ASP.NET Web 應用程式**]。將應用程式命名為 **ContactManager**，再按一下 [確定]。
+1. Start Visual Studio 2013.
+1. From the **File** menu click **New Project**.
+3. In the **New Project** dialog box, expand **Visual C#** and select **Web**  and then select **ASP.NET Web Application**. Name the application **ContactManager** and click **OK**.
 
-	![New Project dialog box](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr4.PNG)
+    ![New Project dialog box](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr4.png)
 
-1. 在 [New ASP.NET Project] 對話方塊中，選取 [MVC] 範本，勾選 [Web API]，再按一下 [變更驗證]。
+1. In the **New ASP.NET Project** dialog box, select the **MVC** template, check **Web API** and then click **Change Authentication**.
 
-1. 在 [變更驗證] 對話方塊中，按一下 [不需要驗證]，然後按一下 [確定]。
+1. In the **Change Authentication** dialog box, click **No Authentication**, and then click **OK**.
 
-	![不需要驗證](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/GS13noauth.png)
+    ![No Authentication](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/GS13noauth.png)
 
-	您要建立的範例應用程式將不會有需要使用者登入的功能。如需關於如何實作驗證與授權功能的詳細資訊，請參閱本教學課程最後的[後續步驟](#nextsteps)小節。
+    The sample application you're creating won't have features that require users to log in. For information about how to implement authentication and authorization features, see the [Next Steps](#nextsteps) section at the end of this tutorial. 
 
-1. 在 [**新增 ASP.NET 專案**] 對話方塊中，請確定已勾選 [**雲端中的主機**]，然後按一下 [**確定**]。
-
-
-如果您先前未登入 Azure，系統將提示您登入。
-
-1. [組態] 精靈會根據 *ContactManager* 建議唯一名稱 (請參閱下圖)。選取您附近的區域。若要尋找最低延遲的資料中心，您可以使用 [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com")。 
-2. 如果您之前尚未建立資料庫伺服器，請選取 [建立新的伺服器]，並輸入資料庫使用者名稱和密碼。
-
-	![設定 Azure 網站](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configAz.PNG)
-
-如果您有資料庫伺服器，請用它來建立新的資料庫。資料庫伺服器是非常寶貴的資源，通常您會想要在相同伺服器上建立多個資料庫進行測試和開發，而非在每個資料庫上建立資料庫伺服器。請確定您的網站和資料庫位於相同的區域。
-
-![設定 Azure 網站](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configWithDB.PNG)
-
-### 設定頁首及頁尾
+1. In the **New ASP.NET Project** dialog box, make sure the **Host in the Cloud** is checked and click **OK**.
 
 
-1. 在 [方案總管] 中，展開 *Views\\Shared* 資料夾，然後開啟 *\_Layout.cshtml* 檔案。
+If you have not previously signed in to Azure, you will be prompted to sign in.
 
-	![方案總管中的 \_Layout.cshtml][newapp004]
+1. The configuration wizard will suggest a unique name based on *ContactManager* (see the image below). Select a region near you. You can use [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") to find the lowest latency data center. 
+2. If you haven't created a database server before, select **Create new server**, enter a database user name and password.
 
-1. 以下列程式碼取代 *Views\\Shared\_Layout.cshtml* 檔案中的內容：
+    ![Configure Azure Website](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configAz.PNG)
 
+If you have a database server, use that to create a new database. Database servers are a precious resource, and you generally want to create multiple databases on the same server for testing and development rather than creating a database server per database. Make sure your web site and database are in the same region.
 
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-		    <meta charset="utf-8" />
-		    <title>@ViewBag.Title - Contact Manager</title>
-		    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-		    <meta name="viewport" content="width=device-width" />
-		    @Styles.Render("~/Content/css")
-		    @Scripts.Render("~/bundles/modernizr")
-		</head>
-		<body>
-		    <header>
-		        <div class="content-wrapper">
-		            <div class="float-left">
-		                <p class="site-title">@Html.ActionLink("Contact Manager", "Index", "Home")</p>
-		            </div>
-		        </div>
-		    </header>
-		    <div id="body">
-		        @RenderSection("featured", required: false)
-		        <section class="content-wrapper main-content clear-fix">
-		            @RenderBody()
-		        </section>
-		    </div>
-		    <footer>
-		        <div class="content-wrapper">
-		            <div class="float-left">
-		                <p>&copy; @DateTime.Now.Year - Contact Manager</p>
-		            </div>
-		        </div>
-		    </footer>
-		    @Scripts.Render("~/bundles/jquery")
-		    @RenderSection("scripts", required: false)
-		</body>
-		</html>
-			
-以上的標記會將應用程式名稱從 "My ASP.NET App" 變更為 "Contact Manager"，同時也移除 **Home**、**About** 及 **Contact** 的連結。
+![Configure Azure Website](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configWithDB.PNG)
 
-### 在本機執行應用程式
-
-1. 按 CTRL+F5 執行應用程式。應用程式首頁隨即出現在預設瀏覽器中。![待辦事項清單首頁](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.PNG)
-
-只需執行上述作業，即可建立稍後要部署至 Azure 的應用程式。稍後您將新增資料庫功能。
-
-## 將應用程式部署至 Azure
-
-1. 在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下專案，再選取內容功能表中的 [發行]。
-
-	![專案內容功能表中的 [發行]][PublishVSSolution]
-
-	此時會開啟 [發行 Web] 精靈。
-
-12. 按一下 [發行]。
-
-![[設定] 索引標籤](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/pw.png)
-
-Visual Studio 隨即開始進行將檔案複製至 Azure 伺服器的程序。[輸出] 視窗會顯示已採取的部署動作，並報告部署作業已順利完成。
-
-14. 預設瀏覽器會自動開啟已部署之網站的 URL。
-
-	您建立的應用程式現在正在雲端中執行。
-	
-	![在 Azure 中執行的待辦事項清單首頁][rxz2]
-
-## 新增資料庫至應用程式
-
-接下來，您將更新 MVC 應用程式，以加上顯示和更新資料庫中的連絡人，以及在資料庫中儲存資料的能力。應用程式將使用 Entity Framework，以建立資料庫以及讀取和更新資料庫中的資料。
-
-### 新增連絡人的資料模型類別
-
-首先，您會在程式碼中建立簡單的資料模型。
-
-1. 在 [方案總管]，於 Models 資料夾上按一下滑鼠右鍵，按一下 [新增]，再按一下 [類別]。
-
-	![在 Models 資料夾內容功能表中新增類別][adddb001]
-
-2. 在 [加入新項目] 對話方塊中，將新的類別檔案命名為 *Contact.cs*，再按一下 [新增]。
-
-	![[加入新項目] 對話方塊][adddb002]
-
-3. 以下列程式碼取代 Contacts.cs 檔案的內容。
-
-		using System.Globalization;
-		namespace ContactManager.Models
-		{
-    		public class Contact
-   			{
-        		public int ContactId { get; set; }
-				public string Name { get; set; }
-				public string Address { get; set; }
-	        	public string City { get; set; }
-				public string State { get; set; }
-				public string Zip { get; set; }
-				public string Email { get; set; }
-				public string Twitter { get; set; }
-				public string Self
-        		{
-            		get { return string.Format(CultureInfo.CurrentCulture,
-				         "api/contacts/{0}", this.ContactId); }
-            		set { }
-        		}
-    		}
-		}
-
-**Contact** 類別定義您將為每個連絡人儲存的資料，加上資料庫需要的主要索引鍵 ContactID。您可以在本教學課程結尾處的[後續步驟](#nextsteps)一節取得資料模型的詳細資訊。
-
-### 建立可讓應用程式使用者使用連絡人的網頁
-
-ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更新和刪除 (CRUD) 動作。
-
-## 新增控制器和資料檢視
-
-1. 在 [方案總管] 中展開 Controllers 資料夾。
-
-3. 建置專案 **(Ctrl+Shift+B)**。(使用樣板機制前必須先建置專案。)
-
-4. 在 Controllers 資料夾上按一下滑鼠右鍵，按一下 [新增]，再按一下 [控制器]。
-
-	![在 Controllers 資料夾內容功能表中新增控制器][addcode001]
-
-1. 在 [Add Scaffold] 對話方塊中，選取 [MVC Controller with views, using Entity Framework]，再按一下 [新增]。
-
- ![新增控制器](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rrAC.PNG)
-
-6. 將控制器名稱設定為 **HomeController**。選取 [Contact] 模型類別。按一下 [新資料內容] 按鈕，並接受 [新資料內容類型] 的預設值 "ContactManager.Models.ContactManagerContext"。按一下 [新增]。
+### <a name="set-the-page-header-and-footer"></a>Set the page header and footer
 
 
-	對話方塊會提示您：「名為 HomeController 的檔案已存在。您要取代該檔案嗎？」按一下 [是]。我們會覆寫隨著新專案一同建立的首頁控制器。我們會將新的首頁控制器用於連絡人清單。
+1. In **Solution Explorer**, expand the *Views\Shared* folder and open the *_Layout.cshtml* file.
 
-	Visual Studio 隨即針對 **Contact** 物件的 CRUD 資料庫操作，建立控制器方法與檢視。
+    ![_Layout.cshtml in Solution Explorer][newapp004]
 
-## 啟用移轉、建立資料庫、新增範例資料和資料初始設定式 ##
+1. Replace the contents of the *Views\Shared_Layout.cshtml* file with the following code:
 
-下一個工作是啟用 [Code First 移轉](http://curah.microsoft.com/55220)功能，以便根據建立的資料模型建立資料庫。
 
-1. 在 [工具] 功能表中，依序選取 [Library Package Manager] 及 [Package Manager Console]。
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <title>@ViewBag.Title - Contact Manager</title>
+            <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <meta name="viewport" content="width=device-width" />
+            @Styles.Render("~/Content/css")
+            @Scripts.Render("~/bundles/modernizr")
+        </head>
+        <body>
+            <header>
+                <div class="content-wrapper">
+                    <div class="float-left">
+                        <p class="site-title">@Html.ActionLink("Contact Manager", "Index", "Home")</p>
+                    </div>
+                </div>
+            </header>
+            <div id="body">
+                @RenderSection("featured", required: false)
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+            <footer>
+                <div class="content-wrapper">
+                    <div class="float-left">
+                        <p>&copy; @DateTime.Now.Year - Contact Manager</p>
+                    </div>
+                </div>
+            </footer>
+            @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+        </body>
+        </html>
+            
+The markup above changes the app name from "My ASP.NET App" to "Contact Manager", and it removes the links to **Home**, **About** and **Contact**.
 
-	![[工具] 功能表中的 Package Manager Console][addcode008]
+### <a name="run-the-application-locally"></a>Run the application locally
 
-2. 在 [Package Manager Console] 視窗中，輸入下列命令：
+1. Press CTRL+F5 to run the application.
+The application home page appears in the default browser.
+    ![To Do List home page](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)
 
-		enable-migrations 
+This is all you need to do for now to create the application that you'll deploy to Azure. Later you'll add database functionality.
+
+## <a name="deploy-the-application-to-azure"></a>Deploy the application to Azure
+
+1. In Visual Studio, right-click the project in **Solution Explorer** and select **Publish** from the context menu.
+
+    ![Publish in project context menu][PublishVSSolution]
+
+    The **Publish Web** wizard opens.
+
+12. Click **Publish**.
+
+![Settings tab](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/pw.png)
+
+Visual Studio begins the process of copying the files to the Azure server. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.
+
+14. The default browser automatically opens to the URL of the deployed site.
+
+    The application you created is now running in the cloud.
+    
+    ![To Do List home page running in Azure][rxz2]
+
+## <a name="add-a-database-to-the-application"></a>Add a database to the application
+
+Next, you'll update the MVC application to add the ability to display and update contacts and store the data in a database. The application will use the Entity Framework to create the database and to read and update data in the database.
+
+### <a name="add-data-model-classes-for-the-contacts"></a>Add data model classes for the contacts
+
+You begin by creating a simple data model in code.
+
+1. In **Solution Explorer**, right-click the Models folder, click **Add**, and then **Class**.
+
+    ![Add Class in Models folder context menu][adddb001]
+
+2. In the **Add New Item** dialog box, name the new class file *Contact.cs*, and then click **Add**.
+
+    ![Add New Item dialog box][adddb002]
+
+3. Replace the contents of the Contacts.cs file with the following code.
+
+        using System.Globalization;
+        namespace ContactManager.Models
+        {
+            public class Contact
+            {
+                public int ContactId { get; set; }
+                public string Name { get; set; }
+                public string Address { get; set; }
+                public string City { get; set; }
+                public string State { get; set; }
+                public string Zip { get; set; }
+                public string Email { get; set; }
+                public string Twitter { get; set; }
+                public string Self
+                {
+                    get { return string.Format(CultureInfo.CurrentCulture,
+                         "api/contacts/{0}", this.ContactId); }
+                    set { }
+                }
+            }
+        }
+
+The **Contact** class defines the data that you will store for each contact, plus a primary key, ContactID, that is needed by the database. You can get more information about data models in the [Next Steps](#nextsteps) section at the end of this tutorial.
+
+### <a name="create-web-pages-that-enable-app-users-to-work-with-the-contacts"></a>Create web pages that enable app users to work with the contacts
+
+The ASP.NET MVC the scaffolding feature can automatically generate code that performs create, read, update, and delete (CRUD) actions.
+
+## <a name="add-a-controller-and-a-view-for-the-data"></a>Add a Controller and a view for the data
+
+1. In **Solution Explorer**, expand the Controllers folder.
+
+3. Build the project **(Ctrl+Shift+B)**. (You must build the project before using scaffolding mechanism.) 
+
+4. Right-click the Controllers folder and click **Add**, and then click **Controller**.
+
+    ![Add Controller in Controllers folder context menu][addcode001]
+
+1. In the **Add Scaffold** dialog box, select **MVC Controller with views, using Entity Framework** and click **Add**.
+
+ ![Add controller](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rrAC.png)
+
+6. Set the controller name to **HomeController**. Select **Contact** as your model class. Click the **New data context** button and accept the default "ContactManager.Models.ContactManagerContext" for the **New data context type**. Click **Add**.
+
+
+    A dialog box will prompt you: "A file with the name HomeController already exits. Do you want to replace it?". Click **Yes**. We are overwriting the Home Controller that was created with the new project. We will use the new Home Controller for our contact list.
+
+    Visual Studio creates controller methods and views for CRUD database operations for **Contact** objects.
+
+## <a name="enable-migrations,-create-the-database,-add-sample-data-and-a-data-initializer"></a>Enable Migrations, create the database, add sample data and a data initializer ##
+
+The next task is to enable the [Code First Migrations](http://curah.microsoft.com/55220) feature in order to create the database based on the data model you created.
+
+1. In the **Tools** menu, select **Library Package Manager** and then **Package Manager Console**.
+
+    ![Package Manager Console in Tools menu][addcode008]
+
+2. In the **Package Manager Console** window, enter the following command:
+
+        enable-migrations 
   
-	**enable-migrations** 命令會建立 *Migrations* 資料夾，並在該資料夾置入 *Configuration.cs* 檔案，您可以編輯該檔案來設定 [移轉]。
+    The **enable-migrations** command creates a *Migrations* folder and it puts in that folder a *Configuration.cs* file that you can edit to configure Migrations. 
 
-2. 在 [Package Manager Console] 視窗中，輸入下列命令：
+2. In the **Package Manager Console** window, enter the following command:
 
-		add-migration Initial
+        add-migration Initial
 
-	**add-migration Initial** 命令會產生可建立資料庫、名為 **&lt;date\_stamp&gt;Initial** 的類別。第一個參數 (*Initial*) 是任意的，用於建立檔案的名稱。您可以在 [方案總管] 中看到新的類別檔案。
+    The **add-migration Initial** command generates a class named **&lt;date_stamp&gt;Initial** that creates the database. The first parameter ( *Initial* ) is arbitrary and used to create the name of the file. You can see the new class files in **Solution Explorer**.
 
-	在 **Initial** 類別中，**Up** 方法會建立 Contacts 資料表，**Down** 方法 (當您希望返回前個狀態時使用) 則會捨棄該資料表。
+    In the **Initial** class, the **Up** method creates the Contacts table, and the **Down** method (used when you want to return to the previous state) drops it.
 
-3. 開啟 *Migrations\\Configuration.cs* 檔案。
+3. Open the *Migrations\Configuration.cs* file. 
 
-4. 新增下列命名空間。
+4. Add the following namespaces. 
 
-    	 using ContactManager.Models;
+         using ContactManager.Models;
 
-5. 以下列程式碼取代 *Seed* 方法：
-		
+5. Replace the *Seed* method with the following code:
+        
         protected override void Seed(ContactManager.Models.ContactManagerContext context)
         {
             context.Contacts.AddOrUpdate(p => p.Name,
@@ -297,125 +300,126 @@ ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更�
                 );
         }
 
-	以上的這個程式碼會以連絡人資訊初始化資料庫。如需植入資料庫的詳細資訊，請參閱[植入及偵錯 Entity Framework (EF) DB](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) (英文)。
+    This code above will initialize the database with the contact information. For more information on seeding the database, see [Debugging Entity Framework (EF) DBs](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx).
 
 
-1. 在 [Package Manager Console] 中輸入命令：
+1. In the **Package Manager Console** enter the command:
 
-		update-database
+        update-database
 
-	![Package Manager Console commands][addcode009]
+    ![Package Manager Console commands][addcode009]
 
-	**update-database** 會執行第一次移轉，使資料庫建立。根據預設，資料庫會以 SQL Server Express LocalDB 資料庫的形式建立。
+    The **update-database** runs the first migration which creates the database. By default, the database is created as a SQL Server Express LocalDB database.
 
-1. 按 CTRL+F5 執行應用程式。
+1. Press CTRL+F5 to run the application. 
 
-應用程式隨即顯示種子資料並提供編輯、詳細資料和刪除連結。
+The application shows the seed data and provides edit, details and delete links.
 
-![資料的 MVC 檢視][rxz3]
+![MVC view of data][rxz3]
 
-## 編輯檢視
+## <a name="edit-the-view"></a>Edit the View
 
-1. 開啟 *Views\\Home\\Index.cshtml* 檔案。在下一個步驟中，我們會將產生的標記取代為使用 [jQuery](http://jquery.com/) 和 [Knockout.js](http://knockoutjs.com/) 的程式碼。這個新的程式碼會使用 Web API 和 JSON 來擷取連絡人清單，然後再使用 knockout.js 使連絡人資料與 UI 繫結。如需詳細資訊，請參閱本教學課程結尾處的[後續步驟](#nextsteps)一節。 
+1. Open the *Views\Home\Index.cshtml* file. In the next step, we will replace the generated markup with code that uses [jQuery](http://jquery.com/) and [Knockout.js](http://knockoutjs.com/). This new code retrieves the list of contacts from using web API and JSON and then binds the contact data to the UI using knockout.js. For more information, see the [Next Steps](#nextsteps) section at the end of this tutorial. 
 
 
-2. 以下列程式碼取代檔案的內容。
+2. Replace the contents of the file with the following code.
 
-		@model IEnumerable<ContactManager.Models.Contact>
-		@{
-		    ViewBag.Title = "Home";
-		}
-		@section Scripts {
-		    @Scripts.Render("~/bundles/knockout")
-		    <script type="text/javascript">
-		        function ContactsViewModel() {
-		            var self = this;
-		            self.contacts = ko.observableArray([]);
-		            self.addContact = function () {
-		                $.post("api/contacts",
-		                    $("#addContact").serialize(),
-		                    function (value) {
-		                        self.contacts.push(value);
-		                    },
-		                    "json");
-		            }
-		            self.removeContact = function (contact) {
-		                $.ajax({
-		                    type: "DELETE",
-		                    url: contact.Self,
-		                    success: function () {
-		                        self.contacts.remove(contact);
-		                    }
-		                });
-		            }
+        @model IEnumerable<ContactManager.Models.Contact>
+        @{
+            ViewBag.Title = "Home";
+        }
+        @section Scripts {
+            @Scripts.Render("~/bundles/knockout")
+            <script type="text/javascript">
+                function ContactsViewModel() {
+                    var self = this;
+                    self.contacts = ko.observableArray([]);
+                    self.addContact = function () {
+                        $.post("api/contacts",
+                            $("#addContact").serialize(),
+                            function (value) {
+                                self.contacts.push(value);
+                            },
+                            "json");
+                    }
+                    self.removeContact = function (contact) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: contact.Self,
+                            success: function () {
+                                self.contacts.remove(contact);
+                            }
+                        });
+                    }
 
-		            $.getJSON("api/contacts", function (data) {
-		                self.contacts(data);
-		            });
-		        }
-		        ko.applyBindings(new ContactsViewModel());	
-		</script>
-		}
-		<ul id="contacts" data-bind="foreach: contacts">
-		    <li class="ui-widget-content ui-corner-all">
-		        <h1 data-bind="text: Name" class="ui-widget-header"></h1>
-		        <div><span data-bind="text: $data.Address || 'Address?'"></span></div>
-		        <div>
-		            <span data-bind="text: $data.City || 'City?'"></span>,
-		            <span data-bind="text: $data.State || 'State?'"></span>
-		            <span data-bind="text: $data.Zip || 'Zip?'"></span>
-		        </div>
-		        <div data-bind="if: $data.Email"><a data-bind="attr: { href: 'mailto:' + Email }, text: Email"></a></div>
-		        <div data-bind="ifnot: $data.Email"><span>Email?</span></div>
-		        <div data-bind="if: $data.Twitter"><a data-bind="attr: { href: 'http://twitter.com/' + Twitter }, text: '@@' + Twitter"></a></div>
-		        <div data-bind="ifnot: $data.Twitter"><span>Twitter?</span></div>
-		        <p><a data-bind="attr: { href: Self }, click: $root.removeContact" class="removeContact ui-state-default ui-corner-all">Remove</a></p>
-		    </li>
-		</ul>
-		<form id="addContact" data-bind="submit: addContact">
-		    <fieldset>
-		        <legend>Add New Contact</legend>
-		        <ol>
-		            <li>
-		                <label for="Name">Name</label>
-		                <input type="text" name="Name" />
-		            </li>
-		            <li>
-		                <label for="Address">Address</label>
-		                <input type="text" name="Address" >
-		            </li>
-		            <li>
-		                <label for="City">City</label>
-		                <input type="text" name="City" />
-		            </li>
-		            <li>
-		                <label for="State">State</label>
-		                <input type="text" name="State" />
-		            </li>
-		            <li>
-		                <label for="Zip">Zip</label>
-		                <input type="text" name="Zip" />
-		            </li>
-		            <li>
-		                <label for="Email">E-mail</label>
-		                <input type="text" name="Email" />
-		            </li>
-		            <li>
-		                <label for="Twitter">Twitter</label>
-		                <input type="text" name="Twitter" />
-		            </li>
-		        </ol>
-		        <input type="submit" value="Add" />
-		    </fieldset>
-		</form>
+                    $.getJSON("api/contacts", function (data) {
+                        self.contacts(data);
+                    });
+                }
+                ko.applyBindings(new ContactsViewModel());  
+        </script>
+        }
+        <ul id="contacts" data-bind="foreach: contacts">
+            <li class="ui-widget-content ui-corner-all">
+                <h1 data-bind="text: Name" class="ui-widget-header"></h1>
+                <div><span data-bind="text: $data.Address || 'Address?'"></span></div>
+                <div>
+                    <span data-bind="text: $data.City || 'City?'"></span>,
+                    <span data-bind="text: $data.State || 'State?'"></span>
+                    <span data-bind="text: $data.Zip || 'Zip?'"></span>
+                </div>
+                <div data-bind="if: $data.Email"><a data-bind="attr: { href: 'mailto:' + Email }, text: Email"></a></div>
+                <div data-bind="ifnot: $data.Email"><span>Email?</span></div>
+                <div data-bind="if: $data.Twitter"><a data-bind="attr: { href: 'http://twitter.com/' + Twitter }, text: '@@' + Twitter"></a></div>
+                <div data-bind="ifnot: $data.Twitter"><span>Twitter?</span></div>
+                <p><a data-bind="attr: { href: Self }, click: $root.removeContact" class="removeContact ui-state-default ui-corner-all">Remove</a></p>
+            </li>
+        </ul>
+        <form id="addContact" data-bind="submit: addContact">
+            <fieldset>
+                <legend>Add New Contact</legend>
+                <ol>
+                    <li>
+                        <label for="Name">Name</label>
+                        <input type="text" name="Name" />
+                    </li>
+                    <li>
+                        <label for="Address">Address</label>
+                        <input type="text" name="Address" >
+                    </li>
+                    <li>
+                        <label for="City">City</label>
+                        <input type="text" name="City" />
+                    </li>
+                    <li>
+                        <label for="State">State</label>
+                        <input type="text" name="State" />
+                    </li>
+                    <li>
+                        <label for="Zip">Zip</label>
+                        <input type="text" name="Zip" />
+                    </li>
+                    <li>
+                        <label for="Email">E-mail</label>
+                        <input type="text" name="Email" />
+                    </li>
+                    <li>
+                        <label for="Twitter">Twitter</label>
+                        <input type="text" name="Twitter" />
+                    </li>
+                </ol>
+                <input type="submit" value="Add" />
+            </fieldset>
+        </form>
 
-3. 在 Content 資料夾上按一下滑鼠右鍵，按一下 [新增]，再按一下 [新增項目...]。
+3. Right-click the Content folder and click **Add**, and then click **New Item...**.
 
-	![Content 資料夾內容功能表中的 [加入樣式表]][addcode005]
+    ![Add style sheet in Content folder context menu][addcode005]
 
-4. 在 [加入新項目] 對話方塊中，於右上角的搜尋方塊中輸入 **Style**，然後選取 [樣式表]。![[加入新項目] 對話方塊][rxStyle]
+4. In the **Add New Item** dialog box, enter **Style** in the upper right search box and then select **Style Sheet**.
+    ![Add New Item dialog box][rxStyle]
 
-5. 將檔案命名為 *Contacts.css*，然後按一下 [新增]。以下列程式碼取代檔案的內容。
+5. Name the file *Contacts.css* and click **Add**. Replace the contents of the file with the following code.
     
         .column {
             float: left;
@@ -471,85 +475,85 @@ ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更�
             text-decoration: none;
         }
 
-	我們會將此樣式表用於 Contact Manager 應用程式所用的版面配置、色彩及樣式。
+    We will use this style sheet for the layout, colors and styles used in the contact manager app.
 
-6. 開啟 *App\_Start\\BundleConfig.cs* 檔案。
+6. Open the *App_Start\BundleConfig.cs* file.
 
 
-7. 新增以下程式碼以註冊 [Knockout](http://knockoutjs.com/index.html "KO") 外掛程式。
+7. Add the following code to register the [Knockout](http://knockoutjs.com/index.html "KO") plugin.
 
-		bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-		            "~/Scripts/knockout-{version}.js"));
-	此範例使用 knockout 來簡化處理螢幕範本的動態 JavaScript 程式碼。
+        bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+                    "~/Scripts/knockout-{version}.js"));
+    This sample using knockout to simplify dynamic JavaScript code that handles the screen templates.
 
-8. 修改 contents/css 項目以註冊 *contacts.css* 樣式表。變更以下文字行：
+8. Modify the contents/css entry to register the *contacts.css* style sheet. Change the following line:
 
                  bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
                    "~/Content/site.css"));
-變更為：
+To:
 
         bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
                    "~/Content/contacts.css",
                    "~/Content/site.css"));
 
-1. 在 Package Manager Console 中，執行下列命令以安裝 Knockout。
+1. In the Package Manager Console, run the following command to install Knockout.
 
-		Install-Package knockoutjs
+        Install-Package knockoutjs
 
-## 為符合 REST 限制的 Web API 介面新增控制器
+## <a name="add-a-controller-for-the-web-api-restful-interface"></a>Add a controller for the Web API Restful interface
 
-1. 在 [方案總管]，於 Controllers 上按一下滑鼠右鍵，按一下 [新增]，再按一下 [控制器...] 
+1. In **Solution Explorer**, right-click Controllers and click **Add** and then **Controller....** 
 
-1. 在 [Add Scaffold] 對話方塊中，選取 [Web API 2 Controller with actions, using Entity Framework]，再按一下 [新增]。
+1. In the **Add Scaffold** dialog box, enter **Web API 2 Controller with actions, using Entity Framework** and then click **Add**.
 
-	![新增 API 控制器](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt1.PNG)
+    ![Add API controller](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt1.png)
 
-4. 在 [加入控制器] 對話方塊中，輸入 "ContactsController" 作為控制器名稱。選取 "Contact (ContactManager.Models)" [模型類別]。保留 [資料內容類別] 的預設值。
+4. In the **Add Controller** dialog box, enter "ContactsController" as your controller name. Select "Contact (ContactManager.Models)" for the **Model class**.  Keep the default value for the **Data context class**. 
 
-6. 按一下 [新增]。
+6. Click **Add**.
 
-### 在本機執行應用程式
+### <a name="run-the-application-locally"></a>Run the application locally
 
-1. 按 CTRL+F5 執行應用程式。
+1. Press CTRL+F5 to run the application.
 
-	![索引頁面][intro001]
+    ![Index page][intro001]
 
-2. 輸入連絡人，然後按一下 [新增]。應用程式會返回首頁並顯示您輸入的連絡人。
+2. Enter a contact and click **Add**. The app returns to the home page and displays the contact you entered.
 
-	![含有待辦事項清單的索引頁面][addwebapi004]
+    ![Index page with to-do list items][addwebapi004]
 
-3. 在瀏覽器中，於 URL 後方加上 **/api/contacts**。
+3. In the browser, append **/api/contacts** to the URL.
 
-	所產生的 URL 將類似 http://localhost:1234/api/contacts。您新增之符合 REST 限制的 Web API 會傳回儲存的連絡人。Firefox 和 Chrome 會顯示 XML 格式的資料。
+    The resulting URL will resemble http://localhost:1234/api/contacts. The RESTful web API you added returns the stored contacts. Firefox and Chrome will display the data in XML format.
 
-	![含有待辦事項清單的索引頁面][rxFFchrome]
-	
+    ![Index page with to-do list items][rxFFchrome]
+    
 
-	IE 會提示您開啟或儲存連絡人。
+    IE will prompt you to open or save the contacts.
 
-	![Web API 儲存對話方塊][addwebapi006]
-	
-	
-	您可以利用記事本或瀏覽器開啟傳回的連絡人。
-	
-	行動網頁或應用程式之類的其他應用程式亦可取用此輸出。
+    ![Web API save dialog][addwebapi006]
+    
+    
+    You can open the returned contacts in notepad or a browser.
+    
+    This output can be consumed by another application such as mobile web page or application.
 
-	![Web API 儲存對話方塊][addwebapi007]
+    ![Web API save dialog][addwebapi007]
 
-	**安全性警告**：此時您的應用程式並未受到保護，且容易遭受 CSRF 攻擊。在本教學課程稍後的內容中，我們將移除這項弱點。如需詳細資訊，請參閱[避免跨網站偽造要求 (CSRF) 攻擊][prevent-csrf-attacks] \(英文)。
-## 新增 XSRF 保護
+    **Security Warning**: At this point, your application is insecure and vulnerable to CSRF attack. Later in the tutorial we will remove this vulnerability. For more information see [Preventing Cross-Site Request Forgery (CSRF) Attacks][prevent-csrf-attacks].
+## <a name="add-xsrf-protection"></a>Add XSRF Protection
 
-跨網站偽造要求 (亦稱為 XSRF 或 CSRF) 為以 Web 主控之應用程式為目標的攻擊，惡意網站能藉此影響用戶端瀏覽器和該瀏覽器信任之網站間的互動。這些攻擊之所以能得逞，是因為網頁瀏覽器會隨著對網站的每個要求自動傳送驗證權杖。ASP.NET 的 Forms Authentication 票證即是驗證 Cookie 的標準範例。然而，使用任何持續驗證機制 (如 Windows 驗證、基本驗證等等) 的網站都可能成為這些攻擊的目標。
+Cross-site request forgery (also known as XSRF or CSRF) is an attack against web-hosted applications whereby a malicious website can influence the interaction between a client browser and a website trusted by that browser. These attacks are made possible because web browsers will send authentication tokens automatically with every request to a website. The canonical example is an authentication cookie, such as ASP.NET's Forms Authentication ticket. However, websites which use any persistent authentication mechanism (such as Windows Authentication, Basic, and so forth) can be targeted by these attacks.
 
-XSRF 攻擊與網路釣魚攻擊不同。網路釣魚攻擊需要與受害者互動。對於網路釣魚攻擊，惡意網站會偽裝成目標網站，致使受害者因受騙而將機密資訊提供給攻擊者。XSRF 攻擊則通常不需要與受害者互動。反之，攻擊者需仰賴瀏覽器將所有相關的 Cookie 自動傳送給目的地網站。
+An XSRF attack is distinct from a phishing attack. Phishing attacks require interaction from the victim. In a phishing attack, a malicious website will mimic the target website, and the victim is fooled into providing sensitive information to the attacker. In an XSRF attack, there is often no interaction necessary from the victim. Rather, the attacker is relying on the browser automatically sending all relevant cookies to the destination website.
 
-如需詳細資訊，請參閱 [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)))。
+For more information, see the [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)).
 
-1. 在 [方案總管] 中，於 **ContactManager** 專案上按一下滑鼠右鍵，按一下 [新增]，再按一下 [類別]。
+1. In **Solution Explorer**, right **ContactManager** project and click **Add** and then click **Class**.
 
-2. 將檔案命名為 *ValidateHttpAntiForgeryTokenAttribute.cs*，然後新增以下程式碼：
+2. Name the file *ValidateHttpAntiForgeryTokenAttribute.cs* and add the following code:
 
         using System;
         using System.Collections.Generic;
@@ -600,7 +604,7 @@ XSRF 攻擊與網路釣魚攻擊不同。網路釣魚攻擊需要與受害者互
                 {
                     string cookieToken = String.Empty;
                     string formToken = String.Empty;
-					IEnumerable<string> tokenHeaders;
+                    IEnumerable<string> tokenHeaders;
                     if (request.Headers.TryGetValues("RequestVerificationToken", out tokenHeaders))
                     {
                         string tokenValue = tokenHeaders.FirstOrDefault();
@@ -619,17 +623,17 @@ XSRF 攻擊與網路釣魚攻擊不同。網路釣魚攻擊需要與受害者互
             }
         }
 
-1. 將以下 *using* 陳述式新增至連絡人控制器，使您得以存取 **[ValidateHttpAntiForgeryToken]** 屬性。
+1. Add the following *using* statement to the contracts controller so you have access to the **[ValidateHttpAntiForgeryToken]** attribute.
 
-		using ContactManager.Filters;
+        using ContactManager.Filters;
 
-1. 將 **[ValidateHttpAntiForgeryToken]** 屬性新增至 **ContactsController** 的 Post 方法，使其免於遭受 XSRF 威脅的攻擊。您需要將其新增至 PutContact"、"PostContact" 及 **DeleteContact** 動作方法。
+1. Add the **[ValidateHttpAntiForgeryToken]** attribute to the Post methods of the **ContactsController** to protect it from XSRF threats. You will add it to the "PutContact",  "PostContact" and **DeleteContact** action methods.
 
-		[ValidateHttpAntiForgeryToken]
-	        public IHttpActionResult PutContact(int id, Contact contact)
-	        {
+        [ValidateHttpAntiForgeryToken]
+            public IHttpActionResult PutContact(int id, Contact contact)
+            {
 
-1. 更新 *Views\\Home\\Index.cshtml* 檔案的 *Scripts* 區段，使其包含取得 XSRF 權杖的程式碼。
+1. Update the *Scripts* section of the *Views\Home\Index.cshtml* file to include code to get the XSRF tokens.
 
          @section Scripts {
             @Scripts.Render("~/bundles/knockout")
@@ -682,70 +686,71 @@ XSRF 攻擊與網路釣魚攻擊不同。網路釣魚攻擊需要與受害者互
                }
                ko.applyBindings(new ContactsViewModel());
             </script>
-		 }
+         }
 
 
-## 將應用程式更新發行至 Azure 和 SQL Database
+## <a name="publish-the-application-update-to-azure-and-sql-database"></a>Publish the application update to Azure and SQL Database
 
-若要發行應用程式，您需要重複先前遵循過的程序。
+To publish the application, you repeat the procedure you followed earlier.
 
-1. 在 [方案總管] 中以滑鼠右鍵按一下專案，再選取 [發行]。
+1. In **Solution Explorer**, right click the project and select **Publish**.
 
-	![Publish][rxP]
+    ![Publish][rxP]
 
-5. 按一下 [設定] 索引標籤。
-	
+5. Click the **Settings** tab.
+    
 
-1. 在 **ContactsManagerContext(ContactsManagerContext)** 下方按一下 **v** 圖示，將 *Remote connection string* 變更為連絡人資料庫的連接字串。按一下 [ContactDB]。
+1. Under **ContactsManagerContext(ContactsManagerContext)**, click the **v** icon to change *Remote connection string* to the connection string for the contact database. Click **ContactDB**.
 
-	![設定](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt5.png)
+    ![Settings](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt5.png)
 
-7. 勾選 [Execute Code First Migrations (runs on application start)] 的方塊。
+7. Check the box for **Execute Code First Migrations (runs on application start)**.
 
-1. 依序按 [下一步] 和 [預覽]。Visual Studio 會顯示即將新增或更新的檔案清單。
+1. Click **Next** and then click **Preview**. Visual Studio displays a list of the files that will be added or updated.
 
-8. 按一下 [發行]。部署完成後，瀏覽器會開啟應用程式的首頁。
+8. Click **Publish**.
+After the deployment completes, the browser opens to the home page of the application.
 
-	![Index page with no contacts][intro001]
+    ![Index page with no contacts][intro001]
 
-	Visual Studio 發行程序會自動設定已部署之 *Web.config* 檔案中的連接字串，使其指向 SQL 資料庫。它也設定了 Code First 移轉，使其在應用程式於部署完成後首次存取資料庫時，將資料庫自動升級為最新版本。
+    The Visual Studio publish process automatically configured the connection string in the deployed *Web.config* file to point to the SQL database. It also configured Code First Migrations to automatically upgrade the database to the latest version the first time the application accesses the database after deployment.
 
-	由於這項組態的關係，Code First 會執行您稍早於 **Initial** 類別中建立的程式碼，進而建立資料庫。它會在應用程式於部署完成後首次嘗試存取資料庫時執行這項作業。
+    As a result of this configuration, Code First created the database by running the code in the **Initial** class that you created earlier. It did this the first time the application tried to access the database after deployment.
 
-9. 與在本機執行應用程式時一樣的方式輸入連絡人，以驗證資料庫部署是否成功。
+9. Enter a contact as you did when you ran the app locally, to verify that database deployment succeeded.
 
-當您發現輸入的項目已儲存且出現在 Contact Manager 頁面時，表示該項目已儲存在資料庫中。
+When you see that the item you enter is saved and appears on the contact manager page, you know that it has been stored in the database.
 
-![含有連絡人的索引頁面][addwebapi004]
+![Index page with contacts][addwebapi004]
 
-應用程式現已在雲端運作，並使用 SQL Database 來儲存資料。在 Azure 中完成應用程式測試後，請將應用程式刪除。應用程式已處於公開狀態且不具有限制存取權限的機制。
+The application is now running in the cloud, using SQL Database to store its data. After you finish testing the application in Azure, delete it. The application is public and doesn't have a mechanism to limit access.
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
+>[AZURE.NOTE] If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751), where you can immediately create a short-lived starter web app in App Service. No credit cards required; no commitments.
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-真實的應用程式會要求驗證和授權，而您需要使用成員資格資料庫來達成目的。[部署含有 OAuth、成員資格及 SQL Database 的安全 ASP.NET MVC 應用程式](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)教學課程是以本教學課程為基礎，其展示如何部署含有成員資格資料庫的 Web 應用程式。
+A real application would require authentication and authorization, and you would use the membership database for that purpose. The tutorial [Deploy a Secure ASP.NET MVC application with OAuth, Membership and SQL Database](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md) is based on this tutorial and shows how to deploy a web application with the membership database.
 
-另一個儲存 Azure 應用程式資料的方法是使用 Azure 儲存體，它能以 Blob 和資料表的形式提供非關聯式的資料儲存。以下連結提供 Web API、ASP.NET MVC 及 Window Azure 的詳細資訊。
+Another way to store data in an Azure application is to use Azure storage, which provide non-relational data storage in the form of blobs and tables. The following links provide more information on Web API, ASP.NET MVC and Window Azure.
  
 
-* [使用 MVC 的 Entity Framework 入門][EFCodeFirstMVCTutorial]
-* [ASP.NET MVC 5 入門](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
-* [您的第一個 ASP.NET Web API](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)
-* [偵錯 WAWS](web-sites-dotnet-troubleshoot-visual-studio.md)
+* [Getting Started with Entity Framework using MVC][EFCodeFirstMVCTutorial]
+* [Intro to ASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
+* [Your First ASP.NET Web API](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)
+* [Debugging WAWS](web-sites-dotnet-troubleshoot-visual-studio.md)
 
-本教學課程和範例應用程式是由 [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](https://twitter.com/RickAndMSFT)) 在 Tom Dykstra 和 Barry Dorrans (Twitter [@blowdart](https://twitter.com/blowdart)) 的協助下所撰寫。
+This tutorial and the sample application was written by [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](https://twitter.com/RickAndMSFT)) with assistance from Tom Dykstra and Barry Dorrans (Twitter [@blowdart](https://twitter.com/blowdart)). 
 
-如果您發現喜歡的地方或希望我們改善的地方 (不論是針對本教學課程或其示範的產品)，歡迎留下意見反應。您的意見反應將協助我們訂出優先改善要務。我們非常希望能了解您對於將設定和部署成員資格資料庫之程序更進一步自動化的期待為何。
+Please leave feedback on what you liked or what you would like to see improved, not only about the tutorial itself but also about the products that it demonstrates. Your feedback will help us prioritize improvements. We are especially interested in finding out how much interest there is in more automation for the process of configuring and deploying the membership database. 
 
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+## <a name="what's-changed"></a>What's changed
+* For a guide to the change from Websites to App Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- bookmarks -->
 [Add an OAuth Provider]: #addOauth
-[Add Roles to the Membership Database]: #mbrDB
-[Create a Data Deployment Script]: #ppd
-[Update the Membership Database]: #ppd2
+[Add Roles to the Membership Database]:#mbrDB
+[Create a Data Deployment Script]:#ppd
+[Update the Membership Database]:#ppd2
 [setupdbenv]: #bkmk_setupdevenv
 [setupwindowsazureenv]: #bkmk_setupwindowsazure
 [createapplication]: #bkmk_createmvc4app
@@ -810,4 +815,8 @@ XSRF 攻擊與網路釣魚攻擊不同。網路釣魚攻擊需要與受害者互
 [prevent-csrf-attacks]: http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-(csrf)-attacks
  
 
-<!----HONumber=AcomDC_0323_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

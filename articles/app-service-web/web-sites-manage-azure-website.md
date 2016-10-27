@@ -1,93 +1,94 @@
 <properties 
-	pageTitle="在 Azure App Service 中管理 Web 應用程式" 
-	description="適用於在 Azure App Service 中管理 Web 應用程式之資源的連結。" 
-	services="app-service\web" 
-	documentationCenter="" 
-	authors="erikre" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Manage a web app in Azure App Service" 
+    description="Links to resources for managing a web app in Azure App Service." 
+    services="app-service\web" 
+    documentationCenter="" 
+    authors="erikre" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service-web" 
-	ms.workload="web" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/24/2016" 
-	ms.author="rachelap"/>
-
-# 在 Azure App Service 中管理 Web 應用程式
-
-本主題含有適合用來在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中管理 Web 應用程式之資源的連結。所謂的管理包括所有維持 Web 應用程式順暢運作的工作。
-
-在 Web 應用程式的生命週期內，從初始部署到正常運作、維護及更新，都需要執行不同的管理工作。
-
-您可以在 Azure 入口網站中執行許多 Web 應用程式管理工作。
-
-## 將 Web 應用程式部署到生產環境之前
-
-### 選擇階層。
-
-Azure App Service 提供了五種階層：免費、共用、基本、標準和高階。如需各階層之功能和定價的相關資訊，請參閱[網站定價詳細資料](/pricing/details/app-service/)。
-
-- [應用程式服務方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)可讓您將多個 Web 應用程式分組在同一個階層下。
-- 建立 Web 應用程式之後，您可以隨時[切換階層](web-sites-scale.md)。
-
-### 組態
-
-使用 [Azure 入口網站](https://portal.azure.com/)來設定各種組態選項。如需詳細資料，請參閱[在 Azure App Service 中設定 Web 應用程式](web-sites-configure.md)。以下是簡短的檢查清單：
-
-- 視需要選取 .NET、PHP、Java 或 Python 的**執行階段版本**。
-- 如果您的 Web 應用程式使用 WebSocket 通訊協定，請啟用 **WebSockets**。(這包括使用 [ASP.NET SignalR](http://www.asp.net/signalr) (英文) 或 [socket.io](web-sites-nodejs-chat-app-socketio.md) 的應用程式)。
-- 您是否執行連續性的 Web 工作？ 如果是的話，請啟用 [Always On]。
-- 設定**預設文件** (如 index.html)。
-
-除了以上基本組態設定之外，您也許還想要設定以下各項：
-
-- **安全通訊端層 (SSL)** 加密。若要使用 SSL 搭配自訂網域名稱，您必須取得 SSL 憑證並設定 Web 應用程式來加以使用。請參閱[針對 Azure App Service 中的 Web 應用程式啟用 HTTPS](web-sites-configure-ssl-certificate.md)。
-- **自訂網域名稱。** 您的 Web 應用程式會自動取得 azurewebsites.net 下的子網域。您可以使其與自訂網域名稱 (如 contoso.com) 相關聯。請參閱[在 Azure App Service 中設定自訂網域名稱](web-sites-custom-domain-name.md)。
-
-語言特有組態：
-
-- **PHP**：[在 Azure App Service Web Apps 中設定 PHP](web-sites-php-configure.md)。
-- **Python**：[使用 Azure App Service Web Apps 設定 Python](web-sites-python-configure.md)。
+    ms.service="app-service-web" 
+    ms.workload="web" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/24/2016" 
+    ms.author="rachelap"/>
 
 
-## 當 Web 應用程式執行時
+# <a name="manage-a-web-app-in-azure-app-service"></a>Manage a web app in Azure App Service
 
-當 Web 應用程式執行時，您會想要確認 Web 應用程式是否可供使用，以及是否能根據使用者流量而調整。您可能也需要疑難排解錯誤。
+This topic contains links to resources for managing a web app in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714). Management includes all of the tasks that keep your web app running smoothly. 
 
-### 監視
+Over the lifetime of a web app, you will perform different management tasks, as you move from initial deployment to normal operation, maintenance, and updates.
 
-- 您可以透過 Azure 入口網站來[新增效能度量](web-sites-monitor.md) (如 CPU 使用率和用戶端要求數目)。
-- [調整 Web 應用程式](web-sites-scale.md)以因應流量變化。您可以根據階層來調整 VM 的數目和/或 VM 執行個體的大小。在標準和高階階層中，您還可以設定自動調整，使 Web 應用程式得以按照固定排程或根據負載自動調整。
+Many web app management tasks can be performed in the Azure Portal.
+
+## <a name="before-you-deploy-your-web-app-to-production"></a>Before you deploy your web app to production
+
+### <a name="choose-a-tier"></a>Choose a tier
+
+Azure App Service is offered in five tiers: Free, Shared, Basic, Standard, and Premium. For information about the features and pricing for each tier, see [Pricing details](/pricing/details/app-service/). 
+
+- [App Service plans](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) let you group multiple web apps under the same tier.
+- You can always [switch tiers](web-sites-scale.md) after you create your web app.
+
+### <a name="configuration"></a>Configuration
+
+Use the [Azure Portal](https://portal.azure.com/) to set various configuration options. For details, see [Configure web apps in Azure App Service](web-sites-configure.md). Here is a quick checklist:
+
+- Select **runtime versions** for .NET, PHP, Java, or Python, if needed.
+- Enable **WebSockets** if your web app uses the WebSocket protocol. (This includes apps that use [ASP.NET SignalR](http://www.asp.net/signalr) or [socket.io](web-sites-nodejs-chat-app-socketio.md).)
+- Are you running continuous web jobs? If so, enable **Always On**.
+- Set the **default document**, such as index.html.
+
+In addition to these basic configuration settings, you may want to configure the following:
+
+- **Secure Socket Layer (SSL)** encryption. To use SSL with a custom domain name, you must get an SSL certificate and configure your web app to use it. See [Enable HTTPS for a web app in Azure App Service](web-sites-configure-ssl-certificate.md).
+- **Custom domain name.** Your web app automatically has a subdomain under azurewebsites.net. You can associate a custom domain name, such as contoso.com. See [Configure a custom domain name in Azure App Service](web-sites-custom-domain-name.md).
+
+Language-specific configuration:
+
+- **PHP**: [Configure PHP in Azure App Service Web Apps](web-sites-php-configure.md).
+- **Python**: [Configuring Python with Azure App Service Web Apps](web-sites-python-configure.md)
+
+
+## <a name="while-your-web-app-is-running"></a>While your web app is running
+
+While your web app is running, you want to make sure it is available, and that it scales to meet user traffic. You may also need to troubleshoot errors.
+
+### <a name="monitoring"></a>Monitoring
+
+- Through the Azure Portal, you can [add performance metrics](web-sites-monitor.md) such as CPU usage and number of client requests.
+- [Scale your web app](web-sites-scale.md) in response to traffic. Depending on your tier, you can scale the number of VMs and/or the size of the VM instances. In the Standard and Premium tiers, you can also set up autoscaling, so your web app scales automatically, either on a fixed schedule, or in response to load.  
  
-### 備份
+### <a name="backups"></a>Backups
 
-- 設定 Web 應用程式的[自動備份](web-sites-backup.md)。透過[本視訊](https://azure.microsoft.com/documentation/videos/azure-websites-automatic-and-easy-backup/)深入了解備份。
-- 深入了解 Azure SQL Database 中的[資料庫復原](../sql-database/sql-database-business-continuity.md)選項。
+- Set [automatic backups](web-sites-backup.md) of your web app. Learn more about backups in [this video](https://azure.microsoft.com/documentation/videos/azure-websites-automatic-and-easy-backup/).
+- Learn about the options for [database recovery](../sql-database/sql-database-business-continuity.md) in Azure SQL Database.
 
-### 疑難排解
+### <a name="troubleshooting"></a>Troubleshooting
 
-- 發生問題時，您可以在雲端使用診斷記錄和即時偵錯，以[在 Visual Studio 中疑難排解 Azure 網站](web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug)。
-- 在 Visual Studio 之外，還有各種方法可用來收集診斷記錄。請參閱[在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能](web-sites-enable-diagnostic-log.md)。
-- 若是 Node.js 應用程式，請參閱[如何在 Azure App Service 中偵錯 Node.js Web 應用程式](web-sites-nodejs-debug.md)。
+- If something goes wrong, you can [troubleshoot in Visual Studio](web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug), using diagnostic logs and live debugging in the cloud. 
+- Outside of Visual Studio, there are various ways to collect diagnostic logs. See [Enable diagnostics logging for web apps in Azure App Service](web-sites-enable-diagnostic-log.md).
+- For Node.js applications, see [How to debug a Node.js web app in Azure App Service](web-sites-nodejs-debug.md).
 
-### 還原資料
+### <a name="restoring-data"></a>Restoring Data
 
-- [還原](web-sites-restore.md)先前已備份的 Web 應用程式。
+- [Restore](web-sites-restore.md) a web app that was previously backed up.
 
 
-## 更新 Web 應用程式時
+## <a name="when-you-update-your-web-app"></a>When you update your web app
 
-如果您尚未啟用自動備份，可以建立[手動備份](web-sites-backup.md)。
+If you have not enabled automatic backups, you can create a [manual backup](web-sites-backup.md).
 
-請考慮使用[預備部署](web-sites-staged-publishing.md)。此選項可讓您將更新發佈到與生產部署並行運作的預備部署。
+Consider using [staged deployment](web-sites-staged-publishing.md). This option lets you publish updates to a staging deployment that runs side-by-side with your production deployment. 
 
-如果您使用 Visual Studio Team Services，可以從原始檔控制設定連續部署：
+If you use Visual Studio Team Services, you can set up continuous deployment from source control:
 
-- [使用 Team Foundation 版本控制 (TFVC)](../cloud-services/cloud-services-continuous-delivery-use-vso.md)
-- [使用 Git](../cloud-services/cloud-services-continuous-delivery-use-vso-git.md)
+- [Using Team Foundation Version Control (TFVC)](../cloud-services/cloud-services-continuous-delivery-use-vso.md) 
+- [Using Git](../cloud-services/cloud-services-continuous-delivery-use-vso-git.md)
  
 <!-- Anchors. -->
 
@@ -97,4 +98,8 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
   
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,74 +1,75 @@
 <properties
-	pageTitle="開始使用 Azure AD .NET | Microsoft Azure"
-	description="如何建置 .NET Windows 桌面應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
-	services="active-directory"
-	documentationCenter=".net"
-	authors="dstrockis"
-	manager="mbaldwin"
-	editor=""/>
+    pageTitle="Azure AD .NET Getting Started | Microsoft Azure"
+    description="How to build a .NET Windows Desktop application that integrates with Azure AD for sign in and calls Azure AD protected APIs using OAuth."
+    services="active-directory"
+    documentationCenter=".net"
+    authors="dstrockis"
+    manager="mbaldwin"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="dastrock"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="dotnet"
+    ms.topic="article"
+    ms.date="09/16/2016"
+    ms.author="dastrock"/>
 
 
-# 將 Azure AD 整合至 Windows 桌面 WPF 應用程式
+
+# <a name="integrate-azure-ad-into-a-windows-desktop-wpf-app"></a>Integrate Azure AD into a Windows Desktop WPF App
 
 [AZURE.INCLUDE [active-directory-devquickstarts-switcher](../../includes/active-directory-devquickstarts-switcher.md)]
 
 [AZURE.INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
-如果您正在開發桌面應用程式，Azure AD 讓使用 Active Directory 帳戶驗證您的使用者變得簡單明瞭。它也可讓您的應用程式安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
+If you're developing a desktop application, Azure AD makes it simple and straightforward for you to authenticate your users with their Active Directory accounts.  It also enables your application to securely consume any web API protected by Azure AD, such as the Office 365 APIs or the Azure API.
 
-對於需要存取受保護資源的 .NET 原生用戶端，Azure AD 提供 Active Directory 驗證程式庫 (ADAL)。ADAL 存在的唯一目的是讓您的應用程式輕鬆取得存取權杖。為了示範究竟多麼簡單，我們將建置一個執行下列動作的 .NET WPF 待辦事項清單應用程式：
+For .NET native clients that need to access protected resources, Azure AD provides the Active Directory Authentication Library, or ADAL.  ADAL's sole purpose in life is to make it easy for your app to get access tokens.  To demonstrate just how easy it is, here we'll build a .NET WPF To-Do List application that:
 
--	使用 [OAuth 2.0 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn645545.aspx)取得呼叫 Azure AD Graph API 的存取權杖。
--	在目錄中搜尋具有指定別名的使用者。
--	將使用者登出。
+-   Gets access tokens for calling the Azure AD Graph API using the [OAuth 2.0 authentication protocol](https://msdn.microsoft.com/library/azure/dn645545.aspx).
+-   Searches a directory for users with a given alias.
+-   Signs users out.
 
-若要建立可完整運作的應用程式，您必須：
+To build the complete working application, you'll need to:
 
-2. 向 Azure AD 註冊您的應用程式。
-3. 安裝及設定 ADAL。
-5. 使用 ADAL 來取得 Azure AD 的權杖。
+2. Register your application with Azure AD.
+3. Install & Configure ADAL.
+5. Use ADAL to get tokens from Azure AD.
 
-若要開始使用，請[下載應用程式基本架構](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip)。您還需要一個可以建立使用者並註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
+To get started, [download the app skeleton](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/skeleton.zip) or [download the completed sample](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip).  You'll also need an Azure AD tenant in which you can create users and register an application.  If you don't already have a tenant, [learn how to get one](active-directory-howto-tenant.md).
 
-## *1.註冊 DirectorySearcher 應用程式*
-若要讓您的應用程式取得權杖，您必須先在 Azure AD 租用戶中註冊這個應用程式，並授權它存取 Azure AD Graph API：
+## <a name="*1.-register-the-directorysearcher-application*"></a>*1. Register the DirectorySearcher Application*
+To enable your app to get tokens, you'll first need to register it in your Azure AD tenant and grant it permission to access the Azure AD Graph API:
 
--	登入 Azure 管理入口網站
--	在左側導覽中按一下 **Active Directory**
--	選取要在其中註冊應用程式的租用戶。
--	按一下 [**應用程式**] 索引標籤，然後按一下最下面抽屜的 [**新增**]。
--	遵照提示進行，並建立新的**原生用戶端應用程式**。
-    -	應用程式的 [**名稱**] 將對使用者說明您的應用程式
-    -	「**重新導向 URI**」是配置和字串的組合，Azure AD 可用它來傳回權杖回應。輸入應用程式特定的值，例如 `http://DirectorySearcher`。
--	完成註冊後，AAD 會為您的應用程式指派一個唯一用戶端識別碼。您在後續章節中將會用到這個值，所以請從 [**設定**] 索引標籤中複製此值。
-- 此外，在 [**設定**] 索引標籤上找到 [其他應用程式的權限] 區段。在 [**委派權限**] 下，為 [Azure Active Directory] 應用程式新增 [**存取您的組織目錄**] 權限。這樣做可讓您的應用程式查詢 Graph API 的使用者。
+-   Sign into the Azure Management Portal
+-   In the left hand nav, click on **Active Directory**
+-   Select a tenant in which to register the application.
+-   Click the **Applications** tab, and click **Add** in the bottom drawer.
+-   Follow the prompts and create a new **Native Client Application**.
+    -   The **Name** of the application will describe your application to end-users
+    -   The **Redirect Uri** is a scheme and string combination that Azure AD will use to return token responses.  Enter a value specific to your application, e.g. `http://DirectorySearcher`.
+-   Once you've completed registration, AAD will assign your app a unique client identifier.  You'll need this value in the next sections, so copy it from the **Configure** tab.
+- Also in **Configure** tab, locate the "Permissions to Other Applications" section.  For the "Azure Active Directory" application, add the **Access Your Organization's Directory** permission under **Delegated Permissions**.  This will enable your application to query the Graph API for users.
 
-## *2.安裝及設定 ADAL*
-既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能與 Azure AD 通訊，您需要提供一些應用程式註冊的相關資訊。
--	首先，使用 Package Manager Console 將 ADAL 新增到 DirectorySearcher 專案中。
+## <a name="*2.-install-&-configure-adal*"></a>*2. Install & Configure ADAL*
+Now that you have an application in Azure AD, you can install ADAL and write your identity-related code.  In order for ADAL to be able to communicate with Azure AD, you need to provide it with some information about your app registration.
+-   Begin by adding ADAL to the DirectorySearcher project using the Package Manager Console.
 
 ```
 PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
 ```
 
--	在 DirectorySearcher 專案中，開啟 `app.config`。取代 `<appSettings>` 區段中的元素值，以反映您在 Azure 入口網站中所輸入的值。每當使用 ADAL 時，您的程式碼便會參考這些值。
-    -	`ida:Tenant` 是指您的 Azure AD 租用戶網域，例如 contoso.onmicrosoft.com
-    -	`ida:ClientId` 是指您從入口網站複製的應用程式 clientId。
-    -	`ida:RedirectUri` 是您在入口網站中註冊的重新導向 url。
+-   In the DirectorySearcher project, open `app.config`.  Replace the values of the elements in the `<appSettings>` section to reflect the values you input into the Azure Portal.  Your code will reference these values whenever it uses ADAL.
+    -   The `ida:Tenant` is the domain of your Azure AD tenant, e.g. contoso.onmicrosoft.com
+    -   The `ida:ClientId` is the clientId of your application you copied from the portal.
+    -   The `ida:RedirectUri` is the redirect url you registered in the portal.
 
-## *3.使用 ADAL 來取得 AAD 的權杖*
-ADAL 的基本原則是每當您的應用程式需要存取權杖時，它只需呼叫 `authContext.AcquireTokenAsync(...)`，ADAL 就會進行其餘工作。
+## <a name="*3.-use-adal-to-get-tokens-from-aad*"></a>*3.  Use ADAL to Get Tokens from AAD*
+The basic principle behind ADAL is that whenever your app needs an access token, it simply calls `authContext.AcquireTokenAsync(...)`, and ADAL does the rest.  
 
--	在 `DirectorySearcher` 專案中，開啟 `MainWindow.xaml.cs` 並找出 `MainWindow()` 方法。第一步是初始化應用程式的 `AuthenticationContext` - ADAL 的主要類別。您在這裡將 ADAL 與 Azure AD 通訊所需的座標傳給 ADAL，並告訴它如何快取權杖。
+-   In the `DirectorySearcher` project, open `MainWindow.xaml.cs` and locate the `MainWindow()` method.  The first step is to initialize your app's `AuthenticationContext` - ADAL's primary class.  This is where you pass ADAL the coordinates it needs to communicate with Azure AD and tell it how to cache tokens.
 
 ```C#
 public MainWindow()
@@ -81,7 +82,7 @@ public MainWindow()
 }
 ```
 
-- 現在請找到 `Search(...)` 方法，這是在使用者按一下應用程式 UI 的 [搜尋] 按鈕時所叫用的方法。這個方法會對 Azure AD Graph API 提出 GET 要求，以查詢 UPN 開頭為指定搜尋詞彙的使用者。但為了能夠查詢 Graph API，要求的 `Authorization` 標頭必須包含 access\_token - ADAL 可以提供這方面的協助。
+- Now locate the `Search(...)` method, which will be invoked when the user cliks the "Search" button in the app's UI.  This method makes a GET request to the Azure AD Graph API to query for users whose UPN begins with the given search term.  But in order to query the Graph API, you need to include an access_token in the `Authorization` header of the request - this is where ADAL comes in.
 
 ```C#
 private async void Search(object sender, RoutedEventArgs e)
@@ -113,10 +114,10 @@ private async void Search(object sender, RoutedEventArgs e)
     ...
 }
 ```
-- 當您的應用程式透過呼叫 `AcquireTokenAsync(...)` 要求權杖時，ADAL 會嘗試在不要求使用者認證的情況下傳回權杖。如果 ADAL 決定使用者需要登入才能取得權杖，它會顯示登入對話方塊、收集使用者的認證，並在成功驗證後傳回權杖。如果基於任何原因 ADAL 無法傳回權杖，則會擲回 `AdalException`。
-- 請注意，`AuthenticationResult` 物件包含 `UserInfo` 物件，可用來收集您的應用程式可能需要的資訊。在 DirectorySearcher 中，`UserInfo` 用來以使用者的識別碼自訂應用程式的 UI。
+- When your app requests a token by calling `AcquireTokenAsync(...)`, ADAL will attempt to return a token without asking the user for credentials.  If ADAL determines that the user needs to sign in to get a token, it will display a login dialog, collect the user's credentials, and return a token upon successful authentication.  If ADAL is unable to return a token for any reason, it will throw an `AdalException`.
+- Notice that the `AuthenticationResult` object contains a `UserInfo` object that can be used to collect information your app may need.  In the DirectorySearcher, `UserInfo` is used to customize the app's UI with the user's id.
 
-- 當使用者按一下 [登出] 按鈕時，我們想要確保下次呼叫 `AcquireTokenAsync(...)` 時會要求使用者登入。有了 ADAL，這會和清除權杖快取一樣簡單：
+- When the user clicks the "Sign Out" button, we want to ensure that the next call to `AcquireTokenAsync(...)` will ask the user to sign in.  With ADAL, this is as easy as clearing the token cache:
 
 ```C#
 private void SignOut(object sender = null, RoutedEventArgs args = null)
@@ -128,7 +129,7 @@ private void SignOut(object sender = null, RoutedEventArgs args = null)
 }
 ```
 
-- 不過，如果使用者未按一下 [登出] 按鈕，您會想要維護使用者的工作階段，供他們下一次執行 DirectorySearcher 繼續使用。當應用程式啟動時，您可以在 ADAL 的權杖快取中檢查現有的權杖，並據此更新 UI。在 `CheckForCachedToken()` 方法中，再呼叫一次 `AcquireTokenAsync(...)`，這次要傳入 `PromptBehavior.Never` 參數。`PromptBehavior.Never` 告訴 ADAL 不要提示使用者進行登入，而如果 ADAL 無法傳回權杖，則應該改為擲回例外狀況。
+- However, if the user does not click the "Sign Out" button, you will want to maintain the user's session for the next time they run the DirectorySearcher.  When the app launches, you can check ADAL's token cache for an existing token and update the UI accordingly.  In the `CheckForCachedToken()` method, make another call to `AcquireTokenAsync(...)`, this time passing in the `PromptBehavior.Never` parameter.  `PromptBehavior.Never` will tell ADAL that the user should not be prompted for sign in, and ADAL should instead throw an exception if it is unable to return a token.
 
 ```C#
 public async void CheckForCachedToken() 
@@ -157,14 +158,18 @@ public async void CheckForCachedToken()
 }
 ```
 
-恭喜！ 您現在有一個可運作的 .NET WPF 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。如果您還沒有這麼做，現在是將一些使用者植入租用戶的時候。執行 DirectorySearcher 應用程式，並使用其中一個使用者登入。根據 UPN 搜尋其他使用者。關閉並重新執行應用程式。請注意，使用者工作階段會維持不變。登出，再以另一個使用者身分重新登入。
+Congratulations! You now have a working .NET WPF application that has the ability to authenticate users, securely call Web APIs using OAuth 2.0, and get basic information about the user.  If you haven't already, now is the time to populate your tenant with some users.  Run your DirectorySearcher app, and sign in with one of those users.  Search for other users based on their UPN.  Close the app, and re-run it.  Notice how the user's session remains intact.  Sign out, and sign back in as another user.
 
-ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應用程式。它會為您處理一切麻煩的事，包括快取管理、OAuth 通訊協定支援、向使用者顯示登入 UI、重新整理過期權杖等等。您唯一需要知道的就是單一 API 呼叫，`authContext.AcquireTokenAsync(...)`。
+ADAL makes it easy to incorporate all of these common identity features into your application.  It takes care of all the dirty work for you - cache management, OAuth protocol support, presenting the user with a login UI, refreshing expired tokens, and more.  All you really need to know is a single API call, `authContext.AcquireTokenAsync(...)`.
 
-[這裡](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip)提供完成的範例供您參考 (不含您的設定值)。您現在可以繼續探索其他案例。您可以嘗試：
+For reference, the completed sample (without your configuration values) is provided [here](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip).  You can now move on to additional scenarios.  You may want to try:
 
-[使用 Azure AD 保護 .NET Web API >>](active-directory-devquickstarts-webapi-dotnet.md)
+[Secure a .NET Web API with Azure AD >>](active-directory-devquickstarts-webapi-dotnet.md)
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

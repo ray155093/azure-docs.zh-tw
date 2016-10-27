@@ -1,6 +1,6 @@
 <properties
-   pageTitle="建立 Azure Marketplace 的內部部署虛擬機器映像 | Microsoft Azure"
-   description="了解及執行建立內部部署的 VM 映像，並且部署至 Azure Marketplace 以供他人購買的步驟。"
+   pageTitle="Creating an on-premises virtual machine image for the Azure Marketplace | Microsoft Azure"
+   description="Understand and execute the steps to create an on-premises VM image and deploy to the Azure Marketplace for others to purchase."
    services="marketplace-publishing"
    documentationCenter=""
    authors="HannibalSII"
@@ -16,127 +16,132 @@
   ms.date="04/29/2016"
   ms.author="hascipio; v-divte"/>
 
-# 開發 Azure Marketplace 的內部部署虛擬機器映像
-強烈建議您使用遠端桌面通訊協定，在雲端中直接開發您的 Azure 虛擬硬碟 (VHD)。不過如果需要，可以使用內部部署基礎結構來下載 VHD 並進行開發。
 
-如果是內部部署開發，您必須下載已建立之 VM 的作業系統 VHD。這些步驟會在前述的步驟 3.3 進行。
+# <a name="develop-an-on-premises-virtual-machine-image-for-the-azure-marketplace"></a>Develop an on-premises virtual machine image for the Azure Marketplace
+We strongly recommend that you develop Azure virtual hard disks (VHDs) directly in the cloud by using Remote Desktop Protocol. However, if you must, it is possible to download a VHD and develop it by using on-premises infrastructure.  
 
-## 下載 VHD 映像
-### 找出 Blob URL
-若要下載 VHD，請先找出作業系統磁碟的 Blob URL。
+For on-premises development, you must download the operating system VHD of the created VM. These steps would take place as part of step 3.3, above.  
 
-從新的 [Microsoft Azure 入口網站](https://portal.azure.com)找出 Blob URL：
+## <a name="download-a-vhd-image"></a>Download a VHD image
+### <a name="locate-a-blob-url"></a>Locate a blob URL
+In order to download the VHD, first locate the blob URL for the operating system disk.
 
-1.	移至 [瀏覽] > [VM]，然後選取已部署的 VM。
-2.	在 [設定] 之下，選取 [磁碟] 磚，以開啟 [磁碟] 刀鋒視窗。
+Locate the blob URL from the new [Microsoft Azure portal](https://portal.azure.com):
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img01.png)
+1.  Go to **Browse** > **VMs**, and then select the deployed VM.
+2.  Under **Configure**, select the **Disks** tile, which opens the Disks blade.
 
-3.	選取 [作業系統磁碟]，開啟另一個刀鋒視窗來顯示磁碟屬性 (包括 VHD 位置)。
-4.	複製此 Blob URL。
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img01.png)
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img02.png)
+3.  Select the **OS Disk**, which opens another blade that displays disk properties, including the VHD location.
+4.  Copy this blob URL.
 
-5.	現在，刪除已部署的 VM 而不要刪除備份磁碟。您也可以停止 VM，而不是刪除它。不要在 VM 執行時下載作業系統 VHD。
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img02.png)
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img03.png)
+5.  Now, delete the deployed VM without deleting the backing disks. You can also stop the VM instead of deleting it. Do not download the operating system VHD when the VM is running.
 
-### 下載 VHD
-知道 Blob URL 之後，您就可以使用 [Azure 入口網站](http://manage.windowsazure.com/)或 PowerShell 下載 VHD。
-> [AZURE.NOTE] 本指南建立時，新的 Microsoft Azure 入口網站還沒有下載 VHD 的功能。
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img03.png)
 
-**透過目前的 [Azure 入口網站](http://manage.windowsazure.com/)下載作業系統 VHD**
+### <a name="download-a-vhd"></a>Download a VHD
+After you know the blob URL, you can download the VHD by using the [Azure portal](http://manage.windowsazure.com/) or PowerShell.  
+> [AZURE.NOTE] At the time of this guide’s creation, the functionality to download a VHD is not yet present in the new Microsoft Azure portal.  
 
-1.	如果您尚未登入 Azure 入口網站，請先登入。
-2.	按一下 [儲存體] 索引標籤。
-3.	選取儲存 VHD 的儲存體帳戶。
+**Download the operating system VHD via the current [Azure portal](http://manage.windowsazure.com/)**
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img04.png)
+1.  Sign in to the Azure portal if you have not done so already.
+2.  Click the **Storage** tab.
+3.  Select the storage account within which the VHD is stored.
 
-4.	這樣即會顯示儲存體帳戶屬性選取 [容器] 索引標籤。
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img04.png)
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img05.png)
+4.  This displays storage account properties. Select the **Containers** tab.
 
-5.	選取儲存 VHD 的容器。根據預設，如果 VHD 是從入口網站建立，則會儲存在 vhds 容器中。
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img05.png)
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img06.png)
+5.  Select the container in which the VHD is stored. By default, when created from the portal, the VHD is stored in a vhds container.
 
-6.	比較該 URL 和您儲存的 URL，選取正確的作業系統 VHD。
-7.	按一下 [下載]。
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img06.png)
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img07.png)
+6.  Select the correct operating system VHD by comparing the URL to the one you saved.
+7.  Click **Download**.
 
-### 使用 PowerShell 下載 VHD
-除了使用 Azure 入口網站，還可以使用 [Save-AzureVhd](http://msdn.microsoft.com/library/dn495297.aspx) Cmdlet 下載作業系統 VHD。
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img07.png)
+
+### <a name="download-a-vhd-by-using-powershell"></a>Download a VHD by using PowerShell
+In addition to using the Azure portal, you can use the [Save-AzureVhd](http://msdn.microsoft.com/library/dn495297.aspx) cmdlet to download the operating system VHD.
 
         Save-AzureVhd –Source <storageURIOfVhd> `
         -LocalFilePath <diskLocationOnWorkstation> `
         -StorageKey <keyForStorageAccount>
-例如，Save-AzureVhd -Source “https://baseimagevm.blob.core.windows.net/vhds/BaseImageVM-6820cq00-BaseImageVM-os-1411003770191.vhd” -LocalFilePath “C:\\Users\\Administrator\\Desktop\\baseimagevm.vhd” -StorageKey <String>
+For example, Save-AzureVhd -Source “https://baseimagevm.blob.core.windows.net/vhds/BaseImageVM-6820cq00-BaseImageVM-os-1411003770191.vhd” -LocalFilePath “C:\Users\Administrator\Desktop\baseimagevm.vhd” -StorageKey <String>
 
-> [AZURE.NOTE] **Save-AzureVhd** 也有 **NumberOfThreads** 選項，可用來增加平行處理來善用下載可用的頻寬。
+> [AZURE.NOTE] **Save-AzureVhd** also has a **NumberOfThreads** option that can be used to increase parallelism to make the best use of available bandwidth for the download.
 
-## 上傳 VHD 到 Azure 儲存體帳戶
-如果您準備好內部部署的 VHD，就必須將它們上傳到 Azure 中的儲存體帳戶。這個步驟會在建立內部部署的 VHD 之後，但在取得 VM 映像認證之前進行。
+## <a name="upload-vhds-to-an-azure-storage-account"></a>Upload VHDs to an Azure storage account
+If you prepared your VHDs on-premises, you need to upload them into a storage account in Azure. This step takes place after creating your VHD on-premises but before obtaining certification for your VM image.
 
-### 建立儲存體帳戶和容器
-我們建議將 VHD 上傳到美國境內某個區域的儲存體帳戶中。單一 SKU 的所有 VHD 都應該放在單一儲存體帳戶內的單一容器中。
+### <a name="create-a-storage-account-and-container"></a>Create a storage account and container
+We recommend that VHDs be uploaded into a storage account in a region in the United States. All VHDs for a single SKU should be placed in a single container within a single storage account.
 
-若要建立儲存體帳戶，可以使用 [Microsoft Azure 入口網站](https://portal.azure.com/)、PowerShell 或 Linux 命令列工具。
+To create a storage account, you can use the [Microsoft Azure portal](https://portal.azure.com/), PowerShell, or the Linux command-line tool.  
 
-**從 Microsoft Azure 入口網站建立儲存體帳戶**
+**Create a storage account from the Microsoft Azure portal**
 
-1.	按一下 [新增]。
-2.	選取 [儲存體]。
-3.	填入儲存體帳戶名稱，然後選取位置。
+1.  Click **New**.
+2.  Select **Storage**.
+3.  Fill in the storage account name, and then select a location.
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img08.png)
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img08.png)
 
-4.	按一下 [建立]。
-5.	此時應該會開啟已建立的儲存體帳戶的刀鋒視窗。如果沒有，請選取 [瀏覽] > [儲存體帳戶]。在 [儲存體帳戶] 刀鋒視窗中，選取先前建立的儲存體帳戶。
-6.	選取 [容器]。
+4.  Click **Create**.
+5.  The blade for the created storage account should be open. If not, select **Browse** > **Storage Accounts**. On the Storage account blade, select the storage account created.
+6.  Select **Containers**.
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img09.png)
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img09.png) 
 
-7.	在 [容器] 刀鋒視窗中，選取 [新增]，然後輸入容器名稱和容器權限。為容器權限選取 [私人]。
+7.  On the Containers blade, select **Add**, and then enter a container name and the container permissions. Select **Private** for container permissions.
 
-> [AZURE.TIP] 建議您為每個計畫發佈的 SKU 建立一個容器。
+> [AZURE.TIP] We recommend that you create one container per SKU that you are planning to publish.
 
-  ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img10.png)
+  ![drawing](media/marketplace-publishing-vm-image-creation-on-premise/img10.png)
 
-### 使用 PowerShell 建立儲存體帳戶
-使用 PowerShell，執行 [New-AzureStorageAccount](http://msdn.microsoft.com/library/dn495115.aspx) Cmdlet 建立儲存體帳戶。
+### <a name="create-a-storage-account-by-using-powershell"></a>Create a storage account by using PowerShell
+Using PowerShell, create a storage account by using the [New-AzureStorageAccount](http://msdn.microsoft.com/library/dn495115.aspx) cmdlet.
 
         New-AzureStorageAccount -StorageAccountName “mystorageaccount” -Location “West US”
 
-然後可以使用 [NewAzureStorageContainer](http://msdn.microsoft.com/library/dn495291.aspx) Cmdlet，在該儲存體帳戶內建立容器。
+Then you can create a container within that storage account by using the [NewAzureStorageContainer](http://msdn.microsoft.com/library/dn495291.aspx) cmdlet.
 
         New-AzureStorageContainer -Name “containername” -Permission “Off”
 
-> [AZURE.NOTE] 這些命令假設目前的儲存體帳戶內容已在 PowerShell 中設定。請參閱[設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)，來了解 PowerShell 安裝程式的詳細資訊。
-### 使用適用於 Mac 和 Linux 的命令列工具建立儲存體帳戶
-從 [Linux 命令列工具](../virtual-machines/virtual-machines-linux-cli-manage.md)建立儲存體帳戶，如下所示。
+> [AZURE.NOTE] Those commands assume that the current storage account context has already been set in PowerShell.   Refer to [Setting up Azure PowerShell](marketplace-publishing-powershell-setup.md) for more details on PowerShell setup.
+ 
+### <a name="create-a-storage-account-by-using-the-command-line-tool-for-mac-and-linux"></a>Create a storage account by using the command-line tool for Mac and Linux
+From [Linux command-line tool](../virtual-machines/virtual-machines-linux-cli-manage.md), create a storage account as follows.
 
         azure storage account create mystorageaccount --location "West US"
 
-如下所示建立容器。
+Create a container as follows.
 
         azure storage container create containername --account-name mystorageaccount --accountkey <accountKey>
 
-## 上傳 VHD
-建立儲存體帳戶和容器之後，就可以上傳您準備好的 VHD。您可以使用 PowerShell、Linux 命令列工具或其他 Azure 儲存體管理工具。
+## <a name="upload-a-vhd"></a>Upload a VHD
+After the storage account and container are created, you can upload your prepared VHDs. You can use PowerShell, the Linux command-line tool, or other Azure Storage management tools.
 
-### 透過 PowerShell 上傳 VHD
-使用 [Add-AzureVhd](http://msdn.microsoft.com/library/dn495173.aspx) Cmdlet。
+### <a name="upload-a-vhd-via-powershell"></a>Upload a VHD via PowerShell
+Use the [Add-AzureVhd](http://msdn.microsoft.com/library/dn495173.aspx) cmdlet.
 
         Add-AzureVhd –Destination “http://mystorageaccount.blob.core.windows.net/containername/vmsku.vhd” -LocalFilePath “C:\Users\Administrator\Desktop\vmsku.vhd”
 
-### 使用適用於 Mac 和 Linux 的命令列工具上傳 VHD
-透過 [Linux 命令列工具](../virtual-machines/command-line-tools/)，使用下列語法：
-azure vm image create <image name> --location <Location of the data center> --OS Linux <LocationOfLocalVHD>
+### <a name="upload-a-vhd-by-using-the-command-line-tool-for-mac-and-linux"></a>Upload a VHD by using the command-line tool for Mac and Linux
+With the [Linux command-line tool](../virtual-machines/command-line-tools/), use the following: azure vm image create <image name> --location <Location of the data center> --OS Linux <LocationOfLocalVHD>
 
-## 另請參閱
-- [建立 Marketplace 的虛擬機器映像](marketplace-publishing-vm-image-creation.md)
-- [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)
+## <a name="see-also"></a>See also
+- [Creating a virtual machine image for the Marketplace](marketplace-publishing-vm-image-creation.md)
+- [Setting up Azure PowerShell](marketplace-publishing-powershell-setup.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

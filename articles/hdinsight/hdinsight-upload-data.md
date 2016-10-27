@@ -1,238 +1,239 @@
 <properties
-	pageTitle="在 HDInsight 上將 Hadoop 工作的資料上傳 | Microsoft Azure"
-	description="了解如何使用 Azure CLI、Azure 儲存體總管、Azure PowerShell、Hadoop 命令列或 Sqoop 在 HDInsight 中上傳及存取 Hadoop 工作。"
-	services="hdinsight,storage"
-	documentationCenter=""
-	tags="azure-portal"
-	authors="mumian"
-	manager="jhubbard"
-	editor="cgronlun"/>
+    pageTitle="Upload data for Hadoop jobs in HDInsight | Microsoft Azure"
+    description="Learn how to upload and access data for Hadoop jobs in HDInsight using the Azure CLI, Azure Storage Explorer, Azure PowerShell, the Hadoop command line, or Sqoop."
+    services="hdinsight,storage"
+    documentationCenter=""
+    tags="azure-portal"
+    authors="mumian"
+    manager="jhubbard"
+    editor="cgronlun"/>
 
 <tags
-	ms.service="hdinsight"
-	ms.workload="big-data"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/10/2016"
-	ms.author="jgao"/>
+    ms.service="hdinsight"
+    ms.workload="big-data"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/10/2016"
+    ms.author="jgao"/>
 
 
 
-#在 HDInsight 上將 Hadoop 工作的資料上傳
 
-Azure HDInsight 在 Azure Blob 儲存體上提供了全功能的 Hadoop 分散式檔案系統 (HDFS)。此儲存體是設計為 HDFS 的延伸，以便為使用者提供流暢的體驗。此儲存體可讓 Hadoop 生態系統中的完整元件集直接在它管理的資料上運作。Azure Blob 儲存體和 HDFS 是不同的檔案系統，但經過最佳化後，都非常適合儲存資料以及計算儲存的資料。如需關於使用 Azure Blob 儲存體有哪些優點的資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
+#<a name="upload-data-for-hadoop-jobs-in-hdinsight"></a>Upload data for Hadoop jobs in HDInsight
 
-**必要條件**
+Azure HDInsight provides a full-featured Hadoop distributed file system (HDFS) over Azure Blob storage. It is designed as an HDFS extension to provide a seamless experience to customers. It enables the full set of components in the Hadoop ecosystem to operate directly on the data it manages. Azure Blob storage and HDFS are distinct file systems that are optimized for storage of data and computations on that data. For information about the benefits of using Azure Blob storage, see [Use Azure Blob storage with HDInsight][hdinsight-storage].
 
-開始進行之前，請注意下列需求：
+**Prerequisites**
 
-* Azure HDInsight 叢集。如需指示，請參閱 [Azure HDInsight 使用者入門][hdinsight-get-started]或[佈建 HDInsight 叢集][hdinsight-provision]。
+Note the following requirement before you begin:
 
-##為什麼要使用 Blob 儲存體？
+* An Azure HDInsight cluster. For instructions, see [Get started with Azure HDInsight][hdinsight-get-started] or [Provision HDInsight clusters][hdinsight-provision].
 
-部署 Azure HDInsight 叢集通常是為了執行 MapReduce 工作，並在這些工作完成後卸除叢集。將計算完成後的資料保留在 HDFS 叢集是成本較高的資料儲存方式。對於使用 HDInsight 來處理的資料，Azure Blob 儲存體是一種高可用性、高延展性、大容量、低成本且可共用的儲存方案。將資料儲存在 Blob 中，可安全地釋放做為計算用途的 HDInsight 叢集，而且不會遺失資料。
+##<a name="why-blob-storage?"></a>Why blob storage?
 
-###目錄
+Azure HDInsight clusters are typically deployed to run MapReduce jobs, and the clusters are dropped after these jobs complete. Keeping the data in the HDFS clusters after computations are complete would be an expensive way to store this data. Azure Blob storage is a highly available, highly scalable, high capacity, low cost, and shareable storage option for data that is to be processed using HDInsight. Storing data in a blob enables the HDInsight clusters that are used for computation to be safely released without losing data.
 
-Azure Blob 儲存體容器會以機碼/值組來儲存資料，而且沒有目錄階層。然而，機碼名稱中可使用 "/" 字元，使檔案變成好像儲存在目錄結構中一樣。HDInsight 會將它們視為就像是實際的目錄一樣。
+###<a name="directories"></a>Directories
 
-例如，Blob 的機碼可能是 *input/log1.txt*。實際上不存在 "input" 目錄，只是因為機碼名稱中有 "/" 字元，才形成檔案路徑的外觀。
+Azure Blob storage containers store data as key/value pairs, and there is no directory hierarchy. However the "/" character can be used within the key name to make it appear as if a file is stored within a directory structure. HDInsight sees these as if they are actual directories.
 
-因此，當您使用 Azure Explorer 工具時，可能會注意到一些 0 位元組的檔案。這些檔案有兩種用途：
+For example, a blob's key may be *input/log1.txt*. No actual "input" directory exists, but due to the presence of the "/" character in the key name, it has the appearance of a file path.
 
-- 如果是空資料夾，這些檔案會標示資料夾的存在。Azure Blob 儲存體很聰明，它知道如果有一個名為 foo/bar 的 Blob ，就有一個名為 **foo** 的資料夾。但如果要表達有一個名為 **foo** 的空資料夾，唯一的辦法就是放入這個特殊的 0 位元組檔案。
+Because of this, if you use Azure Explorer tools you may notice some 0 byte files. These files serve two purposes:
 
-- 這些檔案中保存 Hadoop 檔案系統所需的特殊中繼資料，尤其是資料夾的權限和擁有者。
+- If there are empty folders, they mark of the existence of the folder. Azure Blob storage is clever enough to know that if a blob called foo/bar exists, there is a folder called **foo**. But the only way to signify an empty folder called **foo** is by having this special 0 byte file in place.
 
-##命令列公用程式
+- They hold special metadata that is needed by the Hadoop file system, notably the permissions and owners for the folders.
 
-Microsoft 提供下列公用程式來使用 Azure Blob 儲存體：
+##<a name="command-line-utilities"></a>Command-line utilities
 
-| 工具 | Linux | OS X | Windows |
+Microsoft provides the following utilities to work with Azure Blob storage:
+
+| Tool | Linux | OS X | Windows |
 | ---- |:-----:|:----:|:-------:|
-| [Azure 命令列介面][azurecli] | ✔ | ✔ | ✔ |
+| [Azure Command-Line Interface][azurecli] | ✔ | ✔ | ✔ |
 | [Azure PowerShell][azure-powershell] | | | ✔ |
 | [AzCopy][azure-azcopy] | | | ✔ |
-| [Hadoop 命令](#commandline) | ✔ | ✔ | ✔ |
+| [Hadoop command](#commandline) | ✔ | ✔ | ✔ |
 
-> [AZURE.NOTE] 雖然 Azure CLI、Azure PowerShell 與 AzCopy 都可從外部 Azure 使用，但是 Hadoop 命令只能在 HDInsight 叢集上使用，而且只允許將資料從本機檔案系統載入到 Azure Blob 儲存體。
+> [AZURE.NOTE] While the Azure CLI, Azure PowerShell, and AzCopy can all be used from outside Azure, the Hadoop command is only available on the HDInsight cluster and only allows loading data from the local file system into Azure Blob storage.
 
-###<a id="xplatcli"></a>Azure CLI
+###<a name="<a-id="xplatcli"></a>azure-cli"></a><a id="xplatcli"></a>Azure CLI
 
-Azure CLI 是可讓您管理 Azure 服務的跨平台工具。使用以下步驟將資料上傳至 Azure Blob 儲存體：
+The Azure CLI is a cross-platform tool that allows you to manage Azure services. Use the following steps to upload data to Azure Blob storage:
 
 [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
-1. [安裝和設定適用於 Mac、Linux 和 Windows 的 Azure CLI](../xplat-cli-install.md)。
+1. [Install and configure the Azure CLI for Mac, Linux and Windows](../xplat-cli-install.md).
 
-2. 開啟命令提示字元、Bash 或其他殼層，然後使用以下命令驗證您的 Azure 訂用帳戶。
+2. Open a command prompt, bash, or other shell, and use the following to authenticate to your Azure subscription.
 
-		azure login
+        azure login
 
-	出現提示時，輸入訂用帳戶的使用者名稱和密碼。
+    When prompted, enter the user name and password for your subscription.
 
-3. 輸入以下命令可列出訂用帳戶的儲存體帳戶：
+3. Enter the following command to list the storage accounts for your subscription:
 
-		azure storage account list
+        azure storage account list
 
-4. 選取含有您想要使用之 Blob 的儲存體帳戶，然後使用以下命令擷取此帳戶的金鑰：
+4. Select the storage account that contains the blob you want to work with, then use the following command to retrieve the key for this account:
 
-		azure storage account keys list <storage-account-name>
+        azure storage account keys list <storage-account-name>
 
-	此時應該會傳回**主要**和**次要**金鑰。複製**主要**金鑰值，因為接下來的步驟中會使用此值。
+    This should return **Primary** and **Secondary** keys. Copy the **Primary** key value because it will be used in the next steps.
 
-5. 使用以下命令擷取儲存體帳戶內的 Blob 儲存體清單：
+5. Use the following command to retrieve a list of blob containers within the storage account:
 
-		azure storage container list -a <storage-account-name> -k <primary-key>
+        azure storage container list -a <storage-account-name> -k <primary-key>
 
-6. 使用以下命令將檔案上傳及下載至 Blob：
+6. Use the following commands to upload and download files to the blob:
 
-	* 上傳檔案：
+    * To upload a file:
 
-			azure storage blob upload -a <storage-account-name> -k <primary-key> <source-file> <container-name> <blob-name>
+            azure storage blob upload -a <storage-account-name> -k <primary-key> <source-file> <container-name> <blob-name>
 
-	* 下載檔案：
+    * To download a file:
 
-			azure storage blob download -a <storage-account-name> -k <primary-key> <container-name> <blob-name> <destination-file>
+            azure storage blob download -a <storage-account-name> -k <primary-key> <container-name> <blob-name> <destination-file>
 
-> [AZURE.NOTE] 如果您會持續使用同一個儲存體帳戶，可以設定以下環境變數，而不是為每個命令指定帳戶和金鑰：
+> [AZURE.NOTE] If you will always be working with the same storage account, you can set the following environment variables instead of specifying the account and key for every command:
 >
-> * **AZURE\_STORAGE\_ACCOUNT**：儲存體帳戶名稱
+> * **AZURE\_STORAGE\_ACCOUNT**: The storage account name
 >
-> * **AZURE\_STORAGE\_ACCESS\_KEY**：儲存體帳戶金鑰
+> * **AZURE\_STORAGE\_ACCESS\_KEY**: The storage account key
 
-###<a id="powershell"></a>Azure PowerShell
+###<a name="<a-id="powershell"></a>azure-powershell"></a><a id="powershell"></a>Azure PowerShell
 
-Azure PowerShell 是一種指令碼環境，可讓您在 Azure 中用來控制和自動化工作負載的部署及管理。如需關於設定工作站以執行 Azure PowerShell 的資訊，請參閱[安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+Azure PowerShell is a scripting environment that you can use to control and automate the deployment and management of your workloads in Azure. For information about configuring your workstation to run Azure PowerShell, see [Install and configure Azure PowerShell](../powershell-install-configure.md).
 
 [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell.md)]
 
-**將本機檔案上傳至 Azure Blob 儲存體**
+**To upload a local file to Azure Blob storage**
 
-1. 依照[安裝和設定 Azure PowerShell](../powershell-install-configure.md) 的指示，開啟 Azure PowerShell 主控台。
-2. 在下列指令碼中設定前五個變數的值：
+1. Open the Azure PowerShell console as instructed in [Install and configure Azure PowerShell](../powershell-install-configure.md).
+2. Set the values of the first five variables in the following script:
 
-		$resourceGroupName = "<AzureResourceGroupName>"
-		$storageAccountName = "<StorageAccountName>"
-		$containerName = "<ContainerName>"
+        $resourceGroupName = "<AzureResourceGroupName>"
+        $storageAccountName = "<StorageAccountName>"
+        $containerName = "<ContainerName>"
 
-		$fileName ="<LocalFileName>"
-		$blobName = "<BlobName>"
+        $fileName ="<LocalFileName>"
+        $blobName = "<BlobName>"
 
-		# Get the storage account key
-		$storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName)[0].Value
-		# Create the storage context object
-		$destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageaccountkey
+        # Get the storage account key
+        $storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName)[0].Value
+        # Create the storage context object
+        $destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageaccountkey
 
-		# Copy the file from local workstation to the Blob container
-		Set-AzureStorageBlobContent -File $fileName -Container $containerName -Blob $blobName -context $destContext
+        # Copy the file from local workstation to the Blob container
+        Set-AzureStorageBlobContent -File $fileName -Container $containerName -Blob $blobName -context $destContext
 
-3. 將指令碼貼到 Azure PowerShell 主控台，並執行該指令碼來複製檔案。
+3. Paste the script into the Azure PowerShell console to run it to copy the file.
 
-如需建立來使用 HDInsight 的 PowerShell 指令碼範例，請參閱 [HDInsight 工具](https://github.com/blackmist/hdinsight-tools)。
+For example PowerShell scripts created to work with HDInsight, see [HDInsight tools](https://github.com/blackmist/hdinsight-tools).
 
-###<a id="azcopy"></a>AzCopy
+###<a name="<a-id="azcopy"></a>azcopy"></a><a id="azcopy"></a>AzCopy
 
-AzCopy 是一套命令列工具，此工具設計目的在於簡化將資料移入及移出 Azure 儲存體帳戶的傳輸工作。您可以將它當做獨立工具來使用，也可以將此工具納入現有的應用程式中。[下載 AzCopy][azure-azcopy-download]。
+AzCopy is a command-line tool that is designed to simplify the task of transferring data into and out of an Azure Storage account. You can use it as a standalone tool or incorporate this tool in an existing application. [Download AzCopy][azure-azcopy-download].
 
-AzCopy 語法如下：
+The AzCopy syntax is:
 
-	AzCopy <Source> <Destination> [filePattern [filePattern...]] [Options]
+    AzCopy <Source> <Destination> [filePattern [filePattern...]] [Options]
 
-如需詳細資訊，請參閱 [AzCopy - 上傳/下載 Azure Blob 的檔案][azure-azcopy]。
+For more information, see [AzCopy - Uploading/Downloading files for Azure Blobs][azure-azcopy].
 
 
-###<a id="commandline"></a>Hadoop 命令列
+###<a name="<a-id="commandline"></a>hadoop-command-line"></a><a id="commandline"></a>Hadoop command line
 
-Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資料儲存到 Blob 儲存體。
+The Hadoop command line is only useful for storing data into blob storage when the data is already present on the cluster head node.
 
-若要使用 Hadoop 命令，您必須先使用下列其中一個方法連線到前端節點：
+In order to use the Hadoop command, you must first connect to the headnode using one of the following methods:
 
-* **Windows 架構的 HDInsight**：[使用遠端桌面連線](hdinsight-administer-use-management-portal.md#connect-to-hdinsight-clusters-by-using-rdp)
+* **Windows-based HDInsight**: [Connect using Remote Desktop](hdinsight-administer-use-management-portal.md#connect-to-hdinsight-clusters-by-using-rdp)
 
-* **Linux 架構的 HDInsight**：使用 SSH ([SSH 命令](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster) 或 [PuTTY](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster)) 連線
+* **Linux-based HDInsight**: Connect using SSH ([the SSH command](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster) or [PuTTY](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster))
 
-連線之後，您就可以使用下列語法來將檔案上傳到儲存體。
+Once connected, you can use the following syntax to upload a file to storage.
 
-	hadoop -copyFromLocal <localFilePath> <storageFilePath>
+    hadoop -copyFromLocal <localFilePath> <storageFilePath>
 
-例如，`hadoop fs -copyFromLocal data.txt /example/data/data.txt`
+For example, `hadoop fs -copyFromLocal data.txt /example/data/data.txt`
 
-因為 HDInsight 的預設檔案系統是位於 Azure Blob 儲存體中，所以 /example/data.txt 實際上是在 Azure Blob 儲存體中。您也可以用下列語法來參考此檔案：
+Because the default file system for HDInsight is in Azure Blob storage, /example/data.txt is actually in Azure Blob storage. You can also refer to the file as:
 
-	wasbs:///example/data/data.txt
+    wasbs:///example/data/data.txt
 
-或
+or
 
-	wasbs://<ContainerName>@<StorageAccountName>.blob.core.windows.net/example/data/davinci.txt
+    wasbs://<ContainerName>@<StorageAccountName>.blob.core.windows.net/example/data/davinci.txt
 
-如需其他可用來處理檔案的 Hadoop 命令清單，請參閱 [http://hadoop.apache.org/docs/r2.7.0/hadoop-project-dist/hadoop-common/FileSystemShell.html](http://hadoop.apache.org/docs/r2.7.0/hadoop-project-dist/hadoop-common/FileSystemShell.html)
+For a list of other Hadoop commands that work with files, see [http://hadoop.apache.org/docs/r2.7.0/hadoop-project-dist/hadoop-common/FileSystemShell.html](http://hadoop.apache.org/docs/r2.7.0/hadoop-project-dist/hadoop-common/FileSystemShell.html)
 
-##圖形化用戶端
+##<a name="graphical-clients"></a>Graphical clients
 
-其他還有數個應用程式也會提供可搭配 Azure 儲存體使用的圖形化介面。以下提供數個這類應用程式的清單：
+There are also several applications that provide a graphical interface for working with Azure Storage. The following is a list of a few of these applications:
 
-| 用戶端 | Linux | OS X | Windows |
+| Client | Linux | OS X | Windows |
 | ------ |:-----:|:----:|:-------:|
 | [Microsoft Visual Studio Tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md#navigate-the-linked-resources) | ✔ | ✔ | ✔ |
-| [Azure 儲存體總管](http://storageexplorer.com/) | ✔ | ✔ | ✔ |
+| [Azure Storage Explorer](http://storageexplorer.com/) | ✔ | ✔ | ✔ |
 | [Cloud Storage Studio 2](http://www.cerebrata.com/Products/CloudStorageStudio/) | | | ✔ |
 | [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) | | | ✔ |
 | [Azure Explorer](http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx) | | | ✔ |
-| [Cyberduck](https://cyberduck.io/) | | ✔ | ✔ |
+| [Cyberduck](https://cyberduck.io/) |  | ✔ | ✔ |
 
-###Visual Studio Tools for HDInsight
+###<a name="visual-studio-tools-for-hdinsight"></a>Visual Studio Tools for HDInsight
 
-如需詳細資訊，請參閱[瀏覽連結的資源](hdinsight-hadoop-visual-studio-tools-get-started.md#navigate-the-linked-resources)。
+For more information, see [Navigate the linked resources](hdinsight-hadoop-visual-studio-tools-get-started.md#navigate-the-linked-resources).
 
-###<a id="storageexplorer"></a>Azure 儲存體總管
+###<a name="<a-id="storageexplorer"></a>azure-storage-explorer"></a><a id="storageexplorer"></a>Azure Storage Explorer
 
-*Azure 儲存體總管*是一種可在 Blob 中檢查和變更資料的實用工具。它是免費開放原始碼工具，可從 [http://storageexplorer.com/](http://storageexplorer.com/) 下載。原始碼亦可從此連結取得。
+*Azure Storage Explorer* is a useful tool for inspecting and altering the data in blobs. It is a free, open source tool that can be downloaded from [http://storageexplorer.com/](http://storageexplorer.com/). The source code is available from this link as well.
 
-使用此工具之前，必須先知道您的 Azure 儲存體帳戶名稱和帳戶金鑰。如需關於取得此資訊的指示，請參閱[建立、管理或刪除儲存體帳戶][azure-create-storage-account]的＜如何：檢視、複製及重新產生儲存體存取金鑰＞一節。
+Before using the tool, you must know your Azure storage account name and account key. For instructions about getting this information, see the "How to: View, copy and regenerate storage access keys" section of [Create, manage, or delete a storage account][azure-create-storage-account].  
 
-1. 執行 Azure 儲存體總管。如果這是您第一次執行 [儲存體總管]，將會提示您輸入 [儲存體帳戶名稱]__\_ 和 __[儲存體帳戶金鑰]__。如果您之前曾執行過，請使用 [新增]__\_\_ 按鈕加入新的儲存體帳戶名稱和金鑰。
+1. Run Azure Storage Explorer. If this is the first time you have ran the Storage Explorer, you will be prompted for the ___Storage account name__ and __Storage account key__. If you have ran it before, use the __Add__ button to add a new storage account name and key.
 
-    輸入 HDinsight 叢集所使用儲存體帳戶的名稱和金鑰，然後選取 [儲存並開啟]。
+    Enter the name and key for the storage account used by your HDinsight cluster and then select __SAVE & OPEN__.
 
-	![HDI.AzureStorageExplorer][image-azure-storage-explorer]
+    ![HDI.AzureStorageExplorer][image-azure-storage-explorer]
 
-5. 在此介面左邊的 [容器] 清單中，按一下與 HDInsight 叢集相關聯的容器名稱。根據預設，這是 HDInsight 叢集的名稱，但如果您在建立叢集時輸入了特定名稱，則有可能不同。
+5. In the list of containers to the left of the interface, click the name of the container that is associated with your HDInsight cluster. By default, this is the name of the HDInsight cluster, but may be different if you entered a specific name when creating the cluster.
 
-6. 從工具列選取上傳圖示。
+6. From the tool bar, select the upload icon.
 
-    ![工具列和反白顯示的上傳圖示](./media/hdinsight-upload-data/toolbar.png)
+    ![Tool bar with upload icon highlighted](./media/hdinsight-upload-data/toolbar.png)
 
-7. 指定要上傳的檔案，然後按一下 [開啟]。出現提示時，請選取 [上傳] 將檔案上傳至儲存體容器的根目錄。如果您想要將檔案上傳到特定路徑，請在 [目的地] 欄位中輸入路徑，然後選取 [上傳]。
+7. Specify a file to upload, and then click **Open**. When prompted, select __Upload__ to upload the file to the root of the storage container. If you want to upload the file to a specific path, enter the path in the __Destination__ field and then select __Upload__.
 
-    ![檔案上傳對話方塊](./media/hdinsight-upload-data/fileupload.png)
+    ![File upload dialog](./media/hdinsight-upload-data/fileupload.png)
     
-    完成上傳檔案之後，您可以從 HDInsight 叢集上的作業加以使用。
+    Once the file has finished uploading, you can use it from jobs on the HDInsight cluster.
 
-##將 Azure Blob 儲存體掛接為本機磁碟機
+##<a name="mount-azure-blob-storage-as-local-drive"></a>Mount Azure Blob Storage as Local Drive
 
-請參閱[將 Azure Blob 儲存體掛接為本機磁碟機](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/09/mount-azure-blob-storage-as-local-drive.aspx)。
+See [Mount Azure Blob Storage as Local Drive](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/09/mount-azure-blob-storage-as-local-drive.aspx).
 
-##服務
+##<a name="services"></a>Services
 
-###Azure Data Factory
+###<a name="azure-data-factory"></a>Azure Data Factory
 
-Azure Data Factory 服務是完全受管理的服務，可將資料儲存、資料處理及資料移動服務組合成有效率、可調整且可靠的資料生產管線。
+The Azure Data Factory service is a fully managed service for composing data storage, data processing, and data movement services into streamlined, scalable, and reliable data production pipelines.
 
-Azure Data Factory 可用來將資料移至 Azure Blob 儲存體，或建立資料管線直接使用 HDInsight 功能，例如 Hive 和 Pig。
+Azure Data Factory can be used to move data into Azure Blob storage, or to create data pipelines that directly use HDInsight features such as Hive and Pig.
 
-如需詳細資訊，請參閱 [Azure Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)。
+For more information, see the [Azure Data Factory documentation](https://azure.microsoft.com/documentation/services/data-factory/).
 
-###<a id="sqoop"></a>Apache Sqoop
+###<a name="<a-id="sqoop"></a>apache-sqoop"></a><a id="sqoop"></a>Apache Sqoop
 
-Sqoop 是一種專門在 Hadoop 和關聯式資料庫之間傳送資料的工具。此工具可讓您從 SQL Server、MySQL 或 Oracle 等關聯式資料庫管理系統 (RDBMS)，將資料匯入 Hadoop 分散式檔案系統 (HDFS)，使用 MapReduce 或 Hive 轉換 Hadoop 中的資料，然後將資料匯回 RDBMS。
+Sqoop is a tool designed to transfer data between Hadoop and relational databases. You can use it to import data from a relational database management system (RDBMS), such as SQL Server, MySQL, or Oracle into the Hadoop distributed file system (HDFS), transform the data in Hadoop with MapReduce or Hive, and then export the data back into an RDBMS.
 
-如需詳細資訊，請參閱[搭配 HDInsight 使用 Sqoop][hdinsight-use-sqoop]。
+For more information, see [Use Sqoop with HDInsight][hdinsight-use-sqoop].
 
-##開發 SDK
+##<a name="development-sdks"></a>Development SDKs
 
-Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言來存取：
+Azure Blob storage can also be accessed using an Azure SDK from the following programming languages:
 
 * .NET
 * Java
@@ -241,16 +242,16 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 * Python
 * Ruby
 
-如需安裝 Azure SDK 的詳細資訊，請參閱 [Azure 下載](https://azure.microsoft.com/downloads/)
+For more information on installing the Azure SDKs, see [Azure downloads](https://azure.microsoft.com/downloads/)
 
 
-## 後續步驟
-您現在已了解如何將資料匯入 HDInsight，請接著閱讀下列文章以了解如何執行分析：
+## <a name="next-steps"></a>Next steps
+Now that you understand how to get data into HDInsight, read the following articles to learn how to perform analysis:
 
-* [開始使用 Azure HDInsight][hdinsight-get-started]
-* [以程式設計方式提交 Hadoop 工作][hdinsight-submit-jobs]
-* [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
-* [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
+* [Get started with Azure HDInsight][hdinsight-get-started]
+* [Submit Hadoop jobs programmatically][hdinsight-submit-jobs]
+* [Use Hive with HDInsight][hdinsight-use-hive]
+* [Use Pig with HDInsight][hdinsight-use-pig]
 
 
 
@@ -286,4 +287,8 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 [image-ase-addaccount]: ./media/hdinsight-upload-data/HDI.ASEAddAccount.png
 [image-ase-blob]: ./media/hdinsight-upload-data/HDI.ASEBlob.png
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

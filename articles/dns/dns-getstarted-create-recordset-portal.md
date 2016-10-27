@@ -1,9 +1,9 @@
 <properties
-   pageTitle="使用 Azure 入口網站建立 DNS 區域的記錄集和記錄 | Microsoft Azure"
-   description="如何使用 Azure 入口網站建立 Azure DNS 的主機記錄並建立記錄集和記錄"
+   pageTitle="Create a record set and records for a DNS Zone using the Azure portal | Microsoft Azure"
+   description="How to create host records for Azure DNS and create record sets and records using the Azure portal"
    services="dns"
    documentationCenter="na"
-   authors="cherylmc"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"/>
@@ -15,53 +15,58 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+   ms.author="sewhee"/>
 
 
 
-# 使用 Azure 入口網站建立 DNS 記錄集和記錄
+
+# <a name="create-dns-record-sets-and-records-by-using-the-azure-portal"></a>Create DNS record sets and records by using the Azure portal
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](dns-getstarted-create-recordset-portal.md)
+- [Azure Portal](dns-getstarted-create-recordset-portal.md)
 - [PowerShell](dns-getstarted-create-recordset.md)
 - [Azure CLI](dns-getstarted-create-recordset-cli.md)
 
 
-本文將逐步引導您完成使用 Azure 入口網站建立記錄和記錄集的程序。建立 DNS 區域之後，您將會新增網域的 DNS 記錄。若要這樣做，您必須先了解 DNS 記錄和記錄集。
+This article walks you through the process of creating records and records sets by using the Azure portal. After you create your DNS zone, you add the DNS records for your domain. To do this, you first need to understand DNS records and record sets.
 
 [AZURE.INCLUDE [dns-about-records-include](../../includes/dns-about-records-include.md)]
 
 
-## 建立記錄集和記錄
+## <a name="create-a-record-set-and-record"></a>Create a record set and record
 
-下列範例會逐步解說使用 Azure 入口網站建立記錄集和記錄的程序。我們將使用 DNS "A" 記錄類型。
+The following example walks you through the process of creating a record set and record by using the Azure portal. We'll use the DNS "A" record type.
 
-1. 登入入口網站。
+1. Sign in to the portal.
 
-2. 移至您要在其中建立記錄集的 [DNS 區域] 刀鋒視窗。
+2. Go to the **DNS zone** blade in which you want to create a record set.
 
-3. 在 [DNS 區域] 刀鋒視窗頂端，選取 [記錄集] 以開啟 [新增記錄集] 刀鋒視窗。
+3. At the top of the **DNS zone** blade, select **Record set** to open the **Add record set** blade.
 
-	![新的記錄集](./media/dns-getstarted-create-recordset-portal/newrecordset500.png)
+    ![New record set](./media/dns-getstarted-create-recordset-portal/newrecordset500.png)
 
-4. 在 [新增記錄集] 刀鋒視窗中，為您的記錄集命名。例如，您可以將記錄集命名為 "**www**"。
+4. On the **Add record set** blade, name your record set. For example, you could name your record set "**www**".
 
-	![新增記錄集](./media/dns-getstarted-create-recordset-portal/addrecordset500.png)
+    ![Add record set](./media/dns-getstarted-create-recordset-portal/addrecordset500.png)
 
-5. 選取您想要建立的記錄類型。例如，選取 [A]。
+5. Select the type of record you want to create. For example, select **A**.
 
-6. 設定 **TTL**。入口網站中預設的存留時間是一小時。
+6. Set the **TTL**. The default time to live in the portal is one hour.
 
-7. 新增 IP 位址，每行一個 IP 位址。當您使用先前所述的建議記錄集名稱和記錄類型時，您會將 IPv4 IP 位址新增到 www 記錄集的 **A** 記錄。
+7. Add the IP addresses, one IP address per line. When you use the suggested record set name and record type described earlier, you add the IPv4 IP addresses to the **A** record for the www record set.
 
-8. 完成新增 IP 位址之後，選取刀鋒視窗底部的 [確定]。隨即會建立 DNS 記錄集。
+8. After you finish adding IP addresses, select **OK** at the bottom of the blade. The DNS record set will be created.
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要管理您的記錄集和記錄，請參閱[使用 Azure 入口網站管理 DNS 記錄和記錄集](dns-operations-recordsets-portal.md)。
+To manage your record set and records, see [Manage DNS records and record sets by using the Azure portal](dns-operations-recordsets-portal.md).
 
-如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
+For more information about Azure DNS, see the [Azure DNS overview](dns-overview.md).
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

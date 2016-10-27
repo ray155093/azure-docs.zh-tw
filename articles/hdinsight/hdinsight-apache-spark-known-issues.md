@@ -1,149 +1,154 @@
 <properties 
-	pageTitle="HDInsight 中的 Apache Spark 的已知問題 | Microsoft Azure" 
-	description="HDInsight 中的 Apache Spark 的已知問題" 
-	services="hdinsight" 
-	documentationCenter="" 
-	authors="mumian" 
-	manager="jhubbard" 
-	editor="cgronlun"
-	tags="azure-portal"/>
+    pageTitle="Known issues of Apache Spark in HDInsight | Microsoft Azure" 
+    description="Known issues of Apache Spark in HDInsight." 
+    services="hdinsight" 
+    documentationCenter="" 
+    authors="mumian" 
+    manager="jhubbard" 
+    editor="cgronlun"
+    tags="azure-portal"/>
 
 <tags 
-	ms.service="hdinsight" 
-	ms.workload="big-data" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/25/2016" 
-	ms.author="nitinme"/>
+    ms.service="hdinsight" 
+    ms.workload="big-data" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/25/2016" 
+    ms.author="nitinme"/>
 
-# HDInsight Linux 上的 Apache Spark 叢集已知問題
 
-這份文件記錄 HDInsight Spark 公開預覽版本的所有已知問題。
+# <a name="known-issues-for-apache-spark-cluster-on-hdinsight-linux"></a>Known issues for Apache Spark cluster on HDInsight Linux
 
-##Livy 會流失互動式工作階段
+This document keeps track of all the known issues for the HDInsight Spark public preview.  
+
+##<a name="livy-leaks-interactive-session"></a>Livy leaks interactive session
  
-Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Ambari 或是因為前端節點 0 虛擬機器重新開機)，互動式作業工作階段將會流失。因為這個緣故，新的作業可能會卡在「已接受」狀態中，而無法啟動。
+When Livy is restarted with an interactive session (from Ambari or due to headnode 0 virtual machine reboot) still alive, an interactive job session will be leaked. Because of this, new jobs can stuck in the Accepted state, and cannot be started.
 
-**緩和：**
+**Mitigation:**
 
-請使用下列程序解決此問題：
+Use the following procedure to workaround the issue:
 
-1. Ssh 到前端節點。
-2. 執行下列命令，以尋找透過 Livy 啟動之互動式作業的應用程式識別碼。
+1. Ssh into headnode. 
+2. Run the following command to find the application IDs of the interactive jobs started through Livy. 
 
         yarn application –list
 
-    如果作業是透過未指定明確名稱的 Livy 互動式工作階段而啟動的，預設的作業名稱將是 Livy；如果是由 Jupyter Notebook 啟動的 Livy 工作階段，則作業名稱將會以 remotesparkmagics\_* 開頭。
+    The default job names will be Livy if the jobs were started with a Livy interactive session with no explicit names specified, For the Livy session started by Jupyter notebook, the job name will start with remotesparkmagics_*. 
 
-3. 執行下列命令以刪除這些作業。
+3. Run the following command to kill those jobs. 
 
         yarn application –kill <Application ID>
 
-新作業將會開始執行。
+New jobs will start running. 
 
-##Spark 歷程記錄伺服器未啟動 
+##<a name="spark-history-server-not-started"></a>Spark History Server not started 
 
-叢集建立後，不會自動啟動 Spark 歷程記錄伺服器。
+Spark History Server is not started automatically after a cluster is created.  
 
-**緩和：**
+**Mitigation:** 
 
-請從 Ambari 手動啟動歷程記錄伺服器。
+Manually start the history server from Ambari.
 
-## Spark 記錄檔目錄中的權限問題 
+## <a name="permission-issue-in-spark-log-directory"></a>Permission issue in Spark log directory 
 
-在 hdiuser 透過 spark-submit 提交作業時，將會發生錯誤 java.io.FileNotFoundException：/var/log/spark/sparkdriver\_hdiuser.log (沒有使用權限)，且不會寫入驅動程式記錄檔。
+When hdiuser submits a job with spark-submit, there is an error java.io.FileNotFoundException: /var/log/spark/sparkdriver_hdiuser.log (Permission denied) and the driver log is not written. 
 
-**緩和：**
+**Mitigation:**
  
-1. 將 hdiuser 新增至 Hadoop 群組。
-2. 在叢集建立之後，提供 /var/log/spark 的 777 權限。
-3. 使用 Ambari 將 Spark 記錄檔位置更新為具有 777 權限的目錄。
-4. 以 sudo 的身分執行 spark-submit。
+1. Add hdiuser to the Hadoop group. 
+2. Provide 777 permissions on /var/log/spark after cluster creation. 
+3. Update the spark log location using Ambari to be a directory with 777 permissions.  
+4. Run spark-submit as sudo.  
 
-## Jupyter Notebook 的相關問題
+## <a name="issues-related-to-jupyter-notebooks"></a>Issues related to Jupyter notebooks
 
-以下是 Jupyter Notebook 的已知問題。
+Following are some known issues related to Jupyter notebooks.
 
 
-### Notebook 在檔名中有非 ASCII 字元
+### <a name="notebooks-with-non-ascii-characters-in-filenames"></a>Notebooks with non-ASCII characters in filenames
 
-可以用在 Spark HDInsight 叢集中的 Jupyter Notebook，檔名中不該有非 ASCII 字元。如果您嘗試透過有非 ASCII 檔名的 Jupyter UI 上傳檔案，它會以無訊息方式失敗 (亦即 Jupyter 不會讓您上傳檔案，但也不會擲回可見的錯誤)。
+Jupyter notebooks that can be used in Spark HDInsight clusters should not have non-ASCII characters in filenames. If you try to upload a file through the Jupyter UI which has a non-ASCII filename, it will fail silently (that is, Jupyter won’t let you upload the file, but it won’t throw a visible error either). 
 
-### 載入大型 Notebook 時發生錯誤
+### <a name="error-while-loading-notebooks-of-larger-sizes"></a>Error while loading notebooks of larger sizes
 
-載入大型 Notebook 時，您可能會看到錯誤訊息 **`Error loading notebook`**。
+You might see an error **`Error loading notebook`** when you load notebooks that are larger in size.  
 
-**緩和：**
+**Mitigation:**
 
-如果您收到這個錯誤，並不表示您的資料已損毀或遺失。您的 Notebook 仍在磁碟的 `/var/lib/jupyter` 中，您可以透過 SSH 連線到叢集來加以存取。您可以從叢集中將 Notebook 複製到本機電腦 (使用 SCP 或 WinSCP) 來做為備份，以避免遺失 Notebook 中的重要資料。您接著可以在連接埠 8001 以 SSH 通道連到前端節點，以存取 Jupyter 而不透過閘道。您可以從該處清除 Notebook 的輸出，並將其重新儲存，以盡量縮減 Notebook 的大小。
+If you get this error, it does not mean your data is corrupt or lost.  Your notebooks are still on disk in `/var/lib/jupyter`, and you can SSH into the cluster to access them. You can copy your notebooks from your cluster to your local machine (using SCP or WinSCP) as a backup to prevent the loss of any important data in the notebook. You can then SSH tunnel into your headnode at port 8001 to access Jupyter without going through the gateway.  From there, you can clear the output of your notebook and re-save it to minimize the notebook’s size.
 
-若要防止日後再發生此錯誤，您必須遵循一些最佳作法：
+To prevent this error from happening in the future, you must follow some best practices:
 
-* 務必讓 Notebook 保持小型規模。會傳回到 Jupyter 的任何 Spark 作業輸出皆會保存在 Notebook 中。一般來說，Jupyter 的最佳做法是避免在大型 RDD 或資料框架上執行 `.collect()`。相反地，如果您想要查看 RDD 的內容，請考慮執行 `.take()` 或 `.sample()`，這可讓輸出不會變得太大。
-* 此外，當您儲存 Notebook 時，請清除所有輸出儲存格以減少大小。
+* It is important to keep the notebook size small. Any output from your Spark jobs that is sent back to Jupyter is persisted in the notebook.  It is a best practice with Jupyter in general to avoid running `.collect()` on large RDD’s or dataframes; instead, if you want to peek at an RDD’s contents, consider running `.take()` or `.sample()` so that your output doesn’t get too big.
+* Also, when you save a notebook, clear all output cells to reduce the size.
 
-### Notebook 的初始啟動比預期耗時 
+### <a name="notebook-initial-startup-takes-longer-than-expected"></a>Notebook initial startup takes longer than expected 
 
-在使用 Spark magic 的 Jupyter Notebook 中，第一個程式碼陳述式可能需耗時一分鐘以上才能執行完畢。
+First code statement in Jupyter notebook using Spark magic could take more than a minute.  
 
-**說明：**
+**Explanation:**
  
-這會在執行第一個程式碼儲存格時發生。它會在背景中起始設定工作階段組態，以及設定 SQL、Spark 和 Hive 內容。設定這些內容後，第一個陳述式才會執行，因此會有陳述式會花很長時間完成的印象。
+This happens because when the first code cell is run. In the background this initiates session configuration and Spark, SQL, and Hive contexts are set. After these contexts are set, the first statement is run and this gives the impression that the statement took a long time to complete.
 
-### Jupyter Notebook 建立工作階段逾時
+### <a name="jupyter-notebook-timeout-in-creating-the-session"></a>Jupyter notebook timeout in creating the session
 
-當 Spark 叢集的資源不足時，Jupyter Notebook 中的 Spark 和 Pyspark 核心在嘗試建立工作階段時將會逾時。
+When Spark cluster is out of resources, the Spark and Pyspark kernels in the Jupyter notebook will timeout trying to create the session. 
 
-**緩和措施：**
+**Mitigations:** 
 
-1. 藉由下列方式，釋出 Spark 叢集中的一些資源：
+1. Free up some resources in your Spark cluster by:
 
-    - 移至 [關閉並停止] 功能表或按一下 Notebook 總管中的 [關閉]，以停止其他 Spark Notebook。
-    - 從 YARN 停止其他 Spark 應用程式。
+    - Stopping other Spark notebooks by going to the Close and Halt menu or clicking Shutdown in the notebook explorer.
+    - Stopping other Spark applications from YARN.
 
-2. 重新啟動您先前嘗試啟動的 Notebook。此時您應有足夠的資源可建立工作階段。
+2. Restart the notebook you were trying to start up. Enough resources should be available for you to create a session now.
 
-##另請參閱
+##<a name="see-also"></a>See also
 
-* [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
+* [Overview: Apache Spark on Azure HDInsight](hdinsight-apache-spark-overview.md)
 
-### 案例
+### <a name="scenarios"></a>Scenarios
 
-* [Spark 和 BI：在 HDInsight 中搭配使用 Spark 和 BI 工具執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
+* [Spark with BI: Perform interactive data analysis using Spark in HDInsight with BI tools](hdinsight-apache-spark-use-bi-tools.md)
 
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
+* [Spark with Machine Learning: Use Spark in HDInsight for analyzing building temperature using HVAC data](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
 
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark with Machine Learning: Use Spark in HDInsight to predict food inspection results](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 
-* [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
+* [Spark Streaming: Use Spark in HDInsight for building real-time streaming applications](hdinsight-apache-spark-eventhub-streaming.md)
 
-* [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
+* [Website log analysis using Spark in HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
-### 建立及執行應用程式
+### <a name="create-and-run-applications"></a>Create and run applications
 
-* [使用 Scala 建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
+* [Create a standalone application using Scala](hdinsight-apache-spark-create-standalone-application.md)
 
-* [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
+* [Run jobs remotely on a Spark cluster using Livy](hdinsight-apache-spark-livy-rest-interface.md)
 
-### 工具和擴充功能
+### <a name="tools-and-extensions"></a>Tools and extensions
 
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons](hdinsight-apache-spark-intellij-tool-plugin.md)
 
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 
-* [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
+* [Use Zeppelin notebooks with a Spark cluster on HDInsight](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
-* [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
+* [Kernels available for Jupyter notebook in Spark cluster for HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 
-* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+* [Use external packages with Jupyter notebooks](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
 
-* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Install Jupyter on your computer and connect to an HDInsight Spark cluster](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
-### 管理資源
+### <a name="manage-resources"></a>Manage resources
 
-* [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
+* [Manage resources for the Apache Spark cluster in Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
 
-* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
+* [Track and debug jobs running on an Apache Spark cluster in HDInsight](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

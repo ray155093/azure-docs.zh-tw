@@ -1,124 +1,128 @@
 <properties
-	pageTitle="在 Azure 中相應增加應用程式的規模 | Microsoft Azure"
-	description="了解如何在 Azure App Service 中相應增加應用程式的規模，以增加容量和功能。"
-	services="app-service"
-	documentationCenter=""
-	authors="cephalin"
-	manager="wpickett"
-	editor="mollybos"/>
+    pageTitle="Scale up an app in Azure | Microsoft Azure"
+    description="Learn how to scale up an app in Azure App Service to add capacity and features."
+    services="app-service"
+    documentationCenter=""
+    authors="cephalin"
+    manager="wpickett"
+    editor="mollybos"/>
 
 <tags
-	ms.service="app-service"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/05/2016"
-	ms.author="cephalin"/>
+    ms.service="app-service"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/05/2016"
+    ms.author="cephalin"/>
 
-# 在 Azure 中相應增加應用程式的規模 #
 
-本文將說明如何在 Azure App Service 中相應增加應用程式的規模。有兩個工作流程適合用來相應增加和相應放大規模，而本文說明相應增加工作流程。
+# <a name="scale-up-an-app-in-azure"></a>Scale up an app in Azure #
 
-- [相應增加](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰取得更多的 CPU、記憶體、磁碟空間和額外的功能，例如專用虛擬機器 (VM)、自訂網域和憑證、預備位置，以及自動調整等等。您可以藉由變更應用程式所屬的 App Service 方案定價層來相應增加。
-- [相應放大](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰增加執行您的應用程式的 VM 執行個體數目。視您的定價層而定，最多可以相應放大至 20 個執行個體。**進階**層中的 [App Service 環境](../app-service/app-service-app-service-environments-readme.md)，可進一步將您的相應放大計數增加到 50 個執行個體。如需相應放大的詳細資訊，請參閱[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md)。您可以在該文章中了解如何使用自動調整，也就是根據預先定義的規則與排程，自動調整執行個體計數。
+This article shows you how to scale your app in Azure App Service. There are two workflows for scaling, scale up and scale out, and this article explains the scale up workflow.
 
-這些調整設定只需幾秒鐘便能套用，且影響範圍遍及 [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)內的所有應用程式。在此過程中，您不需要變更程式碼或重新部署應用程式。
+- [Scale up](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): Get more CPU, memory, disk space, and extra features like dedicated virtual machines (VMs), custom domains and certificates, staging slots, autoscaling, and more. You scale up by changing the pricing tier of the App Service plan that your app belongs to.
+- [Scale out](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): Increase the number of VM instances that run your app.
+You can scale out to as many as 20 instances, depending on your pricing tier. [App Service Environments](../app-service/app-service-app-service-environments-readme.md) in **Premium** tier will further increase your scale-out count to 50 instances. For more information about scaling out, see [Scale instance count manually or automatically](../azure-portal/insights-how-to-scale.md). There you will find out how to use autoscaling, which is to scale instance count automatically based on predefined rules and schedules.
 
-如需各 App Service 方案價格資訊及功能的詳細資訊，請參閱 [App Service 價格詳細資料](/pricing/details/web-sites/)。
+The scale settings take only seconds to apply and affect all apps in your [App Service plan](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
+They do not require you to change your code or redeploy your application.
 
-> [AZURE.NOTE] 從**免費**層切換 App Service 方案之前，您必須先適當地移除 Azure 訂用帳戶的[消費限制](/pricing/spending-limits/)。若要檢視或變更 Microsoft Azure App Service 訂用帳戶的選項，請參閱 [Microsoft Azure 訂訂用帳戶][azuresubscriptions]。
+For information about the pricing and features of individual App Service plans, see [App Service Pricing Details](/pricing/details/web-sites/).  
 
-<a name="scalingsharedorbasic"></a> <a name="scalingstandard"></a>
+> [AZURE.NOTE] Before you switch an App Service plan from the **Free** tier, you must first remove the [spending limits](/pricing/spending-limits/) in place for your Azure subscription. To view or change options for your Microsoft Azure App Service subscription, see [Microsoft Azure Subscriptions][azuresubscriptions].
 
-## 相應增加您的定價層
+<a name="scalingsharedorbasic"></a>
+<a name="scalingstandard"></a>
 
-1. 在瀏覽器中，開啟 [Azure 入口網站][portal]。
+## <a name="scale-up-your-pricing-tier"></a>Scale up your pricing tier
 
-2. 在應用程式的刀鋒視窗中，按一下 [所有設定]，然後按一下 [相應增加]。
+1. In your browser, open the [Azure portal][portal].
 
-	![瀏覽以相應增加您的 Azure 應用程式規模。][ChooseWHP]
+2. In your app's blade, click **All settings**, and then click **Scale Up**.
 
-4. 選擇您的定價層，然後按一下 [選取]。
+    ![Navigate to scale up your Azure app.][ChooseWHP]
 
-	當操作完成時，[通知] 索引標籤會有綠色的「成功」字樣閃爍顯示。
+4. Choose your tier, and then click **Select**.
+
+    The **Notifications** tab will flash a green **SUCCESS** after the operation is complete.
 
 <a name="ScalingSQLServer"></a>
-## 調整相關資源
-如果您的應用程式相依於其他服務 (如 Azure SQL Database 或 Azure 儲存體)，您也可以根據需求相應增加這些服務。這些資源無法透過 App Service 方案進行調整，且必須分開調整。
+## <a name="scale-related-resources"></a>Scale related resources
+If your app depends on other services, such as Azure SQL Database or Azure Storage, you can also scale up those resources based on your needs. These resources are not scaled with the App Service plan and must be scaled separately.
 
-1. 在 [基本功能] 中，按一下 [資源群組] 連結。
+1. In **Essentials**, click the **Resource group** link.
 
-	![相應增加 Azure 應用程式的相關資源](./media/web-sites-scale/RGEssentialsLink.png)
+    ![Scale up your Azure app's related resources](./media/web-sites-scale/RGEssentialsLink.png)
 
-2. 在 [資源群組] 刀鋒視窗的 [摘要] 組件中，按一下您想要調整的資源。以下螢幕擷取畫面顯示 SQL Database 資源和 Azure 儲存體資源。
+2. In the **Summary** part of the **Resource group** blade, click a resource that you want to scale. The following screenshot shows a SQL Database resource and an Azure Storage resource.
 
-	![瀏覽到資源群組刀鋒視窗以相應增加 Azure 應用程式的規模](./media/web-sites-scale/ResourceGroup.png)
+    ![Navigate to resource group blade to scale up your Azure app](./media/web-sites-scale/ResourceGroup.png)
 
-3. 針對 SQL Database 資源，按一下 [設定] > [定價層] 來調整定價層。
+3. For a SQL Database resource, click **Settings** > **Pricing tier** to scale the pricing tier.
 
-	![相應增加 Azure 應用程式的 SQL Database 後端](./media/web-sites-scale/ScaleDatabase.png)
+    ![Scale up the SQL Database backend for your Azure app](./media/web-sites-scale/ScaleDatabase.png)
 
-	您也可以針對 SQL 資料庫執行個體開啟[異地複寫](../sql-database/sql-database-geo-replication-overview.md)。
+    You can also turn on [geo-replication](../sql-database/sql-database-geo-replication-overview.md) for your SQL Database instance.
 
-    針對 Azure 儲存體資源，按一下 [設定] > [組態]，以便相應增加您的儲存體選項。
+    For an Azure Storage resource, click **Settings** > **Configuration** to scale up your storage options.
 
-    ![相應增加您 Azure 應用程式所使用的 Azure 儲存體帳戶](./media/web-sites-scale/ScaleStorage.png)
+    ![Scale up the Azure Storage account used by your Azure app](./media/web-sites-scale/ScaleStorage.png)
 
 <a name="devfeatures"></a>
-## 了解開發人員功能
-視定價層而定，可使用下列以開發人員為導向的功能：
+## <a name="learn-about-developer-features"></a>Learn about developer features
+Depending on the pricing tier, the following developer-oriented features are available:
 
-### 位元 ###
+### <a name="bitness"></a>Bitness ###
 
-- [**基本**]、[**標準**] 及 [**高階**] 層支援 64 位元和 32 位元的應用程式。
-- [免費] 和 [共用] 方案層僅支援 32 位元的應用程式。
+- The **Basic**, **Standard**, and **Premium** tiers support 64-bit and 32-bit applications.
+- The **Free** and **Shared** plan tiers support 32-bit applications only.
 
-### 偵錯工具支援 ###
+### <a name="debugger-support"></a>Debugger support ###
 
-- 在每個 App Service 方案一個連線的情況下，偵錯工具支援適用於 [免費]、[共用] 及 [基本] 模式。
-- 在每個 App Service 方案有 5 個同時連線的情況下，偵錯工具支援適用於 [標準] 和 [高階] 模式。
+- Debugger support is available for the **Free**, **Shared**, and **Basic** modes at one connection per App Service plan.
+- Debugger support is available for the **Standard** and **Premium** modes at five concurrent connections per App Service plan.
 
 <a name="OtherFeatures"></a>
-## 了解其他功能
+## <a name="learn-about-other-features"></a>Learn about other features
 
-- 如需 App Service 方案其他所有功能的詳細資訊，包括所有使用者 (包括開發人員) 關心的定價和功能，請參閱 [App Service 定價詳細資料](/pricing/details/web-sites/)。
+- For detailed information about all of the remaining features in the App Service plans, including pricing and features of interest to all users (including developers), see [App Service Pricing Details](/pricing/details/web-sites/).
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡，無需承諾。
+>[AZURE.NOTE] If you want to get started with Azure App Service before you sign up for an Azure account, go to [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751) where you can immediately create a short-lived starter web app in App Service. No credit cards are required and there are no commitments.
 
 <a name="Next Steps"></a>
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 若要開始使用 Azure，請參閱 [Microsoft Azure 免費試用](/pricing/free-trial/)。
-- 如需價格、支援及 SLA 的相關資訊，請參閱以下連結：
+- To get started with Azure, see [Microsoft Azure Free Trial](/pricing/free-trial/).
+- For information about pricing, support, and SLA, visit the following links.
 
-	[資料傳輸定價詳細資料](/pricing/details/data-transfers/)
+    [Data Transfers Pricing Details](/pricing/details/data-transfers/)
 
-	[Microsoft Azure 支援方案](/support/plans/)
+    [Microsoft Azure Support Plans](/support/plans/)
 
-	[服務等級協定](/support/legal/sla/)
+    [Service Level Agreements](/support/legal/sla/)
 
-	[SQL Database 定價詳細資料](/pricing/details/sql-database/)
+    [SQL Database Pricing Details](/pricing/details/sql-database/)
 
-	[Microsoft Azure 的虛擬機器和雲端服務大小][vmsizes]
+    [Virtual Machine and Cloud Service Sizes for Microsoft Azure][vmsizes]
 
-	[App Service 定價詳細資料](/pricing/details/app-service/)
+    [App Service Pricing Details](/pricing/details/app-service/)
 
-	[App Service 定價詳細資料 - SSL 連線](/pricing/details/web-sites/#ssl-connections)
+    [App Service Pricing Details - SSL Connections](/pricing/details/web-sites/#ssl-connections)
 
-- 如需 Azure App Service 最佳作法 (包括建置可調整且具彈性的架構) 的詳細資訊，請參閱[最佳作法：Azure App Service Web Apps](http://blogs.msdn.com/b/windowsazure/archive/2014/02/10/best-practices-windows-azure-websites-waws.aspx)。
+- For information about Azure App Service best practices, including building a scalable and resilient architecture, see [Best Practices: Azure App Service Web Apps](http://blogs.msdn.com/b/windowsazure/archive/2014/02/10/best-practices-windows-azure-websites-waws.aspx).
 
-- 如需調整 App Service 應用程式的相關影片，請參閱下列資源：
+- For videos about scaling App Service apps, see the following resources:
 
-	- [何時該調整 Azure 網站 - Stefan Schackow](/documentation/videos/azure-web-sites-free-vs-standard-scaling/)
-	- [自動調整 Azure 網站、CPU 或排程 - Stefan Schackow](/documentation/videos/auto-scaling-azure-web-sites/)
-	- [如何調整 Azure 網站 - Stefan Schackow](/documentation/videos/how-azure-web-sites-scale/)
+    - [When to Scale Azure Websites - with Stefan Schackow](/documentation/videos/azure-web-sites-free-vs-standard-scaling/)
+    - [Auto Scaling Azure Websites, CPU or Scheduled - with Stefan Schackow](/documentation/videos/auto-scaling-azure-web-sites/)
+    - [How Azure Websites Scale - with Stefan Schackow](/documentation/videos/how-azure-web-sites-scale/)
 
 
 <!-- LINKS -->
-[vmsizes]: /pricing/details/app-service/
-[SQLaccountsbilling]: http://go.microsoft.com/fwlink/?LinkId=234930
-[azuresubscriptions]: http://go.microsoft.com/fwlink/?LinkID=235288
+[vmsizes]:/pricing/details/app-service/
+[SQLaccountsbilling]:http://go.microsoft.com/fwlink/?LinkId=234930
+[azuresubscriptions]:http://go.microsoft.com/fwlink/?LinkID=235288
 [portal]: https://portal.azure.com/
 
 <!-- IMAGES -->
@@ -137,4 +141,8 @@
 [ScaleDatabase]: ./media/web-sites-scale/scale11SQLScale.png
 [GeoReplication]: ./media/web-sites-scale/scale12SQLGeoReplication.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure PowerShell 管理虛擬機器 | Microsoft Azure"
-   description="了解可用來自動執行管理虛擬機器工作的命令。"
+   pageTitle="Manage your virtual machines by using Azure PowerShell | Microsoft Azure"
+   description="Learn commands that you can use to automate tasks in managing your virtual machines."
    services="virtual-machines-windows"
    documentationCenter="windows"
    authors="singhkays"
@@ -14,85 +14,90 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
-   ms.date="07/01/2016"
+   ms.date="10/12/2016"
    ms.author="kasing"/>
 
-# 使用 Azure PowerShell 管理您的虛擬機器
+
+# <a name="manage-your-virtual-machines-by-using-azure-powershell"></a>Manage your virtual machines by using Azure PowerShell
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
-可以使用 Azure PowerShell Cmdlet 自動執行許多 VM 的日常管理工作。這篇文章提供了幾個簡單工作的範例命令，另外也提供顯示用來完成更複雜的工作之命令的文章連結。
+Many tasks you do each day to manage your VMs can be automated by using Azure PowerShell cmdlets. This article gives you example commands for simpler tasks, and links to articles that show the commands for more complex tasks.
 
->[AZURE.NOTE] 如果您尚未安裝和設定 Azure PowerShell，可以在[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 文章中取得相關指示。
+>[AZURE.NOTE] If you haven't installed and configured Azure PowerShell yet, you can get instructions in the article [How to install and configure Azure PowerShell](../powershell-install-configure.md).
 
-## 如何使用範例命令
-命令中的某些文字必須換成適合您環境的文字。< 和 > 符號表示您需要取代的文字。當您取代文字時，請移除符號，但將引號保留在原處。
+## <a name="how-to-use-the-example-commands"></a>How to use the example commands
+You'll need to replace some of the text in the commands with text that's appropriate for your environment. The < and > symbols indicate text you need to replace. When you replace the text, remove the symbols but leave the quote marks in place.
 
-## 取得 VM
-這是您會經常使用的基本工作。使用它來取得 VM 的相關資訊、在 VM 上執行工作，或取得輸出以儲存至變數中。
+## <a name="get-a-vm"></a>Get a VM
+This is a basic task you'll use often. Use it to get information about a VM, perform tasks on a VM, or get output to store in a variable.
 
-若要取得 VM 的相關資訊，請執行此命令，並取代引號中的所有內容 (包括 < 和 > 字元)：
+To get information about the VM, run this command, replacing everything in the quotes, including the < and > characters:
 
      Get-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
-若要儲存 $vm 變數中的輸出，請執行：
+To store the output in a $vm variable, run:
 
     $vm = Get-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
-## 登入以 Windows 為基礎的 VM
+## <a name="log-on-to-a-windows-based-vm"></a>Log on to a Windows-based VM
 
-執行以下命令：
+Run these commands:
 
->[AZURE.NOTE] 您可以從 **Get-azurevm** 命令顯示的畫面中，取得虛擬機器和雲端服務名稱。
+>[AZURE.NOTE] You can get the virtual machine and cloud service name from the display of the **Get-AzureVM** command.
 >
-	$svcName = "<cloud service name>"
-	$vmName = "<virtual machine name>"
-	$localPath = "<drive and folder location to store the downloaded RDP file, example: c:\temp >"
-	$localFile = $localPath + "" + $vmname + ".rdp"
-	Get-AzureRemoteDesktopFile -ServiceName $svcName -Name $vmName -LocalPath $localFile -Launch
+    $svcName = "<cloud service name>"
+    $vmName = "<virtual machine name>"
+    $localPath = "<drive and folder location to store the downloaded RDP file, example: c:\temp >"
+    $localFile = $localPath + "\" + $vmname + ".rdp"
+    Get-AzureRemoteDesktopFile -ServiceName $svcName -Name $vmName -LocalPath $localFile -Launch
 
-## 停止 VM
+## <a name="stop-a-vm"></a>Stop a VM
 
-請執行這個命令：
+Run this command:
 
     Stop-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
->[AZURE.IMPORTANT] 萬一它是雲端服務的最後一個 VM，您可以使用這個參數來保留雲端服務的虛擬 IP (VIP)。<br><br> 如果使用 StayProvisioned 參數，還是需要支付 VM 的費用。
+>[AZURE.IMPORTANT] Use this parameter to keep the virtual IP (VIP) of the cloud service in case it's the last VM in that cloud service. <br><br> If you use the StayProvisioned parameter, you'll still be billed for the VM.
 
-## 啟動 VM
+## <a name="start-a-vm"></a>Start a VM
 
-請執行這個命令：
+Run this command:
 
     Start-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
-## 連接資料磁碟
-這項工作需要幾個步驟。首先，請使用 ****Add-AzureDataDisk**** Cmdlet 將磁碟新增至 $vm 物件。然後使用 **Update-AzureVM** Cmdlet 來更新 VM 的組態。
+## <a name="attach-a-data-disk"></a>Attach a data disk
+This task requires a few steps. First, you use the ****Add-AzureDataDisk**** cmdlet to add the disk to the $vm object. Then, you use **Update-AzureVM** cmdlet to update the configuration of the VM.
 
-您也需要決定是否要附加新的磁碟或附加已經包含資料的磁碟。如果是新的磁碟，此命令會建立 .vhd 檔案，並附加該檔案。
+You'll also need to decide whether to attach a new disk or one that contains data. For a new disk, the command creates the .vhd file and attaches it.
 
-若要附加新的磁碟，請執行這個命令：
+To attach a new disk, run this command:
 
     Add-AzureDataDisk -CreateNew -DiskSizeInGB 128 -DiskLabel "<main>" -LUN <0> -VM $vm | Update-AzureVM
 
-若要附加現有的資料磁碟，請執行這個命令：
+To attach an existing data disk, run this command:
 
     Add-AzureDataDisk -Import -DiskName "<MyExistingDisk>" -LUN <0> | Update-AzureVM
 
-若要從 Blob 儲存體中現有的 .vhd 檔案附加資料磁碟，請執行這個命令：
+To attach data disks from an existing .vhd file in blob storage, run this command:
 
     Add-AzureDataDisk -ImportFrom -MediaLocation `
               "<https://mystorage.blob.core.windows.net/mycontainer/MyExistingDisk.vhd>" `
               -DiskLabel "<main>" -LUN <0> |
               Update-AzureVM
 
-## 建立以 Windows 為基礎的 VM
+## <a name="create-a-windows-based-vm"></a>Create a Windows-based VM
 
-若要在 Azure 中建立以 Windows 為基礎的新虛擬機器，請依照[使用 Azure PowerShell 建立和預先設定建立以 Windows 為基礎的虛擬機器](virtual-machines-windows-classic-create-powershell.md)中的指示執行。本主題會逐步引導您建立 Azure PowerShell 命令集，以建立可預先設定的 Windows 型 VM：
+To create a new Windows-based virtual machine in Azure, use the instructions in [Use Azure PowerShell to create and preconfigure Windows-based virtual machines](virtual-machines-windows-classic-create-powershell.md). This topic steps you through the creation of an Azure PowerShell command set that creates a Windows-based VM that can be preconfigured:
 
-- 具有 Active Directory 網域成員資格。
-- 具有額外的磁碟。
-- 成為現有負載平衡集的成員。
-- 具有靜態 IP 位址。
+- With Active Directory domain membership.
+- With additional disks.
+- As a member of an existing load-balanced set.
+- With a static IP address.
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+
